@@ -27,21 +27,21 @@ featuring PPO decision-making, global A* planning, and MPC tracking solved via *
   #  hierarchical(Simulation Demo I — 4×4 Grid (No Obstacles))
   ![hierarchical_1](https://github.com/user-attachments/assets/6eeab195-45bd-4b2f-a18c-2975d80073cc)
   ![hierarchical_2](https://github.com/user-attachments/assets/d89444ed-31fc-4e71-aeb0-ef37c6c38056)
-    [DEMO_HIER] Goal reached!
-    [METRICS] Success Rate      = 100.00%
-    [METRICS] Optimality Ratio  = 1.000
-    [METRICS] MPC RMSE         = 0.271
-    [METRICS] Total Moves      = 3
-    [METRICS] Avg Plan Time    = 0.05 ms
-    [METRICS] Avg Control Time = 3785.71 ms
+[DEMO_HIER] Goal reached!
+[METRICS] Success Rate      = 100.00%
+[METRICS] Optimality Ratio  = 1.000
+[METRICS] MPC RMSE         = 0.271
+[METRICS] Total Moves      = 3
+[METRICS] Avg Plan Time    = 0.05 ms
+[METRICS] Avg Control Time = 3785.71 ms
     
   #  obstacle(Simulation Demo II — 4×4 Grid (With Obstacles))
   <img width="1041" height="416" alt="image" src="https://github.com/user-attachments/assets/53068e72-109c-42a4-8d1c-a3754c77a406" />
-    [METRICS] Success Rate      = 100.00%
-    [METRICS] Optimality Ratio  = 1.000
-    [METRICS] MPC RMSE         = 0.271
-    [METRICS] Avg Plan Time    = 4.43 ms
-    [METRICS] Avg Control Time = 3475.94 ms
+[METRICS] Success Rate      = 100.00%
+[METRICS] Optimality Ratio  = 1.000
+[METRICS] MPC RMSE         = 0.271
+[METRICS] Avg Plan Time    = 4.43 ms
+[METRICS] Avg Control Time = 3475.94 ms
     
   #  larger(Zero-Shot Generalization (8×8))
   <img width="895" height="358" alt="image" src="https://github.com/user-attachments/assets/c117c48d-8764-4cda-ad50-a6ba01466013" />
