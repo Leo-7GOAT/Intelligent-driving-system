@@ -52,7 +52,8 @@ featuring PPO decision-making, global A* planning, and MPC tracking solved via *
     [METRICS] Avg Control Time = 4636.28 ms
     
 ## Quantitative Results & Comparisons
-    ![Scenario Comparison](https://github.com/user-attachments/assets/c89f5bed-8f6e-4791-a735-d056b3252a1a)
+    <img width="859" height="424" alt="image" src="https://github.com/user-attachments/assets/3cfef225-c70f-4435-b160-7e9a610d7680" />
+
 
     Generalization: It performs well in environments of the same size but without obstacles (Obstacle), but fails in zero-shot scenarios on larger grids (Larger).
     Performance balance: Optimal paths are achieved in both default and obstacle scenarios, and MPC RMSE and control latency remain within reasonable ranges.
