@@ -45,11 +45,11 @@ featuring PPO decision-making, global A* planning, and MPC tracking solved via *
     
   #  larger(Zero-Shot Generalization (8×8))
   <img width="895" height="358" alt="image" src="https://github.com/user-attachments/assets/c117c48d-8764-4cda-ad50-a6ba01466013" />
-    [METRICS] Success Rate      = 0.00%
-    [METRICS] Optimality Ratio  = 1.000
-    [METRICS] MPC RMSE         = 0.643
-    [METRICS] Avg Plan Time    = 4.86 ms
-    [METRICS] Avg Control Time = 4636.28 ms
+[METRICS] Success Rate      = 0.00%
+[METRICS] Optimality Ratio  = 1.000
+[METRICS] MPC RMSE         = 0.643
+[METRICS] Avg Plan Time    = 4.86 ms
+[METRICS] Avg Control Time = 4636.28 ms
     
 ## Quantitative Results & Comparisons
     <img width="859" height="424" alt="image" src="https://github.com/user-attachments/assets/3cfef225-c70f-4435-b160-7e9a610d7680" />
