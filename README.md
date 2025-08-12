@@ -20,7 +20,7 @@ featuring PPO decision-making, global A* planning, and MPC tracking solved via *
 - **High-Level Decision (PPO)**: `ppo_agent.py`, `env_gridworld.py`  
 - **Low-Level Control (MPC)**: `mpc_agent.py`, `mpc_module.py`  
 - **Visualization & Utilities**: `visualization.py`, `dialog_parser.py`
-
+- - **Simulation**: `simulation.py`
 ## Train PPO
   python ppo_agent.py
   ![PPO_reward](https://github.com/user-attachments/assets/7c006ce8-a06e-4a88-9b74-e69c0ce2e470)
