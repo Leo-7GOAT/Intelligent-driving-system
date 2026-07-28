@@ -1,0 +1,27 @@
+name: ChatGPT Temp Whisper Model
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  download-model:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Download Whisper small q5 model
+        run: |
+          set -euxo pipefail
+          curl -L --fail --retry 5 --retry-all-errors \
+            -o ggml-small-q5_1.bin \
+            'https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small-q5_1.bin?download=true'
+          ls -lh ggml-small-q5_1.bin
+          sha256sum ggml-small-q5_1.bin
+      - name: Upload model artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ggml-small-q5_1
+          path: ggml-small-q5_1.bin
+          compression-level: 0
+          retention-days: 1
