@@ -2,6 +2,33 @@
 
 Research acceptance remains incomplete. The previous goal turn made concrete code, training and publication progress; this turn adds actual frozen-model diagnostics, a network implementation, tests and new bounded training. All results below are single-seed development evidence. Existing final conditions remain historical; no confirmation set is opened.
 
+## Subsequent endpoint and cumulative continuation, 19:04 local
+
+This section supersedes the earlier live v15/v16 snapshots below. v15 pooled B1 has completed1,001,990 physical steps,392phases/13,016optimizer steps and0/10 development; v16 progress-reward B1 has completed1,001,373steps,392phases/14,224optimizer steps and0/10. Both supervisor exits are0; both exact reload checks pass. v16 records139successful training episodes among1,436, but only2among the final100. Training success is not substituted for deterministic validation success.
+
+`scripts/audit_terminal_failures.py` checks every saved physical frame against simultaneous position/speed/heading gates and retains the recorded safety-priority outcome. The v16 endpoint has eight deadlines and two unseen collisions. Neither empty case ever enters the0.8m positional tolerance: it stops2.767/2.670m short at9.25s, with zero speed and requested braking throughout the final5s. Both narrow cases stop about11.7m short. Static/dynamic cases also never enter tolerance. This is not a bookkeeping-only parking failure and does not justify relaxing success criteria. The pooled model has six cases with zero progress; empty progress is only5.991/5.958m. The raw audits, input SHA256s and thresholds are saved as `terminal_audit_1000000.json` in each corresponding job. They are offline analyses of existing evidence, not additional independent evaluations.
+
+New batch `20261022T110104Z_progress_v16_continuation` starts from the exact v16 final model, optimizer, normalization, environment and RNG snapshot; it uses the parent's immutable training source and configuration. Milestones are cumulative2M/3M, not two/three million additional interactions, with a two-hour deadline around21:01local and a two-minute drain. The reason is to test whether a longer training span resolves the observed failure after forward motion has been learned. The earlier0/10 remains in the learning curve. This is neither a new seed nor evidence that the changed reward is adequate.
+
+Continuation preparation locks every parent owner, checks successful supervisor exits, checkpoint/source hashes, counter agreement and task/PPO consistency, then copies bytes and records ancestry. Missing/inconsistent checkpoints, active owners and nonadvancing budgets fail before a new batch is created. Unit fixtures explicitly test filesystem/provenance behavior, not policy performance. Actual resumed learning is separately verified: phase399 at1,019,292physical steps has14,383optimizer steps and actor-updateL2 .2154, exceeding the inherited392phases/14,224updates. Worker25592 and supervisor13284 were OS-confirmed from this batch; identities must be revalidated before later action.
+
+At launch there was approximately62.5GiB free disk and35.3GiB available RAM; GPU40C. Only this one-thread CPU worker and the pre-existing v13 B1 worker train. Standard12GiBdisk/4GiBRAM/85CGPU/300sno-progress guards and no automatic failed-job retry apply. v13 B1 was still alive at663,153steps at19:03. No CARLA server was launched.
+
+Full regression after the continuation and terminal-audit changes:92passed,5conditional skips (`reports/continuation_regression_20261022.xml`). The XML is local because it contains workspace paths. Earlier counts below describe earlier source versions.
+
+Reproduce the terminal audit from an existing local batch:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/audit_terminal_failures.py --batch runs/20261022T104130Z_progress_v16_development --job B1_progress025_hold10_seed11 --target 1000000
+```
+
+The active continuation has already been initialized and launched. Recovery, only after ownership/status inspection, uses:
+
+```powershell
+$batch = (Get-Content runs/progress_v16_continuation.json -Raw | ConvertFrom-Json).batch
+.\.venv\Scripts\python.exe scripts/development_watchdog.py --batch $batch
+```
+
 ## Completed endpoints
 
 The common-curriculum v13 H/H0 pair is complete: H1,001,775 physical steps,397 PPO phases,14,390 optimizer steps,8/10; H0 1,002,283 steps,395phases,15,100optimizer steps,6/10. H's earlier100k10/10 peak remains visible alongside its later8/10 regression. The v13 hold1 B1 is still running, not replaced or silently restarted.

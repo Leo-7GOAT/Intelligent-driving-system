@@ -24,7 +24,7 @@ Development v12 tests shared candidate scoring and explicit geometry, with an eq
 
 The v13 experiment gives H/H0/B1 the same full-length empty-task pretraining stage, counted inside their total interaction budget, before mixed-task training. It is developmental, not independent confirmation. B1 remains 0/10 at 300k and fails the full-length empty-task inference diagnostic with and without exploration. The [camera/curriculum report](reports/camera_staged_20261022.md) retains earlier milestone evidence. The published original development checkout passed 66 tests with 5 conditional skips.
 
-Later endpoints and diagnosis: v13 H completes 1M at 8/10; the hold10 B1 frequency trial also completes 1M but reaches 0/10 with zero progress. Actual traces show that smoother control alone does not resolve its stationary policy. New isolated trials test a learned candidate-set encoder and, separately, a declared signed-progress base reward. The latter changes the task objective and cannot be compared against H under the old reward as an architecture claim. See the [flat-PPO diagnosis](reports/flat_diagnosis_20261022.md). Latest full regression: 79 passed, 5 conditional skips.
+Later endpoints and diagnosis: v13 H completes 1M at 8/10; the hold10 B1 frequency trial also completes 1M but reaches 0/10 with zero progress. Both isolated B1 trials (candidate-set encoder and signed-progress base reward) have now completed approximately 1M steps at 0/10. The progress-reward model moves forward but stops about 2.7m short in both empty cases. Its unchanged checkpoint is continuing to cumulative 2M/3M to test training span, retaining all prior failures and costs. This changes neither seed nor objective and is not independent confirmation. The reward differs from the old H objective and requires matched retraining before an architecture claim. See the [flat-PPO diagnosis](reports/flat_diagnosis_20261022.md).
 
 Actual CARLA RGB videos now illustrate one PPO success and one timeout, each linked to its model, scene and sensor/world frames. See the [camera reproduction instructions](docs/CARLA_bridge.md#real-camera-development-evidence-2026-10-22). Videos are illustrative development evidence, not an aggregate success estimate.
 
@@ -47,6 +47,8 @@ python -m venv .venv
 
 CPU tests exercise physical dynamics, planning, QP control, PPO updates/checkpoints, statistical accounting and failure recovery. Live CARLA tests require explicit opt-in and an exclusively owned server; skipped tests are not evidence of live validation.
 
+Latest local full regression: **92 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
+
 ## Bounded development and recovery
 
 The candidate experiment is recorded in `runs/candidate_development.json`; the separate flat baseline uses `runs/matched_flat_development.json`. Each `protocol.json` records a two-hour execution window, source hashes, job budgets and resource limits. These are development diagnostics, not the final experiment protocol. Pointer files are local outputs. To create a new candidate experiment from the documented task on a fresh checkout, run the initializer once; it needs no CARLA installation or historical local run. Omit initialization when resuming an existing batch.
@@ -58,6 +60,8 @@ $batch = (Get-Content runs/candidate_development.json -Raw | ConvertFrom-Json).b
 ```
 
 The supervisor refuses concurrent ownership, skips completed jobs, preserves checkpoints and refuses automatic retry of failed jobs. A STOP file is not cleared automatically. Inspect `supervisor.json`, `supervisor_final.json`, each `worker_status.json`, `latest.json`, and raw logs. Do not use old six-hour scripts to overwrite historical protocols.
+
+For a successfully completed local batch, extend the same policies in a new bounded window with `scripts/continue_development.py --parent <batch> --milestones <larger-cumulative-budgets> --label <unique-label> --reason <evidence-based-reason>`. It requires released parent ownership, successful exits, matching counters/configuration and verified frozen source; it copies the resumable checkpoint without resetting optimizer, RNG, normalization or interaction costs. The new pointer is `runs/<unique-label>.json`; start its watchdog with the command above. Preparing a continuation alone does not start training. The currently launched reward continuation uses `runs/progress_v16_continuation.json`.
 
 For existing locally saved historical data, rebuild the historical report with:
 
