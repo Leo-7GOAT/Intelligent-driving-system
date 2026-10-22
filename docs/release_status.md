@@ -1,5 +1,11 @@
 # Development release record
 
+## Native actuation diagnostics, 2026-10-22
+
+Code067db54b2803d8cc26fd9b63fbc4db62900606c2was pushed to the existing feature branch and matched remote SHA. Independent checkout at that commit passes102tests/5conditional skips and reloads the published camera model. It reconstructs all three native diagnostic plots and verified summaries byte-identically, including from an actual fresh release download. ActualCARLA replay from this checkout completes4/4native routes,1924controlticks, no observed collision or sampled road departure, but retains deceleration near−25m/s²andjerk131–139m/s³. Detailed trajectories differ. Owned server was verified empty and stopped; receipts live in its`runs/20261022T120642Z_native_curve_control`.
+
+The existing pre-release now additionally contains [native_actuation_diagnostics.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_actuation_diagnostics.zip),3,909,935bytes/559manifestfiles, SHA256`5f8822bc6caca88429e5830f829b916352c8e6588f0debe637b69399a65160a5`. GitHub uploaded state/digest and downloaded content hashes match. No existing tag/asset was replaced. All12control episodes,20raw brake phases and12throttle phases are retained, plus frozen source and calibrations. No CARLA binaries/maps/runtime directories are bundled. The failedcoast/manualgear hypotheses remain visible and disabled by default. This artifact is developmental control evidence, not PPO superiority or completed research acceptance.
+
 ## Camera evidence addition, 2026-10-22
 
 The existing pre-release now also contains `candidate_v12_H25k_camera_examples.zip` (2,218,569 bytes), SHA256 `c24ad7dec570f7becaae46f0014ce5320f5e9a2ae87849416d327d5f887aac44`. GitHub reports `uploaded` with the same digest; a fresh download matched the local hash. The old tag and two old assets were not replaced. This separate package contains the actual CARLA-adapted H25k model, frozen source/config/normalization, measured calibration, both success/failure traces, sensor/world frame manifests and real videos. See the [model card](model_card.md) for the later 100k regression and [current evidence report](../reports/camera_staged_20261022.md).
