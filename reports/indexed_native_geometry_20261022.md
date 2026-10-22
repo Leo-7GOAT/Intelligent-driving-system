@@ -66,3 +66,13 @@ Prepared immutable assets, scanned for private paths/credentials and checked aga
 - `indexed_native_ppo_development.zip`: 240 members, 16,082,364 bytes, SHA256 `cf353f225bb81dbcf00946f702a39696f76aca7a1a98a239e9fa5344b5cc2864`. Includes both 10k models, normalization, training/evaluation traces and failures. It does not include the still-running 100k comparison or v19 weights.
 
 Upload, independent-download verification and checkout reproduction are recorded after they occur. The full five-policy comparison, strong B3 decision contribution, static/dynamic native tasks, control improvements and fresh 120-condition confirmation remain incomplete.
+
+## Verified follow-up
+
+Source commit `2b7a55cc2c9ec90275a73693f6c8126d078c6047` is pushed and its remote SHA matches. Both assets were uploaded to the existing development prerelease, downloaded into a new directory, and verified against the archive digests and all 883/240 member hashes. The tag and older assets are unchanged.
+
+The independent native-road checkout passes 117 tests / five conditional skips with its separately installed environment. Both downloaded models reload with frozen normalization and 4,447 inputs. All five downloaded batches reconstruct verified summaries and plots byte-identically using checkout source. New independent-checkout CARLA execution for this version remains pending while the active 100k comparison owns the server.
+
+The completed frozen policy/normalizer cross gives full-task successes 3/10 and 3/10 for the 4,898,060-step policy under old/new statistics, and 0/10 and 0/10 for the 5,001,122-step policy. Both retain 6m parking 2/2. Restoring earlier normalization alone does not repair the regression; the evidence points to policy changes without proving KL as the causal mechanism. Counterfactual pairs are not promoted evaluation models.
+
+At 23:36 local, H0 completed 100,160 controls, 103,631 training world ticks and 626 optimizer steps; actor L2 change 1.46485 and exact reload. Training has 111 deadlines and one unfinished episode; frozen evaluation is 0/4 (all deadlines). H is actually training and B1 is pending. These partial results do not replace the final paired comparison.

@@ -1,3 +1,13 @@
+# Verified publication and live work — 2026-10-22 23:37 local
+
+Supersedes pending details below. Source2b7a55c pushed/remoteverified. Both indexedZIPs uploaded and actualfreshdownloads/all1123memberhashesverified in `runs/prerelease_20261022/indexed_download`. Independent native_road_checkout clean at2b7a55c:117tests5skips, two downloaded models reload/frozen stats, all five batch plots/summaries byte-identical. New live clone CARLA replay deferred until registered queue releases server; do not start another tick owner.
+
+Nativequeue152120Z LIVE: worker52840/launcher8152 created23:21:31; H bridge24812 created23:35:37 (H0bridge35156 exited). H0COMPLETE100160controls/103631worldticks/626optimizersteps/reloadexact/actorL2change1.46485;111deadlines+one unfinished training episode, eval0/4deadlines. Hstarted23:35,2400controls observed23:36:39; B1pending. execsession17202active, deadline01:21:20Oct23. Ownedserver17516/19032 remains; cleanup afterallbridgesexit through owner144123Z. RevalidateOS before actions. No lightweight training live.
+
+B1 normcross session45864 COMPLETE: 4.898M policy with old/new stats3/10and3/10;5.001M policy0/10and0/10; all6m2/2. Evidence `late_regression_norm_cross/results.json` and raw traces. Earlier normalization alone does not repair regression; no KL causality claim. Intermediate full-task4.496M4/10and4.898M3/10;4.996M23m0/8allmodes. Final0/10retained. Next B1 experiment should isolate update stability with paired same-checkpoint branches and frequent identical development validation; no such branch launched yet.
+
+Current turn progress; full goal active/incomplete, no hard blocker. Finish H/B1 queue and verify all frames, then independent live CARLA replay and owned-server cleanup. Five independent seeds, fresh120conditions, strongB3, native static/dynamic, comfort and research acceptance remain incomplete. Documentation commit may follow source2b7a55c; inspectGit.
+
 # Authoritative continuation — 2026-10-22 23:35 local
 
 Previous summary turn discovered the finished native batch; this turn makes concrete progress: all26,470frames verified, new paired feedback training actually started, intermediate B1 regression localized, tests/report/assets implemented. Full objective active/incomplete, no hard blocker, no agents.
