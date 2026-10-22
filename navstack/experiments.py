@@ -174,6 +174,10 @@ def signature(config):
     if config.empty_pretraining_steps:
         result["task_stage_curriculum"] = {"full_length_empty_until_physics_steps": config.empty_pretraining_steps,
                                            "then": "original_mixed_distribution_at_next_episode", "evaluation": "unchanged"}
+    if config.road_observation:
+        result["observation"] += "-measured-road64x64-v1"
+        result["observation_shape"][0] += 4096
+        result["road_geometry"] = "carla_driving_64_v1_closed_cells_shared_planning_risk_bounds"
     return result
 
 

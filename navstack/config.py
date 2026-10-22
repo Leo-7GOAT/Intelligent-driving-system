@@ -122,6 +122,7 @@ class EnvConfig:
     subgoal_mode: str = "ego_arcs"
     execution_feedback: str = "off"
     candidate_observation: bool = False
+    road_observation: bool = False  # full shared 64x64 measured occupancy, new model signature
     empty_pretraining_steps: int = 0
     route_stages: list[dict] = field(default_factory=list)
     vehicle: VehicleConfig = field(default_factory=VehicleConfig)

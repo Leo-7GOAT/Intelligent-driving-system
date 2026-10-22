@@ -48,6 +48,7 @@ class World:
     height: float
     static: list = field(default_factory=list)  # xmin,ymin,xmax,ymax (m)
     dynamic: list = field(default_factory=list)
+    road: object = None  # optional shared measured raster, never a display overlay
 
     def out_of_bounds(self, pose, vehicle, margin=0.0):
         p = body_corners(pose, vehicle, margin)
@@ -55,6 +56,7 @@ class World:
             np.any(p < 0)
             or np.any(p[:, 0] > self.width)
             or np.any(p[:, 1] > self.height)
+            or (self.road is not None and self.road.intersects(p))
         )
 
     def static_collision(self, pose, vehicle, margin=0.0):
@@ -116,6 +118,9 @@ class World:
                        & (np.abs(dx*c+dy*s) <= half_length+rx*np.abs(c)+ry*np.abs(s)+tolerance)
                        & (np.abs(-dx*s+dy*c) <= half_width+rx*np.abs(s)+ry*np.abs(c)+tolerance))
             valid &= ~overlap
+        if self.road is not None:
+            for index in np.flatnonzero(valid):
+                valid[index] = not self.road.intersects(body_corners(poses[index], vehicle, margin))
         return valid
 
     def occupied(self, x, y):
@@ -124,6 +129,7 @@ class World:
             or y < 0
             or x > self.width
             or y > self.height
+            or (self.road is not None and self.road.occupied(x, y))
             or any(a <= x <= c and b <= y <= d for a, b, c, d in self.static)
         )
 
@@ -145,6 +151,8 @@ class World:
             predicted = self.clearance(future_pose, vehicle, o, 1.0)
             risks.append(math.exp(-max(0.0, min(clear, predicted)) / 1.5))
         corners = body_corners(pose, vehicle)
+        if self.road is not None:
+            risks.append(math.exp(-self.road.clearance(corners) / 1.5))
         for rect in self.static:
             other = np.array(
                 [

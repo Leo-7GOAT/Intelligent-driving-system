@@ -4,6 +4,29 @@ import json
 import math
 
 
+def sample_road_grid(layout, is_driving):
+    """Sample actual map at cell corners and centre, without advancing physics.
+
+    Entire cells are blocked if any sampled point is outside Driving lanes.
+    This is conservative relative to samples, not a continuous-surface proof.
+    Shared grid dimensions stay fixed across policies; metre resolution is saved.
+    """
+    width, height = layout["width"], layout["height"]
+    if not 0 < min(width, height) <= max(width, height) <= 64:
+        raise ValueError("Native road extent exceeds the registered grid")
+    size = 64
+    dx, dy = width/size, height/size
+    vertices = [[bool(is_driving(x*dx, y*dy)) for x in range(size+1)] for y in range(size+1)]
+    cells = [[int(vertices[y][x] and vertices[y][x+1] and vertices[y+1][x]
+                  and vertices[y+1][x+1] and is_driving((x+.5)*dx, (y+.5)*dy))
+              for x in range(size)] for y in range(size)]
+    data = {"version": "carla_driving_64_v1", "width": width, "height": height,
+            "drivable": cells, "geometry_id": layout["geometry_id"],
+            "sampling": "four cell corners plus centre; Driving lane and height check; not continuous-surface proof"}
+    data["sha256"] = hashlib.sha256(json.dumps(data, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
+    return data
+
+
 def select_routes(survey):
     """Four development curves selected solely by signed geometry before driving."""
     result = []

@@ -91,6 +91,9 @@ class BridgeClient:
 
 class CarlaWorld(World):
     sensor_collision_truth = True
+    measured_offroad = False
+    def out_of_bounds(self, pose, vehicle, margin=0.0):
+        return self.measured_offroad or super().out_of_bounds(pose, vehicle, margin)
     def advance(self, dt):
         pass  # measured actor positions have already arrived with the CARLA frame
 
@@ -105,8 +108,10 @@ class BridgePlant:
         self.previous_command=Command(**result["command"])
         self.world.dynamic=[MovingObstacle(**o) for o in result["dynamic"]]
         self.collision_history |= bool(result["collisions"])
+        probe=result.get("road_surface_probe")
+        self.world.measured_offroad |= bool(probe and probe["offroad_points_world"])
         self.evidence={k:result[k] for k in ("frame","request_id","episode_id","imu_frame","collisions","sensor_health")}
-        for key in ("vehicle_control","speed_setpoint","terminal_sensor_drain_seconds"):
+        for key in ("vehicle_control","speed_setpoint","terminal_sensor_drain_seconds","road_surface_probe"):
             if key in result:self.evidence[key]=result[key]
 
     @property
@@ -133,10 +138,19 @@ class CarlaNavigationEnv(NavigationEnv):
                 "scenario":str(self.np_random.choice(["static","curve","dynamic"])),
                 "condition":int(self.np_random.integers(0,10))}
         self.case_index+=1
-        if case.get("scenario")=="native_curve":
-            raise ValueError("Native curves currently support fixed-reference control diagnostics only; navigation road-boundary observations/rewards require separate integration")
-        result=self.client.request("begin",**case);scene=result["scene"]
+        if case.get("scenario")=="native_curve" and not self.config.road_observation:
+            raise ValueError("Native curves require shared measured road observations; old models support fixed-reference diagnostics only")
+        if self.config.road_observation and case.get("scenario")!="native_curve":
+            raise ValueError("Measured road observation currently requires a native route")
+        result=self.client.request("begin",**case,road_observation=self.config.road_observation);scene=result["scene"]
         world=CarlaWorld(scene["width"],scene["height"],scene["static"])
+        if self.config.road_observation:
+            from .road_grid import RoadGrid
+            world.road=RoadGrid(scene["road_grid"])
+            if (world.road.width,world.road.height)!=(world.width,world.height):
+                raise InfrastructureFailure("Road grid/scene extent mismatch")
         plant=BridgePlant(self.client,result,world)
+        if world.out_of_bounds((plant.state.x,plant.state.y,plant.state.yaw),self.config.vehicle):
+            raise InfrastructureFailure("Initial measured vehicle footprint is outside registered road geometry")
         self.scene_evidence=scene
         return world,plant,scene["goal"],scene["name"]

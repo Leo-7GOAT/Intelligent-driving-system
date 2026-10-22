@@ -82,6 +82,8 @@ class Bridge:
         a.apply_control(carla.VehicleControl(brake=1,hand_brake=True));return a
 
     def begin(self,r):
+        if r.get("road_observation",False) and self.cal["recommended_adapter"].get("longitudinal_mode") in ("acceleration_pi_v1","acceleration_ff_v2"):
+            raise ValueError("Measured-road PPO does not yet observe experimental actuator internal state")
         if (self.cal["recommended_adapter"].get("longitudinal_mode") in ("acceleration_pi_v1","acceleration_ff_v2")
                 and r.get("scenario")!="native_curve" and not r.get("diagnostic_actuation",False)):
             raise ValueError("Experimental acceleration PI requires explicit diagnostic scope; training state interface not integrated")
@@ -103,6 +105,13 @@ class Bridge:
             self.origin=(tr.location.x-5.25*math.sin(angle),tr.location.y+5.25*math.cos(angle))
             self.width=34.;self.height=14.
         angle=math.radians(self.angle);self.co=math.cos(angle);self.si=math.sin(angle)
+        self.road_grid=None
+        if self.native_layout and r.get("road_observation",False):
+            from navstack.native_route import sample_road_grid
+            def is_driving(x,y):
+                waypoint=self.map.get_waypoint(self.loc(x,y),project_to_road=False,lane_type=carla.LaneType.Driving)
+                return waypoint is not None and abs(waypoint.transform.location.z-(self.spawn_z-.6))<1.5
+            self.road_grid=sample_road_grid(self.native_layout,is_driving)
         self.dynamic=[];self.static_actors=[]
         case_rng=random.Random(210000+condition)
         start_y=case_rng.uniform(6.5,7.5);goal_y=start_y
@@ -175,7 +184,8 @@ class Bridge:
                 "static":static,"map":self.map.name,"origin":self.origin,"angle":self.angle,
                 "road_surface_probe_misses":misses,"longitudinal_edges":"task boundaries", "condition":condition,
                 "generator_version":"native_curve_v1" if self.native_layout else "seeded_geometry_v1",
-                "native_layout":self.native_layout,"boundary_scope":"sampled_measured_footprint_on_native_driving_surface" if self.native_layout else "measured_straight_road_rectangle",
+                "native_layout":self.native_layout,"road_grid":self.road_grid,
+                "boundary_scope":"shared_sampled_driving_grid_v1" if self.road_grid else ("sampled_measured_footprint_on_native_driving_surface" if self.native_layout else "measured_straight_road_rectangle"),
                 "walker_control_speed":self.walker_speed,"reset_ticks":30+(1 if len(self.retired_ids)>0 else 0)}}
 
     def tick(self,require_sensor=True):

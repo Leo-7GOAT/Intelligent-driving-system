@@ -1,5 +1,9 @@
 # Development release record
 
+## Shared native-road development addition
+
+`native_road_learning_development.zip` is actually uploaded to the existing pre-release:396manifestfiles,14,053,181bytes,SHA256`b54fdd0f142f1944878a9e095363ffde716162f2dd772dcaafd9cb9b01c34757`. GitHub uploaded state/digest match. It retains both new H/B1 interface-training batches, all failed/unfinished episodes, models, normalization, road grids, frame ledgers and the read-only map-query audit. There are no task successes and these repeats share seed11. Code publication, downloaded verification and independent reproduction are recorded after execution below. Earlier assets/tag remain unchanged.
+
 ## Acceleration feedback evidence addition
 
 Code commit `abb2b1a7498452de72fe9e0118b42883f30f11e7` is pushed and remote-verified. Independent checkout passes105 tests with5conditional skips, reloads the published145-file PPO camera asset, and reconstructs both downloaded diagnostic plots and verified summaries byte-identically. Actual CARLA feedforward replay from this checkout completes4/4 routes,1920 control ticks, speed RMS .105/.148/.105/.166m/s and jerk68.53/77.73/67.94/71.95m/s³. Deceleration still reaches approximately−24m/s². Detailed trajectories vary; this is repeatability evidence, not another independent condition or seed. The owned server was verified empty and stopped. Raw replay evidence is in that checkout's `runs/20261022T124930Z_native_curve_control`.

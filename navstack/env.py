@@ -45,6 +45,8 @@ class NavigationEnv(gym.Env):
         # Same information for every policy: 163 local features + 20 known static
         # rectangles (four ego-frame corners + mask) + four map boundary corners.
         obs_size = 605 if c.candidate_observation else (351 if c.execution_feedback == "off" else 450)
+        if c.road_observation:
+            obs_size += 64*64
         self.observation_space = spaces.Box(-np.inf, np.inf, (obs_size,), np.float32)
         self.planner = (GridAStarPlanner if c.method == "B2" else HybridAStar)(
             c.vehicle, c.planner
@@ -65,6 +67,8 @@ class NavigationEnv(gym.Env):
         initial = self.plant.state
         if len(self.world.static) > 20:
             raise ValueError("static-map observation capacity exceeded")
+        if self.config.road_observation and self.world.road is None:
+            raise ValueError("Measured road observations require measured road geometry")
         self.controller = MPC(
             self.config.vehicle, self.config.control_dt, self.config.mpc_horizon
         )
@@ -110,6 +114,8 @@ class NavigationEnv(gym.Env):
             "static": list(self.world.static),
             "dynamic": [asdict(o) for o in self.world.dynamic],
         }
+        if self.world.road is not None:
+            self.initial_scenario["road_sha256"] = self.world.road.sha256
         return self._observation(), {"scenario": self.scenario_name, "success": False}
 
     def _create_episode(self, options=None):
@@ -235,6 +241,10 @@ class NavigationEnv(gym.Env):
                 extra = np.r_[candidates.ravel(), extra[93:]]
             self.feedback_seconds = time.perf_counter() - started
             observation = np.r_[observation, extra].astype(np.float32)
+        if self.config.road_observation:
+            # Full raster in the same local map axes as the four already-visible
+            # map corners. All architectures receive every cell used by planning.
+            observation = np.r_[observation, (~self.world.road.drivable).ravel()].astype(np.float32)
         return observation
 
     def _execution_feedback(self):
@@ -358,7 +368,7 @@ class NavigationEnv(gym.Env):
             return "out_of_bounds"
         arrived = math.hypot(s.x - self.goal[0], s.y - self.goal[1]) <= c.goal_tolerance
         parked = not c.parking or (
-            s.v <= c.goal_speed
+            abs(s.v) <= c.goal_speed
             and abs(wrap(s.yaw - self.goal[2])) <= c.goal_yaw_tolerance
         )
         if (

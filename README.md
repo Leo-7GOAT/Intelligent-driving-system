@@ -1,5 +1,7 @@
 # Executability-aware hierarchical driving research
 
+Latest [native-road integration and retention audit](reports/native_road_learning_20261022.md): a shared measured64x64 road grid now reaches planning, all policies, risk and termination. Actual fresh H/B1 CARLA PPO updates and model reloads pass; short-run failures remain. The grid is sampled Driving-lane geometry, not continuous asphalt truth. CPU regression:107passed/5conditional skips. At4M, staged B1 learns23m parking but retains only1/8 deterministic6m cases; mixed-task competence remains unresolved.
+
 Latest [acceleration/curriculum evidence](reports/actuation_curriculum_20261022.md): measured feedforward improves speed RMS and jerk on four fixed native-road references, but startup/stopping spikes and lateral-error tradeoffs remain. It is diagnostic-only. v17 finishes3M at0/10; a fresh, bounded5M staged-distance B1 experiment is running.
 
 A low-speed research prototype: **PPO → local pose/speed → forward Hybrid A* → time-parameterized trajectory → MPC → physical execution and feedback**.
