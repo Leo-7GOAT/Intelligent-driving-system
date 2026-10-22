@@ -29,7 +29,7 @@ def write(path, value):
     Path(path).write_text(json.dumps(value, indent=2, default=jsonable), encoding="utf-8")
 
 
-def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, plan_method="H"):
+def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, plan_method="H", road_geometry_version="carla_driving_64_v1"):
     if adapter == "acceleration_ff_v2" and fit_path is None:
         raise ValueError("Measured throttle fit is required")
     healthy, reason = resources_ok(ROOT)
@@ -40,6 +40,8 @@ def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, 
     routes = select_routes(survey)
     if planning_audit and adapter != "legacy":
         raise ValueError("First searched-road execution uses unchanged legacy actuation")
+    if road_geometry_version != "carla_driving_64_v1" and not planning_audit:
+        raise ValueError("Refined road execution requires shared grid planning audit")
     batch = ROOT / "runs" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"_native_curve_control")
     batch.mkdir()
     (batch / "infrastructure").mkdir()
@@ -88,6 +90,7 @@ def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, 
     write(batch / "protocol.json", {"scope": "Native-road fixed-reference MPC, no PPO or Hybrid A* performance claim; four geometrically selected development routes",
           "registered_hybrid_plans": registered_plans,
           "registered_plan_method": plan_method if registered_plans else None,
+          "road_geometry_version":road_geometry_version,
           "longitudinal_adapter": adapter, "created_epoch": now, "deadline_epoch": now+900, "source_hashes": hashes,
           "survey_sha256": hashlib.sha256((parent / "native_routes.json").read_bytes()).hexdigest(),
           "calibration_sha256": hashlib.sha256((batch / "calibration/calibration.json").read_bytes()).hexdigest(),
@@ -137,7 +140,8 @@ def run(batch):
         for case_id, route in enumerate(protocol["routes"]):
             guard(batch, protocol)
             plans = protocol.get("registered_hybrid_plans")
-            measured = client.request("begin", scenario="native_curve", native_route=route, condition=case_id, road_observation=bool(plans))
+            measured = client.request("begin", scenario="native_curve", native_route=route, condition=case_id, road_observation=bool(plans),
+                road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"))
             if measured["road_surface_probe"]["offroad_points_world"]:
                 raise RuntimeError("Initial actual footprint is off the native road")
             state = VehicleState(**measured["state"])
@@ -226,5 +230,6 @@ if __name__ == "__main__":
     parser.add_argument("--fit", help="Measured throttle fit for acceleration_ff_v2")
     parser.add_argument("--planning-audit", help="Execute all four saved Hybrid A* paths under shared raster boundaries")
     parser.add_argument("--plan-method", choices=["H","B2"], default="H", help="Method in registered planning audit; no policy training")
+    parser.add_argument("--road-geometry-version",choices=["carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"],default="carla_driving_64_v1")
     args = parser.parse_args()
-    prepare(args.prepare, args.adapter, args.fit, args.planning_audit, args.plan_method) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.adapter, args.fit, args.planning_audit, args.plan_method,args.road_geometry_version) if args.prepare else run(args.batch)

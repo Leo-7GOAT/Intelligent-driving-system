@@ -142,11 +142,14 @@ class CarlaNavigationEnv(NavigationEnv):
             raise ValueError("Native curves require shared measured road observations; old models support fixed-reference diagnostics only")
         if self.config.road_observation and case.get("scenario")!="native_curve":
             raise ValueError("Measured road observation currently requires a native route")
-        result=self.client.request("begin",**case,road_observation=self.config.road_observation);scene=result["scene"]
+        result=self.client.request("begin",**case,road_observation=self.config.road_observation,
+                                   road_geometry_version=self.config.road_geometry_version);scene=result["scene"]
         world=CarlaWorld(scene["width"],scene["height"],scene["static"])
         if self.config.road_observation:
             from .road_grid import RoadGrid
             world.road=RoadGrid(scene["road_grid"])
+            if world.road.payload["version"] != self.config.road_geometry_version:
+                raise InfrastructureFailure("Measured road version differs from policy configuration")
             if (world.road.width,world.road.height)!=(world.width,world.height):
                 raise InfrastructureFailure("Road grid/scene extent mismatch")
         plant=BridgePlant(self.client,result,world)

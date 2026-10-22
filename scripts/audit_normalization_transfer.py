@@ -16,6 +16,8 @@ def main():
     parser.add_argument("--batch", required=True)
     parser.add_argument("--left", type=int, required=True)
     parser.add_argument("--right", type=int, required=True)
+    parser.add_argument("--left-checkpoint", help="Explicit intermediate checkpoint for a diagnostic, not model selection")
+    parser.add_argument("--right-checkpoint", help="Explicit intermediate checkpoint for a diagnostic, not model selection")
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
     batch, output = Path(args.batch).resolve(), Path(args.output)
@@ -35,10 +37,14 @@ def main():
     pairs = {}
     provenance = {}
     for target in (args.left, args.right):
-        result = json.loads((run/f"validation_{target}.json").read_text(encoding="utf-8"))
-        checkpoint = Path(result["checkpoint"])
+        explicit = args.left_checkpoint if target == args.left else args.right_checkpoint
+        result = None if explicit else json.loads((run/f"validation_{target}.json").read_text(encoding="utf-8"))
+        checkpoint = Path(explicit) if explicit else Path(result["checkpoint"])
         model_hash = hashlib.sha256((checkpoint/"model.zip").read_bytes()).hexdigest()
-        assert model_hash == result["model_sha256"]
+        if result is not None:
+            assert model_hash == result["model_sha256"]
+        else:
+            assert json.loads((checkpoint/'training_summary.json').read_text(encoding='utf-8'))['physics_steps'] == target
         provenance[target] = {"checkpoint":checkpoint.name, "model_sha256":model_hash,
             "normalization_sha256":hashlib.sha256((checkpoint/"normalization.pkl").read_bytes()).hexdigest()}
         model, normalizer = load_run(checkpoint)

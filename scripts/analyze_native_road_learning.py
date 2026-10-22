@@ -22,6 +22,58 @@ def read(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def verify_trace(trace, actual, used, previous):
+    """Match every applied control to its measured state, frame and clock."""
+    for tick in trace:
+        evidence = tick["backend_evidence"]
+        key = (evidence["episode_id"], evidence["frame"])
+        measured = actual[key]
+        assert key not in used, "Control counted more than once"
+        used.add(key)
+        assert tick["state"] == measured["state"]
+        assert evidence["imu_frame"] == evidence["frame"] == measured["imu_frame"]
+        episode = evidence["episode_id"]
+        if episode in previous:
+            old_frame, old_time = previous[episode]
+            assert evidence["frame"] == old_frame+1
+            assert abs(tick["state"]["time"]-old_time-.05) < 1e-6
+        previous[episode] = evidence["frame"], tick["state"]["time"]
+
+
+def verify_evaluation(directory, actual, used):
+    """Evaluation controls share the bridge log but never the training count."""
+    if not (directory/"evaluation.json").exists():
+        assert not (directory/"evaluation_trace.jsonl.gz").exists(), "Incomplete evaluation"
+        return None
+    evaluation = read(directory/"evaluation.json")
+    for name, key in (("model.zip", "model_sha256"), ("normalization.pkl", "normalization_sha256")):
+        assert hashlib.sha256((directory/name).read_bytes()).hexdigest() == evaluation[key]
+    previous, cases, failures = {}, {}, Counter()
+    with gzip.open(directory/"evaluation_trace.jsonl.gz", "rt", encoding="utf-8") as stream:
+        for line in stream:
+            row = json.loads(line)
+            info = row["info"]
+            case = cases.setdefault(row["case_id"], {"frames": 0, "actions": 0, "terminal": None})
+            assert case["terminal"] is None, "Control after episode termination"
+            verify_trace(info["trace"], actual, used, previous)
+            assert len(info["trace"]) == info["executed_substeps"]
+            case["frames"] += len(info["trace"])
+            case["actions"] += 1
+            if info.get("plan") and info["plan"].get("failure_reason"):
+                failures[info["plan"]["failure_reason"]] += 1
+            if info["termination_reason"]:
+                case["terminal"] = info["episode_metrics"]
+    assert set(cases) == {e["case_id"] for e in evaluation["episodes"]}
+    for episode in evaluation["episodes"]:
+        case = cases[episode["case_id"]]
+        assert case["terminal"] == {k:v for k,v in episode.items() if k != "case_id"}
+        assert (case["frames"], case["actions"]) == (episode["physics_steps"], episode["actions"])
+    return {"scope": evaluation["scope"], "control_frames_verified": sum(c["frames"] for c in cases.values()),
+            "world_ticks": evaluation["world_ticks"], "successes": sum(e["success"] for e in evaluation["episodes"]),
+            "episodes": len(cases), "termination_reasons": dict(Counter(e["termination_reason"] for e in evaluation["episodes"])),
+            "plan_failure_reasons": dict(failures)}
+
+
 def analyze(batch):
     batch = Path(batch)
     protocol = read(batch/"protocol.json")
@@ -34,7 +86,7 @@ def analyze(batch):
                 row = json.loads(line)["response"]
                 if "vehicle_control" in row:
                     actual[(row["episode_id"], row["frame"])] = row
-    fig, axes = plt.subplots(2, 4, figsize=(16, 8), constrained_layout=True)
+    fig, axes = plt.subplots(len(protocol["methods"]), 4, figsize=(16, 4*len(protocol["methods"])), constrained_layout=True, squeeze=False)
     methods = []
     used = set()
     for method_index, method in enumerate(protocol["methods"]):
@@ -53,19 +105,8 @@ def analyze(batch):
                     episode = action["episode_id"]
                     if action["plan"]:
                         plans[action["plan"]["status"]] += 1
+                    verify_trace(action["trace"], actual, used, previous)
                     for tick in action["trace"]:
-                        evidence = tick["backend_evidence"]
-                        key = (evidence["episode_id"], evidence["frame"])
-                        measured = actual[key]
-                        assert key not in used
-                        used.add(key)
-                        assert tick["state"] == measured["state"]
-                        assert evidence["imu_frame"] == evidence["frame"] == measured["imu_frame"]
-                        if episode in previous:
-                            old_frame, old_time = previous[episode]
-                            assert evidence["frame"] == old_frame+1
-                            assert abs(tick["state"]["time"]-old_time-.05) < 1e-6
-                        previous[episode] = evidence["frame"], tick["state"]["time"]
                         controllers[tick["controller_status"]] += 1
                         traces[episode].append(tick["state"])
                         frames += 1
@@ -100,6 +141,7 @@ def analyze(batch):
             "controller_statuses": dict(controllers), "plan_statuses": dict(plans),
             "unfinished_episodes": sum(bool(traces[i]) for i in traces)-sum(reasons.values()),
             "distinct_route_grids": len({s["scene"]["road_grid"]["sha256"] for s in scenes}),
+            "evaluation": verify_evaluation(directory, actual, used),
             "actor_l2_change": summary["actor_l2_change"], "optimizer_steps": summary["optimizer_steps"]})
     assert len(used) == len(actual), "Unaccounted applied CARLA controls"
     fig.suptitle("Development interface training only: short rollouts, failures and unfinished episodes retained")

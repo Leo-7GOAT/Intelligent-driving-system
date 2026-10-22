@@ -82,6 +82,14 @@ class Bridge:
         a.apply_control(carla.VehicleControl(brake=1,hand_brake=True));return a
 
     def begin(self,r):
+        self.road_geometry_version=r.get("road_geometry_version","carla_driving_64_v1")
+        if self.road_geometry_version not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"):
+            raise ValueError("Unknown road geometry version")
+        if self.road_geometry_version != "carla_driving_64_v1" and (not r.get("road_observation") or r.get("scenario")!="native_curve"):
+            raise ValueError("Refined geometry requires shared native road observation")
+        if self.road_geometry_version == "carla_driving_indexed_union_64_v3" and not hasattr(self,"road_surface_index"):
+            from navstack.lane_projection import DrivingSurfaceIndex
+            self.road_surface_index=DrivingSurfaceIndex(self.map,carla.LaneType.Driving)
         if r.get("road_observation",False) and self.cal["recommended_adapter"].get("longitudinal_mode") in ("acceleration_pi_v1","acceleration_ff_v2"):
             raise ValueError("Measured-road PPO does not yet observe experimental actuator internal state")
         if (self.cal["recommended_adapter"].get("longitudinal_mode") in ("acceleration_pi_v1","acceleration_ff_v2")
@@ -109,9 +117,15 @@ class Bridge:
         if self.native_layout and r.get("road_observation",False):
             from navstack.native_route import sample_road_grid
             def is_driving(x,y):
+                if self.road_geometry_version == "carla_driving_indexed_union_64_v3":
+                    return self.road_surface_index.contains(self.loc(x,y,z=self.spawn_z-.6))
+                if self.road_geometry_version == "carla_driving_refined_union_64_v2":
+                    from navstack.lane_projection import on_driving_surface
+                    point=self.loc(x,y,z=self.spawn_z-.6)
+                    return on_driving_surface(self.map,point,carla.LaneType.Driving)
                 waypoint=self.map.get_waypoint(self.loc(x,y),project_to_road=False,lane_type=carla.LaneType.Driving)
                 return waypoint is not None and abs(waypoint.transform.location.z-(self.spawn_z-.6))<1.5
-            self.road_grid=sample_road_grid(self.native_layout,is_driving)
+            self.road_grid=sample_road_grid(self.native_layout,is_driving,self.road_geometry_version)
         self.dynamic=[];self.static_actors=[]
         case_rng=random.Random(210000+condition)
         start_y=case_rng.uniform(6.5,7.5);goal_y=start_y
@@ -221,16 +235,26 @@ class Bridge:
                "time":self.world.get_snapshot().timestamp.elapsed_seconds-self.t0}
         road_probe=None
         if self.native_layout:
-            misses=[]
+            misses=[];raw_misses=[]
             rear_x=tr.location.x+self.rear*math.cos(yaw);rear_y=tr.location.y+self.rear*math.sin(yaw)
             vehicle=self.cal["vehicle"]
             for forward in (-vehicle["rear"],0.,vehicle["front"]*.5,vehicle["front"]):
                 for lateral in (-vehicle["width"]/2,0.,vehicle["width"]/2):
                     point=carla.Location(x=rear_x+forward*math.cos(yaw)-lateral*math.sin(yaw),
                                          y=rear_y+forward*math.sin(yaw)+lateral*math.cos(yaw),z=tr.location.z)
-                    if self.map.get_waypoint(point,project_to_road=False,lane_type=carla.LaneType.Driving) is None:
-                        misses.append([point.x,point.y,point.z])
-            road_probe={"sample_count":12,"offroad_points_world":misses,"scope":"sampled actual rear-axle footprint, not continuous swept-body proof"}
+                    raw_inside=self.map.get_waypoint(point,project_to_road=False,lane_type=carla.LaneType.Driving) is not None
+                    if not raw_inside:
+                        raw_misses.append([point.x,point.y,point.z])
+                    if self.road_geometry_version == "carla_driving_indexed_union_64_v3":
+                        inside=self.road_surface_index.contains(point)
+                    elif self.road_geometry_version == "carla_driving_refined_union_64_v2":
+                        from navstack.lane_projection import on_driving_surface
+                        inside=on_driving_surface(self.map,point,carla.LaneType.Driving)
+                    else:
+                        inside=raw_inside
+                    if not inside:misses.append([point.x,point.y,point.z])
+            road_probe={"sample_count":12,"offroad_points_world":misses,"raw_offroad_points_world":raw_misses,
+                        "geometry_version":self.road_geometry_version,"scope":"sampled actual rear-axle footprint, not continuous swept-body proof"}
         return {"state":state,"frame":self.frame,"imu_frame":self.imu_frame,"road_surface_probe":road_probe,
                 "world_elapsed_seconds":self.world.get_snapshot().timestamp.elapsed_seconds,"collisions":[e for e in self.events if e["episode_id"]==self.active_episode],
                 "dynamic":dynamic,"command":self.command,"sensor_health":"frame_heartbeat_ok"}

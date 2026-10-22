@@ -128,6 +128,7 @@ class EnvConfig:
     execution_feedback: str = "off"
     candidate_observation: bool = False
     road_observation: bool = False  # full shared 64x64 measured occupancy, new model signature
+    road_geometry_version: str = "carla_driving_64_v1"
     empty_pretraining_steps: int = 0
     route_stages: list[dict] = field(default_factory=list)
     route_rehearsal_probability: float = 0.0
@@ -142,6 +143,10 @@ class EnvConfig:
             raise ValueError("Unknown subgoal semantics")
         if self.execution_feedback not in ("off", "enabled", "ablated"):
             raise ValueError("Unknown execution feedback mode")
+        if self.road_geometry_version not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"):
+            raise ValueError("unknown road geometry version")
+        if self.road_geometry_version != "carla_driving_64_v1" and not self.road_observation:
+            raise ValueError("refined road geometry requires shared road observation")
         if self.candidate_observation and self.execution_feedback == "off":
             raise ValueError("candidate observations require enabled or ablated feedback")
         if not isinstance(self.empty_pretraining_steps, int) or self.empty_pretraining_steps < 0:

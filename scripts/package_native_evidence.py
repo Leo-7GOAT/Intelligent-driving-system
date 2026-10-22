@@ -40,7 +40,7 @@ def package(batches, output, extras=()):
         for path in folder.rglob("*"):
             if not path.is_file() or "__pycache__" in path.parts:
                 continue
-            if path.suffix not in (".json", ".jsonl", ".gz", ".png"):
+            if path.suffix not in (".py", ".json", ".jsonl", ".gz", ".png"):
                 raise ValueError("Unexpected extra evidence type")
             content[folder.name+"/"+path.relative_to(folder).as_posix()] = path.read_bytes()
     patterns = [r"(?i)[A-Z]:[\\/]+Users[\\/]+[A-Za-z0-9_.-]+[\\/]",

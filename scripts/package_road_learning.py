@@ -16,14 +16,15 @@ def package(batches, audit, output):
     content = {}
     for batch in map(Path, batches):
         summary = json.loads((batch/"summary.json").read_text(encoding="utf-8"))
-        if summary["status"] != "complete" or {r["method"] for r in summary["methods"]} != {"H", "B1"}:
-            raise ValueError("Require both methods, including every failed/unfinished episode")
         protocol = json.loads((batch/"protocol.json").read_text(encoding="utf-8"))
+        expected = {"H0", "H", "B1"} if protocol.get("feedback_ablation", False) else {"H", "B1"}
+        if summary["status"] != "complete" or {r["method"] for r in summary["methods"]} != expected:
+            raise ValueError("Require both methods, including every failed/unfinished episode")
         for name, digest in protocol["source_hashes"].items():
             if hashlib.sha256((batch/"source"/name).read_bytes()).hexdigest() != digest:
                 raise ValueError("Source changed")
         paths = [batch/"protocol.json", batch/"summary.json"]
-        for folder in ("source", "calibration", "analysis", "H", "B1"):
+        for folder in ("source", "calibration", "analysis", *protocol["methods"]):
             paths.extend(p for p in (batch/folder).rglob("*") if p.is_file() and "__pycache__" not in p.parts
                          and p.name not in ("heartbeat.json", "worker.lock"))
         paths.extend((batch/"infrastructure").glob("*_requests.jsonl.gz"))
@@ -37,8 +38,8 @@ def package(batches, audit, output):
     content["LICENSE"] = (root/"LICENSE").read_bytes()
     content["README.txt"] = (
         "Native-road shared-raster PPO interface experiments. NOT convergence, full road truth, or hierarchy superiority.\n"
-        "Both batches and all failed/unfinished episodes are retained; same seed, not independent policies.\n"
-        "H/B1 models are trained from scratch with4447inputs and legacy actuator; old605models are incompatible.\n"
+        "All listed batches and failed/unfinished episodes are retained; same seed, not independent policies.\n"
+        "Models are trained from scratch with legacy actuator; check each saved config for observation shape and road version.\n"
         "Road geometry is sampled Driving-lane cells, including narrow gaps; not physical asphalt segmentation.\n"
         "Rebuild with python scripts/analyze_native_road_learning.py --batch EXTRACTED_BATCH.\n"
         "Load using navstack.experiments.load_run(EXTRACTED_BATCH/METHOD); normalization stays frozen.\n"

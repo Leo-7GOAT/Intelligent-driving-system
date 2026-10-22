@@ -83,3 +83,15 @@ def test_b2_search_itself_respects_road_not_only_postprocessing():
     result = GridAStarPlanner(VehicleConfig(), PlannerConfig()).plan((5.,10.,0.), (25.,10.,0.), World(32.,32.,road=grid))
     assert result.status == "no_path"
     assert result.failure_reason == "grid_search_empty"
+
+
+def test_refined_geometry_is_shared_but_checkpoint_incompatible():
+    old=EnvConfig(road_observation=True)
+    new=EnvConfig(road_observation=True,road_geometry_version='carla_driving_refined_union_64_v2')
+    assert signature(old)['observation_shape']==signature(new)['observation_shape']==[4447]
+    assert signature(old)['road_geometry']!=signature(new)['road_geometry']
+    payload=sample_road_grid({'width':32.,'height':32.,'geometry_id':'version'},lambda x,y:True,
+                            version=new.road_geometry_version)
+    assert RoadGrid(payload).payload['version']==new.road_geometry_version
+    with pytest.raises(ValueError,match='shared road'):
+        EnvConfig(road_geometry_version='carla_driving_refined_union_64_v2')

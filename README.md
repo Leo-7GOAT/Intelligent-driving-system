@@ -1,6 +1,6 @@
 # Executability-aware hierarchical driving research
 
-Latest [retention and B2 development evidence](reports/b2_rehearsal_20261022.md): at2M physical steps, B1 with25% old-distance rehearsal retains6m and learns12m parking (8/8 each, deterministic and stochastic probes), while the unchanged full-task development list remains0/10. These repeated simple geometries and one policy seed do not establish generalization. The optional B2 body-spline postprocessor now certifies4/4 saved native-road paths; this is offline feasibility, separate from actual driving. CPU regression:111passed/5conditional skips.
+Latest [native geometry and PPO evidence](reports/indexed_native_geometry_20261022.md): explicit v3 lane-union geometry repairs recorded seam/junction false rejections. Fixed-plan Hybrid A* and B2 each complete4/4development roads, but real paired native PPO at~10k controls remains0/4for both methods. All26,470training/evaluation frames match raw CARLA records. Lightweight B1 learns23m parking at intermediate checkpoints and later regresses; the final5M full-task result remains0/10. CPU regression:117passed/5conditional skips. Research acceptance remains incomplete.
 
 A low-speed research prototype: **PPO → local pose/speed → forward Hybrid A* → time-parameterized trajectory → MPC → physical execution and feedback**.
 

@@ -179,7 +179,7 @@ def signature(config):
     if config.road_observation:
         result["observation"] += "-measured-road64x64-v1"
         result["observation_shape"][0] += 4096
-        result["road_geometry"] = "carla_driving_64_v1_closed_cells_shared_planning_risk_bounds"
+        result["road_geometry"] = config.road_geometry_version+"_closed_cells_shared_planning_risk_bounds"
     if config.route_rehearsal_probability:
         result["route_rehearsal"] = {"probability":config.route_rehearsal_probability,
             "sampling":"uniform_completed_distances_at_training_reset", "stages":config.route_stages}

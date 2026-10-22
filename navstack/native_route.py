@@ -4,7 +4,7 @@ import json
 import math
 
 
-def sample_road_grid(layout, is_driving):
+def sample_road_grid(layout, is_driving, version="carla_driving_64_v1"):
     """Sample actual map at cell corners and centre, without advancing physics.
 
     Entire cells are blocked if any sampled point is outside Driving lanes.
@@ -20,9 +20,15 @@ def sample_road_grid(layout, is_driving):
     cells = [[int(vertices[y][x] and vertices[y][x+1] and vertices[y+1][x]
                   and vertices[y+1][x+1] and is_driving((x+.5)*dx, (y+.5)*dy))
               for x in range(size)] for y in range(size)]
-    data = {"version": "carla_driving_64_v1", "width": width, "height": height,
+    if version not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"):
+        raise ValueError("Unknown measured-road geometry version")
+    data = {"version": version, "width": width, "height": height,
             "drivable": cells, "geometry_id": layout["geometry_id"],
             "sampling": "four cell corners plus centre; Driving lane and height check; not continuous-surface proof"}
+    if version == "carla_driving_refined_union_64_v2":
+        data["sampling"] = "four cell corners plus centre; refined local Driving-lane union; no lane-width dilation; not continuous mesh proof"
+    if version == "carla_driving_indexed_union_64_v3":
+        data["sampling"] = "four cell corners plus centre; refined indexed Driving-lane union across roads; no lane-width dilation; not continuous mesh proof"
     data["sha256"] = hashlib.sha256(json.dumps(data, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
     return data
 

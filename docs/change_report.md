@@ -1,5 +1,7 @@
 # 本轮实测整改报告（2026-10-16）
 
+2026-10-22 23时新增：版本化原生道路v2/v3、全量训练/评估帧核验、候选覆盖诊断和10万步反馈消融入口。固定规划v3为4/4，但约1万步PPO双方仍0/4；117通过5条件跳过。v19已结束并发现后期能力退化。见[最新实测报告](../reports/indexed_native_geometry_20261022.md)，以下旧“最新”均为历史记录。
+
 2026-10-22最新：原生路界已接入共享观测、规划/车体碰撞检查、风险和失败终止；两次真实CARLA H/B1短训练共2869控制步，均有参数更新/精确重载，但无成功任务。新增完整车体内部孔洞、四方法观测一致性和倒车速度门槛回归；107通过5条件跳过。v17已结束，v18仍进行注册5M课程，发现距离遗忘。见[当前实测报告](../reports/native_road_learning_20261022.md)。下面的收尾/运行状态为历史批次。
 
 2026-10-22 native/pose update: implemented actual native-route coordinate/footprint diagnostics, raw brake/throttle probes, all-frame analysis and matched fixed-reference comparisons; preserved failed actuator hypotheses as opt-in. Added optional heading PBRS with zero-weight compatibility and safe selected-job continuation. Actualv13continuation completes1M; v17freshtraining is live. See [evidence](../reports/native_pose_20261022.md).

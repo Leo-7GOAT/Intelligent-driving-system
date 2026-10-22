@@ -20,7 +20,7 @@ class RoadGrid:
             raise ValueError("Road grid hash mismatch")
         self.width, self.height = float(data["width"]), float(data["height"])
         cells = np.asarray(data["drivable"])
-        if (data["version"] != "carla_driving_64_v1" or cells.shape != (ROAD_SIZE, ROAD_SIZE)
+        if (data["version"] not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3") or cells.shape != (ROAD_SIZE, ROAD_SIZE)
                 or not np.isin(cells, [0, 1]).all() or not np.isfinite([self.width, self.height]).all()
                 or not 0 < min(self.width, self.height) <= max(self.width, self.height) <= 64):
             raise ValueError("Invalid measured road grid")

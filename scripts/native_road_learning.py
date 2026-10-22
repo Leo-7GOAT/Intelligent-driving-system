@@ -1,5 +1,6 @@
 """Bounded real CARLA training for the new shared-road interface (development)."""
 import argparse
+import gzip
 from dataclasses import asdict
 from datetime import datetime, timezone
 import hashlib
@@ -18,13 +19,15 @@ from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
 from stable_baselines3.common.logger import configure
 from navstack.carla_bridge import BridgeClient, CarlaNavigationEnv
 from navstack.config import EnvConfig, VehicleConfig
-from navstack.experiments import actor_vector, write_json, signature, append_json
+from navstack.experiments import actor_vector, write_json, signature, append_json, jsonable
 from navstack.native_route import select_routes
 from navstack.research import ResearchRecorder, resources_ok
 from scripts.carla_steering_audit import guard
 
 
-def prepare(parent):
+def prepare(parent, road_geometry_version="carla_driving_64_v1", controlled_budget=640, wall_seconds=900, episode_seconds=20, evaluate=False, feedback_ablation=False):
+    if not 640<=controlled_budget<=100000 or not 900<=wall_seconds<=7200 or not 20<=episode_seconds<=90:
+        raise ValueError("Native development budget outside supported bounds")
     healthy, reason = resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free < 12*1024**3:
         raise RuntimeError("Resource guard: "+str(reason))
@@ -44,12 +47,17 @@ def prepare(parent):
             shutil.copy2(source, target)
             hashes[relative.as_posix()] = hashlib.sha256(source.read_bytes()).hexdigest()
     write_json(batch/"protocol.json", {"scope": "Shared native-road real PPO interface training, not convergence or hierarchy advantage",
-        "created_epoch": time.time(), "deadline_epoch": time.time()+900, "source_hashes": hashes,
+        "created_epoch": time.time(), "deadline_epoch": time.time()+wall_seconds, "source_hashes": hashes,
+        "road_geometry_version":road_geometry_version,
+        "deterministic_training_route_evaluation":evaluate,
+        "feedback_ablation":feedback_ablation,
+        "hypothesis": "Same-size H0/H feedback ablation and equally informed direct B1; unchanged action catalog, reward, controller and PPO settings" if feedback_ablation else "Shared native-road interface development",
         "calibration_sha256": hashlib.sha256((batch/"calibration/calibration.json").read_bytes()).hexdigest(),
-        "routes": select_routes(survey), "methods": ["H", "B1"], "seed": 11,
-        "controlled_budget_per_method": 640, "reset_ticks_counted_separately": True,
-        "rollout_actions": 32, "ppo_epochs": 2, "episode_seconds": 20,
-        "resource_limits": {"wall_seconds": 900, "disk_min_GiB": 12, "ram_min_GiB": 4, "gpu_stop_temperature_C": 85, "automatic_retries": 0},
+        "routes": select_routes(survey), "methods": ["H0", "H", "B1"] if feedback_ablation else ["H", "B1"], "seed": 11,
+        "checkpoint_thresholds": sorted({min(controlled_budget, step) for step in (10000, 30000, controlled_budget)}),
+        "controlled_budget_per_method": controlled_budget, "reset_ticks_counted_separately": True,
+        "rollout_actions": 32, "ppo_epochs": 2, "episode_seconds": episode_seconds,
+        "resource_limits": {"wall_seconds": wall_seconds, "disk_min_GiB": 12, "ram_min_GiB": 4, "gpu_stop_temperature_C": 85, "automatic_retries": 0},
         "disk_free_bytes": shutil.disk_usage(ROOT).free})
     write_json(ROOT/"runs/native_road_learning.json", {"batch": str(batch)})
     print(batch, flush=True)
@@ -88,7 +96,10 @@ def run(batch):
             guard(batch, protocol)
             if time.time() >= protocol["deadline_epoch"]:
                 raise RuntimeError("Registered wall budget expired")
-            config = EnvConfig(method=method, vehicle=vehicle, road_observation=True,
+            feedback = ("ablated" if method == "H0" else "enabled") if protocol.get("feedback_ablation", False) else "off"
+            config = EnvConfig(method="H" if method == "H0" else method, vehicle=vehicle, road_observation=True,
+                execution_feedback=feedback,
+                road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),
                 flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0)
             config.planner.max_seconds = None
             config.planner.vectorized_primitives = True
@@ -116,6 +127,7 @@ def run(batch):
                     optimizer_steps[0] += 1
                 hook = model.policy.optimizer.register_step_post_hook(count_step)
                 started = time.time()
+                saved_thresholds = set()
                 while recorder.counts["physics_steps"] < protocol["controlled_budget_per_method"] and not recorder.stopped_reason:
                     guard(batch, protocol)
                     previous = model._n_updates
@@ -125,6 +137,17 @@ def run(batch):
                         append_json(output/"optimization.jsonl", {**recorder.counts, "optimizer_steps": optimizer_steps[0],
                             "actor_l2_change": float(torch.linalg.vector_norm(actor_vector(model)-before)),
                             "metrics": {k: float(v) for k,v in model.logger.name_to_value.items() if np.isscalar(v) and np.isfinite(v)}})
+                    for threshold in protocol.get("checkpoint_thresholds", []):
+                        if threshold not in saved_thresholds and recorder.counts["physics_steps"] >= threshold:
+                            checkpoint = output/("checkpoint_%09d" % threshold)
+                            checkpoint.mkdir()
+                            model.save(checkpoint/"model.zip"); vec.save(checkpoint/"normalization.pkl")
+                            write_json(checkpoint/"metadata.json", {"threshold": threshold, **recorder.counts,
+                                "optimizer_steps":optimizer_steps[0], "world_ticks":client.total_ticks,
+                                "model_sha256":hashlib.sha256((checkpoint/"model.zip").read_bytes()).hexdigest(),
+                                "normalization_sha256":hashlib.sha256((checkpoint/"normalization.pkl").read_bytes()).hexdigest(),
+                                "note":"Immutable inference checkpoint; no claim of seamless CARLA physical-state resume"})
+                            saved_thresholds.add(threshold)
                 hook.remove()
                 model.save(output/"model.zip"); vec.save(output/"normalization.pkl")
                 loaded = PPO.load(output/"model.zip", device="cpu")
@@ -139,6 +162,34 @@ def run(batch):
                 write_json(output/"summary.json", result)
                 results.append(result)
                 print(json.dumps(result), flush=True)
+                if protocol.get("deterministic_training_route_evaluation",False):
+                    # These are the same four training geometries: development
+                    # endpoint probes, not held-out generalization evidence.
+                    vec.training=False
+                    mean,var=vec.obs_rms.mean.copy(),vec.obs_rms.var.copy()
+                    evaluation_ticks=client.total_ticks
+                    evaluation=CarlaNavigationEnv(config,client,cases)
+                    episodes=[]
+                    with gzip.open(output/"evaluation_trace.jsonl.gz","wt",encoding="utf-8") as stream:
+                        for case_id,case in enumerate(cases):
+                            guard(batch,protocol)
+                            obs,_=evaluation.reset(seed=7301+case_id,options={"case":case})
+                            actions=0
+                            while True:
+                                if actions%20==0:guard(batch,protocol)
+                                action,_=loaded.predict(vec.normalize_obs(obs[None]),deterministic=True)
+                                obs,_,done,truncated,info=evaluation.step(action[0]);actions+=1
+                                stream.write(json.dumps({"case_id":case_id,"policy_action":action[0],"info":info},default=jsonable)+"\n")
+                                if done or truncated:
+                                    episodes.append({"case_id":case_id,**info["episode_metrics"]});break
+                    evaluation.close()
+                    np.testing.assert_array_equal(mean,vec.obs_rms.mean)
+                    np.testing.assert_array_equal(var,vec.obs_rms.var)
+                    write_json(output/"evaluation.json",{"scope":"Frozen deterministic probes on all four TRAINING roads, no extra policy updates or independent-condition claim",
+                        "episodes":episodes,"world_ticks":client.total_ticks-evaluation_ticks,
+                        "model_sha256":hashlib.sha256((output/"model.zip").read_bytes()).hexdigest(),
+                        "normalization_sha256":hashlib.sha256((output/"normalization.pkl").read_bytes()).hexdigest()})
+                    print(json.dumps({"method":method,"evaluation_success":sum(e["success"] for e in episodes),"episodes":4}),flush=True)
             finally:
                 if recorder is not None:
                     recorder.close()
@@ -155,5 +206,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--prepare")
     parser.add_argument("--batch")
+    parser.add_argument("--road-geometry-version",choices=["carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"],default="carla_driving_64_v1")
+    parser.add_argument("--controlled-budget",type=int,default=640)
+    parser.add_argument("--wall-seconds",type=int,default=900)
+    parser.add_argument("--episode-seconds",type=float,default=20)
+    parser.add_argument("--evaluate",action="store_true")
+    parser.add_argument("--feedback-ablation",action="store_true")
     args = parser.parse_args()
-    prepare(args.prepare) if args.prepare else run(args.batch)
+    prepare(args.prepare,args.road_geometry_version,args.controlled_budget,args.wall_seconds,args.episode_seconds,args.evaluate,args.feedback_ablation) if args.prepare else run(args.batch)
