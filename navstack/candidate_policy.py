@@ -76,3 +76,39 @@ class CandidateActorCriticPolicy(ActorCriticPolicy):
             for module, gain in ((self.mlp_extractor, np.sqrt(2)), (self.action_net, .01), (self.value_net, 1.)):
                 module.apply(partial(self.init_weights, gain=gain))
         self.optimizer = self.optimizer_class(self.parameters(), lr=lr_schedule(1), **self.optimizer_kwargs)
+
+
+class FlatCandidateExtractor(nn.Module):
+    """Continuous-control actor with a shared encoder for the candidate set.
+
+    Candidate order should not affect an actuator command. Mean/max pooling
+    preserves learned set summaries without feeding 31 repeated raw blocks
+    directly into the first ego-state layer. All605 inputs remain available;
+    this performs no candidate selection, planning, masking or control rule.
+    The critic retains the existing605→64→64 architecture.
+    """
+    def __init__(self):
+        super().__init__()
+        self.latent_dim_pi = self.latent_dim_vf = 64
+        self.policy_net_context = nn.Sequential(nn.Linear(357, 64), nn.Tanh(), nn.Linear(64, 64), nn.Tanh())
+        self.policy_net_candidate = nn.Sequential(nn.Linear(8, 32), nn.Tanh(), nn.Linear(32, 16), nn.Tanh())
+        self.policy_net_fusion = nn.Sequential(nn.Linear(96, 64), nn.Tanh())
+        self.value_net = nn.Sequential(nn.Linear(605, 64), nn.Tanh(), nn.Linear(64, 64), nn.Tanh())
+
+    def forward_actor(self, features):
+        context = self.policy_net_context(torch.cat((features[:, :351], features[:, 599:]), dim=1))
+        encoded = self.policy_net_candidate(features[:, 351:599].reshape(-1, 31, 8))
+        return self.policy_net_fusion(torch.cat((context, encoded.mean(dim=1), encoded.amax(dim=1)), dim=1))
+
+    def forward_critic(self, features):
+        return self.value_net(features)
+
+    def forward(self, features):
+        return self.forward_actor(features), self.forward_critic(features)
+
+
+class FlatCandidateActorCriticPolicy(ActorCriticPolicy):
+    def _build_mlp_extractor(self):
+        if self.observation_space.shape != (605,) or not isinstance(self.action_space, spaces.Box) or self.action_space.shape != (2,):
+            raise ValueError("Pooled flat policy requires605inputs and two direct continuous controls")
+        self.mlp_extractor = FlatCandidateExtractor().to(self.device)
