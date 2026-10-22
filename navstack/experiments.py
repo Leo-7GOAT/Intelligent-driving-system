@@ -125,6 +125,12 @@ def new_run(root, prefix):
 
 
 def signature(config):
+    reward_signature = asdict(config.reward)
+    # Disabled optional shaping preserves the exact signature of published
+    # distance-only checkpoints; active shaping is versioned explicitly.
+    if not config.reward.heading_potential_weight:
+        reward_signature.pop("heading_potential_weight")
+        reward_signature.pop("heading_potential_radius")
     result = {
         "observation": OBS_VERSION,
         "observation_shape": [351],
@@ -139,7 +145,7 @@ def signature(config):
         "vehicle": asdict(config.vehicle),
         "planner": asdict(config.planner),
         "mpc_horizon": config.mpc_horizon,
-        "reward": asdict(config.reward),
+        "reward": reward_signature,
     }
     if config.shared_shield:
         result["shared_shield"] = "execution_brake_v1_no_path_prediction"

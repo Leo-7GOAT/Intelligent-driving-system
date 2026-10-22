@@ -21,3 +21,7 @@
 执行状态、实测证据和剩余工作以 change_report.md 为准。
 
 本轮完成轻量闭环、规划/MPC、四基线、真实短训练/重载和文档；最终27项测试通过，CARLA条件项因缺少客户端/服务端跳过。额外增加离线节点预算模式并完成同模型两次验证的动作/状态/奖励一致性检查。正式多种子结论与CARLA完整接入仍未完成，不将工程smoke表述为研究假设已经证实。
+
+## 2026-10-22 completion boundary update
+
+Implemented and measured: native-road fixed-reference MPC, three actuator variants, brake/throttle probes, frame-level reconstruction, optionalterminalposePBRS, selected-job clean-window continuation. Not completed: acceptable longitudinal comfort, native-road PPO boundary observations/rewards, healthy mixed-taskB1, five-seedfaircomparisons and finalresearchgates. Actualv13B1continuationfinished; v17registeredtrainingcontinues. No successfuldiagnosticredefinesfinalacceptance.

@@ -1,5 +1,5 @@
 """Only CARLA RPC and actuation; PPO/planning/MPC stay in the main Python environment."""
-import argparse,json,math,os,sys,time,threading,random
+import argparse,json,math,os,sys,time,threading,random,hashlib
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import carla
@@ -62,7 +62,8 @@ class Bridge:
             self.world.tick(15.)
             time.sleep(.05)
 
-    def loc(self,x,y,z=.6):
+    def loc(self,x,y,z=None):
+        z=getattr(self,"spawn_z",.6) if z is None else z
         return carla.Location(x=self.origin[0]+x*self.co+y*self.si,
                               y=self.origin[1]+x*self.si-y*self.co,z=z)
 
@@ -84,19 +85,31 @@ class Bridge:
         self.clear();self.events=[];self.imu_frame=-1;self.sensor_event=threading.Event();self.active_episode=r["episode_id"]
         if any(a.id not in self.retired_ids and a.type_id.startswith(("vehicle.","walker.","sensor.")) for a in self.world.get_actors()):
             raise RuntimeError("Foreign actors appeared; refusing to tick")
-        tr=self.map.get_spawn_points()[18];self.angle=tr.rotation.yaw
-        angle=math.radians(self.angle);self.co=math.cos(angle);self.si=math.sin(angle)
-        # The two-way four-lane road is 14 m wide. Preserve its actual lateral edges;
-        # longitudinal ends are explicit task boundaries, not fabricated curbs.
-        self.origin=(tr.location.x-5.25*self.si,tr.location.y+5.25*self.co)
-        self.width=34.;self.height=14.;self.dynamic=[];self.static_actors=[]
         condition=int(r.get("condition",0));scenario=r.get("scenario","static")
+        self.native_layout=None;self.spawn_z=.6
+        if scenario=="native_curve":
+            from navstack.native_route import local_layout
+            self.native_layout=local_layout(r["native_route"],self.map.name,hashlib.sha256(self.map.to_opendrive().encode()).hexdigest())
+            self.angle=self.native_layout["angle"];self.origin=self.native_layout["origin"]
+            self.spawn_z=self.native_layout["spawn_z"]
+            self.width=self.native_layout["width"];self.height=self.native_layout["height"]
+        else:
+            tr=self.map.get_spawn_points()[18];self.angle=tr.rotation.yaw
+            angle=math.radians(self.angle)
+            # Existing straight-road scenes retain their measured14mroad edges.
+            self.origin=(tr.location.x-5.25*math.sin(angle),tr.location.y+5.25*math.cos(angle))
+            self.width=34.;self.height=14.
+        angle=math.radians(self.angle);self.co=math.cos(angle);self.si=math.sin(angle)
+        self.dynamic=[];self.static_actors=[]
         case_rng=random.Random(210000+condition)
         start_y=case_rng.uniform(6.5,7.5);goal_y=start_y
         self.walker_speed=case_rng.uniform(.5,.75)
         obstacle_x=case_rng.uniform(15.6,16.8)
         self.rear=self.cal["rear_axle_actor_x"]
-        self.actor=self.spawn_vehicle(4-self.rear,start_y,"codex_ppo_ego")
+        start_x=4.
+        if self.native_layout:
+            start_x,start_y,_=self.native_layout["path"][0]
+        self.actor=self.spawn_vehicle(start_x-self.rear,start_y,"codex_ppo_ego")
         if scenario=="static":
             self.static_actors.append(self.spawn_vehicle(obstacle_x,case_rng.uniform(6.7,7.3),"codex_static_obstacle"))
         elif scenario=="curve":
@@ -108,7 +121,7 @@ class Bridge:
             if bp.has_attribute("is_invincible"):bp.set_attribute("is_invincible","false")
             walker=self.world.spawn_actor(bp,self.transform(obstacle_x,2.))
             self.owned.append(walker);self.dynamic=[walker]
-        elif scenario!="empty":raise ValueError("unknown CARLA scenario")
+        elif scenario not in ("empty","native_curve"):raise ValueError("unknown CARLA scenario")
         sensor=self.world.spawn_actor(self.world.get_blueprint_library().find("sensor.other.collision"),carla.Transform(),attach_to=self.actor)
         self.owned.append(sensor)
         self.collision_sensor=sensor
@@ -139,22 +152,24 @@ class Bridge:
         for settling_tick in range(30):self.tick(require_sensor=settling_tick>=5)
         self.events=[];self.t0=self.world.get_snapshot().timestamp.elapsed_seconds
         self.command={"acceleration":0.,"steering":0.};self.speed_target=0.;self.condition=condition
-        self.goal=[27.,goal_y,0.]
+        self.goal=self.native_layout["goal"] if self.native_layout else [27.,goal_y,0.]
         static=[]
         for a in self.static_actors:
             points=[self.local(v.x,v.y) for v in a.bounding_box.get_world_vertices(a.get_transform())]
             static.append([min(v[0] for v in points),min(v[1] for v in points),max(v[0] for v in points),max(v[1] for v in points)])
         # Verify the actual installed road, retaining the result for every case.
         misses=[]
-        for x in range(0,35,2):
+        for x in ([] if self.native_layout else range(0,35,2)):
             for y in (.1,3.5,7.,10.5,13.9):
                 if self.map.get_waypoint(self.loc(x,y),project_to_road=False,lane_type=carla.LaneType.Driving) is None:
                     misses.append([x,y])
         if misses:raise RuntimeError("Road rectangle does not match driving surface: "+str(misses))
-        return {**self.read(),"reset_sensor_warmup_ticks":5,"reset_ticks":30+(1 if len(self.retired_ids)>0 else 0),"scene":{"name":scenario,"width":34.,"height":14.,"goal":self.goal,
+        return {**self.read(),"reset_sensor_warmup_ticks":5,"reset_ticks":30+(1 if len(self.retired_ids)>0 else 0),"scene":{"name":scenario,"width":self.width,"height":self.height,"goal":self.goal,
                 "static":static,"map":self.map.name,"origin":self.origin,"angle":self.angle,
                 "road_surface_probe_misses":misses,"longitudinal_edges":"task boundaries", "condition":condition,
-                "generator_version":"seeded_geometry_v1","walker_control_speed":self.walker_speed,"reset_ticks":30+(1 if len(self.retired_ids)>0 else 0)}}
+                "generator_version":"native_curve_v1" if self.native_layout else "seeded_geometry_v1",
+                "native_layout":self.native_layout,"boundary_scope":"sampled_measured_footprint_on_native_driving_surface" if self.native_layout else "measured_straight_road_rectangle",
+                "walker_control_speed":self.walker_speed,"reset_ticks":30+(1 if len(self.retired_ids)>0 else 0)}}
 
     def tick(self,require_sensor=True):
         before=self.world.get_snapshot().frame
@@ -187,7 +202,20 @@ class Bridge:
         state={"x":x,"y":y,"yaw":(math.radians(self.angle)-yaw+math.pi)%(2*math.pi)-math.pi,
                "v":v.x*f.x+v.y*f.y,"steering":delta,"acceleration":a.x*f.x+a.y*f.y,
                "time":self.world.get_snapshot().timestamp.elapsed_seconds-self.t0}
-        return {"state":state,"frame":self.frame,"imu_frame":self.imu_frame,"collisions":[e for e in self.events if e["episode_id"]==self.active_episode],
+        road_probe=None
+        if self.native_layout:
+            misses=[]
+            rear_x=tr.location.x+self.rear*math.cos(yaw);rear_y=tr.location.y+self.rear*math.sin(yaw)
+            vehicle=self.cal["vehicle"]
+            for forward in (-vehicle["rear"],0.,vehicle["front"]*.5,vehicle["front"]):
+                for lateral in (-vehicle["width"]/2,0.,vehicle["width"]/2):
+                    point=carla.Location(x=rear_x+forward*math.cos(yaw)-lateral*math.sin(yaw),
+                                         y=rear_y+forward*math.sin(yaw)+lateral*math.cos(yaw),z=tr.location.z)
+                    if self.map.get_waypoint(point,project_to_road=False,lane_type=carla.LaneType.Driving) is None:
+                        misses.append([point.x,point.y,point.z])
+            road_probe={"sample_count":12,"offroad_points_world":misses,"scope":"sampled actual rear-axle footprint, not continuous swept-body proof"}
+        return {"state":state,"frame":self.frame,"imu_frame":self.imu_frame,"road_surface_probe":road_probe,
+                "world_elapsed_seconds":self.world.get_snapshot().timestamp.elapsed_seconds,"collisions":[e for e in self.events if e["episode_id"]==self.active_episode],
                 "dynamic":dynamic,"command":self.command,"sensor_health":"frame_heartbeat_ok"}
 
     def step(self,r):
@@ -198,18 +226,21 @@ class Bridge:
         state=self.read()["state"];v=state["v"];g=self.cal["recommended_adapter"]
         # Desired-speed integrator is an actuator setpoint, never returned as vehicle state.
         self.speed_target=max(0.,min(3.,v+.5,max(v-.5,self.speed_target+a*.05)))
-        effort=.12+g["speed_kp"]*(self.speed_target-v)+.06*a
-        if a<-.05:throttle=0.;braking=min(1.,-a/g["brake_decel"]+max(0.,v-self.speed_target)*.1)
-        else:throttle=max(0.,min(.6,effort));braking=0.
-        if self.speed_target<.03 and a<=0:throttle=0.;braking=max(braking,.3)
-        if v>=3.:throttle=0.;braking=max(braking,min(.4,(v-3)*.3))
+        from navstack.carla_actuation import longitudinal_control
+        throttle,braking,actuation_mode=longitudinal_control(v,self.speed_target,a,g)
         steer=max(-1.,min(1.,-delta/g["steer_gain"]))
-        self.actor.apply_control(carla.VehicleControl(throttle=throttle,brake=braking,steer=steer))
+        drivetrain=g.get("drivetrain_mode","automatic")
+        if drivetrain not in ("automatic","manual_first_v1"):raise ValueError("Unknown drivetrain version")
+        manual=drivetrain=="manual_first_v1"
+        self.actor.apply_control(carla.VehicleControl(throttle=throttle,brake=braking,steer=steer,
+                                 manual_gear_shift=manual,gear=1 if manual else 0))
         for actor in self.dynamic:
             # Same condition-dependent open-loop control; policy only sees current measured state.
             actor.apply_control(carla.WalkerControl(direction=carla.Vector3D(self.si,-self.co,0),speed=self.walker_speed))
         self.command={"acceleration":a,"steering":delta};self.tick()
-        return {**self.read(),"vehicle_control":{"throttle":throttle,"brake":braking,"steer":steer},"speed_setpoint":self.speed_target}
+        applied=self.actor.get_control()
+        return {**self.read(),"applied_vehicle_control":{"throttle":applied.throttle,"brake":applied.brake,"steer":applied.steer,
+                "gear":applied.gear,"manual_gear_shift":applied.manual_gear_shift,"hand_brake":applied.hand_brake,"reverse":applied.reverse},"vehicle_control":{"throttle":throttle,"brake":braking,"steer":steer},"speed_setpoint":self.speed_target,"actuation_mode":actuation_mode}
 
     def handle(self,r):
         if r["op"]=="begin":return self.begin(r)

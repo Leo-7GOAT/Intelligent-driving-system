@@ -83,12 +83,17 @@ class RewardConfig:
     distance_scale: float = 40.0
     gamma_per_second: float = 0.99
     progress_weight: float = 0.0  # explicit task reward, not potential-based shaping
+    heading_potential_weight: float = 0.0  # optional state-only terminal-pose shaping
+    heading_potential_radius: float = 6.0  # metres, smooth proximity decay
 
     def __post_init__(self):
         if self.distance_scale <= 0 or not 0 < self.gamma_per_second <= 1:
             raise ValueError("invalid potential scale or physical-time discount")
         if not math.isfinite(self.progress_weight) or self.progress_weight < 0:
             raise ValueError("progress weight must be finite and nonnegative")
+        if (not math.isfinite(self.heading_potential_weight) or self.heading_potential_weight < 0
+                or not math.isfinite(self.heading_potential_radius) or self.heading_potential_radius <= 0):
+            raise ValueError("invalid heading-potential weight/radius")
 
 
 @dataclass

@@ -24,7 +24,7 @@ def write(path, data):
     Path(path).write_text(json.dumps(data, indent=2), encoding="utf-8")
 
 
-def prepare(parent, milestones, label, reason, wall_seconds=7200, root=ROOT):
+def prepare(parent, milestones, label, reason, wall_seconds=7200, root=ROOT, jobs=None, allow_window_end=False):
     parent, root = Path(parent).resolve(), Path(root).resolve()
     if not re.fullmatch(r"[a-z][a-z0-9_-]{0,63}", label):
         raise ValueError("Use a short lowercase continuation label")
@@ -37,6 +37,9 @@ def prepare(parent, milestones, label, reason, wall_seconds=7200, root=ROOT):
     if not healthy or shutil.disk_usage(root).free < 12 * 1024**3:
         raise RuntimeError("Continuation resource guard: " + str(reason_resource))
     old = read(parent / "protocol.json")
+    selected = old["jobs"] if jobs is None else [job for job in old["jobs"] if job["id"] in jobs]
+    if not selected or (jobs is not None and {job["id"] for job in selected} != set(jobs)):
+        raise ValueError("Select existing parent jobs")
     # Kernel-held leases verify ownership rather than trusting stale PID files.
     # Hold all parent leases through copying so no parent writer can restart.
     with ExitStack() as stack:
@@ -51,12 +54,25 @@ def prepare(parent, milestones, label, reason, wall_seconds=7200, root=ROOT):
             if hashlib.sha256((parent / "source" / name).read_bytes()).hexdigest() != digest:
                 raise ValueError("Parent frozen source hash mismatch")
         parents = []
-        for job in old["jobs"]:
+        for job in selected:
             origin = parent / old["run_group"] / job["id"]
-            completed, latest = read(origin / "completed.json"), read(origin / "latest.json")
+            latest = read(origin / "latest.json")
+            if (origin / "failure.json").exists():
+                raise ValueError("Failed job requires diagnosis, not window continuation")
             counters = ("physics_steps", "actions", "episodes", "optimization_phases", "optimizer_steps")
-            if any(completed["summary"][key] != latest[key] for key in counters):
-                raise ValueError("Parent completion does not match latest checkpoint")
+            window_end = not (origin / "completed.json").exists()
+            if window_end:
+                stop = (parent / "STOP").read_text(encoding="utf-8").strip() if (parent / "STOP").exists() else None
+                if (not allow_window_end or latest.get("reason") not in ("wall_budget_reached", "watchdog_or_user_stop")
+                        or stop not in (None, "diagnostic_window_drain")
+                        or (latest.get("reason") == "watchdog_or_user_stop" and stop != "diagnostic_window_drain")
+                        or latest.get("saved_epoch", 0) < old["deadline_epoch"]-120
+                        or time.time() < old["deadline_epoch"]-120):
+                    raise ValueError("Only an explicitly allowed, clean scheduled window end can continue an incomplete job")
+            else:
+                completed = read(origin / "completed.json")
+                if any(completed["summary"][key] != latest[key] for key in counters):
+                    raise ValueError("Parent completion does not match latest checkpoint")
             if milestones[0] <= latest["physics_steps"]:
                 raise ValueError("Continuation milestone does not add physical interactions")
             checkpoint = Path(latest["checkpoint"]).resolve()
@@ -69,17 +85,19 @@ def prepare(parent, milestones, label, reason, wall_seconds=7200, root=ROOT):
             config = read(checkpoint / "config.json")
             if any(saved[key] != latest[key] for key in counters) or not saved["reload_exact"]:
                 raise ValueError("Checkpoint counter/reload evidence mismatch")
+            if window_end and saved.get("reason") != latest.get("reason"):
+                raise ValueError("Checkpoint window-end reason mismatch")
             if config["env"] != job["env"] or config["seed"] != job["seed"]:
                 raise ValueError("Checkpoint task/seed differs from parent protocol")
             if read(origin / "ppo_options.json") != job.get("ppo_options", {}):
                 raise ValueError("Parent PPO configuration mismatch")
-            parents.append((job, origin, checkpoint, latest))
+            parents.append((job, origin, checkpoint, latest, window_end))
         now = time.time()
         batch = parent.parent / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "_" + label)
         batch.mkdir()
         shutil.copytree(parent / "source", batch / "source", ignore=shutil.ignore_patterns("__pycache__"))
         ancestry = []
-        for job, origin, checkpoint, latest in parents:
+        for job, origin, checkpoint, latest, window_end in parents:
             destination = batch / old["run_group"] / job["id"]
             destination.mkdir(parents=True)
             copied = destination / "initial_checkpoint"
@@ -99,13 +117,14 @@ def prepare(parent, milestones, label, reason, wall_seconds=7200, root=ROOT):
             resolved["continuation_parent_batch"] = parent.name
             write(destination / "resolved_config.json", resolved)
             ancestry.append({"job": job["id"], "parent_checkpoint": str(checkpoint),
+                             "parent_status": "scheduled_window_end" if window_end else "completed",
                              "inherited_physics_steps": latest["physics_steps"],
                              "inherited_actions": latest["actions"],
                              "inherited_optimizer_steps": latest["optimizer_steps"], "files_sha256": hashes})
             latest["checkpoint"] = str(copied)
             write(destination / "latest.json", latest)
             job["milestones"] = list(milestones)
-        old.update(version=label, created_epoch=now, deadline_epoch=now+wall_seconds,
+        old.update(version=label, created_epoch=now, deadline_epoch=now+wall_seconds, jobs=selected,
                    parent_batch=str(parent), inherited_checkpoints=ancestry,
                    continuation_reason=reason, not_confirmation=True,
                    disk_free_bytes=shutil.disk_usage(root).free,
@@ -123,8 +142,11 @@ def main():
     parser.add_argument("--label", required=True)
     parser.add_argument("--reason", required=True)
     parser.add_argument("--wall-seconds", type=int, default=7200)
+    parser.add_argument("--jobs", nargs="+")
+    parser.add_argument("--allow-window-end", action="store_true", help="Only clean scheduled window expiry; no failure/user/resource STOP bypass")
     args = parser.parse_args()
-    print(prepare(args.parent, args.milestones, args.label, args.reason, args.wall_seconds))
+    print(prepare(args.parent, args.milestones, args.label, args.reason, args.wall_seconds,
+                  jobs=args.jobs, allow_window_end=args.allow_window_end))
 
 
 if __name__ == "__main__":

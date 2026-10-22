@@ -18,6 +18,8 @@ These evaluated scenarios are now **historical**, not unseen confirmation data f
 
 ## Current development (2026-10-22)
 
+Latest [native-road/terminal-pose evidence](reports/native_pose_20261022.md): v16 B1 completes3M at0/10; v13 B1 completes1M at0/10. Fresh heading-PBRS v17 is running (1/10at1M). Three actual CARLA fixed-reference actuator variants each complete4/4native routes, but severe braking/jerk remains; experimental variants stay opt-in. Native-road PPO scene integration and formal research acceptance remain incomplete.
+
 B1 passes the 6m empty-route parking sanity check (8/8 after approximately 1M physical steps), but the same model fails the 23m task (0/8). H/H0 feedback ablation reaches8/10 versus6/10 at200k,8/10 each at300k, and8/10 versus9/10 at1M on development conditions. Strong rule B3 completes10/10 on the identical cases. Both frozen200k policies score2/6 in actual CARLA transfer; real CARLA adaptation for approximately100k world ticks each raises both to3/6. These single-seed diagnostics establish neither feedback benefit nor PPO superiority.
 
 Development v12 tests shared candidate scoring and explicit geometry, with an equal-network H/H0 feedback ablation and no action masks or teacher. At approximately 1M physical steps, H completes 8/10 and H0 6/10 development cases. The separate 450-input mixed-task B1 completes 0/10 after 1M steps and is not a healthy, matched final comparator. Actual CARLA adaptation of the v12 100k models reaches 4/6 for H and 3/6 for H0 at approximately 100k world ticks each; H regresses from 5/6 at 25k. These failures remain in the record.
@@ -49,7 +51,7 @@ python -m venv .venv
 
 CPU tests exercise physical dynamics, planning, QP control, PPO updates/checkpoints, statistical accounting and failure recovery. Live CARLA tests require explicit opt-in and an exclusively owned server; skipped tests are not evidence of live validation.
 
-Latest local full regression: **93 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
+Latest local full regression: **102 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
 
 ## Bounded development and recovery
 

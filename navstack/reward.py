@@ -11,11 +11,14 @@ class RewardCalculator:
 
     def potential(self, state, goal):
         # Fixed 40 m default normalization, finite even for unreachable static layouts.
-        return -min(
-            math.hypot(state.x - goal[0], state.y - goal[1])
-            / self.config.distance_scale,
-            2.0,
-        )
+        distance = math.hypot(state.x - goal[0], state.y - goal[1])
+        potential = -min(distance / self.config.distance_scale, 2.0)
+        if self.config.heading_potential_weight:
+            # Smooth, bounded, final-goal state function. It supplies an earlier
+            # alignment signal but remains inside the same terminal-zero PBRS
+            # difference; it is not an extra terminal-heading bonus or penalty.
+            potential -= self.config.heading_potential_weight * (1-math.cos(state.yaw-goal[2])) * math.exp(-distance/self.config.heading_potential_radius)
+        return potential
 
     def calculate(self, before, after, goal, risk, event=None, terminated=False):
         c, dt = self.config, self.dt

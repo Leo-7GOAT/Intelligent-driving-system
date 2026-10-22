@@ -133,6 +133,8 @@ class CarlaNavigationEnv(NavigationEnv):
                 "scenario":str(self.np_random.choice(["static","curve","dynamic"])),
                 "condition":int(self.np_random.integers(0,10))}
         self.case_index+=1
+        if case.get("scenario")=="native_curve":
+            raise ValueError("Native curves currently support fixed-reference control diagnostics only; navigation road-boundary observations/rewards require separate integration")
         result=self.client.request("begin",**case);scene=result["scene"]
         world=CarlaWorld(scene["width"],scene["height"],scene["static"])
         plant=BridgePlant(self.client,result,world)

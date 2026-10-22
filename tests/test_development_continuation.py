@@ -98,3 +98,27 @@ def test_reject_nonadvancing_or_invalid_budget(parent, milestones):
     with pytest.raises(ValueError):
         continuation.prepare(batch, milestones, "continuation", "diagnosis", root=root)
     assert list((root / "runs").iterdir()) == [batch]
+
+
+@pytest.mark.parametrize("stop", ["diagnostic_window_drain", "user_stop", "disk_below_12GiB"])
+def test_incomplete_continuation_only_for_clean_scheduled_window(parent, stop):
+    batch, run, root = parent
+    (run / "completed.json").unlink()
+    (batch / "STOP").write_text(stop, encoding="utf-8")
+    protocol = continuation.read(batch / "protocol.json")
+    protocol["deadline_epoch"] = 100
+    continuation.write(batch / "protocol.json", protocol)
+    latest = continuation.read(run / "latest.json")
+    latest.update(reason="watchdog_or_user_stop", saved_epoch=100)
+    continuation.write(run / "latest.json", latest)
+    continuation.write(run / "checkpoint_100" / "training_summary.json", latest)
+    with pytest.raises(ValueError, match="scheduled window"):
+        prepare(parent)
+    if stop == "diagnostic_window_drain":
+        new = continuation.prepare(batch, [200], "continuation", "Complete registered budget", root=root,
+                                   jobs=["B1_seed11"], allow_window_end=True)
+        assert continuation.read(new / "protocol.json")["inherited_checkpoints"][0]["parent_status"] == "scheduled_window_end"
+        assert (batch / "STOP").read_text() == stop
+    else:
+        with pytest.raises(ValueError, match="scheduled window"):
+            continuation.prepare(batch, [200], "continuation", "diagnosis", root=root, allow_window_end=True)

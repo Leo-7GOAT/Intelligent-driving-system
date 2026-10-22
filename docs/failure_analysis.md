@@ -1,5 +1,7 @@
 # Failure analysis
 
+Latest measured failures: [native control and terminal pose](../reports/native_pose_20261022.md). v16six near-goal stops fail yaw; v13full1M remains0/10. Mild coasting and manual-first-gear CARLA trials do not fix large brake spikes, despite4/4route completion. Default actuation remains unchanged; native-road PPO boundaries are still unimplemented.
+
 This file records development findings, including negative results. Historical inspected final sets are no longer unseen confirmation sets.
 
 The [latest flat-policy diagnosis](../reports/flat_diagnosis_20261022.md) records a completed1M hold10 baseline with0/10 and zero progress, feature/actual-control audits, and38verified physical-return reconstructions. Stationary deadline behavior slightly out-rewards partial-progress deadline behavior under the existing objective, although normal success remains better. Candidate-set encoding and the separate signed-progress reward trial have also completed1M at0/10. Physical-frame audits show the latter stops2.67–2.77m before the empty goals and never enters the goal region in any development case. An unchanged cumulative2M/3M continuation is running to test training span; existing failures remain. The reward trial is not policy-invariant shaping and requires matched retraining before any architecture claim.

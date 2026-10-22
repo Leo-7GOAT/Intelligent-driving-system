@@ -87,3 +87,7 @@ formal_v4及更早累计训练的观测结果全部保留，但仅作带此实�
 原09:52–15:52窗口不变；因实测rollout最长超过200秒，15:48:30向全部队列统一发出STOP，允许完整优化/检查点收尾。此为资源保护，未按模型成绩选择停止对象，未修改模型、清单、主指标或统计seed。
 
 seed44 CARLA出现旧PID退出后的独占锁残留，预定一次重试后仍无物理回合的记录全部保留。报告修正为：计划已关闭不等于实际评估完整；无观测的策略率为缺失，保守计划条件完成下界另列，不制造零碰撞结果或新增独立策略seed。缺测列表显式输出，实际任务失败仍全部计入。该修正不改变seed11/33的已观测结果。详见analysis/late_infrastructure_accounting_amendment.json；针对无观测和PID复用新增2项报告回归通过。没有追加测试重试。
+
+## 2026-10-22 native-road development controls
+
+The four native-road routes are development diagnostics selected by geometry before control execution; they are not independent final conditions. Actuator comparison holds route/reference/targetspeed/MPC/vehicle/goalgates fixed, retains everycase andframe, and reports comfort/speed/latency alongside completion. Optional modes do not become the training default without a new frozen version and matched H/B1 adaptation. The observed4/4cannot establish a population success rate or PPO contribution. See the native/pose report for failedcoast andmanualgear hypotheses. The v17terminal-posePBRS trial is single-seed development with preregistered0/100k/300k/1M/2M/3Mmilestones and nofinal-testselection.

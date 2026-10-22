@@ -79,3 +79,9 @@ CARLA与轻量状态来源在plant接口处分开：轻量只有VehiclePlant积�
 v8的450维平铺MLP未建立反馈优势，且失败状态存在未被选中的可规划候选。v12增加显式目标几何并共享候选评分权重：605维输入由351维共同状态、31个8维候选描述和6维上次执行结果组成。actor先把共同状态和上次执行结果编码为64维，再与每个候选的8维描述拼接，经共享64/32层和单输出头产生31个logit，使用标准SB3分类PPO。critic仍读取完整输入；没有改写PPO损失、动作概率、规划器或物理控制。
 
 候选几何使用固定尺度，绕过逐槽运行归一化，保证同样的几何与可执行性特征获得同样含义。H0保留几何，只将3个候选反馈维度及6个执行结果置零。共同状态继续使用训练统计，评估冻结。旧450维模型不会被转换为605维，也不会继承优化器；所有新模型从头训练。B1/B2/B3均可获得605维同样信息，正式跨架构比较需要分别匹配训练。v12与v8的差异同时包含几何表示和网络结构，不能归因于反馈单项；反馈作用由v12内部H/H0对照检验。
+
+## Optional terminal-pose shaping and native-road diagnostics
+
+`heading_potential_weight=0` preserves the published distance-only potential and checkpoint signature. Active shaping adds `-w*(1-cos(yaw-goal_yaw))*exp(-distance/radius)` to the state potential, before the existing physical-gamma difference and terminal-zero handling. It changes learning credit, not the base task or success gate. v17is an exploratory fresh-policy trial; its baseprogressrewarddiffersfromolderH and cannot be pooled into an unfair architecture comparison.
+
+Native map routes are reflected into the same right-handed rear-axle frame, verified against map/OpenDRIVE and geometry hashes, and executed with actual CARLA state feedback. Twelve actual footprint samples query driving surface each frame. This is a sampled diagnostic, not yet a road-boundary observation/reward for PPO. The environment explicitly rejects native_curve PPO use until that integration is implemented. `carla_actuation.py` preserves legacy longitudinal mapping by default; experimentalcoast/manualgear modes are explicitly versioned and have not resolved comfort failures.
