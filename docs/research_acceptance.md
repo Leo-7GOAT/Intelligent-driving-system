@@ -31,7 +31,7 @@ New development batches live in separate directories. Architecture or reward cha
 | Videos | Real success and failure clips tied to case/model/seed/run | Missing |
 | Statistics | All seeds, paired intervals, variance, censoring, layered sampling if justified; no pseudoreplication | Historical partial analyses retained; fresh confirmation pending |
 | Reproducibility | Clean checkout install/tests/model load/representative evaluation/raw figure rebuild; CARLA replay when available | Fresh GitHub clone/newvenv installation,66passed5skipped,20model replays verified; representative CARLA clean-checkout replay still pending |
-| GitHub | Correct repository with preserved visibility/history, real commit/push, remote SHA verification and tag/release | Existing public Leo-7GOAT/Intelligent-driving-system verified via matching source/license blob hashes; origin fetched; development commit bbaf303 pushed and remote SHA verified; pre-release asset publication in progress |
+| GitHub | Correct repository with preserved visibility/history, real commit/push, remote SHA verification and tag/release | Existing public Leo-7GOAT/Intelligent-driving-system verified via matching source/license blob hashes; origin fetched; development pre-release v0.2.0-dev.20261022 published at9bcaa79; remote/tag/asset-download hash verified; research acceptance remains incomplete |
 | Release hygiene | Secrets/private path/data scan, third-party licensing/citations, bounded assets and SHA manifest | Pending |
 | Documentation | English README, Chinese guide, method/protocol/results/ablations/failures/model card/licenses, bilingual factual CV | Existing historical docs; new publication set incomplete |
 
@@ -70,3 +70,11 @@ Latest full regression after transfer configuration changes:66passed,5conditiona
 ## Publication progress
 
 Development commitbbaf303 was actually pushed to the correct existing public repository; remote SHA verified. A fresh GitHub clone/new isolated environment installed pinned dependencies, passed66tests (5conditional skips), and hash-verified/replayed all20 packaged development episodes. The bounded asset is a pre-release and is not complete final experimental evidence. Original12 archived file hashes are retained byte-for-byte. No hosted CI claim.
+
+## Additional failure evidence and next paired baseline
+
+Offline spatial counterfactuals at every failed frozen-CARLA state found3–12plannable distinct candidate targets at the final stalled states. These are geometry checks only, not actual tracking/dynamic-safety success. Thus absent candidates alone do not explain the repeatedly selected unplannable targets. Raw16state audits are preserved in the transfer batch.
+
+B1 fixed23m and uniform6–23m jobs completed1,000,960physical steps each. Fixed23m succeeds2/2 at23m and0/6 at shorter distances; uniform0/8. A new from-scratch common mixed-task B1 with the same450observations and candidate feedback asH is running in `20261022T054701Z_matched_flat_v11_development`. Its commands remain direct flat control; no planning/MPC control replacement. Candidate feature compute cost and native action frequency are disclosed.
+
+CARLA H actual adaptation reached100,890world ticks,38optimization phases, and3/6development completion; static remains0/2. H0 matched100k adaptation is still running. The improvement from2/6 is not a superiority or convergence claim.

@@ -17,3 +17,7 @@ This file records development findings, including negative results. Historical i
 Calibration remains limited: steering was calibrated over a partial normalized range, native curved-road tracking is not yet established, and large measured CARLA braking deceleration spikes remain visible. Current curve cases are obstacle-defined curved routes on a straight roadbed. Controller and policy improvements must be evaluated with progress, time, intervention, failure and comfort together.
 
 Current development is not a new final-test protocol. A future confirmation must freeze method/configuration, sufficient independently trained seeds, model-selection rules, budget, case generator, endpoints and multiplicity handling before inspecting its results.
+
+## Recorded-state spatial audit
+
+At all eight failed H/H0 frozen-CARLA terminal states, the shared offline planner can find paths to3–12distinct available candidate targets (speed duplicates excluded). The policy repeatedly chose different, unplannable targets. This narrows the issue to policy selection/learning or the quality of the feedback representation rather than universal absence of spatially feasible actions. It does not prove those alternate trajectories would track safely, and dynamic safety was deliberately outside the spatial audit. Source snapshots and all16initial/final state results are retained under `spatial_candidate_audit/` in the transfer batch.

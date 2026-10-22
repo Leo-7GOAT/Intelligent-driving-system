@@ -60,7 +60,7 @@ For existing locally saved historical data, rebuild the historical report with:
 
 The development pre-release asset is `development_v8_seed11.zip` (SHA256 `ad656334aa8386d1efcf0afbd14b5ef45f3fc4fae1da763b0dc8542469cc6b1c`). It contains both200k H/H0 checkpoints, frozen source/normalization/configuration, optimizer and training-episode summaries, and all20 development evaluation traces. Read the [model card](docs/model_card.md) before interpreting the results. This is a bounded development asset, not the full final experiment archive.
 
-After downloading the asset from the repository's development release:
+Download the asset from the [development pre-release](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261022):
 
 ```powershell
 Expand-Archive -LiteralPath runs/development_v8_seed11.zip -DestinationPath runs
