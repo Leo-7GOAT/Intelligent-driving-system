@@ -1,6 +1,6 @@
 # Active research handoff — 2026-10-22 13:23 local
 
-Goal remains active and incomplete. Read the current user objective attachment before continuing. Existing public repository `Leo-7GOAT/Intelligent-driving-system`, branch `feature/physical-hierarchical-ppo`, base8142224. No new commit/push yet. Do not modify other projects, reset/reinitialize Git, erase failures, or reuse inspected final conditions as unseen confirmation. No subagents authorized. Historical handoff retained in `reports/handoff_before_v6_20261022.md`.
+Goal remains active and incomplete. Read the current user objective attachment before continuing. Existing public repository `Leo-7GOAT/Intelligent-driving-system`, branch `feature/physical-hierarchical-ppo`, base8142224. Development commitbbaf303 pushed to the existing feature branch and remote SHA verified. Do not modify other projects, reset/reinitialize Git, erase failures, or reuse inspected final conditions as unseen confirmation. No subagents authorized. Historical handoff retained in `reports/handoff_before_v6_20261022.md`.
 
 ## Live work (revalidate OS processes before acting)
 
@@ -36,3 +36,14 @@ Goal remains active and incomplete. Read the current user objective attachment b
 Recovery command for a stopped nonfailed bounded pair: `python scripts/development_watchdog.py --batch <exactbatch>`. Existing live lease prevents duplicates; STOP/expired window/failures require diagnosis, never blindly remove them. A new continuation window must retain source and cumulative counters explicitly.
 
 Latest verified OS process/heartbeat snapshot13:23: H378,749 physical steps (149optimization phases); H0 359,981 (141); B1 full23 491,293 (191); B1 uniform500,061 (195). All four workers live, both supervisors without STOP, GPU35C. Do not treat these numbers/PIDs as permanently current. Prior goal turn was a verified live-process status inspection; this turn made code/test/actual training and CARLA evidence progress. Detailed development report: `reports/development_20261022.md`.
+
+
+## Subsequent continuation (2026-10-22, publication and real adaptation)
+
+Previous turn is classified as progress. This turn also makes concrete code/test/training/publication progress. B1 distance jobs both completed1,000,960 physical steps: fixed23m2/2 on23m but0/6 at shorter probe lengths; uniform6–23m0/8. Keep failures. H/H0 lightweight continuation is still running toward1M; inspect OS PIDs and current markers.
+
+CARLA adaptation batch `20261022T052635Z_carla_v10_adaptation`, pointer `runs/carla_adaptation_development.json`: source-frozen paired H/H0 from the SAME200k models used in the transfer diagnostic. Interleaved cumulative25k/100k actual world-step budgets, reset cost included; seeded training conditions0..9; six existing development evaluation conditions. Both25k milestones complete at26,598/26,558 ticks and2/6 each, no improvement yet. H continued beyond69k with real optimizer updates; H0 waits its turn afterH100k. Actual coordinator46440, supervisor52864, bridge34208 at last verification; recheck identities. Server launcher10328 owned by this batch. Frozen bridge uses NAVSTACK_CARLA_PYTHON to reference the existing isolated runtime, while its Python source stays frozen. Worker finally attempts identity-checked empty-server shutdown; inspect cleanup receipt rather than assuming success. Do not launch another CARLA owner while this one is live.
+
+Development asset `runs/prerelease_20261022/development_v8_seed11.zip`, SHA256ad656334aa8386d1efcf0afbd14b5ef45f3fc4fae1da763b0dc8542469cc6b1c.152files, two models, full20development evaluations, frozen source, optimizer/training-episode summaries. Verified all20replays both locally and in a fresh clone/newvenv. Fresh clone is `runs/prerelease_20261022/clean_checkout`; independent pip installation/pipcheck/66tests5skips succeeded. PureEOL issue in originaldialog_parser.py index is normalized in follow-up commit, with no semanticdiff. Original12snapshotfiles retain exactSHA256 through .gitattributes exceptions. No secrets/private user paths in publication candidates or asset; generic scanner path literals reviewed as expected code.
+
+Git push needed per-command `-c http.proxy=http://127.0.0.1:7890`, matching enabled Windows proxy; directGit timed out, ghAPI worked. No global config changed. Authentication remainsLeo-7GOAT. Pre-release intendedtagv0.2.0-dev.20261022; inspect realGitHub status before claiming it exists. Research acceptance remains incomplete even after publication.

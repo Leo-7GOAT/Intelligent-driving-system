@@ -10,4 +10,10 @@ Before publication:
 - The asset contains two development models and all associated200k evaluation cases, not a selected successful subset.
 - Dependency runtimes, CARLA binaries/maps and local environments are excluded. Original MIT attribution remains intact.
 
-Clean-checkout installation, tests and model replay must be recorded after actual execution. No hosted CI result is claimed. Publication of this development snapshot does not satisfy the research acceptance criteria.
+## Verified fresh-checkout reproduction
+
+Source commit `bbaf3037ea5e69754e6d1ea126332020c2e385af` was pushed to the development branch and the remote SHA matched. A new clone from GitHub installed `requirements.lock.txt` into a new isolated Python3.11 virtual environment. `pip check` reported no broken requirements. CPU regression:66passed,5conditional skips. The extracted asset verified152 files and replayed all20 episodes with recorded outcomes matching; normalization stayed frozen and the figure was rebuilt.
+
+The clone exposed a line-ending-only normalization issue in the unchanged legacy `dialog_parser.py`. Its index was normalized to the repository LF policy; `git diff --ignore-space-at-eol` confirmed no semantic changes. The12 original archived files retain their exact original SHA256 bytes.
+
+The Git HTTPS client required the already configured local system proxy for this machine; no global Git settings were changed. No hosted CI result is claimed. Publication of this development snapshot does not satisfy the research acceptance criteria.

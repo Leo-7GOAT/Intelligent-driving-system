@@ -8,4 +8,4 @@ The new single-seed feedback development has H/H0 completion6/10 each at100k,8/1
 
 No formal paired95% confidence interval is reported for this single-seed development. Repeated conditions from one model are not independent training seeds. Completion, interventions and progress are reported jointly; failed episodes stay in the denominator.
 
-The release asset reproduces a declared200k development checkpoint rather than a best-seed or best-test selection. Its complete20-episode CPU replay was verified locally against the recorded outcomes. Clean-checkout verification, release SHA and asset download status are recorded separately when actually completed.
+The release asset reproduces a declared200k development checkpoint rather than a best-seed or best-test selection. Its complete20-episode CPU replay was verified locally against the recorded outcomes. A fresh GitHub clone independently installed pinned dependencies, passed66CPU tests with5conditional skips, and reproduced all20 cases. Release SHA and asset download status are recorded separately in the release record.

@@ -30,8 +30,8 @@ New development batches live in separate directories. Architecture or reward cha
 | CARLA calibration | Geometry, steering/actuation, coordinates, frames, sensor truth; transfer vs retraining separate | Historical calibration retained; full steering range/native curved roads not validated |
 | Videos | Real success and failure clips tied to case/model/seed/run | Missing |
 | Statistics | All seeds, paired intervals, variance, censoring, layered sampling if justified; no pseudoreplication | Historical partial analyses retained; fresh confirmation pending |
-| Reproducibility | Clean checkout install/tests/model load/representative evaluation/raw figure rebuild; CARLA replay when available | Missing clean-checkout proof |
-| GitHub | Correct repository with preserved visibility/history, real commit/push, remote SHA verification and tag/release | Existing public Leo-7GOAT/Intelligent-driving-system verified via matching source/license blob hashes; origin fetched; no new commit/push yet |
+| Reproducibility | Clean checkout install/tests/model load/representative evaluation/raw figure rebuild; CARLA replay when available | Fresh GitHub clone/newvenv installation,66passed5skipped,20model replays verified; representative CARLA clean-checkout replay still pending |
+| GitHub | Correct repository with preserved visibility/history, real commit/push, remote SHA verification and tag/release | Existing public Leo-7GOAT/Intelligent-driving-system verified via matching source/license blob hashes; origin fetched; development commit bbaf303 pushed and remote SHA verified; pre-release asset publication in progress |
 | Release hygiene | Secrets/private path/data scan, third-party licensing/citations, bounded assets and SHA manifest | Pending |
 | Documentation | English README, Chinese guide, method/protocol/results/ablations/failures/model card/licenses, bilingual factual CV | Existing historical docs; new publication set incomplete |
 
@@ -66,3 +66,7 @@ Original v8 pair finished with both exits0: H8/10, H0 6/10. H succeeds on static
 Batch `20261022T051716Z_carla_v8_transfer`: both H/H0 frozen200k policies complete2/6 (curve7302 anddynamic7302), four deadlines each, no observed collision/bounds and no infrastructure faults. H4793 world ticks including resets, H0 4861; these are EVALUATION interactions, not PPO training. Both normalization states frozen. Failed conditions repeatedly select unplannable candidates; action/failure audits retained. No executability-feedback advantage transfers in this small diagnostic. Owned server confirmed empty and stopped. Current300k lightweight development is8/10 for both H/H0, so the200k difference is not stable evidence of feedback superiority.
 
 Latest full regression after transfer configuration changes:66passed,5conditional skips (`reports/v9_transfer_regression_20261022.xml`). Detailed case-level report is `reports/development_20261022.md`. All research and publication gates remain incomplete.
+
+## Publication progress
+
+Development commitbbaf303 was actually pushed to the correct existing public repository; remote SHA verified. A fresh GitHub clone/new isolated environment installed pinned dependencies, passed66tests (5conditional skips), and hash-verified/replayed all20 packaged development episodes. The bounded asset is a pre-release and is not complete final experimental evidence. Original12 archived file hashes are retained byte-for-byte. No hosted CI claim.
