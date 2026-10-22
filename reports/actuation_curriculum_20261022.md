@@ -32,6 +32,8 @@ At approximately135k steps, optimization evidence records2052 optimizer steps an
 
 ## Reproduction
 
+Independent checkout at published commit `abb2b1a` also passes105 tests/5conditional skips, reloads the published model, and reconstructs the two downloaded-data figures/summaries byte-identically. Its actual CARLA feedforward replay completes4/4 routes/1920 control ticks; speed RMS is .105/.148/.105/.166m/s, jerk68.53/77.73/67.94/71.95m/s³. The improvement relative to the original control persists, but detailed outcomes are not bitwise deterministic and braking spikes remain. Owned server cleanup and shutdown are verified.
+
 Final local CPU regression passes105 tests with5conditional skips. At the1M checkpoint, six-metre deterministic inference improves to8/8 and stochastic inference is6/8 (same outcomes for the duplicate train/validation geometry). Full-task evaluation remains0/10: two empty deadlines and eight obstacle collisions. Training has entered the12m stage. Short-route competence is not mixed-task competence.
 
 ```powershell

@@ -53,7 +53,7 @@ python -m venv .venv
 
 CPU tests exercise physical dynamics, planning, QP control, PPO updates/checkpoints, statistical accounting and failure recovery. Live CARLA tests require explicit opt-in and an exclusively owned server; skipped tests are not evidence of live validation.
 
-Latest local full regression: **102 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
+Latest local full regression: **105 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
 
 ## Bounded development and recovery
 

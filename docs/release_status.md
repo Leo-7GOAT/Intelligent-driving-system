@@ -2,6 +2,8 @@
 
 ## Acceleration feedback evidence addition
 
+Code commit `abb2b1a7498452de72fe9e0118b42883f30f11e7` is pushed and remote-verified. Independent checkout passes105 tests with5conditional skips, reloads the published145-file PPO camera asset, and reconstructs both downloaded diagnostic plots and verified summaries byte-identically. Actual CARLA feedforward replay from this checkout completes4/4 routes,1920 control ticks, speed RMS .105/.148/.105/.166m/s and jerk68.53/77.73/67.94/71.95m/s³. Deceleration still reaches approximately−24m/s². Detailed trajectories vary; this is repeatability evidence, not another independent condition or seed. The owned server was verified empty and stopped. Raw replay evidence is in that checkout's `runs/20261022T124930Z_native_curve_control`.
+
 The existing pre-release additionally contains `acceleration_feedback_diagnostics.zip`:377 manifest files,2,487,456bytes, SHA256`c1f4cedb03d085b476c540e69e53a501e93dff0c3087186e4fb3d82c4226d6ba`. GitHub reports uploaded with that digest; an actual fresh download matches the archive and every manifest member. Both new four-route experiments are included, with PI failures and feedforward residual braking spikes. No older asset or tag was replaced. Code publication and independent checkout verification for this addition are recorded after actual execution, not inferred from the upload.
 
 ## Native actuation diagnostics, 2026-10-22
