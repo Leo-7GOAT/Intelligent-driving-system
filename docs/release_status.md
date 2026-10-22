@@ -2,6 +2,8 @@
 
 ## Shared native-road development addition
 
+Code`7a82fbc83f7b23ec27806b1e13ed1ee5f0dbe343`is pushed and remote-verified. Fresh`native_road_checkout`passes107tests/5skips, loads all four actually downloaded models with frozen normalization, and rebuilds the second batch's plot/summary byte-identically. Complete proxy download matches all396hashes; a separate interrupted direct download remains partial and is not counted as verified. Actual independent-checkout CARLA training from downloaded calibration/routes completes640controlspermethod with realupdates/reload, Hdeadline/B1rasterfailures retained;1280framesverified. Ownedserver stopped withreceipt in thatcheckout's`runs/20261022T132946Z_native_road_learning`. No CI claim.
+
 `native_road_learning_development.zip` is actually uploaded to the existing pre-release:396manifestfiles,14,053,181bytes,SHA256`b54fdd0f142f1944878a9e095363ffde716162f2dd772dcaafd9cb9b01c34757`. GitHub uploaded state/digest match. It retains both new H/B1 interface-training batches, all failed/unfinished episodes, models, normalization, road grids, frame ledgers and the read-only map-query audit. There are no task successes and these repeats share seed11. Code publication, downloaded verification and independent reproduction are recorded after execution below. Earlier assets/tag remain unchanged.
 
 ## Acceleration feedback evidence addition
