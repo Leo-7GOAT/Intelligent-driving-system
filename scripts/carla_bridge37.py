@@ -82,6 +82,9 @@ class Bridge:
         a.apply_control(carla.VehicleControl(brake=1,hand_brake=True));return a
 
     def begin(self,r):
+        if (self.cal["recommended_adapter"].get("longitudinal_mode") in ("acceleration_pi_v1","acceleration_ff_v2")
+                and r.get("scenario")!="native_curve" and not r.get("diagnostic_actuation",False)):
+            raise ValueError("Experimental acceleration PI requires explicit diagnostic scope; training state interface not integrated")
         self.clear();self.events=[];self.imu_frame=-1;self.sensor_event=threading.Event();self.active_episode=r["episode_id"]
         if any(a.id not in self.retired_ids and a.type_id.startswith(("vehicle.","walker.","sensor.")) for a in self.world.get_actors()):
             raise RuntimeError("Foreign actors appeared; refusing to tick")
@@ -152,6 +155,10 @@ class Bridge:
         for settling_tick in range(30):self.tick(require_sensor=settling_tick>=5)
         self.events=[];self.t0=self.world.get_snapshot().timestamp.elapsed_seconds
         self.command={"acceleration":0.,"steering":0.};self.speed_target=0.;self.condition=condition
+        self.acceleration_controller=None
+        if self.cal["recommended_adapter"].get("longitudinal_mode") in ("acceleration_pi_v1","acceleration_ff_v2"):
+            from navstack.carla_actuation import AccelerationPI
+            self.acceleration_controller=AccelerationPI(self.cal["recommended_adapter"])
         self.goal=self.native_layout["goal"] if self.native_layout else [27.,goal_y,0.]
         static=[]
         for a in self.static_actors:
@@ -227,7 +234,10 @@ class Bridge:
         # Desired-speed integrator is an actuator setpoint, never returned as vehicle state.
         self.speed_target=max(0.,min(3.,v+.5,max(v-.5,self.speed_target+a*.05)))
         from navstack.carla_actuation import longitudinal_control
-        throttle,braking,actuation_mode=longitudinal_control(v,self.speed_target,a,g)
+        if self.acceleration_controller is not None:
+            throttle,braking,actuation_mode=self.acceleration_controller.step(v,self.speed_target,a,state["acceleration"],g)
+        else:
+            throttle,braking,actuation_mode=longitudinal_control(v,self.speed_target,a,g)
         steer=max(-1.,min(1.,-delta/g["steer_gain"]))
         drivetrain=g.get("drivetrain_mode","automatic")
         if drivetrain not in ("automatic","manual_first_v1"):raise ValueError("Unknown drivetrain version")
@@ -240,7 +250,7 @@ class Bridge:
         self.command={"acceleration":a,"steering":delta};self.tick()
         applied=self.actor.get_control()
         return {**self.read(),"applied_vehicle_control":{"throttle":applied.throttle,"brake":applied.brake,"steer":applied.steer,
-                "gear":applied.gear,"manual_gear_shift":applied.manual_gear_shift,"hand_brake":applied.hand_brake,"reverse":applied.reverse},"vehicle_control":{"throttle":throttle,"brake":braking,"steer":steer},"speed_setpoint":self.speed_target,"actuation_mode":actuation_mode}
+                "gear":applied.gear,"manual_gear_shift":applied.manual_gear_shift,"hand_brake":applied.hand_brake,"reverse":applied.reverse},"vehicle_control":{"throttle":throttle,"brake":braking,"steer":steer},"speed_setpoint":self.speed_target,"actuation_mode":actuation_mode,"actuation_state":self.acceleration_controller.state() if self.acceleration_controller else None}
 
     def handle(self,r):
         if r["op"]=="begin":return self.begin(r)

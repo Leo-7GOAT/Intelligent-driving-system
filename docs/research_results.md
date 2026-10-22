@@ -1,5 +1,7 @@
 # Research results and claim boundaries
 
+Latest [acceleration/curriculum report](../reports/actuation_curriculum_20261022.md) supersedes earlier live status: v17 completes3M at0/10. Measured feedforward improves speed/jerk on four development routes while retaining braking spikes and worsening some lateral errors. This is control evidence, not PPO benefit. Fresh v18 route-stage training is running; its stochastic and deterministic short-route outcomes are reported separately.
+
 Latest native-road and learning endpoints are in [the native/pose report](../reports/native_pose_20261022.md): v16B1 completes3M at0/10, v13B1 completes1M at0/10, v17is an ongoing single-seed shaping experiment (1/10at1M). Three real four-route fixed-reference CARLA variants each complete4/4 but all retain severe longitudinal jerk. No revised actuator is adopted. These supersede earlier live-status paragraphs below.
 
 Latest completed v11/v12/CARLA endpoints and the ongoing common-curriculum experiment are recorded in [the 18:10 continuation report](../reports/camera_staged_20261022.md). It supersedes older live-status entries below. v12 H/H0 finish approximately 1M lightweight physical steps at 8/10 and 6/10; separate v11 B1 finishes at 0/10. Actual v12 CARLA adaptation finishes approximately 100k world ticks per model at 4/6 and 3/6; H's earlier 5/6 regresses. No new five-seed or final-confirmation result is claimed. Real success/failure camera evidence is illustrative only.

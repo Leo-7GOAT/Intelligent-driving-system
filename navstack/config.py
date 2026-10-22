@@ -123,6 +123,7 @@ class EnvConfig:
     execution_feedback: str = "off"
     candidate_observation: bool = False
     empty_pretraining_steps: int = 0
+    route_stages: list[dict] = field(default_factory=list)
     vehicle: VehicleConfig = field(default_factory=VehicleConfig)
     planner: PlannerConfig = field(default_factory=PlannerConfig)
     reward: RewardConfig = field(default_factory=RewardConfig)
@@ -140,6 +141,18 @@ class EnvConfig:
             raise ValueError("empty pretraining budget must be a nonnegative integer")
         if self.empty_pretraining_steps and self.curriculum:
             raise ValueError("do not combine task-stage and route-length curricula")
+        if self.route_stages:
+            if self.curriculum or self.empty_pretraining_steps or self.training_route_length is not None or self.training_route_range is not None:
+                raise ValueError("route stages cannot be combined with another curriculum")
+            previous = 0
+            for stage in self.route_stages:
+                if (set(stage) != {"until_physics_steps", "route_m"}
+                        or not isinstance(stage["until_physics_steps"], int)
+                        or stage["until_physics_steps"] <= previous
+                        or not math.isfinite(stage["route_m"])
+                        or not 2 <= stage["route_m"] <= self.width-11):
+                    raise ValueError("invalid route stage budget or distance")
+                previous = stage["until_physics_steps"]
         if self.control_dt <= 0:
             raise ValueError("control_dt must be positive")
         ratio = self.decision_dt / self.control_dt

@@ -1,5 +1,7 @@
 # Executability-aware hierarchical driving research
 
+Latest [acceleration/curriculum evidence](reports/actuation_curriculum_20261022.md): measured feedforward improves speed RMS and jerk on four fixed native-road references, but startup/stopping spikes and lateral-error tradeoffs remain. It is diagnostic-only. v17 finishes3M at0/10; a fresh, bounded5M staged-distance B1 experiment is running.
+
 A low-speed research prototype: **PPO → local pose/speed → forward Hybrid A* → time-parameterized trajectory → MPC → physical execution and feedback**.
 
 **Research acceptance is not yet met.** Real CARLA 0.9.15 training and validation have run, but current evidence does not establish that the learned high-level policy improves on a strong rule-based high level. This is not a road-safety or production-driving claim.

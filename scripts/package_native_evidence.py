@@ -13,11 +13,13 @@ def package(batches, output):
     if output.exists():
         raise FileExistsError("Preserve existing evidence archive")
     content = {}
+    episode_count = 0
     for batch in map(Path, batches):
-        summary = json.loads((batch / "summary.json").read_text())
+        summary = json.loads((batch / "summary.json").read_text(encoding="utf-8"))
         if not summary.get("complete") or len(summary["episodes"]) != 4:
             raise ValueError("Require all four cases, not successful-case selection")
-        protocol = json.loads((batch / "protocol.json").read_text())
+        episode_count += len(summary["episodes"])
+        protocol = json.loads((batch / "protocol.json").read_text(encoding="utf-8"))
         for name, digest in protocol["source_hashes"].items():
             if hashlib.sha256((batch / "source" / name).read_bytes()).hexdigest() != digest:
                 raise ValueError("Frozen source mismatch")
@@ -47,11 +49,11 @@ def package(batches, output):
     content["LICENSE"] = (root / "LICENSE").read_bytes()
     content["README.txt"] = (
         "Native-road development diagnostics, not PPO or research acceptance.\n"
-        "Includes all twelve control episodes, severe brake spikes, two unsuccessful actuator hypotheses, "
-        "and every raw brake/throttle probe. No CARLA binaries/maps or credentials.\n"
+        "Includes all " + str(episode_count) + " control episodes from the specified batches, severe brake spikes, "
+        "and every raw brake/throttle probe present in those batches. No CARLA binaries/maps or credentials.\n"
         "From the repository checkout, run scripts/analyze_native_control.py --batch EXTRACTED_BATCH "
         "for each batch, then scripts/compare_native_control.py --baseline BASELINE --candidate CANDIDATE.\n"
-        "The fixed first gear/coast variants are experimental and remain disabled by default. "
+        "All alternative actuator variants are experimental and remain disabled by default. "
         "Each batch has original frozen Python source and calibration, not an installed environment.\n"
     ).encode()
     manifest = {"scope": "All development control cases and probes; no formal comparison or independent-seed claim",

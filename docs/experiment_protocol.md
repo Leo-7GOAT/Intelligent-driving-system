@@ -1,5 +1,7 @@
 # 实验协议：2026-10-16 实际批次
 
+2026-10-22补充：v18是单种子开发实验，6/12/18/23米空场各1M物理步，之后混合场景1M，总5M；不能把前4M称为混合任务训练。固定阈值适用于所有方法，比较时须匹配分布与全部交互预算。执行器前馈对照固定参考/目标速度/车辆/MPC，报告速度、横向误差、jerk和残余尖峰，不以4/4完成替代舒适性或安全证据。
+
 以 configs/research_preregistration.json、批次 preregistration.json、development_freeze.json 为准。批次 runs/20261016T015226Z_research_batch_3377580f，北京时间09:52–15:52，六小时硬截止。旧协议存于 reports/experiment_protocol_before_formal_20261016.md；旧“未执行/CARLA缺失”不是本轮状态。
 
 ## 固定主指标

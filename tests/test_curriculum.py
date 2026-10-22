@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 from navstack.config import EnvConfig
 from navstack.env import NavigationEnv
 
@@ -42,3 +43,36 @@ def test_full_length_task_staging_is_common_and_never_applies_to_validation():
     env.reset(seed=11)
     assert env.scenario_name == "static" and env.world.static and env.goal[0] == 27
     env.close()
+
+
+def test_fixed_distance_stages_share_geometry_use_physical_counters_and_leave_validation_full():
+    stages = [{"until_physics_steps": 10, "route_m": 6.}, {"until_physics_steps": 20, "route_m": 12.}]
+    for count, distance in ((0, 6.), (9, 6.), (10, 12.), (19, 12.), (20, 23.)):
+        observations = []
+        for method in ("H", "B1", "B2", "B3"):
+            env = NavigationEnv(EnvConfig(method=method, route_stages=stages))
+            env.total_physics_steps = count
+            observation, _ = env.reset(seed=11)
+            assert env.goal[0]-env.initial_scenario["initial"]["x"] == distance
+            if count < 20:
+                assert env.scenario_name == "empty" and not env.world.static and not env.world.dynamic
+            observations.append(observation)
+            env.close()
+        for observation in observations[1:]:
+            np.testing.assert_array_equal(observation, observations[0])
+    env = NavigationEnv(EnvConfig(method="B1", flat_hold=10, route_stages=stages))
+    env.reset(seed=11)
+    initial_goal = env.goal
+    env.step(np.array([0., 0.], dtype=np.float32))
+    assert env.total_physics_steps == 10 and env.goal == initial_goal
+    env.reset(seed=11)
+    assert env.goal[0] == 16.
+    env.close()
+    env = NavigationEnv(EnvConfig(route_stages=stages, split="validation"))
+    env.reset(seed=11)
+    assert env.goal[0] == 27.
+    env.close()
+    with pytest.raises(ValueError, match="another curriculum"):
+        EnvConfig(route_stages=stages, empty_pretraining_steps=10)
+    with pytest.raises(ValueError, match="stage"):
+        EnvConfig(route_stages=list(reversed(stages)))

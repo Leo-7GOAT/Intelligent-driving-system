@@ -114,6 +114,13 @@ class NavigationEnv(gym.Env):
 
     def _create_episode(self, options=None):
         route_length = None
+        route_stage_active = False
+        if self.config.split == "train":
+            for stage in self.config.route_stages:
+                if self.total_physics_steps < stage["until_physics_steps"]:
+                    route_length = stage["route_m"]
+                    route_stage_active = True
+                    break
         if self.config.curriculum and self.config.split == "train":
             route_length = 6.0 if self.total_physics_steps < 50000 else (16.0 if self.total_physics_steps < 150000 else None)
         if self.config.split == "train" and self.config.training_route_length is not None:
@@ -125,7 +132,7 @@ class NavigationEnv(gym.Env):
             if not 2 <= route_length <= self.config.width - 11:
                 raise ValueError("diagnostic route does not fit map")
         scenario_config = self.config
-        if (self.config.split == "train" and self.config.scenario == "mixed"
+        if route_stage_active or (self.config.split == "train" and self.config.scenario == "mixed"
                 and self.total_physics_steps < self.config.empty_pretraining_steps):
             # Same full-length task for every architecture; only scene difficulty
             # is staged. Switch at episode boundaries, never reset in env.step.

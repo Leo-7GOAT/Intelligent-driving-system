@@ -20,6 +20,7 @@ def main():
     p.add_argument("--route-length", type=float, default=6)
     p.add_argument("--scenario")
     p.add_argument("--deadline", type=float)
+    p.add_argument("--sde-sample-freq", type=int, help="Override loaded model noise frequency for an explicit inference diagnostic")
     args = p.parse_args()
     torch.set_num_threads(1)
     checkpoint, output = Path(args.checkpoint), Path(args.output)
@@ -30,6 +31,9 @@ def main():
     if args.deadline:
         cfg.deadline = args.deadline
     model, normalizer = load_run(checkpoint)
+    noise_frequency = model.sde_sample_freq if args.sde_sample_freq is None else args.sde_sample_freq
+    if noise_frequency == 0 or noise_frequency < -1:
+        raise ValueError("Noise frequency must be positive or -1 (once per episode for this diagnostic)")
     before = normalizer.obs_rms.mean.copy()
     rows = []
     with gzip.open(output / "trace.jsonl.gz", "wt", encoding="utf-8") as stream:
@@ -42,8 +46,10 @@ def main():
                     obs, _ = env.reset(seed=seed, options={"diagnostic_route_length": args.route_length})
                     initial = env.initial_scenario
                     actions = 0
+                    if model.use_sde:
+                        model.policy.reset_noise(1)
                     while True:
-                        if model.use_sde and actions % 10 == 0:
+                        if model.use_sde and noise_frequency > 0 and actions % noise_frequency == 0:
                             model.policy.reset_noise(1)
                         action, _ = model.predict(normalizer.normalize_obs(obs[None]), deterministic=deterministic)
                         obs, _, done, _, info = env.step(action[0]); actions += 1
@@ -58,7 +64,8 @@ def main():
               for d in (True, False) for s in ("train", "validation")]
     write_json(output / "results.json", {"checkpoint": str(checkpoint), "epoch": time.time(), "groups": groups, "episodes": rows,
                "route_length": args.route_length, "scenario": cfg.scenario, "deadline": cfg.deadline,
-               "scope": "development inference diagnostic; stochastic gSDE noise resampled every 10 actions; frozen normalization"})
+               "sde_sample_freq": noise_frequency,
+               "scope": "development inference diagnostic; gSDE frequency recorded explicitly; -1 means once per episode here, not training-rollout equivalence; frozen normalization"})
     print(json.dumps(groups), flush=True)
 
 

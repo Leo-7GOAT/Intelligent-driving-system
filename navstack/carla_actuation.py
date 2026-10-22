@@ -1,5 +1,61 @@
 """Versioned CARLA longitudinal mapping; compatible with the CPython 3.7 owner."""
 
+import math
+
+
+class AccelerationPI:
+    """Incremental signed-pedal feedback; actual CARLA acceleration is the input.
+
+    Positive pedal means throttle, negative means brake. Thus a mildly negative
+    acceleration request can reduce an existing throttle without immediately
+    applying brake. Internal filter/integrator state is exported for diagnosis;
+    a future training adapter must expose it, not assume a Markov observation.
+    """
+    def __init__(self, gains):
+        self.ki = float(gains["acceleration_integral_gain"])
+        self.tau = float(gains["acceleration_filter_seconds"])
+        if not math.isfinite(self.ki) or not math.isfinite(self.tau) or self.ki <= 0 or self.tau <= 0:
+            raise ValueError("Invalid acceleration feedback gains")
+        self.pedal = 0.
+        self.filtered_acceleration = 0.
+        self.integral = 0.
+        self.model = gains.get("throttle_model")
+        if self.model is not None and (not all(math.isfinite(v) for v in self.model.values())
+                                       or self.model["throttle_gain"] <= 0):
+            raise ValueError("Invalid measured throttle model")
+
+    def state(self):
+        result = {"signed_pedal": self.pedal, "filtered_acceleration": self.filtered_acceleration}
+        if self.model is not None:
+            result["feedback_integral"] = self.integral
+        return result
+
+    def step(self, speed, target, requested, measured, gains, dt=.05):
+        if not all(math.isfinite(v) for v in (speed, target, requested, measured, dt)) or dt <= 0:
+            raise ValueError("Finite measured inputs and positive dt required")
+        self.filtered_acceleration += dt/(self.tau+dt)*(measured-self.filtered_acceleration)
+        # Saturation is applied to the integrator itself: no hidden wind-up.
+        if self.model is None:
+            self.pedal = max(-1., min(.6, self.pedal+self.ki*dt*(requested-self.filtered_acceleration)))
+        else:
+            coast = self.model["speed_coefficient"]*speed+self.model["intercept"]
+            difference = requested-coast
+            feedforward = difference/(self.model["throttle_gain"] if difference >= 0 else gains["brake_decel"])
+            # The fitted model is throttle-only; negative effort still uses the
+            # old measured brake gain, whose low-speed limitations are reported.
+            self.integral = max(-.15, min(.15, self.integral+self.ki*dt*(requested-self.filtered_acceleration)))
+            self.pedal = max(-1., min(.6, feedforward+self.integral))
+        if requested <= -2.4:
+            self.pedal = self.integral = 0.
+            return 0., min(1., -requested/gains["brake_decel"]+max(0., speed-target)*.1), "emergency_brake"
+        if abs(speed) < .1 and target < .03 and requested <= 0:
+            self.pedal = self.integral = 0.
+            return 0., .3, "final_hold"
+        if speed >= 3.:
+            self.pedal = min(self.pedal, 0.)
+            return 0., max(-self.pedal, min(.4, (speed-3)*.3)), "overspeed"
+        return max(0., self.pedal), max(0., -self.pedal), "acceleration_ff_v2" if self.model is not None else "acceleration_pi_v1"
+
 
 def longitudinal_control(speed, target, acceleration, gains):
     """Return throttle, brake and diagnostic mode; never modify measured state.

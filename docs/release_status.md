@@ -1,5 +1,9 @@
 # Development release record
 
+## Acceleration feedback evidence addition
+
+The existing pre-release additionally contains `acceleration_feedback_diagnostics.zip`:377 manifest files,2,487,456bytes, SHA256`c1f4cedb03d085b476c540e69e53a501e93dff0c3087186e4fb3d82c4226d6ba`. GitHub reports uploaded with that digest; an actual fresh download matches the archive and every manifest member. Both new four-route experiments are included, with PI failures and feedforward residual braking spikes. No older asset or tag was replaced. Code publication and independent checkout verification for this addition are recorded after actual execution, not inferred from the upload.
+
 ## Native actuation diagnostics, 2026-10-22
 
 Code067db54b2803d8cc26fd9b63fbc4db62900606c2was pushed to the existing feature branch and matched remote SHA. Independent checkout at that commit passes102tests/5conditional skips and reloads the published camera model. It reconstructs all three native diagnostic plots and verified summaries byte-identically, including from an actual fresh release download. ActualCARLA replay from this checkout completes4/4native routes,1924controlticks, no observed collision or sampled road departure, but retains deceleration near−25m/s²andjerk131–139m/s³. Detailed trajectories differ. Owned server was verified empty and stopped; receipts live in its`runs/20261022T120642Z_native_curve_control`.

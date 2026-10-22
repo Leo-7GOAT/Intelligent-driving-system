@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from navstack.carla_actuation import longitudinal_control
+from navstack.carla_actuation import AccelerationPI, longitudinal_control
 
 
 def test_legacy_mapping_exact_and_coast_preserves_urgent_braking():
@@ -25,3 +25,37 @@ def test_legacy_mapping_exact_and_coast_preserves_urgent_braking():
     assert longitudinal_control(1., 1., -.5, dict(gains, longitudinal_mode="coast_mild_v1")) == (0., 0., "mild_deceleration_coast")
     with pytest.raises(ValueError, match="version"):
         longitudinal_control(1., 1., -.5, dict(gains, longitudinal_mode="typo"))
+
+
+def test_acceleration_feedback_reduces_throttle_before_braking_and_bounds_state():
+    gains = {"acceleration_integral_gain": .15, "acceleration_filter_seconds": .2, "brake_decel": 6.25}
+    controller = AccelerationPI(gains)
+    for _ in range(20):
+        throttle, brake, _ = controller.step(.5, 1., 1., 0., gains)
+    previous = throttle
+    throttle, brake, _ = controller.step(.5, 1., -.3, 0., gains)
+    assert 0 < throttle < previous and brake == 0
+    for _ in range(1000):
+        controller.step(.5, 1., 1.5, -1., gains)
+    assert controller.state()["signed_pedal"] == .6
+    emergency = controller.step(1., .8, -2.5, 0., gains)
+    assert emergency[0] == 0. and emergency[1] == pytest.approx(.42) and emergency[2] == "emergency_brake"
+    assert controller.state()["signed_pedal"] == 0
+    assert controller.step(.01, 0., -.1, 0., gains) == (0., .3, "final_hold")
+    assert AccelerationPI(gains).state() == {"signed_pedal": 0., "filtered_acceleration": 0.}
+    with pytest.raises(ValueError, match="Finite"):
+        controller.step(1., 1., 0., float("nan"), gains)
+
+
+def test_measured_feedforward_offsets_coast_drag_and_exports_integral():
+    gains = {"acceleration_integral_gain": .15, "acceleration_filter_seconds": .2, "brake_decel": 6.25,
+             "throttle_model": {"throttle_gain": 7., "speed_coefficient": -.08, "intercept": -.65}}
+    controller = AccelerationPI(gains)
+    throttle, brake, mode = controller.step(1., 1., -.3, 0., gains)
+    assert throttle > 0 and brake == 0 and mode == "acceleration_ff_v2"
+    assert "feedback_integral" in controller.state()
+    emergency = controller.step(1., .8, -2.5, 0., gains)
+    assert emergency[1] == pytest.approx(.42) and emergency[2] == "emergency_brake"
+    assert controller.state()["feedback_integral"] == 0.
+    with pytest.raises(ValueError, match="model"):
+        AccelerationPI(dict(gains, throttle_model={"throttle_gain": -1., "speed_coefficient": 0., "intercept": 0.}))

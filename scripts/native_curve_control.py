@@ -29,7 +29,9 @@ def write(path, value):
     Path(path).write_text(json.dumps(value, indent=2, default=jsonable), encoding="utf-8")
 
 
-def prepare(survey_batch, adapter="legacy"):
+def prepare(survey_batch, adapter="legacy", fit_path=None):
+    if adapter == "acceleration_ff_v2" and fit_path is None:
+        raise ValueError("Measured throttle fit is required")
     healthy, reason = resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free < 12*1024**3:
         raise RuntimeError("Resource guard: "+str(reason))
@@ -45,8 +47,16 @@ def prepare(survey_batch, adapter="legacy"):
     calibration = json.loads(calibration_path.read_text(encoding="utf-8"))
     if adapter != "legacy":
         calibration["recommended_adapter"]["longitudinal_mode"] = "legacy" if adapter == "manual_first_v1" else adapter
-        if adapter == "manual_first_v1":
+        if adapter in ("manual_first_v1", "acceleration_pi_v1", "acceleration_ff_v2"):
             calibration["recommended_adapter"]["drivetrain_mode"] = "manual_first_v1"
+        if adapter in ("acceleration_pi_v1", "acceleration_ff_v2"):
+            calibration["recommended_adapter"].update(acceleration_integral_gain=.15, acceleration_filter_seconds=.2)
+        if adapter == "acceleration_ff_v2":
+            fit_file = Path(fit_path)
+            fitted = json.loads(fit_file.read_text(encoding="utf-8"))
+            calibration["recommended_adapter"]["throttle_model"] = fitted["coefficients"]
+            calibration["throttle_fit_sha256"] = hashlib.sha256(fit_file.read_bytes()).hexdigest()
+            shutil.copy2(fit_file, batch / "calibration/throttle_fit.json")
         calibration["status"] = "experimental_actuation_not_validated_for_training"
         write(calibration_path, calibration)
     hashes = {}
@@ -173,6 +183,7 @@ if __name__ == "__main__":
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--prepare", metavar="SURVEY_BATCH")
     group.add_argument("--batch")
-    parser.add_argument("--adapter", choices=["legacy", "coast_mild_v1", "manual_first_v1"], default="legacy")
+    parser.add_argument("--adapter", choices=["legacy", "coast_mild_v1", "manual_first_v1", "acceleration_pi_v1", "acceleration_ff_v2"], default="legacy")
+    parser.add_argument("--fit", help="Measured throttle fit for acceleration_ff_v2")
     args = parser.parse_args()
-    prepare(args.prepare, args.adapter) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.adapter, args.fit) if args.prepare else run(args.batch)

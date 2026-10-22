@@ -1,5 +1,7 @@
 # Failure analysis
 
+The [acceleration/curriculum report](../reports/actuation_curriculum_20261022.md) preserves PI overshoot, residual feedforward braking spikes, v17 final3M failure and v18 stochastic/deterministic parking discrepancy. High recent training success is not validation success.
+
 Latest measured failures: [native control and terminal pose](../reports/native_pose_20261022.md). v16six near-goal stops fail yaw; v13full1M remains0/10. Mild coasting and manual-first-gear CARLA trials do not fix large brake spikes, despite4/4route completion. Default actuation remains unchanged; native-road PPO boundaries are still unimplemented.
 
 This file records development findings, including negative results. Historical inspected final sets are no longer unseen confirmation sets.

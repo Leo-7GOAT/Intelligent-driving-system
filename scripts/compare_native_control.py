@@ -9,22 +9,24 @@ import numpy as np
 
 def compare(baseline, candidate):
     baseline, candidate = Path(baseline), Path(candidate)
-    protocols = [json.loads((p / "protocol.json").read_text()) for p in (baseline, candidate)]
+    protocols = [json.loads((p / "protocol.json").read_text(encoding="utf-8")) for p in (baseline, candidate)]
     for key in ("routes", "target_speed_m_s", "episode_seconds", "dt", "mpc_horizon",
                 "goal_tolerance_m", "goal_speed_m_s", "goal_yaw_tolerance_rad"):
         if protocols[0][key] != protocols[1][key]:
             raise ValueError("Unmatched protocol field: " + key)
-    calibrations = [json.loads((p / "calibration/calibration.json").read_text()) for p in (baseline, candidate)]
+    calibrations = [json.loads((p / "calibration/calibration.json").read_text(encoding="utf-8")) for p in (baseline, candidate)]
+    actuator_configurations = [dict(c["recommended_adapter"]) for c in calibrations]
     for calibration in calibrations:
         calibration.pop("status", None)
-        for key in ("longitudinal_mode", "drivetrain_mode"):
+        calibration.pop("throttle_fit_sha256", None)
+        for key in ("longitudinal_mode", "drivetrain_mode", "acceleration_integral_gain", "acceleration_filter_seconds", "throttle_model"):
             calibration["recommended_adapter"].pop(key, None)
     if calibrations[0] != calibrations[1]:
         raise ValueError("Physical calibration or legacy actuator gains differ")
     for name in ("navstack/mpc.py", "navstack/trajectory.py", "navstack/vehicle.py"):
         if protocols[0]["source_hashes"][name] != protocols[1]["source_hashes"][name]:
             raise ValueError("Controller/reference source differs: " + name)
-    summaries = [json.loads((p / "analysis/verified_summary.json").read_text()) for p in (baseline, candidate)]
+    summaries = [json.loads((p / "analysis/verified_summary.json").read_text(encoding="utf-8")) for p in (baseline, candidate)]
     if len(summaries[0]["episodes"]) != 4 or len(summaries[1]["episodes"]) != 4:
         raise ValueError("Keep every registered case, including failures")
     rows = []
@@ -32,7 +34,7 @@ def compare(baseline, candidate):
         if old["geometry_id"] != new["geometry_id"]:
             raise ValueError("Different case geometry")
         case_name = "case_%02d" % old["case_id"]
-        refs = [json.loads((p / case_name / "reference.json").read_text()) for p in (baseline, candidate)]
+        refs = [json.loads((p / case_name / "reference.json").read_text(encoding="utf-8")) for p in (baseline, candidate)]
         for key in ("x", "y", "yaw", "s", "kappa", "v", "a", "t"):
             if not np.allclose(refs[0][key], refs[1][key], atol=1e-6, rtol=0):
                 raise ValueError("Different reference " + key)
@@ -49,7 +51,8 @@ def compare(baseline, candidate):
         rows.append(pair)
     result = {"scope": "Four paired development routes, no independent repetitions or PPO claim; no samples removed or padded.",
               "reference_tolerance": "All eight arrays equal within 1e-6 absolute; measured reset velocity numerical noise only",
-              "baseline": str(baseline), "candidate": str(candidate), "episodes": rows}
+              "baseline": str(baseline), "candidate": str(candidate), "actuator_configurations": actuator_configurations,
+              "episodes": rows}
     (candidate / "analysis/paired_comparison.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(json.dumps([{ "case": r["case_id"], "success": [r[k]["success"] for k in ("baseline", "candidate")],
         "jerk": [r[k]["jerk_rms_m_s3"] for k in ("baseline", "candidate")],
