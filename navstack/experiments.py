@@ -161,6 +161,10 @@ def signature(config):
         result["observation"] += "-candidate-witness31x3-execution6-v1"
         result["observation_shape"] = [450]
         result["execution_feedback"] = config.execution_feedback
+    if config.candidate_observation:
+        result["observation"] = OBS_VERSION + "-candidate-geometry-witness31x8-execution6-v2"
+        result["observation_shape"] = [605]
+        result["candidate_scaling"] = "ego_xy/15,sin_yaw,cos_yaw,speed/3,clear,witness,time/45"
     return result
 
 
@@ -172,7 +176,9 @@ def make_vector(config, seed, n_envs=1):
         ]
     )
     env.seed(seed)
-    return VecNormalize(
+    from .candidate_policy import CandidateVecNormalize
+    normalizer = CandidateVecNormalize if config.candidate_observation else VecNormalize
+    return normalizer(
         env, norm_obs=True, norm_reward=False, gamma=config.gamma, clip_obs=10.0
     )
 

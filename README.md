@@ -18,7 +18,9 @@ These evaluated scenarios are now **historical**, not unseen confirmation data f
 
 ## Current development (2026-10-22)
 
-B1 passes the 6m empty-route parking sanity check (8/8 after approximately 1M physical steps), but the same model fails the 23m task (0/8). H/H0 feedback ablation reaches 8/10 versus 6/10 at200k, then8/10 each at300k on development conditions. Both frozen200k policies score2/6 in a real CARLA transfer diagnostic. These are single-seed diagnostics, not independent confirmation. Current CPU regression: 66 passed, 5 conditional skips.
+B1 passes the 6m empty-route parking sanity check (8/8 after approximately 1M physical steps), but the same model fails the 23m task (0/8). H/H0 feedback ablation reaches8/10 versus6/10 at200k,8/10 each at300k, and8/10 versus9/10 at1M on development conditions. Strong rule B3 completes10/10 on the identical cases. Both frozen200k policies score2/6 in actual CARLA transfer; real CARLA adaptation for approximately100k world ticks each raises both to3/6. These single-seed diagnostics establish neither feedback benefit nor PPO superiority.
+
+Development v12 tests shared candidate scoring and explicit geometry, with an equal-network H/H0 feedback ablation and no action masks or teacher. It is a new training version, not compatible continuation of the released450-input models. Progress, failures and model-selection limits are recorded in the [development report](reports/development_20261022.md). The development release checkout passed66 tests with5 conditional skips; the first v12 full regression passed69 with5 skips.
 
 Rebuild completed development milestones, checking frozen source and checkpoint hashes:
 
@@ -41,10 +43,11 @@ CPU tests exercise physical dynamics, planning, QP control, PPO updates/checkpoi
 
 ## Bounded development and recovery
 
-The current development batch is recorded in `runs/active_development.json`. Its `protocol.json` records a two-hour execution window, source hashes, job budgets and resource limits. It is a development diagnostic, not the final experiment protocol.
+The candidate experiment is recorded in `runs/candidate_development.json`; the separate flat baseline uses `runs/matched_flat_development.json`. Each `protocol.json` records a two-hour execution window, source hashes, job budgets and resource limits. These are development diagnostics, not the final experiment protocol. Pointer files are local outputs. To create a new candidate experiment from the documented task on a fresh checkout, run the initializer once; it needs no CARLA installation or historical local run. Omit initialization when resuming an existing batch.
 
 ```powershell
-$batch = (Get-Content runs/active_development.json -Raw | ConvertFrom-Json).batch
+.\.venv\Scripts\python.exe scripts/initialize_candidate_development.py
+$batch = (Get-Content runs/candidate_development.json -Raw | ConvertFrom-Json).batch
 .\.venv\Scripts\python.exe scripts/development_watchdog.py --batch $batch
 ```
 

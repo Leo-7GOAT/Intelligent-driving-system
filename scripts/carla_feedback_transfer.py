@@ -19,21 +19,37 @@ def main():
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--prepare-parent")
     group.add_argument("--batch")
+    parser.add_argument("--milestone", type=int, help="Use both completed development evaluations at this fixed budget")
+    parser.add_argument("--calibration-batch", help="Existing measured calibration; used when the policy batch has none")
     args = parser.parse_args()
     if args.prepare_parent:
         parent = Path(args.prepare_parent).resolve()
-        batch = ROOT / "runs" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "_carla_v8_transfer")
+        parent_protocol = json.loads((parent / "protocol.json").read_text(encoding="utf-8"))
+        selection = []
+        for label in ("H", "H0"):
+            run = parent / parent_protocol["run_group"] / (label + "_seed11")
+            if args.milestone is None:
+                checkpoint = Path(json.loads((run / "completed.json").read_text(encoding="utf-8"))["summary"]["checkpoint"])
+            else:
+                evaluation = json.loads((run / ("validation_" + str(args.milestone) + ".json")).read_text(encoding="utf-8"))
+                if len(evaluation["episodes"]) != len(parent_protocol["development_cases"]):
+                    raise ValueError("Incomplete source development evaluation")
+                checkpoint = Path(evaluation["checkpoint"])
+                if hashlib.sha256((checkpoint / "model.zip").read_bytes()).hexdigest() != evaluation["model_sha256"]:
+                    raise ValueError("Source checkpoint changed")
+            training = json.loads((checkpoint / "training_summary.json").read_text(encoding="utf-8"))
+            selection.append({"label": label, "checkpoint": str(checkpoint),
+                              "training_physics_steps": training["physics_steps"],
+                              "model_sha256": hashlib.sha256((checkpoint / "model.zip").read_bytes()).hexdigest()})
+        # Resolve/check inputs before creating a new immutable output batch.
+        calibration = Path(args.calibration_batch).resolve() / "calibration" if args.calibration_batch else parent / "calibration"
+        if not (calibration / "calibration.json").is_file():
+            raise ValueError("Provide an existing measured vehicle calibration")
+        batch = ROOT / "runs" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "_carla_feedback_transfer")
         batch.mkdir()
         (batch / "infrastructure").mkdir()
-        shutil.copytree(parent / "calibration", batch / "calibration")
-        jobs = []
-        for label in ("H", "H0"):
-            run = parent / "hierarchy_v8" / (label + "_seed11")
-            completed = json.loads((run / "completed.json").read_text(encoding="utf-8"))
-            checkpoint = Path(completed["summary"]["checkpoint"])
-            jobs.append({"label": label, "checkpoint": str(checkpoint),
-                         "training_physics_steps": completed["summary"]["physics_steps"],
-                         "model_sha256": hashlib.sha256((checkpoint / "model.zip").read_bytes()).hexdigest()})
+        shutil.copytree(calibration, batch / "calibration")
+        jobs = selection
         hashes = {}
         for source in [*(ROOT / "navstack").glob("*.py"), *(ROOT / "scripts").glob("*.py")]:
             target = batch / "source" / source.relative_to(ROOT)
@@ -41,6 +57,7 @@ def main():
             shutil.copy2(source, target)
             hashes[source.relative_to(ROOT).as_posix()] = hashlib.sha256(source.read_bytes()).hexdigest()
         write_json(batch / "batch.json", {"deadline_epoch": time.time()+900, "jobs": jobs,
+                   "source_policy_batch": str(parent), "fixed_source_milestone": args.milestone,
                    "source_hashes": hashes, "scope": "Frozen learned policies with calibrated vehicle; development only; zero CARLA PPO updates",
                    "curve_scope": "curved obstacle route on existing straight roadbed, not native curved road",
                    "resource_limits": {"wall_seconds": 900, "carla_owners": 1, "infrastructure_retries_per_case": 1}})

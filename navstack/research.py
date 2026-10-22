@@ -139,8 +139,15 @@ def cumulative_train(run,config,seed,target,deadline,rollout_physics=2560,epochs
         random.setstate(snapshot["random"]);np.random.set_state(snapshot["numpy_random"]);torch.set_rng_state(snapshot["torch_random"])
         initial=snapshot["initial_actor"];counts=snapshot["counts"]
     else:
-        raw.seed(seed);vec=VecNormalize(raw,norm_obs=True,norm_reward=False,gamma=config.gamma,clip_obs=10)
-        model=PPO("MlpPolicy",vec,n_steps=steps,batch_size=min(64,steps),n_epochs=epochs,learning_rate=ppo_options.get("learning_rate",3e-4),
+        from .candidate_policy import CandidateVecNormalize, CandidateActorCriticPolicy
+        policy_name = ppo_options.get("policy", "mlp")
+        if policy_name not in ("mlp", "candidate_shared"):
+            raise ValueError("Unknown PPO policy architecture")
+        if policy_name == "candidate_shared" and (not config.candidate_observation or config.method == "B1"):
+            raise ValueError("Shared candidate policy requires candidate observations and discrete actions")
+        normalizer = CandidateVecNormalize if config.candidate_observation else VecNormalize
+        raw.seed(seed);vec=normalizer(raw,norm_obs=True,norm_reward=False,gamma=config.gamma,clip_obs=10)
+        model=PPO(CandidateActorCriticPolicy if policy_name == "candidate_shared" else "MlpPolicy",vec,n_steps=steps,batch_size=min(64,steps),n_epochs=epochs,learning_rate=ppo_options.get("learning_rate",3e-4),
                   gamma=config.gamma,gae_lambda=.95**(config.substeps*config.control_dt),ent_coef=ppo_options.get("entropy",.01),
                   use_sde=ppo_options.get("use_sde",False),sde_sample_freq=ppo_options.get("sde_sample_freq",-1),
                   target_kl=ppo_options.get("target_kl"),

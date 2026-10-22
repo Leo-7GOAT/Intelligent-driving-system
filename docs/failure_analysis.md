@@ -21,3 +21,9 @@ Current development is not a new final-test protocol. A future confirmation must
 ## Recorded-state spatial audit
 
 At all eight failed H/H0 frozen-CARLA terminal states, the shared offline planner can find paths to3–12distinct available candidate targets (speed duplicates excluded). The policy repeatedly chose different, unplannable targets. This narrows the issue to policy selection/learning or the quality of the feedback representation rather than universal absence of spatially feasible actions. It does not prove those alternate trajectories would track safely, and dynamic safety was deliberately outside the spatial audit. Source snapshots and all16initial/final state results are retained under `spatial_candidate_audit/` in the transfer batch.
+
+## Completed follow-up evidence
+
+The v9 fixed-distance and uniform-distance B1 jobs both finish1,000,960 physical steps with the same poor cross-distance results; they are no longer running. The v8 lightweight continuation ends H8/10 versus H0 9/10. Real CARLA adaptation of the original200k pair ends3/6 each at approximately100k world ticks, still with static/curve deadlines. Strong B3 on the identical v8 lightweight development cases achieves10/10, including both unseen layouts. These are counterexamples to a current feedback/PPO-superiority claim, not excluded outliers.
+
+v12 now tests a shared candidate scorer with explicit geometry and unchanged reward/low level. H0 gets the same geometry and network but zero candidate witnesses/previous outcomes. All actions remain available; no teacher or auxiliary labels are introduced. Initial25k results (H0/10, H0 4/10) are retained. The new architecture has not earned an improvement claim. A separate mixed-task B1 is still training with its own frozen450-input version; it is not silently reused as a605-input formal comparator.

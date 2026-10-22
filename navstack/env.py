@@ -44,7 +44,8 @@ class NavigationEnv(gym.Env):
         )
         # Same information for every policy: 163 local features + 20 known static
         # rectangles (four ego-frame corners + mask) + four map boundary corners.
-        self.observation_space = spaces.Box(-np.inf, np.inf, (351 if c.execution_feedback == "off" else 450,), np.float32)
+        obs_size = 605 if c.candidate_observation else (351 if c.execution_feedback == "off" else 450)
+        self.observation_space = spaces.Box(-np.inf, np.inf, (obs_size,), np.float32)
         self.planner = (GridAStarPlanner if c.method == "B2" else HybridAStar)(
             c.vehicle, c.planner
         )
@@ -207,6 +208,17 @@ class NavigationEnv(gym.Env):
         if self.config.execution_feedback != "off":
             started = time.perf_counter()
             extra = self._execution_feedback() if self.config.execution_feedback == "enabled" else np.zeros(99)
+            if self.config.candidate_observation:
+                # Candidate geometry is policy input, never an action selector.
+                # Fixed scales preserve the same meaning across candidate slots.
+                geometry = [[0., 0., 0., 1., 0.]]
+                for action in range(1, 31):
+                    target, speed = self.decode_action(action)
+                    tx, ty = local(target[0] - s.x, target[1] - s.y)
+                    heading = wrap(target[2] - s.yaw)
+                    geometry.append([tx / 15., ty / 15., math.sin(heading), math.cos(heading), speed / 3.])
+                candidates = np.c_[geometry, np.asarray(extra[:93]).reshape(31, 3)]
+                extra = np.r_[candidates.ravel(), extra[93:]]
             self.feedback_seconds = time.perf_counter() - started
             observation = np.r_[observation, extra].astype(np.float32)
         return observation

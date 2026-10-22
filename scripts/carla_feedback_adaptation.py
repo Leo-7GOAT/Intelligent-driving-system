@@ -29,7 +29,7 @@ def prepare(parent):
     completed = read(parent / "paired_summary.json")
     if not all(r["complete"] for r in completed["results"]):
         raise ValueError("Complete both frozen-transfer evaluations first")
-    batch = ROOT / "runs" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "_carla_v10_adaptation")
+    batch = ROOT / "runs" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "_carla_feedback_adaptation")
     batch.mkdir()
     (batch / "infrastructure").mkdir()
     shutil.copytree(parent / "calibration", batch / "calibration")
@@ -44,10 +44,12 @@ def prepare(parent):
                 shutil.copy2(source, target)
                 hashes[rel.as_posix()] = hashlib.sha256(source.read_bytes()).hexdigest()
     now = time.time()
-    protocol = {"version": "carla_v10_feedback_adaptation", "created_epoch": now,
+    protocol = {"version": "carla_feedback_adaptation", "created_epoch": now,
                 "deadline_epoch": now+7200, "source_hashes": hashes, "run_group": "carla_adaptation",
                 "jobs": [{"id": "paired_adaptation", "worker_script": "scripts/carla_feedback_adaptation.py"}],
                 "models": transfer["jobs"], "milestones": [25000, 100000], "parent_transfer": str(parent),
+                "source_policy_batch": transfer.get("source_policy_batch"),
+                "fixed_source_milestone": transfer.get("fixed_source_milestone"),
                 "scope": "Single-seed development adaptation, not final confirmation or a healthy H/B1 comparison",
                 "budget": "Each method gets cumulative real CARLA world ticks INCLUDING resets; control ticks and lightweight source cost reported separately",
                 "selection": "Evaluate both fixed milestones on all six existing development cases; do not select favorable scenes",

@@ -116,6 +116,7 @@ class EnvConfig:
     training_route_range: list[float] | None = None
     subgoal_mode: str = "ego_arcs"
     execution_feedback: str = "off"
+    candidate_observation: bool = False
     vehicle: VehicleConfig = field(default_factory=VehicleConfig)
     planner: PlannerConfig = field(default_factory=PlannerConfig)
     reward: RewardConfig = field(default_factory=RewardConfig)
@@ -127,6 +128,8 @@ class EnvConfig:
             raise ValueError("Unknown subgoal semantics")
         if self.execution_feedback not in ("off", "enabled", "ablated"):
             raise ValueError("Unknown execution feedback mode")
+        if self.candidate_observation and self.execution_feedback == "off":
+            raise ValueError("candidate observations require enabled or ablated feedback")
         if self.control_dt <= 0:
             raise ValueError("control_dt must be positive")
         ratio = self.decision_dt / self.control_dt
