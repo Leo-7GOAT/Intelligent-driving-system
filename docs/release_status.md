@@ -1,3 +1,9 @@
+## B2 and rehearsal development publication — 2026-10-22
+
+Source commit `53361770b667bb6802b1570286e692245882554c` was pushed to the existing feature branch and verified with the remote SHA. The unchanged prerelease additionally contains [rehearsal_native_feasibility_diagnostics.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/rehearsal_native_feasibility_diagnostics.zip),2,807,329bytes/220manifest members/SHA256`f4dc4d3316c361ec407cce5fde3f94b42813977be04c5fc2cf74e145c1165092`, and [b2_native_postprocess_diagnostics.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/b2_native_postprocess_diagnostics.zip),3,105,133bytes/243manifest members/SHA256`296a5614e17bdcfdd7d1c2fb094e0db289c1cd6b57e1c8a0496dd2c0b0afb76a`. Both actual downloads and every member hash match. Neither existing assets nor the original tag were replaced.
+
+The updated independent native-road checkout passes111tests/5conditional skips using its separately installed pinned environment, reloads all four published native-road models with frozen normalization and4447inputs, and reconstructs the B2 downloaded raw-frame summary/plot byte-identically. Actual native execution from the checkout also completes:2/4successes,1381control/1504world ticks. It differs from the original1/4 and retains both failures; outcome instability is explicit, not called exact reproduction. Allframesverified, ownedserverempty/stopped, checkoutclean. Evidence lives in its`runs/20261022T143149Z_native_curve_control`. All assets are development diagnostics with failures, not completed research acceptance.
+
 # Development release record
 
 ## Shared native-road development addition

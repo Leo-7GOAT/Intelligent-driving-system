@@ -48,3 +48,14 @@ The two raw failed road samples exceed the nearest lane half-width by0.01391m an
 At3,001,971physical steps, the same v19 policy completes deterministic6/12/18m probes8/8 each. Stochastic6m and18m are8/8,12m6/8. Train/validation labels duplicate geometry and are not independent conditions. The unchanged full-task development list is still0/10. Training continues into23m and then mixed tasks under the original budget; there is no claim of full-task convergence. Raw probes are `retention_3M_6m_frozen`, `retention_3M_12m_frozen`, and `retention_3M_18m_frozen` in the same batch.
 
 The prior rehearsal/native feasibility asset was actually uploaded and downloaded: `rehearsal_native_feasibility_diagnostics.zip`,2,807,329bytes,220manifest members, SHA256`f4dc4d3316c361ec407cce5fde3f94b42813977be04c5fc2cf74e145c1165092`. The downloaded ZIP and every member hash match. It predates the B2 improvement and must not be described as containing this new control run.
+
+
+## Independent source, asset and actual CARLA reproduction
+
+Commit`53361770b667bb6802b1570286e692245882554c`is pushed and remote-SHA verified. New immutable asset`b2_native_postprocess_diagnostics.zip`has3,105,133bytes/243manifest members, SHA256`296a5614e17bdcfdd7d1c2fb094e0db289c1cd6b57e1c8a0496dd2c0b0afb76a`; actualdownload and all member hashes match. The existing tag and earlier assets remain unchanged. It includes the original1/4control batch, both offline B2 audits and frozen source/calibration; it does not include later reproduction frames or the running v19 model.
+
+The independent`native_road_checkout`was updated only after checking it clean. With its own source and separately installed pinned environment,111tests pass/5conditional skip; all four downloaded native-road models load with frozen normalization/4447inputs. Rebuilding the downloaded B2 raw-frame summary and plot gives byte-identical files.
+
+Actual fresh-checkout batch`20261022T143149Z_native_curve_control`executes the four downloaded B2 paths: raw-road failure/success/raw-road failure/success,1381controls/1504world ticks. This2/4differs from the initial1/4: route1now succeeds and route0fails earlier. Thus execution near the boundaries is not outcome-stable; do not pool these repeats as independent scenarios or hide the original failure. No observedcollision/QPfailure, but accelerationmin reaches−24.55m/s². All actualframesverified; ownedlauncher53244serverempty/stoppedwithreceipt. Freshcheckoutremainsclean. This is reproducibility of the entry and data flow, not bitwise CARLA replay or research acceptance.
+
+Frozen provenance for all five v19 distance audits is verified against the batch's source hashes and each validation checkpoint's model SHA, recorded in`runs/v19_retention_provenance.json`. Continue the original5Mbudget and inspect both23m/full-task endpoints and retained short distances before choosing the next learning intervention.

@@ -1,3 +1,9 @@
+# Publication/reproduction update — 2026-10-22 22:37 local
+
+Source53361770b667bb6802b1570286e692245882554cpushed/remotematched; documentationcommitmayfollow. NewB2assetuploaded/downloadverified243members/3,105,133bytes/SHA296a5614e17bdcfdd7d1c2fb094e0db289c1cd6b57e1c8a0496dd2c0b0afb76a. Independentnative_road_checkoutclean,111tests5skips,allfourpublishednativePPOmodelsreload/frozenstats,downloadedB2analysisplot+summarybyte-identical. Actualclonebatch143149ZB2execution2/4vsoriginal1/4,1381controls/1504worldticks,allframesverified, ownedlauncher53244serverempty/stopped. NoCARLAexpectednow. Reportexplicitlyretainsoutcomeinstability; noPPO/B2superiorityclaim.
+
+v19onlylivetraining; latest heartbeat 3733898physics/1499phases. Supervisor14444/worker49696 mustbeOSrevalidated. Original5M/deadline~23:41; do notduplicateorclearlease.3Mfulltask0/10;6/12/18mdeterministic8/8each,stochastic8/6/8. Allfive2M/3Mauditcheckpointhashesandfrozensourcesverifiedin`runs/v19_retention_provenance.json`. Next evidence is4M/5Mfull-task plus retainedshortdistances. NewB2 hasnominalfeasibilitybutexecutionclearanceandrawroadsemanticsremainunresolved. Fullgoalactive/incomplete/nohardblock; thisturnwasprogress.
+
 # Active research handoff — 2026-10-22 22:29 local
 
 Previous turn was a verified wait (OS-live v19 worker), this turn is progress. Goal remains ACTIVE/incomplete, no hard blocker/no agents. Read the full objective attachment before continuation. New report `reports/b2_rehearsal_20261022.md` is authoritative over historical snapshots.
