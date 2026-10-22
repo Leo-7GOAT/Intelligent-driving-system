@@ -12,28 +12,28 @@ New development batches live in separate directories. Architecture or reward cha
 
 | Gate | Required evidence | Current status |
 |---|---|---|
-| Real learned hierarchy | PPO-selected behavior → Hybrid A* → timed reference → MPC → executed state/reward; no execution teleport/autopilot/set-speed | Historical real CARLA evidence exists; new method not validated |
+| Real learned hierarchy | PPO-selected behavior → Hybrid A* → timed reference → MPC → executed state/reward; no execution teleport/autopilot/set-speed | Real learned CARLA transfer/adaptation and frame-linked camera replays exist; full capability gates remain unmet |
 | Lightweight capability | ≥85% overall, ≥75% each core class, independent test | Not met: historical H 75%, generalization 4/12 |
 | CARLA capability | ≥80% overall, ≥70% static/curve-parking/dynamic; collision or bounds ≤5% | Not met: historical H 9/30 and 10/30, all successes dynamic |
 | Productive safety | Progress, time, stops, interventions, collision, bounds, planning/control failures jointly reported | Historical data available; intervention dependence unresolved |
 | Hierarchy main hypothesis | ≥10 percentage point mean paired gain over healthy trained flat PPO, 95% interval lower >0, ≥5 independent seeds | Unproven; short-route B1 sanity passed but full-route health unresolved; only 3 complete historical pairs |
 | PPO high-level value | Predefined interaction task and endpoint vs strong B3 sharing low level/safety | Unproven: historical B3 matches H's 30/40 exactly |
-| Executability feedback | Necessary measured improvement and H/H0 ablation | Implemented with same-size H0 ablation; v8 paired development running, no established gain |
-| Baseline health | Empty/short corridor learning, justified tuning and sufficient comparable budget | Both v6 reward variants reach 8/8 on 6m at 1M; same model 0/8 on 23m/45s. Full-route training comparison prepared |
+| Executability feedback | Necessary measured improvement and H/H0 ablation | Equal-network ablations complete: v8 at1M gives8/10vs9/10, v12/v13 give8/10vs6/10; no stable independent gain established |
+| Baseline health | Empty/short corridor learning, justified tuning and sufficient comparable budget | Short6m sanity8/8; old fixed23m model2/2 at23m but0/6 shorter. Matched mixed baseline/frequency/pooled actor/reward trials finish1M at0/10; unchanged reward trial now continues to cumulative2M/3M |
 | Required comparisons | H, H0, B1, B2, B3, frequency, common safety, fixed-reference controller | Algorithms partly exist; complete independently trained evidence missing |
-| CARLA independent training | ≥5 independently trained/adapted policies and real PPO updates | Historical 2 completed paired seeds; new training pending |
+| CARLA independent training | ≥5 independently trained/adapted policies and real PPO updates | Historical2paired seeds; new v12 seed11H/H0 each receives approximately100kactual world ticks with real updates; five independent current-version policies still missing |
 | CARLA final conditions | ≥120 unique paired conditions, ≥30 each core family, unseen layouts/vehicle parameters | Missing; old 30 conditions are historical |
 | Feasible task design | Feasibility diagnostics independent of policy performance; retain all failures | Historical witnesses prove 5 failed layouts traversable; remaining cases unresolved |
 | Fairness/accounting | Common task/information/rewards/budget/limits/termination; physical/decision/world/reset steps, wall/sim time, networks, updates, takeover | Existing log fields; new comparisons still require audit |
 | Timing | P95/P99/max full decision/control cycle and overrun fractions; offline deterministic node budget separate | Historical component timing exists; complete deployment timing not established |
 | CARLA lifecycle | Exclusive ownership, exceptions, crash cleanup, checkpoint recovery; only owned actors/processes | Kernel lease and empty-world crash recovery verified; crash with live actors not yet recovered automatically |
-| CARLA calibration | Geometry, steering/actuation, coordinates, frames, sensor truth; transfer vs retraining separate | Historical calibration retained; full steering range/native curved roads not validated |
-| Videos | Real success and failure clips tied to case/model/seed/run | Missing |
+| CARLA calibration | Geometry, steering/actuation, coordinates, frames, sensor truth; transfer vs retraining separate | Geometry/frames measured;22phase±1normalized-steer sweep now completed3,520control frames. Native curve geometry surveyed, actual native-road tracking remains unverified |
+| Videos | Real success and failure clips tied to case/model/seed/run | Published H25k success/deadline videos with exact model/seed/scene/world-camera manifests, full decoding and fresh-checkout replay; illustrative only |
 | Statistics | All seeds, paired intervals, variance, censoring, layered sampling if justified; no pseudoreplication | Historical partial analyses retained; fresh confirmation pending |
-| Reproducibility | Clean checkout install/tests/model load/representative evaluation/raw figure rebuild; CARLA replay when available | Fresh GitHub clone/newvenv installation,66passed5skipped,20model replays verified; representative CARLA clean-checkout replay still pending |
+| Reproducibility | Clean checkout install/tests/model load/representative evaluation/raw figure rebuild; CARLA replay when available | Fresh clone/newvenv, downloaded models/all20CPUreplays, actual CARLA/control-camera replay verified; updated independent checkout92passed5skipped at e0b2a0a. Final research archive still incomplete |
 | GitHub | Correct repository with preserved visibility/history, real commit/push, remote SHA verification and tag/release | Existing public Leo-7GOAT/Intelligent-driving-system verified via matching source/license blob hashes; origin fetched; development pre-release v0.2.0-dev.20261022 published at9bcaa79; remote/tag/asset-download hash verified; research acceptance remains incomplete |
-| Release hygiene | Secrets/private path/data scan, third-party licensing/citations, bounded assets and SHA manifest | Pending |
-| Documentation | English README, Chinese guide, method/protocol/results/ablations/failures/model card/licenses, bilingual factual CV | Existing historical docs; new publication set incomplete |
+| Release hygiene | Secrets/private path/data scan, third-party licensing/citations, bounded assets and SHA manifest | Development publication scans pass; three prerelease assets have download-verified hashes; final archive pending |
+| Documentation | English README, Chinese guide, method/protocol/results/ablations/failures/model card/licenses, bilingual factual CV | Development publication set exists and discloses limits; final formal-results documentation remains incomplete |
 
 No single upload, completed batch, smoke test, subset metric or passing unit suite satisfies the complete objective. If a new confirmation fails, retain it, open a new development version, and use new unseen conditions for any later confirmation.
 

@@ -28,6 +28,8 @@ Later endpoints and diagnosis: v13 H completes 1M at 8/10; the hold10 B1 frequen
 
 Actual CARLA RGB videos now illustrate one PPO success and one timeout, each linked to its model, scene and sensor/world frames. See the [camera reproduction instructions](docs/CARLA_bridge.md#real-camera-development-evidence-2026-10-22). Videos are illustrative development evidence, not an aggregate success estimate.
 
+A separate [actual steering/native-geometry audit](reports/steering_native_20261022.md) completed22actuator phases/3,520CARLAcontrol frames across normalized steering±1.0. The existing mapping stays unchanged; sampled error within the policy domain is at most0.01346rad. Native-map surveying supplies334possibly overlapping curve candidates, without claiming native-road driving validation. The B1 progress-reward continuation has reached2,000,379steps and still0/10; it continues toward the predeclared3M endpoint with all failures retained.
+
 Rebuild completed development milestones, checking frozen source and checkpoint hashes:
 
 ```powershell
@@ -47,7 +49,7 @@ python -m venv .venv
 
 CPU tests exercise physical dynamics, planning, QP control, PPO updates/checkpoints, statistical accounting and failure recovery. Live CARLA tests require explicit opt-in and an exclusively owned server; skipped tests are not evidence of live validation.
 
-Latest local full regression: **92 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
+Latest local full regression: **93 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
 
 ## Bounded development and recovery
 
