@@ -9,6 +9,8 @@ from navstack.config import EnvConfig, VehicleConfig
 from navstack.experiments import signature
 from navstack.carla_bridge import CarlaNavigationEnv
 from navstack.vehicle import VehiclePlant, VehicleState
+from navstack.planning import GridAStarPlanner
+from navstack.config import PlannerConfig
 
 
 def road():
@@ -71,3 +73,13 @@ def test_shared_road_observation_signature_and_failure_before_success():
     for obs in observations[1:]:
         np.testing.assert_array_equal(obs, observations[0])
     assert signature(EnvConfig())["observation_shape"] == [351]
+
+
+def test_b2_search_itself_respects_road_not_only_postprocessing():
+    grid = RoadGrid(sample_road_grid({"width":32.,"height":32.,"geometry_id":"barrier"},
+        lambda x,y: x < 14 or x > 17))
+    assert grid.disc_intersects(13., 10., 1.)
+    assert not grid.disc_intersects(12., 10., 1.)
+    result = GridAStarPlanner(VehicleConfig(), PlannerConfig()).plan((5.,10.,0.), (25.,10.,0.), World(32.,32.,road=grid))
+    assert result.status == "no_path"
+    assert result.failure_reason == "grid_search_empty"

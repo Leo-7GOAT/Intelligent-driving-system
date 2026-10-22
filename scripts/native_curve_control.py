@@ -29,7 +29,7 @@ def write(path, value):
     Path(path).write_text(json.dumps(value, indent=2, default=jsonable), encoding="utf-8")
 
 
-def prepare(survey_batch, adapter="legacy", fit_path=None):
+def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, plan_method="H"):
     if adapter == "acceleration_ff_v2" and fit_path is None:
         raise ValueError("Measured throttle fit is required")
     healthy, reason = resources_ok(ROOT)
@@ -38,6 +38,8 @@ def prepare(survey_batch, adapter="legacy", fit_path=None):
     parent = Path(survey_batch)
     survey = json.loads((parent / "native_routes.json").read_text(encoding="utf-8"))
     routes = select_routes(survey)
+    if planning_audit and adapter != "legacy":
+        raise ValueError("First searched-road execution uses unchanged legacy actuation")
     batch = ROOT / "runs" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"_native_curve_control")
     batch.mkdir()
     (batch / "infrastructure").mkdir()
@@ -70,7 +72,22 @@ def prepare(survey_batch, adapter="legacy", fit_path=None):
             shutil.copy2(source, target)
             hashes[relative.as_posix()] = hashlib.sha256(source.read_bytes()).hexdigest()
     now = time.time()
+    registered_plans = None
+    if planning_audit:
+        registered_plans = []
+        plan_folder = batch/"planning_audit"
+        plan_folder.mkdir()
+        for index, route in enumerate(routes):
+            file = Path(planning_audit)/f"case_{index:02d}_{plan_method}.json"
+            record = json.loads(file.read_text(encoding="utf-8"))
+            if record["geometry_id"] != route["geometry_id"] or record["status"] != "success" or not record["reference_free"]:
+                raise ValueError("All four registered geometries must have a valid planned reference")
+            shutil.copy2(file,plan_folder/file.name)
+            registered_plans.append({"file":file.name,"sha256":hashlib.sha256(file.read_bytes()).hexdigest(),
+                "road_sha256":record["road_sha256"]})
     write(batch / "protocol.json", {"scope": "Native-road fixed-reference MPC, no PPO or Hybrid A* performance claim; four geometrically selected development routes",
+          "registered_hybrid_plans": registered_plans,
+          "registered_plan_method": plan_method if registered_plans else None,
           "longitudinal_adapter": adapter, "created_epoch": now, "deadline_epoch": now+900, "source_hashes": hashes,
           "survey_sha256": hashlib.sha256((parent / "native_routes.json").read_bytes()).hexdigest(),
           "calibration_sha256": hashlib.sha256((batch / "calibration/calibration.json").read_bytes()).hexdigest(),
@@ -83,12 +100,14 @@ def prepare(survey_batch, adapter="legacy", fit_path=None):
     print(batch)
 
 
-def terminal_reason(measurement, goal, protocol):
+def terminal_reason(measurement, goal, protocol, road_world=None, vehicle=None):
     state = measurement["state"]
     if measurement["collisions"]:
         return "collision"
     if measurement["road_surface_probe"]["offroad_points_world"]:
         return "sampled_footprint_offroad"
+    if road_world is not None and road_world.out_of_bounds((state["x"],state["y"],state["yaw"]),vehicle):
+        return "raster_footprint_out_of_bounds"
     if (math.hypot(state["x"]-goal[0], state["y"]-goal[1]) <= protocol["goal_tolerance_m"]
             and abs(state["v"]) <= protocol["goal_speed_m_s"]
             and abs(wrap(state["yaw"]-goal[2])) <= protocol["goal_yaw_tolerance_rad"]):
@@ -117,12 +136,32 @@ def run(batch):
         client = BridgeClient(batch)
         for case_id, route in enumerate(protocol["routes"]):
             guard(batch, protocol)
-            measured = client.request("begin", scenario="native_curve", native_route=route, condition=case_id)
+            plans = protocol.get("registered_hybrid_plans")
+            measured = client.request("begin", scenario="native_curve", native_route=route, condition=case_id, road_observation=bool(plans))
             if measured["road_surface_probe"]["offroad_points_world"]:
                 raise RuntimeError("Initial actual footprint is off the native road")
             state = VehicleState(**measured["state"])
             goal = measured["scene"]["goal"]
-            reference = parameterize(measured["scene"]["native_layout"]["path"], protocol["target_speed_m_s"], state.v, vehicle, state.time, stop=True)
+            road_world = None
+            spatial_path = measured["scene"]["native_layout"]["path"]
+            if plans:
+                from navstack.road_grid import RoadGrid
+                from navstack.world import World
+                plan_file = batch/"planning_audit"/plans[case_id]["file"]
+                if hashlib.sha256(plan_file.read_bytes()).hexdigest() != plans[case_id]["sha256"]:
+                    raise ValueError("Registered plan was changed")
+                record = json.loads(plan_file.read_text(encoding="utf-8"))
+                scene = measured["scene"]
+                road = RoadGrid(scene["road_grid"])
+                if road.sha256 != plans[case_id]["road_sha256"]:
+                    raise ValueError("Measured road geometry differs from the registered search")
+                road_world = World(scene["width"],scene["height"],road=road)
+                spatial_path = np.asarray(record["path"])
+                if not road_world.free_many(spatial_path,vehicle).all():
+                    raise ValueError("Registered path does not fit actual road grid")
+            reference = parameterize(spatial_path, protocol["target_speed_m_s"], state.v, vehicle, state.time, stop=True)
+            if road_world is not None and not road_world.free_many(np.c_[reference.x,reference.y,reference.yaw],vehicle).all():
+                raise ValueError("Time-parameterized reference violates registered road grid")
             case = batch / ("case_%02d" % case_id)
             case.mkdir()
             write(case / "scene.json", measured["scene"])
@@ -148,14 +187,14 @@ def run(batch):
                     failures += control.status != "solved"
                     path_length += math.hypot(state.x-before.x, state.y-before.y)
                     qp_times.append(control.diagnostics["qp_seconds"])
-                    reason = terminal_reason(measured, goal, protocol)
+                    reason = terminal_reason(measured, goal, protocol, road_world, vehicle)
                     cycle_times.append(time.perf_counter()-started)
                     stream.write(json.dumps({"measurement": measured, "requested_command": asdict(control.command),
                           "controller_status": control.status, "controller_diagnostics": control.diagnostics,
                           "tracking": error, "cycle_seconds": cycle_times[-1]}, default=jsonable)+"\n")
                 final = client.request("finalize")
                 write(case / "terminal_measurement.json", final)
-                reason = terminal_reason(final, goal, protocol)
+                reason = terminal_reason(final, goal, protocol, road_world, vehicle)
             summary = {"case_id": case_id, "geometry_id": route["geometry_id"], "heading_change_degrees": route["heading_change_degrees"],
                   "success": reason == "success", "termination_reason": reason, "control_ticks": len(errors),
                   "actual_seconds": state.time, "actual_path_length_m": path_length, "reference_length_m": float(reference.s[-1]),
@@ -185,5 +224,7 @@ if __name__ == "__main__":
     group.add_argument("--batch")
     parser.add_argument("--adapter", choices=["legacy", "coast_mild_v1", "manual_first_v1", "acceleration_pi_v1", "acceleration_ff_v2"], default="legacy")
     parser.add_argument("--fit", help="Measured throttle fit for acceleration_ff_v2")
+    parser.add_argument("--planning-audit", help="Execute all four saved Hybrid A* paths under shared raster boundaries")
+    parser.add_argument("--plan-method", choices=["H","B2"], default="H", help="Method in registered planning audit; no policy training")
     args = parser.parse_args()
-    prepare(args.prepare, args.adapter, args.fit) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.adapter, args.fit, args.planning_audit, args.plan_method) if args.prepare else run(args.batch)

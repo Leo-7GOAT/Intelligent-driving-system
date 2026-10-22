@@ -68,6 +68,11 @@ class PlannerConfig:
     )
     analytic_expansion: bool = False
     vectorized_primitives: bool = False
+    grid_postprocess: str = "legacy"
+
+    def __post_init__(self):
+        if self.grid_postprocess not in ("legacy", "body_spline_v1"):
+            raise ValueError("unknown grid postprocessor")
 
 
 @dataclass
@@ -125,6 +130,7 @@ class EnvConfig:
     road_observation: bool = False  # full shared 64x64 measured occupancy, new model signature
     empty_pretraining_steps: int = 0
     route_stages: list[dict] = field(default_factory=list)
+    route_rehearsal_probability: float = 0.0
     vehicle: VehicleConfig = field(default_factory=VehicleConfig)
     planner: PlannerConfig = field(default_factory=PlannerConfig)
     reward: RewardConfig = field(default_factory=RewardConfig)
@@ -154,6 +160,10 @@ class EnvConfig:
                         or not 2 <= stage["route_m"] <= self.width-11):
                     raise ValueError("invalid route stage budget or distance")
                 previous = stage["until_physics_steps"]
+        if (not math.isfinite(self.route_rehearsal_probability)
+                or not 0 <= self.route_rehearsal_probability < 1
+                or (self.route_rehearsal_probability and not self.route_stages)):
+            raise ValueError("route rehearsal requires route stages and probability in [0,1)")
         if self.control_dt <= 0:
             raise ValueError("control_dt must be positive")
         ratio = self.decision_dt / self.control_dt

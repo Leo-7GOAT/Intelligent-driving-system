@@ -8,7 +8,7 @@ import re
 import zipfile
 
 
-def package(batches, output):
+def package(batches, output, extras=()):
     output = Path(output)
     if output.exists():
         raise FileExistsError("Preserve existing evidence archive")
@@ -24,7 +24,9 @@ def package(batches, output):
             if hashlib.sha256((batch / "source" / name).read_bytes()).hexdigest() != digest:
                 raise ValueError("Frozen source mismatch")
         files = [batch / name for name in ("protocol.json", "summary.json")]
-        for folder in ("calibration", "source", "analysis", "brake_probe", "throttle_probe", "throttle_probe_manual1"):
+        if (batch/"probe_gap_audit.json").exists():
+            files.append(batch/"probe_gap_audit.json")
+        for folder in ("calibration", "source", "analysis", "planning_audit", "brake_probe", "throttle_probe", "throttle_probe_manual1"):
             if (batch / folder).exists():
                 files.extend(p for p in (batch / folder).rglob("*") if p.is_file() and "__pycache__" not in p.parts)
         for episode in summary["episodes"]:
@@ -34,6 +36,13 @@ def package(batches, output):
             if path.suffix not in (".py", ".json", ".jsonl", ".gz", ".png"):
                 raise ValueError("Unexpected file type")
             content[batch.name + "/" + path.relative_to(batch).as_posix()] = path.read_bytes()
+    for folder in map(Path, extras):
+        for path in folder.rglob("*"):
+            if not path.is_file() or "__pycache__" in path.parts:
+                continue
+            if path.suffix not in (".json", ".jsonl", ".gz", ".png"):
+                raise ValueError("Unexpected extra evidence type")
+            content[folder.name+"/"+path.relative_to(folder).as_posix()] = path.read_bytes()
     patterns = [r"(?i)[A-Z]:[\\/]+Users[\\/]+[A-Za-z0-9_.-]+[\\/]",
                 r"/(?:home|Users)/[A-Za-z0-9_.-]+/", r"\bgh[pousr]_[A-Za-z0-9]{30,}",
                 r"\bgithub_pat_[A-Za-z0-9_]{40,}", r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"]
@@ -54,6 +63,7 @@ def package(batches, output):
         "From the repository checkout, run scripts/analyze_native_control.py --batch EXTRACTED_BATCH "
         "for each batch, then scripts/compare_native_control.py --baseline BASELINE --candidate CANDIDATE.\n"
         "All alternative actuator variants are experimental and remain disabled by default. "
+        "Optional extra directories retain offline feasibility and frozen-policy counterfactual diagnoses; these are not formal evaluations. "
         "Each batch has original frozen Python source and calibration, not an installed environment.\n"
     ).encode()
     manifest = {"scope": "All development control cases and probes; no formal comparison or independent-seed claim",
@@ -77,5 +87,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--batches", nargs="+", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--extras", nargs="*", default=[])
     args = parser.parse_args()
-    package(args.batches, args.output)
+    package(args.batches, args.output, args.extras)

@@ -122,11 +122,19 @@ class NavigationEnv(gym.Env):
         route_length = None
         route_stage_active = False
         if self.config.split == "train":
+            completed_routes = []
             for stage in self.config.route_stages:
                 if self.total_physics_steps < stage["until_physics_steps"]:
                     route_length = stage["route_m"]
                     route_stage_active = True
                     break
+                completed_routes.append(stage["route_m"])
+            probability = self.config.route_rehearsal_probability
+            if completed_routes and probability and self.np_random.random() < probability:
+                # Physical on-policy episodes, not replay-buffer or expert data.
+                # Old tasks remain available after the final mixed stage begins.
+                route_length = float(self.np_random.choice(completed_routes))
+                route_stage_active = True
         if self.config.curriculum and self.config.split == "train":
             route_length = 6.0 if self.total_physics_steps < 50000 else (16.0 if self.total_physics_steps < 150000 else None)
         if self.config.split == "train" and self.config.training_route_length is not None:

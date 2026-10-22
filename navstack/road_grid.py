@@ -60,6 +60,14 @@ class RoadGrid:
             overlap &= (middle+radius >= bounds.min()-1e-12) & (middle-radius <= bounds.max()+1e-12)
         return bool(overlap.any())
 
+    def disc_intersects(self, x, y, radius):
+        """Centre-space inflation for the B2 grid; final full-body SAT remains."""
+        rects = self.rectangles(np.array([[x, y]]), reach=radius)
+        if not len(rects):
+            return False
+        delta = np.maximum(np.maximum(rects[:, :2]-[x,y], [x,y]-rects[:, 2:]), 0.)
+        return bool(np.any(np.sum(delta*delta, axis=1) <= radius*radius+1e-12))
+
     def clearance(self, corners):
         # Exact polygon distance to nearby occupied cells; farther cells have
         # negligible exp(-distance/1.5) risk and are conservatively capped at 6m.

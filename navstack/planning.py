@@ -284,6 +284,7 @@ class GridAStarPlanner:
                     or y < v.width / 2
                     or x > world.width - v.width / 2
                     or y > world.height - v.width / 2
+                    or (world.road is not None and world.road.disc_intersects(x, y, v.width/2))
                     or any(
                         a - v.width / 2 <= x <= d + v.width / 2
                         and b - v.width / 2 <= y <= e + v.width / 2
@@ -301,6 +302,12 @@ class GridAStarPlanner:
             return result("no_path", n=n, reason="grid_search_empty")
         xy = np.array(raw, dtype=float) * r
         xy[0], xy[-1] = start[:2], goal[:2]
+        if c.grid_postprocess == "body_spline_v1":
+            from .grid_smoothing import body_spline
+            path = body_spline(xy, start, goal, world, v)
+            if path is None:
+                return result("infeasible", n=n, reason="body_spline_uncertified")
+            return result("success", path, float(np.linalg.norm(np.diff(path[:,:2],axis=0),axis=1).sum()), n)
         # Shortcut greedily through visible center-line segments on the inflated grid.
         simple = [xy[0]]
         i = 0

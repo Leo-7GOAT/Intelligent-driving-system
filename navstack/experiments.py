@@ -161,6 +161,8 @@ def signature(config):
         result["planner"].pop("analytic_expansion")  # unchanged historical planner semantics
     if not config.planner.vectorized_primitives:
         result["planner"].pop("vectorized_primitives")
+    if config.planner.grid_postprocess == "legacy":
+        result["planner"].pop("grid_postprocess")
     if config.subgoal_mode == "goal_frame_terminal":
         result["candidate_catalog" if config.method == "B1" else "action_catalog"] += ":terminal_S_arc_envelope_Rmargin1.2_v2"
     if config.execution_feedback != "off":
@@ -178,6 +180,9 @@ def signature(config):
         result["observation"] += "-measured-road64x64-v1"
         result["observation_shape"][0] += 4096
         result["road_geometry"] = "carla_driving_64_v1_closed_cells_shared_planning_risk_bounds"
+    if config.route_rehearsal_probability:
+        result["route_rehearsal"] = {"probability":config.route_rehearsal_probability,
+            "sampling":"uniform_completed_distances_at_training_reset", "stages":config.route_stages}
     return result
 
 

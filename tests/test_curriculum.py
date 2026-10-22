@@ -76,3 +76,35 @@ def test_fixed_distance_stages_share_geometry_use_physical_counters_and_leave_va
         EnvConfig(route_stages=stages, empty_pretraining_steps=10)
     with pytest.raises(ValueError, match="stage"):
         EnvConfig(route_stages=list(reversed(stages)))
+
+
+def test_rehearsal_retains_completed_routes_only_and_shared_validation_stays_full():
+    stages = [{"until_physics_steps":10,"route_m":6.}, {"until_physics_steps":20,"route_m":12.}]
+    for count, allowed in ((0,{6.}), (10,{6.,12.}), (20,{6.,12.,23.})):
+        seen = set()
+        for seed in range(24):
+            observations = []
+            for method in ("H","B1","B2","B3"):
+                env = NavigationEnv(EnvConfig(method=method, route_stages=stages, route_rehearsal_probability=.5, obstacle_num=0))
+                env.total_physics_steps = count
+                observation,_ = env.reset(seed=seed)
+                distance = env.goal[0]-env.initial_scenario["initial"]["x"]
+                seen.add(distance)
+                assert distance in allowed
+                if distance != 23.:
+                    assert env.scenario_name == "empty" and not env.world.static and not env.world.dynamic
+                observations.append(observation)
+                env.close()
+            for obs in observations[1:]:
+                np.testing.assert_array_equal(obs, observations[0])
+        assert seen == allowed
+    env = NavigationEnv(EnvConfig(route_stages=stages, route_rehearsal_probability=.5, split="validation", scenario="static", obstacle_num=0))
+    env.total_physics_steps = 30
+    env.reset(seed=11)
+    assert env.goal[0] == 27. and env.world.static
+    env.close()
+    for bad in (-.1, 1., float("nan")):
+        with pytest.raises(ValueError, match="rehearsal"):
+            EnvConfig(route_stages=stages, route_rehearsal_probability=bad)
+    with pytest.raises(ValueError, match="rehearsal"):
+        EnvConfig(route_rehearsal_probability=.25)

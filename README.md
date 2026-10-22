@@ -1,8 +1,6 @@
 # Executability-aware hierarchical driving research
 
-Latest [native-road integration and retention audit](reports/native_road_learning_20261022.md): a shared measured64x64 road grid now reaches planning, all policies, risk and termination. Actual fresh H/B1 CARLA PPO updates and model reloads pass; short-run failures remain. The grid is sampled Driving-lane geometry, not continuous asphalt truth. CPU regression:107passed/5conditional skips. At4M, staged B1 learns23m parking but retains only1/8 deterministic6m cases; mixed-task competence remains unresolved.
-
-Earlier [acceleration/curriculum evidence](reports/actuation_curriculum_20261022.md): measured feedforward improves speed RMS and jerk on four fixed native-road references, but startup/stopping spikes and lateral-error tradeoffs remain. It is diagnostic-only. v17 finishes3M at0/10; v18now completes5M at0/10 after regressing from2/10at4M. All failures are retained.
+Latest [retention and B2 development evidence](reports/b2_rehearsal_20261022.md): at2M physical steps, B1 with25% old-distance rehearsal retains6m and learns12m parking (8/8 each, deterministic and stochastic probes), while the unchanged full-task development list remains0/10. These repeated simple geometries and one policy seed do not establish generalization. The optional B2 body-spline postprocessor now certifies4/4 saved native-road paths; this is offline feasibility, separate from actual driving. CPU regression:111passed/5conditional skips.
 
 A low-speed research prototype: **PPO → local pose/speed → forward Hybrid A* → time-parameterized trajectory → MPC → physical execution and feedback**.
 
@@ -22,19 +20,19 @@ These evaluated scenarios are now **historical**, not unseen confirmation data f
 
 ## Current development (2026-10-22)
 
-Latest [native-road/terminal-pose evidence](reports/native_pose_20261022.md): v16 B1 completes3M at0/10; v13 B1 completes1M at0/10. Fresh heading-PBRS v17 is running (1/10at1M, regressing to0/10at2M). Three actual CARLA fixed-reference actuator variants each complete4/4native routes, but severe braking/jerk remains; experimental variants stay opt-in. Native-road PPO scene integration and formal research acceptance remain incomplete. All twelve native control episodes and raw probes are available in the [diagnostic asset](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_actuation_diagnostics.zip); the report gives hashes and reconstruction commands.
+| Completed development version | Result | Evidence boundary |
+|---|---|---|
+| v8 H/H0,1M physical steps |8/10 vs9/10; strong B3 10/10|No learned-high-level or feedback advantage|
+| v12 candidate H/H0,1M |8/10 vs6/10; CARLA100k adaptation4/6 vs3/6|One seed; H regresses from5/6at25k|
+| v13–v17 flat learning diagnoses |Full-task B1 endpoints0/10|Frequency, architecture, training span and reward alternatives retain their failures|
+| v18 distance stages,5M |0/10; earlier23m parking capability lost|Normalization swaps do not rescue the5M policy|
+| v19 rehearsal,2M milestone |6m and12m probes8/8 each; full task0/10|Training continues under its registered5M/2h guard; not convergence|
 
-B1 passes the 6m empty-route parking sanity check (8/8 after approximately 1M physical steps), but the same model fails the 23m task (0/8). H/H0 feedback ablation reaches8/10 versus6/10 at200k,8/10 each at300k, and8/10 versus9/10 at1M on development conditions. Strong rule B3 completes10/10 on the identical cases. Both frozen200k policies score2/6 in actual CARLA transfer; real CARLA adaptation for approximately100k world ticks each raises both to3/6. These single-seed diagnostics establish neither feedback benefit nor PPO superiority.
+Full source/model provenance, traces and limitations are in the [retention/feasibility report](reports/rehearsal_feasibility_20261022.md), [new B2 report](reports/b2_rehearsal_20261022.md), [flat diagnosis](reports/flat_diagnosis_20261022.md), and [native-road learning report](reports/native_road_learning_20261022.md). The shared measured64x64 road grid reaches policies, planning, risk and termination. Actual native-road H/B1 PPO updates and exact reloads have run; those short runs did not complete a task. All historical evaluated conditions remain development data.
 
-Development v12 tests shared candidate scoring and explicit geometry, with an equal-network H/H0 feedback ablation and no action masks or teacher. At approximately 1M physical steps, H completes 8/10 and H0 6/10 development cases. The separate 450-input mixed-task B1 completes 0/10 after 1M steps and is not a healthy, matched final comparator. Actual CARLA adaptation of the v12 100k models reaches 4/6 for H and 3/6 for H0 at approximately 100k world ticks each; H regresses from 5/6 at 25k. These failures remain in the record.
+Fixed-reference actual CARLA experiments have exposed severe stopping/braking spikes. Experimental feedforward reduces speed error and jerk on four references but remains disabled for training because its internal state is not represented in the policy observation. Four searched Hybrid A* paths executed with unchanged legacy actuation produce2successes/2sampled-footprint departures. Offline grid feasibility is not continuous road-membership truth or a real-time claim. All failures remain in the [published diagnostic evidence](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261022).
 
-The v13 experiment gives H/H0/B1 the same full-length empty-task pretraining stage, counted inside their total interaction budget, before mixed-task training. It is developmental, not independent confirmation. B1 remains 0/10 at 300k and fails the full-length empty-task inference diagnostic with and without exploration. The [camera/curriculum report](reports/camera_staged_20261022.md) retains earlier milestone evidence. The published original development checkout passed 66 tests with 5 conditional skips.
-
-Later endpoints and diagnosis: v13 H completes 1M at 8/10; the hold10 B1 frequency trial also completes 1M but reaches 0/10 with zero progress. Both isolated B1 trials (candidate-set encoder and signed-progress base reward) have now completed approximately 1M steps at 0/10. The progress-reward model moves forward but stops about 2.7m short in both empty cases. Its unchanged checkpoint is continuing to cumulative 2M/3M to test training span, retaining all prior failures and costs. This changes neither seed nor objective and is not independent confirmation. The reward differs from the old H objective and requires matched retraining before an architecture claim. See the [flat-PPO diagnosis](reports/flat_diagnosis_20261022.md).
-
-Actual CARLA RGB videos now illustrate one PPO success and one timeout, each linked to its model, scene and sensor/world frames. See the [camera reproduction instructions](docs/CARLA_bridge.md#real-camera-development-evidence-2026-10-22). Videos are illustrative development evidence, not an aggregate success estimate.
-
-A separate [actual steering/native-geometry audit](reports/steering_native_20261022.md) completed22actuator phases/3,520CARLAcontrol frames across normalized steering±1.0. The existing mapping stays unchanged; sampled error within the policy domain is at most0.01346rad. Native-map surveying supplies334possibly overlapping curve candidates, without claiming native-road driving validation. The B1 progress-reward continuation has reached2,000,379steps and still0/10; it continues toward the predeclared3M endpoint with all failures retained.
+Actual CARLA RGB videos illustrate one PPO success and one timeout, each linked to its model, scene and sensor/world frames. See the [camera reproduction instructions](docs/CARLA_bridge.md#real-camera-development-evidence-2026-10-22). Videos are illustrative development evidence, not an aggregate success estimate. Live process identities must be rechecked against the OS; historical snapshots in the [handoff](docs/handoff.md) are not permanent status.
 
 Rebuild completed development milestones, checking frozen source and checkpoint hashes:
 
@@ -55,7 +53,7 @@ python -m venv .venv
 
 CPU tests exercise physical dynamics, planning, QP control, PPO updates/checkpoints, statistical accounting and failure recovery. Live CARLA tests require explicit opt-in and an exclusively owned server; skipped tests are not evidence of live validation.
 
-Latest local full regression: **105 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
+Latest local full regression: **111 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
 
 ## Bounded development and recovery
 
