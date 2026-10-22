@@ -8,8 +8,9 @@ from navstack.process_lease import ProcessLease
 
 
 class Bridge:
-    def __init__(self, calibration, lock):
+    def __init__(self, calibration, lock, record_dir=None):
         self.cal=json.loads(Path(calibration).read_text(encoding="utf-8")); self.lock=Path(lock)
+        self.record_dir=record_dir;self.recorder=None
         self.lease=ProcessLease(self.lock).acquire()
         try:
             self._connect()
@@ -27,7 +28,13 @@ class Bridge:
         self.owned=[];self.retired_ids=set();self.actor=None;self.events=[];self.frame=None
         settings=self.world.get_settings();settings.synchronous_mode=True;settings.fixed_delta_seconds=.05
         settings.substepping=True;settings.max_substep_delta_time=.01;settings.max_substeps=10
-        settings.no_rendering_mode=True;self.world.apply_settings(settings)
+        settings.no_rendering_mode=self.record_dir is None;self.world.apply_settings(settings)
+        if self.record_dir is not None:
+            # Camera frame metadata was inconsistent when enabling rendering in
+            # an already-running asynchronous world. Start the recorded world
+            # under synchronous settings, as verified by the isolated live probe.
+            self.world=self.client.reload_world(False)
+            self.map=self.world.get_map()
         self.protocol=EpisodeProtocol()
 
     def clear(self):
@@ -68,6 +75,8 @@ class Bridge:
 
     def spawn_vehicle(self,x,y,role):
         bp=self.world.get_blueprint_library().find("vehicle.tesla.model3");bp.set_attribute("role_name",role)
+        if self.record_dir is not None and bp.has_attribute("color"):
+            bp.set_attribute("color","255,80,0" if role=="codex_ppo_ego" else "30,100,220")
         a=self.world.spawn_actor(bp,self.transform(x,y));self.owned.append(a);a.set_autopilot(False)
         a.apply_control(carla.VehicleControl(brake=1,hand_brake=True));return a
 
@@ -113,6 +122,17 @@ class Bridge:
         def heartbeat(e):
             self.imu_frame=max(self.imu_frame,e.frame);self.sensor_event.set()
         imu.listen(heartbeat)
+        self.recorder=None
+        if self.record_dir is not None:
+            from navstack.camera_recording import FrameRecorder
+            self.recorder=FrameRecorder(self.record_dir,episode)
+            camera_bp=self.world.get_blueprint_library().find("sensor.camera.rgb")
+            for key,value in (("image_size_x","640"),("image_size_y","360"),("fov","80"),("sensor_tick","0.0")):
+                camera_bp.set_attribute(key,value)
+            # Fixed overhead view of the real road; this actor never controls ego.
+            camera=self.world.spawn_actor(camera_bp,carla.Transform(self.loc(17,7,26),carla.Rotation(pitch=-90,yaw=self.angle+90)))
+            self.owned.append(camera)
+            camera.listen(self.recorder.save)
         # A newly subscribed IMU may not emit its birth frame. The first five
         # existing brake-held reset ticks warm up the stream; all remaining
         # reset ticks and every policy control still require the matching frame.
@@ -140,13 +160,20 @@ class Bridge:
         before=self.world.get_snapshot().frame
         self.frame=self.world.tick(15.)
         if self.frame!=before+1:raise RuntimeError("Unexpected frame jump: another tick owner suspected")
-        if not require_sensor:return
-        end=time.monotonic()+3
-        while self.imu_frame<self.frame and time.monotonic()<end:
-            self.sensor_event.wait(.02);self.sensor_event.clear()
-        if self.imu_frame<self.frame:raise RuntimeError("IMU frame heartbeat timeout")
+        if require_sensor:
+            end=time.monotonic()+3
+            while self.imu_frame<self.frame and time.monotonic()<end:
+                self.sensor_event.wait(.02);self.sensor_event.clear()
+            if self.imu_frame<self.frame:raise RuntimeError("IMU frame heartbeat timeout")
+        # Camera validation runs fence the actual render callback before the
+        # next physics tick, preventing a fast synchronous client from outrunning
+        # the renderer. Normal training has no camera and no additional wait.
+        if self.recorder is not None:
+            self.recorder.finish(self.frame,timeout=5.,timestamp=self.world.get_snapshot().timestamp.elapsed_seconds)
 
     def read(self):
+        if self.recorder is not None and self.recorder.error:
+            raise RuntimeError("Camera recording failed: " + self.recorder.error)
         if not self.collision_sensor.is_alive or not self.collision_sensor.is_listening:
             raise RuntimeError("Collision sensor unhealthy")
         tr=self.actor.get_transform();f=tr.get_forward_vector();v=self.actor.get_velocity();a=self.actor.get_acceleration()
@@ -192,6 +219,7 @@ class Bridge:
             # Terminal fence drains delayed callbacks before any success is awarded.
             time.sleep(.3)
             if self.imu_frame<self.frame:raise RuntimeError("Missing terminal sensor heartbeat")
+            if self.recorder is not None:self.recorder.finish(self.frame)
             return {**self.read(),"terminal_sensor_drain_seconds":.3}
         if r["op"]=="read":return self.read()
         raise ValueError("unknown operation")
@@ -208,10 +236,10 @@ class Bridge:
 
 
 if __name__=="__main__":
-    p=argparse.ArgumentParser();p.add_argument("--calibration",required=True);p.add_argument("--lock",required=True);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument("--calibration",required=True);p.add_argument("--lock",required=True);p.add_argument("--record-dir");args=p.parse_args()
     b=None
     try:
-        b=Bridge(args.calibration,args.lock)
+        b=Bridge(args.calibration,args.lock,args.record_dir)
         for line in sys.stdin:
             try:
                 request=json.loads(line)

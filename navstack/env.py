@@ -124,7 +124,14 @@ class NavigationEnv(gym.Env):
             route_length = float(options["diagnostic_route_length"])
             if not 2 <= route_length <= self.config.width - 11:
                 raise ValueError("diagnostic route does not fit map")
-        world, initial, goal, name = make_scenario(self.config, self.np_random, route_length)
+        scenario_config = self.config
+        if (self.config.split == "train" and self.config.scenario == "mixed"
+                and self.total_physics_steps < self.config.empty_pretraining_steps):
+            # Same full-length task for every architecture; only scene difficulty
+            # is staged. Switch at episode boundaries, never reset in env.step.
+            scenario_config = copy(self.config)
+            scenario_config.scenario = "empty"
+        world, initial, goal, name = make_scenario(scenario_config, self.np_random, route_length)
         return world, VehiclePlant(self.config.vehicle, initial), goal, name
 
     def decode_action(self, action):

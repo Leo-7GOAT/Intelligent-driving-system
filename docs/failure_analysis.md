@@ -2,6 +2,8 @@
 
 This file records development findings, including negative results. Historical inspected final sets are no longer unseen confirmation sets.
 
+Latest completed experiments are in [the camera/curriculum report](../reports/camera_staged_20261022.md): v11 B1 has zero successful training episodes in 1,505 episodes/1M physical steps; v12 H remains unsuccessful on both unseen layouts; CARLA H regresses from 5/6 at 25k to 4/6 at 100k. v13 now tests a common full-length basic-task pretraining stage, with no reward or control changes and no extra uncounted budget. Its H also regresses from 10/10 at 100k to 8/10 at 300k; do not hide this by selecting the earlier score. Camera infrastructure failures are recorded separately from policy deadlines.
+
 | Observation | Evidence | Interpretation and action |
 |---|---|---|
 | Historical B1 gives0/40 while H and B3 both give30/40 | Oct16 archived paired evaluations | Cannot attribute the gap to learned high-level decision making; rebuild a healthy flat baseline and compare against strongB3 |

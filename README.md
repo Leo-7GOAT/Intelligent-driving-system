@@ -20,7 +20,11 @@ These evaluated scenarios are now **historical**, not unseen confirmation data f
 
 B1 passes the 6m empty-route parking sanity check (8/8 after approximately 1M physical steps), but the same model fails the 23m task (0/8). H/H0 feedback ablation reaches8/10 versus6/10 at200k,8/10 each at300k, and8/10 versus9/10 at1M on development conditions. Strong rule B3 completes10/10 on the identical cases. Both frozen200k policies score2/6 in actual CARLA transfer; real CARLA adaptation for approximately100k world ticks each raises both to3/6. These single-seed diagnostics establish neither feedback benefit nor PPO superiority.
 
-Development v12 tests shared candidate scoring and explicit geometry, with an equal-network H/H0 feedback ablation and no action masks or teacher. It is a new training version, not compatible continuation of the released450-input models. Progress, failures and model-selection limits are recorded in the [development report](reports/development_20261022.md). The development release checkout passed66 tests with5 conditional skips; the first v12 full regression passed69 with5 skips.
+Development v12 tests shared candidate scoring and explicit geometry, with an equal-network H/H0 feedback ablation and no action masks or teacher. At approximately 1M physical steps, H completes 8/10 and H0 6/10 development cases. The separate 450-input mixed-task B1 completes 0/10 after 1M steps and is not a healthy, matched final comparator. Actual CARLA adaptation of the v12 100k models reaches 4/6 for H and 3/6 for H0 at approximately 100k world ticks each; H regresses from 5/6 at 25k. These failures remain in the record.
+
+The new v13 experiment gives H/H0/B1 the same full-length empty-task pretraining stage, counted inside their total interaction budget, before mixed-task training. It is still developmental, not independent confirmation. Current evidence and live-run details are in the [latest report](reports/camera_staged_20261022.md). The latest completed full CPU regression passed 74 tests with 5 conditional skips; the published original development checkout passed 66 with 5 skips.
+
+Actual CARLA RGB videos now illustrate one PPO success and one timeout, each linked to its model, scene and sensor/world frames. See the [camera reproduction instructions](docs/CARLA_bridge.md#real-camera-development-evidence-2026-10-22). Videos are illustrative development evidence, not an aggregate success estimate.
 
 Rebuild completed development milestones, checking frozen source and checkpoint hashes:
 

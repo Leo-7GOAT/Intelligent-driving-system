@@ -26,6 +26,7 @@ def evaluate_carla(
     split="development",
     label="low_level_recalibrated_frozen_policy",
     run=None,
+    record_camera=False,
 ):
     checkpoint = Path(checkpoint)
     saved = json.loads((checkpoint / "config.json").read_text(encoding="utf-8"))
@@ -68,6 +69,8 @@ def evaluate_carla(
         prior = json.loads((run / "config.json").read_text(encoding="utf-8"))
         if prior["checkpoint"] != str(checkpoint) or prior["cases"] != cases:
             raise ValueError("CARLA resume checkpoint/case mismatch")
+        if prior.get("record_camera", False) != record_camera:
+            raise ValueError("CARLA resume camera mode mismatch")
     write_json(
         run / "config.json",
         {
@@ -81,6 +84,7 @@ def evaluate_carla(
             "cases": cases,
             "seed": saved["seed"],
             "manifest_sha256": case_hash,
+            "record_camera": record_camera,
         },
     )
     torch.set_num_threads(1)
@@ -91,7 +95,8 @@ def evaluate_carla(
     normalizer.norm_reward = False
     means = normalizer.obs_rms.mean.copy()
     model = PPO.load(checkpoint / "model.zip", device="cpu")
-    client = BridgeClient(batch)
+    camera_root=run / "camera" if record_camera else None
+    client = BridgeClient(batch, record_dir=camera_root) if record_camera else BridgeClient(batch)
     results = (
         [
             json.loads(x)
@@ -151,6 +156,8 @@ def evaluate_carla(
                     env = CarlaNavigationEnv(config, client)
                     try:
                         obs, _ = env.reset(options={"case": case})
+                        begin_frame=env.plant.frame
+                        episode_id=client.episode_id
                         append_json(
                             run / "scenes.jsonl",
                             {
@@ -158,6 +165,8 @@ def evaluate_carla(
                                 "attempt": attempt,
                                 "scene": env.scene_evidence,
                                 "initial_state": env.initial_scenario,
+                                "episode_id": episode_id,
+                                "begin_frame": begin_frame,
                             },
                         )
                         while not env.done:
@@ -203,6 +212,10 @@ def evaluate_carla(
                             "status": "completed",
                             **info["episode_metrics"],
                         }
+                        if record_camera:
+                            row["recording"]={"episode_id":episode_id,"begin_frame":begin_frame,
+                                "terminal_frame":env.plant.frame,"manifest":"camera/"+episode_id+"/frames.jsonl",
+                                "kind":"actual_CARLA_RGB","sensor_tick":.05}
                         results.append(row)
                         append_json(run / "episodes.jsonl", row)
                         print(
@@ -243,7 +256,7 @@ def evaluate_carla(
                         else:
                             past_ticks += client.total_ticks
                             client.close()
-                            client = BridgeClient(batch)
+                            client = BridgeClient(batch, record_dir=camera_root) if record_camera else BridgeClient(batch)
                 if censored:
                     break
         complete = [r for r in results if r["status"] == "completed"]
@@ -290,5 +303,6 @@ if __name__ == "__main__":
     p.add_argument("--checkpoint", required=True)
     p.add_argument("--cases", default="configs/carla_development_cases.json")
     p.add_argument("--split", default="development")
+    p.add_argument("--record-camera", action="store_true")
     args = p.parse_args()
-    print(evaluate_carla(args.batch, args.checkpoint, args.cases, args.split)[1])
+    print(evaluate_carla(args.batch, args.checkpoint, args.cases, args.split, record_camera=args.record_camera)[1])

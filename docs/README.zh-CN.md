@@ -8,6 +8,10 @@
 
 ## 安装与CPU验证
 
+后续 v12 候选共享评分版已完成各约百万物理步：H 为 8/10，H0 为 6/10。另行训练的 450 维混合任务 B1 为 0/10，不能当作健康的最终对照。新版 CARLA 约 10 万世界步适配后为 H 4/6、H0 3/6；H 在约 2.5 万步曾为 5/6，后续退步已保留。共同课程 v13 的 H/H0/B1 正在训练，预算包含无障碍预训练阶段，未获得正式确认结论。
+
+真实摄像头已记录 PPO 静态绕障成功和弯曲路线超时两种结果；最新全量回归为 74 通过、5 条件跳过。详见[最新实验记录](../reports/camera_staged_20261022.md)和[摄像头说明](CARLA_bridge.md#real-camera-development-evidence-2026-10-22)。
+
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt

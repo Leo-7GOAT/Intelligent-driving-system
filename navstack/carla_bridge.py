@@ -19,7 +19,7 @@ class InfrastructureFailure(RuntimeError):
 
 
 class BridgeClient:
-    def __init__(self, batch, timeout=30):
+    def __init__(self, batch, timeout=30, record_dir=None):
         self.batch=Path(batch).resolve();root=Path(__file__).resolve().parents[1]
         # Frozen source snapshots reuse the isolated installed client runtime;
         # the bridge script itself still comes from the snapshot, not live code.
@@ -30,8 +30,9 @@ class BridgeClient:
         self.request_audit_path=self.batch/"infrastructure"/f"bridge_{audit_id}_requests.jsonl.gz"
         self.response_audit_path=self.batch/"infrastructure"/f"bridge_{audit_id}_responses.jsonl.gz"
         self.request_audit=gzip.open(self.request_audit_path,"wt",encoding="utf-8",compresslevel=1)
+        recording_args=["--record-dir",str(Path(record_dir).resolve())] if record_dir is not None else []
         self.process=subprocess.Popen([str(interpreter),str(root/"scripts/carla_bridge37.py"),
-            "--calibration",str(self.batch/"calibration/calibration.json"),"--lock",str(self.batch/"carla_tick_owner.lock")],
+            "--calibration",str(self.batch/"calibration/calibration.json"),"--lock",str(self.batch/"carla_tick_owner.lock")]+recording_args,
             stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=self.stderr,text=True,bufsize=1,
             creationflags=getattr(subprocess,"CREATE_NO_WINDOW",0))
         self.messages=queue.Queue();self.timeout=timeout;self.request_id=0;self.episode_id=None;self.total_ticks=0

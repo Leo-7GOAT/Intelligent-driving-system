@@ -1,5 +1,7 @@
 # Research results and claim boundaries
 
+Latest completed v11/v12/CARLA endpoints and the ongoing common-curriculum experiment are recorded in [the 18:10 continuation report](../reports/camera_staged_20261022.md). It supersedes older live-status entries below. v12 H/H0 finish approximately 1M lightweight physical steps at 8/10 and 6/10; separate v11 B1 finishes at 0/10. Actual v12 CARLA adaptation finishes approximately 100k world ticks per model at 4/6 and 3/6; H's earlier 5/6 regresses. No new five-seed or final-confirmation result is claimed. Real success/failure camera evidence is illustrative only.
+
 **Research acceptance remains unmet.** The [acceptance ledger](research_acceptance.md) retains the original targets; a development pre-release does not lower them.
 
 Detailed current cases are in [the development report](../reports/development_20261022.md). Historical H/B1 lightweight results comprise three complete1M pairs: H30/40 andB1 0/40 for each. B3 also achieves30/40; two H seeds are incomplete. Historical CARLA adaptation has two paired seeds at approximately50k world steps, H9/30 and10/30 versusB1 0/30, with H successes confined to dynamic cases. These results do not establish a healthy-baseline hierarchy advantage or PPO necessity.

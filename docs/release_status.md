@@ -1,5 +1,13 @@
 # Development release record
 
+## Camera evidence addition, 2026-10-22
+
+The existing pre-release now also contains `candidate_v12_H25k_camera_examples.zip` (2,218,569 bytes), SHA256 `c24ad7dec570f7becaae46f0014ce5320f5e9a2ae87849416d327d5f887aac44`. GitHub reports `uploaded` with the same digest; a fresh download matched the local hash. The old tag and two old assets were not replaced. This separate package contains the actual CARLA-adapted H25k model, frozen source/config/normalization, measured calibration, both success/failure traces, sensor/world frame manifests and real videos. See the [model card](model_card.md) for the later 100k regression and [current evidence report](../reports/camera_staged_20261022.md).
+
+All 145 manifest files were checked; the actual ZIP has exactly those files plus its manifest. A scan of the immutable archive, including decoded SB3 metadata, found no credential patterns or concrete user-home paths. Local CPU verification created bytecode caches outside the ZIP; those were detected, not uploaded, and the verifier now disables bytecode generation. Independent clean-checkout environment model loading passed. Both videos fully decode at 20 fps (362 and 901 frames), with hashes and actual sensor/world linkage checked. The new full CPU regression passed 74 tests with 5 conditional skips. This does not constitute another independent CARLA experiment, hosted CI, or completed research acceptance.
+
+## Original development release
+
 Target repository: `https://github.com/Leo-7GOAT/Intelligent-driving-system`, existing public visibility retained. Development branch: `feature/physical-hierarchical-ppo`. Intended pre-release tag: `v0.2.0-dev.20261022`. Publication is verified by remote SHA and release metadata, not by this document alone.
 
 Before publication:

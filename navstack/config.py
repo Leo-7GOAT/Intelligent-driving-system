@@ -117,6 +117,7 @@ class EnvConfig:
     subgoal_mode: str = "ego_arcs"
     execution_feedback: str = "off"
     candidate_observation: bool = False
+    empty_pretraining_steps: int = 0
     vehicle: VehicleConfig = field(default_factory=VehicleConfig)
     planner: PlannerConfig = field(default_factory=PlannerConfig)
     reward: RewardConfig = field(default_factory=RewardConfig)
@@ -130,6 +131,10 @@ class EnvConfig:
             raise ValueError("Unknown execution feedback mode")
         if self.candidate_observation and self.execution_feedback == "off":
             raise ValueError("candidate observations require enabled or ablated feedback")
+        if not isinstance(self.empty_pretraining_steps, int) or self.empty_pretraining_steps < 0:
+            raise ValueError("empty pretraining budget must be a nonnegative integer")
+        if self.empty_pretraining_steps and self.curriculum:
+            raise ValueError("do not combine task-stage and route-length curricula")
         if self.control_dt <= 0:
             raise ValueError("control_dt must be positive")
         ratio = self.decision_dt / self.control_dt

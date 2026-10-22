@@ -14,6 +14,9 @@ The following inventory was read from the installed distribution metadata used f
 | torch | 2.14.1 | Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT |
 | matplotlib | 3.10.8 | Matplotlib/PSF-style; bundled components have additional notices |
 | pytest | 9.1.1 | MIT |
+| imageio-ffmpeg (optional video tools) | 0.6.0 | BSD-2-Clause for the Python package; encoder has separate notices |
+
+`requirements-video.txt` installs the optional encoder wrapper separately. The local Windows wheel supplied FFmpeg 7.1 (`7.1-essentials_build-www.gyan.dev`), used to encode project-generated CARLA RGB captures with libx264. This repository and its video evidence asset do not redistribute that executable or its runtime. FFmpeg builds and enabled codecs have their own license obligations; the package's BSD license is not a license for the encoder. Generated videos include the simulator's rendered environment and are identified as CARLA 0.9.15 output, not original simulator assets created by this project.
 
 Project URLs from package metadata are preserved in `dependency_licenses.json`. Install dependencies independently rather than copying environment directories into Git or release assets. CARLA installation and map redistribution are outside this release; users must obtain the matching simulator under its own terms.
 

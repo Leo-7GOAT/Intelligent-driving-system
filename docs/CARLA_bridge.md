@@ -67,3 +67,47 @@ H累计50346世界步，其中48580控制步、1766重置步；B1累计50592世�
 固定六项开发清单：H成功1/6（dynamic/11），另5项超时；B1成功0/6，6项超时。全部完成，无未解决基础设施故障。H静态条件存在大量无效目标/规划失败制动，B1五项持续制动、实际静止；成功样本不能掩盖这些失败。`analysis/carla_decision_failure_audit.md/json`按条件列出动作与执行证据，图`analysis/carla_v5_matched50k_pair.png`显示实际后轴轨迹。
 
 闭环证据累计核对31374个实际PPO评估控制帧，含已标明版本的历史开发数据。离线规划的`timeout/search_budget`在max_seconds=None时表示节点预算耗尽，不能理解为0.1秒部署墙钟模式。规划耗时和控制周期越限均单独保留，不声称满足硬实时。
+
+## Real camera development evidence (2026-10-22)
+
+Latest evidence and failures are recorded in [the camera/curriculum report](../reports/camera_staged_20261022.md), which supersedes earlier live-status entries above. The illustrative H model has already received 26,564 real CARLA world ticks of adaptation after 101,923 lightweight steps. Its static/7301 success and curve/7301 deadline are both included. The generic evaluator's `low_level_recalibrated_frozen_policy` label means no updates during evaluation; it does not mean the checkpoint had no earlier CARLA training.
+
+Optional `--record-camera` creates a real RGB sensor (640 by 360, every 0.05 s world tick). Rendering has no policy input and changes neither actions nor rewards. Recording enables synchrony before reloading the empty owned world; normal training leaves recording off. Exact frame/timestamp fences, Unicode-safe PNG writes, SHA256 manifests and strict decoding checks reject missing or inconsistent frames. Video duration includes the initial image; sensor elapsed time is one frame interval shorter. The curve case is still a curved task on a straight road, not native-road curve coverage.
+
+Install optional video tools and verify an extracted camera evidence package from the development release:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-video.txt
+$asset = 'runs/candidate_v12_H25k_camera_examples'
+.\.venv\Scripts\python.exe scripts/verify_camera_asset.py --asset $asset --output runs/camera_asset_check.json
+.\.venv\Scripts\python.exe scripts/verify_carla_videos.py --videos "$asset/videos"
+```
+
+The first command checks package hashes and CPU policy reload, not CARLA replay. The second decodes every saved frame and generates a contact sheet. To make a new real replay on an exclusively owned installed CARLA 0.9.15 server, prepare a new source-frozen batch:
+
+```powershell
+$asset = (Resolve-Path 'runs/candidate_v12_H25k_camera_examples').Path
+$env:NAVSTACK_CARLA_PYTHON = (Resolve-Path '.carla-python37/runtime/python.exe').Path
+.\.venv\Scripts\python.exe scripts/prepare_camera_evaluation.py --checkpoint "$asset/model" --calibration-batch $asset --cases "$asset/cases.json"
+$batch = (Get-Content runs/carla_recording_development.json -Raw | ConvertFrom-Json).batch
+& scripts/start_carla.ps1 -OutputDirectory "$batch/infrastructure"
+try {
+    $ready = $false
+    foreach ($attempt in 1..4) {
+        $probe = "$batch/infrastructure/ready_$attempt.json"
+        & $env:NAVSTACK_CARLA_PYTHON scripts/probe_carla37.py --output $probe
+        $state = Get-Content $probe -Raw | ConvertFrom-Json
+        if ($state.status -eq 'CONNECTED' -and @($state.actors).Count -eq 0) { $ready = $true; break }
+    }
+    if (-not $ready) { throw 'The owned server did not become ready within four probes' }
+    .\.venv\Scripts\python.exe "$batch/source/scripts/carla_evaluate.py" --batch $batch --checkpoint "$asset/model" --cases "$batch/cases.json" --record-camera
+    if ($LASTEXITCODE -ne 0) { throw 'Evaluation failed; preserve its infrastructure records' }
+} finally {
+    & scripts/stop_owned_carla.ps1 -Batch $batch
+}
+$run = Get-ChildItem "$batch/carla" -Directory | Select-Object -First 1
+.\.venv\Scripts\python.exe scripts/render_carla_recordings.py --run $run.FullName --output "$batch/videos"
+.\.venv\Scripts\python.exe scripts/verify_carla_videos.py --videos "$batch/videos"
+```
+
+The startup script refuses an existing server rather than taking it over; shutdown verifies process identity and an empty world. Readiness timeouts are preserved and the same owner is probed again without restarting. Rendering can change detailed physics compared with earlier non-rendered runs, so compare outcomes and raw progress openly. Camera examples are neither a new independent test set nor a replacement for full multi-seed CARLA evaluation.
