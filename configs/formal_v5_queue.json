@@ -1,0 +1,467 @@
+[
+  {
+    "version": "formal_v5",
+    "name": "H_seed11",
+    "method": "H",
+    "seed": 11,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed11",
+    "method": "B1",
+    "seed": 11,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed22",
+    "method": "H",
+    "seed": 22,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed22",
+    "method": "B1",
+    "seed": 22,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed33",
+    "method": "H",
+    "seed": 33,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed33",
+    "method": "B1",
+    "seed": 33,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed44",
+    "method": "H",
+    "seed": 44,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed44",
+    "method": "B1",
+    "seed": 44,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed55",
+    "method": "H",
+    "seed": 55,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed55",
+    "method": "B1",
+    "seed": 55,
+    "budget": 100000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed11",
+    "method": "H",
+    "seed": 11,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed11",
+    "method": "B1",
+    "seed": 11,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed22",
+    "method": "H",
+    "seed": 22,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed22",
+    "method": "B1",
+    "seed": 22,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed33",
+    "method": "H",
+    "seed": 33,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed33",
+    "method": "B1",
+    "seed": 33,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed44",
+    "method": "H",
+    "seed": 44,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed44",
+    "method": "B1",
+    "seed": 44,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed55",
+    "method": "H",
+    "seed": 55,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed55",
+    "method": "B1",
+    "seed": 55,
+    "budget": 300000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed11",
+    "method": "H",
+    "seed": 11,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed11",
+    "method": "B1",
+    "seed": 11,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed22",
+    "method": "H",
+    "seed": 22,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed22",
+    "method": "B1",
+    "seed": 22,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed33",
+    "method": "H",
+    "seed": 33,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed33",
+    "method": "B1",
+    "seed": 33,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed44",
+    "method": "H",
+    "seed": 44,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed44",
+    "method": "B1",
+    "seed": 44,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "H_seed55",
+    "method": "H",
+    "seed": 55,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "formal_v5",
+    "name": "B1_seed55",
+    "method": "B1",
+    "seed": 55,
+    "budget": 1000000,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  }
+]

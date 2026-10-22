@@ -1,0 +1,11 @@
+{
+  "methods": ["H", "B1", "B2"],
+  "physics_budgets": [100000, 300000, 1000000],
+  "independent_training_seeds": [11, 22, 33, 44, 55],
+  "flat_action_holds": [1, 10],
+  "validation_seed_base": 1000000,
+  "test_seed_base": 2000000,
+  "validation_selection": ["minimum collision+out_of_bounds rate", "maximum success rate", "maximum all-episode progress", "minimum success-conditional travel time"],
+  "automatic_launch": false,
+  "status": "PROTOCOL_ONLY_NO_FORMAL_RESULTS"
+}

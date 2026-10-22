@@ -1,0 +1,68 @@
+# Research acceptance ledger
+
+Updated 2026-10-22. This is an implementation and evidence ledger, not a claim that the research goal has been met. The user's latest objective supersedes the earlier six-hour-only and no-push instructions. Each execution window remains bounded and checkpointed. The complete project goal remains active across windows.
+
+## Evidence isolation
+
+`runs/20261016T015226Z_research_batch_3377580f` and its frozen source/model/config/result files are retained. All previously inspected primary, generalization and CARLA test manifests are now **historical evaluation sets**. They cannot be reused as unseen confirmation after development. Formal v4 and earlier additionally retain their documented RNG defect. No historical failure or infrastructure exception is removed.
+
+New development batches live in separate directories. Architecture or reward changes require separate versions and compatible checkpoints. A new confirmation protocol must freeze code, model selection, budgets, scene generation, statistical endpoints and multiplicity treatment before any confirmation results are inspected.
+
+## Required gates and current evidence
+
+| Gate | Required evidence | Current status |
+|---|---|---|
+| Real learned hierarchy | PPO-selected behavior → Hybrid A* → timed reference → MPC → executed state/reward; no execution teleport/autopilot/set-speed | Historical real CARLA evidence exists; new method not validated |
+| Lightweight capability | ≥85% overall, ≥75% each core class, independent test | Not met: historical H 75%, generalization 4/12 |
+| CARLA capability | ≥80% overall, ≥70% static/curve-parking/dynamic; collision or bounds ≤5% | Not met: historical H 9/30 and 10/30, all successes dynamic |
+| Productive safety | Progress, time, stops, interventions, collision, bounds, planning/control failures jointly reported | Historical data available; intervention dependence unresolved |
+| Hierarchy main hypothesis | ≥10 percentage point mean paired gain over healthy trained flat PPO, 95% interval lower >0, ≥5 independent seeds | Unproven; short-route B1 sanity passed but full-route health unresolved; only 3 complete historical pairs |
+| PPO high-level value | Predefined interaction task and endpoint vs strong B3 sharing low level/safety | Unproven: historical B3 matches H's 30/40 exactly |
+| Executability feedback | Necessary measured improvement and H/H0 ablation | Implemented with same-size H0 ablation; v8 paired development running, no established gain |
+| Baseline health | Empty/short corridor learning, justified tuning and sufficient comparable budget | Both v6 reward variants reach 8/8 on 6m at 1M; same model 0/8 on 23m/45s. Full-route training comparison prepared |
+| Required comparisons | H, H0, B1, B2, B3, frequency, common safety, fixed-reference controller | Algorithms partly exist; complete independently trained evidence missing |
+| CARLA independent training | ≥5 independently trained/adapted policies and real PPO updates | Historical 2 completed paired seeds; new training pending |
+| CARLA final conditions | ≥120 unique paired conditions, ≥30 each core family, unseen layouts/vehicle parameters | Missing; old 30 conditions are historical |
+| Feasible task design | Feasibility diagnostics independent of policy performance; retain all failures | Historical witnesses prove 5 failed layouts traversable; remaining cases unresolved |
+| Fairness/accounting | Common task/information/rewards/budget/limits/termination; physical/decision/world/reset steps, wall/sim time, networks, updates, takeover | Existing log fields; new comparisons still require audit |
+| Timing | P95/P99/max full decision/control cycle and overrun fractions; offline deterministic node budget separate | Historical component timing exists; complete deployment timing not established |
+| CARLA lifecycle | Exclusive ownership, exceptions, crash cleanup, checkpoint recovery; only owned actors/processes | Kernel lease and empty-world crash recovery verified; crash with live actors not yet recovered automatically |
+| CARLA calibration | Geometry, steering/actuation, coordinates, frames, sensor truth; transfer vs retraining separate | Historical calibration retained; full steering range/native curved roads not validated |
+| Videos | Real success and failure clips tied to case/model/seed/run | Missing |
+| Statistics | All seeds, paired intervals, variance, censoring, layered sampling if justified; no pseudoreplication | Historical partial analyses retained; fresh confirmation pending |
+| Reproducibility | Clean checkout install/tests/model load/representative evaluation/raw figure rebuild; CARLA replay when available | Missing clean-checkout proof |
+| GitHub | Correct repository with preserved visibility/history, real commit/push, remote SHA verification and tag/release | Existing public Leo-7GOAT/Intelligent-driving-system verified via matching source/license blob hashes; origin fetched; no new commit/push yet |
+| Release hygiene | Secrets/private path/data scan, third-party licensing/citations, bounded assets and SHA manifest | Pending |
+| Documentation | English README, Chinese guide, method/protocol/results/ablations/failures/model card/licenses, bilingual factual CV | Existing historical docs; new publication set incomplete |
+
+No single upload, completed batch, smoke test, subset metric or passing unit suite satisfies the complete objective. If a new confirmation fails, retain it, open a new development version, and use new unseen conditions for any later confirmation.
+
+## Development decisions so far
+
+1. PID-only lock files can persist after forced exit. Use a held operating-system lease that is released by process death; preserve stale PID text as evidence. Respect live legacy owners and reject unknown metadata. Still require an empty CARLA world before controlling it.
+2. First matched sanity trial: original beta=1 versus beta=40, same B1 configuration, seed 11, fixed 6m empty task with real parking requirement, development seeds 7301–7308. Both 0/8 after 102,400 physical steps. These nearly identical straight conditions are a learning sanity check, not diverse independent tasks.
+3. At failed fixed-horizon termination the terminal-zero potential telescopes away the distance-progress difference. A second explicit task-progress reward trial is separate from PBRS. Both variants receive a from-scratch 1M physical-step budget, with 100k/300k/1M development assessments. If retained, the changed task reward must be shared by H and relevant controls. No rule acts on B1's behalf.
+4. Goal-frame candidates are being checked against the existing planner as a separate geometry diagnostic. They are not integrated into PPO or claimed to improve it without evidence.
+5. The target diagnostic completed 180 checks. The proposed goal-frame candidates had lower valid-reference counts on these probes, so they remain experimental and are not integrated. Near-goal candidates contain repeated poses; these counts are action availability, not independent scene successes.
+6. At 302,080 training steps both reward variants again scored 0/8 in deterministic evaluation. For the same progress-reward checkpoint, a paired inference audit produced deterministic 0/8 versus stochastic gSDE 5/8, identically in train and validation splits (frozen normalization). This is a development clue about inference, not a reason to relabel historical deterministic results or select favorable stochastic replays. Any future inference-mode choice must be frozen before new confirmation.
+7. The old generic checkpoint selector ranked any reduction in collision rate before completion, potentially preferring permanent waiting to a productive policy within a declared safety tolerance. The new development-only selector applies an explicit empirical safety constraint, then maximizes completion and progress before minimizing intervention/time. A regression covers the permanent-waiting counterexample. Existing frozen experiments and current running diagnostic jobs are unchanged.
+
+## Update at 2026-10-22 13:13 local
+
+- v6 batch `20261022T042237Z_development_v6`: both fresh B1 reward variants completed 1,000,960 physical steps and deterministic 8/8 on the 6m parking sanity task. The PBRS40 model scored 0/8 at 23m/45s. The short-route task does not establish full-task baseline health. PBRS40 retained; no evidence that explicit task-progress reward is necessary. Rebuilt eight milestone rows with 117 frozen source hashes and model hashes checked.
+- New goal-frame candidates, terminal return envelope, analytic Hybrid A* connection and vectorized full-body collision checking are opt-in, versioned implementations. Earlier candidate-count diagnostic was inconclusive; subsequent physical B3 tests justified testing the revised interface, not claiming learned superiority.
+- v7 H/H0 runs stopped gracefully after 12,790 / 10,225 physical steps to version the terminal-envelope and vectorization changes. Both exited zero; partial evidence and supersession reason retained. No statistical inference from the censored pair.
+- v8 batch `20261022T050532Z_hierarchy_v8_development`: H and H0 use 450-input networks and the same low level. H gets candidate geometric witnesses plus previous execution outcomes; H0 receives zeros in these 99 slots. No action masking or rule replacement. At 100k milestone both score 6/10: H succeeds on static, H0 on narrow, both fail unseen. One seed and development cases only. Run final status must be inspected.
+- Actual CARLA B3 diagnostics: v7 3/6, terminal-envelope variant 4/6, with one degraded static condition retained. These are NOT PPO results and do not satisfy a CARLA acceptance gate. All raw frames/RPC and frozen sources retained under v7 batch. Owned empty CARLA server stopped with verified identity, receipt `infrastructure/server_stop.json`.
+- Full current CPU regression: 65 passed, 5 conditional skips (`reports/v9_regression_20261022.xml`). Raw XML remains local because it contains personal paths.
+- Distance-development protocol compares from-scratch B1 on fixed23m versus uniformly sampled6–23m, common45s deadline/PBRS40/PPO settings and1M budget. Validation distance overrides are explicit; ordinary validation/test remain full length. This is single-seed diagnosis, not an architecture comparison.
+
+## Completed200k pair and launched continuation (13:18 local)
+
+Original v8 pair finished with both exits0: H8/10, H0 6/10. H succeeds on static/narrow/empty/dynamic, both fail unseen. H has higher dynamic intervention fraction (~0.145 versus~0.025), retained as a tradeoff. This is one-seed development only. Both policies now continue unchanged to cumulative1M in a separate provenance-linked batch; inherited interactions are included. Fresh B1 fixed23m versus uniform6–23m training is also live. New learned-policy CARLA transfer is running, distinct from earlier B3 diagnostics. CARLA transfer configuration now preserves learned observation/action semantics and planner flags; a focused regression passed. No new formal acceptance gate is declared passed.
+
+## Learned CARLA transfer completed (13:22 local)
+
+Batch `20261022T051716Z_carla_v8_transfer`: both H/H0 frozen200k policies complete2/6 (curve7302 anddynamic7302), four deadlines each, no observed collision/bounds and no infrastructure faults. H4793 world ticks including resets, H0 4861; these are EVALUATION interactions, not PPO training. Both normalization states frozen. Failed conditions repeatedly select unplannable candidates; action/failure audits retained. No executability-feedback advantage transfers in this small diagnostic. Owned server confirmed empty and stopped. Current300k lightweight development is8/10 for both H/H0, so the200k difference is not stable evidence of feedback superiority.
+
+Latest full regression after transfer configuration changes:66passed,5conditional skips (`reports/v9_transfer_regression_20261022.xml`). Detailed case-level report is `reports/development_20261022.md`. All research and publication gates remain incomplete.

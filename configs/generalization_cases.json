@@ -1,0 +1,116 @@
+[
+  {
+    "scenario": "unseen",
+    "seed": 3090700,
+    "overrides": {
+      "obstacle_num": 6
+    }
+  },
+  {
+    "scenario": "unseen",
+    "seed": 3090701,
+    "overrides": {
+      "obstacle_num": 6
+    }
+  },
+  {
+    "scenario": "unseen",
+    "seed": 3090702,
+    "overrides": {
+      "obstacle_num": 6
+    }
+  },
+  {
+    "scenario": "unseen",
+    "seed": 3090703,
+    "overrides": {
+      "obstacle_num": 6
+    }
+  },
+  {
+    "scenario": "unseen",
+    "seed": 3090704,
+    "overrides": {
+      "obstacle_num": 6
+    }
+  },
+  {
+    "scenario": "unseen",
+    "seed": 3090705,
+    "overrides": {
+      "obstacle_num": 6
+    }
+  },
+  {
+    "scenario": "unseen",
+    "seed": 3090706,
+    "overrides": {
+      "vehicle": {
+        "wheelbase_scale": 1.2,
+        "acceleration_scale": 0.8,
+        "input_delay_steps": 2,
+        "steer_tau": 0.25
+      }
+    }
+  },
+  {
+    "scenario": "narrow",
+    "seed": 3090707,
+    "overrides": {
+      "vehicle": {
+        "wheelbase_scale": 1.2,
+        "acceleration_scale": 0.8,
+        "input_delay_steps": 2,
+        "steer_tau": 0.25
+      }
+    }
+  },
+  {
+    "scenario": "dynamic",
+    "seed": 3090708,
+    "overrides": {
+      "vehicle": {
+        "wheelbase_scale": 1.2,
+        "acceleration_scale": 0.8,
+        "input_delay_steps": 2,
+        "steer_tau": 0.25
+      }
+    }
+  },
+  {
+    "scenario": "unseen",
+    "seed": 3090709,
+    "overrides": {
+      "vehicle": {
+        "wheelbase_scale": 1.2,
+        "acceleration_scale": 0.8,
+        "input_delay_steps": 2,
+        "steer_tau": 0.25
+      }
+    }
+  },
+  {
+    "scenario": "narrow",
+    "seed": 3090710,
+    "overrides": {
+      "vehicle": {
+        "wheelbase_scale": 1.2,
+        "acceleration_scale": 0.8,
+        "input_delay_steps": 2,
+        "steer_tau": 0.25
+      }
+    }
+  },
+  {
+    "scenario": "dynamic",
+    "seed": 3090711,
+    "overrides": {
+      "vehicle": {
+        "wheelbase_scale": 1.2,
+        "acceleration_scale": 0.8,
+        "input_delay_steps": 2,
+        "steer_tau": 0.25
+      }
+    }
+  }
+]

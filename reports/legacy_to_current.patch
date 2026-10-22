@@ -1,0 +1,1731 @@
+--- legacy_snapshot_20261016\Astar.py
++++ Astar.py
+@@ -1,225 +1,25 @@
+-"""
+-A_star 2D
+-@author: huiming zhou
+-"""
++"""Self-contained A* without the missing external Search_2D dependency."""
+ 
+-import os
+-import sys
+-import math
+-import heapq
+-
+-sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
+-                "/../../Search_based_Planning/")
+-
+-from Search_2D import plotting, env
++from navstack.planning import grid_search, GridAStarPlanner
+ 
+ 
+ class AStar:
+-    """AStar set the cost + heuristics as the priority
+-    """
+-    def __init__(self, s_start, s_goal, heuristic_type):
+-        self.s_start = s_start
+-        self.s_goal = s_goal
+-        self.heuristic_type = heuristic_type
+-
+-        self.Env = env.Env()  # class Env
+-
+-        self.u_set = self.Env.motions  # feasible input set
+-        self.obs = self.Env.obs  # position of obstacles
+-
+-        self.OPEN = []  # priority queue / OPEN set
+-        self.CLOSED = []  # CLOSED set / VISITED order
+-        self.PARENT = dict()  # recorded parent
+-        self.g = dict()  # cost to come
++    def __init__(
++        self, s_start, s_goal, heuristic_type="octile", obstacles=(), grid_size=64
++    ):
++        if heuristic_type not in ("octile", "euclidean"):
++            raise ValueError(
++                "Use octile/euclidean for 8-neighbor sqrt(2) diagonal costs"
++            )
++        self.start, self.goal, self.obstacles, self.grid_size = (
++            tuple(s_start),
++            tuple(s_goal),
++            set(obstacles),
++            grid_size,
++        )
+ 
+     def searching(self):
+-        """
+-        A_star Searching.
+-        :return: path, visited order
+-        """
+-
+-        self.PARENT[self.s_start] = self.s_start
+-        self.g[self.s_start] = 0
+-        self.g[self.s_goal] = math.inf
+-        heapq.heappush(self.OPEN,
+-                       (self.f_value(self.s_start), self.s_start))
+-
+-        while self.OPEN:
+-            _, s = heapq.heappop(self.OPEN)
+-            self.CLOSED.append(s)
+-
+-            if s == self.s_goal:  # stop condition
+-                break
+-
+-            for s_n in self.get_neighbor(s):
+-                new_cost = self.g[s] + self.cost(s, s_n)
+-
+-                if s_n not in self.g:
+-                    self.g[s_n] = math.inf
+-
+-                if new_cost < self.g[s_n]:  # conditions for updating Cost
+-                    self.g[s_n] = new_cost
+-                    self.PARENT[s_n] = s
+-                    heapq.heappush(self.OPEN, (self.f_value(s_n), s_n))
+-
+-        return self.extract_path(self.PARENT), self.CLOSED
+-
+-    def searching_repeated_astar(self, e):
+-        """
+-        repeated A*.
+-        :param e: weight of A*
+-        :return: path and visited order
+-        """
+-
+-        path, visited = [], []
+-
+-        while e >= 1:
+-            p_k, v_k = self.repeated_searching(self.s_start, self.s_goal, e)
+-            path.append(p_k)
+-            visited.append(v_k)
+-            e -= 0.5
+-
+-        return path, visited
+-
+-    def repeated_searching(self, s_start, s_goal, e):
+-        """
+-        run A* with weight e.
+-        :param s_start: starting state
+-        :param s_goal: goal state
+-        :param e: weight of a*
+-        :return: path and visited order.
+-        """
+-
+-        g = {s_start: 0, s_goal: float("inf")}
+-        PARENT = {s_start: s_start}
+-        OPEN = []
+-        CLOSED = []
+-        heapq.heappush(OPEN,
+-                       (g[s_start] + e * self.heuristic(s_start), s_start))
+-
+-        while OPEN:
+-            _, s = heapq.heappop(OPEN)
+-            CLOSED.append(s)
+-
+-            if s == s_goal:
+-                break
+-
+-            for s_n in self.get_neighbor(s):
+-                new_cost = g[s] + self.cost(s, s_n)
+-
+-                if s_n not in g:
+-                    g[s_n] = math.inf
+-
+-                if new_cost < g[s_n]:  # conditions for updating Cost
+-                    g[s_n] = new_cost
+-                    PARENT[s_n] = s
+-                    heapq.heappush(OPEN, (g[s_n] + e * self.heuristic(s_n), s_n))
+-
+-        return self.extract_path(PARENT), CLOSED
+-
+-    def get_neighbor(self, s):
+-        """
+-        find neighbors of state s that not in obstacles.
+-        :param s: state
+-        :return: neighbors
+-        """
+-
+-        return [(s[0] + u[0], s[1] + u[1]) for u in self.u_set]
+-
+-    def cost(self, s_start, s_goal):
+-        """
+-        Calculate Cost for this motion
+-        :param s_start: starting node
+-        :param s_goal: end node
+-        :return:  Cost for this motion
+-        :note: Cost function could be more complicate!
+-        """
+-
+-        if self.is_collision(s_start, s_goal):
+-            return math.inf
+-
+-        return math.hypot(s_goal[0] - s_start[0], s_goal[1] - s_start[1])
+-
+-    def is_collision(self, s_start, s_end):
+-        """
+-        check if the line segment (s_start, s_end) is collision.
+-        :param s_start: start node
+-        :param s_end: end node
+-        :return: True: is collision / False: not collision
+-        """
+-
+-        if s_start in self.obs or s_end in self.obs:
+-            return True
+-
+-        if s_start[0] != s_end[0] and s_start[1] != s_end[1]:
+-            if s_end[0] - s_start[0] == s_start[1] - s_end[1]:
+-                s1 = (min(s_start[0], s_end[0]), min(s_start[1], s_end[1]))
+-                s2 = (max(s_start[0], s_end[0]), max(s_start[1], s_end[1]))
+-            else:
+-                s1 = (min(s_start[0], s_end[0]), max(s_start[1], s_end[1]))
+-                s2 = (max(s_start[0], s_end[0]), min(s_start[1], s_end[1]))
+-
+-            if s1 in self.obs or s2 in self.obs:
+-                return True
+-
+-        return False
+-
+-    def f_value(self, s):
+-        """
+-        f = g + h. (g: Cost to come, h: heuristic value)
+-        :param s: current state
+-        :return: f
+-        """
+-
+-        return self.g[s] + self.heuristic(s)
+-
+-    def extract_path(self, PARENT):
+-        """
+-        Extract the path based on the PARENT set.
+-        :return: The planning path
+-        """
+-
+-        path = [self.s_goal]
+-        s = self.s_goal
+-
+-        while True:
+-            s = PARENT[s]
+-            path.append(s)
+-
+-            if s == self.s_start:
+-                break
+-
+-        return list(path)
+-
+-    def heuristic(self, s):
+-        """
+-        Calculate heuristic.
+-        :param s: current node (state)
+-        :return: heuristic function value
+-        """
+-
+-        heuristic_type = self.heuristic_type  # heuristic type
+-        goal = self.s_goal  # goal node
+-
+-        if heuristic_type == "manhattan":
+-            return abs(goal[0] - s[0]) + abs(goal[1] - s[1])
+-        else:
+-            return math.hypot(goal[0] - s[0], goal[1] - s[1])
+-
+-
+-def main():
+-    s_start = (5, 5)
+-    s_goal = (45, 25)
+-
+-    astar = AStar(s_start, s_goal, "euclidean")
+-    plot = plotting.Plotting(s_start, s_goal)
+-
+-    path, visited = astar.searching()
+-    plot.animation(path, visited, "A*")  # animation
+-
+-    # path, visited = astar.searching_repeated_astar(2.5)               # initial weight e = 2.5
+-    # plot.animation_ara_star(path, visited, "Repeated A*")
+-
+-
+-if __name__ == '__main__':
+-    main()
++        path, _, expanded = grid_search(
++            self.start, self.goal, self.obstacles, self.grid_size
++        )
++        return path, {"expanded_nodes": expanded}
+--- legacy_snapshot_20261016\astar_agent.py
++++ astar_agent.py
+@@ -1,61 +1,7 @@
+-# astar_agent.py
++"""8-neighbor A* with Euclidean costs and no corner cutting."""
+ 
+-import heapq
++from navstack.planning import grid_search
+ 
+-def heuristic(a, b):
+-    """曼哈顿距离启发式"""
+-    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+-
+-def get_neighbors(pos, grid_size, obstacles):
+-    # 八邻域（包含对角线移动）
+-    moves = [(-1, 0), (1, 0), (0, -1), (0, 1),
+-             (-1, -1), (-1, 1), (1, -1), (1, 1)]
+-    neighbors = []
+-    for dx, dy in moves:
+-        nx, ny = pos[0] + dx, pos[1] + dy
+-        if 0 <= nx < grid_size and 0 <= ny < grid_size and (nx, ny) not in obstacles:
+-            neighbors.append((nx, ny))
+-    return neighbors
+ 
+ def plan_with_astar(start, goal, obstacles, grid_size):
+-    """
+-    A*路径规划主接口
+-    :param start: (x, y) tuple, 起点
+-    :param goal: (x, y) tuple, 终点
+-    :param obstacles: set of (x, y), 障碍物集合
+-    :param grid_size: int, 地图尺寸
+-    :return: [ (x0, y0), (x1, y1), ... ]  路径点序列（包含起点终点），若无解则返回[]
+-    """
+-    open_set = []
+-    heapq.heappush(open_set, (heuristic(start, goal), 0, start))
+-    came_from = {}
+-    g_score = {start: 0}
+-
+-    while open_set:
+-        _, cost, current = heapq.heappop(open_set)
+-        if current == goal:
+-            # 回溯得到路径
+-            path = [current]
+-            while current in came_from:
+-                current = came_from[current]
+-                path.append(current)
+-            path.reverse()
+-            return path
+-
+-        for neighbor in get_neighbors(current, grid_size, obstacles):
+-            tentative_g = g_score[current] + 1  # 所有邻居步长为1
+-            if neighbor not in g_score or tentative_g < g_score[neighbor]:
+-                came_from[neighbor] = current
+-                g_score[neighbor] = tentative_g
+-                heapq.heappush(open_set, (tentative_g + heuristic(neighbor, goal), tentative_g, neighbor))
+-    # 找不到路径
+-    return []
+-
+-# 可选：模块自测
+-if __name__ == "__main__":
+-    grid_size = 4
+-    obstacles = {(1,1), (2,2), (3,3)}
+-    start = (0, 0)
+-    goal = (4, 4)
+-    path = plan_with_astar(start, goal, obstacles, grid_size)
+-    print("A*路径：", path)
++    return grid_search(tuple(start), tuple(goal), set(obstacles), grid_size)[0]
+--- legacy_snapshot_20261016\env_gridworld.py
++++ env_gridworld.py
+@@ -1,82 +1,5 @@
+-# env_gridworld.py
++"""Legacy import bridge; old grid-cell arguments are intentionally rejected."""
+ 
+-import numpy as np
+-import gymnasium as gym
+-from gymnasium import spaces
++from navstack.env import NavigationEnv
+ 
+-class GridWorldGymEnv(gym.Env):
+-    def __init__(self, grid_size=4, obstacle_num=0, max_steps=30, seed=None):
+-        super().__init__()
+-        self.grid_size = grid_size
+-        self.obstacle_num = obstacle_num
+-        self.max_steps = max_steps
+-        # obstacles list for compatibility
+-        self.obstacles = []
+-
+-        # RNG seed storage
+-        self._seed = None
+-        if seed is not None:
+-            self.seed(seed)
+-
+-        # action space: any grid cell as sub-goal
+-        self.action_space = spaces.Discrete(grid_size * grid_size)
+-
+-        # state space: agent(x,y) + goal(x,y)
+-        low = np.array([0, 0, 0, 0], dtype=np.int32)
+-        high = np.array([grid_size-1, grid_size-1, grid_size-1, grid_size-1], dtype=np.int32)
+-        self.observation_space = spaces.Box(low, high, dtype=np.int32)
+-
+-    def seed(self, seed=None):
+-        """
+-        Set random seed for reproducibility.
+-        """
+-        self._seed = seed
+-        self.np_random, seed = gym.utils.seeding.np_random(seed)
+-        return [seed]
+-
+-    def reset(self, *, seed=None, options=None):
+-        """
+-        Reset environment. Supports Gymnasium-style seed parameter.
+-        Returns (obs, info).
+-        """
+-        if seed is not None:
+-            self.seed(seed)
+-        # fixed start and goal positions
+-        self.agent_pos = (0, 0)
+-        self.goal_pos = (self.grid_size - 1, self.grid_size - 1)
+-        self.steps = 0
+-        obs = np.array([*self.agent_pos, *self.goal_pos], dtype=np.int32)
+-        info = {}
+-        return obs, info
+-
+-    def step(self, action):
+-        # map action to target cell
+-        tx, ty = divmod(int(action), self.grid_size)
+-        # set agent_pos to sub-goal (for A* planning externally)
+-        self.agent_pos = (tx, ty)
+-        self.steps += 1
+-
+-        terminated = False
+-        truncated = False
+-        success = False
+-        if self.agent_pos == self.goal_pos:
+-            reward = 100
+-            terminated = True
+-            success = True
+-        else:
+-            reward = -1
+-            if self.steps >= self.max_steps:
+-                truncated = True
+-
+-        obs = np.array([*self.agent_pos, *self.goal_pos], dtype=np.int32)
+-        return obs, reward, terminated, truncated, {"success": success}
+-
+-    def render(self, mode='human'):
+-        grid = np.full((self.grid_size, self.grid_size), '.', dtype=str)
+-        ax, ay = self.agent_pos
+-        gx, gy = self.goal_pos
+-        grid[ax, ay] = 'A'
+-        grid[gx, gy] = 'G'
+-        for (ox, oy) in self.obstacles:
+-            grid[ox, oy] = 'X'
+-        print("\n".join("".join(row) for row in grid))
++GridWorldGymEnv = NavigationEnv
+--- legacy_snapshot_20261016\mpc_agent.py
++++ mpc_agent.py
+@@ -1,118 +1,4 @@
+-# mpc_agent.py
++"""No implicit resets, trajectory clipping or endpoint snapping."""
+ 
+-import numpy as np
+-from mpc_module import mpc_track_ppo_path
+-import matplotlib.pyplot as plt
+-from scipy.interpolate import splprep, splev
+-
+-# ======== Curve smoothing interpolation function integrated here ========
+-def smooth_path(path, num=50, tail_extension=5):
+-    """
+-    Smooth and interpolate discrete path points (e.g., from A*) using B-spline,
+-    and add a tail extension in the direction of the last segment.
+-    :param path: List of (x, y) tuples
+-    :param num: Number of interpolated points
+-    :param tail_extension: Number of extra points to extend beyond the endpoint
+-    :return: List of (x, y) tuples
+-    """
+-    if len(path) < 4:
+-        return path
+-    x = [float(p[0]) for p in path]
+-    y = [float(p[1]) for p in path]
+-    # perform B-spline interpolation
+-    tck, u = splprep([x, y], s=0)
+-    unew = np.linspace(0, 1, num=num)
+-    out = splev(unew, tck)
+-    smooth_xy = list(zip(out[0], out[1]))
+-
+-    # ====== Tail extension: extend beyond endpoint ======
+-    if tail_extension > 0:
+-        x1, y1 = smooth_xy[-2]
+-        x2, y2 = smooth_xy[-1]
+-        dx, dy = x2 - x1, y2 - y1
+-        for i in range(1, tail_extension + 1):
+-            fx = x2 + dx * i
+-            fy = y2 + dy * i
+-            smooth_xy.append((fx, fy))
+-    return smooth_xy
+-
+-# ======== Main interface ========
+-def mpc_track_path(path_xy, target_speed=2.0, grid_size=4, smooth=True):
+-    """
+-    MPC trajectory tracking interface.
+-    :param path_xy: List of reference (x, y) path points (e.g., from A* or PPO)
+-    :param target_speed: Desired tracking speed (m/s)
+-    :param grid_size: Size of the map (default 4)
+-    :param smooth: Whether to apply smoothing interpolation
+-    :return: List of (x, y) points representing the tracked trajectory
+-    """
+-    if not path_xy or len(path_xy) < 2:
+-        print("[MPC_AGENT] Input path too short for MPC tracking.")
+-        return []
+-
+-    # ====== Smooth the reference path ======
+-    if smooth:
+-        path_xy = smooth_path(path_xy, num=50)
+-
+-    cx = np.array([float(x) for x, y in path_xy])
+-    cy = np.array([float(y) for x, y in path_xy])
+-
+-    mpc_x, mpc_y = mpc_track_ppo_path(
+-        cx, cy, target_speed=target_speed, plot=False, grid_size=grid_size
+-    )
+-    mpc_path = list(zip(mpc_x, mpc_y))
+-
+-    # Calculate RMSE if reference and tracked path lengths match
+-    if path_xy and len(path_xy) == len(mpc_path):
+-        err = np.hypot(
+-            np.array([p[0] for p in mpc_path]) - np.array([p[0] for p in path_xy]),
+-            np.array([p[1] for p in mpc_path]) - np.array([p[1] for p in path_xy])
+-        )
+-        rmse = np.sqrt((err ** 2).mean())
+-        print(f"[METRIC] MPC_RMSE = {rmse:.3f} m")
+-        with open("metrics.csv", "a") as f:
+-            f.write(f"mpc_rmse,{rmse:.4f}\n")
+-    return mpc_path
+-
+-
+-def plot_path_compare(a_star_path, smooth_xy, mpc_path, goal=None, title="Trajectory Comparison"):
+-    """
+-    Plot comparison of A* path, smoothed path, and MPC tracked path.
+-    :param a_star_path: List of discrete (x, y) points from A*
+-    :param smooth_xy: List of smoothed/interpolated (x, y) points
+-    :param mpc_path: List of MPC-tracked (x, y) points
+-    :param goal: Optional goal point for marking on the plot
+-    :param title: Title of the plot
+-    """
+-    plt.figure(figsize=(6, 6))
+-    ax = plt.gca()
+-    # Plot A* discrete path
+-    ax.plot([p[0] for p in a_star_path], [p[1] for p in a_star_path], 'ks-', label='A* Path', zorder=1)
+-    # Plot smoothed path
+-    ax.plot([p[0] for p in smooth_xy], [p[1] for p in smooth_xy], 'g--', label='Smoothed Path', zorder=2)
+-    # Plot MPC tracked trajectory
+-    ax.plot([p[0] for p in mpc_path], [p[1] for p in mpc_path], 'bo-', label='MPC Tracked Path', zorder=3)
+-
+-    # Start point
+-    ax.scatter(a_star_path[0][0], a_star_path[0][1], marker='o', label='Start', zorder=4)
+-    # Goal point
+-    end_pt = goal if goal is not None else a_star_path[-1]
+-    ax.scatter(end_pt[0], end_pt[1], marker='*', label='Goal', zorder=5)
+-    # MPC final point
+-    ax.scatter(mpc_path[-1][0], mpc_path[-1][1], marker='P', edgecolors='k', label='Agent Final', zorder=6)
+-
+-    ax.set_title(title)
+-    ax.set_xlabel('X')
+-    ax.set_ylabel('Y')
+-    ax.set_aspect('equal')
+-    ax.legend()
+-    ax.grid(True)
+-    plt.show()
+-
+-# Optional: module self-test
+-if __name__ == "__main__":
+-    # Example A* discrete path
+-    a_star_path = [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (3, 3), (4, 4)]
+-    # Perform MPC tracking (with smoothing)
+-    mpc_path = mpc_track_path(a_star_path)
+-    print("MPC tracked path:", mpc_path)
++from navstack.mpc import MPC, ControlResult
++from navstack.trajectory import parameterize, tracking_error
+--- legacy_snapshot_20261016\mpc_module.py
++++ mpc_module.py
+@@ -1,297 +1,5 @@
+-import math
+-import cvxpy
+-import numpy as np
+-import matplotlib.pyplot as plt
++"""Single-cycle API: MPC.step(state, reference, previous_command)."""
+ 
+-# === 核心MPC参数与类 ===
+-class P:
+-    # System config
+-    NX = 4  # state vector: z = [x, y, v, phi]
+-    NU = 2  # input vector: u = [acceleration, steer]
+-    T = 6  # finite time horizon length
+-
+-    # MPC config
+-    Q = np.diag([1.0, 1.0, 1.0, 1.0])  # penalty for states
+-    Qf = np.diag([1.0, 1.0, 1.0, 1.0])  # penalty for end state
+-    R = np.diag([0.01, 0.1])  # penalty for inputs
+-    Rd = np.diag([0.01, 0.1])  # penalty for change of inputs
+-
+-    dist_stop = 1.5  # stop permitted when dist to goal < dist_stop
+-    speed_stop = 0.5 / 3.6  # stop permitted when speed < speed_stop
+-    time_max = 500.0  # max simulation time
+-    iter_max = 5  # max iteration
+-    target_speed = 3.6 / 3.6  # target speed
+-    N_IND = 10  # search index number
+-    dt = 0.2  # time step
+-    d_dist = 1.0  # dist step
+-    du_res = 0.1  # threshold for stopping iteration
+-
+-    # vehicle config
+-    RF = 3.3  # [m] distance from rear to vehicle front end of vehicle
+-    RB = 0.8  # [m] distance from rear to vehicle back end of vehicle
+-    W = 2.4  # [m] width of vehicle
+-    WD = 0.7 * W  # [m] distance between left-right wheels
+-    WB = 2.5  # [m] Wheel base
+-    TR = 0.44  # [m] Tyre radius
+-    TW = 0.7 * W  # [m] Tyre width
+-
+-    steer_max = np.deg2rad(45.0)  # max steering angle [rad]
+-    steer_change_max = np.deg2rad(30.0)  # maximum steering speed [rad/s]
+-    speed_max = 55.0 / 3.6  # maximum speed [m/s]
+-    speed_min = -20.0 / 3.6  # minimum speed [m/s]
+-    acceleration_max = 1.0  # maximum acceleration [m/s2]
+-
+-
+-class Node:
+-    def __init__(self, x=0.0, y=0.0, yaw=0.0, v=0.0, direct=1.0):
+-        self.x = x
+-        self.y = y
+-        self.yaw = yaw
+-        self.v = v
+-        self.direct = direct
+-
+-    def update(self, a, delta, direct):
+-        delta = self.limit_input_delta(delta)
+-        self.x += self.v * math.cos(self.yaw) * P.dt
+-        self.y += self.v * math.sin(self.yaw) * P.dt
+-        self.yaw += self.v / P.WB * math.tan(delta) * P.dt
+-        self.direct = direct
+-        self.v += self.direct * a * P.dt
+-        self.v = self.limit_speed(self.v)
+-
+-    @staticmethod
+-    def limit_input_delta(delta):
+-        if delta >= P.steer_max:
+-            return P.steer_max
+-        if delta <= -P.steer_max:
+-            return -P.steer_max
+-        return delta
+-
+-    @staticmethod
+-    def limit_speed(v):
+-        if v >= P.speed_max:
+-            return P.speed_max
+-        if v <= P.speed_min:
+-            return P.speed_min
+-        return v
+-
+-
+-class PATH:
+-    def __init__(self, cx, cy, cyaw, ck):
+-        self.cx = cx
+-        self.cy = cy
+-        self.cyaw = cyaw
+-        self.ck = ck
+-        self.length = len(cx)
+-        self.ind_old = 0
+-
+-    def nearest_index(self, node):
+-        N = self.length
+-        window = P.N_IND
+-        search_inds = [(self.ind_old + i) % N for i in range(window)]
+-        dx = [node.x - x for x in self.cx[self.ind_old: (self.ind_old + P.N_IND)]]
+-        dy = [node.y - y for y in self.cy[self.ind_old: (self.ind_old + P.N_IND)]]
+-        dist = np.hypot(dx, dy)
+-        ind_in_N = int(np.argmin(dist))
+-        ind = self.ind_old + ind_in_N
+-        self.ind_old = ind
+-        rear_axle_vec_rot_90 = np.array([[math.cos(node.yaw + math.pi / 2.0)],
+-                                         [math.sin(node.yaw + math.pi / 2.0)]])
+-        vec_target_2_rear = np.array([[dx[ind_in_N]],
+-                                      [dy[ind_in_N]]])
+-        er = np.dot(vec_target_2_rear.T, rear_axle_vec_rot_90)
+-        er = er[0][0]
+-        return ind, er
+-
+-
+-def calc_ref_trajectory_in_T_step(node, ref_path, sp):
+-    z_ref = np.zeros((P.NX, P.T + 1))
+-    length = ref_path.length
+-    ind, _ = ref_path.nearest_index(node)
+-    z_ref[0, 0] = ref_path.cx[ind]
+-    z_ref[1, 0] = ref_path.cy[ind]
+-    z_ref[2, 0] = sp[ind]
+-    z_ref[3, 0] = ref_path.cyaw[ind]
+-    dist_move = 0.0
+-    for i in range(1, P.T + 1):
+-        dist_move += abs(node.v) * P.dt
+-        ind_move = int(round(dist_move / P.d_dist))
+-        index = min(ind + ind_move, length - 1)
+-        z_ref[0, i] = ref_path.cx[index]
+-        z_ref[1, i] = ref_path.cy[index]
+-        z_ref[2, i] = sp[index]
+-        z_ref[3, i] = ref_path.cyaw[index]
+-    return z_ref, ind
+-
+-
+-def linear_mpc_control(z_ref, z0, a_old, delta_old):
+-    if a_old is None or delta_old is None:
+-        a_old = [0.0] * P.T
+-        delta_old = [0.0] * P.T
+-    x, y, yaw, v = None, None, None, None
+-    for k in range(P.iter_max):
+-        z_bar = predict_states_in_T_step(z0, a_old, delta_old, z_ref)
+-        a_rec, delta_rec = a_old[:], delta_old[:]
+-        a_old, delta_old, x, y, yaw, v = solve_linear_mpc(z_ref, z_bar, z0, delta_old)
+-        du_a_max = max([abs(ia - iao) for ia, iao in zip(a_old, a_rec)])
+-        du_d_max = max([abs(ide - ido) for ide, ido in zip(delta_old, delta_rec)])
+-        if max(du_a_max, du_d_max) < P.du_res:
+-            break
+-    return a_old, delta_old, x, y, yaw, v
+-
+-
+-def predict_states_in_T_step(z0, a, delta, z_ref):
+-    z_bar = z_ref * 0.0
+-    for i in range(P.NX):
+-        z_bar[i, 0] = z0[i]
+-    node = Node(x=z0[0], y=z0[1], v=z0[2], yaw=z0[3])
+-    for ai, di, i in zip(a, delta, range(1, P.T + 1)):
+-        node.update(ai, di, 1.0)
+-        z_bar[0, i] = node.x
+-        z_bar[1, i] = node.y
+-        z_bar[2, i] = node.v
+-        z_bar[3, i] = node.yaw
+-    return z_bar
+-
+-
+-def calc_linear_discrete_model(v, phi, delta):
+-    A = np.array([[1.0, 0.0, P.dt * math.cos(phi), - P.dt * v * math.sin(phi)],
+-                  [0.0, 1.0, P.dt * math.sin(phi), P.dt * v * math.cos(phi)],
+-                  [0.0, 0.0, 1.0, 0.0],
+-                  [0.0, 0.0, P.dt * math.tan(delta) / P.WB, 1.0]])
+-    B = np.array([[0.0, 0.0],
+-                  [0.0, 0.0],
+-                  [P.dt, 0.0],
+-                  [0.0, P.dt * v / (P.WB * math.cos(delta) ** 2)]])
+-    C = np.array([P.dt * v * math.sin(phi) * phi,
+-                  -P.dt * v * math.cos(phi) * phi,
+-                  0.0,
+-                  -P.dt * v * delta / (P.WB * math.cos(delta) ** 2)])
+-    return A, B, C
+-
+-
+-def solve_linear_mpc(z_ref, z_bar, z0, d_bar):
+-    z = cvxpy.Variable((P.NX, P.T + 1))
+-    u = cvxpy.Variable((P.NU, P.T))
+-    cost = 0.0
+-    constrains = []
+-    for t in range(P.T):
+-        cost += cvxpy.quad_form(u[:, t], P.R)
+-        cost += cvxpy.quad_form(z_ref[:, t] - z[:, t], P.Q)
+-        A, B, C = calc_linear_discrete_model(z_bar[2, t], z_bar[3, t], d_bar[t])
+-        constrains += [z[:, t + 1] == A @ z[:, t] + B @ u[:, t] + C]
+-        if t < P.T - 1:
+-            cost += cvxpy.quad_form(u[:, t + 1] - u[:, t], P.Rd)
+-            constrains += [cvxpy.abs(u[1, t + 1] - u[1, t]) <= P.steer_change_max * P.dt]
+-    cost += cvxpy.quad_form(z_ref[:, P.T] - z[:, P.T], P.Qf)
+-    constrains += [z[:, 0] == z0]
+-    constrains += [z[2, :] <= P.speed_max]
+-    constrains += [z[2, :] >= P.speed_min]
+-    constrains += [cvxpy.abs(u[0, :]) <= P.acceleration_max]
+-    constrains += [cvxpy.abs(u[1, :]) <= P.steer_max]
+-    prob = cvxpy.Problem(cvxpy.Minimize(cost), constrains)
+-    try:
+-        prob.solve(solver=cvxpy.OSQP)
+-    except Exception as e:
+-        print(f"OSQP solve failed: {e}")
+-        return [0.0] * P.T, [0.0] * P.T, None, None, None, None
+-    a, delta, x, y, yaw, v = None, None, None, None, None, None
+-    if prob.status == cvxpy.OPTIMAL or prob.status == cvxpy.OPTIMAL_INACCURATE:
+-        x = z.value[0, :]
+-        y = z.value[1, :]
+-        v = z.value[2, :]
+-        yaw = z.value[3, :]
+-        a = u.value[0, :]
+-        delta = u.value[1, :]
+-    else:
+-        print("Cannot solve linear mpc!")
+-        a = [0.0] * P.T
+-        delta = [0.0] * P.T
+-    return a, delta, x, y, yaw, v
+-
+-def calc_speed_profile(cx, cy, cyaw, target_speed):
+-    speed_profile = [target_speed] * len(cx)
+-    direction = 1.0
+-    for i in range(len(cx) - 1):
+-        dx = cx[i + 1] - cx[i]
+-        dy = cy[i + 1] - cy[i]
+-        move_direction = math.atan2(dy, dx)
+-        if dx != 0.0 and dy != 0.0:
+-            dangle = abs(pi_2_pi(move_direction - cyaw[i]))
+-            if dangle >= math.pi / 4.0:
+-                direction = -1.0
+-            else:
+-                direction = 1.0
+-        if direction != 1.0:
+-            speed_profile[i] = - target_speed
+-        else:
+-            speed_profile[i] = target_speed
+-    speed_profile[-1] = 0.0
+-    return speed_profile
+-
+-def pi_2_pi(angle):
+-    if angle > math.pi:
+-        return angle - 2.0 * math.pi
+-    if angle < -math.pi:
+-        return angle + 2.0 * math.pi
+-    return angle
+-
+-# ========== 主控函数：完整跟踪PPO输出参考轨迹 ==========
+-def mpc_track_ppo_path(cx, cy, cyaw=None, target_speed=2.0, plot=True, grid_size=4):
+-    """
+-    输入PPO轨迹点(cx, cy)，自动MPC全程跟踪并可视化
+-    :param cx: PPO参考x点序列
+-    :param cy: PPO参考y点序列
+-    :param cyaw: 参考yaw，若无则自动用差分估算
+-    :param target_speed: 目标速度（可调）
+-    :param plot: 是否画图
+-    :param grid_size: 地图尺寸（用于结果裁剪）
+-    :return: mpc_x, mpc_y
+-    """
+-    if cyaw is None:
+-        # 差分法自动估算yaw
+-        cyaw = np.zeros_like(cx)
+-        for i in range(1, len(cx)):
+-            dx = cx[i] - cx[i-1]
+-            dy = cy[i] - cy[i-1]
+-            cyaw[i] = math.atan2(dy, dx)
+-        cyaw[0] = cyaw[1]
+-    ck = np.zeros_like(cx)
+-    sp = calc_speed_profile(cx, cy, cyaw, target_speed)
+-    mpc_ref_path = PATH(cx, cy, cyaw, ck)
+-    node = Node(x=cx[0], y=cy[0], yaw=cyaw[0], v=0.0)
+-    a_opt, delta_opt = None, None
+-    mpc_x, mpc_y = [node.x], [node.y]
+-    steps = 0
+-    max_steps = len(cx) + 50
+-    while True:
+-        z_ref, target_ind = calc_ref_trajectory_in_T_step(node, mpc_ref_path, sp)
+-        z0 = [node.x, node.y, node.v, node.yaw]
+-        a_opt, delta_opt, *_ = linear_mpc_control(z_ref, z0, a_opt, delta_opt)
+-        node.update(a_opt[0], delta_opt[0], 1.0)
+-        mpc_x.append(node.x)
+-        mpc_y.append(node.y)
+-        steps += 1
+-        dx = node.x - cx[-1]
+-        dy = node.y - cy[-1]
+-        # 更严格的收敛条件：距离终点<0.2且速度<0.1
+-        if np.hypot(dx, dy) < 0.2 and abs(node.v) < 0.1:
+-            break
+-        if steps > max_steps:
+-            break
+-    # 可选：最后一帧对齐终点
+-    if np.hypot(mpc_x[-1] - cx[-1], mpc_y[-1] - cy[-1]) < 0.5:
+-        mpc_x[-1], mpc_y[-1] = cx[-1], cy[-1]
+-    # 可选：裁剪所有轨迹点到地图范围内
+-    mpc_x = np.clip(mpc_x, 0, grid_size-1)
+-    mpc_y = np.clip(mpc_y, 0, grid_size-1)
+-    if plot:
+-        plt.plot(cx, cy, '-o', label='参考路径')
+-        plt.plot(mpc_x, mpc_y, '-x', label='MPC跟踪轨迹')
+-        plt.legend(); plt.axis('equal'); plt.title("参考路径与MPC轨迹对比")
+-        plt.xlabel('x'); plt.ylabel('y'); plt.show()
+-    return np.array(mpc_x), np.array(mpc_y)
+-
+-# 用法示例（注释掉，按需调用）：
+-# cx, cy = ... # 这里传入你的PPO/A*输出轨迹点
+-# mpc_x, mpc_y = mpc_track_ppo_path(cx, cy)
++from navstack.mpc import MPC, ControlResult
++from navstack.vehicle import VehiclePlant, VehicleState, Command
++from navstack.trajectory import Trajectory, parameterize, tracking_error
+--- legacy_snapshot_20261016\ppo_agent.py
++++ ppo_agent.py
+@@ -1,202 +1,8 @@
+-# ppo_agent.py
++"""PPO trains inside the physical closed loop with strict checkpoint signatures."""
+ 
+-import os
+-import numpy as np
+-from stable_baselines3 import PPO
+-from stable_baselines3.common.vec_env import SubprocVecEnv
+-from stable_baselines3.common.monitor import Monitor
+-from stable_baselines3.common.callbacks import BaseCallback
+-from stable_baselines3.common.evaluation import evaluate_policy
++from navstack.experiments import train as train_agent, load_run as load_agent, evaluate
+ 
+-from env_gridworld import GridWorldGymEnv
++if __name__ == "__main__":
++    from navstack.cli import main
+ 
+-# === 回调：收集每集 reward ===
+-class RewardHistoryCallback(BaseCallback):
+-    def __init__(self, reward_log_path="rewards.npy", verbose=0):
+-        super().__init__(verbose)
+-        self.reward_log_path = reward_log_path
+-        self.episode_rewards = []
+-
+-    def _on_step(self) -> bool:
+-        infos = self.locals.get("infos", [])
+-        for info in infos:
+-            if "episode" in info:
+-                self.episode_rewards.append(info["episode"]["r"])
+-        return True
+-
+-    def _on_training_end(self) -> None:
+-        np.save(self.reward_log_path, np.array(self.episode_rewards))
+-        print(f"[PPO_AGENT] rewards saved to {self.reward_log_path}")
+-
+-# === 回调：收集每集 success (0/1) ===
+-class SuccessHistoryCallback(BaseCallback):
+-    def __init__(self, success_log_path="successes.npy", verbose=0):
+-        super().__init__(verbose)
+-        self.success_log_path = success_log_path
+-        self.episode_success = []
+-        self._current_success = 0  # 本集是否已到达过 goal
+-
+-    def _on_step(self) -> bool:
+-        infos = self.locals.get("infos", [])
+-        for info in infos:
+-            if info.get("success", False):
+-                self._current_success = 1
+-            if "episode" in info:
+-                # episode 结束，记录一次
+-                self.episode_success.append(self._current_success)
+-                self._current_success = 0
+-        return True
+-
+-    def _on_training_end(self) -> None:
+-        np.save(self.success_log_path, np.array(self.episode_success))
+-        print(f"[PPO_AGENT] successes saved to {self.success_log_path}")
+-
+-# === 环境工厂 ===
+-def make_env(seed=None, grid_size=4, obstacle_num=0, max_steps=30):
+-    def _init():
+-        env = GridWorldGymEnv(
+-            grid_size=grid_size,
+-            obstacle_num=obstacle_num,
+-            max_steps=max_steps,
+-            seed=seed
+-        )
+-        return Monitor(env)
+-    return _init
+-
+-# === 训练函数 ===
+-def train_agent(
+-    total_timesteps=1e5,
+-    n_envs=4,
+-    grid_size=4,
+-    obstacle_num=0,
+-    max_steps=30,
+-    save_path="ppo_gridworld.zip",
+-    reward_log_path="rewards.npy",
+-    success_log_path="successes.npy"
+-):
+-    # 创建并行环境
+-    env = SubprocVecEnv([
+-        make_env(seed=i, grid_size=grid_size, obstacle_num=obstacle_num, max_steps=max_steps)
+-        for i in range(n_envs)
+-    ])
+-    model = PPO(
+-        "MlpPolicy", env,
+-        learning_rate=5e-5, n_steps=512, batch_size=128, n_epochs=10,
+-        gamma=0.99, clip_range=0.05, ent_coef=0.01,
+-        normalize_advantage=True, verbose=1,
+-        tensorboard_log="./ppo_tb/",
+-        seed=0
+-    )
+-    # 挂载回调
+-    reward_cb = RewardHistoryCallback(reward_log_path=reward_log_path)
+-    success_cb = SuccessHistoryCallback(success_log_path=success_log_path)
+-
+-    print("[PPO_AGENT] Start training...")
+-    model.learn(
+-        total_timesteps=int(total_timesteps),
+-        callback=[reward_cb, success_cb]
+-    )
+-    model.save(save_path)
+-    print(f"[PPO_AGENT] Model saved to {save_path}")
+-    return model
+-
+-# === 加载模型 ===
+-def load_agent(model_path="ppo_gridworld.zip"):
+-    print(f"[PPO_AGENT] Loading model from {model_path}")
+-    return PPO.load(model_path)
+-
+-# === 评估成功率 ===
+-def evaluate_success(model, n_eval=100, grid_size=4, obstacle_num=0, max_steps=30):
+-    """
+-    严格评估：在独立环境里运行 n_eval 次，统计 info['success'] 标志。
+-    返回成功率（0.0–1.0）。
+-    """
+-    env = GridWorldGymEnv(
+-        grid_size=grid_size,
+-        obstacle_num=obstacle_num,
+-        max_steps=max_steps
+-    )
+-    success_count = 0
+-
+-    for _ in range(n_eval):
+-        obs, _ = env.reset()
+-        done = False
+-        while not done:
+-            action_arr, _ = model.predict(obs, deterministic=True)
+-            action = int(action_arr)        # 强制转换为 int
+-            obs, reward, terminated, truncated, info = env.step(action)
+-            done = terminated or truncated
+-        if info.get("success", False):
+-            success_count += 1
+-
+-    success_rate = success_count / n_eval
+-    print(f"[METRIC] Success Rate = {success_rate:.2%}  ({success_count}/{n_eval})")
+-    return success_rate
+-
+-# === 决策子目标 (8 邻域) ===
+-import numpy as np
+-
+-def decide_local_goal(model, state, grid_size=4):
+-    """
+-    高层 RL：决策下一个子目标点（任意网格点）。
+-    state: np.array([x, y, gx, gy])
+-    返回 (tx, ty)，其中 tx,ty ∈ [0, grid_size-1]
+-    """
+-    # 模型预测会返回一个形如 [a] 的 array
+-    action_arr, _ = model.predict(state, deterministic=True)
+-    a = int(action_arr)         # 0 .. grid_size*grid_size - 1
+-
+-    # divmod 映射为二维坐标
+-    tx, ty = divmod(a, grid_size)
+-
+-    # 保证在边界内（虽然 divmod 本身已经保证）
+-    tx = int(np.clip(tx, 0, grid_size - 1))
+-    ty = int(np.clip(ty, 0, grid_size - 1))
+-    return (tx, ty)
+-
+-
+-# === 画训练曲线 ===
+-def plot_training_curves(
+-    reward_log_path="rewards.npy",
+-    success_log_path="successes.npy",
+-    smooth_window=10
+-):
+-    import matplotlib.pyplot as plt
+-    from scipy.ndimage import uniform_filter1d
+-
+-    rewards = np.load(reward_log_path)
+-    successes = np.load(success_log_path)
+-    episodes = np.arange(1, len(rewards) + 1)
+-
+-    # 奖励
+-    plt.figure(figsize=(8,4))
+-    plt.plot(episodes, rewards, alpha=0.3, label="Reward per Episode")
+-    if len(rewards) > smooth_window:
+-        sm = uniform_filter1d(rewards, size=smooth_window)
+-        plt.plot(episodes, sm, label=f"Reward MA({smooth_window})")
+-    plt.xlabel("Episode")
+-    plt.ylabel("Reward")
+-    plt.title("PPO Training Reward")
+-    plt.legend()
+-    plt.grid(True)
+-    plt.tight_layout()
+-    plt.show()
+-
+-    # 成功率
+-    plt.figure(figsize=(8,4))
+-    plt.plot(episodes, successes, alpha=0.3, label="Episode Success (0/1)")
+-    if len(successes) > smooth_window:
+-        ss = uniform_filter1d(successes, size=smooth_window)
+-        plt.plot(episodes, ss, label=f"Success Rate MA({smooth_window})")
+-    plt.xlabel("Episode")
+-    plt.ylabel("Success Rate")
+-    plt.title("PPO Training Success Rate")
+-    plt.legend()
+-    plt.grid(True)
+-    plt.tight_layout()
+-    plt.show()
+-
+-# === 直接运行时演示训练与画图 ===
+-if __name__ == "__main__":
+-    model = train_agent()
+-    plot_training_curves()
++    main()
+--- legacy_snapshot_20261016\README.md
++++ README.md
+@@ -1,66 +1,109 @@
+-# Intelligent Driving System
++# 分层 PPO—Hybrid A*—MPC 硕士项目
+ 
+-Hierarchical **DRL–A\*–MPC** framework for autonomous navigation,  
+-featuring PPO decision-making, global A* planning, and MPC tracking solved via **CVXPY + OSQP**, with reproducible simulation demos.
+-<img width="610" height="319" alt="流程图" src="https://github.com/user-attachments/assets/50502628-ba0e-48b4-8d06-4d7d185c730a" />
+----
++研究目标：检验学习高层决策、车辆可行规划和跟踪控制是否改善非分层 PPO 的样本效率、任务质量、稳定性和泛化。**尚未验证分层优势。** 当前交付是可执行的真实轻量车辆闭环、标准 SB3 PPO 短训练和回归测试。
+ 
+-## Features
+-- **High-level decision** — PPO agent (Stable-Baselines3) with clipped objective & GAE for macro-action selection
+-- **Global planning** — 8-neighbor A* with Euclidean heuristic and obstacle avoidance
+-- **Low-level control** — Linear time-varying MPC (LT-MPC) using a kinematic bicycle model, formulated in CVXPY and solved with OSQP
+-- **Modular interfaces** — each layer is swappable without breaking the pipeline
+-- **Reproducible experiments** — fixed seeds, pinned dependencies, logged artifacts
+-- **Simulation demos** — 4×4 empty, 4×4 with obstacles, and 8×8 zero-shot
++旧工程完整保存在 `legacy_snapshot_20261016/`，只作审计，不作为新实验入口。旧 README 的成功率、RMSE 和“零样本”指标存在位置赋值、重复 reset、终点吸附和单位不一致问题，不可用于新论文结论。原目录没有 Git 元数据，当前新建分支为 `feature/physical-hierarchical-ppo`，未 commit/push。
+ 
+----
++## 安装（Windows PowerShell，Python 3.11）
+ 
+-## Project Structure
+-- **A* Planning**: `Astar.py`, `astar_agent.py`  
+-- **High-Level Decision (PPO)**: `ppo_agent.py`, `env_gridworld.py`  
+-- **Low-Level Control (MPC)**: `mpc_agent.py`, `mpc_module.py`  
+-- **Visualization & Utilities**: `visualization.py`, `dialog_parser.py`
+-- - **Simulation**: `simulation.py`
+-## Train PPO
+-  python ppo_agent.py
+-  ![PPO_reward](https://github.com/user-attachments/assets/7c006ce8-a06e-4a88-9b74-e69c0ce2e470)
+-  #  hierarchical(Simulation Demo I — 4×4 Grid (No Obstacles))
+-  ![hierarchical_1](https://github.com/user-attachments/assets/6eeab195-45bd-4b2f-a18c-2975d80073cc)
+-  ![hierarchical_2](https://github.com/user-attachments/assets/d89444ed-31fc-4e71-aeb0-ef37c6c38056)
+-[DEMO_HIER] Goal reached!
+-[METRICS] Success Rate      = 100.00%
+-[METRICS] Optimality Ratio  = 1.000
+-[METRICS] MPC RMSE         = 0.271
+-[METRICS] Total Moves      = 3
+-[METRICS] Avg Plan Time    = 0.05 ms
+-[METRICS] Avg Control Time = 3785.71 ms
+-    
+-  #  obstacle(Simulation Demo II — 4×4 Grid (With Obstacles))
+-  <img width="1041" height="416" alt="image" src="https://github.com/user-attachments/assets/53068e72-109c-42a4-8d1c-a3754c77a406" />
+-[METRICS] Success Rate      = 100.00%
+-[METRICS] Optimality Ratio  = 1.000
+-[METRICS] MPC RMSE         = 0.271
+-[METRICS] Avg Plan Time    = 4.43 ms
+-[METRICS] Avg Control Time = 3475.94 ms
+-    
+-  #  larger(Zero-Shot Generalization (8×8))
+-  <img width="895" height="358" alt="image" src="https://github.com/user-attachments/assets/c117c48d-8764-4cda-ad50-a6ba01466013" />
+-[METRICS] Success Rate      = 0.00%
+-[METRICS] Optimality Ratio  = 1.000
+-[METRICS] MPC RMSE         = 0.643
+-[METRICS] Avg Plan Time    = 4.86 ms
+-[METRICS] Avg Control Time = 4636.28 ms
+-    
+-## Quantitative Results & Comparisons
+-    <img width="859" height="424" alt="image" src="https://github.com/user-attachments/assets/3cfef225-c70f-4435-b160-7e9a610d7680" />
++```powershell
++python -m venv .venv
++.\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
++```
+ 
++依赖只装入项目 `.venv`。`requirements.txt` 是核心直接依赖，锁文件包含本轮完整版本。无需 CARLA 即可运行轻量闭环；不会下载 CARLA 服务端。
+ 
+-    Generalization: It performs well in environments of the same size but without obstacles (Obstacle), but fails in zero-shot scenarios on larger grids (Larger).
+-    Performance balance: Optimal paths are achieved in both default and obstacle scenarios, and MPC RMSE and control latency remain within reasonable ranges.
+-    Latency bottleneck: MPC's runtime is much greater than A* and increases with scene complexity (map size, number of obstacles), suggesting that more efficient tracking algorithms or parallelization solutions can be explored in the future.
++## 单测与完整真实验证
+ 
+-##  Limitations & Future Work
+-    Multi-scenario joint training and fine-tuning: Joint training or domain adaptation is performed in grid environments of different sizes (e.g., 8×8, 16×16) and with various obstacle densities to improve model generalization.
+-    Control layer optimization: Explore parallel MPC or adopt learning-based control (such as deep reinforcement learning controllers and lightweight PID/LQR hybrid strategies) to significantly reduce tracking latency.
+-    Continuous Space and Dynamic Environment Extension: Migrating the grid world framework to continuous space and adding dynamic obstacles to achieve navigation and obstacle avoidance that is closer to real-world scenarios.
+-    Multi-agent collaboration: Research on the collaborative planning and control of multiple agents in a hierarchical architecture to improve the efficiency and robustness of cluster task execution.
++```powershell
++.\.venv\Scripts\python.exe -m pytest -q -m "not training and not carla"
++.\.venv\Scripts\python.exe -m pytest -q
++```
++
++完整测试包含真实 Hybrid A*、真实 OSQP QP、真实车辆积分、静态绕障和 H/B1 的两轮 PPO 优化。Mock 仅用于明确的失败注入。CARLA 条件测试缺资源时会 skip。
++
++一条命令运行 H、B1、B2 的真实训练/重载/验证，B1 hold10 频率对照、B3 和固定参考 MPC 对比：
++
++```powershell
++.\.venv\Scripts\python.exe scripts\smoke_suite.py
++```
++
++每个训练配置640物理步，至少两轮优化，suite 每训练120 s墙钟上限。任务截止30 s，可完成默认23 m路线。它是工程 smoke，**不是训练收敛或优势验证**。所有输出在新建的 `runs/<UTC时间>_smoke_suite_<随机ID>/`，从不覆盖旧实验。
++
++## 分别运行 H/B1 短训练及评估
++
++```powershell
++.\.venv\Scripts\python.exe -m navstack.cli train --method H --profile smoke --seed 7
++$hRun = (Get-ChildItem -LiteralPath runs -Directory -Filter '*train_H_smoke*' | Sort-Object Name | Select-Object -Last 1).FullName
++.\.venv\Scripts\python.exe -m navstack.cli evaluate --method H --run $hRun --split validation --episodes 4
++
++.\.venv\Scripts\python.exe -m navstack.cli train --method B1 --profile smoke --seed 7
++$b1Run = (Get-ChildItem -LiteralPath runs -Directory -Filter '*train_B1_smoke*' | Sort-Object Name | Select-Object -Last 1).FullName
++.\.venv\Scripts\python.exe -m navstack.cli evaluate --method B1 --run $b1Run --split validation --episodes 4
++```
++
++训练的 `total_timesteps` 已按方法动作频率转换，停止条件使用累计实际物理步数，并报告 rollout 超额。每次保存 model.zip、normalization.pkl、配置、源码hash、原始轨迹、奖励分项、优化日志和确定性重载探针。旧 grid PPO 或其他层级签名不匹配会明确拒绝加载，必须重训。
++
++默认规划器有0.1秒墙钟限额，同seed可能受机器负载影响。可复现实验可显式使用节点预算模式（训练与评估须保持同配置，不能悄悄替换底层）：
++
++```powershell
++.\.venv\Scripts\python.exe -m navstack.cli train --method H --config configs/offline_H.json --profile smoke --seed 7
++```
++
++## B2/B3、频率与控制失配
++
++```powershell
++.\.venv\Scripts\python.exe -m navstack.cli train --method B2 --profile smoke --seed 7
++.\.venv\Scripts\python.exe -m navstack.cli baseline-smoke --method B2 --episodes 4
++.\.venv\Scripts\python.exe -m navstack.cli baseline-smoke --method B3 --episodes 4
++.\.venv\Scripts\python.exe -m navstack.cli train --method B1 --flat-hold 10 --profile smoke --seed 7
++.\.venv\Scripts\python.exe -m navstack.cli benchmark --steps 240
++```
++
++B2 `train` 是真实 PPO；B2 `baseline-smoke` 只是明确标注 cycle 的固定目标接口检查，不能当成训练策略。B3 明确为规则对照。统一场景与车辆，flat PPO 不制造参考轨迹或 MPC RMSE。
++
++## 多预算、多独立种子（不自动启动）
++
++先用 `--profile debug --physics-budget 6400` 测速。下面是正式执行命令，耗时明显超过 smoke，只有你手动执行时才会启动。600 s是默认墙钟上限；正式命令显式设为3600 s，超时会记录不完整状态。
++
++```powershell
++foreach ($method in @('H', 'B1', 'B2')) {
++    foreach ($seed in @(11, 22, 33, 44, 55)) {
++        foreach ($budget in @(100000, 300000, 1000000)) {
++            .\.venv\Scripts\python.exe -m navstack.cli train --method $method --profile formal --seed $seed --physics-budget $budget --wall-seconds 3600
++        }
++    }
++}
++```
++
++相同 seed 的不同候选 checkpoint 用 `select` 在验证集选择，禁止挑选最好的训练 seed：
++
++```powershell
++.\.venv\Scripts\python.exe -m navstack.cli select $hRun --episodes 16
++```
++
++该例只有一个候选；多个候选路径可依次追加。选择规则是安全、成功、全样本进度、成功条件通行时间。选定后再运行 `evaluate --split test`，不能用测试集反复调参。训练/验证/测试 seed 域、未见布局、频率差异和区间统计计划见 `docs/experiment_protocol.md`；当前没有正式种子区间或论文学习曲线。
++
++## 报告与入口
++
++```powershell
++.\.venv\Scripts\python.exe -m navstack.cli report
++.\.venv\Scripts\python.exe Simulation.py --help
++```
++
++suite 的报告指定 `--root` 为打印出的 suite 目录。报告保留所有失败回合；旧8秒调试记录单独注明，不与30秒任务混算。CSV优化日志在 sb3/，逐轮 KL、clip_fraction、entropy、value_loss、explained_variance 在 optimization.jsonl。
++
++主代码位于 navstack/：env.py 唯一环境；vehicle.py 唯一状态源；planning.py 两个规划器；trajectory.py 弧长/速度/时空检查；mpc.py 单周期QP；reward.py共享奖励；experiments.py训练评估。旧顶层模块成为显式新接口桥接，不再保留瞬移演示入口。
++
++## CARLA 条件测试
++
++```powershell
++.\.venv\Scripts\python.exe -m navstack.cli carla-probe
++$env:RUN_CARLA = '1'
++.\.venv\Scripts\python.exe -m pytest -q -m carla -rs
++Remove-Item Env:\RUN_CARLA
++```
++
++需要用户已部署的服务端、2000端口、同版本Python客户端、空闲spawn点。配置样例是 configs/carla.json。当前客户端缺失且端口不可达，明确 BLOCKED。适配器采用同步固定步长，不开自车autopilot、不瞬移，只清理自建actor并恢复world设置。条件测试目前只检查真实plant接口，**完整PPO→CARLA、车辆几何/纵向标定及三类场景尚未验证**，不能写成CARLA已完成。
++
++实施说明见 `docs/design.md`；实测结果与未完成项见 `docs/change_report.md`；下一步可执行命令见 `docs/handoff.md`。
+--- legacy_snapshot_20261016\Simulation.py
++++ Simulation.py
+@@ -1,404 +1,6 @@
+-# Simulation.py
++"""Physical closed-loop entrypoint. See README.md."""
+ 
+-import sys
+-import os
+-import ast
+-import math
+-import time
+-import numpy as np
+-import matplotlib.pyplot as plt
++from navstack.cli import main
+ 
+-# Ensure project root modules load first
+-project_root = os.path.dirname(os.path.abspath(__file__))
+-if project_root not in sys.path:
+-    sys.path.insert(0, project_root)
+-
+-from env_gridworld import GridWorldGymEnv
+-from ppo_agent import (
+-    train_agent,
+-    load_agent,
+-    decide_local_goal,
+-    plot_training_curves,
+-    evaluate_success
+-)
+-from astar_agent import plan_with_astar
+-from mpc_agent import mpc_track_path, plot_path_compare
+-from visualization import plot_grid_path
+-from dialog_parser import parse_command
+-
+-def infer_custom(env, model):
+-    """
+-    Run one rollout in env with model, return a dict of metrics:
+-      'success', 'optimality', 'astar_time', 'mpc_time', 'rmse'
+-    """
+-    # reset environment and record start position
+-    obs, _ = env.reset()
+-    agent_pos = tuple(env.agent_pos)
+-    start_pos = agent_pos  # record initial position for optimality calculation
+-    goal = tuple(env.goal_pos)
+-
+-    plan_times = []
+-    ctrl_times = []
+-    mse_acc = 0.0
+-    pt_cnt = 0
+-    full_moves = 0
+-    success = False
+-
+-    while full_moves < env.max_steps:
+-        state = np.array(obs, dtype=np.float32)
+-        action_arr, _ = model.predict(state, deterministic=True)
+-        action = int(action_arr)
+-        sub_goal = decide_local_goal(model, state, grid_size=env.grid_size)
+-
+-        # A* planning
+-        t0 = time.perf_counter()
+-        path = plan_with_astar(agent_pos, sub_goal, set(env.obstacles), env.grid_size)
+-        dt_plan = time.perf_counter() - t0
+-        plan_times.append(dt_plan)
+-        if len(path) < 2:
+-            break
+-
+-        # MPC tracking
+-        t1 = time.perf_counter()
+-        mpc_path = mpc_track_path(path)
+-        dt_ctrl = time.perf_counter() - t1
+-        ctrl_times.append(dt_ctrl)
+-
+-        # accumulate full_moves
+-        full_moves += len(path) - 1
+-
+-        # accumulate RMSE
+-        ref = np.array(path)
+-        for x, y in mpc_path:
+-            d2 = np.min((ref[:,0] - x)**2 + (ref[:,1] - y)**2)
+-            mse_acc += d2
+-            pt_cnt += 1
+-
+-        # advance for next step
+-        agent_pos = path[-1]
+-        env.agent_pos = list(agent_pos)
+-        obs, info = env.reset()
+-        if agent_pos == goal:
+-            success = True
+-            break
+-
+-    # compute metrics
+-    total_moves = full_moves
+-    # compute shortest path length from start to goal (Chebyshev distance)
+-    dx = abs(goal[0] - start_pos[0])
+-    dy = abs(goal[1] - start_pos[1])
+-    shortest = max(dx, dy)
+-    optimality = (shortest / total_moves) if total_moves > 0 else 0.0
+-    astar_time = np.mean(plan_times) if plan_times else 0.0
+-    mpc_time = np.mean(ctrl_times) if ctrl_times else 0.0
+-    rmse = math.sqrt(mse_acc / pt_cnt) if pt_cnt > 0 else 0.0
+-
+-    return {
+-        'success': success * 1.0,
+-        'optimality': optimality,
+-        'astar_time': astar_time,
+-        'mpc_time': mpc_time,
+-        'rmse': rmse
+-    }
+-
+-def plot_summary(summary, title):
+-    """
+-    Plot bar chart for a single scenario summary.
+-    summary: dict of metric->(mean,std)
+-    """
+-    metrics = ['success','optimality','rmse','astar_time','mpc_time']
+-    labels = ['Success Rate','Optimality Ratio','MPC RMSE','A* Time (s)','MPC Time (s)']
+-    means = [summary[m][0] for m in metrics]
+-    stds  = [summary[m][1] for m in metrics]
+-    x = np.arange(len(metrics))
+-    plt.figure(figsize=(10,4))
+-    plt.bar(x, means, yerr=stds, capsize=5)
+-    plt.xticks(x, labels)
+-    plt.title(title)
+-    plt.tight_layout()
+-    plt.show()
+-
+-def demo_infer():
+-    """
+-    Single-step demo: PPO -> A* planning in default 4x4 empty env
+-    """
+-    model = load_agent()
+-    env = GridWorldGymEnv()
+-    obs, _ = env.reset()
+-    agent_pos = tuple(env.agent_pos)
+-    goal = tuple(env.goal_pos)
+-    print(f"[DEMO_INFER] Agent position: {agent_pos}, Goal: {goal}")
+-    state = np.array(obs, dtype=np.float32)
+-    action_arr, _ = model.predict(state, deterministic=True)
+-    action = int(action_arr)
+-    sub_goal = decide_local_goal(model, state, grid_size=env.grid_size)
+-    print(f"[DEMO_INFER] PPO sub-goal: {sub_goal}")
+-    path = plan_with_astar(agent_pos, sub_goal, set(env.obstacles), env.grid_size)
+-    print(f"[DEMO_INFER] A* path: {path}")
+-    plot_grid_path(
+-        grid_size=env.grid_size,
+-        path=path,
+-        obstacles=set(env.obstacles),
+-        start=agent_pos,
+-        goal=sub_goal,
+-        title="PPO → A* Subgoal Planning"
+-    )
+-
+-
+-
+-def demo_astar():
+-    """
+-    Manual A* demo: enter start and goal
+-    """
+-    s_start = input("Enter A* start (x,y): ")
+-    s_goal = input("Enter A* goal  (x,y): ")
+-    start = tuple(map(int, s_start.strip("()").split(",")))
+-    goal = tuple(map(int, s_goal.strip("()").split(",")))
+-    env = GridWorldGymEnv()
+-    path = plan_with_astar(start, goal, set(env.obstacles), env.grid_size)
+-    print(f"[DEMO_ASTAR] Path from {start} to {goal}: {path}")
+-    plot_grid_path(
+-        grid_size=env.grid_size,
+-        path=path,
+-        obstacles=set(env.obstacles),
+-        start=start,
+-        goal=goal,
+-        title="A* Path Planning"
+-    )
+-
+-
+-def demo_mpc():
+-    """
+-    MPC demo: smooth & track given discrete path
+-    """
+-    raw = input("Enter reference path [(x1,y1),(x2,y2),...]: ")
+-    try:
+-        ref_path = ast.literal_eval(raw)
+-    except Exception as e:
+-        print(f"[DEMO_MPC] Invalid input: {e}")
+-        return
+-    print(f"[DEMO_MPC] Reference path: {ref_path}")
+-    mpc_path = mpc_track_path(ref_path)
+-    plot_path_compare(
+-        a_star_path=ref_path,
+-        smooth_xy=ref_path.copy(),
+-        mpc_path=mpc_path,
+-        goal=ref_path[-1],
+-        title="A* vs Smoothed vs MPC"
+-    )
+-
+-
+-def demo_hierarchical():
+-    """
+-    End-to-end hierarchical demo: PPO -> A* -> MPC
+-    Shows step-by-step operations at each layer, then metrics and plots.
+-    """
+-    model = load_agent()
+-    env = GridWorldGymEnv()
+-    obs, _ = env.reset()
+-    agent_pos = tuple(env.agent_pos)
+-    goal = tuple(env.goal_pos)
+-    print(f"[DEMO_HIER] Start: {agent_pos}, Goal: {goal}")
+-
+-    full_traj = [agent_pos]
+-    mpc_full = []
+-    plan_times, ctrl_times = [], []
+-    mse_accum = 0.0
+-    point_cnt = 0
+-    success = False
+-
+-    for step in range(env.max_steps):
+-        state = np.array(obs, dtype=np.float32)
+-        action_arr, _ = model.predict(state, deterministic=True)
+-        action = int(action_arr)
+-        sub_goal = decide_local_goal(model, state, grid_size=env.grid_size)
+-        print(f"[DEMO_HIER] Step {step}: PPO action={action}, sub-goal={sub_goal}")
+-
+-        # A* planning
+-        t0 = time.perf_counter()
+-        path = plan_with_astar(agent_pos, sub_goal, set(env.obstacles), env.grid_size)
+-        dt_plan = time.perf_counter() - t0
+-        plan_times.append(dt_plan)
+-        print(f"  A* path: {path}, plan time={dt_plan*1000:.2f}ms")
+-        if len(path) < 2:
+-            print("  A* failed, stopping.")
+-            break
+-
+-        # MPC tracking
+-        t1 = time.perf_counter()
+-        mpc_path = mpc_track_path(path)
+-        dt_ctrl = time.perf_counter() - t1
+-        ctrl_times.append(dt_ctrl)
+-        print(f"  MPC points: {len(mpc_path)}, control time={dt_ctrl*1000:.2f}ms")
+-
+-        # accumulate error
+-        ref = np.array(path)
+-        for px, py in mpc_path:
+-            d2 = np.min((ref[:,0]-px)**2 + (ref[:,1]-py)**2)
+-            mse_accum += d2
+-            point_cnt += 1
+-
+-        # advance agent
+-        full_traj += path[1:]
+-        mpc_full += mpc_path
+-        agent_pos = path[-1]
+-        env.agent_pos = list(agent_pos)
+-        obs, info = env.reset()
+-
+-        if agent_pos == goal:
+-            print("[DEMO_HIER] Goal reached!")
+-            success = True
+-            break
+-
+-    # metrics calculation and display
+-    total_moves = len(full_traj) - 1
+-    dx = abs(full_traj[0][0] - goal[0])
+-    dy = abs(full_traj[0][1] - goal[1])
+-    shortest_steps = max(dx, dy)
+-    optimality = (shortest_steps / total_moves) if total_moves > 0 else 0.0
+-    rmse = math.sqrt(mse_accum/point_cnt) if point_cnt>0 else float('nan')
+-    avg_plan = np.mean(plan_times)*1000 if plan_times else 0.0
+-    avg_ctrl = np.mean(ctrl_times)*1000 if ctrl_times else 0.0
+-    sr = 1.0 if success else 0.0
+-
+-    print(f"[METRICS] Success Rate      = {sr:.2%}")
+-    print(f"[METRICS] Optimality Ratio  = {optimality:.3f}")
+-    print(f"[METRICS] MPC RMSE         = {rmse:.3f}")
+-    print(f"[METRICS] Total Moves      = {total_moves}")
+-    print(f"[METRICS] Avg Plan Time    = {avg_plan:.2f} ms")
+-    print(f"[METRICS] Avg Control Time = {avg_ctrl:.2f} ms")
+-
+-    # plot discrete trajectory
+-    plot_grid_path(
+-        grid_size=env.grid_size,
+-        path=full_traj,
+-        obstacles=set(env.obstacles),
+-        start=full_traj[0],
+-        goal=goal,
+-        title="RL + A* Combined Trajectory"
+-    )
+-    # plot MPC tracking trajectory
+-    plot_grid_path(
+-        grid_size=env.grid_size,
+-        path=mpc_full,
+-        obstacles=set(env.obstacles),
+-        start=full_traj[0],
+-        goal=goal,
+-        title="MPC Tracking Trajectory"
+-    )
+-
+-
+-def batch_test(env_params, trials=50):
+-    """
+-    Run infer_custom trials times with same env_params, collect metrics,
+-    return summary dict of metric->(mean, std).
+-    """
+-    model = load_agent()
+-    # 准备收集列表
+-    metrics = {
+-        'success':    [],
+-        'optimality': [],
+-        'astar_time': [],
+-        'mpc_time':   [],
+-        'rmse':       []
+-    }
+-
+-    for _ in range(trials):
+-        env = GridWorldGymEnv(**env_params)
+-        # 这里 infer_custom 需要返回一个 dict，包含上述五个指标
+-        res = infer_custom(env, model)  # assume returns that dict
+-        for k in metrics:
+-            metrics[k].append(res[k])
+-
+-    # 计算均值和标准差
+-    summary = {}
+-    for k, vals in metrics.items():
+-        arr = np.array(vals, dtype=float)
+-        summary[k] = (arr.mean(), arr.std())
+-
+-    return summary
+-
+-
+-def compare_summaries(summaries, labels, title):
+-    """
+-    Plot grouped bar chart comparing metrics across scenarios.
+-    summaries: list of dict(metric->(mean,std))
+-    labels: list of scenario names
+-    """
+-    metrics = ['success','optimality','rmse','astar_time','mpc_time']
+-    metric_labels = ['Success Rate','Optimality Ratio','MPC RMSE','A* Time (s)','MPC Time (s)']
+-    n = len(summaries)
+-    x = np.arange(len(metrics))
+-    width = 0.8 / n
+-    plt.figure(figsize=(10,5))
+-    for i, summ in enumerate(summaries):
+-        means = [summ[m][0] for m in metrics]
+-        stds  = [summ[m][1] for m in metrics]
+-        plt.bar(x + i*width, means, width, yerr=stds, capsize=3, label=labels[i])
+-    plt.xticks(x + width*(n-1)/2, metric_labels)
+-    plt.ylabel('Value')
+-    plt.title(title)
+-    plt.legend()
+-    plt.tight_layout()
+-    plt.show()
+-
+-
+-def main():
+-    print("Commands: train | infer | astar | mpc | hierarchical | larger | obstacle | compare | exit")
+-    while True:
+-        cmd = input(">>> ").strip().lower()
+-        if cmd == 'train':
+-            train_agent()
+-            print("[TRAIN] complete.")
+-            plot_training_curves(
+-                reward_log_path="rewards.npy",
+-                success_log_path="successes.npy",
+-                smooth_window=10
+-            )
+-            sr = evaluate_success(
+-                load_agent(), n_eval=100,
+-                grid_size=4, obstacle_num=0, max_steps=30
+-            )
+-            print(f"[TRAIN] Eval default success rate: {sr:.2%}")
+-        elif cmd == 'infer':
+-            demo_infer()
+-        elif cmd == 'astar':
+-            demo_astar()
+-        elif cmd == 'mpc':
+-            demo_mpc()
+-        elif cmd == 'hierarchical':
+-            demo_hierarchical()
+-        elif cmd in ('larger','larger map'):
+-            print("[BATCH] Larger map 8x8 empty")
+-            summary_large = batch_test({'grid_size':8,'obstacle_num':0,'max_steps':100}, trials=50)
+-            print(summary_large)
+-            plot_summary(summary_large, "Zero-shot on 8×8 empty map")
+-        elif cmd in ('obstacle','obstacle situation'):
+-            print("[BATCH] 4x4 with 2 obstacles")
+-            summary_obs = batch_test({'grid_size':4,'obstacle_num':2,'max_steps':50}, trials=50)
+-            print(summary_obs)
+-            plot_summary(summary_obs, "Zero-shot on 4×4 with 2 obstacles")
+-        elif cmd == 'compare':
+-            # plot train curves
+-            plot_training_curves(
+-                reward_log_path="rewards.npy",
+-                success_log_path="successes.npy",
+-                smooth_window=10
+-            )
+-            # batch tests
+-            summary_def   = batch_test({'grid_size':4,'obstacle_num':0,'max_steps':30}, trials=50)
+-            summary_large = batch_test({'grid_size':8,'obstacle_num':0,'max_steps':100}, trials=50)
+-            summary_obs   = batch_test({'grid_size':4,'obstacle_num':2,'max_steps':50}, trials=50)
+-            # compare
+-            compare_summaries(
+-                summaries=[summary_def, summary_large, summary_obs],
+-                labels=["Default 4×4","Larger 8×8","Obstacle 4×4"],
+-                title="Scenario Comparison"
+-            )
+-        elif cmd == 'exit':
+-            break
+-        else:
+-            print("Unknown command.")
+-
+-if __name__ == '__main__':
+-    main()+if __name__ == "__main__":
++    main()
+--- legacy_snapshot_20261016\visualization.py
++++ visualization.py
+@@ -1,104 +1,6 @@
+-import os
+-import pandas as pd
+-import matplotlib.pyplot as plt
+-import numpy as np
++"""Report measured runs only; missing tracking errors remain missing."""
+ 
++from navstack.experiments import report
+ 
+-def plot_grid_path(grid_size, path, obstacles, start, goal, title="Path"):
+-    """
+-    原有网格与路径可视化函数，绘制方格背景、障碍、起点/终点及轨迹
+-    """
+-    fig, ax = plt.subplots(figsize=(6, 6))
+-    ax.set_xlim(-0.5, grid_size - 0.5)
+-    ax.set_ylim(-0.5, grid_size - 0.5)
+-    ax.set_xticks(np.arange(0, grid_size))
+-    ax.set_yticks(np.arange(0, grid_size))
+-    ax.grid(True)
+-
+-    # 绘制障碍
+-    if obstacles:
+-        obs = np.array(list(obstacles))
+-        ax.scatter(obs[:, 0], obs[:, 1], marker='s', s=200, c='black', label='Obstacle')
+-
+-    # 绘制起点和终点
+-    ax.scatter(start[0], start[1], marker='o', s=200, c='green', label='Start')
+-    ax.scatter(goal[0], goal[1], marker='*', s=200, c='red', label='Goal')
+-
+-    # 绘制路径
+-    pts = np.array(path)
+-    ax.plot(pts[:, 0], pts[:, 1], '-o', label='Path')
+-
+-    ax.set_title(title)
+-    ax.legend()
+-    plt.gca().invert_yaxis()
+-    plt.show()
+-
+-
+-def plot_path_compare(a_star_path, smooth_xy, mpc_path, goal, title="Compare"):
+-    """
+-    绘制 A* 路径、平滑轨迹和 MPC 跟踪轨迹对比。
+-    """
+-    fig, ax = plt.subplots(figsize=(6, 6))
+-    # A*
+-    ast = np.array(a_star_path)
+-    ax.plot(ast[:, 0], ast[:, 1], '-s', label='A* Path')
+-    # 平滑轨迹
+-    sm = np.array(smooth_xy)
+-    ax.plot(sm[:, 0], sm[:, 1], '--', label='Smoothed')
+-    # MPC
+-    mpc = np.array(mpc_path)
+-    ax.plot(mpc[:, 0], mpc[:, 1], '-.', label='MPC Track')
+-
+-    ax.scatter(goal[0], goal[1], marker='*', s=200, c='red')
+-    ax.set_title(title)
+-    ax.legend()
+-    plt.gca().invert_yaxis()
+-    plt.show()
+-
+-
+-def plot_metrics(metrics_file="metrics.csv", figsize=(12, 6)):
+-    """
+-    从 metrics.csv（带表头）读取，绘制主要指标趋势和柱状对比。
+-    """
+-    import pandas as pd
+-    if not os.path.exists(metrics_file):
+-        print(f"[可视化] 未找到指标文件：{metrics_file}")
+-        return
+-
+-    df = pd.read_csv(metrics_file)
+-    # 只保留float列
+-    sr = df['sr'].astype(float).values
+-    oratio = df['oratio'].astype(float).values
+-    rmse = df['rmse'].astype(float).values
+-    idx = np.arange(1, len(sr) + 1)
+-
+-    # 折线图
+-    plt.figure(figsize=figsize)
+-    ax1 = plt.gca()
+-    ax1.plot(idx, sr, marker='o', label='Success Rate')
+-    ax1.plot(idx, oratio, marker='s', label='Optimality Ratio')
+-    ax1.set_xlabel('Experiment Index')
+-    ax1.set_ylabel('Rate / Ratio')
+-    ax1.grid(True)
+-    ax1.legend(loc='upper left')
+-
+-    ax2 = ax1.twinx()
+-    ax2.plot(idx, rmse, color='C3', marker='^', label='MPC RMSE')
+-    ax2.set_ylabel('MPC RMSE (m)')
+-    ax2.legend(loc='upper right')
+-
+-    plt.title('Key Metrics Over Experiments')
+-    plt.tight_layout()
+-    plt.show()
+-
+-    # 柱状图
+-    width = 0.25
+-    plt.figure(figsize=figsize)
+-    plt.bar(idx - width, sr, width, label='Success Rate')
+-    plt.bar(idx, oratio, width, label='Optimality Ratio')
+-    plt.bar(idx + width, rmse, width, label='MPC RMSE')
+-    plt.xlabel('Experiment Index')
+-    plt.legend()
+-    plt.title('Key Metrics Comparison')
+-    plt.tight_layout()
+-    plt.show()+if __name__ == "__main__":
++    report()

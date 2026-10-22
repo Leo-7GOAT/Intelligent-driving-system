@@ -1,0 +1,4 @@
+[
+  {"version":"development_v2","name":"H_seed11","method":"H","seed":11,"budget":100000,"reward_beta":10,"terminal_goal_prefix":true},
+  {"version":"development_v2","name":"B1_seed11","method":"B1","seed":11,"budget":100000,"reward_beta":10,"terminal_goal_prefix":true,"ppo_options":{"log_std_init":-0.7,"forward_mean_bias":0.3}}
+]

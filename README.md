@@ -1,66 +1,72 @@
-# Intelligent Driving System
+# Executability-aware hierarchical driving research
 
-Hierarchical **DRL–A\*–MPC** framework for autonomous navigation,  
-featuring PPO decision-making, global A* planning, and MPC tracking solved via **CVXPY + OSQP**, with reproducible simulation demos.
-<img width="610" height="319" alt="流程图" src="https://github.com/user-attachments/assets/50502628-ba0e-48b4-8d06-4d7d185c730a" />
----
+A low-speed research prototype: **PPO → local pose/speed → forward Hybrid A* → time-parameterized trajectory → MPC → physical execution and feedback**.
 
-## Features
-- **High-level decision** — PPO agent (Stable-Baselines3) with clipped objective & GAE for macro-action selection
-- **Global planning** — 8-neighbor A* with Euclidean heuristic and obstacle avoidance
-- **Low-level control** — Linear time-varying MPC (LT-MPC) using a kinematic bicycle model, formulated in CVXPY and solved with OSQP
-- **Modular interfaces** — each layer is swappable without breaking the pipeline
-- **Reproducible experiments** — fixed seeds, pinned dependencies, logged artifacts
-- **Simulation demos** — 4×4 empty, 4×4 with obstacles, and 8×8 zero-shot
+**Research acceptance is not yet met.** Real CARLA 0.9.15 training and validation have run, but current evidence does not establish that the learned high-level policy improves on a strong rule-based high level. This is not a road-safety or production-driving claim.
 
----
+See the [acceptance ledger](docs/research_acceptance.md), [results](docs/research_results.md), [failure analysis](docs/failure_analysis.md), [method](docs/design.md), and [Chinese guide](docs/README.zh-CN.md).
 
-## Project Structure
-- **A* Planning**: `Astar.py`, `astar_agent.py`  
-- **High-Level Decision (PPO)**: `ppo_agent.py`, `env_gridworld.py`  
-- **Low-Level Control (MPC)**: `mpc_agent.py`, `mpc_module.py`  
-- **Visualization & Utilities**: `visualization.py`, `dialog_parser.py`
-- - **Simulation**: `simulation.py`
-## Train PPO
-  python ppo_agent.py
-  ![PPO_reward](https://github.com/user-attachments/assets/7c006ce8-a06e-4a88-9b74-e69c0ce2e470)
-  #  hierarchical(Simulation Demo I — 4×4 Grid (No Obstacles))
-  ![hierarchical_1](https://github.com/user-attachments/assets/6eeab195-45bd-4b2f-a18c-2975d80073cc)
-  ![hierarchical_2](https://github.com/user-attachments/assets/d89444ed-31fc-4e71-aeb0-ef37c6c38056)
-[DEMO_HIER] Goal reached!
-[METRICS] Success Rate      = 100.00%
-[METRICS] Optimality Ratio  = 1.000
-[METRICS] MPC RMSE         = 0.271
-[METRICS] Total Moves      = 3
-[METRICS] Avg Plan Time    = 0.05 ms
-[METRICS] Avg Control Time = 3785.71 ms
-    
-  #  obstacle(Simulation Demo II — 4×4 Grid (With Obstacles))
-  <img width="1041" height="416" alt="image" src="https://github.com/user-attachments/assets/53068e72-109c-42a4-8d1c-a3754c77a406" />
-[METRICS] Success Rate      = 100.00%
-[METRICS] Optimality Ratio  = 1.000
-[METRICS] MPC RMSE         = 0.271
-[METRICS] Avg Plan Time    = 4.43 ms
-[METRICS] Avg Control Time = 3475.94 ms
-    
-  #  larger(Zero-Shot Generalization (8×8))
-  <img width="895" height="358" alt="image" src="https://github.com/user-attachments/assets/c117c48d-8764-4cda-ad50-a6ba01466013" />
-[METRICS] Success Rate      = 0.00%
-[METRICS] Optimality Ratio  = 1.000
-[METRICS] MPC RMSE         = 0.643
-[METRICS] Avg Plan Time    = 4.86 ms
-[METRICS] Avg Control Time = 4636.28 ms
-    
-## Quantitative Results & Comparisons
-    <img width="859" height="424" alt="image" src="https://github.com/user-attachments/assets/3cfef225-c70f-4435-b160-7e9a610d7680" />
+## Measured historical results
 
+| Experiment | H | Flat PPO B1 | Limitation |
+|---|---:|---:|---|
+| Lightweight, completed 1M paired seeds 11/33/44 | 30/40 each | 0/40 each | Only 3 complete H seeds; B3 also 30/40; B1 learning inadequate |
+| CARLA, approximately 50k real world-step adaptation, seed 11 | 9/30 | 0/30 | H successes only dynamic |
+| Same CARLA budget, seed 33 | 10/30 | 0/30 | Static and curve/parking remain unsuccessful |
 
-    Generalization: It performs well in environments of the same size but without obstacles (Obstacle), but fails in zero-shot scenarios on larger grids (Larger).
-    Performance balance: Optimal paths are achieved in both default and obstacle scenarios, and MPC RMSE and control latency remain within reasonable ranges.
-    Latency bottleneck: MPC's runtime is much greater than A* and increases with scene complexity (map size, number of obstacles), suggesting that more efficient tracking algorithms or parallelization solutions can be explored in the future.
+These evaluated scenarios are now **historical**, not unseen confirmation data for subsequent development. Failed runs and incomplete seeds are retained. New development has not earned an architecture-superiority claim.
 
-##  Limitations & Future Work
-    Multi-scenario joint training and fine-tuning: Joint training or domain adaptation is performed in grid environments of different sizes (e.g., 8×8, 16×16) and with various obstacle densities to improve model generalization.
-    Control layer optimization: Explore parallel MPC or adopt learning-based control (such as deep reinforcement learning controllers and lightweight PID/LQR hybrid strategies) to significantly reduce tracking latency.
-    Continuous Space and Dynamic Environment Extension: Migrating the grid world framework to continuous space and adding dynamic obstacles to achieve navigation and obstacle avoidance that is closer to real-world scenarios.
-    Multi-agent collaboration: Research on the collaborative planning and control of multiple agents in a hierarchical architecture to improve the efficiency and robustness of cluster task execution.
+## Current development (2026-10-22)
+
+B1 passes the 6m empty-route parking sanity check (8/8 after approximately 1M physical steps), but the same model fails the 23m task (0/8). H/H0 feedback ablation reaches 8/10 versus 6/10 at200k, then8/10 each at300k on development conditions. Both frozen200k policies score2/6 in a real CARLA transfer diagnostic. These are single-seed diagnostics, not independent confirmation. Current CPU regression: 66 passed, 5 conditional skips.
+
+Rebuild completed development milestones, checking frozen source and checkpoint hashes:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/summarize_paired_development.py --batch runs/20261022T050532Z_hierarchy_v8_development
+.\.venv\Scripts\python.exe scripts/summarize_development.py --batch runs/20261022T042237Z_development_v6
+```
+
+## Local environment and tests
+
+Python 3.11; install only into a project virtual environment. CARLA uses a separate existing Python 3.7 client matching server 0.9.15.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+CPU tests exercise physical dynamics, planning, QP control, PPO updates/checkpoints, statistical accounting and failure recovery. Live CARLA tests require explicit opt-in and an exclusively owned server; skipped tests are not evidence of live validation.
+
+## Bounded development and recovery
+
+The current development batch is recorded in `runs/active_development.json`. Its `protocol.json` records a two-hour execution window, source hashes, job budgets and resource limits. It is a development diagnostic, not the final experiment protocol.
+
+```powershell
+$batch = (Get-Content runs/active_development.json -Raw | ConvertFrom-Json).batch
+.\.venv\Scripts\python.exe scripts/development_watchdog.py --batch $batch
+```
+
+The supervisor refuses concurrent ownership, skips completed jobs, preserves checkpoints and refuses automatic retry of failed jobs. A STOP file is not cleared automatically. Inspect `supervisor.json`, `supervisor_final.json`, each `worker_status.json`, `latest.json`, and raw logs. Do not use old six-hour scripts to overwrite historical protocols.
+
+For existing locally saved historical data, rebuild the historical report with:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/publication_report.py --batch runs/20261016T015226Z_research_batch_3377580f
+```
+
+## Reproduce the development asset
+
+The development pre-release asset is `development_v8_seed11.zip` (SHA256 `ad656334aa8386d1efcf0afbd14b5ef45f3fc4fae1da763b0dc8542469cc6b1c`). It contains both200k H/H0 checkpoints, frozen source/normalization/configuration, optimizer and training-episode summaries, and all20 development evaluation traces. Read the [model card](docs/model_card.md) before interpreting the results. This is a bounded development asset, not the full final experiment archive.
+
+After downloading the asset from the repository's development release:
+
+```powershell
+Expand-Archive -LiteralPath runs/development_v8_seed11.zip -DestinationPath runs
+.\.venv\Scripts\python.exe scripts/reproduce_development_asset.py --asset runs/development_v8_seed11 --output runs/reproduced --full
+```
+
+The command verifies hashes, reloads both models with frozen normalization, repeats all20 cases and reconstructs the endpoint figure. Use a new output directory on each replay. The local complete replay matched all recorded outcomes; fresh-checkout verification and publication status are tracked separately in the [release record](docs/release_status.md). No CI success is implied.
+
+Environment directories, CARLA binaries and bulk raw videos do not enter Git history. The [MIT license](LICENSE), original attribution and [third-party notices](docs/THIRD_PARTY_NOTICES.md) are preserved. Research acceptance, five-seed confirmation, complete CARLA adaptation and final release remain pending.

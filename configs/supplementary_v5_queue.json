@@ -1,0 +1,632 @@
+[
+  {
+    "version": "supplementary_v5",
+    "name": "B2_seed11",
+    "method": "B2",
+    "seed": 11,
+    "budget": 100000,
+    "flat_hold": 1,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_hold10_seed11",
+    "method": "B1",
+    "seed": 11,
+    "budget": 100000,
+    "flat_hold": 10,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 1,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "H_shared_seed11",
+    "method": "H",
+    "seed": 11,
+    "budget": 100000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_shared_seed11",
+    "method": "B1",
+    "seed": 11,
+    "budget": 100000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B2_seed22",
+    "method": "B2",
+    "seed": 22,
+    "budget": 100000,
+    "flat_hold": 1,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_hold10_seed22",
+    "method": "B1",
+    "seed": 22,
+    "budget": 100000,
+    "flat_hold": 10,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 1,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "H_shared_seed22",
+    "method": "H",
+    "seed": 22,
+    "budget": 100000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_shared_seed22",
+    "method": "B1",
+    "seed": 22,
+    "budget": 100000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B2_seed33",
+    "method": "B2",
+    "seed": 33,
+    "budget": 100000,
+    "flat_hold": 1,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_hold10_seed33",
+    "method": "B1",
+    "seed": 33,
+    "budget": 100000,
+    "flat_hold": 10,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 1,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "H_shared_seed33",
+    "method": "H",
+    "seed": 33,
+    "budget": 100000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_shared_seed33",
+    "method": "B1",
+    "seed": 33,
+    "budget": 100000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B2_seed11",
+    "method": "B2",
+    "seed": 11,
+    "budget": 300000,
+    "flat_hold": 1,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_hold10_seed11",
+    "method": "B1",
+    "seed": 11,
+    "budget": 300000,
+    "flat_hold": 10,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 1,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "H_shared_seed11",
+    "method": "H",
+    "seed": 11,
+    "budget": 300000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_shared_seed11",
+    "method": "B1",
+    "seed": 11,
+    "budget": 300000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B2_seed22",
+    "method": "B2",
+    "seed": 22,
+    "budget": 300000,
+    "flat_hold": 1,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_hold10_seed22",
+    "method": "B1",
+    "seed": 22,
+    "budget": 300000,
+    "flat_hold": 10,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 1,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "H_shared_seed22",
+    "method": "H",
+    "seed": 22,
+    "budget": 300000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_shared_seed22",
+    "method": "B1",
+    "seed": 22,
+    "budget": 300000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B2_seed33",
+    "method": "B2",
+    "seed": 33,
+    "budget": 300000,
+    "flat_hold": 1,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_hold10_seed33",
+    "method": "B1",
+    "seed": 33,
+    "budget": 300000,
+    "flat_hold": 10,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 1,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "H_shared_seed33",
+    "method": "H",
+    "seed": 33,
+    "budget": 300000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_shared_seed33",
+    "method": "B1",
+    "seed": 33,
+    "budget": 300000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B2_seed11",
+    "method": "B2",
+    "seed": 11,
+    "budget": 1000000,
+    "flat_hold": 1,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_hold10_seed11",
+    "method": "B1",
+    "seed": 11,
+    "budget": 1000000,
+    "flat_hold": 10,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 1,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "H_shared_seed11",
+    "method": "H",
+    "seed": 11,
+    "budget": 1000000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_shared_seed11",
+    "method": "B1",
+    "seed": 11,
+    "budget": 1000000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B2_seed22",
+    "method": "B2",
+    "seed": 22,
+    "budget": 1000000,
+    "flat_hold": 1,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_hold10_seed22",
+    "method": "B1",
+    "seed": 22,
+    "budget": 1000000,
+    "flat_hold": 10,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 1,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "H_shared_seed22",
+    "method": "H",
+    "seed": 22,
+    "budget": 1000000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_shared_seed22",
+    "method": "B1",
+    "seed": 22,
+    "budget": 1000000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B2_seed33",
+    "method": "B2",
+    "seed": 33,
+    "budget": 1000000,
+    "flat_hold": 1,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_hold10_seed33",
+    "method": "B1",
+    "seed": 33,
+    "budget": 1000000,
+    "flat_hold": 10,
+    "shared_shield": false,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 1,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "H_shared_seed33",
+    "method": "H",
+    "seed": 33,
+    "budget": 1000000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03
+    }
+  },
+  {
+    "version": "supplementary_v5",
+    "name": "B1_shared_seed33",
+    "method": "B1",
+    "seed": 33,
+    "budget": 1000000,
+    "flat_hold": 1,
+    "shared_shield": true,
+    "reward_beta": 1,
+    "terminal_goal_prefix": true,
+    "curriculum": true,
+    "ppo_options": {
+      "target_kl": 0.03,
+      "use_sde": true,
+      "sde_sample_freq": 10,
+      "log_std_init": -2,
+      "forward_mean_bias": 0.2,
+      "entropy": 0.001
+    }
+  }
+]

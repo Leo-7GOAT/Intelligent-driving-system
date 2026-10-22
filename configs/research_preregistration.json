@@ -1,0 +1,14 @@
+{
+  "protocol_version":"20261016-v1",
+  "primary":{"metric":"paired safe task completion rate difference H minus B1","physics_budget":1000000,"split":"independent_final_test","statistical_unit":"independent_training_seed"},
+  "training_seeds":[11,22,33,44,55],
+  "cumulative_milestones":[100000,300000,1000000],
+  "secondary":{"learning_curve_auc_interval":[100000,1000000],"completion_threshold":0.8,"metrics":["collision","out_of_bounds","all_episode_progress","success_conditional_travel_time","jerk_rms","intervention_rate","plan_failure_rate","mpc_failure_rate","latency","unseen_layout_density_vehicle_parameters"]},
+  "bootstrap":{"replicates":20000,"seed":20261016,"paired_unit":"training_seed","interval_percentiles":[2.5,97.5],"minimum_independent_seeds_for_interval":3},
+  "development":{"lightweight_scene_seed_base":10100,"episodes":12,"selection":"success first, then collision+out_of_bounds, then all-episode progress; only within each seed, never choose a seed"},
+  "final":{"lightweight_scene_seed_base":90700,"episodes":40,"carla_manifest":"configs/carla_final_cases.json","carla_episodes":30,"evaluate_only_after_development_freeze":true},
+  "infrastructure":{"maximum_retries_per_case":1,"retain_original_failure":true,"unresolved_is_never_success":true,"report_separately_from_task_collisions":true},
+  "fairness":{"deadline_seconds_all_methods":45,"control_dt":0.05,"H_decision_dt":0.5,"B1_hold":1,"planner_max_seconds":null,"native_comparison_label":"complete_system_comparison","shared_shield":"independent_H_and_B1_training"},
+  "budget":{"wall_seconds":21600,"reserve_checkpoint_seconds":60,"min_disk_free_GiB":8,"min_available_RAM_GiB":4},
+  "hypothesis_handling":"Keep negative results and failures; secondary gains cannot replace the primary metric. Any change after final testing requires a new confirmation protocol."
+}

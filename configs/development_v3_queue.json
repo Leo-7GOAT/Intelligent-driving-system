@@ -1,0 +1,4 @@
+[
+  {"version":"development_v3","name":"H_seed11","method":"H","seed":11,"budget":100000,"reward_beta":1,"terminal_goal_prefix":true,"curriculum":true},
+  {"version":"development_v3","name":"B1_seed11","method":"B1","seed":11,"budget":100000,"reward_beta":1,"terminal_goal_prefix":true,"curriculum":true,"ppo_options":{"use_sde":true,"sde_sample_freq":10,"log_std_init":-2,"forward_mean_bias":0.2,"entropy":0.001}}
+]
