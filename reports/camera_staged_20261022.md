@@ -54,6 +54,18 @@ The evidence package contains the exact model/normalization, frozen source, both
 
 ## Validation and remaining work
 
+### B1 inference and frequency follow-up (18:22 local)
+
+The fixed B1 checkpoint at 302,080 physical steps scored 0/10 in full-task development. A separate frozen-model diagnostic evaluated all 32 combinations of eight full23m empty-task seeds, train/validation initialization and deterministic/stochastic inference. Every group was 0/8, all deadlines. Train and validation produce identical empty-task initializations in this diagnostic, so they are deliberately repeated checks, not 32 independent scene conditions. Deterministic mean progress was 7.121 m with mean per-episode jerk RMS 11.362 m/s^3; stochastic gSDE achieved 9.655 m and 14.134 m/s^3. Thus disabling exploration is not a sufficient explanation, and the baseline remains unhealthy. Raw traces and all episodes: `analysis/B1_300k_empty_inference` under the v13 batch.
+
+H0 completed 1,002,283 physical steps, 395 optimization phases and 15,100 optimizer steps; its endpoint remains 6/10. The process exited successfully. Its former PID was subsequently reused by an unrelated updater, so process identity and the supervisor's exit receipt, not PID presence alone, established completion. No unrelated process was touched.
+
+New batch `20261022T102056Z_flat_frequency_v14_development` tests B1 holding its own direct actuator request for 10 physical steps (0.5 s) rather than updating it every 0.05 s. It starts a fresh seed11 policy, shares v13's 605 inputs, task/reward/vehicle, common300k empty stage, subsequent mixed distribution, same development cases and total1M physical budget. gSDE resampling changes from every10 actions to every1 action to retain the same0.5 s physical noise period. Discount and GAE values are derived from physical duration. There is no MPC, rule selector or additional safety wrapper in this B1. Both action/optimizer counts and physical cost must be reported; this is an explicit frequency sensitivity diagnostic, not another independent final seed.
+
+Protocol comparison confirmed the only environment/PPO-option changes are `flat_hold:1→10` and `sde_sample_freq:10→1`. Two regression cases verify that a held action gives the same actual state, physical time and discounted reward as ten identical direct commands, with no extra reset or hidden reference. Full regression now passes76 tests with5conditional skips. The single-worker two-hour supervisor was actually launched18:22 after the H0 slot became free; the protocol deadline is approximately20:20. Pointer/recovery: `runs/flat_frequency_development.json`, using the same `development_watchdog.py --batch` entry. New experiment creation is `scripts/initialize_flat_frequency_development.py`; never recreate an existing live batch.
+
 The completed regression at 17:50 was 74 passed, 5 conditional skips. Subsequent video tools have been executed on real recordings; their integrity checks do not substitute for planner/control/PPO tests. Final publication checks are recorded in the release record.
+
+The new frequency worker was verified live with actual PPO updates: phase27 had846optimizer steps and actor-updateL2 .4498; it then passed136kphysical steps. Its fixed100k evaluation is0/10, retaining the negative result. The experiment remains running toward its declared milestones, not validated or converged.
 
 Remaining research gates include healthy full-task B1, repeatable feedback contribution, PPO decision value over strong B3, unseen geometry, native-road curves and actuator coverage, five independently trained policies, full B2/frequency/shared-safety/control comparisons and a newly frozen 120-condition CARLA confirmation. Videos and a pre-release do not satisfy those gates.

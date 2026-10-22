@@ -8,6 +8,10 @@ All 145 manifest files were checked; the actual ZIP has exactly those files plus
 
 ## Original development release
 
+The camera/curriculum source commit `02f75a8148fbae1fb1cbcc9ac00a4f22b4c5f5ac` was pushed to the existing feature branch and matched `git ls-remote`. A new clone (`camera_checkout`) at that commit is clean. Using the independently installed pinned environment from the first clean checkout, it passed 74 tests with 5 conditional skips, loaded the freshly downloaded camera model, verified all 145 manifest files and decoded both downloaded videos. Optional imageio-ffmpeg 0.6.0 was installed only into that isolated environment.
+
+Actual CARLA camera replay from this new checkout and downloaded model also completed: static7301 success at 22.3754 m progress, curve7301 deadline at 16.3914 m, 1,242 control/1,303 total world ticks, frozen normalization and no unresolved infrastructure failures. The same success/failure outcomes reproduce; detailed progress and timing differ and are not claimed bitwise deterministic. New 343/901-frame recordings were encoded and fully decoded. The owned server was verified empty and stopped. Evidence is in `runs/prerelease_20261022/camera_checkout/runs/20261022T101242Z_carla_camera_evidence`. This is repeatability evidence for the two declared examples, not another independent seed or a new confirmation set.
+
 Target repository: `https://github.com/Leo-7GOAT/Intelligent-driving-system`, existing public visibility retained. Development branch: `feature/physical-hierarchical-ppo`. Intended pre-release tag: `v0.2.0-dev.20261022`. Publication is verified by remote SHA and release metadata, not by this document alone.
 
 Before publication:

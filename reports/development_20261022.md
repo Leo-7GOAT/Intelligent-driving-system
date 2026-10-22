@@ -1,5 +1,7 @@
 # Development evidence — 2026-10-22
 
+For completed v11/v12/CARLA outcomes, real-camera success/failure evidence and the ongoing common-curriculum v13 experiment, read [the latest continuation report](camera_staged_20261022.md). Earlier running-status entries below are historical; they do not override completed batch records.
+
 These are development results, not independent confirmation. No hierarchy-superiority or road-safety claim.
 
 | Experiment | H | H0 / alternative | Limitation |
