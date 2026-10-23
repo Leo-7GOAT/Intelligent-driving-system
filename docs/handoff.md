@@ -1,3 +1,22 @@
+# PPO regression retained — 2026-10-23 13:12 local
+
+Same liveworker27336/guard40952 OSidentity-confirmed healthy. Currentheartbeat
+36,094controls/14optimizationphases. Fixed25k milestone actually25,600controls,
+4,000optimizersteps,actorL2change1.665761: fulltask0/10 (7deadlines,3collisions),
+parking0/0/0/0,14,243evalcontrols. Zero-update4/10 retained. Partialanalyzer
+passes both endpoints; do not substitute the stronger supervised checkpoint.
+Same100ktarget/deadline14:04:38. No duplicate or newteacher collection.
+
+Inspected scripts/audit_normalization_transfer.py for possible next diagnostic:
+it already crosses policy/normalizer using frozen parent dynamics and records
+actual physical traces, but currently accepts jobs or originalwarmstart only,
+not this ppo_milestones protocol. It also lacks a bounded resource heartbeat.
+Do not claim a factorial was run here; only the old warmstart factorial exists.
+If newdiagnosis is needed, add explicit protocol support and bounds, then cross
+zero/25k (or fixed100k after completion) without promoting swapped pairs as
+evaluation models. Rootcode6d351d5 and doc03e6f34 verified pushed; latestdocs may
+advance. This turn is substantialprogress, fullgoalACTIVE/incomplete/nohardblock.
+
 # Verified publication/reproduction — 2026-10-23 13:10 local
 
 Code6d351d586e43577bf44ef9c5e2d51c587515ded4 pushed/remotematched on correctorigin,

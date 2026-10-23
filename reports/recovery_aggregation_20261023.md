@@ -219,6 +219,14 @@ Training normalization updates resume; evaluation statistics remain frozen.
 All0/25k/100k milestones, failures and ancestral supervision costs are retained.
 This is still demonstration-assisted B1 development, not a pure-PPO comparison.
 
+At13:12local the first PPO endpoint is complete and raw-audited:25,600actual
+controls,4,000optimizersteps,actorL2change1.665761. Full-task completion regresses
+from4/10 to0/10 (seven deadlines,three collisions); all eight parking probes fail.
+Its14,243evaluation controls remain recorded. The same worker continues toward
+the registered100k milestone; the negative25k endpoint is not replaced or hidden.
+The cause is not established by this outcome. No new normalization factorial has
+yet run for this batch; the earlier warmstart factorial applies to different models.
+
 ```powershell
 # Existing run: inspect runs/aggregated_ppo.json; do not prepare it twice.
 python scripts/train_aggregated_ppo.py --parent runs/20261023T043924Z_current_state_aggregation
