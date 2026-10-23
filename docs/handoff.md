@@ -1,4 +1,63 @@
-# Verified continuation snapshot — 2026-10-23 10:33 local
+# Verified continuation snapshot — 2026-10-23 10:49 local
+
+This goal turn is progress, not completion. Full objective remains ACTIVE with
+no hard blocker. Source d9f48cd28b892928f69822f3131c7263489db0a9 is pushed and
+remote-verified. Both root and independent pinned-environment checkout pass
+132 tests / five conditional skips / two existing deprecation warnings. Later
+changes are reports plus normalization-factorial protocol support; inspect Git.
+
+All training is now COMPLETE and worker handles are gone:
+
+- Native recovery 010623Z: H 70,080 new controls/438 optimizer steps; B1 100,270
+  controls/630 optimizer steps. All 176,167 training/evaluation controls matched
+  raw CARLA frames/state/IMU/clock. Both training-road evals 0/4. B1 two bounds
+  and two deadlines; training 111 bounds/61 deadlines/one success/one unfinished.
+  H recovery charged lower bound 164,409 vs retained lineage 100,160; do not
+  erase the parent's 64,249 lost controls or unknown unflushed tail. Plot read.
+- Independent checkout live v3 batch 023532Z: H 640 controls/701 ticks/four
+  optimizer steps; B1 952 controls/1,044 ticks/six updates. All 1,592 frames
+  verified, reload exact. Actual clean-source runtime check, not performance or
+  independent-seed evidence. Both bridges exited; parent-owned server 21808
+  was verified empty/identity-matched and stopped at 10:36. Receipt in recovery
+  infrastructure/server_stop.json. No CARLA server remains expected.
+- Warmstart 021813Z: supervised 6,400 updates, then actual PPO 25,600/102,400
+  controls and 4,000/16,000 optimizer steps. All three endpoints 0/10. Final
+  short parking 2/0/0/0 out of two each. Both PPO full-task endpoints eight
+  deadlines/two narrow collisions. Guard exit0 and OS worker gone. Full analyzer
+  verified source/data/replay/labels/evaluation traces/terminal metrics. Plot
+  inspected. Independent checkout loads all three local models with frozen
+  stats; receipt runs/demonstration_model_reproduction.json inside clone.
+- Eight BC-only demonstration-layout replays: train and holdout each 1/4,
+  narrow only. Additional 48-case weight/normalizer factorial completes: all
+  four combinations 0/10 full task. Only BC weights + later norm get 6m2/2.
+  Changing norms alone does not repair full-task performance. BC empty rollout
+  stops short at x25.753/v.062 then accelerates through x27.082/v1.135 and leaves
+  bounds. Investigate physically visited recovery-state coverage and terminal
+  timing; do not claim effective B1 or blindly repeat PPO budget.
+
+Current publication in flight (revalidate before retry): gh.exe PID31084,
+created 10:40:51.530 local, uploads two new mean-transform assets; exec session
+89608. At 10:48:51 OS live, read-transfer count 221,027,679, localhost proxy
+connection established. Neither upload success nor new remote assets confirmed
+yet; do not claim published or start duplicate uploads. Local immutable assets:
+bounded_mean_stability.zip 185,786,166 bytes/255 manifest files/SHA256
+e3dba9ce5f6346a8c4710236a2dbe24900e1554109263eb9faced7e659d4628a;
+softsign_mean_stability.zip 92,312,679 bytes/218 files/SHA256
+cb57defabc169472ad36de1fc37b89c6a5f319154829a95179a20be0b5eb948f.
+Publication still requires actual upload/download/member hashes/model reload and
+chart reproduction before documenting completion. Native recovery and BC data
+are not release assets. Current main report/readmes reflect completed failures.
+
+Next meaningful research intervention should follow the closed-loop evidence,
+e.g. supervised recovery-state coverage from actual learner-driven trajectories,
+with teacher queries/cost disclosed and no teacher at learned-policy inference.
+This has NOT been implemented or started. Preserve the required PPO hierarchy,
+fair strong B1/B3/H0/B2 comparisons, five policies, native competencies, fresh
+120-condition confirmation and final acceptance thresholds. No agents or other
+project work. Finish publication/source reproducibility without substituting
+those checks for actual research competence.
+
+# Historical continuation snapshot — 2026-10-23 10:33 local
 
 The preceding summary turn was a verified wait (OS-confirmed native worker).
 This turn makes progress: executed demonstration fitting and real PPO, completed

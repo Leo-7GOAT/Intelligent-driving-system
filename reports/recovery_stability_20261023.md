@@ -16,6 +16,30 @@ The new server and bridge use the existing CARLA 0.9.15 installation/client. Ser
 
 H subsequently completed 70,080 new controls /72,497training world ticks /219optimization phases /438optimizer steps, actor L2 change1.176118 and exact reload. Its retained model lineage is100,160controls, while charged cost is at least164,409controls. Four frozen training-road evaluations are all deadlines, with progress7.594/10.161/16.987/9.447metres. All73,680training-plus-evaluation control frames were matched to raw CARLA states/IMU/frame/time with no unaccounted controls (`H/frame_verification.json`). Evaluation adds3,600controls/3,724world ticks. B1 then actually started its fresh100kcontrols; do not call the full pair complete yet.
 
+The recovery batch is now complete. Fresh B1 training executes **100,270
+controls / 105,663 world ticks / 315 optimization phases / 630 optimizer
+steps**, with exact reload and actor L2 change 1.879024. Training retains
+111 out-of-bounds episodes, 61 deadlines, one success and one unfinished
+episode. Its four deterministic training-road evaluations are **0/4**: two
+out-of-bounds and two deadlines, consuming 2,217 controls / 2,341 world ticks.
+The full analyzer matches **176,167 H/B1 training-plus-evaluation controls**
+to raw CARLA states, frames, IMU timestamps and simulation clocks, with none
+unaccounted. The figure was visually inspected. One stochastic training success
+does not establish learned competence; recovery costs remain unequal.
+
+Independent checkout at `d9f48cd28b892928f69822f3131c7263489db0a9` also passes
+132 CPU tests with five conditional skips. Its live v3 batch
+`20261023T023532Z_native_road_learning` executes H 640 controls/701 world ticks/
+four optimizer steps and B1 952 controls/1,044 world ticks/six optimizer steps.
+All **1,592 controls** are frame-verified; both models reload exactly. H has one
+deadline and B1 two bounds failures, plus one unfinished episode each. This
+checks independent source/runtime operation, not performance or another
+independent training seed. The registered 640-control minimum can overshoot
+when collecting full action rollouts; actual counts are retained. After both
+bridges exited, an empty-server probe and process identity checks permitted
+stopping the recovery batch's owned CARLA server (receipt in its infrastructure
+directory). No CARLA server remains expected from these completed jobs.
+
 ## Completed paired learning-rate experiment
 
 Batch `20261023T011009Z_update_stability` starts both branches from the same v19 checkpoint at 4,898,060 controls. Model, normalization, optimizer, environment and RNG states are identical; only the constant learning rate changes. Original-rate initial optimization records reproduce the parent continuation. All four endpoints were registered before execution. Counts below include actual rollout overshoot.
@@ -87,4 +111,4 @@ Full CPU regression after all policy/diagnostic changes: **130 passed / 5 condit
 
 The completed learning-rate evidence is now published separately as `paired_ppo_rate_stability.zip` (67,837,038 bytes,256manifestfiles,SHA256`b284991976fe7ad87405666a548f837b6561bdcc84b3f674e276a7213bc0fb71`). A fresh download verifies every file; the independent checkout loads all eight endpoint models with frozen normalization and rebuilds a byte-identical plot and identical endpoint results. Sourcee81b378is pushed/remote-verified. The older tag is unchanged; use this newer source for the new analysis command. The bounded-mean and native-recovery models are not in that asset.
 
-The independent-checkout live v3 replay remains pending until the native queue releases CARLA. Five independent policies, healthy full-task B1, native static/dynamic competence, feedback and strong-B3 contributions, comfort improvements and fresh 120-condition confirmation remain required.
+The independent-checkout live v3 check has completed as recorded above. Five independent policies, healthy full-task B1, native static/dynamic competence, feedback and strong-B3 contributions, comfort improvements and fresh 120-condition confirmation remain required.

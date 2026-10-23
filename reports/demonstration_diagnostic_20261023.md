@@ -56,12 +56,36 @@ and normalized clipping without changing observations or fitted statistics.
 
 The registered subsequent PPO endpoints are 0, 25,000 and 100,000 additional
 physical controls. PPO uses learning rate 1e-4, gSDE resampling every control,
-log standard deviation -2, entropy 0.001 and KL target 0.03. At 10:30 local the
-worker had reached 25,600 controls/4,000 actual PPO optimizer steps and was
-evaluating that endpoint; the final result was not yet available. This is a
-timestamped observation, not a final performance claim. The worker is guarded
-by a fixed deadline, available memory/disk/GPU checks and a verified process
-handle with no automatic retry.
+log standard deviation -2, entropy 0.001 and KL target 0.03. All endpoints are
+now complete, including normal worker/guard exit and exact model reload:
+
+| Actual PPO controls | PPO optimizer steps | Full development task | 6/12/18/23m probes (successes out of two each) |
+|---:|---:|---:|---|
+| 0 | 0 | 0/10 | 0 / 2 / 0 / 0 |
+| 25,600 | 4,000 | 0/10 | 0 / 0 / 0 / 0 |
+| 102,400 | 16,000 | 0/10 | 2 / 0 / 0 / 0 |
+
+Both PPO endpoints have eight deadlines and two narrow-scene collisions. Actor
+L2 changes relative to supervised initialization are 1.65107 and 2.99638;
+updates occurred but did not solve the task. Evaluation separately consumed
+6,268 / 15,723 / 13,933 controls. Every raw evaluation control and terminal
+metric matches its summary; final plots were visually inspected. The fixed
+deadline and resource/process-handle guard exited normally, with no retries.
+
+The frozen-policy/normalizer factorial crosses supervised and 25,600-step
+weights with both saved normalization states. All four combinations remain
+**0/10** on the full development list. Only supervised weights with the later
+normalizer achieve 2/2 at 6m; the other combinations score 0/2. The 48 executed
+episodes retain all failures and unchanged normalization statistics under
+`normalization_factorial`. Changing statistics alone does not recover full-task
+competence; crossed pairs are diagnostic and are not promoted models.
+
+For a concrete training-layout failure, the BC-only empty-scene replay stops
+near x=25.753m with v=0.062m/s at 15.95s, short of its x=27m goal, then
+accelerates to 1.135m/s while crossing x=27.082m at 17.55s and ultimately leaves
+bounds. Teacher-state MSE conceals errors in terminal timing and recovery.
+These observations motivate investigating physically visited recovery-state
+coverage; they do not establish that a particular next intervention will work.
 
 Direct control is hold1 (0.05s), whereas the previous PPO-only mean-transform
 studies used hold10. Teacher decisions remain 0.5s with MPC controls at 0.05s.

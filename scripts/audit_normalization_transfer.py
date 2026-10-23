@@ -32,8 +32,16 @@ def main():
     from navstack.env import NavigationEnv
     from navstack.experiments import load_run, write_json, jsonable, signature
     torch.set_num_threads(1)
-    job = protocol["jobs"][0]
-    run = batch/protocol["run_group"]/job["id"]
+    if 'jobs' in protocol:
+        job = protocol['jobs'][0]
+        run = batch/protocol['run_group']/job['id']
+        development_cases = protocol['development_cases']
+    elif 'supervised_epochs' in protocol and protocol['env']['method'] == 'B1':
+        job = {'id': 'B1_demonstration_warmstart'}
+        run = batch/'B1'
+        development_cases = [c for c in protocol['cases'] if 'label' not in c]
+    else:
+        raise ValueError('Unsupported normalization-diagnostic protocol')
     pairs = {}
     provenance = {}
     for target in (args.left, args.right):
@@ -51,14 +59,14 @@ def main():
         config = EnvConfig.from_dict(json.loads((checkpoint/"config.json").read_text(encoding="utf-8"))["env"])
         pairs[target] = (model, normalizer, config)
     assert signature(pairs[args.left][2]) == signature(pairs[args.right][2])
-    cases = [{**case, "label":case["scenario"]} for case in protocol["development_cases"]]
+    cases = [{**case, "label":case["scenario"]} for case in development_cases]
     cases += [{"scenario":"empty", "seed":seed, "label":"empty6m", "options":{"diagnostic_route_length":6.}}
               for seed in (7301,7302)]
     groups, all_rows = [], []
     with gzip.open(output/"trace.jsonl.gz", "wt", encoding="utf-8") as stream:
         for policy_target, (model, _, config) in pairs.items():
             for norm_target, (_, norm, _) in pairs.items():
-                mean, variance = norm.obs_rms.mean.copy(), norm.obs_rms.var.copy()
+                mean, variance, count = norm.obs_rms.mean.copy(), norm.obs_rms.var.copy(), norm.obs_rms.count
                 rows = []
                 for case in cases:
                     cfg = EnvConfig.from_dict(config.to_dict()); cfg.split = "validation"; cfg.scenario = case["scenario"]
@@ -83,6 +91,7 @@ def main():
                     env.close()
                 np.testing.assert_array_equal(mean, norm.obs_rms.mean)
                 np.testing.assert_array_equal(variance, norm.obs_rms.var)
+                assert norm.obs_rms.count == count
                 groups.append({"policy_target":policy_target, "normalizer_target":norm_target,
                     "full_task_success":sum(r["success"] for r in rows if r["case"]["label"]!="empty6m"),
                     "short6m_success":sum(r["success"] for r in rows if r["case"]["label"]=="empty6m"),
