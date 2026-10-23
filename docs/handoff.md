@@ -1,4 +1,51 @@
-# Final verified snapshot — 2026-10-23 11:01 local
+# Active continuation snapshot — 2026-10-23 11:52 local
+
+Goal remains ACTIVE/incomplete. Previous user-summary turn was a verified wait:
+OS worker21256 and guard36560 were confirmed alive. This continuation adds full
+raw PPO audit, completed-results reporting, a relabel verifier and regression.
+No agents, no hard blocker. No CARLA server is expected; do not reuse old PIDs.
+
+Recovery aggregation `20261023T030731Z_recovery_demonstrations` COMPLETE:
+21,721 collection controls/queries, 32,200 extra supervised optimizer steps.
+Mixtures32/32 and27/32 are NOT learned-policy scores. Pure learned endpoints:
+BCround1=4/10, BCround2=1/10, PPO25,600=0/10, PPO102,400=4/10. Final PPO has
+16,000 optimizer steps, actor L2 change2.88833; every direct training control,
+episode clock, evaluation trace and terminal metric checked by analyzer. Figure
+recreated and inspected. Raw training:65deadlines/72collisions/23successes.
+Actor-only control `20261023T031926Z_recovery_actor_only` COMPLETE:19,400
+supervised updates,2/10,parking0/0/1/1,8,144evalcontrols; critic and stats unchanged.
+This is not a solution to B1 competence. Reports now retain all final negatives.
+
+LIVE `20261023T033822Z_current_state_relabel`, pointer runs/current_state_relabel.json:
+worker21256 created11:39:12, guard36560 created11:39:14, both OS-confirmed live
+11:50. Deadline13:38:23local. No autoretry. It physically replays96retained cases
+(32,538 controls) and queries fresh current-state labels; original commands only
+execute. Non-action arrays remain identical. At11:50original cases0..18complete,
+all observation differences0. Revalidate process identity/progress before action.
+Do not edit its frozen source or restart due to an observation timeout.
+
+Fresh-teacher history audit:3,120 replay controls/queries, exact states; within
+decision-block labels differ by up to2.0longitudinal. Current-state teacher actual
+competence audit:4/4training cases,1,341controls; not a learned-policy result.
+
+Next transition after successful relabel completion (NOT started yet):
+`python scripts/fit_recovery_actor.py --parent runs/20261023T030731Z_recovery_demonstrations --relabel runs/20261023T033822Z_current_state_relabel --control runs/20261023T031926Z_recovery_actor_only`
+This calls full scripts/verify_relabel_teacher.py first, creates pointer
+runs/current_state_actor_fit.json, freezes sources and validates all non-action
+arrays/initialization. Launch the new batch's frozen fit_recovery_actor.py with
+--batch under the existing identity-matched watchdog; 30min,12GiBdisk/4GiBRAM,
+zero autoretry. Same seed13,200epochs,19,400actor-onlysteps; only labels change.
+No PPO in this contrast. Use its actual result for the next development choice.
+
+Current full CPU regression136passed/5skips/2existingSB3warnings:
+runs/relabel_verifier_regression.xml. Publication scan317files/no findings.
+AccountLeo-7GOAT, remoteIntelligent-driving-system verified. Source publication
+and independent-checkout verification follow this snapshot; inspect Git/receipts
+for final hashes rather than assuming completed. No new diagnostic data/model
+release assets have been uploaded. Previously published bounded/softsign assets
+remain verified as below. The full original research gates are unchanged.
+
+# Historical verified snapshot — 2026-10-23 11:01 local
 
 Source cc76677dc5c2f36245758e96565bde3b1734ecb0 pushed/remote-verified.
 Independent checkout at that exact source also passes 133 tests / five skips /
