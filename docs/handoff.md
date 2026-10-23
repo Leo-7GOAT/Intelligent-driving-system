@@ -1,3 +1,25 @@
+# Verified publication, H0 failure and live H — 2026-10-23 14:38 local
+
+Source3c9e6f2b0f48fc15755b479d9010c6e13f0c0364 pushed and remote-matched.
+Root and independent checkout-local full regression146passed5skips2warnings.
+Clone is clean/detached at3c9e6f2, using existing separate pinned environment.
+H0 has finished20160controls/20872worldticks/126optimizersteps,exactreload,
+actorL2.21155748. Training22deadlines; frozen evaluation0/4,all deadlines,
+346invalid endpoint plans. Independent clone matches all23760H0controls to raw
+CARLAframes; reconstructs four measured starting observations and exactly
+reproduces29/30/21/29. Maximum probability.03249–.03263,nearuniform,despite real
+updates. Receipts/recipes inclone/runs/road_candidate_h0_frame_audit and
+road_candidate_model_reproduction (.json/.py); not whole-trajectory re-execution.
+See reports/road_candidate_development_20261023.md for hashes and limitations.
+
+Same nativeworker18088/guard12856 and lightweightworker50724/guard55448 are
+OS-confirmed live at14:38. NativeH past9600controls, B1pending. Lightweight
+updating_stats reached~301k and is evaluating; frozen300k stillpending.
+Do not restart either. Continue endpoint audits, independent artifact rebuilds,
+and inspect server cleanup receipts after native completion. The running native
+source predates only root guard timeout-receipt patch; never edit frozen source.
+Full objective active/incomplete, no blocker. This turn is concrete progress.
+
 # Active native representation experiment — 2026-10-23 14:30 local
 
 The preceding summary turn was a verified wait: actual lightweight worker and

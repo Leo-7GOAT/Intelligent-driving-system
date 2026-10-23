@@ -72,3 +72,38 @@ states, frame sequences and IMU timestamps against raw bridge responses. It
 requires all methods and does not certify an incomplete batch. New artifacts
 remain local until an explicit publication receipt is recorded. No five-seed,
 generalization, hierarchy-advantage or final acceptance claim is made.
+
+## Closed H0 endpoint and independent verification
+
+Source `3c9e6f2b0f48fc15755b479d9010c6e13f0c0364` is pushed and remote-matched.
+Both root and the clean independent checkout, using its pinned environment and
+working directory, pass **146 tests, five conditional skips**, with two existing
+SB3 deprecation warnings. The earlier invocation from the main working directory
+is not used as independent-import evidence; the subsequent checkout-local run is.
+
+H0 completes 20,160 controls, 20,872 training world ticks, 63 optimization phases
+and 126 optimizer steps. Actor L2 change is 0.21155748 and model reload is exact.
+All 22 completed training episodes are deadlines; one unfinished episode remains.
+Its frozen four-road evaluation is **0/4**, with four deadlines and 346 rejected
+endpoint plans. Evaluation uses 3,600 controls and 3,724 world ticks. Independent
+checkout verification matches all **23,760** H0 training/evaluation controls to
+raw CARLA state/frame/IMU records; it does not audit the still-active H or B1.
+Receipt: `runs/prerelease_20261022/native_road_checkout/runs/road_candidate_h0_frame_audit.json`.
+Raw response archive SHA256:
+`e0d48cbbea47d30550c024bfff12bd3bce1b2ae9ed53d8f9e989ca886db557f9`.
+
+The same checkout loads the actual H0 model and frozen normalizer, reconstructs
+observations at all four measured evaluation starts and reproduces actions
+29/30/21/29 exactly. No vehicle step is simulated in this offline check. Action
+probabilities are nearly uniform: maximum probability 0.03249–0.03263, entropy
+3.43398 (uniform 31-way entropy approximately 3.43399). Thus optimizer activity
+has not yet produced strong action discrimination; deterministic selection of a
+slightly larger probability can still repeatedly choose an invalid goal. This
+does not prove the cause or predict the H result. Receipt and executable recipe:
+`runs/prerelease_20261022/native_road_checkout/runs/road_candidate_model_reproduction.json`
+and its `.py` companion. Model SHA256:
+`9c4ee2d94eafcf50e9c5eb00ee6e0618ef0a5806aa459a914b226d0b94daab65`.
+
+At 14:38 local, the original identity-checked worker/guard are still live; H is
+past 9,600 controls and B1 is pending. Existing lightweight normalization
+continuation also remains live. These are snapshots, not final paired outcomes.
