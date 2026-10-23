@@ -73,7 +73,7 @@ def analyze(batch, partial=False):
                         assert terminal is None
                         assert row['state_before'] == previous
                         assert row['teacher_query']['control'] == control
-                        assert row['teacher_query']['teacher_decision'] == (control%10==0)
+                        assert row['teacher_query']['teacher_decision'] == (protocol.get('teacher_mode')=='current_state' or control%10==0)
                         teacher = row['executed_by']=='teacher'
                         assert row['executed_by'] in ('teacher','learner')
                         assert bool(data['teacher_executed'][selected[control]]) == teacher
@@ -177,6 +177,7 @@ def analyze(batch, partial=False):
             assert completed['new_collection_controls'] == sum(r['controls'] for r in rounds)
             assert completed['teacher_queries'] == sum(r['teacher_queries'] for r in rounds)
             assert completed['new_supervised_optimizer_steps'] == sum(r['supervised_optimizer_steps'] for r in rounds)
+        if complete and protocol['ppo_milestones']:
             train_controls, previous_time, terminals = 0, {}, {}
             for trace in sorted((batch/'B1').glob('transitions*.jsonl.gz')):
                 hashes[trace.relative_to(batch).as_posix()] = sha(trace)
@@ -201,6 +202,8 @@ def analyze(batch, partial=False):
                 'optimizer_steps':updates[-1]['optimizer_steps'],'termination_reasons':dict(Counter(terminals.values()))}
         else:
             training_audit=None
+            if complete:
+                assert completed['final_ppo_controls']==0
         output = batch/'analysis'
         output.mkdir(exist_ok=True)
         fig,axes = plt.subplots(1,2,figsize=(11,4.2),constrained_layout=True)

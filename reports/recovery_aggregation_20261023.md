@@ -110,21 +110,30 @@ A separate actual-execution audit runs the current-state teacher on seed8301
 empty/static/narrow/dynamic training scenes: 4/4 successes, 1,341 controls.
 These are teacher results, not learned-policy results or independent policies.
 
-Batch `20261023T033822Z_current_state_relabel` is running under a two-hour
-guard (deadline 2026-10-23 13:38 local). It replays all 96 retained cases, targeting
-32,538 controls/teacher queries. It executes only the recorded original commands;
+Batch `20261023T033822Z_current_state_relabel` completed under its two-hour
+guard, with normal worker/guard exits. It replayed all 96 retained cases:
+32,538 controls/teacher queries and1,371.404seconds of teacher-query time.
+It executed only the recorded original commands;
 new labels do not control the replay. Observations, returns, case IDs, masks and
 execution-source flags remain unchanged. Historical macro labels are retained
 as historical fields and are not new hierarchical supervision. Partial evidence
 and failures are retained. This run performs zero PPO/supervised updates.
 
-After completion, `verify_relabel_teacher.py` checks all input/source hashes,
+`verify_relabel_teacher.py` checked all input/source hashes,
 non-action arrays, every new label against its requested command, every executed
 command against the original source, clocks, terminal results and costs. The
-registered actor-only comparison can then use the same round-one initial model,
+registered actor-only comparison used the same round-one initial model,
 frozen statistics, seed13, 200 epochs and 19,400 optimizer steps as the completed
-actor-only control. Only direct action targets change. This fit has not started
-at this snapshot; neither a learned improvement nor causal explanation is claimed.
+actor-only control. Only direct action targets change. The completed fit
+`20261023T042840Z_current_state_actor_fit` executes19,400supervised updates with
+actor L2 change28.81247. The critic, exploration log-standard-deviation and
+normalization remain unchanged; PPO updates remain zero. Full development is
+1/10 (one dynamic success, six deadlines, three collisions), versus the control's
+2/10. Parking6/12/18/23m is1/2/0/0 out of two each. All10,397evaluation controls
+were audited against policy requests, physical clocks and terminal results.
+The label-only change therefore does not solve competence; its result is retained.
+Training/holdout action MSE is0.002497/0.013924, with different labels from the
+control; these errors are not directly interchangeable task-quality measures.
 
 The original 32-case group has now completed: 10,817 replay controls and new
 teacher queries, 522.402 seconds of teacher-query time. Its independent partial
@@ -134,14 +143,37 @@ finish; the verifier explicitly rejects an incomplete batch by default.
 
 The next completed group also passed independent verification: original plus
 round-one data total21,688controls/queries and932.882seconds of teacher-query
-time. Round two remains live. A bounded local helper waits for the same
-identity-checked worker and clean guard exit, then verifies and prepares the
-registered fit; it does not itself start training. Its first Windows PowerShell
+time. These partial checks were superseded by full verification, also completed
+in the independent pinned environment. A bounded local helper waited for the
+identity-checked worker and clean guard exit, then verified and prepared the
+registered fit; the training worker was separately launched and guarded.
+Its first Windows PowerShell
 launch failed before fitting because a hashing cmdlet was unavailable; that
 attempt is retained and the corrected PowerShell7 helper is separately recorded.
 The data worker was unaffected. Preparation also checks the completed control's
 original data hashes and identical fitting-function AST, in addition to fixed
 initialization, splits and normalization.
+
+## Pure-learner aggregation continuation
+
+Batch `20261023T043924Z_current_state_aggregation` is actually running under a
+two-hour guard, deadline14:39:25local. It starts from the fixed current-state
+label endpoint above, including its poor result, rather than switching to a
+better earlier checkpoint. Two rounds collect seeds8401–8408 crossed with
+empty/static/narrow/dynamic layouts; first six seeds fit, last two stay held out.
+Teacher execution probability is zero in both rounds. The current-state teacher
+only labels actual pure-policy visits. Every failed trajectory is retained.
+
+All32,538ancestor observations/actions/returns are carried forward with their
+original split (24,831training/7,707heldout examples). The613-control diagnostic
+dataset is excluded because it includes heldout and validation cases. Each round
+adds its new visits and runs200actor-only epochs with frozen statistics, retaining
+both endpoint evaluations on the same18development cases. No PPO stage is
+registered in this data-coverage diagnostic. Additional interactions, queries,
+supervised updates and sibling development costs are separately recorded.
+This intervention combines new visits with extra optimization; it is not a
+causal isolation of coverage from training duration, an independent-seed result,
+or a substitute for the required PPO hierarchy comparisons.
 
 ## Pure-learner visited-state audit
 

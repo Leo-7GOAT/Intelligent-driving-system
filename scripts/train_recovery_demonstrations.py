@@ -117,7 +117,10 @@ def run(batch):
         data = np.load(batch/'parent_data/demonstrations.npz')
         original_cases = read(batch/'parent_data/protocol.json')['cases']
         arrays = {k:[data[k]] for k in ('observations','actions','returns')}
-        masks = [np.asarray([original_cases[int(i)]['data_split']=='train' for i in data['case_id']])]
+        initial_mask = np.asarray([original_cases[int(i)]['data_split']=='train' for i in data['case_id']])
+        if 'train_mask' in data:
+            np.testing.assert_array_equal(initial_mask,data['train_mask'])
+        masks = [initial_mask]
         last_heartbeat = 0.
 
         def heartbeat(stage, **extra):
@@ -157,7 +160,8 @@ def run(batch):
                                 stream.flush()
                                 heartbeat('collection', round=index, case_id=case_id, control=row['teacher_query']['control'])
                         sample = collect_recovery_episode(config, model, norm, case['seed'], setting['teacher_probability'],
-                            mixture_seed=100000*index+case['seed'], callback=record)
+                            mixture_seed=100000*index+case['seed'], callback=record,
+                            teacher_mode=protocol.get('teacher_mode','held_reference'))
                     for key in ('observations','actions','returns','teacher_executed'):
                         fresh[key].extend(sample[key])
                     count = sample['teacher_queries']
@@ -173,7 +177,8 @@ def run(batch):
                         'reason':sample['metrics']['termination_reason'],'controls':count}),flush=True)
                 fresh = {k:np.asarray(v,dtype=bool if k in ('train_mask','teacher_executed') else np.int32 if k=='case_id' else np.float32) for k,v in fresh.items()}
                 np.savez_compressed(folder/'recovery_examples.npz', **fresh)
-                collected = {'round':index,'teacher_probability':setting['teacher_probability'],'episodes':rows,
+                collected = {'round':index,'teacher_probability':setting['teacher_probability'],
+                    'teacher_mode':protocol.get('teacher_mode','held_reference'),'episodes':rows,
                     'data_sha256':sha(folder/'recovery_examples.npz'),'source_model_round':index-1,
                     'controls':len(fresh['case_id']),'teacher_queries':len(fresh['case_id']),
                     'teacher_executed_controls':int(fresh['teacher_executed'].sum()),
@@ -187,15 +192,20 @@ def run(batch):
                 combined = {k:np.concatenate(v) for k,v in arrays.items()}
                 train_mask = np.concatenate(masks)
                 before = actor_vector(model).clone()
+                critic_before = {name:t.detach().clone() for name,t in model.policy.named_parameters()
+                                 if 'value_net' in name or name=='log_std'} if protocol.get('value_weight',.5)==0 else None
                 def fit_record(row):
                     heartbeat('supervision', round=index, **row)
                     print(json.dumps({'round':index,**row}),flush=True)
                 history = fit_demonstrations(model,norm,combined['observations'],combined['actions'],combined['returns'],train_mask,
-                    epochs=protocol['supervised_epochs_per_round'],seed=11+index,callback=fit_record,update_normalization=False)
+                    epochs=protocol['supervised_epochs_per_round'],seed=protocol.get('supervised_seed_base',11)+index,
+                    callback=fit_record,update_normalization=False,value_weight=protocol.get('value_weight',.5))
                 np.testing.assert_array_equal(stats.mean,norm.obs_rms.mean)
                 np.testing.assert_array_equal(stats.var,norm.obs_rms.var)
                 assert stats.count == norm.obs_rms.count
                 assert model._n_updates == 0 and not model.policy.optimizer.state
+                if critic_before is not None:
+                    assert all(torch.equal(critic_before[name],t) for name,t in model.policy.named_parameters() if name in critic_before)
                 checkpoint = folder/'supervised_checkpoint'
                 checkpoint.mkdir()
                 model.save(checkpoint/'model.zip'); norm.save(checkpoint/'normalization.pkl')
@@ -206,6 +216,13 @@ def run(batch):
                     'ppo_updates':0,'model_sha256':sha(checkpoint/'model.zip'),'normalization_sha256':sha(checkpoint/'normalization.pkl')}
                 write_json(folder/'supervision.json', trained); supervision.append(trained)
                 evaluate_endpoint(folder,checkpoint,0,f'supervised_round_{index}')
+            if not protocol['ppo_milestones']:
+                write_json(batch/'completed.json', {'scope':protocol['scope'],'results':results,
+                    'new_collection_controls':sum(c['controls'] for c in collections),
+                    'teacher_queries':sum(c['teacher_queries'] for c in collections),
+                    'new_supervised_optimizer_steps':sum(s['history'][-1]['supervised_optimizer_steps'] for s in supervision),
+                    'final_ppo_controls':0,'inherited_costs':protocol['inherited_costs']})
+                return
             # A new real PPO counter starts only after all declared supervised
             # aggregation. Ancestral controls and supervisor updates stay charged.
             folder = batch/'B1'

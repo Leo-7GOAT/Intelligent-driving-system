@@ -1,3 +1,46 @@
+# Active learning continuation — 2026-10-23 12:43 local
+
+Goal ACTIVE/incomplete, no hard blocker. Previous turn was progress; this turn
+completed actual relabeling, fixed-label fitting/evaluation and started the next
+coverage diagnostic. All main H/H0/B1/B2/B3, five-seed, CARLA and fresh-confirmation
+acceptance gates remain unchanged. No agents or other-project work.
+
+Relabel033822Z COMPLETE:32,538actualcontrols/queries,1,371.404queryseconds,
+all96cases, every non-action array identical. Root and independent pinned
+checkout verifier pass all raw/source/data/label/clock/cost checks. Worker21256,
+guard36560 and helper19104 exited; no restart. First helper failure retained.
+
+Current-state actor fit042840Z COMPLETE:200epochs/19,400supervisedupdates,
+actorL2change28.81247, unchangedcritic/logstd/norm and0PPO. Pure development1/10
+(one dynamic success,6deadlines,3collisions), parking1/2/0/0 out of2. Control
+031926Z was2/10,parking0/0/1/1. All10,397new evaluation controls and8,144control
+controls verified by scripts/analyze_actor_label_contrast.py. Source/data/init
+matching checks passed. Worker11204/guard23784normalexit0; both stopped. This
+negative label-only result is retained, not promoted as a solution.
+
+NEW LIVE batch `20261023T043924Z_current_state_aggregation`, pointer
+runs/current_state_aggregation.json. Worker52636 created12:39:52, launcher42992;
+guard44820 created12:39:56, launcher42048. OS and actual collection heartbeat
+verified. Deadline14:39:25local, one CPUworker,12GiBdisk/4GiBRAM/85Cstop,
+zeroautomaticretries. Frozen source never edit. Two rounds of seeds8401..8408
+x four scenes, first6fit/last2heldout; teacherexecution probability0 and fresh
+current-state queries. Starts fixed newly fitted1/10model, no best checkpoint
+substitution. Carries all32,538relabeled visits,24,831train/7,707heldout. Excludes
+613-control diagnostic data. Each round200actor-onlyepochs, stats/critic/logstd
+frozen, all18endpointcases retained. NO PPO stage in this batch. This is a
+coverage-oriented continuation combining new visits and additional optimization,
+not a single-factor causal comparison. Broader study costs retained separately.
+
+Generic recovery runner/analyzer now support current-state labels, actor-only
+fitting and an explicit empty PPO milestone list, with legacy defaults intact.
+Full regression137passed/5skips/2existingwarnings in pure_learner_aggregation_regression.xml;
+old two-round+102400PPO raw analyzer also passes. New actual batch preparation
+asserts data/source/checkpoint hashes and original masks. Code/report publication
+and independent contrast reproduction follow; inspect Git/receipts for final
+state. No new model/data release asset uploaded. Next action is monitor this
+specific live batch and verify all retained endpoints; use its results for the
+next learning intervention rather than repeating completed label fitting.
+
 # Live preparation transition — 2026-10-23 12:20 local
 
 Goal ACTIVE/incomplete, no hard blocker. This continuation verifies two completed
