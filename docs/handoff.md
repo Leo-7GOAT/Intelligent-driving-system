@@ -1,3 +1,56 @@
+# Audited collapse and exploration contrast — 2026-10-23 13:27 local
+
+Goal ACTIVE/incomplete, nohardblock; previous turn substantialprogress. This turn
+completed originalPPO, actual72episode factorial, allrawverification and started
+the single-variable exploration contrast. No agents/otherprojects/CARLA started.
+
+Original `20261023T050438Z_aggregated_ppo` COMPLETE normalexit0 at13:22local;
+worker27336/guard40952 gone. Final102,400controls/40phases/16,000optimizersteps,
+actorL2change3.253203, exactreload. Fulltask0/10 alldeadlines; allparking0/2.
+Training102deadlines25collisions4success2bounds pluspartial; all102,400train and
+41,325evalcontrols checked including policyaction->requestedcommand mapping.
+Finalplotvisuallyinspected. Zero4/10 and25k0/10 retained.
+
+`normalization_25k_factorial` under thatbatch COMPLETE normalexit0; worker42900
+andguard15228 gone. Actual47,507controls/72episodes,0updates/queries. Oldweights
+withold/newstats both4/10; newweights withold/newstats both0/10. Parking vectors
+0/2/1/2,2/2/2/2,0/0/0/0,0/0/0/0. Allrawchecked by new
+scripts/verify_normalization_factorial.py; unchangedpairs25,125actions/states
+exactly reproduce originalevaluation. Sourcecopy/hash in audit_source.py and
+protocol; verification.json. Counterfactual swaps not promoted as models.
+
+New scripts/measure_exploration_scale.py produces verified_exploration_scale.json:
+438fixed train-mask visits, actual initialconditionalstd median1.02429 (not the
+logged noiseparameterexp(-2)=.1353), boundsprobability36.18%/32.98%. At25kmedian
+.9700/.9715. Noextra controls/queries/updates. Diagnosticnoton-policyfrequency.
+Initial quickread used locale decoding and failed checkpointlookup before any
+interaction; corrected with UTF8. Structured reproducible script output is the
+authoritative measurement, not the first ad-hoc copy.
+
+NEW LIVE `runs/20261023T052413Z_reduced_exploration`, pointer reduced_exploration.json.
+Actualworker45768 created13:24:44.344local, launcher25928; guard33204 created
+13:24:46.558, launcher53676. OSidentities/healthyguard verified. Deadline14:24:16,
+oneCPUworker,12GiBdisk/4GiBRAM/85Cstop,0automaticretries. Runfrozen
+source/scripts/paired_update_stability.py --batch (never editfrozen source).
+Only initiallog_std tensor-2->-4, remains trainable; exactotherparam/optimizer/
+RNG/env/normalization checkpoint preservation. Uses ORIGINALzero-update model,
+not the failed100k endpoint. Parentbaselinecost102400 andallancestralsupervision
+charged. Sourceprep refuses incompleteparent/factorial audits. SameLR1e-4/KL.03/
+reward/cases; same0/25k/100kmilestones. Zeroeval4/10 parking0/2/1/2; independent
+reload and rawcomparison in zero_update_exact_verification.json confirms10,882
+actions/states exactlyidentical, onlylog_std differs. At13:26training7680controls,
+363optimizersteps/3phases (KLearlystopping); actualcosts must be reported, not
+assumed equalupdates. No learning endpoint yet. Continue existingworker.
+
+Rootregression137passed/5skips/2existingwarnings in exploration_branch_regression.xml.
+Preflight327files/no findings. CorrectGitHuborigin/accountverified. Publication
+andindependentchecksfollow; inspectlatestGit/receipts. Scripts changed:
+audit_normalization_transfer.py supportsnewprotocol/all18cases/resourcebudget;
+verify_normalization_factorial.py raw/diagonal audit; measure_exploration_scale.py;
+prepare_exploration_branch.py; paired_update_stability zeroresultguard;
+watch_existing_pair allowlistaudit; analyzer trainingaction checks and PPO-only plot.
+Do not rerunbaseline/factorial; allresearchacceptancegates remain unmet.
+
 # PPO regression retained — 2026-10-23 13:12 local
 
 Same liveworker27336/guard40952 OSidentity-confirmed healthy. Currentheartbeat

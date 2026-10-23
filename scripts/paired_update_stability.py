@@ -88,6 +88,8 @@ def run(batch):
                         'additional_physics_steps':saved['physics_steps']-protocol['inherited_controls'],
                         'full_task_success':sum(e['success'] for e in outcome['episodes'] if 'label' not in e),
                         'retention':{str(d):sum(e['success'] for e in outcome['episodes'] if e.get('label')==f'retention_{d}m') for d in (6,12,18,23)}}
+                    if target == 0 and 'expected_zero_result' in protocol:
+                        assert all(row[key] == value for key,value in protocol['expected_zero_result'].items()), 'Exploration-only change altered deterministic zero-update results'
                     results.append(row);write_json(batch/'progress.json',results);print(json.dumps(row),flush=True)
             write_json(batch/'completed.json',{'results':results,'scope':protocol['scope']})
         except BaseException as exc:

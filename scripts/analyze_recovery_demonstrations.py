@@ -237,6 +237,11 @@ def analyze(batch, partial=False, output=None):
                         row = json.loads(line)
                         assert row['mode']=='flat' and row['plan'] is None
                         assert len(row['trace'])==1 and row['trace'][0]['controller_status']=='direct'
+                        action=np.asarray(row['policy_action']).clip(-1,1)
+                        command=row['trace'][0]['requested_command']
+                        vehicle=protocol['env']['vehicle']
+                        assert abs(command['acceleration']-float(action[0])*(vehicle['max_accel'] if action[0]>=0 else vehicle['max_decel'])) < 1e-6
+                        assert abs(command['steering']-float(action[1])*vehicle['max_steer']) < 1e-6
                         train_controls += 1
                         assert row['physics_steps']==train_controls
                         episode = row['episode_id']
@@ -258,10 +263,14 @@ def analyze(batch, partial=False, output=None):
         output = Path(output) if output else batch/'analysis'
         output.mkdir(exist_ok=True)
         fig,axes = plt.subplots(1,2,figsize=(11,4.2),constrained_layout=True)
-        axes[0].bar([str(r['round']) for r in rounds],[r['teacher_executed_controls'] for r in rounds],label='Teacher executes')
-        axes[0].bar([str(r['round']) for r in rounds],[r['learner_executed_controls'] for r in rounds],bottom=[r['teacher_executed_controls'] for r in rounds],label='Learner executes')
-        axes[0].set(xlabel='Aggregation round',ylabel='Actual collection controls',title='Data collection (not development evaluation)')
-        axes[0].legend()
+        if rounds:
+            axes[0].bar([str(r['round']) for r in rounds],[r['teacher_executed_controls'] for r in rounds],label='Teacher executes')
+            axes[0].bar([str(r['round']) for r in rounds],[r['learner_executed_controls'] for r in rounds],bottom=[r['teacher_executed_controls'] for r in rounds],label='Learner executes')
+            axes[0].set(xlabel='Aggregation round',ylabel='Actual collection controls',title='Data collection (not development evaluation)')
+            axes[0].legend()
+        else:
+            axes[0].bar([format(r['actual_ppo_controls'],',') for r in endpoints],[r['actual_ppo_controls'] for r in endpoints])
+            axes[0].set(xlabel='PPO endpoint',ylabel='Cumulative actual controls',title='On-policy training (supervision charged separately)')
         axes[1].bar(['Supervised\nround '+r['kind'].rsplit('_',1)[1] if r['kind']!='PPO'
                      else 'PPO\n'+format(r['actual_ppo_controls'],',') for r in endpoints],
                     [r['full_task_success']/10*100 for r in endpoints])

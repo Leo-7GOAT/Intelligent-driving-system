@@ -206,8 +206,9 @@ its new derivative lives in `strengthened_analysis/`, while its original
 
 ### Actual PPO continuation
 
-Batch `20261023T050438Z_aggregated_ppo` was launched at13:05local with a14:04:38
-deadline, one CPU worker,12GiB disk/4GiB RAM/85C guards and no automatic retries.
+Batch `20261023T050438Z_aggregated_ppo` was launched at13:05local and completed
+normally at13:22local, within its14:04:38deadline, with one CPU worker,
+12GiB disk/4GiB RAM/85C guards and no automatic retries.
 It starts from the fixed round-two endpoint, not a selected best checkpoint.
 The zero-update evaluation must exactly match the parent's success, parking and
 control counts before PPO proceeds. Original PPO seed11 is retained; the
@@ -222,10 +223,83 @@ This is still demonstration-assisted B1 development, not a pure-PPO comparison.
 At13:12local the first PPO endpoint is complete and raw-audited:25,600actual
 controls,4,000optimizersteps,actorL2change1.665761. Full-task completion regresses
 from4/10 to0/10 (seven deadlines,three collisions); all eight parking probes fail.
-Its14,243evaluation controls remain recorded. The same worker continues toward
-the registered100k milestone; the negative25k endpoint is not replaced or hidden.
-The cause is not established by this outcome. No new normalization factorial has
-yet run for this batch; the earlier warmstart factorial applies to different models.
+Its14,243evaluation controls remain recorded. The final endpoint completes
+102,400controls/40optimization phases/16,000optimizer steps,actorL2change3.253203.
+It remains0/10, all ten full tasks deadline; all eight parking probes also deadline.
+The final evaluation uses16,200controls. All102,400training and41,325evaluation
+controls pass action mapping, physical clock and terminal checks. Training has
+102deadlines,25collisions,four successes,two bounds failures,plus an unfinished
+episode. Actor reload is exact. Neither failed endpoint is replaced or hidden.
+The cause is not established by this outcome. The subsequent bounded factorial
+below tests this batch directly; the older warmstart factorial used different models.
+
+### Normalization factorial and exploration scale
+
+`normalization_25k_factorial/` completed72physical episodes and47,507controls
+under its600-second resource guard (normalexit0, no retries). There are no
+optimizer updates or teacher queries. All18declared development tasks/probes
+are evaluated in each of the four policy/statistics combinations.
+
+| Network weights | Observation statistics | Full tasks | Parking at6/12/18/23m (each out of2) |
+|---|---|---:|---|
+| Before PPO | Before PPO | 4/10 | 0/2/1/2 |
+| Before PPO | After25,600controls | 4/10 | 2/2/2/2 |
+| After25,600controls | Before PPO | 0/10 | 0/0/0/0 |
+| After25,600controls | After25,600controls | 0/10 | 0/0/0/0 |
+
+This factorial does not support statistics drift alone as the explanation for
+losing all parking competence. The changed network fails with either statistics
+snapshot; the untrained-in-PPO network retains full-task completion under both.
+Statistics still affect safety: the old network with new statistics has three
+collisions versus none in its original full-task evaluation. Swapped combinations
+are counterfactual diagnostics, not eligible replacement models or final evidence.
+
+`verify_normalization_factorial.py` checks every command, physical clock and
+terminal metric. The25,125controls of both unchanged combinations reproduce the
+original evaluations' actions and actual states exactly; all four combinations,
+72episodes and47,507controls are required. Model, statistics, frozen environment
+and diagnostic source hashes are recorded. Verification is in
+`normalization_25k_factorial/verification.json`.
+
+An offline distribution probe uses438fixed observations, selecting every16th
+training-mask visit from aggregation round two. It introduces no interactions,
+queries or updates. At PPO initialization, mean log_std is-2 but the actual
+conditional Gaussian action standard deviation has median1.0243 in both
+longitudinal and steering dimensions (95thpercentile1.0493). Probability outside
+the normalized[-1,1] actuator range averages36.18%/32.98%. At25k the corresponding
+medians are.9700/.9715, with43.28%/32.80% outside bounds. SB3's logged noise
+parameter scale near.135 is therefore not the actual conditional action standard
+deviation on these observations. This is a measurement on fixed training visits,
+not a measured on-policy clipping frequency or a proof of the cause of failure.
+
+The registered next contrast changes only initial gSDE log_std from-2 to-4,
+reducing conditional standard deviation by exp(-2); log_std remains trainable.
+The actor mean, all other parameter tensors, optimizer state, RNG, physical
+state and normalization must match the original zero-update checkpoint exactly.
+The baseline's completed0/25k/100kresults are retained and not repeated. The new
+branch also retains these milestones with the same PPO objective, learning rate,
+reward and cases. Its deterministic zero-update success/parking must match before
+training proceeds. Preparation requires the baseline's full completed audit and
+the factorial verification. Batch `20261023T052413Z_reduced_exploration` was
+actually launched at13:24local with a14:24deadline, the same resource thresholds
+and no automatic retries. Worker and guard OS identities were verified. Initial
+checkpoint comparison passes: only log_std tensors differ; all other checkpoint
+files, including RNG/physical resume state and normalization, are byte-identical.
+The new branch's results are pending; smaller exploration is a hypothesis, not
+an established remedy. Its initial-scale and later PPO updates are separately
+reported from all inherited supervision and the completed comparator's102,400steps.
+
+The new zero-update endpoint is already verified: all10,882actions and actual
+states exactly match the original evaluation, and independent reload confirms
+only log_std differs. Real PPO then begins. At7,680controls it has363optimizer
+steps across three phases, fewer than the original1,200steps at the same budget
+because the unchanged KL guard stops epochs earlier. This mediated change is
+reported as an actual computational difference, not equal optimizer exposure.
+
+```powershell
+python scripts/verify_normalization_factorial.py --batch runs/20261023T050438Z_aggregated_ppo --output runs/20261023T050438Z_aggregated_ppo/normalization_25k_factorial
+python scripts/measure_exploration_scale.py --batch runs/20261023T050438Z_aggregated_ppo --dataset runs/20261023T043924Z_current_state_aggregation/round_02/recovery_examples.npz --output runs/new_exploration_scale.json
+```
 
 ```powershell
 # Existing run: inspect runs/aggregated_ppo.json; do not prepare it twice.
