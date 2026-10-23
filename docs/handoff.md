@@ -1,3 +1,19 @@
+# Verified source/reproduction — 2026-10-23 12:47 local
+
+Source f49ee75c0ac378e17cf5179f585bbc6a510f58c4 pushed/remotematched;
+accountLeo-7GOAT and correctorigin verified, publication323files/no findings.
+Root and independent pinned environment both137passed/5skips/2existingwarnings.
+Clone receipt runs/actor_label_contrast_reproduction.json byte-identical verified
+summary SHA9ae6d701643f9474fdf55209076d8c6738d10d877ef3198d8a946ec1276471c0,
+both model hashes and18,541evalcontrols checked. Full clone test receipt
+runs/current_state_aggregation_reproduction_tests.xml. New artifacts local only.
+
+Live aggregation043924Z at12:46round1case17/control41; worker52636 and guard44820
+OS-confirmed alive/healthy. First17cases complete, failures retained, no new
+supervised update yet. Same14:39:25deadline. No other train/CARLA processes
+expected. Root/clone clean before this documentation update. Continue this
+actual batch; do not repeat relabel/label fitting. Full objective ACTIVE.
+
 # Active learning continuation — 2026-10-23 12:43 local
 
 Goal ACTIVE/incomplete, no hard blocker. Previous turn was progress; this turn

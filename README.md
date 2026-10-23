@@ -61,7 +61,7 @@ python -m venv .venv
 
 CPU tests exercise physical dynamics, planning, QP control, PPO updates/checkpoints, statistical accounting and failure recovery. Live CARLA tests require explicit opt-in and an exclusively owned server; skipped tests are not evidence of live validation.
 
-Latest local and independent-checkout full regression at source `ff6b578`: **136 passed, 5 conditional skips**. The independent pinned environment also loads all five recovery diagnostic models with frozen statistics and rebuilds the verified summary and figure byte-for-byte. These newer diagnostic artifacts are local; they have not been uploaded as release assets. Earlier checkout test counts describe their own frozen versions.
+Latest local and independent-checkout full regression at source `f49ee75`: **137 passed, 5 conditional skips**. The fixed-label comparison reproduces a byte-identical verified summary in the independent pinned environment, including both model hashes and all18,541evaluation controls. Earlier five-model recovery checks and figure reconstruction remain documented in their source-specific receipts. These newer diagnostic artifacts are local; they have not been uploaded as release assets.
 
 ## Bounded development and recovery
 

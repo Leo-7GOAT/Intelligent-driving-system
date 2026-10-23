@@ -241,3 +241,12 @@ frozen normalization. The receipt is
 `runs/prerelease_20261022/native_road_checkout/runs/recovery_aggregation_reproduction.json`.
 This checks local diagnostic artifacts; it does not claim they were downloaded
 from a release or that the research acceptance thresholds have been achieved.
+
+The later source `f49ee75c0ac378e17cf5179f585bbc6a510f58c4` is also pushed and
+remote-verified. Both worktrees pass137tests/five conditional skips/two existing
+warnings. The independent environment reconstructs the completed fixed-label
+comparison byte-for-byte (summary SHA256
+`9ae6d701643f9474fdf55209076d8c6738d10d877ef3198d8a946ec1276471c0`), checks both
+model hashes and all18,541evaluation controls. Receipt:
+`runs/prerelease_20261022/native_road_checkout/runs/actor_label_contrast_reproduction.json`.
+The live pure-learner aggregation has not reached a fitted endpoint yet.
