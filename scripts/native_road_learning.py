@@ -29,9 +29,11 @@ from navstack.research import atomic_json
 from scripts.carla_steering_audit import guard
 
 
-def prepare(parent, road_geometry_version="carla_driving_64_v1", controlled_budget=640, wall_seconds=900, episode_seconds=20, evaluate=False, feedback_ablation=False):
+def prepare(parent, road_geometry_version="carla_driving_64_v1", controlled_budget=640, wall_seconds=900, episode_seconds=20, evaluate=False, feedback_ablation=False, road_candidate_policy=False):
     if not 640<=controlled_budget<=100000 or not 900<=wall_seconds<=7200 or not 20<=episode_seconds<=90:
         raise ValueError("Native development budget outside supported bounds")
+    if road_candidate_policy and not feedback_ablation:
+        raise ValueError('Structured road policy requires the declared H0/H/B1 feedback comparison')
     healthy, reason = resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free < 12*1024**3:
         raise RuntimeError("Resource guard: "+str(reason))
@@ -50,11 +52,18 @@ def prepare(parent, road_geometry_version="carla_driving_64_v1", controlled_budg
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
             hashes[relative.as_posix()] = hashlib.sha256(source.read_bytes()).hexdigest()
+    for name in ('start_carla.ps1','stop_owned_carla.ps1'):
+        relative=Path('scripts')/name
+        shutil.copy2(ROOT/relative,batch/'source'/relative)
+        hashes[relative.as_posix()]=hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()
     write_json(batch/"protocol.json", {"scope": "Shared native-road real PPO interface training, not convergence or hierarchy advantage",
         "created_epoch": time.time(), "deadline_epoch": time.time()+wall_seconds, "source_hashes": hashes,
         "road_geometry_version":road_geometry_version,
         "deterministic_training_route_evaluation":evaluate,
         "feedback_ablation":feedback_ablation,
+        "road_candidate_policy":road_candidate_policy,
+        "cleanup_owned_carla":road_candidate_policy,
+        "representation_note": "4701shared inputs: existing candidate geometry plus road raster; learned CNN and shared candidate scores/pooling, fixed binary road/candidate scaling. New incompatible models, no masks or route prior." if road_candidate_policy else "Historical flat observation/MLP representation",
         "hypothesis": "Same-size H0/H feedback ablation and equally informed direct B1; unchanged action catalog, reward, controller and PPO settings" if feedback_ablation else "Shared native-road interface development",
         "calibration_sha256": hashlib.sha256((batch/"calibration/calibration.json").read_bytes()).hexdigest(),
         "routes": select_routes(survey), "methods": ["H0", "H", "B1"] if feedback_ablation else ["H", "B1"], "seed": 11,
@@ -65,6 +74,18 @@ def prepare(parent, road_geometry_version="carla_driving_64_v1", controlled_budg
         "disk_free_bytes": shutil.disk_usage(ROOT).free})
     write_json(ROOT/"runs/native_road_learning.json", {"batch": str(batch)})
     print(batch, flush=True)
+
+
+def training_config(protocol, method, vehicle):
+    feedback = ("ablated" if method == "H0" else "enabled") if protocol.get("feedback_ablation", False) else "off"
+    config = EnvConfig(method="H" if method == "H0" else method, vehicle=vehicle, road_observation=True,
+        execution_feedback=feedback,candidate_observation=protocol.get('road_candidate_policy',False),
+        road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),
+        flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0)
+    config.planner.max_seconds=None
+    config.planner.vectorized_primitives=True
+    config.planner.analytic_expansion=True
+    return config
 
 
 class RecordedRoadEnv(CarlaNavigationEnv):
@@ -150,14 +171,7 @@ def run(batch):
             guard(batch, protocol)
             if time.time() >= protocol["deadline_epoch"]:
                 raise RuntimeError("Registered wall budget expired")
-            feedback = ("ablated" if method == "H0" else "enabled") if protocol.get("feedback_ablation", False) else "off"
-            config = EnvConfig(method="H" if method == "H0" else method, vehicle=vehicle, road_observation=True,
-                execution_feedback=feedback,
-                road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),
-                flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0)
-            config.planner.max_seconds = None
-            config.planner.vectorized_primitives = True
-            config.planner.analytic_expansion = True
+            config=training_config(protocol,method,vehicle)
             output = batch/method
             output.mkdir()
             write_json(output/"config.json", {"env": config.to_dict(), "signature": signature(config),
@@ -174,10 +188,19 @@ def run(batch):
                     model,vec,resume_mode=restore_training(batch/recovery['checkpoint'],raw,config,protocol['seed'])
                     write_json(output/'resume_event.json',{'mode':resume_mode,**recovery})
                 else:
-                    vec = VecNormalize(raw, norm_reward=False, gamma=config.gamma)
-                    model = PPO("MlpPolicy", vec, n_steps=protocol["rollout_actions"], batch_size=32,
+                    normalizer,policy=VecNormalize,"MlpPolicy"
+                    if protocol.get('road_candidate_policy',False):
+                        from navstack.road_candidate_policy import RoadCandidateVecNormalize,RoadCandidateActorCriticPolicy,FlatRoadCandidateActorCriticPolicy
+                        normalizer=RoadCandidateVecNormalize
+                        policy=FlatRoadCandidateActorCriticPolicy if method=='B1' else RoadCandidateActorCriticPolicy
+                    vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
+                    model = PPO(policy, vec, n_steps=protocol["rollout_actions"], batch_size=32,
                         n_epochs=protocol["ppo_epochs"], gamma=config.gamma, gae_lambda=.95**.5,
                         policy_kwargs={"net_arch":{"pi":[64,64],"vf":[64,64]}}, seed=protocol["seed"], device="cpu")
+                write_json(output/'policy_architecture.json',{'policy':type(model.policy).__name__,
+                    'normalizer':type(vec).__name__,'parameters':sum(p.numel() for p in model.policy.parameters()),
+                    'observation_shape':list(model.observation_space.shape),
+                    'action_shape':list(model.action_space.shape),'road_candidate_policy':protocol.get('road_candidate_policy',False)})
                 inherited_lineage=0 if recovery is None else recovery['lineage_controls']
                 inherited_cost=0 if recovery is None else recovery['consumed_controls_lower_bound']
                 budget=protocol.get('method_budgets',{}).get(method,protocol['controlled_budget_per_method'])
@@ -238,7 +261,9 @@ def run(batch):
                             obs,_=evaluation.reset(seed=7301+case_id,options={"case":case})
                             actions=0
                             while True:
-                                if actions%20==0:guard(batch,protocol)
+                                if actions%20==0:
+                                    guard(batch,protocol)
+                                    atomic_json(output/'evaluation_heartbeat.json',{'pid':os.getpid(),'epoch':time.time(),'case_id':case_id,'actions':actions})
                                 action,_=loaded.predict(vec.normalize_obs(obs[None]),deterministic=True)
                                 obs,_,done,truncated,info=evaluation.step(action[0]);actions+=1
                                 stream.write(json.dumps({"case_id":case_id,"policy_action":action[0],"info":info},default=jsonable)+"\n")
@@ -274,5 +299,6 @@ if __name__ == "__main__":
     parser.add_argument("--episode-seconds",type=float,default=20)
     parser.add_argument("--evaluate",action="store_true")
     parser.add_argument("--feedback-ablation",action="store_true")
+    parser.add_argument("--road-candidate-policy",action="store_true")
     args = parser.parse_args()
-    prepare(args.prepare,args.road_geometry_version,args.controlled_budget,args.wall_seconds,args.episode_seconds,args.evaluate,args.feedback_ablation) if args.prepare else run(args.batch)
+    prepare(args.prepare,args.road_geometry_version,args.controlled_budget,args.wall_seconds,args.episode_seconds,args.evaluate,args.feedback_ablation,args.road_candidate_policy) if args.prepare else run(args.batch)

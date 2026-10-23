@@ -1,3 +1,26 @@
+# Matched normalization continuation: audited 200k endpoints
+
+At 14:28 local on 2026-10-23, both 200k endpoints in
+`runs/20261023T060219Z_normalization_retention_pair` pass the partial raw audit.
+Each has 202,240 cumulative controls, including 99,840 new controls after its
+102,400-step parent. The remaining 300k endpoints are still running.
+
+| Training statistics | Full task | Terminations | Parking successes at 6/12/18/23 m (two each) | New optimizer steps |
+|---|---:|---|---|---:|
+| Updating | 0/10 | 6 deadlines, 4 collisions | 0/1/0/0 | 1,707 |
+| Frozen | 4/10 | 4 successes, 5 deadlines, 1 collision | 0/2/2/2 | 3,062 |
+
+The verifier checks 99,840 new training controls per branch, 12,607/9,423
+evaluation controls, 39 new optimization phases each and ten normalization
+checkpoints each. These are correlated supervised-initialized policies with
+inherited costs, not independent seeds or pure PPO from scratch. Frozen
+statistics retain some ability without repairing the full task or all parking
+distances. The collision and failed short-distance probes remain in the result.
+This is a diagnostic checkpoint, not a selected final model or an architecture
+comparison. Rebuild with `python scripts/verify_normalization_continuation.py
+--batch runs/20261023T060219Z_normalization_retention_pair --partial` while active;
+omit `--partial` only after the full batch and guard complete normally.
+
 # Recovery-state aggregation development
 
 This is a one-seed supervised diagnostic followed by separately counted PPO,

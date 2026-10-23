@@ -1,10 +1,15 @@
-param([Parameter(Mandatory=$true)][string]$Batch)
+param([Parameter(Mandatory=$true)][string]$Batch,[ValidateRange(0,30)][int]$BridgeDrainSeconds=0)
 $ErrorActionPreference = 'Stop'
 $batchPath = (Resolve-Path -LiteralPath $Batch).Path
 $projectPath = Split-Path -Parent $PSScriptRoot
 $record = Get-Content -LiteralPath (Join-Path $batchPath 'infrastructure/server_start.json') -Raw | ConvertFrom-Json
 if (-not $record.owned_by_task) { throw 'Server ownership not established' }
 $bridges = @(Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'python.exe' -and $_.CommandLine -like '*carla_bridge37.py*' })
+$drainDeadline = [DateTime]::UtcNow.AddSeconds($BridgeDrainSeconds)
+while ($bridges.Count -gt 0 -and [DateTime]::UtcNow -lt $drainDeadline) {
+    Start-Sleep -Seconds 2
+    $bridges = @(Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'python.exe' -and $_.CommandLine -like '*carla_bridge37.py*' })
+}
 if ($bridges.Count -gt 0) { throw 'A bridge is still live; refusing to stop server' }
 $probePath = Join-Path $batchPath ('infrastructure/stop_probe_'+[DateTime]::UtcNow.ToString('yyyyMMddTHHmmss')+'.json')
 $clientPython = if ($env:NAVSTACK_CARLA_PYTHON) { $env:NAVSTACK_CARLA_PYTHON } else { Join-Path $projectPath '.carla-python37/runtime/python.exe' }

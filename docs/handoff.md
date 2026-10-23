@@ -1,3 +1,39 @@
+# Active native representation experiment — 2026-10-23 14:30 local
+
+The preceding summary turn was a verified wait: actual lightweight worker and
+guard identities were inspected. This continuation is progress: native readiness
+verified, real CARLA PPO launched, both 200k normalization endpoints raw-audited,
+and cleanup failure receipts added with fault-injection tests. Full goal remains
+active and incomplete. Read the original objective attachment before continuing.
+
+NEW native batch `20261023T062141Z_native_road_learning`, pointer
+`runs/native_road_learning.json`: H0/H/B1 fresh structured road/candidate policies,
+seed11,20k controls each,45s episodes,2h window ending16:21:41. No reward/lowlevel/
+action/teacher changes. Representation bundle versus old MLP, not a single-factor
+architecture claim; H/H0 inside batch isolates feedback. Four training-road
+endpoint probes, no heldout claim. Full details in
+`reports/road_candidate_development_20261023.md`.
+Actual worker18088 creation1792736844.863,launcher54140; actualguard12856,
+launcher48688. Server shipping52312,parent19372,started14:21:44. Client/server
+0.9.15 and emptyworld confirmed beforelaunch. Atlastinspection H0 had7360controls,
+46optimizersteps,actorL2.06184. CheckOS+heartbeats now; never duplicate owners.
+Frozen guard owns lifecycle and attempts empty-server shutdown. Inspect both
+server_cleanup.json andinfrastructure/server_stop.json aftercompletion. The
+later root timeout-receipt patch does not alter this running frozen source.
+
+Existing lightweightpair `20261023T060219Z_normalization_retention_pair` remains
+live underworker50724/guard55448. Both200kendpoints audited:202240cumulative,
+99840newcontrols each. Updating0/10(6deadline4collision),parking0/1/0/0;
+frozen4/10(5deadline1collision),parking0/2/2/2. Addedoptimizersteps1707/3062,
+39phases each. All20normalization checkpoints checked. Partialreceipt at
+continuation_verification.json. Updating branch now~245k enroute300k, thenfrozen.
+Keep inheritedBCcosts andonecorrelatedseed explicit. Noformal gate achieved.
+
+Current edits include structuredpolicy/tests, nativeworker, guard andPowerShell
+cleanup. Full root regression now146passed5skips2existingSB3warnings in89.16s;
+receipt runs/road_candidate_lifecycle_regression.xml includes latestguardtests.
+Do not treat uncommitted source as uploaded. Preserve allfrozen sources.
+
 # Verified continuation source — 2026-10-23 14:09 local
 
 Sourcec60e0846d2cd6f97fcbe972d33db5ccf00deec40 pushed and remote-matched.
