@@ -126,6 +126,44 @@ frozen statistics, seed13, 200 epochs and 19,400 optimizer steps as the complete
 actor-only control. Only direct action targets change. This fit has not started
 at this snapshot; neither a learned improvement nor causal explanation is claimed.
 
+The original 32-case group has now completed: 10,817 replay controls and new
+teacher queries, 522.402 seconds of teacher-query time. Its independent partial
+verifier checks all commands/labels/clocks and confirms every non-action array
+is unchanged. This partial receipt cannot authorize fitting before all groups
+finish; the verifier explicitly rejects an incomplete batch by default.
+
+## Pure-learner visited-state audit
+
+The fixed actor-only control was run on four predetermined static cases: original
+demonstration training layouts8101/8107 and existing development layouts7301/7302.
+It alone executes every control while the current-state teacher only supplies
+unexecuted query labels. All four collide, after137/164/159/153controls respectively;
+all613controls and queries are charged. There are zero optimizer updates and no
+teacher intervention. Both validation trajectories (312controls) match the original
+policy evaluation's actions and actual states exactly, ruling out query-induced
+changes in those recorded executions. These repeated cases are not independent
+policies or fresh confirmation. Seed8107 remains a heldout demonstration case;
+its diagnostic labels are not admitted to the training dataset.
+
+The actor's steering MSE on original static heldout demonstration visits is
+0.000288 against held-reference labels, or0.000655 against current-state labels.
+On its own four static trajectories, current-state steering MSE is
+0.00658/0.01296/0.00654/0.00614. Different state distributions and target definitions
+make these descriptive diagnostics, not a controlled superiority comparison.
+The much larger error on self-visited states motivates checking recovery-state
+coverage, alongside the already registered teacher-history label contrast.
+It does not prove that either change alone fixes closed-loop learning.
+
+Raw evidence and a visually inspected path/action figure are in the actor-only
+batch's `learner_state_label_audit/`. The figure overlays actual teacher and
+learner paths on the same two training layouts; same-state queried controls
+never execute. Rebuild and verify with:
+
+```powershell
+python scripts/verify_learner_label_audit.py --parent runs/20261023T031926Z_recovery_actor_only --output runs/20261023T031926Z_recovery_actor_only/learner_state_label_audit
+python scripts/plot_learner_label_audit.py --audit runs/20261023T031926Z_recovery_actor_only/learner_state_label_audit --relabel runs/20261023T033822Z_current_state_relabel
+```
+
 ## Verification
 
 `scripts/analyze_recovery_demonstrations.py` checks source and model hashes,

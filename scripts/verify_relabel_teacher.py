@@ -28,11 +28,22 @@ def assert_action_only_change(old, new):
     assert np.abs(new['actions']).max() <= 1
 
 
-def verify(batch):
+def verify(batch, partial=False):
     batch = Path(batch).resolve()
-    protocol, completed = read(batch/'protocol.json'), read(batch/'completed.json')
-    assert completed['ppo_updates'] == completed['supervised_optimizer_steps'] == 0
-    assert completed['no_new_teacher_action_executed']
+    protocol = read(batch/'protocol.json')
+    complete = (batch/'completed.json').exists()
+    if not complete and not partial:
+        raise ValueError('Incomplete relabel batch; fitting requires all groups')
+    if complete:
+        completed = read(batch/'completed.json')
+        assert completed['ppo_updates'] == completed['supervised_optimizer_steps'] == 0
+        assert completed['no_new_teacher_action_executed']
+        groups = protocol['groups']
+    else:
+        files = read(batch/'completed_groups.json')
+        groups = [g for g in protocol['groups'] if g in files]
+        assert groups, 'No immutable completed group yet'
+        completed = {'files': files, 'episodes': [r for r in read(batch/'progress.json') if r['group'] in groups]}
     for folder, key in [('source', 'source_hashes'), ('input', 'input_hashes')]:
         for name, digest in protocol[key].items():
             assert sha(batch/folder/name) == digest
@@ -41,7 +52,7 @@ def verify(batch):
     assert len(records) == len(completed['episodes'])
     total, seconds, trace_hashes = 0, 0., {}
     vehicle = protocol['env']['vehicle']
-    for group in protocol['groups']:
+    for group in groups:
         assert sha(batch/(group+'.npz')) == completed['files'][group]['sha256']
         with np.load(batch/'input'/(group+'.npz')) as old, np.load(batch/(group+'.npz')) as new:
             assert_action_only_change(old, new)
@@ -110,16 +121,21 @@ def verify(batch):
                 total += count
                 seconds += query_seconds
     assert not records
-    assert total == protocol['expected_controls'] == completed['actual_replay_controls'] == completed['teacher_queries']
-    result = {'all_non_action_arrays_identical': True, 'actual_replay_controls': total,
+    assert total == sum(completed['files'][g]['controls'] for g in groups)
+    if complete:
+        assert total == protocol['expected_controls'] == completed['actual_replay_controls'] == completed['teacher_queries']
+    result = {'complete': complete, 'verified_groups': groups,
+              'all_non_action_arrays_identical': True, 'actual_replay_controls': total,
               'teacher_queries': total, 'teacher_query_seconds': seconds, 'ppo_updates': 0,
               'raw_traces_verified': trace_hashes, 'scope': 'Recorded replay, labels, executed commands and dataset invariants; no new physical replay in this verifier'}
-    (batch/'verification.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
+    (batch/('verification.json' if complete else 'partial_verification.json')).write_text(json.dumps(result, indent=2), encoding='utf-8')
     return result
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch', required=True)
-    result = verify(parser.parse_args().batch)
+    parser.add_argument('--partial', action='store_true', help='Audit completed immutable groups only; never permits fitting')
+    args = parser.parse_args()
+    result = verify(args.batch, args.partial)
     print(json.dumps({k: v for k, v in result.items() if k != 'raw_traces_verified'}))

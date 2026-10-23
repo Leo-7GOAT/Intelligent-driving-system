@@ -1,7 +1,13 @@
 import numpy as np
 import pytest
 
-from scripts.verify_relabel_teacher import assert_action_only_change
+from scripts.verify_relabel_teacher import assert_action_only_change, verify
+
+
+def test_incomplete_relabel_cannot_authorize_fitting(tmp_path):
+    (tmp_path/'protocol.json').write_text('{}', encoding='utf-8')
+    with pytest.raises(ValueError, match='fitting requires all groups'):
+        verify(tmp_path)
 
 
 def test_relabel_rejects_changed_visits_returns_splits_and_invalid_actions():

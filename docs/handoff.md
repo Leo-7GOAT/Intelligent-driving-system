@@ -1,3 +1,35 @@
+# Active evidence snapshot — 2026-10-23 12:07 local
+
+Goal remains ACTIVE/incomplete, no blocker. Previous turn was progress (source,
+raw audit, independent reproduction); this turn adds actual pure-learner queries
+and partial-data verification. No agents/CARLA/new policy fitting started.
+
+Relabel worker21256/guard36560 remain live, created11:39:12/11:39:14. At12:06:
+16,888actual controls, round1case17/control303. Original32cases complete:
+10,817controls/queries,522.402teacherqueryseconds, all non-action arrays identical.
+scripts/verify_relabel_teacher.py --partial checks only immutable completed
+groups and writes partial_verification.json. Default still rejects incomplete
+batches, including from fit_recovery_actor.py. Frozen live sources unchanged.
+Deadline13:38:23local; inspect OS and progress before next action, no restart.
+
+New actual audit COMPLETE in actor-only batch/learner_state_label_audit:
+worker55284 exitednormally (exec50247 exit0). Cases static train8101/8107,
+validation7301/7302 all collide137/164/159/153controls; total613controls/queries,
+zero teacher-executed controls and zero updates. Independent raw verification
+matches all312validationcontrols' actions/state exactly against original eval.
+Heldout8107diagnostic labels MUST NOT enter training. SteeringMSE on self-visited
+states .00658/.01296/.00654/.00614 vs original staticheldoutvisits .000655 with
+current-state labels. This supports coverage diagnosis, not causality or success.
+Path/action figure learner_distribution_shift.png regenerated and inspected.
+Full CPU tests137passed/5skips/2existingwarnings in partial_relabel_regression.xml.
+
+New scripts diagnose_action_labels.py, audit_learner_state_labels.py,
+verify_learner_label_audit.py, plot_learner_label_audit.py plus partial verifier
+and test changes are being published; inspect Git for final state. After full
+relabel verification use the unchanged single-factor fit command below; still
+NOT prepared/started. Choose further data/learning intervention from its real
+result, preserving all old failures and fair supervision costs.
+
 # Verified publication/reproduction — 2026-10-23 11:54 local
 
 Source ff6b5782b99d81e2562397f161ff7d01c9746ba0 pushed and remote hash matched.
