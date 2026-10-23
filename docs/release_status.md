@@ -71,3 +71,16 @@ The first reproduction clone remains retained, including its line-ending-only di
 Representative CARLA replay from the fresh release checkout is complete. The downloaded H200k model reproduces static7301 deadline (2.786m progress) and dynamic7302 success (22.508m progress), with frozen normalization,1,369 control ticks and1,430 world ticks including reset. This reproduces an expected failure as well as a success; it is not new independent validation. The first server-readiness attempt timed out before policy execution and remains archived; a bounded retry connected to an empty0.9.15 world. The owned server was confirmed empty and stopped afterward. Evidence: `runs/prerelease_20261022/release_checkout/runs/carla_replay_retry1`.
 
 The release also contains `carla_replay_support.zip` (3,602 bytes), with measured calibration, the two representative cases, license and manifest. GitHub reports it uploaded with SHA256 `f28ce6c76a5ad45584a2f971c60a5cd220567362712c8a1198c19667009f0657`. It contains no CARLA binaries or runtime. Later1M lightweight and100k CARLA negative results are disclosed in the release notes; the release remains a development pre-release.
+# Verified paired PPO evidence — 2026-10-23
+
+Development source `e81b378c2aa8f142a7464593d5c0ab8c74bf72bf` was pushed and remote-verified. The existing prerelease now also contains `paired_ppo_rate_stability.zip`: 67,837,038 bytes, 256 manifest files, SHA256 `b284991976fe7ad87405666a548f837b6561bdcc84b3f674e276a7213bc0fb71`. It was actually uploaded, freshly downloaded and verified against every member hash. The immutable release tag and earlier assets are unchanged.
+
+This asset includes both correlated one-seed learning-rate branches, all eight registered endpoint models, normalization, complete training/evaluation traces, optimizer records, failures and frozen source. JSON path metadata is portable with original/export hashes; resume pickles and periodic unevaluated models are not duplicated. It is an inference-evidence bundle, not a portable training-resume bundle. It does not contain the still-running bounded-mean experiment or native recovery.
+
+Use source commit `e81b378` (the old prerelease tag predates these analysis tools). The separate clean checkout and independently installed pinned environment passed123tests/5conditional skips at33794af; at e81b378 it loaded all eight freshly downloaded endpoint models with frozen normalization and reconstructed identical scientific summaries and a byte-identical plot. Actual new live CARLA replay is still pending while native training owns the server.
+
+```powershell
+python scripts/analyze_update_stability.py --batch EXTRACTED/20261023T011009Z_update_stability
+```
+
+Full-task original/lower-rate endpoints are4/1/4/4 versus4/6/5/5 out of ten. Static cases remain0/2at every endpoint. These are development failures and conditional stability evidence, not a hierarchy-superiority result or completed research acceptance.

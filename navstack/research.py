@@ -152,19 +152,19 @@ def cumulative_train(run,config,seed,target,deadline,rollout_physics=2560,epochs
     else:
         from .candidate_policy import CandidateVecNormalize, CandidateActorCriticPolicy, FlatCandidateActorCriticPolicy
         policy_name = ppo_options.get("policy", "mlp")
-        if policy_name not in ("mlp", "candidate_shared", "flat_candidate_pool", "bounded_mean"):
+        if policy_name not in ("mlp", "candidate_shared", "flat_candidate_pool", "bounded_mean", "softsign_mean"):
             raise ValueError("Unknown PPO policy architecture")
         if policy_name == "candidate_shared" and (not config.candidate_observation or config.method == "B1"):
             raise ValueError("Shared candidate policy requires candidate observations and discrete actions")
         if policy_name == "flat_candidate_pool" and (not config.candidate_observation or config.method != "B1"):
             raise ValueError("Pooled flat policy requires candidate observations and direct B1 controls")
-        if policy_name == "bounded_mean" and config.method != "B1":
+        if policy_name in ("bounded_mean", "softsign_mean") and config.method != "B1":
             raise ValueError("Bounded-mean policy requires direct B1 controls")
         normalizer = CandidateVecNormalize if config.candidate_observation else VecNormalize
         raw.seed(seed);vec=normalizer(raw,norm_obs=True,norm_reward=False,gamma=config.gamma,clip_obs=10)
-        from .bounded_policy import BoundedMeanActorCriticPolicy
+        from .bounded_policy import BoundedMeanActorCriticPolicy, SoftsignMeanActorCriticPolicy
         policy_class = {"mlp": "MlpPolicy", "candidate_shared": CandidateActorCriticPolicy, "flat_candidate_pool": FlatCandidateActorCriticPolicy,
-                        "bounded_mean": BoundedMeanActorCriticPolicy}[policy_name]
+                        "bounded_mean": BoundedMeanActorCriticPolicy, "softsign_mean": SoftsignMeanActorCriticPolicy}[policy_name]
         model=PPO(policy_class,vec,n_steps=steps,batch_size=min(64,steps),n_epochs=epochs,learning_rate=ppo_options.get("learning_rate",3e-4),
                   gamma=config.gamma,gae_lambda=.95**(config.substeps*config.control_dt),ent_coef=ppo_options.get("entropy",.01),
                   use_sde=ppo_options.get("use_sde",False),sde_sample_freq=ppo_options.get("sde_sample_freq",-1),

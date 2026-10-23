@@ -18,10 +18,23 @@ from navstack.vehicle import VehiclePlant, VehicleState
 from navstack.world import World
 
 
+def match_scenes(routes, scenes):
+    """Evaluation order is protocol order, not the resumed training route order."""
+    by_geometry = {}
+    for scene in scenes:
+        by_geometry.setdefault(scene['scene']['native_layout']['geometry_id'], scene)
+    missing = [route['geometry_id'] for route in routes if route['geometry_id'] not in by_geometry]
+    if missing:
+        raise ValueError('Missing measured training geometry for evaluation routes: '+repr(missing))
+    return [by_geometry[route['geometry_id']] for route in routes]
+
+
 def audit(batch, output):
     batch = Path(batch)
     config_data = json.loads((batch/'H/config.json').read_text(encoding='utf-8'))['env']
-    scenes = [json.loads(p.read_text(encoding='utf-8')) for p in sorted((batch/'H').glob('scene_*.json'))[:4]]
+    protocol = json.loads((batch/'protocol.json').read_text(encoding='utf-8'))
+    scenes = match_scenes(protocol['routes'],
+        [json.loads(p.read_text(encoding='utf-8')) for p in sorted((batch/'H').glob('scene_*.json'))])
     terminal = {}
     trace = batch/'H/evaluation_trace.jsonl.gz'
     with gzip.open(trace, 'rt', encoding='utf-8') as stream:
@@ -44,6 +57,7 @@ def audit(batch, output):
                 features = env._execution_feedback()[:93].reshape(31, 3)
                 targets = [env.decode_action(a)[0] for a in range(1, 31)]
                 results.append({'case_id': index, 'state_label': label, 'state': asdict(env.state),
+                    'geometry_id': scene['native_layout']['geometry_id'],
                     'subgoal_mode': mode, 'start_free': bool(env.world.free((env.state.x, env.state.y, env.state.yaw), config.vehicle)),
                     'clear_actions': [int(a) for a in np.flatnonzero(features[:, 0]) if a],
                     'analytic_witness_actions': [int(a) for a in np.flatnonzero(features[:, 1]) if a],

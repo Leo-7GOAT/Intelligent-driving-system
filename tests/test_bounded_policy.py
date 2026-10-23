@@ -2,20 +2,21 @@ import numpy as np
 import pytest
 import torch
 from stable_baselines3 import PPO
-from navstack.bounded_policy import BoundedMeanActorCriticPolicy
+from navstack.bounded_policy import BoundedMeanActorCriticPolicy, SoftsignMeanActorCriticPolicy
 from navstack.config import EnvConfig
 from navstack.env import NavigationEnv
 
 
 @pytest.mark.parametrize('use_sde',[False,True])
-def test_bounded_mean_likelihood_update_and_reload(tmp_path,use_sde):
+@pytest.mark.parametrize('policy_class',[BoundedMeanActorCriticPolicy,SoftsignMeanActorCriticPolicy])
+def test_bounded_mean_likelihood_update_and_reload(tmp_path,use_sde,policy_class):
     torch.set_num_threads(1)
     env=NavigationEnv(EnvConfig(method='B1',scenario='empty',flat_hold=10))
     model=PPO('MlpPolicy',env,n_steps=8,batch_size=8,n_epochs=2,seed=11,use_sde=use_sde,device='cpu')
     model.learn(16)
     with torch.no_grad():model.policy.action_net.bias[0]=4.
     model.save(tmp_path/'original')
-    bounded=PPO.load(tmp_path/'original',env=env,custom_objects={'policy_class':BoundedMeanActorCriticPolicy})
+    bounded=PPO.load(tmp_path/'original',env=env,custom_objects={'policy_class':policy_class})
     for key,value in model.policy.state_dict().items():
         assert torch.equal(value,bounded.policy.state_dict()[key])
     for key,state in model.policy.optimizer.state_dict()['state'].items():
@@ -27,7 +28,7 @@ def test_bounded_mean_likelihood_update_and_reload(tmp_path,use_sde):
         raw=model.policy.get_distribution(tensor).distribution.mean.clone()
         dist=bounded.policy.get_distribution(tensor)
         mean=dist.distribution.mean.clone()
-        torch.testing.assert_close(mean,torch.tanh(raw))
+        torch.testing.assert_close(mean,bounded.policy.bounded_mean(raw))
         assert mean.abs().max()<=1 and raw[0,0]>1
         # Likelihood at out-of-range Gaussian samples still uses the actual
         # Gaussian, not a fake mask or a clipped-sample likelihood.
@@ -42,6 +43,12 @@ def test_bounded_mean_likelihood_update_and_reload(tmp_path,use_sde):
     action,_=bounded.predict(obs,deterministic=True)
     bounded.save(tmp_path/'bounded')
     restored=PPO.load(tmp_path/'bounded')
-    assert isinstance(restored.policy,BoundedMeanActorCriticPolicy)
+    assert type(restored.policy) is policy_class
     np.testing.assert_array_equal(restored.predict(obs,deterministic=True)[0],action)
     env.close()
+
+
+def test_softsign_retains_gradient_at_measured_inherited_mean():
+    raw=torch.tensor([5.],requires_grad=True)
+    torch.nn.functional.softsign(raw).sum().backward()
+    assert raw.grad.item()>0.02

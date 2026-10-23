@@ -52,12 +52,19 @@ def main():
                             env.feedback_seconds = timing
                         assert env.state == state_before
                         with torch.no_grad():
-                            real = model.policy.get_distribution(torch.as_tensor(norm.normalize_obs(obs[None]))).distribution
+                            normalized = norm.normalize_obs(obs[None])
+                            tensor = torch.as_tensor(normalized)
+                            real = model.policy.get_distribution(tensor).distribution
                             mean, std = real.mean[0].numpy().copy(), real.stddev[0].numpy().copy()
                             absent = model.policy.get_distribution(torch.as_tensor(norm.normalize_obs(empty_obs[None]))).distribution.mean[0].numpy().copy()
+                            latent = model.policy.mlp_extractor.forward_actor(tensor)
+                            preactivation = model.policy.action_net(latent)[0].numpy().copy()
                         action, _ = model.predict(norm.normalize_obs(obs[None]), deterministic=True)
                         obs, _, _, _, info = env.step(action[0])
                         probe = {'time':state_before.time, 'raw_mean':mean, 'std':std,
+                                 'head_preactivation':preactivation,
+                                 'first_rectangle_normalized':normalized[0,163:172].copy(),
+                                 'first_rectangle_position_clipped_fraction':float(np.mean(np.abs(normalized[0,163:171])>=9.999)),
                                  'without_obstacles_mean':absent, 'executed_action':action[0]}
                         probes.append(probe)
                         stream.write(json.dumps({'scenario':scenario,'seed':seed,**probe,'trace':info['trace']},default=jsonable)+'\n')
@@ -67,6 +74,9 @@ def main():
                         'terminal_state':info['trace'][-1]['state'],**info['episode_metrics'],
                         'raw_mean_min':means.min(axis=0),'raw_mean_max':means.max(axis=0),
                         'action_std_mean':np.mean([p['std'] for p in probes],axis=0),
+                        'head_preactivation_min':np.min([p['head_preactivation'] for p in probes],axis=0),
+                        'head_preactivation_max':np.max([p['head_preactivation'] for p in probes],axis=0),
+                        'first_rectangle_position_clipped_fraction':float(np.mean([p['first_rectangle_position_clipped_fraction'] for p in probes])),
                         'clipped_mean_fraction':(np.abs(means)>=1).mean(axis=0),
                         'obstacle_removal_raw_delta_mean':np.abs(means-absent).mean(axis=0),
                         'obstacle_removal_clipped_delta_mean':np.abs(np.clip(means,-1,1)-np.clip(absent,-1,1)).mean(axis=0)})

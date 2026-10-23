@@ -13,6 +13,18 @@ from navstack.env import NavigationEnv
 from navstack.experiments import load_run, write_json, jsonable
 
 
+def explicit_diagnostic_scenario(cfg, scenario):
+    """An explicit scene probe must not be silently replaced by a reset curriculum."""
+    cfg.scenario = scenario
+    cfg.curriculum = False
+    cfg.empty_pretraining_steps = 0
+    cfg.route_stages = []
+    cfg.route_rehearsal_probability = 0.
+    cfg.training_route_length = None
+    cfg.training_route_range = None
+    return cfg
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--checkpoint", required=True)
@@ -27,7 +39,7 @@ def main():
     output.mkdir(parents=True, exist_ok=False)
     cfg = EnvConfig.from_dict(json.loads((checkpoint / "config.json").read_text(encoding="utf-8"))["env"])
     if args.scenario:
-        cfg.scenario = args.scenario
+        cfg = explicit_diagnostic_scenario(cfg, args.scenario)
     if args.deadline:
         cfg.deadline = args.deadline
     model, normalizer = load_run(checkpoint)
@@ -55,6 +67,8 @@ def main():
                         obs, _, done, _, info = env.step(action[0]); actions += 1
                         stream.write(json.dumps({"deterministic": deterministic, "split": split, "seed": seed, "action": action[0], "info": info}, default=jsonable) + "\n")
                         if done:
+                            if args.scenario and initial['name'] != args.scenario:
+                                raise ValueError('Diagnostic scene replaced by a training curriculum')
                             rows.append({"deterministic": deterministic, "split": split, "seed": seed,
                                          "initial": initial, "terminal_state": info["trace"][-1]["state"], **info["episode_metrics"]})
                             break
@@ -65,6 +79,7 @@ def main():
     write_json(output / "results.json", {"checkpoint": str(checkpoint), "epoch": time.time(), "groups": groups, "episodes": rows,
                "route_length": args.route_length, "scenario": cfg.scenario, "deadline": cfg.deadline,
                "sde_sample_freq": noise_frequency,
+               "explicit_scenario_disables_reset_curriculum": bool(args.scenario),
                "scope": "development inference diagnostic; gSDE frequency recorded explicitly; -1 means once per episode here, not training-rollout equivalence; frozen normalization"})
     print(json.dumps(groups), flush=True)
 
