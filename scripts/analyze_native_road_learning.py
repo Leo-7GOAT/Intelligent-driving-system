@@ -143,6 +143,18 @@ def analyze(batch):
             "distinct_route_grids": len({s["scene"]["road_grid"]["sha256"] for s in scenes}),
             "evaluation": verify_evaluation(directory, actual, used),
             "actor_l2_change": summary["actor_l2_change"], "optimizer_steps": summary["optimizer_steps"]})
+        if protocol.get('recovery'):
+            recovery=protocol['recovery'].get(method,{})
+            retained=recovery.get('lineage_controls',0)
+            consumed=recovery.get('consumed_controls_lower_bound',0)
+            assert summary['lineage_control_steps']==retained+frames
+            assert summary['charged_control_steps_lower_bound']==consumed+frames
+            assert summary['inherited_controls_not_in_checkpoint']==consumed-retained
+            methods[-1]['recovery_accounting']={
+                'new_verified_controls':frames,'retained_model_lineage_controls':retained+frames,
+                'charged_controls_lower_bound':consumed+frames,'inherited_controls_not_in_checkpoint':consumed-retained,
+                'unknown_unflushed_parent_tail':recovery.get('unknown_unflushed_parent_tail',False),
+                'scope':'Parent lost controls remain charged; this recovery is not a budget-matched comparison'}
     assert len(used) == len(actual), "Unaccounted applied CARLA controls"
     fig.suptitle("Development interface training only: short rollouts, failures and unfinished episodes retained")
     axes[0, 0].legend(fontsize=7, loc="upper left")
