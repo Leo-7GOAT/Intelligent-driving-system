@@ -1,5 +1,7 @@
 # Executability-aware hierarchical driving research
 
+Latest [recovery and stability evidence](reports/recovery_stability_20261023.md): same-checkpoint B1 learning-rate branches finish all four endpoints at 4/1/4/4 versus 4/6/5/5 successes out of ten. Static tasks still fail. A bounded-Gaussian-mean intervention is now being tested against its unchanged parent. Interrupted native CARLA training is resumed with lost interaction costs explicitly charged and durable checkpoints; it is not a budget-matched comparison. Full CPU regression: 123 passed / five conditional skips. Research acceptance remains incomplete.
+
 Latest [native geometry and PPO evidence](reports/indexed_native_geometry_20261022.md): explicit v3 lane-union geometry repairs recorded seam/junction false rejections. Fixed-plan Hybrid A* and B2 each complete4/4development roads, but real paired native PPO at~10k controls remains0/4for both methods. All26,470training/evaluation frames match raw CARLA records. Lightweight B1 learns23m parking at intermediate checkpoints and later regresses; the final5M full-task result remains0/10. CPU regression:117passed/5conditional skips. Research acceptance remains incomplete.
 
 A low-speed research prototype: **PPO → local pose/speed → forward Hybrid A* → time-parameterized trajectory → MPC → physical execution and feedback**.
@@ -26,7 +28,7 @@ These evaluated scenarios are now **historical**, not unseen confirmation data f
 | v12 candidate H/H0,1M |8/10 vs6/10; CARLA100k adaptation4/6 vs3/6|One seed; H regresses from5/6at25k|
 | v13–v17 flat learning diagnoses |Full-task B1 endpoints0/10|Frequency, architecture, training span and reward alternatives retain their failures|
 | v18 distance stages,5M |0/10; earlier23m parking capability lost|Normalization swaps do not rescue the5M policy|
-| v19 rehearsal,2M milestone |6m and12m probes8/8 each; full task0/10|Training continues under its registered5M/2h guard; not convergence|
+| v19 rehearsal,5M endpoint |Full task0/10; intermediate23m parking later regresses|Completed; intermediate policies are diagnostic, not selected final scores|
 
 Full source/model provenance, traces and limitations are in the [retention/feasibility report](reports/rehearsal_feasibility_20261022.md), [new B2 report](reports/b2_rehearsal_20261022.md), [flat diagnosis](reports/flat_diagnosis_20261022.md), and [native-road learning report](reports/native_road_learning_20261022.md). The shared measured64x64 road grid reaches policies, planning, risk and termination. Actual native-road H/B1 PPO updates and exact reloads have run; those short runs did not complete a task. All historical evaluated conditions remain development data.
 
@@ -53,7 +55,7 @@ python -m venv .venv
 
 CPU tests exercise physical dynamics, planning, QP control, PPO updates/checkpoints, statistical accounting and failure recovery. Live CARLA tests require explicit opt-in and an exclusively owned server; skipped tests are not evidence of live validation.
 
-Latest local full regression: **111 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
+Latest local full regression: **123 passed, 5 conditional skips**. Earlier release checkout test counts describe their own frozen versions.
 
 ## Bounded development and recovery
 

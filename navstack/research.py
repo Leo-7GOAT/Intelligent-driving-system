@@ -118,7 +118,7 @@ def save_checkpoint(run,model,vec,recorder,initial_actor,config,seed,reason):
     return summary
 
 
-def cumulative_train(run,config,seed,target,deadline,rollout_physics=2560,epochs=10,ppo_options=None):
+def cumulative_train(run,config,seed,target,deadline,rollout_physics=2560,epochs=10,ppo_options=None,resume_learning_rate=None):
     torch.set_num_threads(1);run=Path(run);run.mkdir(parents=True,exist_ok=True)
     ppo_options=ppo_options or {}
     steps=max(2,rollout_physics//config.substeps)
@@ -131,6 +131,17 @@ def cumulative_train(run,config,seed,target,deadline,rollout_physics=2560,epochs
         if saved["env"]!=config.to_dict() or saved["seed"]!=seed:raise ValueError("Resume configuration/seed mismatch")
         vec=VecNormalize.load(checkpoint/"normalization.pkl",raw);vec.training=True
         model=PPO.load(checkpoint/"model.zip",env=vec,device="cpu",force_reset=False)
+        if resume_learning_rate is not None:
+            if not np.isfinite(resume_learning_rate) or not 0 < resume_learning_rate <= .01:
+                raise ValueError("Invalid explicit resume learning rate")
+            from stable_baselines3.common.utils import get_schedule_fn
+            old_rate=float(model.lr_schedule(1.0))
+            model.learning_rate=float(resume_learning_rate)
+            model.lr_schedule=get_schedule_fn(float(resume_learning_rate))
+            if old_rate != resume_learning_rate:
+                append_json(run/"learning_rate_interventions.jsonl",{
+                    "checkpoint":checkpoint.name,"previous":old_rate,"new":resume_learning_rate,
+                    "scope":"Explicit development branch; weights/optimizer/RNG/env restored before further on-policy training"})
         with (checkpoint/"resume.pkl").open("rb") as stream:snapshot=pickle.load(stream)
         raw.envs[0].__dict__.update(snapshot["env"])
         raw.envs[0].controller=MPC(config.vehicle,config.control_dt,config.mpc_horizon)
@@ -141,15 +152,19 @@ def cumulative_train(run,config,seed,target,deadline,rollout_physics=2560,epochs
     else:
         from .candidate_policy import CandidateVecNormalize, CandidateActorCriticPolicy, FlatCandidateActorCriticPolicy
         policy_name = ppo_options.get("policy", "mlp")
-        if policy_name not in ("mlp", "candidate_shared", "flat_candidate_pool"):
+        if policy_name not in ("mlp", "candidate_shared", "flat_candidate_pool", "bounded_mean"):
             raise ValueError("Unknown PPO policy architecture")
         if policy_name == "candidate_shared" and (not config.candidate_observation or config.method == "B1"):
             raise ValueError("Shared candidate policy requires candidate observations and discrete actions")
         if policy_name == "flat_candidate_pool" and (not config.candidate_observation or config.method != "B1"):
             raise ValueError("Pooled flat policy requires candidate observations and direct B1 controls")
+        if policy_name == "bounded_mean" and config.method != "B1":
+            raise ValueError("Bounded-mean policy requires direct B1 controls")
         normalizer = CandidateVecNormalize if config.candidate_observation else VecNormalize
         raw.seed(seed);vec=normalizer(raw,norm_obs=True,norm_reward=False,gamma=config.gamma,clip_obs=10)
-        policy_class = {"mlp": "MlpPolicy", "candidate_shared": CandidateActorCriticPolicy, "flat_candidate_pool": FlatCandidateActorCriticPolicy}[policy_name]
+        from .bounded_policy import BoundedMeanActorCriticPolicy
+        policy_class = {"mlp": "MlpPolicy", "candidate_shared": CandidateActorCriticPolicy, "flat_candidate_pool": FlatCandidateActorCriticPolicy,
+                        "bounded_mean": BoundedMeanActorCriticPolicy}[policy_name]
         model=PPO(policy_class,vec,n_steps=steps,batch_size=min(64,steps),n_epochs=epochs,learning_rate=ppo_options.get("learning_rate",3e-4),
                   gamma=config.gamma,gae_lambda=.95**(config.substeps*config.control_dt),ent_coef=ppo_options.get("entropy",.01),
                   use_sde=ppo_options.get("use_sde",False),sde_sample_freq=ppo_options.get("sde_sample_freq",-1),

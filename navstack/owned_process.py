@@ -7,7 +7,7 @@ import time
 
 
 class OwnedProcess:
-    def __init__(self, pid, creation_epoch, executable):
+    def __init__(self, pid, creation_epoch, executable, allow_terminate=False):
         if os.name != "nt":
             raise RuntimeError("Windows process adoption only")
         self.pid=int(pid);self.returncode=None
@@ -18,7 +18,8 @@ class OwnedProcess:
         self.kernel.GetProcessTimes.argtypes=[wintypes.HANDLE]+[ctypes.POINTER(wintypes.FILETIME)]*4
         self.kernel.QueryFullProcessImageNameW.argtypes=[wintypes.HANDLE,wintypes.DWORD,wintypes.LPWSTR,ctypes.POINTER(wintypes.DWORD)]
         self.kernel.CloseHandle.argtypes=[wintypes.HANDLE]
-        self.handle=self.kernel.OpenProcess(0x1000|0x100000,False,self.pid)
+        self.allow_terminate=allow_terminate
+        self.handle=self.kernel.OpenProcess(0x1000|0x100000|(1 if allow_terminate else 0),False,self.pid)
         if not self.handle:raise RuntimeError("Owned process handle unavailable")
         try:
             times=[wintypes.FILETIME() for _ in range(4)]
@@ -45,3 +46,10 @@ class OwnedProcess:
             if time.monotonic()>until:raise TimeoutError("Owned process still running")
             time.sleep(.1)
         return self.returncode
+
+    def terminate(self):
+        """Use the verified retained handle, never re-resolve a possibly reused PID."""
+        if not self.allow_terminate:raise RuntimeError('Handle is read-only')
+        self.kernel.TerminateProcess.argtypes=[wintypes.HANDLE,wintypes.UINT]
+        if self.poll() is None and not self.kernel.TerminateProcess(self.handle,1):
+            raise RuntimeError('Owned process termination failed')

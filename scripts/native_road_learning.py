@@ -5,7 +5,10 @@ from dataclasses import asdict
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
+import pickle
 from pathlib import Path
+import random
 import shutil
 import sys
 import time
@@ -22,6 +25,7 @@ from navstack.config import EnvConfig, VehicleConfig
 from navstack.experiments import actor_vector, write_json, signature, append_json, jsonable
 from navstack.native_route import select_routes
 from navstack.research import ResearchRecorder, resources_ok
+from navstack.research import atomic_json
 from scripts.carla_steering_audit import guard
 
 
@@ -76,6 +80,56 @@ class RecordedRoadEnv(CarlaNavigationEnv):
         return result
 
 
+def restore_training(checkpoint, raw, config, seed):
+    """Restore learning state, deliberately begin a new measured CARLA episode."""
+    checkpoint = Path(checkpoint)
+    saved = json.loads((checkpoint/'metadata.json').read_text(encoding='utf-8'))
+    metadata = json.loads((checkpoint/'config.json').read_text(encoding='utf-8'))
+    if metadata['signature'] != signature(config):
+        raise ValueError('Recovery configuration differs from saved policy semantics')
+    for name,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')]:
+        if hashlib.sha256((checkpoint/name).read_bytes()).hexdigest() != saved[key]:
+            raise ValueError('Recovery checkpoint hash mismatch')
+    vec = VecNormalize.load(checkpoint/'normalization.pkl',raw)
+    vec.training=True;vec.norm_reward=False;vec.returns[:]=0
+    model = PPO.load(checkpoint/'model.zip',env=vec,device='cpu',force_reset=True)
+    state_file=checkpoint/'resume_state.pkl'
+    if state_file.exists():
+        if hashlib.sha256(state_file.read_bytes()).hexdigest()!=saved['resume_state_sha256']:
+            raise ValueError('Recovery RNG hash mismatch')
+        with state_file.open('rb') as stream:state=pickle.load(stream)
+        random.setstate(state['python']);np.random.set_state(state['numpy']);torch.set_rng_state(state['torch'])
+        raw.envs[0].np_random.bit_generator.state=state['env_rng']
+        raw.envs[0].case_index=state['next_case_index']
+        raw._seeds=[None]
+        mode='saved RNG; interrupted physical episode discarded, next route reset'
+    else:
+        # Legacy inference checkpoints lack RNG and physical state. Account for
+        # their lost work explicitly; never claim an uninterrupted continuation.
+        random.seed(seed);np.random.seed(seed);torch.manual_seed(seed);raw.seed(seed)
+        raw.envs[0].case_index=saved['episodes']+1
+        mode='legacy checkpoint: explicit fresh RNG seed and new measured episode'
+    return model,vec,mode
+
+
+def save_training_checkpoint(output, threshold, model, vec, raw, metadata):
+    """Publish a checkpoint only after all files and their hashes exist."""
+    checkpoint=output/('checkpoint_%09d'%threshold)
+    temporary=output/(checkpoint.name+'.partial')
+    temporary.mkdir()
+    model.save(temporary/'model.zip');vec.save(temporary/'normalization.pkl')
+    shutil.copy2(output/'config.json',temporary/'config.json')
+    state={'python':random.getstate(),'numpy':np.random.get_state(),'torch':torch.get_rng_state(),
+           'env_rng':raw.envs[0].np_random.bit_generator.state,'next_case_index':raw.envs[0].case_index}
+    with (temporary/'resume_state.pkl').open('wb') as stream:pickle.dump(state,stream)
+    for name,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256'),('resume_state.pkl','resume_state_sha256')]:
+        metadata[key]=hashlib.sha256((temporary/name).read_bytes()).hexdigest()
+    metadata['note']='Learning state retained; recovery starts a new CARLA episode and counts all reset/lost interactions'
+    write_json(temporary/'metadata.json',metadata)
+    os.rename(temporary,checkpoint)
+    atomic_json(output/'latest_checkpoint.json',{'folder':checkpoint.name,**metadata})
+
+
 def run(batch):
     batch = Path(batch).resolve()
     protocol = json.loads((batch/"protocol.json").read_text(encoding="utf-8"))
@@ -115,10 +169,18 @@ def run(batch):
             try:
                 raw = DummyVecEnv([lambda: RecordedRoadEnv(config, client, cases, output)])
                 raw.seed(protocol["seed"])
-                vec = VecNormalize(raw, norm_reward=False, gamma=config.gamma)
-                model = PPO("MlpPolicy", vec, n_steps=protocol["rollout_actions"], batch_size=32,
-                    n_epochs=protocol["ppo_epochs"], gamma=config.gamma, gae_lambda=.95**.5,
-                    policy_kwargs={"net_arch":{"pi":[64,64],"vf":[64,64]}}, seed=protocol["seed"], device="cpu")
+                recovery=protocol.get('recovery',{}).get(method)
+                if recovery:
+                    model,vec,resume_mode=restore_training(batch/recovery['checkpoint'],raw,config,protocol['seed'])
+                    write_json(output/'resume_event.json',{'mode':resume_mode,**recovery})
+                else:
+                    vec = VecNormalize(raw, norm_reward=False, gamma=config.gamma)
+                    model = PPO("MlpPolicy", vec, n_steps=protocol["rollout_actions"], batch_size=32,
+                        n_epochs=protocol["ppo_epochs"], gamma=config.gamma, gae_lambda=.95**.5,
+                        policy_kwargs={"net_arch":{"pi":[64,64],"vf":[64,64]}}, seed=protocol["seed"], device="cpu")
+                inherited_lineage=0 if recovery is None else recovery['lineage_controls']
+                inherited_cost=0 if recovery is None else recovery['consumed_controls_lower_bound']
+                budget=protocol.get('method_budgets',{}).get(method,protocol['controlled_budget_per_method'])
                 model.set_logger(configure(str(output/"sb3"), ["csv"]))
                 before = actor_vector(model).clone()
                 recorder = ResearchRecorder(output, protocol["deadline_epoch"])
@@ -128,7 +190,7 @@ def run(batch):
                 hook = model.policy.optimizer.register_step_post_hook(count_step)
                 started = time.time()
                 saved_thresholds = set()
-                while recorder.counts["physics_steps"] < protocol["controlled_budget_per_method"] and not recorder.stopped_reason:
+                while recorder.counts["physics_steps"] < budget and not recorder.stopped_reason:
                     guard(batch, protocol)
                     previous = model._n_updates
                     model.learn(protocol["rollout_actions"], callback=recorder, reset_num_timesteps=False)
@@ -137,16 +199,13 @@ def run(batch):
                         append_json(output/"optimization.jsonl", {**recorder.counts, "optimizer_steps": optimizer_steps[0],
                             "actor_l2_change": float(torch.linalg.vector_norm(actor_vector(model)-before)),
                             "metrics": {k: float(v) for k,v in model.logger.name_to_value.items() if np.isscalar(v) and np.isfinite(v)}})
-                    for threshold in protocol.get("checkpoint_thresholds", []):
+                    thresholds=sorted(set(protocol.get('checkpoint_thresholds',[]))|set(range(10000,budget+1,10000))|{budget})
+                    for threshold in thresholds:
                         if threshold not in saved_thresholds and recorder.counts["physics_steps"] >= threshold:
-                            checkpoint = output/("checkpoint_%09d" % threshold)
-                            checkpoint.mkdir()
-                            model.save(checkpoint/"model.zip"); vec.save(checkpoint/"normalization.pkl")
-                            write_json(checkpoint/"metadata.json", {"threshold": threshold, **recorder.counts,
+                            save_training_checkpoint(output,threshold,model,vec,raw,{"threshold": threshold, **recorder.counts,
                                 "optimizer_steps":optimizer_steps[0], "world_ticks":client.total_ticks,
-                                "model_sha256":hashlib.sha256((checkpoint/"model.zip").read_bytes()).hexdigest(),
-                                "normalization_sha256":hashlib.sha256((checkpoint/"normalization.pkl").read_bytes()).hexdigest(),
-                                "note":"Immutable inference checkpoint; no claim of seamless CARLA physical-state resume"})
+                                'lineage_control_steps':inherited_lineage+recorder.counts['physics_steps'],
+                                'charged_control_steps_lower_bound':inherited_cost+recorder.counts['physics_steps']})
                             saved_thresholds.add(threshold)
                 hook.remove()
                 model.save(output/"model.zip"); vec.save(output/"normalization.pkl")
@@ -158,6 +217,9 @@ def run(batch):
                     "optimizer_steps": optimizer_steps[0], "actor_l2_change": float(torch.linalg.vector_norm(actor_vector(model)-before)),
                     "reload_exact": all(torch.equal(v, loaded.policy.state_dict()[k]) for k,v in model.policy.state_dict().items()),
                     "wall_seconds": time.time()-started, "stopped_reason": recorder.stopped_reason,
+                    'lineage_control_steps':inherited_lineage+recorder.counts['physics_steps'],
+                    'charged_control_steps_lower_bound':inherited_cost+recorder.counts['physics_steps'],
+                    'inherited_controls_not_in_checkpoint':inherited_cost-inherited_lineage,
                     "scope": protocol["scope"]}
                 write_json(output/"summary.json", result)
                 results.append(result)
