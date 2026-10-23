@@ -1,3 +1,31 @@
+# Verified source and partial exploration result — 2026-10-23 13:31 local
+
+Code25df90c6d5297d5f860bf9c173bb60fb35adfa5e pushed/remotematched. Root/clone
+137passed/5skips/2existingwarnings. Cloneclean/detached25df90c usingpinnedsibling
+environment. Receipt runs/exploration_diagnosis_reproduction.json: completedPPO
+summary/figure, factorialverification and438-visitnoiseprobe allbyteidentical.
+PPOsummarySHA22529b83ac5dfba7e547ab01c026ec3509acf90ddf56f0ff976eda8baa4baba3;
+factorialSHA5a1eb1969fd96e075e12d813bc50f75b589cb7b47eff811c09524f587bda6d22.
+Newartifacts localonly. No repeatedbaselinetraining or diagonal evaluation.
+
+Same reducedexplorationworker45768/guard33204 livehealthy, at13:31heartbeat
+58,457controls/22phases. New25kmilestone:25,600controls/744optimizersteps,
+2/10(emptyboth),5collisions3deadlines;parking0/0/0/2,11,041evalcontrols.
+Originalnoise25k0/10 with3collisions7deadlines. Do not claimoverallimprovement.
+New scripts/analyze_exploration_branch.py --batch runs/20261023T052413Z_reduced_exploration --partial
+passes zero/25krawcommands/clocks/terminal/model/source and parameterledger checks.
+Oncompletion omitpartial to additionallyverifyallrawtrainingcontrols/updates.
+
+IMPORTANT accounting: actor_vector includeslog_std. Copiedresume.pkl keeps
+originalpre-interventioninitial_actor forbyteidenticalRNG/envledger preservation.
+Its actor_l2_change=22.627417at0 and22.576128at25k includesmanualnoisechange.
+Do NOT callthose PPOlearnedchanges. Newanalyzer compareschangedinitialcheckpoint:
+PPO-onlyL2=0at0,.410725at25k; verifiesexactrelationshiptoinheritedledger. This is
+anaccountingclarification, notachange to runningtraining; preserve frozenfiles.
+Partial_endpoint_verification.json retainsfirstrawcheck; authoritative corrected
+namedmetrics arein exploration_verification.json. No final100kresultyet.
+Newanalyzer/reportsource publicationfollows; fullgoalACTIVE/incomplete/nohardblock.
+
 # Audited collapse and exploration contrast — 2026-10-23 13:27 local
 
 Goal ACTIVE/incomplete, nohardblock; previous turn substantialprogress. This turn

@@ -296,6 +296,21 @@ steps across three phases, fewer than the original1,200steps at the same budget
 because the unchanged KL guard stops epochs earlier. This mediated change is
 reported as an actual computational difference, not equal optimizer exposure.
 
+At25,600controls the reduced-noise endpoint has744optimizersteps,2/10full-task
+success (both empty cases),five collisions andthree deadlines. Only the23m
+parking pair remains successful (0/0/0/2). Original-noise25k was0/10 with three
+collisions/seven deadlines. Thus retention of a subset is not a general safety
+or task-performance improvement; neither branch satisfies baseline competence.
+All10,882zero-update and11,041post-update evaluation controls are audited.
+
+The inherited resume ledger's actor reference intentionally stays byte-identical.
+Because actor_vector includes log_std, its distance already equals22.627417 at
+zero PPO updates, due solely to the explicit128-element noise shift. That number
+is not learned-policy change. `analyze_exploration_branch.py` reports the manual
+intervention separately and recomputes PPO drift from the changed initial model:
+zero at initialization and0.410725 at25k (the inherited ledger reads22.576128).
+Existing logs are preserved with this explanation, not rewritten mid-training.
+
 ```powershell
 python scripts/verify_normalization_factorial.py --batch runs/20261023T050438Z_aggregated_ppo --output runs/20261023T050438Z_aggregated_ppo/normalization_25k_factorial
 python scripts/measure_exploration_scale.py --batch runs/20261023T050438Z_aggregated_ppo --dataset runs/20261023T043924Z_current_state_aggregation/round_02/recovery_examples.npz --output runs/new_exploration_scale.json
@@ -397,3 +412,12 @@ and its inspected figure. Both models reload and each gives64repeatable finite
 predictions with frozen normalization. Receipt:
 `runs/prerelease_20261022/native_road_checkout/runs/pure_learner_aggregation_reproduction.json`.
 These are local artifact checks; no new release asset upload is claimed.
+
+Source `25df90c6d5297d5f860bf9c173bb60fb35adfa5e` is also pushed/remotematched.
+Root and independent pinned checkout both pass137tests/five conditional skips
+andtwo existing warnings. The independent checkout rebuilds the completed PPO
+summary/figure, factorial verification and exploration-scale probe byte-for-byte.
+Receipt `runs/prerelease_20261022/native_road_checkout/runs/exploration_diagnosis_reproduction.json`
+covers102,400training,41,325evaluation and47,507factorial controls, including
+25,125exact diagonal controls and the438fixed training observations. No new
+model/data release asset has been uploaded; all research gates remain incomplete.
