@@ -1,3 +1,51 @@
+# Independent final audit and LIVE matched continuation — 2026-10-23 14:06 local
+
+This goal turn is progress: optional frozen training normalization implemented,
+tested with actual PPO,100kcontrast finished, allrawdataaudited, independently
+reproduced and sourcepublished; matched200k/300kcontinuation actually started.
+No hard blocker. Full objective remains active/incomplete. No agents/CARLA or
+other projects were used. Read the complete objective attachment on continuation.
+
+Source917d29e pushed. Clean independent pinned checkout at917d29e passes139tests,
+5skips; rebuilds complete frozenaudit, both terminalaudits, comparisonJSON/PNG
+byte-for-byte. Receipt clone/runs/frozen_normalization_complete_reproduction.json.
+AuditSHA0dff2aa898279121261ebb95e366eccd0469e7e93cba6609e82c757378555777,
+figureSHA0257082c2c8dddc4690a73df0bd69a8fa3bae5a0ec3d302d5f4162d57363f399.
+New assets remain local, not uploaded. Earlier source-specific receipts retained.
+
+NEW LIVE `runs/20261023T060219Z_normalization_retention_pair`, pointer
+`runs/normalization_retention_pair.json`. Worker50724 creation14:02:36.755,
+launcher36860; guard55448 creation14:02:39.059, launcher45680. Both OS-confirmed
+at14:06. Deadline15:32:19, one CPU worker,12GiBdisk/4GiBRAM/85C guards,0retries.
+Initial43.28GBdisk/38.05GBRAM/GPU38C. Same-checkpoint resumes of BOTH completed
+reduced-noise branches: updating_stats then frozen_stats at200k, then sameorder
+at300k. Inherited102400PPOcontrolsperbranch; weights/optimizer/RNG/env/statistics
+files byteidentical to their respective100kendpoints. Frozen branch retains
+freeze_observation_stats=true; updating branch retainsfalse/default. Same task,
+cases,reward,LR,seed,lowlevel. No newteacher/BC. Updatingbranchat146227controls,
+lastphase57/3531totaloptimizersteps (17newphases/824newsteps). Frozenbranch has
+not started newcontrols yet. Do not interpret this snapshot as permanent status.
+
+Scripts: continue_normalization_pair.py prepares only after the complete independent
+receipt; paired_update_stability.py now supports branch-specific PPO options.
+New verify_normalization_continuation.py --batch <batch> --partial verifies only
+completed endpoints/closed transition chunks, starting counters/episodeclock from
+the inherited snapshot. At launch noendpointcomplete, so its auditedNEWcontrols
+are0 despite live training progress. Omit--partial after full completion and
+normalguardexit. It checks rawactionmapping, clocks, terminalmetrics, actorupdates,
+optimizerexposure and frozen/updated normalization. Generic analyzer available:
+scripts/analyze_update_stability.py --batch <batch> (complete only, plus plots).
+New integrationtest uses actual resumedPPO/plant/evaluation and rejects altered
+executedcommands. Rootfullregression completed140passed5skips2existingwarnings
+(runs/normalization_retention_pair_regression.xml). Latest changes will have a
+later Gitcommit; inspectstatus.
+
+Next: preserve live worker/frozen source; inspect endpoint200k, auditrawdata and
+continue matched300k. Final100kresult4/10parking8/8 is retention evidence only;
+static/narrow/unseenremain0/2each. No architecture/five-seed/CARLA-final gate met.
+Native-road candidate architecture was only inspected this turn, not modified or
+trained. Do not claim new CARLA work or an unstarted architecture trial.
+
 # Completed frozen-statistics result — 2026-10-23 13:57 local
 
 `20261023T054347Z_frozen_training_normalization` COMPLETE, normal guard exit0;

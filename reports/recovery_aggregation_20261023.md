@@ -51,6 +51,55 @@ independent checkout. Later receipts identify the final frozen-statistics audit.
 
 The following launch record is historical; the batch is now complete.
 
+Independent source `917d29e` passes 139 tests/five conditional skips and rebuilds
+the final frozen-statistics audit, both terminal audits, comparison JSON and
+figure byte-for-byte. Receipt:
+`runs/prerelease_20261022/native_road_checkout/runs/frozen_normalization_complete_reproduction.json`.
+The frozen audit SHA256 is
+`0dff2aa898279121261ebb95e366eccd0469e7e93cba6609e82c757378555777`;
+figure SHA256 is
+`0257082c2c8dddc4690a73df0bd69a8fa3bae5a0ec3d302d5f4162d57363f399`.
+These are local artifact reproductions, not new release downloads.
+
+### Matched retention continuation
+
+After this independent verification, batch
+`20261023T060219Z_normalization_retention_pair` was launched at 14:02 local.
+It resumes **both** fixed 102,400-control endpoints, preserving their complete
+checkpoint files, optimizer, RNG and physical state. The only preexisting
+training distinction remains updating versus frozen observation statistics;
+the common runner now reads each branch's recorded PPO options. No supervision,
+teacher queries, reward changes or low-level changes are added.
+
+Predeclared cumulative milestones are 200k and 300k, interleaved between the
+two branches. Actual rollout overshoot will be reported. One CPU worker runs
+under a 90-minute ceiling (15:32 local), 12 GiB disk/4 GiB memory/85 C GPU
+guards and zero retries. Initial resources: 43.28 GB free disk, 38.05 GB free
+memory, GPU 38 C. The updating-statistics branch has actually resumed and
+advanced beyond 146k controls with nonzero parameter/optimizer updates;
+the frozen branch waits its turn. This is a status snapshot, not a result.
+
+The continuation costs start at 102,400 inherited PPO controls **per branch**.
+Shared ancestral supervision ledgers overlap and must not be summed twice.
+The completed 100k contrast remains intact, regardless of later outcomes.
+
+```powershell
+# Audit only completed milestones while the registered worker runs.
+python scripts/verify_normalization_continuation.py --batch runs/20261023T060219Z_normalization_retention_pair --partial
+# After completed.json and a normal guard_final.json:
+python scripts/verify_normalization_continuation.py --batch runs/20261023T060219Z_normalization_retention_pair
+python scripts/analyze_update_stability.py --batch runs/20261023T060219Z_normalization_retention_pair
+```
+
+The raw auditor restores the inherited episode clock, checks every new direct
+control and complete evaluation, and distinguishes frozen moments from the
+expected count growth of the updating branch. A real physical integration test
+executes two resumed PPO branches and rejects a corrupted executed command.
+Full root regression including this integration test is 140 passed, five
+conditional skips and two existing warnings (`runs/normalization_retention_pair_regression.xml`).
+Do not duplicate this live batch. Its guard and OS process creation identity
+must be checked before recovery or cleanup.
+
 The reduced-exploration batch `20261023T052413Z_reduced_exploration` completed
 normally with 102,400 actual training controls, 40 optimization phases and 2,707
 optimizer steps. Its predeclared endpoints are 4/10, 2/10 and 0/10. The final

@@ -80,7 +80,7 @@ def run(batch):
                         raise RuntimeError('Resource/deadline guard: '+str(reason))
                     folder=batch/branch['name'];cfg=EnvConfig.from_dict(protocol['env'])
                     saved=cumulative_train(folder,cfg,protocol['seed'],target,protocol['deadline_epoch']-120,
-                        ppo_options=protocol['ppo_options'],resume_learning_rate=branch['learning_rate'])
+                        ppo_options=branch.get('ppo_options',protocol['ppo_options']),resume_learning_rate=branch['learning_rate'])
                     if saved['reason']!='milestone_reached':raise RuntimeError('Incomplete stability milestone: '+saved['reason'])
                     evaluate(folder,saved['checkpoint'],cfg,protocol['cases'],target)
                     outcome=read(folder/f'validation_{target}.json')
