@@ -1,3 +1,18 @@
+# Verified publication/reproduction — 2026-10-23 11:54 local
+
+Source ff6b5782b99d81e2562397f161ff7d01c9746ba0 pushed and remote hash matched.
+Both root and independent pinned-environment checkout pass136tests/5skips/
+2existingwarnings. Clone receipt runs/recovery_aggregation_reproduction.json
+loads five local models with frozen stats and reconstructs summary/figure with
+byte-identical hashes. Clone test receipt runs/recovery_aggregation_reproduction_tests.xml.
+These newer diagnostic artifacts are LOCAL, not uploaded assets. Root and clone
+were clean before this documentation-only update. Source/full research unchanged.
+
+Relabel worker21256/guard36560 OS-verified live11:53, original cases0..24complete,
+observations identical. Revalidate and continue the same job, no duplicate.
+Current-state actor fit still NOT prepared/started. Next command and fixed
+comparison constraints are below. This goal turn is progress; no hard blocker.
+
 # Active continuation snapshot — 2026-10-23 11:52 local
 
 Goal remains ACTIVE/incomplete. Previous user-summary turn was a verified wait:

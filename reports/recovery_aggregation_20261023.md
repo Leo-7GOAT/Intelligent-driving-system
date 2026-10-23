@@ -149,3 +149,14 @@ split masks and invalid relabeled actions; later regression receipts identify
 their precise source version.
 These are lightweight dynamics diagnostics, not CARLA frame evidence. None of
 the new recovery-aggregation models/data is a release asset yet.
+
+Source `ff6b5782b99d81e2562397f161ff7d01c9746ba0` was pushed and its remote
+hash verified. Both the working repository and independent pinned-environment
+checkout pass 136 tests with five conditional skips and two existing SB3
+deprecation warnings. Independent reconstruction produces byte-identical
+`verified_summary.json` and `recovery_learning.png`; all five completed
+aggregation/actor-only models load and give repeatable finite predictions with
+frozen normalization. The receipt is
+`runs/prerelease_20261022/native_road_checkout/runs/recovery_aggregation_reproduction.json`.
+This checks local diagnostic artifacts; it does not claim they were downloaded
+from a release or that the research acceptance thresholds have been achieved.
