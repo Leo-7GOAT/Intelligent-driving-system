@@ -1,4 +1,47 @@
-# Verified continuation snapshot — 2026-10-23 10:04 local
+# Verified continuation snapshot — 2026-10-23 10:33 local
+
+The preceding summary turn was a verified wait (OS-confirmed native worker).
+This turn makes progress: executed demonstration fitting and real PPO, completed
+raw dataset/replay and closed-loop audits, and full 132-pass/5-skip regression.
+The full objective remains ACTIVE and unmet; no external blocker or agents.
+
+- Native recovery `20261023T010623Z_native_recovery`: H complete and verified as
+  below. B1 completed 100,270 controls / 105,663 world ticks / 630 optimizer
+  steps, exact reload, and is evaluating. Main process 9248/launcher 17016;
+  B1 bridge 42388 and owned server 21808. Revalidate OS before touching them.
+  Full batch summary/raw-frame analyzer and independent live v3 replay pending.
+- Softsign `20261023T015449Z_softsign_mean_development` COMPLETE: all endpoints
+  3/4/5/6 of 10; final static and unseen both 0/2 collisions. All parking probes
+  pass after the initial point. Final total 5,698,852, addition 600,276.
+  Analyzer verified and plot inspected. Report now records the negative result.
+- Demonstrations `20261023T021232Z_executed_demonstrations` COMPLETE: 32 cases,
+  all teacher/direct successes, 10,817 controls each, 1,088 teacher decisions.
+  Full paired raw states and labels verified, max error 2.66573e-7. Dataset hash
+  dfaecf8cd4a381dc71c50e991f2d34c866c75928977e4945517fadf7df8cee71.
+- Warmstart `20261023T021813Z_demonstration_warmstart` LIVE: worker 46772,
+  launcher 28024, guard 26136/launcher 10368, created around 10:23:40. Fixed
+  deadline 11:18:14, guard resources/progress and no retries. Frozen source;
+  never edit it. 200 supervised epochs/6,400 separate updates complete; 8,113
+  train/2,704 heldout examples. BC-only 0/10 (4 bounds/6 collisions), parking
+  0/2,2/2,0/2,0/2. Additional train/holdout layout audit each 1/4, only narrow
+  succeeds. Actual PPO reached 25,600 controls/4,000 updates; fixed endpoint
+  evaluation running, then 100k. This is extra supervision and hold1, not pure
+  PPO or a single-factor comparison with previous hold10. Do not relaunch.
+- New report `reports/demonstration_diagnostic_20261023.md`; analyzer verifies
+  sources/data/raw controls/labels/endpoints/model hashes and separately counts
+  BC and PPO. It requires completion unless --partial explicitly requested.
+  New models/data are NOT yet release assets. Publication preflight 306 files,
+  no findings; GitHub authenticated Leo-7GOAT and correct remote verified.
+
+Next: finish native evaluation and all raw frame verification; independent
+checkout live v3 run only after original bridge/worker exit, then stop the
+verified empty server through its owning recovery batch. Finish all warmstart
+endpoints before selecting a new intervention. Low teacher-state MSE but failed
+closed loop suggests insufficient recovery-state coverage, not a working B1.
+Publish/reproduce tested source and preserve all negative outcomes. The current
+132-test result predates documentation/analyzer-only changes later this turn.
+
+# Historical continuation snapshot — 2026-10-23 10:04 local
 
 Sourcefba43c7fa4dfa579850dac31b0d0d7485ae17f7fis pushed/remoteverified. Mainworktreeand independentnative_road_checkoutareclean. Independentpinnedvenvfullregressionatthatcommit:130passed5skips2SB3deprecationwarnings (`runs/softsign_reproduction_tests.xml` insideclone). Earlierdownloadedrateasset8modelreload/endpoint/figurechecks remain verified. A docs-onlycommitmayfollow.
 

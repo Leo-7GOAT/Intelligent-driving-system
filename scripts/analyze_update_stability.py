@@ -59,7 +59,9 @@ def analyze(batch):
     axes[1].set(title='Static obstacle task (2 cases)',ylabel='Completion (%)',ylim=(-5,105))
     axes[2].set(title='23 m parking retention (2 probes)',ylabel='Completion (%)',ylim=(-5,105))
     axes[3].set(title='Observed PPO update KL',ylabel='Approximate KL')
-    fig.suptitle('One seed, two correlated branches; all predeclared endpoints, not final confirmation')
+    title = ('One seed, two correlated branches' if len(protocol['branches']) == 2
+             else f"One seed, {len(protocol['branches'])} development branch(es)")
+    fig.suptitle(title + '; all predeclared endpoints, not final confirmation')
     output=batch/'analysis';output.mkdir(exist_ok=True)
     fig.savefig(output/'update_stability.png',dpi=150);plt.close(fig)
     result={'scope':protocol['scope'],'inherited_controls_per_branch':protocol['inherited_controls'],'input_hashes':hashes,'branches':rows}

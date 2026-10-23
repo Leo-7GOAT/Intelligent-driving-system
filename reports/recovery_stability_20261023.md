@@ -57,6 +57,22 @@ Final bounded-policy replays show no clipping of the first obstacle's normalized
 
 An audit bug was fixed before these explicit static probes: inherited route stages could silently replace the requested training-layout static scene with empty parking. Explicit diagnostic scenarios now disable reset curricula and assert the actual initialized scenario name. Default historical empty-distance probes are unaffected.
 
+The softsign run subsequently completed all four endpoints: full-task success
+**3/4/5/6 out of 10** at zero/+100k/+300k/+600k. Actual final addition is
+600,276 controls (5,698,852 including its ancestor). Static and unseen cases
+remain 0/2 each; the final six successes are empty, narrow and dynamic cases.
+All eight distance probes pass after the zero-update endpoint, where 23m was
+1/2. KL median/P95/max is 0.014302/0.036010/0.051638. The source/model/case
+checks pass and the plot was visually inspected. Neither tanh nor softsign
+solves the obstacle-learning failure; all three final branches reach 6/10.
+The one-branch plot title now reflects its actual branch count, while preserving
+the existing two-branch published figure output.
+
+The subsequent, separately labeled demonstration-assisted diagnostic is in
+[demonstration_diagnostic_20261023.md](demonstration_diagnostic_20261023.md).
+It adds supervision and changes the direct-control frequency, so it is not a
+single-factor continuation of these PPO-only branches.
+
 ## Offline native proposal coverage
 
 Recovery rotates training-route order, so candidate audits now match recorded geometry IDs to evaluation protocol order instead of taking the first four training scenes by index. Regression tests cover the rotated order and missing geometry.

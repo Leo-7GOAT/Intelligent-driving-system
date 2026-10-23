@@ -1,4 +1,4 @@
-"""Bounded guard for an explicitly identified, already running CPU pair worker."""
+"""Bounded guard for an explicitly identified, already running research worker."""
 import argparse
 import json
 import os
@@ -18,8 +18,9 @@ def main():
     a=p.parse_args();batch=Path(a.batch).resolve()
     identity=json.loads(Path(a.identity).read_text(encoding='utf-8-sig'))
     protocol=json.loads((batch/'protocol.json').read_text(encoding='utf-8'))
-    if str(batch) not in identity['command'] or 'paired_update_stability.py' not in identity['command']:
-        raise ValueError('Adopted command does not identify the registered pair')
+    allowed=('paired_update_stability.py','collect_executed_demonstrations.py','train_demonstration_warmstart.py')
+    if str(batch) not in identity['command'] or not any(name in identity['command'] for name in allowed):
+        raise ValueError('Adopted command does not identify an allowed registered worker')
     with ProcessLease(batch/'guard.lock'):
         child=OwnedProcess(identity['pid'],identity['creation_epoch'],identity['executable'],allow_terminate=True)
         reason=None
@@ -27,8 +28,10 @@ def main():
             now=time.time();ok,reason=resources_ok(batch)
             if shutil.disk_usage(batch).free<12*1024**3:ok,reason=False,'disk_below_12GiB'
             if now>=protocol['deadline_epoch']:ok,reason=False,'wall_deadline'
-            recent=max([protocol['created_epoch']]+[f.stat().st_mtime for b in protocol['branches']
-                for f in (batch/b['name']).glob('*heartbeat.json')])
+            scopes=[batch]+[batch/b['name'] for b in protocol.get('branches',[])]+[batch/name for name in protocol.get('worker_scopes',[])]
+            recent=max([protocol['created_epoch']]+[f.stat().st_mtime for scope in scopes
+                for f in scope.glob('*heartbeat.json')]+[f.stat().st_mtime for name in ('progress.json','stdout.log')
+                for f in [batch/name] if f.exists()])
             if now-recent>300:ok,reason=False,'no_progress_300s'
             gpu=subprocess.run(['nvidia-smi','--query-gpu=temperature.gpu','--format=csv,noheader,nounits'],
                 capture_output=True,text=True,timeout=10,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
