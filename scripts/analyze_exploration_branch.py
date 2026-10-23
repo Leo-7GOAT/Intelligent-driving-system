@@ -4,6 +4,7 @@ from collections import Counter
 import gzip
 import hashlib
 import json
+import pickle
 from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
@@ -16,7 +17,7 @@ def read(path): return json.loads(path.read_text(encoding='utf-8'))
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def analyze(batch, partial=False):
+def analyze(batch, partial=False, output_path=None):
     batch=Path(batch).resolve();p=read(batch/'protocol.json')
     complete=(batch/'completed.json').exists()
     if not complete and not partial: raise ValueError('Incomplete; explicitly request --partial')
@@ -28,8 +29,23 @@ def analyze(batch, partial=False):
         assert sha(folder/'initial_checkpoint'/name)==digest
     parent=batch.parent/p['parent_batch'];old=read(parent/'protocol.json')
     assert old['env']==p['env'] and old['seed']==p['seed'] and old['cases']==p['cases']
-    assert sha(parent/'analysis/verified_summary.json')==p['parent_audit_sha256']
-    zero=read(parent/'B1/validation_0.json');baseline_cp=parent/'B1'/Path(zero['checkpoint']).name
+    frozen=p.get('intervention_kind')=='freeze_observation_stats'
+    if frozen:
+        assert p['ppo_options']=={**old['ppo_options'],'freeze_observation_stats':True}
+        assert sha(parent/'exploration_verification.json')==p['parent_audit_sha256']
+        assert sha(batch/'training_source.diff')==p['training_source_diff_sha256']
+        control=parent/old['branches'][0]['name']
+        assert p['initial_checkpoint_hashes'][branch]==old['initial_checkpoint_hashes'][control.name]
+        for name,digest in p['initial_checkpoint_hashes'][branch].items():
+            assert sha(control/'initial_checkpoint'/name)==digest
+        ledger_parent=batch.parent/p['ledger_baseline_batch']
+        assert p['ledger_baseline_batch']==old['parent_batch']
+    else:
+        assert sha(parent/'analysis/verified_summary.json')==p['parent_audit_sha256']
+        ledger_parent=parent
+    zero=read(ledger_parent/'B1/validation_0.json');baseline_cp=ledger_parent/'B1'/Path(zero['checkpoint']).name
+    with (folder/'initial_checkpoint/normalization.pkl').open('rb') as stream:
+        initial_norm=pickle.load(stream)
     torch.set_num_threads(1)
     baseline,bn=load_run(baseline_cp);initial,normalizer=load_run(folder/'initial_checkpoint')
     try:
@@ -48,6 +64,12 @@ def analyze(batch, partial=False):
         target=r['target'];evaluation=read(folder/f'validation_{target}.json')
         cp=folder/Path(evaluation['checkpoint']).name;saved=read(cp/'training_summary.json')
         assert sha(cp/'model.zip')==evaluation['model_sha256']
+        if frozen:
+            with (cp/'normalization.pkl').open('rb') as stream: saved_norm=pickle.load(stream)
+            assert not saved_norm.training and not saved_norm.norm_reward and saved_norm.norm_obs
+            assert type(saved_norm) is type(initial_norm)
+            for field in ('mean','var','count'):
+                assert np.array_equal(getattr(saved_norm.obs_rms,field),getattr(initial_norm.obs_rms,field))
         model,norm=load_run(cp)
         try:
             vector=actor_vector(model)
@@ -78,6 +100,18 @@ def analyze(batch, partial=False):
         full=[e for e in evaluation['episodes'] if 'label' not in e]
         assert sum(e['success'] for e in full)==r['full_task_success']
         assert {str(d):sum(e['success'] for e in evaluation['episodes'] if e.get('label')==f'retention_{d}m') for d in (6,12,18,23)}==r['retention']
+        if frozen and target==0:
+            # Freeze changes no observation value before an update. Verify every
+            # deterministic control and plant state, not just terminal scores.
+            exact_controls=0
+            with gzip.open(control/'validation_0_trace.jsonl.gz','rt',encoding='utf-8') as a, \
+                    gzip.open(folder/'validation_0_trace.jsonl.gz','rt',encoding='utf-8') as b:
+                for left,right in zip(a,b,strict=True):
+                    left,right=json.loads(left),json.loads(right)
+                    assert left['case_id']==right['case_id'] and left['action']==right['action']
+                    assert left['info']['trace'][0]['state']==right['info']['trace'][0]['state']
+                    exact_controls+=1
+            assert exact_controls==sum(counts.values())
         endpoints.append({**r,'optimizer_steps':saved['optimizer_steps'],'evaluation_controls':sum(counts.values()),
             'ppo_actor_l2_from_changed_initial':learned,'saved_actor_l2_including_intervention':inherited,
             'reasons':dict(Counter(e['termination_reason'] for e in full)),'model_sha256':evaluation['model_sha256']})
@@ -106,10 +140,19 @@ def analyze(batch, partial=False):
         'complete':complete,'initial_log_std_intervention_l2':intervention,'endpoints':endpoints,
         'inherited_costs':p['inherited_costs'],'training_audit':training_audit,
         'note':'The unchanged resume ledger references the original pre-intervention actor. Its actor_l2_change includes the manual log_std shift and is not a PPO-only parameter change.'}
-    (batch/'exploration_verification.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
+    output='exploration_verification.json'
+    if frozen:
+        result['scope']='Training observation normalization contrast; exact initial checkpoint shared with completed reduced-exploration control'
+        result['normalization_audit']={'mean_variance_count_exact_at_every_endpoint':True,
+            'initial_count':float(initial_norm.obs_rms.count),'zero_update_exact_controls':exact_controls}
+        output='normalization_verification.json'
+    destination=Path(output_path) if output_path else batch/output
+    destination.parent.mkdir(parents=True,exist_ok=True)
+    destination.write_text(json.dumps(result,indent=2),encoding='utf-8')
     print(json.dumps(result))
 
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--batch',required=True);parser.add_argument('--partial',action='store_true')
-    args=parser.parse_args();analyze(args.batch,args.partial)
+    parser.add_argument('--output',help='Separate derivative path for independent-checkout reproduction')
+    args=parser.parse_args();analyze(args.batch,args.partial,args.output)

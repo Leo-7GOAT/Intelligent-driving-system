@@ -121,6 +121,11 @@ def save_checkpoint(run,model,vec,recorder,initial_actor,config,seed,reason):
 def cumulative_train(run,config,seed,target,deadline,rollout_physics=2560,epochs=10,ppo_options=None,resume_learning_rate=None):
     torch.set_num_threads(1);run=Path(run);run.mkdir(parents=True,exist_ok=True)
     ppo_options=ppo_options or {}
+    freeze_stats=ppo_options.get("freeze_observation_stats",False)
+    if not isinstance(freeze_stats,bool):
+        raise ValueError("freeze_observation_stats must be boolean")
+    if freeze_stats and not (run/"latest.json").exists():
+        raise ValueError("Frozen observation statistics require an inherited checkpoint in a new versioned run")
     steps=max(2,rollout_physics//config.substeps)
     raw=DummyVecEnv([lambda:NavigationEnv(config)])
     if (run/"latest.json").exists():
@@ -129,7 +134,13 @@ def cumulative_train(run,config,seed,target,deadline,rollout_physics=2560,epochs
         previous=json.loads((run/"latest.json").read_text(encoding="utf-8"));checkpoint=Path(previous["checkpoint"])
         saved=json.loads((checkpoint/"config.json").read_text(encoding="utf-8"))
         if saved["env"]!=config.to_dict() or saved["seed"]!=seed:raise ValueError("Resume configuration/seed mismatch")
-        vec=VecNormalize.load(checkpoint/"normalization.pkl",raw);vec.training=True
+        vec=VecNormalize.load(checkpoint/"normalization.pkl",raw)
+        if freeze_stats and (not vec.norm_obs or vec.norm_reward or vec.obs_rms.count<=1):
+            vec.close()
+            raise ValueError("Freeze requires fitted observation statistics and unnormalized task rewards")
+        # PPO still learns on actual transitions. Only running observation moments
+        # stop changing; rewards already use physical units without normalization.
+        vec.training=not freeze_stats
         model=PPO.load(checkpoint/"model.zip",env=vec,device="cpu",force_reset=False)
         if resume_learning_rate is not None:
             if not np.isfinite(resume_learning_rate) or not 0 < resume_learning_rate <= .01:

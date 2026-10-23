@@ -5,6 +5,64 @@ not pure reinforcement learning, a fair final architecture comparison or an
 independent confirmation. The PPO hierarchy and all original acceptance gates
 remain required. Earlier failed models/results are retained.
 
+## Latest completed contrast and normalization trial
+
+The reduced-exploration batch `20261023T052413Z_reduced_exploration` completed
+normally with 102,400 actual training controls, 40 optimization phases and 2,707
+optimizer steps. Its predeclared endpoints are 4/10, 2/10 and 0/10. The final
+ten full-task cases contain six collisions and four deadlines; all eight parking
+probes fail. Its 33,709 evaluation controls and every training control were
+audited. The final actor change relative to the changed initial checkpoint is
+0.741360; the inherited ledger's 22.607050 includes the earlier manual noise
+intervention and is not a PPO-only change. The completed verifier is
+`exploration_verification.json`. Reduced initial noise did not solve regression.
+
+`measure_normalization_sensitivity.py` reproduces the fixed-observation probe
+on 438 training-mask visits. Changing only the statistics snapshot changes
+clipped longitudinal means by median 0.389393 and P95 1.341785; 87.21% differ by
+more than 0.1. The counts change from 8,113.0001 to 33,714.0001. This is offline
+inference with zero controls, queries or updates, not on-policy coverage or a
+causal explanation. The completed 72-episode factorial already shows that
+swapping old statistics into the learned policy does not restore competence;
+it does not test holding the input transform fixed throughout learning.
+
+The new batch `20261023T054347Z_frozen_training_normalization` tests only that
+training-time hypothesis. All initial checkpoint files are byte-identical to
+the reduced-exploration control, including weights, empty optimizer, RNG,
+vehicle state and normalization. The only added PPO option is
+`freeze_observation_stats=true`. The learned actor and critic still optimize
+ordinary task rewards. No teacher executes, supplies labels or adds updates.
+The source delta is retained in `training_source.diff`; low-level dynamics,
+reward, observations, cases, seed, learning rate and log_std initialization are
+unchanged. Completed control costs and all inherited supervision remain charged.
+
+It was launched at 13:44 local with one CPU worker, a one-hour ceiling from
+preparation, 12 GiB free-disk/4 GiB free-memory/85 C GPU guards and zero retries.
+Initial resources were 42.91 GB free disk and 37.86 GB free memory, GPU 39 C.
+The 0/25k/100k endpoints are fixed before training. Zero-update evaluation
+reproduces all 10,882 control/state pairs exactly and scores 4/10. Actual PPO
+has begun; later outcomes must come from completed endpoint audits, not this
+launch record. The initial count of 8,113.0001 and all means/variances must
+remain exact at every checkpoint; evaluation also freezes statistics.
+
+Regression is 139 passed, five conditional skips, two existing SB3 deprecation
+warnings (`runs/frozen_normalization_regression.xml`). New real-training tests
+verify frozen moments, nonzero actor/optimizer changes, identical split versus
+uninterrupted resume and rejection of freezing an unfitted fresh run.
+
+Rebuild these local diagnostics (the newer model/data files are not release assets):
+
+```powershell
+python scripts/analyze_exploration_branch.py --batch runs/20261023T052413Z_reduced_exploration --output runs/reduced_exploration_rebuilt.json
+python scripts/measure_normalization_sensitivity.py --batch runs/20261023T050438Z_aggregated_ppo --dataset runs/20261023T043924Z_current_state_aggregation/round_02/recovery_examples.npz --output runs/normalization_sensitivity_rebuilt.json
+python scripts/analyze_exploration_branch.py --batch runs/20261023T054347Z_frozen_training_normalization --partial
+```
+
+The last command explicitly audits only completed endpoints while training is
+live. Omit `--partial` after normal completion to require the full training audit.
+The preparation script refuses duplicate pointer creation. Do not restart a
+worker based on a stale heartbeat: inspect its OS creation identity and guard.
+
 ## Registered intervention
 
 Batch `20261023T030731Z_recovery_demonstrations` starts from the fixed supervised
@@ -285,8 +343,8 @@ actually launched at13:24local with a14:24deadline, the same resource thresholds
 and no automatic retries. Worker and guard OS identities were verified. Initial
 checkpoint comparison passes: only log_std tensors differ; all other checkpoint
 files, including RNG/physical resume state and normalization, are byte-identical.
-The new branch's results are pending; smaller exploration is a hypothesis, not
-an established remedy. Its initial-scale and later PPO updates are separately
+At launch its results were pending; the completed negative result is recorded
+at the top of this report. Its initial-scale and later PPO updates are separately
 reported from all inherited supervision and the completed comparator's102,400steps.
 
 The new zero-update endpoint is already verified: all10,882actions and actual

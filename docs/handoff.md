@@ -1,3 +1,51 @@
+# Frozen training normalization contrast — 2026-10-23 13:47 local
+
+Previous user-requested summary turn was a status-only turn, not development
+progress. This continuation makes code/test/actual-training progress. Full goal
+remains active and incomplete, without a hard blocker. Read the full objective
+attachment before continuing. No subagents, other projects or CARLA were used.
+
+Reduced exploration `runs/20261023T052413Z_reduced_exploration` is COMPLETE,
+normal guard exit0, old worker45768/guard33204 absent. Full raw audit:
+102,400 training controls, 2,707 optimizer steps, 40 phases; endpoints4/10,
+2/10,0/10; final6collisions4deadlines; all parking fails;33,709eval controls.
+Corrected final PPO-only actorL2=.741360; inherited ledger22.607050 includes
+manual log_std shift. `exploration_verification.json` is authoritative.
+
+NEW LIVE batch `runs/20261023T054347Z_frozen_training_normalization`, pointer
+`runs/frozen_training_normalization.json`. Actual worker24572 creation13:44:09.501,
+launcher39616; guard49316 creation13:44:11.782, launcher19760. Revalidate OS
+identity before any action. Frozen source runs paired_update_stability.py.
+Deadline14:43:48; one CPU worker,12GiB disk/4GiB RAM/85C guards,zero retries.
+All initial checkpoint files identical to reduced-exploration INITIAL checkpoint,
+not its learned endpoint; only option freeze_observation_stats=true is added.
+Same log_std=-4, LR1e-4, seed, reward, cases,0/25k/100k milestones. Inherited
+supervision/control costs retained. Training still updates actor and critic.
+Zero4/10 and10,882control/state pairs match the completed control EXACTLY.
+Partial normalization_verification.json passes. First two phases give5,120
+controls/80optimizersteps; do not use this historical count as live status.
+
+Fixed438train-visit inference is now reproducible through
+scripts/measure_normalization_sensitivity.py. Statistics-only longitudinal
+action medianchange.389393,P951.341785;87.21%change>.1. This supports testing
+training-time freezing, not claiming a cause. It is not an on-policy sample.
+Output `runs/20261023T050438Z_aggregated_ppo/verified_normalization_sensitivity.json`.
+
+Code: optional freeze in navstack/research.py rejects fresh/unfitted runs and
+reward normalization, preserving default behavior. New actual-PPO tests prove
+unchanged moments, actor updates and exact split/uninterrupted resume. Full
+root regression139passed5skips2existingwarnings. Preparation saves all source,
+training_source.diff and exact initialization hashes. Analyzer now supports both
+contrasts, exact frozen moments/zero-trace equality and --output for independent
+derivatives. Old exploration outputs remain compatible.
+
+Next: inspect live process/guard/progress; audit completed endpoints (use --partial
+until completed.json AND normal guard_final); independently reproduce final
+exploration audit and normalization probe, test source in pinned clean checkout,
+update outcomes and publish source after preflight. Do not launch a duplicate or
+edit frozen sources. Full research gates/five seeds/fresh CARLA confirmation are
+still unmet; these diagnostics are not final architecture evidence.
+
 # Verified source and partial exploration result — 2026-10-23 13:31 local
 
 Code25df90c6d5297d5f860bf9c173bb60fb35adfa5e pushed/remotematched. Root/clone
