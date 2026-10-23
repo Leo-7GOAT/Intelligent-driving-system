@@ -305,3 +305,13 @@ The later completed pure-learner aggregation and live PPO continuation are
 described above. Current root regression is137passed/five conditional skips/two
 existing warnings (`runs/aggregated_ppo_regression.xml`); later independent
 reproduction receipts identify their exact source version.
+
+Source `6d351d586e43577bf44ef9c5e2d51c587515ded4` is pushed and remote-matched.
+Root and independent pinned environment both pass137tests/five conditional skips
+with two existing SB3 deprecation warnings. Independent reconstruction matches
+the completed pure-learner aggregation summary byte-for-byte (SHA256
+`2a7f8039b1a60c78b09db33e4cd74b56e4e8f543611895ec9721ade4bcd9865b`)
+and its inspected figure. Both models reload and each gives64repeatable finite
+predictions with frozen normalization. Receipt:
+`runs/prerelease_20261022/native_road_checkout/runs/pure_learner_aggregation_reproduction.json`.
+These are local artifact checks; no new release asset upload is claimed.

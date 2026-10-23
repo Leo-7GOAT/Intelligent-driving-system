@@ -1,3 +1,19 @@
+# Verified publication/reproduction — 2026-10-23 13:10 local
+
+Code6d351d586e43577bf44ef9c5e2d51c587515ded4 pushed/remotematched on correctorigin,
+accountLeo-7GOAT verified. Root and clone137passed/5skips/2existingwarnings.
+Clone is detached at6d351d5, clean, using siblingclean_checkout pinned .venv.
+Its completed aggregation summary/figure are byteidentical; summarySHA
+2a7f8039b1a60c78b09db33e4cd74b56e4e8f543611895ec9721ade4bcd9865b.
+Both supervised models give64repeatable finite predictions with frozenstats.
+Receipt runs/pure_learner_aggregation_reproduction.json in clone. Newassetslocal.
+
+Same actualPPO worker27336/guard40952 OSverifiedalivehealthy at13:09.
+25,600controls/10phases/4,000optimizerupdates completed; firstposttraining
+evaluation inprogress, no result yet at this entry. The target0 rawanalyzer
+also passed. Continue this live batch, no duplicate. Sourcefrozenatpreparation
+and not altered. FullobjectiveACTIVE/incomplete, nohardblock.
+
 # Completed aggregation and actual PPO continuation — 2026-10-23 13:07 local
 
 Goal ACTIVE/incomplete; no hard blocker. Previous summary turn was verified wait.
