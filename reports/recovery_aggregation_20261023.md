@@ -132,6 +132,17 @@ verifier checks all commands/labels/clocks and confirms every non-action array
 is unchanged. This partial receipt cannot authorize fitting before all groups
 finish; the verifier explicitly rejects an incomplete batch by default.
 
+The next completed group also passed independent verification: original plus
+round-one data total21,688controls/queries and932.882seconds of teacher-query
+time. Round two remains live. A bounded local helper waits for the same
+identity-checked worker and clean guard exit, then verifies and prepares the
+registered fit; it does not itself start training. Its first Windows PowerShell
+launch failed before fitting because a hashing cmdlet was unavailable; that
+attempt is retained and the corrected PowerShell7 helper is separately recorded.
+The data worker was unaffected. Preparation also checks the completed control's
+original data hashes and identical fitting-function AST, in addition to fixed
+initialization, splits and normalization.
+
 ## Pure-learner visited-state audit
 
 The fixed actor-only control was run on four predetermined static cases: original

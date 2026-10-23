@@ -30,19 +30,26 @@ def prepare(parent, relabel=None, control=None):
     if not ok or shutil.disk_usage(ROOT).free<12*1024**3:raise RuntimeError(str(reason))
     relabeled=None
     if relabel:
+        import ast
         import numpy as np
         from scripts.verify_relabel_teacher import verify
         relabel,control=Path(relabel).resolve(),Path(control).resolve()
         verify(relabel)
         relabeled=read(relabel/'completed.json');control_protocol=read(control/'protocol.json')
         assert (control/'completed.json').exists() and control_protocol['value_weight']==0.
+        assert control_protocol['parent_batch']==parent.name
         assert control_protocol['epochs']==200 and control_protocol['seed']==13
         assert control_protocol['env']==p['env'] and control_protocol['cases']==p['cases']
+        def fitting_definition(path):
+            tree=ast.parse(path.read_text(encoding='utf-8'))
+            return ast.dump(next(node for node in tree.body if isinstance(node,ast.FunctionDef) and node.name=='fit_demonstrations'))
+        assert fitting_definition(ROOT/'navstack/imitation.py')==fitting_definition(control/'source/navstack/imitation.py'), 'Fitting implementation differs from control'
         assert read(relabel/'protocol.json')['parent_batch']==parent.name
         for name,digest in control_protocol['initial_hashes'].items():
             assert sha(parent/'round_01/supervised_checkpoint'/name)==digest
         for group,old_path in [('original',parent/'parent_data/demonstrations.npz'),
                               ('round1',parent/'round_01/recovery_examples.npz'),('round2',parent/'round_02/recovery_examples.npz')]:
+            assert sha(old_path)==control_protocol['data_hashes'][group+'.npz']==sha(control/'data'/(group+'.npz'))
             assert sha(relabel/(group+'.npz'))==relabeled['files'][group]['sha256']
             old,new=np.load(old_path),np.load(relabel/(group+'.npz'))
             assert set(old.files)==set(new.files)

@@ -21,3 +21,12 @@ The following inventory was read from the installed distribution metadata used f
 Project URLs from package metadata are preserved in `dependency_licenses.json`. Install dependencies independently rather than copying environment directories into Git or release assets. CARLA installation and map redistribution are outside this release; users must obtain the matching simulator under its own terms.
 
 Algorithm attribution: PPO is implemented by Stable-Baselines3; QP solving uses OSQP; the environment API uses Gymnasium; tensor learning uses PyTorch. The project implements its own forward bicycle-model Hybrid A* search, trajectory handling and MPC assembly. It does not claim these established algorithms as original inventions.
+
+The recovery-state supervision diagnostics use dataset aggregation ideas associated
+with Ross, Gordon and Bagnell, *A Reduction of Imitation Learning and Structured
+Prediction to No-Regret Online Learning*, AISTATS/PMLR15:627–635 (2011),
+[paper and bibliographic record](https://proceedings.mlr.press/v15/ross11a.html).
+The project's two-round teacher/learner mixture and subsequent label audit are
+adapted diagnostics, not a reproduction of the paper's experiments or an
+implementation satisfying its theoretical guarantees. Project code was written
+locally; no third-party implementation or paper figures are redistributed.

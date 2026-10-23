@@ -1,3 +1,42 @@
+# Live preparation transition — 2026-10-23 12:20 local
+
+Goal ACTIVE/incomplete, no hard blocker. This continuation verifies two completed
+relabel groups (21,688controls/queries,932.882teacherqueryseconds), strengthens
+single-factor preparation, and registers a bounded follow-up. Prior turn was
+progress: actual613-control diagnostic plus reproducible raw evidence.
+
+Same relabel worker21256/guard36560 alive; at12:19total26,765controls,
+round2case13/control233. No duplicate/restart. Original deadline13:38:23local.
+Full verification and fitting have NOT occurred yet.
+
+NEW LIVE helper19104, created12:19:19.589local, command is current PowerShell7
+running batch/prepare_followup.ps1. It waits on identity-checked worker21256;
+requires normal guard exit and completed.json, checks pinned source hashes,
+then calls fit_recovery_actor.py --parent ...030731... --relabel ...033822...
+--control ...031926... . That entry performs full raw verification before
+preparing the fixed-label contrast. It DOES NOT LAUNCH TRAINING. Revalidate
+helper OS identity; inspect fit_preparation_completed.json or failure.json
+before manually preparing anything. Do not duplicate this pending preparation.
+Do not edit scripts/fit_recovery_actor.py, scripts/verify_relabel_teacher.py or
+navstack/imitation.py until helper exits; it rejects changed source hashes.
+
+First helper49464 exited before waiting/fitting because Windows PowerShell
+could not load Get-FileHash with inherited module paths. Failure and empty
+marker preserved in followup_attempt1_failure. Corrected launch uses the same
+PowerShell7 runtime as normal terminal commands; source hashes and live OS
+process checked. This was a diagnosed helper repair, not a relabel retry.
+
+When prepared, pointer runs/current_state_actor_fit.json identifies its frozen
+batch. Launch source/scripts/fit_recovery_actor.py --batch under existing
+watch_existing_pair.py identity guard, then verify actual updates and outcomes.
+Budget30min starts at preparation; no retries or new PPO. Source guard now also
+checks control parent/data hashes and identical fit_demonstrations AST. AST
+comparison against actual control source passed and script compiles. Existing
+137-test full regression remains the last full run; these guard assertions
+will be exercised by actual full-data preparation. Source/attribution docs are
+being published; inspect Git. DAgger idea now attributed to Ross et al.2011,
+without importing its theoretical guarantees or calling supervision pure PPO.
+
 # Active evidence snapshot — 2026-10-23 12:07 local
 
 Goal remains ACTIVE/incomplete, no blocker. Previous turn was progress (source,

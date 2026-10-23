@@ -89,3 +89,42 @@ v8的450维平铺MLP未建立反馈优势，且失败状态存在未被选中的
 `heading_potential_weight=0` preserves the published distance-only potential and checkpoint signature. Active shaping adds `-w*(1-cos(yaw-goal_yaw))*exp(-distance/radius)` to the state potential, before the existing physical-gamma difference and terminal-zero handling. It changes learning credit, not the base task or success gate. v17is an exploratory fresh-policy trial; its baseprogressrewarddiffersfromolderH and cannot be pooled into an unfair architecture comparison.
 
 Native map routes are reflected into the same right-handed rear-axle frame, verified against map/OpenDRIVE and geometry hashes, and executed with actual CARLA state feedback. Twelve actual footprint samples query driving surface each frame. This is a sampled diagnostic, not yet a road-boundary observation/reward for PPO. The environment explicitly rejects native_curve PPO use until that integration is implemented. `carla_actuation.py` preserves legacy longitudinal mapping by default; experimentalcoast/manualgear modes are explicitly versioned and have not resolved comfort failures.
+
+## Explicit supervision diagnostics, 2026-10-23
+
+The native-road restriction in the preceding historical section was subsequently
+resolved through the versioned common road raster and v3 lane-union geometry;
+actual native PPO training and frame verification are documented in
+[the native geometry report](../reports/indexed_native_geometry_20261022.md).
+That engineering result does not establish learned task competence.
+
+The separate B1 diagnosis adds declared supervision before standard PPO. An
+actual teacher execution is replayed by a separate direct-control plant to get
+method-correct observations. Later collection explicitly selects teacher or
+learner commands once per ten controls, while querying the teacher at every
+actually visited state. All visits, including failed episodes, are retained;
+heldout examples never enter fitting or normalization updates. Aggregating
+labels from learner-influenced visits follows the motivation of
+[Ross, Gordon and Bagnell (2011)](https://proceedings.mlr.press/v15/ross11a.html).
+Our finite two-round mixture, teacher implementation and neural optimizer do
+not establish the assumptions or guarantees of that work.
+
+The teacher is a private planner/controller workspace reading the actual plant.
+It cannot advance the plant or change episode accounting. Its label is not a
+command until an explicit collection branch selects it. Policy evaluation and
+ordinary PPO never invoke this teacher. Supervised optimizer steps, teacher
+queries/time, replay controls and later PPO interactions are separate costs.
+These models are not pure PPO baselines; a formal architecture comparison using
+them requires comparable supervision for the other methods.
+
+Two distinct hypotheses are kept separate: (1) critic-return regression may
+affect actor fitting through a shared gradient-norm clip, tested by actor-only
+supervision; (2) the teacher's held reference/controller history may make labels
+depend on information absent from the direct learner's observation, tested by
+relabeling identical physically replayed visits with a fresh current-state
+teacher. The latter leaves observations, returns and splits unchanged. Its
+fitting entry requires complete raw-label verification, identical control data,
+initial checkpoint/statistics and the same fitting-function definition. Neither
+experiment changes the PPO objective or authorizes a hierarchy advantage claim.
+Actual negative results and the additional learner-visit audit are retained in
+[the recovery report](../reports/recovery_aggregation_20261023.md).
