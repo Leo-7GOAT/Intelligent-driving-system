@@ -111,4 +111,23 @@ Full CPU regression after all policy/diagnostic changes: **130 passed / 5 condit
 
 The completed learning-rate evidence is now published separately as `paired_ppo_rate_stability.zip` (67,837,038 bytes,256manifestfiles,SHA256`b284991976fe7ad87405666a548f837b6561bdcc84b3f674e276a7213bc0fb71`). A fresh download verifies every file; the independent checkout loads all eight endpoint models with frozen normalization and rebuilds a byte-identical plot and identical endpoint results. Sourcee81b378is pushed/remote-verified. The older tag is unchanged; use this newer source for the new analysis command. The bounded-mean and native-recovery models are not in that asset.
 
+Two additional assets are now actually uploaded to the same immutable-tag
+prerelease, freshly downloaded and verified:
+
+| Asset | Bytes | Verified manifest files | SHA256 |
+|---|---:|---:|---|
+| bounded_mean_stability.zip | 185,786,166 | 255 | `e3dba9ce5f6346a8c4710236a2dbe24900e1554109263eb9faced7e659d4628a` |
+| softsign_mean_stability.zip | 92,312,679 | 218 | `cb57defabc169472ad36de1fc37b89c6a5f319154829a95179a20be0b5eb948f` |
+
+Independent checkout at `10fff2c48689e90ed376275d6b3e59f18fe8bfd3` reloads all
+12 downloaded endpoint models with frozen normalization and reproduces identical
+scientific rows and byte-identical figures. Receipts are
+`runs/bounded_download_reproduction.json` and
+`runs/softsign_download_reproduction.json` inside that checkout. Inference model
+and normalizer bytes are unchanged; portable JSON metadata and omissions have
+provenance. These are not portable training-resume bundles. All endpoints and
+failures are retained. The native recovery and demonstration models remain
+outside these assets. The release notes identify the required newer source;
+the historical tag has not been moved.
+
 The independent-checkout live v3 check has completed as recorded above. Five independent policies, healthy full-task B1, native static/dynamic competence, feedback and strong-B3 contributions, comfort improvements and fresh 120-condition confirmation remain required.

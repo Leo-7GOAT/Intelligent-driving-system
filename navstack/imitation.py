@@ -10,6 +10,64 @@ from .config import EnvConfig
 from .env import NavigationEnv
 
 
+class RecoveryTeacher:
+    """Training-data oracle on actual learner states, never an env-step hook.
+
+    A private planning/controller workspace reads the live plant and world.
+    Querying it neither advances the plant nor changes learner observations or
+    episode accounting. A collector must explicitly choose the executed action
+    and separately charge all teacher query costs. Learned evaluation never
+    instantiates this helper.
+    """
+    def __init__(self, env):
+        from copy import copy, deepcopy
+        from .mpc import MPC
+        if env.config.method != 'B1' or env.config.flat_hold != 1 or env.done:
+            raise ValueError('Teacher queries require an active hold1 direct-control episode')
+        self.learner = env
+        self.workspace = copy(env)
+        self.workspace.episode = deepcopy(env.episode)
+        self.workspace.controller = MPC(env.config.vehicle, env.config.control_dt, env.config.mpc_horizon)
+        self.workspace._rule_plan_cache = None
+        self.workspace.reference = None
+        self.controls_per_decision = round(env.config.decision_dt/env.config.control_dt)
+        self.last_control = None
+        self.mode, self.plan, self.action = None, None, None
+
+    def query(self):
+        import time
+        from copy import deepcopy
+        from .env import rule_action
+        from .vehicle import brake
+        env, oracle = self.learner, self.workspace
+        if env.done or env.plant is not oracle.plant:
+            raise ValueError('Create a new teacher workspace after an episode reset')
+        control = env.episode['physics_steps']
+        if self.last_control is not None and control != self.last_control+1:
+            raise ValueError('Query exactly once before each actually executed control')
+        state_before, metrics_before = deepcopy(env.state), deepcopy(env.episode)
+        started = time.perf_counter()
+        decision = self.last_control is None or control % self.controls_per_decision == 0
+        if decision:
+            self.action = rule_action(oracle)
+            self.mode, self.plan = oracle._prepare_reference(self.action)
+        if self.mode == 'reference':
+            result = oracle.controller.step(env.state, oracle.reference, env.plant.previous_command)
+            command, status = result.command, result.status
+        else:
+            command, status = brake(env.state, env.config.vehicle), self.mode
+        label = command_action(asdict(command), env.config.vehicle)
+        metadata = {'control': control, 'teacher_decision': decision,
+                    'teacher_high_action': self.action, 'teacher_mode': self.mode,
+                    'teacher_plan': self.plan if decision else None,
+                    'teacher_rule_diagnostics': oracle.rule_diagnostics if decision else None,
+                    'teacher_controller_status': status, 'query_seconds': time.perf_counter()-started,
+                    'requested_command': asdict(command)}
+        assert env.state == state_before and env.episode == metrics_before
+        self.last_control = control
+        return label, metadata
+
+
 def command_action(command, vehicle):
     acceleration=command['acceleration']
     return np.array([acceleration/(vehicle.max_accel if acceleration>=0 else vehicle.max_decel),

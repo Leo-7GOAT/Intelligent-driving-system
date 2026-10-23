@@ -87,6 +87,18 @@ bounds. Teacher-state MSE conceals errors in terminal timing and recovery.
 These observations motivate investigating physically visited recovery-state
 coverage; they do not establish that a particular next intervention will work.
 
+The next data-collection building block, `RecoveryTeacher`, is now implemented
+as a separately invoked training oracle. A private planning/MPC workspace reads
+the actual learner plant/world, computes a label, and verifies that actual state
+and learner episode accounting are unchanged. Repeated queries without a real
+control step and reuse after reset are rejected. It does not hook policy
+inference or choose the action that the collector executes. Its integration
+test uses a fixed planning node budget and reproduces the full actual B3 short
+parking trajectory through a separate direct-control plant within 1e-4 in all
+state fields. Query cost and planner/controller diagnostics are returned for
+explicit accounting. A recovery-state collection/training experiment using
+this interface has **not yet run**, so no improvement is claimed.
+
 Direct control is hold1 (0.05s), whereas the previous PPO-only mean-transform
 studies used hold10. Teacher decisions remain 0.5s with MPC controls at 0.05s.
 Both the extra supervision and frequency change must be disclosed; a later

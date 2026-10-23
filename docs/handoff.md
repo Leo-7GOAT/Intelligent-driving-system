@@ -1,4 +1,34 @@
-# Verified continuation snapshot — 2026-10-23 10:49 local
+# Verified continuation snapshot — 2026-10-23 10:59 local
+
+Supersedes pending transfer states below. Both mean-transform assets uploaded
+successfully, actual downloads verify all 473 manifest files and archive SHA256s.
+Independent checkout at 10fff2c loads all 12 endpoint models with frozen stats,
+identical scientific rows and byte-identical plots. Receipts inside clone:
+runs/bounded_download_reproduction.json and runs/softsign_download_reproduction.json.
+Downloads/extracted assets/verification receipts are under
+runs/prerelease_20261022/mean_download. Prerelease body updated with exact hashes,
+source requirement and negative scope; tag unchanged. No upload/download remains
+running. Native recovery and BC/PPO artifacts are still local, not these assets.
+
+New `navstack.imitation.RecoveryTeacher` implemented as explicitly invoked
+training-data oracle, NOT used during policy inference. It reads the actual
+learner state/world in a private planner/MPC workspace, returns labels and
+query/plan/controller costs, and does not advance physics or mutate learner
+state/episode metrics. Repeated unexecuted-control queries and stale reset
+workspaces reject. New actual-plant test reproduces complete B3 6m parking via
+separate direct controls within1e-4 all state fields. The first test used a
+wall-clock planner and was nondeterministic; corrected test uses the intended
+fixed node budget (`max_seconds=None`, analytic/vectorized) rather than relaxing
+tolerance. Full root regression133passed5skips2existingwarnings. Collection and
+learning with this recovery-state oracle have NOT started; that is the concrete
+next development work, with supervised data/cost/fairness explicitly disclosed.
+
+All earlier training/norm-factorial/native verification is complete; no CARLA
+server expected. Publication preflight/commit/push and independent oracle check
+follow this snapshot; inspect Git and clone receipts for actual final status.
+The overall objective remains ACTIVE/incomplete, no external blocker, no agents.
+
+# Historical continuation snapshot — 2026-10-23 10:49 local
 
 This goal turn is progress, not completion. Full objective remains ACTIVE with
 no hard blocker. Source d9f48cd28b892928f69822f3131c7263489db0a9 is pushed and
