@@ -7,6 +7,50 @@ remain required. Earlier failed models/results are retained.
 
 ## Latest completed contrast and normalization trial
 
+**Completed normalization result (13:57 local):** the frozen-statistics branch
+exited normally at 102,400 controls, 40 phases and 2,332 optimizer steps. Its
+full-task endpoints are **4/10 → 0/10 → 4/10**, and parking is **5/8 → 2/8 → 8/8**.
+Final successes are both empty and both dynamic cases; static, narrow and unseen
+all time out. There are no final-evaluation collisions or bounds episodes, but
+training retains 37 collisions, 46 deadlines and 152 successes. Training safety
+and evaluation safety must not be conflated. The final 4/10 equals the initial
+supervised score, so it is not an improvement in overall task competence.
+
+The full audit verifies all 102,400 training and 33,455 evaluation controls,
+exact statistics at all 13 complete checkpoints, and actor change 0.665943
+relative to this branch's initial model. Final model SHA256:
+`9f7b8105f21e6d20206d4d60ea47d94070cbf2a639ecea8f9b57fb7ec508519f`.
+At the same final budget, updating statistics with the same reduced initial
+noise gives 0/10 and parking 0/8. This single correlated contrast supports
+further retention testing; it does not establish an independent-seed effect,
+a healthy complete-task baseline or hierarchy superiority.
+
+The 25k frame audit shows all nine deadline cases stationary and requesting
+braking throughout the final five seconds. At 100k the six remaining failures
+finish 8.68–19.04 m from the goal; failure is no longer explained solely by
+terminal parking. The new `terminal_audit_25000.json` and
+`terminal_audit_100000.json` retain every case and simultaneous position, speed
+and heading gate. The 23 m parking probes duplicate the full-task empty cases;
+the eight probes are not eight independent policies or pooled extra successes.
+
+`comparison/comparison.json` and the visually inspected
+`comparison/normalization_contrast.png` retain all three branches and endpoints.
+Rebuild the figure only from complete audits:
+
+```powershell
+python scripts/plot_normalization_contrast.py --baseline runs/20261023T050438Z_aggregated_ppo/analysis/verified_summary.json --noise runs/20261023T052413Z_reduced_exploration/exploration_verification.json --frozen runs/20261023T054347Z_frozen_training_normalization/normalization_verification.json --output runs/normalization_comparison_rebuilt
+```
+
+Source `eee6c8a` is pushed and remote-matched. The independent pinned checkout
+passes 139 tests/five skips and reproduces the completed reduced-noise audit
+byte-for-byte (SHA256 `0c46c79ab129268e593e4a962100d8cd02929c48ac90cf440abef6693a523311`)
+and the fixed-observation sensitivity probe
+(`b05c8b8bad7e2003f248b28dd74e73e025c2c69406dfda7d54e9152823ceb5d0`).
+The receipt is `runs/frozen_normalization_initial_reproduction.json` in the
+independent checkout. Later receipts identify the final frozen-statistics audit.
+
+The following launch record is historical; the batch is now complete.
+
 The reduced-exploration batch `20261023T052413Z_reduced_exploration` completed
 normally with 102,400 actual training controls, 40 optimization phases and 2,707
 optimizer steps. Its predeclared endpoints are 4/10, 2/10 and 0/10. The final

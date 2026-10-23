@@ -143,8 +143,17 @@ def analyze(batch, partial=False, output_path=None):
     output='exploration_verification.json'
     if frozen:
         result['scope']='Training observation normalization contrast; exact initial checkpoint shared with completed reduced-exploration control'
+        checked=[]
+        for marker in sorted(folder.glob('checkpoint_*/training_summary.json')):
+            with (marker.parent/'normalization.pkl').open('rb') as stream: saved_norm=pickle.load(stream)
+            assert not saved_norm.training and not saved_norm.norm_reward
+            assert type(saved_norm) is type(initial_norm)
+            for field in ('mean','var','count'):
+                assert np.array_equal(getattr(saved_norm.obs_rms,field),getattr(initial_norm.obs_rms,field))
+            checked.append(marker.parent.name)
         result['normalization_audit']={'mean_variance_count_exact_at_every_endpoint':True,
-            'initial_count':float(initial_norm.obs_rms.count),'zero_update_exact_controls':exact_controls}
+            'initial_count':float(initial_norm.obs_rms.count),'zero_update_exact_controls':exact_controls,
+            'completed_checkpoints_with_exact_frozen_statistics':checked}
         output='normalization_verification.json'
     destination=Path(output_path) if output_path else batch/output
     destination.parent.mkdir(parents=True,exist_ok=True)

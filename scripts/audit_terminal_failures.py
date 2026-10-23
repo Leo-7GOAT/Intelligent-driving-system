@@ -33,11 +33,20 @@ def summarize_frames(frames, goal, config):
             "last5s_requested_braking_fraction": sum(frames[i]["requested_command"]["acceleration"] < 0 for i in late)/len(late)}
 
 
-def audit(batch, job_id, target):
+def audit(batch, job_id, target, output_path=None):
     batch = Path(batch).resolve()
     protocol = json.loads((batch / "protocol.json").read_text(encoding="utf-8"))
-    job = next(j for j in protocol["jobs"] if j["id"] == job_id)
-    run = batch / protocol["run_group"] / job_id
+    if 'jobs' in protocol:
+        job = next(j for j in protocol["jobs"] if j["id"] == job_id)
+        run = batch / protocol["run_group"] / job_id
+    else:
+        allowed = [branch['name'] for branch in protocol.get('branches', [])]
+        if 'ppo_milestones' in protocol:
+            allowed.append('B1')
+        if job_id not in allowed:
+            raise ValueError('Job must be a declared development branch')
+        job = {'env': protocol['env']}
+        run = batch / job_id
     validation = run / f"validation_{target}.json"
     trace = run / f"validation_{target}_trace.jsonl.gz"
     result = json.loads(validation.read_text(encoding="utf-8"))
@@ -53,6 +62,8 @@ def audit(batch, job_id, target):
         if len(frames) != episode["physics_steps"]:
             raise ValueError("Physical trace does not cover the complete episode")
         row = {k: episode[k] for k in ("case_id", "scenario", "seed", "success", "termination_reason", "progress")}
+        if 'label' in episode:
+            row['label'] = episode['label']
         row.update(summarize_frames(frames, goals[episode["case_id"]], job["env"]))
         if row["success"] and not row["simultaneous_goal_gate_frames"]:
             raise ValueError("Recorded success lacks a simultaneous goal gate")
@@ -62,7 +73,7 @@ def audit(batch, job_id, target):
               "input_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (validation, trace)},
               "goal_thresholds": {k: job["env"][k] for k in ("goal_tolerance", "goal_speed", "goal_yaw_tolerance", "parking")},
               "episodes": episodes}
-    destination = run / f"terminal_audit_{target}.json"
+    destination = Path(output_path) if output_path else run / f"terminal_audit_{target}.json"
     if destination.exists():
         if json.loads(destination.read_text(encoding="utf-8")) != output:
             raise ValueError("Existing audit differs; preserve it and investigate")
@@ -77,5 +88,6 @@ if __name__ == "__main__":
     parser.add_argument("--batch", required=True)
     parser.add_argument("--job", required=True)
     parser.add_argument("--target", type=int, required=True)
+    parser.add_argument("--output", help="Separate derivative path for independent reconstruction")
     args = parser.parse_args()
-    audit(args.batch, args.job, args.target)
+    audit(args.batch, args.job, args.target, args.output)

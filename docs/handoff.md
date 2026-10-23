@@ -1,3 +1,32 @@
+# Completed frozen-statistics result — 2026-10-23 13:57 local
+
+`20261023T054347Z_frozen_training_normalization` COMPLETE, normal guard exit0;
+worker24572/guard49316 are absent. Full audit checks102,400training controls,
+33,455eval controls,40phases/2,332optimizersteps; all13complete checkpoints retain
+exact means/variances/count8113.0001. Endpoints full4/10,0/10,4/10; parking5/8,
+2/8,8/8. Final empty/dynamicboth succeed; static/narrow/unseenall deadlines.
+Training152success46deadline37collision retained; no final-eval collision/bounds.
+ActorL2 from branchinitial .665943; finalmodelSHA
+9f7b8105f21e6d20206d4d60ea47d94070cbf2a639ecea8f9b57fb7ec508519f.
+This restores overall initial4/10 while improving parking, not complete baseline
+competence. The updating-statistics reduced-noise comparator remains0/10,0/8.
+
+New terminal audits preserve all18cases: at25k allnine deadlines are stationary
+and braking for last5s; at100k remaining failures end8.68–19.04m away. Existing
+audit_terminal_failures.py now handles branch protocols and --output. New
+plot_normalization_contrast.py produces all9rows and a visually inspected figure
+in batch/comparison; no confidence intervals for one correlated lineage.
+Analyzer checks allcomplete periodic normalization checkpoints in addition to
+endpoint rawcontrols. Historical partialaudit replaced by complete derivative.
+
+Sourceeee6c8a pushed/remoteverified. Clone sourceeee6c8a is clean and passes
+139tests5skips2warnings; completed reduced-noiseaudit and fixed438visitprobe
+byte-identical. Receipt clone/runs/frozen_normalization_initial_reproduction.json.
+Final frozenaudit/figure independent reconstruction is next, followed by a paired
+unchanged continuation of BOTH completed reduced-noise branches to200k/300k.
+No continuation has been prepared or started at this paragraph's timestamp.
+Use current OS/protocol files for later state. Full goal still active/incomplete.
+
 # Frozen training normalization contrast — 2026-10-23 13:47 local
 
 Previous user-requested summary turn was a status-only turn, not development
