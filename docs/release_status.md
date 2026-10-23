@@ -84,3 +84,5 @@ python scripts/analyze_update_stability.py --batch EXTRACTED/20261023T011009Z_up
 ```
 
 Full-task original/lower-rate endpoints are4/1/4/4 versus4/6/5/5 out of ten. Static cases remain0/2at every endpoint. These are development failures and conditional stability evidence, not a hierarchy-superiority result or completed research acceptance.
+
+Subsequent source `fba43c7fa4dfa579850dac31b0d0d7485ae17f7f` is also pushed/remote-verified. Its separate clean checkout passes130tests/5conditional skips using the independently installed pinned environment. This adds bounded-mean/softsign probability-update checks, scene/geometry alignment and offline route-proposal invariants; it does not add completed native B1 results or new live CARLA reproduction.

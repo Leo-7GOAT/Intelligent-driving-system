@@ -1,4 +1,12 @@
-# Authoritative continuation — 2026-10-23 09:56 local
+# Verified continuation snapshot — 2026-10-23 10:04 local
+
+Sourcefba43c7fa4dfa579850dac31b0d0d7485ae17f7fis pushed/remoteverified. Mainworktreeand independentnative_road_checkoutareclean. Independentpinnedvenvfullregressionatthatcommit:130passed5skips2SB3deprecationwarnings (`runs/softsign_reproduction_tests.xml` insideclone). Earlierdownloadedrateasset8modelreload/endpoint/figurechecks remain verified. A docs-onlycommitmayfollow.
+
+Only two training workloads remain live, both OS identities rechecked: native main9248 (created09:07:26) /B1bridge42388(created09:39:10), sameownedserver21808; B1~42.4kcontrols/133phases, immutable40,083checkpoint252optimizersteps/SHA3c0faa45ed7dd333feb9361c5e9e36a8e41652c2b90ca2aea76a7801462eaa03. Softsignworker8336(created09:55:17)/guard47768(created09:55:50), +300,488endpoint5/10 andall8parkingprobespass; first0/+100k/+300kfulltask3/4/5outof10. Final+600k pending. Do notrestartthesejobs. GPU50C,9,904of16,311MiBused;~35.4GiBRAMand61.95GBdiskfree. Native deadline11:06, softsigndeadline10:54:52. No resourceblocker.
+
+Finish/inspect currentendpoints before anotherparameterchange. Static/unseenstillunresolved: do not callhealthyB1orhierarchyadvantage established. Offline route-proposal function remains diagnostic only, not enabled in training. Hnativecomplete/rawverified; B1fullanalyzerandnewindependentliveCARLAreplaypending. Full objective remainsACTIVE/incomplete.
+
+# Historical continuation — 2026-10-23 09:56 local
 
 This turn is substantial progress; full goal ACTIVE/incomplete/no hard blocker/no agents. Read full objective attachment before continuing. Supersedes old live entries below.
 
