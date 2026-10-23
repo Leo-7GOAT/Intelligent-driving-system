@@ -1,3 +1,14 @@
+# Final verified snapshot — 2026-10-23 11:01 local
+
+Source cc76677dc5c2f36245758e96565bde3b1734ecb0 pushed/remote-verified.
+Independent checkout at that exact source also passes 133 tests / five skips /
+two existing warnings (runs/recovery_teacher_reproduction_tests.xml). Root and
+clone are clean before this documentation-only update. No training, CARLA,
+upload or download process remains live. All results/publication receipts and
+next concrete recovery-state data work are described below. Full goal ACTIVE,
+incomplete; this turn is progress with no hard blocker. A documentation-only
+commit follows; inspect Git for its final hash.
+
 # Verified continuation snapshot — 2026-10-23 10:59 local
 
 Supersedes pending transfer states below. Both mean-transform assets uploaded
