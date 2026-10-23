@@ -156,8 +156,8 @@ initialization, splits and normalization.
 
 ## Pure-learner aggregation continuation
 
-Batch `20261023T043924Z_current_state_aggregation` is actually running under a
-two-hour guard, deadline14:39:25local. It starts from the fixed current-state
+Batch `20261023T043924Z_current_state_aggregation` completed normally at13:02local
+under its two-hour guard. It starts from the fixed current-state
 label endpoint above, including its poor result, rather than switching to a
 better earlier checkpoint. Two rounds collect seeds8401–8408 crossed with
 empty/static/narrow/dynamic layouts; first six seeds fit, last two stay held out.
@@ -174,6 +174,58 @@ supervised updates and sibling development costs are separately recorded.
 This intervention combines new visits with extra optimization; it is not a
 causal isolation of coverage from training duration, an independent-seed result,
 or a substitute for the required PPO hierarchy comparisons.
+
+Both retained endpoints score4/10 (empty and dynamic successes only). Round one
+has three collisions and three deadlines; round two has six deadlines, all with
+terminal speed zero. Round-two static progress is11.31/13.38m and unseen progress
+5.02/4.46m, so low collision counts must not be described as completed navigation.
+Parking probes at6/12/18/23m are0/0/1/2 then0/2/1/2 successes out of two each.
+
+| Round | New actual controls / queries | Teacher executes | Collection success (32 cases) | Supervised updates | Train / heldout action MSE |
+|---|---:|---:|---:|---:|---:|
+| 1 | 18,669 | 0 | 10 | 30,800 | .002024 / .019416 |
+| 2 | 9,917 | 0 | 23 | 36,400 | .001792 / .039147 |
+
+Collection cases include declared train and heldout layouts; their success is
+not independent development success. Final training/heldout example counts are
+46,400/14,724. Both critic and log_std tensors remain exactly unchanged, original
+normalization remains frozen, and no PPO update occurs in these two rounds.
+The final model SHA256 is
+`a22756645fe203b46c827d573063ff26dae41973b93f5e33ef30147e67dff318`.
+
+The strengthened analyzer independently recomputes every collection learner
+action from the preceding checkpoint and stored observation. Batched inference
+differences above2e-6 are checked again with the collector's single-row operation,
+requiring exact equality (90/96 cases); maximum batched differences are4.40e-6
+and6.32e-6. It also checks evaluated actions against actual requested commands,
+physical clocks, actor parameter changes, and normal process exit. All28,586
+collection controls and21,644evaluation controls pass. The result figure was
+visually inspected. The earlier mixture study also passes the stronger checks;
+its new derivative lives in `strengthened_analysis/`, while its original
+`analysis/` summary and figure retain their previously published receipt hashes.
+
+### Actual PPO continuation
+
+Batch `20261023T050438Z_aggregated_ppo` was launched at13:05local with a14:04:38
+deadline, one CPU worker,12GiB disk/4GiB RAM/85C guards and no automatic retries.
+It starts from the fixed round-two endpoint, not a selected best checkpoint.
+The zero-update evaluation must exactly match the parent's success, parking and
+control counts before PPO proceeds. Original PPO seed11 is retained; the
+supervised permutation seeds are not new independent policy seeds. PPO options
+are checked against the inherited model: learning rate1e-4, target KL.03,
+entropy.001, gSDE resampled each control,2560-control rollouts, ten epochs.
+No teacher query, teacher execution or additional supervised fit is performed.
+Training normalization updates resume; evaluation statistics remain frozen.
+All0/25k/100k milestones, failures and ancestral supervision costs are retained.
+This is still demonstration-assisted B1 development, not a pure-PPO comparison.
+
+```powershell
+# Existing run: inspect runs/aggregated_ppo.json; do not prepare it twice.
+python scripts/train_aggregated_ppo.py --parent runs/20261023T043924Z_current_state_aggregation
+python scripts/analyze_recovery_demonstrations.py --batch runs/20261023T043924Z_current_state_aggregation
+# After the PPO batch completes:
+python scripts/analyze_recovery_demonstrations.py --batch runs/20261023T050438Z_aggregated_ppo
+```
 
 ## Pure-learner visited-state audit
 
@@ -249,4 +301,7 @@ comparison byte-for-byte (summary SHA256
 `9ae6d701643f9474fdf55209076d8c6738d10d877ef3198d8a946ec1276471c0`), checks both
 model hashes and all18,541evaluation controls. Receipt:
 `runs/prerelease_20261022/native_road_checkout/runs/actor_label_contrast_reproduction.json`.
-The live pure-learner aggregation has not reached a fitted endpoint yet.
+The later completed pure-learner aggregation and live PPO continuation are
+described above. Current root regression is137passed/five conditional skips/two
+existing warnings (`runs/aggregated_ppo_regression.xml`); later independent
+reproduction receipts identify their exact source version.

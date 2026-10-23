@@ -20,7 +20,7 @@ def main():
     protocol=json.loads((batch/'protocol.json').read_text(encoding='utf-8'))
     allowed=('paired_update_stability.py','collect_executed_demonstrations.py','train_demonstration_warmstart.py',
              'train_recovery_demonstrations.py','fit_recovery_actor.py','relabel_recovery_teacher.py',
-             'train_current_state_aggregation.py')
+             'train_current_state_aggregation.py','train_aggregated_ppo.py')
     if str(batch) not in identity['command'] or not any(name in identity['command'] for name in allowed):
         raise ValueError('Adopted command does not identify an allowed registered worker')
     with ProcessLease(batch/'guard.lock'):

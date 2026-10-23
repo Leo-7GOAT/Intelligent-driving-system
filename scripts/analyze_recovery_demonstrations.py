@@ -9,10 +9,11 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 import numpy as np
+import torch
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from navstack.experiments import load_run
+from navstack.experiments import load_run, actor_vector
 
 
 def read(path):
@@ -23,7 +24,8 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def analyze(batch, partial=False):
+def analyze(batch, partial=False, output=None):
+    torch.set_num_threads(1)
     batch = Path(batch)
     protocol = read(batch/'protocol.json')
     for name,digest in protocol['source_hashes'].items():
@@ -34,11 +36,15 @@ def analyze(batch, partial=False):
     complete = (batch/'completed.json').exists()
     if not complete and not partial:
         raise ValueError('Incomplete; --partial explicitly permits provisional analysis')
+    if complete:
+        guard = read(batch/'guard_final.json')
+        assert guard['exit_code'] == 0 and guard['reason'] is None
+        assert not (batch/'failure.json').exists()
     original_data = np.load(batch/'parent_data/demonstrations.npz')
     original_cases = read(batch/'parent_data/protocol.json')['cases']
     training = sum(original_cases[int(i)]['data_split']=='train' for i in original_data['case_id'])
     heldout = len(original_data['case_id'])-training
-    _, initial_norm = load_run(batch/'initial')
+    source_model, initial_norm = load_run(batch/'initial')
     initial_stats = initial_norm.obs_rms
     rounds, hashes = [], {}
     try:
@@ -56,6 +62,15 @@ def analyze(batch, partial=False):
             assert len(collection['episodes']) == len(protocol['collection_cases'])
             assert data['observations'].shape == (collection['controls'],605)
             assert data['actions'].shape == (collection['controls'],2)
+            # Independently reload the preceding checkpoint and reconstruct all
+            # learner predictions. A trace's "learner" label alone is not proof.
+            predicted = np.concatenate([
+                source_model.predict(initial_norm.normalize_obs(data['observations'][start:start+512]),
+                                     deterministic=True)[0]
+                for start in range(0, len(data['observations']), 512)
+            ])
+            prediction_max_error = 0.
+            single_row_checks = 0
             teacher_count, total, queries, query_seconds = 0, 0, 0, 0.
             for case_id,(episode,case) in enumerate(zip(collection['episodes'],protocol['collection_cases'])):
                 assert episode['case_id'] == case_id and all(episode[k]==v for k,v in case.items())
@@ -75,7 +90,21 @@ def analyze(batch, partial=False):
                         assert row['teacher_query']['control'] == control
                         assert row['teacher_query']['teacher_decision'] == (protocol.get('teacher_mode')=='current_state' or control%10==0)
                         teacher = row['executed_by']=='teacher'
+                        if setting['teacher_probability'] == 0:
+                            assert not teacher, 'Teacher executed in pure-learner collection'
+                        if setting['teacher_probability'] == 1:
+                            assert teacher, 'Learner executed in all-teacher collection'
                         assert row['executed_by'] in ('teacher','learner')
+                        error = float(np.max(np.abs(predicted[selected[control]]-row['learner_action'])))
+                        prediction_max_error = max(prediction_max_error, error)
+                        # Batched CPU GEMM can differ from the collector's one-row
+                        # inference. Resolve larger differences with that exact
+                        # computation, rather than widening the error tolerance.
+                        if error > 2e-6:
+                            single = source_model.predict(initial_norm.normalize_obs(
+                                data['observations'][selected[control]:selected[control]+1]),deterministic=True)[0][0]
+                            np.testing.assert_array_equal(single,row['learner_action'])
+                            single_row_checks += 1
                         assert bool(data['teacher_executed'][selected[control]]) == teacher
                         np.testing.assert_array_equal(data['actions'][selected[control]],row['teacher_action'])
                         expected = row['teacher_action'] if teacher else row['learner_action']
@@ -124,6 +153,14 @@ def analyze(batch, partial=False):
             np.testing.assert_array_equal(norm.obs_rms.var,initial_stats.var)
             assert norm.obs_rms.count == initial_stats.count
             assert model._n_updates == 0 and not model.policy.optimizer.state
+            change = float(torch.linalg.vector_norm(actor_vector(model)-actor_vector(source_model)))
+            assert change > 0 and abs(change-fit['actor_l2_change_supervised']) < 1e-6
+            if protocol.get('value_weight',.5) == 0:
+                parameters = dict(model.policy.named_parameters())
+                for name,value in source_model.policy.named_parameters():
+                    if 'value_net' in name or name == 'log_std':
+                        assert torch.equal(value,parameters[name]), 'Actor-only fit changed critic or exploration scale'
+            source_model = model
             norm.close()
             assert fit['actor_l2_change_supervised'] > 0
             rounds.append({'round':index,'controls':total,'teacher_queries':queries,'teacher_executed_controls':teacher_count,
@@ -131,6 +168,10 @@ def analyze(batch, partial=False):
                 'mixture_successes':sum(e['mixture_metrics']['success'] for e in collection['episodes']),
                 'mixture_termination_reasons':dict(Counter(e['mixture_metrics']['termination_reason'] for e in collection['episodes'])),
                 'training_examples':training,'heldout_examples':heldout,'supervised_optimizer_steps':fit['history'][-1]['supervised_optimizer_steps'],
+                'learner_prediction_max_error':prediction_max_error,
+                'exact_single_row_prediction_checks':single_row_checks,
+                'actor_l2_change_verified':change,
+                'critic_and_log_std_unchanged':True if protocol.get('value_weight',.5)==0 else None,
                 'final_train_action_mse':fit['history'][-1]['train_action_mse'],'final_holdout_action_mse':fit['history'][-1]['holdout_action_mse']})
         results = read(batch/'progress.json') if (batch/'progress.json').exists() else []
         expected = [(f"supervised_round_{s['index']}",0) for s in protocol['rounds']]+[('PPO',t) for t in protocol['ppo_milestones']]
@@ -156,6 +197,12 @@ def analyze(batch, partial=False):
                     assert len(info['trace']) == info['executed_substeps'] == 1
                     assert all(t['controller_status']=='direct' for t in info['trace']), 'Teacher at evaluation'
                     counts[case_id] += len(info['trace'])
+                    tick = info['trace'][0]
+                    action = np.asarray(item['action']).clip(-1,1)
+                    vehicle = protocol['env']['vehicle']
+                    assert abs(tick['requested_command']['acceleration']-float(action[0])*(vehicle['max_accel'] if action[0]>=0 else vehicle['max_decel'])) < 1e-6
+                    assert abs(tick['requested_command']['steering']-float(action[1])*vehicle['max_steer']) < 1e-6
+                    assert abs(tick['state']['time']-counts[case_id]*protocol['env']['control_dt']) < 1e-8
                     if info['termination_reason']:
                         terminal[case_id] = info['episode_metrics']
             for case_id,(episode,case) in enumerate(zip(evaluation['episodes'],protocol['cases'])):
@@ -169,8 +216,12 @@ def analyze(batch, partial=False):
             if result['kind']=='PPO':
                 saved = read(checkpoint/'training_summary.json')
                 assert saved['physics_steps'] == result['actual_ppo_controls'] >= result['target']
-                assert saved['optimizer_steps'] == result['ppo_optimizer_steps'] > 0
-                assert saved['actor_l2_change'] == result['actor_l2_change_after_supervision'] > 0
+                assert saved['optimizer_steps'] == result['ppo_optimizer_steps']
+                assert saved['actor_l2_change'] == result['actor_l2_change_after_supervision']
+                if result['target'] == 0:
+                    assert saved['physics_steps'] == saved['optimizer_steps'] == saved['actor_l2_change'] == 0
+                else:
+                    assert saved['optimizer_steps'] > 0 and saved['actor_l2_change'] > 0
             endpoints.append({**result,'reasons':dict(Counter(e['termination_reason'] for e in full))})
         if complete:
             completed = read(batch/'completed.json')
@@ -204,12 +255,12 @@ def analyze(batch, partial=False):
             training_audit=None
             if complete:
                 assert completed['final_ppo_controls']==0
-        output = batch/'analysis'
+        output = Path(output) if output else batch/'analysis'
         output.mkdir(exist_ok=True)
         fig,axes = plt.subplots(1,2,figsize=(11,4.2),constrained_layout=True)
         axes[0].bar([str(r['round']) for r in rounds],[r['teacher_executed_controls'] for r in rounds],label='Teacher executes')
         axes[0].bar([str(r['round']) for r in rounds],[r['learner_executed_controls'] for r in rounds],bottom=[r['teacher_executed_controls'] for r in rounds],label='Learner executes')
-        axes[0].set(xlabel='Aggregation round',ylabel='Actual collection controls',title='Explicit mixture (not policy evaluation)')
+        axes[0].set(xlabel='Aggregation round',ylabel='Actual collection controls',title='Data collection (not development evaluation)')
         axes[0].legend()
         axes[1].bar(['Supervised\nround '+r['kind'].rsplit('_',1)[1] if r['kind']!='PPO'
                      else 'PPO\n'+format(r['actual_ppo_controls'],',') for r in endpoints],
@@ -228,5 +279,5 @@ def analyze(batch, partial=False):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--batch',required=True);p.add_argument('--partial',action='store_true')
-    args=p.parse_args();analyze(args.batch,args.partial)
+    p=argparse.ArgumentParser();p.add_argument('--batch',required=True);p.add_argument('--partial',action='store_true');p.add_argument('--output')
+    args=p.parse_args();analyze(args.batch,args.partial,args.output)

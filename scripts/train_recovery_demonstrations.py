@@ -138,6 +138,8 @@ def run(batch):
                 'full_task_success':sum(e['success'] for e in evaluated['episodes'] if 'label' not in e),
                 'retention':{str(d):sum(e['success'] for e in evaluated['episodes'] if e.get('label')==f'retention_{d}m') for d in (6,12,18,23)},
                 'evaluation_controls':sum(e['physics_steps'] for e in evaluated['episodes'])}
+            if kind == 'PPO' and target == 0 and 'zero_update_reference' in protocol:
+                assert all(row[key] == value for key,value in protocol['zero_update_reference'].items()), 'Zero-update endpoint changed from audited supervised parent'
             results.append(row)
             write_json(batch/'progress.json', results)
             print(json.dumps(row), flush=True)

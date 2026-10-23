@@ -1,3 +1,46 @@
+# Completed aggregation and actual PPO continuation — 2026-10-23 13:07 local
+
+Goal ACTIVE/incomplete; no hard blocker. Previous summary turn was verified wait.
+This turn completes two-round raw auditing, strengthens independently reloaded
+prediction checks, and starts actual PPO from the fixed final supervised model.
+All main research acceptance gates remain unchanged and unmet.
+
+Aggregation043924Z COMPLETE, worker52636/guard44820 exited normally at13:02.
+28,586new controls/queries,0teacher executions,67,200supervised optimizer steps,
+0PPO. Round1:18,669controls,10/32collection success,30,800updates; round2:
+9,917controls,23/32collection success,36,400updates. Both development4/10;
+round1threecollisions/threedeadlines, round2sixdeadlines with zero terminal speed.
+Final model a22756645fe203b46c827d573063ff26dae41973b93f5e33ef30147e67dff318.
+Full strengthened analyzer checks all28,586predictions against preceding models,
+all21,644evalcommands/clocks, masks, frozenstats/critic/logstd, actualactorchanges
+and normalguardexit. Larger batched prediction roundoff is resolved by exact
+single-row inference, not looser tolerance. Figure visually inspected. Earlier
+mixture batch also passes stronger checks in strengthened_analysis; its original
+analysis summary/figure hashes restored exactly to source-specific receipts.
+
+NEW LIVE `runs/20261023T050438Z_aggregated_ppo`, pointer runs/aggregated_ppo.json.
+Actualworker27336 created13:05:08.306local, launcher54292; guard40952 created
+13:05:10.628local, launcher51964. OS identities and healthyguard verified.
+Deadline14:04:38local;1CPUworker,12GiBdisk/4GiBRAM/85Cstop, noautomaticretries.
+Frozen source must not be edited. Same finalround2 model, originalmodelseed11
+(parent supervised permutation seeds do not constitute independent policies).
+No collection/BC/teacher in this batch. DeclaredPPO milestones0/25k/100k;
+retain all endpoints. Allancestralsupervisioncosts charged. Zero-update endpoint
+exactly matches parent4/10,parking0/2/1/2 and10,882controls. At13:07actualPPO
+7,680controls,3optimizationphases,1,200optimizersteps with nonzeroactorchanges.
+No new endpoint yet. No CARLA process started in this turn.
+
+New scripts/train_aggregated_ppo.py requires complete parent audit and checks
+inherited PPO hyperparameters/seed, freezes sources and registers this continuation.
+Genericrunner now checks zero-update reproduction before any PPO interaction.
+Analyzer supports --output for preserving old derivative versions and target0.
+Root full regression137passed/5skips/2existingwarnings in
+runs/aggregated_ppo_regression.xml; publication preflight324files/no findings.
+Source publication and independent reconstruction follow; inspect git/receipts
+for latest source and current worker before another action. Next: audit25k then
+100k endpoints, update failure diagnosis from actual results. Never repeat parent
+collection or silently select round1 instead of the final endpoint.
+
 # Verified source/reproduction — 2026-10-23 12:47 local
 
 Source f49ee75c0ac378e17cf5179f585bbc6a510f58c4 pushed/remotematched;
