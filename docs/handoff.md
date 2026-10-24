@@ -1,3 +1,37 @@
+# Native evidence export validated; B1 continues — 2026-10-24 14:23 local
+
+Previous goal turn was concrete progress (H endpoint, goal diagnostics, published
+reproduction). This turn adds/tests a complete native-segment exporter, then
+actually packages/unpacks the completed B1 recovery as a validation case. No
+new learning settings or active frozen source were changed. Full goal active.
+
+New `scripts/package_native_continuation.py` and3tests export only all registered
+completed methods after guard/owned-server cleanup and fresh raw audits. Critical
+inputs/model/norm/raw bytes stay unchanged; auxiliary JSON paths, embedded JSON
+stdout and quoted process commands are redacted with original/export hashes.
+ZIP/gzip/base64 content is scanned. Failed .partial exports are retained; no
+existing archive is overwritten. All segment checkpoints and failures included;
+ancestor raw traces not duplicated, but charged costs/tails remain in protocol.
+
+Actual local validation archive `runs/native_recovery_export_validation_v4.zip`:
+303files,11,263,723bytes,10,500B1controls,7metadata files transformed; SHA256
+4b81e9a3e43a774dad65764ca82138945bcedd98a6387dd9743ad23e8c45fdb3.
+Extracted under `runs/native_recovery_export_validation_v4/`; raw audit rebuild
+`runs/native_recovery_export_v4_raw_audit.json` equals original byte-for-byte
+(60b6404673d8f0a8b5bad87f098d318de96018b8a1f8f4ecd4b1db72096945a5).
+`runs/native_recovery_export_v4_inference.json` loads exported model/norm and
+matches4starting actions, zero new controls. This archive is NOT UPLOADED and
+was built during development; a later README-only exporter edit adds exact CLI
+instructions. Use a new asset filename on rebuilding after commit.
+
+B1 was live at14:23 with32,666 new controls/103phases; same worker7156,
+guard30068/CARLA60980 and batch below. Continue without restarting. After B1
+normal completion: raw audit, inference and action diagnostic; verify guard and
+cleanup; package the whole100k batch, upload to the existing development release
+with explicit negative-results scope, download/reproduce in independent checkout,
+and start the registered six-arm clipping experiment. Publishing source alone
+does not substitute for publishing/reproducing the data/model asset.
+
 # H100k complete/audited, B1 live — 2026-10-24 14:10 local
 
 This goal turn made concrete progress: extended exact rollout replay to in-run
