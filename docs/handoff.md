@@ -1,4 +1,39 @@
-# H0 pair and action-choice failure reproduced — 2026-10-24 16:45 local
+# Complete H0 decision sequences reproduced — 2026-10-24 16:52 local
+
+Previous turn was progress (availability diagnostics, independent reproduction
+and push). This turn adds full observation-history reconstruction: all 720 H0
+evaluation decisions match frozen policies; independent checkout reproduces
+both reports byte-for-byte. Goal remains active/incomplete. No agents or new
+CARLA owner, no change to the live frozen learner.
+
+Same batch/pointer and worker57580/guard35276/CARLA62284 remain live. Actual OS
+identities were revalidated this turn at16:47; heartbeat16:52:35 records
+H_rollout32=61,410 new controls/6,141 decisions/191 phases. Deadline21:51:11.
+Both H0 arms complete; H_256/B1_32/B1_256 queued. Revalidate process/progress.
+
+Source6cc39cd adds `scripts/audit_native_policy_sequence.py`, limited to
+hierarchical ego-arcs, empty input queue and no moving actors. A read-only state
+holder reconstructs prior commands/behavior/execution outcomes, with source,
+model, normalizer, config, raw audit and availability binding. Each H0 arm
+reproduces 360 decisions with unchanged normalization. All eight final argmax
+actions fail planning despite substantial probability on reference alternatives;
+see report table. Both arms'113 completed stochastic training episodes timed out,
+so this does not justify a sampling/masking fix or changing deterministic evaluation.
+
+Three new tests pass locally and independently, comparing replayed raw
+observations with production reference/failure/wait transitions under enabled
+and ablated feedback. Independent checkout clean at6cc39cd reproduces both
+`policy_sequence.json` files; receipt is
+`runs/native_policy_sequence_reproduction/reproduction.json` inside checkout.
+No new controls/updates or downloaded-release claim. Last full suite remains
+203passed/5skips at ac59741; six subsequent diagnostic tests passed targeted only.
+
+Next: let current H/B1 pairs complete; raw-audit and analyze endpoints. Run
+availability then sequence reconstruction for completed H endpoints to distinguish
+voluntary wait from unavailable choices. Do not repeat completed H0 audits or
+releases. Full five-seed/fresh120conditions/strongB3/RL-value/healthyB1 gates remain.
+
+# Historical snapshot: H0 action availability — 2026-10-24 16:45 local
 
 Previous summary turn was a verified wait: actual worker, guard and CARLA
 processes were checked. This continuation adds a production-reference diagnostic,

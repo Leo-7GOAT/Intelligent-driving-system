@@ -216,3 +216,45 @@ No extra CARLA controls were consumed. The initial byte-only reproduction
 attempt remains recorded as a source-newline mismatch; it was not a successful
 reproduction. Historical clipping H_global was also rejected because its frozen
 native source differs; no historical H availability result is claimed.
+
+## Complete decision-sequence inference
+
+Source `6cc39cd` adds `scripts/audit_native_policy_sequence.py`. It reconstructs
+observations before every evaluation decision using measured state, previous
+applied command, last selected behavior and execution outcome. Its read-only
+plant holder has no step method. It requires the unchanged recorded ego-arc
+interface, empty input queue and no unreconstructed dynamic actors. Model,
+normalizer, configuration, trace, source and availability reports are bound to
+the completed endpoint. Normalization statistics remain unchanged.
+
+All **360 decisions per H0 arm**, including each repeated failed selection,
+match the frozen deterministic policy. The eight final decisions remain failed
+plans even though reference-producing alternatives retain nonzero probability:
+
+| Case | H0_32 max single-action probability | H0_32 probability on reference actions | H0_256 max single-action probability | H0_256 probability on reference actions |
+|---|---:|---:|---:|---:|
+| 0 | 0.06809 | 0.84016 | 0.04611 | 0.84381 |
+| 1 | 0.04531 | 0.38034 | 0.03869 | 0.21331 |
+| 2 | 0.05358 | 0.84623 | 0.04312 | 0.84954 |
+| 3 | 0.06157 | 0.77140 | 0.04457 | 0.75530 |
+
+The largest-probability action is one failed choice; probability mass on many
+alternatives can nevertheless be substantial. This identifies weak and locally
+incorrect deterministic ranking, not a saved-model loading discrepancy. It is
+not a stochastic-policy performance measurement: all 113 completed stochastic
+training episodes in each arm still timed out. Neither random sampling nor an
+action mask is adopted from this offline finding, and the registered deterministic
+comparison remains unchanged. No causal attribution to a particular network,
+reward or optimizer component is established.
+
+Three tests compare every reconstructed raw observation with the production
+environment's output across reference, failed-plan and wait decisions, for
+enabled and ablated feedback; unsupported input queues are rejected. They pass
+locally and in the independent checkout. These synthetic tests are not CARLA
+performance evidence. The independent checkout additionally reproduces both
+actual 360-decision reports byte-for-byte. Receipts are
+`runs/native_policy_sequence_reproduction/reproduction.json`, with hashes
+`e34830b3af7b03348231e9915875939bcc5d509b9fd5b874753535ed2184ebd2`
+and `24a2952935fb3afc1ed77f9b9c15219fe83dfcedd99add2f3234afb66c7614f9`.
+Original reports are `{H0_rollout32,H0_rollout256}/policy_sequence.json` in the
+live batch; no new CARLA controls or PPO updates were used for reconstruction.

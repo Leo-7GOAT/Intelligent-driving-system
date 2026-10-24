@@ -1,5 +1,29 @@
 # Failure analysis
 
+Current native development evidence (2026-10-24) is in the
+[rollout comparison report](../reports/native_rollout_horizon_20261024.md).
+Both H0 rollout lengths complete 102,400 additional CARLA controls at 0/4 frozen
+training-road successes. All 720 deterministic evaluation decisions reconstructed
+from measured feedback reproduce exactly in a separate checkout. At all
+eight final decisions the selected plan fails, while 6–26 alternative actions can
+generate production timed references. The failed action's probability is only
+3.87–6.81%; reference alternatives collectively retain 21.3–85.0%. This narrows
+these particular failures to local action ranking, without establishing why the
+learner acquired it or whether alternatives would track and finish safely.
+Both arms' 113 completed stochastic training episodes also time out: probability
+mass is not evidence that stochastic deployment solves the task. The H/B1
+rollout pairs remain pending, and evaluation rules/low level remain frozen.
+
+Physical reward reconstruction across 226 completed episodes verifies the
+terminal-zero distance-PBRS identity to 1.19e-14. Same-road/equal-time failures
+have identical discounted event/time and shaping contributions; risk and comfort
+explain their remaining return differences. This is expected shaping behavior,
+not a newly discovered reward implementation error. Historical curriculum and
+reward interventions below remain relevant counterevidence to simple remedies.
+
+The following dated findings preserve earlier development versions and do not
+override the current native integration or live-run status.
+
 Latest completed [normalization/retention contrast](../reports/recovery_aggregation_20261023.md):
 after 102,400 PPO controls, reduced noise with updating observation statistics
 scores 0/10 (six collisions), while the matched frozen-statistics branch scores
