@@ -1,5 +1,19 @@
 # Failure analysis
 
+The newest completed H short-rollout endpoint uses102,713additional native
+controls:5training successes on one road (all with1–10failed plans),110training
+deadlines, then0/4frozen evaluation. All106,313training/evaluation controls match
+CARLA frames. Its frozen cases wait with zero interventions, but all30moving
+actions fail production reference generation at every final state. The current
+footprints remain free; three cases have no free candidate endpoints and the
+fourth has two clear endpoints with exhausted searches. Unlike H0 below, these
+states have no available moving reference under the current catalog/planner.
+The distinction favors investigating earlier choices and continuation feasibility,
+not simply adding a wait penalty. It is not proof of global geometric
+impossibility or an established solution. All360decisions and six diagnostic
+files reproduce independently; H256 and B1 comparisons remain incomplete.
+See the [endpoint report](../reports/native_rollout_horizon_20261024.md).
+
 Current native development evidence (2026-10-24) is in the
 [rollout comparison report](../reports/native_rollout_horizon_20261024.md).
 Both H0 rollout lengths complete 102,400 additional CARLA controls at 0/4 frozen

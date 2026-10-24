@@ -1,4 +1,56 @@
-# Complete H0 decision sequences reproduced — 2026-10-24 16:52 local
+# H short endpoint audited; H long running — 2026-10-24 17:11 local
+
+Previous turn was progress (complete H0 sequence reconstruction and independent
+reproduction). This turn finishes/audits actual H32 training/evaluation, reproduces
+six endpoint diagnostics independently, and implements a guarded native B3 runner.
+Goal remains active/incomplete. No agents, no changes to the active frozen learner.
+
+**Same live batch `20261024T075110Z_native_rollout_pair` and pointer
+`runs/native_rollout_pair.json`; do not restart.** OS worker57580 created15:52:46,
+guard35276 created15:53:26 and CARLA62284 created15:52:11 revalidated17:10.
+H_rollout256 heartbeat14,830controls/1,483actions/5phases at17:10:20, guardhealthy,
+deadline21:51:11. H0_32/H0_256/H_32 complete; B1_32/B1_256 queued. Handles
+worker84287/guard18326/server69058 remain; revalidate live identities/progress.
+
+H32 finishes102,713newcontrols (313overshoot),10,272actions/321phases/642Adamsteps,
+223,033lineagecontrols, exactreload, actorL2change3.534195,2249.82s. Training
+115episodes=110deadlines+5successes,490unfinishedcontrols. All5successes on
+road7d46c3cc23, with100/30/30/10/10interventioncontrols and10/3/3/1/1failedplans.
+Frozen probes0/4all deadlines, meanprogress14.987119m, zero interventions/plan or
+MPCfailures. Raw audit verifies106,313controls; SHA
+23a96a82f0e4e61f103f8e61acca2c9f3008d4d2d140db090a9c28ac2b587b7b.
+
+Unlike H0, H32 finalstates have zero available moving references for all30actions.
+All currentfootprintsfree; cases0/1/3have0freecandidateendpoints, case2has2clear
+endpointswhose searches exhaustopen set. Goal distances4.484/3.250/7.193/17.610m;
+waitcounts48/53/53/68 of90. All360policydecisionsreproduced; finalwaitprobabilities
+.08790/.13544/.13432/.15486. Treat as continuation/catalog deadend evidence under
+this planner, not global no-path proof or a reason to penalize wait blindly.
+Prior route-frame proposal diagnostics also failed at terminalstates: see historical
+handoff/audit_route_candidates.py before repeating that idea.
+
+Independent checkout clean atbee41c4 reproduces sixfiles byte-for-byte:
+rawaudit, endpointanalysis, actiondiagnostic, availability, sequence,115episode
+returns. Receipt `runs/native_H_rollout32_reproduction/reproduction.json` inside
+checkout. No newcontrols/updates or downloadedreleaseclaim. H256pair not complete.
+
+New `scripts/evaluate_native_rule.py` requires normally complete parent plus
+guard0 and ownedemptyserverstop before even preparing. Copies exact Hconfig,
+routes, calibration and frozen source; selects existing rule_action while retaining
+H environment semantics, logs rule_only_B3 and selection/fullcycle timing,0training.
+watch_existing_pair now accepts this worker with existing guards/ownedcleanup.
+Five runner/cleanup tests pass locally+independentcheckout. Actual preparation
+against the live parent correctly rejected without creating a run directory.
+**B3 is NOT prepared or started.** Protocol/commands in
+reports/native_rule_protocol_20261024.md. Existing ego-arc heuristic is not yet
+established as strong B3; evaluate then strengthen if needed, with costs disclosed.
+
+Next: finish H256 and bothB1 arms; audit/endpoints/fullpairedanalysis. Once entire
+batch is normally terminal and ownedservercleaned, prepare/run actual native rule
+diagnostic with current runner and existing ownedlauncher/guard. Never introduce
+second tickowner. All5seed/120freshconditions/healthyB1/RLvalue gates stillopen.
+
+# Historical snapshot: H0 sequence reconstruction — 2026-10-24 16:52 local
 
 Previous turn was progress (availability diagnostics, independent reproduction
 and push). This turn adds full observation-history reconstruction: all 720 H0

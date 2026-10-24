@@ -258,3 +258,61 @@ actual 360-decision reports byte-for-byte. Receipts are
 and `24a2952935fb3afc1ed77f9b9c15219fe83dfcedd99add2f3234afb66c7614f9`.
 Original reports are `{H0_rollout32,H0_rollout256}/policy_sequence.json` in the
 live batch; no new CARLA controls or PPO updates were used for reconstruction.
+
+## H short-rollout endpoint: training successes, failed frozen evaluation
+
+H_rollout32 now completes **102,713** new controls (313 retained rollout
+overshoot), 10,272 actions, 321 phases and 642 Adam steps. Its lineage is223,033
+controls; training world ticks106,308 include3,595reset ticks. Model reload is
+exact, actor L2 change3.534195, and training wall time2249.82s. The complete raw
+audit verifies **106,313** training/evaluation controls. Training has110deadlines
+and5successes, with490controls in the unfinished final episode. All five
+successes occur on road7d46c3cc23 and include respectively100/30/30/10/10
+intervention controls (10/3/3/1/1 failed plans). They are not five independent
+training seeds, intervention-free successes or a stable completion-rate claim.
+
+Frozen deterministic evaluation remains **0/4**, all deadlines, with no plan or
+MPC failures and zero interventions. Mean progress is14.987119m. The individual
+failure evidence is:
+
+| Case | Progress (m) | Final goal distance (m) | Final heading error (rad) | Wait decisions /90 | Available final moving references |
+|---|---:|---:|---:|---:|---:|
+| 0 | 20.147606 | 4.484173 | 0.459003 | 48 | 0 |
+| 1 | 21.097537 | 3.250058 | 0.082785 | 53 | 0 |
+| 2 | 15.589474 | 7.192884 | 0.022576 | 53 | 0 |
+| 3 | 3.113859 | 17.609960 | 1.193539 | 68 | 0 |
+
+The final action is wait in all four cases. Production reference reconstruction
+rejects all30moving choices at each measured final decision state. All four
+current footprints remain free; cases0/1/3have no free candidate target footprint,
+while case2has two clear endpoints whose searches exhaust the open set. A search
+failure is not a proof that no path exists under every planner/discretization.
+This differs from H0, where multiple moving references remained available but
+the selected action failed. H's evidence points toward earlier decisions entering
+states with no continuation under the current catalog/search, not merely
+voluntary waiting despite available references. It does not establish whether
+more training, a different candidate set or a continuation-aware feedback feature
+will repair the problem. Historical route-frame candidate diagnostics also failed
+to repair several terminal states and must not be presented as an untested cure.
+
+All360H evaluation decisions reproduce from the frozen model and measured
+history. Final wait probabilities are.08790/.13544/.13432/.15486; available
+reference mass is zero in all four. Episode-return reconstruction covers all115
+completed training episodes and verifies the distance-potential identity to1.90e-14.
+The H256arm is now training; no H rollout-pair result exists yet. Keep all arms
+and the registered evaluation unchanged.
+
+Evidence in the live batch: `H_rollout32/endpoint_raw_audit.json`,
+`action_learning_diagnostic.json`, `action_availability_v2.json`,
+`policy_sequence.json`, `episode_return_diagnostic.json`, and
+`analysis/H_rollout32_endpoint_analysis.json`. The raw-audit SHA256 is
+`23a96a82f0e4e61f103f8e61acca2c9f3008d4d2d140db090a9c28ac2b587b7b`.
+The separate [native rule evaluator](native_rule_protocol_20261024.md) is ready
+for a later same-interface diagnostic; it has not been started while this batch
+owns CARLA, and provides no B3 result yet.
+
+Independent checkout at `bee41c4` reproduces all six H endpoint/diagnostic files
+listed above byte-for-byte, including the106,313frame audit and360policy actions.
+Receipt: `runs/native_H_rollout32_reproduction/reproduction.json` in that checkout.
+This uses local archived evidence and no new CARLA controls, optimizer steps or
+release download. It does not convert the incomplete H32/H256pair into a result.
