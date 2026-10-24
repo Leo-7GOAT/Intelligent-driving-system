@@ -54,6 +54,26 @@ python scripts/combine_native_endpoints.py verify --manifest runs/native_combine
 
 The sections below retain the historical registration and earlier observations.
 
+Source `4b7db609c965696a6eeab2ebb794cbf0588052fe` is pushed and remote-matched.
+The clean independent checkout, using its separate pinned environment, passes
+163 tests with five conditional skips and two existing warnings. All three
+completed parent endpoint audits rebuild byte-for-byte, covering 58,020 actual
+training/evaluation controls. Receipt:
+`runs/prerelease_20261022/native_road_checkout/runs/native_continuation_reproduction.json`.
+This reuses local raw artifacts and does not claim release-asset download or
+another live-drive replication. A later whitespace cleanup briefly broke a test's
+indentation in the intermediate commit; `4b7db60` fixes it and is the tested head.
+
+`scripts/diagnose_native_action_learning.py` groups actual observed actions and
+their rewards/progress by action ID (or direct-control bins). It verifies the
+transition hashes against each endpoint audit. At the 20k H0/H endpoints all
+44 completed training episodes are deadlines. Their median PPO approximate KL
+values are 7.45e-9/3.91e-8, with zero clipping and near-maximum categorical entropy.
+These metrics support weak policy-distribution change, not failed parameter
+updates. Conditional action outcomes are confounded by visited state and cannot
+be interpreted as causal action values. No new controls or teacher queries were
+used for this diagnostic; outputs are each method's `action_learning_diagnostic.json`.
+
 The native-road MLP experiments remain negative evidence: H0 and the recovered
 H/B1 approximately 100k-control endpoints complete none of the four training-road
 probes. Fixed-plan Hybrid A* and 2D A* diagnostics each complete all four with the

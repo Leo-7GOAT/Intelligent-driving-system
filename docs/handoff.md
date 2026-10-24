@@ -23,8 +23,11 @@ road-candidate report. The older non-v2 manifest is superseded and was not used.
 The normalization pair is complete at 302,080 each: updating 4/10, frozen 3/10.
 
 Current root regression: 163 passed, 5 conditional skips, 2 existing warnings.
-PowerShell lifecycle scripts parse. Root changes remain uncommitted at this
-snapshot; published HEAD is 77ae90c. Next: inspect real learning progress, audit
+PowerShell lifecycle scripts parse. Source 4b7db60 is pushed and remote-matched;
+the independent pinned checkout also passes 163/5 and rebuilds all three parent
+raw audits byte-for-byte (58,020 controls). Its receipt is
+`runs/prerelease_20261022/native_road_checkout/runs/native_continuation_reproduction.json`.
+Next: inspect real learning progress, audit
 completed endpoints, diagnose persistent near-uniform/ineffective policies, then
 update source publication and independent-checkout reproduction. Full goal
 remains active and incomplete; this turn made concrete progress.
