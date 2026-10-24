@@ -1,3 +1,105 @@
+# Native 100k release reproduced; clipping pair running — 2026-10-24 15:10 local
+
+This goal turn made concrete progress: B1 completed, all three raw endpoints were
+audited, all twelve trajectories plotted, the full native asset uploaded and
+downloaded/reproduced in an independent checkout, and the six-arm clipping study
+started. Full research goal remains active and incomplete. Read the latest goal
+attachment before continuing; do not substitute publication for research gates.
+
+## Current live work: DO NOT restart
+
+Active batch `runs/20261024T064940Z_native_recovery`, pointer
+`runs/native_recovery.json`; this is the one explicit recovery of the registered
+six-arm `20261024T064701Z_native_gradient_pair`. The latter's initial worker
+failed before bridge creation because NAVSTACK_CARLA_PYTHON was omitted from
+the worker shell. Failure/config/logs are preserved, no training controls were
+applied, and its owned empty server was stopped. The new prefix-audit test handles
+only this verified pre-bridge case, rejecting unexplained missing heartbeats.
+No frozen source in either batch was edited.
+
+The recovery preserves all six jobs, parent model/Adam/RNG/normalization bytes,
+clipping modes and 20,000 additional controls per arm. Each of the three pairs'
+five inherited checkpoint files matches byte-for-byte. Original paired-study
+pointer still identifies the failed parent; follow its recovery_registration or
+the native_recovery pointer, never launch it again.
+
+Actual OS identities revalidated at15:08; heartbeat/guard still advance at15:10:
+worker49692, created14:50:22.965068, executablePython311, venv shim parent61500;
+guard61204, created14:50:48; CARLA Shipping45556, created14:49:56, RPC2100–2102.
+Exec handles: worker5858, guard9014, owned foreground server61330.
+`worker_process.json`/`infrastructure/server_start.json` retain exact identities.
+Deadline16:49:41 local, disk>=12GiB/RAM>=4GiB/GPU<85C/no-progress300s/0automatic
+retries. Initial free disk43.24GB. Only manage this task's owned processes.
+
+Completed/audited jobs: H0_global, H0_independent, H_global. Each adds20,160
+training controls,126 optimizer steps, reaches120,320 lineage controls, scores
+0/4 (all deadlines), and its raw audit verifies23,760 training/evaluation controls.
+H0 progress means: global10.3751m versus independent1.4325m; median actor gradient
+norms0.016289 versus0.062073. More actor gradient has NOT repaired driving.
+H_global per-road progress22.52/21.11/17.62/5.73m, all intervention rates0.
+H_independent is actually training (1,190controls/3phases at15:10); B1_global
+and B1_independent remain queued. H/B1 pairing is incomplete; no branch selection.
+
+Next: finish/audit remaining jobs, inspect their actual learning and frozen-road
+outcomes, compare every registered arm, and plot only after all endpoint audits
+exist. Per-job audit CLI accepts job names. Preserve the negative H0 result.
+Do not promote independent clipping based on gradient/KL alone. Current completed
+job inference/goal diagnostics have not yet been run. Do not repeatedly rerun
+passed full tests or the already-reproduced100k asset without a new reason.
+
+Every future frozen worker launch must explicitly set
+`$env:NAVSTACK_CARLA_PYTHON=(Resolve-Path .carla-python37/runtime/python.exe).Path`
+in THAT shell. Environment variables from the server-launch shell do not carry
+into a separate exec shell. Existing owned foreground launcher, readiness probe,
+worker identity capture and watch_existing_pair guard are the verified path.
+
+## Completed100k batch and real published evidence
+
+`runs/20261024T050724Z_native_continuation` normally completed at14:43; worker
+and guard exit0, empty-world cleanup succeeds, owned server/ports released.
+H0/H retained100,160 each, B1 retained100,050 and charged lower bound109,595
+plus unknown ancestor tail. All0/4: H0/H four deadlines, B1 three deadlines and
+one bounds failure. B1 new79,989controls/87,459worldticks/506optimizersteps;
+training212bounds/27deadlines/1success. That training success is not evaluation.
+Raw audits verify83,600+83,600+82,819=250,019controls. B1 raw audit SHA
+d634b3c9a1354ab92d04d41f88dcc1265d8dc7552af2653d4c4ecdd3fc42660d.
+All four B1 initial actions reproduce; action_learning_diagnostic.json records
+final distances17.3514/24.3476/8.7342/5.5366m. Full prefix audit is also complete.
+
+Actual uploaded asset on prerelease v0.2.0-dev.20261022:
+`native_structured_100k_seed11_20261024.zip`,175,728,217bytes,895manifestfiles,
+SHA94ef2147966e191d89aa4d42fba9efa9e2d053fee3b863a31421bc31c207305b.
+GitHub API confirms uploaded state,size,digest. Export source clean1494af3;
+all frozen source/model/norm/raw evidence preserved;25auxiliarymetadatafiles
+have explicit hash-tracked path redactions. All12trajectorypanels are included.
+Release notes distinguish these failures from final research acceptance.
+
+Independent checkout `runs/prerelease_20261022/native_road_checkout` is clean
+detached2040d3f4b560125cb7ff1001a35739ee1e400578, with separate pinned interpreter
+`../clean_checkout/.venv/Scripts/python.exe`. Actual full regression:
+183passed,5conditional skips,2existingSB3warnings,98.62s; XML
+`runs/native_100k_release_regression.xml` in that checkout.
+
+GitHub download under checkout `runs/native_100k_download_proxy` ended with EOF;
+the verifier rejected it before extraction/loading. A GitHub HTTP206 request for
+the missing65,433bytes assembled a complete correct-hash copy under
+`runs/native_100k_download_ranged`, with download_receipt.json. No local original
+asset bytes used. A separate full retry also succeeded under
+`runs/native_100k_download_proxy_v2`, same published hash. Slower initial direct
+download62912 was ownership-checked and stopped; its partial file remains.
+
+`scripts/reproduce_native_asset.py` at2040d3f verified every downloaded file,
+rebuilt all three raw audits byte-for-byte, loaded all three models and matched
+12measured-startactions with frozen normalization, and rebuilt the twelve-panel
+figure byte-for-byte (SHAbbe75e47b0e43adbc154b0e6b3ff8c3e6d888bc18d76e85ec883813a5c5e8e8b).
+Receipt: checkout `runs/native_100k_downloaded_reproduction/reproduction.json`.
+Zero new controls/optimizerupdates; this is NOT a new live drive. Three negative
+asset-integrity tests verify rejection before extraction/model execution.
+
+Source commits e37f515(plot),1494af3(endpoint/startup),7eeae99(reproducer),
+2040d3f(integrity tests) are pushed to the existing correct branch/remote. Latest
+documentation commit follows this handoff. No force push or unrelated changes.
+
 # Native evidence export validated; B1 continues — 2026-10-24 14:23 local
 
 Previous goal turn was concrete progress (H endpoint, goal diagnostics, published

@@ -1,5 +1,31 @@
 # Structured road policy development — 2026-10-23
 
+## Paired clipping intervention: first completed pair — 2026-10-24
+
+The six-arm experiment was registered as `20261024T064701Z_native_gradient_pair`.
+Its initial worker failed before bridge creation because the shell did not pass
+the installed client interpreter path. No training controls were applied. The
+failure/config/logs remain intact, the owned empty server was stopped, and one
+explicit recovery was registered as `20261024T064940Z_native_recovery` with a
+two-hour wall limit and no automatic retries. All three pairs' five inherited
+checkpoint files are byte-identical within each pair. Job labels, clipping modes
+and 20,000-control additional budgets survive recovery unchanged.
+
+The H0 pair has completed and its two raw audits each verify 23,760 controls.
+Both arms used 20,160 new training controls and 126 optimizer steps; all 22
+completed training episodes and all four frozen probes timed out in each arm.
+
+| H0 arm | Median post-clip actor gradient norm | Median approximate KL | Mean frozen-road progress (m) | Completion |
+|---|---:|---:|---:|---:|
+| Global clipping | 0.016289 | 1.9744e-7 | 10.3751 | 0/4 |
+| Independent actor/critic clipping | 0.062073 | 5.3085e-7 | 1.4325 | 0/4 |
+
+Median critic gradient norms remain approximately 0.5 in both arms. The
+intervention increases actor gradient magnitude but worsens observed progress
+in this first pair; it has not repaired task competence. H and B1 remain pending
+at this snapshot. No branch is selected as superior, no failed arm is omitted,
+and these correlated training-road probes do not support an inferential claim.
+
 ## Complete native 100k development endpoints — 2026-10-24 14:43
 
 Batch `20261024T050724Z_native_continuation` finished normally. Worker and guard

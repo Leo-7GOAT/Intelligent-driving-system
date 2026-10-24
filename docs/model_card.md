@@ -1,6 +1,43 @@
 # Development model card
 
-## Native continuation evidence export (implemented, not yet a published asset)
+## Published native 100k development evidence
+
+[native_structured_100k_seed11_20261024.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_structured_100k_seed11_20261024.zip)
+contains 895 manifest files, 175,728,217 bytes; SHA256
+`94ef2147966e191d89aa4d42fba9efa9e2d053fee3b863a31421bc31c207305b`.
+It was exported from clean source `1494af311632622bc6c462f8ec7e19e8be0533c9`
+and uploaded to the existing development prerelease. The historical release tag
+predates this asset; use the current source branch and recorded commits.
+
+H0/H/B1 all score **0/4** on four training roads, with 100,160 / 100,160 /
+100,050 retained training controls. All 250,019 segment training/evaluation
+controls match CARLA frames. This is one development seed and failed task
+completion, not research acceptance or evidence of superiority.
+
+A separate checkout at `2040d3f4b560125cb7ff1001a35739ee1e400578` downloaded the
+release and verified the archive plus all 895 file hashes before loading models.
+All three raw audits and the twelve-panel figure rebuild byte-for-byte; all
+twelve measured-start actions reproduce exactly with frozen normalization,
+zero new controls and zero optimizer updates. Full CPU regression there is
+**183 passed, five conditional skips**, with two existing SB3 deprecation warnings.
+The receipt is
+`runs/prerelease_20261022/native_road_checkout/runs/native_100k_downloaded_reproduction/reproduction.json`;
+the regression XML is `runs/native_100k_release_regression.xml` in that checkout.
+
+One proxy download ended with EOF and was rejected before extraction. A range
+request retrieved the missing suffix from GitHub and restored the published hash;
+an independent full retry also downloaded successfully with the identical hash.
+Failed/partial files and the range-download receipt are retained locally.
+
+```powershell
+gh release download v0.2.0-dev.20261022 --repo Leo-7GOAT/Intelligent-driving-system --pattern native_structured_100k_seed11_20261024.zip --dir runs/native_download
+python scripts/reproduce_native_asset.py --archive runs/native_download/native_structured_100k_seed11_20261024.zip --sha256 94ef2147966e191d89aa4d42fba9efa9e2d053fee3b863a31421bc31c207305b --output runs/native_reproduction
+```
+
+Use new output directories. This reconstructs saved evidence and inference;
+it does not perform or claim a new CARLA closed-loop drive.
+
+## Native continuation export format and earlier local validation
 
 `scripts/package_native_continuation.py` exports every registered endpoint of a
 normally completed native batch only after guard completion, verified owned-server
@@ -21,9 +58,8 @@ B1 segment contains303 files and10,500 verified controls. Unpacking it reproduce
 the original raw audit byte-for-byte and all four measured-start inference actions
 with frozen normalization and zero new controls. Three exporter tests pass. This
 is a local export check, not a newly trained policy, downloaded release asset or
-complete H/H0/B1 comparison. The native 100k batch has now finished normally:
-H0/H/B1 all score 0/4 on training-road probes, with 250,019 segment controls
-verified against CARLA frames. Its complete export is being prepared separately.
+complete H/H0/B1 comparison. The complete native 100k export and downloaded
+reproduction are recorded above separately from this earlier local check.
 
 ```powershell
 python scripts/package_native_continuation.py --batch COMPLETED_NATIVE_BATCH --output runs/NEW_NATIVE_ASSET.zip
