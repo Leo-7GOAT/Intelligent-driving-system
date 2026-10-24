@@ -56,7 +56,7 @@ def prepare(parent, source_method, wall_seconds=1800):
     (batch/'infrastructure').mkdir()
     shutil.copytree(parent/'calibration', batch/'calibration')
     shutil.copytree(parent/'source', batch/'source', ignore=shutil.ignore_patterns('__pycache__'))
-    for name in ('evaluate_native_rule.py', 'watch_existing_pair.py'):
+    for name in ('evaluate_native_rule.py', 'audit_native_rule.py', 'watch_existing_pair.py'):
         shutil.copy2(ROOT/'scripts'/name, batch/'source/scripts'/name)
     shutil.copy2(config_path, batch/'source_config.json')
     now = time.time()

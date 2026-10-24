@@ -23,13 +23,17 @@ def read(path): return json.loads(path.read_text(encoding='utf-8-sig'))
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def render(batch,output):
+def render(batch,output,methods=None):
     batch,output=Path(batch),Path(output)
     manifest_path=output.with_suffix('.json')
     if output.exists() or manifest_path.exists():
         raise FileExistsError('Preserve previous endpoint figure')
     protocol=read(batch/'protocol.json')
-    methods=protocol['methods']
+    registered=protocol['methods']
+    methods=registered if methods is None else methods
+    if not methods or len(set(methods))!=len(methods) or any(m not in registered for m in methods):
+        raise ValueError('Requested methods must be unique registered arms')
+    partial=set(methods)!=set(registered)
     records=[]
     for method in methods:
         folder=batch/method
@@ -87,14 +91,20 @@ def render(batch,output):
                 'success':episode['success'],'final_state':last,'goal':goal})
     handles,labels=axes[0,0].get_legend_handles_labels()
     fig.legend(handles,labels,loc='lower center',ncol=4,fontsize=9,frameon=False)
-    fig.suptitle(f"Seed {protocol['seed']} | frozen probes on all {columns} TRAINING roads | all outcomes retained",fontsize=13)
+    if partial:
+        fig.suptitle(f"Seed {protocol['seed']} | all {columns} TRAINING roads | PARTIAL: {len(methods)}/{len(registered)} registered arms\nAll outcomes retained within each displayed arm",fontsize=13)
+    else:
+        # Preserve the published complete-inventory figure's exact rendering.
+        fig.suptitle(f"Seed {protocol['seed']} | frozen probes on all {columns} TRAINING roads | all outcomes retained",fontsize=13)
     fig.tight_layout(rect=(0,.06,1,.95))
     output.parent.mkdir(parents=True,exist_ok=True)
     fig.savefig(output,dpi=160,metadata={'Software':'navstack audited endpoint plot'})
     plt.close(fig)
     manifest={'batch':batch.name,'scope':'Audited measured trajectories on training roads, not held-out research confirmation. Arrows show goal/terminal yaw; gray cells are sampled non-driving road cells.',
         'protocol_sha256':sha(batch/'protocol.json'),'script_sha256':sha(Path(__file__)),
-        'figure_sha256':sha(output),'methods':evidence,'new_controls':0}
+        'figure_sha256':sha(output),'methods':evidence,'new_controls':0,
+        'complete_registered_arm_inventory':not partial,
+        'omitted_registered_arms':[m for m in registered if m not in methods]}
     with manifest_path.open('x',encoding='utf-8') as stream: json.dump(manifest,stream,indent=2)
     print(json.dumps({'figure':str(output),'methods':methods,'cases_per_method':columns,'new_controls':0}))
 
@@ -103,5 +113,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--batch',required=True)
     parser.add_argument('--output',required=True)
+    parser.add_argument('--method',action='append',help='Explicit partial arm selection; every case in each arm is retained')
     args=parser.parse_args()
-    render(args.batch,args.output)
+    render(args.batch,args.output,args.method)
