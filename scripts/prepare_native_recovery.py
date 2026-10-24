@@ -30,6 +30,32 @@ def write_json_atomic(path, value):
     temporary.replace(path)
 
 
+def verified_checkpoint_metadata(source):
+    """Validate saved learning bytes before claiming any recovery endpoint."""
+    source=Path(source)
+    metadata=json.loads((source/'metadata.json').read_text(encoding='utf-8'))
+    files=[('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')]
+    if metadata.get('resume_state_sha256') is not None:
+        files.append(('resume_state.pkl','resume_state_sha256'))
+    elif (source/'resume_state.pkl').exists():
+        raise ValueError('Recovery RNG file has no recorded hash')
+    for name,key in files:
+        path=source/name
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest()!=metadata[key]:
+            raise ValueError('Recovery checkpoint hash mismatch or missing file: '+name)
+    return metadata
+
+
+def copy_verified_checkpoint(source,destination,config_source=None):
+    metadata=verified_checkpoint_metadata(source)
+    shutil.copytree(source,destination)
+    if config_source is not None:
+        shutil.copy2(config_source,Path(destination)/'config.json')
+    if verified_checkpoint_metadata(destination)!=metadata:
+        raise ValueError('Recovery checkpoint metadata changed while staging')
+    return metadata
+
+
 def prepare(parent, wall_seconds, rpc_port=None):
     parent=Path(parent).resolve()
     if not 900<=wall_seconds<=7200:raise ValueError('Recovery wall budget outside bounds')
@@ -77,12 +103,7 @@ def prepare(parent, wall_seconds, rpc_port=None):
         if status['state']=='not_started' and prior:
             source=parent/prior['checkpoint']
             destination=batch/'resume'/method
-            shutil.copytree(source,destination)
-            metadata=json.loads((source/'metadata.json').read_text(encoding='utf-8'))
-            for filename,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256'),
-                                 ('resume_state.pkl','resume_state_sha256')]:
-                if hashlib.sha256((source/filename).read_bytes()).hexdigest()!=metadata[key]:
-                    raise ValueError('Carried recovery checkpoint hash mismatch')
+            metadata=copy_verified_checkpoint(source,destination)
             lineage=prior['lineage_controls']
             if lineage>=target:raise ValueError('Carried policy already reached target')
             budgets[method]=target-lineage
@@ -99,9 +120,7 @@ def prepare(parent, wall_seconds, rpc_port=None):
             saved=max(status['checkpoints'],key=lambda c:c['physics_steps'])
             source=parent/method/saved['folder']
             destination=batch/'resume'/method
-            shutil.copytree(source,destination)
-            shutil.copy2(parent/method/'config.json',destination/'config.json')
-            metadata=json.loads((source/'metadata.json').read_text(encoding='utf-8'))
+            metadata=copy_verified_checkpoint(source,destination,parent/method/'config.json')
             lineage=metadata.get('lineage_control_steps',metadata['physics_steps'])
             if lineage>=target:raise ValueError('Training already at target; recover evaluation separately')
             budgets[method]=target-lineage

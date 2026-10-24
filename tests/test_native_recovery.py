@@ -50,6 +50,14 @@ def test_native_learning_state_checkpoint_roundtrip_and_hash_guard(tmp_path, alg
     before=loaded._n_updates;loaded.learn(8,reset_num_timesteps=False)
     assert loaded._n_updates>before
     norm.close();vec.close()
+    state_file=checkpoint/'resume_state.pkl'
+    retained=checkpoint/'resume_state.pkl.retained'
+    state_file.rename(retained)
+    try:
+        with pytest.raises(ValueError,match='recorded state missing'):
+            restore_training(checkpoint,new_raw,cfg,99)
+    finally:
+        retained.rename(state_file)
     with (checkpoint/'model.zip').open('ab') as stream:stream.write(b'changed')
     with pytest.raises(ValueError,match='hash mismatch'):
         restore_training(checkpoint,new_raw,cfg,99)

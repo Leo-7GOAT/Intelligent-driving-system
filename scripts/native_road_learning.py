@@ -113,15 +113,19 @@ def restore_training(checkpoint, raw, config, seed, gradient_clip_mode=None, all
     for name,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')]:
         if hashlib.sha256((checkpoint/name).read_bytes()).hexdigest() != saved[key]:
             raise ValueError('Recovery checkpoint hash mismatch')
+    state_file=checkpoint/'resume_state.pkl'
+    expected_rng=saved.get('resume_state_sha256')
+    if expected_rng is not None:
+        if not state_file.is_file() or hashlib.sha256(state_file.read_bytes()).hexdigest()!=expected_rng:
+            raise ValueError('Recovery RNG hash mismatch or recorded state missing')
+    elif state_file.exists():
+        raise ValueError('Recovery RNG file has no recorded hash')
     vec = VecNormalize.load(checkpoint/'normalization.pkl',raw)
     vec.training=True;vec.norm_reward=False;vec.returns[:]=0
     model = load_ppo(checkpoint/'model.zip',env=vec,device='cpu',force_reset=True,
                      gradient_clip_mode=gradient_clip_mode,allow_intervention=allow_intervention,
                      rollout_actions=rollout_actions,allow_rollout_intervention=allow_rollout_intervention)
-    state_file=checkpoint/'resume_state.pkl'
     if state_file.exists():
-        if hashlib.sha256(state_file.read_bytes()).hexdigest()!=saved['resume_state_sha256']:
-            raise ValueError('Recovery RNG hash mismatch')
         with state_file.open('rb') as stream:state=pickle.load(stream)
         random.setstate(state['python']);np.random.set_state(state['numpy']);torch.set_rng_state(state['torch'])
         raw.envs[0].np_random.bit_generator.state=state['env_rng']
