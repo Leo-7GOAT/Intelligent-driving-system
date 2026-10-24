@@ -39,6 +39,15 @@ types, exact save/reload, and actor-update invariance when only critic targets
 change. Full regression is **173 passed, five conditional skips**, with two
 existing SB3 warnings (`runs/native_gradient_final_regression.xml`).
 
+Source commit `c5f82852653a91bc677cb0a5a8259a8f77dd9879` was actually pushed and
+matched against the correct remote branch. A clean independent checkout with
+its separate pinned environment also passes **173 tests, five skips** and
+rebuilds both v4 rollout receipts byte-for-byte. Receipt and executable recipe:
+`runs/prerelease_20261022/native_road_checkout/runs/native_gradient_reproduction.json`
+and `verify_native_gradient_reproduction.py`. This reuses local raw artifacts and
+the original frozen observation source, not downloaded release data or another
+CARLA drive. Both replay outputs account for zero new environment controls.
+
 `scripts/prepare_native_gradient_pair.py` is implemented and tested, but the
 six-arm CARLA study is **not prepared or started** at this snapshot. After the
 current H0/H/B1 batch completes and its endpoints and owned-server cleanup pass

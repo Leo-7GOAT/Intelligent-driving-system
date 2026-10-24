@@ -1,4 +1,4 @@
-# Clipping diagnostic implemented; original training continues — 2026-10-24 13:50 local
+# Clipping diagnostic published/reproduced; training continues — 2026-10-24 13:53 local
 
 The previous summary turn was a verified wait: worker, guard and CARLA identities
 were live. This turn is concrete progress: paired-stage/registration tests,
@@ -10,8 +10,14 @@ Root changes add `navstack/independent_clip_ppo.py`,
 and opt-in named worker jobs, checkpoint-mode loading and per-group gradient logs.
 Full regression: 173 passed, 5 conditional skips, 2 existing SB3 warnings;
 receipt `runs/native_gradient_final_regression.xml`. Source changes are not in
-the currently running frozen batch. Publication/independent-checkout status must
-be checked against actual Git; earlier entries refer to their historical commits.
+the currently running frozen batch. Source commit
+`c5f82852653a91bc677cb0a5a8259a8f77dd9879` is pushed and remote-matched. The clean
+independent checkout with its separate pinned environment also passes173/5 and
+reproduces both first-rollout receipts byte-for-byte (64 actions/640 reconstructed
+controls, zero new controls). Receipt/recipe:
+`runs/prerelease_20261022/native_road_checkout/runs/native_gradient_reproduction.json`
+and `verify_native_gradient_reproduction.py`. This reuses local raw artifacts and
+frozen observation source; it does not claim release download or new driving.
 
 Exact measured-state/RNG replay reproduces 32 actions and the original first PPO
 update for H0 and H; latest receipts are each method's
@@ -23,7 +29,8 @@ not new driving or performance evidence. Current implementation hash:
 The report documents limits and executable reproduction commands.
 
 Worker7156, guard30068 and CARLA60980 remain the same owned processes listed
-below; H passed 47,120 new controls at13:48, H0 is complete, B1 queued. Revalidate
+below; all three OS identities were revalidated at13:53, H had56,520 new controls
+and176 optimization phases, guard healthy; H0 complete, B1 queued. Revalidate
 OS identities/log growth before action. The six-arm 20k-per-arm clipping study
 is implemented but NOT PREPARED/STARTED. Finish and audit H/B1, verify normal
 guard completion and owned server cleanup, then run the pair preparer. Its
