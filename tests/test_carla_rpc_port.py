@@ -56,7 +56,8 @@ def test_bridge_uses_frozen_rpc_endpoint(monkeypatch, tmp_path):
         assert command[command.index("--port") + 1] == "2100"
         assert client.rpc_port == 2100
     finally:
-    client.close()
+        client.close()
+
 
 @pytest.mark.parametrize("protocol", [
     {"carla_rpc_port": 65534},
