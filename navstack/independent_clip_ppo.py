@@ -71,7 +71,8 @@ class IndependentClipPPO(PPO):
         self.logger.record('train/independent_actor_critic_clip', 1.)
 
 
-def load_ppo(path, *, gradient_clip_mode=None, allow_intervention=False, **kwargs):
+def load_ppo(path, *, gradient_clip_mode=None, allow_intervention=False,
+             rollout_actions=None, allow_rollout_intervention=False, **kwargs):
     """Read the saved algorithm marker before constructing a resumable learner."""
     data, _, _ = load_from_zip_file(path, device=kwargs.get('device', 'auto'))
     saved_mode = data.get('gradient_clip_mode', GLOBAL_CLIP)
@@ -80,6 +81,17 @@ def load_ppo(path, *, gradient_clip_mode=None, allow_intervention=False, **kwarg
         raise ValueError('Unknown PPO gradient clipping mode')
     if mode != saved_mode and not allow_intervention:
         raise ValueError('Changing saved PPO clipping mode requires an explicit experimental intervention')
+    if 'n_steps' in kwargs:
+        raise ValueError('Use explicitly registered rollout_actions instead of an implicit n_steps override')
+    if rollout_actions is not None:
+        if (isinstance(rollout_actions,bool) or not isinstance(rollout_actions,int)
+                or not 2 <= rollout_actions <= 4096 or rollout_actions % data['batch_size']):
+            raise ValueError('Rollout length must be a bounded multiple of the saved minibatch size')
+        if rollout_actions != data['n_steps'] and not allow_rollout_intervention:
+            raise ValueError('Changing saved rollout length requires an explicit experimental intervention')
+        # SB3 constructs a fresh empty buffer with this length, then restores
+        # exact policy tensors and Adam state. No saved rollout data is reused.
+        kwargs['n_steps'] = rollout_actions
     cls = IndependentClipPPO if mode == INDEPENDENT_CLIP else PPO
     model = cls.load(path, **kwargs)
     model.gradient_clip_mode = mode

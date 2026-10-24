@@ -102,7 +102,8 @@ class RecordedRoadEnv(CarlaNavigationEnv):
         return result
 
 
-def restore_training(checkpoint, raw, config, seed, gradient_clip_mode=None, allow_intervention=False):
+def restore_training(checkpoint, raw, config, seed, gradient_clip_mode=None, allow_intervention=False,
+                     rollout_actions=None, allow_rollout_intervention=False):
     """Restore learning state, deliberately begin a new measured CARLA episode."""
     checkpoint = Path(checkpoint)
     saved = json.loads((checkpoint/'metadata.json').read_text(encoding='utf-8'))
@@ -115,7 +116,8 @@ def restore_training(checkpoint, raw, config, seed, gradient_clip_mode=None, all
     vec = VecNormalize.load(checkpoint/'normalization.pkl',raw)
     vec.training=True;vec.norm_reward=False;vec.returns[:]=0
     model = load_ppo(checkpoint/'model.zip',env=vec,device='cpu',force_reset=True,
-                     gradient_clip_mode=gradient_clip_mode,allow_intervention=allow_intervention)
+                     gradient_clip_mode=gradient_clip_mode,allow_intervention=allow_intervention,
+                     rollout_actions=rollout_actions,allow_rollout_intervention=allow_rollout_intervention)
     state_file=checkpoint/'resume_state.pkl'
     if state_file.exists():
         if hashlib.sha256(state_file.read_bytes()).hexdigest()!=saved['resume_state_sha256']:
@@ -158,8 +160,10 @@ def registered_jobs(protocol):
     jobs = protocol.get('jobs')
     if jobs is None:
         return [{'name': method, 'method': method} for method in protocol['methods']]
-    if not protocol.get('gradient_clipping_experiment') or not jobs:
-        raise ValueError('Named native jobs require a registered clipping experiment')
+    clipping=bool(protocol.get('gradient_clipping_experiment'))
+    rollout=bool(protocol.get('rollout_length_experiment'))
+    if clipping == rollout or not jobs:
+        raise ValueError('Named native jobs require exactly one registered learning intervention')
     names = [job['name'] for job in jobs]
     if names != protocol['methods'] or len(set(names)) != len(names):
         raise ValueError('Native job names must uniquely match worker scopes')
@@ -168,6 +172,11 @@ def registered_jobs(protocol):
             raise ValueError('Invalid native experiment job')
         if job.get('gradient_clip_mode') not in (GLOBAL_CLIP, INDEPENDENT_CLIP):
             raise ValueError('Every experiment arm must declare its gradient clipping mode')
+        if rollout and (job['gradient_clip_mode'] != GLOBAL_CLIP or
+                        type(job.get('rollout_actions')) is not int or job['rollout_actions'] not in (32,256)):
+            raise ValueError('Rollout study must retain global clipping and declare 32 or 256 actions')
+        if clipping and 'rollout_actions' in job:
+            raise ValueError('Clipping study cannot change rollout length')
     return jobs
 
 
@@ -190,6 +199,7 @@ def run(batch):
     try:
         for job in jobs:
             method, job_name = job['method'], job['name']
+            rollout_actions=job.get('rollout_actions',protocol['rollout_actions'])
             guard(batch, protocol)
             if time.time() >= protocol["deadline_epoch"]:
                 raise RuntimeError("Registered wall budget expired")
@@ -209,9 +219,13 @@ def run(batch):
                 if recovery:
                     model,vec,resume_mode=restore_training(batch/recovery['checkpoint'],raw,config,protocol['seed'],
                         gradient_clip_mode=job.get('gradient_clip_mode'),
-                        allow_intervention=bool(protocol.get('gradient_clipping_experiment')))
+                        allow_intervention=bool(protocol.get('gradient_clipping_experiment')),
+                        rollout_actions=rollout_actions,
+                        allow_rollout_intervention=bool(protocol.get('rollout_length_experiment')))
                     write_json(output/'resume_event.json',{'mode':resume_mode,**recovery,
                         'gradient_clip_mode':getattr(model,'gradient_clip_mode',GLOBAL_CLIP),
+                        'rollout_actions':model.n_steps,
+                        'registered_rollout_intervention':bool(protocol.get('rollout_length_experiment')),
                         'registered_gradient_intervention':bool(protocol.get('gradient_clipping_experiment'))})
                 else:
                     normalizer,policy=VecNormalize,"MlpPolicy"
@@ -221,10 +235,13 @@ def run(batch):
                         policy=FlatRoadCandidateActorCriticPolicy if method=='B1' else RoadCandidateActorCriticPolicy
                     vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
                     algorithm = IndependentClipPPO if job.get('gradient_clip_mode') == INDEPENDENT_CLIP else PPO
-                    model = algorithm(policy, vec, n_steps=protocol["rollout_actions"], batch_size=32,
+                    model = algorithm(policy, vec, n_steps=rollout_actions, batch_size=32,
                         n_epochs=protocol["ppo_epochs"], gamma=config.gamma, gae_lambda=.95**.5,
                         policy_kwargs={"net_arch":{"pi":[64,64],"vf":[64,64]}}, seed=protocol["seed"], device="cpu")
+                if model.n_steps != rollout_actions or model.n_epochs != protocol['ppo_epochs']:
+                    raise ValueError('Restored learner differs from registered rollout/epoch schedule')
                 write_json(output/'policy_architecture.json',{'policy':type(model.policy).__name__,
+                    'rollout_actions':model.n_steps,'ppo_epochs':model.n_epochs,'batch_size':model.batch_size,
                     'algorithm':type(model).__name__,'gradient_clip_mode':getattr(model,'gradient_clip_mode',GLOBAL_CLIP),
                     'normalizer':type(vec).__name__,'parameters':sum(p.numel() for p in model.policy.parameters()),
                     'observation_shape':list(model.observation_space.shape),
@@ -254,7 +271,7 @@ def run(batch):
                     guard(batch, protocol)
                     previous = model._n_updates
                     gradient_samples.clear()
-                    model.learn(protocol["rollout_actions"], callback=recorder, reset_num_timesteps=False)
+                    model.learn(rollout_actions, callback=recorder, reset_num_timesteps=False)
                     if model._n_updates > previous:
                         recorder.counts["optimization_phases"] += 1
                         gradient_record = {}
@@ -283,6 +300,7 @@ def run(batch):
                 sample = vec.normalize_obs(raw.envs[0]._observation()[None])
                 np.testing.assert_array_equal(model.predict(sample, deterministic=True)[0], loaded.predict(sample, deterministic=True)[0])
                 result = {**recorder.counts, "method": method, "job_name":job_name,
+                    'rollout_actions':model.n_steps,'ppo_epochs':model.n_epochs,'batch_size':model.batch_size,
                     "gradient_clip_mode":getattr(model,'gradient_clip_mode',GLOBAL_CLIP), "backend": "CARLA_0.9.15",
                     "world_ticks": client.total_ticks, "reset_ticks": client.total_ticks-recorder.counts["physics_steps"],
                     "optimizer_steps": optimizer_steps[0], "actor_l2_change": float(torch.linalg.vector_norm(actor_vector(model)-before)),

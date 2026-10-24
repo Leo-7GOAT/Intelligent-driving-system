@@ -1,5 +1,14 @@
 # Research results and claim boundaries
 
+The latest native PPO investigation is the
+[rollout horizon development report](../reports/native_rollout_horizon_20261024.md).
+The completed approximately100k native H0/H/B1 checkpoints all score0/4 on the
+four training-road probes. The subsequent H0/H clipping pairs also score0/4;
+larger actor gradients do not produce improved driving. The offline rollout
+diagnostic measures GAE endpoint-value sensitivity, not actual value error or
+performance improvement. Its proposed real-training comparison retains the
+existing research gates and must be distinguished from historical versions below.
+
 Latest [acceleration/curriculum report](../reports/actuation_curriculum_20261022.md) supersedes earlier live status: v17 completes3M at0/10. Measured feedforward improves speed/jerk on four development routes while retaining braking spikes and worsening some lateral errors. This is control evidence, not PPO benefit. Fresh v18 route-stage training is running; its stochastic and deterministic short-route outcomes are reported separately.
 
 Latest native-road and learning endpoints are in [the native/pose report](../reports/native_pose_20261022.md): v16B1 completes3M at0/10, v13B1 completes1M at0/10, v17is an ongoing single-seed shaping experiment (1/10at1M). Three real four-route fixed-reference CARLA variants each complete4/4 but all retain severe longitudinal jerk. No revised actuator is adopted. These supersede earlier live-status paragraphs below.
