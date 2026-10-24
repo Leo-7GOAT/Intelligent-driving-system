@@ -409,3 +409,70 @@ audit, all 360 policy decisions and all 113 completed episode returns. Receipt:
 `runs/native_H_rollout256_reproduction/reproduction.json` in that checkout.
 This verifies local archived data and does not claim a newly downloaded release
 asset, additional simulator execution or any research acceptance gate.
+
+## Where reference availability disappears
+
+`scripts/audit_native_continuation_witness.py` queries the unchanged production
+planner and time parameterizer for all 31 actions before every recorded H
+evaluation decision. It also queries the existing bounded analytic connector
+from the measured pose to the task goal and from each reference-producing
+candidate target to that goal. Both arms' complete 360-decision histories are
+retained, including waits and repeated failed actions. The selected action's
+mode and planner failure reason reproduce at every decision. There are no new
+CARLA controls or optimizer steps.
+
+The proposed endpoint is **not** the next actual state: only 0.5 seconds of its
+reference would be executed. A positive connector is a spatial witness only,
+without MPC/actuator/velocity or dynamic-obstacle execution. A negative connector
+means unknown under this bounded construction, not no path. This diagnostic
+neither adds an observation feature nor filters or replaces policy actions.
+
+| Case | H32 first decision without any moving reference | H256 first decision without any moving reference | H32 / H256 selected local reference without target-to-goal witness while alternatives had one |
+|---|---:|---:|---:|
+| 0 | 42 | 40 | 15 / 14 |
+| 1 | 37 | 37 | 0 / 0 |
+| 2 | 37 | never | 16 / 14 |
+| 3 | 22 | 22 | 7 / 6 |
+
+Decision indices are zero-based. On cases 0 and 2 the connector from the actual
+pose to the goal first becomes unavailable at decisions 15/13 for H32 and 14/12
+for H256, before complete local-reference loss where that occurs. Both policies
+choose a local-reference action lacking a target-to-goal witness at decision
+zero in cases 0, 2 and 3 despite available alternatives with such a witness.
+These are earlier decision differences to investigate, not causal proof that
+executing those alternatives would avoid the later failure.
+
+Case 1 supplies an important counterexample to a simple connector mask: the
+current-pose goal connector is absent at **all 90 decisions** in both arms, and
+the initial state has no reference-producing candidate with a target-to-goal
+connector. Case 3's current-pose connector is also absent initially, despite
+initial candidate actions 5 and 6 having endpoint connectors. A hard rule that
+equates this connector's rejection with infeasibility would be unjustified.
+In H256 case 2, moving references remain available throughout all 90 decisions,
+yet 55 failed-plan selections occur. Thus continuation evidence cannot replace
+the separate action-ranking diagnosis.
+
+Five targeted tests pass locally and in the independent checkout at `31fc769`.
+They distinguish a valid forward local reference that overshoots a goal from a
+target-to-goal connector, prohibit plant/environment execution and reset, reject
+unreconstructed dynamic scenes, and retain missing-witness states separately
+from absent local references. These tests are not CARLA performance evidence.
+
+```powershell
+.venv\Scripts\python.exe scripts/audit_native_continuation_witness.py --batch runs/20261024T075110Z_native_rollout_pair --method H_rollout32 --output NEW_H32_CONTINUATION_REPORT.json
+.venv\Scripts\python.exe scripts/audit_native_continuation_witness.py --batch runs/20261024T075110Z_native_rollout_pair --method H_rollout256 --output NEW_H256_CONTINUATION_REPORT.json
+```
+
+Results are `{H_rollout32,H_rollout256}/continuation_witness.json`, SHA256
+`7cca80847dcb43e382943c056c43b377b220d1bf90c187454ab8be725440cc4c`
+and `5126beb6ec6bcfca77f14e9a6ede193bc34b4194fa83efa603b4b056e5c17a13`.
+The current training configuration remains frozen. The same-interface native
+rule evaluation must still run after the PPO batch releases CARLA; a stronger
+continuation feature or selector would require a separate version, shared rule
+capabilities, measured computation costs and matched retraining.
+
+Both complete reports reproduce byte-for-byte in the independent checkout at
+`31fc769`, covering 720 measured decisions and 22,320 candidate reference queries.
+Receipt: `runs/native_continuation_witness_reproduction/reproduction.json` in
+that checkout. This is reproduction of local archived evidence; there is no
+new release download, physical counterfactual execution or learned improvement.

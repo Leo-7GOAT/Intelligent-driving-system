@@ -1,5 +1,19 @@
 # Failure analysis
 
+Complete recorded-decision reconstruction now separates the onset of reference
+loss from terminal-only observations. H32 first has no moving reference at
+zero-based decisions 42/37/37/22; H256 at 40/37/never/22. In cases 0, 2 and 3,
+both policies already select a reference-producing action at decision zero
+whose proposed target lacks a bounded analytic connector to the final goal,
+despite other locally valid targets having such connectors. This motivates
+investigating earlier choices and continuation information. It does not prove
+the alternate references would track and finish, or that absent connectors mean
+unreachable states. Case 1 has no measured-state goal connector at all 90
+decisions in either arm and no such candidate connector initially: a simple
+connector-based hard mask is unsupported. H256 case 2 retains local references
+throughout yet selects failed plans 55 times, so action ranking remains a
+separate problem. See the [full sequence diagnostic](../reports/native_rollout_horizon_20261024.md#where-reference-availability-disappears).
+
 The completed native H rollout pair adds 102,713 / 102,400 controls from the same
 parent checkpoint. Both frozen evaluations score 0/4. Increasing rollout length
 from 32 to 256 changes mean progress from 14.987119 to 14.939079 m and increases

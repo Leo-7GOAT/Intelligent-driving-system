@@ -1,4 +1,48 @@
-# H rollout pair complete and independently reproduced — 2026-10-24 17:40 local
+# Full H continuation-witness diagnosis reproduced — 2026-10-24 17:53 local
+
+Previous goal turn was progress (completed H pair). This turn implements and
+tests an offline sequence diagnostic and executes/reproduces both H histories.
+Goal active/incomplete. No navstack or frozen learner changes, agents or new
+CARLA owner. Source 31fc769 is pushed; current documentation commit follows.
+
+Same live batch/pointer and worker57580/guard35276/CARLA62284, original creation
+times verified this turn. B1_rollout32 is at 60,721 controls / 6,080 decisions /
+189 phases at17:53:05, normal heartbeat; B1_rollout256 queued. H/H0 arms complete.
+Do not restart. Resource snapshot17:50: disk38.6GB free, GPU38C. Latest B1
+checkpoint50,161 retains170,298 lineage and179,843 charged-lower-bound controls.
+
+New `scripts/audit_native_continuation_witness.py` verifies frozen sources and
+audited inputs, reconstructs all31 production references at every decision,
+checks selected mode/failure reproduction, queries existing bounded analytic
+connectors from measured pose and proposed targets to the task goal, and writes
+all decisions. It never steps/reset a plant or queries RPC. False connector is
+unknown, not unreachable; proposed target is not the next actual state.
+
+Actual complete H32/H256 results: first no moving reference at zero-based
+decisions42/37/37/22 versus40/37/never/22. Cases0/2/3 in both arms already pick
+a local reference lacking a target-goal witness at decision0 although alternatives
+have one. Across whole episodes such choices number15/0/16/7 versus14/0/14/6.
+Current-state goal witness first absent15/0/13/0 versus14/0/12/0. Case1 has none
+at all90decisions and no candidate witness initially: do not adopt a hard mask
+from this. H256case2 still has references at every decision but55failed selections.
+This separates earlier continuation choices from ranking; no new learned result.
+
+Five targeted tests pass locally and independently at31fc769. Both full reports
+reproduce byte-for-byte in clean independent checkout:720states/22,320action
+queries. Files `{H_rollout32,H_rollout256}/continuation_witness.json`, hashes
+7cca80847dcb43e382943c056c43b377b220d1bf90c187454ab8be725440cc4c and
+5126beb6ec6bcfca77f14e9a6ede193bc34b4194fa83efa603b4b056e5c17a13.
+Receipt: checkout/runs/native_continuation_witness_reproduction/reproduction.json.
+Analysis handles37586/44246/24428/17555 all exited0; no analyses remain live.
+No full-suite rerun claim (last203passed/5skipped at ac59741 remains historical).
+
+Next remains B1 endpoints/full paired analysis and then actual unchanged-catalog
+B3 after normal whole-batch completion/owned cleanup. B3 still unprepared and
+unstarted. Any new continuation feedback must be versioned, shared with rule
+comparators, computationally measured and retrained; this diagnostic alone does
+not adopt it. Five-seed/fresh120-condition/strongB3/healthyB1 gates remain open.
+
+# Historical snapshot: H rollout pair complete — 2026-10-24 17:40 local
 
 Previous goal turn was a verified wait. This turn completes actual H256 training
 and evaluation, raw audits, paired analysis and independent reproduction. Goal
