@@ -1,5 +1,50 @@
 # Structured road policy development — 2026-10-23
 
+## Complete native 100k development endpoints — 2026-10-24 14:43
+
+Batch `20261024T050724Z_native_continuation` finished normally. Worker and guard
+exited with code zero; the owned CARLA server was verified empty and stopped,
+with no remaining TCP/UDP owners on its registered ports. All three local raw
+streams are complete. These are correlated continuations of seed 11 on four
+training roads, not independent seeds or final held-out confirmation.
+
+| Method | New training controls | Retained lineage controls | Charged controls, lower bound | Frozen probes | Verified training + evaluation controls |
+|---|---:|---:|---:|---|---:|
+| H0 | 80,000 | 100,160 | 100,160 | 0/4; four deadlines | 83,600 |
+| H | 80,000 | 100,160 | 100,160 | 0/4; four deadlines | 83,600 |
+| B1 | 79,989 | 100,050 | 109,595 | 0/4; three deadlines, one out of bounds | 82,819 |
+
+B1 retains 632 cumulative optimizer steps (506 this segment), exact save/reload,
+and actor L2 displacement 2.91249 this segment. Training contained 212 bounds
+terminations, 27 deadlines and one success; that isolated training success does
+not change the 0/4 frozen evaluation. Evaluation progress by road is
+7.2804 / 0 / 14.0482 / 15.1872 m, with zero external interventions. Final goal
+distances are 17.3514 / 24.3476 / 8.7342 / 5.5366 m (rounded; the raw diagnostic
+is authoritative). Three deadline cases end with braking rather than task
+completion. No performance or hierarchy advantage is established.
+
+The B1 raw audit SHA256 is
+`d634b3c9a1354ab92d04d41f88dcc1265d8dc7552af2653d4c4ecdd3fc42660d`;
+its four measured-start model actions reproduce exactly with frozen normalization.
+The mid-training 40,301-control checkpoint also reproduces the next 32 sampled
+actions and actual optimizer update: global clipping factor 0.013087,
+baseline Gaussian KL 0.000037914 versus 0.0028544 for the discarded separate-clip
+branch. This is a mechanism probe, not a new driving outcome.
+
+All twelve measured trajectories, terminal footprints, goal position tolerances
+and goal/terminal yaw arrows are retained in `analysis/frozen_endpoints.png` with
+an adjacent input-hash manifest. Rebuild without additional simulator controls:
+
+```powershell
+python scripts/plot_native_endpoints.py --batch EXTRACTED_BATCH --output NEW_FIGURE.png
+```
+
+The next registered development comparison forks each completed endpoint into
+global and independent actor/critic clipping, with 20,000 additional controls per
+arm and identical parent weights, optimizer, RNG and normalization state. Only
+clipping grouping changes. This remains one correlated development seed; task
+completion, progress, safety and intervention determine the result, not KL alone.
+
 ## H100k endpoint and measured failure attribution — 2026-10-24 14:10
 
 H has completed80,000 new controls,82,758 training world ticks,250 optimization

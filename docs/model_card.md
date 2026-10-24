@@ -21,7 +21,9 @@ B1 segment contains303 files and10,500 verified controls. Unpacking it reproduce
 the original raw audit byte-for-byte and all four measured-start inference actions
 with frozen normalization and zero new controls. Three exporter tests pass. This
 is a local export check, not a newly trained policy, downloaded release asset or
-complete H/H0/B1 comparison. The running100k batch must finish before its export.
+complete H/H0/B1 comparison. The native 100k batch has now finished normally:
+H0/H/B1 all score 0/4 on training-road probes, with 250,019 segment controls
+verified against CARLA frames. Its complete export is being prepared separately.
 
 ```powershell
 python scripts/package_native_continuation.py --batch COMPLETED_NATIVE_BATCH --output runs/NEW_NATIVE_ASSET.zip

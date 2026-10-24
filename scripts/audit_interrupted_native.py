@@ -32,6 +32,21 @@ def audit(batch):
         if not folder.exists():
             methods[method] = {'state': 'not_started', 'consumed_controls_lower_bound': 0}
             continue
+        # The worker creates config.json before opening the bridge. A verified
+        # pre-bridge interpreter failure can therefore leave a folder but no
+        # learner heartbeat. Do not treat other missing-heartbeat cases as zero
+        # cost: a bridge or any additional artifact makes that inference unsafe.
+        if not (folder/'heartbeat.json').exists():
+            failure_path = batch/'failure.json'
+            failure = json.loads(failure_path.read_text(encoding='utf-8')) if failure_path.exists() else {}
+            entries = {p.name for p in folder.iterdir()}
+            if (entries == {'config.json'} and not evidence and
+                    'FileNotFoundError' in failure.get('error', '') and
+                    'CARLA client interpreter not found:' in failure.get('error', '')):
+                methods[method] = {'state': 'not_started', 'consumed_controls_lower_bound': 0,
+                    'startup_failure': 'Missing client interpreter before bridge creation; config retained'}
+                continue
+            raise ValueError('Missing heartbeat with unverified interaction history: '+method)
         count, errors = 0, []
         for path in folder.glob('transitions*.gz'):
             rows, error = prefix_rows(path)
