@@ -81,3 +81,31 @@ def test_route_feedback_ablation_keeps_geometry_and_rejects_wrong_goal():
 def test_route_catalog_requires_shared_information():
     with pytest.raises(ValueError,match='shared candidate'):
         EnvConfig(subgoal_mode='route_frame_terminal')
+
+
+def test_continuation_feedback_is_shared_and_terminal_target_is_a_witness():
+    from navstack.env import candidate_goal_witness
+    h, b = RouteFixture(config(feedback='continuation')), RouteFixture(config('B1',feedback='continuation'))
+    try:
+        ho, _ = h.reset(options={'start_x':20.})
+        bo, _ = b.reset(options={'start_x':20.})
+        np.testing.assert_array_equal(ho,bo)
+        assert candidate_goal_witness(h.goal,h.goal,h.world,h.config.vehicle)
+        assert np.all(ho[351:599].reshape(31,8)[1:,7] == 1)
+        assert signature(config(feedback='continuation')) != signature(config())
+    finally:
+        h.close(); b.close()
+
+
+def test_absent_continuation_witness_does_not_mask_moving_actions(monkeypatch):
+    import navstack.env as module
+    monkeypatch.setattr(module,'candidate_goal_witness',lambda *args:False)
+    env=RouteFixture(config(feedback='continuation'))
+    try:
+        obs,_=env.reset()
+        assert not np.any(obs[351:599].reshape(31,8)[:,7])
+        action=rule_action(env)
+        assert action != 0
+        assert env._prepare_reference(action)[0]=='reference'
+    finally:
+        env.close()

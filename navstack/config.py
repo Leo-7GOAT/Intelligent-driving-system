@@ -143,8 +143,10 @@ class EnvConfig:
             raise ValueError("Unknown subgoal semantics")
         if self.subgoal_mode == "route_frame_terminal" and not (self.candidate_observation and self.road_observation):
             raise ValueError("Route candidates require shared candidate and measured-road observations")
-        if self.execution_feedback not in ("off", "enabled", "ablated"):
+        if self.execution_feedback not in ("off", "enabled", "ablated", "continuation", "continuation_ablated"):
             raise ValueError("Unknown execution feedback mode")
+        if self.execution_feedback.startswith("continuation") and self.subgoal_mode != "route_frame_terminal":
+            raise ValueError("Continuation feedback is versioned with the route catalog")
         if self.road_geometry_version not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"):
             raise ValueError("unknown road geometry version")
         if self.road_geometry_version != "carla_driving_64_v1" and not self.road_observation:

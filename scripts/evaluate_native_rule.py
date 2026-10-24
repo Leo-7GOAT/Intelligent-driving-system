@@ -33,7 +33,7 @@ def require_finished_parent(parent):
         raise ValueError('Parent did not complete and clean up normally')
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -48,8 +48,11 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None):
         raise ValueError('Require the measured-road hierarchical node-budget interface')
     if catalog not in (None, 'route_frame_terminal'):
         raise ValueError('Unsupported explicit catalog intervention')
+    if continuation_feedback and catalog != 'route_frame_terminal':
+        raise ValueError('Continuation diagnostic requires the explicit route catalog')
     if catalog:
-        env = EnvConfig.from_dict({**env.to_dict(), 'subgoal_mode': catalog})
+        env = EnvConfig.from_dict({**env.to_dict(), 'subgoal_mode': catalog,
+            'execution_feedback': 'continuation' if continuation_feedback else env.execution_feedback})
     for name, digest in old['source_hashes'].items():
         if sha(parent/'source'/name) != digest:
             raise ValueError('Parent source changed')
@@ -95,6 +98,7 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None):
     if catalog:
         protocol.update(scope='Rule-only route-frame catalog development coverage on all four training roads; not learned-policy evidence',
             catalog_intervention={'from': read(config_path)['env']['subgoal_mode'], 'to': catalog,
+                'continuation_feedback': continuation_feedback, 'rule_missing_continuation_penalty_m': 5. if continuation_feedback else 0.,
                 'parent_config_sha256': sha(config_path), 'new_model_required': True,
                 'shared_information': 'All policies receive known-route candidate geometry; no future actor truth'},
             rule_limitation='Same connector scoring and up to three bounded candidate searches as goal-frame rule; computation recorded')
@@ -193,5 +197,6 @@ if __name__ == '__main__':
     parser.add_argument('--source-method', default='H_rollout32')
     parser.add_argument('--wall-seconds', type=int, default=1800)
     parser.add_argument('--catalog', choices=['route_frame_terminal'])
+    parser.add_argument('--continuation-feedback', action='store_true')
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback) if args.prepare else run(args.batch)

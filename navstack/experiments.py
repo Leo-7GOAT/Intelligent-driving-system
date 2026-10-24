@@ -177,6 +177,8 @@ def signature(config):
         result["observation"] = OBS_VERSION + "-candidate-geometry-witness31x8-execution6-v2"
         result["observation_shape"] = [605]
         result["candidate_scaling"] = "ego_xy/15,sin_yaw,cos_yaw,speed/3,clear,witness,time/45"
+        if config.execution_feedback.startswith('continuation'):
+            result["candidate_scaling"] = "ego_xy/15,sin_yaw,cos_yaw,speed/3,clear,local_witness,target_goal_witness_v1"
     if config.empty_pretraining_steps:
         result["task_stage_curriculum"] = {"full_length_empty_until_physics_steps": config.empty_pretraining_steps,
                                            "then": "original_mixed_distribution_at_next_episode", "evaluation": "unchanged"}

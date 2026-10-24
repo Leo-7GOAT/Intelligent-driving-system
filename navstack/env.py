@@ -31,6 +31,16 @@ ACTIONS = action_catalog()
 OBS_VERSION = "physical-v2-local11-static20-neighbors3-delay5"
 
 
+def candidate_goal_witness(target, goal, world, vehicle):
+    """Sufficient static continuation evidence, including an already-reached pose."""
+    from .planning import analytic_connection
+    if not world.free(target, vehicle):
+        return False
+    if math.dist(target[:2], goal[:2]) < 1e-6 and abs(wrap(target[2]-goal[2])) < 1e-6:
+        return True
+    return analytic_connection(target, goal, world, vehicle) is not None
+
+
 class NavigationEnv(gym.Env):
     metadata = {"render_modes": []}
 
@@ -256,7 +266,7 @@ class NavigationEnv(gym.Env):
         )
         if self.config.execution_feedback != "off":
             started = time.perf_counter()
-            extra = self._execution_feedback() if self.config.execution_feedback == "enabled" else np.zeros(99)
+            extra = self._execution_feedback() if self.config.execution_feedback in ("enabled", "continuation") else np.zeros(99)
             if self.config.candidate_observation:
                 # Candidate geometry is policy input, never an action selector.
                 # Fixed scales preserve the same meaning across candidate slots.
@@ -292,9 +302,15 @@ class NavigationEnv(gym.Env):
             if target not in cache:
                 clear = self.world.free(target,vehicle)
                 path = analytic_connection((s.x,s.y,s.yaw),target,self.world,vehicle) if clear else None
-                cache[target] = (clear,path is not None)
-            clear, witness = cache[target]
-            features.extend((float(clear),float(witness),math.dist((s.x,s.y),target[:2])/max(.3,speed)/45))
+                continuation = (candidate_goal_witness(target,self.goal,self.world,vehicle)
+                    if clear and self.config.execution_feedback == 'continuation' else False)
+                cache[target] = (clear,path is not None,continuation)
+            clear, witness, continuation = cache[target]
+            # Travel-time proxy remains derivable from the shared target/speed
+            # geometry. New signatures expose a sufficient continuation witness
+            # in that slot; rejection means unknown and never masks an action.
+            third = float(continuation) if self.config.execution_feedback == 'continuation' else math.dist((s.x,s.y),target[:2])/max(.3,speed)/45
+            features.extend((float(clear),float(witness),third))
         return np.r_[features,self.execution_outcome]
 
     def _prepare_reference(self, action):
@@ -683,17 +699,24 @@ def rule_action(env):
         # Strong deterministic comparator: same connector feasibility checks as
         # the planner, no learned action substitution. All cost is charged.
         cached = {}
+        continuation = {}
         candidates = []
         for i in range(1, 31):
             target, speed = env.decode_action(i)
-            candidates.append((math.dist(target[:2],env.goal[:2])-.1*speed,i,target,speed))
+            if target not in continuation:
+                continuation[target] = (candidate_goal_witness(target,env.goal,env.world,env.config.vehicle)
+                    if env.config.execution_feedback.startswith('continuation') else True)
+            # Finite preference, not a feasibility mask: if every witness is
+            # absent the original ordering and fallback search remain available.
+            penalty = 0. if continuation[target] else 5.
+            candidates.append((math.dist(target[:2],env.goal[:2])-.1*speed+penalty,i,target,speed))
             if target not in cached:
                 cached[target] = analytic_connection((s.x,s.y,s.yaw), target, env.world, env.config.vehicle)
             path = cached[target]
             if path is None:
                 continue
             length = np.linalg.norm(np.diff(path[:, :2],axis=0),axis=1).sum()
-            score = math.dist(target[:2],env.goal[:2]) + .05*length - .1*speed
+            score = math.dist(target[:2],env.goal[:2]) + .05*length - .1*speed + penalty
             if score < best[0]:
                 best = (score, i)
         # A rejected analytic connector does not prove infeasibility. The strong

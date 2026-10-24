@@ -79,6 +79,8 @@ def prepare(parent, road_geometry_version="carla_driving_64_v1", controlled_budg
 
 def training_config(protocol, method, vehicle):
     feedback = ("ablated" if method == "H0" else "enabled") if protocol.get("feedback_ablation", False) else "off"
+    if protocol.get('continuation_feedback', False):
+        feedback = 'continuation_ablated' if method == 'H0' else 'continuation'
     config = EnvConfig(method="H" if method == "H0" else method, vehicle=vehicle, road_observation=True,
         execution_feedback=feedback,candidate_observation=protocol.get('road_candidate_policy',False),
         road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),

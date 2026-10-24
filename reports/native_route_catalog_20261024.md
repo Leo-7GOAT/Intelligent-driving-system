@@ -47,3 +47,35 @@ training budget. The already-exposed roads cannot become final test conditions.
 No old batch or frozen source is modified. The prior rule3/4 and learned0/4
 results remain part of the record. Final requirements for a healthy flat
 baseline, strong rule comparison, five seeds and fresh confirmation are unchanged.
+
+## First route-only result and registered continuation variant
+
+The route-only rule run `20261024T105443Z_native_rule` actually completes3/4,
+with1,993 applied controls and2,116 worldticks. Roads0/1/2 succeed in359/381/353
+controls; road3 ends at its900-control deadline. Raw frame audit passes, owned
+cleanup completes and the fresh-PPO staging gate rejects training with no batch
+or pointer created. This is a failed coverage hypothesis, not an improvement.
+Root source757b08f passes228 tests with5 conditional skips; the independent
+checkout atd307fb1 passes23 targeted route/evaluator/staging tests.
+
+Recorded road3 decisions13/17/18 choose28/18/22. Offline production queries at
+those measured states find available local references with a target-to-goal
+connector (respectively5/6/15/16/25/26,5/6/15/16,5/6/15/16), but the selected
+targets lack that sufficient connector. The initial selected26 does have one.
+This motivates a separate continuation variant, not a claim of causality or a
+guarantee that a proposed endpoint equals the future executed state.
+
+Before its first run, fix the following variant: `execution_feedback=continuation`
+replaces the derivable distance/speed time proxy in each candidate's third
+feedback slot with a static target-to-goal connector witness. Exact goal pose
+with a free vehicle footprint is a positive zero-length witness. Candidate
+geometry/speed retain the inputs needed to derive the old proxy. A distinct
+signature prevents old-model reuse. H0 uses `continuation_ablated` and zeros the
+same99 feedback values; H and B1 share the new features. No action is masked.
+
+The corresponding rule adds a fixed5m score penalty when this witness is absent.
+This finite preference retains the original ordering when all witnesses are
+absent and still allows bounded search. The penalty is not tuned on final tests.
+All other route-catalog conditions and the prospective four-road coverage gate
+remain unchanged. The next diagnostic is a new batch; the failed route-only
+result is retained. Both extra observation and rule selection costs are measured.
