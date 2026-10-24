@@ -125,8 +125,94 @@ The raw audit verifies 106,000 training/evaluation controls. Saved-model schedul
 four measured-start actions and action/terminal-pose diagnostics all pass.
 The endpoint analysis is `analysis/H0_rollout32_endpoint_analysis.json`.
 
-H0_rollout256 is actually training, with its first10k-threshold checkpoint at
+At that snapshot H0_rollout256 was training, with its first10k-threshold checkpoint at
 10,240 controls/1,024 decisions/four phases/64Adam steps. The unchanged parent
 parameters and the real256-decision boundaries are verified in
 `analysis/H0_rollout256_checkpoint_000010000_schedule.json`. This arm is not
-complete, so no paired benefit or failure conclusion is available yet.
+complete at that snapshot. The completed pair below supersedes this status.
+
+## Completed H0 pair and physical reward reconstruction
+
+Both H0 arms now finish 102,400 new controls, 10,240 decisions, 640 Adam steps
+and 113 completed training episodes, all deadlines. Each retains 222,720 lineage
+controls; each raw audit verifies 106,000 training/evaluation controls. Collection
+phases differ as registered: 320 versus 40. Four paired evaluation starts have
+zero measured position, heading and speed differences.
+
+| H0 rollout | Frozen training-road completion | Mean progress | Mean intervention |
+|---|---:|---:|---:|
+| 32 decisions | 0/4 | 1.840831 m | 91.3889% |
+| 256 decisions | 0/4 | 1.149521 m | 96.3889% |
+
+Long minus short progress is -0.691310m. This completed H0 pair provides no
+performance support for longer collection. H and B1 are still pending; this is
+not the completed three-method comparison or a general rejection of long PPO
+rollouts. All conditions are training roads and both models share seed-11 ancestry.
+The authoritative partial report is `analysis/H0_pair.json` in the live batch.
+
+`scripts/diagnose_native_episode_returns.py` reconstructs all 226 completed
+physical episode returns across these two arms. Each arm also retains 700
+controls in its unfinished final episode. With control gamma 0.9994976094477416,
+the maximum error in the discounted terminal-zero distance-potential identity is
+1.19e-14. Within a road and the same 900-control deadline, discounted event/time
+terms are constant and potential differences are numerical noise; observed
+return differences come from risk and comfort. This confirms the implemented
+shaping identity, not a reward bug or causal proof that shaping prevents learning.
+No reward was changed and no new training was attributed to this analysis.
+Historical progress-reward, heading-potential and curriculum interventions remain
+documented failures; this is not a claim that those ideas have never been tried.
+
+The independent checkout at `ac59741` reproduces the H0 pair and both return
+diagnostics byte-for-byte in `runs/native_rollout_H0_reproduction/`. The pair's
+SHA256 is `459f91f223dfd3e876a426e7873dc23066614896324b68795c4416eaa565ef4c`.
+This reproduction uses local raw evidence, not a new release download.
+
+## Recovery hardening without changing the active learner
+
+Source `ac59741` rejects a missing or altered RNG file whenever checkpoint
+metadata records its expected hash. Only genuine legacy checkpoints lacking
+both file and hash retain the explicit fresh-RNG path. Recovery staging now
+verifies model, normalization and RNG before and after copying, before consuming
+the parent recovery claim. Tests cover interrupted versus not-started rollout
+arms, inherited cost/optimizer accounting, corrupted source/copy, and actual PPO
+restoration with missing RNG. Full CPU regression: 203 passed, five conditional
+skips, two existing SB3 warnings; independent targeted regression: 17 passed.
+The running batch's frozen source is unchanged.
+
+## Available actions at the recorded failures
+
+`scripts/audit_native_action_availability.py` queries the production decoder,
+Hybrid A*, trajectory parameterization and reference safety checks at each
+measured initial state and immediately before the last evaluation decision.
+It does not reset/step a plant, issue CARLA RPC, execute MPC or update PPO.
+Archived source bytes, source text, raw-audit inputs and task geometry are bound;
+only Git newline normalization is tolerated when comparing current source.
+Dynamic scenes are explicitly unsupported without per-frame actor reconstruction.
+
+For H0_rollout32, the four final decisions select actions 30/20/30/30, all
+`plan_failed`, while the same states admit 26/10/26/22 reference-producing actions.
+For H0_rollout256, all four select action30 and fail planning, while the states
+admit 26/6/26/22 alternatives. Every such reference ends closer to the goal.
+The selected action's mode and failure reason reproduce in all eight cases.
+Thus these particular failures are not explained by complete absence of local
+reference choices. This supports investigating learned action ranking; it does
+not prove the alternatives are safe under execution, lead to eventual parking,
+or establish which training intervention will repair the policy. None of these
+distant-state references contains a complete parking pose.
+
+Evidence: `{H0_rollout32,H0_rollout256}/action_availability_v2.json` in the live
+batch. Earlier `action_availability.json` files retain the stricter byte-only
+source check; their local results are preserved. Three tests check no physical
+step, near/far parking reference distinction, unsupported dynamic/time-budget
+rejection, and source-change detection including newline-only checkout variation.
+
+At source `530d168`, all three tests pass in both worktrees. The independent
+checkout reproduces both complete availability reports byte-for-byte, including
+all 16 states and 496 action queries. Its receipt is
+`runs/native_action_availability_v2_reproduction/reproduction.json`; report hashes
+are `eb1b33efc567e7b9966516d98d2330df9fe8d2a26ab6cf5996d2873ff7a8b2af`
+and `7e061cf4ef8948c55de512350c2a57f401862eb8e538b5e5ebe52dbb5050a664`.
+No extra CARLA controls were consumed. The initial byte-only reproduction
+attempt remains recorded as a source-newline mismatch; it was not a successful
+reproduction. Historical clipping H_global was also rejected because its frozen
+native source differs; no historical H availability result is claimed.

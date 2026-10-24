@@ -1,4 +1,56 @@
-# Rollout schedule verified; clipping asset reproduced — 2026-10-24 16:17 local
+# H0 pair and action-choice failure reproduced — 2026-10-24 16:45 local
+
+Previous summary turn was a verified wait: actual worker, guard and CARLA
+processes were checked. This continuation adds a production-reference diagnostic,
+executes 496 offline action queries at 16 recorded states, independently
+reproduces them, and updates the completed H0 pair/reward evidence. Goal remains
+active and incomplete; no agents used and no live frozen learner changed.
+
+**Do not restart the live batch `20261024T075110Z_native_rollout_pair`.**
+Pointer remains `runs/native_rollout_pair.json`. OS revalidated16:45: worker57580
+created15:52:46.740937, guard35276 created15:53:26.451462, CARLA62284
+created15:52:11.130147. Guard healthy; deadline21:51:11. H_rollout32 is actually
+training,38,460newcontrols/3,846actions/120phases at16:45:40. H0_32 andH0_256
+are complete; H_256/B1_32/B1_256 remain queued. Handlesworker84287/guard18326/
+server69058. Revalidate identities/progress; no other tick owner.
+
+Completed H0 pair: each102,400newcontrols/10,240decisions/640Adamsteps,
+222,720lineagecontrols,113trainingdeadlines,0/4evaluation.32vs256 collection
+has320vs40phases; progress1.840831vs1.149521m,intervention91.3889%vs96.3889%.
+All measured paired starts match exactly. Partialpair `analysis/H0_pair.json`;
+no completed H/B1 pair or independent-seed/held-out claim. Sourceac59741's
+independentcheckout reproduces pair+two physical reward diagnostics exactly in
+`runs/native_rollout_H0_reproduction/reproduction.json`:226completedepisodes,
+700unfinishedcontrols perarm,maximum PBRSidentityerror1.19e-14. Same-road,
+same-length deadline return variation is risk/comfort, not a discovered shaping
+implementation bug. Earlier curriculum/progressreward failures remain relevant.
+
+ac59741 also fixes missing hashed RNG state and verifies recovery copies before
+parentclaims. Fullsuite203passed/5skips;17targetedtests pass independently.
+These changes affect future restoration, not this batch's frozen source.
+
+New `scripts/audit_native_action_availability.py` uses production decoding,
+planning and timed-reference checks without reset/step/RPC. Current/frozen source
+must match modulo Git newlines; archived bytes retain exact hashes. Dynamic
+scenes without per-frame reconstruction are rejected. All8final H0 decisions
+reproduce plan_failed, despite26/10/26/22(short) and26/6/26/22(long) available
+reference alternatives endingcloser. This narrows these failures to action
+selection rather than absence of local references, without proving eventual
+parking or safe tracking. All16states/496actions retained in eacharm's
+`action_availability_v2.json`; v1results preserved. Independentcheckout at530d168
+passes3tests and reproducesbothv2reports byte-for-byte in
+`runs/native_action_availability_v2_reproduction/reproduction.json`. First
+byte-onlysourcecheck failure was CRLF/LF; historical H_global query was rejected
+for changed independent_clip_ppo.py, so no historicalH result is claimed.
+
+Code530d168 pushed to correctrepo; docsupdatedinthisturn. Next: continue current
+H/B1 arms; audit/analyze completed pairs with existingrollout analyzer. Apply new
+availability diagnostic to completedH endpoints to distinguish voluntary waiting
+from missingreferences. Do not alter/restart frozenqueue or claim offline
+references establish closed-loop catalog competence. All five-seed,baseline,
+fresh120conditions,RL-value and research acceptance requirements still apply.
+
+# Historical snapshot: rollout schedule — 2026-10-24 16:17 local
 
 Previous goal turn was progress (finished/audited clipping study, implemented
 rollout intervention, started actualCARLA continuation). This turn adds and
