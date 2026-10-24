@@ -82,6 +82,7 @@ def training_config(protocol, method, vehicle):
     config = EnvConfig(method="H" if method == "H0" else method, vehicle=vehicle, road_observation=True,
         execution_feedback=feedback,candidate_observation=protocol.get('road_candidate_policy',False),
         road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),
+        subgoal_mode=protocol.get('subgoal_mode', 'ego_arcs'),
         flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0)
     config.planner.max_seconds=None
     config.planner.vectorized_primitives=True

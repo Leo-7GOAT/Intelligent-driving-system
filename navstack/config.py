@@ -139,8 +139,10 @@ class EnvConfig:
     def __post_init__(self):
         if self.method not in ("H", "B1", "B2", "B3"):
             raise ValueError("method must be H, B1, B2 or B3")
-        if self.subgoal_mode not in ("ego_arcs", "goal_frame", "goal_frame_terminal"):
+        if self.subgoal_mode not in ("ego_arcs", "goal_frame", "goal_frame_terminal", "route_frame_terminal"):
             raise ValueError("Unknown subgoal semantics")
+        if self.subgoal_mode == "route_frame_terminal" and not (self.candidate_observation and self.road_observation):
+            raise ValueError("Route candidates require shared candidate and measured-road observations")
         if self.execution_feedback not in ("off", "enabled", "ablated"):
             raise ValueError("Unknown execution feedback mode")
         if self.road_geometry_version not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"):

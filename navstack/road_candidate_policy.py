@@ -3,7 +3,8 @@
 The 605 existing state/candidate features are followed by the same 64x64 binary
 road raster supplied to every method. Road and candidate geometry retain fixed
 physical encodings. H scores each candidate with shared weights; B1 pools the
-same candidate set and emits direct actuator commands. No route prior is added.
+same candidate set and emits direct actuator commands. The encoder adds no route
+prior; a versioned route catalog can supply one through shared candidate geometry.
 """
 from functools import partial
 

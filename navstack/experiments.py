@@ -165,6 +165,10 @@ def signature(config):
         result["planner"].pop("grid_postprocess")
     if config.subgoal_mode == "goal_frame_terminal":
         result["candidate_catalog" if config.method == "B1" else "action_catalog"] += ":terminal_S_arc_envelope_Rmargin1.2_v2"
+    if config.subgoal_mode == "route_frame_terminal":
+        result["candidate_catalog" if config.method == "B1" else "action_catalog"] = (
+            "route_frame_terminal_v1:known_route_projection+lookahead(6,9,12)*offset(-3,-1.5,0,1.5,3)*speed(.75,1.5):terminal_S_arc_envelope_Rmargin1.2")
+        result["route_prior"] = "known_map_route_tangents_exposed_as_shared_candidate_geometry_no_state_projection"
     if config.execution_feedback != "off":
         result["observation"] += "-candidate-witness31x3-execution6-v1"
         result["observation_shape"] = [450]

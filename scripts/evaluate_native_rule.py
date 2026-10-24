@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 from navstack.carla_bridge import BridgeClient, CarlaNavigationEnv
 from navstack.config import EnvConfig
 from navstack.env import rule_action
-from navstack.experiments import write_json, jsonable
+from navstack.experiments import write_json, jsonable, signature
 from navstack.metrics import timing_summary
 from navstack.research import atomic_json, resources_ok
 from scripts.audit_native_method_endpoint import read, sha
@@ -33,7 +33,7 @@ def require_finished_parent(parent):
         raise ValueError('Parent did not complete and clean up normally')
 
 
-def prepare(parent, source_method, wall_seconds=1800):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -46,6 +46,10 @@ def prepare(parent, source_method, wall_seconds=1800):
     env = EnvConfig.from_dict(read(config_path)['env'])
     if env.method != 'H' or not env.road_observation or env.planner.max_seconds is not None:
         raise ValueError('Require the measured-road hierarchical node-budget interface')
+    if catalog not in (None, 'route_frame_terminal'):
+        raise ValueError('Unsupported explicit catalog intervention')
+    if catalog:
+        env = EnvConfig.from_dict({**env.to_dict(), 'subgoal_mode': catalog})
     for name, digest in old['source_hashes'].items():
         if sha(parent/'source'/name) != digest:
             raise ValueError('Parent source changed')
@@ -58,12 +62,23 @@ def prepare(parent, source_method, wall_seconds=1800):
     shutil.copytree(parent/'source', batch/'source', ignore=shutil.ignore_patterns('__pycache__'))
     for name in ('evaluate_native_rule.py', 'audit_native_rule.py', 'watch_existing_pair.py'):
         shutil.copy2(ROOT/'scripts'/name, batch/'source/scripts'/name)
-    shutil.copy2(config_path, batch/'source_config.json')
+    if catalog:
+        # New development version, never mutate or resume the parent's model.
+        for folder in ('navstack', 'scripts', 'tests'):
+            for source in (ROOT/folder).rglob('*'):
+                if source.is_file() and source.suffix in ('.py', '.ps1'):
+                    target = batch/'source'/source.relative_to(ROOT)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(source, target)
+        write_json(batch/'source_config.json', {'env': env.to_dict(), 'signature': signature(env),
+            'scope': 'New route-catalog rule diagnostic; no inherited learned model'})
+    else:
+        shutil.copy2(config_path, batch/'source_config.json')
     now = time.time()
     protocol = {'scope': 'Existing rule-only B3 catalog diagnostic on all four native training roads; no learned-policy, independent-seed or final-confirmation claim',
                 'parent_batch': parent.name, 'parent_root_relative': parent.relative_to(ROOT).as_posix(),
                 'parent_protocol_sha256': sha(parent/'protocol.json'),
-                'source_method': source_method, 'source_config_sha256': sha(config_path),
+                'source_method': source_method, 'source_config_sha256': sha(batch/'source_config.json'),
                 'config': env.to_dict(), 'routes': old['routes'],
                 'rule': 'existing_navstack.env.rule_action',
                 'rule_limitation': 'Existing ego-arc heuristic uses endpoint and primitive checks; do not assume it is the strongest possible B3',
@@ -77,6 +92,12 @@ def prepare(parent, source_method, wall_seconds=1800):
                 'training_physics_steps': 0, 'optimizer_updates': 0,
                 'source_hashes': {p.relative_to(batch/'source').as_posix(): sha(p)
                                   for p in (batch/'source').rglob('*') if p.is_file() and p.suffix in ('.py', '.ps1')}}
+    if catalog:
+        protocol.update(scope='Rule-only route-frame catalog development coverage on all four training roads; not learned-policy evidence',
+            catalog_intervention={'from': read(config_path)['env']['subgoal_mode'], 'to': catalog,
+                'parent_config_sha256': sha(config_path), 'new_model_required': True,
+                'shared_information': 'All policies receive known-route candidate geometry; no future actor truth'},
+            rule_limitation='Same connector scoring and up to three bounded candidate searches as goal-frame rule; computation recorded')
     write_json(batch/'protocol.json', protocol)
     write_json(batch/'prepared.json', {'status': 'PREPARED_NOT_STARTED', 'protocol_sha256': sha(batch/'protocol.json')})
     print(batch, flush=True)
@@ -171,5 +192,6 @@ if __name__ == '__main__':
     group.add_argument('--batch')
     parser.add_argument('--source-method', default='H_rollout32')
     parser.add_argument('--wall-seconds', type=int, default=1800)
+    parser.add_argument('--catalog', choices=['route_frame_terminal'])
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog) if args.prepare else run(args.batch)

@@ -64,6 +64,14 @@ class NavigationEnv(gym.Env):
     def reset(self, *, seed=None, options=None):
         super().reset(seed=seed)
         self.world, self.plant, self.goal, self.scenario_name = self._create_episode(options)
+        self.navigation_route = None
+        if self.config.subgoal_mode == "route_frame_terminal":
+            route = getattr(self, "scene_evidence", {}).get("native_layout", {}).get("path")
+            if route is None:
+                raise ValueError("Route catalog needs an explicit known navigation route")
+            self.navigation_route = tuple(tuple(row) for row in route)
+            # Validate before recording an episode or exposing a policy observation.
+            self._route_candidates()
         initial = self.plant.state
         if len(self.world.static) > 20:
             raise ValueError("static-map observation capacity exceeded")
@@ -156,6 +164,8 @@ class NavigationEnv(gym.Env):
         return world, VehiclePlant(self.config.vehicle, initial), goal, name
 
     def decode_action(self, action):
+        if self.config.subgoal_mode == "route_frame_terminal":
+            return self._route_candidates()[int(action)]
         if self.config.subgoal_mode.startswith("goal_frame"):
             from .subgoals import goal_frame_candidates
             return goal_frame_candidates(self.state, self.goal, self.config.vehicle if self.config.subgoal_mode == "goal_frame_terminal" else None)[int(action)]
@@ -163,6 +173,17 @@ class NavigationEnv(gym.Env):
         s = self.state
         co, si = math.cos(s.yaw), math.sin(s.yaw)
         return (s.x + co * x - si * y, s.y + si * x + co * y, wrap(s.yaw + yaw)), speed
+
+    def _route_candidates(self):
+        from .subgoals import route_frame_candidates
+        route = getattr(self, "navigation_route", None)
+        if route is None:
+            raise ValueError("Route catalog needs an explicit known navigation route")
+        candidates = route_frame_candidates(self.state, route, self.config.vehicle)
+        if (math.dist(route[-1][:2], self.goal[:2]) > 1e-5
+                or abs(wrap(route[-1][2]-self.goal[2])) > 1e-5):
+            raise ValueError("Navigation route endpoint differs from task goal")
+        return candidates
 
     def _observation(self):
         s = self.state
@@ -283,7 +304,7 @@ class NavigationEnv(gym.Env):
         target, speed = self.decode_action(action)
         s = self.state
         terminal_prefix = False
-        if self.config.subgoal_mode.startswith("goal_frame") and self.config.parking:
+        if (self.config.subgoal_mode.startswith("goal_frame") or self.config.subgoal_mode == "route_frame_terminal") and self.config.parking:
             terminal_prefix = math.dist(target[:2], self.goal[:2]) < 1e-6
             if (terminal_prefix and math.hypot(s.x-self.goal[0], s.y-self.goal[1]) <= self.config.planner.goal_tolerance
                     and abs(wrap(s.yaw-self.goal[2])) <= self.config.goal_yaw_tolerance):
@@ -657,7 +678,7 @@ def rule_action(env):
     ):
         return 0
     best = (math.inf, 0)
-    if env.config.subgoal_mode.startswith("goal_frame"):
+    if env.config.subgoal_mode.startswith("goal_frame") or env.config.subgoal_mode == "route_frame_terminal":
         from .planning import analytic_connection
         # Strong deterministic comparator: same connector feasibility checks as
         # the planner, no learned action substitution. All cost is charged.

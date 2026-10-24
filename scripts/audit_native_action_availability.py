@@ -37,6 +37,8 @@ def state_references(config, scene, state):
     env.world = World(scene['width'], scene['height'], scene['static'], road=RoadGrid(scene['road_grid']))
     env.plant = VehiclePlant(config.vehicle, VehicleState(**state))
     env.goal = scene['goal']
+    if config.subgoal_mode == 'route_frame_terminal':
+        env.navigation_route = scene['native_layout']['path']
     env.episode = {'plan_times': [], 'plan_failures': 0}
     env._rule_plan_cache = None
     initial_distance = math.dist((state['x'], state['y']), scene['goal'][:2])
