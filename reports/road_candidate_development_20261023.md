@@ -1,5 +1,52 @@
 # Structured road policy development — 2026-10-23
 
+## H100k endpoint and measured failure attribution — 2026-10-24 14:10
+
+H has completed80,000 new controls,82,758 training world ticks,250 optimization
+phases and500 optimizer steps. Its cumulative lineage and charged controls are
+100,160, with626 retained optimizer steps. Actor L2 displacement is1.5831946;
+save/reload is exact. All88 completed training episodes are deadlines. The four
+frozen training-road probes are again **0/4, all deadlines**. Their progress is
+21.2951/0.9936/22.2749/19.6212m and intervention fractions are
+0.0111/0/0.3889/0. These are the same roads used in training, not final test data.
+
+`H/endpoint_raw_audit.json` verifies all83,600 training/evaluation controls,
+including3,724 evaluation world ticks and cumulative optimizer accounting;
+SHA256 `cb65c637dec4509a399bf7350a41512eb2ae29719b6e28f19f98c6a4ceb82842`.
+The measured-start inference audit matches26/2/24/24 to recorded actions.
+Maximum action probabilities remain only0.03282–0.03313, and the training median
+approximate KL is2.6077e-8. Neither parameter change nor some increased progress
+establishes useful task completion or feedback superiority.
+
+`action_learning_diagnostic_v3.json` now binds goal-criterion diagnostics to the
+raw-audited configuration and evaluation-trace hashes. The existing tolerances
+remain0.8m position,0.35rad yaw and0.25m/s speed; no failure is reclassified.
+
+| H training road, zero-based ID | Minimum/final goal distance (m) | Final yaw error (rad) | Unmet final pose criterion | Observed decision behavior |
+|---|---:|---:|---|---|
+| 0 | 3.337 / 3.337 | 0.0216 | Position | 52/90 wait actions; final ten all wait |
+| 1 | 23.354 / 23.354 | 1.1695 | Position and yaw | 85/90 wait actions; final ten all wait |
+| 2 | 0.210 / 0.507 | 0.4076 | Yaw | 35/90 plan failures; final ten choose action22 |
+| 3 | 0.836 / 1.103 | 0.0490 | Position | 54/90 wait actions; final ten all wait |
+
+All final speeds are effectively zero, but no recorded control satisfies all
+pose criteria simultaneously. H0's corresponding final distances are
+3.741/22.750/2.597/9.910m; all four fail position, and road1 also fails yaw.
+H therefore exhibits both voluntary waiting short of the goal and a distinct
+near-goal heading/planning failure. Low intervention on three roads does not
+mean effective navigation. The added diagnostic unit test covers angle wrapping,
+hash drift and preservation of collision priority; six targeted goal/recovery
+tests pass. The previous full regression remains separately recorded below.
+
+B1 began its compatible continuation in the same owned worker after H evaluation.
+At14:10 it had8,370 new controls and26 optimization phases. Its first32 raw
+sampled actions and actual update reproduce exactly (`B1/rollout_update_audit.json`):
+global clipping multiplier0.02548, baseline exact Gaussian KL1.5889e-4, and
+discarded separate-clipping branch KL1.8190e-3. This is not a completed B1
+endpoint or a new independently clipped driving run. The proposed six-arm
+comparison remains unprepared until B1 finishes, audits pass and the owned
+server is cleanly stopped.
+
 ## Gradient-clipping mechanism diagnostic — 2026-10-24
 
 The first actual continuation rollout of H0 and H was reconstructed from saved
@@ -25,6 +72,7 @@ was rerun for H0 as `rollout_update_audit_v5.json` after this extension.
 | H0 later-run | 70,080 | 0.06494 | 7.8506e-8 | 1.1385e-6 |
 | H early-run | 10,240 | 0.32978 | 1.7259e-7 | 6.7371e-7 |
 | H mid-run | 40,000 | 0.33898 | 2.9290e-7 | 1.4942e-6 |
+| H later-run | 70,080 | 0.07139 | 2.9626e-7 | 5.0540e-7 |
 | B1 recovery first rollout | 0 | 0.01140 | 1.9661e-6 | 1.0591e-4 |
 
 B1's probe belongs to the earlier completed
@@ -32,14 +80,20 @@ B1's probe belongs to the earlier completed
 100k continuation segment. Its 32 raw Gaussian samples match the recorded raw
 policy actions exactly; there are 319 physical controls because a terminal action
 ends early. The buffer retains the raw samples while environment behavior uses
-clipped controls. These five additional probes support persistence of critic
+clipped controls. These six additional probes support persistence of critic
 domination beyond the first H/H0 rollout, but the strength varies substantially.
+H's later probe shows only about1.7 times the baseline KL under separate clipping;
+the stronger initial change must not be generalized to every update.
 They are a checkpoint sample, not an estimate over all optimizer updates, and
 cross-method KL values are not driving-performance comparisons. No new CARLA
 controls or trained output models are produced. Recovery/endpoint tests also
 now exercise both ordinary and independent-clipping PPO, verifying algorithm
 class, Adam tensors, normalization and RNG survive save/restore (five targeted
 tests pass; the preceding full regression remains the separately recorded173/5).
+Source `d15b40b2f70c45cc862e6bac2da8ca964864a01f` was pushed and remote-matched.
+Its independent checkout also passes the five targeted tests and reproduces the
+H40k and B1-recovery probes byte-for-byte, recorded in
+`runs/prerelease_20261022/native_road_checkout/runs/native_midrollout_reproduction.json`.
 
 | First-rollout measurement | H0 | H |
 |---|---:|---:|

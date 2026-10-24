@@ -1,3 +1,41 @@
+# H100k complete/audited, B1 live — 2026-10-24 14:10 local
+
+This goal turn made concrete progress: extended exact rollout replay to in-run
+checkpoints, verified ordinary/independent PPO recovery, reproduced H40k and
+B1-recovery diagnostics in the independent environment, and completed/audited the
+actual H100k endpoint. Full goal remains active and incomplete; no research gate
+is met. Read the latest objective attachment before continuing.
+
+Same batch `runs/20261024T050724Z_native_continuation`, worker7156/guard30068 and
+CARLA60980 were OS-revalidated at14:10, guard healthy. H completes80,000 new,
+100,160 cumulative controls,500 new/626 retained optimizer steps,exact reload,
+actorL2change1.5831946. Evaluation0/4,all deadlines; raw audit verifies83,600
+controls, SHA256cb65c637dec4509a399bf7350a41512eb2ae29719b6e28f19f98c6a4ceb82842.
+H0 is also complete at100,160/0of4. B1 is now actually training (8,370 new controls,
+26 phases at14:10), not queued. Deadline remains19:07:25. Do not restart.
+
+H/H0 `action_learning_diagnostic_v3.json` adds measured terminal goal criteria,
+minimum/final distances and action/mode counts, bound to raw audit hashes. H roads
+0/1/3 stop short while repeatedly choosing wait; road2 reachesposition but misses
+yaw tolerance (final0.4076rad versus0.35), with35plan failures. Tolerances and
+failure outcomes remain unchanged. Latest goal/recovery targeted tests6pass;
+last full173/5 belongs to the previous source snapshot.
+
+Source `d15b40b2f70c45cc862e6bac2da8ca964864a01f` is pushed/remote-matched for
+mid-run replay and recovery tests. Independent checkout at that commit passes
+the five recovery tests and rebuilds H40k/B1-parent replay outputs byte-for-byte:
+`runs/prerelease_20261022/native_road_checkout/runs/native_midrollout_reproduction.json`.
+New goal-error diagnostic publication/reproduction must be checked in Git.
+Both `rollout_update_after_40k.json`/`after_70k.json` probes for H0/H reproduce
+exact observations,32actions and original updates. H late KL gain is only~1.7x,
+so do not generalize the initial297x result. Current B1 first-rollout replay also
+matches exactly (320controls); no offline alternative counts as driving.
+
+Next: finish B1, raw endpoint/inference/action audits, normal guard completion and
+owned-server cleanup. Only then prepare/start the registered single-factor
+20k-per-arm six-job clipping experiment. No pair has been prepared or started.
+Keep original baseline source frozen. Prior snapshots below retain provenance.
+
 # Clipping diagnostic published/reproduced; training continues — 2026-10-24 13:53 local
 
 The previous summary turn was a verified wait: worker, guard and CARLA identities

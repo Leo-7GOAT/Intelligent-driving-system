@@ -25,6 +25,45 @@ def quantiles(values):
                     map(float, np.quantile(values, [0, .5, .95, 1]))))
 
 
+def evaluation_goal_errors(folder, audit):
+    """Describe measured goal criteria without reclassifying recorded outcomes."""
+    for name, key in [('config.json','config_sha256'), ('evaluation_trace.jsonl.gz','evaluation_trace_sha256')]:
+        if sha(folder/name) != audit[key]:
+            raise ValueError('Goal diagnostic inputs changed after raw audit')
+    config = read(folder/'config.json')['env']
+    cases = {}
+    with gzip.open(folder/'evaluation_trace.jsonl.gz', 'rt', encoding='utf-8') as stream:
+        for line in stream:
+            row = json.loads(line)
+            info = row['info']
+            goal = info['initial_scenario']['goal']
+            case = cases.setdefault(row['case_id'], {'case_id':row['case_id'],
+                'minimum_goal_distance_m':float('inf'), 'pose_qualified_controls':0,
+                'pose_qualified_without_intervention_controls':0,
+                'action_counts':Counter(), 'mode_counts':Counter(), 'last_ten_policy_actions':[]})
+            case['action_counts'][str(row['policy_action'])] += 1
+            case['mode_counts'][info['mode']] += 1
+            case['last_ten_policy_actions'] = (case['last_ten_policy_actions']+[row['policy_action']])[-10:]
+            for tick in info['trace']:
+                state = tick['state']
+                distance = math.hypot(state['x']-goal[0], state['y']-goal[1])
+                yaw_error = abs(math.atan2(math.sin(state['yaw']-goal[2]),math.cos(state['yaw']-goal[2])))
+                speed = abs(state['v'])
+                unmet = []
+                if distance > config['goal_tolerance']: unmet.append('position')
+                if config['parking'] and speed > config['goal_speed']: unmet.append('speed')
+                if config['parking'] and yaw_error > config['goal_yaw_tolerance']: unmet.append('yaw')
+                case['minimum_goal_distance_m'] = min(case['minimum_goal_distance_m'],distance)
+                case['pose_qualified_controls'] += int(not unmet)
+                case['pose_qualified_without_intervention_controls'] += int(not unmet and not tick['intervention'])
+                case.update(final_goal_distance_m=distance, final_yaw_error_rad=yaw_error,
+                            final_absolute_speed_mps=speed, final_unmet_pose_criteria=unmet)
+            if info['termination_reason']:
+                case['recorded_termination_reason'] = info['termination_reason']
+    return {'scope':'Measured pose criteria only; collision, bounds, intervention and prior control requirements retain their original terminal priority. No outcome is reclassified.',
+            'cases':[cases[key] for key in sorted(cases)]}
+
+
 def analyze(batch, method):
     folder = batch / method
     summary = read(folder / "summary.json")
@@ -97,6 +136,7 @@ def analyze(batch, method):
                     metrics[key].append(value)
     return {"method": method, "training_controls": total, "source_batch": batch.name,
             "raw_audit_sha256": sha(audit_path), "groups": rows,
+            "evaluation_goal_errors":evaluation_goal_errors(folder,audit),
             "optimization_metrics": {key: quantiles(value) for key, value in metrics.items()},
             "categorical_max_entropy": math.log(31) if read(folder / 'config.json')['env']['method'] != 'B1' else None,
             "training_terminations": dict(Counter(e["termination_reason"] for e in episodes.values())),
