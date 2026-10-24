@@ -2,6 +2,23 @@
 
 ## Updated endpoints and live continuation — 2026-10-24
 
+**First 100k endpoint (13:22 local):** H0 has finished this continuation with
+80,000 new controls, 82,758 training world ticks and 500 new optimizer steps;
+the lineage and charged training total are both 100,160, with 626 cumulative
+optimizer steps. Reload is exact. All 88 newly completed training episodes are
+deadlines. Frozen evaluation remains **0/4**, all deadlines. Progress on the four
+roads is 20.8904/1.5977/20.1850/10.8140 m; intervention fractions are
+0.6222/0.9333/0.6000/0.7333. The measured-start action probabilities remain
+near uniform (maximum 0.03252–0.03307). Larger progress on some roads does not
+meet task completion or establish a learned-policy advantage.
+
+The completed H0 segment's raw audit verifies all **83,600** training/evaluation
+controls, with audit SHA256
+`b2b3d2d5c80ad5aae96609afa399317b42938b96f8d2d3a64e0ef5a29976abe6`.
+It also verifies 3,724 evaluation world ticks and the 626-step inherited optimizer
+accounting. H is now training in the same registered worker; B1 is queued.
+Neither is claimed complete at this snapshot.
+
 The original structured-policy H0 and H endpoints each complete 20,160 training
 controls, 20,872 world ticks and 126 optimizer steps. B1's completed recovery
 `20261024T044910Z_native_recovery` adds 9,870 controls, 10,427 world ticks and

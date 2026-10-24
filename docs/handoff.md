@@ -1,4 +1,13 @@
-# Active combined native continuation — 2026-10-24 13:09 local
+# Active combined native continuation — 2026-10-24 13:22 local
+
+H0 is now complete: 80,000 new controls, 100,160 cumulative lineage/charged
+controls, 500 new / 626 cumulative optimizer steps, exact reload. Raw audit
+verifies all 83,600 training/evaluation controls. All 88 new completed training
+episodes and all four frozen evaluation episodes are deadlines (0/4). Progress
+20.8904/1.5977/20.1850/10.8140 m; initial maximum action probabilities only
+0.03252–0.03307. See H0/endpoint_raw_audit.json, action_learning_diagnostic.json
+and initial_inference_audit.json. H has started real optimization; B1 is queued.
+No source or learning hyperparameter was changed inside this frozen batch.
 
 Current batch: `runs/20261024T050724Z_native_continuation`, pointer
 `runs/native_continuation.json`. H0/H/B1 are continuing compatible completed
