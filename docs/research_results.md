@@ -1,5 +1,18 @@
 # Research results and claim boundaries
 
+Latest complete native development evidence (2026-10-24 18:38): all six H0/H/B1
+32/256 rollout arms score0/4, covering639,009 audited training/evaluation controls.
+B1 long improves mean progress from2.203275 to6.637067m but remains unsuccessful;
+H long does not improve progress or success and raises intervention fraction.
+The actual same-low-level B3 diagnostic scores3/4, with1,977 verified controls,
+zero training or optimizer updates, and no interventions. Its fourth road reaches
+a state with no moving references then waits until deadline. Matched initial
+poses/task identities are verified and outputs reproduce independently. See the
+[complete rollout results](../reports/native_rollout_horizon_20261024.md) and
+[B3 result and diagnostic](../reports/native_rule_protocol_20261024.md).
+Neither experiment supplies new independent seeds or held-out confirmation.
+The following descriptions preserve earlier development stages.
+
 The latest native PPO investigation is the
 [rollout horizon development report](../reports/native_rollout_horizon_20261024.md).
 The completed approximately100k native H0/H/B1 checkpoints all score0/4 on the

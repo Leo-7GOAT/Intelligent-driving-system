@@ -1,4 +1,78 @@
-# B1 short endpoint complete and reproduced — 2026-10-24 18:11 local
+# Six-arm rollout complete; native B3 executed — 2026-10-24 18:48 local
+
+Previous goal turn was a verified wait/status summary. This turn is progress:
+completed and audited the last arm, reproduced the complete study, actually ran
+B3, implemented its matched-task/failed-state diagnostic and reproduced it.
+Research goal remains active/incomplete. No agents or frozen learner edits.
+
+**No training or CARLA evaluation is currently running.** At18:48 an OS process
+inspection found no old worker/guard/server identities and no native training,
+rule-evaluation or CARLA Shipping process. Both batches completed normally:
+
+- `runs/20261024T075110Z_native_rollout_pair`: summary complete, worker57580 exit0,
+  guard35276 reason null, owned server62284 stopped after empty-world probe.
+- `runs/20261024T103653Z_native_rule`: worker16572 exit0, guard25516 reason null,
+  owned server59536 stopped. Matched0.9.15 initial probe; RPC2100..2102 released.
+
+Do not resume either completed batch or interpret stale heartbeat files as live.
+The old `runs/native_rollout_pair.json` pointer identifies the completed study;
+there is no global B3 pointer. A new experiment needs a new versioned batch.
+
+Final B1_256:104,863 new training controls,10,496 decisions,41 phases,656 Adam,
+225,000 retained lineage/234,545 charged lower bound;9,545 inherited unretained
+controls and unknown ancestor tail remain disclosed. Retained Adam1,414.
+Training109,047 worldticks/4,184 reset;134 episodes=111 deadlines+23 bounds,
+zero successes;210 unfinished controls. Wall1,672.64s, exactreload, actor change
+1.722352. Frozen0/4 all deadlines,3,600 controls/3,724 ticks, zero interventions,
+mean progress6.637067m (short2.203275m). Long-short progress+4.433792m, controls
++2,230. All108,463 controls audited;134 returns reconstruct (error<=3.50e-14).
+Initial longitudinal means saturate but steering remains within bounds.
+
+Complete six-arm analysis covers639,009 training/eval controls;617,409 new
+training controls. Every arm0/4; H0 meanprogress1.840831/1.149521m, H
+14.987119/14.939079m, B1 2.203275/6.637067m. All paired measured starts identical.
+`analysis/rollout_pair.json` SHAf726825c5bc9d913a58f7911152bbef6d7e71a4fc5dd36610b6f99192524f466;
+full24-panel `analysis/frozen_endpoints.png` SHA7daf78a8c4f560d9bb2ebc4e6f3ef31f15aa18b3d4b2c19c070df01b648cde3f,
+visually inspected. Independent checkout31fc769 reproduces7files (B1 long raw,
+action,returns,initial inference,fullpair,fullfigure,B3raw) byte-for-byte:
+`runs/prerelease_20261022/native_road_checkout/runs/native_rollout_complete_reproduction/reproduction.json`.
+No new controls or downloaded asset from reproduction.
+
+B3 actual result3/4: roads0/1/2 succeed in368/371/338controls, road3 deadline900.
+Total1,977controls/123reset/2,100worldticks,39.94s wall,zero training or optimizer
+updates. No plan/MPC failures or interventions. Meanprogress22.210610m.
+All measured task identities and initial poses match H32, unchanged frozen
+navstack/config/calibration. This existing heuristic is not assumed strong B3.
+Raw audit SHAc9df6f6765b204be4cfe30beaa36bd82ee7877ac261c319f8531ae7610611e46.
+Road3:35 reference decisions then55 waits. At firstwait(decision35) distance
+1.946988m, atlast1.968249m; both states have zero moving references after all30
+production candidate queries. Finalyawerror.022486rad, speed~0. Search failure
+does not prove initial task infeasible. Waiting yields zero interventions despite
+task failure. B3 success on3roads is evidence against attributing every PPO
+failure to low-level incapacity, and is not PPO success.
+
+New source6d862b1 `scripts/diagnose_native_rule_endpoint.py` validates parent,
+shared production source/config, raw traces, measured tasks, and failed-state
+queries.13 targeted tests pass locally/independently. Independent checkout now
+clean at6d862b1, diagnostic byte-identical SHA375c72f428bb9ddc930c07fcc756ab573bee5e88a679e61e5365a5fdd4978ccf.
+Separate receipt beside the seven-file receipt: `rule_diagnostic_reproduction.json`.
+Last full suite remains203passed5skipped at ac59741; no new full-suite claim.
+Publication preflight389files/no findings; new documentation commit follows.
+
+Next development should address candidate coverage/approach selection rather
+than repeat the completed clipping/rollout trials. Inspect existing route-frame
+candidate helpers and terminal-prefix evidence before choosing the smallest
+new interface version; do not present them as untried code or a proven cure.
+Any candidate/feedback change requires corresponding H0/rule capabilities,
+explicit compute accounting, new configuration and retraining, with B1 task and
+information parity. Do not hard-mask by bounded goal-connector failure: prior
+case1 diagnostics show absent connectors even where the executed B3 succeeds.
+First establish the changed catalog's real closed-loop coverage, then test
+learned high-level selection; no such new batch is started yet. B1 is still not
+a healthy full-task baseline. Five independent seeds, new final conditions,
+remaining baselines/ablations and all research gates remain open.
+
+# Historical snapshot: B1 short endpoint complete — 2026-10-24 18:11 local
 
 Previous goal turn was a verified wait. This turn completes B1 short training,
 evaluation, raw audit, diagnostics and independent reproduction. Goal remains

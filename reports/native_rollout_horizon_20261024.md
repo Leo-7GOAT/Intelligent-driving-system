@@ -1,5 +1,65 @@
 # Native PPO rollout horizon development study
 
+## Complete six-arm result — 2026-10-24 18:35 local
+
+Batch `runs/20261024T075110Z_native_rollout_pair` completed normally. The worker
+exited zero; the guard verified an empty world and stopped only its owned server.
+All six registered arms and all 24 frozen training-road outcomes are retained.
+
+| Arm | New training controls | Frozen successes | Mean progress (m) | Mean intervention fraction |
+|---|---:|---:|---:|---:|
+| H0, rollout 32 | 102,400 | 0/4 | 1.840831 | 0.913889 |
+| H0, rollout 256 | 102,400 | 0/4 | 1.149521 | 0.963889 |
+| H, rollout 32 | 102,713 | 0/4 | 14.987119 | 0 |
+| H, rollout 256 | 102,400 | 0/4 | 14.939079 | 0.483333 |
+| B1, rollout 32 | 102,633 | 0/4 | 2.203275 | 0 |
+| B1, rollout 256 | 104,863 | 0/4 | 6.637067 | 0 |
+
+Every evaluation outcome is a deadline. The aggregate raw audit covers **639,009
+training/evaluation controls**, including **617,409 new training controls** and
+21,600 evaluation controls. Reset ticks and inherited interactions are separate.
+Within each method, both forks start from identical checkpoint bytes and measured
+evaluation poses; all position/yaw/speed start differences are zero.
+
+Long minus short mean progress is -0.691310 m for H0, -0.048040 m for H and
++4.433792 m for B1. Longer rollouts do not improve any success count. B1's progress
+improves, but it still does not complete a task; it receives 2,230 more actual
+controls because collection finishes whole rollouts. Training bounds violations
+are 18/128 completed episodes for B1 short and 23/134 for B1 long. These data do
+not establish a safety improvement or a repaired flat baseline. There is no
+independent-seed interval for these seed-11 same-parent forks.
+
+B1 long performs 10,496 decisions, 41 optimization phases and 656 Adam steps in
+1,672.64 seconds. Its retained lineage is 225,000 controls; charged interaction
+is at least 234,545, including 9,545 known inherited controls absent from the
+checkpoint, with an unknown unflushed ancestor tail still disclosed. Retained
+Adam steps total 1,414. All 108,463 segment training/evaluation controls match raw
+frames. Training has 111 deadlines, 23 bounds violations and no successes, plus
+210 controls in its unfinished episode. Reload is exact; actor L2 change is
+1.722352. All 134 completed returns reconstruct, with potential identity error
+at most 3.50e-14. Four initial actions reproduce exactly: longitudinal output
+still clips to +1/-1/+1/+1, while steering is within bounds. This is initial
+inference verification, not a whole-policy replay or proof of the failure cause.
+
+Authoritative outputs within the batch:
+
+- `analysis/rollout_pair.json`: SHA256 `f726825c5bc9d913a58f7911152bbef6d7e71a4fc5dd36610b6f99192524f466`.
+- `analysis/frozen_endpoints.png`: all 24 trajectories, visually inspected; SHA256 `7daf78a8c4f560d9bb2ebc4e6f3ef31f15aa18b3d4b2c19c070df01b648cde3f`.
+- `B1_rollout256/endpoint_raw_audit.json`: SHA256 `2536ab95f6cc98bfddb99f743a91f1e2dd874ca13ba1a29b4751bd7432af96ae`.
+
+The independent clean checkout at `31fc769` reproduces seven files byte-for-byte:
+B1 long raw audit, action diagnostic, returns, initial inference, full pair JSON,
+full figure and the subsequent B3 raw audit. Its receipt is
+`runs/prerelease_20261022/native_road_checkout/runs/native_rollout_complete_reproduction/reproduction.json`.
+This is local archived-data reproduction, not a newly downloaded release asset.
+
+The subsequent [native rule diagnostic](native_rule_protocol_20261024.md) actually
+completes 3/4 with unchanged H low-level configuration and measured starts. It
+confirms catalog/low-level task completion for three conditions without learned
+PPO selection. It does not establish PPO value or satisfy the strong-B3 final
+comparison. Research acceptance remains incomplete. Earlier running-state
+paragraphs below are historical snapshots superseded by this complete result.
+
 This is a seed-11 development investigation on four previously used training
 roads. It is not independent confirmation, a new seed, or evidence of a
 hierarchical advantage. The research acceptance targets remain unchanged.

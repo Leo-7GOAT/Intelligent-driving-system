@@ -1,5 +1,27 @@
 # Failure analysis
 
+The completed native rollout study leaves every learned arm at0/4. B1 long
+improves mean progress to6.637067m (short2.203275m) but records23 training bounds
+violations in134 completed episodes, versus18/128 for short. Its initial steering
+means are within bounds while longitudinal means still saturate; saturation alone
+does not explain all failures. Whole-rollout collection gives long2,230 additional
+controls, explicitly included in the comparison.
+
+Actual rule-only B3 on the same H interface and exact measured tasks succeeds on
+roads0/1/2 without planning/MPC failures or interventions. Therefore those learned
+failures cannot be explained solely by an incapable low level or action catalog.
+On road3, B3 executes35 reference decisions then55 waits. At the first wait it is
+1.946988m from the goal; all30 moving actions fail production reference generation.
+The final pose is1.968249m away with0.022486rad yaw error. This distinguishes
+selection/learning failure from loss of candidate coverage along an approach.
+It does not prove the original task globally infeasible, nor that route-frame
+candidates or a continuation filter will repair it. Any changed candidate or
+feedback interface must be versioned, retrained and compared against a rule
+selector sharing those capabilities. Full evidence and reproduction:
+[native rule diagnostic](../reports/native_rule_protocol_20261024.md).
+
+The following short-arm diagnosis is retained as its historical endpoint.
+
 The native B1 short-rollout endpoint completes 102,633 new controls at 0/4 frozen
 training-road successes, with mean progress 2.203275 m. Training records 110
 deadlines and 18 bounds violations, no successes. All four frozen cases end
