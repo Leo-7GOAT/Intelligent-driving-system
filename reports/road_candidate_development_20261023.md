@@ -37,6 +37,11 @@ near-goal heading/planning failure. Low intervention on three roads does not
 mean effective navigation. The added diagnostic unit test covers angle wrapping,
 hash drift and preservation of collision priority; six targeted goal/recovery
 tests pass. The previous full regression remains separately recorded below.
+Source `38dc67353fcf0d619849bee667eabece7d9c9017` is pushed and remote-matched.
+The independent checkout passes the same six targeted tests and reconstructs
+H's complete83,600-control raw audit and v3 diagnostic byte-for-byte; receipt
+`runs/prerelease_20261022/native_road_checkout/runs/native_H100k_reproduction.json`.
+This is a rebuild from local artifacts, not additional CARLA driving.
 
 B1 began its compatible continuation in the same owned worker after H evaluation.
 At14:10 it had8,370 new controls and26 optimization phases. Its first32 raw

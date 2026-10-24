@@ -25,7 +25,11 @@ Source `d15b40b2f70c45cc862e6bac2da8ca964864a01f` is pushed/remote-matched for
 mid-run replay and recovery tests. Independent checkout at that commit passes
 the five recovery tests and rebuilds H40k/B1-parent replay outputs byte-for-byte:
 `runs/prerelease_20261022/native_road_checkout/runs/native_midrollout_reproduction.json`.
-New goal-error diagnostic publication/reproduction must be checked in Git.
+Goal-error source38dc67353fcf0d619849bee667eabece7d9c9017 is pushed and
+remote-matched. Its independent checkout passes six targeted tests and rebuilds
+H's83,600-control raw audit and action/goal diagnostic byte-for-byte; receipt:
+`runs/prerelease_20261022/native_road_checkout/runs/native_H100k_reproduction.json`.
+B1 advanced to13,406 new controls/42phases at14:13, guard healthy, disk40.48GiB.
 Both `rollout_update_after_40k.json`/`after_70k.json` probes for H0/H reproduce
 exact observations,32actions and original updates. H late KL gain is only~1.7x,
 so do not generalize the initial297x result. Current B1 first-rollout replay also
