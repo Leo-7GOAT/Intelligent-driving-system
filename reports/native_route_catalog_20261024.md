@@ -79,3 +79,17 @@ absent and still allows bounded search. The penalty is not tuned on final tests.
 All other route-catalog conditions and the prospective four-road coverage gate
 remain unchanged. The next diagnostic is a new batch; the failed route-only
 result is retained. Both extra observation and rule selection costs are measured.
+
+## Continuation execution status — 19:18 local
+
+Sourcef5108d0 passes232 full regression tests,5conditional skips and2existing
+deprecation warnings;12 targeted tests also pass. Actual continuation batch
+`runs/20261024T110908Z_native_rule` is running under its owned process guard.
+First three conditions have completed; fourth is still recording. No fresh PPO
+batch has started. Current identities and deadline are in the handoff.
+
+The failed route-only raw audit independently reproduces atd307fb1, SHA256
+`fefc82ede87a5e93c9272e2b1023bcf5ac75dc4df9e8e0f95d926782e416cd87`.
+Earlier fixed-reference4/4 control used1.0m/s and retained a complete reference;
+the catalog rule commonly chooses1.5m/s and replans every0.5s. Those successes
+cannot isolate speed, tracking and replanning effects in the present failures.

@@ -1,4 +1,70 @@
-# Six-arm rollout complete; native B3 executed — 2026-10-24 18:48 local
+# Route-catalog iterations; continuation rule LIVE — 2026-10-24 19:18 local
+
+Previous goal turn was progress. This turn implements versioned route candidates,
+executes route-only B3, then implements/starts a continuation-feedback B3 variant.
+Goal active/incomplete. No new PPO training is running. Do not restart live B3.
+
+LIVE `runs/20261024T110908Z_native_rule`, frozen sourcef5108d0:
+worker56684 creation19:09:43.986594 (shim764), guard50760 creation19:09:54.294798,
+Shipping51628 creation19:09:23.6916966. Exec sessions worker39538/guard33251/
+launcher28617. Worker identity is recorded inbatch/worker_process.json.
+RPC2100..2102, matching0.9.15 empty-world probe; deadline19:39:08. Limits30min,
+disk12GiB/RAM4GiB/GPU85C/no-progress300s/zero retries. Guard owns cleanup.
+At19:18:21 case3 had55decisions/1,660controls; same OS identities/healthyguard.
+First three roads succeed; fourth has begun waiting. Final outcome remains
+unrecorded/unaudited. Do not treat open-gzip partial observations as final results.
+
+New `route_frame_terminal` activates the existing route-tangent proposal inenv:
+6/9/12m lookahead,5offsets,2speeds+wait; explicit route endpoint must matchgoal.
+Requires common candidate/road input; H/B1 receive identical4701inputs and B1
+remains direct control. Onlyreference targets are projected; measured state never
+moves. Terminal goal targets use existing stopping-reference semantics. Signature
+changes prohibit old weights/normalizer reuse. Frozen old sources are untouched.
+
+Route-only batch `runs/20261024T105443Z_native_rule` at757b08f completes3/4:
+controls359/381/353/900=1,993, plus123reset=2,116worldticks. Worker24192/guard50552/
+server31232 exit normally with owned cleanup. Firstwait onroad3 isdecision25,
+near(19.753734,11.842357,-.965868), goal(21.645828,6,-1.047673).
+Raw audit SHA fefc82ede87a5e93c9272e2b1023bcf5ac75dc4df9e8e0f95d926782e416cd87.
+Independent checkoutd307fb1 reproduces raw audit byte-identically; receipt:
+`runs/prerelease_20261022/native_road_checkout/runs/route_only_reproduction.json`.
+It passes23targeted route/evaluator/staging tests; root757b08f fullsuite228pass/
+5skip. Rule road1 fullcycleP95~2.7056s, not realtime. Actual staging against this
+parent was rejected by preregistered4/4coverage gate; logs retained, no training
+folder or `runs/native_route_learning.json` pointer created.
+
+`scripts/prepare_native_route_learning.py` (d307fb1) requires normal cleanup,
+rawaudit and4/4, then stages fresh H0/H/B1seed11 at20,480controls each,32actions/
+rollout,batch32,2epochs,globalclip,6hguard. No recovery weights. H config must
+exactly match demonstratedconfig; source/calibration copied fromcoveragebatch.
+It refuses duplicate registration. Preparing is not starting.
+
+Exploratory console queries of route-only case3 atdecisions0/1/2 select26 with
+target-goal witnesses. Decisions13/17/18 select28/18/22 without such witnesses,
+while alternatives5/6/15/16/25/26,5/6/15/16,5/6/15/16have them. These were offline
+production queries, not a saved independently reproduced sequence diagnostic.
+
+Continuation sourcef5108d0 replaces candidate third(timeproxy) feedback with a
+sufficient target-goal connector, including exactgoalpose with a free footprint.
+Oldproxy is derivable fromsharedgeometry/speed. H/B1 share the new input; H0
+`continuation_ablated` zeroes all99feedback values, not just the new component.
+Distinct signatures; finite5m rule penalty forabsentwitness, no action mask.
+All-absent witnesses retain original ordering/fallback. Fullsuite232pass5skip/
+2existingwarnings (50.03s);12targeted pass; preflight393files/no findings.
+f5108d0 is pushed. Independent checkout now clean atf5108d0; new continuation
+tests/raw reconstruction pending until current evaluation ends.
+
+Next: finish/audit currentB3 and normalcleanup. If4/4, prepare new PPO batch and
+actually launch frozen native_road_learning with explicit NAVSTACK_CARLA_PYTHON,
+owned launcher andguard. Ifnot4/4, retain failure; do not launch gated training.
+Current partialtracecase3decision37 waits near(19.590615,13.195100,-.916848).
+Investigate speed and replanning separately: earlier4/4fixed-reference
+native_curve_control uses1.0m/s and a retained complete registeredpath; current
+rule commonly selects1.5m/s and replans every.5s. They are not matched except for
+selector. Do not infer a unique root cause or add a hard connector mask.
+See `reports/native_route_catalog_20261024.md`; all final research gates remain.
+
+# Historical snapshot: six-arm rollout complete — 2026-10-24 18:48 local
 
 Previous goal turn was a verified wait/status summary. This turn is progress:
 completed and audited the last arm, reproduced the complete study, actually ran
