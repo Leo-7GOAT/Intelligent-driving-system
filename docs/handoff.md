@@ -1,4 +1,37 @@
-# H short endpoint audited; H long running — 2026-10-24 17:11 local
+# Partial figure reproduced; rule raw verifier ready — 2026-10-24 17:18 local
+
+Previous turn was progress (H32 actual endpoint/audits and B3 evaluator). This
+turn adds native rule frame verification and produces/reproduces the complete
+12-case figure for the three finished arms. Goal remains active/incomplete;
+no agents, no changed frozen learner and no extra CARLA owner.
+
+Same live batch/pointer and processes. OS worker57580/guard35276/CARLA62284
+revalidated17:18:58 with original creation times15:52:46/15:53:26/15:52:11.
+H_rollout256=45,350controls/4,535decisions/17phases at17:18:57; guardhealthy,
+deadline21:51:11. H0_32/H0_256/H_32complete, bothB1armsqueued. Do not restart.
+
+Source362a11a adds `audit_native_rule.py` and freezes it with future rule batches.
+Checks one complete bridge stream, every applied frame/state/command/IMU and
+episode, all cases/routes, terminal metrics, source/calibration/config hashes,
+zero training/update costs and timing summaries. Eight verifier/evaluator tests
+pass locally and independently; synthetic tests, no actual B3 result. **B3 is
+still not prepared or launched.** Parent completion/cleanup gate remains.
+
+Plotter supports explicit partial arms, retains all cases per arm and lists
+omissions. Default still requires all registered arms and preserves published
+fullfigure rendering: clippingfigure byte-identicalSHA847e27ff7bf5a5e7136117f2e83eb71ce38b43f7284811ce8a471ef701b00014.
+Livebatch `analysis/first_three_endpoints_v2.png` visually checked; all12failures
+included, labeled PARTIAL3/6. Independentcheckoutcleanat362a11a reproducesimage
+byte-identicallySHA589f39c1b7e592c48b1939171d08e5edcc39309da556389ec45f91c44de98937;
+receipt `runs/native_partial_plot_reproduction/reproduction.json`. Earlier
+first_three_endpoints.png preserved; v2 has final source-hash provenance.
+
+Next remains actual H256/B1 completion and audits/fullpairedanalysis, then
+ownedservercleanup and actual same-interface B3 run usingevaluate_native_rule.py,
+followed bynewrawverifier. Do not repeat finished H0/H32analyses or releases.
+No research acceptance gate is satisfied by the new figure or synthetic tests.
+
+# Historical snapshot: H short endpoint — 2026-10-24 17:11 local
 
 Previous turn was progress (complete H0 sequence reconstruction and independent
 reproduction). This turn finishes/audits actual H32 training/evaluation, reproduces

@@ -59,3 +59,24 @@ applied-control accounting and rule computation timings, plus existing cleanup
 failure receipts. The fixtures use lightweight dynamics and are not CARLA
 performance evidence. Receipts are `runs/native_rule_runner_regression.xml` in
 each checkout. No new scientific result is claimed from these tests.
+
+## Raw-frame verification before reporting a result
+
+Source `362a11a` adds `scripts/audit_native_rule.py`, which preparation also
+copies into the frozen diagnostic source. After actual execution completes:
+
+```powershell
+.venv\Scripts\python.exe scripts/audit_native_rule.py --batch BATCH
+```
+
+The verifier requires all registered cases and exactly one complete bridge
+stream, binds every reported control to its measured state/command/frame/IMU
+and episode, checks terminal metrics against the trace, and accounts for every
+control and reset tick. It also verifies frozen source/calibration/configuration,
+scene identities, zero training and optimizer costs, and recomputed timing
+summaries from per-decision measurements. It rejects altered states, duplicate
+post-terminal records, omitted cases, altered timing summaries and invented
+training costs. Six synthetic verifier tests plus the two evaluator tests pass
+locally and independently (8 total). These are fault-injection fixtures, not an
+actual native B3 result. The diagnostic remains unprepared and unstarted while
+the current PPO batch owns CARLA.
