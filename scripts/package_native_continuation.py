@@ -111,7 +111,7 @@ def package(batch, output):
             raise ValueError('Endpoint raw audit no longer matches: '+method)
         endpoint_audits[method]=rebuilt
     selected=set(batch.glob('*.json'))
-    for name in ('source','calibration','resume',*methods):
+    for name in ('source','calibration','resume','analysis',*methods):
         selected.update(p for p in (batch/name).rglob('*') if p.is_file()
                         and '__pycache__' not in p.parts and p.suffix in SUFFIXES)
     selected.update(p for p in (batch/'infrastructure').iterdir() if p.is_file() and p.suffix in ('.json','.gz'))
