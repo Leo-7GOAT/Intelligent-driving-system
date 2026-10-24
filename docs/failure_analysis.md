@@ -1,5 +1,17 @@
 # Failure analysis
 
+The native B1 short-rollout endpoint completes 102,633 new controls at 0/4 frozen
+training-road successes, with mean progress 2.203275 m. Training records 110
+deadlines and 18 bounds violations, no successes. All four frozen cases end
+nearly stationary outside the goal region, with zero interventions; case 1 has
+zero progress and starts with maximum normalized braking. Initial Gaussian means
+exceed both action bounds in every case, and the clipped saved-policy actions
+reproduce. All 106,233 controls, 128 returns, four initial actions and endpoint
+analysis reproduce independently. This is saturation/immobility evidence, not
+proof of a causal defect or a healthy baseline. Earlier bounded-mean lightweight
+trials remain relevant negative/limited evidence, not native validation. The
+B1 long rollout is running; do not claim the complete B1 pair yet.
+
 Complete recorded-decision reconstruction now separates the onset of reference
 loss from terminal-only observations. H32 first has no moving reference at
 zero-based decisions 42/37/37/22; H256 at 40/37/never/22. In cases 0, 2 and 3,

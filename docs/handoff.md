@@ -1,4 +1,46 @@
-# Full H continuation-witness diagnosis reproduced — 2026-10-24 17:53 local
+# B1 short endpoint complete and reproduced — 2026-10-24 18:11 local
+
+Previous goal turn was a verified wait. This turn completes B1 short training,
+evaluation, raw audit, diagnostics and independent reproduction. Goal remains
+active/incomplete. No code/learner changes or agents; this turn updates reports.
+
+Same batch `runs/20261024T075110Z_native_rollout_pair`, pointer
+`runs/native_rollout_pair.json`. Actual worker57580/guard35276/CARLA62284 verified
+with original creation times; B1_rollout256 automatically started after the
+short evaluation and was at10,719controls/1,075actions/4phases at18:10:10.
+It is the last remaining training arm; do not restart. Deadline21:51:11 unchanged.
+
+B1_32: 102,633newcontrols (233overshoot),10,272decisions,321phases,642Adamsteps;
+222,770lineage/232,315charged lower bound,9,545known inherited controls absent
+from the checkpoint and unknown unflushed ancestor tail retained. Total retained
+Adam1,400. Training106,631worldticks/reset3,998; wall1,762.17s; actorL2change
+2.961840,exactreload. 128completeepisodes=110deadlines+18bounds,0successes;
+unfinished490controls. Frozen evaluation0/4all deadlines,3,600controls/3,724ticks,
+zero interventions, meanprogress2.203275m. All106,233controls raw-frame audited.
+
+Per-case progress5.180522/0/1.965038/1.667540m; finaldistance19.451258/24.347595/
+20.817321/19.056279m; yawerror.144628/1.047028/.886807/1.460454rad. No pose-qualified
+control; final speeds nearlyzero. Four initial actions exactly reproduce: [1,1],
+[-1,-1],[1,1],[1,1], both Gaussian means outside bounds in each case. This is
+initial-action inference only, not full sequence verification or execution.
+128returns reconstruct; terminal-zero PBRS identity error3.50e-14. Earlier
+bounded-mean lightweight trials are not a novel untried fix or native proof.
+
+Independent clean checkout31fc769 reproduces fivefiles byte-for-byte:
+rawaudit, actiondiagnostic, episodereturns, policyinference, endpointanalysis.
+Receipt checkout/runs/native_B1_rollout32_reproduction/reproduction.json.
+RawSHAe23611efb5aa8fcf64a14d2002558e23f25daa49ae9789cf07aec0022f0f62a4;
+analysisSHA602c1915e755afb0f1d50f8c2928ad021e8ea9eada52d6bb9a34f4183c599d56.
+No extra simulator controls, new policy updates or downloaded asset. No code
+change or new full-regression claim. All analysis sessions exited0.
+
+Next: complete/audit B1_256, action/return/start-inference diagnostics, B1 pair,
+full H0/H/B1 rollout report and figure. Only then normal batch/guard/owned-server
+cleanup and actual native rule B3. B3 remains unprepared/unstarted. Do not confuse
+four reused training roads or same-parent seed11forks with independent confirmation.
+All research acceptance gates remain open.
+
+# Historical snapshot: H continuation-witness diagnosis — 2026-10-24 17:53 local
 
 Previous goal turn was progress (completed H pair). This turn implements and
 tests an offline sequence diagnostic and executes/reproduces both H histories.

@@ -476,3 +476,56 @@ Both complete reports reproduce byte-for-byte in the independent checkout at
 Receipt: `runs/native_continuation_witness_reproduction/reproduction.json` in
 that checkout. This is reproduction of local archived evidence; there is no
 new release download, physical counterfactual execution or learned improvement.
+
+## Completed B1 short-rollout endpoint
+
+B1_rollout32 completes **102,633** new controls, including 233 rollout overshoot,
+10,272 decisions, 321 optimization phases and 642 Adam steps. Its retained
+training lineage is 222,770 controls; the charged interaction lower bound is
+232,315, including 9,545 inherited controls absent from the retained checkpoint.
+The unknown unflushed ancestor tail remains explicit. Total retained Adam steps
+are 1,400. Training uses 106,631 world ticks, including 3,998 reset ticks, and
+1,762.17 seconds of wall time. Actor L2 change is 2.961840; model reload is exact.
+
+All 128 completed training episodes fail: 110 deadlines and 18 bounds violations.
+The final unfinished episode contributes 490 controls. Frozen evaluation also
+scores **0/4**, all deadlines, with zero interventions. Mean progress is
+**2.203275 m**. All four final speeds are numerically near zero and no physical
+control meets the complete goal-pose criteria. Zero evaluation collisions or
+interventions therefore do not establish useful safe completion.
+
+| Case | Progress (m) | Final goal distance (m) | Final heading error (rad) | Initial normalized longitudinal / steering action |
+|---|---:|---:|---:|---|
+| 0 | 5.180522 | 19.451258 | 0.144628 | +1 / +1 |
+| 1 | 0 | 24.347595 | 1.047028 | -1 / -1 |
+| 2 | 1.965038 | 20.817321 | 0.886807 | +1 / +1 |
+| 3 | 1.667540 | 19.056279 | 1.460454 | +1 / +1 |
+
+All four initial actions reproduce from the frozen saved policy and recorded
+initial observations without changing normalization. This is an initial-action
+check, not full B1 sequence inference or physical re-execution. Initial Gaussian
+means lie beyond the action bounds in both dimensions: longitudinal means are
+2.55584, -2.73057, 2.02797 and 2.61782; steering means are 1.49000, -1.62397,
+1.03204 and 1.50884. SB3 clips these deterministic outputs to the listed controls.
+Case 1 applies maximum normalized braking immediately. This documents action
+saturation and immobility, not a causal attribution or a newly validated fix.
+Earlier bounded-mean lightweight experiments are already recorded in
+[recovery and stability](recovery_stability_20261023.md); they must not be
+presented as an untried cure or as proof of native-road performance.
+
+The raw audit binds all **106,233** training/evaluation controls to CARLA frames;
+evaluation uses 3,600 controls and 3,724 world ticks. All 128 physical episode
+returns reconstruct, with terminal-zero potential identity error below 3.50e-14.
+Evidence is in `B1_rollout32/{endpoint_raw_audit,action_learning_diagnostic,
+episode_return_diagnostic,policy_inference}.json` and
+`analysis/B1_rollout32_endpoint_analysis.json`. B1_rollout256 is now training;
+there is no completed B1 pair or full three-method rollout result yet.
+
+Independent checkout at `31fc769` reproduces all five endpoint/diagnostic files
+byte-for-byte. Receipt: `runs/native_B1_rollout32_reproduction/reproduction.json`
+in that checkout. Raw-audit SHA256:
+`e23611efb5aa8fcf64a14d2002558e23f25daa49ae9789cf07aec0022f0f62a4`;
+endpoint-analysis SHA256:
+`602c1915e755afb0f1d50f8c2928ad021e8ea9eada52d6bb9a34f4183c599d56`.
+No additional controls or optimizer updates were consumed. This does not make
+B1 a healthy full-task baseline or establish a hierarchical advantage.
