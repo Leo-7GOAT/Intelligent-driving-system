@@ -12,6 +12,7 @@ import time
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from stable_baselines3 import PPO
+from navstack.independent_clip_ppo import load_ppo
 import numpy as np
 import pickle
 import torch
@@ -176,8 +177,8 @@ def verified_endpoint(folder, target):
     if read(checkpoint/'config.json')!=read(folder/'config.json'):
         raise ValueError('Checkpoint configuration mismatch')
     # ZIP timestamps may differ; compare the complete tensors and optimizer state.
-    final=PPO.load(folder/'model.zip',device='cpu')
-    saved=PPO.load(checkpoint/'model.zip',device='cpu')
+    final=load_ppo(folder/'model.zip',device='cpu')
+    saved=load_ppo(checkpoint/'model.zip',device='cpu')
     if not _equal(final.policy.state_dict(),saved.policy.state_dict()) or not _equal(final.policy.optimizer.state_dict(),saved.policy.optimizer.state_dict()):
         raise ValueError('Checkpoint weights or optimizer differ from evaluated endpoint')
     if final.num_timesteps!=saved.num_timesteps or final._n_updates!=saved._n_updates:
@@ -315,7 +316,9 @@ def prepare(parent,target=100000,wall_seconds=7200):
             # continuation preparer and process lifecycle helpers are refreshed.
             for name in ORCHESTRATION_FILES:
                 shutil.copy2(ROOT/'scripts'/name,batch/'source/scripts'/name)
+            shutil.copy2(ROOT/'navstack/independent_clip_ppo.py',batch/'source/navstack/independent_clip_ppo.py')
             hashes=dict(old['source_hashes'])
+            hashes['navstack/independent_clip_ppo.py']=sha(batch/'source/navstack/independent_clip_ppo.py')
             for name in ORCHESTRATION_FILES:
                 relative='scripts/'+name
                 hashes[relative]=sha(batch/'source'/relative)

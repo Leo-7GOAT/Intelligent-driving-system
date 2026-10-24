@@ -343,6 +343,7 @@ def prepare_from_manifest(manifest_path: Path, wall_seconds: int = 7200,
                             ignore=shutil.ignore_patterns("__pycache__"))
             shutil.copytree(runtime_parent / "calibration", batch / "calibration")
             (batch / "source" / "scripts").mkdir(parents=True, exist_ok=True)
+            shutil.copy2(root / "navstack/independent_clip_ppo.py", batch / "source/navstack/independent_clip_ppo.py")
             for name in (*ORCHESTRATION_FILES, "combine_native_endpoints.py",
                          "audit_native_method_endpoint.py"):
                 shutil.copy2(root / "scripts" / name, batch / "source" / "scripts" / name)

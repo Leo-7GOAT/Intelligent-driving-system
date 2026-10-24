@@ -60,14 +60,15 @@ def prepare(parent, wall_seconds, rpc_port=None):
     # lifecycle files are frozen too because a successful worker exit alone is
     # not evidence that the owned simulator was safely released.
     shutil.copy2(ROOT/'navstack/carla_bridge.py',batch/'source/navstack/carla_bridge.py')
+    shutil.copy2(ROOT/'navstack/independent_clip_ppo.py',batch/'source/navstack/independent_clip_ppo.py')
     for name in ['native_road_learning.py','prepare_native_recovery.py','watch_existing_pair.py','carla_bridge37.py']:
         shutil.copy2(ROOT/'scripts'/name,batch/'source/scripts'/name)
     for name in ['start_carla.ps1','diagnose_carla_start.ps1','run_carla_owned_foreground.ps1','stop_owned_carla.ps1']:
         shutil.copy2(ROOT/'scripts'/name,batch/'source/scripts'/name)
     shutil.copy2(parent/'interruption_audit.json',batch/'parent_interruption_audit.json')
     recovery,methods,budgets={},{},{}
-    target=old['controlled_budget_per_method']
     for method in old['methods']:
+        target=old.get('lineage_targets',{}).get(method,old['controlled_budget_per_method'])
         status=audit['methods'][method]
         if status['state']=='complete':continue
         methods[method]=status['state']
@@ -128,6 +129,8 @@ def prepare(parent, wall_seconds, rpc_port=None):
         scope='Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison.',
         disk_free_bytes=shutil.disk_usage(ROOT).free)
     old['resource_limits']['wall_seconds']=wall_seconds
+    if 'jobs' in old:
+        old['jobs']=[job for job in old['jobs'] if job['name'] in methods]
     write_json(batch/'protocol.json',old)
     # Register only after every immutable input, checkpoint and protocol file
     # exists.  A preparation failure therefore cannot strand the parent with

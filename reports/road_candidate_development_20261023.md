@@ -1,5 +1,74 @@
 # Structured road policy development — 2026-10-23
 
+## Gradient-clipping mechanism diagnostic — 2026-10-24
+
+The first actual continuation rollout of H0 and H was reconstructed from saved
+RNG, measured CARLA states, prior commands, feedback and sequential observation
+normalization. Each reconstruction exactly matches all 32 sampled actions (320
+controls), and reproduces the baseline actor change and logged PPO metrics.
+No simulator connection, plant integration or new environment interaction occurs.
+The current-code receipts are `H0/rollout_update_audit_v4.json` and
+`H/rollout_update_audit_v4.json` in `runs/20261024T050724Z_native_continuation`.
+
+| First-rollout measurement | H0 | H |
+|---|---:|---:|
+| Actor gradient L2 before clipping | 0.06462 | 0.07251 |
+| Critic gradient L2 before clipping | 12.15327 | 11.77603 |
+| Global gradient multiplier | 0.04114 | 0.04246 |
+| Baseline update exact distribution KL | 2.1603e-9 | 1.4008e-8 |
+| Independently clipped update KL | 6.4071e-7 | 1.7676e-6 |
+
+All alternative optimizer branches are discarded in-memory diagnostics on the
+same rollout. Increasing epochs or changing Adam epsilon were also measured and
+retained in the receipts. The selected next hypothesis changes only the clipping
+groups: separate disjoint actor and critic parameters, each with the existing
+0.5 bound. The PPO surrogate, epochs, learning rate, Adam state, reward,
+observations and low-level execution remain unchanged. This suggests critic
+domination of the shared clipping factor; it does not establish the cause of
+all training failure. Component magnitudes relative to Adam epsilon are logged,
+but Adam's running moments prevent interpreting that comparison alone as an
+effective learning-rate measurement. Larger KL is not evidence of better driving.
+
+`navstack/independent_clip_ppo.py` calls the installed SB3 PPO update and applies
+per-group clipping through an optimizer pre-step hook. It rejects shared or
+unclassified trainable parameters, removes hooks even on failure, and saves an
+explicit algorithm marker. Loading an existing checkpoint preserves its mode;
+changing mode requires an explicit registered intervention. No SB3 training-loop
+source is copied. Tests exercise real PPO/plant learning, both structured policy
+types, exact save/reload, and actor-update invariance when only critic targets
+change. Full regression is **173 passed, five conditional skips**, with two
+existing SB3 warnings (`runs/native_gradient_final_regression.xml`).
+
+`scripts/prepare_native_gradient_pair.py` is implemented and tested, but the
+six-arm CARLA study is **not prepared or started** at this snapshot. After the
+current H0/H/B1 batch completes and its endpoints and owned-server cleanup pass
+audit, it will branch each endpoint into global/independent clipping arms with
+20,000 additional controls each. Both arms inherit identical checkpoint bytes,
+Adam/RNG/normalization state and all prior lost-interaction costs. The preparer
+refuses an active continuation, atomically claims all three parent endpoints,
+preserves per-job targets for recovery and checks copied checkpoint hashes before
+registration. These are correlated seed-11 forks, not six independent seeds.
+The decision measure is completion/progress jointly with safety and intervention
+on all four training roads; no model will be selected solely by KL. Both arms
+record gradients after clipping to test whether the proposed mechanism persists.
+
+Reproduce the diagnostic using the original frozen observation code:
+
+```powershell
+$env:NAVSTACK_AUDIT_SOURCE_ROOT=(Resolve-Path runs/20261024T050724Z_native_continuation/source).Path
+python scripts/audit_native_rollout_update.py --batch runs/20261024T050724Z_native_continuation --method H --output runs/NEW_H_rollout_audit.json
+Remove-Item Env:NAVSTACK_AUDIT_SOURCE_ROOT
+```
+
+The new output path must not exist. Preparation after complete endpoint audits:
+
+```powershell
+python scripts/prepare_native_gradient_pair.py --parent runs/20261024T050724Z_native_continuation --additional-controls 20000 --wall-seconds 21600
+```
+
+Preparation alone launches no process. The current baseline batch continues from
+its immutable source; this intervention has not changed its learning semantics.
+
 ## Updated endpoints and live continuation — 2026-10-24
 
 **First 100k endpoint (13:22 local):** H0 has finished this continuation with
@@ -60,7 +129,7 @@ owned empty server was stopped with no remaining listeners. The new launcher
 records atomic process-identity/exit receipts; cleanup verifies the target
 process, bridge drain and empty matching world before stopping it.
 
-Current working-source regression is **163 passed, five conditional skips**, with
+The earlier source regression was **163 passed, five conditional skips**, with
 two existing SB3 deprecation warnings. This does not replace live frame audits.
 The new continuation is not complete; no performance or research gate is met.
 

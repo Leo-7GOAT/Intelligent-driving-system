@@ -164,6 +164,8 @@ def test_prepare_from_manifest_copies_each_checkpoint_and_claims_atomically(fake
     root,sources=fake_endpoints;manifest_path=root/'runs/endpoints.json'
     manifest=combined.build_manifest(sources,100000,manifest_path,root)
     (root/'scripts').mkdir()
+    (root/'navstack').mkdir()
+    (root/'navstack/independent_clip_ppo.py').write_text('# optional learner loader fixture\n',encoding='utf-8')
     # Combined preparation refreshes only orchestration files; fixture content
     # is enough because this test verifies staging/registration, not execution.
     monkeypatch.setattr(combined,'ORCHESTRATION_FILES',())

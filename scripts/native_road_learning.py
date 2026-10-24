@@ -26,6 +26,7 @@ from navstack.experiments import actor_vector, write_json, signature, append_jso
 from navstack.native_route import select_routes
 from navstack.research import ResearchRecorder, resources_ok
 from navstack.research import atomic_json
+from navstack.independent_clip_ppo import IndependentClipPPO, load_ppo, GLOBAL_CLIP, INDEPENDENT_CLIP, actor_critic_parameters
 from scripts.carla_steering_audit import guard
 
 
@@ -101,7 +102,7 @@ class RecordedRoadEnv(CarlaNavigationEnv):
         return result
 
 
-def restore_training(checkpoint, raw, config, seed):
+def restore_training(checkpoint, raw, config, seed, gradient_clip_mode=None, allow_intervention=False):
     """Restore learning state, deliberately begin a new measured CARLA episode."""
     checkpoint = Path(checkpoint)
     saved = json.loads((checkpoint/'metadata.json').read_text(encoding='utf-8'))
@@ -113,7 +114,8 @@ def restore_training(checkpoint, raw, config, seed):
             raise ValueError('Recovery checkpoint hash mismatch')
     vec = VecNormalize.load(checkpoint/'normalization.pkl',raw)
     vec.training=True;vec.norm_reward=False;vec.returns[:]=0
-    model = PPO.load(checkpoint/'model.zip',env=vec,device='cpu',force_reset=True)
+    model = load_ppo(checkpoint/'model.zip',env=vec,device='cpu',force_reset=True,
+                     gradient_clip_mode=gradient_clip_mode,allow_intervention=allow_intervention)
     state_file=checkpoint/'resume_state.pkl'
     if state_file.exists():
         if hashlib.sha256(state_file.read_bytes()).hexdigest()!=saved['resume_state_sha256']:
@@ -151,9 +153,28 @@ def save_training_checkpoint(output, threshold, model, vec, raw, metadata):
     atomic_json(output/'latest_checkpoint.json',{'folder':checkpoint.name,**metadata})
 
 
+def registered_jobs(protocol):
+    """Legacy method lists retain behavior; experimental paired arms are explicit."""
+    jobs = protocol.get('jobs')
+    if jobs is None:
+        return [{'name': method, 'method': method} for method in protocol['methods']]
+    if not protocol.get('gradient_clipping_experiment') or not jobs:
+        raise ValueError('Named native jobs require a registered clipping experiment')
+    names = [job['name'] for job in jobs]
+    if names != protocol['methods'] or len(set(names)) != len(names):
+        raise ValueError('Native job names must uniquely match worker scopes')
+    for job in jobs:
+        if not job['name'].replace('_', '').isalnum() or job['method'] not in ('H0','H','B1'):
+            raise ValueError('Invalid native experiment job')
+        if job.get('gradient_clip_mode') not in (GLOBAL_CLIP, INDEPENDENT_CLIP):
+            raise ValueError('Every experiment arm must declare its gradient clipping mode')
+    return jobs
+
+
 def run(batch):
     batch = Path(batch).resolve()
     protocol = json.loads((batch/"protocol.json").read_text(encoding="utf-8"))
+    jobs = registered_jobs(protocol)
     for relative, digest in protocol["source_hashes"].items():
         if hashlib.sha256((ROOT/relative).read_bytes()).hexdigest() != digest:
             raise ValueError("Run frozen source only")
@@ -167,12 +188,13 @@ def run(batch):
     torch.set_num_threads(1)
     results = []
     try:
-        for method in protocol["methods"]:
+        for job in jobs:
+            method, job_name = job['method'], job['name']
             guard(batch, protocol)
             if time.time() >= protocol["deadline_epoch"]:
                 raise RuntimeError("Registered wall budget expired")
             config=training_config(protocol,method,vehicle)
-            output = batch/method
+            output = batch/job_name
             output.mkdir()
             write_json(output/"config.json", {"env": config.to_dict(), "signature": signature(config),
                 "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]})
@@ -183,10 +205,14 @@ def run(batch):
             try:
                 raw = DummyVecEnv([lambda: RecordedRoadEnv(config, client, cases, output)])
                 raw.seed(protocol["seed"])
-                recovery=protocol.get('recovery',{}).get(method)
+                recovery=protocol.get('recovery',{}).get(job_name)
                 if recovery:
-                    model,vec,resume_mode=restore_training(batch/recovery['checkpoint'],raw,config,protocol['seed'])
-                    write_json(output/'resume_event.json',{'mode':resume_mode,**recovery})
+                    model,vec,resume_mode=restore_training(batch/recovery['checkpoint'],raw,config,protocol['seed'],
+                        gradient_clip_mode=job.get('gradient_clip_mode'),
+                        allow_intervention=bool(protocol.get('gradient_clipping_experiment')))
+                    write_json(output/'resume_event.json',{'mode':resume_mode,**recovery,
+                        'gradient_clip_mode':getattr(model,'gradient_clip_mode',GLOBAL_CLIP),
+                        'registered_gradient_intervention':bool(protocol.get('gradient_clipping_experiment'))})
                 else:
                     normalizer,policy=VecNormalize,"MlpPolicy"
                     if protocol.get('road_candidate_policy',False):
@@ -194,32 +220,53 @@ def run(batch):
                         normalizer=RoadCandidateVecNormalize
                         policy=FlatRoadCandidateActorCriticPolicy if method=='B1' else RoadCandidateActorCriticPolicy
                     vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
-                    model = PPO(policy, vec, n_steps=protocol["rollout_actions"], batch_size=32,
+                    algorithm = IndependentClipPPO if job.get('gradient_clip_mode') == INDEPENDENT_CLIP else PPO
+                    model = algorithm(policy, vec, n_steps=protocol["rollout_actions"], batch_size=32,
                         n_epochs=protocol["ppo_epochs"], gamma=config.gamma, gae_lambda=.95**.5,
                         policy_kwargs={"net_arch":{"pi":[64,64],"vf":[64,64]}}, seed=protocol["seed"], device="cpu")
                 write_json(output/'policy_architecture.json',{'policy':type(model.policy).__name__,
+                    'algorithm':type(model).__name__,'gradient_clip_mode':getattr(model,'gradient_clip_mode',GLOBAL_CLIP),
                     'normalizer':type(vec).__name__,'parameters':sum(p.numel() for p in model.policy.parameters()),
                     'observation_shape':list(model.observation_space.shape),
                     'action_shape':list(model.action_space.shape),'road_candidate_policy':protocol.get('road_candidate_policy',False)})
                 inherited_lineage=0 if recovery is None else recovery['lineage_controls']
                 inherited_cost=0 if recovery is None else recovery['consumed_controls_lower_bound']
-                budget=protocol.get('method_budgets',{}).get(method,protocol['controlled_budget_per_method'])
+                budget=protocol.get('method_budgets',{}).get(job_name,protocol['controlled_budget_per_method'])
                 model.set_logger(configure(str(output/"sb3"), ["csv"]))
                 before = actor_vector(model).clone()
                 recorder = ResearchRecorder(output, protocol["deadline_epoch"])
                 optimizer_steps = [0]
+                gradient_samples = []
+                gradient_groups = actor_critic_parameters(model.policy) if protocol.get('gradient_clipping_experiment') else None
                 def count_step(*unused):
                     optimizer_steps[0] += 1
+                    if gradient_groups is not None:
+                        # Adam leaves .grad in place until the next zero_grad.
+                        # Both arms use the same post-step measurement, after
+                        # their respective clipping, without touching gradients.
+                        gradient_samples.append([float(torch.sqrt(sum(
+                            (p.grad.detach().square().sum() for p in group if p.grad is not None),
+                            torch.zeros((),device=model.device)))) for group in gradient_groups])
                 hook = model.policy.optimizer.register_step_post_hook(count_step)
                 started = time.time()
                 saved_thresholds = set()
                 while recorder.counts["physics_steps"] < budget and not recorder.stopped_reason:
                     guard(batch, protocol)
                     previous = model._n_updates
+                    gradient_samples.clear()
                     model.learn(protocol["rollout_actions"], callback=recorder, reset_num_timesteps=False)
                     if model._n_updates > previous:
                         recorder.counts["optimization_phases"] += 1
+                        gradient_record = {}
+                        if gradient_samples:
+                            gradient_array=np.asarray(gradient_samples)
+                            gradient_record={'postclip_gradients':{
+                                'optimizer_steps_sampled':len(gradient_samples),
+                                'actor_l2_mean':float(gradient_array[:,0].mean()),
+                                'critic_l2_mean':float(gradient_array[:,1].mean()),
+                                'scope':'Measured after clipping and Adam step, before next gradient reset'}}
                         append_json(output/"optimization.jsonl", {**recorder.counts, "optimizer_steps": optimizer_steps[0],
+                            **gradient_record,
                             "actor_l2_change": float(torch.linalg.vector_norm(actor_vector(model)-before)),
                             "metrics": {k: float(v) for k,v in model.logger.name_to_value.items() if np.isscalar(v) and np.isfinite(v)}})
                     thresholds=sorted(set(protocol.get('checkpoint_thresholds',[]))|set(range(10000,budget+1,10000))|{budget})
@@ -232,10 +279,11 @@ def run(batch):
                             saved_thresholds.add(threshold)
                 hook.remove()
                 model.save(output/"model.zip"); vec.save(output/"normalization.pkl")
-                loaded = PPO.load(output/"model.zip", device="cpu")
+                loaded = load_ppo(output/"model.zip", device="cpu")
                 sample = vec.normalize_obs(raw.envs[0]._observation()[None])
                 np.testing.assert_array_equal(model.predict(sample, deterministic=True)[0], loaded.predict(sample, deterministic=True)[0])
-                result = {**recorder.counts, "method": method, "backend": "CARLA_0.9.15",
+                result = {**recorder.counts, "method": method, "job_name":job_name,
+                    "gradient_clip_mode":getattr(model,'gradient_clip_mode',GLOBAL_CLIP), "backend": "CARLA_0.9.15",
                     "world_ticks": client.total_ticks, "reset_ticks": client.total_ticks-recorder.counts["physics_steps"],
                     "optimizer_steps": optimizer_steps[0], "actor_l2_change": float(torch.linalg.vector_norm(actor_vector(model)-before)),
                     "reload_exact": all(torch.equal(v, loaded.policy.state_dict()[k]) for k,v in model.policy.state_dict().items()),
@@ -276,7 +324,7 @@ def run(batch):
                         "episodes":episodes,"world_ticks":client.total_ticks-evaluation_ticks,
                         "model_sha256":hashlib.sha256((output/"model.zip").read_bytes()).hexdigest(),
                         "normalization_sha256":hashlib.sha256((output/"normalization.pkl").read_bytes()).hexdigest()})
-                    print(json.dumps({"method":method,"evaluation_success":sum(e["success"] for e in episodes),"episodes":4}),flush=True)
+                    print(json.dumps({"method":method,"job_name":job_name,"evaluation_success":sum(e["success"] for e in episodes),"episodes":4}),flush=True)
             finally:
                 if recorder is not None:
                     recorder.close()

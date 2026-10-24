@@ -263,7 +263,7 @@ def audit(batch: Path, method: str) -> dict:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--batch", required=True, type=Path)
-    parser.add_argument("--method", required=True, choices=("H0", "H", "B1"))
+    parser.add_argument("--method", required=True, help="Method or registered experiment job name")
     parser.add_argument("--output", type=Path)
     arguments = parser.parse_args()
     result = audit(arguments.batch, arguments.method)

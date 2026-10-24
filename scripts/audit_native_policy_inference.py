@@ -98,5 +98,5 @@ def analyze(batch,method,output):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--batch',required=True)
-    p.add_argument('--method',required=True,choices=['H0','H','B1']);p.add_argument('--output',required=True)
+    p.add_argument('--method',required=True);p.add_argument('--output',required=True)
     a=p.parse_args();analyze(a.batch,a.method,a.output)

@@ -98,7 +98,7 @@ def analyze(batch, method):
     return {"method": method, "training_controls": total, "source_batch": batch.name,
             "raw_audit_sha256": sha(audit_path), "groups": rows,
             "optimization_metrics": {key: quantiles(value) for key, value in metrics.items()},
-            "categorical_max_entropy": math.log(31) if method != "B1" else None,
+            "categorical_max_entropy": math.log(31) if read(folder / 'config.json')['env']['method'] != 'B1' else None,
             "training_terminations": dict(Counter(e["termination_reason"] for e in episodes.values())),
             "training_successes": sum(e["success"] for e in episodes.values()),
             "completed_episodes": len(episodes),
@@ -108,7 +108,7 @@ def analyze(batch, method):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--batch", type=Path, required=True)
-    parser.add_argument("--method", choices=("H0", "H", "B1"), required=True)
+    parser.add_argument("--method", required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if args.output.exists():

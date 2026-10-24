@@ -13,6 +13,7 @@ from navstack.vehicle import VehiclePlant,VehicleState
 from navstack.world import World
 from navstack.road_candidate_policy import (RoadCandidateVecNormalize,
     RoadCandidateActorCriticPolicy,FlatRoadCandidateActorCriticPolicy)
+from navstack.independent_clip_ppo import IndependentClipPPO,load_ppo
 from scripts.native_road_learning import training_config
 
 
@@ -50,7 +51,8 @@ def test_shared_native_road_candidate_input_and_exact_ablation():
 
 
 @pytest.mark.parametrize('method,policy',[('H',RoadCandidateActorCriticPolicy),('B1',FlatRoadCandidateActorCriticPolicy)])
-def test_road_policy_geometry_invariance_real_updates_and_reload(tmp_path,method,policy):
+@pytest.mark.parametrize('algorithm',[PPO,IndependentClipPPO])
+def test_road_policy_geometry_invariance_real_updates_and_reload(tmp_path,method,policy,algorithm):
     torch.set_num_threads(1)
     vec=RoadCandidateVecNormalize(DummyVecEnv([lambda:RoadPlantEnv(config(method))]),norm_reward=False)
     try:
@@ -58,7 +60,7 @@ def test_road_policy_geometry_invariance_real_updates_and_reload(tmp_path,method
         for region in (slice(351,599),slice(605,None)):
             np.testing.assert_array_equal(obs[:,region],raw[:,region])
             np.testing.assert_array_equal(vec.unnormalize_obs(obs)[:,region],raw[:,region])
-        model=PPO(policy,vec,n_steps=8,batch_size=8,n_epochs=2,seed=11,device='cpu')
+        model=algorithm(policy,vec,n_steps=8,batch_size=8,n_epochs=2,seed=11,device='cpu')
         permutation=np.random.default_rng(3).permutation(31)
         changed=obs.copy()
         changed[:,351:599]=obs[:,351:599].reshape(-1,31,8)[:,permutation].reshape(-1,248)
@@ -81,7 +83,8 @@ def test_road_policy_geometry_invariance_real_updates_and_reload(tmp_path,method
         assert model._n_updates==4 and torch.linalg.vector_norm(actor_vector(model)-actor_before)>0
         assert any(not torch.equal(v,model.policy.state_dict()[k]) for k,v in before.items() if 'policy_net_road' in k)
         model.save(tmp_path/'model.zip');vec.save(tmp_path/'normalization.pkl')
-        loaded=PPO.load(tmp_path/'model.zip',device='cpu')
+        loaded=load_ppo(tmp_path/'model.zip',device='cpu')
+        assert type(loaded) is algorithm
         assert isinstance(loaded.policy,policy)
         assert all(torch.equal(v,loaded.policy.state_dict()[k]) for k,v in model.policy.state_dict().items())
         np.testing.assert_array_equal(model.predict(obs,deterministic=True)[0],loaded.predict(obs,deterministic=True)[0])

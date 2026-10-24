@@ -95,12 +95,15 @@ def test_active_or_unknown_continuation_pointer_cannot_be_hidden(tmp_path):
         assert_continuation_pointer_available(runs)
 
 
-@pytest.mark.parametrize('tamper',('ppo','normalization'))
+@pytest.mark.parametrize('tamper',('ppo','normalization','clipping'))
 def test_endpoint_rejects_saved_semantic_tampering(tmp_path,tamper):
     _make_endpoint(tmp_path)
-    if tamper=='ppo':
+    if tamper in ('ppo','clipping'):
         changed=PPO.load(tmp_path/'model.zip',device='cpu')
-        changed.n_epochs+=1
+        if tamper=='clipping':
+            changed.gradient_clip_mode='independent_actor_critic_v1'
+        else:
+            changed.n_epochs+=1
         changed.save(tmp_path/'model.zip')
         expected='PPO or policy semantics'
     else:
