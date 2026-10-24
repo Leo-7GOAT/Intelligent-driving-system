@@ -1,3 +1,55 @@
+# H0/H clipping pairs audited and reproduced; B1 live — 2026-10-24 15:26 local
+
+Previous goal turn was progress (actual release/download reproduction and new
+CARLA paired training). This turn adds a hash-bound paired analyzer and three
+meaningful tests, completes/audits the H pair, diagnoses all four hierarchical
+arms, and reproduces both partial reports in the independent checkout. Goal
+remains active/incomplete. No performance improvement is established.
+
+Same active batch `runs/20261024T064940Z_native_recovery`; do not restart. At15:25:47
+the actual OS processes are still worker49692 (14:50:22), guard61204 (14:50:48),
+CARLA45556 (14:49:56); worker handle5858, guard9014, server61330. Guard healthy,
+deadline16:49:41. B1_global is really training:6,048controls/18optimizationphases
+at15:25:42. B1_independent remains queued. Existing source/protocol unchanged.
+
+H0_global/H0_independent/H_global/H_independent all finished20,160new controls,
+126optimizersteps,120,320lineage; all22training episodes and all4evaluation cases
+deadline in every arm. Each endpoint raw audit verifies23,760controls. All four
+initial_inference_audit.json and action_learning_diagnostic.json files now exist;
+16measured-startactions reproduce exactly with frozen normalization.
+
+H0 mean progress global10.3751m / independent1.4325m; mean intervention rates
+0.78333/0.95. H0 independent repeats30/30/30/20 with85/82/90/85planfails.
+H mean progress global16.7472m / independent14.8990m; both intervention0 and
+no plan/controllerfailures. They instead wait too early: global53/53/55/64waits,
+independent51/54/53/69. H finaldistances2.1086/3.2338/5.1649/14.9892m and
+4.3987/3.4359/7.2694/17.7855m. Both pairs have identical measured startposes.
+H actorgradient medians0.019069/0.093473 and KL1.4901e-7/1.6429e-6: the intended
+mechanism changed, driving did not improve. Do not promote separate clipping.
+B1 pairing must still finish before a complete six-arm conclusion.
+
+New `scripts/analyze_native_gradient_pair.py` defaults to allH0/H/B1 and fails
+if an arm/audit is missing. `--method H0` or `--method H` explicitly emits partial
+evidence. Checks all frozen source, audited input/trace/bridge/model hashes,
+same inherited checkpoint bytes/accounting, budgets/configs, road/task identities;
+reports actual start-state differences and preserves all failed outcomes. No CI
+from four roads/correlatedforks. Outputs:
+`analysis/H0_pair_v2.json` (olderH0_pair.json preserved) and `analysis/H_pair.json`.
+
+Sourcec9273ea is pushed. Three tests pass in both worktrees. Independent checkout
+now clean detachedc9273ea and rebuilds both partial reports byte-for-byte:
+`runs/native_H0_pair_reproduction.json` SHA660565c45137449e78bb5c315c76008b6f57b1d3fa6bce45918bf5cf82a20272;
+`runs/native_H_pair_reproduction.json` SHAfb34148fc228f595d1cf59f6b954e2fc891c89729210f964db2c4d3d06f7015b.
+These use local current-batch artifacts, not downloaded release claims. Last full
+suite remains183passed/5skips at2040d3f; no unnecessary full rerun.
+
+Next: finish/audit B1jobs, run measured inference/goaldiagnostics and analyzer
+defaultall, verify guard/servercleanup, plotall6arms, then choose the next
+development change using actual complete results. Keep all inherited/lost costs
+and failedstartup recorded. Current protocol retains32-actionrollouts/2epochs;
+do not quietly change the frozen learner or declare adequate convergence from
+these short additional20kforks. Published100kasset needs no repeat work.
+
 # Native 100k release reproduced; clipping pair running — 2026-10-24 15:10 local
 
 This goal turn made concrete progress: B1 completed, all three raw endpoints were

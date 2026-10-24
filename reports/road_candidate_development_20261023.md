@@ -1,5 +1,53 @@
 # Structured road policy development — 2026-10-23
 
+## H0 and H clipping pairs completed — 2026-10-24 15:24
+
+Four arms in `20261024T064940Z_native_recovery` have completed. Each used 20,160
+new training controls and 126 optimizer steps; each has 22 training deadlines
+and four frozen-evaluation deadlines. Each raw audit verifies 23,760 controls.
+B1_global is now training; B1_independent remains queued. The six-arm study is
+not yet complete, and neither completed hierarchical pair supports promotion
+of independent clipping as a task-performance improvement.
+
+| Arm | Median actor gradient norm after clipping | Median approximate KL | Mean progress (m) | Mean intervention rate | Success |
+|---|---:|---:|---:|---:|---:|
+| H0 global | 0.016289 | 1.9744e-7 | 10.3751 | 78.33% | 0/4 |
+| H0 independent | 0.062073 | 5.3085e-7 | 1.4325 | 95.00% | 0/4 |
+| H global | 0.019069 | 1.4901e-7 | 16.7472 | 0% | 0/4 |
+| H independent | 0.093473 | 1.6429e-6 | 14.8990 | 0% | 0/4 |
+
+Independent clipping changes the intended gradient mechanism but does not improve
+observed completion or average progress in these pairs. The H0 independent arm
+repeatedly selects the same failing action: per-road plan-failure counts are
+85/82/90/85, with final actions30/30/30/20. Both H arms have zero planning and
+controller failures in these probes, but repeatedly wait before reaching the
+goal: global wait counts53/53/55/64, independent51/54/53/69 out of90 decisions.
+Global final goal distances are2.109/3.234/5.165/14.989m; independent distances
+are4.399/3.436/7.269/17.785m (rounded; raw diagnostic values are authoritative).
+No tolerance, termination or safety definition was changed.
+
+All sixteen measured-start inference actions match the recorded policies with
+frozen normalization. The new analyzer binds comparison inputs to their raw
+audits, checks identical parent checkpoint bytes and accounting, checks budgets
+and configuration, pairs roads/goals rather than IDs alone, and records measured
+start-pose differences. The completed pairs' measured start differences are zero.
+It records all failures and does not compute a spurious independent-seed CI.
+
+```powershell
+# Explicitly partial, completed-method report:
+python scripts/analyze_native_gradient_pair.py --batch NATIVE_PAIR_BATCH --method H --output NEW_H_PAIR.json
+# Default requires every registered pair to have completed and been raw-audited:
+python scripts/analyze_native_gradient_pair.py --batch NATIVE_PAIR_BATCH --output NEW_ALL_PAIRS.json
+```
+
+Source `c9273ea` passes three targeted analysis tests in the working and independent
+checkouts. The independent checkout rebuilds both partial reports byte-for-byte:
+H0 SHA256 `660565c45137449e78bb5c315c76008b6f57b1d3fa6bce45918bf5cf82a20272`,
+H SHA256 `fb34148fc228f595d1cf59f6b954e2fc891c89729210f964db2c4d3d06f7015b`.
+Receipts there are `runs/native_H0_pair_reproduction.json` and
+`runs/native_H_pair_reproduction.json`. These analyses use local live-batch
+artifacts, distinct from the downloaded100k release reproduction already reported.
+
 ## Paired clipping intervention: first completed pair — 2026-10-24
 
 The six-arm experiment was registered as `20261024T064701Z_native_gradient_pair`.
