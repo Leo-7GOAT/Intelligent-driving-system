@@ -8,8 +8,11 @@ from navstack.process_lease import ProcessLease
 
 
 class Bridge:
-    def __init__(self, calibration, lock, record_dir=None):
+    def __init__(self, calibration, lock, record_dir=None, host="127.0.0.1", port=2000):
         self.cal=json.loads(Path(calibration).read_text(encoding="utf-8")); self.lock=Path(lock)
+        if not isinstance(host,str) or not host or any(c.isspace() for c in host):raise ValueError("invalid CARLA RPC host")
+        if isinstance(port,bool) or not isinstance(port,int) or not 1024<=port<=65533:raise ValueError("invalid CARLA RPC base port")
+        self.rpc_host=host;self.rpc_port=port
         self.record_dir=record_dir;self.recorder=None
         self.lease=ProcessLease(self.lock).acquire()
         try:
@@ -19,7 +22,7 @@ class Bridge:
             raise
 
     def _connect(self):
-        self.client=carla.Client("127.0.0.1",2000);self.client.set_timeout(15)
+        self.client=carla.Client(self.rpc_host,self.rpc_port);self.client.set_timeout(15)
         if self.client.get_client_version()!="0.9.15" or self.client.get_server_version()!="0.9.15":
             raise RuntimeError("client/server must both be 0.9.15")
         self.world=self.client.get_world();self.map=self.world.get_map();self.original=self.world.get_settings()
@@ -311,10 +314,11 @@ class Bridge:
 
 
 if __name__=="__main__":
-    p=argparse.ArgumentParser();p.add_argument("--calibration",required=True);p.add_argument("--lock",required=True);p.add_argument("--record-dir");args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument("--calibration",required=True);p.add_argument("--lock",required=True);p.add_argument("--record-dir")
+    p.add_argument("--host",default="127.0.0.1");p.add_argument("--port",type=int,default=2000);args=p.parse_args()
     b=None
     try:
-        b=Bridge(args.calibration,args.lock,args.record_dir)
+        b=Bridge(args.calibration,args.lock,args.record_dir,args.host,args.port)
         for line in sys.stdin:
             try:
                 request=json.loads(line)

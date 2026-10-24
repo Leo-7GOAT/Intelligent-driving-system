@@ -1,3 +1,36 @@
+# Active combined native continuation — 2026-10-24 13:09 local
+
+Current batch: `runs/20261024T050724Z_native_continuation`, pointer
+`runs/native_continuation.json`. H0/H/B1 are continuing compatible completed
+structured-policy endpoints to approximately 100k lineage controls each. Seed 11,
+four training roads, same learning semantics and low-level code; not final testing.
+Additional budgets are 79,840/79,840/79,939. Deadline is 19:07:25 local; guard stops
+on disk below 12 GiB, low RAM, GPU temperature >=85 C or no progress for 300 s.
+
+Actual worker PID 7156, creation epoch 1792818490.558, guard PID 30068; CARLA
+Shipping PID 60980, parent 60748, port 2100. Worker/guard/server were OS-confirmed
+at this snapshot; recheck identity and progress before any action. Do not launch
+a duplicate. Sessions: server 24387, worker 82406, guard 79209. The guard uses
+`worker_process.json` and attempts verified empty-server cleanup after worker exit.
+Read `guard_final.json`, `server_cleanup.json` and `infrastructure/server_stop.json`
+to distinguish completed cleanup from an attempt. Frozen source must not change.
+
+Prior structured endpoints: H0/H each 20,160 controls and 126 optimizer steps;
+B1 recovery adds 9,870, reaching lineage 20,061 and charged lower bound 29,606,
+with unknown ancestor tail retained. All three score 0/4. Strong per-method raw
+audits and combined manifest v2 are complete; manifest ID is recorded in the
+road-candidate report. The older non-v2 manifest is superseded and was not used.
+The normalization pair is complete at 302,080 each: updating 4/10, frozen 3/10.
+
+Current root regression: 163 passed, 5 conditional skips, 2 existing warnings.
+PowerShell lifecycle scripts parse. Root changes remain uncommitted at this
+snapshot; published HEAD is 77ae90c. Next: inspect real learning progress, audit
+completed endpoints, diagnose persistent near-uniform/ineffective policies, then
+update source publication and independent-checkout reproduction. Full goal
+remains active and incomplete; this turn made concrete progress.
+
+All entries below are historical snapshots, not current liveness assertions.
+
 # Verified publication, H0 failure and live H — 2026-10-23 14:38 local
 
 Source3c9e6f2b0f48fc15755b479d9010c6e13f0c0364 pushed and remote-matched.

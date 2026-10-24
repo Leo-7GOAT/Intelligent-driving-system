@@ -1,9 +1,28 @@
-# Matched normalization continuation: audited 200k endpoints
+# Matched normalization continuation: completed 300k endpoints
+
+Both branches in `runs/20261023T060219Z_normalization_retention_pair` are now
+complete and pass the full raw audit in `continuation_verification.json`.
+Each ends at 302,080 cumulative controls, including 199,680 new controls, with
+78 added optimization phases and 20 checked normalization checkpoints.
+
+| Training statistics | Full task | Terminations | Parking successes at 6/12/18/23 m (two each) | New optimizer steps |
+|---|---:|---|---|---:|
+| Updating | 4/10 | 4 successes, 4 collisions, 2 deadlines | 1/2/0/2 | 5,474 |
+| Frozen | 3/10 | 3 successes, 1 collision, 6 deadlines | 1/2/1/0 | 5,099 |
+
+The frozen branch's 200k success advantage did not persist at 300k, and its
+23 m parking probe regressed. Neither branch establishes a healthy complete-task
+baseline. These are correlated supervised-initialized branches from one seed;
+all inherited supervision and interaction costs remain part of their provenance.
+Rebuild with `python scripts/verify_normalization_continuation.py --batch
+runs/20261023T060219Z_normalization_retention_pair` without `--partial`.
+
+## Historical 200k checkpoint
 
 At 14:28 local on 2026-10-23, both 200k endpoints in
 `runs/20261023T060219Z_normalization_retention_pair` pass the partial raw audit.
 Each has 202,240 cumulative controls, including 99,840 new controls after its
-102,400-step parent. The remaining 300k endpoints are still running.
+102,400-step parent. The completed 300k endpoints are reported above.
 
 | Training statistics | Full task | Terminations | Parking successes at 6/12/18/23 m (two each) | New optimizer steps |
 |---|---:|---|---|---:|

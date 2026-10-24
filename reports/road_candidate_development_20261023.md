@@ -1,5 +1,59 @@
 # Structured road policy development — 2026-10-23
 
+## Updated endpoints and live continuation — 2026-10-24
+
+The original structured-policy H0 and H endpoints each complete 20,160 training
+controls, 20,872 world ticks and 126 optimizer steps. B1's completed recovery
+`20261024T044910Z_native_recovery` adds 9,870 controls, 10,427 world ticks and
+62 optimizer steps, reaching 20,061 model-lineage controls and 126 retained
+optimizer steps. Its charged training interaction lower bound is 29,606: the
+9,545 controls lost since the inherited checkpoint remain charged, and the
+interrupted ancestor has an unknown unflushed tail. It is not a cost-matched
+20k comparison simply because the model lineage is approximately 20k.
+
+All three frozen endpoint probes score **0/4** on the four training roads:
+H0 and H time out; B1 leaves the road in all four cases. H0/H actor L2 changes
+are 0.21155748/0.39653084. H0/H initial action probabilities remain nearly uniform
+(maximum approximately 0.0326/0.0340); actual parameter updates do not yet imply
+useful decisions. The measured-start inference audit uses frozen evaluation
+normalization and zero additional CARLA ticks.
+
+Per-method `endpoint_raw_audit.json` verifies 23,760 controls for H0, 23,760 for H
+and 10,500 for the completed B1 recovery, including evaluation. Every applied
+control is matched to a bridge frame, state, command and IMU timestamp; reset
+ticks, terminal fences, optimization counts and inherited costs are checked.
+The combined manifest `runs/native_combined_endpoints_20k_to_100k_verified_v2.json`
+also checks model/optimizer/normalization/RNG compatibility and retains the
+interruption chain. Manifest ID:
+`e9fadedaa04acb8716113842530cd052c67f2d204f6b06b414c07410f26a4b00`.
+
+Batch `20261024T050724Z_native_continuation` was actually launched at 13:08 local
+on 2026-10-24, with H0/H/B1 additional budgets 79,840/79,840/79,939, a six-hour
+wall limit, disk/RAM/GPU guards and no automatic retries. Its pointer is
+`runs/native_continuation.json`. Learning semantics and low-level code are frozen;
+the continuation starts new episodes while preserving learning state. These are
+continued seed-11 policies, not new independent seeds. At launch H0 produced
+real new CARLA controls and optimization events; final results remain pending.
+
+CARLA startup on port 2000 had failed inside the RPC socket acceptor. The matching
+packaged PDB and Windows port ownership supported a bind conflict with an
+unrelated local application. Port 2100 (span 2100–2102) was free and the installed
+0.9.15 server then started successfully. The earlier recovery completed and its
+owned empty server was stopped with no remaining listeners. The new launcher
+records atomic process-identity/exit receipts; cleanup verifies the target
+process, bridge drain and empty matching world before stopping it.
+
+Current working-source regression is **163 passed, five conditional skips**, with
+two existing SB3 deprecation warnings. This does not replace live frame audits.
+The new continuation is not complete; no performance or research gate is met.
+
+```powershell
+python scripts/audit_native_method_endpoint.py --batch COMPLETED_BATCH --method H --output NEW_AUDIT.json
+python scripts/combine_native_endpoints.py verify --manifest runs/native_combined_endpoints_20k_to_100k_verified_v2.json
+```
+
+The sections below retain the historical registration and earlier observations.
+
 The native-road MLP experiments remain negative evidence: H0 and the recovered
 H/B1 approximately 100k-control endpoints complete none of the four training-road
 probes. Fixed-plan Hybrid A* and 2D A* diagnostics each complete all four with the

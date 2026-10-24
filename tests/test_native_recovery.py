@@ -11,6 +11,7 @@ from navstack.env import NavigationEnv
 from navstack.experiments import signature,write_json
 from scripts.native_road_learning import restore_training,save_training_checkpoint
 from scripts.prepare_native_recovery import claim_recovery
+from scripts.continue_native_learning import verified_endpoint
 
 
 def test_native_learning_state_checkpoint_roundtrip_and_hash_guard(tmp_path):
@@ -55,3 +56,39 @@ def test_parent_cannot_be_registered_for_duplicate_recovery(tmp_path):
     claim_recovery(tmp_path,'first_child')
     with pytest.raises(FileExistsError):claim_recovery(tmp_path,'duplicate_child')
     assert json.loads((tmp_path/'recovery_registration.json').read_text())['child_batch']=='first_child'
+
+
+def test_continuation_uses_evaluated_weights_and_optimizer(tmp_path):
+    """Actual PPO/plant; a valid hash alone cannot excuse changed learning state."""
+    torch.set_num_threads(1)
+    cfg=EnvConfig(method='B1',scenario='empty',flat_hold=10)
+    raw=DummyVecEnv([lambda:NavigationEnv(cfg)]);raw.seed(11)
+    raw.envs[0].case_index=0
+    vec=VecNormalize(raw,norm_reward=False,gamma=cfg.gamma)
+    try:
+        model=PPO('MlpPolicy',vec,n_steps=8,batch_size=8,n_epochs=2,seed=11,device='cpu')
+        model.learn(16)
+        steps=raw.envs[0].total_physics_steps
+        write_json(tmp_path/'config.json',{'env':cfg.to_dict(),'signature':signature(cfg)})
+        metadata={'physics_steps':steps,'lineage_control_steps':steps,'episodes':0,'threshold':steps}
+        save_training_checkpoint(tmp_path,steps,model,vec,raw,metadata)
+        model.save(tmp_path/'model.zip');vec.save(tmp_path/'normalization.pkl')
+        summary={**metadata,'reload_exact':True,'stopped_reason':None,'charged_control_steps_lower_bound':steps}
+        write_json(tmp_path/'summary.json',summary)
+        def publish_hashes():
+            write_json(tmp_path/'evaluation.json',{
+                key:hashlib.sha256((tmp_path/name).read_bytes()).hexdigest()
+                for name,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')]})
+        publish_hashes()
+        checkpoint,actual,_=verified_endpoint(tmp_path,100000)
+        assert checkpoint.name==f'checkpoint_{steps:09d}' and actual['physics_steps']==steps
+        # Deliberately modify optimizer state while retaining the exact actor.
+        state=next(iter(model.policy.optimizer.state.values()))
+        state['exp_avg'].add_(1.)
+        model.save(tmp_path/'model.zip');publish_hashes()
+        with pytest.raises(ValueError,match='weights or optimizer differ'):
+            verified_endpoint(tmp_path,100000)
+        with pytest.raises(ValueError,match='extendable'):
+            verified_endpoint(tmp_path,steps)
+    finally:
+        vec.close()

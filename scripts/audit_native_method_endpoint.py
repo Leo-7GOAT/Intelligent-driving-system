@@ -1,0 +1,274 @@
+"""Verify one completed native-policy endpoint against its CARLA bridge frames.
+
+This verifier is method-local so a complete H/H0 stream remains auditable even
+when a later method in the same parent batch has a truncated gzip tail.
+"""
+from __future__ import annotations
+
+import argparse
+from collections import Counter
+import gzip
+import hashlib
+import json
+from pathlib import Path
+
+
+def read(path: Path):
+    return json.loads(Path(path).read_text(encoding="utf-8-sig"))
+
+
+def sha(path: Path) -> str:
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def read_prefix(path: Path):
+    rows, error = [], None
+    try:
+        opener = gzip.open if path.suffix == ".gz" else open
+        with opener(path, "rt", encoding="utf-8") as stream:
+            for line in stream:
+                rows.append(json.loads(line))
+    except (EOFError, OSError, UnicodeError, json.JSONDecodeError) as exc:
+        error = f"{type(exc).__name__}: {exc}"
+    return rows, error
+
+
+def _verify_ticks(ticks, actual, acknowledgements, owners, used, previous, episode_ids):
+    count = 0
+    for tick in ticks:
+        evidence = tick["backend_evidence"]
+        key = (evidence["episode_id"], evidence["frame"])
+        if key in used:
+            raise ValueError("CARLA control frame counted more than once")
+        if key not in actual:
+            raise ValueError("Recorded policy frame is absent from bridge responses")
+        measured = actual[key]
+        final_ack = None
+        if evidence["request_id"] != measured.get("request_id"):
+            if evidence["request_id"] != measured.get("request_id") + 1:
+                raise ValueError("Trace request does not match applied or terminal-fence acknowledgement")
+            final_ack = acknowledgements.get((evidence["episode_id"], evidence["request_id"]))
+            if (not final_ack or final_ack.get("frame") != evidence["frame"] or
+                    final_ack.get("terminal_sensor_drain_seconds") is None):
+                raise ValueError("Terminal evidence lacks its no-tick bridge acknowledgement")
+        if tick["backend_frame"] != evidence["frame"]:
+            raise ValueError("Trace backend frame differs from evidence frame")
+        if tick["state"] != measured.get("state"):
+            raise ValueError("Trace state differs from measured CARLA state")
+        if tick["command"] != measured.get("command"):
+            raise ValueError("Trace command differs from acknowledged CARLA command")
+        for name, value in evidence.items():
+            if name == "request_id" and final_ack is not None:
+                continue
+            if name == "terminal_sensor_drain_seconds" and final_ack is not None:
+                if final_ack.get(name) != value:
+                    raise ValueError("Terminal sensor drain differs from bridge acknowledgement")
+                continue
+            if name not in measured or measured[name] != value:
+                raise ValueError(f"Trace backend evidence differs from bridge response: {name}")
+        if evidence["imu_frame"] != evidence["frame"]:
+            raise ValueError("IMU heartbeat does not match CARLA frame")
+        episode = evidence["episode_id"]
+        if episode in previous:
+            old_frame, old_time = previous[episode]
+            if evidence["frame"] != old_frame + 1:
+                raise ValueError("CARLA policy frames are not contiguous")
+            if abs(tick["state"]["time"] - old_time - 0.05) >= 1e-6:
+                raise ValueError("Measured CARLA clock did not advance by 0.05 seconds")
+        previous[episode] = evidence["frame"], tick["state"]["time"]
+        episode_ids.add(episode)
+        used.add(key)
+        count += 1
+    return count
+
+
+def audit(batch: Path, method: str) -> dict:
+    batch = Path(batch).resolve()
+    folder = batch / method
+    protocol = read(batch / "protocol.json")
+    if method not in protocol.get("methods", []):
+        raise ValueError("Method is absent from the batch protocol")
+
+    actual, acknowledgements, owners, streams, resets = {}, {}, {}, {}, {}
+    for path in sorted((batch / "infrastructure").glob("*_responses.jsonl.gz")):
+        rows, error = read_prefix(path)
+        keys = set()
+        for wrapper in rows:
+            response = wrapper.get("response", {})
+            episode = response.get("episode_id")
+            request_id = response.get("request_id")
+            if episode is not None and request_id is not None:
+                acknowledgement_key = (episode, request_id)
+                if acknowledgement_key in acknowledgements and acknowledgements[acknowledgement_key] != response:
+                    raise ValueError("Conflicting bridge acknowledgement for one request")
+                acknowledgements[acknowledgement_key] = response
+            if episode is not None and "reset_ticks" in response:
+                if episode in resets and resets[episode] != response["reset_ticks"]:
+                    raise ValueError("Conflicting reset tick evidence")
+                resets[episode] = response["reset_ticks"]
+            if "vehicle_control" not in response:
+                continue
+            key = (episode, response["frame"])
+            if key in actual:
+                raise ValueError("Duplicate applied CARLA frame across bridge streams")
+            actual[key] = response
+            owners[key] = path.name
+            keys.add(key)
+        streams[path.name] = {
+            "sha256": sha(path), "complete_rows": len(rows),
+            "read_error": error, "applied_keys": keys,
+        }
+    if not actual:
+        raise ValueError("Batch has no applied CARLA bridge responses")
+
+    used, previous, training_episodes = set(), {}, set()
+    training_frames = 0
+    transition_hashes = {}
+    terminations = Counter()
+    for path in sorted(folder.glob("transitions*.gz")):
+        rows, error = read_prefix(path)
+        if error:
+            raise ValueError(f"Method transition stream is truncated: {path.name}: {error}")
+        transition_hashes[path.name] = sha(path)
+        for action in rows:
+            if action.get("episode_id") is None:
+                raise ValueError("Transition lacks episode identity")
+            training_frames += _verify_ticks(action["trace"], actual, acknowledgements, owners, used,
+                                             previous, training_episodes)
+            # action.episode_id is the recorder's local integer trajectory
+            # index; backend_evidence.episode_id is the bridge UUID.  They are
+            # intentionally different identity domains and must not be equated.
+            if action.get("termination_reason"):
+                terminations[action["termination_reason"]] += 1
+    if not transition_hashes:
+        raise ValueError("Method has no transition stream")
+
+    summary = read(folder / "summary.json")
+    if training_frames != summary["physics_steps"]:
+        raise ValueError("Verified training frames differ from summary")
+    optimization_rows, optimization_error = read_prefix(folder / "optimization.jsonl")
+    if optimization_error or not optimization_rows:
+        raise ValueError("Optimization log is missing or unreadable")
+    last_optimization = optimization_rows[-1]
+    for name in ("physics_steps", "optimization_phases", "optimizer_steps"):
+        if last_optimization[name] != summary[name]:
+            raise ValueError(f"Last optimization record differs from summary: {name}")
+
+    latest = read(folder / "latest_checkpoint.json")
+    checkpoint = folder / latest["folder"]
+    metadata = read(checkpoint / "metadata.json")
+    for name in ("physics_steps", "lineage_control_steps",
+                 "charged_control_steps_lower_bound", "optimizer_steps"):
+        if metadata[name] != summary[name]:
+            raise ValueError(f"Final checkpoint differs from summary: {name}")
+    for filename, key in (("model.zip", "model_sha256"),
+                          ("normalization.pkl", "normalization_sha256"),
+                          ("resume_state.pkl", "resume_state_sha256")):
+        if sha(checkpoint / filename) != metadata[key]:
+            raise ValueError(f"Final checkpoint hash mismatch: {filename}")
+
+    prior = protocol.get("recovery", {}).get(method, {})
+    inherited_lineage = prior.get("lineage_controls", 0)
+    inherited_cost = prior.get("consumed_controls_lower_bound", 0)
+    inherited_optimizer = prior.get("retained_optimizer_steps", 0)
+    if summary["lineage_control_steps"] != inherited_lineage + training_frames:
+        raise ValueError("Policy lineage accounting is inconsistent")
+    if summary["charged_control_steps_lower_bound"] != inherited_cost + training_frames:
+        raise ValueError("Charged control accounting is inconsistent")
+    if summary["inherited_controls_not_in_checkpoint"] != inherited_cost - inherited_lineage:
+        raise ValueError("Lost-parent control accounting is inconsistent")
+
+    evaluation = read(folder / "evaluation.json")
+    for filename, key in (("model.zip", "model_sha256"),
+                          ("normalization.pkl", "normalization_sha256")):
+        if sha(folder / filename) != evaluation[key]:
+            raise ValueError(f"Evaluated endpoint hash mismatch: {filename}")
+    evaluation_path = folder / "evaluation_trace.jsonl.gz"
+    evaluation_rows, evaluation_error = read_prefix(evaluation_path)
+    if evaluation_error:
+        raise ValueError("Evaluation trace is truncated: " + evaluation_error)
+    evaluation_cases, evaluation_episodes = {}, set()
+    evaluation_frames = 0
+    for row in evaluation_rows:
+        info = row["info"]
+        case = evaluation_cases.setdefault(row["case_id"],
+                                           {"frames": 0, "actions": 0, "terminal": None})
+        if case["terminal"] is not None:
+            raise ValueError("Evaluation contains controls after termination")
+        count = _verify_ticks(info["trace"], actual, acknowledgements, owners, used, previous,
+                              evaluation_episodes)
+        case["frames"] += count
+        case["actions"] += 1
+        evaluation_frames += count
+        if info.get("termination_reason"):
+            case["terminal"] = info["episode_metrics"]
+    expected_cases = {episode["case_id"]: episode for episode in evaluation["episodes"]}
+    if set(evaluation_cases) != set(expected_cases):
+        raise ValueError("Evaluation trace cases differ from evaluation summary")
+    for case_id, episode in expected_cases.items():
+        case = evaluation_cases[case_id]
+        expected_terminal = {key: value for key, value in episode.items() if key != "case_id"}
+        if case["terminal"] != expected_terminal:
+            raise ValueError("Evaluation terminal metrics differ from trace")
+        if (case["frames"], case["actions"]) != (episode["physics_steps"], episode["actions"]):
+            raise ValueError("Evaluation frame/action counts differ from summary")
+
+    matched_streams = {owners[key] for key in used}
+    if len(matched_streams) != 1:
+        raise ValueError("One method must map to exactly one bridge response stream")
+    stream_name = next(iter(matched_streams))
+    stream = streams[stream_name]
+    if stream["read_error"]:
+        raise ValueError("Method bridge response stream is truncated: " + stream["read_error"])
+    if stream["applied_keys"] != used:
+        raise ValueError("Method bridge stream has unaccounted applied controls")
+    training_reset_ticks = sum(resets.get(episode, 0) for episode in training_episodes)
+    evaluation_reset_ticks = sum(resets.get(episode, 0) for episode in evaluation_episodes)
+    if summary["world_ticks"] != training_frames + training_reset_ticks:
+        raise ValueError("Training world-tick accounting differs from bridge resets")
+    if evaluation["world_ticks"] != evaluation_frames + evaluation_reset_ticks:
+        raise ValueError("Evaluation world-tick accounting differs from bridge resets")
+
+    return {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": batch.name,
+        "method": method,
+        "protocol_sha256": sha(batch / "protocol.json"),
+        "config_sha256": sha(folder / "config.json"),
+        "summary_sha256": sha(folder / "summary.json"),
+        "evaluation_sha256": sha(folder / "evaluation.json"),
+        "evaluation_trace_sha256": sha(evaluation_path),
+        "optimization_sha256": sha(folder / "optimization.jsonl"),
+        "transition_hashes": transition_hashes,
+        "bridge_response_stream": stream_name,
+        "bridge_response_sha256": stream["sha256"],
+        "bridge_complete_rows": stream["complete_rows"],
+        "training_control_frames_verified": training_frames,
+        "evaluation_control_frames_verified": evaluation_frames,
+        "total_applied_controls_verified": len(used),
+        "training_world_ticks_verified": summary["world_ticks"],
+        "evaluation_world_ticks_verified": evaluation["world_ticks"],
+        "training_termination_reasons": dict(terminations),
+        "checkpoint": checkpoint.name,
+        "checkpoint_metadata_sha256": sha(checkpoint / "metadata.json"),
+        "lineage_controls": summary["lineage_control_steps"],
+        "charged_controls_lower_bound": summary["charged_control_steps_lower_bound"],
+        "segment_optimizer_steps": summary["optimizer_steps"],
+        "optimizer_steps_total_lower_bound": inherited_optimizer + summary["optimizer_steps"],
+        "unknown_unflushed_ancestor_tail": bool(prior.get("unknown_unflushed_parent_tail", False)),
+    }
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--batch", required=True, type=Path)
+    parser.add_argument("--method", required=True, choices=("H0", "H", "B1"))
+    parser.add_argument("--output", type=Path)
+    arguments = parser.parse_args()
+    result = audit(arguments.batch, arguments.method)
+    output = arguments.output or arguments.batch / arguments.method / "endpoint_raw_audit.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("x", encoding="utf-8") as stream:
+        json.dump(result, stream, ensure_ascii=False, indent=2)
+    print(json.dumps(result, ensure_ascii=False))
