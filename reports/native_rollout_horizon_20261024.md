@@ -299,8 +299,8 @@ All360H evaluation decisions reproduce from the frozen model and measured
 history. Final wait probabilities are.08790/.13544/.13432/.15486; available
 reference mass is zero in all four. Episode-return reconstruction covers all115
 completed training episodes and verifies the distance-potential identity to1.90e-14.
-The H256arm is now training; no H rollout-pair result exists yet. Keep all arms
-and the registered evaluation unchanged.
+The H256 arm has now completed; the paired result below supersedes its earlier
+running status. Keep all arms and the registered evaluation unchanged.
 
 Evidence in the live batch: `H_rollout32/endpoint_raw_audit.json`,
 `action_learning_diagnostic.json`, `action_availability_v2.json`,
@@ -315,7 +315,8 @@ Independent checkout at `bee41c4` reproduces all six H endpoint/diagnostic files
 listed above byte-for-byte, including the106,313frame audit and360policy actions.
 Receipt: `runs/native_H_rollout32_reproduction/reproduction.json` in that checkout.
 This uses local archived evidence and no new CARLA controls, optimizer steps or
-release download. It does not convert the incomplete H32/H256pair into a result.
+release download. That earlier reproduction covered only the short arm; the
+complete H pair and its reproduction are reported below.
 
 ## Audited visualization of the first three endpoints
 
@@ -339,3 +340,72 @@ SHA256589f39c1b7e592c48b1939171d08e5edcc39309da556389ec45f91c44de98937,
 with matching case inventories and omitted-arm labels. Receipt:
 `runs/native_partial_plot_reproduction/reproduction.json` in that checkout.
 No new vehicle controls were consumed by plotting.
+
+## Completed H rollout pair
+
+H_rollout256 completes 102,400 new controls, 10,240 decisions, 40 optimization
+phases and 640 Adam steps. Retained lineage and charged controls are 222,720,
+with no unknown ancestor tail. Training consumes 105,933 world ticks, including
+3,533 reset ticks, and 1,771.89 seconds of wall time. All 113 completed training
+episodes time out; the final unfinished episode contributes 700 controls. Actor
+L2 change is 2.666812 and model reload is exact. Its raw audit verifies every
+one of 106,000 training and evaluation controls against CARLA bridge frames.
+
+| Measure | H rollout 32 | H rollout 256 |
+|---|---:|---:|
+| New training controls | 102,713 | 102,400 |
+| Rollout overshoot | 313 | 0 |
+| Optimization phases / Adam steps | 321 / 642 | 40 / 640 |
+| Completed training successes / episodes | 5 / 115 | 0 / 113 |
+| Frozen evaluation successes | 0 / 4 | 0 / 4 |
+| Mean progress (m) | 14.987119 | 14.939079 |
+| Mean intervention rate | 0% | 48.3333% |
+
+Both branches start from identical saved learning state; measured evaluation
+start position, yaw and speed match exactly in every case. The long-minus-short
+progress difference is -0.048040 m and success-count difference is zero. The
+313-control budget difference is retained, not silently rounded away. Longer
+rollouts do not repair H in this development comparison and increase its
+dependence on failed-plan braking. These same-parent seed-11 branches and four
+training roads do not establish an independent-seed effect or a general verdict
+on rollout length. The B1 pair remains unfinished; no complete three-method
+rollout conclusion is claimed.
+
+| H256 case | Progress (m) | Final goal distance (m) | Final yaw error (rad) | Failed-plan decisions / 90 | Wait decisions / 90 | Final available moving references |
+|---|---:|---:|---:|---:|---:|---:|
+| 0 | 20.218632 | 4.413147 | 0.447043 | 50 | 0 | 0 |
+| 1 | 21.158885 | 3.188710 | 0.102609 | 0 | 53 | 0 |
+| 2 | 15.306134 | 7.476224 | 0.098706 | 55 | 0 | 2 |
+| 3 | 3.072665 | 17.651154 | 1.231346 | 69 | 0 | 0 |
+
+All four evaluations time out and no control satisfies the complete goal-pose
+criteria. Cases 0, 2 and 3 end by repeatedly selecting action 30, which fails
+planning; case 1 waits. Offline production reference generation finds no moving
+reference at the final decision states of cases 0, 1 and 3. Case 2 still has
+actions 1 and 2 available, but the policy selects the failed action instead.
+Thus the longer rollout retains both catalog-continuation and action-ranking
+failures; it does not simply turn all voluntary waits into useful movement.
+Available references remain hypothetical until actually tracked and do not
+prove eventual parking. Search failures are not global infeasibility proofs.
+
+All 360 deterministic evaluation decisions reproduce from the measured history
+and frozen model without changing normalization. The final selected-action
+probabilities are 0.03710, 0.04138, 0.03607 and 0.03719. Case 2 assigns 0.06903
+total probability to its two reference-producing alternatives. Reconstructed
+returns for all 113 completed training episodes verify the terminal-zero
+potential identity with maximum absolute error 1.99e-14. None of these offline
+checks consumes simulator controls or performs additional optimization.
+
+Evidence: `H_rollout256/{endpoint_raw_audit,action_learning_diagnostic,
+action_availability_v2,policy_sequence,episode_return_diagnostic}.json` and
+`analysis/H_pair.json` in the registered batch. Raw-audit SHA256:
+`7bc4d0b1b63bc27d80e251cf000f99c3ac5f7eed15baf915e7815b8330d97839`.
+Paired-report SHA256:
+`9ebacce2df160ae968adb5e92919be89a35e90139d5673fbbc77e486820fbba2`.
+
+The independent checkout at `362a11a` reproduces all five H256 diagnostic files
+and the complete H paired report byte-for-byte. This includes the 106,000-frame
+audit, all 360 policy decisions and all 113 completed episode returns. Receipt:
+`runs/native_H_rollout256_reproduction/reproduction.json` in that checkout.
+This verifies local archived data and does not claim a newly downloaded release
+asset, additional simulator execution or any research acceptance gate.

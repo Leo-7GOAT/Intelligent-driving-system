@@ -1,4 +1,55 @@
-# Partial figure reproduced; rule raw verifier ready — 2026-10-24 17:18 local
+# H rollout pair complete and independently reproduced — 2026-10-24 17:40 local
+
+Previous goal turn was a verified wait. This turn completes actual H256 training
+and evaluation, raw audits, paired analysis and independent reproduction. Goal
+remains active/incomplete. No learner changes, new agents or second CARLA owner.
+
+Same batch `runs/20261024T075110Z_native_rollout_pair` and pointer
+`runs/native_rollout_pair.json`. Worker 57580, guard 35276 and CARLA 62284 retain
+their original 15:52:46 / 15:53:26 / 15:52:11 creation times, verified this turn.
+H0_32, H0_256, H_32 and H_256 are complete. B1_32 automatically started after
+H256 evaluation; B1_32 was at 15,689 controls / 49 phases at 17:40:32 and
+B1_256 remains queued. Revalidate its current heartbeat and
+OS identities before acting. The same deadline remains 21:51:11; do not restart.
+
+H256: 102,400 new controls, 10,240 actions, 40 phases, 640 Adam steps; lineage
+222,720 and retained Adam total 1,392. No unknown ancestor tail. 105,933 training
+world ticks include 3,533 reset ticks. Wall time 1,771.89 s; actor L2 change
+2.666812; exact reload. Training: 113 deadlines, zero successes, 700 unfinished
+controls. Frozen evaluation: 0/4, all deadlines, 3,600 controls / 3,724 world ticks.
+Raw audit verifies 106,000 controls; hash
+7bc4d0b1b63bc27d80e251cf000f99c3ac5f7eed15baf915e7815b8330d97839.
+
+`analysis/H_pair.json` is complete, hash
+9ebacce2df160ae968adb5e92919be89a35e90139d5673fbbc77e486820fbba2.
+Same saved parent and exactly matching measured evaluation starts. H32/H256
+mean progress 14.987119 / 14.939079 m; intervention 0 / 0.483333; both 0/4.
+Long-minus-short progress -0.048040 m, actual training-control difference -313.
+This does not support adopting longer rollouts for H. Keep B1 running to finish
+the registered complete comparison; no independent-seed interval from these forks.
+
+H256 final moving-reference counts are 0/0/2/0. Cases 0/2/3 repeatedly choose
+action 30 and fail planning (50/55/69 of 90 decisions); case 1 waits 53 times.
+Final goal distances 4.413147 / 3.188710 / 7.476224 / 17.651154 m. All 360 policy
+decisions reproduce; final selected probabilities .03710/.04138/.03607/.03719.
+Case 2 reference probability mass .06903. No complete goal-pose-qualified control
+in any case. All 113 episode returns reconstruct, PBRS identity error <1.99e-14.
+Local reference availability is not an execution/parking proof or global no-path
+proof. The result retains both catalog-continuation and action-ranking failures.
+
+Independent clean checkout at 362a11a reproduces five H256 diagnostics plus the
+complete H pair byte-for-byte; receipt in that checkout:
+`runs/native_H_rollout256_reproduction/reproduction.json`. No new controls or
+updates. Existing full regression remains 203 passed / 5 skipped at ac59741;
+this turn changes documentation only and does not claim a new full-suite run.
+
+Next: B1 endpoints, raw audits, action/return diagnostics and B1 pair, then full
+three-method report and all-arm figure. After entire batch normal completion and
+owned-server cleanup, prepare and execute native B3 using the existing runner;
+it remains unprepared/unstarted. All formal five-seed/fresh-120-condition,
+strong-B3/healthy-B1 and acceptance requirements remain open.
+
+# Historical snapshot: partial figure reproduced — 2026-10-24 17:18 local
 
 Previous turn was progress (H32 actual endpoint/audits and B3 evaluator). This
 turn adds native rule frame verification and produces/reproduces the complete

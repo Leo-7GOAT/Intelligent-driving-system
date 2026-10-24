@@ -1,5 +1,17 @@
 # Failure analysis
 
+The completed native H rollout pair adds 102,713 / 102,400 controls from the same
+parent checkpoint. Both frozen evaluations score 0/4. Increasing rollout length
+from 32 to 256 changes mean progress from 14.987119 to 14.939079 m and increases
+mean intervention rate from 0% to 48.3333%. All 212,313 training/evaluation
+controls across both arms pass raw-frame audit. H256 has no moving reference
+at three final decision states; at the fourth, two references remain available
+but the policy repeatedly selects a failed plan. All 360 H256 decisions reproduce.
+This does not support adopting longer rollouts for H, and it leaves both early
+choices entering catalog dead ends and weak action ranking unresolved. It is a
+same-parent, seed-11 development comparison, not independent-seed evidence.
+B1 is still running. See the [paired report](../reports/native_rollout_horizon_20261024.md).
+
 The newest completed H short-rollout endpoint uses102,713additional native
 controls:5training successes on one road (all with1–10failed plans),110training
 deadlines, then0/4frozen evaluation. All106,313training/evaluation controls match
@@ -11,7 +23,8 @@ states have no available moving reference under the current catalog/planner.
 The distinction favors investigating earlier choices and continuation feasibility,
 not simply adding a wait penalty. It is not proof of global geometric
 impossibility or an established solution. All360decisions and six diagnostic
-files reproduce independently; H256 and B1 comparisons remain incomplete.
+files reproduce independently; the completed H256 comparison is above and B1
+remains incomplete.
 See the [endpoint report](../reports/native_rollout_horizon_20261024.md).
 
 Current native development evidence (2026-10-24) is in the
@@ -25,8 +38,8 @@ generate production timed references. The failed action's probability is only
 these particular failures to local action ranking, without establishing why the
 learner acquired it or whether alternatives would track and finish safely.
 Both arms' 113 completed stochastic training episodes also time out: probability
-mass is not evidence that stochastic deployment solves the task. The H/B1
-rollout pairs remain pending, and evaluation rules/low level remain frozen.
+mass is not evidence that stochastic deployment solves the task. The H pair is
+reported above; B1 remains pending, and evaluation rules/low level remain frozen.
 
 Physical reward reconstruction across 226 completed episodes verifies the
 terminal-zero distance-PBRS identity to 1.19e-14. Same-road/equal-time failures
