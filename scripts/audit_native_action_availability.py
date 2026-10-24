@@ -20,6 +20,13 @@ from navstack.world import World
 from scripts.audit_native_method_endpoint import read, sha
 
 
+def verify_source(current, frozen, digest):
+    # Git checkouts may normalize CRLF. Require exact archived bytes and
+    # identical current source text after universal-newline decoding only.
+    if sha(frozen) != digest or current.read_text(encoding='utf-8') != frozen.read_text(encoding='utf-8'):
+        raise ValueError('Current/frozen native source mismatch: ' + current.name)
+
+
 def state_references(config, scene, state):
     """Use production decoding, search and time parameterization without reset/step."""
     if scene.get('dynamic'):
@@ -70,8 +77,7 @@ def audit(batch, method, output):
     source_hashes = {name: digest for name, digest in protocol['source_hashes'].items()
                      if name.startswith('navstack/')}
     for name, digest in source_hashes.items():
-        if sha(ROOT / name) != digest or sha(batch / 'source' / name) != digest:
-            raise ValueError('Current/frozen native source mismatch: ' + name)
+        verify_source(ROOT / name, batch / 'source' / name, digest)
     receipt = read(folder / 'endpoint_raw_audit.json')
     for name, key in [('config.json', 'config_sha256'),
                       ('evaluation_trace.jsonl.gz', 'evaluation_trace_sha256')]:

@@ -6,7 +6,7 @@ import pytest
 from navstack.config import EnvConfig, PlannerConfig
 from navstack.native_route import sample_road_grid
 from navstack.vehicle import VehiclePlant, VehicleState
-from scripts.audit_native_action_availability import state_references
+from scripts.audit_native_action_availability import state_references, verify_source, sha
 
 
 def fixture_scene():
@@ -40,3 +40,17 @@ def test_refuses_unreconstructed_dynamic_world_and_wall_clock_search():
     with pytest.raises(ValueError, match='node-budget'):
         state_references(EnvConfig(planner=PlannerConfig(max_seconds=.1)), fixture_scene(),
                          asdict(VehicleState(8., 16.)))
+
+
+def test_source_allows_only_newline_normalization_and_binds_archive(tmp_path):
+    current, frozen = tmp_path/'current.py', tmp_path/'frozen.py'
+    frozen.write_bytes(b'x = 1\r\n')
+    current.write_bytes(b'x = 1\n')
+    digest = sha(frozen)
+    verify_source(current, frozen, digest)
+    current.write_bytes(b'x = 2\n')
+    with pytest.raises(ValueError, match='source mismatch'):
+        verify_source(current, frozen, digest)
+    frozen.write_bytes(b'x = 2\n')
+    with pytest.raises(ValueError, match='source mismatch'):
+        verify_source(current, frozen, digest)
