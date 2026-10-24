@@ -35,6 +35,16 @@ Per-method evidence is stored in
 `runs/20261024T050724Z_native_continuation/{H0,H,B1}/rollout_horizon_diagnostic.json`.
 No new CARLA controls or optimizer steps were used for this diagnostic.
 
+Source commit `92eee2b` passed the full CPU regression: 193 tests passed,
+five conditional tests skipped, and two existing SB3 deprecation warnings.
+The independent checkout passed all 19 intervention/recovery/staging tests and
+rebuilt all three horizon JSON files byte-for-byte. Receipts are
+`runs/native_rollout_regression_20261024.xml` and, in
+`runs/prerelease_20261022/native_road_checkout/`,
+`runs/native_rollout_targeted_regression.xml` and
+`runs/native_rollout_horizon_reproduction/reproduction.json`.
+This uses local archived raw evidence, not a newly downloaded release asset.
+
 ## Prospective real-training comparison
 
 `scripts/prepare_native_rollout_pair.py` requires the preceding six-arm clipping

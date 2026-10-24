@@ -3,8 +3,10 @@
 The latest native PPO investigation is the
 [rollout horizon development report](../reports/native_rollout_horizon_20261024.md).
 The completed approximately100k native H0/H/B1 checkpoints all score0/4 on the
-four training-road probes. The subsequent H0/H clipping pairs also score0/4;
-larger actor gradients do not produce improved driving. The offline rollout
+four training-road probes. The subsequent
+[complete H0/H/B1 clipping comparison](../reports/native_clipping_pair_20261024.md)
+also scores0/4 in every arm; larger actor gradients do not produce improved
+driving. The offline rollout
 diagnostic measures GAE endpoint-value sensitivity, not actual value error or
 performance improvement. Its proposed real-training comparison retains the
 existing research gates and must be distinguished from historical versions below.

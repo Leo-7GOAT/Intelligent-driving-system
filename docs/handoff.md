@@ -1,4 +1,73 @@
-# H0/H clipping pairs audited and reproduced; B1 live — 2026-10-24 15:26 local
+# Six-arm clipping study complete; rollout study live — 2026-10-24 15:54 local
+
+Previous summary turn was a verified wait (OS-confirmed live worker, guard and
+server). This continuation is concrete progress: all six clipping arms finish,
+all raw/action/inference audits and the full paired comparison complete; the
+next single-factor rollout study is implemented, tested, registered and really
+training. Full research goal remains active/incomplete; no agents used, no hard
+blocker. Read the user objective attachment before continuing.
+
+**Use the new pointer `runs/native_rollout_pair.json`.** The old
+`native_recovery.json` points to a completed clipping batch and must not be
+restarted. New batch `runs/20261024T075110Z_native_rollout_pair` has six jobs:
+H0_rollout32, H0_rollout256, H_rollout32, H_rollout256, B1_rollout32,
+B1_rollout256. Each receives nominal102,400 additional applied controls; actual
+whole-rollout overshoot and all ancestor costs remain visible. Same-parent
+seed11 forks are not independent seeds. Global clipping, minibatch32, epochs2,
+reward/observations/actions/low level/roads remain unchanged. Global parents
+were fixed for all methods, not selected by which clipping arm wins.
+
+At15:54 actual OS worker57580 (created15:52:46.740937), guard35276
+(15:53:26.451462), CARLA Shipping62284 (15:52:11.130147) are live. Exec handles:
+worker84287, guard18326, server69058. Venv shim worker26100/guard61296 are not
+the actual guarded identities. Worker identity is in worker_process.json,
+server identity in infrastructure/server_start.json. RPC2100–2102; matching
+0.9.15 read-only start probe confirmed an empty world. Guard healthy, deadline
+21:51:11 local, no-progress300s, disk12GiB/RAM4GiB/GPU85C, zero automatic retries.
+Resource snapshot saved; roughly39GiB disk/35GiB RAM free, GPU42C at launch.
+H0_rollout32 heartbeat8,380controls/838actions/26phases; last completed update
+8,320controls/52optimizersteps. Resume/architecture receipts confirm32/32/2,
+globalPPO and4701-input RoadCandidateActorCriticPolicy. All frozen source hashes
+match. Revalidate current processes/progress instead of assuming these counts
+are still current. **Set NAVSTACK_CARLA_PYTHON in every worker shell**, not just
+the server shell; use the existing .carla-python37/runtime/python.exe.
+
+Completed clipping batch `20261024T064940Z_native_recovery`: workerexit0,
+guardexit0/reasonnull, owned-empty-server stopped and all RPC ports released.
+H0/H four arms each20,160controls; B1 global20,087/independent20,119. All63phases
+and126optimizersteps. Every arm0/4, all24evaluation cases deadline. Mean progress
+global/independent: H0 10.3751/1.4325m, H16.7472/14.8990m,
+B1 9.8687/0.7841m. Independent clipping increases gradients/KL without driving
+benefit, so is not adopted. B1 global training has1success/14bounds/20deadline;
+independent0success/10bounds/20deadline. Keep those separate from evaluation.
+Six audits verify142,446appliedcontrols. All24initial actions reproduce exactly;
+all6action_learning_diagnostic.json files complete. analysis/complete_pair.json
+and all_endpoints.png cover all failures; the figure has been visually checked.
+Independent checkout reproduces complete_pair.json byte-for-byte, SHA
+e3200867495c4d3c4bcee317f0b039f97b151d012fe68f8f57f8061d88c2ce4c.
+Receipt: checkout/runs/native_complete_clipping_pair_reproduction.json.
+See reports/native_clipping_pair_20261024.md for accounting and limits.
+
+New rollout code is source92eee2b (pushed and remote hash verified). Full suite
+193passed/5conditional skips/2existingSB3warnings,107.96s; receipt
+runs/native_rollout_regression_20261024.xml. Independent checkout is clean
+detached92eee2b;19targeted tests pass there and all three100k horizon diagnostics
+rebuild byte-for-byte (runs/native_rollout_horizon_reproduction/reproduction.json
+inside that checkout). No new release-download claim. Published100k asset and
+previous downloaded-model reproduction remain intact and need no repeat work.
+New reports/protocol explain the GAE sensitivity hypothesis and its limits;
+offline regrouping does not measure actual critic error or driving improvement.
+
+Continue the actual new batch; inspect real256-action collection/update counts
+when that arm starts, then audit endpoints and analyze all paired outcomes with
+the same physical-accounting and matched-start requirements. Existing clipping
+analyzer intentionally rejects rollout-study protocols; implement a correctly
+labelled rollout comparison rather than changing the data's experiment flag.
+Do not restart completed arms, mutate frozen source, or start another tick owner.
+The broader five-seed, fair-baseline,120-condition,RL-value and publication
+acceptance gates remain unmet; the live batch is development work only.
+
+# Historical snapshot: H0/H clipping pairs audited — 2026-10-24 15:26 local
 
 Previous goal turn was progress (actual release/download reproduction and new
 CARLA paired training). This turn adds a hash-bound paired analyzer and three
