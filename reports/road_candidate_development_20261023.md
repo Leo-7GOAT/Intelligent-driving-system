@@ -7,8 +7,39 @@ RNG, measured CARLA states, prior commands, feedback and sequential observation
 normalization. Each reconstruction exactly matches all 32 sampled actions (320
 controls), and reproduces the baseline actor change and logged PPO metrics.
 No simulator connection, plant integration or new environment interaction occurs.
-The current-code receipts are `H0/rollout_update_audit_v4.json` and
+The first-rollout receipts at source `c5f8285` are `H0/rollout_update_audit_v4.json` and
 `H/rollout_update_audit_v4.json` in `runs/20261024T050724Z_native_continuation`.
+
+The checkpoint extension additionally reconstructs the measured observation at
+an in-run checkpoint and requires exact equality with the saved normalized
+`_last_obs`. It does not count that observation twice in normalization. Saved
+RNG then reproduces the next 32 sampled actions, original optimizer metrics and
+actor displacement from the start of the run. In-run receipts use
+`rollout_update_after_10k.json`, `rollout_update_after_40k.json` and
+`rollout_update_after_70k.json` where applicable. The default first-rollout path
+was rerun for H0 as `rollout_update_audit_v5.json` after this extension.
+
+| Additional rollout probe | Actual controls before probe in this segment | Global clip multiplier | Baseline exact KL | Separate-clip exact KL |
+|---|---:|---:|---:|---:|
+| H0 mid-run | 40,000 | 0.53400 | 6.8994e-8 | 2.4764e-7 |
+| H0 later-run | 70,080 | 0.06494 | 7.8506e-8 | 1.1385e-6 |
+| H early-run | 10,240 | 0.32978 | 1.7259e-7 | 6.7371e-7 |
+| H mid-run | 40,000 | 0.33898 | 2.9290e-7 | 1.4942e-6 |
+| B1 recovery first rollout | 0 | 0.01140 | 1.9661e-6 | 1.0591e-4 |
+
+B1's probe belongs to the earlier completed
+`20261024T044910Z_native_recovery/B1/rollout_update_audit.json`, not the pending
+100k continuation segment. Its 32 raw Gaussian samples match the recorded raw
+policy actions exactly; there are 319 physical controls because a terminal action
+ends early. The buffer retains the raw samples while environment behavior uses
+clipped controls. These five additional probes support persistence of critic
+domination beyond the first H/H0 rollout, but the strength varies substantially.
+They are a checkpoint sample, not an estimate over all optimizer updates, and
+cross-method KL values are not driving-performance comparisons. No new CARLA
+controls or trained output models are produced. Recovery/endpoint tests also
+now exercise both ordinary and independent-clipping PPO, verifying algorithm
+class, Adam tensors, normalization and RNG survive save/restore (five targeted
+tests pass; the preceding full regression remains the separately recorded173/5).
 
 | First-rollout measurement | H0 | H |
 |---|---:|---:|
@@ -66,6 +97,7 @@ Reproduce the diagnostic using the original frozen observation code:
 ```powershell
 $env:NAVSTACK_AUDIT_SOURCE_ROOT=(Resolve-Path runs/20261024T050724Z_native_continuation/source).Path
 python scripts/audit_native_rollout_update.py --batch runs/20261024T050724Z_native_continuation --method H --output runs/NEW_H_rollout_audit.json
+python scripts/audit_native_rollout_update.py --batch runs/20261024T050724Z_native_continuation --method H --checkpoint checkpoint_000040000 --output runs/NEW_H_midrun_audit.json
 Remove-Item Env:NAVSTACK_AUDIT_SOURCE_ROOT
 ```
 

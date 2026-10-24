@@ -1,4 +1,4 @@
-"""Rebuild the first native continuation rollout from measured states and saved RNG.
+"""Rebuild a native rollout from measured states and a saved checkpoint/RNG.
 
 No simulator connection or plant integration is possible. Discarded in-memory
 optimizer branches diagnose optimization, not driving performance or fresh PPO.
@@ -155,7 +155,7 @@ def exact_kl(old, new):
     raise TypeError('Unsupported action distribution')
 
 
-def audit(batch, method, output):
+def audit(batch, method, output, checkpoint_name=None):
     batch, output = Path(batch).resolve(), Path(output)
     if output.exists():
         raise FileExistsError('Preserve previous rollout evidence')
@@ -165,8 +165,13 @@ def audit(batch, method, output):
             raise ValueError('Frozen observation and policy source required')
     folder = batch/method
     recovery = protocol['recovery'][method]
-    checkpoint = batch/recovery['checkpoint']
+    inherited_checkpoint = batch/recovery['checkpoint']
+    if checkpoint_name is not None and (Path(checkpoint_name).name != checkpoint_name or
+                                       not checkpoint_name.startswith('checkpoint_')):
+        raise ValueError('Select a checkpoint directory directly inside the method folder')
+    checkpoint = folder/checkpoint_name if checkpoint_name is not None else inherited_checkpoint
     metadata = read(checkpoint/'metadata.json')
+    offset = int(metadata['actions']) if checkpoint_name is not None else 0
     for filename, key in [('model.zip', 'model_sha256'), ('normalization.pkl', 'normalization_sha256'),
                           ('resume_state.pkl', 'resume_state_sha256')]:
         if sha(checkpoint/filename) != metadata[key]:
@@ -174,30 +179,47 @@ def audit(batch, method, output):
     config = EnvConfig.from_dict(read(folder/'config.json')['env'])
     torch.set_num_threads(1)
     model = PPO.load(checkpoint/'model.zip', device='cpu')
+    run_initial_actor = actor_vector(PPO.load(inherited_checkpoint/'model.zip', device='cpu')).clone()
     model.set_logger(configure(None, []))
     with (checkpoint/'normalization.pkl').open('rb') as stream:
         norm = pickle.load(stream)
     norm.training = True
     with (checkpoint/'resume_state.pkl').open('rb') as stream:
         rng = pickle.load(stream)
-    random.setstate(rng['python']); np.random.set_state(rng['numpy']); torch.set_rng_state(rng['torch'])
     env = measured_episode(config, read(folder/'scene_0001.json'))
-    obs = normalize_new_observation(norm, env._observation()[None])
     model.rollout_buffer.reset()
     model.policy.set_training_mode(False)
     rows = []
+    skipped = 0
     paths = sorted(folder.glob('transitions_*.jsonl.gz'))
     for path in paths:
         with gzip.open(path, 'rt', encoding='utf-8') as stream:
             for line in stream:
-                rows.append(json.loads(line))
+                row = json.loads(line)
+                if skipped < offset:
+                    advance_measurements(env, row)
+                    if row['termination_reason']:
+                        env = measured_episode(config, read(folder/f"scene_{row['episode_id']+2:04d}.json"))
+                    skipped += 1
+                    continue
+                rows.append(row)
                 if len(rows) == model.n_steps:
                     break
         if len(rows) == model.n_steps:
             break
     if len(rows) != model.n_steps:
-        raise ValueError('First rollout is incomplete')
-    episode_start = np.ones(1, dtype=bool)
+        raise ValueError('Selected rollout is incomplete')
+    if checkpoint_name is None:
+        obs = normalize_new_observation(norm, env._observation()[None])
+        episode_start = np.ones(1, dtype=bool)
+    else:
+        # The saved running statistics already include this observation. Updating
+        # them again here would silently change every subsequent policy input.
+        obs = norm.normalize_obs(env._observation()[None])
+        np.testing.assert_array_equal(obs, model._last_obs,
+                                      err_msg='Measured checkpoint observation mismatch')
+        episode_start = model._last_episode_starts.copy()
+    random.setstate(rng['python']); np.random.set_state(rng['numpy']); torch.set_rng_state(rng['torch'])
     observations, old_distributions = [], []
     for index, row in enumerate(rows):
         observations.append(obs.copy())
@@ -251,15 +273,22 @@ def audit(batch, method, output):
         branches.append({'variant': label, 'epochs': epochs, 'adam_epsilon': branch.policy.optimizer.param_groups[0]['eps'],
                          'independent_actor_critic_clip': separate_clip,
                          'actor_l2_change': float(torch.linalg.vector_norm(actor_vector(branch)-before)),
+                         'actor_l2_change_from_run_start':float(torch.linalg.vector_norm(actor_vector(branch)-run_initial_actor)),
                          'exact_distribution_kl_mean': float(np.mean(kl)),
                          'maximum_action_probability_mean': float(np.mean(maxima)) if maxima else None,
                          'metrics': {k: float(v) for k, v in branch.logger.name_to_value.items()}})
-    actual = json.loads((folder/'optimization.jsonl').open(encoding='utf-8').readline())
-    np.testing.assert_allclose(branches[0]['actor_l2_change'], actual['actor_l2_change'], rtol=2e-4, atol=1e-7)
+    with (folder/'optimization.jsonl').open(encoding='utf-8') as stream:
+        actual = next((row for row in map(json.loads, stream)
+                       if row['actions'] == offset+model.n_steps), None)
+    if actual is None:
+        raise ValueError('No actual optimizer record matches the selected rollout')
+    np.testing.assert_allclose(branches[0]['actor_l2_change_from_run_start'], actual['actor_l2_change'], rtol=2e-4, atol=1e-7)
     for key in ('train/approx_kl', 'train/value_loss', 'train/policy_gradient_loss', 'train/entropy_loss'):
         np.testing.assert_allclose(branches[0]['metrics'][key], actual['metrics'][key], rtol=3e-4, atol=2e-6)
-    result = {'scope': 'First actual native rollout reconstructed from measured states, checkpoint normalization and RNG; all sampled actions exact; baseline optimizer metrics reproduced. Alternative update branches are discarded offline diagnostics on the same rollout, not new on-policy driving or performance evidence.',
+    result = {'scope': 'Actual native rollout reconstructed from measured states, checkpoint normalization and RNG; all sampled actions exact; baseline optimizer metrics reproduced. Alternative update branches are discarded offline diagnostics on the same rollout, not new on-policy driving or performance evidence.',
               'batch': batch.name, 'method': method, 'rollout_actions': len(rows),
+              'checkpoint':str(checkpoint.relative_to(batch)), 'start_action':offset,
+              'checkpoint_observation_exact':True if checkpoint_name is not None else None,
               'physical_controls': sum(len(row['trace']) for row in rows),
               'new_environment_controls': 0, 'gradients': gradients, 'offline_update_branches': branches,
               'sampled_actions_exact': True, 'baseline_update_reproduced': True,
@@ -280,5 +309,6 @@ if __name__ == '__main__':
     parser.add_argument('--batch', required=True)
     parser.add_argument('--method', required=True, choices=['H0', 'H', 'B1'])
     parser.add_argument('--output', required=True)
+    parser.add_argument('--checkpoint', help='Optional checkpoint directory name inside the method folder')
     args = parser.parse_args()
-    audit(args.batch, args.method, args.output)
+    audit(args.batch, args.method, args.output, args.checkpoint)

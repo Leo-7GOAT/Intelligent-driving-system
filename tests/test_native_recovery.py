@@ -9,18 +9,20 @@ from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
 from navstack.config import EnvConfig
 from navstack.env import NavigationEnv
 from navstack.experiments import signature,write_json
+from navstack.independent_clip_ppo import IndependentClipPPO
 from scripts.native_road_learning import restore_training,save_training_checkpoint
 from scripts.prepare_native_recovery import claim_recovery
 from scripts.continue_native_learning import verified_endpoint
 
 
-def test_native_learning_state_checkpoint_roundtrip_and_hash_guard(tmp_path):
+@pytest.mark.parametrize('algorithm', [PPO, IndependentClipPPO])
+def test_native_learning_state_checkpoint_roundtrip_and_hash_guard(tmp_path, algorithm):
     torch.set_num_threads(1)
     cfg=EnvConfig(method='B1',scenario='empty',flat_hold=10)
     raw=DummyVecEnv([lambda:NavigationEnv(cfg)]);raw.seed(11)
     raw.envs[0].case_index=3
     vec=VecNormalize(raw,norm_reward=False,gamma=cfg.gamma)
-    model=PPO('MlpPolicy',vec,n_steps=8,batch_size=8,n_epochs=2,seed=11,device='cpu')
+    model=algorithm('MlpPolicy',vec,n_steps=8,batch_size=8,n_epochs=2,seed=11,device='cpu')
     model.learn(16)
     write_json(tmp_path/'config.json',{'env':cfg.to_dict(),'signature':signature(cfg)})
     metadata={'physics_steps':raw.envs[0].total_physics_steps,'episodes':0,'threshold':160}
@@ -31,6 +33,7 @@ def test_native_learning_state_checkpoint_roundtrip_and_hash_guard(tmp_path):
     expected_rng=torch.get_rng_state().clone()
     new_raw=DummyVecEnv([lambda:NavigationEnv(cfg)])
     loaded,norm,mode=restore_training(checkpoint,new_raw,cfg,99)
+    assert type(loaded) is algorithm
     assert loaded._last_obs is None and 'saved RNG' in mode
     assert new_raw.envs[0].case_index==3
     assert torch.equal(torch.get_rng_state(),expected_rng)
@@ -58,7 +61,8 @@ def test_parent_cannot_be_registered_for_duplicate_recovery(tmp_path):
     assert json.loads((tmp_path/'recovery_registration.json').read_text())['child_batch']=='first_child'
 
 
-def test_continuation_uses_evaluated_weights_and_optimizer(tmp_path):
+@pytest.mark.parametrize('algorithm', [PPO, IndependentClipPPO])
+def test_continuation_uses_evaluated_weights_and_optimizer(tmp_path, algorithm):
     """Actual PPO/plant; a valid hash alone cannot excuse changed learning state."""
     torch.set_num_threads(1)
     cfg=EnvConfig(method='B1',scenario='empty',flat_hold=10)
@@ -66,7 +70,7 @@ def test_continuation_uses_evaluated_weights_and_optimizer(tmp_path):
     raw.envs[0].case_index=0
     vec=VecNormalize(raw,norm_reward=False,gamma=cfg.gamma)
     try:
-        model=PPO('MlpPolicy',vec,n_steps=8,batch_size=8,n_epochs=2,seed=11,device='cpu')
+        model=algorithm('MlpPolicy',vec,n_steps=8,batch_size=8,n_epochs=2,seed=11,device='cpu')
         model.learn(16)
         steps=raw.envs[0].total_physics_steps
         write_json(tmp_path/'config.json',{'env':cfg.to_dict(),'signature':signature(cfg)})
