@@ -1,5 +1,32 @@
 # Development model card
 
+## Published six-arm clipping development evidence
+
+[native_clipping_seed11_20261024.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_clipping_seed11_20261024.zip)
+contains639manifestfiles/110,064,724bytes, SHA256
+`bbea000c380e202c1801770679413dcf616b59dfc593423a5e57a31005f2bcfc`.
+Export and independent reproduction source is `d35572bba8f4ce320e6838d32c0f66d1d13bd79e`.
+The historical prerelease tag predates these tools; it has not been rewritten.
+
+H0/H/B1 each fork the same parent into global and separate actor/critic clipping,
+adding about20k controls per arm. All six score0/4, every probe is a deadline,
+and independent clipping lowers mean progress for all three methods. These are
+correlated seed11 forks; no independent-seed or superiority claim is supported.
+Full accounting and failures are in the [clipping report](../reports/native_clipping_pair_20261024.md).
+
+The independently downloaded archive verifies every file before loading models.
+All six raw audits (142,446controls),24measured-start actions, the complete
+paired report and the trajectory figure reproduce. This is offline evidence
+reconstruction, not additional vehicle execution. Resume checkpoints are included;
+upstream raw traces are not duplicated, but historical losses/unknown tails stay
+charged. Twelve auxiliary metadata files have explicit path-redaction receipts.
+CARLA/runtime installations and credentials are excluded.
+
+```powershell
+python scripts/reproduce_native_asset.py --archive native_clipping_seed11_20261024.zip --sha256 bbea000c380e202c1801770679413dcf616b59dfc593423a5e57a31005f2bcfc --output runs/clipping_reproduction
+python scripts/analyze_native_gradient_pair.py --batch runs/clipping_reproduction/asset/20261024T064940Z_native_recovery --output runs/clipping_reproduction/paired.json
+```
+
 ## Published native 100k development evidence
 
 [native_structured_100k_seed11_20261024.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_structured_100k_seed11_20261024.zip)

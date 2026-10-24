@@ -1,4 +1,71 @@
-# Six-arm clipping study complete; rollout study live — 2026-10-24 15:54 local
+# Rollout schedule verified; clipping asset reproduced — 2026-10-24 16:17 local
+
+Previous goal turn was progress (finished/audited clipping study, implemented
+rollout intervention, started actualCARLA continuation). This turn adds and
+tests the correct rollout analyzer, audits the first completed endpoint,
+verifies actual256-decision updates, and publishes/downloads/reproduces the
+complete negative clipping asset. Goal remains active/incomplete. No agents.
+
+**Same live batch `20261024T075110Z_native_rollout_pair`, pointer
+`runs/native_rollout_pair.json`; do not restart.** Actual OS identities were
+revalidated16:15: worker57580 created15:52:46.740937, guard35276 created
+15:53:26.451462, CARLA62284 created15:52:11.130147. Handles remainworker84287,
+guard18326,server69058. Guard healthy at16:16:53; deadline21:51:11. The current
+arm is H0_rollout256,39,220controls/3,922decisions/15phases at16:16:56; four H/B1
+arms remain queued. Revalidate actual handles and current progress.
+
+H0_rollout32 completed102,400newcontrols,10,240decisions,320phases,640Adamsteps,
+222,720lineage controls;105,933trainingworldticks (3,533reset),1032.81s. All113
+training episodes aredeadline. Frozen eval0/4all deadline, meanprogress
+1.84083058m/intervention0.91388889. Raw audit verifies106,000controls including
+3,600eval controls; evaluationworldticks3,724. Modelreloadexact, fourstartactions
+reproduce, action_learning_diagnostic.json complete. Startmaxprobabilities
+.065007/.035431/.056283/.062852; still no task competence. Its endpoint analysis
+is analysis/H0_rollout32_endpoint_analysis.json. This is only one completed arm,
+not evidence for/against the32vs256hypothesis until the pair finishes.
+
+New scripts/analyze_native_rollout_pair.py uses rebuilt raw frame audits and
+checks actualcollection/optimizer boundaries, unchanged saved learner parameters,
+budgetcrossing/overshoot, inheritedcheckpoint bytes/costs, sameconfigs/tasks and
+measuredstartdifferences. It correctly does not demand clippinggradient records
+absentfromthisprotocol. Defaultrequiresallthreepairs; --methodH0/H/B1 explicitly
+partial. Six tests pass locally and in the independent checkout, including real
+32/256PPO collection and2/16Adamsteps, plus changedparams/parents/roads rejection.
+Source d35572bba8f4ce320e6838d32c0f66d1d13bd79e pushed/remoteverified. Lastfullsuite
+remains193passed/5skips at92eee2b; no newfullsuiteclaim. Independentcheckoutclean
+detachedd35572b, fixedseparateenvironment. TestXMLinsidecheckout:
+runs/native_rollout_analysis_regression.xml.
+
+Actualrunning-checkpoint schedule evidence in currentbatch/analysis:
+- H0_rollout32_checkpoint_000051200_schedule.json:51,200controls/5,120decisions/
+  160phases/320Adamsteps; also independently reproduced at
+  checkout/runs/native_rollout_checkpoint_schedule_reproduction.json.
+- H0_rollout256_checkpoint_000010000_schedule.json:10,240controls/1,024decisions/
+  4phases/64Adamsteps; savedbuffer256, sameparentparams/epochs2/minibatch32/global.
+These are scheduleaudits, not completedrawendpointaudits or improvedperformance.
+
+**Clipping asset publication/reproduction is DONE; do not redo it.**
+native_clipping_seed11_20261024.zip,110,064,724bytes/639manifestfiles, SHA256
+bbea000c380e202c1801770679413dcf616b59dfc593423a5e57a31005f2bcfc. Exportedclean
+d35572b, GitHubasset671661062 uploadedstate/size/digestverified. Existingprerelease
+v0.2.0-dev.20261022 andhistoricaltag/earlierassetsunchanged.12auxiliarymetadata
+redactions withhashreceipts; all6models/norm/resume/raw bytes unchanged. Retains
+142,446controls/all24failures; noenv/CARLAbinaries. Upstreamrawnotduplicated,
+butancestorcosts/unknowntailskept. Actualdownloadisruns/native_clipping_download.
+Independentcheckout/runs/native_clipping_downloaded_reproduction verifies639files
+beforeloading, reproducesall6rawaudits/24actions/fullpairreport/24-panelfigure.
+reproduction.json andpair_reproduction.json storeactualreceipts;0newcontrols/
+updates. FigureSHA847e27ff7bf5a5e7136117f2e83eb71ce38b43f7284811ce8a471ef701b00014;
+pairreportSHAe3200867495c4d3c4bcee317f0b039f97b151d012fe68f8f57f8061d88c2ce4c.
+Release notes nowcontain the completed negative result and verifieddownload.
+Old100k asset alsoalreadyverified; noneofthis isresearchacceptance.
+
+Next concrete work: continue current256arm/queuedH/B1withoutchangingfrozenlearner;
+auditcompletedendpoints, run newrolloutpairedanalyzer as pairsfinish, compare
+actualtask/progress/safety outcomes. No paired result existsyet. Keep all five
+independentseed/fairbaseline/fresh120conditions/RLvalue/releaseacceptance goals.
+
+# Historical snapshot: rollout launch — 2026-10-24 15:54 local
 
 Previous summary turn was a verified wait (OS-confirmed live worker, guard and
 server). This continuation is concrete progress: all six clipping arms finish,

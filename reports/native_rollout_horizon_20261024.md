@@ -85,3 +85,48 @@ cannot consume a parent endpoint. The preparation command is:
 Preparation alone does not start training. Runtime batch identity, actual
 processes, progress and outcomes are recorded in the latest handoff; do not
 infer a running job from this prospective protocol.
+
+## Actual schedule verification and outcome analysis
+
+The registered batch is now `20261024T075110Z_native_rollout_pair`. Its first
+H0_rollout32 checkpoint at 51,200 additional real CARLA controls contains
+5,120 decisions, 160 collection/optimization phases and 320 Adam steps.
+`analysis/H0_rollout32_checkpoint_000051200_schedule.json` binds these counters
+to the saved learner and checkpoint hash. This is a running-checkpoint schedule
+audit, not a complete endpoint/raw-frame audit or a driving evaluation.
+
+Source `d35572b` adds `scripts/analyze_native_rollout_pair.py`. Unlike the clipping
+analyzer, it does not require gradient measurements that this protocol never
+collected. It rebuilds each completed raw frame audit; checks the unchanged
+parent learning parameters, exact collection and optimizer boundaries, declared
+budget and full-rollout overshoot; and retains inherited costs and all outcomes.
+The pair must share exact starting checkpoint bytes, task configuration and
+measured road/task identities. Actual starting pose differences are reported.
+The default requires all three complete pairs; `--method H0`, `H` or `B1`
+explicitly requests partial evidence. It does not infer a confidence interval
+from four roads or correlated seed-11 forks.
+
+```powershell
+.venv\Scripts\python.exe scripts/analyze_native_rollout_pair.py --batch runs/20261024T075110Z_native_rollout_pair --output runs/20261024T075110Z_native_rollout_pair/analysis/complete_pair.json
+```
+
+Run only once all required endpoint audits exist; the analyzer refuses to
+overwrite prior results. Six tests pass in both worktrees, including real PPO
+collection at 32 and 256 decisions with respectively two and sixteen Adam steps,
+changed-parameter rejection, mismatched-parent/road rejection, and retention of
+failed outcomes and unequal actual overshoot. These checks verify analysis and
+collection behavior, not a benefit of the longer rollout.
+
+At 16:15 local, H0_rollout32 has completed 102,400 new controls, 320 phases and
+640 Adam steps, retaining 222,720 controls in its model lineage. Training has
+113 deadline episodes and no success. All four frozen training-road probes
+also end at the deadline: mean progress 1.840831m and mean intervention 91.3889%.
+The raw audit verifies 106,000 training/evaluation controls. Saved-model schedule,
+four measured-start actions and action/terminal-pose diagnostics all pass.
+The endpoint analysis is `analysis/H0_rollout32_endpoint_analysis.json`.
+
+H0_rollout256 is actually training, with its first10k-threshold checkpoint at
+10,240 controls/1,024 decisions/four phases/64Adam steps. The unchanged parent
+parameters and the real256-decision boundaries are verified in
+`analysis/H0_rollout256_checkpoint_000010000_schedule.json`. This arm is not
+complete, so no paired benefit or failure conclusion is available yet.

@@ -53,8 +53,30 @@ Evidence under the batch directory:
 The independent checkout at source `92eee2b` rebuilds the complete comparison
 byte-for-byte; receipt:
 `runs/prerelease_20261022/native_road_checkout/runs/native_complete_clipping_pair_reproduction.json`.
-This is a reproduction from local raw evidence, not a claim that this batch has
-already been downloaded from a release.
+That receipt uses local raw evidence. The separate downloaded reproduction is
+recorded below.
+
+## Published asset and independent downloaded reproduction
+
+The completed batch is now published as
+[native_clipping_seed11_20261024.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_clipping_seed11_20261024.zip):
+110,064,724bytes,639manifestfiles, SHA256
+`bbea000c380e202c1801770679413dcf616b59dfc593423a5e57a31005f2bcfc`.
+GitHub reports uploaded state and matching size/digest. It was exported from
+clean source `d35572bba8f4ce320e6838d32c0f66d1d13bd79e`; the historical prerelease
+tag and all previous assets remain unchanged. Twelve auxiliary metadata files
+have explicit original/export hashes for path redactions. Model, normalization,
+checkpoint and raw audit bytes are unchanged. All six arms and failed outcomes
+are included; upstream raw traces are not duplicated, but their costs remain.
+
+A separate actual GitHub download verified all639files before model loading.
+The independent checkout at the same source rebuilds all six raw audits,
+24measured-start actions, the complete paired report and the trajectory figure.
+The figure SHA256 is
+`847e27ff7bf5a5e7136117f2e83eb71ce38b43f7284811ce8a471ef701b00014`.
+No new driving or optimization occurred. Reproduction receipts are
+`runs/prerelease_20261022/native_road_checkout/runs/native_clipping_downloaded_reproduction/reproduction.json`
+and `pair_reproduction.json` in that same output folder.
 
 The next declared hypothesis concerns
 [on-policy rollout length](native_rollout_horizon_20261024.md). It retains global

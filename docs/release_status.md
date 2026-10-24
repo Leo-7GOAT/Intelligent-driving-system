@@ -1,3 +1,16 @@
+# Native clipping asset verified — 2026-10-24 16:15 local
+
+`native_clipping_seed11_20261024.zip` is uploaded to the existing development
+prerelease. GitHub asset671661062 reports110,064,724bytes and SHA256
+`bbea000c380e202c1801770679413dcf616b59dfc593423a5e57a31005f2bcfc`.
+All639manifestfiles, sixrawaudits,24startactions, fullpairedreport and the
+24-paneltrajectoryfigure reproduce from an actual separate GitHub download in
+the independent checkout at `d35572bba8f4ce320e6838d32c0f66d1d13bd79e`.
+See [model card](model_card.md) and [complete negative results](../reports/native_clipping_pair_20261024.md).
+Release notes disclose zero completion in every arm and no adoption of separate
+clipping. Historical tag and earlier assets are unchanged. The new rollout
+study is running and is not included in this completed-segment release.
+
 ## Indexed geometry development assets — 2026-10-22
 
 Source `2b7a55cc2c9ec90275a73693f6c8126d078c6047` is pushed and remote-verified. The unchanged prerelease includes [indexed_native_geometry_diagnostics.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/indexed_native_geometry_diagnostics.zip), 6,814,464 bytes / 883 manifest members / SHA256 `0290b78f1ff4a8fafea681c93697ee10dc80bf8f9455feaefc2ee8226bef7e50`, and [indexed_native_ppo_development.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/indexed_native_ppo_development.zip), 16,082,364 bytes / 240 members / SHA256 `cf353f225bb81dbcf00946f702a39696f76aca7a1a98a239e9fa5344b5cc2864`. Actual downloads and all member hashes match. The v2 failure and all failed/unfinished PPO episodes are retained.
