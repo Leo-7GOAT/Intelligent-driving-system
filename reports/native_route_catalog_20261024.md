@@ -93,3 +93,24 @@ The failed route-only raw audit independently reproduces atd307fb1, SHA256
 Earlier fixed-reference4/4 control used1.0m/s and retained a complete reference;
 the catalog rule commonly chooses1.5m/s and replans every0.5s. Those successes
 cannot isolate speed, tracking and replanning effects in the present failures.
+
+## Prospective rule speed contrast
+
+Before running it, register `rule_speed_policy=paired_low_speed`: first obtain
+the unchanged rule proposal, then select the identical-pose catalog entry at
+0.75m/s. Wait remains wait. Both the original proposal and executed selection
+are written to every trace row, and the raw verifier checks the registered
+mapping. This is an explicit rule-only speed ablation, never a PPO action
+override. The existing catalog, vehicle limits,45s task deadline, rewards,
+route/continuation inputs, planning, MPC and all four conditions stay unchanged.
+The lower speed is already one of the31 policy actions; no new easier task is
+introduced. Geometry may evolve differently in the new closed-loop rollout.
+
+Motivation: fixed-reference native control at1.0m/s previously finished4/4,
+while the catalog rule generally selects1.5m/s and replans. Holding references
+and reducing speed are distinct hypotheses. This run changes only B3's speed
+selection, so its result can narrow the diagnosis before changing low-level
+tracking or replanning. Run only after the active continuation batch completes
+and its owned server is cleaned up. Keep the same30-minute/resource guards,
+retain all failures, and require the unchanged4/4coverage gate before fresh PPO.
+The gate is development scheduling, not a research acceptance criterion.

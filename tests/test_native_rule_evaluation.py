@@ -9,7 +9,7 @@ from navstack.native_route import sample_road_grid
 from navstack.road_grid import RoadGrid
 from navstack.vehicle import VehiclePlant, VehicleState
 from navstack.world import World
-from scripts.evaluate_native_rule import require_finished_parent, evaluate_cases
+from scripts.evaluate_native_rule import require_finished_parent, evaluate_cases, selected_speed_action
 
 
 def test_rule_preparation_requires_normal_parent_and_server_cleanup(tmp_path):
@@ -57,3 +57,17 @@ def test_rule_runner_preserves_failures_costs_and_all_applied_controls(tmp_path)
     assert sum(len(r['info']['trace']) for r in rows) == controls
     assert all(r['policy_kind'] == 'rule_only_B3' and r['full_decision_seconds'] >= r['selection_seconds'] for r in rows)
     assert {r['case_id'] for r in rows} == {0, 1}
+
+
+def test_rule_speed_ablation_preserves_pose_and_wait_only_changes_speed():
+    env = LightweightFixture(EnvConfig())
+    try:
+        env.reset()
+        assert selected_speed_action(env,0,'paired_low_speed') == 0
+        for proposal in range(1,31):
+            action = selected_speed_action(env,proposal,'paired_low_speed')
+            target,speed = env.decode_action(action)
+            assert target == env.decode_action(proposal)[0] and speed == .75
+            assert selected_speed_action(env,proposal,'native_score') == proposal
+    finally:
+        env.close()

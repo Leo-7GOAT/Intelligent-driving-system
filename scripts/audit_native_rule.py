@@ -66,6 +66,13 @@ def audit(batch):
             raise ValueError('Case changed or contains controls after termination')
         if not 0 <= int(row['policy_action']) < 31 or int(row['policy_action']) != row['policy_action']:
             raise ValueError('Rule selected outside the shared action catalog')
+        if protocol.get('rule_speed_policy', 'native_score') == 'paired_low_speed':
+            proposal = row.get('rule_proposal')
+            if type(proposal) is not int or not 0 <= proposal < 31:
+                raise ValueError('Missing valid original rule proposal for speed ablation')
+            expected_action = 0 if proposal == 0 else 2*((proposal-1)//2)+1
+            if row.get('rule_speed_policy') != 'paired_low_speed' or row['policy_action'] != expected_action:
+                raise ValueError('Recorded action differs from registered lower-speed selection')
         if (not all(math.isfinite(row[k]) for k in ('selection_seconds', 'full_decision_seconds'))
                 or row['selection_seconds'] < 0 or row['full_decision_seconds'] < row['selection_seconds']):
             raise ValueError('Invalid rule compute accounting')

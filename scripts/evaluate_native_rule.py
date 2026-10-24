@@ -33,7 +33,7 @@ def require_finished_parent(parent):
         raise ValueError('Parent did not complete and clean up normally')
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score'):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -50,6 +50,8 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
         raise ValueError('Unsupported explicit catalog intervention')
     if continuation_feedback and catalog != 'route_frame_terminal':
         raise ValueError('Continuation diagnostic requires the explicit route catalog')
+    if speed_policy not in ('native_score', 'paired_low_speed'):
+        raise ValueError('Unknown rule speed selection policy')
     if catalog:
         env = EnvConfig.from_dict({**env.to_dict(), 'subgoal_mode': catalog,
             'execution_feedback': 'continuation' if continuation_feedback else env.execution_feedback})
@@ -84,6 +86,7 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
                 'source_method': source_method, 'source_config_sha256': sha(batch/'source_config.json'),
                 'config': env.to_dict(), 'routes': old['routes'],
                 'rule': 'existing_navstack.env.rule_action',
+                'rule_speed_policy': speed_policy,
                 'rule_limitation': 'Existing ego-arc heuristic uses endpoint and primitive checks; do not assume it is the strongest possible B3',
                 'created_epoch': now, 'deadline_epoch': now+wall_seconds,
                 'calibration_sha256': old['calibration_sha256'], 'cleanup_owned_carla': True,
@@ -108,7 +111,21 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
     return batch
 
 
-def evaluate_cases(env, cases, output, health):
+def selected_speed_action(env, proposal, speed_policy):
+    """Explicit B3 speed ablation; no learned policy calls or environment changes."""
+    if speed_policy == 'native_score' or proposal == 0:
+        return proposal
+    if speed_policy != 'paired_low_speed':
+        raise ValueError('Unknown rule speed selection policy')
+    action = 2*((int(proposal)-1)//2)+1
+    target, speed = env.decode_action(action)
+    original_target, original_speed = env.decode_action(proposal)
+    if target != original_target or speed != .75 or original_speed not in (.75, 1.5):
+        raise ValueError('Rule speed ablation requires paired identical-pose catalog entries')
+    return action
+
+
+def evaluate_cases(env, cases, output, health, speed_policy='native_score'):
     """One unchanged rule call and one production environment step per decision."""
     results, controls = [], 0
     with gzip.open(output/'evaluation_trace.jsonl.gz', 'wt', encoding='utf-8') as stream:
@@ -119,7 +136,8 @@ def evaluate_cases(env, cases, output, health):
             selection_times, complete_cycle_times = [], []
             while not env.done:
                 started = time.perf_counter()
-                action = rule_action(env)
+                proposal = rule_action(env)
+                action = selected_speed_action(env, proposal, speed_policy)
                 selection_seconds = time.perf_counter()-started
                 _, _, _, _, info = env.step(action)
                 cycle_seconds = time.perf_counter()-started
@@ -127,7 +145,8 @@ def evaluate_cases(env, cases, output, health):
                 selection_times.append(selection_seconds)
                 complete_cycle_times.append(cycle_seconds)
                 stream.write(json.dumps({'case_id': case_id, 'policy_kind': 'rule_only_B3',
-                    'policy_action': action, 'selection_seconds': selection_seconds,
+                    'policy_action': action, 'rule_proposal': proposal, 'rule_speed_policy': speed_policy,
+                    'selection_seconds': selection_seconds,
                     'full_decision_seconds': cycle_seconds, 'info': info}, default=jsonable)+'\n')
                 atomic_json(output/'heartbeat.json', {'epoch': time.time(), 'case_id': case_id,
                     'actions': len(selection_times), 'physics_steps': controls})
@@ -174,7 +193,8 @@ def run(batch):
         env = CarlaNavigationEnv(config, client)
         cases = [{'scenario': 'native_curve', 'condition': i, 'native_route': r}
                  for i, r in enumerate(protocol['routes'])]
-        episodes, controls = evaluate_cases(env, cases, batch, lambda: guard(batch, protocol))
+        episodes, controls = evaluate_cases(env, cases, batch, lambda: guard(batch, protocol),
+                                           protocol.get('rule_speed_policy', 'native_score'))
         write_json(batch/'summary.json', {'status': 'complete', 'policy_kind': 'rule_only_B3',
             'scope': protocol['scope'], 'episodes': episodes, 'evaluation_controls': controls,
             'world_ticks': client.total_ticks, 'reset_ticks': client.total_ticks-controls,
@@ -198,5 +218,6 @@ if __name__ == '__main__':
     parser.add_argument('--wall-seconds', type=int, default=1800)
     parser.add_argument('--catalog', choices=['route_frame_terminal'])
     parser.add_argument('--continuation-feedback', action='store_true')
+    parser.add_argument('--speed-policy', choices=['native_score', 'paired_low_speed'], default='native_score')
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy) if args.prepare else run(args.batch)

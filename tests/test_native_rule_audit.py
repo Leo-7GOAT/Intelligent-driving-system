@@ -80,3 +80,14 @@ def test_rule_audit_rejects_corrupted_evidence(tmp_path, change, match):
     write_json(summary_path, summary)
     with pytest.raises(ValueError, match=match):
         audit(tmp_path)
+
+
+def test_rule_audit_rejects_unregistered_speed_selection(tmp_path):
+    row = fixture(tmp_path)
+    protocol=json.loads((tmp_path/'protocol.json').read_text())
+    protocol['rule_speed_policy']='paired_low_speed'
+    write_json(tmp_path/'protocol.json',protocol)
+    row.update(rule_proposal=2,rule_speed_policy='paired_low_speed',policy_action=2)
+    write_gzip(tmp_path/'evaluation_trace.jsonl.gz',[row])
+    with pytest.raises(ValueError,match='lower-speed selection'):
+        audit(tmp_path)
