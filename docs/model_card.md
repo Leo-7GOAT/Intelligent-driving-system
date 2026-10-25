@@ -1,5 +1,17 @@
 # Development model card
 
+## Published CPU collision-compute evidence (no model)
+
+[road_collision_batch_20261025.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/road_collision_batch_20261025.zip)
+contains122manifestfiles/298,907bytes, SHA256
+`cc58e501af5df3f4dec8f1a0a38f884bd36853900e5ac05923f08ce0ea926ba6`,
+exported from `b36da0c`. All three offline prototypes, including the first
+scattered-pose slowdown, retain their raw timings and frozen sources. The public
+download's complete manifest/source hashes are verified independently. This
+asset contains no learned model or additional CARLA execution, and supports no
+hierarchy, learned-decision or realtime claim. Reproduction and independent
+checkout measurements are in the [collision report](../reports/road_collision_batch_20261025.md).
+
 ## Published six-arm clipping development evidence
 
 [native_clipping_seed11_20261024.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_clipping_seed11_20261024.zip)

@@ -76,3 +76,49 @@ existing SB3 deprecation warnings and one expected nonfinite-pose arithmetic
 warning in the invalid-input equivalence test. No CARLA conditional test is
 represented as executed by these CPU results.
 The current live PPO endpoint and broader research acceptance remain incomplete.
+
+## Independent checkout and published evidence
+
+Clean independent checkout `b36da0c066b4dcea44f2ceca000c2728963d9dd5`
+with the separate fixed-dependency environment passes **21 targeted tests**.
+Its three-repeat benchmark reproduces every kernel count/flag and full-search
+status, failure reason, node count, cost and path hash. Independent whole-search
+medians are 12.35388→2.01032s (Euclidean) and 1.10838→0.16990s (guided).
+The receipt is `runs/road_batch_reproduction_receipt_20261025.json` in that
+checkout. Timings and raw JSON are not byte-identical. Git LF versus workspace
+CRLF also changes the fixture's raw hash to
+`85b9d418695c0f71f3ecb4f7cd2afb987f1dabff4aee5f8573d751426f5f9f33`;
+each recorded hash is independently verified, and fixture/source text is equal
+after universal-newline decoding. No geometry/configuration differences are
+silently ignored.
+
+[road_collision_batch_20261025.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/road_collision_batch_20261025.zip)
+is uploaded to the existing development prerelease: **122 manifest files,
+298,907 bytes**, SHA256
+`cc58e501af5df3f4dec8f1a0a38f884bd36853900e5ac05923f08ce0ea926ba6`.
+It includes all three prototype/integrated result JSONs and their original
+frozen sources, fixture, license notices and dependency lock. No model or live
+training stream is included. The independent checkout downloads this public
+asset and verifies every manifest file and benchmark source hash before
+extraction. The historical prerelease tag is not rewritten; the manifest records
+export commit `b36da0c`. Download verification is saved under
+`runs/road_batch_download_20261025/download_verification.json` there.
+
+```powershell
+gh release download v0.2.0-dev.20261022 --repo Leo-7GOAT/Intelligent-driving-system --pattern road_collision_batch_20261025.zip --dir runs/road_batch_download
+```
+
+After verifying the published archive SHA256 and manifest, the integrated frozen
+script can run with the repository's installed dependencies:
+
+```powershell
+python EXTRACTED/evidence/road_batch_integrated_20261025_source/scripts/benchmark_road_batch.py --output runs/road_batch_downloaded_rebuild.json --repeats 2
+```
+
+That downloaded frozen script has actually executed in the independent checkout
+with two interleaved repetitions. Frozen source hashes, fixture raw hash,
+kernel flags/counts and both exact search results match the published original.
+Receipt: `runs/road_batch_download_20261025/frozen_script_reproduction.json`;
+rebuilt JSON SHA256
+`1ab597c19b7d39e8aac337dc2a87cb2df84f6f190d7b2c9a087301f19251dba9`.
+This verifies a public downloadable CPU artifact, not another CARLA drive.

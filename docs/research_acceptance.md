@@ -1,6 +1,14 @@
 # Research acceptance ledger
 
-Updated 2026-10-22. This is an implementation and evidence ledger, not a claim that the research goal has been met. The user's latest objective supersedes the earlier six-hour-only and no-push instructions. Each execution window remains bounded and checkpointed. The complete project goal remains active across windows.
+Updated 2026-10-25. This is an implementation and evidence ledger, not a claim that the research goal has been met. The user's latest objective supersedes the earlier six-hour-only and no-push instructions. Each execution window remains bounded and checkpointed. The complete project goal remains active across windows.
+
+Latest development: audited rule-only B3 now completes4/4 known training roads;
+fresh seed11 H0/H/B1 CARLA learning is running under its original frozen source.
+No new independent-seed, unseen-confirmation or learned-advantage result exists.
+Optional exact road-SAT batching has independent CPU reproduction and a
+[published development evidence asset](../reports/road_collision_batch_20261025.md);
+it remains disabled in the current training batch. These low-level engineering
+and publication advances do not close the capability or research gates below.
 
 ## Evidence isolation
 

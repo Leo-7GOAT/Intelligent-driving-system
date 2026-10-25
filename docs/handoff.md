@@ -1,4 +1,36 @@
-# Exact road SAT tested; fresh route PPO still LIVE — 2026-10-25 17:47 local
+# Road SAT public download reproduced; PPO remains LIVE — 2026-10-25 17:55 local
+
+Implementation commit b36da0c is pushed and remote-confirmed. Independent clean
+checkout b36da0c passes21targeted tests and reproduces the3-repeat road benchmark:
+all flags/counts/status/reason/nodes/cost/path exact; normalized source and
+fixture text equal. Git LF changes fixture rawhash85b9d418...f5f9f33 versus
+rootCRLF12ebb658...1ff48; both hashes verified, no wholeJSONbyte-equality claim.
+Receipt `runs/road_batch_reproduction_receipt_20261025.json` in that checkout.
+
+Actually uploaded `road_collision_batch_20261025.zip` to existing
+v0.2.0-dev.20261022 prerelease (historical tag untouched):122files/298,907bytes,
+SHAcc58e501af5df3f4dec8f1a0a38f884bd36853900e5ac05923f08ce0ea926ba6.
+All3prototype/integrated results and frozen sources included; no model or live
+PPO stream. Independent public download verifies all manifest+source hashes,
+then ACTUALLY runs downloaded integrated frozen script for2interleavedrepeats.
+Exact sources/fixture/flags/searches match; receipt in independent
+`runs/road_batch_download_20261025/frozen_script_reproduction.json`.
+No physical controls/optimizer updates used by this CPU reconstruction.
+
+At17:54:29 worker18284/guard39196/Shipping56960 creationtimes still match,
+H0heartbeat12,566controls/1,263actions/39phases; lastoptimization78Adamsteps,
+actorL2.060619. Guardhealthy; deadline22:54:33; H/B1 still queued. Do not restart,
+change frozen source, initialize another pointer or start another tick owner.
+
+Next priority is completed H0/H/B1 actual endpoint/raw evidence. For the optional
+faster backend, after current owned cleanup run a separately registered scalar
+AND batch-SAT B3 pair from identical new frozen source before adopting a new
+training version. Old comparison script only handles heuristic contrasts and
+requires11identical control sources; do not weaken that check to compare old
+and new World/env source. Keep four-road matched tasks/calibration/physical
+limits, full-cycle costs, failures and single-seed development boundary.
+
+# Historical: tested implementation snapshot — 2026-10-25 17:47 local
 
 Previous goal turn was a verified live-process wait/status summary at the user's
 request. This turn makes code, test and benchmark progress; no agents spawned.
