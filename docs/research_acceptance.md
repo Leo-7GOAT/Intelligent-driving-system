@@ -9,7 +9,11 @@ H's completed20,665-control endpoint scores2/4known training roads; H0's
 controls are frame-verified, with independent byte-exact raw audits and the
 all-eight-case partial H0/H figure. All248H/190H0deterministic decisions are
 reconstructed. H has policy-selected waiting failures and one training bounds
-episode; H0's failed road is fully stationary/intervened. B1 is actually training.
+episode; H0's failed road is fully stationary/intervened. B1 now completes
+20,621training controls and0/4bounds failures in evaluation, with21,565total
+controls audited and all96decisions reconstructed. All3registered arms are
+complete, total67,289audited controls/534reconstructed decisions; original
+owned-server cleanup verified. See the [complete report](../reports/native_route_complete_20261025.md).
 This comparison does not support a feedback/PPO-value improvement.
 This partial development result does not close any independent-confirmation gate.
 No new independent-seed, unseen-confirmation or learned-advantage result exists.

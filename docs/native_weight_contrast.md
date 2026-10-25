@@ -1,8 +1,9 @@
 # Native actor-weight contrast
 
 Status on 2026-10-25: implemented and locally regression-tested; **actual
-CARLA contrast not yet executed**. The original H0/H/B1 training queue still
-owns CARLA. Do not start another server or bridge on its RPC ports.
+CARLA weight contrast not yet executed**. The original H0/H/B1 queue has
+normally completed and cleaned up. A separately registered scalar/batchSAT B3
+diagnostic now owns CARLA; wait for its normal cleanup before this contrast.
 
 The completed H0 endpoint scores 3/4 on four known training roads. Its actor
 probabilities remain close to uniform, so those outcomes cannot establish that

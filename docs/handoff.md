@@ -1,4 +1,62 @@
-# B1 first checkpoint verified; H mechanism diagnosed — 2026-10-25 21:26 local
+# Original3method batch complete; NEW scalar B3 live — 2026-10-25 22:03 local
+
+Previous turn progress; this turn progress: original B1 completes, all3raw
+endpoints and534policy decisions verified, full12case figure independently
+byte-exact, owned original server cleanup; newactual scalar rule backend trial
+launched (not a new PPO variant). Whole research goal remains incomplete.
+
+ORIGINAL batch20261025T085433Z_native_route_learning now COMPLETE and owned
+server STOPPED. Worker18284/guard39196exit0/reasonnull, stopprobe0.9.15actors[],
+server_cleanupreturn0/server_stopowned_empty_server_stopped. Foregroundserver
+records exit-1 during deliberate verified owned stop (launcher exec53199exit1);
+this is preserved. Original sessions68948/76965finished0. No original tickowner.
+Final scoresH03/4,H2/4,B10/4; allknown training roads/seed11/noformaladvantage.
+
+B1 final20621controls/2080actions/65phases/130updates,141chargedovershoot,
+actorL2.82349575/reloadexact/wall3062.88s;46trainingends1success/6deadline/
+39bounds. All4evalBOUNDS:controls289/134/250/271,progress21.1850/2.8195/
+13.8798/5.4769m. Flat tracking/MPC rates properly null/no_reference; no fake0.
+Finalmodel7d1b6e35de7f6ee5b7b59bbdbd8be0fe8fcdf80a57369e70e5dd3bba0c222aa2;
+normd40a23045c9b88d43ec5829d418da102b260dfd785243d5e48da304a91a22d54.
+B1rawauditSHAe03f1316b8d748846ba7be34bf6be627953b299cecc66a0098be8624e19f9151,
+21565controls(20621train+944eval),23145worldticks(22077+1068). Independent JSON
+byte-exact. Every96B1action reconstructed from measured state/commands/history,
+helper+receipt inB1/analysis andB1/all_policy_decisions_reproduced.json.
+
+ALL3:61988train+5301eval=67289controls,70975worldticks,3686reset,390Adamsteps,
+534deterministic evalactions reconstructed. `analysis/complete_evidence_summary.json`
+SHAe59d76cac7870d0b4b8e0c9a44003641fe937f364770977b68d4d0d95065d180.
+Full12case `analysis/frozen_endpoints.png` visuallyinspected+independentlyexact
+SHA3b71cfc60d213c2d729959d1ce05ef0db71948edcbfcba089e21e7cd47fd2eae.
+25immutablebinaryprivacychecks pass; whole export still must scan ALL final
+artifacts. Complete report `reports/native_route_complete_20261025.md`.
+NEXT originaldata: commit docs, package_native_continuation.py ALL3afterclean
+Gitstatus, local/freshcheckout reproduce_native_asset.py, actualprerelease
+upload/download/fullreproduction. Do not claim published new3modelasset yet.
+
+NEWLIVE scalar B3 batch20261025T135651Z_native_rule, prepared from completed
+originalH environment but fresh root code; paired scalar/batchSAT protocol
+registered BEFOREexecution in `runs/native_collision_pair_20261025.json`.
+All4knownroads mandatory,7200nodes/dubins/native_score/FFunchanged; onlybackend
+will differ. Botharms must use IDENTICALcomplete frozen sourcehashdicts. Zero
+PPOtraining, noretries,3600s/arm/resource guards. Scalar deadline22:56:53.
+Worker **66256** creation21:58:48.015160/venvshim51280; guard **65924** creation
+21:58:59.351654; Shipping **59808** creation21:57:36.999152/launcher48248.
+Retained sessions worker**78465**, guard**15126**, foregroundserver**23505**.
+RPC2100..2102; actualisolated3.7probeCONNECTED/0.9.15matching/actors[] before
+worker. At22:03 scalarcase1actions19/531controls, guardhealthy. Revalidate PID+
+creation and actual session handles; never start secondowner while this runs.
+No candidate batch prepared yet. After normal scalarcleanup audit_native_rule;
+prepare batch_sat_v1 from ORIGINALcompletedH parent with same root .py/.ps1/
+fixture sourceinventory; run viaownedforeground+probe+realworkeridentity+guard.
+Then strictcompare_native_rule_collision.py ALL4cases/failures/state/control/
+action differences and fullcycletimings. Do not compare oldb495scalar code with
+newbatchSAT as if sourceidentical, or label offline speedups actualreal-time.
+Only after pair cleanup run initial/trained-weight actual controls; harness
+ready but actualweightcontraststillnotrun. HealthyB1/morelearning/new5seeds/
+fresh120conditions/formalB2+otherablations remain open; no goalcompletion.
+
+# Historical: B1 first checkpoint verified; H mechanism diagnosed — 2026-10-25 21:26 local
 
 B1 first immutable checkpoint is now saved/verified:10146controls/1024actions/
 23endedepisodes/32phases/64Adamsteps/10889worldticks. Prefix training19bounds/
