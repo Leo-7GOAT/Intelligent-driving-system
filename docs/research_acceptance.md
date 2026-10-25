@@ -16,6 +16,12 @@ and publication advances do not close the capability or research gates below.
 
 ## Evidence isolation
 
+Hosted CPU CI is now actually executed at sourcec77314f:Ubuntu24.04/CPython3.11.17
+installs the lock and passes276tests,3platform/opt-in skips,4CARLA deselections.
+The corresponding local Windows selection passes278/1skip/4deselections. See
+[actual CI run and scope](cpu_ci.md). This closes a CPU CI delivery gap, not a
+CARLA, policy performance, five-seed or final-confirmation gate.
+
 `runs/20261016T015226Z_research_batch_3377580f` and its frozen source/model/config/result files are retained. All previously inspected primary, generalization and CARLA test manifests are now **historical evaluation sets**. They cannot be reused as unseen confirmation after development. Formal v4 and earlier additionally retain their documented RNG defect. No historical failure or infrastructure exception is removed.
 
 New development batches live in separate directories. Architecture or reward changes require separate versions and compatible checkpoints. A new confirmation protocol must freeze code, model selection, budgets, scene generation, statistical endpoints and multiplicity treatment before any confirmation results are inspected.

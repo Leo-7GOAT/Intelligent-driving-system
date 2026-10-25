@@ -30,8 +30,30 @@ Linux skips those platform-specific cases. Conditional skips/deselections must
 stay visible in the logs. Raw CARLA audits, policy/model evidence and live
 resource guards remain separate local deliverables.
 
-Initial publication/run status will be recorded after actual execution. The
-presence of this workflow file alone is not reported as CI success.
+## Actual hosted execution
+
+[CPU regression run40188376038](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40188376038)
+completes successfully at source
+`c77314f8b5d82f9aae985423fc4bd69203c7f808`. The standard Ubuntu24.04 runner
+installs the locked CPU dependencies, reports no broken requirements, and runs
+with CPython3.11.17. The job is actually executed; this is not merely a workflow
+file or a proposed CI command.
+
+| Environment | Passed | Skipped | CARLA deselected | Test seconds |
+|---|---:|---:|---:|---:|
+| Local Windows, project environment | 278 | 1 | 4 | 186.17 |
+| Hosted Ubuntu24.04, fresh Python setup/install | 276 | 3 | 4 | 67.42 |
+
+The two additional Linux skips are Windows-only process ownership/infrastructure
+tests. Both environments retain the opt-in live continuation skip. Three
+warnings remain visible: two SB3 deprecations and nonfinite-pose arithmetic in
+the invalid-input equivalence test. The smaller Linux pass count is not a
+different scene-selection rule or a removed failure.
+
+Remote run metadata and console logs are saved locally as
+`runs/cpu_ci_github_40188376038.json` and `.log`. CI success supports portable
+CPU regression and locked dependency installation. It adds no CARLA control
+steps, independent training seeds or evidence of hierarchical advantage.
 
 The exact CPU selection command passes locally on Windows: **278 passed,
 one skipped, four CARLA tests deselected**,186.17s. The skip is the opt-in live

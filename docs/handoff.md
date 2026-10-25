@@ -1,4 +1,40 @@
-# Exact stochastic-update replay reproduced; H LIVE — 2026-10-25 18:51 local
+# Real hosted CPU CI passes; H approaching checkpoint — 2026-10-25 19:26 local
+
+Previous two goalturns were verified waits with actual OS PID/creationtime
+checks; receipts `runs/route_queue_verified_wait_20261025_1902.json` and1910.json.
+This goalturn is progress: identified missing.github/workflows and no remoteCI,
+implemented pinned CPUworkflow, ran local selection and ACTUAL GitHub runner.
+No training/runtime source change, extra tickowner, actor or agents. Goal active.
+
+Workflow sourcec77314f8b5d82f9aae985423fc4bd69203c7f808 pushed/remoteconfirmed.
+`.github/workflows/cpu-regression.yml` officialcheckoutv7.0.1/setuppythonv7.1.0
+fullcommitSHA pinned,Python3.11,torchCPUindex+requirements.lock,pipcheck,standard
+ubuntu24.04publicrunner/read-onlycontents/20minlimit/no persistentcache/artifacts.
+Source/test/dependency/workflow pushes/PRs trigger; docs-only pushes do not.
+Actual run https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40188376038
+SUCCEEDED:276pass/3skip/4CARLAdeselected,67.42s,CPython3.11.17,lockedinstall/pipcheck
+success. Local WindowssameCPUcommand278pass/1skip/4deselected,186.17s. ExtraLinux
+skips are2Windows-only process/infrastructure checks; liveCARLA optinsdisabled.
+Threewarningsvisible(2SB3deprecations/nonfiniteposearithmetic). NotCARLA CI.
+Remote logs+JSON inruns/cpu_ci_github_40188376038.*, localresults
+runs/cpu_ci_local_20261025.log/.xml. Scope docs/cpu_ci.md; publicstandardrunner
+free per officialGitHubbilling, no larger runner/cache/artifactbilling introduced.
+GCM Gitpush successfully authorized workflow; no new OAuth/login action needed.
+
+LIVE original training unchanged, batch20261025T085433Z_native_route_learning,
+frozenb495e71,worker18284creation16:57:12.140723,guard39196creation16:57:33,
+Shipping56960creation16:56:53.567340. At19:25:14 H8,809controls/886actions/27phases,
+guardhealthy/deadline22:54:33 unchanged; B1queued. FirstH10kcheckpoint notyetexists.
+GPUobserved40..51C, RAM~28GiBfree/disk~31GiB. Guardcode actually checks85C+disk12/
+RAM4/no-progress300s/wall. Do not restart or swap lowlevel mid-run.
+
+Next actual priority H10kimmutable checkpoint/integrity, then completed H/B1
+raw endpoints and whole3method release. Only after original ownedcleanup may
+new actual same-source scalar/batchSAT B3 and untrained-policy contrasts run.
+H0knownroad3/4 and64decisionexactoptimizer replay remain as documentedbelow;
+no five-seed/new120condition/research-acceptance orPPOvalue claim.
+
+# Historical: exact optimizer reconstruction — 2026-10-25 18:51 local
 
 Previous goalturn was real progress: H0finished3/4,22,589frame-auditedcontrols,
 independent exact audit/PNG and190deterministic decisions reconstructed. This

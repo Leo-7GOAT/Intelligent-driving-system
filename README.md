@@ -1,5 +1,7 @@
 # Executability-aware hierarchical driving research
 
+[Hosted CPU regression passed](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40188376038):276passed/3platform-or-opt-in skips/4CARLA deselections on Ubuntu24.04 with locked dependencies; the matching Windows CPU selection passes278/1skip/4deselections. This is CPU verification, separate from the actual CARLA experiments. See [CI scope and reproduction](docs/cpu_ci.md).
+
 An optional [exact road SAT batching backend](reports/road_collision_batch_20261025.md) preserves collision flags and complete search paths in the recorded development probe, while reducing search cost. Scalar remains the default and the active frozen CARLA PPO batch is unchanged. Offline timings are not full-cycle real-time evidence.
 
 Latest learned-policy development: fresh **H0 completes 3/4 known training roads** after20,702actual CARLA controls/130optimizer steps. All22,589training/evaluation controls are frame-audited; the raw audit and four-road figure reproduce independently byte-for-byte, and all190deterministic actions reconstruct from the saved model. The failed road remains stationary with90invalid plans and900intervened controls. **H is now training; B1 is queued.** See the [endpoint report](reports/native_route_checkpoint_20261025.md). This single-seed partial development result does not establish PPO contribution, unseen generalization or hierarchy superiority.
