@@ -1,4 +1,48 @@
-# H completed 2/4 and audited; B1 running — 2026-10-25 21:00 local
+# H feedback-input mechanism diagnosed; B1 running — 2026-10-25 21:16 local
+
+Previous goalturn was progress (H completed/raw audited/248actions reconstructed).
+This turn is progress: actual frozen-model input intervention and production
+reference queries at11distinct measured states across ALL4roads; independent
+checkout7605ba0/fixedPython/copied immutable inputs produces byte-exact JSON.
+No new CARLA owner/controls, vehicle integration, PPO/normalizer update, runtime
+change or agent. This is mechanism diagnosis, not new driving performance.
+
+`reports/native_feedback_inputs_20261025.md` records actual vs witness93zero vs
+outcome6zero vs both99zero, initial AND trained weights with SAME final Hnorm.
+All unaffected raw/normalized features—including4actuator states—stay exact.
+At all6inspected wait states, original trained and original seeded initial
+weights BOTHargmax0. Witness93zero changes trained argmax to moving candidates;
+outcome6zero changes none of11trained argmaxes. Five failed-road moving choices
+have production references from unchanged measured states (nodes60/69/36/5/4,
+samples61/61/55/25/21). The sixth query, successroad0finalstate, returns proper
+parking_brake. These are NOT6actual driving trials or a trained H0 ablation;
+zeroing features may be OOD. WaitP.0323673..0323977 on5failurestates is near
+uniform; top2gap2.4542e-5..1.0837e-4, witness-ablationKL1.1625e-6..3.3019e-6.
+This rules out absent candidate references at these5states as the sole cause;
+the persistent initial wait ranking and weak learned changes need investigation.
+Do not remove feedback from live policy or claim fixed task completion.
+
+Canonical `H/analysis/feedback_input_interventions_v2.json` SHA
+15428f3fea4080bdfdc97837d73899143f33158ce698f3caf06759f7077c4947,
+with full31action probabilities and frozen source alongside. Independent JSON
+at checkout/runs/20261025T085433Z_native_route_learning/H/analysis/samefilename;
+that replica is bounded ANALYSIS INPUTS ONLY, not a full training asset.
+Root `H/analysis/feedback_input_independent_reproduction.json` receipt. V1
+prototype is retained; V2normalizes p/q in float64 beforeKL and checks finite/
+nonnegative up to rounding. Only V2numerics used. Roothelper/source and all
+hash/model/normalization/trace identities checked; newcontrols0/updates0.
+
+LIVE original B1 at21:16 **8044controls/813actions/25phases**; same verified
+worker18284/guard39196/Shipping56960 andcreationtimes below, deadline22:54:33,
+guardhealthy. At800actions the optimization log has7914controls/50Adamsteps,
+actorL2.27729535; first20endedtrainingepisodes18bounds/2deadline/0success.
+These are interim training outcomes, not frozen evaluation or a healthy/final
+baseline. Continue the original full20480budget and all4road evaluation; do
+not censor failures/restart. Next immutable B110k checkpoint then wholeendpoint.
+After original cleanup still need whole3method release, actual same-source
+scalar/batchSAT B3 and initial/trained-weight driving contrasts. Goal incomplete.
+
+# Historical: H completed 2/4 and audited; B1 running — 2026-10-25 21:00 local
 
 Previous goalturn was verified wait; this turn is progress: original H finishes
 training/evaluation, H20k checkpoint diagnosed/reproduced, full raw H endpoint

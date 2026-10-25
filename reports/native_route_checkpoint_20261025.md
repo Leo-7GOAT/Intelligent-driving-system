@@ -20,6 +20,14 @@ The final frozen policy completes **2/4 known training-road probes**:
 | 2 | Success | 329 | 22.4616 | 0 | 0/0 | 0 |
 | 3 | Deadline | 900 | 17.8448 | 48 | 0/0 | 0 |
 
+The subsequent [input-block diagnostic](native_feedback_inputs_20261025.md)
+inspects11raw-audited states across all four roads. Candidate-witness removal
+changes the nearly uniform model's wait argmax at selected wait states, while
+outcome-only removal does not. The seeded initial weights also wait at these
+states. All five inspected failed-road alternatives have queried references,
+but none was executed. This is an independently byte-exact inference/planning
+diagnostic, not a retrained ablation or repaired driving result.
+
 Road1 ends with65consecutive policy-selected wait decisions/650controls,
 moving only0.03985m over that tail; final goal distance is7.3034m. Road3
 contains48wait decisions in total, with18consecutive terminal waits/180controls
