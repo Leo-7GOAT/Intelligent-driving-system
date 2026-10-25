@@ -1,5 +1,11 @@
 # Shared measured actuator state — 2026-10-25
 
+Final lifecycle update: this B3 run hits its original30-minute wallguard at
+15:35:48 with the fourthroad incomplete. Firstthree terminal successes remain;
+do not report a completed3/4 result. Both rawgzip tails are truncated. Owned
+cleanup is normal. See the [selected-state diagnosis and prospective search
+contrast](native_search_budget_20261025.md); the live sections below are history.
+
 Research acceptance remains incomplete. No PPO model has yet been trained with
 this interface. These four known training roads are development conditions.
 

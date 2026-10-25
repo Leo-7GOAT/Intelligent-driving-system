@@ -128,3 +128,19 @@ def test_bridge_requires_explicit_state_opt_in_for_feedforward_training():
         validate_actuator_interface(gains,'off',True,'native_curve')
     with pytest.raises(ValueError,match='measured feedforward'):
         validate_actuator_interface({},'ff_state_v1',True,'native_curve')
+
+
+def test_search_budget_intervention_is_shared_and_invalidates_old_models():
+    protocol={'feedback_ablation':True,'road_candidate_policy':True,'actuator_observation':'ff_state_v1',
+        'episode_seconds':45,'subgoal_mode':'route_frame_terminal','continuation_feedback':True}
+    for method in ('H0','H','B1'):
+        old=training_config(protocol,method,VehicleConfig())
+        new=training_config({**protocol,'planner_nodes':7200},method,VehicleConfig())
+        assert new.planner.max_nodes==7200 and new.planner.max_seconds is None
+        assert {**old.to_dict()['planner'],'max_nodes':7200}==new.to_dict()['planner']
+        assert signature(old)!=signature(new)
+        old_dict,new_dict=old.to_dict(),new.to_dict()
+        new_dict['planner']['max_nodes']=1800
+        assert old_dict==new_dict
+    with pytest.raises(ValueError,match='budgets'):
+        training_config({**protocol,'planner_nodes':True},'H',VehicleConfig())

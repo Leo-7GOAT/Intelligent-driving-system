@@ -53,7 +53,7 @@ def feedforward_calibration(path, original):
     return path, fit_path
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -72,6 +72,11 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
         raise ValueError('Continuation diagnostic requires the explicit route catalog')
     if speed_policy not in ('native_score', 'paired_low_speed'):
         raise ValueError('Unknown rule speed selection policy')
+    if planner_nodes is not None and (type(planner_nodes) is not int or planner_nodes not in (1800,7200) or catalog is None):
+        raise ValueError('Explicit route planner contrast supports1800 or7200nodes')
+    parent_planner_nodes=env.planner.max_nodes
+    if planner_nodes is not None:
+        env.planner.max_nodes=planner_nodes
     adapter_paths = None
     if calibration is not None:
         if catalog != 'route_frame_terminal':
@@ -139,6 +144,9 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
             'parent_calibration_sha256':old['calibration_sha256'],
             'fit_sha256':sha(adapter_paths[1]),'new_model_required':True,
             'scope':'Previously measured feedforward fit; shared four-state observation and matched fresh adaptation required for H/H0/B1'}
+    if planner_nodes is not None:
+        protocol['planner_intervention']={'from_nodes':parent_planner_nodes,'to_nodes':planner_nodes,
+            'new_model_required':True,'scope':'Registered bounded-search budget contrast; physical task and vehicle constraints unchanged. All planner methods share the new budget; compute costs reported separately.'}
     write_json(batch/'protocol.json', protocol)
     write_json(batch/'prepared.json', {'status': 'PREPARED_NOT_STARTED', 'protocol_sha256': sha(batch/'protocol.json')})
     print(batch, flush=True)
@@ -254,5 +262,6 @@ if __name__ == '__main__':
     parser.add_argument('--continuation-feedback', action='store_true')
     parser.add_argument('--speed-policy', choices=['native_score', 'paired_low_speed'], default='native_score')
     parser.add_argument('--calibration', type=Path, help='Explicit measured feedforward calibration with adjacent throttle_fit.json')
+    parser.add_argument('--planner-nodes',type=int,choices=[1800,7200])
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes) if args.prepare else run(args.batch)

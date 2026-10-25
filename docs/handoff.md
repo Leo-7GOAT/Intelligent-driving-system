@@ -1,4 +1,42 @@
-# Feedforward B3 LIVE — 2026-10-25 15:20 local
+# Search-budget contrast ready — 2026-10-25 15:45 local
+
+Previous goal turn made progress: shared actuator interface249pass5skip,
+independent35targetedpass and actual B3 launch. This turn completes that
+lifecycle, diagnoses bound measured frames, and versions the search budget.
+Research goal remains active/incomplete. No CARLA server/trainer is now running.
+
+Old `runs/20261025T070545Z_native_rule` guard stopsworker14160 at15:35:48,
+exit1/reasonwall_deadline. Ownedcleanupreturn0, empty0.9.15 probe and
+`owned_empty_server_stopped` receipt; all old OS identities gone. Firstthree
+roads success341/350/317; fourth ends incomplete atheartbeat82decisions,
+1,828reported total controls. Raw bridgeprefix1,568controls, traceprefix1,638;
+both gzip tails truncated. NOT a full raw audit or a complete3/4 result.
+No new PPO training/pointer. Do not restart it or widen its old deadline.
+
+`wait_diagnostic.json` binds road3prefix through firstwait to200actual frames,
+initial state/actuator/scene, source/protocol and rawprefix hashes. Atdecision19,
+pose(17.9368642,14.6196354,-.6703852),v1.464334,t9.5s. Previous30MPC cycles solve,
+lateralmax .000465/.002859/.003788m, headingmax .001420/.015933/.005959rad.
+All31production reference queries find actions7/8/9/10available,26failed+wait.
+Directgoal original1,800nodes timeout; predeclared4xcap7,200 finds path at2,277
+nodes,cost9.9225. This is offline feasibility, not executed alternative.
+Source scriptSHA7332e0408d4f5d5ccc8eea0c08d1e78207d2aa2fc82d954df69797eaf06b9ad5.
+
+New explicit `--planner-nodes 7200` preserves all preceding FF/continuation
+conditions; freshtraining carries it toH0/H/B1 and exact Hconfig equality is
+tested. Same signature machinery invalidates older models. Prospective protocol:
+`reports/native_search_budget_20261025.md`. New B3 gets60min beforelaunch,
+12GiBdisk/4GiBRAM/85°C/no-progress300s/zero retries,ownedcleanup. Only new
+normalcompleted/rawaudited4/4coverage may stage fresh20,480controls/method.
+
+Checks:32targetedpass in10.86s; afteradding covered-budget staging case,
+3stagingtests pass in3.17s. Earlier15raw/wait-audit tests pass,6waitfaulttests
+rerun pass. Root full249pass5skip is prior dd7ea9b, not a rerun of all newtests.
+Preflight400files/no findings. Next: commit/push, independently reproduce wait
+diagnostic before heavy live timing run, then actually launch newB3. Do not
+call the previous full-run comparator on the interrupted batch.
+
+# Historical: feedforward B3 LIVE — 2026-10-25 15:20 local
 
 At15:19:18 all three recorded OS identities still match/live. Guardhealthy.
 Case3decision41,total1,418controls; no terminalsummary/failure. Firstthree

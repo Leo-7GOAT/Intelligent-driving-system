@@ -48,3 +48,16 @@ def test_route_staging_preserves_failed_coverage_and_creates_no_training(parent)
         staging.prepare(parent)
     assert not (parent.parent/'native_route_learning.json').exists()
     assert not list(parent.parent.glob('*_native_route_learning'))
+
+
+def test_route_staging_keeps_the_covered_actuator_and_search_budget(parent):
+    protocol=json.loads((parent/'protocol.json').read_text())
+    protocol['config']['planner']['max_nodes']=7200
+    protocol['config']['actuator_observation']='ff_state_v1'
+    write_json(parent/'protocol.json',protocol)
+    batch=staging.prepare(parent)
+    staged=json.loads((batch/'protocol.json').read_text())
+    assert training_config(staged,'H',VehicleConfig()).to_dict()==protocol['config']
+    for method in staged['methods']:
+        config=training_config(staged,method,VehicleConfig())
+        assert config.planner.max_nodes==7200 and config.actuator_observation=='ff_state_v1'

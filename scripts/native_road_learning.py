@@ -78,6 +78,9 @@ def prepare(parent, road_geometry_version="carla_driving_64_v1", controlled_budg
 
 
 def training_config(protocol, method, vehicle):
+    planner_nodes=protocol.get('planner_nodes',1800)
+    if type(planner_nodes) is not int or planner_nodes not in (1800,7200):
+        raise ValueError('Native training supports the registered1800/7200node budgets')
     feedback = ("ablated" if method == "H0" else "enabled") if protocol.get("feedback_ablation", False) else "off"
     if protocol.get('continuation_feedback', False):
         feedback = 'continuation_ablated' if method == 'H0' else 'continuation'
@@ -88,6 +91,7 @@ def training_config(protocol, method, vehicle):
         actuator_observation=protocol.get('actuator_observation', 'off'),
         flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0)
     config.planner.max_seconds=None
+    config.planner.max_nodes=planner_nodes
     config.planner.vectorized_primitives=True
     config.planner.analytic_expansion=True
     return config
