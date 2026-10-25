@@ -1,4 +1,46 @@
-# Expanded search complete; heading guide ready — 2026-10-25 16:33 local
+# Fresh route PPO LIVE after audited4/4coverage — 2026-10-25 17:06 local
+
+Goal remains active/incomplete. Previous goalturn made real code/test/runtime
+progress. This turn completes expanded-budget failure, implements licensed
+heading guide, independently reproduces two measured-state probes, obtains
+actual4/4B3coverage and ACTUALLY starts fresh CARLA PPO. No agents spawned.
+
+LIVE `runs/20261025T085433Z_native_route_learning`, frozen b495e71 code:
+worker18284 creation16:57:12.140723 (shim44460);guard39196 creation16:57:33;
+Shipping56960 creation16:56:53.567340,launcher53316. Sessionsworker68948/
+guard76965/launcher53199. Identity inbatch/worker_process.json. RPC2100..2102,
+matching0.9.15 fresh-server probe. Deadline22:54:33;6h/12GiBdisk/4GiBRAM/
+85°C/no-progress300s/zero retries. At17:06:26 OSidentitiesmatch,guardhealthy,
+H0reports2,799controls/282actions/8optimization phases. Last optimization at
+2,545controls has16optimizer steps,actorL2change.0128093. This is active/unclosed
+training, not a completed/raw-audited endpoint. H andB1 are queued,not started.
+MethodsH0/H/B1seed11,20,480controls each,32actions/rollout,2epochs/globalclip,
+4705sharedinputs,continuation(H0ablatesall99),FFadapter,7200nodes,dubins_v1.
+No recovery/model/normalizer inheritance. Pointer `runs/native_route_learning.json`
+now exists: do not prepare or initialize it again. Monitor this actual process.
+
+Parent `runs/20261025T084117Z_native_rule` completes4/4 normally,controls
+341/350/317/311=1,319,+123reset=1,442worldticks,521.6754swall. Road3parksin
+15.55simseconds,zero recordedplan/MPCfailures/interventions. Guard0/null,
+ownedcleanup0/serverstopped; previousworker9732/guard23420/server57524gone.
+Whole raw auditSHA f34ec951297f51aef9aef061085e74273927aa96d776cb89672adc3b3d1535fb.
+Matched preregistration and actual comparison show zero measured-start deltas,
+same four road/tasks/calibration and11unchanged physical/control sources.
+Only queue guide differs from normalcompleted7200baseline074939Z(3/4).
+`planning_comparison.json` records allfour,including higherroad1searchcost;
+newP95byroad4.26/17.45/4.28/6.27s,not realtime. Rule improvement is NOT PPO value.
+
+Independent checkout b495e71:22targetedpass18.15s; old7200rawaudit byteexact;
+newstatebenchmark state/signatures/paths/counts exact, rawcodehashes differonly
+GitCRLF normalization,source textchecked. Receipt `runs/dubins_reproduction.json`.
+Oldfirstwait figure byteexactSHA0e332c466467943ff82d6c2ca07537dd0a98f0dea3bc633dd207c95b22be092e.
+Guided4/4rawaudit+whole comparison independent replay pending after current
+analysis-script commit. Rootfull260pass5skip,then11targeted includingrealstate,
+then7copy/staging tests afterfixture freezing fix. All previousfailed and
+interrupted versions retained; final research gates/five seeds/freshconditions
+and healthy complete-task B1 remain open.
+
+# Historical: expanded search complete; heading guide ready — 2026-10-25 16:33 local
 
 Goal active/incomplete. This turn is progress: stopped/audited the old lifecycle,
 independently reproduced its selected-state failure, implemented budget contrast,

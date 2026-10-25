@@ -85,3 +85,43 @@ The optional read-only `probe_carla37.py --ego-snapshot` waits for the existing
 owner's next frame. A fresh synchronous client can initially have a stale empty
 actor cache; that is not evidence that the worker stopped. This observer never
 ticks, spawns or controls actors and is not the evaluation-outcome source.
+
+## Actual coverage and new learning
+
+Frozenb495e71 B3 batch `20261025T084117Z_native_rule` completes **4/4**:
+341/350/317/311controls,1,319total+123reset=1,442worldticks,521.6754swall.
+All controls and four terminal outcomes pass raw audit, SHA256
+`f34ec951297f51aef9aef061085e74273927aa96d776cb89672adc3b3d1535fb`.
+Owned guard exits0/reasonnull and empty-server cleanup completes. Road3 parks
+in15.55simseconds with zero recorded plan/MPCfailures/interventions. This is
+known-road development coverage, not unseen confirmation or learned success.
+
+`planning_comparison.json` verifies matching task/config/calibration and11control
+sources; every measured-start delta is zero. It keeps allfour conditions.
+Road3 waits fall69to1,while road1 candidate-search expansions rise6,314to13,634.
+New full-decision P95 is4.26/17.45/4.28/6.27s byroad;P99 is
+4.40/24.52/4.83/6.60s,max4.44/26.99/5.05/6.68s. These remain far above0.5s;
+no hard realtime improvement or population effect is claimed. Candidate-search
+node counts exclude any extra environment search and are not total planner work.
+
+Independent checkout b495e71 passes22targetedtests in18.15s. The prior7200 raw
+audit is byte-identical; the second-state benchmark reproduces state,signatures,
+paths and nodecounts exactly. Source text matches after universal-newline
+decoding; rawsource hashes can differ with GitCRLF normalization. The standalone
+first-wait PNG also reproduces byte-identically. Guided raw/whole-comparison
+reproduction follows the analysis-script publication.
+
+The original4/4gate now passes. Fresh CARLA PPO batch
+`20261025T085433Z_native_route_learning` actually starts under a six-hour guard:
+H0/H/B1seed11,20,480controls each,32decisions/rollout,2epochs, identical frozen
+FFadapter/7200nodes/guide and shared4705-input observations. No inherited
+weights,normalizers or teacher actions. At17:06 H0 reports2,799physical controls;
+its last completed optimization has16optimizer steps andactorL2change.0128093.
+H/B1 are queued and have no new result yet. Training streams remain live and
+have not undergone final raw audit; these are not converged or five-seed results.
+See handoff for actual identities and22:54:33 resource deadline.
+
+```powershell
+python scripts/audit_native_rule.py --batch runs/20261025T084117Z_native_rule --output runs/guided_raw_rebuilt.json
+python scripts/compare_native_rule_planning.py --baseline runs/20261025T074939Z_native_rule --candidate runs/20261025T084117Z_native_rule --output runs/planning_comparison_rebuilt.json
+```
