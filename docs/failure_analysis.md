@@ -1,5 +1,13 @@
 # Failure analysis
 
+2026-10-25 intermediate [fresh-route checkpoint diagnosis](../reports/native_route_checkpoint_20261025.md)
+reconstructs seed11 initialization and matches the checkpoint's logged actor
+change. At10,186 actual training controls, H0 probabilities remain near uniform;
+three of four initial argmax selections change, but road1's selected action
+still fails the production full-body/reference gate. These recorded-scene
+offline queries have no new execution and precede the required endpoint audit.
+The live training version is unchanged; no convergence or PPO-value claim follows.
+
 The completed native rollout study leaves every learned arm at0/4. B1 long
 improves mean progress to6.637067m (short2.203275m) but records23 training bounds
 violations in134 completed episodes, versus18/128 for short. Its initial steering

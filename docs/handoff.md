@@ -1,4 +1,48 @@
-# Road SAT public download reproduced; PPO remains LIVE — 2026-10-25 17:55 local
+# Fresh checkpoint decision failure diagnosed; PPO LIVE — 2026-10-25 18:07 local
+
+Previous goalturn was progress: full267CPU regression, optional exact-SAT
+implementation/benchmarks, public evidence upload/download/frozen-script replay.
+This turn adds actual checkpoint decision diagnosis and strict future compute
+comparison, with29targeted tests. No agents spawned. Overall goal incomplete.
+
+Live batch still `runs/20261025T085433Z_native_route_learning`, frozenb495e71.
+Same worker18284 creation16:57:12.140723,guard39196 creation16:57:33,
+Shipping56960 creation16:56:53.567340 OS-confirmed; last18:05 snapshot
+H0 15,230controls/1,530actions/47phases, guardhealthy/deadline22:54:33 unchanged.
+H/B1queued; no closed endpoint or complete raw audit yet. Compressed transitions
+and bridge files may remain0bytes while open; not evidence that work stopped.
+
+New `scripts/diagnose_native_checkpoint_selection.py` runs with environment
+NAVSTACK_AUDIT_SOURCE_ROOT=absolute activebatch/source. Verifies ALL frozen
+source hashes, checkpoint artifact/config/action counters; creates fresh PPO
+seed11 without reset/physics, then actorL2(.056107908487319946) exactly matches
+logged10,186-control checkpoint. Both actors use the same frozen checkpoint
+normalization at first4recordedscene snapshots. Actual7distinct selected-action
+queries: initialargmax24/0/30/29→checkpoint22/22/30/30; road1'scheckpoint22
+fails `start_or_goal_body_collision_or_bounds`, others have reference samples
+108/109/116. Maxprob.032414..032458/entropy~3.43398 remains near uniform.
+NoPlant.step exists, states unchanged,0newcontrols/updates. Not an endpoint score
+or closed raw-frame audit. Stronger receipt:
+`H0/checkpoint_10000_selection_verified.json`; earlier narrower result retained.
+Report `reports/native_route_checkpoint_20261025.md`. Do not retune active job.
+
+New `scripts/compare_native_rule_collision.py` requires two normally completed,
+whole-audited B3 batches with IDENTICAL entire frozen source hash dictionaries,
+same4routes/calibration/speed/config exceptscalar→batch_sat_v1. Reports complete
+metrics, initial deltas, all actions, planmetadata (not unlogged paths), physical
+states/commands/actuator/reward differences and unmatched tails; no failures
+excluded. Synthetic helper tests+native audits/observations29pass. This is ready
+for a future actual pair, NOT an executed compute trial. Existing heuristic
+comparer unchanged, prior byte-identical reproduction remains valid.
+
+Next actual priority: keep original H0/H/B1 worker running, then when H0 training
+AND its4-road evaluation/client/recorder close, method-local raw audit can run
+even while H begins. Require closed transition and relevant bridge streams, not
+whole batch shutdown. `audit_native_method_endpoint.py` already supports that.
+Only after whole batch normal owned cleanup may actual same-source scalar/B3
+and batch-SAT/B3 run. Current learned decision competence remains unresolved.
+
+# Historical: public CPU asset snapshot — 2026-10-25 17:55 local
 
 Implementation commit b36da0c is pushed and remote-confirmed. Independent clean
 checkout b36da0c passes21targeted tests and reproduces the3-repeat road benchmark:

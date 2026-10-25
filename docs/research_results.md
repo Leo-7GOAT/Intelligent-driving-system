@@ -1,5 +1,11 @@
 # Research results and claim boundaries
 
+The fresh-route H0 intermediate10,186-control checkpoint has genuine actor
+changes but near-uniform probabilities and a rejected argmax on road1's saved
+initial scene. [Seven production reference queries](../reports/native_route_checkpoint_20261025.md)
+are offline snapshot diagnostics, not a completed CARLA policy evaluation.
+The original H0/H/B1 batch continues unchanged; final endpoint results are pending.
+
 2026-10-25: [exact road collision batching](../reports/road_collision_batch_20261025.md)
 reduces offline complete-search median cost on one recorded development state,
 with exact status/nodes/cost/path agreement. Scalar remains default; no live PPO
