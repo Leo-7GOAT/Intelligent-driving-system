@@ -1,4 +1,39 @@
-# Real hosted CPU CI passes; H approaching checkpoint — 2026-10-25 19:26 local
+# H10kcheckpoint verified; hosted CPU CI delivered — 2026-10-25 19:37 local
+
+This goalturn is progress: real hosted CPU CI implemented and passed, plus H's
+first checkpoint actually saved/verified/reproduced. Implementationc77314f,
+CIreportdocs3aaf002 pushed; working training source/protocol remain frozenb495e71.
+No new agents, runtime changes, optimizer variants or second tickowner.
+
+Hcheckpoint_000010000:10,188actualcontrols,1,024actions,14completedepisodes,
+32phases/64Adamsteps,10652worldticks. ModelSHA
+f9b3b93b9f9ec1c626d75f0e7c2853423a95d6e2a92e981cef0819d644db01d4;
+normSHA0ea54a9200b8846781a836d5a3effc903d7ca22169f71f41c6dfb6deb35899d6;
+RNGSHAed8fb395293f8fc01f69534b8ff17350039e00f90c04859367371c7dffde0c79.
+`diagnose_native_checkpoint_selection.py` verifies allfrozen/artifact/config
+hashes and counters, reconstructsseed11actorL2.11378152668476105 exactlyagainst
+loggedcheckpoint and uses SAME Hcheckpointnormalization forbothweightsets.
+Initial-weightargmax22/0/30/29→Hcheckpoint22/28/22/30; all4initialselected
+productionreferencesvalid(108/97/101/116samples),7distinctqueries/noPlant.step.
+Probmax.032375..032436,entropynearuniform. H0road1selected22wasinvalid, but
+this is not executedHsuccess or causalfeedbackvalue; models haveownnorm/scenes.
+
+H/checkpoint_10000_selection_verified.json independently byte-exact with
+separatefixed-dependency Python;SHA
+1025c4d4a96c66b698f4a7451476373a6246b12b1dec276d9459ef356280dba5.
+Receipt inindependentcheckout/runs/route_H_checkpoint_10000_reproduction_receipt_20261025.json.
+No newcontrols/PPOupdates/normalizationupdates; Hactivecompressedstreams remain
+unclosed, no endpointscore/fullrawaudit yet. B1stillqueued. At19:35:21 H10,920
+controls/1,098actions/34phases,guardhealthy/deadline22:54:33 unchanged.
+Originalworker18284/guard39196/Shipping56960 andcreationtimes retainedbelow.
+
+Next: follow original H to20,480nominal/complete-rollout endpoint and4road
+frozen evaluation, then method-local raw audit while B1 starts. Do not claim
+four available references are four successes. Preserve H0known3/4 and all
+failures. Whole3method data/model release and newactual compute/untrained-policy
+controls wait for all endpoints and original normal owned cleanup.
+
+# Historical: hosted CI snapshot — 2026-10-25 19:26 local
 
 Previous two goalturns were verified waits with actual OS PID/creationtime
 checks; receipts `runs/route_queue_verified_wait_20261025_1902.json` and1910.json.

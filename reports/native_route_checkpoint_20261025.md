@@ -64,7 +64,46 @@ python runs/20261025T085433Z_native_route_learning/source/scripts/audit_native_m
 python scripts/plot_native_endpoints.py --batch runs/20261025T085433Z_native_route_learning --method H0 --output runs/H0_endpoint_rebuilt.png
 ```
 
-The following sections retain the intermediate checkpoint evidence as captured.
+## H intermediate checkpoint, 19:33 local — not an endpoint score
+
+The same frozen worker actually trains H after closing H0. Its first immutable
+checkpoint contains **10,188physical controls**,1,024decisions,32optimization
+phases/64optimizer steps (H0's corresponding threshold checkpoint had10,186
+controls). H model SHA256 is
+`f9b3b93b9f9ec1c626d75f0e7c2853423a95d6e2a92e981cef0819d644db01d4`;
+normalization SHA256
+`0ea54a9200b8846781a836d5a3effc903d7ca22169f71f41c6dfb6deb35899d6`.
+Artifact/config/action counts and all frozen source hashes verify before
+inference. Seed-reconstructed actor distance.11378152668476105 matches the
+actual optimization log; no local reset, physical integration or update occurs
+in the diagnostic process.
+
+Using H's own frozen checkpoint normalization for both weight sets:
+
+| Known-road initial scene | Initial-weight argmax | H checkpoint argmax | Selected production reference |
+|---|---:|---:|---|
+| 0 | 22 | 22 | Valid,108samples |
+| 1 | 0(wait) | 28 | Valid,97samples |
+| 2 | 30 | 22 | Valid,101samples |
+| 3 | 29 | 30 | Valid,116samples |
+
+All four selected initial references are available; the H0 intermediate/final
+road1 selection was invalid. These are **seven offline reference queries**,
+not four completed drives. H/H0 have their own learned normalization and
+recorded scene snapshots, so this table is not a controlled causal estimate of
+feedback contribution. H's maximum probabilities remain.032375–.032436 and
+entropy3.433983–3.433985, still close to uniform. No unseen or convergence claim
+is made, and the original H training continues without retuning.
+
+Root evidence: `H/checkpoint_10000_selection_verified.json`. A separate fixed-
+dependency interpreter in the independent checkout reruns the analysis and
+reproduces the whole result **byte-identically**, SHA256
+`1025c4d4a96c66b698f4a7451476373a6246b12b1dec276d9459ef356280dba5`.
+Receipt there: `runs/route_H_checkpoint_10000_reproduction_receipt_20261025.json`.
+Zero new CARLA controls, zero PPO updates, normalization unchanged. The live H
+transition/bridge stream has not closed and has no complete endpoint raw audit.
+
+The following sections retain the H0 intermediate evidence as captured.
 
 The live seed11 fresh H0/H/B1 batch remains
 `20261025T085433Z_native_route_learning`, frozen `b495e71`, with identical
