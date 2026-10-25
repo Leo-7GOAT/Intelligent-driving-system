@@ -22,6 +22,14 @@ Project URLs from package metadata are preserved in `dependency_licenses.json`. 
 
 Algorithm attribution: PPO is implemented by Stable-Baselines3; QP solving uses OSQP; the environment API uses Gymnasium; tensor learning uses PyTorch. The project implements its own forward bicycle-model Hybrid A* search, trajectory handling and MPC assembly. It does not claim these established algorithms as original inventions.
 
+`navstack/dubins_guide.py` adapts the six-family obstacle-free Dubins length
+formulas from Mark Moll's [OMPL DubinsStateSpace.cpp](https://github.com/ompl/ompl/blob/main/src/ompl/base/spaces/src/DubinsStateSpace.cpp),
+copyright(c)2010 Rice University, BSD-3-Clause. The complete source notice is
+retained in [third_party/ompl/LICENSE](../third_party/ompl/LICENSE). No OMPL
+binary/runtime or optimized classification implementation is redistributed.
+This optional search-order guide is not an original Dubins algorithm or an
+optimality claim for the project's tolerant, weighted Hybrid A* search.
+
 The recovery-state supervision diagnostics use dataset aggregation ideas associated
 with Ross, Gordon and Bagnell, *A Reduction of Imitation Learning and Structured
 Prediction to No-Regret Online Learning*, AISTATS/PMLR15:627–635 (2011),

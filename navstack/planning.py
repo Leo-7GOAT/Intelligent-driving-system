@@ -7,6 +7,7 @@ import time
 import numpy as np
 from scipy.interpolate import CubicSpline, CubicHermiteSpline
 from .vehicle import wrap
+from .dubins_guide import dubins_distance
 
 
 @dataclass
@@ -171,7 +172,7 @@ class HybridAStar:
                 steer_id,
             )
 
-        def heuristic(p):
+        def geometric_heuristic(p):
             distance = max(
                 0, math.hypot(p[0] - goal[0], p[1] - goal[1]) - c.goal_tolerance
             )
@@ -179,6 +180,16 @@ class HybridAStar:
                 max(0, abs(wrap(p[2] - goal[2])) - c.yaw_tolerance) * v.min_turn_radius
             )
             return max(distance, turn)
+
+        def heuristic(p):
+            base=geometric_heuristic(p)
+            if c.heuristic_mode=='dubins_v1' and base>0:
+                # Exact-pose obstacle-free forward geometry guides queue order.
+                # With terminal tolerances/weighted search this is an engineering
+                # guide, not an admissibility or optimality claim. It never
+                # changes goal acceptance or substitutes an unvalidated path.
+                return max(base,dubins_distance(p,goal,v.min_turn_radius))
+            return base
 
         nodes = [(np.array(start, dtype=float), -1, np.empty((0, 3)), 2, 0.0)]
         queue, best = [(c.heuristic_weight * heuristic(start), 0)], {key(start, 2): 0.0}
@@ -211,7 +222,7 @@ class HybridAStar:
                     path = np.vstack([np.asarray(start).reshape(1, 3)] + pieces[::-1])
                     return result("success", path, g + float(np.linalg.norm(np.diff(connection[:, :2], axis=0), axis=1).sum()), expanded)
             if (
-                heuristic(pose) <= 1e-9
+                geometric_heuristic(pose) <= 1e-9
                 and abs(wrap(pose[2] - goal[2])) <= c.yaw_tolerance
             ):
                 pieces = []

@@ -69,10 +69,13 @@ class PlannerConfig:
     analytic_expansion: bool = False
     vectorized_primitives: bool = False
     grid_postprocess: str = "legacy"
+    heuristic_mode: str = "euclidean"
 
     def __post_init__(self):
         if self.grid_postprocess not in ("legacy", "body_spline_v1"):
             raise ValueError("unknown grid postprocessor")
+        if self.heuristic_mode not in ("euclidean", "dubins_v1"):
+            raise ValueError("unknown planner heuristic")
 
 
 @dataclass
@@ -227,6 +230,8 @@ class EnvConfig:
         # Preserve the serialized configuration of historical, disabled runs.
         if self.actuator_observation == "off":
             result.pop("actuator_observation")
+        if self.planner.heuristic_mode == "euclidean":
+            result["planner"].pop("heuristic_mode")
         return result
 
     @classmethod

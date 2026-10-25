@@ -51,13 +51,18 @@ def test_route_staging_preserves_failed_coverage_and_creates_no_training(parent)
 
 
 def test_route_staging_keeps_the_covered_actuator_and_search_budget(parent):
+    fixture=parent/'source/tests/fixtures/grid.json';fixture.parent.mkdir(parents=True)
+    fixture.write_text('{"regression":"must remain bound to frozen source"}')
     protocol=json.loads((parent/'protocol.json').read_text())
     protocol['config']['planner']['max_nodes']=7200
     protocol['config']['actuator_observation']='ff_state_v1'
+    protocol['config']['planner']['heuristic_mode']='dubins_v1'
     write_json(parent/'protocol.json',protocol)
     batch=staging.prepare(parent)
     staged=json.loads((batch/'protocol.json').read_text())
+    assert staged['source_hashes']['tests/fixtures/grid.json']==staging.sha(fixture)
     assert training_config(staged,'H',VehicleConfig()).to_dict()==protocol['config']
     for method in staged['methods']:
         config=training_config(staged,method,VehicleConfig())
         assert config.planner.max_nodes==7200 and config.actuator_observation=='ff_state_v1'
+        assert config.planner.heuristic_mode=='dubins_v1'

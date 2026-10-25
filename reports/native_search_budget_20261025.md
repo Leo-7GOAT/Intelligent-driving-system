@@ -1,5 +1,10 @@
 # Search-budget diagnosis and prospective contrast — 2026-10-25
 
+Final update:074939Z completes3/4 normally,1,919controls+123reset; road3deadline
+with21reference/69wait. Whole raw audit passes; no PPOgatepass. Increasing nodes
+alone does not fixcoverage. See [heading-guide evidence](native_dubins_guide_20261025.md).
+The live execution status paragraphs below are historical snapshots.
+
 The full research goal is still incomplete. No new PPO training is claimed.
 
 ## Interrupted feedforward B3

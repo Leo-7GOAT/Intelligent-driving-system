@@ -92,6 +92,9 @@ def training_config(protocol, method, vehicle):
         flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0)
     config.planner.max_seconds=None
     config.planner.max_nodes=planner_nodes
+    heuristic=protocol.get('planner_heuristic','euclidean')
+    if heuristic not in ('euclidean','dubins_v1'):raise ValueError('Unknown native planner heuristic')
+    config.planner.heuristic_mode=heuristic
     config.planner.vectorized_primitives=True
     config.planner.analytic_expansion=True
     return config

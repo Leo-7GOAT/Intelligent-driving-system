@@ -56,6 +56,7 @@ def prepare(parent, controls=20480, wall_seconds=21600):
             continuation_feedback=old['config']['execution_feedback']=='continuation',
             actuator_observation=old['config'].get('actuator_observation','off'),
             planner_nodes=old['config']['planner']['max_nodes'],
+            planner_heuristic=old['config']['planner'].get('heuristic_mode','euclidean'),
             road_geometry_version=old['config']['road_geometry_version'],
             feedback_ablation=True, road_candidate_policy=True, deterministic_training_route_evaluation=True,
             cleanup_owned_carla=True, reset_ticks_counted_separately=True,
@@ -71,7 +72,8 @@ def prepare(parent, controls=20480, wall_seconds=21600):
         shutil.copytree(parent/'calibration',batch/'calibration')
         shutil.copy2(Path(__file__),batch/'source/scripts'/Path(__file__).name)
         protocol['source_hashes'] = {p.relative_to(batch/'source').as_posix():sha(p)
-            for p in (batch/'source').rglob('*') if p.is_file() and p.suffix in ('.py','.ps1')}
+            for p in (batch/'source').rglob('*') if p.is_file() and
+            (p.suffix in ('.py','.ps1') or p.is_relative_to(batch/'source/tests/fixtures'))}
         write_json(batch/'protocol.json',protocol)
         write_json(batch/'prepared.json',{'status':'PREPARED_NOT_STARTED','protocol_sha256':sha(batch/'protocol.json')})
         with pointer.open('x',encoding='utf-8') as stream:

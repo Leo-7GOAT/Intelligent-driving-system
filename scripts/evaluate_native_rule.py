@@ -53,7 +53,7 @@ def feedforward_calibration(path, original):
     return path, fit_path
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -74,9 +74,14 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
         raise ValueError('Unknown rule speed selection policy')
     if planner_nodes is not None and (type(planner_nodes) is not int or planner_nodes not in (1800,7200) or catalog is None):
         raise ValueError('Explicit route planner contrast supports1800 or7200nodes')
+    if planner_heuristic is not None and (planner_heuristic not in ('euclidean','dubins_v1') or catalog is None):
+        raise ValueError('Explicit route planner heuristic must be euclidean or dubins_v1')
     parent_planner_nodes=env.planner.max_nodes
+    parent_heuristic=env.planner.heuristic_mode
     if planner_nodes is not None:
         env.planner.max_nodes=planner_nodes
+    if planner_heuristic is not None:
+        env.planner.heuristic_mode=planner_heuristic
     adapter_paths = None
     if calibration is not None:
         if catalog != 'route_frame_terminal':
@@ -105,7 +110,8 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
         # New development version, never mutate or resume the parent's model.
         for folder in ('navstack', 'scripts', 'tests'):
             for source in (ROOT/folder).rglob('*'):
-                if source.is_file() and source.suffix in ('.py', '.ps1'):
+                if source.is_file() and (source.suffix in ('.py', '.ps1')
+                        or source.suffix=='.json' and source.is_relative_to(ROOT/'tests/fixtures')):
                     target = batch/'source'/source.relative_to(ROOT)
                     target.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(source, target)
@@ -131,7 +137,8 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
                 'disk_free_bytes': shutil.disk_usage(ROOT).free,
                 'training_physics_steps': 0, 'optimizer_updates': 0,
                 'source_hashes': {p.relative_to(batch/'source').as_posix(): sha(p)
-                                  for p in (batch/'source').rglob('*') if p.is_file() and p.suffix in ('.py', '.ps1')}}
+                                  for p in (batch/'source').rglob('*') if p.is_file() and
+                                  (p.suffix in ('.py', '.ps1') or p.is_relative_to(batch/'source/tests/fixtures'))}}
     if catalog:
         protocol.update(scope='Rule-only route-frame catalog development coverage on all four training roads; not learned-policy evidence',
             catalog_intervention={'from': read(config_path)['env']['subgoal_mode'], 'to': catalog,
@@ -144,9 +151,10 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
             'parent_calibration_sha256':old['calibration_sha256'],
             'fit_sha256':sha(adapter_paths[1]),'new_model_required':True,
             'scope':'Previously measured feedforward fit; shared four-state observation and matched fresh adaptation required for H/H0/B1'}
-    if planner_nodes is not None:
-        protocol['planner_intervention']={'from_nodes':parent_planner_nodes,'to_nodes':planner_nodes,
-            'new_model_required':True,'scope':'Registered bounded-search budget contrast; physical task and vehicle constraints unchanged. All planner methods share the new budget; compute costs reported separately.'}
+    if planner_nodes is not None or planner_heuristic is not None:
+        protocol['planner_intervention']={'from_nodes':parent_planner_nodes,'to_nodes':env.planner.max_nodes,
+            'from_heuristic':parent_heuristic,'to_heuristic':env.planner.heuristic_mode,
+            'new_model_required':True,'scope':'Versioned Hybrid A* node-budget/search-order contrast, shared by H/H0/B3; B1 remains direct control. Physical task and vehicle limits unchanged; compute costs reported separately.'}
     write_json(batch/'protocol.json', protocol)
     write_json(batch/'prepared.json', {'status': 'PREPARED_NOT_STARTED', 'protocol_sha256': sha(batch/'protocol.json')})
     print(batch, flush=True)
@@ -263,5 +271,6 @@ if __name__ == '__main__':
     parser.add_argument('--speed-policy', choices=['native_score', 'paired_low_speed'], default='native_score')
     parser.add_argument('--calibration', type=Path, help='Explicit measured feedforward calibration with adjacent throttle_fit.json')
     parser.add_argument('--planner-nodes',type=int,choices=[1800,7200])
+    parser.add_argument('--planner-heuristic',choices=['euclidean','dubins_v1'])
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic) if args.prepare else run(args.batch)

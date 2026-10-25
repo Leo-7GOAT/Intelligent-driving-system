@@ -1,4 +1,39 @@
-# Expanded-search B3 LIVE — 2026-10-25 16:00 local
+# Expanded search complete; heading guide ready — 2026-10-25 16:33 local
+
+Goal active/incomplete. This turn is progress: stopped/audited the old lifecycle,
+independently reproduced its selected-state failure, implemented budget contrast,
+executed it, then implemented/tested a new goal-heading guide from failure evidence.
+
+074939Z ends normally at16:24:45:3/4,1,919controls+123reset,2,042ticks,
+2,036.99swall. guardexit0/reasonnull,ownedcleanupreturn0/serverstopped. Old
+worker21600/guard40744/Shipping58332 are gone. RawauditSHA
+3bf224632244c0db501a2ca7951c093ea024bad8e4e17068d07f772b922ceba7.
+Road3firstwait21,21reference+69wait,finaldist7.9898m/progress12.7341m.
+Coveragegatefails; no PPO. Earlier070545Z remains interrupted, not complete3/4.
+
+New opt-in planner heuristic dubins_v1 uses exact-pose obstacle-free forward
+turning geometry for queue priority; acceptance/body/trajectory gates unchanged.
+DefaultEuclideanserialization/signatures preserved. New signatures require fresh
+weights; training_config/staging propagate heuristic+7200budget toH0/H/B1.
+BSD Rice/OMPL notices retained inmodule andthird_party/ompl/LICENSE.
+
+At070545Z's reverified waitstate:1800cap Euclidean timeout vsDubins147nodes+
+valid stoppingreference. At074939Z's whole-audited firstwait(frame7649):old
+7200cap exhaustsopen set2637nodes, Dubins succeeds170nodes with68-point/5.635s
+checkedreference. Only offline search evidence, not executed alternatives.
+Fixtures `tests/fixtures/native_wait_state_v1.json` preserve latter regression.
+Source archives accompany both probes; first prototype's sources also preserved.
+
+Fullsuite260pass5skip/2existingwarnings185.86s; afteradding realstatefixture,
+11targetedpass9.71s. Core source is currently a new working version pending
+preflight/commit/push and independent replay. No CARLA job is currently running.
+Prospective protocol `reports/native_dubins_guide_20261025.md` fixesonlyguide vs
+completed7200FF/continuation run, samefourroads/45s task/vehicle/reward/MPC.
+Launch newB3 afterchecks under60min guard. If4/4normal/audited, actually stage
+fresh20,480controls each H0/H/B1seed11 and launchsix-hourguard. Otherwise retain
+failures. Never relaxgate or call rule improvement PPO success.
+
+# Historical: expanded-search B3 LIVE — 2026-10-25 16:00 local
 
 New actual batch `runs/20261025T074939Z_native_rule`, frozen/pushed1d3c9a9:
 worker21600 creation15:50:39.756287 (shim26876),guard40744 creation15:51:06,

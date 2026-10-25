@@ -163,6 +163,8 @@ def signature(config):
         result["planner"].pop("vectorized_primitives")
     if config.planner.grid_postprocess == "legacy":
         result["planner"].pop("grid_postprocess")
+    if config.planner.heuristic_mode == "euclidean":
+        result["planner"].pop("heuristic_mode")
     if config.subgoal_mode == "goal_frame_terminal":
         result["candidate_catalog" if config.method == "B1" else "action_catalog"] += ":terminal_S_arc_envelope_Rmargin1.2_v2"
     if config.subgoal_mode == "route_frame_terminal":
