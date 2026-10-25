@@ -1,4 +1,29 @@
-# H feedback-input mechanism diagnosed; B1 running — 2026-10-25 21:16 local
+# B1 first checkpoint verified; H mechanism diagnosed — 2026-10-25 21:26 local
+
+B1 first immutable checkpoint is now saved/verified:10146controls/1024actions/
+23endedepisodes/32phases/64Adamsteps/10889worldticks. Prefix training19bounds/
+4deadline/0success; all retained, not a final evaluation or healthy baseline.
+Modelb082b55217cf7e5ab6b9e303e64e2c17a8c2a19e4fbd8c83626f7bd6cb138621,
+normf4115b7a7fb32aa0ba9a888ab7711cd38e56c40cb4819e41f10aed6176c9318a.
+Frozen-source/config/artifact hashes and PPO counters verify; seeded original
+flat actor difference.3023759127 matches actual optimizer log; loaded policy
+tensors and deterministic first-scene predictions exact. Gaussianstd1.0012/
+1.0016. Normalizer frozen; localinitializer0resets/steps. All0newcontrols/updates.
+`B1/analysis/checkpoint_000010000_verified.json` and its frozen helper/receipt
+retained. Separate fixed Python environment re-executes the SAME frozen helper,
+fullJSON byte-identical; output in independentcheckout/runs/
+route_B1_checkpoint_10000_reproduction_20261025.json. No actual B1 endpoint yet.
+At21:25 original B1 **12003controls/1210actions/37phases**, guardhealthy. Original
+worker18284/guard39196/Shipping56960 andcreationtimes remain unchanged below;
+deadline22:54:33. Continue original budget/evaluation/ownedcleanup, no restart.
+
+H11state feedback-input diagnostic below was actually run/reproduced, report
+committed/pushed700008a3676ff0c775156aacd05b14506f0b6a0c/remoteverified.
+This goalturn is progress: mechanism evidence plus actual B1 checkpoint
+verification. No runtime source change, agent, new training variant or CARLA
+tickowner. Whole3method completion/release and research acceptance remain open.
+
+# Historical: H feedback-input mechanism diagnosed; B1 running — 2026-10-25 21:16 local
 
 Previous goalturn was progress (H completed/raw audited/248actions reconstructed).
 This turn is progress: actual frozen-model input intervention and production

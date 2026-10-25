@@ -1,5 +1,34 @@
 # Fresh route PPO checkpoint diagnosis — 2026-10-25
 
+## B1 first checkpoint, still training at 21:25 local
+
+The original worker saves B1's first checkpoint at **10,146actual CARLA
+controls**,1,024direct-control decisions,32optimization phases/**64Adam steps**,
+and10,889world ticks. Its23ended training episodes are19out-of-bounds and
+4deadlines, with no success. All are retained. The worker continues its
+original20,480nominal-control budget; this is not its final evaluation and
+does not establish a healthy or sufficiently trained baseline.
+
+The saved model/config/normalizer/RNG hashes, PPO action/update counters and
+frozen source inventory verify. Reconstructing the original seeded flat actor
+gives L2 distance **0.3023759127**, matching the actual optimization log.
+Loading the checkpoint twice gives identical policy tensors and deterministic
+predictions on all four recorded initial scenes. The same frozen checkpoint
+normalizer is used for initial/trained-weight inference and stays unchanged;
+the diagnostic never resets or steps a vehicle. The two Gaussian standard
+deviations are1.00120/1.00159, close to initialization. These are distribution
+and integrity measurements, not executed outcomes or categorical confidence.
+
+Model SHA256:
+`b082b55217cf7e5ab6b9e303e64e2c17a8c2a19e4fbd8c83626f7bd6cb138621`;
+normalizer SHA256:
+`f4115b7a7fb32aa0ba9a888ab7711cd38e56c40cb4819e41f10aed6176c9318a`.
+Local evidence is `B1/analysis/checkpoint_000010000_verified.json`, with the
+frozen verifier source and separate-environment reproduction receipt alongside.
+A separately fixed Python environment re-executes that helper and reproduces
+the complete JSON byte-for-byte. Both diagnostic executions add zero controls
+or optimizer updates. B1 remains active at12,003controls/37phases as of21:25.
+
 ## Completed H endpoint, 20:55 local
 
 Fresh H finishes **20,665 actual CARLA training controls**,2,080decisions,
