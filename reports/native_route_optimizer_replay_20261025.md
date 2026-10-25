@@ -92,3 +92,12 @@ runtime source. The script refuses changed raw-audit inputs, incomplete selected
 rollouts, mismatched RNG/actions or differing final tensors/statistics. It never
 connects to CARLA and reconstructed observation holders have no plant step.
 This is single-seed optimizer evidence, not unseen task success or PPO value.
+
+Independent checkout `fb9a4a6cb4f6f2acd3a5051f51b5b4939026b990`, using the
+separate fixed-dependency environment, executes the same reconstruction and all
+discarded branches. The complete verified JSON is **byte-identical**, SHA256
+`07329e7f58826931e52cf5670ea335d5cf086b25bbe89f9567f14a326b9f0f63`.
+Receipt there: `runs/route_H0_optimizer_reproduction_receipt_20261025.json`.
+It reproduces the same64decisions/639existing controls and final exact states;
+20in-memory optimizer steps are counted and discarded in each execution. This
+does not add a training seed, simulator interaction or performance result.

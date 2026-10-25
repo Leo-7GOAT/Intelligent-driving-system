@@ -1,4 +1,47 @@
-# H0 completed/audited3/4; H now actually trains — 2026-10-25 18:35 local
+# Exact stochastic-update replay reproduced; H LIVE — 2026-10-25 18:51 local
+
+Previous goalturn was real progress: H0finished3/4,22,589frame-auditedcontrols,
+independent exact audit/PNG and190deterministic decisions reconstructed. This
+turn adds a true64-decision PPO update replay through a terminal/reset boundary;
+final policy/value tensors, Adam state, obs moments AND return moments exact.
+No active runtime change or new agents. Goal remains active/incomplete.
+
+Pushedcodefb9a4a6: `scripts/replay_native_checkpoint_updates.py`, report
+`reports/native_route_optimizer_replay_20261025.md`. Set environment
+NAVSTACK_AUDIT_SOURCE_ROOT=absoluteactivebatch/source, then CLI --batch activebatch
+--methodH0 --checkpointcheckpoint_000020000 --outputNEW.json. Actual start at
+20,063controls/2,016actions; replay32+32actions with319+320existingcontrols, one
+terminaltransition. Requires raw-audited inputs, all exact frozen source hashes,
+saved model/norm/RNG/config. Reconstructs omitted transientVecNormalize returns
+from auditedprefix rather than zeroing it mid-episode. NoPlant.step/CARLAconnection.
+Original legacy rollout-auditor remains unchanged; newtool supports fresh H/H0.
+
+VerifiedJSON `H0/last_two_updates_replay_verified.json`,SHA
+07329e7f58826931e52cf5670ea335d5cf086b25bbe89f9567f14a326b9f0f63.
+Earlier v1/v2 JSON/source copies retained. Independent clean checkoutfb9a4a6
+with separate fixed-dependency Python ACTUALLY reproduces wholeJSON byte-exact,
+including discarded branches. Receipt there
+`runs/route_H0_optimizer_reproduction_receipt_20261025.json`.
+
+Measured two pre-update actor/criticgradL2 .023115/86.00015 and.019111/16.73883;
+globalclip multipliers.00581394/.02987065. All encodercomponentsbelowAdamEPS1e-5
+afterclip in those samples. EPS is NOT a hardzero cutoff; parameters stillmove.
+Fixed first-rollout branches: baseline actorΔ.003823/KL7.615e-9; eps1e-8
+actorΔ.065395/KL1.553e-8; vf_coef.01 Δ.008578/KL2.098e-8; epochs10
+Δ.013677/KL1.051e-7. Encoder changes dominateepsilonbranch; sharedscoreheadΔ
+.001191 versusbaseline.001143. No new driving/performance claim.20actualcounted
+in-memory optimizer steps are discarded;0liveoptimizerupdates/0newenvcontrols.
+Prior separateclippingall0/4failure remains retained; no optimizer adopted here.
+
+LIVE original batch/frozenb495e71 unchanged:worker18284 creation16:57:12.140723,
+guard39196 creation16:57:33,Shipping56960 creation16:56:53.567340,deadline22:54:33.
+At18:49:55 H3,796controls/382actions/11phases,guardhealthy; H0closed, B1queued.
+Do not restart or create a second tickowner. Next priority is H/B1 completion
+and raw endpoint evidence, then whole-batch release and actual same-source
+scalar/batchSAT control comparison after normal owned cleanup. No new final
+conditions or independent-seed claims, no untrained-policy actual contrast yet.
+
+# Historical: completed H0 snapshot — 2026-10-25 18:35 local
 
 This goalturn is progress: original H0 actually finishes, whole-method frame
 audit/independent reproduction and190-decision reconstruction completed. Earlier
