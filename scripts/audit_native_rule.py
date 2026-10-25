@@ -8,7 +8,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.audit_native_method_endpoint import read, sha, read_prefix, _verify_ticks
+from scripts.audit_native_method_endpoint import read, sha, read_prefix, _verify_ticks, verify_initial_actuator
 from navstack.metrics import timing_summary
 
 
@@ -76,7 +76,10 @@ def audit(batch):
         if (not all(math.isfinite(row[k]) for k in ('selection_seconds', 'full_decision_seconds'))
                 or row['selection_seconds'] < 0 or row['full_decision_seconds'] < row['selection_seconds']):
             raise ValueError('Invalid rule compute accounting')
-        controls = _verify_ticks(info['trace'], actual, acknowledgements, owners, used, previous, episodes)
+        actuator_observation = protocol['config'].get('actuator_observation', 'off')
+        controls = _verify_ticks(info['trace'], actual, acknowledgements, owners, used, previous, episodes, actuator_observation)
+        if actuator_observation != 'off':
+            verify_initial_actuator(info['initial_scenario'], info['trace'][0]['backend_evidence']['episode_id'], acknowledgements)
         if controls != info['executed_substeps']:
             raise ValueError('Substep count differs from raw trace')
         case['episodes'].update(t['backend_evidence']['episode_id'] for t in info['trace'])

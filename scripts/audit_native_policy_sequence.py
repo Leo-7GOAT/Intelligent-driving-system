@@ -3,6 +3,7 @@ import argparse
 from collections import deque
 import gzip
 import json
+import math
 from pathlib import Path
 import pickle
 import sys
@@ -18,15 +19,15 @@ from navstack.env import ACTIONS, NavigationEnv
 from navstack.experiments import write_json
 from navstack.independent_clip_ppo import load_ppo
 from navstack.road_grid import RoadGrid
-from navstack.vehicle import Command, VehicleState
+from navstack.vehicle import Command, VehicleState, wrap
 from navstack.world import World
 from scripts.audit_native_action_availability import verify_source
 from scripts.audit_native_method_endpoint import read, sha
 
 
 def observation_env(config, scene, initial):
-    if config.method != 'H' or config.subgoal_mode != 'ego_arcs' or config.vehicle.input_delay_steps:
-        raise ValueError('Sequence reconstruction requires hierarchical ego-arcs and no input queue')
+    if config.method != 'H' or config.vehicle.input_delay_steps:
+        raise ValueError('Sequence reconstruction requires hierarchical actions and no input queue')
     if initial['dynamic'] or scene.get('dynamic'):
         raise ValueError('Dynamic actors require per-frame observation reconstruction')
     if scene['goal'] != initial['goal'] or scene['static'] != initial['static']:
@@ -37,11 +38,12 @@ def observation_env(config, scene, initial):
     env = NavigationEnv(config)
     env.world = World(scene['width'], scene['height'], scene['static'], road=road)
     env.goal = initial['goal']
+    env.navigation_route = scene['native_layout']['path'] if config.subgoal_mode == 'route_frame_terminal' else None
     env.last_behavior = np.zeros(4)
     env.execution_outcome = np.zeros(6, dtype=np.float32)
     # No step method exists: this object only holds already measured feedback.
     env.plant = SimpleNamespace(state=VehicleState(**initial['initial']),
-                               previous_command=Command(), delay_queue=deque())
+                               previous_command=Command(), delay_queue=deque(), evidence=initial.get('actuator_evidence',{}))
     return env
 
 
@@ -50,9 +52,16 @@ def advance_observation(env, row):
     info, action = row['info'], int(row['policy_action'])
     trace = info['trace']
     initial_speed = env.state.v
-    env.last_behavior = np.array(ACTIONS[action])
+    if action and (env.config.subgoal_mode.startswith('goal_frame') or env.config.subgoal_mode == 'route_frame_terminal'):
+        target, speed = env.decode_action(action)
+        dx, dy = target[0]-env.state.x, target[1]-env.state.y
+        co, si = math.cos(env.state.yaw), math.sin(env.state.yaw)
+        env.last_behavior = np.array([co*dx+si*dy,-si*dx+co*dy,wrap(target[2]-env.state.yaw),speed])
+    else:
+        env.last_behavior = np.array(ACTIONS[action])
     env.plant.state = VehicleState(**trace[-1]['state'])
     env.plant.previous_command = Command(**trace[-1]['command'])
+    env.plant.evidence = trace[-1].get('backend_evidence',{})
     if env.config.execution_feedback != 'off':
         env.execution_outcome = np.array([
             float(info['mode'] == 'reference'), float(info['mode'] == 'plan_failed'),

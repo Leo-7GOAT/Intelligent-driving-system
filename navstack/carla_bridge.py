@@ -112,11 +112,17 @@ class CarlaWorld(World):
 
 
 class BridgePlant:
-    def __init__(self, client, result, world):
+    def __init__(self, client, result, world, actuator_observation="off"):
         self.client=client;self.world=world;self.delay_queue=deque();self.collision_history=False
+        self.actuator_observation=actuator_observation
         self.update(result)
 
     def update(self,result):
+        if self.actuator_observation != "off":
+            from .carla_actuation import actuator_state_values
+            if result.get("actuator_observation") != self.actuator_observation:
+                raise InfrastructureFailure("Actuator observation version differs from policy configuration")
+            actuator_state_values(result)
         self._state=VehicleState(**result["state"]);self.frame=result["frame"]
         self.previous_command=Command(**result["command"])
         self.world.dynamic=[MovingObstacle(**o) for o in result["dynamic"]]
@@ -124,7 +130,8 @@ class BridgePlant:
         probe=result.get("road_surface_probe")
         self.world.measured_offroad |= bool(probe and probe["offroad_points_world"])
         self.evidence={k:result[k] for k in ("frame","request_id","episode_id","imu_frame","collisions","sensor_health")}
-        for key in ("vehicle_control","speed_setpoint","terminal_sensor_drain_seconds","road_surface_probe"):
+        for key in ("vehicle_control","speed_setpoint","terminal_sensor_drain_seconds","road_surface_probe",
+                    "actuation_mode","actuation_state","actuator_observation"):
             if key in result:self.evidence[key]=result[key]
 
     @property
@@ -156,7 +163,8 @@ class CarlaNavigationEnv(NavigationEnv):
         if self.config.road_observation and case.get("scenario")!="native_curve":
             raise ValueError("Measured road observation currently requires a native route")
         result=self.client.request("begin",**case,road_observation=self.config.road_observation,
-                                   road_geometry_version=self.config.road_geometry_version);scene=result["scene"]
+                                   road_geometry_version=self.config.road_geometry_version,
+                                   actuator_observation=self.config.actuator_observation);scene=result["scene"]
         world=CarlaWorld(scene["width"],scene["height"],scene["static"])
         if self.config.road_observation:
             from .road_grid import RoadGrid
@@ -165,7 +173,7 @@ class CarlaNavigationEnv(NavigationEnv):
                 raise InfrastructureFailure("Measured road version differs from policy configuration")
             if (world.road.width,world.road.height)!=(world.width,world.height):
                 raise InfrastructureFailure("Road grid/scene extent mismatch")
-        plant=BridgePlant(self.client,result,world)
+        plant=BridgePlant(self.client,result,world,self.config.actuator_observation)
         if world.out_of_bounds((plant.state.x,plant.state.y,plant.state.yaw),self.config.vehicle):
             raise InfrastructureFailure("Initial measured vehicle footprint is outside registered road geometry")
         self.scene_evidence=scene

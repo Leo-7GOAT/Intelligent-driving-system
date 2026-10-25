@@ -169,6 +169,7 @@ def signature(config):
         result["candidate_catalog" if config.method == "B1" else "action_catalog"] = (
             "route_frame_terminal_v1:known_route_projection+lookahead(6,9,12)*offset(-3,-1.5,0,1.5,3)*speed(.75,1.5):terminal_S_arc_envelope_Rmargin1.2")
         result["route_prior"] = "known_map_route_tangents_exposed_as_shared_candidate_geometry_no_state_projection"
+        result["behavior_history"] = "selected_candidate_ego_pose_v2"
     if config.execution_feedback != "off":
         result["observation"] += "-candidate-witness31x3-execution6-v1"
         result["observation_shape"] = [450]
@@ -189,6 +190,10 @@ def signature(config):
     if config.route_rehearsal_probability:
         result["route_rehearsal"] = {"probability":config.route_rehearsal_probability,
             "sampling":"uniform_completed_distances_at_training_reset", "stages":config.route_stages}
+    if config.actuator_observation != "off":
+        result["observation"] += "-ff-state4-v1"
+        result["observation_shape"][0] += 4
+        result["actuator_observation"] = "speed_setpoint,signed_pedal,filtered_acceleration,feedback_integral"
     return result
 
 

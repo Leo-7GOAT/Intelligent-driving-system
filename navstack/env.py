@@ -57,6 +57,8 @@ class NavigationEnv(gym.Env):
         obs_size = 605 if c.candidate_observation else (351 if c.execution_feedback == "off" else 450)
         if c.road_observation:
             obs_size += 64*64
+        if c.actuator_observation != "off":
+            obs_size += 4
         self.observation_space = spaces.Box(-np.inf, np.inf, (obs_size,), np.float32)
         self.planner = (GridAStarPlanner if c.method == "B2" else HybridAStar)(
             c.vehicle, c.planner
@@ -134,6 +136,10 @@ class NavigationEnv(gym.Env):
         }
         if self.world.road is not None:
             self.initial_scenario["road_sha256"] = self.world.road.sha256
+        if self.config.actuator_observation != "off":
+            self._actuator_observation()
+            self.initial_scenario["actuator_evidence"] = {k: self.plant.evidence[k]
+                for k in ("actuator_observation", "speed_setpoint", "actuation_state")}
         return self._observation(), {"scenario": self.scenario_name, "success": False}
 
     def _create_episode(self, options=None):
@@ -284,7 +290,13 @@ class NavigationEnv(gym.Env):
             # Full raster in the same local map axes as the four already-visible
             # map corners. All architectures receive every cell used by planning.
             observation = np.r_[observation, (~self.world.road.drivable).ravel()].astype(np.float32)
+        if self.config.actuator_observation != "off":
+            observation = np.r_[observation, self._actuator_observation()].astype(np.float32)
         return observation
+
+    def _actuator_observation(self):
+        from .carla_actuation import actuator_state_values
+        return actuator_state_values(self.plant.evidence)
 
     def _execution_feedback(self):
         """Common geometric witness features plus last measured execution outcome.
@@ -455,7 +467,7 @@ class NavigationEnv(gym.Env):
         else:
             if not self.action_space.contains(int(action)):
                 raise ValueError("invalid discrete action")
-            if self.config.subgoal_mode.startswith("goal_frame") and int(action):
+            if (self.config.subgoal_mode.startswith("goal_frame") or self.config.subgoal_mode == "route_frame_terminal") and int(action):
                 target, speed = self.decode_action(int(action))
                 dx, dy = target[0]-self.state.x, target[1]-self.state.y
                 co, si = math.cos(self.state.yaw), math.sin(self.state.yaw)

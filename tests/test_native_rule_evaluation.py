@@ -9,7 +9,7 @@ from navstack.native_route import sample_road_grid
 from navstack.road_grid import RoadGrid
 from navstack.vehicle import VehiclePlant, VehicleState
 from navstack.world import World
-from scripts.evaluate_native_rule import require_finished_parent, evaluate_cases, selected_speed_action
+from scripts.evaluate_native_rule import require_finished_parent, evaluate_cases, selected_speed_action, feedforward_calibration
 
 
 def test_rule_preparation_requires_normal_parent_and_server_cleanup(tmp_path):
@@ -71,3 +71,20 @@ def test_rule_speed_ablation_preserves_pose_and_wait_only_changes_speed():
             assert selected_speed_action(env,proposal,'native_score') == proposal
     finally:
         env.close()
+
+
+def test_feedforward_preparation_binds_fit_and_retains_physical_calibration(tmp_path):
+    from scripts.audit_native_method_endpoint import sha
+    original={'vehicle':{'wheelbase':2.5},'rear_axle_actor_x':-1.2,'recommended_adapter':{'longitudinal_mode':'legacy'}}
+    coefficients={'throttle_gain':7.3,'speed_coefficient':-.08,'intercept':-.65}
+    fit=tmp_path/'throttle_fit.json';fit.write_text(json.dumps({'coefficients':coefficients}))
+    calibrated={**original,'recommended_adapter':{'longitudinal_mode':'acceleration_ff_v2',
+        'drivetrain_mode':'manual_first_v1','acceleration_integral_gain':.15,
+        'acceleration_filter_seconds':.2,'throttle_model':coefficients},'throttle_fit_sha256':sha(fit)}
+    path=tmp_path/'calibration.json';path.write_text(json.dumps(calibrated))
+    assert feedforward_calibration(path,original)==(path,fit)
+    changed={**calibrated,'rear_axle_actor_x':-1.}
+    path.write_text(json.dumps(changed))
+    with pytest.raises(ValueError,match='physical calibration'):feedforward_calibration(path,original)
+    path.write_text(json.dumps(calibrated));fit.write_text('{}')
+    with pytest.raises(ValueError,match='fit hash'):feedforward_calibration(path,original)

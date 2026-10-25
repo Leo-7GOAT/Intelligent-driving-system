@@ -59,12 +59,14 @@ def analyze(batch,method,output):
             env=NavigationEnv(config)
             env.world=World(scene['width'],scene['height'],road=RoadGrid(scene['road_grid']))
             env.goal=initial['goal'];env.last_behavior=np.zeros(4);env.execution_outcome=np.zeros(6,dtype=np.float32)
+            env.navigation_route=scene['native_layout']['path'] if config.subgoal_mode=='route_frame_terminal' else None
             # No plant integration or tick is permitted: only measured initial state.
-            env.plant=SimpleNamespace(state=VehicleState(**initial['initial']),previous_command=Command(),delay_queue=deque())
+            env.plant=SimpleNamespace(state=VehicleState(**initial['initial']),previous_command=Command(),delay_queue=deque(),
+                evidence=initial.get('actuator_evidence',{}))
             raw=env._observation()[None];obs=norm.normalize_obs(raw)
             assert raw.shape[1:]==model.observation_space.shape
             if protocol.get('road_candidate_policy'):
-                np.testing.assert_array_equal(raw[:,605:],obs[:,605:])
+                np.testing.assert_array_equal(raw[:,605:4701],obs[:,605:4701])
             action=model.predict(obs,deterministic=True)[0]
             np.testing.assert_array_equal(action[0],row['policy_action'])
             np.testing.assert_array_equal(action,model.predict(obs,deterministic=True)[0])

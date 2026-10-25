@@ -54,6 +54,7 @@ def prepare(parent, controls=20480, wall_seconds=21600):
             checkpoint_thresholds=sorted({10000,controls}), rollout_actions=32, ppo_epochs=2,
             episode_seconds=old['config']['deadline'], subgoal_mode='route_frame_terminal',
             continuation_feedback=old['config']['execution_feedback']=='continuation',
+            actuator_observation=old['config'].get('actuator_observation','off'),
             road_geometry_version=old['config']['road_geometry_version'],
             feedback_ablation=True, road_candidate_policy=True, deterministic_training_route_evaluation=True,
             cleanup_owned_carla=True, reset_ticks_counted_separately=True,

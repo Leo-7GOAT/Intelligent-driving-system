@@ -22,12 +22,17 @@ class RoadPlantEnv(NavigationEnv):
     def _create_episode(self, options=None):
         grid=RoadGrid(sample_road_grid({'width':34.,'height':24.,'geometry_id':'test'},
                                       lambda x,y:2<y<22))
-        return World(34.,24.,road=grid),VehiclePlant(self.config.vehicle,VehicleState(4,12)),(27,12,0),'test_road'
+        plant=VehiclePlant(self.config.vehicle,VehicleState(4,12))
+        # Fabricated adapter feedback tests input plumbing only, never CARLA dynamics.
+        plant.evidence={'actuator_observation':'ff_state_v1','speed_setpoint':.8,
+            'actuation_state':{'signed_pedal':.2,'filtered_acceleration':.1,'feedback_integral':.03}}
+        return World(34.,24.,road=grid),plant,(27,12,0),'test_road'
 
 
-def config(method='H',feedback='enabled'):
+def config(method='H',feedback='enabled',actuator='off'):
     return EnvConfig(method=method,flat_hold=10,deadline=2,road_observation=True,
         candidate_observation=True,execution_feedback=feedback,
+        actuator_observation=actuator,
         planner=PlannerConfig(max_seconds=None,max_nodes=64,analytic_expansion=True,vectorized_primitives=True))
 
 
@@ -52,12 +57,13 @@ def test_shared_native_road_candidate_input_and_exact_ablation():
 
 @pytest.mark.parametrize('method,policy',[('H',RoadCandidateActorCriticPolicy),('B1',FlatRoadCandidateActorCriticPolicy)])
 @pytest.mark.parametrize('algorithm',[PPO,IndependentClipPPO])
-def test_road_policy_geometry_invariance_real_updates_and_reload(tmp_path,method,policy,algorithm):
+@pytest.mark.parametrize('actuator',['off','ff_state_v1'])
+def test_road_policy_geometry_invariance_real_updates_and_reload(tmp_path,method,policy,algorithm,actuator):
     torch.set_num_threads(1)
-    vec=RoadCandidateVecNormalize(DummyVecEnv([lambda:RoadPlantEnv(config(method))]),norm_reward=False)
+    vec=RoadCandidateVecNormalize(DummyVecEnv([lambda:RoadPlantEnv(config(method,actuator=actuator))]),norm_reward=False)
     try:
         obs=vec.reset();raw=vec.get_original_obs()
-        for region in (slice(351,599),slice(605,None)):
+        for region in (slice(351,599),slice(605,4701)):
             np.testing.assert_array_equal(obs[:,region],raw[:,region])
             np.testing.assert_array_equal(vec.unnormalize_obs(obs)[:,region],raw[:,region])
         model=algorithm(policy,vec,n_steps=8,batch_size=8,n_epochs=2,seed=11,device='cpu')
@@ -77,6 +83,10 @@ def test_road_policy_geometry_invariance_real_updates_and_reload(tmp_path,method
         score=distribution.logits[:,4].sum() if method=='H' else distribution.mean.sum()
         score.backward()
         assert tensor.grad[:,605:].abs().sum()>0 and tensor.grad[:,351:599].abs().sum()>0
+        if actuator != 'off':
+            assert obs.shape[-1] == 4705 and tensor.grad[:,4701:].abs().sum()>0
+            assert not np.array_equal(obs[:,4701:],raw[:,4701:])
+            np.testing.assert_allclose(vec.unnormalize_obs(obs)[:,4701:],raw[:,4701:],atol=1e-6)
         before={k:v.clone() for k,v in model.policy.state_dict().items()}
         actor_before=actor_vector(model).clone()
         model.learn(16)
@@ -88,9 +98,10 @@ def test_road_policy_geometry_invariance_real_updates_and_reload(tmp_path,method
         assert isinstance(loaded.policy,policy)
         assert all(torch.equal(v,loaded.policy.state_dict()[k]) for k,v in model.policy.state_dict().items())
         np.testing.assert_array_equal(model.predict(obs,deterministic=True)[0],loaded.predict(obs,deterministic=True)[0])
-        restored=VecNormalize.load(tmp_path/'normalization.pkl',DummyVecEnv([lambda:RoadPlantEnv(config(method))]))
+        restored=VecNormalize.load(tmp_path/'normalization.pkl',DummyVecEnv([lambda:RoadPlantEnv(config(method,actuator=actuator))]))
         try:
             assert isinstance(restored,RoadCandidateVecNormalize)
-            np.testing.assert_array_equal(restored.normalize_obs(raw)[:,605:],raw[:,605:])
+            np.testing.assert_array_equal(restored.normalize_obs(raw)[:,605:4701],raw[:,605:4701])
+            np.testing.assert_array_equal(restored.normalize_obs(raw),vec.normalize_obs(raw))
         finally:restored.close()
     finally:vec.close()

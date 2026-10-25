@@ -1,4 +1,40 @@
-# Route-catalog iterations; continuation rule LIVE — 2026-10-24 19:18 local
+# Shared actuator interface ready — 2026-10-25 15:14 local
+
+Goal remains active/incomplete. Previous turn obtained terminal evidence rather
+than only restating status. This turn audits and independently reproduces the
+low-speed failure, implements ff_state_v1, and runs the full regression.
+No CARLA worker/server is running at this snapshot; old LIVE sections below are
+historical. Do not restart either completed diagnostic.
+
+Continuation run110908Z finishes3/4,2,010controls+123reset; normalcleanup,
+rawSHA114e65701e8020801416d2744e8079fa3a5ce4945aff83681c6c76a26da7851e.
+Low-speed run112429Z finishes0/4,3,600controls+123reset,934.28swall, all deadline;
+guardexit0/reasonnull and ownedcleanup. Its raw audit independently reproduces
+at28fc9f2 in `runs/prerelease_20261022/native_road_checkout/runs/low_speed_rule_raw_audit.json`.
+Both fail the unchanged4/4coverage gate. No new PPO batch/pointer is created.
+
+New `actuator_observation=ff_state_v1` requires shared candidate/road inputs,
+appends speedsetpoint/pedal/filteredacceleration/integral (4705total), and requires
+the measured acceleration_ff_v2 adapter/manualfirstgear. All H/H0/B1 see them;
+H0 feedbackablation retains actuatorstate. Begin/step/final acknowledgements
+export state, BridgePlant validates it, raw audit requires same-frame evidence
+and initial reset agreement. Both policy types normalize/consume the four
+inputs. Old4701models/configserialization remain supported. Routebehavior
+history is corrected to selectedtarget and separately signature-versioned.
+New model/normalizer required. No frozen legacy source changed.
+
+Root fullregression:249passed/5conditional skips/2existing warnings,101.35s;
+`runs/ff_state_full_regression.xml` and `.log`. Bridge/controller Python3.7syntax
+passes. Resourcecheck:36.99GBdiskfree, GPU38°C (5060Ti16GB). New prospective B3
+protocol is [registered](../reports/native_actuator_state_20261025.md) before run:
+same native-score/continuation/45s/fourroads, only measured FFadapter/firstgear
+and its observedstate. Preparation validates physicalcalibration equality and
+exact measuredfit hash/coefficients. Execute after commit/preflight. Guard30min,
+12GiBdisk/4GiBRAM/GPU85°C/no-progress300s/zero retries. If audited4/4, stage fresh
+H0/H/B1seed11 at20,480controls each using frozen source/calibration. Otherwise
+retain failure and diagnose; never weaken gate to force training.
+
+# Historical: route-catalog iterations; continuation rule LIVE — 2026-10-24 19:18 local
 
 Previous goal turn was progress. This turn implements versioned route candidates,
 executes route-only B3, then implements/starts a continuation-feedback B3 variant.

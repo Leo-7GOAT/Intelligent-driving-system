@@ -85,6 +85,10 @@ class Bridge:
         a.apply_control(carla.VehicleControl(brake=1,hand_brake=True));return a
 
     def begin(self,r):
+        from navstack.carla_actuation import validate_actuator_interface
+        self.actuator_observation=r.get("actuator_observation","off")
+        validate_actuator_interface(self.cal["recommended_adapter"],self.actuator_observation,
+            r.get("road_observation",False),r.get("scenario"),r.get("diagnostic_actuation",False))
         self.road_geometry_version=r.get("road_geometry_version","carla_driving_64_v1")
         if self.road_geometry_version not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"):
             raise ValueError("Unknown road geometry version")
@@ -93,11 +97,6 @@ class Bridge:
         if self.road_geometry_version == "carla_driving_indexed_union_64_v3" and not hasattr(self,"road_surface_index"):
             from navstack.lane_projection import DrivingSurfaceIndex
             self.road_surface_index=DrivingSurfaceIndex(self.map,carla.LaneType.Driving)
-        if r.get("road_observation",False) and self.cal["recommended_adapter"].get("longitudinal_mode") in ("acceleration_pi_v1","acceleration_ff_v2"):
-            raise ValueError("Measured-road PPO does not yet observe experimental actuator internal state")
-        if (self.cal["recommended_adapter"].get("longitudinal_mode") in ("acceleration_pi_v1","acceleration_ff_v2")
-                and r.get("scenario")!="native_curve" and not r.get("diagnostic_actuation",False)):
-            raise ValueError("Experimental acceleration PI requires explicit diagnostic scope; training state interface not integrated")
         self.clear();self.events=[];self.imu_frame=-1;self.sensor_event=threading.Event();self.active_episode=r["episode_id"]
         if any(a.id not in self.retired_ids and a.type_id.startswith(("vehicle.","walker.","sensor.")) for a in self.world.get_actors()):
             raise RuntimeError("Foreign actors appeared; refusing to tick")
@@ -182,6 +181,7 @@ class Bridge:
         self.events=[];self.t0=self.world.get_snapshot().timestamp.elapsed_seconds
         self.command={"acceleration":0.,"steering":0.};self.speed_target=0.;self.condition=condition
         self.acceleration_controller=None
+        self.last_actuation_mode=self.cal["recommended_adapter"].get("longitudinal_mode","legacy")
         if self.cal["recommended_adapter"].get("longitudinal_mode") in ("acceleration_pi_v1","acceleration_ff_v2"):
             from navstack.carla_actuation import AccelerationPI
             self.acceleration_controller=AccelerationPI(self.cal["recommended_adapter"])
@@ -258,7 +258,11 @@ class Bridge:
                     if not inside:misses.append([point.x,point.y,point.z])
             road_probe={"sample_count":12,"offroad_points_world":misses,"raw_offroad_points_world":raw_misses,
                         "geometry_version":self.road_geometry_version,"scope":"sampled actual rear-axle footprint, not continuous swept-body proof"}
-        return {"state":state,"frame":self.frame,"imu_frame":self.imu_frame,"road_surface_probe":road_probe,
+        adapter={}
+        if self.actuator_observation != "off":
+            adapter={"actuator_observation":self.actuator_observation,"speed_setpoint":self.speed_target,
+                "actuation_state":self.acceleration_controller.state(),"actuation_mode":self.last_actuation_mode}
+        return {**adapter,"state":state,"frame":self.frame,"imu_frame":self.imu_frame,"road_surface_probe":road_probe,
                 "world_elapsed_seconds":self.world.get_snapshot().timestamp.elapsed_seconds,"collisions":[e for e in self.events if e["episode_id"]==self.active_episode],
                 "dynamic":dynamic,"command":self.command,"sensor_health":"frame_heartbeat_ok"}
 
@@ -284,6 +288,7 @@ class Bridge:
         for actor in self.dynamic:
             # Same condition-dependent open-loop control; policy only sees current measured state.
             actor.apply_control(carla.WalkerControl(direction=carla.Vector3D(self.si,-self.co,0),speed=self.walker_speed))
+        self.last_actuation_mode=actuation_mode
         self.command={"acceleration":a,"steering":delta};self.tick()
         applied=self.actor.get_control()
         return {**self.read(),"applied_vehicle_control":{"throttle":applied.throttle,"brake":applied.brake,"steer":applied.steer,

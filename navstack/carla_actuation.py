@@ -3,13 +3,47 @@
 import math
 
 
+ACTUATOR_STATE_FIELDS = ("signed_pedal", "filtered_acceleration", "feedback_integral")
+
+
+def actuator_state_values(evidence):
+    """Four measured-frame adapter inputs; never synthesize missing state."""
+    if evidence.get("actuator_observation") != "ff_state_v1":
+        raise ValueError("Missing ff_state_v1 actuator observation")
+    state = evidence.get("actuation_state")
+    if not isinstance(state, dict) or set(state) != set(ACTUATOR_STATE_FIELDS):
+        raise ValueError("Missing complete feedforward actuator state")
+    values = [evidence.get("speed_setpoint")] + [state[k] for k in ACTUATOR_STATE_FIELDS]
+    if any(isinstance(v, bool) or not isinstance(v, (float, int)) or not math.isfinite(v) for v in values):
+        raise ValueError("Actuator state must be finite measured-frame values")
+    if not 0 <= values[0] <= 3 or not -1 <= values[1] <= .6 or not -.15 <= values[3] <= .15:
+        raise ValueError("Actuator state exceeds registered adapter bounds")
+    return values
+
+
+def validate_actuator_interface(gains, observation, road_observation, scenario, diagnostic=False):
+    """Explicit opt-in before actors or ticks; fixed-reference diagnostics remain supported."""
+    mode = gains.get("longitudinal_mode", "legacy")
+    if observation not in ("off", "ff_state_v1"):
+        raise ValueError("Unknown actuator observation version")
+    if observation == "ff_state_v1":
+        if (not road_observation or scenario != "native_curve" or mode != "acceleration_ff_v2"
+                or gains.get("drivetrain_mode") != "manual_first_v1" or not gains.get("throttle_model")):
+            raise ValueError("ff_state_v1 requires native road and measured feedforward adapter")
+    elif mode in ("acceleration_pi_v1", "acceleration_ff_v2"):
+        if road_observation:
+            raise ValueError("Measured-road PPO requires explicit actuator internal state")
+        if scenario != "native_curve" and not diagnostic:
+            raise ValueError("Acceleration feedback requires explicit diagnostic scope or shared state")
+
+
 class AccelerationPI:
     """Incremental signed-pedal feedback; actual CARLA acceleration is the input.
 
     Positive pedal means throttle, negative means brake. Thus a mildly negative
     acceleration request can reduce an existing throttle without immediately
-    applying brake. Internal filter/integrator state is exported for diagnosis;
-    a future training adapter must expose it, not assume a Markov observation.
+    applying brake. The versioned ff_state_v1 training interface exposes the
+    filter, integral, signed pedal and speed setpoint to every architecture.
     """
     def __init__(self, gains):
         self.ki = float(gains["acceleration_integral_gain"])

@@ -11,6 +11,9 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 
 def read(path: Path):
@@ -33,7 +36,7 @@ def read_prefix(path: Path):
     return rows, error
 
 
-def _verify_ticks(ticks, actual, acknowledgements, owners, used, previous, episode_ids):
+def _verify_ticks(ticks, actual, acknowledgements, owners, used, previous, episode_ids, actuator_observation="off"):
     count = 0
     for tick in ticks:
         evidence = tick["backend_evidence"]
@@ -43,6 +46,13 @@ def _verify_ticks(ticks, actual, acknowledgements, owners, used, previous, episo
         if key not in actual:
             raise ValueError("Recorded policy frame is absent from bridge responses")
         measured = actual[key]
+        if actuator_observation != "off":
+            from navstack.carla_actuation import actuator_state_values
+            actuator_state_values(measured)
+            actuator_state_values(evidence)
+            for name in ("actuator_observation", "speed_setpoint", "actuation_state"):
+                if evidence[name] != measured[name]:
+                    raise ValueError("Actuator evidence differs from measured bridge frame")
         final_ack = None
         if evidence["request_id"] != measured.get("request_id"):
             if evidence["request_id"] != measured.get("request_id") + 1:
@@ -86,6 +96,7 @@ def audit(batch: Path, method: str) -> dict:
     batch = Path(batch).resolve()
     folder = batch / method
     protocol = read(batch / "protocol.json")
+    actuator_observation = read(folder / "config.json")["env"].get("actuator_observation", "off")
     if method not in protocol.get("methods", []):
         raise ValueError("Method is absent from the batch protocol")
 
@@ -134,7 +145,7 @@ def audit(batch: Path, method: str) -> dict:
             if action.get("episode_id") is None:
                 raise ValueError("Transition lacks episode identity")
             training_frames += _verify_ticks(action["trace"], actual, acknowledgements, owners, used,
-                                             previous, training_episodes)
+                                             previous, training_episodes, actuator_observation)
             # action.episode_id is the recorder's local integer trajectory
             # index; backend_evidence.episode_id is the bridge UUID.  They are
             # intentionally different identity domains and must not be equated.
@@ -196,7 +207,9 @@ def audit(batch: Path, method: str) -> dict:
         if case["terminal"] is not None:
             raise ValueError("Evaluation contains controls after termination")
         count = _verify_ticks(info["trace"], actual, acknowledgements, owners, used, previous,
-                              evaluation_episodes)
+                              evaluation_episodes, actuator_observation)
+        if actuator_observation != "off":
+            verify_initial_actuator(info['initial_scenario'], info['trace'][0]['backend_evidence']['episode_id'], acknowledgements)
         case["frames"] += count
         case["actions"] += 1
         evaluation_frames += count
@@ -222,6 +235,13 @@ def audit(batch: Path, method: str) -> dict:
         raise ValueError("Method bridge response stream is truncated: " + stream["read_error"])
     if stream["applied_keys"] != used:
         raise ValueError("Method bridge stream has unaccounted applied controls")
+    if actuator_observation != "off":
+        from navstack.carla_actuation import actuator_state_values
+        for episode in training_episodes | evaluation_episodes:
+            begin = next((r for r in acknowledgements.values() if r.get('episode_id') == episode and 'reset_ticks' in r), None)
+            if begin is None:
+                raise ValueError("Missing actuator reset acknowledgement")
+            actuator_state_values(begin)
     training_reset_ticks = sum(resets.get(episode, 0) for episode in training_episodes)
     evaluation_reset_ticks = sum(resets.get(episode, 0) for episode in evaluation_episodes)
     if summary["world_ticks"] != training_frames + training_reset_ticks:
@@ -258,6 +278,13 @@ def audit(batch: Path, method: str) -> dict:
         "optimizer_steps_total_lower_bound": inherited_optimizer + summary["optimizer_steps"],
         "unknown_unflushed_ancestor_tail": bool(prior.get("unknown_unflushed_parent_tail", False)),
     }
+
+
+def verify_initial_actuator(initial, episode, acknowledgements):
+    from navstack.carla_actuation import actuator_state_values
+    begin = next((r for r in acknowledgements.values() if r.get('episode_id') == episode and 'reset_ticks' in r), None)
+    if begin is None or actuator_state_values(initial.get('actuator_evidence', {})) != actuator_state_values(begin):
+        raise ValueError("Initial actuator observation differs from reset acknowledgement")
 
 
 if __name__ == "__main__":

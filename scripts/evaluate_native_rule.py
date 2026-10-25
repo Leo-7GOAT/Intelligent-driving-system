@@ -33,7 +33,27 @@ def require_finished_parent(parent):
         raise ValueError('Parent did not complete and clean up normally')
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score'):
+def feedforward_calibration(path, original):
+    """Reuse the measured fit without changing vehicle geometry or physical limits."""
+    from navstack.carla_actuation import validate_actuator_interface, AccelerationPI
+    path = Path(path).resolve()
+    calibration = read(path)
+    excluded = {'recommended_adapter', 'throttle_fit_sha256', 'status'}
+    if {k:v for k,v in calibration.items() if k not in excluded} != {k:v for k,v in original.items() if k not in excluded}:
+        raise ValueError('Feedforward calibration changes physical calibration')
+    fit_path = path.with_name('throttle_fit.json')
+    if sha(fit_path) != calibration.get('throttle_fit_sha256'):
+        raise ValueError('Measured throttle fit hash mismatch')
+    fit = read(fit_path)
+    gains = calibration['recommended_adapter']
+    if gains.get('throttle_model') != fit['coefficients']:
+        raise ValueError('Adapter coefficients differ from measured throttle fit')
+    validate_actuator_interface(gains, 'ff_state_v1', True, 'native_curve')
+    AccelerationPI(gains)
+    return path, fit_path
+
+
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -52,6 +72,12 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
         raise ValueError('Continuation diagnostic requires the explicit route catalog')
     if speed_policy not in ('native_score', 'paired_low_speed'):
         raise ValueError('Unknown rule speed selection policy')
+    adapter_paths = None
+    if calibration is not None:
+        if catalog != 'route_frame_terminal':
+            raise ValueError('Feedforward intervention requires the explicit versioned catalog')
+        adapter_paths = feedforward_calibration(calibration, read(parent/'calibration/calibration.json'))
+        env = EnvConfig.from_dict({**env.to_dict(), 'actuator_observation':'ff_state_v1'})
     if catalog:
         env = EnvConfig.from_dict({**env.to_dict(), 'subgoal_mode': catalog,
             'execution_feedback': 'continuation' if continuation_feedback else env.execution_feedback})
@@ -64,6 +90,9 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
     batch.mkdir()
     (batch/'infrastructure').mkdir()
     shutil.copytree(parent/'calibration', batch/'calibration')
+    if adapter_paths:
+        shutil.copy2(adapter_paths[0], batch/'calibration/calibration.json')
+        shutil.copy2(adapter_paths[1], batch/'calibration/throttle_fit.json')
     shutil.copytree(parent/'source', batch/'source', ignore=shutil.ignore_patterns('__pycache__'))
     for name in ('evaluate_native_rule.py', 'audit_native_rule.py', 'watch_existing_pair.py'):
         shutil.copy2(ROOT/'scripts'/name, batch/'source/scripts'/name)
@@ -89,7 +118,7 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
                 'rule_speed_policy': speed_policy,
                 'rule_limitation': 'Existing ego-arc heuristic uses endpoint and primitive checks; do not assume it is the strongest possible B3',
                 'created_epoch': now, 'deadline_epoch': now+wall_seconds,
-                'calibration_sha256': old['calibration_sha256'], 'cleanup_owned_carla': True,
+                'calibration_sha256': sha(batch/'calibration/calibration.json'), 'cleanup_owned_carla': True,
                 'carla_rpc_host': old['carla_rpc_host'], 'carla_rpc_port': old['carla_rpc_port'],
                 'carla_rpc_port_span': old['carla_rpc_port_span'],
                 'resource_limits': {'wall_seconds': wall_seconds, 'disk_min_GiB': 12, 'ram_min_GiB': 4,
@@ -105,6 +134,11 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
                 'parent_config_sha256': sha(config_path), 'new_model_required': True,
                 'shared_information': 'All policies receive known-route candidate geometry; no future actor truth'},
             rule_limitation='Same connector scoring and up to three bounded candidate searches as goal-frame rule; computation recorded')
+    if adapter_paths:
+        protocol['actuator_intervention'] = {'mode':'acceleration_ff_v2','observation':'ff_state_v1',
+            'parent_calibration_sha256':old['calibration_sha256'],
+            'fit_sha256':sha(adapter_paths[1]),'new_model_required':True,
+            'scope':'Previously measured feedforward fit; shared four-state observation and matched fresh adaptation required for H/H0/B1'}
     write_json(batch/'protocol.json', protocol)
     write_json(batch/'prepared.json', {'status': 'PREPARED_NOT_STARTED', 'protocol_sha256': sha(batch/'protocol.json')})
     print(batch, flush=True)
@@ -219,5 +253,6 @@ if __name__ == '__main__':
     parser.add_argument('--catalog', choices=['route_frame_terminal'])
     parser.add_argument('--continuation-feedback', action='store_true')
     parser.add_argument('--speed-policy', choices=['native_score', 'paired_low_speed'], default='native_score')
+    parser.add_argument('--calibration', type=Path, help='Explicit measured feedforward calibration with adjacent throttle_fit.json')
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration) if args.prepare else run(args.batch)

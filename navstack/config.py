@@ -129,6 +129,7 @@ class EnvConfig:
     candidate_observation: bool = False
     road_observation: bool = False  # full shared 64x64 measured occupancy, new model signature
     road_geometry_version: str = "carla_driving_64_v1"
+    actuator_observation: str = "off"
     empty_pretraining_steps: int = 0
     route_stages: list[dict] = field(default_factory=list)
     route_rehearsal_probability: float = 0.0
@@ -137,6 +138,10 @@ class EnvConfig:
     reward: RewardConfig = field(default_factory=RewardConfig)
 
     def __post_init__(self):
+        if self.actuator_observation not in ("off", "ff_state_v1"):
+            raise ValueError("Unknown actuator observation version")
+        if self.actuator_observation != "off" and not (self.road_observation and self.candidate_observation):
+            raise ValueError("Actuator state requires shared candidate and measured-road observations")
         if self.method not in ("H", "B1", "B2", "B3"):
             raise ValueError("method must be H, B1, B2 or B3")
         if self.subgoal_mode not in ("ego_arcs", "goal_frame", "goal_frame_terminal", "route_frame_terminal"):
@@ -218,7 +223,11 @@ class EnvConfig:
         return self.gamma_low**self.substeps
 
     def to_dict(self):
-        return asdict(self)
+        result = asdict(self)
+        # Preserve the serialized configuration of historical, disabled runs.
+        if self.actuator_observation == "off":
+            result.pop("actuator_observation")
+        return result
 
     @classmethod
     def from_dict(cls, data):

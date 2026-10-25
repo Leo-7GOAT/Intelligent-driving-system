@@ -20,16 +20,16 @@ from .candidate_policy import CandidateVecNormalize,SharedActionScores
 class RoadCandidateVecNormalize(CandidateVecNormalize):
     def _normalize_obs(self, obs, obs_rms):
         normalized=super()._normalize_obs(obs,obs_rms)
-        if obs.shape[-1]!=4701:
-            raise ValueError('Road candidate normalization requires4701inputs')
-        normalized[...,605:]=obs[...,605:]
+        if obs.shape[-1] not in (4701,4705):
+            raise ValueError('Road candidate normalization requires4701 or4705inputs')
+        normalized[...,605:4701]=obs[...,605:4701]
         return normalized
 
     def _unnormalize_obs(self, obs, obs_rms):
         original=super()._unnormalize_obs(obs,obs_rms)
-        if obs.shape[-1]!=4701:
-            raise ValueError('Road candidate normalization requires4701inputs')
-        original[...,605:]=obs[...,605:]
+        if obs.shape[-1] not in (4701,4705):
+            raise ValueError('Road candidate normalization requires4701 or4705inputs')
+        original[...,605:4701]=obs[...,605:4701]
         return original
 
 
@@ -40,27 +40,27 @@ def road_encoder():
 
 
 class RoadCandidateExtractor(nn.Module):
-    def __init__(self, flat=False):
+    def __init__(self, flat=False, actuator_inputs=0):
         super().__init__()
         self.flat=flat
         self.latent_dim_pi=64 if flat else 31*32
         self.latent_dim_vf=64
         # Names retain the existing actor-vector accounting convention.
         self.policy_net_road=road_encoder()
-        self.policy_net_context=nn.Sequential(nn.Linear(357+64,64),nn.Tanh(),nn.Linear(64,64),nn.Tanh())
+        self.policy_net_context=nn.Sequential(nn.Linear(357+actuator_inputs+64,64),nn.Tanh(),nn.Linear(64,64),nn.Tanh())
         self.policy_net_candidate=nn.Sequential(nn.Linear(8 if flat else 72,64),nn.Tanh(),nn.Linear(64,32),nn.Tanh())
         if flat:
             self.policy_net_fusion=nn.Sequential(nn.Linear(64+64,64),nn.Tanh())
         # Actor and critic have separate road encoders; no hidden parameter tie.
         self.value_net_road=road_encoder()
         self.value_net_candidate=nn.Sequential(nn.Linear(8,32),nn.Tanh())
-        self.value_net_fusion=nn.Sequential(nn.Linear(357+64+64,64),nn.Tanh(),nn.Linear(64,64),nn.Tanh())
+        self.value_net_fusion=nn.Sequential(nn.Linear(357+actuator_inputs+64+64,64),nn.Tanh(),nn.Linear(64,64),nn.Tanh())
 
     @staticmethod
     def parts(features):
-        return (torch.cat((features[:,:351],features[:,599:605]),dim=1),
+        return (torch.cat((features[:,:351],features[:,599:605],features[:,4701:]),dim=1),
                 features[:,351:599].reshape(-1,31,8),
-                features[:,605:].reshape(-1,1,64,64))
+                features[:,605:4701].reshape(-1,1,64,64))
 
     def forward_actor(self, features):
         state,candidates,road=self.parts(features)
@@ -82,9 +82,9 @@ class RoadCandidateExtractor(nn.Module):
 
 class RoadCandidateActorCriticPolicy(ActorCriticPolicy):
     def _build(self, lr_schedule):
-        if self.observation_space.shape!=(4701,) or not isinstance(self.action_space,spaces.Discrete) or self.action_space.n!=31:
-            raise ValueError('Road candidate policy requires4701inputs and31categorical actions')
-        self.mlp_extractor=RoadCandidateExtractor().to(self.device)
+        if self.observation_space.shape not in ((4701,),(4705,)) or not isinstance(self.action_space,spaces.Discrete) or self.action_space.n!=31:
+            raise ValueError('Road candidate policy requires4701 or4705inputs and31categorical actions')
+        self.mlp_extractor=RoadCandidateExtractor(actuator_inputs=self.observation_space.shape[0]-4701).to(self.device)
         self.action_net=SharedActionScores().to(self.device)
         self.value_net=nn.Linear(64,1).to(self.device)
         if self.ortho_init:
@@ -95,6 +95,6 @@ class RoadCandidateActorCriticPolicy(ActorCriticPolicy):
 
 class FlatRoadCandidateActorCriticPolicy(ActorCriticPolicy):
     def _build_mlp_extractor(self):
-        if self.observation_space.shape!=(4701,) or not isinstance(self.action_space,spaces.Box) or self.action_space.shape!=(2,):
-            raise ValueError('Flat road policy requires4701inputs and2direct continuous controls')
-        self.mlp_extractor=RoadCandidateExtractor(flat=True).to(self.device)
+        if self.observation_space.shape not in ((4701,),(4705,)) or not isinstance(self.action_space,spaces.Box) or self.action_space.shape!=(2,):
+            raise ValueError('Flat road policy requires4701 or4705inputs and2direct continuous controls')
+        self.mlp_extractor=RoadCandidateExtractor(flat=True,actuator_inputs=self.observation_space.shape[0]-4701).to(self.device)
