@@ -1,4 +1,16 @@
-# Weight-contrast harness verified; H active — 2026-10-25 20:19 local
+# Weight-contrast harness shipped and CI passed; H active — 2026-10-25 20:24 local
+
+Implementation7605ba07408a161558b9350ff76660aea06dc96a pushed and remoteSHA
+verified. Actual hosted CPU run40192669405 SUCCESS:293passed/3skips/4CARLA
+deselected in92.85s, CPython3.11.17, lockedinstall/pipcheck passes. Metadata/log
+`runs/cpu_ci_github_40192669405.*`. Clean detached checkout7605ba0 separately
+passes32targeted tests. Independent fixed-environment initializer reproduces
+all30policy state tensors exactly and semanticreport exactly; ZIPbytes differ.
+Receipt `runs/native_weight_initialization_reproduction_receipt_20261025.json`
+SHA4e727354b485458f836de50ee08487cc3b190d95e80d26ee8dce3b9cbf254b43.
+Both actual initial-model verifications use original frozen parent navstack
+and zero new vehicle controls/updates. No actual CARLA weight contrast yet.
+At20:23 H17,474controls/1,759actions/54phases; original owner still live.
 
 The previous goalturns were verified waits on actual OS identities and retained
 session68948. This turn is progress: implemented the missing actual initial/
@@ -21,8 +33,7 @@ Commands and boundaries: `docs/native_weight_contrast.md`.
 
 Local targeted32passed; full CPU295passed/1skip/4CARLA deselected/3existing
 warnings in216.08s, log/XML `runs/native_weight_cpu_regression_20261025.*`.
-Publication preflight425files/no findings. Hosted CI for this change not yet
-claimed. Actual H0 initializer uses frozen parent source and trained artifacts:
+Publication preflight425files/no findings. Actual H0 initializer uses frozen parent source and trained artifacts:
 actorL2.0782405436038971 exactly matches training log; initial save/reload tensors
 exact; initial-state argmax22/0/30/29 versus trained22/22/30/30 under common
 final H0 normalizer. Zero newcontrols/updates. Frozen helper/model/receipt in

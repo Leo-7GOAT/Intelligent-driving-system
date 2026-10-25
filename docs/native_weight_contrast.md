@@ -87,3 +87,15 @@ These are four initial decisions, not four executed untrained outcomes.
 Normalization stayed fixed and there were zero new vehicle controls or updates.
 Local evidence: `runs/native_weight_initialization_20261025_v2/verification.json`,
 with frozen initializer/verification source and the initial model alongside it.
+
+At source `7605ba07408a161558b9350ff76660aea06dc96a`, complete local CPU
+regression passes **295/1skip/4CARLA deselections**, and the actual
+[hosted CPU run](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40192669405)
+passes **293/3skips/4deselections**. A clean detached checkout with a separate
+fixed Python environment passes the same32targeted tests. Its initializer
+reproduces all30saved policy state tensors exactly, as well as the semantic
+verification report; ZIP container bytes differ and are not claimed identical.
+Root/independent reports are in `runs/native_weight_initialization_20261025_v3`
+and `runs/native_weight_initialization_20261025_independent`. Receipt:
+`runs/native_weight_initialization_reproduction_receipt_20261025.json`, SHA256
+`4e727354b485458f836de50ee08487cc3b190d95e80d26ee8dce3b9cbf254b43`.

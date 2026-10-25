@@ -30,7 +30,27 @@ Linux skips those platform-specific cases. Conditional skips/deselections must
 stay visible in the logs. Raw CARLA audits, policy/model evidence and live
 resource guards remain separate local deliverables.
 
-## Actual hosted execution
+## Latest actual hosted execution
+
+[CPU regression run40192669405](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40192669405)
+actually succeeds at `7605ba07408a161558b9350ff76660aea06dc96a`, including
+the new initial/trained-weight evaluator and evidence rejection tests.
+Locked installation and `pip check` pass on CPython3.11.17.
+
+| Environment | Passed | Skipped | CARLA deselected | Test seconds |
+|---|---:|---:|---:|---:|
+| Local Windows, project environment | 295 | 1 | 4 | 216.08 |
+| Hosted Ubuntu24.04, fresh Python setup/install | 293 | 3 | 4 | 92.85 |
+
+The same platform/opt-in skip distinction and three warnings described below
+remain. Local full output/XML is `runs/native_weight_cpu_regression_20261025.*`;
+remote metadata/logs are `runs/cpu_ci_github_40192669405.json` and `.log`.
+The separate clean checkout passes32targeted tests with its fixed environment.
+Actual H0 seeded initialization also reproduces there with all30saved policy
+tensors exact; see [weight-contrast scope](native_weight_contrast.md). No live
+CARLA contrast ran in CI or during these offline initialization checks.
+
+## Historical first hosted execution
 
 [CPU regression run40188376038](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40188376038)
 completes successfully at source
