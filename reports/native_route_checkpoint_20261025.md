@@ -1,5 +1,84 @@
 # Fresh route PPO checkpoint diagnosis — 2026-10-25
 
+## Completed H endpoint, 20:55 local
+
+Fresh H finishes **20,665 actual CARLA training controls**,2,080decisions,
+65optimization phases/**130optimizer steps**. The20,480nominal target has
+185charged overshoot controls. No parent weights/statistics, teacher or
+optimizer intervention is used. Actor L2 change is **0.1835962832** and final
+weights reload exactly. Training takes **8,630.72s** and21,594world ticks,
+including929reset ticks. All29completed training outcomes remain:20success,
+8deadline and **one out-of-bounds**. Training success is not a held-out score;
+the training bounds failure must not disappear behind clean evaluation episodes.
+
+The final frozen policy completes **2/4 known training-road probes**:
+
+| Road | Outcome | Controls | Progress (m) | Selected waits | Plan/MPC failures | Intervened controls |
+|---|---|---:|---:|---:|---:|---:|
+| 0 | Success | 341 | 24.3164 | 1 | 0/0 | 0 |
+| 1 | Deadline | 900 | 17.0442 | 65 | 0/0 | 0 |
+| 2 | Success | 329 | 22.4616 | 0 | 0/0 | 0 |
+| 3 | Deadline | 900 | 17.8448 | 48 | 0/0 | 0 |
+
+Road1 ends with65consecutive policy-selected wait decisions/650controls,
+moving only0.03985m over that tail; final goal distance is7.3034m. Road3
+contains48wait decisions in total, with18consecutive terminal waits/180controls
+and0.003554m tail displacement; final goal distance is2.8790m. These are
+ordinary action0 selections, not low-level failure fallback or counted safety
+takeovers. Low tracking error on the reference-covered portions cannot redeem
+the unfinished task: reference coverage is only27.78%/46.67% on the failures.
+All900controls and45simulated seconds of each failed case remain in totals.
+
+Full decision P95 by road is **1.8549/3.7844/1.7597/2.2413s**; maxima are
+2.0870/9.5776/2.1031/7.6180s. These exceed the0.5s decision period frequently;
+no general realtime claim follows from successful synchronous execution.
+
+The raw auditor binds **23,135 controls** (20,665training+2,470evaluation) to
+the closed original CARLA stream. Evaluation uses2,594world ticks, including
+124reset ticks; method total is24,188world ticks. Raw audit SHA256:
+`98fe83f81f1bf01be8a70266a659264084d3e4b2837067855de7c0ecc9e0a9ae`.
+Model SHA256:
+`5926e13b49f289e4b848b10cce078d951c7d7f49b379cf0f49634e1ca317a8d4`;
+normalizer SHA256:
+`ee3d4079c1132a32ddf32901832d404fb88b90addb1f89d8cf299e2d341c1fd4`.
+
+Independent checkout7605ba0 with a separate fixed environment reconstructs
+the entire raw audit and all-eight-case H0/H figure byte-for-byte. Figure SHA:
+`49776bdc6839ffff5bf3507dbb627de815282380d5229457ffe3eb168375f50d`.
+Local figure `H/analysis/H0_H_frozen_endpoints.png` explicitly says PARTIAL2/3
+registered arms and retains every case in each displayed arm; B1 is training.
+Receipt: independent checkout `runs/route_H_endpoint_reproduction_20261025.json`.
+Descriptive raw-bound action history: `H/analysis/H0_H_endpoint_actions.json`.
+
+H **2/4**, H0 **3/4**, and previously audited B3 **4/4** do not support a
+feedback or PPO-value improvement in this small development comparison.
+H moves farther on road1 but regresses a previously successful road3. The
+H/H0 environments, nominal budget and initializer are paired; each policy has
+its own trained normalizer and executed state distribution. This is one seed
+and four reused training geometries, not an independent confirmation or a
+causal estimate from initial-state reference availability. Wait for B1's full
+endpoint, preserve the failures, then run the separately declared
+[initial/trained weight contrast](../docs/native_weight_contrast.md) only after
+the original complete lifecycle and owned-server cleanup.
+
+### H20k checkpoint integrity before endpoint evaluation
+
+The immutable20k checkpoint has20,034controls,2,016actions,28completed
+episodes,63optimization phases/126Adam steps and20,932world ticks. Its actor
+L2 difference **0.1689163595** matches the real optimization record. All
+frozen source/config/model/normalization/RNG hashes and counters verify.
+Initial-weight argmax22/0/30/29 changes to30/28/30/30 under the same checkpoint
+normalizer; selected reference lengths102/97/109/116 are all valid. Those
+queries execute no controls and are not four successes—the final endpoint
+above still fails two roads. Maximum probabilities remain0.032397..0.032549,
+with entropy near uniform.
+
+`H/checkpoint_20000_selection_verified.json` reproduces independently
+byte-for-byte, SHA256
+`b77df9e3fae119db3596105081663c743b18b945254d92ebbbc280d4d3920ff1`.
+Model SHA is63eaeda04a1983e32f7cc3db8b8b50fbca72a665e6293264c9d3b3d31d4849fa;
+it is distinct from the final20,665-control endpoint model.
+
 ## Completed H0 endpoint, 18:27 local
 
 The later [optimizer replay](native_route_optimizer_replay_20261025.md) also

@@ -1,4 +1,59 @@
-# Weight-contrast harness shipped and CI passed; H active — 2026-10-25 20:24 local
+# H completed 2/4 and audited; B1 running — 2026-10-25 21:00 local
+
+Previous goalturn was verified wait; this turn is progress: original H finishes
+training/evaluation, H20k checkpoint diagnosed/reproduced, full raw H endpoint
+audit and H0/H eight-case figure independently byte-exact, every248Hdecision
+reconstructed from saved model and actual history. No new agents/tickowners,
+runtime source/protocol changes, tests or optimizer variants. Goal incomplete.
+
+H final:20,665controls/2,080actions/29completedepisodes/65phases/130Adamsteps,
+20,480nominal+185chargedovershoot, actorL2.1835962832, exactreload, wall8630.72s.
+Training20success/8deadline/ONEOUT_OF_BOUNDS; all retained. Trainworld21594=
+20665controls+929reset. All4KNOWNtraining-road final probes **2/4**:
+road0success341controls/progress24.3164m; road1deadline900/progress17.0442;
+road2success329/progress22.4616; road3deadline900/progress17.8448. All eval
+plan/MPCfailures/interventions0, but failed policies select waits: road1last65
+waitdecisions/650controls/.03985mtailmotion/finalgoaldistance7.3034m; road3
+48totalwaits,last18/180controls/.003554mtailmotion/goaldistance2.8790m.
+These are model action0, not takeover/failurefallback. H2/4 vsH03/4 vsB34/4
+does not support feedback or learned advantage; one seed/reused training roads.
+Full decisionP951.8549/3.7844/1.7597/2.2413s,max9.5776s; no realtimeclaim.
+
+H model5926e13b49f289e4b848b10cce078d951c7d7f49b379cf0f49634e1ca317a8d4;
+normee3d4079c1132a32ddf32901832d404fb88b90addb1f89d8cf299e2d341c1fd4.
+`H/endpoint_raw_audit.json` SHA98fe83f81f1bf01be8a70266a659264084d3e4b2837067855de7c0ecc9e0a9ae
+verifiesALL23135controls(20665train+2470eval),24188worldticks(21594+2594).
+Closed H bridge44fcd74f SHA97398c5a6dff01c4d3f4ecbb9b92ac94f540165ec1c9d6eb9d2f222ac2895319.
+Independentcheckout7605ba0/fixedPython full rawJSON byte-exact. Figure
+`H/analysis/H0_H_frozen_endpoints.png` all8cases/PARTIAL2of3arms visiblylabelled,
+visually inspected, independently byte-exact SHA49776bdc6839ffff5bf3507dbb627de815282380d5229457ffe3eb168375f50d.
+Independent receipt `runs/route_H_endpoint_reproduction_20261025.json`.
+`H/all_policy_decisions_reproduced.json` verifies35/90/33/90=248actions with
+unchanged normalization and zero steps/updates; frozen-source helper at root
+`runs/verify_route_H_endpoint_sequence_20261025.py`. Action/mode histograms
+and actual terminal wait displacement in `H/analysis/H0_H_endpoint_actions.json`.
+
+H20k checkpoint20034controls/2016actions/63phases/126updates; actorL2.16891636;
+model63eaeda04a1983e32f7cc3db8b8b50fbca72a665e6293264c9d3b3d31d4849fa.
+Same checkpointnorm initial22/0/30/29→trained30/28/30/30; all4initialselected
+references valid but NOT4executed successes. FullJSON independently byte-exact
+SHA b77df9e3fae119db3596105081663c743b18b945254d92ebbbc280d4d3920ff1.
+
+LIVE original worker18284creation16:57:12.140723, guard39196creation16:57:33,
+Shipping56960creation16:56:53.567340; H closed normally and original worker
+started B1 about20:55. At21:00 B1 **1379controls/139actions/4phases**, guard
+healthy/deadline22:54:33 unchanged. Revalidate actual OS identities and **B1**
+heartbeat (H heartbeat now correctly frozen). B1 target20480+complete-rollout
+overshoot, same source/config/seed. Do not restart or assume wholebatch done.
+
+NEXT: finish B1, then raw audit/whole3method plot/packaging and actual public
+download/reproduction; preserve full H negatives. Only after whole normal owned
+cleanup launch same-source scalar/batchSAT B3 and initial/trained-weight CARLA
+contrasts. Both harnesses ready; actual contrasts not run. Keep formal research
+gates open: no healthy final B1, no five new independent seeds, no new120test
+conditions or PPO-value advantage. Do not treat failed H as goal completion.
+
+# Historical: weight-contrast harness shipped and CI passed — 2026-10-25 20:24 local
 
 Implementation7605ba07408a161558b9350ff76660aea06dc96a pushed and remoteSHA
 verified. Actual hosted CPU run40192669405 SUCCESS:293passed/3skips/4CARLA

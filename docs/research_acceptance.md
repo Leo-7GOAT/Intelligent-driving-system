@@ -3,10 +3,14 @@
 Updated 2026-10-25. This is an implementation and evidence ledger, not a claim that the research goal has been met. The user's latest objective supersedes the earlier six-hour-only and no-push instructions. Each execution window remains bounded and checkpointed. The complete project goal remains active across windows.
 
 Latest development: audited rule-only B3 now completes4/4 known training roads;
-fresh seed11 H0/H/B1 CARLA learning is running under its original frozen source.
-H0's completed20,702-control endpoint scores3/4known training roads, with22,589
-training/evaluation controls frame-verified and independently reproduced. Its
-failed road is fully stationary/intervened. H is actually training; B1queued.
+fresh seed11 H0/H/B1 CARLA learning retains its original frozen source.
+H's completed20,665-control endpoint scores2/4known training roads; H0's
+20,702-control endpoint scores3/4. All23,135H/22,589H0training/evaluation
+controls are frame-verified, with independent byte-exact raw audits and the
+all-eight-case partial H0/H figure. All248H/190H0deterministic decisions are
+reconstructed. H has policy-selected waiting failures and one training bounds
+episode; H0's failed road is fully stationary/intervened. B1 is actually training.
+This comparison does not support a feedback/PPO-value improvement.
 This partial development result does not close any independent-confirmation gate.
 No new independent-seed, unseen-confirmation or learned-advantage result exists.
 The [initial/trained weight contrast](native_weight_contrast.md) evaluator and
