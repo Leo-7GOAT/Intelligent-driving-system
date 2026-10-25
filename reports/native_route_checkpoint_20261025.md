@@ -2,6 +2,10 @@
 
 ## Completed H0 endpoint, 18:27 local
 
+The later [optimizer replay](native_route_optimizer_replay_20261025.md) also
+reconstructs64actual stochastic decisions and the final tensors/Adam/statistics
+exactly; its discarded fixed-data branches are not new driving results.
+
 H0 finishes fresh training with **20,702 actual CARLA controls**,2,080decisions,
 65optimization phases/130optimizer steps. The20,480 target overshoots by222
 controls because complete32-decision rollouts are collected; all are charged.

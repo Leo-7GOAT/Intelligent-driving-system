@@ -1,5 +1,15 @@
 # Failure analysis
 
+The [fresh-route update replay](../reports/native_route_optimizer_replay_20261025.md)
+now reproduces64actual sampled actions/639controls across a terminal transition,
+including final policy/value tensors, Adam state and observation/return moments
+bit-for-bit. In these two rollouts critic gradients dominate shared clipping;
+almost all encoder gradient components are below Adam epsilon afterward, which
+is a scale observation rather than a zero-gradient cutoff. Lowering epsilon in
+a discarded fixed-data branch moves parameters17times farther but changes
+categorical KL only about2times. No branch has been deployed or shown to improve
+driving; live H/B1 training stays unchanged.
+
 The fresh H0 final endpoint confirms the previously diagnosed road1 failure:
 90invalid plans,900intervened controls,zero progress and a45s deadline. The other
 three roads succeed with no recorded interventions or MPC failures. All190
