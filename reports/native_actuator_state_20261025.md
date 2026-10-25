@@ -66,3 +66,17 @@ Preparation is not launch. Actual run identity, tests and outcome go in handoff.
 Root full regression after implementation:249passed,5conditional skips,
 2existing deprecation warnings in101.35s; saved XML/log under
 `runs/ff_state_full_regression.*`. Python3.7 parses the bridge/controller.
+
+Source `dd7ea9b` is pushed. Independent checkout at that commit passes35targeted
+tests in106.61s, including actual parameter updates/reload and observation
+history reconstruction. Actual B3 batch `20261025T070545Z_native_rule` starts
+after matching0.9.15 empty-world readiness; first road succeeds341controls with
+speedRMS.11327m/s and jerkRMS44.5766m/s³. Other roads are still running at15:10;
+this is not yet an audited complete result. No new PPO has been launched.
+
+At15:19, roads0/1/2 succeed in341/350/317controls, speedRMS
+.11327/.08790/.10131 and jerkRMS44.5766/56.8427/59.8057. Road3 remains live;
+partial records show waiting. Root OS identity and healthyguard are revalidated;
+deadline stays15:35:45. These partial observations do not pass thecoveragegate.
+Independent CPU tests overlapped some early evaluation; walltime/cycle costs
+are descriptive host-load measurements, not controlled realtime benchmarks.

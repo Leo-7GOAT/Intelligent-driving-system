@@ -1,4 +1,50 @@
-# Shared actuator interface ready — 2026-10-25 15:14 local
+# Feedforward B3 LIVE — 2026-10-25 15:20 local
+
+At15:19:18 all three recorded OS identities still match/live. Guardhealthy.
+Case3decision41,total1,418controls; no terminalsummary/failure. Firstthree
+successes341/350/317controls, speedRMS.11327/.08790/.10131 and
+jerkRMS44.5766/56.8427/59.8057. Partialgzprefix has24case3decisions; lastfive
+arewait, lastavailablepose(18.019546,14.554120,-.670103),v~0,time12s. This is
+partialtelemetry, not a completed/audited fourthoutcome. Do not restart or
+extend its15:35:45 deadline. At~20s/decision it may reach thewallguard before
+90decisions; preserve that as incomplete/infrastructure budget evidence.
+
+Avoid heavy offline planner probes while this timing diagnostic is live.
+Aftercompletion, audit state availability atfirstwait/laststate using the frozen
+production decoder/search/parameterizer. Faster speedtracking has not yet
+established routecoverage. Check physical steering-rate/lag tracking and path
+replanning against measured frames before choosing another hypothesis; no
+planning/control change implemented or asserted causal at this snapshot.
+
+The comparison and standalone plotting scripts are ready; actual raw-comparison
+and figure execution awaits normalcompletion/audit. They preserve same measured
+starts and actual selector/decoder/reference/planner/MPC implementation, and
+label these four paired trainingroads as descriptive control evidence only.
+Low-speed independent receipt is
+`runs/prerelease_20261022/native_road_checkout/runs/low_speed_rule_reproduction.json`,
+rawSHA0b835e384741ba6eff96fd37c3c8061b9cc7edf572a9bc9ac9d1a6abae2fbc9a.
+
+# Historical: feedforward B3 LIVE — 2026-10-25 15:10 local
+
+Actual new run `runs/20261025T070545Z_native_rule`, frozen source/pushed dd7ea9b.
+worker14160 creation15:06:36.400932 (shim54048), guard62384 creation15:07:04,
+Shipping56968 creation15:05:59.501827. Sessionsworker11210/guard44884/launcher94592.
+Matching0.9.15 empty-world readiness probe saved;RPC2100..2102. Deadline15:35:45;
+30min/resource/no-progress guards healthy,zero retries. Worker identity inbatch.
+First road completes successfully341controls; speedRMS.11327,jerkRMS44.5766.
+Other roads remain live. Never treat partial outcomes as fullcoverage. No new
+PPO prepared/started. Root tests249pass5skip; independent checkout atdd7ea9b
+35targeted pass in106.61s; saved `runs/ff_state_independent_regression.*` there.
+
+Next: finish raw audit and normalcleanup. New comparison script
+`scripts/compare_native_rule_actuator.py` checks equal measuredstarts/tasks,
+native-score, physicalcalibration, unchanged rule/decoder/reference AST and
+identical planning/trajectory/MPC/vehicle files; it requires complete raw audits.
+Then independently rebuild both raw/comparison evidence. If4/4coveragepasses,
+actually stage/launch fresh H0/H/B1 with20,480controls each using frozen lowlevel.
+Ifnot, preserve failures and diagnose. No lowering gates/oldmodelreuse.
+
+# Historical: shared actuator interface ready — 2026-10-25 15:05 local
 
 Goal remains active/incomplete. Previous turn obtained terminal evidence rather
 than only restating status. This turn audits and independently reproduces the
