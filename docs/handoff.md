@@ -1,4 +1,35 @@
-# Search-budget contrast ready — 2026-10-25 15:45 local
+# Expanded-search B3 LIVE — 2026-10-25 16:00 local
+
+New actual batch `runs/20261025T074939Z_native_rule`, frozen/pushed1d3c9a9:
+worker21600 creation15:50:39.756287 (shim26876),guard40744 creation15:51:06,
+Shipping58332 creation15:50:10.502634. Sessionsworker66997/guard96198/launcher4188.
+RPC2100..2102, actual matching0.9.15 empty-world probe saved. Deadline16:49:39,
+one-hour/resource/no-progress guards healthy,zero retries. Do not restart livejob.
+At15:59:42 case3decision25,total1,269controls. Firstthree successes341/361/317;
+fourth remains unfinished. No new PPO prepared/started; pointerabsent.
+
+Independent checkout at1d3c9a9 reproduces previous waitdiagnostic byte-identically:
+SHA dd99aa8261f2579472b794fb2b116a576e0535e483837e61055501d5a01a67d9,
+receipt `runs/search_budget_wait_reproduction.json` there. It also passes33
+targetedtests in10.40s, XML/log `runs/search_budget_independent_tests.*`.
+The stored7200-cap goalpath separately passes production timeparameterization
+and full-body sampling:81samples,6.7020s,terminalv0,maxcurvature.181823/m.
+This remains an unexecuted alternative from the old measured state.
+
+New `scripts/plot_rule_wait.py` produces a standalone selected-state figure,
+visually inspected: `runs/20261025T070545Z_native_rule/analysis/first_wait.png`,
+SHA0e332c466467943ff82d6c2ca07537dd0a98f0dea3bc633dd207c95b22be092e.
+It distinguishes measured prefix, known route and offline alternative; no full
+completed-trial plot is generated for that interrupted old run.
+
+Next on actual completion: checkguard/ownedcleanup, run `audit_native_rule.py`
+for074939Z, independently rebuild raw audit. If4/4, actually prepare
+`prepare_native_route_learning.py --parent runs/20261025T074939Z_native_rule`
+and launch frozen H0/H/B1seed11 learning (20,480controls each), new ownedserver
+and six-hourguard. Exact demonstrated Hconfig check includes7200nodes/FF4705.
+Ifnot4/4, preserve failure; no weakening gate or changing task deadline.
+
+# Historical: search-budget contrast ready — 2026-10-25 15:45 local
 
 Previous goal turn made progress: shared actuator interface249pass5skip,
 independent35targetedpass and actual B3 launch. This turn completes that

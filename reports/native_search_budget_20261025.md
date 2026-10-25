@@ -68,3 +68,27 @@ confirmation protocol based on this diagnostic.
 python scripts/diagnose_rule_wait.py --batch runs/20261025T070545Z_native_rule --case 3 --output runs/wait_diagnostic_rebuilt.json
 python scripts/evaluate_native_rule.py --prepare runs/20261024T075110Z_native_rollout_pair --source-method H_rollout32 --catalog route_frame_terminal --continuation-feedback --calibration runs/20261022T122427Z_native_curve_control/calibration/calibration.json --planner-nodes 7200 --wall-seconds 3600
 ```
+
+## Execution and reproduction status
+
+Source1d3c9a9 is pushed. Independent checkout reproduces the selected-state
+diagnostic byte-identically, SHA256
+`dd99aa8261f2579472b794fb2b116a576e0535e483837e61055501d5a01a67d9`, and passes33
+targeted tests in10.40s. The stored larger-budget goal path also passes the
+unchanged timeparameterizer and sampled full-body check:81samples,6.7020s,
+terminal speed0,maxcurvature.181823/m. This does not execute that alternative.
+
+Actual new B3 batch `20261025T074939Z_native_rule` starts after the independent
+checks and0.9.15 empty-world probe. At15:59, firstthree roads succeed in
+341/361/317controls; fourth is live atdecision25. Normalcompletion/rawaudit
+and coverage remain pending. No fresh PPO has started. The60-minute deadline
+is16:49:39; owned lifecycle and resource guards are recorded inhandoff.
+
+The selected-state figure is generated locally and visually checked, SHA256
+`0e332c466467943ff82d6c2ca07537dd0a98f0dea3bc633dd207c95b22be092e`:
+
+```powershell
+python scripts/plot_rule_wait.py --batch runs/20261025T070545Z_native_rule --diagnostic runs/20261025T070545Z_native_rule/wait_diagnostic.json --output runs/first_wait_rebuilt.png
+```
+
+This figure labels the measured prefix and unexecuted offline path separately.
