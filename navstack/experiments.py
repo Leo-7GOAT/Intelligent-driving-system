@@ -189,6 +189,8 @@ def signature(config):
         result["observation"] += "-measured-road64x64-v1"
         result["observation_shape"][0] += 4096
         result["road_geometry"] = config.road_geometry_version+"_closed_cells_shared_planning_risk_bounds"
+    if config.road_collision_backend != "scalar":
+        result["road_collision_backend"] = config.road_collision_backend
     if config.route_rehearsal_probability:
         result["route_rehearsal"] = {"probability":config.route_rehearsal_probability,
             "sampling":"uniform_completed_distances_at_training_reset", "stages":config.route_stages}

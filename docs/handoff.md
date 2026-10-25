@@ -1,4 +1,41 @@
-# Fresh route PPO LIVE after audited4/4coverage — 2026-10-25 17:16 local
+# Exact road SAT tested; fresh route PPO still LIVE — 2026-10-25 17:47 local
+
+Previous goal turn was a verified live-process wait/status summary at the user's
+request. This turn makes code, test and benchmark progress; no agents spawned.
+Goal remains active/incomplete; do not restart the live tick owner.
+
+Same worker18284 creation16:57:12.140723, guard39196 creation16:57:33 and
+Shipping56960 creation16:56:53.567340 remain OS-confirmed live. At17:46:18 H0
+reports11,405controls/1,146actions/35optimization phases, guardhealthy; H/B1
+queued, deadline22:54:33 unchanged. Frozen b495e71 runtime/protocol untouched.
+First checkpoint `H0/checkpoint_000010000` actually contains10,186controls,
+1,024actions,32optimization phases/64optimizer updates,modelSHAddf19e0f5b8cfbb7e471b1a1d70b35ae2a1d391d8403ab32348845b04eef0fcf.
+Read-only `runs/verify_route_checkpoint_20261025.py` uses frozen source, verifies
+all source/artifact hashes, and independently reloads twice at four recorded
+initial scenes. Receipt `H0/checkpoint_10000_reload_receipt.json`: exact actions,
+normalization unchanged,0newcontrols/updates. Probabilities remain near uniform
+(max.03241..03246,entropy3.43398); not evidence of convergence or endpoint score.
+
+New optional `road_collision_backend=batch_sat_v1` accelerates exact full-body
+road SAT in World.free_many. Scalar remains default; original contact oracle,
+bounds/static/single-pose/risk/terminal logic retained. New config/signature and
+native preparation propagate backend to all methods. No in-place active-run
+switch. Complete CPU regression267pass/5skip,241.99s; preflight412files/no findings.
+Report `reports/road_collision_batch_20261025.md`, reproducible CLI
+`scripts/benchmark_road_batch.py`. New output paths only. Sources/fixture frozen
+beside each benchmark. Integrated3-repeat results: actual169call/5915pose kernel
+.89236→.11276s, scattered2048 .27458→.07385s; full Euclidean10.74583→1.96452s
+(same2637-nodefailure), guided.79789→.15398s(same170nodes/cost8.3025/pathhash).
+First ungrouped prototype's scattered regression is retained, not omitted.
+These are offline development timings under concurrent training, not actual
+full-cycle realtime or RL competence. Independent checkout replay pending.
+
+Next: preserve/monitor current H0/H/B1 queue and raw-audit completed endpoints.
+Only after its owned normal cleanup may a new, separately versioned actual
+batch-SAT B3 comparison use the server. Do not prepare another deadline-bound
+worker or interrupt current PPO merely to use the faster backend.
+
+# Historical: fresh route PPO snapshot — 2026-10-25 17:16 local
 
 At17:15:56 the same worker18284/guard39196/Shipping56960 OSidentities remain
 live with matching creationtimes. Guardhealthy,deadline22:54:33 unchanged.

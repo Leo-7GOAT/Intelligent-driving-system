@@ -57,6 +57,7 @@ def test_route_staging_keeps_the_covered_actuator_and_search_budget(parent):
     protocol['config']['planner']['max_nodes']=7200
     protocol['config']['actuator_observation']='ff_state_v1'
     protocol['config']['planner']['heuristic_mode']='dubins_v1'
+    protocol['config']['road_collision_backend']='batch_sat_v1'
     write_json(parent/'protocol.json',protocol)
     batch=staging.prepare(parent)
     staged=json.loads((batch/'protocol.json').read_text())
@@ -66,3 +67,4 @@ def test_route_staging_keeps_the_covered_actuator_and_search_budget(parent):
         config=training_config(staged,method,VehicleConfig())
         assert config.planner.max_nodes==7200 and config.actuator_observation=='ff_state_v1'
         assert config.planner.heuristic_mode=='dubins_v1'
+        assert config.road_collision_backend=='batch_sat_v1'

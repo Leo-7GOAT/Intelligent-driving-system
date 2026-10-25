@@ -76,6 +76,7 @@ class NavigationEnv(gym.Env):
     def reset(self, *, seed=None, options=None):
         super().reset(seed=seed)
         self.world, self.plant, self.goal, self.scenario_name = self._create_episode(options)
+        self.world.road_collision_backend = self.config.road_collision_backend
         self.navigation_route = None
         if self.config.subgoal_mode == "route_frame_terminal":
             route = getattr(self, "scene_evidence", {}).get("native_layout", {}).get("path")

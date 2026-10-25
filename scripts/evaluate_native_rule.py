@@ -53,7 +53,7 @@ def feedforward_calibration(path, original):
     return path, fit_path
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -78,6 +78,11 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
         raise ValueError('Explicit route planner heuristic must be euclidean or dubins_v1')
     parent_planner_nodes=env.planner.max_nodes
     parent_heuristic=env.planner.heuristic_mode
+    parent_collision_backend=env.road_collision_backend
+    if road_collision_backend is not None:
+        if catalog is None:
+            raise ValueError('Road collision backend contrast requires an explicit versioned catalog')
+        env=EnvConfig.from_dict({**env.to_dict(),'road_collision_backend':road_collision_backend})
     if planner_nodes is not None:
         env.planner.max_nodes=planner_nodes
     if planner_heuristic is not None:
@@ -155,6 +160,9 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
         protocol['planner_intervention']={'from_nodes':parent_planner_nodes,'to_nodes':env.planner.max_nodes,
             'from_heuristic':parent_heuristic,'to_heuristic':env.planner.heuristic_mode,
             'new_model_required':True,'scope':'Versioned Hybrid A* node-budget/search-order contrast, shared by H/H0/B3; B1 remains direct control. Physical task and vehicle limits unchanged; compute costs reported separately.'}
+    if road_collision_backend is not None:
+        protocol['road_collision_intervention']={'from':parent_collision_backend,'to':env.road_collision_backend,
+            'new_model_required':True,'scope':'Exact full-body road SAT batching; unchanged scalar oracle for contact-sensitive poses and single-pose checks. Share the version with H/H0/B1/B3 and report compute separately.'}
     write_json(batch/'protocol.json', protocol)
     write_json(batch/'prepared.json', {'status': 'PREPARED_NOT_STARTED', 'protocol_sha256': sha(batch/'protocol.json')})
     print(batch, flush=True)
@@ -272,5 +280,6 @@ if __name__ == '__main__':
     parser.add_argument('--calibration', type=Path, help='Explicit measured feedforward calibration with adjacent throttle_fit.json')
     parser.add_argument('--planner-nodes',type=int,choices=[1800,7200])
     parser.add_argument('--planner-heuristic',choices=['euclidean','dubins_v1'])
+    parser.add_argument('--road-collision-backend',choices=['scalar','batch_sat_v1'])
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend) if args.prepare else run(args.batch)

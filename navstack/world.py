@@ -49,6 +49,8 @@ class World:
     static: list = field(default_factory=list)  # xmin,ymin,xmax,ymax (m)
     dynamic: list = field(default_factory=list)
     road: object = None  # optional shared measured raster, never a display overlay
+    road_collision_backend: str = "scalar"
+    _road_batch: object = field(default=None, init=False, repr=False, compare=False)
 
     def out_of_bounds(self, pose, vehicle, margin=0.0):
         p = body_corners(pose, vehicle, margin)
@@ -119,8 +121,17 @@ class World:
                        & (np.abs(-dx*s+dy*c) <= half_width+rx*np.abs(s)+ry*np.abs(c)+tolerance))
             valid &= ~overlap
         if self.road is not None:
-            for index in np.flatnonzero(valid):
-                valid[index] = not self.road.intersects(body_corners(poses[index], vehicle, margin))
+            indices = np.flatnonzero(valid)
+            if self.road_collision_backend == "batch_sat_v1":
+                from .road_grid_batch import ExactRoadBatch
+                if self._road_batch is None or self._road_batch.grid is not self.road:
+                    self._road_batch = ExactRoadBatch(self.road)
+                valid[indices] &= ~self._road_batch.intersects_many(poses[indices], vehicle, margin)
+            elif self.road_collision_backend == "scalar":
+                for index in indices:
+                    valid[index] = not self.road.intersects(body_corners(poses[index], vehicle, margin))
+            else:
+                raise ValueError("Unknown road collision backend")
         return valid
 
     def occupied(self, x, y):

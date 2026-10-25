@@ -55,6 +55,7 @@ def prepare(parent, controls=20480, wall_seconds=21600):
             episode_seconds=old['config']['deadline'], subgoal_mode='route_frame_terminal',
             continuation_feedback=old['config']['execution_feedback']=='continuation',
             actuator_observation=old['config'].get('actuator_observation','off'),
+            road_collision_backend=old['config'].get('road_collision_backend','scalar'),
             planner_nodes=old['config']['planner']['max_nodes'],
             planner_heuristic=old['config']['planner'].get('heuristic_mode','euclidean'),
             road_geometry_version=old['config']['road_geometry_version'],

@@ -1,5 +1,10 @@
 # Research results and claim boundaries
 
+2026-10-25: [exact road collision batching](../reports/road_collision_batch_20261025.md)
+reduces offline complete-search median cost on one recorded development state,
+with exact status/nodes/cost/path agreement. Scalar remains default; no live PPO
+or task-success improvement is attributed to this optional compute change.
+
 Latest complete native development evidence (2026-10-24 18:38): all six H0/H/B1
 32/256 rollout arms score0/4, covering639,009 audited training/evaluation controls.
 B1 long improves mean progress from2.203275 to6.637067m but remains unsuccessful;
