@@ -1,4 +1,48 @@
-# Immutable training-prefix plot reproduced; PPO LIVE — 2026-10-25 18:18 local
+# H0 completed/audited3/4; H now actually trains — 2026-10-25 18:35 local
+
+This goalturn is progress: original H0 actually finishes, whole-method frame
+audit/independent reproduction and190-decision reconstruction completed. Earlier
+training-prefix figure also frozen/viewed/reproduced, script8c3e4fc pushed.
+No runtime source changes, agents, duplicate tick owners or restarted server.
+Overall research goal remains incomplete.
+
+H0 endpoint:20,702trainingcontrols(target20,480,+222chargedovershoot),2,080actions,
+65phases/130Adamsteps,29completedtrainingepisodes(19success10deadline),5312.48s,
+actorL2.07824054,reload_exact=true. Eval3/4(allKNOWN trainingroads),controls
+337/900/329/321=1,887; road1zero progress,90planfailures/900intervenedcontrols,
+trackingmissing(no_valid_reference). Otherssuccess/nointerventions/MPCfailures.
+Full-decisionP95 .1658/.0788/.1998/5.2251s,maxroad3 6.9071s; no realtime claim.
+
+Root frozen-source method-local audit verifies22,589training/evaluationcontrols,
+worldticks21,631+2,011=23,642. RawSHA
+c533950446a5ae79a6fa600c6ed82c0ffc3ab42308aa2ff568ebe211f0d5fdeb.
+ModelSHAaa7b6c3d0d0ed6e54a234b55f575a246607b0f6e4c8a7fe51cc4ace5c6b3bbc3,
+normSHAd0e4bf935a5204bb271e0102898f349f0e6ae265be91df8d832b993f98270fdf.
+Independent checkout09f90a7 rebuilds rawaudit AND all4roadPNG byte-exact.
+PNG `H0/analysis/frozen_endpoint.png`, SHA
+99c4260fb6222de3cf02b1a0ed2542d8d766bfa7cba5c10c64dd275a0d2f9ae2, viewed.
+Independent receipt `runs/route_H0_endpoint_reproduction_20261025.json`.
+Root `runs/verify_route_H0_endpoint_sequence_20261025.py` uses frozen imports,
+verified artifacts and recorded feedback to reproduce all190actions(34/90/33/33),
+normalizationunchanged/noPlant.step. Receipt `H0/all_policy_decisions_reproduced.json`.
+Also `H0/initial_policy_inference.json` reproduces4initialactions22/22/30/30;
+maxprob remains~.03246..03249. No untrained-policy actual contrast yet, so do not
+claim training caused3/4 or compare olddifferentlowlevel0/4as causal improvement.
+
+LIVE SAME batch20261025T085433Z_native_route_learning/frozenb495e71 andsame
+worker18284creation16:57:12.140723,guard39196creation16:57:33,
+Shipping56960creation16:56:53.567340. H0bridge5eeca07aclosed. New Hbridge44fcd74f
+andHrecorder opened18:26:44. At18:34:10 H1,051controls/106actions/3phases;
+actual updates ongoing, B1queued. Guardhealthy/deadline22:54:33 unchanged.
+Never restart for closedH0/frozenheartbeat; active method heartbeat is nowH.
+
+Next: keep H/B1 original queue running, audit each closed method. New model/data
+not yet exported as full3-method asset; existing whole-batch packager correctly
+requires ALL declared endpoints and normal cleanup. Optional same-new-source
+scalar/batchSAT B3 actual contrast remains deferred until whole owned lifecycle
+finishes. Five seeds/new120conditions/healthyB1/PPOvalue gates remain open.
+
+# Historical: frozen-prefix snapshot — 2026-10-25 18:18 local
 
 Previous goalturn was progress (actual checkpoint diagnosis + strict future
 collision-compute comparer,29tests and independent byte-exact diagnosis). This

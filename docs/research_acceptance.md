@@ -4,6 +4,10 @@ Updated 2026-10-25. This is an implementation and evidence ledger, not a claim t
 
 Latest development: audited rule-only B3 now completes4/4 known training roads;
 fresh seed11 H0/H/B1 CARLA learning is running under its original frozen source.
+H0's completed20,702-control endpoint scores3/4known training roads, with22,589
+training/evaluation controls frame-verified and independently reproduced. Its
+failed road is fully stationary/intervened. H is actually training; B1queued.
+This partial development result does not close any independent-confirmation gate.
 No new independent-seed, unseen-confirmation or learned-advantage result exists.
 Optional exact road-SAT batching has independent CPU reproduction and a
 [published development evidence asset](../reports/road_collision_batch_20261025.md);

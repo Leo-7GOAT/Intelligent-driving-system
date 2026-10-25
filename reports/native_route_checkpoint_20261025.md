@@ -1,12 +1,75 @@
 # Fresh route PPO checkpoint diagnosis — 2026-10-25
 
+## Completed H0 endpoint, 18:27 local
+
+H0 finishes fresh training with **20,702 actual CARLA controls**,2,080decisions,
+65optimization phases/130optimizer steps. The20,480 target overshoots by222
+controls because complete32-decision rollouts are collected; all are charged.
+Training walltime is5,312.48s, with29completed episodes(19success/10deadline).
+Actor L2 change is.07824054; final save/reload weights agree exactly. No teacher,
+inherited model or normalization lineage is used.
+
+Frozen deterministic evaluation on all four **known training roads** completes
+**3/4**:
+
+| Road | Outcome | Controls | Progress (m) | Planning failures | Interventions |
+|---|---|---:|---:|---:|---:|
+| 0 | Success | 337 | 24.1104 | 0 | 0 |
+| 1 | Deadline, stationary | 900 | 0 | 90 | 900 |
+| 2 | Success | 329 | 22.5262 | 0 | 0 |
+| 3 | Success | 321 | 20.2868 | 0 | 0 |
+
+Road1's tracking errors are correctly missing (`no_valid_reference`), not zero.
+All failed decisions remain in totals. Successful roads take16.85/16.45/16.05
+simulated seconds. Full decision P95 by road is.1658/.0788/.1998/5.2251s;
+road3max is6.9071s, so no general realtime claim follows. Road1's cheap invalid
+decisions and zero collision count do not make its stationary failure useful.
+Its900intervened controls remain a substantial productive-safety failure.
+
+The closed method stream verifies **20,702 training +1,887 evaluation =22,589
+applied controls** against original CARLA frames, including actuator history,
+commands, terminal evidence and reset counts. Training world ticks21,631 and
+evaluation ticks2,011 total23,642. Raw-audit SHA256:
+`c533950446a5ae79a6fa600c6ed82c0ffc3ab42308aa2ff568ebe211f0d5fdeb`.
+Final model SHA256:
+`aa7b6c3d0d0ed6e54a234b55f575a246607b0f6e4c8a7fe51cc4ace5c6b3bbc3`.
+Normalization SHA256:
+`d0e4bf935a5204bb271e0102898f349f0e6ae265be91df8d832b993f98270fdf`.
+
+The independent fixed-dependency checkout rebuilds the **raw audit and four-road
+trajectory PNG byte-identically**. Figure SHA256:
+`99c4260fb6222de3cf02b1a0ed2542d8d766bfa7cba5c10c64dd275a0d2f9ae2`;
+receipt there is `runs/route_H0_endpoint_reproduction_20261025.json`. Figure
+`H0/analysis/frozen_endpoint.png` explicitly labels1/3registered arms and retains
+the failed road. It was visually inspected. All190deterministic policy decisions
+(34/90/33/33) also reconstruct exactly from the saved final model and audited
+feedback/history with frozen normalization; local receipt
+`H0/all_policy_decisions_reproduced.json`. No extra driving or PPO update occurs
+in these reconstructions.
+
+This is an honest positive **development endpoint**, not unseen confirmation or
+evidence of PPO's causal contribution. The previous4/4strong rule and this3/4H0
+have different decision mechanisms/information use, and changes from older0/4
+runs also include low-level/interface changes. Five independent training seeds,
+healthy complete-task B1, all core classes and paired statistical claims remain
+open. The original worker now actually trains **H**; B1 remains queued. The
+batch/server is still live and must not be restarted or used by another worker.
+
+```powershell
+python runs/20261025T085433Z_native_route_learning/source/scripts/audit_native_method_endpoint.py --batch runs/20261025T085433Z_native_route_learning --method H0 --output runs/H0_audit_rebuilt.json
+python scripts/plot_native_endpoints.py --batch runs/20261025T085433Z_native_route_learning --method H0 --output runs/H0_endpoint_rebuilt.png
+```
+
+The following sections retain the intermediate checkpoint evidence as captured.
+
 The live seed11 fresh H0/H/B1 batch remains
 `20261025T085433Z_native_route_learning`, frozen `b495e71`, with identical
 feedforward actuation, four actuator-state inputs, route candidates, 7,200-node
 Dubins-guided planner and shared 4,705-input observations. The optional newer
 batch-SAT backend is not substituted into this active batch. H0 ablates the
 99 candidate witness/execution features; it retains actuator history. H/B1 are
-queued, and neither has a new endpoint at the time of this intermediate report.
+queued at the time of the intermediate checkpoint diagnosis below. The newer
+completed-H0/current-H state above supersedes that historical live snapshot.
 
 ## Immutable checkpoint and reproducible initialization
 

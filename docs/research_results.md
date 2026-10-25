@@ -1,5 +1,13 @@
 # Research results and claim boundaries
 
+Fresh route H0 now completes20,702actual CARLA training controls/130optimizer
+steps and **3/4 known-training-road probes**. All22,589training/evaluation
+controls are frame-audited; raw audit and all-four-road figure reproduce
+independently byte-for-byte. Road1 remains stationary with90failed plans and
+900intervened controls; missing tracking errors are retained. H is now actually
+training, B1queued. This partial seed11 development endpoint is not a PPO-value,
+five-seed or unseen-confirmation result. See the [completed endpoint](../reports/native_route_checkpoint_20261025.md).
+
 The fresh-route H0 intermediate10,186-control checkpoint has genuine actor
 changes but near-uniform probabilities and a rejected argmax on road1's saved
 initial scene. [Seven production reference queries](../reports/native_route_checkpoint_20261025.md)

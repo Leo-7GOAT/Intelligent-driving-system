@@ -1,5 +1,14 @@
 # Failure analysis
 
+The fresh H0 final endpoint confirms the previously diagnosed road1 failure:
+90invalid plans,900intervened controls,zero progress and a45s deadline. The other
+three roads succeed with no recorded interventions or MPC failures. All190
+deterministic actions reconstruct from the final saved policy and audited
+feedback; this is not a rule-selected result. H0 still has no reliable road1
+decision and its near-uniform policy cannot be called converged. The all-four
+evaluation and22,589verified controls are retained in the
+[endpoint report](../reports/native_route_checkpoint_20261025.md).
+
 2026-10-25 intermediate [fresh-route checkpoint diagnosis](../reports/native_route_checkpoint_20261025.md)
 reconstructs seed11 initialization and matches the checkpoint's logged actor
 change. At10,186 actual training controls, H0 probabilities remain near uniform;
