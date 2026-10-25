@@ -1,4 +1,21 @@
-# Fresh checkpoint decision failure diagnosed; PPO LIVE — 2026-10-25 18:07 local
+# Checkpoint diagnosis independently exact; PPO LIVE — 2026-10-25 18:10 local
+
+Code09f90a7 is pushed/remote-confirmed. Clean independent checkout09f90a7 with
+its fixed-dependency environment passes29targeted tests and ACTUALLY reruns the
+fresh checkpoint selection diagnostic against original frozenb495e71 source and
+immutable10,186-control checkpoint. Verified result is byte-identical:
+SHA291838f259700aba7e628d97a6307edee74c0e4bf6839d7e5a7abe86ba78258e.
+Receipt `runs/checkpoint_selection_reproduction_receipt_20261025.json` in
+independent checkout. No new execution, PPO update or independent training seed.
+
+At18:08:21 live H0 reports17,137controls/1,722actions/53optimization phases;
+original worker18284/guard39196/Shipping56960 remain matching OSidentities.
+Guardhealthy, deadline22:54:33 unchanged, H/B1queued. Raw compressed files remain
+unclosed; no endpointscore or whole-frame audit yet. Next action is authoritative
+monitoring and method-local audit AFTER H0 evaluation and recorder/client close.
+No further speculative runtime changes or another tick owner while waiting.
+
+# Historical: checkpoint diagnosis snapshot — 2026-10-25 18:07 local
 
 Previous goalturn was progress: full267CPU regression, optional exact-SAT
 implementation/benchmarks, public evidence upload/download/frozen-script replay.

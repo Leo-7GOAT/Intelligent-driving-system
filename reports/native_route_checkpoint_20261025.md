@@ -78,3 +78,12 @@ the current server.
 Targeted rejection/reporting and existing native audit/observation tests:
 **29 passed**. These tests do not run CARLA. The previous complete CPU regression
 remains267passed/five conditional skips; it predates the new read-only tools.
+
+Independent checkout `09f90a7502533bbdb885cae5709ad4d5e6a79ead` with the
+separate fixed-dependency environment also passes all29targeted tests. It
+actually reruns this diagnostic against the original frozen source and immutable
+checkpoint: the complete verified result is **byte-identical**, SHA256
+`291838f259700aba7e628d97a6307edee74c0e4bf6839d7e5a7abe86ba78258e`.
+Receipt: `runs/checkpoint_selection_reproduction_receipt_20261025.json` in that
+checkout. This is an independent offline reconstruction of the same model and
+data, not another independent training seed or another actual drive.
