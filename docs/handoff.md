@@ -1,4 +1,36 @@
-# Checkpoint diagnosis independently exact; PPO LIVE — 2026-10-25 18:10 local
+# Immutable training-prefix plot reproduced; PPO LIVE — 2026-10-25 18:18 local
+
+Previous goalturn was progress (actual checkpoint diagnosis + strict future
+collision-compute comparer,29tests and independent byte-exact diagnosis). This
+turn confirms original live PID/session68948 and makes a frozen-prefix figure;
+no runtime or algorithm change, no new agents/tests/second tick owner.
+
+At18:17:17 H0 heartbeat18,578controls/1,867actions/58optimization phases.
+Worker18284 creation16:57:12.140723,guard39196 creation16:57:33 and
+Shipping56960 creation16:56:53.567340 remain live; guardhealthy and existing
+22:54:33 deadline unchanged. H/B1queued. No H0 summary/evaluation/closed streams
+yet. Do not restart for slow bounded search or zero-length open gzip files.
+
+New standalone `scripts/plot_native_training_prefix.py` captures complete JSONL
+prefixes+config/protocol/ownsource into hash-verified immutable snapshot inputs;
+replay never reads newer live rows. Actual snapshot through18,148optimization
+controls:57phases,26completedtrainingepisodes,16success/10deadline. ActorL2
+.06888445 and entropy3.43398130 vsmax3.43398720. These stochastic training
+successes exist early and do NOT show deterministic learned competence.
+Figure `H0/analysis/training_prefix_20261025_1815.png` + JSON + adjacent_inputs
+under livebatch. Visually inspected; separate fixed-dependency environment runs
+the frozen script with saved snapshot and reproduces PNG AND JSON byte-exact.
+PNG SHA06149d403cdb04dcffaa9716e052e75cc5c13b0b429383ffa244458d7c5f2be0.
+Replay in independentcheckout/runs/training_prefix_reproduction_20261025_1815.*.
+No new CARLA controls/model loads/PPO updates by plotting. Data not yet a final
+raw-frame audit; do not mistake16training successes for an endpoint test score.
+
+Next substantive action remains H0 completion, frozen4-road endpoint evaluation,
+then method-local full raw audit after its recorder/client closes (even if H
+already starts). Preserve remaining original20,480-budget H/H0/B1 jobs. Optional
+batch-SAT actual pair stays deferred until whole owned lifecycle normal cleanup.
+
+# Historical: checkpoint reconstruction snapshot — 2026-10-25 18:10 local
 
 Code09f90a7 is pushed/remote-confirmed. Clean independent checkout09f90a7 with
 its fixed-dependency environment passes29targeted tests and ACTUALLY reruns the

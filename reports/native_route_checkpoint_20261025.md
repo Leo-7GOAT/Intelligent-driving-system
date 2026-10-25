@@ -87,3 +87,33 @@ checkpoint: the complete verified result is **byte-identical**, SHA256
 Receipt: `runs/checkpoint_selection_reproduction_receipt_20261025.json` in that
 checkout. This is an independent offline reconstruction of the same model and
 data, not another independent training seed or another actual drive.
+
+## Immutable training-log prefix figure
+
+`scripts/plot_native_training_prefix.py` captures only complete JSONL lines
+without modifying the running writer. Snapshot files, config, protocol and plot
+source are hashed. Replay verifies these saved files and never reads newer
+training rows. The first H0 figure uses57optimization records through18,148
+controls and26completed training episodes:16success/10deadline. It displays all
+episode rewards/progress, actor L2 change and categorical entropy deficit from
+ln31. Actor change reaches.06888445, but the logged entropy remains3.43398130
+versus maximum3.43398720. Successful stochastic training episodes are present
+from early in the run; their presence alone is not evidence of learning gain.
+
+Figure and manifest:
+`H0/analysis/training_prefix_20261025_1815.png` and adjacent JSON; saved inputs
+are in `training_prefix_20261025_1815_inputs`. Figure SHA256:
+`06149d403cdb04dcffaa9716e052e75cc5c13b0b429383ffa244458d7c5f2be0`.
+The figure was visually inspected and independently rebuilt from the frozen
+plot script and saved inputs with the separate fixed-dependency environment;
+both PNG and result JSON are byte-identical. All failures remain on the plots.
+This is a stochastic **training-log prefix**, not validation, final testing,
+an independent-seed interval or a completed CARLA raw-frame audit.
+
+```powershell
+python scripts/plot_native_training_prefix.py --capture-batch runs/20261025T085433Z_native_route_learning --method H0 --output runs/training_prefix_new.png
+python scripts/plot_native_training_prefix.py --snapshot runs/training_prefix_new_inputs --output runs/training_prefix_replayed.png
+```
+
+Use new output paths. This reversible plotting work does not change the live
+training source, low level, policy, normalization statistics or tick ownership.
