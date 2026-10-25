@@ -9,6 +9,11 @@ training/evaluation controls frame-verified and independently reproduced. Its
 failed road is fully stationary/intervened. H is actually training; B1queued.
 This partial development result does not close any independent-confirmation gate.
 No new independent-seed, unseen-confirmation or learned-advantage result exists.
+The [initial/trained weight contrast](native_weight_contrast.md) evaluator and
+whole-frame/inference auditor are now implemented:295CPU passes/1skip/4CARLA
+deselections locally, with actual H0 seeded initialization and parameter-exact
+save/reload verified. The actual paired CARLA evaluation remains unexecuted
+pending original queue cleanup; no learned-weight benefit is established.
 Optional exact road-SAT batching has independent CPU reproduction and a
 [published development evidence asset](../reports/road_collision_batch_20261025.md);
 it remains disabled in the current training batch. These low-level engineering

@@ -1,4 +1,48 @@
-# H10kcheckpoint verified; hosted CPU CI delivered — 2026-10-25 19:37 local
+# Weight-contrast harness verified; H active — 2026-10-25 20:19 local
+
+The previous goalturns were verified waits on actual OS identities and retained
+session68948. This turn is progress: implemented the missing actual initial/
+trained-weight evaluator and complete raw-frame plus deterministic-decision
+auditor. No agent, second tickowner, active source/config or optimizer change.
+Research goal remains active and incomplete.
+
+`scripts/evaluate_native_policy_weights.py` stages only after ALL original
+training/evaluation and normal owned-empty-server cleanup; H/H0 only, fresh
+seeded initialization, exact parent navstack code/calibration/tasks/actions,
+SAME trained frozen normalizer for both arms. Known four roads/eight outcomes,
+zero optimizer updates. This isolates actor-weight changes conditional on the
+learned normalizer, not a fully untrained system or independent confirmation.
+`scripts/audit_native_policy_weights.py` verifies every actual frame, initial
+actuator/reset/tick accounting, all eight outcomes and all deterministic policy
+actions reconstructed from measured histories. Missing cases, extra resets,
+truncated logs and mismatched artifacts/actions are rejected. New worker name
+added to root guard allowlist only; original frozen running guard is untouched.
+Commands and boundaries: `docs/native_weight_contrast.md`.
+
+Local targeted32passed; full CPU295passed/1skip/4CARLA deselected/3existing
+warnings in216.08s, log/XML `runs/native_weight_cpu_regression_20261025.*`.
+Publication preflight425files/no findings. Hosted CI for this change not yet
+claimed. Actual H0 initializer uses frozen parent source and trained artifacts:
+actorL2.0782405436038971 exactly matches training log; initial save/reload tensors
+exact; initial-state argmax22/0/30/29 versus trained22/22/30/30 under common
+final H0 normalizer. Zero newcontrols/updates. Frozen helper/model/receipt in
+`runs/native_weight_initialization_20261025_v2/`. These are decisions, not
+executed untrained outcomes; no comparison batch has been prepared/launched.
+
+LIVE original batch20261025T085433Z_native_route_learning, frozenb495e71,
+unchanged worker18284creation16:57:12.140723/guard39196creation16:57:33.231134/
+Shipping56960creation16:56:53.567340. At20:19 H16,486controls/1,659actions/
+51phases; guard healthy, deadline22:54:33 unchanged. H0complete3/4, B1queued.
+Revalidate OS identities and method heartbeat before each action.
+
+Next: H20k immutable checkpoint, H endpoint/four-road eval/stream closure,
+method-local H audit while B1 starts; then B1 and whole-batch audit/release.
+Only after original normal cleanup run same-source scalar/batchSAT B3 contrast
+and actual untrained/trained-weight controls. Do not substitute offline
+reference availability, initialized models, CPU regression or scripts for
+actual CARLA outcomes, five seeds, new120conditions or learned advantage.
+
+# Historical: H10kcheckpoint verified; hosted CPU CI delivered — 2026-10-25 19:37 local
 
 This goalturn is progress: real hosted CPU CI implemented and passed, plus H's
 first checkpoint actually saved/verified/reproduced. Implementationc77314f,
