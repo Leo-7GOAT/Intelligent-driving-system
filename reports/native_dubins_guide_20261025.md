@@ -125,3 +125,11 @@ See handoff for actual identities and22:54:33 resource deadline.
 python scripts/audit_native_rule.py --batch runs/20261025T084117Z_native_rule --output runs/guided_raw_rebuilt.json
 python scripts/compare_native_rule_planning.py --baseline runs/20261025T074939Z_native_rule --candidate runs/20261025T084117Z_native_rule --output runs/planning_comparison_rebuilt.json
 ```
+
+At17:16 the independent checkout at1fd311d has reproduced both the guided4/4raw
+audit and the fullfour-case planning comparison byte-identically. Comparison
+SHA256 `5da9a5e1cd7bc83bd5b66b0682a5f9523462ea2cca9d39d4fabf28fff15361a8`;
+receipt is `runs/guided4_reproduction.json` in the independent checkout. No new
+physical controls or optimizer updates were used for this reconstruction.
+Live H0 training now reports4,233controls and13optimization phases; its endpoint
+and H/B1 outcomes remain pending. The22:54:33 guard remains healthy.

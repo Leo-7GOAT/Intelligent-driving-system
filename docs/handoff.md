@@ -1,4 +1,22 @@
-# Fresh route PPO LIVE after audited4/4coverage — 2026-10-25 17:06 local
+# Fresh route PPO LIVE after audited4/4coverage — 2026-10-25 17:16 local
+
+At17:15:56 the same worker18284/guard39196/Shipping56960 OSidentities remain
+live with matching creationtimes. Guardhealthy,deadline22:54:33 unchanged.
+H0heartbeat4,233controls/426actions/13optimization phases. H/B1 remain queued;
+no frozen endpoint or final raw audit yet. Do not restart/reinitialize livebatch.
+
+Independent checkout1fd311d now reproduces guided4/4 raw audit AND allfour-case
+planningcomparison byte-identically. Receipt `runs/guided4_reproduction.json`
+there: rawSHAf34ec951297f51aef9aef061085e74273927aa96d776cb89672adc3b3d1535fb,
+comparisonSHA5da9a5e1cd7bc83bd5b66b0682a5f9523462ea2cca9d39d4fabf28fff15361a8.
+This supersedes the pending-replay statement in the17:06snapshot below.
+
+Next substantive action: monitor this live fresh-training queue, preserve
+checkpoints, then raw-audit each completed H0/H/B1 endpoint and compare all four
+training-road probes. Keep seeds/budgets/normalization lineage explicit; do not
+call single-seed development or a strong rule's4/4 the final research result.
+
+# Historical: training snapshot — 2026-10-25 17:06 local
 
 Goal remains active/incomplete. Previous goalturn made real code/test/runtime
 progress. This turn completes expanded-budget failure, implements licensed
