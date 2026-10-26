@@ -1,0 +1,33 @@
+{
+  "asset": "native_actor_head_seed11_20261026_full.zip",
+  "receipt_sha256": "60f9329b055211be6a42d21786b31d47f1a2065cd1085b831a4a5db2aff76ca2",
+  "reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "8e4dac0babed85e9365158ef75200634968acfe24cbee58c3ad91f7095a37170",
+    "asset_source_commit": "f38f38ae7dfcb1c2bf6945f4b7cd023aac73bd38",
+    "reproduction_source_commit": "f38f38ae7dfcb1c2bf6945f4b7cd023aac73bd38",
+    "verified_files": 402,
+    "methods": [
+      {
+        "method": "H_shared",
+        "raw_audit_sha256": "44d98c2584b8e23c4525226787bd7c870a74178ff759b241f0901072d549e2be",
+        "verified_controls": 7162,
+        "measured_start_actions_reproduced": 4,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      },
+      {
+        "method": "H_unshared_v1",
+        "raw_audit_sha256": "4219b4591b5ca236716ddd4eb76ec0eb110f293defe759a45ff22517d9452ef2",
+        "verified_controls": 6097,
+        "measured_start_actions_reproduced": 4,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "c0bf64b27d15720943480ee8fce0d7768cae5428749e91f0b95a2ae5dcbc6231",
+    "figure_byte_identical": true
+  }
+}

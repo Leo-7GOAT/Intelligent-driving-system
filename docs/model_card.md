@@ -1,5 +1,29 @@
 # Development model card
 
+## Published matched H decision-head models (2026-10-26)
+
+[Complete shared/unshared head asset](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_actor_head_seed11_20261026_full.zip):
+402files/16,826,597bytes, SHA256
+`8e4dac0babed85e9365158ef75200634968acfe24cbee58c3ad91f7095a37170`.
+Export sourcef38f38a, exact execution sourcee0f9099 plus individually hashed
+frozen sources. Both fresh seed11 models use the same original full four
+development roads; shared208,034parameters scores1/4, unshared238,784scores3/4.
+The latter fails road1with90search failures/900interventions and about8sdecision
+P95, so this is not realtime, full acceptance or independent generalization.
+
+Actual public download in independent checkoutf38f38a verifies all402files,
+13,259rawcontrols across both audits,8measured-start actions with frozen
+normalization, and the byte-identical complete figure (SHA256
+`c0bf64b27d15720943480ee8fce0d7768cae5428749e91f0b95a2ae5dcbc6231`).
+Zero new controls/updates. [Receipt](../reports/native_actor_head_public_reproduction_20261026.json)
+and [complete outcomes](../reports/native_actor_head_20261026.md) are retained.
+Six auxiliary metadata redactions preserve original model/normalizer/raw bytes;
+the historical prerelease tag is unchanged.
+
+```powershell
+python scripts/reproduce_native_asset.py --archive native_actor_head_seed11_20261026_full.zip --sha256 8e4dac0babed85e9365158ef75200634968acfe24cbee58c3ad91f7095a37170 --output runs/head_reproduction
+```
+
 ## Published B1 sanity negatives (2026-10-26)
 
 These four complete assets retain five B1 endpoints, all frozen scores0/4 on

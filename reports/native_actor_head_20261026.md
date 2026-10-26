@@ -90,3 +90,16 @@ At sourcee0f9099, independent Windows CPU regression passes304/1skip/4CARLA
 deselections in168.97s. [Actual hosted CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40281946359)
 passes302/3skips/4deselections in145.38s. CPU verification is separate from the
 actual CARLA outcomes. All original research gates remain unchanged.
+
+## Actual publication and independent public reproduction
+
+The [complete model/raw-evidence asset](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_actor_head_seed11_20261026_full.zip)
+is uploaded,402files/16,826,597bytes, SHA256
+`8e4dac0babed85e9365158ef75200634968acfe24cbee58c3ad91f7095a37170`.
+Export sourcef38f38a; historical prerelease tag unchanged. An independent
+checkout actually downloads it publicly and verifies all402filehashes,
+both raw audits/13,259controls,8initial model actions/frozen normalization,
+and a byte-identical eight-case plot, with zero additional driving or updates.
+[Receipt](native_actor_head_public_reproduction_20261026.json). All outcomes
+and six auxiliary path-redaction receipts are retained; protected bytes remain
+unchanged. Publication closes evidence delivery, not research acceptance.

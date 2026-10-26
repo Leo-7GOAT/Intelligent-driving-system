@@ -1,5 +1,30 @@
 # Research acceptance ledger
 
+## Current audit — 2026-10-26
+
+Full objective unchanged and not achieved. The completed matched head study is
+shared1/4 versus unshared3/4 on four reused full training roads/seed11, with
+13,259rawcontrols and500frozen decisions verified. Five B1 segments add37,637
+verified controls but every frozen endpoint is0/4. These are development data.
+
+| Requirement | Current authoritative evidence | Status |
+|---|---|---|
+| Actual PPO/planning/MPC/CARLA execution | Original67,289 plus new50,896audited controls; retained source/models/frames | Executed; capability gates still open |
+| Healthy sufficiently trained B1 | Original full-road0/4; all new short-task endpoints0/4 | Not achieved |
+| Five independent training seeds for main conclusions | Latest head version only seed11; variants/continuations are not independent seeds | Not achieved |
+| At least120fresh paired CARLA conditions, each core category at least30 | Latest head evaluated only four reused training roads | Not achieved |
+| Independent lightweight85%/75% and CARLA80%/70% targets | New head has no qualifying independent-confirmation result | Unverified |
+| Collision/bounds target plus progress/latency/comfort | Full failures and timing retained; failed-road P95about8s | No safety/realtime acceptance claim |
+| H advantage over healthy B1 with seed-paired interval | Healthy comparator and required seed count missing | Not achieved |
+| PPO value versus strong B3 and feedback contribution | Strong rule4/4 on known roads; no formal new-head H0/RL-value confirmation | Not established |
+| Current B2/frequency/safety/control formal ablations | Historical implementations/results retained, current formal comparison incomplete | Not achieved |
+| GitHub and independent reproduction | Five new complete assets publicly downloaded;2,074hashes/7audits/28initial actions/5figures reproduce | Development delivery verified |
+| Current CPU checks | Independent Windows304/1skip/4deselections; actual hosted302/3/4 at e0f9099 | Passed within CPU scope |
+
+See [head report](../reports/native_actor_head_20261026.md), [B1 summary](../reports/B1_sanity_summary_20261026.json)
+and [model card](model_card.md). Historical snapshots below keep their original
+version scope and do not supersede this audit. No formal completion is claimed.
+
 Updated 2026-10-25. This is an implementation and evidence ledger, not a claim that the research goal has been met. The user's latest objective supersedes the earlier six-hour-only and no-push instructions. Each execution window remains bounded and checkpointed. The complete project goal remains active across windows.
 
 Latest development: audited rule-only B3 now completes4/4 known training roads;

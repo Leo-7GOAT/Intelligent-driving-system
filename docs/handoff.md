@@ -1,5 +1,13 @@
 # Latest completed work — 2026-10-26 15:48 local
 
+Publication addendum: the complete H pair is also PUBLIC and actually
+downloaded/reproduced in independent checkoutf38f38a:402files, both raw audits,
+8initial actions, byte-identical figure, zero new controls/updates. See
+../reports/native_actor_head_public_reproduction_20261026.json and model_card.
+All5newcomplete public assets together retain50,896newactual controls and
+verify2,074files/7audits/28initial actions/5figures. Original full objective is
+unchanged; this is a development handoff, not a completed research claim.
+
 No newly launched training. H head pair20261026T064621Z is COMPLETE: shared1/4,
 unshared3/4 on the same4full known roads;13,259raw-verified controls and500exact
 frozen decisions. Paired starts match, normal owned empty-server shutdown.
