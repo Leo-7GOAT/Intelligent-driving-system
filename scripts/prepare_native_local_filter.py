@@ -18,7 +18,7 @@ from scripts.evaluate_native_rule import require_finished_parent
 from scripts.native_road_learning import training_config
 
 
-def prepare(parent):
+def prepare(parent,progress_only=False):
     parent=Path(parent).resolve();require_finished_parent(parent)
     old=read(parent/'protocol.json');control='H_unshared_v1'
     if not old.get('actor_head_experiment') or control not in old['methods'] or old.get('recovery'):
@@ -38,9 +38,10 @@ def prepare(parent):
     okay,reason=resources_ok(ROOT)
     if not okay or shutil.disk_usage(ROOT).free<12*1024**3:raise RuntimeError(str(reason))
     with ProcessLease(ROOT/'runs/native_local_filter_prepare.lock'):
-        pointer=ROOT/'runs/native_local_filter.json'
+        label='native_head_progress' if progress_only else 'native_local_filter'
+        pointer=ROOT/'runs'/(label+'.json')
         if pointer.exists():raise FileExistsError('Preserve existing local-filter registration')
-        batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_local_filter')
+        batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_'+label)
         batch.mkdir();(batch/'infrastructure').mkdir()
         shutil.copytree(parent/'calibration',batch/'calibration')
         for directory in ('navstack','scripts','tests'):
@@ -60,7 +61,15 @@ def prepare(parent):
             stopping_rule='One fixed4096-control endpoint with all4probes,900s wall, zero retries; retain every failure. Separate initialization/rule/feedback comparisons before any learned-value claim.',
             resource_limits={**old['resource_limits'],'wall_seconds':900})
         cal=read(batch/'calibration/calibration.json');expected=read(parent/control/'config.json')['env']
-        expected['local_candidate_filter']=True
+        if progress_only:
+            protocol.update(candidate_head='unshared_v1',task_progress_weight=1.,
+                scope='Fresh unshared H with shared physical task-progress reward; no local filter, known full-road development only',
+                hypothesis='Explicit measured progress gives credit before terminal success and discourages waiting/failed targets; keep the complete planner action set',
+                comparison='Completed unshared control versus one fresh seed11 arm; same encoders/critic/RNG/normalization/PPO/budget/full routes/low level; only task progress weight changes0to1',
+                representation_note='No candidate filtering, masking, teacher or rule selection; the same progress term is available to all architectures')
+            expected['reward']['progress_weight']=1.
+        else:
+            expected['local_candidate_filter']=True
         if training_config(protocol,'H',VehicleConfig(**cal['vehicle'])).to_dict()!=expected:
             raise ValueError('Unexpected environment change beyond the registered filter')
         protocol['source_hashes']={p.relative_to(batch/'source').as_posix():sha(p)
@@ -73,4 +82,5 @@ def prepare(parent):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--parent',required=True)
-    prepare(p.parse_args().parent)
+    p.add_argument('--progress-only',action='store_true')
+    args=p.parse_args();prepare(args.parent,args.progress_only)

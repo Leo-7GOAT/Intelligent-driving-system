@@ -92,6 +92,7 @@ def training_config(protocol, method, vehicle):
         local_candidate_filter=protocol.get('candidate_head')=='unshared_local_v1',
         road_collision_backend=protocol.get('road_collision_backend', 'scalar'),
         flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0,
+        flat_action_catalog=protocol.get('flat_action_catalog','continuous') if method=='B1' else 'continuous',
         flat_longitudinal_mode=protocol.get('flat_longitudinal_mode','acceleration') if method=='B1' else 'acceleration')
     config.planner.max_seconds=None
     config.planner.max_nodes=planner_nodes
@@ -274,6 +275,9 @@ def run(batch):
                         from navstack.road_candidate_policy import RoadCandidateVecNormalize,RoadCandidateActorCriticPolicy,FlatRoadCandidateActorCriticPolicy
                         normalizer=RoadCandidateVecNormalize
                         policy=FlatRoadCandidateActorCriticPolicy if method=='B1' else RoadCandidateActorCriticPolicy
+                        if method=='B1' and config.flat_action_catalog=='speed_steer_3x7_v1':
+                            from navstack.discrete_flat_policy import DiscreteFlatRoadPolicy
+                            policy=DiscreteFlatRoadPolicy
                         if job.get('flat_action_distribution') == 'tanh_gaussian_v1':
                             from navstack.squashed_road_policy import SquashedFlatRoadPolicy
                             policy=SquashedFlatRoadPolicy

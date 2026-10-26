@@ -30,6 +30,23 @@ def action_catalog():
 ACTIONS = action_catalog()
 OBS_VERSION = "physical-v2-local11-static20-neighbors3-delay5"
 
+FLAT_SPEEDS=(0.,.75,1.5)
+FLAT_STEERS=(-1.,-.5,-.2,0.,.2,.5,1.)
+
+
+def flat_action_values(action,config):
+    """Decode a versioned direct control action, without planning or a teacher."""
+    values=np.asarray(action)
+    if config.flat_action_catalog == 'speed_steer_3x7_v1':
+        if (values.shape!=(2,) or not np.issubdtype(values.dtype,np.integer) or
+                not 0<=values[0]<3 or not 0<=values[1]<7):
+            raise ValueError('Invalid categorical speed/steering action')
+        speed=min(config.vehicle.max_speed,FLAT_SPEEDS[int(values[0])])
+        return np.array([2*speed/config.vehicle.max_speed-1,FLAT_STEERS[int(values[1])]],dtype=np.float32)
+    values=np.asarray(action,dtype=np.float32)
+    if values.shape!=(2,) or not np.isfinite(values).all():raise ValueError('invalid continuous action')
+    return np.clip(values,-1,1)
+
 
 def candidate_goal_witness(target, goal, world, vehicle):
     """Sufficient static continuation evidence, including an already-reached pose."""
@@ -52,6 +69,8 @@ class NavigationEnv(gym.Env):
             if c.method == "B1"
             else spaces.Discrete(len(ACTIONS))
         )
+        if c.method=='B1' and c.flat_action_catalog=='speed_steer_3x7_v1':
+            self.action_space=spaces.MultiDiscrete([3,7])
         # Same information for every policy: 163 local features + 20 known static
         # rectangles (four ego-frame corners + mask) + four map boundary corners.
         obs_size = 605 if c.candidate_observation else (351 if c.execution_feedback == "off" else 450)
@@ -455,10 +474,7 @@ class NavigationEnv(gym.Env):
         decision_initial_speed = self.state.v
         flat = c.method == "B1"
         if flat:
-            action = np.asarray(action, dtype=np.float32)
-            if action.shape != (2,) or not np.isfinite(action).all():
-                raise ValueError("invalid continuous action")
-            clipped = np.clip(action, -1, 1)
+            clipped = flat_action_values(action,c)
             requested = Command(
                 float(
                     clipped[0]

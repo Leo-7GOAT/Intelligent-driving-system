@@ -154,6 +154,9 @@ def signature(config):
     if config.method == 'B1' and config.flat_longitudinal_mode != 'acceleration':
         result['action_catalog'] = 'Box([-1,-1],[1,1]):speed_[0,vmax],steering;P_speed_gain1_per_second_v1'
         result['flat_longitudinal_mode'] = config.flat_longitudinal_mode
+    if config.flat_action_catalog != 'continuous':
+        result['flat_action_catalog']=config.flat_action_catalog
+        result['action_catalog']='MultiDiscrete([3,7]):speed(0,.75,1.5),steer_norm(-1,-.5,-.2,0,.2,.5,1);P_speed_gain1_per_second_v1'
     if config.terminal_goal_prefix:
         result["terminal_goal_prefix"] = "selected_candidate_crosses_goal_before_endpoint_validation_v1"
     if config.curriculum:

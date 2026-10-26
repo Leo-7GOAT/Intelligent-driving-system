@@ -16,13 +16,16 @@ from scripts.audit_native_method_endpoint import audit, read, sha
 from scripts.evaluate_native_rule import require_finished_parent
 
 
-def prepare(parent, longitudinal_mode='acceleration'):
+def prepare(parent, longitudinal_mode='acceleration',discrete=False):
     if longitudinal_mode not in ('acceleration','speed_target_v1'):
         raise ValueError('Unknown registered longitudinal variant')
     speed_trial=longitudinal_mode=='speed_target_v1'
+    if discrete and not speed_trial:raise ValueError('Discrete catalog needs the registered speed servo')
     parent=Path(parent).resolve()
     require_finished_parent(parent)
     old=read(parent/'protocol.json')
+    if discrete and old.get('flat_action_catalog','continuous')!='continuous':
+        raise ValueError('Require the completed continuous-speed control, not another categorical endpoint')
     if old.get('recovery') or (not speed_trial and not old.get('flat_distribution_experiment')) or (speed_trial and old.get('methods')!=['B1']):
         raise ValueError('Require the complete fresh distribution sanity pair')
     name='B1' if speed_trial else 'B1_clipped_gaussian'
@@ -38,7 +41,7 @@ def prepare(parent, longitudinal_mode='acceleration'):
     if not okay or shutil.disk_usage(ROOT).free<12*1024**3:
         raise RuntimeError('Resource guard: '+str(reason))
     with ProcessLease(ROOT/'runs/native_progress_sanity_prepare.lock'):
-        label='native_speed_sanity' if speed_trial else 'native_progress_sanity'
+        label='native_discrete_sanity' if discrete else ('native_speed_sanity' if speed_trial else 'native_progress_sanity')
         pointer=ROOT/'runs'/(label+'.json')
         if pointer.exists():raise FileExistsError('Preserve existing progress sanity registration')
         batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_'+label)
@@ -69,6 +72,12 @@ def prepare(parent, longitudinal_mode='acceleration'):
                 comparison='Same fresh seed11 clipped-Gaussian/network/normalization/reward/PPO/4096control budget/short roads; only longitudinal action parameterization and its disclosed proportional servo differ',
                 differences_from_parent=['acceleration to speed_target_v1; target_speed=(action0+1)*vmax/2; acceleration=clip(target_speed-measured_speed,-max_decel,max_accel); no goal or route logic'],
                 stopping_rule='One4096-control endpoint and all4probes; all failures retained, zero automatic retries. No full-task health or hierarchy claim.')
+        if discrete:
+            protocol.update(flat_action_catalog='speed_steer_3x7_v1',
+                scope='Fresh categorical direct B1 speed/steering sanity; same measured short tasks, no planner/MPC/teacher or hierarchy claim',
+                hypothesis='Categorical stop/speed choices can learn state-dependent parking without pushing a Gaussian mean to an actuator boundary',
+                comparison='Completed continuous-speed control versus fresh seed11categorical3x7; same initialized encoders/critic/RNG, observations/reward/normalization/servo/PPO/4096control budget; distribution/head and explicit finite action bank differ',
+                representation_note='Direct speed(0,.75,1.5)m/s mirrors hierarchical speed requests; normalized steering(-1,-.5,-.2,0,.2,.5,1). Same physical vehicle limits, no path/reference/teacher, all outcomes retained; report changed capacity and speed prior.')
         protocol['source_hashes']={p.relative_to(batch/'source').as_posix():sha(p)
             for p in (batch/'source').rglob('*') if p.is_file()}
         write_json(batch/'protocol.json',protocol)
@@ -81,4 +90,5 @@ def prepare(parent, longitudinal_mode='acceleration'):
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--parent',required=True)
     parser.add_argument('--longitudinal-mode',choices=['acceleration','speed_target_v1'],default='acceleration')
-    args=parser.parse_args();prepare(args.parent,args.longitudinal_mode)
+    parser.add_argument('--discrete',action='store_true')
+    args=parser.parse_args();prepare(args.parent,args.longitudinal_mode,args.discrete)

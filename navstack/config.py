@@ -111,6 +111,7 @@ class EnvConfig:
     decision_dt: float = 0.5
     flat_hold: int = 1
     flat_longitudinal_mode: str = 'acceleration'
+    flat_action_catalog: str = 'continuous'
     deadline: float = 30.0
     scenario: str = "mixed"
     split: str = "train"
@@ -148,6 +149,10 @@ class EnvConfig:
             raise ValueError('Local filtering requires explicit common candidate observations')
         if self.flat_longitudinal_mode not in ('acceleration','speed_target_v1'):
             raise ValueError('Unknown flat longitudinal action semantics')
+        if self.flat_action_catalog not in ('continuous','speed_steer_3x7_v1'):
+            raise ValueError('Unknown flat action catalog')
+        if self.flat_action_catalog != 'continuous' and (self.method!='B1' or self.flat_longitudinal_mode!='speed_target_v1'):
+            raise ValueError('Discrete flat controls require B1 speed-target semantics')
         if self.flat_longitudinal_mode != 'acceleration' and self.method != 'B1':
             raise ValueError('Flat speed actions are exclusive to the non-hierarchical B1 baseline')
         if self.road_collision_backend not in ("scalar", "batch_sat_v1"):
@@ -245,6 +250,8 @@ class EnvConfig:
             result.pop('local_candidate_filter')
         if self.flat_longitudinal_mode == 'acceleration':
             result.pop('flat_longitudinal_mode')
+        if self.flat_action_catalog == 'continuous':
+            result.pop('flat_action_catalog')
         if self.road_collision_backend == "scalar":
             result.pop("road_collision_backend")
         if self.actuator_observation == "off":
