@@ -63,7 +63,9 @@ def _space_signature(space):
         result['low']=_array_signature(space.low)
         result['high']=_array_signature(space.high)
     for name in ('n','start'):
-        if hasattr(space,name):result[name]=int(getattr(space,name))
+        if hasattr(space,name):
+            value=np.asarray(getattr(space,name))
+            result[name]=int(value) if value.ndim==0 else _array_signature(value)
     if hasattr(space,'nvec'):
         result['nvec']=_array_signature(space.nvec)
     if hasattr(space,'spaces'):

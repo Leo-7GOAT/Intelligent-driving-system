@@ -68,3 +68,12 @@ def test_invalid_catalog_actions_and_legacy_serialization():
     assert 'flat_action_catalog' not in EnvConfig().to_dict()
     assert 'flat_action_catalog' not in signature(EnvConfig())
     with pytest.raises(ValueError):EnvConfig(flat_action_catalog='speed_steer_3x7_v1')
+
+
+def test_continuation_signature_retains_vector_start_without_collapsing_semantics():
+    from scripts.continue_native_learning import _space_signature
+    first=gym.spaces.MultiDiscrete([3,7])
+    shifted=gym.spaces.MultiDiscrete([3,7],start=[1,0])
+    assert _space_signature(first)['start']['shape']==[2]
+    assert _space_signature(first)!=_space_signature(shifted)
+    assert _space_signature(gym.spaces.Discrete(3))['start']==0

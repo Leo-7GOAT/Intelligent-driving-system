@@ -158,12 +158,25 @@ def audit(batch: Path, method: str) -> dict:
     if training_frames != summary["physics_steps"]:
         raise ValueError("Verified training frames differ from summary")
     optimization_rows, optimization_error = read_prefix(folder / "optimization.jsonl")
-    if optimization_error or not optimization_rows:
+    evaluation_only=bool(protocol.get('evaluation_only'))
+    if evaluation_only:
+        prior=protocol.get('recovery',{}).get(method)
+        if (optimization_error or optimization_rows or not prior or
+                any(summary[k]!=0 for k in ('physics_steps','actions','optimization_phases','optimizer_steps'))):
+            raise ValueError('Evaluation-only phase contains training or lacks source provenance')
+        origin=batch/prior['checkpoint']
+        for name in ('model.zip','normalization.pkl'):
+            if sha(folder/name)!=sha(origin/name):
+                raise ValueError('Evaluation-only phase changed saved learning bytes')
+        if read(folder/'config.json')['env']!=read(origin/'config.json')['env']:
+            raise ValueError('Evaluation-only phase changed the task/controller')
+    elif optimization_error or not optimization_rows:
         raise ValueError("Optimization log is missing or unreadable")
-    last_optimization = optimization_rows[-1]
-    for name in ("physics_steps", "optimization_phases", "optimizer_steps"):
-        if last_optimization[name] != summary[name]:
-            raise ValueError(f"Last optimization record differs from summary: {name}")
+    if not evaluation_only:
+        last_optimization = optimization_rows[-1]
+        for name in ("physics_steps", "optimization_phases", "optimizer_steps"):
+            if last_optimization[name] != summary[name]:
+                raise ValueError(f"Last optimization record differs from summary: {name}")
 
     latest = read(folder / "latest_checkpoint.json")
     checkpoint = folder / latest["folder"]
@@ -216,6 +229,8 @@ def audit(batch: Path, method: str) -> dict:
         if info.get("termination_reason"):
             case["terminal"] = info["episode_metrics"]
     expected_cases = {episode["case_id"]: episode for episode in evaluation["episodes"]}
+    if evaluation_only and (len(protocol.get('routes',[]))!=4 or set(expected_cases)!=set(range(4))):
+        raise ValueError('Evaluation-only recovery requires all four registered cases')
     if set(evaluation_cases) != set(expected_cases):
         raise ValueError("Evaluation trace cases differ from evaluation summary")
     for case_id, episode in expected_cases.items():

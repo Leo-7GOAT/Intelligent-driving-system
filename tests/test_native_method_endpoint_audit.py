@@ -107,3 +107,50 @@ def test_method_audit_rejects_trace_state_not_measured_by_carla(tmp_path):
     _write_gzip(path, [row])
     with pytest.raises(ValueError, match="measured CARLA state"):
         audit(batch, "B1")
+
+
+def _evaluation_only(tmp_path):
+    import shutil
+    batch=_batch(tmp_path);folder=batch/'B1'
+    origin=batch/'resume/B1';origin.parent.mkdir();shutil.copytree(folder/'checkpoint_000000001',origin)
+    write_json(origin/'config.json',{'env':{'method':'B1'}})
+    protocol={'methods':['B1'],'evaluation_only':True,'routes':[{}, {}, {}, {}],
+        'recovery':{'B1':{'checkpoint':'resume/B1','lineage_controls':1,
+            'consumed_controls_lower_bound':1,'retained_optimizer_steps':2}}}
+    write_json(batch/'protocol.json',protocol)
+    _write_gzip(folder/'transitions_000.jsonl.gz',[])
+    responses=[];rows=[];episodes=[]
+    for i in range(4):
+        episode='evaluate'+str(i);response=_response(episode,2*i+2,20+i*10,float(i))
+        responses.extend([{'response':{'ok':True,'episode_id':episode,'request_id':2*i+1,'reset_ticks':2,'frame':19+i*10}}, {'response':response}])
+        terminal={'physics_steps':1,'actions':1,'success':False,'termination_reason':'deadline'}
+        rows.append({'case_id':i,'info':{'trace':[_tick(response)],'termination_reason':'deadline','episode_metrics':terminal}})
+        episodes.append({'case_id':i,**terminal})
+    _write_gzip(batch/'infrastructure/bridge_fixture_responses.jsonl.gz',responses)
+    _write_gzip(folder/'evaluation_trace.jsonl.gz',rows)
+    data=json.loads((folder/'summary.json').read_text());data.update(physics_steps=0,actions=0,optimization_phases=0,optimizer_steps=0,world_ticks=0)
+    write_json(folder/'summary.json',data);(folder/'optimization.jsonl').write_text('')
+    cp=folder/'checkpoint_000000001';metadata=json.loads((cp/'metadata.json').read_text());metadata.update(physics_steps=0,optimizer_steps=0)
+    write_json(cp/'metadata.json',metadata)
+    evaluation=json.loads((folder/'evaluation.json').read_text());evaluation.update(episodes=episodes,world_ticks=12)
+    write_json(folder/'evaluation.json',evaluation)
+    return batch
+
+
+def test_frozen_evaluation_only_audit_requires_zero_training_and_original_learning_bytes(tmp_path):
+    batch=_evaluation_only(tmp_path);report=audit(batch,'B1')
+    assert report['training_control_frames_verified']==0
+    assert report['evaluation_control_frames_verified']==4
+    assert report['optimizer_steps_total_lower_bound']==2 and report['segment_optimizer_steps']==0
+    (batch/'B1/model.zip').write_bytes(b'changed weights')
+    with pytest.raises(ValueError,match='saved learning bytes'):audit(batch,'B1')
+
+
+def test_frozen_evaluation_only_cannot_hide_training_or_drop_registered_cases(tmp_path):
+    batch=_evaluation_only(tmp_path)
+    (batch/'B1/optimization.jsonl').write_text('{"optimizer_steps":1}\n')
+    with pytest.raises(ValueError,match='contains training'):audit(batch,'B1')
+    (batch/'B1/optimization.jsonl').write_text('')
+    e=json.loads((batch/'B1/evaluation.json').read_text());e['episodes'].pop()
+    write_json(batch/'B1/evaluation.json',e)
+    with pytest.raises(ValueError,match='all four'):audit(batch,'B1')

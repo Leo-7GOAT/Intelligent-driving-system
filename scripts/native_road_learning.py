@@ -92,8 +92,9 @@ def training_config(protocol, method, vehicle):
         local_candidate_filter=protocol.get('candidate_head')=='unshared_local_v1',
         road_collision_backend=protocol.get('road_collision_backend', 'scalar'),
         flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0,
-        flat_action_catalog=protocol.get('flat_action_catalog','continuous') if method=='B1' else 'continuous',
         flat_longitudinal_mode=protocol.get('flat_longitudinal_mode','acceleration') if method=='B1' else 'acceleration')
+    if method=='B1' and protocol.get('flat_action_catalog','continuous')!='continuous':
+        config.flat_action_catalog=protocol['flat_action_catalog'];config.__post_init__()
     config.planner.max_seconds=None
     config.planner.max_nodes=planner_nodes
     heuristic=protocol.get('planner_heuristic','euclidean')
@@ -275,7 +276,7 @@ def run(batch):
                         from navstack.road_candidate_policy import RoadCandidateVecNormalize,RoadCandidateActorCriticPolicy,FlatRoadCandidateActorCriticPolicy
                         normalizer=RoadCandidateVecNormalize
                         policy=FlatRoadCandidateActorCriticPolicy if method=='B1' else RoadCandidateActorCriticPolicy
-                        if method=='B1' and config.flat_action_catalog=='speed_steer_3x7_v1':
+                        if method=='B1' and getattr(config,'flat_action_catalog','continuous')=='speed_steer_3x7_v1':
                             from navstack.discrete_flat_policy import DiscreteFlatRoadPolicy
                             policy=DiscreteFlatRoadPolicy
                         if job.get('flat_action_distribution') == 'tanh_gaussian_v1':
@@ -304,6 +305,9 @@ def run(batch):
                 inherited_lineage=0 if recovery is None else recovery['lineage_controls']
                 inherited_cost=0 if recovery is None else recovery['consumed_controls_lower_bound']
                 budget=protocol.get('method_budgets',{}).get(job_name,protocol['controlled_budget_per_method'])
+                evaluation_only=bool(protocol.get('evaluation_only'))
+                if evaluation_only and (budget!=0 or recovery is None):
+                    raise ValueError('Evaluation-only phase requires zero budget and a verified saved checkpoint')
                 model.set_logger(configure(str(output/"sb3"), ["csv"]))
                 before = actor_vector(model).clone()
                 recorder = ResearchRecorder(output, protocol["deadline_epoch"])
@@ -350,10 +354,34 @@ def run(batch):
                                 'charged_control_steps_lower_bound':inherited_cost+recorder.counts['physics_steps']})
                             saved_thresholds.add(threshold)
                 hook.remove()
-                model.save(output/"model.zip"); vec.save(output/"normalization.pkl")
+                # A completed training trace must survive a later evaluation
+                # interruption. Never leave its gzip footer open during driving.
+                recorder.close()
+                if evaluation_only:
+                    origin=batch/recovery['checkpoint']
+                    for name in ('model.zip','normalization.pkl'):
+                        shutil.copy2(origin/name,output/name)
+                    (output/'optimization.jsonl').touch(exist_ok=False)
+                    checkpoint=output/'checkpoint_000000000';checkpoint.mkdir()
+                    for name in ('model.zip','normalization.pkl','resume_state.pkl'):
+                        shutil.copy2(origin/name,checkpoint/name)
+                    shutil.copy2(output/'config.json',checkpoint/'config.json')
+                    metadata={**recorder.counts,'optimizer_steps':0,'world_ticks':0,
+                        'lineage_control_steps':inherited_lineage,'charged_control_steps_lower_bound':inherited_cost,
+                        'evaluation_only':True,'origin_metadata_sha256':hashlib.sha256((origin/'metadata.json').read_bytes()).hexdigest()}
+                    for name,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256'),('resume_state.pkl','resume_state_sha256')]:
+                        metadata[key]=hashlib.sha256((checkpoint/name).read_bytes()).hexdigest()
+                    write_json(checkpoint/'metadata.json',metadata)
+                    write_json(output/'latest_checkpoint.json',{'folder':checkpoint.name,**metadata})
+                else:
+                    model.save(output/"model.zip"); vec.save(output/"normalization.pkl")
                 loaded = load_ppo(output/"model.zip", device="cpu")
-                sample = vec.normalize_obs(raw.envs[0]._observation()[None])
-                np.testing.assert_array_equal(model.predict(sample, deterministic=True)[0], loaded.predict(sample, deterministic=True)[0])
+                if evaluation_only:
+                    if any(not torch.equal(v,loaded.policy.state_dict()[k]) for k,v in model.policy.state_dict().items()):
+                        raise ValueError('Frozen evaluation weights differ from the saved source')
+                else:
+                    sample = vec.normalize_obs(raw.envs[0]._observation()[None])
+                    np.testing.assert_array_equal(model.predict(sample, deterministic=True)[0], loaded.predict(sample, deterministic=True)[0])
                 result = {**recorder.counts, "method": method, "job_name":job_name,
                     'rollout_actions':model.n_steps,'ppo_epochs':model.n_epochs,'batch_size':model.batch_size,
                     "gradient_clip_mode":getattr(model,'gradient_clip_mode',GLOBAL_CLIP), "backend": "CARLA_0.9.15",
@@ -374,7 +402,7 @@ def run(batch):
                     vec.training=False
                     mean,var=vec.obs_rms.mean.copy(),vec.obs_rms.var.copy()
                     evaluation_ticks=client.total_ticks
-                    evaluation=CarlaNavigationEnv(config,client,cases)
+                    evaluation=RecordedRoadEnv(config,client,cases,output) if evaluation_only else CarlaNavigationEnv(config,client,cases)
                     episodes=[]
                     with gzip.open(output/"evaluation_trace.jsonl.gz","wt",encoding="utf-8") as stream:
                         for case_id,case in enumerate(cases):
