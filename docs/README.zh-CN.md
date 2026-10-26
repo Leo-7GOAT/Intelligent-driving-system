@@ -1,8 +1,10 @@
 # 低速车辆分层决策与控制研究
 
+最新[完整道路评分头匹配开发对照](../reports/native_actor_head_20261026.md)：共享头 **1/4**、独立头 **3/4**，单个seed11、四条已知道路。13,259控制帧及500次冻结决策已核验；失败道路仍耗尽搜索预算并超周期，不代表正式优势、健康B1或实时性达标。
+
 [当前状态、复现和后续目标](current_status_20261026.md) · [可直接复制的接续提示词](continuation_prompt.zh-CN.md)。完整原生道路模型/数据已公开发布并从公开下载独立复现；完整研究验收尚未通过。
 
-[GitHub CPU回归已实际通过](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40192669405)：源码7605ba0在Ubuntu24.04锁定依赖环境293通过、3项平台/显式条件跳过、4项CARLA测试排除；本机Windows相同CPU选择295通过、1跳过、4排除。CPU验证与实际CARLA实验分开报告，见[CI范围与复现](cpu_ci.md)。
+[GitHub CPU回归已实际通过](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40281946359)：源码e0f9099在Ubuntu24.04锁定依赖环境302通过、3项平台/显式条件跳过、4项CARLA测试排除；独立固定Windows环境304通过、1跳过、4排除。CPU验证与实际CARLA实验分开报告，见[CI范围与复现](cpu_ci.md)。
 
 新增默认关闭的[完整车体道路 SAT 批处理后端](../reports/road_collision_batch_20261025.md)：已保存开发状态的碰撞标志与完整搜索路径保持一致，离线搜索计算耗时下降；已完成的 CARLA PPO 批次使用冻结的原版 scalar 后端。离线耗时不能代替实际完整周期或实时性验证。
 

@@ -81,3 +81,10 @@ continuation test. Two existing SB3 deprecations and the intentional nonfinite
 pose arithmetic warning remain visible. Output is
 `runs/cpu_ci_local_20261025.log` with JUnit XML beside it. This local result is
 not a hosted Linux CI result.
+# Current verified revision — 2026-10-26
+
+At sourcee0f9099, [actual hosted run40281946359](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40281946359)
+passes302tests/3platform-or-opt-in skips/4CARLA deselections in145.38s.
+Independent fixed Windows checkout passes304/1skip/4deselections in168.97s.
+This is CPU verification; CARLA training and research gates are separate.
+The earlier counts above retain their historical revision scope.

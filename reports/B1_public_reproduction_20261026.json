@@ -1,0 +1,110 @@
+{
+  "scope": "Actual public-download independent offline reproduction; no new driving",
+  "assets": [
+    {
+      "asset": "native_flat_distribution_seed11_20261026_full.zip",
+      "receipt_sha256": "83a4a3530fecd67e51b8ea84cc704fa5090fad20ce2c1b512cd0a8b22cb30fb4",
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "7fd051bf9762a51959c58c0ac9d51a1bc62653622f3d98b57d269a9e53283666",
+        "asset_source_commit": "70059cab14c462ff662282566a4d730091c11323",
+        "reproduction_source_commit": "70059cab14c462ff662282566a4d730091c11323",
+        "verified_files": 421,
+        "methods": [
+          {
+            "method": "B1_clipped_gaussian",
+            "raw_audit_sha256": "629d98fbf7bf833c3c23465e361d12805651adbd521f348e77265edd341aae44",
+            "verified_controls": 5110,
+            "measured_start_actions_reproduced": 4,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          },
+          {
+            "method": "B1_tanh_gaussian_v1",
+            "raw_audit_sha256": "8c3e63a59a5f1f9ce52caae7709df4121a635e8643cf36a304b688989a09b860",
+            "verified_controls": 5114,
+            "measured_start_actions_reproduced": 4,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "200b9f49579451f3ce4e2178147cd2a530cb005f4de810590e514e512fcfd7c6",
+        "figure_byte_identical": true
+      }
+    },
+    {
+      "asset": "native_progress_sanity_seed11_20261026_full.zip",
+      "receipt_sha256": "06a8e51397204ead3fd22541a9351a65fb8529045aa46c5691b8a8c05cee35ea",
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "f2e968a76163294914689b01e2dfdbeaaeab5240357916dd94b8ec94bfc6db10",
+        "asset_source_commit": "70059cab14c462ff662282566a4d730091c11323",
+        "reproduction_source_commit": "70059cab14c462ff662282566a4d730091c11323",
+        "verified_files": 382,
+        "methods": [
+          {
+            "method": "B1",
+            "raw_audit_sha256": "c9bb18d73cedcd589b764c625b92db33c0203401b5d7352fed2bf6125875ef06",
+            "verified_controls": 4781,
+            "measured_start_actions_reproduced": 4,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "67a6b2cd480413f9185c77c543808cc7b1a8ee4642416480d76c8a1d1c37b7d0",
+        "figure_byte_identical": true
+      }
+    },
+    {
+      "asset": "native_progress_continuation_seed11_20261026_full.zip",
+      "receipt_sha256": "94dc60b7612f0bcb8d647ad9c7d7f1ca3a4eb1870734fe9319b06c1135f7458d",
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "e9f89de197e9eea46c863c9b25b263175806f441315c686ee74880a32bccbe88",
+        "asset_source_commit": "70059cab14c462ff662282566a4d730091c11323",
+        "reproduction_source_commit": "70059cab14c462ff662282566a4d730091c11323",
+        "verified_files": 477,
+        "methods": [
+          {
+            "method": "B1",
+            "raw_audit_sha256": "ddc8e0d5dc8b7bc272b3fa3e42e71686ea7c29c69d8d638e3263b182674fd506",
+            "verified_controls": 17621,
+            "measured_start_actions_reproduced": 4,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "be17de4c52963ce23ae5fe7a502b4f36ddeb4b10c325385ab547a67152ef356b",
+        "figure_byte_identical": true
+      }
+    },
+    {
+      "asset": "native_speed_sanity_seed11_20261026_full.zip",
+      "receipt_sha256": "7f1ad1489c274d55d309bab1c2088c1cc27bb18637766bcf11ebada916682948",
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "18be359e984a0fe2ea7981956bebc7fb5018b89f63614d43605ff1dd24ebb243",
+        "asset_source_commit": "70059cab14c462ff662282566a4d730091c11323",
+        "reproduction_source_commit": "70059cab14c462ff662282566a4d730091c11323",
+        "verified_files": 392,
+        "methods": [
+          {
+            "method": "B1",
+            "raw_audit_sha256": "225431f0b0ee30996dae75ab13d9a66efdc3f6c97257fbf1a03b5622bce1c9ee",
+            "verified_controls": 5011,
+            "measured_start_actions_reproduced": 4,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "9640e0f8e73da0d702bd329c9f100ab10e3ad9e7aac010a38bd0147cf7074949",
+        "figure_byte_identical": true
+      }
+    }
+  ]
+}

@@ -1,4 +1,30 @@
-# Current authoritative handoff — 2026-10-26 14:52 local
+# Latest completed work — 2026-10-26 15:48 local
+
+No newly launched training. H head pair20261026T064621Z is COMPLETE: shared1/4,
+unshared3/4 on the same4full known roads;13,259raw-verified controls and500exact
+frozen decisions. Paired starts match, normal owned empty-server shutdown.
+See ../reports/native_actor_head_20261026.md and full JSON. Independent current
+CPU304/1skip/4CARLA deselections; hosted40281946359passes302/3/4 at sourcee0f9099.
+
+B1's five segments retain37,637newrawcontrols, all0/4frozen endpoints, no healthy
+baseline. Four *_seed11_20261026_full.zip assets are PUBLIC on the unchanged
+prerelease. Actual public-download independent reproduction verifies1,672files,
+5rawaudits,20initial actions and4byte-identical figures, zero new driving.
+No-plot local ZIPs were unpublished packaging drafts. Receipts remain under
+independent checkout/runs/*_public_reproduction_20261026/reproduction.json.
+
+Next full-goal priority: unshared road1has90invalid plans/900interventions.
+Its first selected candidate has local-witness0, while the shared control can
+produce a local reference there. All goal-continuation witnesses are0at that
+state: do not treat absent sufficient witnesses as impossibility or blindly
+filter by them. Any feasibility prior needs a new version, retraining, common
+B3/relevant-control capabilities and separate learned-contribution evidence.
+HealthyB1,static/dynamic/unseen competence,5independent seeds,120fresh conditions
+and formal ablations remain open. Full objective unchanged and unachieved.
+
+Everything below is historical; then-live PIDs are not current authority.
+
+# Historical handoff — 2026-10-26 14:52 local
 
 B1 distribution/progress/speed diagnostics and exact continuation are COMPLETE,
 all endpoint successes0/4,37,637newcontrols raw-verified, owned servers stopped.

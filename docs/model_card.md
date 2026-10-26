@@ -1,5 +1,29 @@
 # Development model card
 
+## Published B1 sanity negatives (2026-10-26)
+
+These four complete assets retain five B1 endpoints, all frozen scores0/4 on
+known approximately6m tasks; no healthy/full-task baseline is claimed. Together
+they contain37,637newverified controls (inherited continuation counts are not
+summed twice). All public downloads actually reproduce in independent checkout
+70059ca:1,672filehashes,5rawaudits,20initial actions and4byte-identical figures,
+with frozen normalizers and zero new driving/updates. [Exact receipts](../reports/B1_public_reproduction_20261026.json)
+and [outcomes](../reports/native_flat_distribution_20261026.md) are retained.
+
+| Complete development asset | SHA256 |
+|---|---|
+| [Clipped/tanh distribution pair](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_flat_distribution_seed11_20261026_full.zip) | `7fd051bf9762a51959c58c0ac9d51a1bc62653622f3d98b57d269a9e53283666` |
+| [Progress reward](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_progress_sanity_seed11_20261026_full.zip) | `f2e968a76163294914689b01e2dfdbeaaeab5240357916dd94b8ec94bfc6db10` |
+| [Exact continuation](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_progress_continuation_seed11_20261026_full.zip) | `e9f89de197e9eea46c863c9b25b263175806f441315c686ee74880a32bccbe88` |
+| [Target-speed interface](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_speed_sanity_seed11_20261026_full.zip) | `18be359e984a0fe2ea7981956bebc7fb5018b89f63614d43605ff1dd24ebb243` |
+
+Export source70059ca; exact execution sources/configs are inside each archive.
+Each asset has six explicit auxiliary metadata redactions, with original
+models/normalizers/raw controls unchanged. The historical prerelease tag is
+unchanged. Local no-plot packaging drafts were not published. Reproduce any
+complete asset with `scripts/reproduce_native_asset.py --archive FILE --sha256
+HASH --output NEW_DIRECTORY` from the current source and fixed environment.
+
 ## Published complete fresh native-route models (2026-10-26 status)
 
 [H0/H/B1 models and full development evidence](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_route_seed11_20261025.zip):570files,

@@ -1,8 +1,10 @@
 # Executability-aware hierarchical driving research
 
+Latest [matched full-road decision-head development pair](reports/native_actor_head_20261026.md): shared **1/4**, unshared **3/4**, one seed/four known roads. All13,259controls and500frozen decisions verify. Search failure and missed decision periods remain; this is not formal superiority or a healthy-B1/realtime result.
+
 [Current status and next research steps](docs/current_status_20261026.md) · [Chinese continuation prompt](docs/continuation_prompt.zh-CN.md). Complete native model/data asset is published and public-download reproduction passes; formal research acceptance remains open.
 
-[Hosted CPU regression passed](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40192669405):293passed/3platform-or-opt-in skips/4CARLA deselections on Ubuntu24.04 with locked dependencies at7605ba0; the matching Windows CPU selection passes295/1skip/4deselections. This is CPU verification, separate from the actual CARLA experiments. See [CI scope and reproduction](docs/cpu_ci.md).
+[Hosted CPU regression passed](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40281946359):302passed/3platform-or-opt-in skips/4CARLA deselections on Ubuntu24.04 at sourcee0f9099; the independent fixed Windows environment passes304/1skip/4deselections. CPU verification is separate from actual CARLA experiments. See [CI scope and reproduction](docs/cpu_ci.md).
 
 An optional [exact road SAT batching backend](reports/road_collision_batch_20261025.md) preserves collision flags and complete search paths in the recorded development probe, while reducing search cost. Scalar remains the default; the completed frozen CARLA PPO batch used it. Offline timings are not full-cycle real-time evidence.
 
