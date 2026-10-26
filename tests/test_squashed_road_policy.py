@@ -1,4 +1,5 @@
 import copy
+from dataclasses import replace
 
 import gymnasium as gym
 import numpy as np
@@ -10,6 +11,10 @@ from navstack.road_candidate_policy import FlatRoadCandidateActorCriticPolicy
 from navstack.squashed_road_policy import SquashedFlatRoadPolicy
 from scripts.native_road_learning import registered_jobs, training_config
 from navstack.config import VehicleConfig
+from navstack.config import EnvConfig
+from navstack.env import NavigationEnv
+from navstack.vehicle import VehiclePlant
+from navstack.experiments import signature
 from scripts.prepare_native_flat_distribution_pair import short_route
 from scripts.watch_existing_pair import command_identifies_batch
 
@@ -111,3 +116,25 @@ def test_progress_reward_is_explicit_shared_and_legacy_preserving():
         assert before==after
     for value in (True,'1',-1,float('nan'),float('inf')):
         with pytest.raises(ValueError):training_config({**protocol,'task_progress_weight':value},'B1',VehicleConfig())
+
+
+def test_flat_speed_semantics_actual_lightweight_control_and_versioning():
+    legacy=EnvConfig(method='B1',scenario='empty',obstacle_num=0)
+    speed=EnvConfig(method='B1',scenario='empty',obstacle_num=0,flat_longitudinal_mode='speed_target_v1')
+    assert 'flat_longitudinal_mode' not in signature(legacy)
+    assert signature(speed)['flat_longitudinal_mode']=='speed_target_v1'
+    for cfg in (legacy,speed):
+        env=NavigationEnv(cfg)
+        env.reset(seed=11)
+        _,_,_,_,info=env.step(np.array([0.,.2],dtype=np.float32))
+        command=info['trace'][0]['requested_command']
+        assert command['acceleration']==(0. if cfg is legacy else cfg.vehicle.max_accel)
+        assert abs(command['steering']-.1)<1e-7
+        if cfg is speed:
+            assert env.state.v>0
+            env.plant=VehiclePlant(cfg.vehicle,replace(env.plant.state,v=2.))
+            _,_,_,_,braking=env.step(np.array([-1.,0.],dtype=np.float32))
+            assert braking['trace'][0]['requested_command']['acceleration']==-2.
+            assert braking['plan'] is None and braking['mode']=='flat'
+        env.close()
+    with pytest.raises(ValueError):EnvConfig(method='H',flat_longitudinal_mode='speed_target_v1')

@@ -149,6 +149,9 @@ def signature(config):
     }
     if config.shared_shield:
         result["shared_shield"] = "execution_brake_v1_no_path_prediction"
+    if config.method == 'B1' and config.flat_longitudinal_mode != 'acceleration':
+        result['action_catalog'] = 'Box([-1,-1],[1,1]):speed_[0,vmax],steering;P_speed_gain1_per_second_v1'
+        result['flat_longitudinal_mode'] = config.flat_longitudinal_mode
     if config.terminal_goal_prefix:
         result["terminal_goal_prefix"] = "selected_candidate_crosses_goal_before_endpoint_validation_v1"
     if config.curriculum:

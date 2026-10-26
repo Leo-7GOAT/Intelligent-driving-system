@@ -462,6 +462,13 @@ class NavigationEnv(gym.Env):
                 ),
                 float(clipped[1] * c.vehicle.max_steer),
             )
+            if c.flat_longitudinal_mode == 'speed_target_v1':
+                # A disclosed 1/s proportional speed servo, no route lookup,
+                # planner, reference trajectory, MPC or goal-distance rule.
+                # The policy still chooses speed and steering every flat hold.
+                target_speed = (float(clipped[0])+1.)*.5*c.vehicle.max_speed
+                requested = Command(float(np.clip(target_speed-self.state.v,
+                    -c.vehicle.max_decel,c.vehicle.max_accel)),requested.steering)
             self.last_behavior = np.array([*clipped, 0.0, 0.0])
             mode, plan = "flat", None
             self.reference = None

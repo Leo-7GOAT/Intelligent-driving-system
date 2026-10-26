@@ -110,6 +110,7 @@ class EnvConfig:
     control_dt: float = 0.05
     decision_dt: float = 0.5
     flat_hold: int = 1
+    flat_longitudinal_mode: str = 'acceleration'
     deadline: float = 30.0
     scenario: str = "mixed"
     split: str = "train"
@@ -142,6 +143,10 @@ class EnvConfig:
     reward: RewardConfig = field(default_factory=RewardConfig)
 
     def __post_init__(self):
+        if self.flat_longitudinal_mode not in ('acceleration','speed_target_v1'):
+            raise ValueError('Unknown flat longitudinal action semantics')
+        if self.flat_longitudinal_mode != 'acceleration' and self.method != 'B1':
+            raise ValueError('Flat speed actions are exclusive to the non-hierarchical B1 baseline')
         if self.road_collision_backend not in ("scalar", "batch_sat_v1"):
             raise ValueError("Unknown road collision backend")
         if self.road_collision_backend != "scalar" and not self.road_observation:

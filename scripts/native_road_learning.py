@@ -90,7 +90,8 @@ def training_config(protocol, method, vehicle):
         subgoal_mode=protocol.get('subgoal_mode', 'ego_arcs'),
         actuator_observation=protocol.get('actuator_observation', 'off'),
         road_collision_backend=protocol.get('road_collision_backend', 'scalar'),
-        flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0)
+        flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0,
+        flat_longitudinal_mode=protocol.get('flat_longitudinal_mode','acceleration') if method=='B1' else 'acceleration')
     config.planner.max_seconds=None
     config.planner.max_nodes=planner_nodes
     heuristic=protocol.get('planner_heuristic','euclidean')
