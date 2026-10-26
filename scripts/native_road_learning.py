@@ -223,6 +223,13 @@ def registered_jobs(protocol):
     return jobs
 
 
+def configure_continuation_normalization(vec,protocol,recovery):
+    if protocol.get('freeze_observation_statistics',False):
+        if recovery is None or protocol.get('evaluation_only'):
+            raise ValueError('Frozen observation statistics require registered learning continuation')
+        vec.training=False
+
+
 def run(batch):
     batch = Path(batch).resolve()
     protocol = json.loads((batch/"protocol.json").read_text(encoding="utf-8"))
@@ -296,6 +303,7 @@ def run(batch):
                         policy_kwargs={"net_arch":{"pi":[64,64],"vf":[64,64]}}, seed=protocol["seed"], device="cpu")
                 if model.n_steps != rollout_actions or model.n_epochs != protocol['ppo_epochs']:
                     raise ValueError('Restored learner differs from registered rollout/epoch schedule')
+                configure_continuation_normalization(vec,protocol,recovery)
                 write_json(output/'policy_architecture.json',{'policy':type(model.policy).__name__,
                     'rollout_actions':model.n_steps,'ppo_epochs':model.n_epochs,'batch_size':model.batch_size,
                     'algorithm':type(model).__name__,'gradient_clip_mode':getattr(model,'gradient_clip_mode',GLOBAL_CLIP),
