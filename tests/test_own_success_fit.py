@@ -40,7 +40,8 @@ def test_frozen_statistics_still_allow_actual_ppo_updates():
     env.close()
 
 
-def test_interleaved_actor_replay_counts_separately_from_actual_ppo_updates():
+@pytest.mark.parametrize('auxiliary_steps',[10,100])
+def test_interleaved_actor_replay_counts_separately_from_actual_ppo_updates(auxiliary_steps):
     torch.set_num_threads(1)
     model=PPO(DiscreteFlatRoadPolicy,Probe(True),seed=11,n_steps=8,batch_size=8,n_epochs=2)
     steps=[0]
@@ -49,10 +50,10 @@ def test_interleaved_actor_replay_counts_separately_from_actual_ppo_updates():
     obs=np.zeros((8,4705),dtype=np.float32);actions=np.tile([1,3],(8,1));groups=np.repeat([0,2],4)
     for phase in range(2):
         model.learn(8,reset_num_timesteps=False)
-        fit_actor(model,obs,actions,groups,100,seed=phase)
+        fit_actor(model,obs,actions,groups,auxiliary_steps,seed=phase)
     hook.remove()
-    assert model._n_updates==4 and steps[0]==204
-    assert steps[0]-200==model._n_updates
+    assert model._n_updates==4 and steps[0]==4+2*auxiliary_steps
+    assert steps[0]-2*auxiliary_steps==model._n_updates
 
 
 def test_frozen_evaluation_drops_inherited_training_only_statistics_flag(tmp_path,monkeypatch):
@@ -81,3 +82,24 @@ def test_frozen_evaluation_drops_inherited_training_only_statistics_flag(tmp_pat
     assert protocol['evaluation_only'] and protocol['controlled_budget_per_method']==0
     assert 'freeze_observation_statistics' not in protocol
     assert protocol['recovery']['B1']['retained_optimizer_steps']==16
+
+
+def test_online_memory_uses_actual_ppo_inputs_and_excludes_failed_or_intervened_episodes(tmp_path):
+    from scripts.own_success_replay import OwnSuccessMemory
+    class Episodes(Probe):
+        def __init__(self):super().__init__(True);self.episode=-1
+        def reset(self,**kwargs):self.episode+=1;return super().reset(**kwargs)
+        def step(self,action):
+            obs,reward,done,truncated,info=super().step(action)
+            return obs,reward,done,truncated,{'success':self.episode!=0,'trace':[{'intervention':self.episode==2,'controller_status':'direct'}]}
+    torch.set_num_threads(1)
+    initial=np.zeros((2,4705),dtype=np.float32);actions=np.tile([1,3],(2,1));groups=np.zeros(2,dtype=np.int64)
+    memory=OwnSuccessMemory(initial,actions,groups,lambda episode:episode)
+    model=PPO(DiscreteFlatRoadPolicy,Episodes(),seed=11,n_steps=8,batch_size=8,n_epochs=1)
+    model.learn(24,callback=memory)
+    metadata=memory.save(tmp_path/'memory.npz')
+    assert metadata['new_own_success_decisions']==8 and metadata['new_own_success_episodes']==1
+    saved=np.load(tmp_path/'memory.npz',allow_pickle=False)
+    np.testing.assert_array_equal(saved['groups'],[0,0]+[1]*8)
+    np.testing.assert_array_equal(saved['normalized_observations'],np.zeros((10,4705)))
+    assert (saved['actions'][:,0]<3).all() and (saved['actions'][:,1]<7).all()

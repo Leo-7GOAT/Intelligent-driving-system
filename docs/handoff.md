@@ -1,4 +1,17 @@
-# Latest completed work — 2026-10-26 18:26 local
+# Latest completed work — 2026-10-26 18:49 local
+
+Additional4.5m trials: updated fixed replay100gives3/4, matched replay10gives1/4,
+online own-success buffer gives3/4after8,445controls/270PPO/2,700actor steps.
+Latest completed batch20261026T103954Z_own_success_ppo_continuation is raw-audited
+and normally stopped. No further identical training is launched. The16scored
+phases retain80,581new raw-verified controls; interrupted H trace gap is separate.
+Current local CPU320/1skip/4CARLA exclusions; independentcbaa76e317/1/4and actual
+hostedcbaa76e315/3/4are verified. New source needs its own hosted result.
+
+Concrete terminal failure: first4.5m case1ends at0.544m pose error but0.749m/s;
+online ends nearly stopped at0.831m, just outside0.8m. The successful3m case1
+also barely enters the gate at0.792m. Investigate robust learned stopping margin
+and fragile positive-example selection; do not relax tests or insert goal rules.
 
 See ../reports/native_retention_20261026.md and its measured JSON ledger. Actual
 B1 PPO plus explicitly counted own-success replay reaches4/4 on three-metre

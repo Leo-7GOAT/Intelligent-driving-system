@@ -42,11 +42,12 @@ def validate(parent,artifact):
     return method,metadata
 
 
-def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statistics=False,curriculum_meters=None,original_goals=False,retry_before_controls=None,replay_steps=0):
+def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statistics=False,curriculum_meters=None,original_goals=False,retry_before_controls=None,replay_steps=0,online_replay=False):
     if type(train_controls) is not int or not 0<=train_controls<=8192:raise ValueError('Bounded native training budget required')
     if freeze_statistics and not train_controls:raise ValueError('Statistics contrast requires actual PPO continuation')
-    if replay_steps and (replay_steps!=100 or not train_controls or not freeze_statistics):
-        raise ValueError('Replay requires100auxiliary actor steps per PPO phase and fixed observation statistics')
+    if replay_steps and (replay_steps not in (10,100) or not train_controls or not freeze_statistics):
+        raise ValueError('Replay requires10or100auxiliary actor steps per PPO phase and fixed observation statistics')
+    if online_replay and replay_steps!=100:raise ValueError('Online success collection retains the100step actor schedule')
     if curriculum_meters is not None and (curriculum_meters!=3. or not train_controls):
         raise ValueError('Only a bounded three-metre training curriculum is registered')
     parent=Path(parent).resolve();artifact=Path(artifact).resolve()
@@ -63,7 +64,8 @@ def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statis
     if freeze_statistics:registration='frozen_statistics_continuation_registration.json'
     if curriculum_meters is not None:registration='three_metre_curriculum_registration.json'
     if original_goals:registration='original_goals_evaluation_registration.json'
-    if replay_steps:registration='interleaved_success_replay_registration.json'
+    if replay_steps:registration=('interleaved_success_replay_registration.json' if replay_steps==100 else 'interleaved_success_replay10_registration.json')
+    if online_replay:registration='online_success_replay_registration.json'
     retry_record=None
     if retry_before_controls is not None:
         if train_controls:raise ValueError('This recovery is frozen inference only')
@@ -111,6 +113,7 @@ def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statis
         shutil.copytree(artifact,destination,ignore=shutil.ignore_patterns('*.lock','evaluation_registration.json'))
         if verified_checkpoint_metadata(destination)!=metadata:raise ValueError('Staged fitted actor changed')
         overrides=['native_road_learning.py','audit_native_method_endpoint.py','watch_existing_pair.py','prepare_own_success_evaluation.py','run_carla_owned_foreground.ps1','fit_own_success_policy.py']
+        if online_replay:overrides.append('own_success_replay.py')
         for name in overrides:shutil.copy2(ROOT/'scripts'/name,batch/'source/scripts'/name)
         write_json(batch/'parent_protocol.json',old);write_json(batch/'parent_training_summary.json',summary)
         write_json(batch/'parent_endpoint_raw_audit.json',read(parent/method/'endpoint_raw_audit.json'))
@@ -152,6 +155,10 @@ def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statis
                     'steps_per_phase':replay_steps,'sampling':'condition-balanced own successful measured training decisions'},
                 hypothesis='Interleaving successful own-experience fitting with PPO can retain acquired skills while real on-policy updates explore the missing road; extra optimizer work is charged separately',
                 comparison='Exploratory PPO plus self-imitation objective, not unchanged PPO or a matched architecture claim')
+            if online_replay:
+                protocol['own_success_replay']['online_success_updates']=True
+                protocol.update(hypothesis='Keeping newly successful on-policy inputs in the same counted actor replay may learn beyond obsolete shorter-goal demonstrations without an external teacher',
+                    comparison='Exploratory online-success buffer versus fixed own-success buffer; budget and every added sample/optimizer step disclosed, no formal superiority claim')
         protocol['source_hashes']={p.relative_to(batch/'source').as_posix():sha(p) for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
         write_json(batch/'protocol.json',protocol)
         write_json(batch/'prepared.json',{'status':'PREPARED_NOT_STARTED','protocol_sha256':sha(batch/'protocol.json')})
@@ -173,4 +180,5 @@ if __name__=='__main__':
     parser.add_argument('--original-goals',action='store_true')
     parser.add_argument('--retry-before-controls')
     parser.add_argument('--replay-steps',type=int,default=0)
-    args=parser.parse_args();prepare(args.parent,args.artifact,args.failed_prebridge,args.train_controls,args.freeze_statistics,args.curriculum_meters,args.original_goals,args.retry_before_controls,args.replay_steps)
+    parser.add_argument('--online-replay',action='store_true')
+    args=parser.parse_args();prepare(args.parent,args.artifact,args.failed_prebridge,args.train_controls,args.freeze_statistics,args.curriculum_meters,args.original_goals,args.retry_before_controls,args.replay_steps,args.online_replay)

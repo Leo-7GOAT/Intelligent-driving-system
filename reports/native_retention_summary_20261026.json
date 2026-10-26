@@ -749,9 +749,190 @@
         "reason": null
       },
       "owned_server_stopped": true
+    },
+    {
+      "label": "updated_static_replay100",
+      "batch": "20261026T103025Z_own_success_ppo_continuation",
+      "method": "B1",
+      "scope": "PPO plus explicitly counted own-success auxiliary actor replay after every phase; frozen observation statistics, registered known-road development curriculum, no external teacher or formal competence claim",
+      "protocol_sha256": "f0d7bd343025b179bbdb272818e36db8b06a8fc61bc195757b8d313428f522b9",
+      "endpoint_raw_audit_sha256": "92e83dd8101298bd96c9e34965f10bb68fc0b72fe4852dd8846156fa55ddfe89",
+      "model_sha256": "d13f104ed28238fe7de7d90801e01c878334f04456a826e22803025e26bde389",
+      "normalization_sha256": "6c4431e6d4aa11fef78784c1c07e043d30baf5f3d52eb7966aad232f356998af",
+      "training_controls": 4376,
+      "evaluation_controls": 751,
+      "segment_optimizer_steps": 1540,
+      "auxiliary_actor_optimizer_steps": 1400,
+      "ppo_optimizer_steps": 140,
+      "lineage_controls": 38000,
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 192,
+          "progress": 5.00852654649136,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 240,
+          "progress": 3.5111299273619316,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 163,
+          "progress": 4.4889740410275785,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 156,
+          "progress": 4.644508626988339,
+          "interventions": 0
+        }
+      ],
+      "normal_guard_receipt": {
+        "epoch": 1793010758.9420505,
+        "worker_pid": 70928,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_server_stopped": true
+    },
+    {
+      "label": "matched_static_replay10",
+      "batch": "20261026T103350Z_own_success_ppo_continuation",
+      "method": "B1",
+      "scope": "PPO plus explicitly counted own-success auxiliary actor replay after every phase; frozen observation statistics, registered known-road development curriculum, no external teacher or formal competence claim",
+      "protocol_sha256": "8d7b1fbd499a4ddda7140613d75fb3cbe1921fc8deffa391c288342c44bdd76a",
+      "endpoint_raw_audit_sha256": "c0a2fb5a7986daaea36e1765149e5524d5c7a65d4b6598324be6a5e0baa15894",
+      "model_sha256": "ba595f2a39d27841054d4de63ee0dfbdd6f9c635daf91fd90953a0854b0f57d4",
+      "normalization_sha256": "4f62a0f1dc617fe6a7b858c1de24fcead366de8db2ac84c11321016d85371377",
+      "training_controls": 4109,
+      "evaluation_controls": 891,
+      "segment_optimizer_steps": 260,
+      "auxiliary_actor_optimizer_steps": 130,
+      "ppo_optimizer_steps": 130,
+      "lineage_controls": 37733,
+      "successes": 1,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 171,
+          "progress": 5.026674776085467,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 240,
+          "progress": 3.2174396667663148,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 240,
+          "progress": 4.102703256444912,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 240,
+          "progress": 3.5033352088605865,
+          "interventions": 0
+        }
+      ],
+      "normal_guard_receipt": {
+        "epoch": 1793010950.5068557,
+        "worker_pid": 15940,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_server_stopped": true
+    },
+    {
+      "label": "online_success_replay",
+      "batch": "20261026T103954Z_own_success_ppo_continuation",
+      "method": "B1",
+      "scope": "PPO plus explicitly counted own-success auxiliary actor replay after every phase; frozen observation statistics, registered known-road development curriculum, no external teacher or formal competence claim",
+      "protocol_sha256": "7f5154c9bea3768a2008b5b302d72781bec302737676b24e7138f8ed6355e340",
+      "endpoint_raw_audit_sha256": "cce493d6c0baaf4774b6a3b2f0b4fbad1196bf1206cee1c56cb689628425771b",
+      "model_sha256": "fb70a16e4ec5f5e6548e92940ec96fda15d528fc74e143fd3d4bf60c1cd1e206",
+      "normalization_sha256": "7b8909747d7f609c209c7603d0b1f190e190850678249601544b3a3b5992dc2e",
+      "training_controls": 8445,
+      "evaluation_controls": 810,
+      "segment_optimizer_steps": 2970,
+      "auxiliary_actor_optimizer_steps": 2700,
+      "ppo_optimizer_steps": 270,
+      "lineage_controls": 42069,
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 194,
+          "progress": 4.830168705698218,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 240,
+          "progress": 3.7951477144650188,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 204,
+          "progress": 4.29608489490217,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 172,
+          "progress": 4.602294770009789,
+          "interventions": 0
+        }
+      ],
+      "normal_guard_receipt": {
+        "epoch": 1793011386.504135,
+        "worker_pid": 30344,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_server_stopped": true,
+      "online_success_memory": {
+        "samples": 2256,
+        "new_own_success_decisions": 691,
+        "new_own_success_episodes": 35,
+        "scope": "Actual frozen-normalizer policy inputs; failed episodes remain in raw logs; no teacher or new simulator execution",
+        "sha256": "d0e318f62813d4d27789ca87f7047f302a70f4e4e6e4b1b2a9a64b9a8aaca59b"
+      }
     }
   ],
-  "new_raw_verified_controls_sum_nonduplicated_segments": 61199,
+  "new_raw_verified_controls_sum_nonduplicated_segments": 80581,
   "fits": [
     {
       "artifact": "20261026T094631Z_own_success_actor_fit",
@@ -1339,6 +1520,699 @@
       "model_sha256": "733bcc270d1e2f399cdd0014c9f22d30c56fd7e1244cddab9d3a3381d396579c",
       "normalization_sha256": "2d5bf1cb669f6e394b002e0699b98dc3e25d48e521d193024aaf88ae388e2eef",
       "resume_state_sha256": "579d4b5df4a13bdafc0e3679f289a5bea148d87ec2bb84c4a1f1a5b989061b85"
+    },
+    {
+      "artifact": "20261026T102854Z_own_success_actor_fit",
+      "metadata_sha256": "7bb040077bf5d2b02a2c8c0100123fc83b43d852b76c3e737d6235480e742c63",
+      "actor_optimizer_steps": 1000,
+      "ppo_updates_added": 0,
+      "critic_unchanged": true,
+      "critic_adam_unchanged": true,
+      "first_loss": 0.8533338308334351,
+      "last_loss": 0.3021080493927002,
+      "status": "complete",
+      "scope": "Auxiliary reward-selected replay of own PPO successes; no external teacher, new driving or PPO updates; not a competence claim",
+      "source_batch": "20261026T102314Z_native_continuation",
+      "source_method": "B1",
+      "source_model_sha256": "55827ee846f4ca25fb204cedb8a9b0ce6533ac2e68488d5beb876d76b97d79f6",
+      "source_policy_ppo_n_updates": 1070,
+      "source_raw_audit_sha256": "db51067e18fab1228c6c81f2d3df4225db1a4b4886aaacde443157a3f3b819a7",
+      "new_physics_steps": 0,
+      "samples": 1565,
+      "source_records": [
+        {
+          "batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "raw_audit_sha256": "8063ca1622cc8ba815ac036d8d9f683d95f083519deb65e6b4e2f06488eca6ba",
+          "all_training_episodes": 19,
+          "success_episodes_used": 3,
+          "failures_retained_at_source": 16
+        },
+        {
+          "batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "fa6643618e99427c178ceb550c8f818a870f56368ec1752e3f9f4d776abd6466",
+          "all_training_episodes": 76,
+          "success_episodes_used": 14,
+          "failures_retained_at_source": 62
+        },
+        {
+          "batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "d4a2d97a0b72cc7d24e95e4271bbb21f87ea4b6623e7a459829b802582021940",
+          "all_training_episodes": 21,
+          "success_episodes_used": 12,
+          "failures_retained_at_source": 9
+        },
+        {
+          "batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "a181a3bd3120f7ecc3c439e7540bbc879ed6f11543e2145a4f833e70dc9aa1d7",
+          "all_training_episodes": 18,
+          "success_episodes_used": 6,
+          "failures_retained_at_source": 12
+        },
+        {
+          "batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "357e8079f9554cbaa79ed2a690321b1e8d06e23a45fa82a2880c064bd8186030",
+          "all_training_episodes": 24,
+          "success_episodes_used": 14,
+          "failures_retained_at_source": 10
+        },
+        {
+          "batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "3e408dde2594e05e65f015f658ff87f4b39713bb01b27ee77c1510689e703e43",
+          "all_training_episodes": 25,
+          "success_episodes_used": 20,
+          "failures_retained_at_source": 5
+        },
+        {
+          "batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "db51067e18fab1228c6c81f2d3df4225db1a4b4886aaacde443157a3f3b819a7",
+          "all_training_episodes": 22,
+          "success_episodes_used": 17,
+          "failures_retained_at_source": 5
+        }
+      ],
+      "episodes_used": [
+        {
+          "source_batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "episode_id": 12,
+          "condition": 0,
+          "actions": 22
+        },
+        {
+          "source_batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 2,
+          "actions": 16
+        },
+        {
+          "source_batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 2,
+          "actions": 23
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 0,
+          "actions": 23
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 2,
+          "actions": 16
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 2,
+          "actions": 24
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 8,
+          "condition": 0,
+          "actions": 21
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 2,
+          "actions": 23
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 31,
+          "condition": 3,
+          "actions": 22
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 42,
+          "condition": 2,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 48,
+          "condition": 0,
+          "actions": 23
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 50,
+          "condition": 2,
+          "actions": 24
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 52,
+          "condition": 0,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 56,
+          "condition": 0,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 63,
+          "condition": 3,
+          "actions": 22
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 68,
+          "condition": 0,
+          "actions": 23
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 72,
+          "condition": 0,
+          "actions": 18
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 3,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 0,
+          "actions": 15
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 2,
+          "actions": 22
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 3,
+          "actions": 24
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 3,
+          "actions": 17
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 0,
+          "actions": 23
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 13,
+          "condition": 2,
+          "actions": 21
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 3,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 0,
+          "actions": 18
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 17,
+          "condition": 2,
+          "actions": 18
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 3,
+          "actions": 22
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 19,
+          "condition": 0,
+          "actions": 16
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 0,
+          "actions": 24
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 2,
+          "actions": 17
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 3,
+          "actions": 19
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 0,
+          "actions": 15
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 13,
+          "condition": 2,
+          "actions": 19
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 0,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 3,
+          "actions": 14
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 0,
+          "actions": 15
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 4,
+          "condition": 1,
+          "actions": 17
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 3,
+          "actions": 14
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 0,
+          "actions": 15
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 2,
+          "actions": 19
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 3,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 0,
+          "actions": 17
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 3,
+          "actions": 12
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 0,
+          "actions": 12
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 3,
+          "actions": 13
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 19,
+          "condition": 0,
+          "actions": 12
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 21,
+          "condition": 2,
+          "actions": 18
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 22,
+          "condition": 3,
+          "actions": 14
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 2,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 1,
+          "condition": 3,
+          "actions": 15
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 0,
+          "actions": 10
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 4,
+          "condition": 2,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 3,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 0,
+          "actions": 17
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 1,
+          "actions": 21
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 3,
+          "actions": 18
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 0,
+          "actions": 13
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 12,
+          "condition": 2,
+          "actions": 17
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 13,
+          "condition": 3,
+          "actions": 13
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 0,
+          "actions": 12
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 1,
+          "actions": 18
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 17,
+          "condition": 3,
+          "actions": 14
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 0,
+          "actions": 11
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 20,
+          "condition": 2,
+          "actions": 22
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 21,
+          "condition": 3,
+          "actions": 12
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 22,
+          "condition": 0,
+          "actions": 12
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 23,
+          "condition": 1,
+          "actions": 18
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 24,
+          "condition": 2,
+          "actions": 15
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 0,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 2,
+          "actions": 22
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 3,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 4,
+          "condition": 0,
+          "actions": 21
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 2,
+          "actions": 23
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 3,
+          "actions": 16
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 8,
+          "condition": 0,
+          "actions": 18
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 2,
+          "actions": 17
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 3,
+          "actions": 19
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 12,
+          "condition": 0,
+          "actions": 20
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 2,
+          "actions": 21
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 3,
+          "actions": 16
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 16,
+          "condition": 0,
+          "actions": 17
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 2,
+          "actions": 22
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 19,
+          "condition": 3,
+          "actions": 16
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 20,
+          "condition": 0,
+          "actions": 17
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 21,
+          "condition": 1,
+          "actions": 20
+        }
+      ],
+      "condition_counts": {
+        "0": 560,
+        "2": 479,
+        "3": 432,
+        "1": 94
+      },
+      "excluded_intervened_decisions": 0,
+      "script_sha256": "cfb345311ba9abf3b1236d21ee51b0901f5085ba14068b56a674a09f73f957a8",
+      "dataset_sha256": "eb01cb66146879ae085296c0beb5145abf7be1209bf51964029bd87ecd851947",
+      "model_sha256": "a272e2e6ef1f6d660bbc6b613f9302026b012190a744727c4fc3d20758ded80b",
+      "normalization_sha256": "95900a583228be516b71fe6fbfc65d5acd010e5102446e8c63b0fdf1e7d6177b",
+      "resume_state_sha256": "ef03c6ad7df875a14fffa89da82334bc9b30bf6eb5441aa9090a8ea9256c7122"
     }
   ],
   "interrupted_H_progress": {
@@ -1353,9 +2227,24 @@
     "local_passed": 317,
     "local_skipped": 1,
     "carla_deselected": 4,
-    "hosted_source": "5cf9297",
-    "hosted_passed": 313,
+    "hosted_source": "cbaa76e",
+    "hosted_passed": 315,
     "hosted_skipped": 3,
-    "hosted_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40304264696"
+    "hosted_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40308103444"
+  },
+  "independent_cpu": {
+    "source": "cbaa76e",
+    "passed": 317,
+    "skipped": 1,
+    "carla_deselected": 4,
+    "seconds": 96.93
+  },
+  "current_cpu": {
+    "passed": 320,
+    "skipped": 1,
+    "carla_deselected": 4,
+    "seconds": 93.22,
+    "log_sha256": "41dcacd85b189271a86c82f2729802db629751bb45879f8890c1f9603757df6a",
+    "xml_sha256": "bd0cf4bd3fc09d6550ca38c28c2346888675c756f1a51c93b9a31dda27e570ba"
   }
 }

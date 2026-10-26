@@ -15,13 +15,14 @@ import re
 import subprocess
 import sys
 import zipfile
+import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.audit_native_method_endpoint import audit
 
 PRIVATE = re.compile(rb'(?i)[A-Z]:[\\/]+Users[\\/]+[A-Za-z0-9_.-]+[\\/]|/(?:home|Users)/[A-Za-z0-9_.-]+/|\bgh[pousr]_[A-Za-z0-9]{30,}|\bgithub_pat_[A-Za-z0-9_]{40,}|\bsk-(?:proj-)?[A-Za-z0-9_-]{40,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----')
-SUFFIXES = {'.py','.ps1','.json','.jsonl','.gz','.csv','.png','.zip','.pkl','.txt','.md'}
+SUFFIXES = {'.py','.ps1','.json','.jsonl','.gz','.csv','.png','.zip','.npz','.pkl','.txt','.md'}
 
 
 def sha(data):
@@ -61,11 +62,18 @@ def scan_payload(name, payload, depth=0):
     if name.endswith('.gz'):
         scan_payload(name[:-3],gzip.decompress(payload),depth+1)
         return
-    if name.endswith('.zip'):
+    if name.endswith(('.zip','.npz')):
         with zipfile.ZipFile(io.BytesIO(payload)) as archive:
             for member in archive.namelist():
                 scan_payload(member,archive.read(member),depth+1)
         return
+    if name.endswith('.npy'):
+        array=np.load(io.BytesIO(payload),allow_pickle=False)
+        if array.dtype.hasobject:raise ValueError('Opaque object arrays cannot be published')
+        if array.dtype.kind in ('U','S'):
+            for value in array.reshape(-1):
+                decoded=value.encode('utf-8') if isinstance(value,str) else bytes(value)
+                scan_payload(name+'.decoded',decoded,depth+1)
     if PRIVATE.search(payload):
         raise ValueError('Private data candidate in '+name)
     # SB3 embeds cloudpickle bytes in base64 JSON. Scan those without loading or

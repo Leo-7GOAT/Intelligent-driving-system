@@ -324,11 +324,21 @@ def run(batch):
                     replay_path=batch/replay['dataset']
                     if hashlib.sha256(replay_path.read_bytes()).hexdigest()!=replay['sha256']:
                         raise ValueError('Own-success replay dataset changed')
-                    if replay['steps_per_phase']!=100:raise ValueError('Unregistered auxiliary replay schedule')
+                    if replay['steps_per_phase'] not in (10,100):raise ValueError('Unregistered auxiliary replay schedule')
                     replay_data=np.load(replay_path,allow_pickle=False)
                 model.set_logger(configure(str(output/"sb3"), ["csv"]))
                 before = actor_vector(model).clone()
                 recorder = ResearchRecorder(output, protocol["deadline_epoch"])
+                online_memory=None
+                callbacks=recorder
+                if replay and replay.get('online_success_updates'):
+                    from scripts.own_success_replay import OwnSuccessMemory
+                    from stable_baselines3.common.callbacks import CallbackList
+                    def recorded_condition(index):
+                        return json.loads((output/f'scene_{index+1:04d}.json').read_text(encoding='utf-8'))['scene']['condition']
+                    online_memory=OwnSuccessMemory(vec.normalize_obs(replay_data['observations']),replay_data['actions'],
+                        replay_data['groups'],recorded_condition)
+                    callbacks=CallbackList([online_memory,recorder])
                 optimizer_steps = [0]
                 gradient_samples = []
                 gradient_groups = actor_critic_parameters(model.policy) if protocol.get('gradient_clipping_experiment') else None
@@ -348,17 +358,21 @@ def run(batch):
                     guard(batch, protocol)
                     previous = model._n_updates
                     gradient_samples.clear()
-                    model.learn(rollout_actions, callback=recorder, reset_num_timesteps=False)
+                    model.learn(rollout_actions, callback=callbacks, reset_num_timesteps=False)
                     if model._n_updates > previous:
                         recorder.counts["optimization_phases"] += 1
                         replay_record={}
                         if replay_data is not None:
                             from scripts.fit_own_success_policy import fit_actor
-                            fitted=fit_actor(model,vec.normalize_obs(replay_data['observations']),replay_data['actions'],
-                                replay_data['groups'],replay['steps_per_phase'],seed=protocol['seed']+recorder.counts['optimization_phases'])
+                            inputs=(vec.normalize_obs(replay_data['observations']),replay_data['actions'],replay_data['groups']) if online_memory is None else online_memory.arrays()
+                            fitted=fit_actor(model,*inputs,replay['steps_per_phase'],seed=protocol['seed']+recorder.counts['optimization_phases'])
                             replay_steps+=fitted['actor_optimizer_steps']
                             replay_record={'auxiliary_actor_optimizer_steps':replay_steps,
                                 'ppo_optimizer_steps':optimizer_steps[0]-replay_steps,'own_success_fit':fitted}
+                            if online_memory is not None:
+                                memory_file=output/'own_success_memory.npz'
+                                replay_record['online_success_memory']={**online_memory.save(memory_file),
+                                    'sha256':hashlib.sha256(memory_file.read_bytes()).hexdigest()}
                         gradient_record = {}
                         if gradient_samples:
                             gradient_array=np.asarray(gradient_samples)
@@ -422,6 +436,9 @@ def run(batch):
                 if replay is not None:
                     result.update(auxiliary_actor_optimizer_steps=replay_steps,
                                   ppo_optimizer_steps=optimizer_steps[0]-replay_steps)
+                if online_memory is not None:
+                    result['online_success_memory']={**online_memory.save(output/'own_success_memory.npz'),
+                        'sha256':hashlib.sha256((output/'own_success_memory.npz').read_bytes()).hexdigest()}
                 write_json(output/"summary.json", result)
                 results.append(result)
                 print(json.dumps(result), flush=True)

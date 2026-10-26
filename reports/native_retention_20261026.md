@@ -20,11 +20,22 @@ are in [the measured ledger](native_retention_summary_20261026.json).
 | PPO plus interleaved own-success replay | Three-metre prefixes, 4,350 new controls | **4/4** |
 | Same saved model, no updates, original goals restored | Six-metre prefixes | 3/4 |
 | Continue that learner on4.5m nominal prefixes | 4.5m prefixes, 4,366 new controls | 3/4 |
+| Updated own-success pool,100replay steps/phase | 4.5m prefixes,4,376 new controls | 3/4 |
+| Same saved model/data,10replay steps/phase | 4.5m prefixes,4,109 new controls | 1/4 |
+| Online addition of newly successful policy inputs | 4.5m prefixes,8,445 new controls | 3/4 |
 
 The last failed road advances4.08m in the4.5m curriculum probe. Training includes
 one successful episode on that road; the deterministic endpoint still times
 out. All four goals must pass before the curriculum staging tool permits the
 next registered distance. No formal test data have been inspected or relabeled.
+
+The failed road exposes two terminal-control errors. The first4.5m continuation
+ends0.544m/0.059rad from the goal, within the unchanged pose limits, but speed
+0.749m/s exceeds the0.25m/s stopping limit. The online-buffer endpoint is nearly
+stationary but0.831m away,31mm outside the0.8m position limit. Even the3m road1
+success stops0.792m away. Positive replay can reinforce fragile boundary
+successes. These are measured late/early braking failures, not evidence that
+the road is blocked; evaluation tolerances and vehicle state are unchanged.
 
 ## What changed and what the evidence supports
 
@@ -89,12 +100,40 @@ The launcher now ignores PID0 TCP TIME_WAIT entries while still refusing any
 actual CARLA process or TCP/UDP owner. A matching-version empty probe is required
 before dependent worker launch.
 
-CPU regression passes317/1skip/4CARLA deselections;19 targeted training,
-continuation, recovery and raw-audit checks pass. Hosted CI at source5cf9297
-passes313/3platform-or-opt-in skips/4deselections:
-[actual run](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40304264696).
-Newer orchestration changes require their own hosted result; CPU tests are not
+The third fixed1,000-step actor fit uses1,565decisions from86own successes,
+including94decisions on road1. The matched100/10-step continuations start from
+identical fitted weights, Adam state, frozen normalization, dataset and saved RNG;
+they retain3/4 versus1/4. Reducing replay is not adopted.
+
+The separate online-buffer phase keeps exact normalized inputs that PPO actually
+received, with executed categorical actions, only after a successful episode
+without intervention/controller failure. It adds691decisions from35successes
+to1,565retained inputs. Failed and intervened episodes remain in raw logs and do
+not enter that positive buffer. This8,445-control phase has270PPO and2,700actor
+replay optimizer steps; its3/4 endpoint still fails road1. Its doubled nominal
+interaction budget prevents treating it as an equal-budget superiority result.
+The normalized input buffer, hash and sample costs are preserved. No further
+identical continuation is launched merely because this endpoint remains below
+the four-case curriculum gate.
+
+The16completed scored phases in the ledger contain80,581new frame-verified
+controls, without duplicating inherited training. Interrupted H training and
+partial old evaluations are separately retained and are not silently included
+as fully verified segments.
+
+Independent-checkout CPU regression atcbaa76epasses317/1skip/4CARLA deselections;
+targeted training, continuation, recovery and raw-audit checks pass. Hosted CI at
+the same source passes315/3platform-or-opt-in skips/4deselections:
+[actual run](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40308103444).
+Newer online/export changes require their own full/hosted result; CPU tests are not
 CARLA competence, independent-seed replication or formal confirmation.
+
+Current local online/export regression subsequently passes320/1skip/4CARLA
+deselections in93.22s. The initial NPZ privacy test exposed Unicode array
+strings that evade raw-byte searching; export now scans decompressed arrays,
+decodes strings and refuses object arrays without loading pickle. The corrected
+regression passes. MultiDiscrete model inference also reconstructs all four
+measured start actions with frozen statistics.
 
 The new raw models and traces are retained locally. The older complete public
 assets remain available; this report does not claim the new evidence has already

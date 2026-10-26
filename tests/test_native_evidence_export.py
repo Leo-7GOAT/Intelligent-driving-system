@@ -1,9 +1,19 @@
 import base64
 import json
 import zipfile
+import io
+import numpy as np
 
 import pytest
 import scripts.package_native_continuation as exporter
+
+
+def test_replay_npz_is_exported_and_scanned_after_decompression():
+    assert '.npz' in exporter.SUFFIXES
+    safe=io.BytesIO();np.savez_compressed(safe,observations=np.zeros((2,3)),actions=np.array([1,2]))
+    exporter.scan_payload('own_success_inputs.npz',safe.getvalue())
+    private=io.BytesIO();np.savez_compressed(private,metadata=np.array('ghp_'+'a'*36))
+    with pytest.raises(ValueError):exporter.scan_payload('own_success_inputs.npz',private.getvalue())
 
 
 def test_auxiliary_path_redaction_keeps_embedded_json_metrics():

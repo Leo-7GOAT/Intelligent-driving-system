@@ -77,6 +77,9 @@ def analyze(batch,method,output):
                 probs=distribution.probs.numpy()[0]
                 result.update(max_probability=float(probs.max()),probability_range=float(np.ptp(probs)),
                               entropy=float(distribution.entropy()[0]))
+            elif isinstance(distribution,list) and all(isinstance(d,torch.distributions.Categorical) for d in distribution):
+                result.update(component_probabilities=[d.probs.numpy()[0].tolist() for d in distribution],
+                    component_entropies=[float(d.entropy()[0]) for d in distribution])
             else:
                 result.update(mean=distribution.mean.numpy()[0].tolist(),std=distribution.stddev.numpy()[0].tolist())
             results.append(result)
