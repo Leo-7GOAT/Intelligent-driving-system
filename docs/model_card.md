@@ -1,5 +1,19 @@
 # Development model card
 
+## Published complete fresh native-route models (2026-10-26 status)
+
+[H0/H/B1 models and full development evidence](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_route_seed11_20261025.zip):570files,
+63,447,215bytes, SHA256 `c28f506192b977d70e0f74edd16aa1f21d7c8c6b3475b4880adbae2ff06a9385`; export source `4f7e09a`.
+Four known training roads, seed11: H0 **3/4**, H **2/4**, B1 **0/4** (all bounds).
+These are failed research gates, not superiority or unseen-generalization proof.
+All67,289controls are audited; all534evaluation decisions reconstruct. The
+public-download independent reproduction verifies all files, three raw audits,
+12initial actions and a byte-identical complete figure without new driving or
+updates. Full checkpoint/normalization/config/source correspondence is inside
+the asset. The prerelease tag is historical and unchanged; use current source.
+See [complete report](../reports/native_route_complete_20261025.md) and
+[reproduction commands](current_status_20261026.md).
+
 ## Published CPU collision-compute evidence (no model)
 
 [road_collision_batch_20261025.zip](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/road_collision_batch_20261025.zip)

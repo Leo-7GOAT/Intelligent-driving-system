@@ -111,9 +111,17 @@ are clear. `server_cleanup.json` returns0 and `server_stop.json` records
 during that deliberate owned stop; this record is retained, not rewritten as0.
 There is no automatic retry or discarded failed evaluation.
 
-All registered methods/failures will be exported together with unchanged model,
-normalizer and raw control bytes. The current stage has not yet uploaded that
-complete asset; actual ZIP hash, publication and downloaded-asset reproduction
-must be recorded after they occur. Existing development prereleases do not
-constitute research acceptance. The original source remains immutable while
-the separately declared scalar/batchSAT B3 computation contrast proceeds.
+All registered methods/failures are published together in the
+[complete native-route asset](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_route_seed11_20261025.zip), 570manifestfiles/63,447,215bytes,
+SHA256 `c28f506192b977d70e0f74edd16aa1f21d7c8c6b3475b4880adbae2ff06a9385`. Export source is `4f7e09a`; the historical prerelease tag is
+unchanged. Model, normalizer and raw controls retain their original bytes;
+seven auxiliary metadata transformations have explicit redaction receipts.
+
+A separate checkout actually downloads this public asset and verifies all570
+files, all3raw audits,12measured-start actions and the byte-identical figure,
+with frozen normalizers and zero new controls/updates. Receipt:
+`runs/prerelease_20261022/native_road_checkout/runs/native_route_public_proxy_reproduction_20261025/reproduction.json`.
+See [reproduction commands and current status](../docs/current_status_20261026.md).
+Publication does not establish research acceptance. The separate rule backend
+pair completed4/4per arm but executions differ; the subsequent weight contrast
+is incomplete and provides no paired learning-benefit result.

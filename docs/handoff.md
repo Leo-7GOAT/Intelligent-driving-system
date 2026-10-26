@@ -1,4 +1,24 @@
-# Original3method batch complete; NEW scalar B3 live — 2026-10-25 22:03 local
+# Current handoff — 2026-10-26
+
+Full research acceptance remains open. Read [current status](current_status_20261026.md)
+and [continuation prompt](continuation_prompt.zh-CN.md) first. Original H0/H/B1
+is complete: 3/4, 2/4, 0/4 on four known development roads. All 67,289 controls
+are audited. The 570-file full asset is PUBLIC and independently reproduced
+from its public download; source4f7e09a, SHA256 `c28f506192b977d70e0f74edd16aa1f21d7c8c6b3475b4880adbae2ff06a9385`.
+
+The actual scalar/batchSAT rule pair is COMPLETE: both4/4, wall440.36/56.36s,
+controls1317/1322. Execution is not identical; no realtime or learned-value
+claim. Pair JSON independently byte-exact, SHA256
+`ed682d9663d815896d28cb16039835308c201790d691fc52682e169c0ecd266f`.
+
+Weight contrast20261025T141852Z is INCOMPLETE: initial arm0/4; trained arm partial;
+no summary/final guard/normal server-stop proof. No matching live process found
+at closeout; cause unknown. Preserve records and locks; do not restart it.
+New research work must declare a new version and bounded experiment.
+
+Everything below is a HISTORICAL SNAPSHOT; then-live identities are not current.
+
+# Historical: Original3method complete; scalar B3 live — 2026-10-25 22:03 local
 
 Previous turn progress; this turn progress: original B1 completes, all3raw
 endpoints and534policy decisions verified, full12case figure independently

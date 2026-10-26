@@ -1,0 +1,57 @@
+# 当前交付状态与研究目标（2026-10-26）
+
+完整研究目标仍未完成。工程闭环、真实训练、负结果保存及开发证据发布已落实；当前瓶颈是健康 B1、H 的等待退化与强化学习贡献。本文是当前状态，不是正式验收报告。
+
+## 已核实结果
+
+| 配置 | 四条已知开发道路成功数 | 训练控制步 | 结论边界 |
+|---|---:|---:|---|
+| H0 | 3/4 | 20,702 | 单个 seed=11，反馈消融 |
+| H | 2/4 | 20,665 | 两例策略持续等待；未证明反馈改善 |
+| B1 | 0/4 | 20,621 | 四例越界，尚非健康最终基线 |
+| B3 scalar | 4/4 | 0 | 强规则高层；不是 PPO 成绩 |
+| B3 batch_sat_v1 | 4/4 | 0 | 新后端单次开发对照，执行轨迹有差异 |
+
+三种 PPO 共 61,988 个训练控制步、5,301 个评估控制步，合计 67,289 个实际 CARLA 控制步、70,975 个世界 tick；390 次优化器更新，534 次评估决策重建。完整报告见 [原生道路报告](../reports/native_route_complete_20261025.md)。
+
+规则后端配对各保留四例及失败字段。scalar/batch 的墙钟分别 440.361289/56.361558 秒，控制步 1,317/1,322。部分动作、全部道路的物理执行存在差异；此单次对照不能证明完全等价、普遍加速或实时性。完整 JSON 在两处环境字节一致，SHA256 `ed682d9663d815896d28cb16039835308c201790d691fc52682e169c0ecd266f`；本地证据 `runs/native_collision_actual_pair_20261025.json`。
+
+## 发布与独立复现
+
+[完整开发模型及原始证据包](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_route_seed11_20261025.zip)（570 个清单文件，63,447,215 字节）。
+SHA256：`c28f506192b977d70e0f74edd16aa1f21d7c8c6b3475b4880adbae2ff06a9385`。
+导出源码 `4f7e09a4afca2b8489d0229c2b5e2b9ceaaa930e`；历史预发布标签未重写。运行源码及模型逐一保存在包内，使用当前分支的复现工具。
+
+从公开地址下载后，独立 checkout 核验全部 570 个文件，重建三个原始控制审计、12 个测量初始状态的动作和完整图。归一化器冻结；图逐字节一致；新增驾驶和更新均为零。收据：`runs/prerelease_20261022/native_road_checkout/runs/native_route_public_proxy_reproduction_20261025/reproduction.json`。这是离线复现，不是新增 CARLA 闭环评测。
+
+在按 README 安装的独立环境中执行，输出目录须尚不存在：
+
+```powershell
+gh release download v0.2.0-dev.20261022 --repo Leo-7GOAT/Intelligent-driving-system --pattern native_route_seed11_20261025.zip --dir runs/route_download
+python scripts/reproduce_native_asset.py --archive runs/route_download/native_route_seed11_20261025.zip --sha256 c28f506192b977d70e0f74edd16aa1f21d7c8c6b3475b4880adbae2ff06a9385 --output runs/route_reproduction
+```
+
+本机 CPU 295 通过、1 跳过、4 CARLA 项排除；[实际 GitHub CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40192669405) 为 293 通过、3 跳过、4 排除，源码 `7605ba0`。文档更新没有重跑训练或冒充新 CI。
+
+## 不完整对照与进程状态
+
+`runs/20261025T141852Z_native_weight_contrast` 保留原始证据。初始权重组四例均失败；训练权重组只有部分记录，缺少整批 summary、guard_final 和正常服务关闭证明。因此整批未完成，不能据此归因学习收益或推定正常清理。中断原因尚未确定。
+
+2026-10-26 收尾检查未发现该批 worker/guard、CARLA 或相关下载进程。旧 heartbeat 的 healthy 字段不表示进程现在仍活着。原始锁、部分记录均保留；不自动恢复或改写为完成。
+
+## 接下来的实施顺序
+
+1. 先处理 B1 基本学习能力与 H 等待退化。优先核对动作、奖励信号、归一化及实际梯度作用；每次试验预登记假设、物理步/时间预算、成功和停止标准，先短验证再追加预算。
+2. 有改进后冻结新版本；对 H/H0/B1/B3 共享的任务奖励、信息、规划控制能力与安全包装保持公平。额外先验、计算和监督单列，不把规则或低层改善算成 PPO 学习贡献。
+3. 最后开展五个独立训练种子及至少 120 个新 CARLA 条件的配对确认。已查看道路只能作为开发/历史集；主假设、模型选择和统计口径在确认前锁定。
+
+## 完整终点，不降低门槛
+
+- 轻量独立测试总体安全完成率 ≥85%，核心场景各 ≥75%。
+- CARLA 独立测试总体 ≥80%，静态、弯道/停车、动态各 ≥70%；至少 120 个去重条件、核心类别各至少 30 个，包含未见条件。碰撞或越界回合比例目标 ≤5%，分别报告事件。
+- H 对充分训练的 B1 在同物理预算下平均提高 ≥10 个百分点，种子配对 95% 区间下界 >0；或在最终测试前锁定并满足样本效率替代假设。
+- 证明 PPO 相对强规则高层的价值，以及上下层可执行性协作的独立贡献；补齐 B2、频率、安全机制与控制消融。
+- 真实 CARLA 训练、迁移和未见测试分开报告，包含可追溯成功/失败录像、模型、原始帧、统计和新检出复现。
+- GitHub 真实交付、论文说明和[中英文简历描述](resume_project.md)均与证据一致。现阶段只可使用诚实预发布，不宣称正式研究验收。
+
+可直接接续的[提示词](continuation_prompt.zh-CN.md)；详细验收项目见[研究台账](research_acceptance.md)。

@@ -10,7 +10,7 @@ controls are frame-verified, with independent byte-exact raw audits and the
 all-eight-case partial H0/H figure. All248H/190H0deterministic decisions are
 reconstructed. H has policy-selected waiting failures and one training bounds
 episode; H0's failed road is fully stationary/intervened. B1 now completes
-20,621training controls and0/4bounds failures in evaluation, with21,565total
+20,621training controls and0/4successes (all four bounds failures) in evaluation, with21,565total
 controls audited and all96decisions reconstructed. All3registered arms are
 complete, total67,289audited controls/534reconstructed decisions; original
 owned-server cleanup verified. See the [complete report](../reports/native_route_complete_20261025.md).
@@ -20,8 +20,10 @@ No new independent-seed, unseen-confirmation or learned-advantage result exists.
 The [initial/trained weight contrast](native_weight_contrast.md) evaluator and
 whole-frame/inference auditor are now implemented:295CPU passes/1skip/4CARLA
 deselections locally, with actual H0 seeded initialization and parameter-exact
-save/reload verified. The actual paired CARLA evaluation remains unexecuted
-pending original queue cleanup; no learned-weight benefit is established.
+save/reload verified. The actual paired CARLA evaluation started but is incomplete: initial arm0/4,
+trained arm partial, whole lifecycle proof absent; no learned-weight benefit
+is established. Current publication, reproduction and follow-up scope are in
+[current status](current_status_20261026.md).
 Optional exact road-SAT batching has independent CPU reproduction and a
 [published development evidence asset](../reports/road_collision_batch_20261025.md);
 it remains disabled in the current training batch. These low-level engineering

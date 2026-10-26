@@ -1,9 +1,14 @@
 # Native actor-weight contrast
 
-Status on 2026-10-25: implemented and locally regression-tested; **actual
-CARLA weight contrast not yet executed**. The original H0/H/B1 queue has
-normally completed and cleaned up. A separately registered scalar/batchSAT B3
-diagnostic now owns CARLA; wait for its normal cleanup before this contrast.
+Status on 2026-10-26: implemented and regression-tested; actual batch
+`20261025T141852Z_native_weight_contrast` STARTED BUT INCOMPLETE. Initial
+weights finish0/4; trained weights have partial records only. Whole summary,
+final guard and normal owned-stop proof are absent; no paired conclusion.
+No matching live worker/guard/server was found at closeout. Cause is unknown;
+preserve all partial files and locks, with no automatic repeat. Original
+H0/H/B1 and the separate scalar/batchSAT B3 pair completed earlier. See
+[current status](current_status_20261026.md). The commands below document the
+harness, not a request to rerun the interrupted batch.
 
 The completed H0 endpoint scores 3/4 on four known training roads. Its actor
 probabilities remain close to uniform, so those outcomes cannot establish that
