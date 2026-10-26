@@ -180,6 +180,11 @@ def signature(config):
             "route_frame_terminal_v1:known_route_projection+lookahead(6,9,12)*offset(-3,-1.5,0,1.5,3)*speed(.75,1.5):terminal_S_arc_envelope_Rmargin1.2")
         result["route_prior"] = "known_map_route_tangents_exposed_as_shared_candidate_geometry_no_state_projection"
         result["behavior_history"] = "selected_candidate_ego_pose_v2"
+        if config.route_goal_candidate:
+            key="candidate_catalog" if config.method == "B1" else "action_catalog"
+            result[key] += ':final_goal_replaces_12m_centre_pair_v2'
+        if config.reference_reuse:
+            result['reference_reuse']='same_selected_pose_speed_v1:time_preserved:tracking_.25m_.2rad_time_.75m:future_body_and_CV_checks'
     if config.execution_feedback != "off":
         result["observation"] += "-candidate-witness31x3-execution6-v1"
         result["observation_shape"] = [450]

@@ -153,6 +153,7 @@ def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statis
         for key in ('jobs','actor_head_experiment','gradient_clipping_experiment','rollout_length_experiment'):protocol.pop(key,None)
         protocol.pop('freeze_observation_statistics',None)
         protocol.pop('own_success_replay',None)
+        protocol.pop('fresh_cadence_experiment',None)
         retained=old.get('recovery',{}).get(method,{}).get('retained_optimizer_steps',0)+summary['optimizer_steps']
         scope=('Auxiliary own-success actor fit, frozen development-road evaluation; no new driving training or PPO updates; not independent conditions' if not train_controls else
             'Real PPO continuation after separately counted own-success auxiliary actor fit; same four development roads, not independent replication')

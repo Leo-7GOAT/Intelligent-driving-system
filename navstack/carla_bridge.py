@@ -131,7 +131,7 @@ class BridgePlant:
         self.world.measured_offroad |= bool(probe and probe["offroad_points_world"])
         self.evidence={k:result[k] for k in ("frame","request_id","episode_id","imu_frame","collisions","sensor_health")}
         for key in ("vehicle_control","speed_setpoint","terminal_sensor_drain_seconds","road_surface_probe",
-                    "actuation_mode","actuation_state","actuator_observation"):
+                    "actuation_mode","actuation_state","actuator_observation","native_dynamic_actors"):
             if key in result:self.evidence[key]=result[key]
 
     @property

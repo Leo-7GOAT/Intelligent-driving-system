@@ -1,0 +1,998 @@
+{
+  "scope": "Single-seed known-road development. Original research acceptance remains unmet; rule successes are not PPO contributions.",
+  "frequency": {
+    "batch": "20261026T124045Z_native_flat_cadence",
+    "seed": 11,
+    "nominal_task_length_m": 6.0,
+    "decision_hz": 10.0,
+    "physical_seconds_per_control": 0.05,
+    "training_controls": 20765,
+    "training_decisions": 10400,
+    "optimizer_steps": 650,
+    "nominal_rollout_controls": 320,
+    "rollout_actions": 160,
+    "batch_size": 160,
+    "ppo_epochs": 10,
+    "training_terminations": {
+      "success": 41,
+      "out_of_bounds": 25,
+      "deadline": 35
+    },
+    "training_successes_by_road": {
+      "0": 22,
+      "2": 19
+    },
+    "all_success_fit_samples": 4199,
+    "margin_fit_samples": 908,
+    "evaluation": [
+      {
+        "case_id": 0,
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 240,
+        "progress": 1.0289150102147797
+      },
+      {
+        "case_id": 1,
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 240,
+        "progress": 0.4202570148059266
+      },
+      {
+        "case_id": 2,
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 240,
+        "progress": 1.7198653546732112
+      },
+      {
+        "case_id": 3,
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 240,
+        "progress": 0.7587517027226216
+      }
+    ],
+    "evaluation_controls": 960,
+    "raw_audit_sha256": "1db5d9e6ff17bb477f991ecab867a9129388786265dced9b7cc4e6ebe269d5c5",
+    "protocol_sha256": "8be3ec7ab03019ff51f6e43882b3797df2ef21c258ee8ad1918564b3290da901",
+    "model_sha256": "26279f158f5769ed73b1ece3ae7770f826afb722c4a1f618f4f96facebf89b24",
+    "normalization_sha256": "3375025f31700da6713651c0e2b1e478a57b561b00b5a6c3ecbbc545f8e151a0",
+    "initial_fingerprint_sha256": "7b7e45c3a205dc6825b00a40a207874f441df64a092bbf8df82a27ef402264d1",
+    "initial_parameter_tensors_verified_equal": 32,
+    "postinitialization_torch_rng_verified_equal": true,
+    "gamma": 0.9989954712917501,
+    "gae_lambda": 0.9948838031081763,
+    "historical_initial_reconstruction_sha256": "219acb37f0d331eba7dd3010f7d91254ddaafbae989b77dd374e4fe747e824b0",
+    "historical_2hz_reference": "20261026T085757Z_native_continuation",
+    "limitation": "Historical2Hzcontrol includes one physical reset/resume; not a clean causal cadence ablation. Both deterministic endpoints0/4. Two additional offline fits were not deployed or scored."
+  },
+  "candidate_coverage": {
+    "scope": "Candidate/plan coverage on measured initial scenes; no vehicle execution or task-success claim",
+    "batch": "20261026T131154Z_native_rule",
+    "protocol_sha256": "847b0c3f5161c96d383a78540dca8ee947f3eb1f88ced12af3d5c4a8a89013eb",
+    "final_goal_candidate": true,
+    "node_budget_per_search": 7200,
+    "new_controls": 0,
+    "optimizer_updates": 0,
+    "rows": [
+      {
+        "case_id": 0,
+        "scene_sha256": "d1d73e82fa7152d9d13ba6a43f9e8b749e93582b45035123078d8141436118ec",
+        "selected_action": 26,
+        "target": [
+          29.796714319069707,
+          12.359322086966923,
+          0.5222659966307686
+        ],
+        "target_speed": 1.5,
+        "selection_seconds": 0.5076354000484571,
+        "search": {
+          "search_calls": 1,
+          "search_nodes": 192,
+          "search_seconds": 0.3910423999186605
+        },
+        "selected_cached_plan": {
+          "status": "success",
+          "nodes": 192,
+          "samples": 667,
+          "all_samples_free": true
+        }
+      },
+      {
+        "case_id": 1,
+        "scene_sha256": "4138d07ae941c4ab2e4a95d40efe577e6640b679d9508d0bf02e1d9b5a165ae7",
+        "selected_action": 0,
+        "target": null,
+        "target_speed": 0.0,
+        "selection_seconds": 0.2266614999389276,
+        "search": {
+          "search_calls": 1,
+          "search_nodes": 90,
+          "search_seconds": 0.1640178000088781
+        },
+        "selected_cached_plan": null
+      },
+      {
+        "case_id": 2,
+        "scene_sha256": "fe484ea18cf090fc43b7d7e9808cb31aaaaa617cd3fa6c90b8a640ad2d271d04",
+        "selected_action": 26,
+        "target": [
+          28.135424875625418,
+          6.0,
+          -0.5232536299210251
+        ],
+        "target_speed": 1.5,
+        "selection_seconds": 0.1990200000582263,
+        "search": {
+          "search_calls": 1,
+          "search_nodes": 82,
+          "search_seconds": 0.10949729999992996
+        },
+        "selected_cached_plan": {
+          "status": "success",
+          "nodes": 82,
+          "samples": 218,
+          "all_samples_free": true
+        }
+      },
+      {
+        "case_id": 3,
+        "scene_sha256": "92720b44b6b2d403545d0043452869f79006fe0c79a83238abf8e5814fbc865e",
+        "selected_action": 10,
+        "target": [
+          13.05954207680048,
+          21.193711695285042,
+          -0.4151819433726731
+        ],
+        "target_speed": 1.5,
+        "selection_seconds": 9.809731999994256,
+        "search": {
+          "search_calls": 2,
+          "search_nodes": 12709,
+          "search_seconds": 9.740310000022873
+        },
+        "selected_cached_plan": {
+          "status": "success",
+          "nodes": 5509,
+          "samples": 64,
+          "all_samples_free": true
+        }
+      }
+    ]
+  },
+  "phases": [
+    {
+      "batch": "20261026T131154Z_native_rule",
+      "hazard": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 10.0
+      },
+      "final_goal_candidate": false,
+      "protocol_sha256": "847b0c3f5161c96d383a78540dca8ee947f3eb1f88ced12af3d5c4a8a89013eb",
+      "reference_reuse": false,
+      "registered_cases": 4,
+      "training_controls": 0,
+      "optimizer_updates": 0,
+      "completed_cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.8140428750588669,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0,
+          "plan_failures": 0
+        }
+      ],
+      "status": "complete",
+      "raw_audit.json": {
+        "scope": "Raw frame verification of rule-only native evaluation; no learned-policy or training claim",
+        "batch": "20261026T131154Z_native_rule",
+        "protocol_sha256": "847b0c3f5161c96d383a78540dca8ee947f3eb1f88ced12af3d5c4a8a89013eb",
+        "summary_sha256": "d9ecd37d128b1066d51f4127214146410d4165cce432c02eac6e7c8fd1bd0472",
+        "trace_sha256": "80ab5d62b12fe5b873469baf9c13172722651d44d572ae9ab3af3bb805e93571",
+        "bridge_response_sha256": "fefdaefa47c236e16e5151117b70ac24c431cd5c77338494e2cc657be7afee97",
+        "scene_hashes": {
+          "scene_0000.json": "d1d73e82fa7152d9d13ba6a43f9e8b749e93582b45035123078d8141436118ec",
+          "scene_0001.json": "4138d07ae941c4ab2e4a95d40efe577e6640b679d9508d0bf02e1d9b5a165ae7",
+          "scene_0002.json": "fe484ea18cf090fc43b7d7e9808cb31aaaaa617cd3fa6c90b8a640ad2d271d04",
+          "scene_0003.json": "92720b44b6b2d403545d0043452869f79006fe0c79a83238abf8e5814fbc865e"
+        },
+        "evaluation_controls_verified": 3600,
+        "reset_ticks_verified": 123,
+        "world_ticks_verified": 3723,
+        "cases_verified": 4,
+        "termination_counts": {
+          "deadline": 4
+        },
+        "training_physics_steps": 0,
+        "optimizer_updates": 0
+      },
+      "raw_audit.json_sha256": "2d802738e758c2ae83b1f79bf36644d9e195e9a6bf86909943e5630b192bc0e3",
+      "guard_final.json": {
+        "epoch": 1793020944.1273227,
+        "worker_pid": 69728,
+        "exit_code": 0,
+        "reason": null
+      },
+      "guard_final.json_sha256": "cda263ab93b38c78841fd061a75c87f4a1c8df543bf0e3c1153fab28318cf263",
+      "infrastructure_server_stop.json": {
+        "post_stop_udp": [],
+        "post_stop_tcp": [],
+        "epoch": 1793020947,
+        "shipping_pid": 61380,
+        "status": "owned_empty_server_stopped"
+      },
+      "infrastructure_server_stop.json_sha256": "98ef4b9a9c4d0cde46e7493addf1fb0929769b99df1b46c36ab22dd9f1df3b59"
+    },
+    {
+      "batch": "20261026T133002Z_native_rule",
+      "hazard": {
+        "version": "native_hazard_v1",
+        "kind": "crossing_walker",
+        "distance_m": 10.0
+      },
+      "final_goal_candidate": false,
+      "protocol_sha256": "755b7b88eda3c9f100f77681759c43a08f4d0334f03d634c5c74612cafbc8dbb",
+      "reference_reuse": false,
+      "registered_cases": 4,
+      "training_controls": 0,
+      "optimizer_updates": 0,
+      "completed_cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 461,
+          "progress": 24.101276915818012,
+          "interventions": 110,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 468,
+          "progress": 23.748574142649602,
+          "interventions": 110,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 411,
+          "progress": 22.481978004500863,
+          "interventions": 80,
+          "plan_failures": 0
+        }
+      ],
+      "status": "failed",
+      "completed_prefix_raw_audit.json": {
+        "scope": "Incomplete rule diagnostic: only completed prefix verified; missing cases are infrastructure failures, not successes",
+        "batch_complete": false,
+        "registered_cases": 4,
+        "uncompleted_cases": [
+          3
+        ],
+        "batch": "20261026T133002Z_native_rule",
+        "protocol_sha256": "755b7b88eda3c9f100f77681759c43a08f4d0334f03d634c5c74612cafbc8dbb",
+        "summary_sha256": null,
+        "failure_sha256": "f1ad08d37c7b4399e9d17039f5f8d6bf70cb279be43a4f151be439be284b5cfb",
+        "trace_sha256": "108d7f01c8bf9a81850f11d213ded2d22c37708aa1800b734ff6215f2004f3da",
+        "bridge_response_sha256": "d8fb5580126bf5a95dac0930c7e133cf9c5d404e319809481dc25cbc6516af4a",
+        "scene_hashes": {
+          "scene_0000.json": "04bf03da17eaf453aeb2527830ef2a8f83ddb2bc3ee4dde661adcb07fdbc1d12",
+          "scene_0001.json": "5df7ac46cfe1167d43def6221d4af36654c4c916a3555660f2192732e888b606",
+          "scene_0002.json": "b0c45d2a07635392129729a81b485a22f7413804e25f984bf8bb98e60ae9158d"
+        },
+        "evaluation_controls_verified": 1340,
+        "reset_ticks_verified": 92,
+        "world_ticks_verified": 1432,
+        "cases_verified": 3,
+        "termination_counts": {
+          "success": 3
+        },
+        "training_physics_steps": 0,
+        "optimizer_updates": 0
+      },
+      "completed_prefix_raw_audit.json_sha256": "651de930d8c7886b619d13a4664edcdb9126ab52553adc0b255f95fda803cf2b",
+      "failure.json": {
+        "epoch": 1793021672.1460903,
+        "error": "InfrastructureFailure('RuntimeError: Spawn failed because of collision at spawn position')"
+      },
+      "failure.json_sha256": "f1ad08d37c7b4399e9d17039f5f8d6bf70cb279be43a4f151be439be284b5cfb",
+      "guard_final.json": {
+        "epoch": 1793021673.5131087,
+        "worker_pid": 10004,
+        "exit_code": 1,
+        "reason": null
+      },
+      "guard_final.json_sha256": "e9ca63e81672b76f67afcfe134ff5b1236ee5a41ffbf2a8d1a564a25856f622d",
+      "infrastructure_server_stop.json": {
+        "shipping_pid": 51524,
+        "status": "owned_empty_server_stopped",
+        "post_stop_tcp": [],
+        "epoch": 1793021678,
+        "post_stop_udp": []
+      },
+      "infrastructure_server_stop.json_sha256": "df3687b6547e3f47316c86e8ec4fcc923b931f643b366051bf7983660a9717d6"
+    },
+    {
+      "batch": "20261026T133154Z_native_rule",
+      "hazard": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 10.0
+      },
+      "final_goal_candidate": false,
+      "protocol_sha256": "7e6f61bda7feca7aed56cc929bcc6c2c3aab0bd4e0732fd07fb510fecb09f8f0",
+      "reference_reuse": false,
+      "registered_cases": 4,
+      "training_controls": 0,
+      "optimizer_updates": 0,
+      "completed_cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.8140428750588669,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.08159763328159997,
+          "interventions": 0,
+          "plan_failures": 0
+        }
+      ],
+      "status": "complete",
+      "raw_audit.json": {
+        "scope": "Raw frame verification of rule-only native evaluation; no learned-policy or training claim",
+        "batch_complete": true,
+        "registered_cases": 4,
+        "uncompleted_cases": [],
+        "batch": "20261026T133154Z_native_rule",
+        "protocol_sha256": "7e6f61bda7feca7aed56cc929bcc6c2c3aab0bd4e0732fd07fb510fecb09f8f0",
+        "summary_sha256": "c249527eed1d398ae56ab59ec21943c4bcd34cfa64315ab13fd03d61b78a4135",
+        "failure_sha256": null,
+        "trace_sha256": "afa10f78c50dcc026dbd940ceb65afb2a62936aae23b49d858b2c2c9838c8874",
+        "bridge_response_sha256": "8901269b8bd995c66d526aec26e510ce99ab9dc8210b761a1aa9e9aad7966dcb",
+        "scene_hashes": {
+          "scene_0000.json": "d1d73e82fa7152d9d13ba6a43f9e8b749e93582b45035123078d8141436118ec",
+          "scene_0001.json": "4138d07ae941c4ab2e4a95d40efe577e6640b679d9508d0bf02e1d9b5a165ae7",
+          "scene_0002.json": "fe484ea18cf090fc43b7d7e9808cb31aaaaa617cd3fa6c90b8a640ad2d271d04",
+          "scene_0003.json": "92720b44b6b2d403545d0043452869f79006fe0c79a83238abf8e5814fbc865e"
+        },
+        "evaluation_controls_verified": 3600,
+        "reset_ticks_verified": 123,
+        "world_ticks_verified": 3723,
+        "cases_verified": 4,
+        "termination_counts": {
+          "deadline": 4
+        },
+        "training_physics_steps": 0,
+        "optimizer_updates": 0
+      },
+      "raw_audit.json_sha256": "9cf6e6d3a2813d4f7d7c6551db7c8a2b901766432e0753c845f0270f28401b1b",
+      "guard_final.json": {
+        "epoch": 1793023130.5230844,
+        "worker_pid": 59872,
+        "exit_code": 0,
+        "reason": null
+      },
+      "guard_final.json_sha256": "f112ffd6281cefe5f2a709214d40be77435b9768611f86212f7c6124e324ce5a",
+      "infrastructure_server_stop.json": {
+        "status": "owned_empty_server_stopped",
+        "post_stop_tcp": [],
+        "shipping_pid": 55504,
+        "epoch": 1793023134,
+        "post_stop_udp": []
+      },
+      "infrastructure_server_stop.json_sha256": "15495c377d0b55b19e56432d2180434d3f44ce1c350200e021605700408c18b3"
+    },
+    {
+      "batch": "20261026T135143Z_native_rule",
+      "hazard": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 10.0
+      },
+      "final_goal_candidate": true,
+      "protocol_sha256": "b71963c709b9f7a76aff15c7386ac8e4b00d194545f384353258c24c8ef941fb",
+      "reference_reuse": false,
+      "registered_cases": 4,
+      "training_controls": 0,
+      "optimizer_updates": 0,
+      "completed_cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 1.4526531664470674,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 1.4276539456273412,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0805774618524353,
+          "interventions": 0,
+          "plan_failures": 0
+        }
+      ],
+      "status": "complete",
+      "raw_audit.json": {
+        "scope": "Raw frame verification of rule-only native evaluation; no learned-policy or training claim",
+        "batch_complete": true,
+        "registered_cases": 4,
+        "uncompleted_cases": [],
+        "batch": "20261026T135143Z_native_rule",
+        "protocol_sha256": "b71963c709b9f7a76aff15c7386ac8e4b00d194545f384353258c24c8ef941fb",
+        "summary_sha256": "8acd2ac45c3ae244cb311d672c882e060393d795897585e31cffe0d00af513d4",
+        "failure_sha256": null,
+        "trace_sha256": "b32c4dbda96088bfae6007cdd49978115c47742c2b39cec4cb1a3c19bc76c949",
+        "bridge_response_sha256": "2a258cdbe43d05ad8008352496b00eb8363a79bc8a93374112c06048e8913516",
+        "scene_hashes": {
+          "scene_0000.json": "7b9fb38b7b44e4c19107b2f21f8c2344b8d899b0d58352cad2deee92e9aeb91c",
+          "scene_0001.json": "1ebafd3bb4940b87587f512511caa910dc832b519d5e893c6c50c85f42061914",
+          "scene_0002.json": "59ff49362f662765017ecd4cc89a06a31948138007c8e13de23fb9ae51b932ff",
+          "scene_0003.json": "c8df437e76fdcdbbbbda678aeb16d1d1dcbfd3862ca55a34b1fece8a6918ef33"
+        },
+        "evaluation_controls_verified": 3600,
+        "reset_ticks_verified": 123,
+        "world_ticks_verified": 3723,
+        "cases_verified": 4,
+        "termination_counts": {
+          "deadline": 4
+        },
+        "training_physics_steps": 0,
+        "optimizer_updates": 0
+      },
+      "raw_audit.json_sha256": "4170cfb5f4296912cafdaef54567ed6e9b514156c83a7477375bb5b89cf559a3",
+      "guard_final.json": {
+        "epoch": 1793024113.6703167,
+        "worker_pid": 4388,
+        "exit_code": 0,
+        "reason": null
+      },
+      "guard_final.json_sha256": "514b1711b41db4ca3a59180e852d2cc829acc490e29b3bace0b3701b72707c47",
+      "infrastructure_server_stop.json": {
+        "post_stop_udp": [],
+        "post_stop_tcp": [],
+        "shipping_pid": 13964,
+        "epoch": 1793024117,
+        "status": "owned_empty_server_stopped"
+      },
+      "infrastructure_server_stop.json_sha256": "6befde887fff57b0ffb5dfcf021161d38948e2cbffb765eff23aef81418a81f9"
+    },
+    {
+      "batch": "20261026T140210Z_native_rule",
+      "hazard": {
+        "version": "native_hazard_v1",
+        "kind": "crossing_walker",
+        "distance_m": 10.0,
+        "lateral_m": -2.5
+      },
+      "final_goal_candidate": false,
+      "protocol_sha256": "71f8f1dddcb0dc1d15cdebf0c12270883aba49a4550ce5609dba9c83b3abcd6a",
+      "reference_reuse": false,
+      "registered_cases": 4,
+      "training_controls": 0,
+      "optimizer_updates": 0,
+      "completed_cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 441,
+          "progress": 24.134220414775918,
+          "interventions": 90,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 459,
+          "progress": 23.767487779360344,
+          "interventions": 100,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 391,
+          "progress": 22.263071985483393,
+          "interventions": 40,
+          "plan_failures": 0
+        }
+      ],
+      "status": "running"
+    },
+    {
+      "batch": "20261026T140943Z_native_rule",
+      "hazard": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 10.0
+      },
+      "final_goal_candidate": true,
+      "protocol_sha256": "646b39af25c1ae3988463f7c92c4a7f42cc34902bca83e673fe7b8a2787309ae",
+      "reference_reuse": true,
+      "registered_cases": 4,
+      "training_controls": 0,
+      "optimizer_updates": 0,
+      "completed_cases": [],
+      "status": "prepared_not_started"
+    }
+  ],
+  "cpu": {
+    "passed": 347,
+    "skipped": 1,
+    "carla_deselected": 4,
+    "seconds": 283.51,
+    "log_sha256": "e8baa49dffb176dff9917dc07d3c33982f79c25bd86ff2e7d01220ca24412e5d",
+    "junit_sha256": "50dbb4b8e31926f40dfd3f36af079cbadd0e2a20887f1acdac48a31126817856"
+  },
+  "walker_spawn_preflight": {
+    "scope": "Spawn-only infrastructure preflight; no ego, controls, PPO, rewards or success-rate evidence",
+    "protocol_sha256": "b71963c709b9f7a76aff15c7386ac8e4b00d194545f384353258c24c8ef941fb",
+    "rows": [
+      {
+        "case_id": 0,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -3.5
+        },
+        "world_spawn_xyz": [
+          -109.12968444824219,
+          -42.20643997192383,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 25,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 1,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -3.5
+        },
+        "world_spawn_xyz": [
+          49.56061935424805,
+          73.0251693725586,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 26,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 2,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -3.5
+        },
+        "world_spawn_xyz": [
+          -69.76908111572266,
+          129.057373046875,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 27,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 3,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -3.5
+        },
+        "world_spawn_xyz": [
+          -30.989452362060547,
+          -53.96714401245117,
+          0.6000000238418579
+        ],
+        "status": "spawn_failed",
+        "error": "Spawn failed because of collision at spawn position"
+      },
+      {
+        "case_id": 0,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5
+        },
+        "world_spawn_xyz": [
+          -108.21493530273438,
+          -41.802425384521484,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 28,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 1,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5
+        },
+        "world_spawn_xyz": [
+          49.75357437133789,
+          72.04396057128906,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 29,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 2,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5
+        },
+        "world_spawn_xyz": [
+          -69.9722900390625,
+          130.03651428222656,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 30,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 3,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5
+        },
+        "world_spawn_xyz": [
+          -31.265724182128906,
+          -54.928226470947266,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 31,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 0,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": 2.5
+        },
+        "world_spawn_xyz": [
+          -103.64117431640625,
+          -39.78234100341797,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 32,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 1,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": 2.5
+        },
+        "world_spawn_xyz": [
+          50.718360900878906,
+          67.13792419433594,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 33,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 2,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": 2.5
+        },
+        "world_spawn_xyz": [
+          -70.98832702636719,
+          134.93218994140625,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 34,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 3,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": 2.5
+        },
+        "world_spawn_xyz": [
+          -32.6470832824707,
+          -59.73362350463867,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 35,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 0,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": 3.5
+        },
+        "world_spawn_xyz": [
+          -102.72642517089844,
+          -39.37832260131836,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 36,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 1,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": 3.5
+        },
+        "world_spawn_xyz": [
+          50.911319732666016,
+          66.1567153930664,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 37,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 2,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": 3.5
+        },
+        "world_spawn_xyz": [
+          -71.19153594970703,
+          135.91131591796875,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 38,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      },
+      {
+        "case_id": 3,
+        "spec": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": 3.5
+        },
+        "world_spawn_xyz": [
+          -32.92335510253906,
+          -60.6947021484375,
+          0.6000000238418579
+        ],
+        "status": "spawned",
+        "actor_id": 39,
+        "actor_type": "walker.pedestrian.0001",
+        "destroyed": true
+      }
+    ],
+    "remaining_actor_ids": [],
+    "sha256": "e06848092c980c8d27d96210bff0ed784b53da06d572b09bf49e17a3fb486d73",
+    "failed_preflight_preserved": "20261026T135143Z_native_rule/infrastructure/walker_spawn_preflight.json",
+    "cleanup_receipt_sha256": "1df2b013defe37c4bd665620b0906f0d3a357aa948c5fb17a2893a179bea8eb3"
+  },
+  "static_geometry_hypothesis": {
+    "scope": "Offline conservative actual-box strip-union hypothesis, not actual execution or adopted low-level version",
+    "case_id": 3,
+    "status": "timeout",
+    "nodes": 7200,
+    "reason": "search_budget",
+    "seconds": 13.439443900017068,
+    "old_aabb_area": 24.165869811227573,
+    "strip_union_area": 12.297531909646036,
+    "rectangles": [
+      [
+        12.700732733454837,
+        16.695022930665097,
+        13.11475654512845,
+        17.524376290805492
+      ],
+      [
+        13.11475654512845,
+        16.30359993410679,
+        13.528780356802063,
+        17.962306654387575
+      ],
+      [
+        13.528780356802063,
+        15.91217693754848,
+        13.942804168475677,
+        18.400237017969662
+      ],
+      [
+        13.942804168475677,
+        15.520753940990168,
+        14.35682798014929,
+        18.658544120034016
+      ],
+      [
+        14.35682798014929,
+        15.129330944431858,
+        14.770851791822905,
+        18.497996716034045
+      ],
+      [
+        14.770851791822905,
+        14.737907947873548,
+        15.184875603496518,
+        18.106574233156305
+      ],
+      [
+        15.184875603496518,
+        14.34648495131524,
+        15.59889941517013,
+        17.71515175027857
+      ],
+      [
+        15.59889941517013,
+        13.955061954756928,
+        16.012923226843746,
+        17.32372926740083
+      ],
+      [
+        16.012923226843746,
+        13.79451836236451,
+        16.42694703851736,
+        16.93230678452309
+      ],
+      [
+        16.42694703851736,
+        14.052829274152762,
+        16.84097085019097,
+        16.540884301645352
+      ],
+      [
+        16.84097085019097,
+        14.490758467105886,
+        17.254994661864586,
+        16.149461818767616
+      ],
+      [
+        17.254994661864586,
+        14.928687660059014,
+        17.6690184735382,
+        15.758039335889874
+      ]
+    ],
+    "new_controls": 0,
+    "optimizer_updates": 0,
+    "path_samples": 0,
+    "all_samples_free": null,
+    "geometry_receipt_sha256": "8a483183453dbcd4bd5015ce6cc5d8f6be6960a094d8252605608cf75b7522f9"
+  }
+}

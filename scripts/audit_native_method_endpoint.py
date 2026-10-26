@@ -46,6 +46,8 @@ def _verify_ticks(ticks, actual, acknowledgements, owners, used, previous, episo
         if key not in actual:
             raise ValueError("Recorded policy frame is absent from bridge responses")
         measured = actual[key]
+        if ('native_dynamic_actors' in measured)!=('native_dynamic_actors' in evidence):
+            raise ValueError('Native dynamic actor measurements missing or fabricated in trace')
         if actuator_observation != "off":
             from navstack.carla_actuation import actuator_state_values
             actuator_state_values(measured)

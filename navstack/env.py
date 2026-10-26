@@ -118,6 +118,7 @@ class NavigationEnv(gym.Env):
         self.ever_controlled = False
         self.last_behavior = np.zeros(4)
         self.reference = None
+        self._reference_selection = None
         self._rule_plan_cache = None
         self.rule_diagnostics = None
         self.execution_outcome = np.zeros(6, dtype=np.float32)
@@ -215,7 +216,7 @@ class NavigationEnv(gym.Env):
         route = getattr(self, "navigation_route", None)
         if route is None:
             raise ValueError("Route catalog needs an explicit known navigation route")
-        candidates = route_frame_candidates(self.state, route, self.config.vehicle)
+        candidates = route_frame_candidates(self.state, route, self.config.vehicle, self.config.route_goal_candidate)
         if (math.dist(route[-1][:2], self.goal[:2]) > 1e-5
                 or abs(wrap(route[-1][2]-self.goal[2])) > 1e-5):
             raise ValueError("Navigation route endpoint differs from task goal")
@@ -349,9 +350,44 @@ class NavigationEnv(gym.Env):
             features.extend((float(clear),float(witness),third))
         return np.r_[features,self.execution_outcome]
 
+    def reusable_reference(self, target, speed):
+        """Retain only the same explicitly selected, still valid timed reference.
+
+        No state projection, retiming, target replacement or policy override.
+        Dynamic predictions start at the current measured state of each actor.
+        """
+        if not self.config.reference_reuse:return False
+        reference=getattr(self,'reference',None)
+        if (reference is None or getattr(self,'_reference_selection',None)!=(target,speed)):
+            return False
+        state=self.state;vehicle=self.config.vehicle
+        remaining_end=reference.start_time+float(reference.t[-1])
+        if remaining_end<=state.time+self.config.control_dt:
+            return False
+        error=tracking_error(state,reference)
+        if (error['lateral']>.25 or abs(error['heading'])>.2
+                or not self.world.free((state.x,state.y,state.yaw),vehicle)):
+            return False
+        # Check the complete remaining spatial reference, including the current
+        # interpolated pose, rather than only sparse prediction-time samples.
+        keep=reference.start_time+reference.t>=state.time
+        poses=zip(reference.x[keep],reference.y[keep],reference.yaw[keep])
+        current=reference.sample([state.time])[0]
+        if (math.hypot(current[0]-state.x,current[1]-state.y)>.75
+                or not self.world.free((current[0],current[1],current[3]),vehicle)
+                or not all(self.world.free(p,vehicle) for p in poses)):
+            return False
+        horizon=min(self.config.prediction_seconds,remaining_end-state.time)
+        times=np.linspace(0.,horizon,max(2,math.ceil(horizon/self.config.control_dt)+1))
+        predicted=reference.sample(state.time+times)
+        visible=[o for o in self.world.dynamic if math.hypot(o.x-state.x,o.y-state.y)<=15]
+        return all(self.world.clearance((p[0],p[1],p[3]),vehicle,o,float(t))>.12
+                   for t,p in zip(times,predicted) for o in visible)
+
     def _prepare_reference(self, action):
-        self.reference = None
         if int(action) == 0:
+            self.reference = None
+            self._reference_selection = None
             return "wait", None
         target, speed = self.decode_action(action)
         s = self.state
@@ -360,6 +396,7 @@ class NavigationEnv(gym.Env):
             terminal_prefix = math.dist(target[:2], self.goal[:2]) < 1e-6
             if (terminal_prefix and math.hypot(s.x-self.goal[0], s.y-self.goal[1]) <= self.config.planner.goal_tolerance
                     and abs(wrap(s.yaw-self.goal[2])) <= self.config.goal_yaw_tolerance):
+                self.reference=None;self._reference_selection=None
                 return "parking_brake", {"status":"terminal_brake", "planning_time":0., "terminal_goal_prefix":True}
         elif self.config.terminal_goal_prefix and self.config.parking:
             length = (3.0, 6.0, 9.0)[(int(action) - 1) // 10]
@@ -375,7 +412,14 @@ class NavigationEnv(gym.Env):
                 target = self.goal
                 terminal_prefix = True
                 if math.hypot(s.x-self.goal[0], s.y-self.goal[1]) <= self.config.planner.goal_tolerance:
+                    self.reference=None;self._reference_selection=None
                     return "parking_brake", {"status":"terminal_brake","planning_time":0.,"terminal_goal_prefix":True}
+        if self.reusable_reference(target,speed):
+            return 'reference',{'status':'reference_reused','expanded_nodes':0,'planning_time':0.,
+                'terminal_goal_prefix':terminal_prefix,'reference_start_time':self.reference.start_time,
+                'reuse_scope':'same_selected_pose_and_speed_no_retiming'}
+        self.reference = None
+        self._reference_selection = None
         cached = self._rule_plan_cache
         self._rule_plan_cache = None
         if cached and cached[0] == s and cached[1] == target:
@@ -436,6 +480,7 @@ class NavigationEnv(gym.Env):
             detail["failure_reason"] = "constant_velocity_spacetime_conflict"
             return "dynamic_brake", detail
         self.reference = reference
+        self._reference_selection = (target,speed)
         return "reference", detail
 
     def _event(self, allowed_success=True):
@@ -757,6 +802,16 @@ def rule_action(env):
             # absent the original ordering and fallback search remain available.
             penalty = 0. if continuation[target] else 5.
             candidates.append((math.dist(target[:2],env.goal[:2])-.1*speed+penalty,i,target,speed))
+            if env.config.reference_reuse and env.reusable_reference(target,speed):
+                reference=env.reference;keep=reference.start_time+reference.t>=s.time
+                points=np.column_stack((reference.x[keep],reference.y[keep]))
+                length=np.linalg.norm(np.diff(points,axis=0),axis=1).sum()
+                score=math.dist(target[:2],env.goal[:2])+.05*length-.1*speed+penalty
+                if score<best[0]:best=(score,i)
+                # Reuse is a verified candidate path, so fallback search for
+                # this same target is unnecessary. No selected-action override.
+                cached[target]=np.column_stack((reference.x[keep],reference.y[keep],reference.yaw[keep]))
+                continue
             if target not in cached:
                 cached[target] = analytic_connection((s.x,s.y,s.yaw), target, env.world, env.config.vehicle)
             path = cached[target]
@@ -773,6 +828,11 @@ def rule_action(env):
         searches = []
         for optimistic, i, target, speed in sorted(candidates):
             if optimistic >= best[0] or target in searched or cached[target] is not None:
+                continue
+            # A blocked route-frame endpoint is rejected by Hybrid A* before
+            # expansion. Do not spend one of the three fallback searches on it
+            # while a collision-free endpoint remains unexamined.
+            if env.config.subgoal_mode=='route_frame_terminal' and not env.world.free(target,env.config.vehicle):
                 continue
             searched.add(target)
             plan = env.planner.plan((s.x,s.y,s.yaw),target,env.world)

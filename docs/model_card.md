@@ -1,5 +1,14 @@
 # Development model card
 
+## Native cadence and hazard development
+
+[Measured report](../reports/native_hazards_cadence_20261026.md): fresh seed11
+categorical10Hz B1 performs20,765 real CARLA training controls/650 Adam steps;
+its frozen known-road6m endpoint is0/4. This model and two unscored own-success
+fits remain local. Native hazard B3 diagnostics load no PPO weights and cannot
+be credited as PPO successes. New final-goal/reference-reuse semantics require
+new compatible models; old policy results are retained under frozen sources.
+
 ## Local terminal-margin models (2026-10-26 late evening)
 
 [Matched experiment](../reports/native_terminal_margin_20261026.md) and

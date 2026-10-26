@@ -91,3 +91,29 @@ def test_rule_audit_rejects_unregistered_speed_selection(tmp_path):
     write_gzip(tmp_path/'evaluation_trace.jsonl.gz',[row])
     with pytest.raises(ValueError,match='lower-speed selection'):
         audit(tmp_path)
+
+
+def test_completed_prefix_keeps_missing_cases_and_requires_terminal_infrastructure_error(tmp_path):
+    fixture(tmp_path)
+    summary=json.loads((tmp_path/'summary.json').read_text())
+    write_json(tmp_path/'case_0000.json',summary['episodes'][0])
+    (tmp_path/'summary.json').unlink()
+    protocol=json.loads((tmp_path/'protocol.json').read_text())
+    protocol['routes'].append({'geometry_id':'unstarted-road'})
+    write_json(tmp_path/'protocol.json',protocol)
+    write_json(tmp_path/'failure.json',{'error':'RuntimeError: fixture spawn failure'})
+    write_json(tmp_path/'guard_final.json',{'exit_code':1})
+    write_json(tmp_path/'infrastructure/server_stop.json',{'status':'owned_empty_server_stopped'})
+    path=tmp_path/'infrastructure/bridge_fixture_responses.jsonl.gz'
+    with gzip.open(path,'rt') as stream:rows=[json.loads(line) for line in stream]
+    with pytest.raises(FileNotFoundError):audit(tmp_path)
+    with pytest.raises(ValueError,match='terminal infrastructure error'):audit(tmp_path,True)
+    rows.append({'response':{'ok':False,'infrastructure_failure':True,'error':'spawn failure'}})
+    write_gzip(path,rows)
+    result=audit(tmp_path,True)
+    assert not result['batch_complete'] and result['uncompleted_cases']==[1]
+    assert result['registered_cases']==2 and result['cases_verified']==1
+    assert result['termination_counts']=={'deadline':1}
+    rows.insert(2,rows[1])
+    write_gzip(path,rows)
+    with pytest.raises(ValueError,match='Duplicate applied bridge frame'):audit(tmp_path,True)

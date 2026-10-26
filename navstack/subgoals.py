@@ -8,7 +8,7 @@ import math
 import numpy as np
 
 
-def route_frame_candidates(state, route, vehicle):
+def route_frame_candidates(state, route, vehicle, include_final_goal=False):
     """Propose local poses along a known route without moving measured state.
 
     Route samples are (x, y, yaw) in metres/radians. Nearest-segment projection
@@ -40,6 +40,12 @@ def route_frame_candidates(state, route, vehicle):
             offset=max(-maximum,min(maximum,offset))
             target=(x-math.sin(yaw)*offset,y+math.cos(yaw)*offset,yaw)
             for speed in (.75,1.5):result.append((target,speed))
+    if include_final_goal:
+        # Versioned action semantics: replace only the furthest centre pair.
+        # The actual goal is already shared task information. It still needs a
+        # complete swept-body plan and MPC; this does not move or stop the ego.
+        goal=tuple(float(v) for v in path[-1])
+        result[25:27]=[(goal,.75),(goal,1.5)]
     return tuple(result)
 
 

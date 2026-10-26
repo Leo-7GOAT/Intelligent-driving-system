@@ -88,7 +88,7 @@ def test_frozen_evaluation_drops_inherited_training_only_statistics_flag(tmp_pat
         (root/'scripts'/name).write_text('# fixture',encoding='utf-8')
     calibration=parent/'calibration/calibration.json';write(calibration,{})
     write(parent/'protocol.json',{'source_hashes':{},'calibration_sha256':stage.sha(calibration),
-        'freeze_observation_statistics':True,'own_success_replay':{'steps_per_phase':100,'online_success_updates':True},
+        'freeze_observation_statistics':True,'fresh_cadence_experiment':True,'own_success_replay':{'steps_per_phase':100,'online_success_updates':True},
         'resource_limits':{'wall_seconds':900},'routes':[{'id':0}],
         'recovery':{'B1':{'retained_optimizer_steps':4}}})
     write(parent/'B1/summary.json',{'optimizer_steps':2,'lineage_control_steps':20,'charged_control_steps_lower_bound':20})
@@ -104,6 +104,7 @@ def test_frozen_evaluation_drops_inherited_training_only_statistics_flag(tmp_pat
     assert protocol['evaluation_only'] and protocol['controlled_budget_per_method']==0
     assert 'freeze_observation_statistics' not in protocol
     assert 'own_success_replay' not in protocol
+    assert 'fresh_cadence_experiment' not in protocol
     assert protocol['recovery']['B1']['retained_optimizer_steps']==16
 
 

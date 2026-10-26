@@ -26,6 +26,22 @@ def config(method='H', feedback='enabled', mode='route_frame_terminal'):
         planner=PlannerConfig(max_seconds=None, analytic_expansion=True))
 
 
+def test_final_goal_pair_is_explicit_shared_and_changes_checkpoint_signature():
+    from navstack.subgoals import route_frame_candidates
+    old=config();new=EnvConfig.from_dict({**old.to_dict(),'route_goal_candidate':True})
+    state=VehicleState(6.,16.)
+    route=[[6.,16.,0.],[31.,16.,0.]]
+    base=route_frame_candidates(state,route,old.vehicle)
+    expanded=route_frame_candidates(state,route,new.vehicle,True)
+    assert len(base)==len(expanded)==31
+    assert expanded[25:27]==(((31.,16.,0.),.75),((31.,16.,0.),1.5))
+    assert all(a==b for i,(a,b) in enumerate(zip(base,expanded)) if i not in (25,26))
+    assert signature(old)!=signature(new)
+    direct=EnvConfig.from_dict({**new.to_dict(),'method':'B1'})
+    assert signature(direct)['candidate_catalog']==signature(new)['action_catalog']
+    with pytest.raises(ValueError):EnvConfig(route_goal_candidate=True)
+
+
 def test_route_information_parity_flat_stays_direct_and_signatures_change():
     h, b = RouteFixture(config()), RouteFixture(config('B1'))
     try:
@@ -109,3 +125,24 @@ def test_absent_continuation_witness_does_not_mask_moving_actions(monkeypatch):
         assert env._prepare_reference(action)[0]=='reference'
     finally:
         env.close()
+
+
+def test_blocked_endpoints_do_not_exhaust_route_rule_fallback_budget(monkeypatch):
+    from types import SimpleNamespace
+    import navstack.env as module
+    from navstack.planning import PlanResult
+    from navstack.vehicle import VehicleState
+    monkeypatch.setattr(module,'analytic_connection',lambda *args:None,raising=False)
+    # rule_action imports the production connector at call time.
+    monkeypatch.setattr('navstack.planning.analytic_connection',lambda *args:None)
+    calls=[]
+    def plan(start,target,world):
+        calls.append(target)
+        return PlanResult('success',np.array([start,target]),1.,1,0.)
+    cfg=config(feedback='enabled')
+    env=SimpleNamespace(config=cfg,state=VehicleState(0.,0.,0.),goal=(20.,0.,0.),
+        world=SimpleNamespace(free=lambda target,vehicle:target[0]<=16.),
+        planner=SimpleNamespace(plan=plan),decode_action=lambda i:((19.-(i-1)//2,0.,0.),1.5))
+    action=rule_action(env)
+    assert action==7 and calls==[(16.,0.,0.)]
+    assert env.rule_diagnostics['search_calls']==1

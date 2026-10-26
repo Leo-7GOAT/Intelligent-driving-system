@@ -70,7 +70,7 @@ def prepare(parent,method='H',original_goals=False):
         write_json(batch/'parent_training_summary.json',summary)
         write_json(batch/'parent_protocol.json',old)
         protocol=deepcopy(old);now=time.time()
-        for key in ('jobs','actor_head_experiment','gradient_clipping_experiment','rollout_length_experiment'):
+        for key in ('jobs','actor_head_experiment','gradient_clipping_experiment','rollout_length_experiment','fresh_cadence_experiment'):
             protocol.pop(key,None)
         protocol.pop('freeze_observation_statistics',None);protocol.pop('own_success_replay',None)
         prior=old.get('recovery',{}).get(method,{})

@@ -12,9 +12,25 @@ from scripts.audit_native_method_endpoint import read, sha, read_prefix, _verify
 from navstack.metrics import timing_summary
 
 
-def audit(batch):
+def audit(batch, allow_completed_prefix=False):
     batch = Path(batch)
-    protocol, summary = read(batch/'protocol.json'), read(batch/'summary.json')
+    protocol = read(batch/'protocol.json')
+    partial = allow_completed_prefix and not (batch/'summary.json').exists()
+    if partial:
+        failure = read(batch/'failure.json')
+        guard = read(batch/'guard_final.json')
+        cleanup = read(batch/'infrastructure/server_stop.json')
+        if (not failure.get('error') or guard.get('exit_code') != 1
+                or cleanup.get('status') != 'owned_empty_server_stopped'):
+            raise ValueError('Partial audit requires a recorded failure and normal owned cleanup')
+        results = [read(p) for p in sorted(batch.glob('case_*.json'))]
+        ids = [r['case_id'] for r in results]
+        if not ids or ids != list(range(len(ids))) or len(ids) >= len(protocol['routes']):
+            raise ValueError('Partial audit requires a strict completed case prefix')
+        summary = {'status': 'complete', 'policy_kind': 'rule_only_B3', 'episodes': results,
+                   'training_physics_steps': 0, 'optimizer_updates': 0}
+    else:
+        summary = read(batch/'summary.json')
     if summary['status'] != 'complete' or summary['policy_kind'] != 'rule_only_B3':
         raise ValueError('Requires a completed explicitly labelled rule diagnostic')
     if any(record.get(key) != 0 for record in (protocol, summary)
@@ -54,6 +70,13 @@ def audit(batch):
     rows, error = read_prefix(batch/'evaluation_trace.jsonl.gz')
     if error:
         raise ValueError('Incomplete rule trace: '+error)
+    if partial:
+        errors = [w['response'] for w in wrappers if w.get('response', {}).get('ok') is False]
+        if (len(errors) != 1 or wrappers[-1].get('response') != errors[0]
+                or not errors[0].get('infrastructure_failure')):
+            raise ValueError('Partial audit requires exactly one terminal infrastructure error')
+        summary.update(evaluation_controls=len(actual), reset_ticks=sum(resets.values()),
+                       world_ticks=len(actual)+sum(resets.values()))
     cases, used, previous, episodes = {}, set(), {}, set()
     for row in rows:
         if row['policy_kind'] != 'rule_only_B3':
@@ -90,7 +113,7 @@ def audit(batch):
         if info['termination_reason']:
             case['terminal'] = info['episode_metrics']
     expected = {r['case_id']: r for r in summary['episodes']}
-    inventory = set(range(len(protocol['routes'])))
+    inventory = set(range(len(summary['episodes']) if partial else len(protocol['routes'])))
     if len(expected) != len(summary['episodes']) or set(expected) != inventory or set(cases) != inventory:
         raise ValueError('Incomplete or duplicated registered case inventory')
     scene_hashes = {}
@@ -112,15 +135,24 @@ def audit(batch):
                 or scene['scene']['road_grid']['sha256'] != case['initial']['road_sha256']):
             raise ValueError('Scene identity differs from the registered route or recorded task')
         scene_hashes[path.name] = sha(path)
+        if protocol.get('native_hazard'):
+            from navstack.native_hazards import verify_native_hazard_scene
+            verify_native_hazard_scene(scene['scene']['native_layout'],protocol['native_hazard'],
+                scene['scene'].get('native_hazard',{}),scene['scene']['static'],scene['initial']['dynamic'])
     if not actual or used != set(actual) or set(resets) != episodes or len(episodes) != len(inventory):
         raise ValueError('Unaccounted applied controls or resets')
     reset_ticks = sum(resets.values())
     if (summary['evaluation_controls'] != len(used) or summary['reset_ticks'] != reset_ticks
             or summary['world_ticks'] != len(used)+reset_ticks):
         raise ValueError('World/reset/control accounting mismatch')
-    return {'scope': 'Raw frame verification of rule-only native evaluation; no learned-policy or training claim',
+    return {'scope': ('Incomplete rule diagnostic: only completed prefix verified; missing cases are infrastructure failures, not successes'
+                      if partial else 'Raw frame verification of rule-only native evaluation; no learned-policy or training claim'),
+            'batch_complete': not partial, 'registered_cases': len(protocol['routes']),
+            'uncompleted_cases': sorted(set(range(len(protocol['routes'])))-inventory),
             'batch': batch.name, 'protocol_sha256': sha(batch/'protocol.json'),
-            'summary_sha256': sha(batch/'summary.json'), 'trace_sha256': sha(batch/'evaluation_trace.jsonl.gz'),
+            'summary_sha256': None if partial else sha(batch/'summary.json'),
+            'failure_sha256': sha(batch/'failure.json') if partial else None,
+            'trace_sha256': sha(batch/'evaluation_trace.jsonl.gz'),
             'bridge_response_sha256': sha(paths[0]), 'scene_hashes': scene_hashes,
             'evaluation_controls_verified': len(used), 'reset_ticks_verified': reset_ticks,
             'world_ticks_verified': len(used)+reset_ticks, 'cases_verified': len(cases),
@@ -132,8 +164,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch', required=True, type=Path)
     parser.add_argument('--output', type=Path)
+    parser.add_argument('--allow-completed-prefix', action='store_true')
     args = parser.parse_args()
-    result = audit(args.batch)
+    result = audit(args.batch, args.allow_completed_prefix)
     output = args.output or args.batch/'raw_audit.json'
     with output.open('x', encoding='utf-8') as stream:
         json.dump(result, stream, indent=2)

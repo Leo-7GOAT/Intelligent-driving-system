@@ -88,10 +88,12 @@ def training_config(protocol, method, vehicle):
         execution_feedback=feedback,candidate_observation=protocol.get('road_candidate_policy',False),
         road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),
         subgoal_mode=protocol.get('subgoal_mode', 'ego_arcs'),
+        route_goal_candidate=protocol.get('route_goal_candidate',False),
+        reference_reuse=protocol.get('reference_reuse',False),
         actuator_observation=protocol.get('actuator_observation', 'off'),
         local_candidate_filter=protocol.get('candidate_head')=='unshared_local_v1',
         road_collision_backend=protocol.get('road_collision_backend', 'scalar'),
-        flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0,
+        flat_hold=protocol.get('flat_hold',10) if method=='B1' else 10, deadline=protocol["episode_seconds"], obstacle_num=0,
         flat_longitudinal_mode=protocol.get('flat_longitudinal_mode','acceleration') if method=='B1' else 'acceleration')
     if method=='B1' and protocol.get('flat_action_catalog','continuous')!='continuous':
         config.flat_action_catalog=protocol['flat_action_catalog'];config.__post_init__()
@@ -110,6 +112,14 @@ def training_config(protocol, method, vehicle):
             raise ValueError('Task progress weight must be an explicit finite number')
         config.reward=RewardConfig(**{**asdict(config.reward),'progress_weight':weight})
     return config
+
+
+def learning_schedule(protocol,config,rollout_actions):
+    batch_size=protocol.get('ppo_batch_size',32)
+    if type(batch_size) is not int or batch_size<2 or rollout_actions%batch_size:
+        raise ValueError('PPO batch must divide the registered rollout')
+    return {'n_steps':rollout_actions,'batch_size':batch_size,'n_epochs':protocol['ppo_epochs'],
+            'gamma':config.gamma,'gae_lambda':.95**(config.control_dt*config.substeps)}
 
 
 class RecordedRoadEnv(CarlaNavigationEnv):
@@ -298,12 +308,20 @@ def run(batch):
                             policy=LocalWitnessRoadPolicy
                     vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
                     algorithm = IndependentClipPPO if job.get('gradient_clip_mode') == INDEPENDENT_CLIP else PPO
-                    model = algorithm(policy, vec, n_steps=rollout_actions, batch_size=32,
-                        n_epochs=protocol["ppo_epochs"], gamma=config.gamma, gae_lambda=.95**.5,
+                    model = algorithm(policy, vec, **learning_schedule(protocol,config,rollout_actions),
                         policy_kwargs={"net_arch":{"pi":[64,64],"vf":[64,64]}}, seed=protocol["seed"], device="cpu")
-                if model.n_steps != rollout_actions or model.n_epochs != protocol['ppo_epochs']:
+                if (model.n_steps != rollout_actions or model.n_epochs != protocol['ppo_epochs'] or
+                        model.batch_size!=protocol.get('ppo_batch_size',32)):
                     raise ValueError('Restored learner differs from registered rollout/epoch schedule')
                 configure_continuation_normalization(vec,protocol,recovery)
+                if protocol.get('fresh_cadence_experiment'):
+                    if recovery is not None:raise ValueError('Cadence diagnostic must use fresh weights')
+                    write_json(output/'initial_parameter_fingerprints.json',{
+                        'parameters':{name:hashlib.sha256(value.detach().cpu().numpy().tobytes()).hexdigest()
+                            for name,value in model.policy.state_dict().items()},
+                        'torch_rng_sha256':hashlib.sha256(torch.get_rng_state().numpy().tobytes()).hexdigest(),
+                        'rollout_actions':model.n_steps,'batch_size':model.batch_size,'gamma':model.gamma,'gae_lambda':model.gae_lambda,
+                        'decision_seconds':config.control_dt*config.substeps,'rollout_nominal_controls':model.n_steps*config.substeps})
                 write_json(output/'policy_architecture.json',{'policy':type(model.policy).__name__,
                     'rollout_actions':model.n_steps,'ppo_epochs':model.n_epochs,'batch_size':model.batch_size,
                     'algorithm':type(model).__name__,'gradient_clip_mode':getattr(model,'gradient_clip_mode',GLOBAL_CLIP),

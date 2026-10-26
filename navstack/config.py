@@ -130,6 +130,8 @@ class EnvConfig:
     training_route_length: float | None = None
     training_route_range: list[float] | None = None
     subgoal_mode: str = "ego_arcs"
+    route_goal_candidate: bool = False
+    reference_reuse: bool = False
     execution_feedback: str = "off"
     candidate_observation: bool = False
     local_candidate_filter: bool = False
@@ -169,6 +171,10 @@ class EnvConfig:
             raise ValueError("Unknown subgoal semantics")
         if self.subgoal_mode == "route_frame_terminal" and not (self.candidate_observation and self.road_observation):
             raise ValueError("Route candidates require shared candidate and measured-road observations")
+        if type(self.route_goal_candidate) is not bool or (self.route_goal_candidate and self.subgoal_mode != 'route_frame_terminal'):
+            raise ValueError('Final route goal candidate requires the explicit route catalog')
+        if type(self.reference_reuse) is not bool or (self.reference_reuse and self.subgoal_mode != 'route_frame_terminal'):
+            raise ValueError('Reference reuse requires the explicit route catalog')
         if self.execution_feedback not in ("off", "enabled", "ablated", "continuation", "continuation_ablated"):
             raise ValueError("Unknown execution feedback mode")
         if self.execution_feedback.startswith("continuation") and self.subgoal_mode != "route_frame_terminal":
@@ -246,6 +252,10 @@ class EnvConfig:
     def to_dict(self):
         result = asdict(self)
         # Preserve the serialized configuration of historical, disabled runs.
+        if not self.route_goal_candidate:
+            result.pop('route_goal_candidate')
+        if not self.reference_reuse:
+            result.pop('reference_reuse')
         if not self.local_candidate_filter:
             result.pop('local_candidate_filter')
         if self.flat_longitudinal_mode == 'acceleration':

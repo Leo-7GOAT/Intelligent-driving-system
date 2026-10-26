@@ -143,6 +143,7 @@ def prepare(parent, wall_seconds, rpc_port=None):
     hashes={p.relative_to(batch/'source').as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
             for p in (batch/'source').rglob('*') if p.is_file() and p.suffix in ('.py','.ps1')}
     now=time.time()
+    old.pop('fresh_cadence_experiment',None)
     old.update(created_epoch=now,deadline_epoch=now+wall_seconds,methods=list(methods),method_budgets=budgets,
         source_hashes=hashes,recovery=recovery,parent_batch=parent.name,
         scope='Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison.',

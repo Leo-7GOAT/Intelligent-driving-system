@@ -77,11 +77,11 @@ class Bridge:
     def transform(self,x,y,yaw=0):
         return carla.Transform(self.loc(x,y),carla.Rotation(yaw=self.angle-math.degrees(yaw)))
 
-    def spawn_vehicle(self,x,y,role):
+    def spawn_vehicle(self,x,y,role,yaw=0.):
         bp=self.world.get_blueprint_library().find("vehicle.tesla.model3");bp.set_attribute("role_name",role)
         if self.record_dir is not None and bp.has_attribute("color"):
             bp.set_attribute("color","255,80,0" if role=="codex_ppo_ego" else "30,100,220")
-        a=self.world.spawn_actor(bp,self.transform(x,y));self.owned.append(a);a.set_autopilot(False)
+        a=self.world.spawn_actor(bp,self.transform(x,y,yaw));self.owned.append(a);a.set_autopilot(False)
         a.apply_control(carla.VehicleControl(brake=1,hand_brake=True));return a
 
     def begin(self,r):
@@ -89,6 +89,14 @@ class Bridge:
         self.actuator_observation=r.get("actuator_observation","off")
         validate_actuator_interface(self.cal["recommended_adapter"],self.actuator_observation,
             r.get("road_observation",False),r.get("scenario"),r.get("diagnostic_actuation",False))
+        prepared_layout=None;prepared_hazard=None
+        if r.get('native_hazard') is not None:
+            if r.get('scenario')!='native_curve' or not r.get('road_observation'):
+                raise ValueError('Native hazards require the measured native road interface')
+            from navstack.native_route import local_layout
+            from navstack.native_hazards import resolve_native_hazard
+            prepared_layout=local_layout(r['native_route'],self.map.name,hashlib.sha256(self.map.to_opendrive().encode()).hexdigest())
+            prepared_hazard=resolve_native_hazard(prepared_layout,r['native_hazard'])
         self.road_geometry_version=r.get("road_geometry_version","carla_driving_64_v1")
         if self.road_geometry_version not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"):
             raise ValueError("Unknown road geometry version")
@@ -104,7 +112,7 @@ class Bridge:
         self.native_layout=None;self.spawn_z=.6
         if scenario=="native_curve":
             from navstack.native_route import local_layout
-            self.native_layout=local_layout(r["native_route"],self.map.name,hashlib.sha256(self.map.to_opendrive().encode()).hexdigest())
+            self.native_layout=prepared_layout if prepared_layout is not None else local_layout(r["native_route"],self.map.name,hashlib.sha256(self.map.to_opendrive().encode()).hexdigest())
             self.angle=self.native_layout["angle"];self.origin=self.native_layout["origin"]
             self.spawn_z=self.native_layout["spawn_z"]
             self.width=self.native_layout["width"];self.height=self.native_layout["height"]
@@ -128,7 +136,7 @@ class Bridge:
                 waypoint=self.map.get_waypoint(self.loc(x,y),project_to_road=False,lane_type=carla.LaneType.Driving)
                 return waypoint is not None and abs(waypoint.transform.location.z-(self.spawn_z-.6))<1.5
             self.road_grid=sample_road_grid(self.native_layout,is_driving,self.road_geometry_version)
-        self.dynamic=[];self.static_actors=[]
+        self.dynamic=[];self.static_actors=[];self.native_hazard=prepared_hazard;self.walker_direction=None;self.walker_delay=0.
         case_rng=random.Random(210000+condition)
         start_y=case_rng.uniform(6.5,7.5);goal_y=start_y
         self.walker_speed=case_rng.uniform(.5,.75)
@@ -150,6 +158,22 @@ class Bridge:
             walker=self.world.spawn_actor(bp,self.transform(obstacle_x,2.))
             self.owned.append(walker);self.dynamic=[walker]
         elif scenario not in ("empty","native_curve"):raise ValueError("unknown CARLA scenario")
+        if self.native_hazard is not None:
+            x,y,yaw=self.native_hazard['spawn_pose']
+            if self.native_hazard['kind']=='static_vehicle':
+                hazard=self.spawn_vehicle(x,y,'codex_native_static_obstacle',yaw)
+                self.static_actors.append(hazard)
+            else:
+                bp=self.world.get_blueprint_library().find('walker.pedestrian.0001')
+                if bp.has_attribute('is_invincible'):bp.set_attribute('is_invincible','false')
+                try:
+                    hazard=self.world.spawn_actor(bp,self.transform(x,y,yaw))
+                except RuntimeError as exc:
+                    raise RuntimeError('Native crossing walker spawn failed at local pose %r: %s' % ([x,y,yaw],exc))
+                self.owned.append(hazard);self.dynamic=[hazard]
+                self.walker_speed=self.native_hazard['walker_speed_m_s'];self.walker_delay=self.native_hazard['start_delay_s']
+                self.walker_direction=self.native_hazard['walker_direction_local']
+            self.native_hazard={**self.native_hazard,'actor_id':hazard.id,'actor_type':hazard.type_id}
         sensor=self.world.spawn_actor(self.world.get_blueprint_library().find("sensor.other.collision"),carla.Transform(),attach_to=self.actor)
         self.owned.append(sensor)
         self.collision_sensor=sensor
@@ -202,6 +226,7 @@ class Bridge:
                 "road_surface_probe_misses":misses,"longitudinal_edges":"task boundaries", "condition":condition,
                 "generator_version":"native_curve_v1" if self.native_layout else "seeded_geometry_v1",
                 "native_layout":self.native_layout,"road_grid":self.road_grid,
+                **({'native_hazard':self.native_hazard,'task_family':self.native_hazard['task_family']} if self.native_hazard else {}),
                 "boundary_scope":"shared_sampled_driving_grid_v1" if self.road_grid else ("sampled_measured_footprint_on_native_driving_surface" if self.native_layout else "measured_straight_road_rectangle"),
                 "walker_control_speed":self.walker_speed,"reset_ticks":30+(1 if len(self.retired_ids)>0 else 0)}}
 
@@ -229,10 +254,12 @@ class Bridge:
         yaw=math.radians(tr.rotation.yaw);x,y=self.local(tr.location.x+self.rear*math.cos(yaw),tr.location.y+self.rear*math.sin(yaw))
         wheels=[self.actor.get_wheel_steer_angle(k) for k in (carla.VehicleWheelLocation.FL_Wheel,carla.VehicleWheelLocation.FR_Wheel)]
         delta=-math.atan(sum(math.tan(math.radians(w)) for w in wheels)/2)
-        dynamic=[]
+        dynamic=[];native_dynamic=[]
         for actor in self.dynamic:
             p=actor.get_location();vel=actor.get_velocity();xx,yy=self.local(p.x,p.y)
             dynamic.append({"x":xx,"y":yy,"vx":vel.x*self.co+vel.y*self.si,"vy":vel.x*self.si-vel.y*self.co,"radius":.5})
+            if self.native_hazard is not None:
+                native_dynamic.append({'actor_id':actor.id,'actor_type':actor.type_id,'state':dynamic[-1]})
         state={"x":x,"y":y,"yaw":(math.radians(self.angle)-yaw+math.pi)%(2*math.pi)-math.pi,
                "v":v.x*f.x+v.y*f.y,"steering":delta,"acceleration":a.x*f.x+a.y*f.y,
                "time":self.world.get_snapshot().timestamp.elapsed_seconds-self.t0}
@@ -262,7 +289,7 @@ class Bridge:
         if self.actuator_observation != "off":
             adapter={"actuator_observation":self.actuator_observation,"speed_setpoint":self.speed_target,
                 "actuation_state":self.acceleration_controller.state(),"actuation_mode":self.last_actuation_mode}
-        return {**adapter,"state":state,"frame":self.frame,"imu_frame":self.imu_frame,"road_surface_probe":road_probe,
+        return {**adapter,**({'native_dynamic_actors':native_dynamic} if native_dynamic else {}),"state":state,"frame":self.frame,"imu_frame":self.imu_frame,"road_surface_probe":road_probe,
                 "world_elapsed_seconds":self.world.get_snapshot().timestamp.elapsed_seconds,"collisions":[e for e in self.events if e["episode_id"]==self.active_episode],
                 "dynamic":dynamic,"command":self.command,"sensor_health":"frame_heartbeat_ok"}
 
@@ -287,7 +314,10 @@ class Bridge:
                                  manual_gear_shift=manual,gear=1 if manual else 0))
         for actor in self.dynamic:
             # Same condition-dependent open-loop control; policy only sees current measured state.
-            actor.apply_control(carla.WalkerControl(direction=carla.Vector3D(self.si,-self.co,0),speed=self.walker_speed))
+            direction=carla.Vector3D(self.si,-self.co,0)
+            if self.walker_direction is not None:
+                x,y=self.walker_direction;direction=carla.Vector3D(x*self.co+y*self.si,x*self.si-y*self.co,0)
+            actor.apply_control(carla.WalkerControl(direction=direction,speed=self.walker_speed if state['time']>=self.walker_delay else 0.))
         self.last_actuation_mode=actuation_mode
         self.command={"acceleration":a,"steering":delta};self.tick()
         applied=self.actor.get_control()

@@ -358,6 +358,7 @@ def prepare(parent,target=100000,wall_seconds=7200,curriculum_length=None):
                 old['curriculum']={**old['curriculum'],'prefix_meters':curriculum_length,
                     'previous_prefix_meters':read(parent/'protocol.json')['curriculum']['prefix_meters']}
             now=time.time()
+            old.pop('fresh_cadence_experiment',None)
             old.update(created_epoch=now,deadline_epoch=now+wall_seconds,source_hashes=hashes,
                 controlled_budget_per_method=target,method_budgets=budgets,recovery=recovery,
                 parent_batch=parent.name,parent_records=parent_records,
