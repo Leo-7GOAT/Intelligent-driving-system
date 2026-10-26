@@ -8,6 +8,11 @@ replay. Frozen six-metre transfer and4.5m continuation are3/4; full-task B1 heal
 and every formal acceptance gate remain open. Current CPU317/1skip/4exclusions;
 hosted5cf9297is313/3/4. The older table below describes prior published evidence.
 
+Later verification: source5a300e9passes local/independent320/1skip/4exclusions and
+actual hosted318/3/4. The3m4/4and same-model6m3/4capsules are now public and
+download-reproduced:794files,5,894controls,8initial actions,2identical figures.
+The full original research requirements remain unmet; publication is not acceptance.
+
 Full objective unchanged and not achieved. The completed matched head study is
 shared1/4 versus unshared3/4 on four reused full training roads/seed11, with
 13,259rawcontrols and500frozen decisions verified. Five B1 segments add37,637

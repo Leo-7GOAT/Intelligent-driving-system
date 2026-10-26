@@ -1,5 +1,13 @@
 # Latest completed work — 2026-10-26 18:49 local
 
+Publication/verification addendum: source5a300e9is pushed. Hosted40310891811
+passes318/3skips/4CARLA exclusions; local320/1/4. Complete3m4/4and same-model6m3/4
+capsules are actually public and independently downloaded/reproduced at5a300e9:
+794files,5,894controls,8initial decisions,2byte-identical figures. Links/hashes
+and commands are in model_card; tracked receipt is
+../reports/native_retention_public_reproduction_20261026.json. No new driving or
+updates were used for reproduction. Research remains unachieved.
+
 Additional4.5m trials: updated fixed replay100gives3/4, matched replay10gives1/4,
 online own-success buffer gives3/4after8,445controls/270PPO/2,700actor steps.
 Latest completed batch20261026T103954Z_own_success_ppo_continuation is raw-audited

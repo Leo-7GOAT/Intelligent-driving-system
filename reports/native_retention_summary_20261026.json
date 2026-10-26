@@ -2224,20 +2224,21 @@
     "complete_endpoint_score": null
   },
   "cpu": {
-    "local_passed": 317,
+    "source": "5a300e9",
+    "local_passed": 320,
     "local_skipped": 1,
     "carla_deselected": 4,
-    "hosted_source": "cbaa76e",
-    "hosted_passed": 315,
+    "hosted_passed": 318,
     "hosted_skipped": 3,
-    "hosted_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40308103444"
+    "hosted_seconds": 97.21,
+    "hosted_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40310891811"
   },
   "independent_cpu": {
-    "source": "cbaa76e",
-    "passed": 317,
+    "source": "5a300e9",
+    "passed": 320,
     "skipped": 1,
     "carla_deselected": 4,
-    "seconds": 96.93
+    "seconds": 97.33
   },
   "current_cpu": {
     "passed": 320,
@@ -2246,5 +2247,22 @@
     "seconds": 93.22,
     "log_sha256": "41dcacd85b189271a86c82f2729802db629751bb45879f8890c1f9603757df6a",
     "xml_sha256": "bd0cf4bd3fc09d6550ca38c28c2346888675c756f1a51c93b9a31dda27e570ba"
-  }
+  },
+  "previous_cpu": {
+    "local_passed": 317,
+    "local_skipped": 1,
+    "carla_deselected": 4,
+    "hosted_source": "cbaa76e",
+    "hosted_passed": 315,
+    "hosted_skipped": 3,
+    "hosted_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40308103444"
+  },
+  "previous_independent_cpu": {
+    "source": "cbaa76e",
+    "passed": 317,
+    "skipped": 1,
+    "carla_deselected": 4,
+    "seconds": 96.93
+  },
+  "public_reproduction_receipt": "native_retention_public_reproduction_20261026.json"
 }

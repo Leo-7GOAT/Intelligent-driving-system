@@ -7,6 +7,13 @@ also pass. Actual hosted source5cf9297passes313/3skips/4deselections in66.40s:
 [run40304264696](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40304264696).
 Later local changes do not inherit that hosted result; inspect their actual CI.
 
+The subsequent online/export source5a300e9also passes actual hosted regression:
+318passed/3skips/4CARLA deselections in97.21s,
+[run40310891811](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40310891811).
+The fixed Windows environment passes320/1skip/4deselections at this version.
+Independent checkout5a300e9also passes320/1skip/4deselections in97.33s; its fixed
+dependency environment is reused, rather than claiming a newly installed runtime.
+
 `.github/workflows/cpu-regression.yml` runs the repository's CPU tests on source,
 test, dependency or workflow changes, pull requests, and manual dispatch. It
 uses Python3.11, the exact dependency lock, CPU-only PyTorch and a standard

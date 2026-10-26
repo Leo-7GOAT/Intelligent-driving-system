@@ -2,12 +2,38 @@
 
 ## Local curriculum and retention models (2026-10-26 evening)
 
+Publication addendum: the complete3m training/evaluation and unchanged-policy6m
+transfer capsules below are now PUBLIC and actually downloaded/reproduced in
+independent checkout5a300e9. Their794files,5,894rawcontrols,8measured-start actions
+and2byte-identical figures verify, with zero new driving/updates. Other recent
+development branches remain local. [Receipt](../reports/native_retention_public_reproduction_20261026.json).
+
+| Complete development asset | Result | SHA256 |
+|---|---|---|
+| [3m PPO plus own-success replay](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_self_replay_3m_seed11_20261026.zip) | 4/4known3m roads;4,350train+710eval controls | `ebd6be337dbd439b5fea38f3fac7d8de7fe9d4d3e1ccf3d4c10bc717df3d5f05` |
+| [Frozen original6m transfer](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_self_replay_6m_transfer_seed11_20261026.zip) | 3/4known6m roads;834eval controls, zero updates | `c2cf7c0725e139d5ab66cc0dd4e24d2565aebb6a89499b043975a6649a4b9feb` |
+
+Archive sizes are10,203,688/7,836,349bytes and inventories413/381files. Model and
+normalizer bytes match across the two phases. The3m phase uses140PPO and1,400
+auxiliary actor optimizer steps, with inherited/pool costs separately retained.
+Complete raw failures, frozen sources, saved/resume states, numeric replay data
+and metadata transformation ledgers are included. Six auxiliary JSON path
+redactions per capsule preserve every model/normalizer/raw byte. Ancestor raw
+traces are not all duplicated in each capsule; the fixed replay input dataset is
+included. This is an honest addition to the unchanged historical prerelease,
+not formal research acceptance or a healthy complete-task baseline.
+
+```powershell
+python scripts/reproduce_native_asset.py --archive native_self_replay_3m_seed11_20261026.zip --sha256 ebd6be337dbd439b5fea38f3fac7d8de7fe9d4d3e1ccf3d4c10bc717df3d5f05 --output runs/replay_3m_reproduction
+python scripts/reproduce_native_asset.py --archive native_self_replay_6m_transfer_seed11_20261026.zip --sha256 c2cf7c0725e139d5ab66cc0dd4e24d2565aebb6a89499b043975a6649a4b9feb --output runs/replay_6m_reproduction
+```
+
 See [full development outcomes](../reports/native_retention_20261026.md) and
 [model/normalizer/raw-audit ledger](../reports/native_retention_summary_20261026.json).
 Direct categorical B1 with actual PPO plus separately counted own-success actor
 replay completes4/4three-metre known-road goals. Frozen six-metre transfer and
 the4.5m continuation remain3/4. These are local, correlated seed-11 development
-models, not a new published model release, healthy full-task baseline or formal
+models, with the two capsules above now public; not a healthy full-task baseline or formal
 hierarchy result. Preserve successful and failed endpoints and charge all
 auxiliary actor steps and pooled sibling-branch interactions.
 

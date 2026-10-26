@@ -135,6 +135,12 @@ decodes strings and refuses object arrays without loading pickle. The corrected
 regression passes. MultiDiscrete model inference also reconstructs all four
 measured start actions with frozen statistics.
 
-The new raw models and traces are retained locally. The older complete public
-assets remain available; this report does not claim the new evidence has already
-been published as a downloadable model release.
+The complete3m4/4training/evaluation and unchanged-model6m3/4transfer capsules
+are now public on the existing prerelease. Actual public-download independent
+reproduction verifies794files,5,894controls,8initial decisions and2byte-identical
+figures. [Receipt](native_retention_public_reproduction_20261026.json) and
+[downloads/hashes/commands](../docs/model_card.md). Other recent branches remain
+local; publication does not establish full-task competence or research acceptance.
+
+Actual hosted source5a300e9passes318/3skips/4CARLA deselections in97.21s:
+[run40310891811](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40310891811).
