@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+import shlex
 from pathlib import Path
 import shutil
 import subprocess
@@ -11,6 +12,18 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from navstack.owned_process import OwnedProcess
 from navstack.process_lease import ProcessLease
 from navstack.research import atomic_json,resources_ok
+
+
+def command_identifies_batch(command, batch):
+    """Resolve an explicit --batch token; never rely on a name substring."""
+    try:
+        arguments = [part.strip('"') for part in shlex.split(command,posix=False)]
+        if arguments.count('--batch') != 1:
+            return False
+        value = arguments[arguments.index('--batch')+1]
+        return Path(value).resolve() == Path(batch).resolve()
+    except (ValueError,IndexError,OSError):
+        return False
 
 
 def cleanup_owned_server(batch, powershell):
@@ -42,7 +55,7 @@ def main():
              'train_recovery_demonstrations.py','fit_recovery_actor.py','relabel_recovery_teacher.py',
              'train_current_state_aggregation.py','train_aggregated_ppo.py','audit_normalization_transfer.py','native_road_learning.py',
              'evaluate_native_rule.py','evaluate_native_policy_weights.py')
-    if str(batch) not in identity['command'] or not any(name in identity['command'] for name in allowed):
+    if not command_identifies_batch(identity['command'],batch) or not any(name in identity['command'] for name in allowed):
         raise ValueError('Adopted command does not identify an allowed registered worker')
     if protocol.get('cleanup_owned_carla') and (not a.powershell or not Path(a.powershell).is_file()):
         raise ValueError('Registered native run requires a verified PowerShell executable for owned-empty-server cleanup')

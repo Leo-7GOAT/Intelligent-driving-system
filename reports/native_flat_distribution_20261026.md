@@ -58,8 +58,49 @@ PPO updates, exact model reload, protocol isolation, route-prefix preservation
 and existing road-policy/rollout preparation regressions. Synthetic probe
 updates are not CARLA training or performance evidence.
 
-The owned server launch has begun. Actual completion, all outcomes, interaction
-accounting, audits and cleanup must be recorded from the batch; none is inferred
-from this prepared protocol. A partial batch cannot be reported as a completed
-paired result. Original training failures and the separate interrupted weight
-contrast remain preserved.
+Both arms completed normally, each with416sampled decisions,13optimization
+phases and130Adam steps. The clipped arm uses4,150training controls/64.179s;
+the tanh arm4,154controls/61.455s. Each evaluates960controls over all4cases.
+Both score **0/4**, all deadlines, zero deterministic progress. Each has18
+completed training episodes:15deadlines/3bounds. Training mean progress is
+2.6866/2.4022m, maximum5.5923/5.3413m; these are not successful parking.
+The bounded distribution alone did not repair basic learning in this budget;
+it is not adopted as the final baseline and no larger repeat is justified.
+
+All **10,224**actual training/evaluation controls match closed original CARLA
+streams (5,110/5,114per arm). Per-method raw audits are in each arm's
+`endpoint_raw_audit.json`. Reset ticks and rollout overshoot remain charged.
+Worker12624and the replacement guard complete with exit0/reasonnull; the
+owned empty server is stopped and ports are clear. The initial guard refused
+relative --batch spelling before adoption; a tested explicit-argument resolver
+allowed a replacement guard to adopt the SAME continuously running worker.
+This guard-only override has a separate hash receipt; frozen training/low-level
+source and the original rejected-guard log remain unchanged. No worker restart.
+
+The local full CPU suite before the later guard/reward changes passes299tests,
+1skip/4CARLA deselections in192.18s. The guard correction passes4targeted tests;
+the subsequent combined policy/guard/shared-reward selection passes15tests in
+4.65s. These scopes are retained separately rather than claiming an unexecuted
+full-suite result for newer code.
+
+## Next bounded hypothesis: explicit physical progress reward
+
+The failed arms did move stochastically but had no successful training episode,
+then chose no motion deterministically. Existing terminal-zero potential-based
+shaping supplies intermediate distance differences whose discounted sum
+cancels on terminal failure; it does not retain a failed episode's progress as
+an independent task benefit. This motivates testing a disclosed base-task
+reward change, not a claim that PBRS or PPO is incorrectly implemented.
+
+`runs/20261026T061501Z_native_progress_sanity` starts ONE fresh clipped-Gaussian
+B1 against the completed clipped control above. Only task progress weight
+changes0to1; same seed11,32-action/10epoch schedule,4,096requested controls,
+6m routes,12s deadline,observations,normalization and batchSAT low level.
+The new term is signed measured Euclidean remaining-distance reduction each
+physical tick, without a planner target. It is available equally to H/H0/B1;
+this single B1 diagnostic cannot support a hierarchy comparison. Protocol SHA256
+`ede5a2195f0860b3f9861f94797b5cad46d0b5b0847e593fe7bd0f0f80df8fee`.
+One900s window, all4endpoint probes, same guards and zero retries. At this
+update it is actually running; record observed outcomes before any expansion.
+Neither a revised reward nor completion of this short test closes the original
+full-task baseline-health, five-seed or independent-confirmation requirements.

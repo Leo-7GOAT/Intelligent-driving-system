@@ -8,8 +8,10 @@ from stable_baselines3 import PPO
 
 from navstack.road_candidate_policy import FlatRoadCandidateActorCriticPolicy
 from navstack.squashed_road_policy import SquashedFlatRoadPolicy
-from scripts.native_road_learning import registered_jobs
+from scripts.native_road_learning import registered_jobs, training_config
+from navstack.config import VehicleConfig
 from scripts.prepare_native_flat_distribution_pair import short_route
+from scripts.watch_existing_pair import command_identifies_batch
 
 
 class ActuatorProbe(gym.Env):
@@ -87,3 +89,25 @@ def test_prefix_preserves_measured_points_and_changes_geometry_identity():
     assert prefix['parent_geometry_id']=='original' and prefix['sanity_prefix_length_m']==6.
     assert len(route['points'])==10
     with pytest.raises(ValueError):short_route(route,20.)
+
+
+def test_guard_resolves_explicit_batch_argument_without_substring_adoption(tmp_path,monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    batch=tmp_path/'runs/batch with spaces'
+    assert command_identifies_batch('python native_road_learning.py --batch "runs/batch with spaces"',batch)
+    assert command_identifies_batch(f'python native_road_learning.py --batch "{batch}"',batch)
+    assert not command_identifies_batch(f'python --output "{batch}" --batch runs/other',batch)
+    assert not command_identifies_batch(f'python --batch "{batch}" --batch runs/other',batch)
+
+
+def test_progress_reward_is_explicit_shared_and_legacy_preserving():
+    protocol={'episode_seconds':12.,'feedback_ablation':True}
+    for method in ('H0','H','B1'):
+        legacy=training_config(protocol,method,VehicleConfig())
+        changed=training_config({**protocol,'task_progress_weight':1.},method,VehicleConfig())
+        assert legacy.reward.progress_weight==0 and changed.reward.progress_weight==1.
+        before=legacy.to_dict();after=changed.to_dict()
+        before['reward']['progress_weight']=1.
+        assert before==after
+    for value in (True,'1',-1,float('nan'),float('inf')):
+        with pytest.raises(ValueError):training_config({**protocol,'task_progress_weight':value},'B1',VehicleConfig())

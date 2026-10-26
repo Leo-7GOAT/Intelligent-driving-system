@@ -21,7 +21,7 @@ from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
 from stable_baselines3.common.logger import configure
 from navstack.carla_bridge import BridgeClient, CarlaNavigationEnv
-from navstack.config import EnvConfig, VehicleConfig
+from navstack.config import EnvConfig, VehicleConfig, RewardConfig
 from navstack.experiments import actor_vector, write_json, signature, append_json, jsonable
 from navstack.native_route import select_routes
 from navstack.research import ResearchRecorder, resources_ok
@@ -98,6 +98,13 @@ def training_config(protocol, method, vehicle):
     config.planner.heuristic_mode=heuristic
     config.planner.vectorized_primitives=True
     config.planner.analytic_expansion=True
+    # An explicit new task reward applies equally to all methods. Historical
+    # protocols keep the original potential-only progress signal unchanged.
+    if 'task_progress_weight' in protocol:
+        weight=protocol['task_progress_weight']
+        if isinstance(weight,bool) or not isinstance(weight,(int,float)):
+            raise ValueError('Task progress weight must be an explicit finite number')
+        config.reward=RewardConfig(**{**asdict(config.reward),'progress_weight':weight})
     return config
 
 

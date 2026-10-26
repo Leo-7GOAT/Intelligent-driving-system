@@ -1,3 +1,21 @@
+# Live research update — 2026-10-26 14:17 local
+
+Full original objective unchanged. [Current B1 experiment](../reports/native_flat_distribution_20261026.md):
+fresh clipped/tanh Gaussian six-metre native sanity pair COMPLETE, both0/4
+(deadlines/zero deterministic motion),10,224actual controls raw-audited, normal
+owned cleanup. Sample bounding alone is not adopted; no expanded repeat.
+
+New single-factor progress-reward sanity is RUNNING:
+`runs/20261026T061501Z_native_progress_sanity`; real worker41780created
+2026-10-26T14:16:21.707548+08:00. Retained worker exec36999/guard57219/server59699.
+Revalidate these identities before relying on them. Same fresh B1 clipped policy,
+4096controls/seed11/shared short tasks; progress_weight0to1 only. 900s wall
+window from preparation, no retries. The first control pair and all failures
+remain. No full-task or learned-advantage success claimed. Complete the actual
+endpoint/audit/owned cleanup before selecting the next development hypothesis.
+
+The sections below are timestamped snapshots, not current process authority.
+
 # Current handoff — 2026-10-26
 
 Full research acceptance remains open. Read [current status](current_status_20261026.md)
