@@ -1,0 +1,20 @@
+{
+  "scope": "Independent-checkout CPU and offline local-artifact raw/inference reproduction; not a public download or new CARLA drive",
+  "source_commit": "1f403bc28ddc635590b5aaafc6ce999752106b4d",
+  "batch": "20261026T113902Z_own_success_evaluation",
+  "method": "B1",
+  "cpu": {
+    "passed": 324,
+    "skipped": 1,
+    "carla_deselected": 4,
+    "seconds": 124.82,
+    "log_sha256": "8e8aa619fac298734f6799e1105eaae3d965bb43d26f8152b6085c599fede413"
+  },
+  "original_and_rebuilt_raw_audit_sha256": "74a7158e0bfa646df6598998ba6fb198df5d292a7f8589bfc7800ac0b86c328d",
+  "measured_start_actions_reproduced": 4,
+  "model_sha256": "12792ec2b9290074e5eb9c21f4a5c8d6a7ca84f4eaaa006165d46585b643bcab",
+  "normalization_frozen": true,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "source_scope": "Explicit recorded frozen source root, as required by inference fingerprints; first checkout-root attempt was rejected before model inference and retained separately"
+}

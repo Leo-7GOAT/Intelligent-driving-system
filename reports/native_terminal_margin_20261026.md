@@ -89,6 +89,15 @@ collapsed probabilities. Synthetic tests are not CARLA evidence. Actual phases
 retain bridge acknowledgments, matching measured states/IMU frames, closed raw
 traces, guard exit receipts and owned-server shutdown.
 
+Actual hosted1f403bcregression passes322/3skips/4CARLA deselections in122.79s:
+[run40322362420](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40322362420).
+Independent checkout at the same commit passes324/1skip/4deselections in124.82s.
+It reproduces the margin4.5m model's four measured-start actions and byte-identical
+raw audit with zero new controls/updates; [receipt](native_terminal_margin_reproduction_20261026.json).
+This uses local retained model bytes and is not a new public asset download.
+The six completed scored phases retain30,038new raw-verified controls; original
+source-pool interactions are not charged again as new training.
+
 The original exploratory registration allowed two matched4.5m evaluations.
 After the all-four margin result, the announced conditional6m transfer and
 separately registered training contrasts were added. They are development

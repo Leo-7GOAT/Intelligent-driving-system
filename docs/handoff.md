@@ -1,5 +1,13 @@
 # Latest completed work — 2026-10-26 20:20 local
 
+Verification addendum: source1f403bcis actually pushed, hosted40322362420passes
+322/3skips/4CARLA exclusions; both root and independent checkout pass324/1/4.
+The margin4.5m model's four measured initial decisions and exact raw audit also
+reproduce independently, zero driving/updates. Receipt:
+../reports/native_terminal_margin_reproduction_20261026.json. All six new scored
+phases total30,038raw-verified new controls. New models remain local; this is
+not a claim of another public model release or completed research acceptance.
+
 New matched quality-selection experiment is complete: all147own successes
 (2,765decisions) gives3/4on4.5m goals;47margin successes(895decisions) gives4/4.
 Same source model/Adam/normalizer/RNG,1,000actor steps each, no new PPO updates,

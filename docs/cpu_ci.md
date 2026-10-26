@@ -5,6 +5,15 @@ with raw log/XML retained under runs/terminal_margin_smoothed_cpu_20261026.*.
 This covers the terminal-margin selector, strict curriculum gate, qualified
 online replay and speed-only label smoothing. The hosted results below describe
 their exact older source versions until a new run is recorded.
+
+Source1f403bcnow has actual hosted success:322passed/3skips/4CARLA deselections
+in122.79s, [run40322362420](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40322362420).
+Independent fixed Windows checkout1f403bcalso passes324/1skip/4deselections in
+124.82s. [Receipt](../reports/native_terminal_margin_reproduction_20261026.json)
+also verifies the local margin model's four measured-start actions and identical
+raw audit with zero new driving or optimization. Inference explicitly uses the
+recorded frozen-source root; invoking the checkout root directly was safely
+rejected by its source fingerprint before inference.
 Nineteen targeted actor-replay, continuation, recovery and endpoint-audit checks
 also pass. Actual hosted source5cf9297passes313/3skips/4deselections in66.40s:
 [run40304264696](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40304264696).
