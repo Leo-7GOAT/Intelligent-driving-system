@@ -117,3 +117,17 @@ class UnsharedRoadCandidatePolicy(RoadCandidateActorCriticPolicy):
             if self.ortho_init:
                 self.action_net.apply(partial(self.init_weights,gain=.01))
         self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)
+
+
+class LocalWitnessRoadPolicy(UnsharedRoadCandidatePolicy):
+    """PPO still chooses wait/target/speed among sufficient local references.
+
+    Global continuation is not required. All-unknown local states retain the
+    full action set so Hybrid A* can search beyond analytic connectors.
+    """
+    def _build(self,lr_schedule):
+        super()._build(lr_schedule)
+        from .candidate_filter import LocalWitnessExtractor,LocalWitnessHead
+        self.mlp_extractor=LocalWitnessExtractor(self.mlp_extractor)
+        self.action_net=LocalWitnessHead(self.action_net)
+        self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)

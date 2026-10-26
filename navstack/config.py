@@ -131,6 +131,7 @@ class EnvConfig:
     subgoal_mode: str = "ego_arcs"
     execution_feedback: str = "off"
     candidate_observation: bool = False
+    local_candidate_filter: bool = False
     road_observation: bool = False  # full shared 64x64 measured occupancy, new model signature
     road_geometry_version: str = "carla_driving_64_v1"
     road_collision_backend: str = "scalar"
@@ -143,6 +144,8 @@ class EnvConfig:
     reward: RewardConfig = field(default_factory=RewardConfig)
 
     def __post_init__(self):
+        if type(self.local_candidate_filter) is not bool or (self.local_candidate_filter and not self.candidate_observation):
+            raise ValueError('Local filtering requires explicit common candidate observations')
         if self.flat_longitudinal_mode not in ('acceleration','speed_target_v1'):
             raise ValueError('Unknown flat longitudinal action semantics')
         if self.flat_longitudinal_mode != 'acceleration' and self.method != 'B1':
@@ -238,6 +241,8 @@ class EnvConfig:
     def to_dict(self):
         result = asdict(self)
         # Preserve the serialized configuration of historical, disabled runs.
+        if not self.local_candidate_filter:
+            result.pop('local_candidate_filter')
         if self.flat_longitudinal_mode == 'acceleration':
             result.pop('flat_longitudinal_mode')
         if self.road_collision_backend == "scalar":

@@ -284,6 +284,10 @@ class NavigationEnv(gym.Env):
                     heading = wrap(target[2] - s.yaw)
                     geometry.append([tx / 15., ty / 15., math.sin(heading), math.cos(heading), speed / 3.])
                 candidates = np.c_[geometry, np.asarray(extra[:93]).reshape(31, 3)]
+                if self.config.local_candidate_filter:
+                    from .candidate_filter import local_witness_mask
+                    self._local_candidate_mask=local_witness_mask(candidates)
+                    self._local_candidate_mask_state=self.state
                 extra = np.r_[candidates.ravel(), extra[93:]]
             self.feedback_seconds = time.perf_counter() - started
             observation = np.r_[observation, extra].astype(np.float32)
@@ -714,6 +718,11 @@ def rule_action(env):
     ):
         return 0
     best = (math.inf, 0)
+    local_mask=None
+    if env.config.local_candidate_filter:
+        if getattr(env,'_local_candidate_mask_state',None) is not env.state:
+            env._observation()
+        local_mask=env._local_candidate_mask
     if env.config.subgoal_mode.startswith("goal_frame") or env.config.subgoal_mode == "route_frame_terminal":
         from .planning import analytic_connection
         # Strong deterministic comparator: same connector feasibility checks as
@@ -722,6 +731,8 @@ def rule_action(env):
         continuation = {}
         candidates = []
         for i in range(1, 31):
+            if local_mask is not None and not local_mask[i]:
+                continue
             target, speed = env.decode_action(i)
             if target not in continuation:
                 continuation[target] = (candidate_goal_witness(target,env.goal,env.world,env.config.vehicle)

@@ -149,6 +149,8 @@ def signature(config):
     }
     if config.shared_shield:
         result["shared_shield"] = "execution_brake_v1_no_path_prediction"
+    if config.local_candidate_filter:
+        result['local_candidate_filter']='clear_and_local_connector_wait_retained_all_unknown_fallback_v1'
     if config.method == 'B1' and config.flat_longitudinal_mode != 'acceleration':
         result['action_catalog'] = 'Box([-1,-1],[1,1]):speed_[0,vmax],steering;P_speed_gain1_per_second_v1'
         result['flat_longitudinal_mode'] = config.flat_longitudinal_mode

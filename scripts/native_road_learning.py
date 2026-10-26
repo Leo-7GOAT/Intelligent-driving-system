@@ -89,6 +89,7 @@ def training_config(protocol, method, vehicle):
         road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),
         subgoal_mode=protocol.get('subgoal_mode', 'ego_arcs'),
         actuator_observation=protocol.get('actuator_observation', 'off'),
+        local_candidate_filter=protocol.get('candidate_head')=='unshared_local_v1',
         road_collision_backend=protocol.get('road_collision_backend', 'scalar'),
         flat_hold=10, deadline=protocol["episode_seconds"], obstacle_num=0,
         flat_longitudinal_mode=protocol.get('flat_longitudinal_mode','acceleration') if method=='B1' else 'acceleration')
@@ -276,9 +277,13 @@ def run(batch):
                         if job.get('flat_action_distribution') == 'tanh_gaussian_v1':
                             from navstack.squashed_road_policy import SquashedFlatRoadPolicy
                             policy=SquashedFlatRoadPolicy
-                        if job.get('candidate_head') == 'unshared_v1':
+                        selected_head=job.get('candidate_head',protocol.get('candidate_head'))
+                        if selected_head == 'unshared_v1':
                             from navstack.road_candidate_policy import UnsharedRoadCandidatePolicy
                             policy=UnsharedRoadCandidatePolicy
+                        elif selected_head == 'unshared_local_v1':
+                            from navstack.road_candidate_policy import LocalWitnessRoadPolicy
+                            policy=LocalWitnessRoadPolicy
                     vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
                     algorithm = IndependentClipPPO if job.get('gradient_clip_mode') == INDEPENDENT_CLIP else PPO
                     model = algorithm(policy, vec, n_steps=rollout_actions, batch_size=32,
