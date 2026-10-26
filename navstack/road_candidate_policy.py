@@ -98,3 +98,22 @@ class FlatRoadCandidateActorCriticPolicy(ActorCriticPolicy):
         if self.observation_space.shape not in ((4701,),(4705,)) or not isinstance(self.action_space,spaces.Box) or self.action_space.shape!=(2,):
             raise ValueError('Flat road policy requires4701 or4705inputs and2direct continuous controls')
         self.mlp_extractor=RoadCandidateExtractor(flat=True,actuator_inputs=self.observation_space.shape[0]-4701).to(self.device)
+
+
+class UnsharedRoadCandidatePolicy(RoadCandidateActorCriticPolicy):
+    """Versioned fixed-catalog head; shared encoders/critic, independent logits.
+
+    A shared score applied to identical candidate embeddings cancels common
+    context in softmax. This head can use that context directly and also sees
+    all candidate embeddings. It sacrifices candidate permutation equivariance;
+    the registered route catalog therefore retains its fixed slot semantics.
+    """
+    def _build(self, lr_schedule):
+        # Construct the original network first, preserving identical seeded
+        # encoders, critic and global RNG state for the matched fresh control.
+        super()._build(lr_schedule)
+        with torch.random.fork_rng(devices=[]):
+            self.action_net=nn.Linear(31*32,31).to(self.device)
+            if self.ortho_init:
+                self.action_net.apply(partial(self.init_weights,gain=.01))
+        self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)

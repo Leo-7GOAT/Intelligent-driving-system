@@ -122,6 +122,8 @@ def test_flat_speed_semantics_actual_lightweight_control_and_versioning():
     legacy=EnvConfig(method='B1',scenario='empty',obstacle_num=0)
     speed=EnvConfig(method='B1',scenario='empty',obstacle_num=0,flat_longitudinal_mode='speed_target_v1')
     assert 'flat_longitudinal_mode' not in signature(legacy)
+    assert 'flat_longitudinal_mode' not in legacy.to_dict()
+    assert speed.to_dict()['flat_longitudinal_mode']=='speed_target_v1'
     assert signature(speed)['flat_longitudinal_mode']=='speed_target_v1'
     for cfg in (legacy,speed):
         env=NavigationEnv(cfg)

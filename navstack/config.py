@@ -238,6 +238,8 @@ class EnvConfig:
     def to_dict(self):
         result = asdict(self)
         # Preserve the serialized configuration of historical, disabled runs.
+        if self.flat_longitudinal_mode == 'acceleration':
+            result.pop('flat_longitudinal_mode')
         if self.road_collision_backend == "scalar":
             result.pop("road_collision_backend")
         if self.actuator_observation == "off":

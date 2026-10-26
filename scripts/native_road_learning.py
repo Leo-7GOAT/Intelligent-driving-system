@@ -187,7 +187,8 @@ def registered_jobs(protocol):
     clipping=bool(protocol.get('gradient_clipping_experiment'))
     rollout=bool(protocol.get('rollout_length_experiment'))
     distribution=bool(protocol.get('flat_distribution_experiment'))
-    if sum((clipping,rollout,distribution)) != 1 or not jobs:
+    head=bool(protocol.get('actor_head_experiment'))
+    if sum((clipping,rollout,distribution,head)) != 1 or not jobs:
         raise ValueError('Named native jobs require exactly one registered learning intervention')
     names = [job['name'] for job in jobs]
     if names != protocol['methods'] or len(set(names)) != len(names):
@@ -204,6 +205,13 @@ def registered_jobs(protocol):
             raise ValueError('Distribution pair requires fresh flat policies and unchanged common PPO schedule')
         if not distribution and 'flat_action_distribution' in job:
             raise ValueError('Action distribution changes require their own registered experiment')
+        if head and (job['method'] not in ('H0','H') or
+                job['gradient_clip_mode'] != GLOBAL_CLIP or
+                job.get('candidate_head') not in ('shared','unshared_v1') or
+                'rollout_actions' in job or protocol.get('recovery')):
+            raise ValueError('Head comparison requires fresh hierarchical policies and the common PPO schedule')
+        if not head and 'candidate_head' in job:
+            raise ValueError('Candidate head changes require their own experiment')
         if rollout and (job['gradient_clip_mode'] != GLOBAL_CLIP or
                         type(job.get('rollout_actions')) is not int or job['rollout_actions'] not in (32,256)):
             raise ValueError('Rollout study must retain global clipping and declare 32 or 256 actions')
@@ -268,6 +276,9 @@ def run(batch):
                         if job.get('flat_action_distribution') == 'tanh_gaussian_v1':
                             from navstack.squashed_road_policy import SquashedFlatRoadPolicy
                             policy=SquashedFlatRoadPolicy
+                        if job.get('candidate_head') == 'unshared_v1':
+                            from navstack.road_candidate_policy import UnsharedRoadCandidatePolicy
+                            policy=UnsharedRoadCandidatePolicy
                     vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
                     algorithm = IndependentClipPPO if job.get('gradient_clip_mode') == INDEPENDENT_CLIP else PPO
                     model = algorithm(policy, vec, n_steps=rollout_actions, batch_size=32,
