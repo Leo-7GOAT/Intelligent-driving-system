@@ -1,5 +1,17 @@
 # Development model card
 
+## Local terminal-margin models (2026-10-26 late evening)
+
+[Matched experiment](../reports/native_terminal_margin_20261026.md) and
+[artifact/raw ledger](../reports/native_terminal_margin_summary_20261026.json):
+all147own-success episodes give4.5m3/4;47qualified episodes give4/4with identical
+source weights/Adam/normalizer/RNG and1,000actor steps each. Actual starting
+scenarios match. Frozen6m transfer and three new real-PPO adaptations remain3/4;
+the speed-smoothed phase fails by bounds. No evaluation tolerance was loosened.
+These models and raw traces are retained locally, not included in older public
+capsules below. They are neither a healthy full-task baseline nor independent
+confirmation. Current local CPU324/1skip/4CARLA exclusions.
+
 ## Local curriculum and retention models (2026-10-26 evening)
 
 Publication addendum: the complete3m training/evaluation and unchanged-policy6m

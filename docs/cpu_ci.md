@@ -1,7 +1,10 @@
 # CPU regression CI
 
-Latest local full regression:320passed/1skip/4CARLA deselections,93.22seconds,
-with raw log/XML retained under runs/online_success_fixed_cpu_20261026.*.
+Latest local full regression:324passed/1skip/4CARLA deselections,168.19seconds,
+with raw log/XML retained under runs/terminal_margin_smoothed_cpu_20261026.*.
+This covers the terminal-margin selector, strict curriculum gate, qualified
+online replay and speed-only label smoothing. The hosted results below describe
+their exact older source versions until a new run is recorded.
 Nineteen targeted actor-replay, continuation, recovery and endpoint-audit checks
 also pass. Actual hosted source5cf9297passes313/3skips/4deselections in66.40s:
 [run40304264696](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40304264696).

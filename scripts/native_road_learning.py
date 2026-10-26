@@ -325,6 +325,7 @@ def run(batch):
                     if hashlib.sha256(replay_path.read_bytes()).hexdigest()!=replay['sha256']:
                         raise ValueError('Own-success replay dataset changed')
                     if replay['steps_per_phase'] not in (10,100):raise ValueError('Unregistered auxiliary replay schedule')
+                    if replay.get('speed_label_smoothing',0.) not in (0.,.3):raise ValueError('Unregistered replay speed smoothing')
                     replay_data=np.load(replay_path,allow_pickle=False)
                 model.set_logger(configure(str(output/"sb3"), ["csv"]))
                 before = actor_vector(model).clone()
@@ -336,8 +337,17 @@ def run(batch):
                     from stable_baselines3.common.callbacks import CallbackList
                     def recorded_condition(index):
                         return json.loads((output/f'scene_{index+1:04d}.json').read_text(encoding='utf-8'))['scene']['condition']
+                    qualify=None
+                    selected=replay.get('success_selection',{'version':'all_success_v1'})
+                    if selected['version']=='terminal_margin_v1':
+                        from scripts.fit_own_success_policy import terminal_quality,has_terminal_margin
+                        if selected!={'version':'terminal_margin_v1','distance_max_m':.5,'speed_max_m_s':.15,'yaw_max_rad':.2}:
+                            raise ValueError('Unknown terminal-margin replay thresholds')
+                        def qualify(info):
+                            return has_terminal_margin(terminal_quality(info['trace'][-1]['state'],info['initial_scenario']['goal']))
+                    elif selected!={'version':'all_success_v1'}:raise ValueError('Unknown online own-success selector')
                     online_memory=OwnSuccessMemory(vec.normalize_obs(replay_data['observations']),replay_data['actions'],
-                        replay_data['groups'],recorded_condition)
+                        replay_data['groups'],recorded_condition,qualify)
                     callbacks=CallbackList([online_memory,recorder])
                 optimizer_steps = [0]
                 gradient_samples = []
@@ -365,7 +375,8 @@ def run(batch):
                         if replay_data is not None:
                             from scripts.fit_own_success_policy import fit_actor
                             inputs=(vec.normalize_obs(replay_data['observations']),replay_data['actions'],replay_data['groups']) if online_memory is None else online_memory.arrays()
-                            fitted=fit_actor(model,*inputs,replay['steps_per_phase'],seed=protocol['seed']+recorder.counts['optimization_phases'])
+                            fitted=fit_actor(model,*inputs,replay['steps_per_phase'],seed=protocol['seed']+recorder.counts['optimization_phases'],
+                                speed_label_smoothing=replay.get('speed_label_smoothing',0.))
                             replay_steps+=fitted['actor_optimizer_steps']
                             replay_record={'auxiliary_actor_optimizer_steps':replay_steps,
                                 'ppo_optimizer_steps':optimizer_steps[0]-replay_steps,'own_success_fit':fitted}

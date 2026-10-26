@@ -1,4 +1,31 @@
-# Latest completed work — 2026-10-26 18:49 local
+# Latest completed work — 2026-10-26 20:20 local
+
+New matched quality-selection experiment is complete: all147own successes
+(2,765decisions) gives3/4on4.5m goals;47margin successes(895decisions) gives4/4.
+Same source model/Adam/normalizer/RNG,1,000actor steps each, no new PPO updates,
+all four measured initial scenarios exactly match. Evaluation gates unchanged.
+See ../reports/native_terminal_margin_20261026.md and its complete JSON ledger.
+
+Frozen6m transfer remains3/4. Actual8192-nominal-control adaptations with fixed
+margin replay, qualified online additions and speed smoothing0.3all remain3/4.
+The last phase reaches5.81m on road1but exits bounds. Its1.5m/s initial probability
+increases from3.13e-10to0.1373: exploration improves, safe curve execution does not.
+Current local CPU324/1skip/4CARLA exclusions; new source still needs hosted CI.
+
+Latest completed phase20261026T120452Z_own_success_ppo_continuation is raw-audited,
+guard exit0and owned-server-stopped; no related live processes were found in the
+final identity check. New models are local development artifacts; do not confuse
+them with the prior published3m/6m capsules. Full research goal remains open.
+
+Next distinct issue: direct steering at the current0.5s flat decision hold on
+longer curves. Before changing it, inspect prior frequency experiments and lock
+physical-time rollout, gamma/GAE, batch and optimizer accounting. Do not silently
+reuse old history semantics, imply a new frequency run has started, repeat these
+same actor fits, relax goal tolerances or treat learned-speed exploration as
+successful steering. Native static/dynamic families and formal controls remain
+unimplemented in the current native-curve-only training protocol.
+
+# Historical completed work — 2026-10-26 18:49 local
 
 Publication/verification addendum: source5a300e9is pushed. Hosted40310891811
 passes318/3skips/4CARLA exclusions; local320/1/4. Complete3m4/4and same-model6m3/4

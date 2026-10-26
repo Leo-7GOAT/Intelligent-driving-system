@@ -1,5 +1,12 @@
 # Executability-aware hierarchical driving research
 
+Latest [matched terminal-margin development](reports/native_terminal_margin_20261026.md):
+own-success replay gives3/4on known4.5m goals using all positive episodes versus
+**4/4** using47qualified episodes, with matched initialization and unchanged task
+gates. Frozen6m transfer and three real-PPO6m adaptation variants remain3/4;
+speed exploration improves but the last failed curve exits bounds. This is not
+a healthy full-task baseline, independent confirmation or formal acceptance.
+
 Latest [skill-retention development](reports/native_retention_20261026.md): real
 PPO plus separately counted own-success replay reaches **4/4 on three-metre
 known-road goals**, but frozen six-metre transfer and4.5m continuation remain

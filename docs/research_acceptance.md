@@ -2,6 +2,13 @@
 
 ## Current audit — 2026-10-26
 
+Latest terminal-margin development: matched own-success selection gives3/4
+versus4/4on known4.5m goals, without changing evaluation thresholds. Frozen6m
+transfer and fixed/online/speed-smoothed real-PPO adaptations remain3/4; the
+smoothed failed curve exits bounds. No full-task health or safety target is met.
+Current local CPU324/1skip/4CARLA exclusions. See
+[measured evidence](../reports/native_terminal_margin_20261026.md).
+
 Evening addendum: [retention/curriculum experiments](../reports/native_retention_20261026.md)
 achieve B1 three-metre known-road4/4with real PPO plus counted self-success actor
 replay. Frozen six-metre transfer and4.5m continuation are3/4; full-task B1 health
