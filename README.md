@@ -1,5 +1,12 @@
 # Executability-aware hierarchical driving research
 
+Latest [skill-retention development](reports/native_retention_20261026.md): real
+PPO plus separately counted own-success replay reaches **4/4 on three-metre
+known-road goals**, but frozen six-metre transfer and4.5m continuation remain
+**3/4**. These single-seed curriculum results do not establish a healthy full-task
+baseline, ordinary-PPO performance or research acceptance. H local filtering and
+progress-reward trials do not improve the earlier unshared-head endpoint.
+
 Latest [matched full-road decision-head development pair](reports/native_actor_head_20261026.md): shared **1/4**, unshared **3/4**, one seed/four known roads. All13,259controls and500frozen decisions verify. Search failure and missed decision periods remain; this is not formal superiority or a healthy-B1/realtime result.
 
 [Current status and next research steps](docs/current_status_20261026.md) · [Chinese continuation prompt](docs/continuation_prompt.zh-CN.md). Complete native model/data asset is published and public-download reproduction passes; formal research acceptance remains open.

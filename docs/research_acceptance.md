@@ -2,6 +2,12 @@
 
 ## Current audit — 2026-10-26
 
+Evening addendum: [retention/curriculum experiments](../reports/native_retention_20261026.md)
+achieve B1 three-metre known-road4/4with real PPO plus counted self-success actor
+replay. Frozen six-metre transfer and4.5m continuation are3/4; full-task B1 health
+and every formal acceptance gate remain open. Current CPU317/1skip/4exclusions;
+hosted5cf9297is313/3/4. The older table below describes prior published evidence.
+
 Full objective unchanged and not achieved. The completed matched head study is
 shared1/4 versus unshared3/4 on four reused full training roads/seed11, with
 13,259rawcontrols and500frozen decisions verified. Five B1 segments add37,637

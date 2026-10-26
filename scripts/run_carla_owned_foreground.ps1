@@ -37,7 +37,7 @@ if (-not (Test-Path -LiteralPath $wrapper -PathType Leaf) -or -not (Test-Path -L
     throw 'Installed CARLA wrapper or shipping executable is missing'
 }
 $existing = @(Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^CarlaUE4' })
-$tcpOwners = @($rpcPorts | ForEach-Object { Get-NetTCPConnection -LocalPort $_ -ErrorAction SilentlyContinue })
+$tcpOwners = @($rpcPorts | ForEach-Object { Get-NetTCPConnection -LocalPort $_ -ErrorAction SilentlyContinue } | Where-Object { $_.OwningProcess -ne 0 })
 $udpOwners = @($rpcPorts | ForEach-Object { Get-NetUDPEndpoint -LocalPort $_ -ErrorAction SilentlyContinue })
 if ($existing.Count -or $tcpOwners.Count -or $udpOwners.Count) { throw 'Existing CARLA process or TCP/UDP port owner detected' }
 $stdout = Join-Path $resolvedOutput 'server_stdout.log'

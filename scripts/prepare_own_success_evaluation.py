@@ -1,5 +1,7 @@
 """Stage an explicitly auxiliary fitted actor for zero-learning native evaluation."""
 import argparse
+import gzip
+import json
 from copy import deepcopy
 from datetime import datetime,timezone
 from pathlib import Path
@@ -40,14 +42,18 @@ def validate(parent,artifact):
     return method,metadata
 
 
-def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statistics=False,curriculum_meters=None):
+def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statistics=False,curriculum_meters=None,original_goals=False,retry_before_controls=None,replay_steps=0):
     if type(train_controls) is not int or not 0<=train_controls<=8192:raise ValueError('Bounded native training budget required')
     if freeze_statistics and not train_controls:raise ValueError('Statistics contrast requires actual PPO continuation')
+    if replay_steps and (replay_steps!=100 or not train_controls or not freeze_statistics):
+        raise ValueError('Replay requires100auxiliary actor steps per PPO phase and fixed observation statistics')
     if curriculum_meters is not None and (curriculum_meters!=3. or not train_controls):
         raise ValueError('Only a bounded three-metre training curriculum is registered')
     parent=Path(parent).resolve();artifact=Path(artifact).resolve()
     method,metadata=validate(parent,artifact)
     old=read(parent/'protocol.json');summary=read(parent/method/'summary.json')
+    if original_goals and (train_controls or 'curriculum' not in old):
+        raise ValueError('Original-goal recovery is a frozen curriculum transfer probe')
     for name,digest in old['source_hashes'].items():
         if sha(parent/'source'/name)!=digest:raise ValueError('Frozen parent source changed')
     if sha(parent/'calibration/calibration.json')!=old['calibration_sha256']:raise ValueError('Calibration changed')
@@ -56,6 +62,35 @@ def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statis
     registration='evaluation_registration.json' if not train_controls else 'ppo_continuation_registration.json'
     if freeze_statistics:registration='frozen_statistics_continuation_registration.json'
     if curriculum_meters is not None:registration='three_metre_curriculum_registration.json'
+    if original_goals:registration='original_goals_evaluation_registration.json'
+    if replay_steps:registration='interleaved_success_replay_registration.json'
+    retry_record=None
+    if retry_before_controls is not None:
+        if train_controls:raise ValueError('This recovery is frozen inference only')
+        failed=Path(retry_before_controls).resolve()
+        if read(artifact/registration)['batch']!=failed.name:raise ValueError('Failed phase is not the registered evaluation')
+        final=read(failed/'guard_final.json')
+        if (failed/method/'summary.json').exists():failed_summary=read(failed/method/'summary.json')
+        else:
+            streams=list((failed/'infrastructure').glob('bridge_*.jsonl.gz'))
+            if not streams:raise ValueError('Missing summary without complete empty bridge evidence')
+            for stream in streams:
+                with gzip.open(stream,'rt',encoding='utf-8') as f:
+                    if f.read():raise ValueError('Unknown pre-summary interaction cost')
+            failed_summary={'physics_steps':0,'actions':0,'optimizer_steps':0}
+        if final['exit_code']!=1 or final['reason'] is not None or any(failed_summary[k] for k in ('physics_steps','actions','optimizer_steps')):
+            raise ValueError('Recovery requires a stopped phase with zero new learning')
+        if (failed/method/'evaluation.json').exists() or list((failed/method).glob('scene_*.json')):
+            raise ValueError('Do not rerun an evaluated or physically initialized phase')
+        if sha(failed/'resume'/method/'model.zip')!=metadata['model_sha256']:raise ValueError('Saved actor differs')
+        for stream in (failed/'infrastructure').glob('bridge_*_responses.jsonl.gz'):
+            with gzip.open(stream,'rt',encoding='utf-8') as f:
+                if any('vehicle_control' in row['response'] or row['response'].get('ok') for row in map(json.loads,f)):
+                    raise ValueError('Prior bridge contains execution or successful initialization')
+        if (failed/'infrastructure/server_start.json').exists():
+            if read(failed/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped':raise ValueError('Prior server cleanup incomplete')
+        retry_record={'batch':failed.name,'failure_sha256':sha(failed/'failure.json'),'new_controls_verified':0}
+        registration='zero_control_retry_'+registration
     if failed_prebridge is not None:
         failed=Path(failed_prebridge).resolve()
         if read(artifact/registration)['batch']!=failed.name or list((failed/'infrastructure').glob('bridge_*')):
@@ -75,12 +110,13 @@ def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statis
         destination=batch/'resume'/method;destination.parent.mkdir()
         shutil.copytree(artifact,destination,ignore=shutil.ignore_patterns('*.lock','evaluation_registration.json'))
         if verified_checkpoint_metadata(destination)!=metadata:raise ValueError('Staged fitted actor changed')
-        overrides=['native_road_learning.py','audit_native_method_endpoint.py','watch_existing_pair.py','prepare_own_success_evaluation.py']
+        overrides=['native_road_learning.py','audit_native_method_endpoint.py','watch_existing_pair.py','prepare_own_success_evaluation.py','run_carla_owned_foreground.ps1','fit_own_success_policy.py']
         for name in overrides:shutil.copy2(ROOT/'scripts'/name,batch/'source/scripts'/name)
         write_json(batch/'parent_protocol.json',old);write_json(batch/'parent_training_summary.json',summary)
         write_json(batch/'parent_endpoint_raw_audit.json',read(parent/method/'endpoint_raw_audit.json'))
         protocol=deepcopy(old);now=time.time()
         for key in ('jobs','actor_head_experiment','gradient_clipping_experiment','rollout_length_experiment'):protocol.pop(key,None)
+        protocol.pop('freeze_observation_statistics',None)
         retained=old.get('recovery',{}).get(method,{}).get('retained_optimizer_steps',0)+summary['optimizer_steps']
         scope=('Auxiliary own-success actor fit, frozen development-road evaluation; no new driving training or PPO updates; not independent conditions' if not train_controls else
             'Real PPO continuation after separately counted own-success auxiliary actor fit; same four development roads, not independent replication')
@@ -105,6 +141,17 @@ def prepare(parent,artifact,failed_prebridge=None,train_controls=0,freeze_statis
                 curriculum={'prefix_meters':curriculum_meters,'original_routes':old['routes']},
                 hypothesis='The persistently failed road has no successful own experience; shorter goals may produce initial own stopping successes before returning to the original goals',
                 comparison='Exploratory curriculum, not a matched architecture or normalization claim; all four roads retained, original six-metre failures remain')
+        if original_goals:
+            protocol.update(routes=deepcopy(old['curriculum']['original_routes']),
+                scope='Frozen transfer back to original known six-metre goals after three-metre curriculum and counted own-success actor replay; zero new training, not unseen conditions',
+                original_goal_transfer=True)
+        if retry_record is not None:protocol['explicit_zero_control_launch_recovery']=retry_record
+        if replay_steps:
+            protocol.update(scope='PPO plus explicitly counted own-success auxiliary actor replay after every phase; frozen observation statistics, registered known-road development curriculum, no external teacher or formal competence claim',
+                own_success_replay={'dataset':'resume/'+method+'/own_success_inputs.npz','sha256':metadata['dataset_sha256'],
+                    'steps_per_phase':replay_steps,'sampling':'condition-balanced own successful measured training decisions'},
+                hypothesis='Interleaving successful own-experience fitting with PPO can retain acquired skills while real on-policy updates explore the missing road; extra optimizer work is charged separately',
+                comparison='Exploratory PPO plus self-imitation objective, not unchanged PPO or a matched architecture claim')
         protocol['source_hashes']={p.relative_to(batch/'source').as_posix():sha(p) for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
         write_json(batch/'protocol.json',protocol)
         write_json(batch/'prepared.json',{'status':'PREPARED_NOT_STARTED','protocol_sha256':sha(batch/'protocol.json')})
@@ -123,4 +170,7 @@ if __name__=='__main__':
     parser.add_argument('--train-controls',type=int,default=0)
     parser.add_argument('--freeze-statistics',action='store_true')
     parser.add_argument('--curriculum-meters',type=float)
-    args=parser.parse_args();prepare(args.parent,args.artifact,args.failed_prebridge,args.train_controls,args.freeze_statistics,args.curriculum_meters)
+    parser.add_argument('--original-goals',action='store_true')
+    parser.add_argument('--retry-before-controls')
+    parser.add_argument('--replay-steps',type=int,default=0)
+    args=parser.parse_args();prepare(args.parent,args.artifact,args.failed_prebridge,args.train_controls,args.freeze_statistics,args.curriculum_meters,args.original_goals,args.retry_before_controls,args.replay_steps)

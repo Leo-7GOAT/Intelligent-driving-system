@@ -1,5 +1,16 @@
 # Development model card
 
+## Local curriculum and retention models (2026-10-26 evening)
+
+See [full development outcomes](../reports/native_retention_20261026.md) and
+[model/normalizer/raw-audit ledger](../reports/native_retention_summary_20261026.json).
+Direct categorical B1 with actual PPO plus separately counted own-success actor
+replay completes4/4three-metre known-road goals. Frozen six-metre transfer and
+the4.5m continuation remain3/4. These are local, correlated seed-11 development
+models, not a new published model release, healthy full-task baseline or formal
+hierarchy result. Preserve successful and failed endpoints and charge all
+auxiliary actor steps and pooled sibling-branch interactions.
+
 ## Published matched H decision-head models (2026-10-26)
 
 [Complete shared/unshared head asset](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_actor_head_seed11_20261026_full.zip):

@@ -1,4 +1,33 @@
-# Latest completed work — 2026-10-26 15:48 local
+# Latest completed work — 2026-10-26 18:26 local
+
+See ../reports/native_retention_20261026.md and its measured JSON ledger. Actual
+B1 PPO plus explicitly counted own-success replay reaches4/4 on three-metre
+known-road goals; frozen transfer to original six-metre goals remains3/4.
+The4.5m continuation is3/4, failing road1at4.08m. This is a basic curriculum
+milestone, not full-task health, plain PPO or independent confirmation.
+
+H local-witness filtering worsens prior3/4 to2/4; progress reward gives1/4
+after byte-identical zero-training evaluation recovery. The interrupted original
+H training retains a60-control trace gap; never label it completely frame-audited.
+B1 categorical fresh/continued endpoints1/4 then0/4; own-success fitting3/4;
+ordinary/frozen-statistics PPO continuation0/4 versus2/4. All failures retained.
+
+Latest normally completed training:20261026T102314Z_native_continuation;
+latest frozen six-metre probe:20261026T102019Z_native_evaluation_recovery.
+All actual processes must still be rechecked from identities/receipts before use.
+No claim that a chat continues working after its turn ends.
+
+Full CPU317/1skip/4CARLA exclusions;19 targeted checks pass. Hosted source5cf9297
+is313/3skips/4exclusions, actual run40304264696. New local raw traces/models are
+not yet a public model release. Full original objective remains unmet.
+
+Next development bottleneck: retain the new successful longer-goal road1
+experience in the counted replay dataset, then verify every current goal before
+advancing. Keep all replay/extra Adam costs and correlated branch interactions
+explicit. Do not jump to five formal seeds or120final conditions before basic
+full-task competence and matched controls are ready.
+
+# Historical completed work — 2026-10-26 15:48 local
 
 Publication addendum: the complete H pair is also PUBLIC and actually
 downloaded/reproduced in independent checkoutf38f38a:402files, both raw audits,

@@ -278,7 +278,7 @@ def register_prepared_child(parent,batch,target):
     return registration
 
 
-def prepare(parent,target=100000,wall_seconds=7200):
+def prepare(parent,target=100000,wall_seconds=7200,curriculum_length=None):
     parent=Path(parent).resolve()
     if not 20000<target<=1000000 or not 900<=wall_seconds<=21600:
         raise ValueError('Native continuation budget outside supported bounds')
@@ -290,6 +290,11 @@ def prepare(parent,target=100000,wall_seconds=7200):
     with ProcessLease(runs/'native_continuation.prepare.lock'):
         assert_continuation_pointer_available(runs)
         old=read(parent/'protocol.json');completed=read(parent/'summary.json')
+        if curriculum_length is not None:
+            if (curriculum_length not in (4.5,6.) or old.get('methods')!=['B1'] or not old.get('own_success_replay')
+                    or not old.get('curriculum') or curriculum_length<=old['curriculum']['prefix_meters']
+                    or not all(e['success'] for e in read(parent/'B1/evaluation.json')['episodes'])):
+                raise ValueError('Advance the registered curriculum only after all four current goals succeed')
         guard=read(parent/'guard_final.json');audit=read(parent/'analysis/verified_summary.json')
         if completed['status']!='complete' or guard['exit_code']!=0 or guard['reason'] is not None or (parent/'failure.json').exists():
             raise ValueError('Parent is not normally completed')
@@ -340,6 +345,18 @@ def prepare(parent,target=100000,wall_seconds=7200):
                 budgets[method]=target-summary['lineage_control_steps']
                 parent_records[method]={'summary':summary,'evaluation':read(parent/method/'evaluation.json'),
                     'checkpoint_hashes':{f.name:sha(f) for f in checkpoint.iterdir() if f.is_file()}}
+            if old.get('own_success_replay'):
+                relative=Path(old['own_success_replay']['dataset'])
+                if relative.is_absolute() or '..' in relative.parts or relative.parts[:2]!=('resume','B1'):
+                    raise ValueError('Unexpected own-success replay location')
+                if sha(parent/relative)!=old['own_success_replay']['sha256']:
+                    raise ValueError('Retained replay dataset changed')
+                shutil.copy2(parent/relative,batch/relative)
+            if curriculum_length is not None:
+                from scripts.prepare_native_flat_distribution_pair import short_route
+                old['routes']=[short_route(route,curriculum_length) for route in old['curriculum']['original_routes']]
+                old['curriculum']={**old['curriculum'],'prefix_meters':curriculum_length,
+                    'previous_prefix_meters':read(parent/'protocol.json')['curriculum']['prefix_meters']}
             now=time.time()
             old.update(created_epoch=now,deadline_epoch=now+wall_seconds,source_hashes=hashes,
                 controlled_budget_per_method=target,method_budgets=budgets,recovery=recovery,
@@ -348,6 +365,9 @@ def prepare(parent,target=100000,wall_seconds=7200):
                 scope='Completed-policy native continuation; same seed and learning state, new measured episodes, cumulative controls and inherited costs; not independent replication',
                 continuation_reason=f'Continue every registered parent method to cumulative {target} controls with unchanged learning settings; this is correlated continuation, not an independent seed',
                 disk_free_bytes=shutil.disk_usage(ROOT).free)
+            if curriculum_length is not None:
+                old.update(scope='Registered longer-goal PPO plus own-success replay curriculum; all previous failures retained, no independent-condition or plain-PPO claim',
+                    continuation_reason=f'After four-of-four current-goal probes, advance to nominal{curriculum_length}m goals with the same saved policy, optimizer, normalization, RNG and counted replay schedule')
             old['resource_limits']['wall_seconds']=wall_seconds
             write_json(batch/'protocol.json',old)
             write_json_atomic(batch/'prepared.json',{
@@ -381,4 +401,5 @@ def prepare(parent,target=100000,wall_seconds=7200):
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--parent',required=True)
     p.add_argument('--target',type=int,default=100000);p.add_argument('--wall-seconds',type=int,default=7200)
-    a=p.parse_args();prepare(a.parent,a.target,a.wall_seconds)
+    p.add_argument('--curriculum-length',type=float)
+    a=p.parse_args();prepare(a.parent,a.target,a.wall_seconds,a.curriculum_length)

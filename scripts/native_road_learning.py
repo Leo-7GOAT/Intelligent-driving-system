@@ -316,6 +316,16 @@ def run(batch):
                 evaluation_only=bool(protocol.get('evaluation_only'))
                 if evaluation_only and (budget!=0 or recovery is None):
                     raise ValueError('Evaluation-only phase requires zero budget and a verified saved checkpoint')
+                replay=protocol.get('own_success_replay')
+                replay_data=None;replay_steps=0
+                if replay:
+                    if evaluation_only or recovery is None or not protocol.get('freeze_observation_statistics'):
+                        raise ValueError('Own-success replay requires explicit frozen-statistics training continuation')
+                    replay_path=batch/replay['dataset']
+                    if hashlib.sha256(replay_path.read_bytes()).hexdigest()!=replay['sha256']:
+                        raise ValueError('Own-success replay dataset changed')
+                    if replay['steps_per_phase']!=100:raise ValueError('Unregistered auxiliary replay schedule')
+                    replay_data=np.load(replay_path,allow_pickle=False)
                 model.set_logger(configure(str(output/"sb3"), ["csv"]))
                 before = actor_vector(model).clone()
                 recorder = ResearchRecorder(output, protocol["deadline_epoch"])
@@ -341,6 +351,14 @@ def run(batch):
                     model.learn(rollout_actions, callback=recorder, reset_num_timesteps=False)
                     if model._n_updates > previous:
                         recorder.counts["optimization_phases"] += 1
+                        replay_record={}
+                        if replay_data is not None:
+                            from scripts.fit_own_success_policy import fit_actor
+                            fitted=fit_actor(model,vec.normalize_obs(replay_data['observations']),replay_data['actions'],
+                                replay_data['groups'],replay['steps_per_phase'],seed=protocol['seed']+recorder.counts['optimization_phases'])
+                            replay_steps+=fitted['actor_optimizer_steps']
+                            replay_record={'auxiliary_actor_optimizer_steps':replay_steps,
+                                'ppo_optimizer_steps':optimizer_steps[0]-replay_steps,'own_success_fit':fitted}
                         gradient_record = {}
                         if gradient_samples:
                             gradient_array=np.asarray(gradient_samples)
@@ -350,7 +368,7 @@ def run(batch):
                                 'critic_l2_mean':float(gradient_array[:,1].mean()),
                                 'scope':'Measured after clipping and Adam step, before next gradient reset'}}
                         append_json(output/"optimization.jsonl", {**recorder.counts, "optimizer_steps": optimizer_steps[0],
-                            **gradient_record,
+                            **gradient_record,**replay_record,
                             "actor_l2_change": float(torch.linalg.vector_norm(actor_vector(model)-before)),
                             "metrics": {k: float(v) for k,v in model.logger.name_to_value.items() if np.isscalar(v) and np.isfinite(v)}})
                     thresholds=sorted(set(protocol.get('checkpoint_thresholds',[]))|set(range(10000,budget+1,10000))|{budget})
@@ -401,6 +419,9 @@ def run(batch):
                     'charged_control_steps_lower_bound':inherited_cost+recorder.counts['physics_steps'],
                     'inherited_controls_not_in_checkpoint':inherited_cost-inherited_lineage,
                     "scope": protocol["scope"]}
+                if replay is not None:
+                    result.update(auxiliary_actor_optimizer_steps=replay_steps,
+                                  ppo_optimizer_steps=optimizer_steps[0]-replay_steps)
                 write_json(output/"summary.json", result)
                 results.append(result)
                 print(json.dumps(result), flush=True)

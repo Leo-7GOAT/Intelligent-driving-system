@@ -1,5 +1,12 @@
 # CPU regression CI
 
+Latest local full regression:317passed/1skip/4CARLA deselections,107.24seconds,
+with raw log/XML retained under runs/own_success_final_cpu_20261026.*.
+Nineteen targeted actor-replay, continuation, recovery and endpoint-audit checks
+also pass. Actual hosted source5cf9297passes313/3skips/4deselections in66.40s:
+[run40304264696](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40304264696).
+Later local changes do not inherit that hosted result; inspect their actual CI.
+
 `.github/workflows/cpu-regression.yml` runs the repository's CPU tests on source,
 test, dependency or workflow changes, pull requests, and manual dispatch. It
 uses Python3.11, the exact dependency lock, CPU-only PyTorch and a standard
