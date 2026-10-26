@@ -178,7 +178,8 @@ def registered_jobs(protocol):
         return [{'name': method, 'method': method} for method in protocol['methods']]
     clipping=bool(protocol.get('gradient_clipping_experiment'))
     rollout=bool(protocol.get('rollout_length_experiment'))
-    if clipping == rollout or not jobs:
+    distribution=bool(protocol.get('flat_distribution_experiment'))
+    if sum((clipping,rollout,distribution)) != 1 or not jobs:
         raise ValueError('Named native jobs require exactly one registered learning intervention')
     names = [job['name'] for job in jobs]
     if names != protocol['methods'] or len(set(names)) != len(names):
@@ -188,6 +189,13 @@ def registered_jobs(protocol):
             raise ValueError('Invalid native experiment job')
         if job.get('gradient_clip_mode') not in (GLOBAL_CLIP, INDEPENDENT_CLIP):
             raise ValueError('Every experiment arm must declare its gradient clipping mode')
+        if distribution and (job['method'] != 'B1' or
+                job['gradient_clip_mode'] != GLOBAL_CLIP or
+                job.get('flat_action_distribution') not in ('clipped_gaussian','tanh_gaussian_v1') or
+                'rollout_actions' in job or protocol.get('recovery')):
+            raise ValueError('Distribution pair requires fresh flat policies and unchanged common PPO schedule')
+        if not distribution and 'flat_action_distribution' in job:
+            raise ValueError('Action distribution changes require their own registered experiment')
         if rollout and (job['gradient_clip_mode'] != GLOBAL_CLIP or
                         type(job.get('rollout_actions')) is not int or job['rollout_actions'] not in (32,256)):
             raise ValueError('Rollout study must retain global clipping and declare 32 or 256 actions')
@@ -249,6 +257,9 @@ def run(batch):
                         from navstack.road_candidate_policy import RoadCandidateVecNormalize,RoadCandidateActorCriticPolicy,FlatRoadCandidateActorCriticPolicy
                         normalizer=RoadCandidateVecNormalize
                         policy=FlatRoadCandidateActorCriticPolicy if method=='B1' else RoadCandidateActorCriticPolicy
+                        if job.get('flat_action_distribution') == 'tanh_gaussian_v1':
+                            from navstack.squashed_road_policy import SquashedFlatRoadPolicy
+                            policy=SquashedFlatRoadPolicy
                     vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
                     algorithm = IndependentClipPPO if job.get('gradient_clip_mode') == INDEPENDENT_CLIP else PPO
                     model = algorithm(policy, vec, n_steps=rollout_actions, batch_size=32,
