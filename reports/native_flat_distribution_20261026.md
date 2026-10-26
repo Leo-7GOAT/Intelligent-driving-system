@@ -100,7 +100,25 @@ The new term is signed measured Euclidean remaining-distance reduction each
 physical tick, without a planner target. It is available equally to H/H0/B1;
 this single B1 diagnostic cannot support a hierarchy comparison. Protocol SHA256
 `ede5a2195f0860b3f9861f94797b5cad46d0b5b0847e593fe7bd0f0f80df8fee`.
-One900s window, all4endpoint probes, same guards and zero retries. At this
-update it is actually running; record observed outcomes before any expansion.
-Neither a revised reward nor completion of this short test closes the original
-full-task baseline-health, five-seed or independent-confirmation requirements.
+It completes4,135training controls/416decisions/130Adam steps in55.025s,
+plus646evaluation controls. All **4,781**controls match closed original frames;
+normal exit0/guard reasonnull/owned empty-server shutdown are verified.
+Training has14deadlines/3bounds/**1success**, versus no success for either
+previous arm. Frozen evaluation is still **0/4**: three bounds failures and one
+deadline, with progress3.5182/4.1079/4.5176/3.5746m. This changes motion but does
+not establish safe task competence or superiority; unsafe motion is not success.
+
+The observed first training success and deterministic movement justify one
+bounded same-policy continuation, not another fresh-seed claim. Existing
+`continue_native_learning.py` stages the exact endpoint policy, Adam state,
+normalizer and saved RNG, verifies their hashes/tensors/semantics, and explicitly
+resets the physical episode. It retains the parent4,135controls and130updates.
+The child `runs/20261026T062119Z_native_continuation` targets **20,480cumulative
+training controls**, same reward/network/PPO/low-level, one900s wall window,
+all four endpoint probes and no retries. The parent remains immutable with its
+failed endpoint, whole raw analysis and one registered continuation. At14:22
+local the actual worker57960created14:22:04.09046+08:00 is running; state must be
+revalidated, not inferred from this prose. Its result is not yet known.
+
+Neither a revised reward nor short-task learning closes the original full-task
+baseline-health, five-seed or independent-confirmation requirements.

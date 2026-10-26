@@ -344,7 +344,7 @@ def prepare(parent,target=100000,wall_seconds=7200):
                 parent_batch=parent.name,parent_records=parent_records,
                 parent_raw_audit_sha256=sha(parent/'analysis/verified_summary.json'),
                 scope='Completed-policy native continuation; same seed and learning state, new measured episodes, cumulative controls and inherited costs; not independent replication',
-                continuation_reason=f'At20k categorical policies still have weak action discrimination; continue all methods to cumulative {target} controls without changing learning settings',
+                continuation_reason=f'Continue every registered parent method to cumulative {target} controls with unchanged learning settings; this is correlated continuation, not an independent seed',
                 disk_free_bytes=shutil.disk_usage(ROOT).free)
             old['resource_limits']['wall_seconds']=wall_seconds
             write_json(batch/'protocol.json',old)

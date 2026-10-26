@@ -1,3 +1,20 @@
+# Latest actual work — 2026-10-26 14:22 local
+
+B1 progress-weight1 short sanity COMPLETE:4135training+646evaluation controls,
+all4781raw-audited. Training1success/14deadlines/3bounds; frozen0/4 with3bounds,
+1deadline,progress3.52/4.11/4.52/3.57m. Normal owned cleanup verified. This is
+movement improvement over weight0's all-zero motion, not healthy safe competence.
+
+Based on that observed learning, exact endpoint continuation is now RUNNING:
+`runs/20261026T062119Z_native_continuation`, cumulative training target20480,
+900s wall window from preparation, unchanged policy/reward/optimizer/normalizer/
+frozen low level, no retries. Real worker57960created14:22:04.09046+08:00;
+worker exec75589/guard49974/server16219. Use OS/handle identity to revalidate.
+The earlier progress batch is now terminal; its then-live snapshot below is
+historical. Do not start another tick owner. Complete endpoint/raw audit/owned
+cleanup, then assess actual safe learning before selecting another change.
+Full original research goal remains unachieved and unchanged.
+
 # Live research update — 2026-10-26 14:17 local
 
 Full original objective unchanged. [Current B1 experiment](../reports/native_flat_distribution_20261026.md):
