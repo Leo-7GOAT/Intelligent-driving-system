@@ -122,3 +122,41 @@ revalidated, not inferred from this prose. Its result is not yet known.
 
 Neither a revised reward nor short-task learning closes the original full-task
 baseline-health, five-seed or independent-confirmation requirements.
+
+
+## Completed continuation and target-speed diagnostic
+
+The exact continuation ends at20,796cumulative training controls, adding16,661
+training controls/1,696decisions/530Adam steps plus960evaluation controls.
+New training has1success/26deadlines/70bounds; the last20episodes contain no
+success. Frozen evaluation remains0/4, all deadlines, progress0.007/0/3.443/
+2.017m. All17,621newcontrols are raw-audited, and all96frozen decisions reproduce
+from measured feedback without new execution or updates. Normal owned cleanup
+is verified. More budget did not establish sustained safe learning; do not
+expand this same configuration.
+
+The separate fresh `20261026T063241Z_native_speed_sanity` changes only B1's
+longitudinal interface, under a new explicit signature: target_speed=(a0+1)*vmax/2,
+requested acceleration=clip(target_speed-measured_speed,-max_decel,max_accel),
+with proportional gain1/s at the existing0.5s decision rate. Steering remains
+direct, and the request still passes through the common calibrated actuator.
+This is a disclosed low-level speed servo, with no goal/route logic, planner,
+reference trajectory, MPC or neural-policy substitution. It is an exploratory
+stronger baseline interface, not an unchanged direct-acceleration comparison.
+Original acceleration semantics remain default; legacy serialized configs and
+signatures omit the new default field. The optional speed signature prevents
+silently loading old acceleration weights under different action semantics.
+
+At4,377training controls/448decisions/140Adam steps (52.171s), training has
+4successes/25bounds/2deadlines. Frozen probes are0/4, all bounds, progress
+3.97/4.68/4.56/4.01m. Raw audit and normal owned cleanup complete. Successful
+stochastic training episodes do not establish deterministic competence; this
+variant is not adopted as a healthy baseline. All five completed B1 segments
+contain **37,637new, raw-verified controls**, counted without duplicating the
+continuation's inherited4,135controls. Exact counters, models/normalizers and
+protocol/raw-audit hashes are in [the summary](B1_sanity_summary_20261026.json).
+
+The current learning experiment targets H's decision head, with a separately
+matched fresh shared/unshared pair on original full roads; see
+[its protocol and evidence boundary](native_actor_head_20261026.md). Neither
+that hypothesis nor any of these negative B1 diagnostics lowers the full goal.

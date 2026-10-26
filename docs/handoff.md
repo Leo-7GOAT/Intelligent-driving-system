@@ -1,3 +1,26 @@
+# Current authoritative handoff — 2026-10-26 14:52 local
+
+B1 distribution/progress/speed diagnostics and exact continuation are COMPLETE,
+all endpoint successes0/4,37,637newcontrols raw-verified, owned servers stopped.
+No healthy baseline established. See ../reports/native_flat_distribution_20261026.md
+and its complete JSON; do not increase budgets for the same failed variants.
+
+LIVE: `runs/20261026T064621Z_native_actor_head`, codee0f9099, fresh matched
+H_shared/H_unshared_v1 on all4original FULL routes. Only the head differs;
+initial encoders/critic/RNG match. Both use shared10epochs/batchSAT/4096controls.
+Worker64952created14:48:15.869366+08:00; guard28004; sessions worker93792,
+guard38629,server58996. At14:50shared training2582controls, guardhealthy;
+revalidate OS identities/handles before reliance. 1800s window, zero retries.
+No result or cleanup claimed yet. Complete both endpoints and original-frame
+checks before drawing conclusions. Report: ../reports/native_actor_head_20261026.md.
+
+Latest broader checks: root302passes/1skip/4CARLA deselections before the new
+head;14current targeted passes. Independent checkout588a75c full301passes,
+1skip/4deselections. Actual hosted588a75c run40279542110success. Independent
+checkoute0f9099 now runs the current full suite (exec12123); actual latest
+hosted run must be checked before claiming its results. Prior timestamped
+snapshots below are historical. Full original research goal remains active.
+
 # Latest actual work — 2026-10-26 14:22 local
 
 B1 progress-weight1 short sanity COMPLETE:4135training+646evaluation controls,
