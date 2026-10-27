@@ -60,3 +60,11 @@ def test_registered_views_reject_changed_evidence_before_fitting(tmp_path,monkey
         manifest['dataset_sha256']=module.sha(views/'measured_demonstrations.npz')
         (views/'manifest.json').write_text(json.dumps(manifest))
     with pytest.raises(ValueError): module.load_registered_views(views,reference,config,donor)
+
+
+@pytest.mark.parametrize('budget',[True,0,1801])
+def test_conversion_rejects_unbounded_or_invalid_budget_before_reading_or_writing(tmp_path,budget):
+    from scripts.build_native_measured_views import build
+    output=tmp_path/'unstarted'
+    with pytest.raises(ValueError,match='wall budget'):build(tmp_path/'missing',[],output,budget)
+    assert not output.exists()

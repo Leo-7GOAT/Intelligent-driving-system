@@ -224,7 +224,7 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None):
             if views:
                 protocol['extra_supervision'].update(teacher_batches=[s['batch'] for s in view_manifest['sources']],
                     measured_view_manifest_sha256=sha(batch/'measured_view_provenance.json'),
-                    scope='Static and dynamic measured direct-control supervision; frozen evaluation remains the four known static development roads. Not a single-factor PPO comparison or independent confirmation.')
+                    scope='Static and dynamic measured direct-control supervision; frozen evaluation uses every registered development condition. Not a single-factor PPO comparison or independent confirmation.')
             protocol['source_hashes'] = {p.relative_to(batch/'source').as_posix(): sha(p)
                 for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
             write_json(batch/'protocol.json', protocol)

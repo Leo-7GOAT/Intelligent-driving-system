@@ -16,6 +16,14 @@ static-obstacle and four walker conditions on the same known roads. Its case
 registration and frame auditors are tested; it has not driven yet. It is a
 development inventory, not independent seeds or the 120 unseen final conditions.
 
+[Dynamic hierarchical observation reconstruction](reports/native_hierarchical_dynamic_views_20261027.json)
+now validates actual archived actor frames: both H/H0 views cover 1,691 recorded
+controls and 171 macro decisions in the original teacher catalog. All 194 static
+teacher observations/labels per method reproduce exactly. This is data-interface
+verification, not another trained policy or driving result. The [completed
+smaller-exploration H endpoint](reports/native_H_small_exploration_endpoint_20261027.json)
+remains 2/4 with 23,220 controls audited; H0 is still training.
+
 Earlier development snapshots follow.
 
 Latest [supervised-PPO retention test](reports/native_supervised_retention_20261027.md): the3/4supervised direct model drops to0/4after20,480real PPO controls. All23,427frames verify and observation statistics stay fixed. A matched-initialization shared reward-profile diagnostic is running; no PPO improvement is claimed.

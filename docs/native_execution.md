@@ -175,6 +175,13 @@ require separate actual training and frozen evaluation.
 Fresh PPO preparation retains the full manifest for every selected method.
 Frozen transfers require a saved runtime that supports the manifest; an older
 four-case runtime is rejected rather than silently evaluating a subset. The
-older static teacher-fit entry points also refuse an unsupported mixed manifest.
-Dynamic hierarchical teaching still needs its own per-frame view implementation;
-the twelve-case pilot does not claim that this supervision is already available.
+direct teacher-fit path requires registered views for a mixed manifest. The
+hierarchical teacher-fit path now reconstructs measured dynamic actors at every
+macro boundary, verifies all intervening frames and consumes every registered
+case. It does not integrate actor motion or reinterpret old numeric actions in
+another catalog. The queued twelve-case pilot has not yet supplied a new fit.
+
+For a larger direct-view inventory, declare the conversion budget before starting,
+for example `--wall-seconds 900` on `build_native_measured_views.py`. The default
+remains 600s and the accepted range is 60..1800s; resource floors stay unchanged.
+This does not alter an already running conversion or its preserved failures.

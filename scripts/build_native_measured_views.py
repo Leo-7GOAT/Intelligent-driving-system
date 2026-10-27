@@ -21,9 +21,12 @@ from navstack.research import resources_ok
 from scripts.audit_native_method_endpoint import read, read_prefix, sha
 from scripts.audit_native_rule import audit
 from scripts.evaluate_native_rule import require_finished_parent
+from navstack.native_cases import registered_native_cases
 
 
-def build(reference_config, teachers, output):
+def build(reference_config, teachers, output, wall_seconds=600):
+    if type(wall_seconds) is not int or not 60<=wall_seconds<=1800:
+        raise ValueError('Measured view construction requires a declared60..1800second wall budget')
     started = time.monotonic()
     code_identity = {'view_source_sha256': sha(ROOT / 'navstack/measured_demo.py'),
                      'script_sha256': sha(Path(__file__))}
@@ -39,7 +42,7 @@ def build(reference_config, teachers, output):
     for teacher in teachers:
         require_finished_parent(teacher)
         verified = audit(teacher)
-        if verified != read(teacher / 'raw_audit.json') or verified['cases_verified'] != 4:
+        if verified != read(teacher / 'raw_audit.json') or verified['cases_verified'] != len(registered_native_cases(read(teacher/'protocol.json'))):
             raise ValueError('Require every registered teacher case and its complete raw audit')
         protocol = read(teacher / 'protocol.json')
         for name, digest in protocol['source_hashes'].items():
@@ -60,8 +63,8 @@ def build(reference_config, teachers, output):
         raise ValueError('Calibrations differ or the same raw teacher trace was counted twice')
     output.mkdir(parents=True)
     write_json(output / 'registration.json', {'scope': 'Read-only measured direct views; no policy fit, control or update',
-               'reference_config_sha256': sha(reference_config), 'sources': provenance, 'wall_seconds': 600})
-    deadline = started + 600
+               'reference_config_sha256': sha(reference_config), 'sources': provenance, 'wall_seconds': wall_seconds})
+    deadline = started + wall_seconds
     observations, labels, returns, masks, groups, cases = [], [], [], [], [], []
     def health():
         okay, reason = resources_ok(ROOT)
@@ -81,7 +84,7 @@ def build(reference_config, teachers, output):
                 if error: raise ValueError(error)
                 begins.update({w['response']['episode_id']: w['response'] for w in responses if 'scene' in w.get('response', {})})
             count = 0
-            for case_id in range(4):
+            for case_id in range(len(registered_native_cases(read(teacher/'protocol.json')))):
                 decisions = [row for row in rows if row['case_id'] == case_id]
                 ticks = [tick for row in decisions for tick in row['info']['trace']]
                 initial = decisions[0]['info']['initial_scenario']
@@ -126,6 +129,7 @@ def build(reference_config, teachers, output):
                   'sources': provenance, 'cases': cases, 'teacher_unique_controls': len(labels),
                   'dataset_sha256': sha(dataset), 'reference_config_sha256': sha(reference_config),
                   **code_identity, 'conversion_wall_seconds': time.monotonic()-started,
+                  'conversion_wall_budget_seconds': wall_seconds,
                   'brake_projection': 'Only known held-measured-steer brake requests may use their exact acknowledged '
                                       'rate/absolute-limited command. Raw requests and frame evidence remain unchanged; QP tolerance is not enlarged.',
                   'holdout': 'Every fifth control within each case; correlated diagnostics only',
@@ -143,6 +147,7 @@ if __name__ == '__main__':
     parser.add_argument('--reference-config', required=True)
     parser.add_argument('--teachers', nargs='+', required=True)
     parser.add_argument('--output', required=True)
+    parser.add_argument('--wall-seconds',type=int,default=600,help='Declared before conversion;60..1800seconds, resource floors unchanged')
     args = parser.parse_args()
-    result = build(args.reference_config, args.teachers, args.output)
+    result = build(args.reference_config, args.teachers, args.output,args.wall_seconds)
     print(json.dumps({'teacher_unique_controls': result['teacher_unique_controls'], 'new_controls': 0, 'ppo_updates': 0}))

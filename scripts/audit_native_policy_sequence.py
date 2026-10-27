@@ -20,16 +20,23 @@ from navstack.experiments import write_json
 from navstack.independent_clip_ppo import load_ppo
 from navstack.road_grid import RoadGrid
 from navstack.vehicle import Command, VehicleState, wrap
-from navstack.world import World
+from navstack.world import World, MovingObstacle
+from navstack.measured_demo import _actor_snapshot
 from scripts.audit_native_action_availability import verify_source
 from scripts.audit_native_method_endpoint import read, sha
 
 
-def observation_env(config, scene, initial):
+def observation_env(config, scene, initial, *, begin=None):
     if config.method != 'H' or config.vehicle.input_delay_steps:
         raise ValueError('Sequence reconstruction requires hierarchical actions and no input queue')
-    if initial['dynamic'] or scene.get('dynamic'):
+    if (initial['dynamic'] or scene.get('dynamic')) and begin is None:
         raise ValueError('Dynamic actors require per-frame observation reconstruction')
+    identities,states=None,[]
+    if begin is not None:
+        identities,states=_actor_snapshot(begin.get('native_dynamic_actors',[] if begin.get('dynamic')==[] else None))
+        if (states!=initial['dynamic'] or begin.get('dynamic')!=states or begin.get('state')!=initial['initial']
+                or begin.get('scene')!=scene or type(begin.get('frame')) is not int or not isinstance(begin.get('episode_id'),str)):
+            raise ValueError('Measured hierarchical reset actor/task/frame identity differs')
     if scene['goal'] != initial['goal'] or scene['static'] != initial['static']:
         raise ValueError('Task geometry mismatch')
     road = RoadGrid(scene['road_grid'])
@@ -37,6 +44,7 @@ def observation_env(config, scene, initial):
         raise ValueError('Recorded road mismatch')
     env = NavigationEnv(config)
     env.world = World(scene['width'], scene['height'], scene['static'], road=road)
+    env.world.dynamic=[MovingObstacle(**state) for state in states]
     env.goal = initial['goal']
     env.navigation_route = scene['native_layout']['path'] if config.subgoal_mode == 'route_frame_terminal' else None
     env.last_behavior = np.zeros(4)
@@ -44,6 +52,8 @@ def observation_env(config, scene, initial):
     # No step method exists: this object only holds already measured feedback.
     env.plant = SimpleNamespace(state=VehicleState(**initial['initial']),
                                previous_command=Command(), delay_queue=deque(), evidence=initial.get('actuator_evidence',{}))
+    if begin is not None:
+        env._measured_actor_ids=identities;env._measured_episode=begin['episode_id'];env._measured_frame=begin['frame']
     return env
 
 
@@ -51,6 +61,18 @@ def advance_observation(env, row):
     """Mirror observable history fields, with states/commands from audited frames."""
     info, action = row['info'], int(row['policy_action'])
     trace = info['trace']
+    if not trace or not 0<=action<len(ACTIONS):
+        raise ValueError('Require a nonempty measured macro decision and valid action')
+    if hasattr(env,'_measured_actor_ids'):
+        frame=env._measured_frame;clock=env.state.time
+        for tick in trace:
+            evidence=tick.get('backend_evidence',{})
+            _,states=_actor_snapshot(evidence.get('native_dynamic_actors',[] if not env._measured_actor_ids else None),env._measured_actor_ids)
+            if (evidence.get('episode_id')!=env._measured_episode or evidence.get('frame')!=frame+1
+                    or tick.get('backend_frame')!=evidence.get('frame')
+                    or abs(tick['state']['time']-clock-env.config.control_dt)>1e-6):
+                raise ValueError('Measured hierarchical episode/frame/time sequence differs')
+            frame=evidence['frame'];clock=tick['state']['time']
     initial_speed = env.state.v
     if action and (env.config.subgoal_mode.startswith('goal_frame') or env.config.subgoal_mode == 'route_frame_terminal'):
         target, speed = env.decode_action(action)
@@ -62,6 +84,9 @@ def advance_observation(env, row):
     env.plant.state = VehicleState(**trace[-1]['state'])
     env.plant.previous_command = Command(**trace[-1]['command'])
     env.plant.evidence = trace[-1].get('backend_evidence',{})
+    if hasattr(env,'_measured_actor_ids'):
+        env.world.dynamic=[MovingObstacle(**state) for state in states]
+        env._measured_frame=frame
     if env.config.execution_feedback != 'off':
         env.execution_outcome = np.array([
             float(info['mode'] == 'reference'), float(info['mode'] == 'plan_failed'),

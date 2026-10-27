@@ -1,0 +1,56 @@
+{
+  "scope": "Measured hierarchical dynamic observation support and all-case teacher construction; no new fit, PPO update, CARLA control or performance claim.",
+  "static_actual_parity": {
+    "scope": "Read-only actual static teacher macro reconstruction; no fitting, PPO updates or driving. Dynamic correctness separately tested against measured synthetic frame fixtures.",
+    "teacher_batch": "20261027T003800Z_native_rule",
+    "original_initialization": "20261027T032549Z_native_hierarchical_bc",
+    "source_sha256": "146c22f730ddc1b404fe71e142fd76959429acd012d79b9e0d968c639f811163",
+    "methods": {
+      "H": {
+        "decisions": 194,
+        "observation_shape": [
+          194,
+          4705
+        ],
+        "observation_sha256": "d4c583e58513877579ccfb6e3f47881caf00c90ae7f0ab13c012481e9e369812",
+        "all_observations_and_labels_exact": true
+      },
+      "H0": {
+        "decisions": 194,
+        "observation_shape": [
+          194,
+          4705
+        ],
+        "observation_sha256": "337c208202352828dde2cc8e465bd1a3d961028c9ec002754e2c20fe035f4dbc",
+        "all_observations_and_labels_exact": true
+      }
+    },
+    "wall_seconds": 30.79700000002049
+  },
+  "dynamic_actual_frame_verification": {
+    "scope": "Actual archived dynamic CARLA macro frames reconstructed read-only in the original teacher catalog. No fitting, new driving, PPO update, policy performance or relabelling into the current catalog.",
+    "teacher_batch": "20261026T140210Z_native_rule",
+    "teacher_raw_audit_sha256": "53db7fc790963a1855c88dfdcc464e21ce361325a597c5cc6f24d126fe981621",
+    "source_sha256": "146c22f730ddc1b404fe71e142fd76959429acd012d79b9e0d968c639f811163",
+    "methods": {
+      "H": {
+        "decisions_checked": 171,
+        "actor_visible_decisions": 157,
+        "physical_frames_validated": 1691,
+        "neighbor_features_exact_against_independent_transform": true
+      },
+      "H0": {
+        "decisions_checked": 171,
+        "actor_visible_decisions": 157,
+        "physical_frames_validated": 1691,
+        "neighbor_features_exact_against_independent_transform": true
+      }
+    },
+    "wall_seconds": 38.03099999995902,
+    "catalog_limit": "Legacy route_goal_candidate/reference_reuse settings are preserved. These numeric macro IDs are NOT merged with the new twelve-condition catalog."
+  },
+  "integration_tests": "109passed in49.68s; seven dynamic macro fixtures include malformed middle/end frames and rejection before mutation.",
+  "all_case_construction": "Hierarchical supervision iterates the registered inventory and checks complete raw control totals. Direct-view construction accepts every registered case; neither silently truncates to four.",
+  "converter_budget": "600s default retained; explicit60..1800s wall budget is registered before conversion for larger inventories. Disk/RAM/temperature floors unchanged; old600sfailure preserved.",
+  "limits": "Original dynamic teacher uses its original catalog. No numeric action IDs are merged into the new twelve-condition catalog. Common twelve-condition collection is still queued and no such fitted model is claimed."
+}

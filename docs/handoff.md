@@ -1,4 +1,43 @@
-# Latest verification — 2026-10-27 16:10 local
+# Latest verification — 2026-10-27 16:51 local
+
+Case-inventory sourcee3bc6ccf862a9006689412ef36f2b790ff543878 is actually pushed.
+HostedCI40472911240 PASSES491/15skips/4CARLA exclusions in85.60s;
+independent checkoute3bc6cc passes75targeted tests in20.12s. Logs:
+runs/native_case_manifest_hosted_ci_20261027.log and
+runs/independent_native_case_manifest_20261027.log.
+
+070950 H has a COMPLETE per-method endpoint:20669train controls/650Adam,
+2/4frozen (success0/2,deadline1/3),23220raw frames audited. It does not improve
+on the0.9initial-probability fork's2/4 and is below teacher3/4. Wholebatch still
+unfinished; no final guard or cleanup is claimed. See
+../reports/native_H_small_exploration_endpoint_20261027.json.
+H0 actually trains under sameworker58236/guard62452,>6500controls/20phases at
+16:50. Queue20124 still waits for normal wholebatch completion before080111;
+old41164/071952 was explicitly superseded before activation. Do not duplicate.
+
+New dynamic hierarchical views are IMPLEMENTED,not merely staged. Actual old
+teacher140210's1691physical frames/171macros reconstruct for both H/H0;157
+visible-actor decisions each have exactly matching independently transformed
+neighbor features. The ORIGINAL old catalog is kept,never relabelled into the
+current twelve-case catalog. Every194static observations and labels per method
+also equal the original032549NPZ exactly. No new fitting/driving/PPO updates.
+../reports/native_hierarchical_dynamic_views_20261027.json. Source view SHA
+146c22f730ddc1b404fe71e142fd76959429acd012d79b9e0d968c639f811163.
+
+Current root109integration tests pass in49.68s,including7dynamic macro frame
+fixtures and3conversion-budget rejections. H/H0teacher fitting iterates all
+registered cases and verifies complete raw-control totals; direct-view building
+also iterates the actual inventory. Direct fitting of mixed manifests still
+requires registered views. This supersedes the earlier unsupported-hierarchical-
+teaching note. No common12case model is fitted yet: its teacher pilot is queued.
+
+New direct conversion accepts an explicit60..1800s wall budget (default600),
+registered before work; disk/RAM/temperature floors stay fixed. This is needed
+for larger inventories,not an alteration to the old600sfailed attempt. The new
+dynamic-teaching source still needs push/independent checks/hostedCI; sourcee3's
+491count belongs to the prior published inventory implementation.
+
+# Earlier verification — 2026-10-27 16:10 local
 
 Active070950 H remains OS-verified alive,worker58236/guard62452,>17700controls/
 55phases at16:08. H0 has not started. No source/protocol/low-level changes to

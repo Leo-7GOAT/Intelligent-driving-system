@@ -25,6 +25,7 @@ from scripts.audit_native_rule import audit
 from scripts.evaluate_native_rule import require_finished_parent
 from scripts.native_road_learning import training_config,learning_schedule,save_training_checkpoint
 from scripts.prepare_native_hazard_learning import learning_protocol
+from navstack.native_cases import registered_native_cases
 
 
 def prepare(parent,seed=11,steps=896):
@@ -32,17 +33,17 @@ def prepare(parent,seed=11,steps=896):
     if type(seed) is not int or not 0<=seed<2**31 or not 1<=steps<=2000:
         raise ValueError('Invalid bounded categorical supervision')
     require_finished_parent(parent)
-    if read(parent/'protocol.json').get('native_case_manifest') is not None:
-        raise ValueError('Explicit mixed cases require per-frame dynamic hierarchical views; refusing four-case subset supervision')
-    if audit(parent)!=read(parent/'raw_audit.json'):raise ValueError('Teacher raw audit changed')
+    verified=audit(parent)
+    if verified!=read(parent/'raw_audit.json'):raise ValueError('Teacher raw audit changed')
     protocol=learning_protocol(parent,640,1800,seed,['H','H0'],endpoint_filter=True)
+    case_count=len(registered_native_cases(protocol))
     vehicle=VehicleConfig(**read(parent/'calibration/calibration.json')['vehicle'])
     registration=parent/f'measured_hierarchical_bc_seed{seed}_registration.json'
     with ProcessLease(parent/'hierarchical_bc_prepare.lock'):
         if registration.exists():raise FileExistsError('Inspect the registered teaching phase instead of repeating')
         batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_hierarchical_bc')
         batch.mkdir();write_json(registration,{'batch':batch.name,'status':'registered_before_fit'})
-        write_json(batch/'fit_registration.json',{'scope':'Same actual B3teacher cases as continuous B1; all four cases and all macro decisions, including deadline. Extra supervision, zero PPO updates.',
+        write_json(batch/'fit_registration.json',{'scope':'Same actual B3teacher cases as continuous B1; every registered case and macro decision, including failures. Extra supervision, zero PPO updates.',
             'seed':seed,'supervised_steps_per_method':steps,'teacher_batch':parent.name,
             'teacher_raw_audit_sha256':sha(parent/'raw_audit.json'),'fit_wall_seconds':900,
             'holdout':'Every fifth decision within each case; correlated fit only, no independent validation'})
@@ -55,20 +56,29 @@ def prepare(parent,seed=11,steps=896):
             torch.set_num_threads(1)
             rows,error=read_prefix(parent/'evaluation_trace.jsonl.gz')
             if error:raise ValueError(error)
+            bridge_paths=list((parent/'infrastructure').glob('*_responses.jsonl.gz'))
+            if len(bridge_paths)!=1 or sha(bridge_paths[0])!=verified['bridge_response_sha256']:
+                raise ValueError('Teacher bridge evidence differs from its complete raw audit')
+            responses,error=read_prefix(bridge_paths[0])
+            if error:raise ValueError(error)
+            begins={w['response']['episode_id']:w['response'] for w in responses if 'scene' in w.get('response',{})}
             arrays={};fits={};recovery={};case_counts=[]
-            for case in range(4):
+            for case in range(case_count):
                 selected=[r for r in rows if r['case_id']==case]
                 case_counts.append({'case_id':case,'decisions':len(selected),
                     'controls':sum(len(r['info']['trace']) for r in selected),
                     'termination_reason':read(parent/f'case_{case:04d}.json')['termination_reason']})
             controls=sum(r['controls'] for r in case_counts)
+            if controls!=verified['evaluation_controls_verified'] or {r['case_id'] for r in rows}!=set(range(case_count)):
+                raise ValueError('Categorical teacher views omit or duplicate registered cases/controls')
             for method in protocol['methods']:
                 health();config=training_config(protocol,method,vehicle)
                 observations=[];actions=[];masks=[]
-                for case in range(4):
+                for case in range(case_count):
                     selected=[r for r in rows if r['case_id']==case]
                     scene=read(parent/f'scene_{case:04d}.json')['scene']
-                    env=observation_env(config,scene,selected[0]['info']['initial_scenario'])
+                    begin=begins[selected[0]['info']['trace'][0]['backend_evidence']['episode_id']]
+                    env=observation_env(config,scene,selected[0]['info']['initial_scenario'],begin=begin)
                     env.world.road_collision_backend=config.road_collision_backend
                     for i,row in enumerate(selected):
                         if i%32==0:health()
