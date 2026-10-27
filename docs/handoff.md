@@ -1,4 +1,46 @@
-# Current work — 2026-10-27 13:19 local
+# Current work — 2026-10-27 13:40 local
+
+Completed040132low-LR B1 is0/4 (3deadlines,1bounds),20480train/640Adam,
+23,406raw controls audit. Training ends19deadline/7bounds/2success. Teacher
+train MSE rises.0000597to.004108 with exact fixed observation statistics.
+See ../reports/native_B1_slow_lr_20261027.json. Lower LR has not fixed the baseline.
+
+Actual running052446native_supervised_ppo B1: collection1280vs320, minibatch320,
+10epochs, LR3e-5, nominal20480controls. All33initial policy tensors/normalizer/
+resume RNG match040132exactly. Expected16vs64collection/training phases but
+640Adam steps each. Worker13416/guard51492 were OS-verified healthy, >5,700controls.
+Root exec session86178. First full900-control episode ends before the first
+1280-control PPO update and still deadlines; PPO drift alone therefore does not
+explain that initial stochastic failure. Later training successes are not final
+evaluation. No critic/value warmup or new exploration setting is implemented.
+
+043046crossing probe FAILED BEFORE ANY WORKER/BRIDGE/CONTROL: first connection
+probe JSON saysCONNECTION_FAILED but exits0; old wrapper wrongly treats this as
+connected/version/nonempty rejection. Later cleanup probe confirms0.9.15/empty,
+owned server stopped. Original files remain. Root wrapper now interprets JSON
+status and retries timeouts within its bounded loop; wrong-version/nonempty
+connections still fail.20readiness/rollout checks and26startup-retry/rollout checks
+pass. New long training started successfully through the updated wrapper.
+
+One verified startup child053256native_startup_retry is PREPARED, not started.
+It preserves043046's policy, normalization, RNG, runtime source and task bytes;
+only clocks/retry evidence change. Its parent startup_retry_registration.json
+prevents another silent retry. Original queue13384 and compute queue57768 stopped
+with explicit errors and are no longer live work. Do not wait on their stale locks.
+
+New bounded live queues:053256after052446 (PID61196/session15045,
+queue_execution.json);045435after053256 (PID58196/session7923,
+queue_retry1_execution.json). They preserve original failed queue receipts/locks;
+the compute queue uses sequential_queue_retry1.lock. Do not manually duplicate
+these launches. Both require normal parent summary/guard/owned cleanup and an
+unchanged child protocol.045435has never activated or started.
+
+New source still needs push/hosted CI/independent verification; prior437tests
+belong to7b02945. Full research goal remains unmet. Finish the actual longer
+collection experiment and the two probes; do not substitute cache or startup
+engineering results for healthy PPO,5independent seeds or120unseen paired conditions.
+
+# Earlier state — 2026-10-27 13:19 local
 
 Cache source53aeff7 and portability fix7b02945 are actually pushed. Hosted CI
 40453197398 passes437/10skips/4exclusions in176.83s; fix CI40454164392 passes

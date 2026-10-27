@@ -89,3 +89,32 @@ python scripts/benchmark_native_failure_memo.py --batch runs/COMPLETED_BATCH --m
 
 This uses saved CARLA states without new driving. Lookup timings exclude the
 initial full search; they are not end-to-end latency or realtime evidence.
+
+Supervised initialization diagnostics can explicitly vary collection length:
+
+```powershell
+python scripts/prepare_native_supervised_ppo.py --parent runs/AUDITED_TEACHER_ONLY_BATCH --guarded-progress --learning-rate 3e-5 --rollout-actions 1280
+```
+
+This requires untouched PPO optimizer/interaction state and rebuilds an empty
+buffer without changing policy tensors. The new length must change, remain a
+multiple of the saved minibatch, and divide the registered physical budget along
+with the old length. For hold1 B1, 320-to-1280 collection with minibatch320,
+10epochs and20,480controls gives64-to16training phases and640Adam steps in either
+setting. The scope is collection/update timing; it does not guarantee valid
+bootstrap values or better driving. All original cases remain in the endpoint.
+
+The launcher treats JSON `CONNECTION_FAILED` as still starting within its bounded
+readiness loop, including when the probe process exits0. A connected incompatible
+or nonempty world still fails. A verified startup-only failure can be preserved
+and staged once into a fresh child:
+
+```powershell
+python scripts/retry_unstarted_native.py --failed runs/FAILED_STARTUP_BATCH
+```
+
+This is restricted to the recorded timeout classification, no worker/bridge,
+matching-version empty cleanup and absent original owned processes. It copies
+saved policies and runtime source unchanged. It never reuses a failed lifecycle
+directory or treats a partially driven episode as zero controls. The original
+failure and the one-child registration remain available for inspection.

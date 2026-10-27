@@ -8,7 +8,9 @@ all 47,506 frames raw-audited. Both have 650 PPO Adam steps. H reaches 2/4 and
 H0 reaches 0/4 on the same four known static roads, versus 3/4 each before PPO.
 The shared teacher contributes 1,926 unique physical controls; separate fits,
 teacher access and PPO costs are disclosed. Neither establishes PPO value over
-the strong rule or formal hierarchy advantage. B1 lower-LR evaluation is pending.
+the strong rule or formal hierarchy advantage. [B1 lower-LR evaluation](../reports/native_B1_slow_lr_20261027.json)
+is complete at 0/4, with 23,406 raw training/evaluation controls verified. A longer
+collection/update interval is a separate running diagnostic, not an improvement claim.
 These newer models are separate from the teacher-only public capsule below;
 their complete local raw evidence is retained and no new capsule is claimed here.
 

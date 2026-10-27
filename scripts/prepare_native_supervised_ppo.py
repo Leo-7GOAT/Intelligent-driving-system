@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT))
 import torch
 import numpy as np
 import pickle
+import zipfile
 from navstack.experiments import write_json
 from navstack.independent_clip_ppo import load_ppo
 from navstack.process_lease import ProcessLease
@@ -94,6 +95,27 @@ def fresh_learning_rate(model,rate):
             'scope':'Constant PPO schedule and optimizer initialization only; no model parameter or update changes'}
 
 
+def fresh_rollout(path, actions=None):
+    """Rebuild an empty SB3 buffer before the first PPO update, preserving weights."""
+    original=load_ppo(path,device='cpu')
+    if actions is None:return original,None
+    if (type(actions) is not int or not 2<=actions<=4096
+            or actions%original.batch_size or actions==original.n_steps
+            or original.num_timesteps or original._n_updates or original.policy.optimizer.state):
+        raise ValueError('Require a changed bounded rollout, saved minibatch multiple, and untouched PPO state')
+    changed=load_ppo(path,device='cpu',rollout_actions=actions,allow_rollout_intervention=True)
+    if (changed.rollout_buffer.buffer_size!=actions or changed.rollout_buffer.full
+            or changed.rollout_buffer.pos or changed.policy.optimizer.state
+            or any(not torch.equal(value,changed.policy.state_dict()[name])
+                   for name,value in original.policy.state_dict().items())):
+        raise ValueError('Rollout initialization changed policy/optimizer or failed to rebuild an empty buffer')
+    return changed,{'previous_rollout_actions':original.n_steps,'initialized_rollout_actions':actions,
+                    'batch_size':changed.batch_size,'ppo_epochs':changed.n_epochs,
+                    'policy_parameters_exactly_unchanged':True,'ppo_optimizer_untouched':True,
+                    'scope':'Changed collection/update interval only; same minibatch size and epochs. '
+                            'A common full physical budget divisible by both lengths has equal Adam step count.'}
+
+
 def guarded_initialization(protocol,metadata_config,method='B1'):
     """Explicit new reward version before ANY PPO update; never rewrite parent."""
     original=EnvConfig.from_dict(metadata_config['env'])
@@ -109,12 +131,14 @@ def guarded_initialization(protocol,metadata_config,method='B1'):
             'scope':'Same supervised actor and untouched PPO optimizer, explicitly initialized for guarded_progress_v1 before training'}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
     if learning_rate is not None and (not np.isfinite(learning_rate) or not 1e-6<=learning_rate<=1e-3):
         raise ValueError('Invalid bounded PPO learning rate')
+    if rollout_actions is not None and (type(rollout_actions) is not int or not 2<=rollout_actions<=4096):
+        raise ValueError('Invalid bounded PPO rollout')
     require_finished_parent(parent)
     protocol = read(parent/'protocol.json')
     methods=protocol.get('methods')
@@ -131,6 +155,11 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         metadata=verified_checkpoint_metadata(origin)
         if metadata['physics_steps'] or metadata['optimizer_steps']:
             raise ValueError('The parent is not a zero-PPO supervised initialization')
+        if rollout_actions is not None:
+            with zipfile.ZipFile(origin/'model.zip') as archive:learner=json.loads(archive.read('data'))
+            if (rollout_actions==learner['n_steps'] or rollout_actions%learner['batch_size']
+                    or controls%rollout_actions or controls%learner['n_steps']):
+                raise ValueError('Matched rollout diagnostic requires a changed minibatch multiple and a budget divisible by both lengths')
         origins[method]=(origin,metadata)
     healthy, reason = resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free < 12*1024**3:
@@ -138,6 +167,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
     with ProcessLease(parent/'supervised_ppo_prepare.lock'):
         label='supervised_ppo_guarded' if guarded_progress else 'supervised_ppo'
         if learning_rate is not None:label+='_lr'+format(learning_rate,'.8g')
+        if rollout_actions is not None:label+='_rollout'+str(rollout_actions)
         registration=parent/(label+'_registration.json')
         if registration.exists():
             raise FileExistsError('Do not repeat the registered supervised-PPO continuation')
@@ -166,12 +196,13 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                     'initialized_config_sha256':sha(destination/'config.json'),
                     'previous_reward':original_config['env']['reward'],'new_reward':changed_config['env']['reward'],
                     'scope':'New reward version before any PPO update; all non-reward environment fields unchanged'}
-            model=load_ppo(destination/'model.zip',device='cpu')
+            model,rollout_change=fresh_rollout(destination/'model.zip',rollout_actions)
             if method=='B1':change=initial_exploration(model,log_std)
             else:
                 with (destination/'normalization.pkl').open('rb') as stream:normalizer=pickle.load(stream)
                 change=categorical_exploration(model,normalizer,arrays[method+'_observations'][arrays['train_mask']],categorical_probability)
             if learning_rate is not None:change['learning_rate_initialization']=fresh_learning_rate(model,learning_rate)
+            if rollout_change is not None:change['rollout_initialization']=rollout_change
             original_model_sha256=metadata['model_sha256']
             model.save(destination/'model.zip');metadata['model_sha256']=sha(destination/'model.zip')
             write_json(destination/'metadata.json',metadata)
@@ -200,6 +231,14 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                 'comparison_limit': 'Teacher access,20Hz continuous control and exploration differ from old categorical2Hz B1. All must be shared or controlled in formal comparisons.'},
             recovery=recovery)
         if methods==['B1']:protocol['supervised_ppo_intervention'].update(interventions['B1'])
+        if rollout_actions is not None:
+            protocol['rollout_actions']=rollout_actions
+            protocol['rollout_length_experiment']={
+                'version':'supervised_initial_collection_v1','methods':methods,
+                'initialization':{m:interventions[m]['rollout_initialization'] for m in methods},
+                'hypothesis':'Longer initial collection can observe complete episode rewards before the first actor update; '
+                             'this is a development hypothesis, not evidence of improved driving or reliable bootstrap values.',
+                'stopping_rule':'One fixed physical endpoint and all four original cases; no early checkpoint selection.'}
         protocol['resource_limits']['wall_seconds'] = wall_seconds
         protocol['source_hashes'] = {p.relative_to(batch/'source').as_posix(): sha(p)
             for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
@@ -220,5 +259,6 @@ if __name__ == '__main__':
     parser.add_argument('--guarded-progress',action='store_true')
     parser.add_argument('--categorical-probability',type=float,default=.9)
     parser.add_argument('--learning-rate',type=float)
+    parser.add_argument('--rollout-actions',type=int)
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions)

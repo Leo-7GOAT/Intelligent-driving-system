@@ -13,6 +13,34 @@ pytestmark=pytest.mark.skipif(sys.platform!='win32' or not POWERSHELL,reason='Wi
 SCRIPT=Path(__file__).resolve().parents[1]/'scripts/run_registered_native.ps1'
 
 
+@pytest.mark.parametrize('probe,expected',[
+    ({'status':'CONNECTION_FAILED'},False),
+    ({'status':'CONNECTED','client_version':'0.9.15','server_version':'0.9.15','actors':[]},True),
+    ({'status':'CONNECTED','client_version':'0.9.15','server_version':'0.9.14','actors':[]},None),
+    ({'status':'CONNECTED','client_version':'0.9.15','server_version':'0.9.15','actors':[{'id':42}]},None),
+    ({'status':'UNKNOWN'},None),
+])
+def test_readiness_timeout_retries_but_foreign_or_unknown_world_is_rejected(tmp_path,probe,expected):
+    probe_path=tmp_path/'probe.json';probe_path.write_text(json.dumps(probe))
+    driver=tmp_path/'function_only.ps1'
+    driver.write_text('''param([string]$Source,[string]$ProbePath)
+$ErrorActionPreference='Stop'
+$tokens=$null;$errors=$null
+$ast=[System.Management.Automation.Language.Parser]::ParseFile($Source,[ref]$tokens,[ref]$errors)
+$function=$ast.Find({param($node) $node -is [System.Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq 'Test-NativeReadinessProbe'},$true)
+if($null -eq $function){throw 'Missing readiness classifier'}
+. ([scriptblock]::Create($function.Extent.Text))
+$probe=Get-Content -LiteralPath $ProbePath -Raw | ConvertFrom-Json
+@{ready=(Test-NativeReadinessProbe -Probe $probe)} | ConvertTo-Json -Compress
+''',encoding='utf-8')
+    result=subprocess.run([POWERSHELL,'-NoProfile','-File',str(driver),'-Source',str(SCRIPT),
+        '-ProbePath',str(probe_path)],capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=20)
+    if expected is None:assert result.returncode!=0
+    else:
+        assert result.returncode==0,result.stderr
+        assert json.loads(result.stdout)['ready'] is expected
+
+
 def fixture(tmp_path):
     batch=tmp_path/'batch with spaces';source=batch/'source/scripts';source.mkdir(parents=True)
     (source/'native_road_learning.py').write_text('# inert fixture, never executed\n')

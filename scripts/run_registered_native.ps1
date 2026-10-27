@@ -7,6 +7,15 @@ param(
     [switch]$ActivateQueued,
     [switch]$ActivateOnly
 )
+function Test-NativeReadinessProbe {
+    param([Parameter(Mandatory=$true)]$Probe)
+    # probe_carla37 reports connection timeouts as JSON with process exit0.
+    # A still-starting owned server is retryable within the bounded loop.
+    if($Probe.status -eq 'CONNECTION_FAILED'){return $false}
+    if($Probe.status -ne 'CONNECTED'){throw 'Unexpected readiness probe status'}
+    if($Probe.client_version -ne '0.9.15' -or $Probe.server_version -ne '0.9.15' -or @($Probe.actors).Count -ne 0){throw 'Connected server is not matching-version and empty'}
+    return $true
+}
 $ErrorActionPreference='Stop'
 if($PSVersionTable.PSVersion.Major -lt 7){throw 'PowerShell7 is required for owned native lifecycle handling'}
 if($ActivateOnly -and -not $ActivateQueued){throw 'ActivateOnly requires explicit ActivateQueued'}
@@ -91,8 +100,7 @@ try {
             & $taskClient (Join-Path $taskSource 'scripts/probe_carla37.py') --port $taskProtocol.carla_rpc_port --output $taskProbe >> (Join-Path $taskInfrastructure 'readiness_stdout.log') 2>> (Join-Path $taskInfrastructure 'readiness_stderr.log')
             if($LASTEXITCODE -eq 0) {
                 $taskObserved=Get-Content -LiteralPath $taskProbe -Raw | ConvertFrom-Json
-                if($taskObserved.status -eq 'CONNECTED' -and $taskObserved.client_version -eq '0.9.15' -and $taskObserved.server_version -eq '0.9.15' -and @($taskObserved.actors).Count -eq 0){$taskReady=$true;break}
-                throw 'Connected server is not matching-version and empty'
+                if(Test-NativeReadinessProbe -Probe $taskObserved){$taskReady=$true;break}
             }
         }
         Start-Sleep -Seconds 1

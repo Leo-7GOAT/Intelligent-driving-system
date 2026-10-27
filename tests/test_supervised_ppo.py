@@ -3,7 +3,7 @@ import pytest
 import torch
 from gymnasium import Env, spaces
 from stable_baselines3 import PPO
-from scripts.prepare_native_supervised_ppo import initial_exploration, guarded_initialization, categorical_exploration, fresh_learning_rate
+from scripts.prepare_native_supervised_ppo import initial_exploration, guarded_initialization, categorical_exploration, fresh_learning_rate, fresh_rollout
 
 
 class NoExecutionEnv(Env):
@@ -87,3 +87,25 @@ def test_lower_learning_rate_survives_checkpoint_loading_without_changing_policy
     assert all(group['lr']==3e-5 for group in loaded.policy.optimizer.param_groups)
     loaded.num_timesteps=1
     with pytest.raises(ValueError):fresh_learning_rate(loaded,3e-5)
+
+
+def test_longer_initial_rollout_rebuilds_buffer_and_preserves_actor_critic_and_checkpoint(tmp_path):
+    import hashlib
+    model=PPO('MlpPolicy',NoExecutionEnv(),n_steps=8,batch_size=8,seed=11,device='cpu')
+    path=tmp_path/'initial.zip';model.save(path)
+    original_sha=hashlib.sha256(path.read_bytes()).hexdigest()
+    changed,info=fresh_rollout(path,32)
+    assert info['previous_rollout_actions']==8 and info['initialized_rollout_actions']==32
+    assert changed.n_steps==changed.rollout_buffer.buffer_size==32
+    assert changed.batch_size==model.batch_size and changed.n_epochs==model.n_epochs
+    assert changed.gamma==model.gamma and changed.gae_lambda==model.gae_lambda
+    assert not changed.rollout_buffer.full and changed.rollout_buffer.pos==0
+    assert changed.num_timesteps==changed._n_updates==0 and not changed.policy.optimizer.state
+    assert all(torch.equal(value,changed.policy.state_dict()[name]) for name,value in model.policy.state_dict().items())
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==original_sha
+    changed.save(tmp_path/'long.zip');loaded=PPO.load(tmp_path/'long.zip',device='cpu')
+    assert loaded.n_steps==loaded.rollout_buffer.buffer_size==32
+    for invalid in (8,33,True,4097):
+        with pytest.raises(ValueError):fresh_rollout(path,invalid)
+    model._n_updates=1;model.save(tmp_path/'updated.zip')
+    with pytest.raises(ValueError):fresh_rollout(tmp_path/'updated.zip',32)
