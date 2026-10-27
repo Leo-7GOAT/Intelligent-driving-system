@@ -1,0 +1,30 @@
+{
+  "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+  "archive_sha256": "851c26b593abcc9fe353d8994deb58538bf8fc7014f8e19a132d49e48c67be97",
+  "asset_source_commit": "2b74b51fa9afd3983cbeea4b16542046cc42cc2b",
+  "reproduction_source_commit": "5ababeb78bb86e3de79b42c5a846adb644b9c12a",
+  "verified_files": 587,
+  "methods": [
+    {
+      "method": "H",
+      "raw_audit_sha256": "bfc8422b0172427fd3132c3095b5df0be8f0254b8cf2701d34241310f8c4a6c0",
+      "verified_controls": 25454,
+      "measured_start_actions_reproduced": 12,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "method": "H0",
+      "raw_audit_sha256": "a2225902bfe8d2ba30d4e875edbddf0da3ab7bfc4ddc8fc033edc6d269af3860",
+      "verified_controls": 25975,
+      "measured_start_actions_reproduced": 12,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "c2f0647a94c450438d6918413f89699946fec133aa088c9c5d0043c693b14c2f",
+  "figure_byte_identical": true,
+  "figure_baseline": "packaged_analysis"
+}

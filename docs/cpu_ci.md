@@ -1,5 +1,10 @@
 # CPU regression CI
 
+Source5ababeb actually passes **518tests,15skips,4CARLA exclusions**in190.91s:
+[run40496081032](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40496081032).
+Root33new fit-split/ordered/view/gate checks pass16.43s;independentcheckout5ababeb
+passes33in10.20s. These do not establish driving quality or final acceptance.
+
 Latest actual hosted source36f5297 passes **511 tests,15 skips,4 CARLA exclusions**
 in92.08s: [run40491222582](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40491222582).
 Gate/ordered source8a1451b separately passes511/15/4in123.40s:

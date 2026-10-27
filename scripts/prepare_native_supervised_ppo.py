@@ -154,6 +154,14 @@ def representation_gate(protocol,evaluated):
             'families':families,'scope':'Complete development initialization gate, not research acceptance or independent confirmation'}
 
 
+def supervised_input_cost(protocol,method):
+    costs=[protocol['extra_supervision']['teacher_controls'],
+           protocol['recovery'][method]['consumed_controls_lower_bound']]
+    if any(type(value) is not int or value<0 for value in costs):
+        raise ValueError('Supervised physical input costs must be nonnegative integers')
+    return max(costs)
+
+
 def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
@@ -240,7 +248,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
             prior=protocol['recovery'][method]
             recovery[method]={**prior,'checkpoint':'resume/'+method,'parent_batch':parent.name,
                 'parent_checkpoint':origin.name,'lineage_controls':0,
-                'consumed_controls_lower_bound':protocol['extra_supervision']['teacher_controls'],
+                'consumed_controls_lower_bound':supervised_input_cost(protocol,method),
                 'retained_optimizer_steps':0,'unknown_unflushed_parent_tail':False}
         for name in ('prepare_native_supervised_ppo.py','prepare_native_hazard_learning.py'):
             shutil.copy2(ROOT/'scripts'/name, batch/'source/scripts'/name)

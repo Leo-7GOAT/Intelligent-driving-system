@@ -2,22 +2,20 @@
 
 [十二条件开发对照已完成](../reports/native_twelve_case_completed_20261027.json)：同四条已知道路包含弯道停车、静态绕障、行人横穿。规则 B3 为 **12/12**；额外教师监督初始化、**PPO 更新为零**的 H、H0 各为 **11/12**；直接控制 B1 为 **4/12**，其中六次碰撞或越界。B1 仍不合格，这些结果尚未证明 PPO 价值、分层优势或反馈贡献。
 
-H/H0 的真实 CARLA PPO 续训正在执行，批次 `20261027T100609Z_native_supervised_ppo`，每方法名义预算 20,480 控制步，低层冻结，学习率 3e-5，初始最大动作概率 0.99。保留候选顺序的新版直接 B1 已在同一组 4,329 教师控制帧上完成 1,792 次监督更新，排队进行冻结评估；它使用更大的策略融合网络，目前尚无驾驶效果结论。原 B1 失败全部保留。
+[真实 CARLA PPO 双方法批次](../reports/native_twelve_case_PPO_complete_20261027.json)已完整结束：**H11/12、H0为10/12**，实际训练20,541/20,623控制步，各650次Adam，合计 **51,429原始控制帧**审计通过。H保持监督成绩，H0退化一个条件；单种子差异不能证明反馈贡献，也未胜过12/12的强规则。[保留候选顺序的B1](../reports/native_twelve_case_ordered_B1_endpoint_20261027.json)仅 **3/12**，低于原版4/12，已拒绝启动PPO。它的弯道覆盖改善，静态绕障退化；改变拟合留出位置的独立登记对照正在评估，尚无改善结论。
 
 [此前较小探索强度 H/H0 PPO 对照已全部结束](../reports/native_shared_small_exploration_complete_20261027.json)，均为 **2/4**，合计 **46,493** 个真实训练与评估控制帧已审计，未形成总体反馈优势。[较小噪声 B1 PPO](../reports/native_B1_small_exploration_20261027.json)仍为 2/4，其[公开模型及原始数据包](model_card.md#public-smaller-exploration-b1)已实际下载并独立复现全部 23,025 控制帧。
 
 [早期混合教师数据的完整独立重建](../reports/native_mixed_measured_full_reconstruction_20261027.json)现已完成：3,617 控制帧、五个数组及整个 NPZ 文件逐字节一致，新增驾驶、拟合、PPO 更新均为零。原 600 秒失败记录保留；新尝试事先登记 900 秒预算，实际耗时 809.75 秒。[动态高层观测核验](../reports/native_hierarchical_dynamic_views_20261027.json)。
 
-上述均为开发条件。五个独立训练种子、120 组全新配对最终条件、健康且充分训练的 B1、完整消融、相对强规则的 PPO 价值及未见迁移仍待完成。新静态障碍距起点 13 米，不能据此宣称原 10 米失败已修复。当前本地针对性回归 60 项通过；托管 CPU 验证与 CARLA 实验单独报告。
+上述均为开发条件。五个独立训练种子、120组全新配对最终条件、健康且充分训练的B1、完整消融、相对强规则的PPO价值及未见迁移仍待完成。新静态障碍距起点13米，不能据此宣称原10米失败已修复。源码5ababeb的GitHub CI已通过 **518项CPU测试**、15跳过/4项CARLA排除；33项新针对性检查也在独立固定环境通过。CPU验证与CARLA实验单独报告。
 
 [执行及队列入口](native_execution.md) · [当前交接状态](handoff.md)
 
-[真实 PPO 的 H 结果](../reports/native_twelve_case_PPO_H_endpoint_20261027.json)已完成：
-**11/12**，实际训练20,541控制步、650次Adam，合计25,454原始控制帧已审计。
-保持监督初始化成绩，尚无成功率提升；H0仍在训练。
-[三组十二条件公开数据包](model_card.md#public-twelve-condition-development-evidence)
-已无登录下载并独立复现18,591控制帧、36个实测起点动作和两张逐字节一致的图。
-最新托管源码36f5297通过511项CPU测试。
+[真实PPO模型及原始数据包](model_card.md#public-twelve-condition-ppo)已实际上传、无登录下载，
+在独立checkout复现全部51,429控制帧、24个策略起点动作和逐字节一致的包内结果图。
+另外[三组规则/初始化证据包](model_card.md#public-twelve-condition-development-evidence)
+已独立复现18,591控制帧、36个起点动作和两张结果图。
 
 Earlier development snapshots follow.
 

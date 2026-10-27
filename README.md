@@ -2,22 +2,21 @@
 
 The [completed twelve-condition development comparison](reports/native_twelve_case_completed_20261027.json) uses four known roads across curve/parking, static obstacles and crossing walkers. Rule-only B3 succeeds **12/12**. With separately charged teacher supervision and **zero PPO updates**, H and H0 each succeed **11/12**; direct B1 succeeds **4/12**, with six collision/bounds episodes. B1 remains unqualified, and these results do not establish PPO value, hierarchy advantage or feedback benefit.
 
-Real CARLA PPO continuation of both H/H0 is running in batch `20261027T100609Z_native_supervised_ppo`: 20,480 nominal controls per method, frozen lower-level stack, actor learning rate 3e-5 and initial maximum categorical probability 0.99. An ordered-candidate direct B1 actor has completed 1,792 supervised updates on the same 4,329 teacher controls and is queued for frozen evaluation. Its larger actor fusion preserves candidate order; it has no driving result yet. The original pooled B1 failures remain.
+The [real CARLA PPO pair](reports/native_twelve_case_PPO_complete_20261027.json) is complete: **H11/12, H0 10/12**, with20,541/20,623training controls,650Adam steps each and **51,429raw controls audited**. H retains its supervised score; H0 loses one condition. The single-seed gap does not establish feedback benefit or PPO value over the12/12strong rule. The [ordered-candidate B1](reports/native_twelve_case_ordered_B1_endpoint_20261027.json) completes **3/12**, below pooled4/12, and is rejected for PPO. Its curve coverage improves but static coverage deteriorates. An explicitly registered fit-split diagnostic is being evaluated; no improvement is claimed.
 
 The [completed smaller-exploration H/H0 PPO comparison](reports/native_shared_small_exploration_complete_20261027.json) scores **2/4 each**, with **46,493** training/evaluation controls audited against CARLA. There is no aggregate feedback gap. The [smaller-exploration B1 PPO](reports/native_B1_small_exploration_20261027.json) also remains 2/4 on its known static task; its [public model/raw-data capsule](docs/model_card.md#public-smaller-exploration-b1) has been downloaded and independently reproduced, including all 23,025 raw controls.
 
 [Full independent reconstruction of the earlier mixed teacher dataset](reports/native_mixed_measured_full_reconstruction_20261027.json) now reproduces all 3,617 frames, five arrays and the complete NPZ bytes exactly. This adds zero driving, fitting or PPO updates. The earlier 600-second failed reconstruction remains preserved; the completed attempt used an upfront 900-second budget and took 809.75 seconds. [Dynamic hierarchical view verification](reports/native_hierarchical_dynamic_views_20261027.json).
 
-All these tasks are development conditions. Five independent trained seeds, 120 new paired final conditions, a healthy fully trained B1, complete ablations, PPO value versus strong rules and unseen transfer remain open. The new static obstacle distance is 13m; this does not erase the earlier 10m failures. Latest local targeted regression: 60 passed; hosted CPU verification is reported separately from CARLA results.
+All these tasks are development conditions. Five independent trained seeds, 120 new paired final conditions, a healthy fully trained B1, complete ablations, PPO value versus strong rules and unseen transfer remain open. The new static obstacle distance is 13m; this does not erase the earlier 10m failures. Hosted source5ababeb passes **518CPU tests**,15skips/4CARLA exclusions;33new targeted checks also pass in the independent locked environment. CPU verification is separate from CARLA results.
 
 [Execution and queue commands](docs/native_execution.md) · [Current handoff](docs/handoff.md) · [Chinese README](docs/README.zh-CN.md)
 
-The [real-PPO H endpoint](reports/native_twelve_case_PPO_H_endpoint_20261027.json)
-is complete at **11/12**, retaining its supervised score after20,541training
-controls/650Adam steps;25,454raw controls audit. H0 is still training.
-[Three public twelve-case capsules](docs/model_card.md#public-twelve-condition-development-evidence)
-are independently reproduced:18,591raw controls,36measured-start policy actions
-and two identical figures. Latest hosted source36f5297 passes511CPU tests.
+The [real-PPO model/raw-data capsule](docs/model_card.md#public-twelve-condition-ppo)
+is actually uploaded and publicly downloaded: an independent checkout reproduces
+all51,429controls,24policy start actions and its byte-identical packaged figure.
+[Three rule/initializer capsules](docs/model_card.md#public-twelve-condition-development-evidence)
+separately reproduce18,591controls,36start actions and two repository figures.
 
 Earlier development snapshots follow.
 

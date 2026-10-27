@@ -1,5 +1,25 @@
 # Development model card
 
+## Public twelve-condition PPO
+
+The [completed real-PPO pair](../reports/native_twelve_case_PPO_complete_20261027.json)
+has H11/12,H010/12 after20,541/20,623real training controls,650Adam steps each.
+The shared teacher contributes4,329unique physical controls and896actor-supervised
+steps per method. Hretains its11/12initial score;H0dropsfrom11/12. Strong rule B3
+is12/12. These seed11known-road development results establish neither PPOvalue
+nor independent feedback/hierarchy advantage.
+
+The [actual public model/raw-data capsule](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_twelve_case_PPO_seed11_20261027_repro.zip)
+contains587files,65,018,511bytes,SHA256
+`851c26b593abcc9fe353d8994deb58538bf8fc7014f8e19a132d49e48c67be97`.
+[Unauthenticated-download independent reproduction](../reports/native_twelve_case_PPO_public_reproduction_20261027.json)
+verifies all51,429raw controls,24measured-start actions,frozen normalization
+and a byte-identical packaged figure. No new driving is claimed by reproduction.
+
+```powershell
+python scripts/reproduce_native_asset.py --archive native_twelve_case_PPO_seed11_20261027_repro.zip --sha256 851c26b593abcc9fe353d8994deb58538bf8fc7014f8e19a132d49e48c67be97 --output runs/NEW_TWELVE_PPO_REPRO
+```
+
 ## Public twelve-condition development evidence
 
 [Completed results](../reports/native_twelve_case_completed_20261027.json) and
@@ -30,13 +50,12 @@ extract to a new directory, then run
 `python scripts/audit_native_rule.py --batch EXTRACTED/20261027T080111Z_native_rule --output runs/NEW_TWELVE_RULE_AUDIT.json`.
 The generated audit must equal the archived `raw_audit.json`.
 
-The [separate real-PPO H endpoint](../reports/native_twelve_case_PPO_H_endpoint_20261027.json)
-retains11/12after20,541training controls/650Adam steps;25,454totalcontrols audit.
-H0 is still running. This is retention, not a success-rate gain. An ordered
-direct actor is fitted and queued, with no driving result yet; its
+The completed real-PPO pair is separately published above. The
+[ordered direct actor](../reports/native_twelve_case_ordered_B1_endpoint_20261027.json)
+finishes3/12,below pooled4/12,and is rejected for PPO. Its
 [post-fit comparison](../reports/native_ordered_flat_postfit_comparison_20261027.json)
 verifies identical normalization/critic and discloses212,293vs347,589parameters.
-The newer real-PPO and ordered models remain local until separately exported.
+The ordered and newer split-diagnostic models remain local.
 
 ## Public smaller-exploration B1
 
