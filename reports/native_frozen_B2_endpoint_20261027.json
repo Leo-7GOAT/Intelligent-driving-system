@@ -1,0 +1,223 @@
+{
+  "scope": "Complete frozen H-to-B2 planner deployment ablation. Same weights and observation/config except method; no retraining or independent seed. Not a trained B2 research result.",
+  "batch": "20261027T134723Z_native_frozen_B2",
+  "parent": "20261027T100609Z_native_supervised_ppo",
+  "method": "B2",
+  "successes": 4,
+  "cases": 12,
+  "families": {
+    "curve_parking": {
+      "successes": 2,
+      "cases": 4,
+      "unsafe": 0
+    },
+    "static_obstacle": {
+      "successes": 0,
+      "cases": 4,
+      "unsafe": 0
+    },
+    "dynamic_interaction": {
+      "successes": 2,
+      "cases": 4,
+      "unsafe": 0
+    }
+  },
+  "parent_H_successes": 11,
+  "new_training_controls": 0,
+  "new_optimizer_steps": 0,
+  "current_evaluation_controls": 8639,
+  "policy_decisions": 866,
+  "parent_optimizer_steps_retained": 650,
+  "guard": {
+    "epoch": 1793109757.6523857,
+    "worker_pid": 7496,
+    "exit_code": 0,
+    "reason": null
+  },
+  "owned_cleanup_status": "owned_empty_server_stopped",
+  "intervention": {
+    "version": "frozen_H_grid_astar_v1",
+    "parent_method": "H",
+    "runtime_method": "B2",
+    "only_environment_change": {
+      "method": [
+        "H",
+        "B2"
+      ]
+    },
+    "model_sha256": "6cf8605a4cf2e6d85b22dbe05d5516c60499066af19cd6d2ac1f874b84c05d8f",
+    "normalization_sha256": "b618c36ca5c6d98377829c66cf639d5538a2b5953baceea5076f5e7314ff736b",
+    "cleanup_harness": {
+      "parent_sha256": "cb8d63ec12ff2ea0aebb8c9252534f192d06b76367a80cfa3528acce1a8440e5",
+      "initialized_sha256": "9cfbde79c30d8b8d4d6400e536eb58d9d2562eb62bceacdeacd42b20021d3e41",
+      "scope": "Bridge.clear only; actuation, sensing, scenario generation and policy semantics unchanged by AST comparison"
+    },
+    "scope": "Existing2DGridAStarPlanner with its existing geometric smoothing/feasibility checks. Same H weights,observations,trajectory,MPC,vehicle,reward and scene list; feedback outcomes naturally change with planner execution."
+  },
+  "raw_audit": {
+    "schema_version": 1,
+    "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+    "batch": "20261027T134723Z_native_frozen_B2",
+    "method": "B2",
+    "protocol_sha256": "f5df381eefc0267645b372480893a9891cc092e7e5103fbbacb860958b5775aa",
+    "config_sha256": "a21b0a0c6279eee93f2af1fef512bfa60b9daa0db17fc0ae54c6f0df072764b7",
+    "summary_sha256": "ed9b42eaa991579ab8a5c01d220a608297cde45df60bac3b5b32731fe077a8ee",
+    "evaluation_sha256": "f2ec76dd59ed6de5aacb1f2b8cc35e599d84f55cca33e85e211b7a8ba1639bed",
+    "evaluation_trace_sha256": "9dc9a008a56970f1c4f1b233924e104805a3254c5fff08da74df13e3cd65987d",
+    "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "transition_hashes": {
+      "transitions_000000000_1793109323085285600.jsonl.gz": "43cae19d340f5729c628215b9cb8b079ba131607af1c26b410b67fb51eff4a0f"
+    },
+    "bridge_response_stream": "bridge_e8c63f42_responses.jsonl.gz",
+    "bridge_response_sha256": "9b5b19db2e034706a620201eb8c45d15714bd2c7c8d80cf689821891f7d4c3fb",
+    "bridge_complete_rows": 8663,
+    "training_control_frames_verified": 0,
+    "evaluation_control_frames_verified": 8639,
+    "total_applied_controls_verified": 8639,
+    "training_world_ticks_verified": 0,
+    "evaluation_world_ticks_verified": 9010,
+    "training_termination_reasons": {},
+    "checkpoint": "checkpoint_000000000",
+    "checkpoint_metadata_sha256": "02f701fd418426d421df2efb36628f72cca9539a2a8d527ab2ec84c7a5721fb2",
+    "lineage_controls": 20541,
+    "charged_controls_lower_bound": 29783,
+    "segment_optimizer_steps": 0,
+    "optimizer_steps_total_lower_bound": 650,
+    "unknown_unflushed_ancestor_tail": false
+  },
+  "paired_episodes": [
+    {
+      "case_id": 0,
+      "H_success": true,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 337,
+      "actions": 34,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "interventions": 0
+    },
+    {
+      "case_id": 1,
+      "H_success": true,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    },
+    {
+      "case_id": 2,
+      "H_success": true,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 311,
+      "actions": 32,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "interventions": 0
+    },
+    {
+      "case_id": 3,
+      "H_success": true,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    },
+    {
+      "case_id": 4,
+      "H_success": true,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    },
+    {
+      "case_id": 5,
+      "H_success": true,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    },
+    {
+      "case_id": 6,
+      "H_success": true,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    },
+    {
+      "case_id": 7,
+      "H_success": false,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    },
+    {
+      "case_id": 8,
+      "H_success": true,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 410,
+      "actions": 41,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "interventions": 60
+    },
+    {
+      "case_id": 9,
+      "H_success": true,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 88,
+      "mpc_failures": 0,
+      "interventions": 880
+    },
+    {
+      "case_id": 10,
+      "H_success": true,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 381,
+      "actions": 39,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "interventions": 60
+    },
+    {
+      "case_id": 11,
+      "H_success": true,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    }
+  ],
+  "conclusion_limit": "This development policy depends on its trained planner. The result does not separate retraining mismatch from intrinsic planner capability, and does not establish population superiority."
+}

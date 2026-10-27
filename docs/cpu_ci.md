@@ -1,11 +1,13 @@
 # CPU regression CI
 
+Source5c342ce actually passes **556tests,15skips,4CARLA exclusions**in83.86s: [run40510261079](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40510261079). Independent targeted38pass13.58s. Previousb4134ae passes547/15/4in159.44s. New B2/KL changes have36targeted checks passing9.21s; hosted verification for those changes must be recorded separately.
+
 Source5ababeb actually passes **518tests,15skips,4CARLA exclusions**in190.91s:
 [run40496081032](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40496081032).
 Root33new fit-split/ordered/view/gate checks pass16.43s;independentcheckout5ababeb
 passes33in10.20s. These do not establish driving quality or final acceptance.
 
-Latest actual hosted source36f5297 passes **511 tests,15 skips,4 CARLA exclusions**
+Earlier hosted source36f5297 passes **511 tests,15 skips,4 CARLA exclusions**
 in92.08s: [run40491222582](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40491222582).
 Gate/ordered source8a1451b separately passes511/15/4in123.40s:
 [run40490208868](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40490208868).

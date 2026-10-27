@@ -29,5 +29,5 @@ evaluation costs are retained. The registered teacher NPZ is preserved by hash.
 The actual snapshot-based replay is
 `runs/20261027T124542Z_native_evaluation_recovery`,all12conditions,same saved
 policy,zero fitting/PPO. Its inherited input cost is24,325controls,including
-both interrupted attempts. Its full outcome is pending. This is a harness
+both interrupted attempts. The full replay completed7/12with4965controls, passed the former case9-to10failure, and finished guard0/owned_empty_server_stopped. The policy remains unsuitable because of four bounds failures. This is a harness
 diagnostic,not policy improvement,another independent seed or final confirmation.

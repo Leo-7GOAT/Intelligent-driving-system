@@ -1,3 +1,15 @@
+# Completed real PPO public reproduction — 2026-10-27
+
+The twelve-condition real-PPO capsule is actually uploaded, downloaded without
+authentication and independently reproduced:587files/51,429rawcontrols,
+24policy start actions,frozen normalization and a byte-identical packaged figure.
+H11/12,H0 10/12;one development seed,not final confirmation. See
+[receipt](../reports/native_twelve_case_PPO_public_reproduction_20261027.json)
+and [asset/hash/command](model_card.md#public-twelve-condition-ppo).
+The existing prerelease and earlier assets remain. New B1diagnostics remain
+local;healthy-baseline and research acceptance are unmet. Earlier dated records
+below preserve their then-current pending statuses.
+
 # Public twelve-condition development assets — 2026-10-27
 
 Three new rule/supervised-initializer capsules are actually uploaded to the

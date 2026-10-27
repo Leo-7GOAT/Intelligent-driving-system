@@ -202,7 +202,18 @@ def supervised_input_cost(protocol,method):
     return max(costs)
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False):
+def fresh_target_kl(model, target_kl):
+    """Register SB3's existing within-rollout KL stop before any PPO updates."""
+    if (isinstance(target_kl,bool) or not np.isfinite(target_kl) or not .001<=target_kl<=.05
+            or model.num_timesteps or model._n_updates or model.policy.optimizer.state):
+        raise ValueError('Bounded KL tuning requires an untouched PPO optimizer')
+    previous=model.target_kl
+    model.target_kl=float(target_kl)
+    return {'previous_target_kl':previous,'initialized_target_kl':float(target_kl),
+            'scope':'Existing SB3 per-rollout epoch early stop; physical budget and endpoint unchanged. Not a hard bound on cumulative policy drift.'}
+
+
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
@@ -210,6 +221,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         raise ValueError('Invalid bounded PPO learning rate')
     if rollout_actions is not None and (type(rollout_actions) is not int or not 2<=rollout_actions<=4096):
         raise ValueError('Invalid bounded PPO rollout')
+    if target_kl is not None and (isinstance(target_kl,bool) or not np.isfinite(target_kl) or not .001<=target_kl<=.05):
+        raise ValueError('Invalid bounded PPO KL target')
     if initialization_gate not in ('complete_inventory_v1','basic_motion_training_v1'):
         raise ValueError('Unknown explicit development training-entry profile')
     require_finished_parent(parent)
@@ -242,6 +255,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         label='supervised_ppo_guarded' if guarded_progress else 'supervised_ppo'
         if learning_rate is not None:label+='_lr'+format(learning_rate,'.8g')
         if rollout_actions is not None:label+='_rollout'+str(rollout_actions)
+        if target_kl is not None:label+='_kl'+format(target_kl,'.8g')
         if methods==['B1'] and log_std!=-2.3:label+='_std'+format(log_std,'.8g')
         if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
         if initialization_gate=='basic_motion_training_v1':label+='_basic_motion_v1'
@@ -280,6 +294,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                 with (destination/'normalization.pkl').open('rb') as stream:normalizer=pickle.load(stream)
                 change=categorical_exploration(model,normalizer,arrays[method+'_observations'][arrays['train_mask']],categorical_probability)
             if learning_rate is not None:change['learning_rate_initialization']=fresh_learning_rate(model,learning_rate)
+            if target_kl is not None:change['target_kl_initialization']=fresh_target_kl(model,target_kl)
             if rollout_change is not None:change['rollout_initialization']=rollout_change
             original_model_sha256=metadata['model_sha256']
             model.save(destination/'model.zip');metadata['model_sha256']=sha(destination/'model.zip')
@@ -345,5 +360,6 @@ if __name__ == '__main__':
     parser.add_argument('--rollout-actions',type=int)
     parser.add_argument('--initialization-gate',choices=['complete_inventory_v1','basic_motion_training_v1'],default='complete_inventory_v1')
     parser.add_argument('--current-cleanup-harness',action='store_true')
+    parser.add_argument('--target-kl',type=float)
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl)
