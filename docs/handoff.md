@@ -1,4 +1,24 @@
-# Current work — 2026-10-27 13:40 local
+# Latest verification — 2026-10-27 13:49 local
+
+Sourcee63d004 is actually pushed. Hosted CI40456742519 passes444/15skips/
+4CARLA exclusions in173.00s (runs/native_rollout_startup_hosted_ci_20261027.log).
+Independent Windows checkoute63d004 passes26targeted checks in16.41s. See
+../reports/native_rollout_startup_verification_20261027.json. Prior "needs push/CI"
+notes below are superseded by this verification.
+
+Actual052446long-collection B1 remains healthy; >11,600controls and9training
+phases observed, worker13416/guard51492. Two queued process identities were
+verified live:61196 (053256after052446),58196 (045435after053256,retry1receipt).
+Neither probe has started. Do not replace verified running work with another
+training batch or duplicate these queues on a stale heartbeat.
+
+The snapshot at~10.5k had6success/8deadline/3bounds training ends. This is not a
+frozen endpoint or a healthy-baseline finding. The old lower-LR endpoint remains
+0/4 and is retained. One initial long-run900-control failure precedes its first
+PPO update at1280controls, so not all initial failures can be blamed on PPO drift.
+No value/critic warmup or different exploration variant has been prepared.
+
+# Earlier state — 2026-10-27 13:40 local
 
 Completed040132low-LR B1 is0/4 (3deadlines,1bounds),20480train/640Adam,
 23,406raw controls audit. Training ends19deadline/7bounds/2success. Teacher

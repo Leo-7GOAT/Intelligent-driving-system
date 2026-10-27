@@ -1,0 +1,59 @@
+{
+  "scope": "Published matched collection diagnostic and verified startup-only recovery; active training endpoint still pending.",
+  "source_commit": "e63d004f9c2be32445d83f4949ada5ba1f353c0b",
+  "independent_checkout": {
+    "passed": 26,
+    "seconds": 16.41,
+    "log": "runs/independent_native_rollout_startup_20261027.log"
+  },
+  "hosted_ci": {
+    "run_id": 40456742519,
+    "conclusion": "success",
+    "log": "runs/native_rollout_startup_hosted_ci_20261027.log",
+    "passed": 444,
+    "skipped": 15,
+    "deselected": 4,
+    "seconds": 173.0
+  },
+  "initialization_parity": {
+    "scope": "Matched initial teacher weights and PPO settings; collection/update interval is the sole learner change. Not yet started.",
+    "short_batch": "20261027T040132Z_native_supervised_ppo",
+    "long_batch": "20261027T052446Z_native_supervised_ppo",
+    "policy_tensors_identical": true,
+    "policy_tensor_count": 33,
+    "normalization_identical": true,
+    "resume_rng_identical": true,
+    "short_rollout_actions": 320,
+    "long_rollout_actions": 1280,
+    "minibatch": 320,
+    "epochs": 10,
+    "physical_budget": 20480,
+    "planned_adam_steps_each": 640
+  },
+  "active_batch": "20261027T052446Z_native_supervised_ppo",
+  "startup_retry": {
+    "failed_batch": "20261027T043046Z_native_scene_transfer",
+    "child": "20261027T053256Z_native_startup_retry",
+    "original_protocol_sha256": "c2efca34213909638de0dc7d98e1fd7c511312f0f887a2b5a2c36ab26c0601a2",
+    "retry_protocol_sha256": "969d3c3cbb8abb52ece19a38b2e44cabb8c1b5167c5b2f9795ac5d01b942f492",
+    "all_nonclock_nonreceipt_protocol_fields_identical": true,
+    "no_worker_or_controls_in_failed_batch": true,
+    "failure_and_cleanup_evidence": {
+      "failed_batch": "20261027T043046Z_native_scene_transfer",
+      "failure_sha256": "a0930f731c22ced6eb44f013b22294256b625fb27ca52940b54d53b54a3e7d59",
+      "cleanup_sha256": "78f24adc9bcb90e592eb4bfe7472c9adf0466d9f010946d20db70299c53b5724",
+      "cleanup_probe_sha256": "6ab7a5b2cd4ae720a7ec13d42fa8646f96641f5df371127404ad214937d70cc2",
+      "worker_started": false,
+      "applied_controls": 0,
+      "failed_protocol_sha256": "c2efca34213909638de0dc7d98e1fd7c511312f0f887a2b5a2c36ab26c0601a2",
+      "preparer_sha256": "aa752a3aa7dc86d5f395fca13715abb055a5698c62d8b6f28f3657f76089e303",
+      "retry_limit": 1,
+      "scope": "Same saved policies, scenes, runtime source and budgets; zero previous worker/controls. Original failed lifecycle remains untouched."
+    }
+  },
+  "queue_receipts": [
+    "runs/20261027T053256Z_native_startup_retry/queue_execution.json",
+    "runs/20261027T045435Z_native_scene_transfer/queue_retry1_execution.json"
+  ],
+  "initialization_parity_recorded_before_launch": true
+}
