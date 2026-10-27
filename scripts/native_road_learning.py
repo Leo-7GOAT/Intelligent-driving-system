@@ -96,6 +96,10 @@ def training_config(protocol, method, vehicle):
         road_collision_backend=protocol.get('road_collision_backend', 'scalar'),
         flat_hold=protocol.get('flat_hold',10) if method=='B1' else 10, deadline=protocol["episode_seconds"], obstacle_num=0,
         flat_longitudinal_mode=protocol.get('flat_longitudinal_mode','acceleration') if method=='B1' else 'acceleration')
+    geometry=protocol.get('route_candidate_geometry','route_offsets_v1')
+    if geometry!='route_offsets_v1':
+        if not hasattr(config,'route_candidate_geometry'):raise ValueError('Frozen source does not support this candidate geometry')
+        config=EnvConfig.from_dict({**config.to_dict(),'route_candidate_geometry':geometry})
     if method=='B1' and protocol.get('flat_action_catalog','continuous')!='continuous':
         config.flat_action_catalog=protocol['flat_action_catalog'];config.__post_init__()
     config.planner.max_seconds=None
@@ -194,6 +198,22 @@ def restore_training(checkpoint, raw, config, seed, gradient_clip_mode=None, all
     return model,vec,mode
 
 
+def publish_checkpoint_directory(temporary,checkpoint):
+    """Bounded retry of transient directory publication failures; no overwrite."""
+    temporary,checkpoint=Path(temporary),Path(checkpoint)
+    if (temporary.parent.resolve()!=checkpoint.parent.resolve()
+            or temporary.name!=checkpoint.name+'.partial'):
+        raise ValueError('Checkpoint publication must stay in its intended parent')
+    for attempt in range(5):
+        if checkpoint.exists():raise FileExistsError('Preserve existing published checkpoint')
+        try:
+            os.rename(temporary,checkpoint)
+            return
+        except PermissionError:
+            if attempt==4:raise
+            time.sleep(.1*2**attempt)
+
+
 def save_training_checkpoint(output, threshold, model, vec, raw, metadata):
     """Publish a checkpoint only after all files and their hashes exist."""
     checkpoint=output/('checkpoint_%09d'%threshold)
@@ -208,7 +228,7 @@ def save_training_checkpoint(output, threshold, model, vec, raw, metadata):
         metadata[key]=hashlib.sha256((temporary/name).read_bytes()).hexdigest()
     metadata['note']='Learning state retained; recovery starts a new CARLA episode and counts all reset/lost interactions'
     write_json(temporary/'metadata.json',metadata)
-    os.rename(temporary,checkpoint)
+    publish_checkpoint_directory(temporary,checkpoint)
     atomic_json(output/'latest_checkpoint.json',{'folder':checkpoint.name,**metadata})
 
 

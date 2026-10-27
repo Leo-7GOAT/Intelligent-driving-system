@@ -1,0 +1,137 @@
+{
+  "scope": "Published development evidence, actually downloaded without authentication and independently reproduced; no new CARLA driving or independent training seeds",
+  "release_tag": "v0.2.0-dev.20261022",
+  "release_target_unchanged": true,
+  "reproduction_source_commit": "9aa3b3a9f935f974f463cfc6f68af4e784821902",
+  "ppo": {
+    "download": {
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_static_ppo_seed11_20261026_repro.zip",
+      "bytes": 35635210,
+      "sha256": "7d321c7d30a6750080e2e6e1d60b6c16ae3b3f4ebf11d3a4130efc220550d1c6",
+      "authorization_header_used": false
+    },
+    "reproduction": {
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "7d321c7d30a6750080e2e6e1d60b6c16ae3b3f4ebf11d3a4130efc220550d1c6",
+      "asset_source_commit": "9aa3b3a9f935f974f463cfc6f68af4e784821902",
+      "reproduction_source_commit": "9aa3b3a9f935f974f463cfc6f68af4e784821902",
+      "verified_files": 485,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "9f133aa5940f69f119a3f2ed80d2d74d6f0e1cbccef2fa59d288a37a8a4387b7",
+          "verified_controls": 7760,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "2fe600f8c10f60f7fca5997af5ce7744e357d69235a3a5b64c8d6b7830015c38",
+          "verified_controls": 7760,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "B1",
+          "raw_audit_sha256": "b306e9257698d1ad124890fb547ea1c2193a3c306be0e73e75b7aa8bb1ff13bd",
+          "verified_controls": 7699,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "4c694cb249703d7e50b5633f61459e9f5f93f026120bcd057ff3c004cb86850d",
+      "figure_byte_identical": true
+    },
+    "frozen_successes": {
+      "H": 0,
+      "H0": 0,
+      "B1": 0
+    },
+    "conditions_per_method": 4
+  },
+  "rule": {
+    "download": {
+      "name": "native_hazard_rule_development_20261027_full.zip",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_hazard_rule_development_20261027_full.zip",
+      "bytes": 11210958,
+      "sha256": "8f9378c80e9a8fcb6eac2ba35562fe86343625dcb78d2034e67afcf94fce0897",
+      "authorization_header_used": false
+    },
+    "reproduction": {
+      "scope": "Actual public unauthenticated-download rule evidence reproduction; no new CARLA ticks or policy updates",
+      "archive_sha256": "8f9378c80e9a8fcb6eac2ba35562fe86343625dcb78d2034e67afcf94fce0897",
+      "files_verified": 2556,
+      "batches": {
+        "20261026T131154Z_native_rule": {
+          "controls": 3600,
+          "batch_complete": true,
+          "termination_counts": {
+            "deadline": 4
+          }
+        },
+        "20261026T133002Z_native_rule": {
+          "controls": 1340,
+          "batch_complete": false,
+          "termination_counts": {
+            "success": 3
+          }
+        },
+        "20261026T133154Z_native_rule": {
+          "controls": 3600,
+          "batch_complete": true,
+          "termination_counts": {
+            "deadline": 4
+          }
+        },
+        "20261026T135143Z_native_rule": {
+          "controls": 3600,
+          "batch_complete": true,
+          "termination_counts": {
+            "deadline": 4
+          }
+        },
+        "20261026T140210Z_native_rule": {
+          "controls": 1691,
+          "batch_complete": true,
+          "termination_counts": {
+            "success": 4
+          }
+        },
+        "20261026T140943Z_native_rule": {
+          "controls": 2481,
+          "batch_complete": true,
+          "termination_counts": {
+            "success": 2,
+            "deadline": 2
+          }
+        },
+        "20261027T003800Z_native_rule": {
+          "controls": 1926,
+          "batch_complete": true,
+          "termination_counts": {
+            "success": 3,
+            "deadline": 1
+          }
+        }
+      },
+      "applied_controls_verified": 18238,
+      "empty_failed_probe_outputs_retained": [
+        {
+          "file": "20261026T135143Z_native_rule/infrastructure/walker_spawn_preflight.json",
+          "error": "Expecting value: line 1 column 1 (char 0)",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  },
+  "excluded_local_only": "Guarded-progress 20k H/H0/B1 experiment and candidate-geometry prototype are not these released models",
+  "superseded_archive": "native_static_ppo_seed11_20261026_full.zip remains preserved; first full figure reproduction failed because reference PNG absent. Use _repro.zip, whose original raw/model bytes are unchanged and reference plot is included."
+}

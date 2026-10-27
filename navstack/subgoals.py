@@ -70,3 +70,25 @@ def goal_frame_candidates(state, goal, vehicle=None):
             for speed in (.75, 1.5):
                 result.append((target, speed))
     return tuple(result)
+
+
+def kinematic_arc_goal_candidates(state,goal,vehicle):
+    """Fixed forward-arc poses plus the visible final goal; no state integration.
+
+    Local poses are exact constant-steer bicycle endpoints within the same
+    vehicle limits. They still require body/road planning, timed trajectories,
+    MPC and actual execution. Static/dynamic freedom is not assumed.
+    """
+    result=[(None,0.)];co,si=math.cos(state.yaw),math.sin(state.yaw)
+    for length in (3.,6.,9.):
+        for fraction in (-1.,-.5,0.,.5,1.):
+            curvature=math.tan(fraction*vehicle.max_steer)/vehicle.wheelbase
+            theta=curvature*length
+            x=length if abs(curvature)<1e-12 else math.sin(theta)/curvature
+            y=0. if abs(curvature)<1e-12 else (1-math.cos(theta))/curvature
+            yaw=math.atan2(math.sin(state.yaw+theta),math.cos(state.yaw+theta))
+            target=(state.x+co*x-si*y,state.y+si*x+co*y,yaw)
+            result.extend([(target,.75),(target,1.5)])
+    target=tuple(float(v) for v in goal)
+    result[25:27]=[(target,.75),(target,1.5)]
+    return tuple(result)

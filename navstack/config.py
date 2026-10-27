@@ -131,6 +131,7 @@ class EnvConfig:
     training_route_range: list[float] | None = None
     subgoal_mode: str = "ego_arcs"
     route_goal_candidate: bool = False
+    route_candidate_geometry: str = 'route_offsets_v1'
     reference_reuse: bool = False
     execution_feedback: str = "off"
     candidate_observation: bool = False
@@ -177,6 +178,10 @@ class EnvConfig:
             raise ValueError("Route candidates require shared candidate and measured-road observations")
         if type(self.route_goal_candidate) is not bool or (self.route_goal_candidate and self.subgoal_mode != 'route_frame_terminal'):
             raise ValueError('Final route goal candidate requires the explicit route catalog')
+        if (self.route_candidate_geometry not in ('route_offsets_v1','kinematic_arcs_goal_v1')
+                or (self.route_candidate_geometry!='route_offsets_v1' and
+                    (self.subgoal_mode!='route_frame_terminal' or not self.route_goal_candidate))):
+            raise ValueError('Kinematic arc proposals require the explicit route catalog and final goal pair')
         if type(self.reference_reuse) is not bool or (self.reference_reuse and self.subgoal_mode != 'route_frame_terminal'):
             raise ValueError('Reference reuse requires the explicit route catalog')
         if self.execution_feedback not in ("off", "enabled", "ablated", "continuation", "continuation_ablated"):
@@ -259,6 +264,7 @@ class EnvConfig:
         # Preserve the serialized configuration of historical, disabled runs.
         if not self.route_goal_candidate:
             result.pop('route_goal_candidate')
+        if self.route_candidate_geometry=='route_offsets_v1':result.pop('route_candidate_geometry')
         if not self.reference_reuse:
             result.pop('reference_reuse')
         if not self.local_candidate_filter:

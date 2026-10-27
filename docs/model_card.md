@@ -6,9 +6,34 @@
 B3 reaches3/4known full static roads with measured conservative strip geometry;
 this rule result is not a PPO model. The previous endpoint-filter H has4,160
 training controls/130Adam updates and0/4frozen evaluation after verified process-loss
-recovery. The new strip/reward H/H0/B1models are still training, with equal
-nominal20,480-control budgets and all outcomes retained. No new asset release
-or formal acceptance is implied until an actual publication receipt is recorded.
+recovery. The new strip/reward H completes20,761training controls/650Adam updates and
+2/4frozen known-road endpoints. H0 is resumed from a verified10,240-control
+checkpoint after a Windows publication failure; B1 follows with a fresh
+20,480-control budget. These newer models remain local and the paired result
+is incomplete. No formal acceptance or learned advantage has been established.
+
+
+## Public hazard evidence (2026-10-27)
+
+[Verified public-download receipt](../reports/native_hazard_public_reproduction_20261027.json).
+The existing prerelease tag stays unchanged. These are known-condition development
+results, with one training seed and no formal superiority claim.
+
+| Capsule | Independently reproduced evidence | SHA256 |
+|---|---|---|
+| [Static PPO H/H0/B1](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_static_ppo_seed11_20261026_repro.zip) | All0/4;485files;23,219raw controls;12measured-start actions;byte-identical figure | `7d321c7d30a6750080e2e6e1d60b6c16ae3b3f4ebf11d3a4130efc220550d1c6` |
+| [All seven B3 hazard phases](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_hazard_rule_development_20261027_full.zip) | 2,556files;18,238raw controls;failed and incomplete phases retained | `8f9378c80e9a8fcb6eac2ba35562fe86343625dcb78d2034e67afcf94fce0897` |
+
+After downloading the PPO capsule, from a fresh checkout with dependencies installed:
+
+```powershell
+python scripts/reproduce_native_asset.py --archive native_static_ppo_seed11_20261026_repro.zip --sha256 7d321c7d30a6750080e2e6e1d60b6c16ae3b3f4ebf11d3a4130efc220550d1c6 --output runs/public_static_ppo_reproduction
+```
+
+The output directory must be new. Reproduction verifies saved frames, frozen
+normalization and inference; it does not create new driving evidence. The older
+`_full.zip` PPO capsule remains available with its failed missing-reference-PNG
+reproduction recorded; use `_repro.zip` for the complete figure workflow.
 
 ## Native cadence and hazard development
 
@@ -21,8 +46,8 @@ new compatible models; old policy results are retained under frozen sources.
 Fresh static-hazard H/H0/B1 models at20261026T143706Zuse4,160/4,160/4,099new
 training controls and130Adam steps each; all frozen endpoints are0/4. Their
 23,219training/evaluation controls audit against CARLA frames, including explicit
-charging of B1's31unused auto-reset ticks. These models remain local development
-artifacts. A matched-initializer H endpoint-filter run is separate and pending.
+charging of B1's31unused auto-reset ticks. These complete negative-result models are now public development artifacts
+in the capsule below. The separate endpoint-filter frozen recovery is0/4.
 
 ## Local terminal-margin models (2026-10-26 late evening)
 

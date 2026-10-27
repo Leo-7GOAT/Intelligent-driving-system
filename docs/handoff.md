@@ -2,7 +2,7 @@
 
 Authoritative latest report: ../reports/native_static_body_learning_20261027.md;
 earlier records: ../reports/native_hazards_cadence_20261026.md and its
-JSON ledger. Six native hazard B3 phases are now finished: three parked-car
+JSON ledger. Seven native hazard B3 phases are now finished: three parked-car
 versions0/4; final-goal plus reference reuse2/4; original walker three successes
 then one spawn failure; uniformly−2.5m walker4/4. All complete phases and the
 incomplete completed-prefix controls audit against actual CARLA frames. These
@@ -43,20 +43,43 @@ configuration/routes/calibration match prior2/4B3; only static representation
 changes. Road1still fails coarse112/fine970-node exhausted searches, not a
 proof of physical impossibility. Case3cycleP95is6.065s: do not claim realtime.
 
-Active batch is`runs/20261027T004817Z_native_hazard_learning`, fresh H/H0/B1,
-each nominal20,480controls,seed11,shared strip geometry and guarded_progress_v1:
-progress.5per metre toward global goal, collision/bounds−90, other reward and
-task gates unchanged. H0ablates feedback; B1selects direct speed/steering.
-No teacher/replay/inherited model. Full-budget frozen endpoints, not training
-successes, determine the next gate. Live H logs show at least one static success.
+Latest continuation is `runs/20261027T014402Z_native_recovery`, H0 then B1,
+with inherited frozen route-offset geometry and guarded-progress reward.
+H0 retains10,240lineage controls/320Adam updates and adds10,240nominal controls;
+B1 is fresh with20,480nominal controls. Saved RNG/model/normalization hashes
+are verified; the interrupted physical episode is discarded with an explicit
+reset. The unknown parent buffered tail remains flagged and is never called
+zero. Read `worker_process.json`, `guard.json`, method heartbeat and OS identity
+before acting; owned ports2200..2202. Do not relaunch a started batch.
 
-Worker initially verified as PID47232; authoritative creation/executable/command
-identity is `worker_process.json`, not the number in this document. Owned CARLA
-is on2200..2202, guarded by the frozen watch_existing_pair worker through a
-7,200s wall window. Read guard/heartbeat/failure/summary and actual process
-identity before acting. Do not relaunch this started batch, delete locks, change
-frozen files, or kill foreign2101/2102 owners. The parent contains an immutable
-seed11child registration; follow that child rather than preparing it again.
+Parent `20261027T004817Z_native_hazard_learning`: H completes20,761training
+controls/650Adam updates,8training successes, and2/4frozen known-road successes;
+23,273training/evaluation controls audit. H0 checkpoint10,240has fully valid
+bytes but Windows directory publication failed. The original `.partial` is
+retained unchanged. Guard records exit1and normal owned empty-server cleanup.
+First recovery `20261027T013823Z_native_recovery` failed before any bridge or
+control because the launch command omitted the client-interpreter environment.
+Its logs/config/failure/zero-interaction audit and normal server stop remain.
+Follow its registered child014402; never repeat either parent.
+
+The live worker must inherit an explicit absolute `NAVSTACK_CARLA_PYTHON`.
+Set it in the worker launch shell, as well as in the server launch shell:
+`$env:NAVSTACK_CARLA_PYTHON=(Resolve-Path '.carla-python37/runtime/python.exe').Path`.
+Each tool shell has a separate environment. Check the existing started/failure
+receipts before attempting any launch; never overwrite them or delete locks.
+
+New optional `kinematic_arcs_goal_v1` is a development prototype only and is
+NOT part of this recovery's frozen source/config. Its candidate signatures
+require fresh compatible models. Initial measured-scene planning coverage is
+14/14clear candidates vs10/14for old offsets; this is offline geometry evidence,
+not physical task success or PPO value. The shared existing Hybrid A*/MPC chain
+still validates and executes each selected target.
+
+Public hazard assets are actually downloaded and replayed in independent
+checkout9aa3b3a: see ../reports/native_hazard_public_reproduction_20261027.json
+and ../docs/model_card.md. PPO `_repro.zip` includes the byte-identical plot;
+older `_full.zip` missing-reference failure remains recorded. The new20k
+models and candidate prototype are not part of those released model assets.
 
 Fresh10Hz categorical B1 completed20,765train+960eval controls/650Adam updates,
 41training successes only on roads0/2, frozen0/4. All32initializer tensor hashes

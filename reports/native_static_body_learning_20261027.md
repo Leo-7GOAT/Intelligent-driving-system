@@ -87,9 +87,29 @@ seed11, each to a nominal20,480new physical controls, ten PPO epochs per nominal
 geometry and necessary-endpoint filter; H0 ablates feedback and unknown feedback
 remains unmasked, while B1 directly selects speed/steering. All four original
 full roads remain. No inherited model, normalization, replay or teacher is used.
-One successful full static training episode has appeared in live H logs; frozen
-endpoint performance is not yet established. The7,200s resource guard and
-checkpoints bound this development batch.
+H now completes20,761training controls/2,080decisions/65PPO phases/650Adam
+updates in1,446.545s. Training ends:8successes and19deadlines. Frozen known-road
+endpoint is2/4: roads0/3succeed, roads1/2deadline. Road2has900interventions and
+90planner failures; the free selected endpoint still times out at7,200nodes.
+All23,273training/evaluation control frames audit. This does not establish PPO
+value over B3, whose result is3/4, or a completed H/H0/B1 comparison.
+
+H0 reached10,240controls/320Adam updates, then directory publication raised
+WinError5. The complete staged checkpoint hashes validate; original partial
+files remain immutable. Bounded publication retry is now implemented without
+rewriting bytes or overwriting targets. Recovery014402retains model, normalizer,
+optimizer and RNG; a prior recovery013823failed before any interactions because
+its launcher omitted the client path, and that failure is retained separately.
+H0 adds10,240nominal controls, then B1 starts fresh for20,480. The parent's
+unknown buffered tail remains explicitly charged as unknown.
+
+The optional kinematic-arc candidate prototype addresses valid endpoints whose
+heading/position mismatch consumes the planner budget. On the measured initial
+road2scene,14/14clear local targets connect versus10/14old targets. The repeatedly
+selected old action10times out at7,200nodes; the new pose connects in5nodes.
+This is an offline initial-scene diagnostic, not a CARLA execution result.
+The catalog has a new signature and requires fresh models; live recovery keeps
+the old catalog. Both retain the full-body planner, timed trajectory and MPC.
 
 ## Verification and publication scope
 
@@ -112,3 +132,41 @@ guard; fresh recovery needs current OS absence evidence. The latest
 distinguish live, interrupted and complete phases. All known roads remain
 development data. Five independent strategies, healthy full B1, new paired
 final conditions, formal RL value and original research acceptance remain open.
+
+
+## Public negative-result capsule
+
+The prior4k H/H0/B1 frozen0/4models and all seven B3 hazard phases are now
+actually public and independently replayed. The PPO capsule verifies485files,
+23,219raw controls,12measured-start actions and a byte-identical PNG; the rule
+capsule verifies2,556files and18,238controls including failures. See the
+[download/reproduction receipt](native_hazard_public_reproduction_20261027.json)
+and [model card commands](../docs/model_card.md#public-hazard-evidence-2026-10-27).
+The first PPO `_full.zip` figure replay failed because the reference PNG was
+missing; the original asset and failed attempt remain preserved. Recommended
+`_repro.zip` adds the raw-derived reference figure without changing models/raw.
+New20k models remain local; publication is not formal research acceptance.
+
+
+## Complete initial-scene candidate coverage
+
+[All-four-condition receipt](native_candidate_geometry_20261027.json), with the
+same measured body, road, vehicle and7,200-node search budget per unique pose:
+
+| Known road | Offset clear / connected actions | Arc clear / connected actions |
+|---|---|---|
+| 0 | 14 / 10 | 14 / 14 |
+| 1 | 6 / 0 | 12 / 8 |
+| 2 | 14 / 10 | 14 / 14 |
+| 3 | 8 / 6 | 12 / 10 |
+
+Counts include two speed actions per pose. Better local connections do not
+prove progress through the entire road, valid dynamic execution, or learned
+benefit. Reproduce both catalogs using `scripts/probe_native_candidate_coverage.py`
+with `--batch <complete-rule-batch> --final-goal-candidate --all-candidate-plans`
+and `--candidate-geometry route_offsets_v1` or `kinematic_arcs_goal_v1`, each
+with a new `--output` file. No CARLA server is contacted by this diagnostic.
+
+Latest Windows CPU regression:388passed/1skipped/4CARLA exclusions in127.68s;
+the subsequently added deduplication/no-execution inventory test also passes
+(all4candidate tests). The checkpoint/recovery/hazard subset passes23tests.

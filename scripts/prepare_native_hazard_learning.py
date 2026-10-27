@@ -40,6 +40,7 @@ def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=
         'deterministic_training_route_evaluation':True,'road_candidate_policy':True,'feedback_ablation':True,
         'continuation_feedback':True,'subgoal_mode':'route_frame_terminal',
         'route_goal_candidate':config.get('route_goal_candidate',False),
+        'route_candidate_geometry':config.get('route_candidate_geometry','route_offsets_v1'),
         'reference_reuse':config.get('reference_reuse',False),'candidate_head':'unshared_endpoint_v1' if endpoint_filter else 'unshared_v1',
         'flat_action_catalog':'speed_steer_3x7_v1','flat_longitudinal_mode':'speed_target_v1','flat_hold':10,
         'actuator_observation':config.get('actuator_observation','off'),'road_geometry_version':config['road_geometry_version'],

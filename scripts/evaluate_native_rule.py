@@ -53,7 +53,7 @@ def feedforward_calibration(path, original):
     return path, fit_path
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False,static_geometry=None):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False,static_geometry=None,candidate_geometry=None):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -113,9 +113,10 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
     if catalog:
         env = EnvConfig.from_dict({**env.to_dict(), 'subgoal_mode': catalog,
             'route_goal_candidate':final_goal_candidate,
+            'route_candidate_geometry':candidate_geometry or env.route_candidate_geometry,
             'reference_reuse':reference_reuse,
             'execution_feedback': 'continuation' if continuation_feedback else env.execution_feedback})
-    elif final_goal_candidate or reference_reuse:
+    elif final_goal_candidate or reference_reuse or candidate_geometry:
         raise ValueError('Final goal candidate requires an explicit new catalog experiment')
     for name, digest in old['source_hashes'].items():
         if sha(parent/'source'/name) != digest:
@@ -312,5 +313,6 @@ if __name__ == '__main__':
     parser.add_argument('--hazard-lateral',type=float)
     parser.add_argument('--reference-reuse',action='store_true')
     parser.add_argument('--static-geometry',choices=['axis_aligned_box_v1','projected_box_strips12_v1'])
+    parser.add_argument('--candidate-geometry',choices=['route_offsets_v1','kinematic_arcs_goal_v1'])
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse,args.static_geometry) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse,args.static_geometry,args.candidate_geometry) if args.prepare else run(args.batch)

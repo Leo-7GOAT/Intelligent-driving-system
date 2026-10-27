@@ -187,6 +187,10 @@ def signature(config):
             result[key] += ':final_goal_replaces_12m_centre_pair_v2'
         if config.reference_reuse:
             result['reference_reuse']='same_selected_pose_speed_v1:time_preserved:tracking_.25m_.2rad_time_.75m:future_body_and_CV_checks'
+        if config.route_candidate_geometry=='kinematic_arcs_goal_v1':
+            key='candidate_catalog' if config.method=='B1' else 'action_catalog'
+            result[key]='kinematic_arcs_goal_v1:wait+length(3,6,9)*steer_fraction(-1,-.5,0,.5,1)*speed(.75,1.5):final_goal_replaces_9m_centre_pair'
+            result['route_prior']='shared_measured_road_and_global_goal;local_proposals_use_vehicle_arcs_not_route_projection'
     if config.execution_feedback != "off":
         result["observation"] += "-candidate-witness31x3-execution6-v1"
         result["observation_shape"] = [450]

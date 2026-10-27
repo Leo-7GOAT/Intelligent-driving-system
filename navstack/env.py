@@ -216,7 +216,11 @@ class NavigationEnv(gym.Env):
         route = getattr(self, "navigation_route", None)
         if route is None:
             raise ValueError("Route catalog needs an explicit known navigation route")
-        candidates = route_frame_candidates(self.state, route, self.config.vehicle, self.config.route_goal_candidate)
+        if self.config.route_candidate_geometry=='kinematic_arcs_goal_v1':
+            from .subgoals import kinematic_arc_goal_candidates
+            candidates=kinematic_arc_goal_candidates(self.state,self.goal,self.config.vehicle)
+        else:
+            candidates = route_frame_candidates(self.state, route, self.config.vehicle, self.config.route_goal_candidate)
         if (math.dist(route[-1][:2], self.goal[:2]) > 1e-5
                 or abs(wrap(route[-1][2]-self.goal[2])) > 1e-5):
             raise ValueError("Navigation route endpoint differs from task goal")
