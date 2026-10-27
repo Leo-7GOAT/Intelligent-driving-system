@@ -1,0 +1,247 @@
+{
+  "scope": "Prepared same-seed H/H0 development: categorical maximum-probability target0.9to0.99 only. Not started, independent confirmation or PPO improvement.",
+  "old_batch": "20261027T035356Z_native_supervised_ppo",
+  "new_batch": "20261027T070950Z_native_supervised_ppo",
+  "methods": {
+    "H": {
+      "changed_parameters": [
+        "action_net.head.weight",
+        "action_net.head.bias"
+      ],
+      "normalization_and_resume_rng_bytes_identical": true,
+      "environment_configuration_identical": true,
+      "all_teacher_view_deterministic_actions_identical": true,
+      "teacher_views": 194,
+      "old_initialization": {
+        "parameter_changes": [
+          "action_net.head.weight",
+          "action_net.head.bias"
+        ],
+        "temperature": 3.5428477607201785,
+        "target_probability": 0.9,
+        "initial_mean_max_probability": 0.999992847442627,
+        "initialized_mean_max_probability": 0.8999999165534973,
+        "calibration_examples": 154,
+        "calibration_split": "teacher_training_only",
+        "deterministic_calibration_actions_unchanged": true,
+        "encoder_and_critic_unchanged": true,
+        "parent_model_sha256": "5faf5af1f5957acb5ff4e047d9ea6dfc0294b6e9370023b03202cf2860a5caa5",
+        "initialized_model_sha256": "8e9750aad378a680e2c452010bc7978c1cba228c6329bd7f6ffa5a0553e9b7a8",
+        "supervised_updates_added": 0,
+        "reward_initialization": {
+          "parent_config_sha256": "f3192a112da06d1728657f18ec7a3c299aa44743a0f7632e3c8dc1fca90470ec",
+          "initialized_config_sha256": "e8ed35f0043d0402b9a6888646260794975e663c4da9151f7467e610f1461c28",
+          "previous_reward": {
+            "success": 20.0,
+            "collision": -30.0,
+            "out_of_bounds": -20.0,
+            "deadline": -10.0,
+            "time_weight": 0.1,
+            "risk_weight": 0.4,
+            "comfort_weight": 0.04,
+            "beta": 1.0,
+            "distance_scale": 40.0,
+            "gamma_per_second": 0.99,
+            "progress_weight": 0.0,
+            "heading_potential_weight": 0.0,
+            "heading_potential_radius": 6.0
+          },
+          "new_reward": {
+            "success": 20.0,
+            "collision": -90.0,
+            "out_of_bounds": -90.0,
+            "deadline": -10.0,
+            "time_weight": 0.1,
+            "risk_weight": 0.4,
+            "comfort_weight": 0.04,
+            "beta": 1.0,
+            "distance_scale": 40.0,
+            "gamma_per_second": 0.99,
+            "progress_weight": 0.5,
+            "heading_potential_weight": 0.0,
+            "heading_potential_radius": 6.0
+          },
+          "scope": "New reward version before any PPO update; all non-reward environment fields unchanged"
+        }
+      },
+      "new_initialization": {
+        "parameter_changes": [
+          "action_net.head.weight",
+          "action_net.head.bias"
+        ],
+        "temperature": 2.2759362475480884,
+        "target_probability": 0.99,
+        "initial_mean_max_probability": 0.999992847442627,
+        "initialized_mean_max_probability": 0.9899999499320984,
+        "calibration_examples": 154,
+        "calibration_split": "teacher_training_only",
+        "deterministic_calibration_actions_unchanged": true,
+        "encoder_and_critic_unchanged": true,
+        "parent_model_sha256": "5faf5af1f5957acb5ff4e047d9ea6dfc0294b6e9370023b03202cf2860a5caa5",
+        "initialized_model_sha256": "9e03c7c146f579437fc12a562208248e2c9901567ea6ef7781bcf42cca65039a",
+        "supervised_updates_added": 0,
+        "reward_initialization": {
+          "parent_config_sha256": "f3192a112da06d1728657f18ec7a3c299aa44743a0f7632e3c8dc1fca90470ec",
+          "initialized_config_sha256": "e8ed35f0043d0402b9a6888646260794975e663c4da9151f7467e610f1461c28",
+          "previous_reward": {
+            "success": 20.0,
+            "collision": -30.0,
+            "out_of_bounds": -20.0,
+            "deadline": -10.0,
+            "time_weight": 0.1,
+            "risk_weight": 0.4,
+            "comfort_weight": 0.04,
+            "beta": 1.0,
+            "distance_scale": 40.0,
+            "gamma_per_second": 0.99,
+            "progress_weight": 0.0,
+            "heading_potential_weight": 0.0,
+            "heading_potential_radius": 6.0
+          },
+          "new_reward": {
+            "success": 20.0,
+            "collision": -90.0,
+            "out_of_bounds": -90.0,
+            "deadline": -10.0,
+            "time_weight": 0.1,
+            "risk_weight": 0.4,
+            "comfort_weight": 0.04,
+            "beta": 1.0,
+            "distance_scale": 40.0,
+            "gamma_per_second": 0.99,
+            "progress_weight": 0.5,
+            "heading_potential_weight": 0.0,
+            "heading_potential_radius": 6.0
+          },
+          "scope": "New reward version before any PPO update; all non-reward environment fields unchanged"
+        }
+      }
+    },
+    "H0": {
+      "changed_parameters": [
+        "action_net.head.weight",
+        "action_net.head.bias"
+      ],
+      "normalization_and_resume_rng_bytes_identical": true,
+      "environment_configuration_identical": true,
+      "all_teacher_view_deterministic_actions_identical": true,
+      "teacher_views": 194,
+      "old_initialization": {
+        "parameter_changes": [
+          "action_net.head.weight",
+          "action_net.head.bias"
+        ],
+        "temperature": 3.2942942490335554,
+        "target_probability": 0.9,
+        "initial_mean_max_probability": 0.999992847442627,
+        "initialized_mean_max_probability": 0.9000000357627869,
+        "calibration_examples": 154,
+        "calibration_split": "teacher_training_only",
+        "deterministic_calibration_actions_unchanged": true,
+        "encoder_and_critic_unchanged": true,
+        "parent_model_sha256": "b5ddb3fa497cacfa7b1b4d88f6aa4dac172c2c423c56d33a6db5dc4efe2da841",
+        "initialized_model_sha256": "d076947cda211f47b35af6ecabca2081fc747cde568f622daf617c3ea6ad0b4a",
+        "supervised_updates_added": 0,
+        "reward_initialization": {
+          "parent_config_sha256": "f1bf5ea1b933d545f2a3eccb6efc6974f25ca0978327ef4e4587400a5d2d8dfd",
+          "initialized_config_sha256": "135a0b5545094f8c54b66df9eca824f7cd93adc90309adb4f86f78d375719fb6",
+          "previous_reward": {
+            "success": 20.0,
+            "collision": -30.0,
+            "out_of_bounds": -20.0,
+            "deadline": -10.0,
+            "time_weight": 0.1,
+            "risk_weight": 0.4,
+            "comfort_weight": 0.04,
+            "beta": 1.0,
+            "distance_scale": 40.0,
+            "gamma_per_second": 0.99,
+            "progress_weight": 0.0,
+            "heading_potential_weight": 0.0,
+            "heading_potential_radius": 6.0
+          },
+          "new_reward": {
+            "success": 20.0,
+            "collision": -90.0,
+            "out_of_bounds": -90.0,
+            "deadline": -10.0,
+            "time_weight": 0.1,
+            "risk_weight": 0.4,
+            "comfort_weight": 0.04,
+            "beta": 1.0,
+            "distance_scale": 40.0,
+            "gamma_per_second": 0.99,
+            "progress_weight": 0.5,
+            "heading_potential_weight": 0.0,
+            "heading_potential_radius": 6.0
+          },
+          "scope": "New reward version before any PPO update; all non-reward environment fields unchanged"
+        }
+      },
+      "new_initialization": {
+        "parameter_changes": [
+          "action_net.head.weight",
+          "action_net.head.bias"
+        ],
+        "temperature": 2.2255519696045667,
+        "target_probability": 0.99,
+        "initial_mean_max_probability": 0.999992847442627,
+        "initialized_mean_max_probability": 0.9899999499320984,
+        "calibration_examples": 154,
+        "calibration_split": "teacher_training_only",
+        "deterministic_calibration_actions_unchanged": true,
+        "encoder_and_critic_unchanged": true,
+        "parent_model_sha256": "b5ddb3fa497cacfa7b1b4d88f6aa4dac172c2c423c56d33a6db5dc4efe2da841",
+        "initialized_model_sha256": "e64043c23f7705d62130733a2a4358be9060a4abbcbf3788c792f8deef5dcf71",
+        "supervised_updates_added": 0,
+        "reward_initialization": {
+          "parent_config_sha256": "f1bf5ea1b933d545f2a3eccb6efc6974f25ca0978327ef4e4587400a5d2d8dfd",
+          "initialized_config_sha256": "135a0b5545094f8c54b66df9eca824f7cd93adc90309adb4f86f78d375719fb6",
+          "previous_reward": {
+            "success": 20.0,
+            "collision": -30.0,
+            "out_of_bounds": -20.0,
+            "deadline": -10.0,
+            "time_weight": 0.1,
+            "risk_weight": 0.4,
+            "comfort_weight": 0.04,
+            "beta": 1.0,
+            "distance_scale": 40.0,
+            "gamma_per_second": 0.99,
+            "progress_weight": 0.0,
+            "heading_potential_weight": 0.0,
+            "heading_potential_radius": 6.0
+          },
+          "new_reward": {
+            "success": 20.0,
+            "collision": -90.0,
+            "out_of_bounds": -90.0,
+            "deadline": -10.0,
+            "time_weight": 0.1,
+            "risk_weight": 0.4,
+            "comfort_weight": 0.04,
+            "beta": 1.0,
+            "distance_scale": 40.0,
+            "gamma_per_second": 0.99,
+            "progress_weight": 0.5,
+            "heading_potential_weight": 0.0,
+            "heading_potential_radius": 6.0
+          },
+          "scope": "New reward version before any PPO update; all non-reward environment fields unchanged"
+        }
+      }
+    }
+  },
+  "nominal_new_training_controls_per_method": 20480,
+  "initialization_supervised_updates_added": 0,
+  "initialization_training_controls_added": 0,
+  "planned_queue_parent": "20261027T064630Z_native_measured_bc",
+  "queue_at_recording": {
+    "child": "20261027T070950Z_native_supervised_ppo",
+    "parent": "20261027T064630Z_native_measured_bc",
+    "status": "WAITING_FOR_PARENT_NORMAL_OWNED_CLEANUP",
+    "epoch": 1793085039,
+    "pid": 62888,
+    "deadline_epoch": 1793106639
+  }
+}

@@ -1,4 +1,38 @@
-# Latest verification — 2026-10-27 14:50 local
+# Latest verification — 2026-10-27 15:12 local
+
+Source3cd21327bb9eb7ff1ce39aa4d24a7bd2cc4b6f72 is pushed and matches remote.
+Hosted CI40463482340 passes464/15skips/4CARLA exclusions in186.23s;
+independent checkout3cd2132 passes48targeted tests in42.18s. See
+../reports/native_mixed_bc_verification_20261027.json. Its57actual archived
+samples across8cases,including12brake projections,reconstruct observations and
+labels exactly in the independent checkout. This is sampled verification:
+the preceding full rebuild hit its600s guard after6completed cases and remains
+preserved at runs/independent_mixed_measured_views_20261027. Do not call it full
+independent dataset reproduction. Root v4 conversion did complete3617controls.
+
+Actually running062725 B1:18030controls/14PPO phases at15:11;worker39128/
+guard6420 healthy. At matched14080controls it has19success/8deadline/0unsafe
+training ends versus052446's8success/11deadline/4bounds. Frozen endpoint still
+pending; training counts alone do not establish competence or research success.
+
+Two actually live, bounded queues use distinct child leases:
+PID3952 waits062725->064630mixed BC frozen evaluation;
+PID62888 waits064630->070950shared H/H0 smaller categorical exploration PPO.
+Both require normal parent guard,owned cleanup and released lifecycle handle,
+then verify child protocol bytes before explicit queued activation. No duplicate
+launch or foreign cleanup is authorized. The second script is
+runs/queue_native_070950_after_064630_20261027.ps1; its receipt is in070950.
+
+070950 is PREPARED,not started:20480controls per H/H0,7200s shared wall cap,
+same original1926static teacher controls and896supervised steps per method.
+Only initial categorical max-probability target changes .9to.99 versus035356;
+both initialized distributions measure .98999995 on154training views. Actual
+comparison verifies only head weight/bias differ; environments,normalizer bytes,
+resume RNG bytes and greedy actions on all194teacher views are identical.
+../reports/native_shared_small_exploration_initialization_20261027.json.
+This does not use the new mixed B1 data or add an independent seed/confirmation.
+
+# Earlier verification — 2026-10-27 14:50 local
 
 Source7c87e167f31d0c3568e45cc8ddb9b8bc4a528f43 is pushed and matches remote.
 Hosted CI40462700527 passes458/15skips/4CARLA exclusions in126.82s;
