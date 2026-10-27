@@ -1,0 +1,81 @@
+{
+  "scope": "Published opt-in cache source plus queued compute probe; no new CARLA compute-probe result yet.",
+  "published_source_commit": "7b029453e99fbb94b9632085f87a5301a17275e5",
+  "independent_checkout": {
+    "passed": 52,
+    "seconds": 13.85,
+    "log": "runs/independent_planner_memo_20261027.log"
+  },
+  "hosted_ci": {
+    "run_id": 40453197398,
+    "conclusion": "success",
+    "log": "runs/planner_memo_hosted_ci_20261027.log",
+    "source_commit": "53aeff7d9e836df8e15a1d53b945ad0cebbe92ba",
+    "passed": 437,
+    "skipped": 10,
+    "deselected": 4,
+    "seconds": 176.83
+  },
+  "current_memo_source_sha256": "76876eb99832bdf573d958030a77454dcb7b6bcd869b06ef54785728a41a85ea",
+  "benchmark": {
+    "report": "reports/native_failure_memo_benchmark_current_20261027.json",
+    "sha256": "f06032287bc7a6e9e3d3752117197968c0d627fcd64932fb3420d00cebb68137"
+  },
+  "probe": {
+    "batch": "20261027T045435Z_native_scene_transfer",
+    "parent": "20261027T020918Z_native_hazard_learning",
+    "protocol_sha256": "8bd6a2ca7bf02c84cb3bdc9f52c7f5db02b9206a5041709a88c39daccdd77442",
+    "frozen_memo_source_sha256": "0781829bc5d9206dfb8953c07feb47fbc9a909d432ad3a61d3327a41419be3d7",
+    "harness_overrides": [
+      "navstack/env.py",
+      "scripts/native_road_learning.py",
+      "navstack/planner_memo.py"
+    ],
+    "models": [
+      {
+        "method": "H",
+        "model_identical": true,
+        "normalization_identical": true,
+        "config_semantics_identical": true
+      },
+      {
+        "method": "H0",
+        "model_identical": true,
+        "normalization_identical": true,
+        "config_semantics_identical": true
+      },
+      {
+        "method": "B1",
+        "model_identical": true,
+        "normalization_identical": true,
+        "config_semantics_identical": true
+      }
+    ],
+    "new_training_controls": 0,
+    "new_optimizer_updates": 0,
+    "state": "queued after043046; not started",
+    "source_limit": "Probe preserves the first memo source snapshot with fixed registered config. Published source additionally invalidates on backend config object replacement."
+  },
+  "portability_fix_ci": {
+    "run_id": 40454164392,
+    "conclusion": "success",
+    "log": "runs/planner_memo_portability_hosted_ci_20261027.log",
+    "passed": 437,
+    "skipped": 10,
+    "deselected": 4,
+    "seconds": 81.37
+  },
+  "independent_component_reproduction": {
+    "source_commit": "7b029453e99fbb94b9632085f87a5301a17275e5",
+    "report": "runs/independent_native_failure_memo_benchmark_20261027.json",
+    "report_sha256": "7d40027c465ea0f812b8cb0ba0d403554cc56dcc4a12664800ef8b70ee8774a0",
+    "cases": 2,
+    "current_source_sha256": "76876eb99832bdf573d958030a77454dcb7b6bcd869b06ef54785728a41a85ea",
+    "portable_tests_passed": 30,
+    "portable_tests_seconds": 10.09,
+    "new_controls": 0,
+    "optimizer_updates": 0,
+    "first_failed_attempt": "runs/independent_native_failure_memo_benchmark_20261027.log",
+    "portability_fix": "Archived byte SHA checked first; current source must match full text after universal-newline decoding only. One original CRLF road_grid.py differs from Git LF checkout."
+  }
+}

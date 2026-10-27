@@ -1,4 +1,40 @@
-# Current work — 2026-10-27 13:03 local
+# Current work — 2026-10-27 13:19 local
+
+Cache source53aeff7 and portability fix7b02945 are actually pushed. Hosted CI
+40453197398 passes437/10skips/4exclusions in176.83s; fix CI40454164392 passes
+437/10/4 in81.37s. Independent checkout passes52 integration tests (13.85s),
+then30 portability/cache checks (10.09s), and actually reproduces both geometric
+failure-query benchmarks. See ../reports/native_failure_memo_verification_20261027.json.
+
+The first independent component attempt was correctly refused because the
+archived road_grid.py uses CRLF and Git checkout uses LF; complete normalized
+text matches. The fix reuses existing verify_source: archived bytes MUST match
+the registered SHA, and current source must match after universal-newline
+decoding only. It does not accept arbitrary code changes. Failed log remains
+in runs/independent_native_failure_memo_benchmark_20261027.log; success is_v2.log.
+
+Actual B1 low-LR worker4952/guard64452 remain live and healthy in040132, with
+20,200controls last observed; fixed20,480-control training endpoint/evaluation
+are pending. There are2successes among25earlier completed training episodes,
+plus17deadlines/6bounds; these are not frozen task performance. Next: finish
+and raw-audit this endpoint before choosing another learning intervention.
+Do not claim the baseline healthy or sufficiently trained from this snapshot.
+
+Queue13384 still waits to run043046 frozen B1 crossing-scene probe after040132
+normal owned cleanup. Queue57768/session85430 waits to run045435 frozen compute
+probe after043046. Inspect their current OS identities and queue_execution.json
+before any manual launch. Do not duplicate them.045435 has the original first
+memo snapshot and fixed configs; ROOT's subsequent config-object invalidation
+fix does not rewrite the registered probe. Models/normalizers/config semantics
+for all3probe arms verify identical to their completed020918parent.
+
+No on-policy value/critic warmup, longer supervised-PPO rollout variant, or
+new exploration variant has been implemented or prepared. Any such idea needs
+evidence and its own registered version; do not assume one is already running.
+The full research acceptance remains unmet; cache throughput is engineering
+work, not PPO/architecture benefit, five independent seeds or unseen confirmation.
+
+# Earlier state — 2026-10-27 13:03 local
 
 `035356` H/H0 is COMPLETE, normally guarded and cleaned up. Results H2/4 and
 H0 zero/4, versus teacher-only3/4 each. New training controls 41,426, frozen
