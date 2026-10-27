@@ -1,10 +1,36 @@
-# Latest verification — 2026-10-27 12:16 local
+# Latest verification — 2026-10-27 12:25 local
 
-Source0c4d0cbis pushed. Independent checkout0c4d0cbpasses31targeted checks in
-12.27s(log:runs/independent_shared_supervised_targeted_20261027.log). Hosted
-CI40448353031was still in progress on the last observation; its result is pending.
-Actual Hworker17444/guard4972remain live and healthy, with14,708Hcontrols observed.
-H0follows within035356.040132is still prepared and queued, not started.
+Source `0c4d0cb` is pushed. Its hosted CI run `40448353031` completed successfully:
+409 passed, 10 skipped, 4 CARLA exclusions in 170.62 s. The actual downloaded log
+is `runs/native_shared_exploration_hosted_ci_20261027.log`. Independent Windows
+checkout checks also pass (31 checks in 12.27 s).
+
+Actual CARLA batch `035356` is still training H, followed by H0. Worker 17444 and
+guard 4972 were verified live; more than 17,000 H controls are complete. There
+are 15 successes and 12 deadlines among the first 27 completed training episodes;
+these are not frozen evaluation results. Do not restart this batch.
+
+A local bounded sequential program is now actually running (queue PID 69896,
+exec session 83755): `runs/queue_native_040132_after_035356_20261027.ps1`.
+It starts existing prepared B1 low-learning-rate batch `040132` only after normal
+parent guard completion, an empty owned-server cleanup, a method summary, release
+of the parent lifecycle lock, and unchanged child protocol hash. It stops on
+parent failure or its registered deadline. Inspect the OS identity and
+`040132/queue_execution.json` before any manual launch; do not start a duplicate.
+The child currently remains **not started**. No repeated teacher fitting occurs.
+
+Read-only teacher retention is recorded in
+`../reports/native_shared_teacher_retention_20261027.json`. At H checkpoint
+10,176 controls, teacher-training action agreement is 28.57% versus 100% at the
+actual PPO initialization; correlated holdout agreement is 30% versus 92.5%.
+Observation mean/variance/count remain exactly unchanged. This establishes
+behavioral drift on old examples, not reduced task capability or its causal
+explanation. B1 reward variants still end at 0/4; low-LR results are pending.
+The local diagnostic performs no environment execution or optimizer update.
+
+Next: audit H and H0 frozen endpoints as they complete, then assess the queued
+B1 low-LR result. Five independent seeds, new paired conditions, dynamic and
+unseen confirmation, and the complete research acceptance remain outstanding.
 The earlier entries below retain the detailed source/model/cost evidence.
 
 # Current authoritative state — 2026-10-27 12:08 local

@@ -1,0 +1,294 @@
+{
+  "scope": "Offline retention on registered teacher examples, including correlated holdout. Not independent validation, task success, new interaction or causal proof.",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "script_sha256": "f2c27cbfeef97684304c288553c0aaa98de10327a771ca7eea5fa8df7c9c3ed0",
+  "results": [
+    {
+      "batch": "20261027T024727Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "ppo_initial",
+      "model_sha256": "91cb256f6c4a038887cb5780935ab308665d4f182b415aa654cd74555fc4775c",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 0,
+      "optimizer_steps": 0,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 5.971348946332e-05,
+      "correlated_holdout_action_mse": 0.001272226101718843,
+      "log_std": [
+        -2.299999952316284,
+        -2.299999952316284
+      ]
+    },
+    {
+      "batch": "20261027T024727Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000001280",
+      "model_sha256": "3449181eadfbd1cdcc98b1c06a626350ea6fa5bf8f6b329384f3925508410862",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 1280,
+      "optimizer_steps": 40,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.001893908134661615,
+      "correlated_holdout_action_mse": 0.0031108283437788486,
+      "log_std": [
+        -2.300687789916992,
+        -2.3022098541259766
+      ]
+    },
+    {
+      "batch": "20261027T024727Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000002560",
+      "model_sha256": "de7fa07c4ca2ec1be2356bfb2b70c4aae12b1a06c5fe0fdd3a8691705017223c",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 2560,
+      "optimizer_steps": 80,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.0017347304383292794,
+      "correlated_holdout_action_mse": 0.0029981101397424936,
+      "log_std": [
+        -2.3004791736602783,
+        -2.3031868934631348
+      ]
+    },
+    {
+      "batch": "20261027T024727Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000010000",
+      "model_sha256": "50ad6f6a484b4bf16c7b28fdd9cb00938cb3cc714193007fa420a306b4e8d81a",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 10240,
+      "optimizer_steps": 320,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.007674099877476692,
+      "correlated_holdout_action_mse": 0.008943617343902588,
+      "log_std": [
+        -2.312168598175049,
+        -2.303504705429077
+      ]
+    },
+    {
+      "batch": "20261027T024727Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000020000",
+      "model_sha256": "7e8b0080d009e464a04dc14cff2a90fea1edfe7f3642570e6cc106bd83e5d933",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 20160,
+      "optimizer_steps": 630,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.012693889439105988,
+      "correlated_holdout_action_mse": 0.013768895529210567,
+      "log_std": [
+        -2.332949638366699,
+        -2.30234956741333
+      ]
+    },
+    {
+      "batch": "20261027T024727Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000020480",
+      "model_sha256": "9940779cc22bb92f4dc2ea9cb1f2c027f4c405d485ce8adf571f1bb76a9e687b",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 20480,
+      "optimizer_steps": 640,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.012988395057618618,
+      "correlated_holdout_action_mse": 0.014168721623718739,
+      "log_std": [
+        -2.332247734069824,
+        -2.304262161254883
+      ]
+    },
+    {
+      "batch": "20261027T031740Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "ppo_initial",
+      "model_sha256": "fb0d870e988bdc82801649a8e92928eb3c9a008e1a72f9c08d535a24a56d39eb",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 0,
+      "optimizer_steps": 0,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 5.971348946332e-05,
+      "correlated_holdout_action_mse": 0.001272226101718843,
+      "log_std": [
+        -2.299999952316284,
+        -2.299999952316284
+      ]
+    },
+    {
+      "batch": "20261027T031740Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000001280",
+      "model_sha256": "0a285b7d8866628c122a3e206c77350a4f8c514f14368fcf76c75accc5532c9e",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 1280,
+      "optimizer_steps": 40,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.000996859627775848,
+      "correlated_holdout_action_mse": 0.002174415159970522,
+      "log_std": [
+        -2.299905776977539,
+        -2.3005318641662598
+      ]
+    },
+    {
+      "batch": "20261027T031740Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000002560",
+      "model_sha256": "ddb201111a4197254bdc46eae56210bb2e9368701d7d5910f113195845c053c5",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 2560,
+      "optimizer_steps": 80,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.0009030078072100878,
+      "correlated_holdout_action_mse": 0.0021557456348091364,
+      "log_std": [
+        -2.2962143421173096,
+        -2.30314040184021
+      ]
+    },
+    {
+      "batch": "20261027T031740Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000010000",
+      "model_sha256": "66e9fa122423d000b7d817074455b87470a3738976381ccf5870241300617bf2",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 10240,
+      "optimizer_steps": 320,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.005773224402219057,
+      "correlated_holdout_action_mse": 0.007303102407604456,
+      "log_std": [
+        -2.3207600116729736,
+        -2.2937498092651367
+      ]
+    },
+    {
+      "batch": "20261027T031740Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000020000",
+      "model_sha256": "e5d19ae8e8bbd1f2d7f9cb896f9df2d4b9f460c93523ee4fe8974cdab9bac090",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 20160,
+      "optimizer_steps": 630,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.009215475991368294,
+      "correlated_holdout_action_mse": 0.010030667297542095,
+      "log_std": [
+        -2.332382917404175,
+        -2.282709836959839
+      ]
+    },
+    {
+      "batch": "20261027T031740Z_native_supervised_ppo",
+      "method": "B1",
+      "stage": "checkpoint_000020480",
+      "model_sha256": "dd73e209b73ec055217cd35d9c1ef8efbe95014f35158361f3a2364f8d92787f",
+      "dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+      "training_controls": 20480,
+      "optimizer_steps": 640,
+      "observation_statistics_exactly_unchanged": true,
+      "train_action_mse": 0.00994171667844057,
+      "correlated_holdout_action_mse": 0.010561294853687286,
+      "log_std": [
+        -2.3319191932678223,
+        -2.2818970680236816
+      ]
+    },
+    {
+      "batch": "20261027T035356Z_native_supervised_ppo",
+      "method": "H",
+      "stage": "ppo_initial",
+      "model_sha256": "8e9750aad378a680e2c452010bc7978c1cba228c6329bd7f6ffa5a0553e9b7a8",
+      "dataset_sha256": "4265aa7d273c7be49247f68be04039f69de97e5446d39518dd65bc9d8f588b16",
+      "training_controls": 0,
+      "optimizer_steps": 0,
+      "observation_statistics_exactly_unchanged": true,
+      "train_accuracy": 1.0,
+      "train_negative_log_likelihood": 0.10726292431354523,
+      "train_entropy": 0.5643722414970398,
+      "correlated_holdout_accuracy": 0.925,
+      "correlated_holdout_negative_log_likelihood": 0.2946144938468933,
+      "correlated_holdout_entropy": 0.6614431142807007
+    },
+    {
+      "batch": "20261027T035356Z_native_supervised_ppo",
+      "method": "H",
+      "stage": "checkpoint_000001280",
+      "model_sha256": "d87b927f5b6360e9132d5ee6d726dfa570dad9ef46075c60427f48cc3a1499e9",
+      "dataset_sha256": "4265aa7d273c7be49247f68be04039f69de97e5446d39518dd65bc9d8f588b16",
+      "training_controls": 1591,
+      "optimizer_steps": 50,
+      "observation_statistics_exactly_unchanged": true,
+      "train_accuracy": 0.4025974025974026,
+      "train_negative_log_likelihood": 0.9307163953781128,
+      "train_entropy": 1.0571017265319824,
+      "correlated_holdout_accuracy": 0.375,
+      "correlated_holdout_negative_log_likelihood": 1.0568526983261108,
+      "correlated_holdout_entropy": 1.0769590139389038
+    },
+    {
+      "batch": "20261027T035356Z_native_supervised_ppo",
+      "method": "H",
+      "stage": "checkpoint_000002560",
+      "model_sha256": "f75c6096344b3821e84b8ac21123280adc71da2acaa59799200188b954054724",
+      "dataset_sha256": "4265aa7d273c7be49247f68be04039f69de97e5446d39518dd65bc9d8f588b16",
+      "training_controls": 2862,
+      "optimizer_steps": 90,
+      "observation_statistics_exactly_unchanged": true,
+      "train_accuracy": 0.36363636363636365,
+      "train_negative_log_likelihood": 1.4064866304397583,
+      "train_entropy": 0.9213645458221436,
+      "correlated_holdout_accuracy": 0.3,
+      "correlated_holdout_negative_log_likelihood": 1.576311469078064,
+      "correlated_holdout_entropy": 0.9500623941421509
+    },
+    {
+      "batch": "20261027T035356Z_native_supervised_ppo",
+      "method": "H",
+      "stage": "checkpoint_000010000",
+      "model_sha256": "26614c9182f4cb397f873446b07a913fac893df7c2bb2020e3a9b0c9487ec9c1",
+      "dataset_sha256": "4265aa7d273c7be49247f68be04039f69de97e5446d39518dd65bc9d8f588b16",
+      "training_controls": 10176,
+      "optimizer_steps": 320,
+      "observation_statistics_exactly_unchanged": true,
+      "train_accuracy": 0.2857142857142857,
+      "train_negative_log_likelihood": 3.0934195518493652,
+      "train_entropy": 0.5950714945793152,
+      "correlated_holdout_accuracy": 0.3,
+      "correlated_holdout_negative_log_likelihood": 3.2556915283203125,
+      "correlated_holdout_entropy": 0.58131343126297
+    },
+    {
+      "batch": "20261027T035356Z_native_supervised_ppo",
+      "method": "H0",
+      "stage": "ppo_initial",
+      "model_sha256": "d076947cda211f47b35af6ecabca2081fc747cde568f622daf617c3ea6ad0b4a",
+      "dataset_sha256": "4265aa7d273c7be49247f68be04039f69de97e5446d39518dd65bc9d8f588b16",
+      "training_controls": 0,
+      "optimizer_steps": 0,
+      "observation_statistics_exactly_unchanged": true,
+      "train_accuracy": 1.0,
+      "train_negative_log_likelihood": 0.10607579350471497,
+      "train_entropy": 0.6316155791282654,
+      "correlated_holdout_accuracy": 0.9,
+      "correlated_holdout_negative_log_likelihood": 0.32698261737823486,
+      "correlated_holdout_entropy": 0.7550541162490845
+    }
+  ],
+  "observed_at": "2026-10-27T04:25:16.553035+00:00",
+  "evidence_json_sha256": "c48558999b825a0b01e50603f0392c03049fef258a8e9af7dd3021998f13a746",
+  "hosted_ci": {
+    "run_id": 40448353031,
+    "source_commit": "0c4d0cb822b9814b35b87ce2f0cc65bb0613a2e4",
+    "status": "completed",
+    "conclusion": "success",
+    "passed": 409,
+    "skipped": 10,
+    "deselected": 4,
+    "seconds": 170.62,
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40448353031"
+  },
+  "limit": "Snapshot: H checkpoints through10176controls, H0initial only. Teacher retention is not task performance. Active training and pending frozen endpoints excluded."
+}
