@@ -1,15 +1,37 @@
 # Development model card
 
-## Prepared mixed measured initialization
+## Public smaller-exploration B1
+
+[Frozen evaluation and full raw audit](../reports/native_B1_small_exploration_20261027.json):
+2/4 known roads after 20,480 real PPO training controls and 640 Adam steps,
+versus 0/4 for the matched initial log_std=-2.3 control. The new value is -4;
+other initial weights, normalization, RNG and training settings match. All
+23,025 training/evaluation controls verify. Training has 25 successes and 12
+deadlines; frozen evaluation has two successes and two deadlines. This remains
+below the 3/4 teacher-only initialization and does not establish a healthy full
+baseline, independent confirmation or hierarchy advantage.
+
+The [public model/data capsule](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_small_exploration_B1_seed11_20261027_repro.zip)
+contains 463 files, 28,967,279 bytes; SHA256:
+`491575700daf9a47c47c5f3a859418e59783f704187c7c49fb24ff8f41441123`.
+Actual unauthenticated download and [independent checkout reproduction](../reports/native_B1_small_exploration_public_reproduction_20261027.json) verify
+all 23,025 raw controls, four measured-start actions and a byte-identical figure.
+
+```powershell
+python scripts/reproduce_native_asset.py --archive native_small_exploration_B1_seed11_20261027_repro.zip --sha256 491575700daf9a47c47c5f3a859418e59783f704187c7c49fb24ff8f41441123 --output runs/NEW_SMALL_EXPLORATION_REPRODUCTION
+```
+
+## Rejected mixed measured initialization
 
 The [mixed-data actor fit](../reports/native_mixed_bc_preparation_20261027.json)
 finishes 128 epochs and 1,536 supervised optimizer steps on 3,617 previously
 measured static/dynamic teacher controls. It adds zero driving and zero PPO
 updates. Training action MSE is 0.000091 and correlated holdout MSE is 0.02776;
-these are not task success rates. Frozen CARLA evaluation is queued after the
-active smaller-exploration PPO lifecycle. The model has not driven yet and is
-local, not a new public model asset. Extra dynamic supervision and refitted
-normalization prevent interpreting it as a single-factor PPO comparison.
+these are not task success rates. Its [completed frozen CARLA evaluation](../reports/native_mixed_bc_endpoint_20261027.json)
+is 0/4 with three deadlines and one bounds failure; all 2,983 controls verify.
+It is rejected for PPO continuation, remains local, and is not a new public
+model asset. Extra dynamic supervision, refitted normalization and the changed
+optimizer count prevent interpreting it as a single-factor PPO comparison.
 
 ## Completed supervised-initialized PPO development
 
@@ -22,14 +44,14 @@ teacher access and PPO costs are disclosed. Neither establishes PPO value over
 the strong rule or formal hierarchy advantage. [B1 lower-LR evaluation](../reports/native_B1_slow_lr_20261027.json)
 is complete at 0/4, with 23,406 raw training/evaluation controls verified. The longer
 collection interval also finishes at 0/4, with 22,881 raw controls verified; it has
-the same 20,480 training controls and 640 Adam steps. A smaller-exploration
-continuation is running, with only initial log_std changed from -2.3 to -4.
+the same 20,480 training controls and 640 Adam steps. The smaller-exploration
+continuation above completes at 2/4, with only initial log_std changed from -2.3 to -4.
 [Completed probes](../reports/native_closed_probes_20261027.json) also retain the
 0/4 unsafe crossing transfer and all three failed frozen cache-probe policies.
 The [3,617 static/dynamic measured views](../reports/native_mixed_measured_views_20261027.json)
-are an audited dataset conversion, not another fitted model or PPO result.
-These newer models are separate from the teacher-only public capsule below;
-their complete local raw evidence is retained and no new capsule is claimed here.
+have a separate rejected supervised fit at 0/4; conversion and fitting are
+separately charged. The new B1 capsule above is separate from the teacher-only
+public capsule below. Other newer H/H0 and rejected mixed models remain local.
 
 ## Public measured teacher initialization and rejected PPO catalog
 

@@ -53,7 +53,7 @@ def feedforward_calibration(path, original):
     return path, fit_path
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False,static_geometry=None,candidate_geometry=None):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False,static_geometry=None,candidate_geometry=None,hazard_distance=None):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -71,14 +71,14 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
             raise ValueError('Native hazard evaluation requires the explicit new route catalog source')
         from navstack.native_hazards import resolve_native_hazard
         from navstack.native_route import local_layout
-        hazard={'version':'native_hazard_v1','kind':hazard_kind,'distance_m':10.}
+        hazard={'version':'native_hazard_v1','kind':hazard_kind,'distance_m':10. if hazard_distance is None else hazard_distance}
         if static_geometry is not None:hazard['static_geometry']=static_geometry
         if hazard_lateral is not None:
             if hazard_kind!='crossing_walker':raise ValueError('Explicit hazard lateral requires a walker')
             hazard['lateral_m']=hazard_lateral
         for route in old['routes']:resolve_native_hazard(local_layout(route,route['map'],route['opendrive_sha256']),hazard)
-    elif hazard_lateral is not None:
-        raise ValueError('Hazard lateral requires a declared native hazard')
+    elif hazard_lateral is not None or hazard_distance is not None:
+        raise ValueError('Hazard lateral/distance requires a declared native hazard')
     config_path = parent/source_method/'config.json'
     env = EnvConfig.from_dict(read(config_path)['env'])
     if env.method != 'H' or not env.road_observation or env.planner.max_seconds is not None:
@@ -187,6 +187,10 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
             'new_model_required':True,'scope':'Exact full-body road SAT batching; unchanged scalar oracle for contact-sensitive poses and single-pose checks. Share the version with H/H0/B1/B3 and report compute separately.'}
     if hazard is not None:
         protocol.update(native_hazard=hazard,scope='Real native-road hazard development under shared rule-only B3 planning/MPC; actual parked vehicle or crossing walker, all4known routes retained; not PPO training or final confirmation')
+        if hazard_distance is not None:
+            protocol['scene_intervention']={'version':'explicit_native_hazard_distance_v1',
+                'distance_m':hazard_distance,
+                'scope':'New development actor-placement conditions on all four original roads. Original failed conditions remain; not a repair or rerun of their results, matched-task policy improvement, unseen confirmation or PPO evidence.'}
     write_json(batch/'protocol.json', protocol)
     write_json(batch/'prepared.json', {'status': 'PREPARED_NOT_STARTED', 'protocol_sha256': sha(batch/'protocol.json')})
     print(batch, flush=True)
@@ -313,8 +317,9 @@ if __name__ == '__main__':
     parser.add_argument('--rpc-port',type=int)
     parser.add_argument('--final-goal-candidate',action='store_true')
     parser.add_argument('--hazard-lateral',type=float)
+    parser.add_argument('--hazard-distance',type=float,help='Explicit new development actor placement in route arc metres; requires start/goal clearance on every road')
     parser.add_argument('--reference-reuse',action='store_true')
     parser.add_argument('--static-geometry',choices=['axis_aligned_box_v1','projected_box_strips12_v1'])
     parser.add_argument('--candidate-geometry',choices=['route_offsets_v1','kinematic_arcs_goal_v1'])
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse,args.static_geometry,args.candidate_geometry) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse,args.static_geometry,args.candidate_geometry,args.hazard_distance) if args.prepare else run(args.batch)

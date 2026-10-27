@@ -1,0 +1,230 @@
+{
+  "scope": "Matched single-seed known-road development, not independent confirmation, healthy complete-task B1 or hierarchy advantage.",
+  "batch": "20261027T062725Z_native_supervised_ppo",
+  "initialization_parity": {
+    "scope": "Only initial Gaussian log_std changes relative to the completed long-rollout diagnostic; no teacher/data/reward/architecture change.",
+    "previous_batch": "20261027T052446Z_native_supervised_ppo",
+    "new_batch": "20261027T062725Z_native_supervised_ppo",
+    "changed_policy_tensors": [
+      "log_std"
+    ],
+    "previous_log_std": [
+      -2.299999952316284,
+      -2.299999952316284
+    ],
+    "new_log_std": [
+      -4.0,
+      -4.0
+    ],
+    "normalization_and_rng_identical": true,
+    "rollout_actions": 1280,
+    "minibatch": 320,
+    "learning_rate": 3e-05,
+    "physical_budget": 20480,
+    "planned_adam_steps": 640
+  },
+  "intervention": "Only initial Gaussian log_std changes -2.3to-4 versus052446; same teacher, other32policy tensors, normalization/RNG, shared guarded reward,LR3e-5,1280collection/320minibatch/10epochs.",
+  "new_training_controls": 20480,
+  "ppo_adam_steps": 640,
+  "training_ends": {
+    "success": 25,
+    "deadline": 12
+  },
+  "frozen_successes": 2,
+  "frozen_cases": 4,
+  "frozen_unsafe_episodes": 0,
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 23.53881730748338,
+      "interventions": 0,
+      "terminal_goal_distance_m": 1.0929619009849998,
+      "terminal_heading_error_rad": 0.06994619497622256,
+      "terminal_measured_speed_m_s": -7.898023024626919e-10
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 0.0,
+      "interventions": 0,
+      "terminal_goal_distance_m": 24.347595354860264,
+      "terminal_heading_error_rad": 1.0470275749400235,
+      "terminal_measured_speed_m_s": 4.0531292411892053e-10
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 317,
+      "progress": 22.21790900520528,
+      "interventions": 0,
+      "terminal_goal_distance_m": 0.5644493427247482,
+      "terminal_heading_error_rad": 0.07405398779961558,
+      "terminal_measured_speed_m_s": 0.0067721937445136965
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 428,
+      "progress": 19.940855340391884,
+      "interventions": 0,
+      "terminal_goal_distance_m": 0.7829641910956691,
+      "terminal_heading_error_rad": 0.07028681744083265,
+      "terminal_measured_speed_m_s": 0.006003316835647134
+    }
+  ],
+  "success_tolerances": {
+    "goal_tolerance": 0.8,
+    "goal_yaw_tolerance": 0.35
+  },
+  "raw_audit": {
+    "schema_version": 1,
+    "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+    "batch": "20261027T062725Z_native_supervised_ppo",
+    "method": "B1",
+    "protocol_sha256": "ae211e1a90320df692836ee48de887695995448d7bc6f5e1f8ccc6aa9866e48c",
+    "config_sha256": "88a536332d6415d8d63c2132c3d7aab85d9eba6de1bb403f168ecd77de1adb48",
+    "summary_sha256": "3bdfa8ae7c7517cee00b358c72c73d765ce3109737cc7c412bb30787220dcc1a",
+    "evaluation_sha256": "ebc87a64691ad026d22a55dbbc7e9c0d4c54a41e671cc961ff6ab0990fe42438",
+    "evaluation_trace_sha256": "a218f90d21fedd69e015fc70fbcc45be8d4a90318ad8115f19753cd1b245dc86",
+    "optimization_sha256": "c980cb67370760cdb511b7d3f490c47359722d1840421b0f95e972a27a7efa3b",
+    "transition_hashes": {
+      "transitions_000000000_1793082513920132800.jsonl.gz": "c0bcc6c4c820f58068c990d3bfba1ed8e1d13dbe517093a5855d204473482bd2"
+    },
+    "bridge_response_stream": "bridge_c49e0fd5_responses.jsonl.gz",
+    "bridge_response_sha256": "ae812bd122bd845d38ad6ed5e3435616ac419ba2ce5acb6efa6126525421ea90",
+    "bridge_complete_rows": 23108,
+    "training_control_frames_verified": 20480,
+    "evaluation_control_frames_verified": 2545,
+    "total_applied_controls_verified": 23025,
+    "training_world_ticks_verified": 21657,
+    "evaluation_world_ticks_verified": 2669,
+    "training_termination_reasons": {
+      "success": 25,
+      "deadline": 12
+    },
+    "checkpoint": "checkpoint_000020480",
+    "checkpoint_metadata_sha256": "409d776364e45b144403908931e74bafc19327dfacd99713d3866c7c2ffbb2c8",
+    "lineage_controls": 20480,
+    "charged_controls_lower_bound": 22406,
+    "segment_optimizer_steps": 640,
+    "optimizer_steps_total_lower_bound": 640,
+    "unknown_unflushed_ancestor_tail": false
+  },
+  "inference_audit": {
+    "scope": "Offline inference at measured evaluation starts; zero new CARLA ticks, not whole-trajectory re-execution",
+    "method": "B1",
+    "model_sha256": "67da35e6d88dd20635e90b701f5b22d00ef018581db67a971b5a5486b4d2420c",
+    "trace_sha256": "a218f90d21fedd69e015fc70fbcc45be8d4a90318ad8115f19753cd1b245dc86",
+    "loaded_normalization_training": false,
+    "inference_normalization_frozen": true,
+    "audit_script_sha256": "2dbfc815c497df73b05d57f06549bfd9b3d7ff42cb97511bc033c28c1d31dbd2",
+    "frozen_source_root": "origin_metadata/2448069d19a1c7ee4e43ddbf",
+    "batch_protocol_sha256": "ae211e1a90320df692836ee48de887695995448d7bc6f5e1f8ccc6aa9866e48c",
+    "new_controls": 0,
+    "optimizer_updates": 0,
+    "results": [
+      {
+        "case_id": 0,
+        "action": [
+          0.5356051921844482,
+          -0.03755609691143036
+        ],
+        "recorded_action": [
+          0.5356051921844482,
+          -0.03755609691143036
+        ],
+        "road_sha256": "7d46c3cc23917741f3a7f2c29784c110ee29130c14007ed014ce4cee7191a88e",
+        "mean": [
+          0.5356051921844482,
+          -0.03755609691143036
+        ],
+        "std": [
+          0.018181296065449715,
+          0.018113143742084503
+        ]
+      },
+      {
+        "case_id": 1,
+        "action": [
+          -0.881535530090332,
+          -0.030077839270234108
+        ],
+        "recorded_action": [
+          -0.881535530090332,
+          -0.030077839270234108
+        ],
+        "road_sha256": "935ae295fa5f20c4789f5b8cde8d551496ab30451f7bfb6b83c4f4880a52f84a",
+        "mean": [
+          -0.881535530090332,
+          -0.030077839270234108
+        ],
+        "std": [
+          0.018181296065449715,
+          0.018113143742084503
+        ]
+      },
+      {
+        "case_id": 2,
+        "action": [
+          0.5987796783447266,
+          0.11195502430200577
+        ],
+        "recorded_action": [
+          0.5987796783447266,
+          0.11195502430200577
+        ],
+        "road_sha256": "d7c9609f8b793a15f711cde305f7e243c02078e4cec09b45fac0c7ea76de117d",
+        "mean": [
+          0.5987796783447266,
+          0.11195502430200577
+        ],
+        "std": [
+          0.018181296065449715,
+          0.018113143742084503
+        ]
+      },
+      {
+        "case_id": 3,
+        "action": [
+          0.4914933443069458,
+          0.12670882046222687
+        ],
+        "recorded_action": [
+          0.4914933443069458,
+          0.12670882046222687
+        ],
+        "road_sha256": "6a8cbde5d6ea7f917f6d7d41e5a578dc61e1859063ed2079819a5ac7b90e7bae",
+        "mean": [
+          0.4914933443069458,
+          0.12670882046222687
+        ],
+        "std": [
+          0.018181296065449715,
+          0.018113143742084503
+        ]
+      }
+    ]
+  },
+  "old_batch_frozen_successes": 0,
+  "old_batch_training_ends": {
+    "deadline": 16,
+    "success": 11,
+    "out_of_bounds": 7,
+    "collision": 1
+  },
+  "teacher_only_frozen_successes": 3,
+  "conclusion": "2/4 rather than0/4 retains some actual task competence and removes the two frozen bounds failures in this fork, but remains below3/4teacher initialization. Road0parks outside the unchanged position tolerance; road1does not move. Training25successes/12deadlines/0unsafe is not a frozen result or formal safety claim.",
+  "portable_metadata_changes": [
+    {
+      "json_pointer": "/inference_audit/frozen_source_root",
+      "original_value_sha256": "2448069d19a1c7ee4e43ddbf6b3d5db76ecda0747fd523b39f3fa6afbee7e201"
+    }
+  ]
+}

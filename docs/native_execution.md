@@ -141,3 +141,10 @@ The fitted model is only a prepared frozen evaluation. Launch its printed batch
 through the registered wrapper after the active owned lifecycle completes, then
 audit the endpoint. Its first evaluation still uses the four known static roads;
 dynamic training data alone do not establish dynamic execution or generalization.
+
+Rule development preparation also accepts `--hazard-distance 13` together with
+`--hazard-kind` and the explicit route catalog. It validates start/goal clearance
+on every original road and records a new actor-placement condition in the
+protocol. The default remains 10 metres. Such a diagnostic changes the task
+conditions; it does not repair the original scores or establish PPO improvement,
+physical infeasibility, independent confirmation or unseen-test performance.

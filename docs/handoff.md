@@ -1,4 +1,48 @@
-# Latest verification — 2026-10-27 15:12 local
+# Latest verification — 2026-10-27 15:30 local
+
+062725 small-noise B1 is COMPLETE:20480real train controls/640Adam,
+25training successes/12deadlines/0unsafe; frozen2/4 (2deadlines,2successes),
+23025raw controls audited. Matching higher-noise052446 is0/4. Still below
+teacher-only3/4; road0stops1.09296m from goal versus0.8m tolerance,road1no
+movement. No healthy-full-B1 or hierarchy claim. See
+../reports/native_B1_small_exploration_20261027.json.
+
+Its463file/28967279byte public model/data asset was uploaded,downloaded without
+authentication and independently reproduced at checkout3cd2132:23025rawcontrols,
+4measured-start actions,byte-identical figure. SHA491575700daf9a47c47c5f3a859418e59783f704187c7c49fb24ff8f41441123.
+../reports/native_B1_small_exploration_public_reproduction_20261027.json.
+Earlier root-current-source inference audit correctly refused the changed
+measured_demo source; the recorded frozen source passed. Original refusal log
+remains at runs/native_B1_small_exploration_inference_audit_20261027.log.
+
+064630 mixed BC is COMPLETE and REJECTED:0/4 (3deadlines,1bounds),2983raw
+controls verified;1536supervised updates and0PPO. Extra mixed data/refitted
+normalization did not retain the original static-only3/4; not a one-factor
+data-effect experiment. Do not start PPO from this rejected initializer.
+../reports/native_mixed_bc_endpoint_20261027.json. Queue3952 has finished.
+
+Actually RUNNING070950H/H0small-exploration PPO:worker58236,guard62452,
+wrapper queue62888. H>2100controls/6phases,healthy at15:29. This uses original static
+teacher and0.99categorical calibration; see its initialization proof below.
+No frozen endpoint exists yet. Parent062725/064630 both cleaned normally.
+
+New rule-only071952distance13pilot is PREPARED,not started. Queue PID41164
+waits070950normal completion/owned cleanup before rule activation. Script
+runs/queue_native_071952_after_070950_20261027.ps1. Only actor route-arc distance
+changes10to13m on all four roads; actual config/routes/calibration match003800.
+This tests start-to-obstacle maneuvering space under forward-only planning.
+Old112/970node exhaustion does NOT establish physical infeasibility. Original
+failed conditions remain; new actor placements are not same-task improvement
+or unseen final testing. ../reports/native_static_distance13_preparation_20261027.json.
+Root CLI change passes15hazard/rule tests in5.04s; its push/CI/independent check
+are pending. Source3cd2132's hosted464/15/4 and independent48 remain valid.
+
+Do not duplicate active training/queues or interpret old lock files as live PIDs.
+Full goal still requires healthy baselines,shared capability/feedback evidence,
+5independent trained seeds and120new paired final conditions. No acceptance
+gate or final-test definition has been lowered.
+
+# Earlier verification — 2026-10-27 15:12 local
 
 Source3cd21327bb9eb7ff1ce39aa4d24a7bd2cc4b6f72 is pushed and matches remote.
 Hosted CI40463482340 passes464/15skips/4CARLA exclusions in186.23s;
