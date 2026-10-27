@@ -1,4 +1,27 @@
-# Latest verification — 2026-10-27 14:43 local
+# Latest verification — 2026-10-27 14:50 local
+
+Source7c87e167f31d0c3568e45cc8ddb9b8bc4a528f43 is pushed and matches remote.
+Hosted CI40462700527 passes458/15skips/4CARLA exclusions in126.82s;
+independent clean checkout passes42targeted tests in35.85s. Logs:
+runs/native_dynamic_views_hosted_ci_20261027.log and
+runs/independent_native_dynamic_views_current_20261027.log.
+
+New mixed actor-only BC is PREPARED, not driven:064630native_measured_bc,
+3617existing teacher controls,128epochs/1536supervised Adam,0new driving/0PPO.
+Train action MSE .000090997,correlated holdout .0277576; neither is a driving
+success rate. It uses extra dynamic data/refitted train-only normalization;
+not a matched single-factor experiment. All cases/failures included. See
+../reports/native_mixed_bc_preparation_20261027.json.
+
+Queue PID3952 is actually live, waiting for062725normal completion/owned server
+cleanup and lifecycle handle release before activating064630frozen evaluation.
+Script runs/queue_native_064630_after_062725_20261027.ps1; receipt in064630.
+It must stop on parent failure, does not kill foreign work, and must not be
+duplicated. Parent062725at14:49has9266controls/7phases,worker39128/guard6420.
+New loader/preparer has18targeted passing checks in33.76s; its publication and
+independent regression are still pending. No new policy improvement is claimed.
+
+# Earlier verification — 2026-10-27 14:43 local
 
 42 targeted dynamic-view, transfer/retry and supervised-PPO tests pass in31.13s
 (runs/dynamic_views_closed_probes_targeted_20261027.log). New source publication

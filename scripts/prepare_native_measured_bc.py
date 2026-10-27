@@ -32,7 +32,62 @@ from navstack.config import VehicleConfig
 from navstack.research import resources_ok
 
 
-def prepare(parent, seed=11, epochs=128):
+def load_registered_views(views, reference_config, config, parent):
+    """Verify the immutable measured dataset before any fitting or registration."""
+    views, reference_config = Path(views).resolve(), Path(reference_config).resolve()
+    manifest = read(views/'manifest.json')
+    registration = read(views/'registration.json')
+    metadata = read(reference_config)
+    if (sha(reference_config) != manifest['reference_config_sha256']
+            or manifest['reference_config_sha256'] != registration['reference_config_sha256']
+            or metadata['env'] != config.to_dict() or metadata['signature'] != signature(config)
+            or manifest['sources'] != registration['sources']
+            or manifest['view_source_sha256'] != sha(ROOT/'navstack/measured_demo.py')
+            or manifest['script_sha256'] != sha(ROOT/'scripts/build_native_measured_views.py')
+            or any(manifest[key] != 0 for key in ('new_controls','supervised_optimizer_steps','ppo_updates'))):
+        raise ValueError('Measured view configuration/source identity differs')
+    sources = manifest['sources']
+    if not sources or len({item['batch'] for item in sources}) != len(sources) or parent.name not in {item['batch'] for item in sources}:
+        raise ValueError('Require unique registered teachers including the physical parent')
+    for item in sources:
+        if Path(item['batch']).name != item['batch']:
+            raise ValueError('Teacher identity must be a batch name')
+        donor = ROOT/'runs'/item['batch']
+        require_finished_parent(donor)
+        verified = audit(donor)
+        if (verified != read(donor/'raw_audit.json') or sha(donor/'raw_audit.json') != item['raw_audit_sha256']
+                or sha(donor/'protocol.json') != item['protocol_sha256']
+                or verified['trace_sha256'] != item['trace_sha256']
+                or verified['evaluation_controls_verified'] != item['controls']):
+            raise ValueError('Registered teacher evidence changed')
+    dataset = views/'measured_demonstrations.npz'
+    if sha(dataset) != manifest['dataset_sha256']:
+        raise ValueError('Measured dataset bytes changed')
+    with np.load(dataset, allow_pickle=False) as loaded:
+        arrays = {key: loaded[key].copy() for key in ('observations','actions','returns','train_mask','groups')}
+    count = manifest['teacher_unique_controls']
+    if (count != sum(item['controls'] for item in sources)
+            or arrays['observations'].shape != (count, 4705 if config.actuator_observation != 'off' else 4701)
+            or arrays['actions'].shape != (count,2) or arrays['returns'].shape != (count,)
+            or arrays['train_mask'].shape != (count,) or arrays['train_mask'].dtype != np.bool_
+            or arrays['groups'].shape != (count,)
+            or not np.issubdtype(arrays['groups'].dtype,np.integer)
+            or not all(np.isfinite(arrays[key]).all() for key in ('observations','actions','returns'))
+            or np.any(np.abs(arrays['actions']) > 1)):
+        raise ValueError('Invalid measured dataset shape/values')
+    offset = 0
+    for group, case in enumerate(manifest['cases']):
+        end = offset + case['controls']
+        if (case['group'] != group or not np.all(arrays['groups'][offset:end] == group)
+                or not np.array_equal(arrays['train_mask'][offset:end], np.arange(case['controls']) % 5 != 0)):
+            raise ValueError('Measured case/holdout accounting differs')
+        offset = end
+    if offset != count:
+        raise ValueError('Measured cases omit controls')
+    return arrays, manifest
+
+
+def prepare(parent, seed=11, epochs=128, views=None, reference_config=None):
     parent = Path(parent).resolve()
     if type(seed) is not int or not 0 <= seed < 2**31 or not 1 <= epochs <= 128:
         raise ValueError('Invalid bounded supervised diagnostic')
@@ -47,7 +102,11 @@ def prepare(parent, seed=11, epochs=128):
                     scope='Frozen continuous direct B1 teacher-supervised representation diagnostic; zero PPO updates, no hierarchy or ordinary-PPO claim')
     vehicle = VehicleConfig(**read(parent/'calibration/calibration.json')['vehicle'])
     config = training_config(protocol, 'B1', vehicle)
-    registration = parent/f'measured_direct_bc_v2_seed{seed}_registration.json'
+    if (views is None) != (reference_config is None):
+        raise ValueError('Measured views require their explicit reference configuration')
+    view_data, view_manifest = load_registered_views(views, reference_config, config, parent) if views else (None,None)
+    view_suffix = '_views'+view_manifest['dataset_sha256'][:12] if views else ''
+    registration = parent/f'measured_direct_bc_v2_seed{seed}{view_suffix}_registration.json'
     with ProcessLease(parent/'measured_direct_bc_prepare.lock'):
         if registration.exists():
             raise FileExistsError('Inspect the registered diagnostic; do not repeat fitting silently')
@@ -62,6 +121,15 @@ def prepare(parent, seed=11, epochs=128):
             'holdout': 'Every fifth control within each case; correlated fit diagnostic, not independent validation',
             'differences_from_prior_B1': 'Continuous acceleration/steering at20Hz plus disclosed teacher supervision; not a single-factor comparison',
             'fairness': 'Formal hierarchy comparisons require equivalent teacher access and separately charged teacher, supervised and on-policy costs.'})
+        if views:
+            write_json(batch/'measured_view_provenance.json', view_manifest)
+            fit_registration = read(batch/'fit_registration.json')
+            fit_registration.update(version='measured_direct_bc_v3_registered_mixed_views',
+                teacher_batches=[item['batch'] for item in view_manifest['sources']],
+                scope='All registered static/dynamic teacher cases including failures; extra supervision, zero PPO updates.',
+                label_bounds=view_manifest['brake_projection'],
+                differences_from_prior_B1='Additional measured dynamic data and refitted train-only normalization; not a single-factor PPO comparison')
+            write_json(batch/'fit_registration.json', fit_registration)
         deadline = time.time()+600
         def health():
             healthy, reason = resources_ok(ROOT)
@@ -70,10 +138,10 @@ def prepare(parent, seed=11, epochs=128):
         try:
             torch.set_num_threads(1)
             observations, actions, returns, masks, cases = [], [], [], [], []
-            rows, error = read_prefix(parent/'evaluation_trace.jsonl.gz')
+            rows, error = read_prefix(parent/'evaluation_trace.jsonl.gz') if not views else ([],None)
             if error:
                 raise ValueError(error)
-            for case in range(4):
+            for case in range(4) if not views else ():
                 health()
                 decisions = [r for r in rows if r['case_id'] == case]
                 scene = read(parent/f'scene_{case:04d}.json')['scene']
@@ -98,10 +166,15 @@ def prepare(parent, seed=11, epochs=128):
                 metrics = read(parent/f'case_{case:04d}.json')
                 cases.append({'case_id': case, 'controls': len(ticks), 'termination_reason': metrics['termination_reason']})
                 print(json.dumps(cases[-1]), flush=True)
-            observations, actions = np.asarray(observations, dtype=np.float32), np.asarray(actions, dtype=np.float32)
-            np.savez_compressed(batch/'measured_demonstrations.npz', observations=observations, actions=actions,
-                                returns=np.asarray(returns), train_mask=np.asarray(masks),
-                                case_controls=np.asarray([r['controls'] for r in cases]))
+            if views:
+                observations, actions, returns, masks = (view_data[key] for key in ('observations','actions','returns','train_mask'))
+                cases = view_manifest['cases']
+                shutil.copy2(Path(views)/'measured_demonstrations.npz', batch/'measured_demonstrations.npz')
+            else:
+                observations, actions = np.asarray(observations, dtype=np.float32), np.asarray(actions, dtype=np.float32)
+                np.savez_compressed(batch/'measured_demonstrations.npz', observations=observations, actions=actions,
+                                    returns=np.asarray(returns), train_mask=np.asarray(masks),
+                                    case_controls=np.asarray([r['controls'] for r in cases]))
             raw = DummyVecEnv([lambda: NavigationEnv(config)])
             raw.envs[0].case_index = 0
             norm = RoadCandidateVecNormalize(raw, norm_reward=False, gamma=config.gamma)
@@ -113,6 +186,8 @@ def prepare(parent, seed=11, epochs=128):
                 print(json.dumps(row), flush=True)
             history = fit_demonstrations(model, norm, observations, actions, np.asarray(returns), np.asarray(masks),
                                          epochs=epochs, seed=seed, callback=progress, value_weight=0.)
+            if views and sha(batch/'measured_demonstrations.npz') != view_manifest['dataset_sha256']:
+                raise ValueError('Copied measured dataset changed during fitting')
             if model.num_timesteps or model._n_updates or model.policy.optimizer.state:
                 raise ValueError('Supervised fitting must not be reported as PPO interaction/updates')
             output = batch/'initialization';output.mkdir()
@@ -144,6 +219,10 @@ def prepare(parent, seed=11, epochs=128):
                     'parent_checkpoint': 'teacher_supervised_initialization', 'lineage_controls': 0,
                     'consumed_controls_lower_bound': len(actions), 'retained_optimizer_steps': 0,
                     'unknown_unflushed_parent_tail': False}})
+            if views:
+                protocol['extra_supervision'].update(teacher_batches=[s['batch'] for s in view_manifest['sources']],
+                    measured_view_manifest_sha256=sha(batch/'measured_view_provenance.json'),
+                    scope='Static and dynamic measured direct-control supervision; frozen evaluation remains the four known static development roads. Not a single-factor PPO comparison or independent confirmation.')
             protocol['source_hashes'] = {p.relative_to(batch/'source').as_posix(): sha(p)
                 for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
             write_json(batch/'protocol.json', protocol)
@@ -160,5 +239,7 @@ if __name__ == '__main__':
     parser.add_argument('--parent', required=True)
     parser.add_argument('--seed', type=int, default=11)
     parser.add_argument('--epochs', type=int, default=128)
+    parser.add_argument('--views')
+    parser.add_argument('--reference-config')
     args = parser.parse_args()
-    prepare(args.parent, args.seed, args.epochs)
+    prepare(args.parent, args.seed, args.epochs, args.views, args.reference_config)

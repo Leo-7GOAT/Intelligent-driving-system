@@ -1,0 +1,40 @@
+{
+  "scope": "Prepared actor-only supervised model; frozen CARLA driving evaluation has NOT started. Not PPO, healthy B1, independent validation or hierarchy advantage.",
+  "batch": "20261027T064630Z_native_measured_bc",
+  "prepared_protocol_sha256": "73339e1c761a6cafd4fb7419bf3558423aa1860dc9d6ad4271c1c04d6ee5a623",
+  "teacher_controls": 3617,
+  "supervised_optimizer_steps": 1536,
+  "epochs": 128,
+  "new_training_controls": 0,
+  "ppo_optimizer_steps": 0,
+  "teacher_batches": [
+    "20261027T003800Z_native_rule",
+    "20261026T140210Z_native_rule"
+  ],
+  "dataset_sha256": "db93a121045427b0bc78a5d8388f8875bb0812feb9fd999406b5a4725bdfaaa2",
+  "final_fit": {
+    "supervised_epoch": 128,
+    "supervised_optimizer_steps": 1536,
+    "train_action_mse": 9.099706949200481e-05,
+    "holdout_action_mse": 0.02775762975215912,
+    "train_value_mse": 260.2314147949219,
+    "holdout_value_mse": 260.09100341796875
+  },
+  "holdout": "Every fifth frame within each teacher case; correlated diagnostic only. Extra data and refitted normalization are disclosed, not a matched single-factor PPO comparison.",
+  "registered_evaluation": "Four known static development roads; dynamic supervision does not establish dynamic driving.",
+  "queue_at_recording": {
+    "status": "WAITING_FOR_PARENT_NORMAL_OWNED_CLEANUP",
+    "child": "20261027T064630Z_native_measured_bc",
+    "parent": "20261027T062725Z_native_supervised_ppo",
+    "deadline_epoch": 1793105352,
+    "epoch": 1793083752,
+    "pid": 3952
+  },
+  "verification": {
+    "source_commit": "7c87e167f31d0c3568e45cc8ddb9b8bc4a528f43",
+    "hosted_ci": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40462700527",
+    "hosted_cpu": "458 passed, 15 skipped, 4 CARLA deselected in 126.82s",
+    "independent_windows": "42 targeted tests passed in 35.85s",
+    "new_loader_regression": "18 loader/measured-view tests passed in 33.76s; loader source publication/independent verification still pending"
+  }
+}

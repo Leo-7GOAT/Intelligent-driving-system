@@ -1,5 +1,16 @@
 # Development model card
 
+## Prepared mixed measured initialization
+
+The [mixed-data actor fit](../reports/native_mixed_bc_preparation_20261027.json)
+finishes 128 epochs and 1,536 supervised optimizer steps on 3,617 previously
+measured static/dynamic teacher controls. It adds zero driving and zero PPO
+updates. Training action MSE is 0.000091 and correlated holdout MSE is 0.02776;
+these are not task success rates. Frozen CARLA evaluation is queued after the
+active smaller-exploration PPO lifecycle. The model has not driven yet and is
+local, not a new public model asset. Extra dynamic supervision and refitted
+normalization prevent interpreting it as a single-factor PPO comparison.
+
 ## Completed supervised-initialized PPO development
 
 The [complete H/H0 record](../reports/native_shared_supervised_ppo_20261027.json)

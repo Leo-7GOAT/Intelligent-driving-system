@@ -118,3 +118,26 @@ matching-version empty cleanup and absent original owned processes. It copies
 saved policies and runtime source unchanged. It never reuses a failed lifecycle
 directory or treats a partially driven episode as zero controls. The original
 failure and the one-child registration remain available for inspection.
+
+Audited static and dynamic teacher frames can also produce direct-policy
+supervision without integrating a second vehicle or obstacle model:
+
+```powershell
+python scripts/build_native_measured_views.py --reference-config runs/TEACHER_ONLY_B1/B1/config.json --teachers runs/STATIC_RULE runs/DYNAMIC_RULE --output runs/NEW_MEASURED_VIEWS
+python scripts/prepare_native_measured_bc.py --parent runs/STATIC_RULE --views runs/NEW_MEASURED_VIEWS --reference-config runs/TEACHER_ONLY_B1/B1/config.json --epochs 128
+```
+
+Each output must be new. Conversion checks actual reset/control actor identities,
+consecutive CARLA frames, acknowledged command projection and every teacher case,
+including failures. Fitting checks the immutable dataset, reference configuration,
+source identities and original audited teacher evidence. It uses only the declared
+training mask for gradients and normalization. Every-fifth-frame holdout is a
+correlated fit diagnostic, not independent validation. Actor-only supervision
+leaves PPO's optimizer and interaction counters untouched; supervision costs are
+reported separately. Historical incompatible high-level catalogs are never
+reinterpreted by numeric action ID.
+
+The fitted model is only a prepared frozen evaluation. Launch its printed batch
+through the registered wrapper after the active owned lifecycle completes, then
+audit the endpoint. Its first evaluation still uses the four known static roads;
+dynamic training data alone do not establish dynamic execution or generalization.
