@@ -53,12 +53,10 @@ class Bridge:
                 failures.append("stop actor %s: %s" % (a.id,exc))
             try:
                 if a.is_alive and not a.destroy():
-                    # A stale Python proxy may still report alive after Unreal
-                    # has already removed an owned actor. Accept only explicit
-                    # world absence; a surviving actor or failed RPC still fails.
-                    if self.world.get_actor(a.id) is not None:
-                        pending.append(a)
-                        continue
+                    # Descriptor lookup can retain a dead handle. Verify its
+                    # absence in the next authoritative physics-frame snapshot.
+                    pending.append(a)
+                    continue
                 self.retired_ids.add(a.id)
             except Exception as exc:
                 survivors.append(a)
@@ -70,13 +68,16 @@ class Bridge:
         if had_actors:
             # A cleanup-only tick lets Unreal retire destroyed physics objects before
             # the next episode spawns replacements. This is never a policy interaction.
-            self.world.tick(15.)
+            cleanup_frame=self.world.tick(15.)
             time.sleep(.05)
         # Reuse the one existing cleanup tick as a retirement fence. No extra
         # policy tick, destroy request or foreign actor manipulation is added.
+        retirement_snapshot=self.world.get_snapshot() if pending else None
+        if pending and retirement_snapshot.frame!=cleanup_frame:
+            raise RuntimeError("Cleanup snapshot frame differs from owned tick")
         for a in pending:
             try:
-                if self.world.get_actor(a.id) is not None:
+                if retirement_snapshot.find(a.id) is not None:
                     raise RuntimeError("destroy returned false")
                 self.retired_ids.add(a.id)
             except Exception as exc:
