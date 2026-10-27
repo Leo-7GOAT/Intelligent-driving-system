@@ -136,9 +136,18 @@ def audit(batch, allow_completed_prefix=False):
             raise ValueError('Scene identity differs from the registered route or recorded task')
         scene_hashes[path.name] = sha(path)
         if protocol.get('native_hazard'):
-            from navstack.native_hazards import verify_native_hazard_scene
+            from navstack.native_hazards import verify_native_hazard_scene,verify_native_hazard_begin
             verify_native_hazard_scene(scene['scene']['native_layout'],protocol['native_hazard'],
                 scene['scene'].get('native_hazard',{}),scene['scene']['static'],scene['initial']['dynamic'])
+            episode=next(iter(case['episodes']))
+            begin=next((r for r in acknowledgements.values() if r.get('episode_id')==episode and 'reset_ticks' in r),None)
+            if begin is None or begin.get('scene')!=scene['scene']:
+                raise ValueError('Native hazard scene differs from raw reset acknowledgement')
+            verify_native_hazard_begin(begin,protocol['native_hazard'])
+            identities=[(a['actor_id'],a['actor_type']) for a in begin.get('native_dynamic_actors',[])]
+            if any([(a['actor_id'],a['actor_type']) for a in r.get('native_dynamic_actors',[])]!=identities
+                   for (owner,_),r in actual.items() if owner==episode):
+                raise ValueError('Native rule actor identity changes within measured episode')
     if not actual or used != set(actual) or set(resets) != episodes or len(episodes) != len(inventory):
         raise ValueError('Unaccounted applied controls or resets')
     reset_ticks = sum(resets.values())

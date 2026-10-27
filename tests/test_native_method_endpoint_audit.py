@@ -98,6 +98,29 @@ def test_method_audit_binds_every_control_to_bridge(tmp_path):
     assert result["training_world_ticks_verified"] == 3
 
 
+@pytest.mark.parametrize('fault',[None,'early','nonterminal','duplicate'])
+def test_terminal_unused_auto_reset_is_charged_and_cannot_hide_other_resets(tmp_path,fault):
+    batch=_batch(tmp_path);path=batch/'infrastructure/bridge_fixture_responses.jsonl.gz'
+    with gzip.open(path,'rt') as stream:rows=[json.loads(line) for line in stream]
+    idle={'response':{'ok':True,'episode_id':'idle','request_id':7,'reset_ticks':2,'frame':15}}
+    rows.insert(0 if fault=='early' else 2,idle)
+    if fault=='duplicate':rows.insert(3,{'response':{'ok':True,'episode_id':'idle2','request_id':8,'reset_ticks':2,'frame':16}})
+    if fault=='nonterminal':
+        trace=batch/'B1/transitions_000.jsonl.gz'
+        with gzip.open(trace,'rt') as stream:action=json.loads(next(stream))
+        action['termination_reason']=None;_write_gzip(trace,[action])
+    _write_gzip(path,rows)
+    summary=json.loads((batch/'B1/summary.json').read_text());summary['world_ticks']=5
+    write_json(batch/'B1/summary.json',summary)
+    if fault:
+        with pytest.raises(ValueError,match='terminal training auto-reset'):audit(batch,'B1')
+    else:
+        result=audit(batch,'B1')
+        assert result['training_world_ticks_verified']==5
+        assert result['training_idle_reset_ticks_verified']==2
+        assert result['training_idle_reset_episodes_verified']==['idle']
+
+
 def test_method_audit_rejects_trace_state_not_measured_by_carla(tmp_path):
     batch = _batch(tmp_path)
     path = batch / "B1/transitions_000.jsonl.gz"

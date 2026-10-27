@@ -304,9 +304,9 @@ class NavigationEnv(gym.Env):
                     heading = wrap(target[2] - s.yaw)
                     geometry.append([tx / 15., ty / 15., math.sin(heading), math.cos(heading), speed / 3.])
                 candidates = np.c_[geometry, np.asarray(extra[:93]).reshape(31, 3)]
-                if self.config.local_candidate_filter:
-                    from .candidate_filter import local_witness_mask
-                    self._local_candidate_mask=local_witness_mask(candidates)
+                if self.config.local_candidate_filter or self.config.endpoint_candidate_filter:
+                    from .candidate_filter import local_witness_mask,endpoint_clear_mask
+                    self._local_candidate_mask=(endpoint_clear_mask if self.config.endpoint_candidate_filter else local_witness_mask)(candidates)
                     self._local_candidate_mask_state=self.state
                 extra = np.r_[candidates.ravel(), extra[93:]]
             self.feedback_seconds = time.perf_counter() - started
@@ -780,7 +780,7 @@ def rule_action(env):
         return 0
     best = (math.inf, 0)
     local_mask=None
-    if env.config.local_candidate_filter:
+    if env.config.local_candidate_filter or env.config.endpoint_candidate_filter:
         if getattr(env,'_local_candidate_mask_state',None) is not env.state:
             env._observation()
         local_mask=env._local_candidate_mask

@@ -92,6 +92,7 @@ def training_config(protocol, method, vehicle):
         reference_reuse=protocol.get('reference_reuse',False),
         actuator_observation=protocol.get('actuator_observation', 'off'),
         local_candidate_filter=protocol.get('candidate_head')=='unshared_local_v1',
+        endpoint_candidate_filter=protocol.get('candidate_head')=='unshared_endpoint_v1',
         road_collision_backend=protocol.get('road_collision_backend', 'scalar'),
         flat_hold=protocol.get('flat_hold',10) if method=='B1' else 10, deadline=protocol["episode_seconds"], obstacle_num=0,
         flat_longitudinal_mode=protocol.get('flat_longitudinal_mode','acceleration') if method=='B1' else 'acceleration')
@@ -120,6 +121,20 @@ def learning_schedule(protocol,config,rollout_actions):
         raise ValueError('PPO batch must divide the registered rollout')
     return {'n_steps':rollout_actions,'batch_size':batch_size,'n_epochs':protocol['ppo_epochs'],
             'gamma':config.gamma,'gae_lambda':.95**(config.control_dt*config.substeps)}
+
+
+def registered_native_cases(protocol):
+    cases=[{'scenario':'native_curve','condition':index,'native_route':route}
+           for index,route in enumerate(protocol['routes'])]
+    if protocol.get('native_hazard') is not None:
+        from navstack.native_hazards import resolve_native_hazard
+        from navstack.native_route import local_layout
+        spec=protocol['native_hazard']
+        for case in cases:
+            route=case['native_route']
+            resolve_native_hazard(local_layout(route,route['map'],route['opendrive_sha256']),spec)
+            case['native_hazard']=dict(spec)
+    return cases
 
 
 class RecordedRoadEnv(CarlaNavigationEnv):
@@ -268,7 +283,7 @@ def run(batch):
             output.mkdir()
             write_json(output/"config.json", {"env": config.to_dict(), "signature": signature(config),
                 "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]})
-            cases = [{"scenario": "native_curve", "condition": index, "native_route": route} for index, route in enumerate(protocol["routes"])]
+            cases = registered_native_cases(protocol)
             client = BridgeClient(batch)
             vec = None
             recorder = None
@@ -300,12 +315,15 @@ def run(batch):
                             from navstack.squashed_road_policy import SquashedFlatRoadPolicy
                             policy=SquashedFlatRoadPolicy
                         selected_head=job.get('candidate_head',protocol.get('candidate_head'))
-                        if selected_head == 'unshared_v1':
+                        if method!='B1' and selected_head == 'unshared_v1':
                             from navstack.road_candidate_policy import UnsharedRoadCandidatePolicy
                             policy=UnsharedRoadCandidatePolicy
-                        elif selected_head == 'unshared_local_v1':
+                        elif method!='B1' and selected_head == 'unshared_local_v1':
                             from navstack.road_candidate_policy import LocalWitnessRoadPolicy
                             policy=LocalWitnessRoadPolicy
+                        elif method!='B1' and selected_head == 'unshared_endpoint_v1':
+                            from navstack.road_candidate_policy import EndpointClearRoadPolicy
+                            policy=EndpointClearRoadPolicy
                     vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
                     algorithm = IndependentClipPPO if job.get('gradient_clip_mode') == INDEPENDENT_CLIP else PPO
                     model = algorithm(policy, vec, **learning_schedule(protocol,config,rollout_actions),
@@ -314,8 +332,9 @@ def run(batch):
                         model.batch_size!=protocol.get('ppo_batch_size',32)):
                     raise ValueError('Restored learner differs from registered rollout/epoch schedule')
                 configure_continuation_normalization(vec,protocol,recovery)
-                if protocol.get('fresh_cadence_experiment'):
-                    if recovery is not None:raise ValueError('Cadence diagnostic must use fresh weights')
+                if protocol.get('fresh_cadence_experiment') and recovery is not None:
+                    raise ValueError('Cadence diagnostic must use fresh weights')
+                if protocol.get('fresh_cadence_experiment') or (protocol.get('record_initial_parameters') and recovery is None):
                     write_json(output/'initial_parameter_fingerprints.json',{
                         'parameters':{name:hashlib.sha256(value.detach().cpu().numpy().tobytes()).hexdigest()
                             for name,value in model.policy.state_dict().items()},

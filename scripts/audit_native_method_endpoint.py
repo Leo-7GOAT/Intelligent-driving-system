@@ -103,10 +103,11 @@ def audit(batch: Path, method: str) -> dict:
         raise ValueError("Method is absent from the batch protocol")
 
     actual, acknowledgements, owners, streams, resets = {}, {}, {}, {}, {}
+    reset_positions,applied_positions={},{}
     for path in sorted((batch / "infrastructure").glob("*_responses.jsonl.gz")):
         rows, error = read_prefix(path)
         keys = set()
-        for wrapper in rows:
+        for position,wrapper in enumerate(rows):
             response = wrapper.get("response", {})
             episode = response.get("episode_id")
             request_id = response.get("request_id")
@@ -119,6 +120,7 @@ def audit(batch: Path, method: str) -> dict:
                 if episode in resets and resets[episode] != response["reset_ticks"]:
                     raise ValueError("Conflicting reset tick evidence")
                 resets[episode] = response["reset_ticks"]
+                reset_positions.setdefault(episode,(path.name,position))
             if "vehicle_control" not in response:
                 continue
             key = (episode, response["frame"])
@@ -126,6 +128,7 @@ def audit(batch: Path, method: str) -> dict:
                 raise ValueError("Duplicate applied CARLA frame across bridge streams")
             actual[key] = response
             owners[key] = path.name
+            applied_positions[key]=(path.name,position)
             keys.add(key)
         streams[path.name] = {
             "sha256": sha(path), "complete_rows": len(rows),
@@ -138,12 +141,14 @@ def audit(batch: Path, method: str) -> dict:
     training_frames = 0
     transition_hashes = {}
     terminations = Counter()
+    last_training_terminal=None
     for path in sorted(folder.glob("transitions*.gz")):
         rows, error = read_prefix(path)
         if error:
             raise ValueError(f"Method transition stream is truncated: {path.name}: {error}")
         transition_hashes[path.name] = sha(path)
         for action in rows:
+            last_training_terminal=action.get('termination_reason')
             if action.get("episode_id") is None:
                 raise ValueError("Transition lacks episode identity")
             training_frames += _verify_ticks(action["trace"], actual, acknowledgements, owners, used,
@@ -252,14 +257,36 @@ def audit(batch: Path, method: str) -> dict:
         raise ValueError("Method bridge response stream is truncated: " + stream["read_error"])
     if stream["applied_keys"] != used:
         raise ValueError("Method bridge stream has unaccounted applied controls")
+    # DummyVecEnv immediately resets a terminal last rollout transition. The
+    # new episode may receive no action before frozen evaluation starts. Charge
+    # its actual reset ticks, but accept only this single, ordered terminal tail.
+    idle_resets={e for e,(owner,_) in reset_positions.items() if owner==stream_name}-training_episodes-evaluation_episodes
+    if idle_resets:
+        last_train=max((applied_positions[k][1] for k in used if k[0] in training_episodes),default=-1)
+        first_eval=min(reset_positions[e][1] for e in evaluation_episodes)
+        if (evaluation_only or len(idle_resets)!=1 or not last_training_terminal
+                or any(not last_train<reset_positions[e][1]<first_eval for e in idle_resets)):
+            raise ValueError('Unaccounted reset is not one terminal training auto-reset before evaluation')
     if actuator_observation != "off":
         from navstack.carla_actuation import actuator_state_values
-        for episode in training_episodes | evaluation_episodes:
+        for episode in training_episodes | evaluation_episodes | idle_resets:
             begin = next((r for r in acknowledgements.values() if r.get('episode_id') == episode and 'reset_ticks' in r), None)
             if begin is None:
                 raise ValueError("Missing actuator reset acknowledgement")
             actuator_state_values(begin)
-    training_reset_ticks = sum(resets.get(episode, 0) for episode in training_episodes)
+    training_reset_ticks = sum(resets.get(episode, 0) for episode in training_episodes | idle_resets)
+    if protocol.get('native_hazard'):
+        from navstack.native_hazards import verify_native_hazard_begin
+        begins={r['episode_id']:r for r in acknowledgements.values() if 'reset_ticks' in r}
+        registered={}
+        for episode in training_episodes | evaluation_episodes | idle_resets:
+            begin=begins.get(episode)
+            if begin is None:raise ValueError('Missing native hazard reset acknowledgement')
+            verify_native_hazard_begin(begin,protocol['native_hazard'])
+            registered[episode]=[(a['actor_id'],a['actor_type']) for a in begin.get('native_dynamic_actors',[])]
+        for (episode,_),response in actual.items():
+            if episode in registered and [(a['actor_id'],a['actor_type']) for a in response.get('native_dynamic_actors',[])]!=registered[episode]:
+                raise ValueError('Native hazard actor identity changes within measured episode')
     evaluation_reset_ticks = sum(resets.get(episode, 0) for episode in evaluation_episodes)
     if summary["world_ticks"] != training_frames + training_reset_ticks:
         raise ValueError("Training world-tick accounting differs from bridge resets")
@@ -294,6 +321,8 @@ def audit(batch: Path, method: str) -> dict:
         "segment_optimizer_steps": summary["optimizer_steps"],
         "optimizer_steps_total_lower_bound": inherited_optimizer + summary["optimizer_steps"],
         "unknown_unflushed_ancestor_tail": bool(prior.get("unknown_unflushed_parent_tail", False)),
+        **({'training_idle_reset_episodes_verified':sorted(idle_resets),
+            'training_idle_reset_ticks_verified':sum(resets[e] for e in idle_resets)} if idle_resets else {}),
     }
 
 

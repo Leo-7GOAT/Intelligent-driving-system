@@ -64,3 +64,16 @@ def verify_native_hazard_scene(layout,spec,observed,static,dynamic):
         point=[dynamic[0]['x'],dynamic[0]['y']]
     if math.hypot(point[0]-expected['spawn_pose'][0],point[1]-expected['spawn_pose'][1])>.75:
         raise ValueError('Measured actor is not at its registered initial location')
+
+
+def verify_native_hazard_begin(begin,spec):
+    scene=begin.get('scene',{})
+    if (spec is None)!=(scene.get('native_hazard') is None):
+        raise ValueError('Measured native hazard presence differs from registered task')
+    if spec is None:return
+    observed=scene['native_hazard']
+    verify_native_hazard_scene(scene['native_layout'],spec,observed,scene['static'],begin['dynamic'])
+    measured=begin.get('native_dynamic_actors',[])
+    expected=[] if spec['kind']=='static_vehicle' else [{'actor_id':observed['actor_id'],
+        'actor_type':observed['actor_type'],'state':begin['dynamic'][0]}]
+    if measured!=expected:raise ValueError('Initial native actor identity/state differs from measured dynamic observation')

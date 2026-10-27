@@ -43,8 +43,8 @@ velocities. Raw audits reject missing or altered native dynamic measurements.
 | Skip blocked endpoints before spending fallback searches | 4 | 0/4;3,600 audited controls |
 | Original walker offset−3.5m | 4 | Three completed successes; fourth fails during actor spawn |
 | Final-goal candidate pair, static | 4 | 0/4;3,600 audited controls |
-| Uniform walker offset−2.5m | 4 | Running; no complete score yet |
-| Final-goal pair plus reference reuse, static | 4 | Prepared; not yet scored |
+| Uniform walker offset−2.5m | 4 | 4/4;1,691 audited controls |
+| Final-goal pair plus reference reuse, static | 4 | 2/4;2,481 audited controls; roads1/3 still time out |
 
 The original walker batch is explicitly incomplete. Its three completed cases
 have1,340 frame-verified controls and92 reset ticks; the fourth has no policy
@@ -97,16 +97,76 @@ replacement waits for a snapshot and reproduces the settled scene box exactly.
 
 ## Reproduction and limits
 
-Current CPU regression: **347 passed,1 skipped,4 CARLA exclusions**,283.51s.
+Current CPU regression: **368 passed,1 skipped,4 CARLA exclusions**,125.20s.
 Synthetic tests exercise reference lifecycle, unchanged path/time, explicit
 action selection, changing static/dynamic hazards, missing-case accounting and
 cadence initialization; they are not simulator success evidence.
+
+Source921e069was actually pushed and passes hosted CI345/3skips/4CARLA exclusions
+in106.37s. Its independent Windows checkout passes347/1/4 in300.30s and verifies
+all21,725 cadence controls, four measured-start actions, and a byte-identical
+raw-trajectory figure. [Actual reproduction receipt](native_hazards_reproduction_20261026.json)
+records the hashes. These counts apply to that source; the subsequent native
+hazard-learning/filter/reset changes still need their own
+publication receipt. No new public-model-download claim is made.
+
+Fresh actual-hazard PPO training completed at
+`20261026T143706Z_native_hazard_learning`: H/H0/B1 each receive a fixed4,096new
+physical-control budget, with checkpoint thresholds1,280/2,560/4,096 and a7,200s
+wall guard. The source, calibration and all four original full roads are frozen.
+H/H0 share the unshared actor architecture and shared low level; H0 ablates the
+execution/continuation feedback. B1 directly selects categorical speed/steering,
+with the same visible candidate/road/actuator information. No rule actions,
+teacher examples, replay, old weights or old normalization are loaded.
+
+| Fresh method | Actual train / eval controls | Adam steps | Frozen result |
+|---|---:|---:|---:|
+| H | 4,160 /3,600 | 130 | 0/4, all deadlines |
+| H0 | 4,160 /3,600 | 130 | 0/4, all deadlines |
+| B1 | 4,099 /3,600 | 130 | 0/4, all deadlines |
+
+All23,219new applied controls verify against measured frames. H/H0 training each
+ends four episodes by deadline. B1 training retains nine bounds violations and
+eight collisions. Its terminal last rollout triggers DummyVecEnv's automatic
+reset into an unused new episode. The31actual reset ticks are explicitly
+charged to training, not converted to policy interactions. The auditor accepts
+only one such zero-control reset strictly after a terminal training transition
+and before evaluation; extra, early or nonterminal resets are rejected.
+
+H spends392/416decisions in plan_failed, with12reference and12wait decisions.
+An isolated endpoint-filter follow-up trains at
+`20261026T145818Z_native_hazard_learning`. It preserves all30actual initial
+parameter tensors and postinitialization Torch RNG, task/controller/vehicle,
+seed11and nominal4,096-control schedule. Actual rollout overshoot and optimizer
+costs remain charged. The new mask excludes only endpoints already known to
+collide; it does not require a local or global analytic connection. Wait remains
+available; known all-blocked endpoints retain wait only, while ablated/unknown
+feedback retains every action. B3 shares the same necessary freedom condition.
+PPO samples from and evaluates its actual masked categorical distribution;
+there is no action substitution. The new configuration/checkpoint signature
+records this component. It completes4,160controls/130Adam updates:317plan_failed,
+20reference and79wait decisions, compared with392/12/12without the mask. Reduced
+failure count is not task completion or a reason to adopt the policy as final.
+
+The filtered evaluation is externally interrupted before a complete endpoint.
+Recorded worker, guard and server PIDs are now absent and2200..2202are free;
+`process_absence_receipt.json` preserves OS verification and unknown cause.
+No synthetic exit code, normal server-stop or repaired gzip tail is created.
+All4,160training frames, all source hashes,130updates and the final checkpoint
+verify against the readable raw prefix. An additional1,541readable evaluation
+controls are a lower bound; buffered tail loss remains unknown.
+`20261027T002654Z_native_evaluation_recovery` reruns every original case using
+byte-identical saved model/normalizer, with zero new learning. The old partial
+evaluation remains separate and charged. Its result is pending complete audit.
+This is still seed11development, not independent confirmation.
 
 ```powershell
 python -m pytest -q -m "not carla"
 python scripts/audit_native_rule.py --batch runs/20261026T133002Z_native_rule --allow-completed-prefix --output runs/prefix_recheck.json
 python scripts/probe_native_candidate_coverage.py --batch runs/20261026T131154Z_native_rule --final-goal-candidate --output runs/candidate_recheck.json
 python scripts/evaluate_native_rule.py --prepare runs/20261025T085433Z_native_route_learning --source-method H --wall-seconds 3600 --catalog route_frame_terminal --planner-nodes 7200 --planner-heuristic dubins_v1 --road-collision-backend batch_sat_v1 --hazard-kind static_vehicle --rpc-port 2200 --final-goal-candidate --reference-reuse
+python scripts/prepare_native_hazard_learning.py --parent runs/20261026T140943Z_native_rule --controls 4096 --wall-seconds 7200 --seed 11 --methods H H0 B1
+python scripts/prepare_native_hazard_learning.py --parent runs/20261026T140943Z_native_rule --controls 4096 --wall-seconds 7200 --seed 11 --methods H --endpoint-filter
 ```
 
 Preparation does not launch a server or worker. Use the existing owned-foreground

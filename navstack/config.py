@@ -135,6 +135,7 @@ class EnvConfig:
     execution_feedback: str = "off"
     candidate_observation: bool = False
     local_candidate_filter: bool = False
+    endpoint_candidate_filter: bool = False
     road_observation: bool = False  # full shared 64x64 measured occupancy, new model signature
     road_geometry_version: str = "carla_driving_64_v1"
     road_collision_backend: str = "scalar"
@@ -147,6 +148,9 @@ class EnvConfig:
     reward: RewardConfig = field(default_factory=RewardConfig)
 
     def __post_init__(self):
+        if (type(self.endpoint_candidate_filter) is not bool or
+                (self.endpoint_candidate_filter and (not self.candidate_observation or self.execution_feedback=='off' or self.local_candidate_filter))):
+            raise ValueError('Endpoint filtering requires candidate feedback and cannot combine with local-connector filtering')
         if type(self.local_candidate_filter) is not bool or (self.local_candidate_filter and not self.candidate_observation):
             raise ValueError('Local filtering requires explicit common candidate observations')
         if self.flat_longitudinal_mode not in ('acceleration','speed_target_v1'):
@@ -251,6 +255,7 @@ class EnvConfig:
 
     def to_dict(self):
         result = asdict(self)
+        if not self.endpoint_candidate_filter:result.pop('endpoint_candidate_filter')
         # Preserve the serialized configuration of historical, disabled runs.
         if not self.route_goal_candidate:
             result.pop('route_goal_candidate')

@@ -8,6 +8,11 @@ its frozen known-road6m endpoint is0/4. This model and two unscored own-success
 fits remain local. Native hazard B3 diagnostics load no PPO weights and cannot
 be credited as PPO successes. New final-goal/reference-reuse semantics require
 new compatible models; old policy results are retained under frozen sources.
+Fresh static-hazard H/H0/B1 models at20261026T143706Zuse4,160/4,160/4,099new
+training controls and130Adam steps each; all frozen endpoints are0/4. Their
+23,219training/evaluation controls audit against CARLA frames, including explicit
+charging of B1's31unused auto-reset ticks. These models remain local development
+artifacts. A matched-initializer H endpoint-filter run is separate and pending.
 
 ## Local terminal-margin models (2026-10-26 late evening)
 

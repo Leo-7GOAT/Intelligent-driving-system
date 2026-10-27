@@ -581,9 +581,61 @@
           "progress": 22.263071985483393,
           "interventions": 40,
           "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 400,
+          "progress": 20.399452601713854,
+          "interventions": 80,
+          "plan_failures": 0
         }
       ],
-      "status": "running"
+      "status": "complete",
+      "raw_audit.json": {
+        "scope": "Raw frame verification of rule-only native evaluation; no learned-policy or training claim",
+        "batch_complete": true,
+        "registered_cases": 4,
+        "uncompleted_cases": [],
+        "batch": "20261026T140210Z_native_rule",
+        "protocol_sha256": "71f8f1dddcb0dc1d15cdebf0c12270883aba49a4550ce5609dba9c83b3abcd6a",
+        "summary_sha256": "157f7f9a5ba989c4efe3bc7d19ea9b297252b7eafecd183d3cf5fbd6255d1169",
+        "failure_sha256": null,
+        "trace_sha256": "7382642b2abfd21958891772acc557b7d3ad17392940c989f2d1b0506cfcea58",
+        "bridge_response_sha256": "bc7536a0a40ed97a3cc473c6c31384432c28e44fbba8db8cb4a1f6b2a91729ea",
+        "scene_hashes": {
+          "scene_0000.json": "b127de7154784a110aaf6a763e4de67a5f4377ab72f4e03a402997881490a767",
+          "scene_0001.json": "292e3460e105079f389c2ed92d8d17a0a916bb63f3b9b9464bcc94283072fd34",
+          "scene_0002.json": "0e28d44a3da82c9c2a1d06babc66b2aa17720a2310659e146c85d093fb9ddd56",
+          "scene_0003.json": "8c2f0efc169ea226dbc6f31bf96948f61069a9ef7b87af83afca12de970e63c1"
+        },
+        "evaluation_controls_verified": 1691,
+        "reset_ticks_verified": 123,
+        "world_ticks_verified": 1814,
+        "cases_verified": 4,
+        "termination_counts": {
+          "success": 4
+        },
+        "training_physics_steps": 0,
+        "optimizer_updates": 0
+      },
+      "raw_audit.json_sha256": "53db7fc790963a1855c88dfdcc464e21ce361325a597c5cc6f24d126fe981621",
+      "guard_final.json": {
+        "epoch": 1793024431.869655,
+        "worker_pid": 42368,
+        "exit_code": 0,
+        "reason": null
+      },
+      "guard_final.json_sha256": "d521525661bc03c4ba0821b2a4ca3c4f3530df499710f4284653eb6c01357f72",
+      "infrastructure_server_stop.json": {
+        "post_stop_tcp": [],
+        "status": "owned_empty_server_stopped",
+        "shipping_pid": 67952,
+        "epoch": 1793024436,
+        "post_stop_udp": []
+      },
+      "infrastructure_server_stop.json_sha256": "b41dce43db5a73576b9501e07938463368553911e154caf3c651f0c7ac1e3548"
     },
     {
       "batch": "20261026T140943Z_native_rule",
@@ -598,17 +650,98 @@
       "registered_cases": 4,
       "training_controls": 0,
       "optimizer_updates": 0,
-      "completed_cases": [],
-      "status": "prepared_not_started"
+      "completed_cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 341,
+          "progress": 24.022419252851773,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "progress": 21.98467319420471,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.08159763328159997,
+          "interventions": 0,
+          "plan_failures": 0
+        }
+      ],
+      "status": "complete",
+      "raw_audit.json": {
+        "scope": "Raw frame verification of rule-only native evaluation; no learned-policy or training claim",
+        "batch_complete": true,
+        "registered_cases": 4,
+        "uncompleted_cases": [],
+        "batch": "20261026T140943Z_native_rule",
+        "protocol_sha256": "646b39af25c1ae3988463f7c92c4a7f42cc34902bca83e673fe7b8a2787309ae",
+        "summary_sha256": "6100771e567d4baedded2be9c3b5bb6b88923c72dd8dfe552c1912086753cd79",
+        "failure_sha256": null,
+        "trace_sha256": "572f118083a8568065d030680600096b5b79974f0bc5a982b29777e2b04c2cc3",
+        "bridge_response_sha256": "6fdf03944f14bbc9134578832a8fcf61c905726b54535a29bfef0c97443d66a0",
+        "scene_hashes": {
+          "scene_0000.json": "d1d73e82fa7152d9d13ba6a43f9e8b749e93582b45035123078d8141436118ec",
+          "scene_0001.json": "4138d07ae941c4ab2e4a95d40efe577e6640b679d9508d0bf02e1d9b5a165ae7",
+          "scene_0002.json": "fe484ea18cf090fc43b7d7e9808cb31aaaaa617cd3fa6c90b8a640ad2d271d04",
+          "scene_0003.json": "92720b44b6b2d403545d0043452869f79006fe0c79a83238abf8e5814fbc865e"
+        },
+        "evaluation_controls_verified": 2481,
+        "reset_ticks_verified": 123,
+        "world_ticks_verified": 2604,
+        "cases_verified": 4,
+        "termination_counts": {
+          "success": 2,
+          "deadline": 2
+        },
+        "training_physics_steps": 0,
+        "optimizer_updates": 0
+      },
+      "raw_audit.json_sha256": "ccbab6504e0a11fce3d884dd5b33d950f1bbe2c253a81760a028f40423abe84e",
+      "guard_final.json": {
+        "epoch": 1793025338.9357097,
+        "worker_pid": 67152,
+        "exit_code": 0,
+        "reason": null
+      },
+      "guard_final.json_sha256": "1df95a042e99d7b6671369d3dfae5cdfe8e7fe27173bff9e065017c64034603c",
+      "infrastructure_server_stop.json": {
+        "post_stop_udp": [],
+        "epoch": 1793025343,
+        "status": "owned_empty_server_stopped",
+        "shipping_pid": 46336,
+        "post_stop_tcp": []
+      },
+      "infrastructure_server_stop.json_sha256": "7a6d277cc96ccdc04e109c6d4a1654208acf1e6a9b3987329d03d5f0c907ed72"
     }
   ],
   "cpu": {
-    "passed": 347,
+    "passed": 368,
     "skipped": 1,
     "carla_deselected": 4,
-    "seconds": 283.51,
-    "log_sha256": "e8baa49dffb176dff9917dc07d3c33982f79c25bd86ff2e7d01220ca24412e5d",
-    "junit_sha256": "50dbb4b8e31926f40dfd3f36af079cbadd0e2a20887f1acdac48a31126817856"
+    "seconds": 125.2,
+    "log_sha256": "2f98df6baca3a7d1c4f033c289c7d0f6bc80cf1d50f58b122aa17bda715b4c35",
+    "junit_sha256": "13554811e4739c7607f5dc0837148205b13a9290f8c07b80c00a62ae302ab22b"
   },
   "walker_spawn_preflight": {
     "scope": "Spawn-only infrastructure preflight; no ego, controls, PPO, rewards or success-rate evidence",
@@ -994,5 +1127,422 @@
     "path_samples": 0,
     "all_samples_free": null,
     "geometry_receipt_sha256": "8a483183453dbcd4bd5015ce6cc5d8f6be6960a094d8252605608cf75b7522f9"
+  },
+  "native_learning_phases": [
+    {
+      "batch": "20261026T143706Z_native_hazard_learning",
+      "protocol_sha256": "cf4fe3c031c37d221f5564fb384e04409fd6594e0c26b74e8141740c5cc406d5",
+      "methods": {
+        "H": {
+          "physics_steps": 4160,
+          "actions": 416,
+          "episodes": 4,
+          "optimizer_steps": 130,
+          "lineage_control_steps": 4160,
+          "charged_control_steps_lower_bound": 4160,
+          "wall_seconds": 191.50801730155945,
+          "modes": {
+            "plan_failed": 392,
+            "reference": 12,
+            "wait": 12
+          },
+          "status": "evaluated",
+          "model_sha256": "3d4736cb2f3ccf07a79694cee02f0cb37cc15b4d16aac20e1ff7927530009675",
+          "normalization_sha256": "fcb17864e5bd6f4704164439c41e1ad819ede1d36e98e33edbea0c2fe310fa3b",
+          "evaluation": [
+            {
+              "case_id": 0,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.3090879115537959,
+              "interventions": 870,
+              "plan_failures": 87
+            },
+            {
+              "case_id": 1,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            },
+            {
+              "case_id": 2,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            },
+            {
+              "case_id": 3,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            }
+          ],
+          "raw_audit": {
+            "schema_version": 1,
+            "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+            "batch": "20261026T143706Z_native_hazard_learning",
+            "method": "H",
+            "protocol_sha256": "cf4fe3c031c37d221f5564fb384e04409fd6594e0c26b74e8141740c5cc406d5",
+            "config_sha256": "98075d0aa570373df1f403234c0449edcd7ce77390966e59e159378e8799a3c3",
+            "summary_sha256": "479ce3328ed32d584f7ba32ff4ac504467865d44528ab638609ac4ad8e42ba46",
+            "evaluation_sha256": "4af748a117bb677f62328c271ae735e6646e67c2880200cb76a53708c4ca2546",
+            "evaluation_trace_sha256": "ee4bc10dafb9b1ac934f00f4e182e5972e5e551b4aa02532f9fe99deba753968",
+            "optimization_sha256": "e2f2bd5e7c85e4b41ee98ffcc8f7697d9bc1eb8f606fdaa99b0e7fd62812b072",
+            "transition_hashes": {
+              "transitions_000000000_1793025502492331800.jsonl.gz": "55b52754c597f0cc0afefd8e501e232e5f425b51273a0323fc8a09f4c1911fd9"
+            },
+            "bridge_response_stream": "bridge_e6887c35_responses.jsonl.gz",
+            "bridge_response_sha256": "c6cd66e77bd3c70413a4cf8e117a707cc8e88670f004709933b8bb0143f509fc",
+            "bridge_complete_rows": 7777,
+            "training_control_frames_verified": 4160,
+            "evaluation_control_frames_verified": 3600,
+            "total_applied_controls_verified": 7760,
+            "training_world_ticks_verified": 4314,
+            "evaluation_world_ticks_verified": 3724,
+            "training_termination_reasons": {
+              "deadline": 4
+            },
+            "checkpoint": "checkpoint_000004096",
+            "checkpoint_metadata_sha256": "16c33d6c52b3c3f7668ca21bf3dd5e3ac01a45ea6263a6472575cf02768296ed",
+            "lineage_controls": 4160,
+            "charged_controls_lower_bound": 4160,
+            "segment_optimizer_steps": 130,
+            "optimizer_steps_total_lower_bound": 130,
+            "unknown_unflushed_ancestor_tail": false
+          },
+          "raw_audit_sha256": "9f133aa5940f69f119a3f2ed80d2d74d6f0e1cbccef2fa59d288a37a8a4387b7"
+        },
+        "H0": {
+          "physics_steps": 4160,
+          "actions": 416,
+          "episodes": 4,
+          "optimizer_steps": 130,
+          "lineage_control_steps": 4160,
+          "charged_control_steps_lower_bound": 4160,
+          "wall_seconds": 193.88554167747498,
+          "modes": {
+            "plan_failed": 392,
+            "reference": 14,
+            "wait": 10
+          },
+          "status": "evaluated",
+          "model_sha256": "0bf693e89ba35d5bfefbc9cd550529315144817e9da5d8bfb77916cce86b2c72",
+          "normalization_sha256": "a8a32fcd4804e315793c1fa068ac310f193a0e3d7f2e354e248f92bcbd2f598f",
+          "evaluation": [
+            {
+              "case_id": 0,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            },
+            {
+              "case_id": 1,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            },
+            {
+              "case_id": 2,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            },
+            {
+              "case_id": 3,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            }
+          ],
+          "raw_audit": {
+            "schema_version": 1,
+            "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+            "batch": "20261026T143706Z_native_hazard_learning",
+            "method": "H0",
+            "protocol_sha256": "cf4fe3c031c37d221f5564fb384e04409fd6594e0c26b74e8141740c5cc406d5",
+            "config_sha256": "869b08b341895a31b5ffb97612751fbecc1db6df7ff736d8d82d3ddb39d4ff1e",
+            "summary_sha256": "4506cca75cb975f01a0f639874ddb7c6f0a9744e8b0141b06a047eea89b4a805",
+            "evaluation_sha256": "49a020809879e29c8bbe14b08e7b67180dd384c6d570fe194133819f88e5b676",
+            "evaluation_trace_sha256": "5bae8e3c0775c74657e87b7e76fab9e11029d60e63ea6ed7324ca0619a2627f6",
+            "optimization_sha256": "9d6b4f29578316c9a34370ae7c8249b141c56f115408366234d734986a4ec917",
+            "transition_hashes": {
+              "transitions_000000000_1793025773173209900.jsonl.gz": "6a3788af6e27732a5e9d08e405d620d62c8e0023cd4eced42cf946c801619b1e"
+            },
+            "bridge_response_stream": "bridge_51220554_responses.jsonl.gz",
+            "bridge_response_sha256": "046a61055171d9ff347bdaf6ce93e2ccc7f937d5074e2f725dccbc1f19d6f016",
+            "bridge_complete_rows": 7777,
+            "training_control_frames_verified": 4160,
+            "evaluation_control_frames_verified": 3600,
+            "total_applied_controls_verified": 7760,
+            "training_world_ticks_verified": 4314,
+            "evaluation_world_ticks_verified": 3724,
+            "training_termination_reasons": {
+              "deadline": 4
+            },
+            "checkpoint": "checkpoint_000004096",
+            "checkpoint_metadata_sha256": "51752e27911c5507822c9b2dc04d8236cd8df94808b7f1ee668a9b31479f2af8",
+            "lineage_controls": 4160,
+            "charged_controls_lower_bound": 4160,
+            "segment_optimizer_steps": 130,
+            "optimizer_steps_total_lower_bound": 130,
+            "unknown_unflushed_ancestor_tail": false
+          },
+          "raw_audit_sha256": "2fe600f8c10f60f7fca5997af5ce7744e357d69235a3a5b64c8d6b7830015c38"
+        },
+        "B1": {
+          "physics_steps": 4099,
+          "actions": 416,
+          "episodes": 17,
+          "optimizer_steps": 130,
+          "lineage_control_steps": 4099,
+          "charged_control_steps_lower_bound": 4099,
+          "wall_seconds": 85.79633855819702,
+          "modes": {
+            "flat": 416
+          },
+          "status": "evaluated",
+          "model_sha256": "3cae108c5a0988fcc51e3f1b141065b398a899225d786afef9c3acf32bbf600a",
+          "normalization_sha256": "4a4a4ec37589dcc62d10793de01cf213fa9c9d79502ce156b508e0c41a74c805",
+          "evaluation": [
+            {
+              "case_id": 0,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.619910324177475,
+              "interventions": 0,
+              "plan_failures": 0
+            },
+            {
+              "case_id": 1,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.4772493594220286,
+              "interventions": 0,
+              "plan_failures": 0
+            },
+            {
+              "case_id": 2,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.7667523974829287,
+              "interventions": 0,
+              "plan_failures": 0
+            },
+            {
+              "case_id": 3,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.5735655830261486,
+              "interventions": 0,
+              "plan_failures": 0
+            }
+          ],
+          "raw_audit": {
+            "schema_version": 1,
+            "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+            "batch": "20261026T143706Z_native_hazard_learning",
+            "method": "B1",
+            "protocol_sha256": "cf4fe3c031c37d221f5564fb384e04409fd6594e0c26b74e8141740c5cc406d5",
+            "config_sha256": "fc8d4b3ff72f1627b5a757d0f41663a784ccf8b7efe7fe04c9c24ff78c02c3ad",
+            "summary_sha256": "0cbb40f404a6a379f2b43059f898266d7c99107944956ef4e7f62a0e55c5e8a2",
+            "evaluation_sha256": "be6ccbacd15fc30524c0e7228fb39ee4f725dc5aa0988de393ea7bc654d1fc1b",
+            "evaluation_trace_sha256": "4081b9e5550b7da29c0cdb1aa1015e0aa5e4b6556439d3e8f70af6c0df93f4f8",
+            "optimization_sha256": "4df2b02908f0f12fa5a151001f9340cf3ece9d3d34084056df92ab74662ef6b4",
+            "transition_hashes": {
+              "transitions_000000000_1793025993955632400.jsonl.gz": "bd208c077909348c3f824e7a8fb5dbb816001c9dc7354f1fa727869d0e420db1"
+            },
+            "bridge_response_stream": "bridge_ca999147_responses.jsonl.gz",
+            "bridge_response_sha256": "9ac9fd7f8e257186b3367e624b92355b54ec3ad95988cd2cdc1b1ee16495f606",
+            "bridge_complete_rows": 7742,
+            "training_control_frames_verified": 4099,
+            "evaluation_control_frames_verified": 3600,
+            "total_applied_controls_verified": 7699,
+            "training_world_ticks_verified": 4656,
+            "evaluation_world_ticks_verified": 3724,
+            "training_termination_reasons": {
+              "out_of_bounds": 9,
+              "collision": 8
+            },
+            "checkpoint": "checkpoint_000004096",
+            "checkpoint_metadata_sha256": "c9527e82ad4f93e98a39383f986c50fade9cb5304437a038410d22679d39a949",
+            "lineage_controls": 4099,
+            "charged_controls_lower_bound": 4099,
+            "segment_optimizer_steps": 130,
+            "optimizer_steps_total_lower_bound": 130,
+            "unknown_unflushed_ancestor_tail": false,
+            "training_idle_reset_episodes_verified": [
+              "4e252c3dbcf54262804bcbef70e379d7"
+            ],
+            "training_idle_reset_ticks_verified": 31
+          },
+          "raw_audit_sha256": "b306e9257698d1ad124890fb547ea1c2193a3c306be0e73e75b7aa8bb1ff13bd"
+        }
+      },
+      "status": "complete",
+      "scope": "Fresh real CARLA native-hazard PPO development; known roads, no rule teacher, replay, inherited model or formal superiority claim",
+      "seed": 11,
+      "budget_per_method": 4096,
+      "policy_variant": "unshared_v1",
+      "policy_intervention": null,
+      "evaluation_only": false,
+      "parent_batch": "20261026T140943Z_native_rule",
+      "guard_final": {
+        "epoch": 1793026137.089101,
+        "worker_pid": 38632,
+        "exit_code": 0,
+        "reason": null
+      },
+      "cleanup_status": "owned_empty_server_stopped"
+    },
+    {
+      "batch": "20261026T145818Z_native_hazard_learning",
+      "protocol_sha256": "37629f23bcabf8dd3bfc5e814f6b0d0252f48a3c7e62611bfc467824409d1eac",
+      "methods": {
+        "H": {
+          "physics_steps": 4160,
+          "actions": 416,
+          "episodes": 4,
+          "optimizer_steps": 130,
+          "lineage_control_steps": 4160,
+          "charged_control_steps_lower_bound": 4160,
+          "wall_seconds": 467.7566578388214,
+          "modes": {
+            "plan_failed": 317,
+            "reference": 20,
+            "wait": 79
+          },
+          "status": "trained",
+          "model_sha256": "2a8acb17eebde945373ec744e56b6c8623c8fae76cecb87fe5e5d232678a700e",
+          "normalization_sha256": "ac4a7b150266df347922c65eaa9911258ebb6b5c2c724c2a74329020ce6f99d9"
+        }
+      },
+      "status": "externally_interrupted",
+      "scope": "Fresh real CARLA native-hazard PPO development; known roads, no rule teacher, replay, inherited model or formal superiority claim",
+      "seed": 11,
+      "budget_per_method": 4096,
+      "policy_variant": "unshared_endpoint_v1",
+      "policy_intervention": {
+        "version": "endpoint_clear_v1",
+        "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
+      },
+      "evaluation_only": false,
+      "parent_batch": "20261026T140943Z_native_rule",
+      "process_absence_receipt": {
+        "source_hashes": {
+          "guard.json": "f43a862bec7ce1876dbbfee4943b0a6444c444b5b9dfeea8db9b3b78dde2372e",
+          "protocol.json": "37629f23bcabf8dd3bfc5e814f6b0d0252f48a3c7e62611bfc467824409d1eac",
+          "infrastructure/server_start.json": "74fd16210fb995849e5da42511dcfe78335e00de70b0109a39dec446cf4f5d3a",
+          "worker_process.json": "32c3f270aaf1530bee1677c20c83c7f4878189eb3f7da08070cfe430aaeac205"
+        },
+        "udp_endpoints": [],
+        "observed_epoch": 1793060787.05,
+        "protocol_port_span": [
+          2200,
+          2201,
+          2202
+        ],
+        "related_bridges": [],
+        "scope": "Read-only OS absence verification. No exit code, normal cleanup, interruption time or cause is inferred; no process is killed.",
+        "tcp_endpoints": [],
+        "process_ids": {
+          "shipping_pid": 12488,
+          "launcher_pid": 71148,
+          "worker_pid": 58252,
+          "guard_pid": 63524
+        },
+        "status": "verified_worker_guard_server_absent",
+        "reason": "external_process_loss_cause_unknown"
+      }
+    },
+    {
+      "batch": "20261027T002654Z_native_evaluation_recovery",
+      "protocol_sha256": "0ed3172adaa6ef3d31cc9e9fa3abd546d39c080dda6dd23ad48e4befa6488f73",
+      "methods": {
+        "H": {
+          "physics_steps": 0,
+          "actions": 0,
+          "episodes": 0,
+          "optimizer_steps": 0,
+          "lineage_control_steps": 4160,
+          "charged_control_steps_lower_bound": 4160,
+          "wall_seconds": 0.06183981895446777,
+          "modes": {},
+          "status": "trained",
+          "model_sha256": "2a8acb17eebde945373ec744e56b6c8623c8fae76cecb87fe5e5d232678a700e",
+          "normalization_sha256": "ac4a7b150266df347922c65eaa9911258ebb6b5c2c724c2a74329020ce6f99d9"
+        }
+      },
+      "status": "running",
+      "scope": "Frozen saved-endpoint reevaluation after verified interruption; zero new training/optimization; old partial attempts retained and charged, not independent conditions",
+      "seed": 11,
+      "budget_per_method": 0,
+      "policy_variant": "unshared_endpoint_v1",
+      "policy_intervention": {
+        "version": "endpoint_clear_v1",
+        "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
+      },
+      "evaluation_only": true,
+      "parent_batch": "20261026T145818Z_native_hazard_learning"
+    }
+  ],
+  "endpoint_initialization_parity": {
+    "scope": "Actual fresh native H unmasked/endpoint-filter initializer parity; no inferred task advantage",
+    "control_batch": "20261026T143706Z_native_hazard_learning",
+    "filtered_batch": "20261026T145818Z_native_hazard_learning",
+    "parameter_tensors_equal": 30,
+    "postinitialization_torch_rng_equal": true,
+    "new_controls": 0,
+    "optimizer_updates": 0
+  },
+  "interrupted_filtered_training_verification": {
+    "scope": "Complete saved training endpoint verified against readable raw CARLA prefix; interrupted evaluation is not completed or repaired",
+    "batch": "20261026T145818Z_native_hazard_learning",
+    "method": "H",
+    "training_control_frames_verified": 4160,
+    "training_episodes_verified": 5,
+    "optimizer_steps": 130,
+    "checkpoint_metadata_sha256": "4acfc951615c25d979c9756fc1acf5e29b53462ccb695d76faab857f53f4541e",
+    "protocol_sha256": "37629f23bcabf8dd3bfc5e814f6b0d0252f48a3c7e62611bfc467824409d1eac",
+    "source_hashes_verified": 339,
+    "trace_hashes": {
+      "transitions_000000000_1793026767306799900.jsonl.gz": "8f3d50a1730085ca992dbe8f45b9ed88c4e1a165094782fcfdc92462de078ff9"
+    },
+    "bridge_prefixes": {
+      "bridge_aaef0522_responses.jsonl.gz": {
+        "read_error": "EOFError: Compressed file ended before the end-of-stream marker was reached",
+        "sha256": "511324721be51aaeef934279de25dda44900222080e57aefb0b3a7e4f9691661",
+        "readable_applied_controls": 5701
+      }
+    },
+    "readable_partial_evaluation_controls_lower_bound": 1541,
+    "additional_control_tail_unknown": true,
+    "new_controls": 0,
+    "new_optimizer_updates": 0
   }
 }

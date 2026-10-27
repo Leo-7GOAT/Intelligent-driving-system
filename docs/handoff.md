@@ -1,4 +1,65 @@
-# Latest completed work — 2026-10-26 20:20 local
+# Latest active work — 2026-10-27 morning
+
+Authoritative new report: ../reports/native_hazards_cadence_20261026.md and its
+JSON ledger. Six native hazard B3 phases are now finished: three parked-car
+versions0/4; final-goal plus reference reuse2/4; original walker three successes
+then one spawn failure; uniformly−2.5m walker4/4. All complete phases and the
+incomplete completed-prefix controls audit against actual CARLA frames. These
+are rule-only engineering results, never PPO learning claims.
+
+Fresh static-hazard PPO at`runs/20261026T143706Z_native_hazard_learning` has
+completed and stopped its owned server normally. H/H0/B1 train4,160/4,160/4,099
+controls with130Adam steps each; all frozen endpoints0/4. All23,219applied
+controls verify. B1's final terminal transition triggers one unused auto-reset:
+31reset ticks are charged separately. H's392/416plan_failed decisions motivate
+the next isolated necessary-endpoint filter; failures are not removed.
+
+Endpoint-filter training at`runs/20261026T145818Z_native_hazard_learning`, H only,
+same seed11/task/low-level/nominal4,096-control schedule. All30actual initializer
+tensors and postinitialization Torch RNG match the completed unfiltered H.
+EndpointClearRoadPolicy excludes known blocked endpoints, retains unknown
+connections and explicit wait, and leaves unknown/ablated feedback unmasked.
+This differs from the earlier rejected local-witness AND filter. PPO selects
+and evaluates its own masked categorical action; no teacher or rule override.
+It completed4,160training controls/130Adam steps, but evaluation was externally
+interrupted. Worker/guard/server are OS-verified absent with free ports; no exit
+code, normal cleanup or cause was fabricated. All4,160training controls and
+the saved checkpoint are frame-verified. Readable old evaluation controls have
+only a1,541lower bound because raw gzip tails were not closed; all partial
+files remain immutable. This is not a completed endpoint or new training seed.
+
+Active batch is`runs/20261027T002654Z_native_evaluation_recovery`: same saved
+model/checkpoint/normalization bytes, zero new training or optimizer updates,
+all4original conditions repeated because the prior evaluation was incomplete.
+Partial old attempts remain charged separately. Read current heartbeat before
+acting. The recovery preparer accepts a fresh verified process/port-absence
+receipt without manufacturing a wall-deadline or normal-stop receipt.
+
+Worker initially verified as PID53144; authoritative creation/executable/command
+identity is `worker_process.json`, not the number in this document. Owned CARLA
+is on2200..2202, guarded by the frozen watch_existing_pair worker through a
+1,800s wall window. Read guard/heartbeat/failure/summary and actual process
+identity before acting. Do not relaunch this started batch, delete locks, change
+frozen files, or kill foreign2101/2102 owners. The parent contains an immutable
+seed11child registration; follow that child rather than preparing it again.
+
+Fresh10Hz categorical B1 completed20,765train+960eval controls/650Adam updates,
+41training successes only on roads0/2, frozen0/4. All32initializer tensor hashes
+and postinitialization RNG match the historical2Hz initializer; the historical
+control includes one physical reset and is not a clean causal cadence ablation.
+The new cadence model and two unscored offline fits remain local.
+
+Source921e069is actually pushed. Hosted CI40338847695passes345/3skips/4CARLA
+exclusions; independent Windows checkout passes347/1/4. It reproduces21,725raw
+controls,all4cadence initial actions and a byte-identical trajectory figure;
+../reports/native_hazards_reproduction_20261026.json is the actual receipt.
+The subsequent hazard-learning/filter/reset/external-recovery changes have
+368/1/4root regression;23recovery/endpoint targeted checks pass. Their publication
+and the complete masked endpoint must be recorded
+separately. Original five-seed, new120-condition, healthy-B1, PPO-value and full
+research acceptance gates remain unchanged and unmet.
+
+# Earlier completed work — 2026-10-26 20:20 local
 
 Verification addendum: source1f403bcis actually pushed, hosted40322362420passes
 322/3skips/4CARLA exclusions; both root and independent checkout pass324/1/4.

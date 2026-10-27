@@ -3,8 +3,10 @@
 Latest [native-hazard and cadence development](reports/native_hazards_cadence_20261026.md):
 fresh10Hz direct PPO uses20,765 real training controls but remains0/4 on known6m
 goals. Native parked-car/walker tasks and frame evidence are implemented; B3
-static failures and a fourth-road walker spawn failure are retained. Candidate
-and reference-lifecycle fixes are being tested; research acceptance remains open.
+static failures and a fourth-road walker spawn failure are retained. Reference
+reuse gives B3 static2/4; the corrected walker task gives B3 4/4. Fresh static
+H/H0/B1 each remain0/4; an isolated necessary-endpoint filter is being tested.
+Research acceptance remains open.
 
 Latest [matched terminal-margin development](reports/native_terminal_margin_20261026.md):
 own-success replay gives3/4on known4.5m goals using all positive episodes versus

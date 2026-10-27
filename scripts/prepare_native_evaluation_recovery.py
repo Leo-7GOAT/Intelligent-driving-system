@@ -19,17 +19,45 @@ from scripts.evaluate_native_rule import require_finished_parent
 from scripts.audit_native_method_endpoint import audit as endpoint_audit
 
 
+def verified_interruption(parent):
+    """Accept normal wall receipts or fresh, separately verified process loss."""
+    final=parent/'guard_final.json'
+    if final.exists():
+        guard=read(final)
+        if guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int:
+            raise ValueError('Require a verified wall-interrupted parent, never a live task')
+        if read(parent/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped':
+            raise ValueError('Parent owned-server cleanup is incomplete')
+        return 'wall_deadline'
+    from navstack.process_lease import pid_alive
+    receipt=read(parent/'process_absence_receipt.json')
+    if (receipt.get('status')!='verified_worker_guard_server_absent'
+            or receipt.get('reason')!='external_process_loss_cause_unknown'
+            or not 0<=time.time()-receipt['observed_epoch']<=300
+            or any(receipt.get(k) for k in ('tcp_endpoints','udp_endpoints','related_bridges'))):
+        raise ValueError('External-loss recovery requires a fresh empty-process/port receipt')
+    expected={'protocol.json','worker_process.json','guard.json','infrastructure/server_start.json'}
+    if set(receipt.get('source_hashes',{}))!=expected or any(sha(parent/name)!=digest for name,digest in receipt['source_hashes'].items()):
+        raise ValueError('External-loss source identity records changed')
+    worker=read(parent/'worker_process.json');guard=read(parent/'guard.json');server=read(parent/'infrastructure/server_start.json')
+    identities={'worker_pid':worker['pid'],'guard_pid':guard['pid'],'shipping_pid':server['shipping_pid'],'launcher_pid':server['launcher_pid']}
+    port=read(parent/'protocol.json')['carla_rpc_port']
+    if (not server.get('owned_by_task') or receipt.get('process_ids')!=identities
+            or receipt.get('protocol_port_span')!=list(range(port,port+3))
+            or any(type(pid) is not int or pid<=0 or pid_alive(pid) for pid in identities.values())):
+        raise ValueError('Recorded processes are live, ambiguous or differ from absence receipt')
+    return 'external_process_loss_cause_unknown'
+
+
 def prepare(parent,method='H',original_goals=False):
     parent=Path(parent).resolve();old=read(parent/'protocol.json')
-    guard=read(parent/'guard_final.json')
+    interruption=None
     if original_goals:
         require_finished_parent(parent)
         if 'curriculum' not in old or endpoint_audit(parent,method)!=read(parent/method/'endpoint_raw_audit.json'):
             raise ValueError('Require a complete audited curriculum endpoint')
-    elif guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int:
-        raise ValueError('Require a verified wall-interrupted parent, never a live task')
-    if read(parent/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped':
-        raise ValueError('Parent owned-server cleanup is incomplete')
+    else:
+        interruption=verified_interruption(parent)
     folder=parent/method;summary=read(folder/'summary.json')
     if summary['stopped_reason'] is not None or not summary['reload_exact'] or (not original_goals and (folder/'evaluation.json').exists()):
         raise ValueError('Require completed training but incomplete endpoint evaluation')
@@ -74,7 +102,8 @@ def prepare(parent,method='H',original_goals=False):
             protocol.pop(key,None)
         protocol.pop('freeze_observation_statistics',None);protocol.pop('own_success_replay',None)
         prior=old.get('recovery',{}).get(method,{})
-        protocol.update(scope='Frozen saved-endpoint reevaluation after wall interruption; zero new training/optimization; old partial attempts retained and charged, not independent conditions',
+        protocol.update(scope='Frozen saved-endpoint reevaluation after verified interruption; zero new training/optimization; old partial attempts retained and charged, not independent conditions',
+            parent_interruption_kind=interruption,
             evaluation_only=True,methods=[method],controlled_budget_per_method=0,method_budgets={method:0},checkpoint_thresholds=[],
             created_epoch=now,deadline_epoch=now+1800,parent_batch=parent.name,
             parent_interruption_audit_sha256=sha(batch/'parent_interruption_audit.json'),

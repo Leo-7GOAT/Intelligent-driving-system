@@ -1,4 +1,4 @@
-"""Sufficient local-connector filter, never a global infeasibility test."""
+"""Explicit candidate filters on observed endpoint and connector evidence."""
 import numpy as np
 import torch
 from torch import nn
@@ -16,6 +16,16 @@ def local_witness_mask(candidates):
     mask=(values[:,5]>.5)&(values[:,6]>.5)
     mask[0]=True
     if not mask[1:].any():mask[:]=True
+    return mask
+
+
+def endpoint_clear_mask(candidates):
+    values=np.asarray(candidates)
+    if values.shape!=(31,8) or not np.isfinite(values).all():raise ValueError('Require finite fixed-scale31x8candidate inputs')
+    # Wait's clear bit is the availability sentinel. Ablated/unknown feedback
+    # keeps all actions; known blocked endpoints can never admit a full path.
+    if values[0,5]<=.5:return np.ones(31,dtype=bool)
+    mask=values[:,5]>.5;mask[0]=True
     return mask
 
 
@@ -43,3 +53,11 @@ class LocalWitnessHead(nn.Module):
 
     def forward(self,latent):
         return self.head(latent[:,:-31]).masked_fill(latent[:,-31:]<.5,-1e8)
+
+
+class EndpointClearExtractor(LocalWitnessExtractor):
+    def forward_actor(self,features):
+        candidates=features[:,351:599].reshape(-1,31,8)
+        mask=(candidates[:,:,5]>.5).clone();mask[:,0]=True
+        mask=torch.where(candidates[:,0,5:6]>.5,mask,torch.ones_like(mask))
+        return torch.cat((self.backbone.forward_actor(features),mask.to(features.dtype)),dim=1)

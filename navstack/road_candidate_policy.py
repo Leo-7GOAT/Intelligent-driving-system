@@ -131,3 +131,16 @@ class LocalWitnessRoadPolicy(UnsharedRoadCandidatePolicy):
         self.mlp_extractor=LocalWitnessExtractor(self.mlp_extractor)
         self.action_net=LocalWitnessHead(self.action_net)
         self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)
+
+
+class EndpointClearRoadPolicy(UnsharedRoadCandidatePolicy):
+    """PPO chooses among necessary endpoint-clear actions, including wait.
+
+    No local/global connector witness is required. Unknown feedback is unmasked.
+    """
+    def _build(self,lr_schedule):
+        super()._build(lr_schedule)
+        from .candidate_filter import EndpointClearExtractor,LocalWitnessHead
+        self.mlp_extractor=EndpointClearExtractor(self.mlp_extractor)
+        self.action_net=LocalWitnessHead(self.action_net)
+        self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)
