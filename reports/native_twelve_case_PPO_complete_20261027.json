@@ -1,0 +1,299 @@
+{
+  "scope": "Normally completed single-seed12known-condition real CARLA PPO development pair after disclosed supervision. Same4329unique physical teacher controls reused;896actor-supervised steps per method. Not independent seeds/final confirmation or PPO value versus rules.",
+  "batch": "20261027T100609Z_native_supervised_ppo",
+  "seed": 11,
+  "methods": [
+    {
+      "method": "H",
+      "teacher_unique_controls": 4329,
+      "actor_supervised_steps": 896,
+      "actual_train_controls": 20541,
+      "PPO_optimizer_steps": 650,
+      "optimization_phases": 65,
+      "evaluation_controls": 4913,
+      "total_raw_controls": 25454,
+      "successes": 11,
+      "cases": 12,
+      "families": {
+        "curve_parking": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "static_obstacle": {
+          "successes": 3,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "dynamic_interaction": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "train_terminations": {
+        "success": 46,
+        "deadline": 4
+      },
+      "model_sha256": "6cf8605a4cf2e6d85b22dbe05d5516c60499066af19cd6d2ac1f874b84c05d8f",
+      "normalization_sha256": "b618c36ca5c6d98377829c66cf639d5538a2b5953baceea5076f5e7314ff736b",
+      "raw_audit_sha256": "bfc8422b0172427fd3132c3095b5df0be8f0254b8cf2701d34241310f8c4a6c0",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "progress": 24.279407177260918,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 349,
+          "progress": 23.876028539777437,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 311,
+          "progress": 22.215056949734652,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "progress": 20.38122762127303,
+          "interventions": 0
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 356,
+          "progress": 24.113435260781042,
+          "interventions": 0
+        },
+        {
+          "case_id": 5,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "progress": 23.711689302944812,
+          "interventions": 0
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "progress": 22.411724230706923,
+          "interventions": 0
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 13.640696531316655,
+          "interventions": 650
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 421,
+          "progress": 24.25452390617713,
+          "interventions": 70
+        },
+        {
+          "case_id": 9,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 450,
+          "progress": 23.58043591712023,
+          "interventions": 90
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 391,
+          "progress": 22.235756220235203,
+          "interventions": 70
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 391,
+          "progress": 20.232643607391367,
+          "interventions": 80
+        }
+      ]
+    },
+    {
+      "method": "H0",
+      "teacher_unique_controls": 4329,
+      "actor_supervised_steps": 896,
+      "actual_train_controls": 20623,
+      "PPO_optimizer_steps": 650,
+      "optimization_phases": 65,
+      "evaluation_controls": 5352,
+      "total_raw_controls": 25975,
+      "successes": 10,
+      "cases": 12,
+      "families": {
+        "curve_parking": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "static_obstacle": {
+          "successes": 3,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "dynamic_interaction": {
+          "successes": 3,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "train_terminations": {
+        "success": 41,
+        "deadline": 6
+      },
+      "model_sha256": "889a0b59d077fb0970700d52013c7c22424d002d38a79ba6d179056a3d6d4585",
+      "normalization_sha256": "feea57f4fc016f2068319e2639ef55eb99eca076ad760451cebf98eee07e004e",
+      "raw_audit_sha256": "a2225902bfe8d2ba30d4e875edbddf0da3ab7bfc4ddc8fc033edc6d269af3860",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 339,
+          "progress": 24.25433448325863,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "progress": 23.8133034813014,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 311,
+          "progress": 22.21498630790638,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 301,
+          "progress": 20.192327415882076,
+          "interventions": 0
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "progress": 24.225478589321245,
+          "interventions": 0
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 338,
+          "progress": 22.443806291976784,
+          "interventions": 0
+        },
+        {
+          "case_id": 7,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 377,
+          "progress": 20.135555668055577,
+          "interventions": 30
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 411,
+          "progress": 24.288357865624743,
+          "interventions": 60
+        },
+        {
+          "case_id": 9,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 12.591854403375901,
+          "interventions": 690
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "progress": 22.19231330934829,
+          "interventions": 60
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 388,
+          "progress": 20.217883373000493,
+          "interventions": 80
+        }
+      ]
+    }
+  ],
+  "total_actual_train_controls": 41164,
+  "total_evaluation_controls": 10265,
+  "total_raw_controls": 51429,
+  "guard": {
+    "epoch": 1793099695.5062573,
+    "worker_pid": 18764,
+    "exit_code": 0,
+    "reason": null
+  },
+  "owned_cleanup_status": "owned_empty_server_stopped",
+  "teacher_initializer_successes": {
+    "H": 11,
+    "H0": 11
+  },
+  "strong_rule_B3_successes": 12,
+  "paired_H_minus_H0_development_fraction": 0.08333333333333333,
+  "independent_training_seeds": 1,
+  "formal_confidence_interval": null,
+  "conclusions": [
+    "Hretains11/12rather than improving its supervised initialization.",
+    "H0drops11/12to10/12;the1/12development gap is not independent statistical confirmation.",
+    "Neither outperforms strong B3on task success.",
+    "Fiveindependentseeds,120newfinalconditions,healthyB1,PPOvalue andcompleteablations remain unmet."
+  ]
+}

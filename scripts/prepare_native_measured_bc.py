@@ -87,12 +87,32 @@ def load_registered_views(views, reference_config, config, parent):
     return arrays, manifest
 
 
-def prepare(parent, seed=11, epochs=128, views=None, reference_config=None,flat_head='pooled_v1'):
+def shifted_holdout_mask(groups,original,phase):
+    """Explicit correlated-fit split intervention; never change measured arrays."""
+    if type(phase) is not int or phase not in (0,4):
+        raise ValueError('Only the original phase0 or initial-covered phase4 is registered')
+    groups=np.asarray(groups);original=np.asarray(original)
+    if groups.ndim!=1 or original.shape!=groups.shape or original.dtype!=np.bool_:
+        raise ValueError('Invalid registered groups/train mask')
+    changed=original.copy();cases=[]
+    for group in np.unique(groups):
+        indices=np.flatnonzero(groups==group)
+        if len(indices)<5 or not np.array_equal(original[indices],np.arange(len(indices))%5!=0):
+            raise ValueError('Require complete original phase0 groups with a nonempty holdout')
+        changed[indices]=np.arange(len(indices))%5!=phase
+        cases.append({'group':int(group),'controls':len(indices),'train':int(changed[indices].sum()),
+            'holdout':int((~changed[indices]).sum()),'initial_is_training':bool(changed[indices[0]])})
+    return changed,cases
+
+
+def prepare(parent, seed=11, epochs=128, views=None, reference_config=None,flat_head='pooled_v1',holdout_phase=0):
     parent = Path(parent).resolve()
     if type(seed) is not int or not 0 <= seed < 2**31 or not 1 <= epochs <= 128:
         raise ValueError('Invalid bounded supervised diagnostic')
     if flat_head not in ('pooled_v1','ordered_candidates_v1'):
         raise ValueError('Unknown versioned direct-policy actor head')
+    if type(holdout_phase) is not int or holdout_phase not in (0,4) or (holdout_phase and views is None):
+        raise ValueError('A shifted fit split requires explicit registered measured views')
     require_finished_parent(parent)
     if views is None and read(parent/'protocol.json').get('native_case_manifest') is not None:
         raise ValueError('Explicit mixed cases require audited registered views; refusing four-case subset supervision')
@@ -111,6 +131,7 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None,flat_
     view_data, view_manifest = load_registered_views(views, reference_config, config, parent) if views else (None,None)
     view_suffix = '_views'+view_manifest['dataset_sha256'][:12] if views else ''
     if flat_head!='pooled_v1':view_suffix+='_head'+flat_head
+    if holdout_phase:view_suffix+='_holdout'+str(holdout_phase)
     registration = parent/f'measured_direct_bc_v2_seed{seed}{view_suffix}_registration.json'
     with ProcessLease(parent/'measured_direct_bc_prepare.lock'):
         if registration.exists():
@@ -128,6 +149,9 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None,flat_
             'fairness': 'Formal hierarchy comparisons require equivalent teacher access and separately charged teacher, supervised and on-policy costs.'})
         fit_registration=read(batch/'fit_registration.json')
         fit_registration['flat_actor_head']=flat_head
+        fit_registration['holdout_phase']=holdout_phase
+        if holdout_phase:
+            fit_registration['holdout']='Every fifth control with phase4; each measured initial state is TRAINING. Correlated fit diagnostic only, not independent validation.'
         write_json(batch/'fit_registration.json',fit_registration)
         if views:
             write_json(batch/'measured_view_provenance.json', view_manifest)
@@ -177,12 +201,20 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None,flat_
             if views:
                 observations, actions, returns, masks = (view_data[key] for key in ('observations','actions','returns','train_mask'))
                 cases = view_manifest['cases']
-                shutil.copy2(Path(views)/'measured_demonstrations.npz', batch/'measured_demonstrations.npz')
+                if holdout_phase:
+                    masks,mask_cases=shifted_holdout_mask(view_data['groups'],masks,holdout_phase)
+                    np.savez_compressed(batch/'measured_demonstrations.npz',**{**view_data,'train_mask':masks})
+                    protocol['supervised_holdout_intervention']={'version':'initial_covered_phase4_v1',
+                        'source_dataset_sha256':view_manifest['dataset_sha256'],'original_phase':0,'new_phase':holdout_phase,
+                        'cases':mask_cases,'scope':'Only the correlated training/fit mask changes. Same measured observations/actions/returns/groups. Train-only normalization refits on the new mask; no independent holdout or driving-improvement claim.'}
+                else:
+                    shutil.copy2(Path(views)/'measured_demonstrations.npz', batch/'measured_demonstrations.npz')
             else:
                 observations, actions = np.asarray(observations, dtype=np.float32), np.asarray(actions, dtype=np.float32)
                 np.savez_compressed(batch/'measured_demonstrations.npz', observations=observations, actions=actions,
                                     returns=np.asarray(returns), train_mask=np.asarray(masks),
                                     case_controls=np.asarray([r['controls'] for r in cases]))
+            fit_dataset_sha=sha(batch/'measured_demonstrations.npz')
             raw = DummyVecEnv([lambda: NavigationEnv(config)])
             raw.envs[0].case_index = 0
             norm = RoadCandidateVecNormalize(raw, norm_reward=False, gamma=config.gamma)
@@ -195,7 +227,7 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None,flat_
                 print(json.dumps(row), flush=True)
             history = fit_demonstrations(model, norm, observations, actions, np.asarray(returns), np.asarray(masks),
                                          epochs=epochs, seed=seed, callback=progress, value_weight=0.)
-            if views and sha(batch/'measured_demonstrations.npz') != view_manifest['dataset_sha256']:
+            if sha(batch/'measured_demonstrations.npz')!=fit_dataset_sha or (views and not holdout_phase and fit_dataset_sha!=view_manifest['dataset_sha256']):
                 raise ValueError('Copied measured dataset changed during fitting')
             if model.num_timesteps or model._n_updates or model.policy.optimizer.state:
                 raise ValueError('Supervised fitting must not be reported as PPO interaction/updates')
@@ -255,5 +287,6 @@ if __name__ == '__main__':
     parser.add_argument('--views')
     parser.add_argument('--reference-config')
     parser.add_argument('--flat-head',choices=['pooled_v1','ordered_candidates_v1'],default='pooled_v1')
+    parser.add_argument('--holdout-phase',type=int,choices=[0,4],default=0)
     args = parser.parse_args()
-    prepare(args.parent, args.seed, args.epochs, args.views, args.reference_config,args.flat_head)
+    prepare(args.parent, args.seed, args.epochs, args.views, args.reference_config,args.flat_head,args.holdout_phase)
