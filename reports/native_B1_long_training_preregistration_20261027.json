@@ -1,0 +1,21 @@
+{
+  "scope": "Predeclared bounded development continuation to test training adequacy,not a healthy-baseline or matched-budget result. No frozen endpoint selection or independent-seed claim.",
+  "parent": "20261027T140111Z_native_supervised_ppo",
+  "barrier": "20261027T141335Z_native_frozen_B2",
+  "queue_pid": 48844,
+  "status": "ACTUALLY_WAITING_NOT_YET_PREPARED_OR_TRAINING",
+  "target_cumulative_policy_controls": 102400,
+  "new_policy_controls_after_parent": 81920,
+  "training_wall_cap_seconds": 10800,
+  "parent_wait_cap_seconds": 21600,
+  "automatic_retries": 0,
+  "hypothesis": "20480controls is about35episodes across12conditions and may be insufficient for continuous PPO. Continue the exact KL-stop learner/Adam/normalizer/RNG to a single longer fixed endpoint; retain every failure and evaluate all12conditions.",
+  "policy_or_training_setting_changes_on_continuation": 0,
+  "additional_supervised_updates": 0,
+  "entry": "Both prerequisite batches must finish normal guard and owned-empty cleanup,including lifecycle lease release. A changed source,model,checkpoint,normalizer or dataset causes preparation failure; no automatic retry.",
+  "accounting": "Continuation carries teacher dataset by registered hash and charges parent evaluation controls in addition to cumulative training/input costs. Full per-method raw audits cover all registered methods; legacy batch audit remains supported for older endpoints.",
+  "fairness": "The longer B1 has a larger training budget than current20541control H. Do not present that pair as equal-budget evidence; formal comparison must share a locked budget. This is baseline tuning,not final confirmation.",
+  "metrics": ["all12safe_completion", "each_family_completion", "collision_or_bounds", "interventions", "progress", "travel_time_success_only", "raw_physical_controls", "optimizer_steps", "KL", "wall_seconds"],
+  "resource_floors": {"disk_GiB": 12, "RAM_GiB": 4, "GPU_stop_C": 85},
+  "recovery_entry": "Inspect parent/long_training_queue_execution.json and runs/native_KL_B1_long_training_queue_20261027.log before any action. Never launch a duplicate. The local queue script is runs/continue_KL_B1_after_spline_B2_20261027.ps1."
+}

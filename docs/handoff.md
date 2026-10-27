@@ -57,6 +57,8 @@ release. On error preserve receipts;do not bypass ownership checks.
 
 141335 native_frozen_B2 PREPARED/VALIDATED and ACTUALLY queued after140111,queue41036. Existing body_spline_v1 uses150least-squares evaluations and swept-body/curvature certification. All8offlineopen/staticinitialqueries now reference-valid versus2/8legacy;no physical execution in queries. Both planner method and declared postprocessor change;model/norm/RNG unchanged. Runtime override is training_config ONLY,AST verified;other loop/plant code unchanged. See ../reports/native_B2_body_spline_registration_20261027.json. Grid search is finite-grid but does not enforce Hybrid max_nodes;record actual nodes/timings and do not claim equal compute.
 
+Bounded long-training helper48844 ACTUALLY WAITING,not prepared/training. After140111and141335both normal owned cleanup,reaudit parent and continue its exact policy/Adam/norm/RNG to102400cumulative controls(+81920),10800swall,0retries;one fixed all12endpoint. Source/teacher hash changes fail closed. Charges parent eval controls and retains teacher NPZ. This is larger-budget B1tuning,NOTmatchedHcomparison or a healthy-baseline claim. See ../reports/native_B1_long_training_preregistration_20261027.json;local script runs/continue_KL_B1_after_spline_B2_20261027.ps1;parent long_training_queue_execution.json. Never launchduplicates.
+
 ## Source verification and publication
 
 Remotehttps://github.com/Leo-7GOAT/Intelligent-driving-system.git,
@@ -64,7 +66,7 @@ branchfeature/physical-hierarchical-ppo,authenticatedLeo-7GOAT.
 Source5c342ce ACTUALLY pushed. Hosted40510261079SUCCESS556passed/15skips/
 4CARLA exclusions83.86s;independent38targeted pass13.58s. Previousb4134ae
 hosted40506931939SUCCESS547/15/4in159.44s;independent67pass12.81s.
-8f8257a ACTUALLY pushed/remote verified:hosted40517711560SUCCESS567/15/4in90.73s;independent full581/1skip/4CARLA exclusions285.46s. New body-spline configuration changes separately pass49targeted6.09s;do not inherit old CIcounts.
+8f8257a ACTUALLY pushed/remote verified:hosted40517711560SUCCESS567/15/4in90.73s;independent full581/1skip/4CARLA exclusions285.46s. d974637body-spline source hosted40519686500SUCCESS570/15/4in121.18s;root49targeted6.09s/independent49in8.81s. NEWcontinuation changes pass20targeted11.01s;do not inherit older CIcounts.
 
 Existing prereleasev0.2.0-dev.20261022 has actual publicly downloaded,
 independently reproduced assets:three rule/BCcapsules1321files/18591controls/

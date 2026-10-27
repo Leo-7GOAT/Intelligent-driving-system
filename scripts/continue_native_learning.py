@@ -278,6 +278,41 @@ def register_prepared_child(parent,batch,target):
     return registration
 
 
+def verified_parent_audit(parent,methods):
+    """Use the current full method auditor; retain legacy batch compatibility."""
+    parent=Path(parent)
+    paths=[parent/m/'endpoint_raw_audit.json' for m in methods]
+    if not any(p.exists() for p in paths):
+        path=parent/'analysis/verified_summary.json'
+        return read(path),path
+    if not all(p.exists() for p in paths):raise ValueError('Partial method audit inventory cannot authorize continuation')
+    from scripts.audit_native_method_endpoint import audit
+    verified={}
+    for method,path in zip(methods,paths):
+        rebuilt=audit(parent,method)
+        if rebuilt!=read(path):raise ValueError('Parent endpoint raw audit changed')
+        verified[method]=rebuilt
+    record={'scope':'All registered method endpoint raw audits,not a new drive or independent replication',
+            'raw_audits':verified,'methods':[{'method':m,
+                'control_frames_verified':verified[m]['training_control_frames_verified'],
+                'evaluation':{'control_frames_verified':verified[m]['evaluation_control_frames_verified']}} for m in methods]}
+    path=parent/'analysis/continuation_input_audit.json';path.parent.mkdir(exist_ok=True)
+    if path.exists():
+        if read(path)!=record:raise ValueError('Preserve mismatched prior continuation input audit')
+    else:
+        with path.open('x',encoding='utf-8') as stream:json.dump(record,stream,indent=2)
+    return record,path
+
+
+def copy_registered_teacher(parent,batch,protocol):
+    supervision=protocol.get('extra_supervision')
+    if not supervision:return
+    dataset=Path(parent)/'measured_demonstrations.npz'
+    if not dataset.is_file() or sha(dataset)!=supervision['dataset_sha256']:
+        raise ValueError('Registered teacher views missing or changed; preserve original supervision provenance')
+    shutil.copy2(dataset,Path(batch)/dataset.name)
+
+
 def prepare(parent,target=100000,wall_seconds=7200,curriculum_length=None):
     parent=Path(parent).resolve()
     if not 20000<target<=1000000 or not 900<=wall_seconds<=21600:
@@ -295,7 +330,7 @@ def prepare(parent,target=100000,wall_seconds=7200,curriculum_length=None):
                     or not old.get('curriculum') or curriculum_length<=old['curriculum']['prefix_meters']
                     or not all(e['success'] for e in read(parent/'B1/evaluation.json')['episodes'])):
                 raise ValueError('Advance the registered curriculum only after all four current goals succeed')
-        guard=read(parent/'guard_final.json');audit=read(parent/'analysis/verified_summary.json')
+        guard=read(parent/'guard_final.json')
         if completed['status']!='complete' or guard['exit_code']!=0 or guard['reason'] is not None or (parent/'failure.json').exists():
             raise ValueError('Parent is not normally completed')
         if (parent/'continuation_registration.json').exists():
@@ -303,6 +338,7 @@ def prepare(parent,target=100000,wall_seconds=7200,curriculum_length=None):
         assert_parent_endpoints_unclaimed(runs,parent)
         if old.get('cleanup_owned_carla') and read(parent/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped':
             raise ValueError('Parent owned server shutdown is not verified')
+        audit,audit_path=verified_parent_audit(parent,old['methods'])
         if [m['method'] for m in audit['methods']]!=old['methods']:
             raise ValueError('Parent audit does not cover every method')
         for relative,digest in old['source_hashes'].items():
@@ -319,6 +355,7 @@ def prepare(parent,target=100000,wall_seconds=7200,curriculum_length=None):
             (batch/'infrastructure').mkdir()
             shutil.copytree(parent/'source',batch/'source',ignore=shutil.ignore_patterns('__pycache__'))
             shutil.copytree(parent/'calibration',batch/'calibration')
+            copy_registered_teacher(parent,batch,old)
             # Learning semantics remain the parent's frozen versions. Only the
             # continuation preparer and process lifecycle helpers are refreshed.
             for name in ORCHESTRATION_FILES:
@@ -338,7 +375,7 @@ def prepare(parent,target=100000,wall_seconds=7200,curriculum_length=None):
                 optimizer_steps=prior.get('retained_optimizer_steps',0)+summary['optimizer_steps']
                 recovery[method]={'checkpoint':'resume/'+method,'parent_batch':parent.name,'parent_checkpoint':checkpoint.name,
                     'lineage_controls':summary['lineage_control_steps'],
-                    'consumed_controls_lower_bound':summary['charged_control_steps_lower_bound'],
+                    'consumed_controls_lower_bound':summary['charged_control_steps_lower_bound']+next(row['evaluation']['control_frames_verified'] for row in audit['methods'] if row['method']==method),
                     'retained_optimizer_steps':optimizer_steps,'model_sha256':metadata['model_sha256'],
                     'normalization_sha256':metadata['normalization_sha256'],
                     'unknown_unflushed_parent_tail':prior.get('unknown_unflushed_parent_tail',False)}
@@ -362,7 +399,7 @@ def prepare(parent,target=100000,wall_seconds=7200,curriculum_length=None):
             old.update(created_epoch=now,deadline_epoch=now+wall_seconds,source_hashes=hashes,
                 controlled_budget_per_method=target,method_budgets=budgets,recovery=recovery,
                 parent_batch=parent.name,parent_records=parent_records,
-                parent_raw_audit_sha256=sha(parent/'analysis/verified_summary.json'),
+                parent_raw_audit_sha256=sha(audit_path),
                 scope='Completed-policy native continuation; same seed and learning state, new measured episodes, cumulative controls and inherited costs; not independent replication',
                 continuation_reason=f'Continue every registered parent method to cumulative {target} controls with unchanged learning settings; this is correlated continuation, not an independent seed',
                 disk_free_bytes=shutil.disk_usage(ROOT).free)
