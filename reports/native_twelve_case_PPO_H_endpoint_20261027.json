@@ -1,0 +1,168 @@
+{
+  "scope": "Complete H per-method endpoint while H0/whole batch are active. Single-seed known-road development after disclosed teacher supervision, not independent confirmation. PPO retains11/12teacher-initialized success, no success-rate gain.",
+  "batch": "20261027T100609Z_native_supervised_ppo",
+  "method": "H",
+  "teacher_unique_controls": 4329,
+  "supervised_optimizer_steps": 896,
+  "actual_training_controls": 20541,
+  "optimizer_steps": 650,
+  "optimization_phases": 65,
+  "frozen_successes": 11,
+  "frozen_cases": 12,
+  "families": {
+    "curve_parking": {
+      "successes": 4,
+      "cases": 4,
+      "unsafe": 0
+    },
+    "static_obstacle": {
+      "successes": 3,
+      "cases": 4,
+      "unsafe": 0
+    },
+    "dynamic_interaction": {
+      "successes": 4,
+      "cases": 4,
+      "unsafe": 0
+    }
+  },
+  "evaluation_controls": 4913,
+  "total_raw_controls": 25454,
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 340,
+      "progress": 24.279407177260918,
+      "interventions": 0
+    },
+    {
+      "case_id": 1,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 349,
+      "progress": 23.876028539777437,
+      "interventions": 0
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 311,
+      "progress": 22.215056949734652,
+      "interventions": 0
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 306,
+      "progress": 20.38122762127303,
+      "interventions": 0
+    },
+    {
+      "case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 356,
+      "progress": 24.113435260781042,
+      "interventions": 0
+    },
+    {
+      "case_id": 5,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 361,
+      "progress": 23.711689302944812,
+      "interventions": 0
+    },
+    {
+      "case_id": 6,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 337,
+      "progress": 22.411724230706923,
+      "interventions": 0
+    },
+    {
+      "case_id": 7,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 13.640696531316655,
+      "interventions": 650
+    },
+    {
+      "case_id": 8,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 421,
+      "progress": 24.25452390617713,
+      "interventions": 70
+    },
+    {
+      "case_id": 9,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 450,
+      "progress": 23.58043591712023,
+      "interventions": 90
+    },
+    {
+      "case_id": 10,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 391,
+      "progress": 22.235756220235203,
+      "interventions": 70
+    },
+    {
+      "case_id": 11,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 391,
+      "progress": 20.232643607391367,
+      "interventions": 80
+    }
+  ],
+  "raw_audit": {
+    "schema_version": 1,
+    "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+    "batch": "20261027T100609Z_native_supervised_ppo",
+    "method": "H",
+    "protocol_sha256": "4e473f2e717f3e150698fd0625538819868e9c6e333dc8052f0d086b92e754f4",
+    "config_sha256": "1b5c85eec7faa6b04cc84451de9581e4fda08f6c5a0a664e8bfc5bff94bc8424",
+    "summary_sha256": "d50db28177b993fedcd1315f9fe98d5d061e31067149e920817635841c36255a",
+    "evaluation_sha256": "52d3531e0f8c890036bdd285bf4621abd33d5eae031aac7065c5ac69a78f47c5",
+    "evaluation_trace_sha256": "eb17258ef88ca06f529d2d2ca09ff9e7e31a496fbe82b7fc03c194cda3b0aad8",
+    "optimization_sha256": "a92405090bac9504452c5901769df4550af29833d9071c2a807f2514801f1188",
+    "transition_hashes": {
+      "transitions_000000000_1793095972130046300.jsonl.gz": "95b2386fd566f326d9fb676e2662ba0d7250155a55e092be9f8a60bb6b5081b4"
+    },
+    "bridge_response_stream": "bridge_08854d18_responses.jsonl.gz",
+    "bridge_response_sha256": "669b626feca4fd76e678e63a7c8e97d883b86575740536619426fc0223809065",
+    "bridge_complete_rows": 25579,
+    "training_control_frames_verified": 20541,
+    "evaluation_control_frames_verified": 4913,
+    "total_applied_controls_verified": 25454,
+    "training_world_ticks_verified": 22121,
+    "evaluation_world_ticks_verified": 5285,
+    "training_termination_reasons": {
+      "success": 46,
+      "deadline": 4
+    },
+    "checkpoint": "checkpoint_000020480",
+    "checkpoint_metadata_sha256": "a78488f5f5b3780864e82278a80c9c6dc33b833a1cc87ed67ae60ea3f6a78873",
+    "lineage_controls": 20541,
+    "charged_controls_lower_bound": 24870,
+    "segment_optimizer_steps": 650,
+    "optimizer_steps_total_lower_bound": 650,
+    "unknown_unflushed_ancestor_tail": false
+  },
+  "model_sha256": "6cf8605a4cf2e6d85b22dbe05d5516c60499066af19cd6d2ac1f874b84c05d8f",
+  "normalization_sha256": "b618c36ca5c6d98377829c66cf639d5538a2b5953baceea5076f5e7314ff736b",
+  "whole_batch_complete": false,
+  "PPO_success_rate_improvement": false,
+  "feedback_benefit_proven": false
+}

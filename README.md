@@ -12,6 +12,13 @@ All these tasks are development conditions. Five independent trained seeds, 120 
 
 [Execution and queue commands](docs/native_execution.md) · [Current handoff](docs/handoff.md) · [Chinese README](docs/README.zh-CN.md)
 
+The [real-PPO H endpoint](reports/native_twelve_case_PPO_H_endpoint_20261027.json)
+is complete at **11/12**, retaining its supervised score after20,541training
+controls/650Adam steps;25,454raw controls audit. H0 is still training.
+[Three public twelve-case capsules](docs/model_card.md#public-twelve-condition-development-evidence)
+are independently reproduced:18,591raw controls,36measured-start policy actions
+and two identical figures. Latest hosted source36f5297 passes511CPU tests.
+
 Earlier development snapshots follow.
 
 Latest [supervised-PPO retention test](reports/native_supervised_retention_20261027.md): the3/4supervised direct model drops to0/4after20,480real PPO controls. All23,427frames verify and observation statistics stay fixed. A matched-initialization shared reward-profile diagnostic is running; no PPO improvement is claimed.

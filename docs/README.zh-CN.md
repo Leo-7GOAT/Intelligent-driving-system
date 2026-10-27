@@ -12,6 +12,13 @@ H/H0 的真实 CARLA PPO 续训正在执行，批次 `20261027T100609Z_native_su
 
 [执行及队列入口](native_execution.md) · [当前交接状态](handoff.md)
 
+[真实 PPO 的 H 结果](../reports/native_twelve_case_PPO_H_endpoint_20261027.json)已完成：
+**11/12**，实际训练20,541控制步、650次Adam，合计25,454原始控制帧已审计。
+保持监督初始化成绩，尚无成功率提升；H0仍在训练。
+[三组十二条件公开数据包](model_card.md#public-twelve-condition-development-evidence)
+已无登录下载并独立复现18,591控制帧、36个实测起点动作和两张逐字节一致的图。
+最新托管源码36f5297通过511项CPU测试。
+
 Earlier development snapshots follow.
 
 最新[监督后PPO保持性实测](../reports/native_supervised_retention_20261027.md)：监督初始化直接模型从3/4退化至真实PPO训练20,480步后的0/4；23,427帧已审计，归一化统计完全未变。相同初始权重/RNG的共享奖励配置对照正在执行，尚无PPO改善结论。

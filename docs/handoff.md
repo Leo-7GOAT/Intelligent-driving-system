@@ -1,4 +1,29 @@
-# Latest verification — 2026-10-27 18:38 local
+# Latest verification — 2026-10-27 18:56 local
+
+100609 H PPO COMPLETE per-method:20,541train controls/650Adam/65phases,
+11/12frozen (onlycase7deadline),4,913eval/25,454totalraw verified. Same11/12as
+BCinitializer; no success-rate gain. H0actually trains,>7,100controls/22phases
+at18:55. Wholebatch stillactive; guard/ownedcleanup NOT yetfinal. Do not launch
+102445until existingqueue70260activates it. See
+../reports/native_twelve_case_PPO_H_endpoint_20261027.json.
+
+Three12case B3/HBC/B1BCcapsules actually uploaded and unauthenticated downloads
+independently reproduced under checkout36f5297:1,321files,18,591rawcontrols,
+36policy start actions,two byte-identical repository figures. See
+../reports/native_twelve_case_public_reproduction_20261027.json and model_card.md.
+This supersedes older statements that ALL12case models remain local.
+RealPPO100609/ordered102445remain local. Critical raw/model bytes unchanged;
+auxiliary path transformations have hash ledgers. Plot labels distinguish
+12conditions/4roads; legacy public B1 figure bytes unchanged.
+
+Source36f5297 is pushed; hostedCI40491222582 passes511/15skips/4CARLA exclusions
+92.08s;8a1451bCI40490208868also511/15/4in123.40s. Independent60targeted checks
+pass18.00s. Current minorreproducer addition allows an explicit versioned figure
+baseline; packaged-baseline default remains required. Three untrusted-asset
+rejection tests and actual public B1 CLI reproduction pass. No new driving
+is claimed by reproduction.
+
+# Earlier verification — 2026-10-27 18:38 local
 
 Completed actual evidence supersedes older pending notes below:
 - 070950 H/H0 PPO both2/4;46,493raw controls audited; normal guard0/owned cleanup. No aggregate feedback advantage. ../reports/native_shared_small_exploration_complete_20261027.json.

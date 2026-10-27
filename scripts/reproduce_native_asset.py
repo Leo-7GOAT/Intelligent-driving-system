@@ -20,7 +20,7 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def reproduce(archive_path, expected_sha256, output):
+def reproduce(archive_path, expected_sha256, output, reference_figure=None):
     archive_path, output = Path(archive_path).resolve(), Path(output).resolve()
     if digest(archive_path.read_bytes()) != expected_sha256:
         raise ValueError('Archive hash differs from the published trusted digest')
@@ -80,14 +80,17 @@ def reproduce(archive_path, expected_sha256, output):
         print(json.dumps(rows[-1]), flush=True)
     figure = evidence/'frozen_endpoints.png'
     run('plot_native_endpoints.py', '--batch', batch, '--output', figure)
-    expected_figure = batch/'analysis/frozen_endpoints.png'
+    expected_figure = Path(reference_figure).resolve() if reference_figure is not None else batch/'analysis/frozen_endpoints.png'
+    if not expected_figure.is_file():
+        raise FileNotFoundError('Figure baseline missing; supply the versioned repository figure with --reference-figure')
     if figure.read_bytes() != expected_figure.read_bytes():
         raise ValueError('Rebuilt figure differs; inspect renderer/dependencies before claiming reproduction')
     receipt = {'scope':'Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving',
         'archive_sha256':expected_sha256,'asset_source_commit':manifest['repository_commit'],
         'reproduction_source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         'verified_files':len(manifest['files']), 'methods':rows,
-        'figure_sha256':digest(figure.read_bytes()), 'figure_byte_identical':True}
+        'figure_sha256':digest(figure.read_bytes()), 'figure_byte_identical':True,
+        'figure_baseline':'explicit_reference' if reference_figure is not None else 'packaged_analysis'}
     (output/'reproduction.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
     print(json.dumps(receipt), flush=True)
 
@@ -97,5 +100,6 @@ if __name__ == '__main__':
     parser.add_argument('--archive', required=True)
     parser.add_argument('--sha256', required=True)
     parser.add_argument('--output', required=True)
+    parser.add_argument('--reference-figure', help='Explicit versioned figure baseline when the archive has no analysis figure')
     args = parser.parse_args()
-    reproduce(args.archive, args.sha256, args.output)
+    reproduce(args.archive, args.sha256, args.output,args.reference_figure)

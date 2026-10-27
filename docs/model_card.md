@@ -1,5 +1,43 @@
 # Development model card
 
+## Public twelve-condition development evidence
+
+[Completed results](../reports/native_twelve_case_completed_20261027.json) and
+[public-download reproduction](../reports/native_twelve_case_public_reproduction_20261027.json)
+cover 1,321 files, 18,591 CARLA controls, 36 measured-start policy actions and
+two byte-identical repository figures. All capsules were actually uploaded and
+downloaded without authentication. These are seed11 known-road development
+results. The learned models below have zero PPO updates; all failures remain.
+
+| Public capsule | Frozen result | SHA256 |
+|---|---|---|
+| [Rule B3](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_twelve_case_rule_seed11_20261027_repro.zip) | 12/12;4,329controls | `7df3067990cfee74713d3d3421069f9bbc39b0fc10a0c1843ff1ec79a128edee` |
+| [Supervised H/H0](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_twelve_case_hierarchical_bc_seed11_20261027_repro.zip) | each11/12;896supervised updates each;9,803evaluation controls | `18779c7b0285aa0d8e63d96a8401ccf9cc9b0f6876e56fdf8fc992eb5b8078f9` |
+| [Rejected pooled B1](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_twelve_case_pooled_B1_bc_seed11_20261027_repro.zip) | 4/12;1,792supervised updates;4,459evaluation controls;sixunsafe episodes | `c945382bf29fa4bbd3028073d3ee2659ffb6f093369c9547b98ab02018236b11` |
+
+After downloading, use the locked dependencies and a new output directory:
+
+```powershell
+python scripts/reproduce_native_asset.py --archive native_twelve_case_hierarchical_bc_seed11_20261027_repro.zip --sha256 18779c7b0285aa0d8e63d96a8401ccf9cc9b0f6876e56fdf8fc992eb5b8078f9 --reference-figure reports/figures/native_twelve_case_hierarchical_bc_20261027.png --output runs/NEW_TWELVE_H_BC_REPRO
+python scripts/reproduce_native_asset.py --archive native_twelve_case_pooled_B1_bc_seed11_20261027_repro.zip --sha256 c945382bf29fa4bbd3028073d3ee2659ffb6f093369c9547b98ab02018236b11 --reference-figure reports/figures/native_twelve_case_pooled_B1_bc_20261027.png --output runs/NEW_TWELVE_B1_BC_REPRO
+```
+
+ZIP inventory and bytes are checked before loading trusted saved models. These
+two figure baselines are versioned in the repository, outside the archives;
+the explicit argument requires exact byte equality. This audits recorded frames
+and inference, without another CARLA drive. For rule evidence, check the SHA256,
+extract to a new directory, then run
+`python scripts/audit_native_rule.py --batch EXTRACTED/20261027T080111Z_native_rule --output runs/NEW_TWELVE_RULE_AUDIT.json`.
+The generated audit must equal the archived `raw_audit.json`.
+
+The [separate real-PPO H endpoint](../reports/native_twelve_case_PPO_H_endpoint_20261027.json)
+retains11/12after20,541training controls/650Adam steps;25,454totalcontrols audit.
+H0 is still running. This is retention, not a success-rate gain. An ordered
+direct actor is fitted and queued, with no driving result yet; its
+[post-fit comparison](../reports/native_ordered_flat_postfit_comparison_20261027.json)
+verifies identical normalization/critic and discloses212,293vs347,589parameters.
+The newer real-PPO and ordered models remain local until separately exported.
+
 ## Public smaller-exploration B1
 
 [Frozen evaluation and full raw audit](../reports/native_B1_small_exploration_20261027.json):

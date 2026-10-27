@@ -1,5 +1,15 @@
 # CPU regression CI
 
+Latest actual hosted source36f5297 passes **511 tests,15 skips,4 CARLA exclusions**
+in92.08s: [run40491222582](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40491222582).
+Gate/ordered source8a1451b separately passes511/15/4in123.40s:
+[run40490208868](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40490208868).
+Root and independent locked Windows environments pass60targeted gate,ordered
+actor,registered-view,case-manifest and recovery checks in16.06/18.00s. The
+legacy public B1 figure remains byte-identical after twelve-case condition labels.
+Hosted CPU verification is separate from CARLA training and research acceptance.
+Older version-specific records follow.
+
 Latest local full regression:324passed/1skip/4CARLA deselections,168.19seconds,
 with raw log/XML retained under runs/terminal_margin_smoothed_cpu_20261026.*.
 This covers the terminal-margin selector, strict curriculum gate, qualified
