@@ -19,6 +19,7 @@ from navstack.planner_memo import ExactStaticFailureMemo
 from navstack.planning import HybridAStar
 from scripts.audit_native_method_endpoint import audit, read, read_prefix, sha
 from scripts.audit_native_policy_sequence import observation_env, advance_observation
+from scripts.audit_native_action_availability import verify_source
 
 
 def canonical(result):
@@ -35,9 +36,13 @@ def benchmark(batch, method, output, repeats=100):
     config = EnvConfig.from_dict(read(folder / 'config.json')['env'])
     if config.planner.max_seconds is not None:
         raise ValueError('Only deterministic node-budget endpoints are eligible')
+    protocol = read(batch / 'protocol.json')
+    sources = []
     for name in ('navstack/planning.py', 'navstack/world.py', 'navstack/road_grid.py', 'navstack/subgoals.py'):
-        if sha(ROOT / name) != sha(batch / 'source' / name):
-            raise ValueError('Geometric planner implementation differs from the recorded source')
+        verify_source(ROOT / name, batch / 'source' / name, protocol['source_hashes'][name])
+        sources.append({'file': name, 'frozen_sha256': protocol['source_hashes'][name],
+                        'current_sha256': sha(ROOT / name),
+                        'identical_after_universal_newline_decoding': True})
     rows, error = read_prefix(folder / 'evaluation_trace.jsonl.gz')
     if error:
         raise ValueError(error)
@@ -104,6 +109,7 @@ def benchmark(batch, method, output, repeats=100):
                        'Not end-to-end speedup, driving improvement or physical infeasibility proof.',
               'batch': batch.name, 'method': method, 'raw_audit_sha256': sha(folder / 'endpoint_raw_audit.json'),
               'script_sha256': sha(Path(__file__)), 'memo_source_sha256': sha(ROOT / 'navstack/planner_memo.py'),
+              'backend_source_equivalence': sources,
               'new_controls': 0, 'optimizer_updates': 0, 'cases': results}
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open('x', encoding='utf-8') as stream: json.dump(result, stream, indent=2)

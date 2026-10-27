@@ -24,6 +24,7 @@ from scripts.evaluate_native_rule import require_finished_parent
 from scripts.native_road_learning import registered_native_cases
 from scripts.prepare_native_evaluation_recovery import evaluation_lineage
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
+from scripts.audit_native_action_availability import verify_source
 
 
 def transfer_protocol(old, reference, lineage, now, wall_seconds, failure_memo=False):
@@ -94,9 +95,9 @@ def memo_source_overrides(parent):
             current = current.replace(addition, original)
         if current != (parent / 'source' / name).read_text(encoding='utf-8'):
             raise ValueError('Memo probe would change unrelated execution code: ' + name)
+    protocol = read(parent / 'protocol.json')
     for name in ('navstack/planning.py', 'navstack/world.py', 'navstack/road_grid.py', 'navstack/subgoals.py'):
-        if sha(ROOT / name) != sha(parent / 'source' / name):
-            raise ValueError('Memo geometric backend differs: ' + name)
+        verify_source(ROOT / name, parent / 'source' / name, protocol['source_hashes'][name])
     return [*changes, 'navstack/planner_memo.py']
 
 
