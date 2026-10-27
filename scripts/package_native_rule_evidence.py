@@ -19,7 +19,7 @@ from scripts.package_native_continuation import portable_metadata,scan_payload,s
 def package(batches,output):
     output=Path(output);temporary=output.with_suffix(output.suffix+'.partial')
     if output.exists() or temporary.exists():raise FileExistsError('Preserve existing complete or partial asset')
-    files={};changes={};audits={};payloads={}
+    files={};changes={};audits={};payloads={};invalid_auxiliary_json=[]
     for batch in map(Path,batches):
         partial=not (batch/'summary.json').exists()
         rebuilt=audit(batch,allow_completed_prefix=partial)
@@ -42,18 +42,25 @@ def package(batches,output):
         for path in sorted(batch.rglob('*')):
             if not path.is_file() or '__pycache__' in path.parts or path.suffix not in SUFFIXES:continue
             relative=batch.name+'/'+path.relative_to(batch).as_posix()
-            original=payload=path.read_bytes();edits=[]
+            original=payload=path.read_bytes();edits=[];empty_failed_output=False
             if path.suffix=='.json':
-                value=portable_metadata(read(path),edits)
+                try:value=portable_metadata(read(path),edits)
+                except json.JSONDecodeError as exc:
+                    if path in protected or original.strip():raise
+                    # A failed preflight may leave its exclusive output empty.
+                    # Preserve those bytes and label them, never fabricate JSON.
+                    invalid_auxiliary_json.append({'file':relative,'error':str(exc),'sha256':sha(original)})
+                    value=None;empty_failed_output=True
                 if edits:
                     if path in protected:raise ValueError('Cannot redact hash-bound raw input: '+relative)
                     payload=json.dumps(value,indent=2,ensure_ascii=False).encode()
-            scan_payload(path.name,payload)
+            scan_payload(path.stem+'.txt' if empty_failed_output else path.name,payload)
             if relative in payloads:raise ValueError('Duplicate batch/file selection')
             payloads[relative]=payload;files[relative]={'sha256':sha(payload),'bytes':len(payload)}
             if edits:changes[relative]={'original_sha256':sha(original),'export_sha256':sha(payload),'changes':edits}
     manifest={'schema_version':1,'scope':'All selected rule-only development conditions, including failures and declared incomplete prefixes; no PPO, final confirmation or independent-seed claim',
         'audits':audits,'files':files,'metadata_transformations':changes,
+        'invalid_auxiliary_json_preserved':invalid_auxiliary_json,
         'repository_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         'repository_has_local_changes':bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip()),
         'packager_sha256':sha(Path(__file__).read_bytes()),'new_controls':0,'optimizer_updates':0}
