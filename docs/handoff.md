@@ -1,4 +1,4 @@
-# Current handoff — 2026-10-27 19:59 local
+# Current handoff — 2026-10-27 20:30 local
 
 Continue the original thesis research objective. Do not restart the project,
 restore the old plant, lower acceptance gates, or claim final completion.
@@ -38,8 +38,10 @@ supersede its pending statuses. Never rerun an already activated batch.
 
 ## Actually running
 
-115212 native_corrective_bc is ACTIVE,worker62976/guard40084,launched19:54,
-deadline epoch1793103858.417. Source379files validates. Starts from the
+115212 native_corrective_bc STOPPED with an infrastructure cleanup failure
+beforecase10reset. Parent guardexit1/reasonNone; owned_empty_server_stopped
+verified. Original3,578evaluationcontrols retained/charged; no complete result.
+Checkpoint model/norm/RNG/config preserved byte-exact. It starts from the
 phase4initializer,adds544actor-only MSE steps at1e-4with corrective weight20,
 2336cumulative supervised steps,zeroPPO. All4329originalteacherrows are now
 training; NO holdout claim. Normalization/RNG files copied byte-exact from
@@ -55,24 +57,39 @@ executed producer,original/exactdatasets and proofs. No new controls/PPO.
 Actor refit charges16717physical input controls:4329teacher+5265queried learner
 source+7123parent selection evaluation. Further preparation preserves ancestor
 costs/deduplicates already charged inputs; do not reset to teacher cost alone.
-Launcher session47845/log runs/native_corrective_B1_launcher_20261027.log.
+Original launcher session47845 terminated;failure/partial traces remain.
+../reports/native_corrective_B1_interruption_recovery_20261027.json.
 
-Bounded conditional PPO helper65484 is ACTUALLY waiting for115212normalguard/
+ACTUALLY ACTIVE:122049 native_evaluation_recovery,worker69496/guard63336,
+deadline epoch1793105757.817. Same379frozen source files except2harness files:
+bridge actor cleanup and recovery preparer. No navstack/actuation/planning/
+policy changes. ALL12conditions reevaluated,not stitched from partialoutcomes.
+Source validates. Missing teacher NPZ was restored with its already-declared
+SHA;protocol/source bytes were not rewritten. Launcher session80455/log
+runs/native_corrective_B1_recovery_launcher_20261027.log.
+Recovery input cost20,295=16,717prior+3,578interruptedcontrols; no fitting/PPO.
+Cleanup accepts false-destroy only after verified worldabsence,usingthe
+existing one cleanup tick as retirement fence; survivors/RPC failures stillfail.
+Pure evaluation prefix audit validateszero counters,empty optimization and
+exact checkpoint bytes without fabricating a training heartbeat.65targeted
+cleanup/recovery/case tests pass7.81s. Original failed prepare log remains.
+
+Bounded conditional PPO helper53976 is ACTUALLY waiting for122049normalguard/
 ownedcleanup. Entry gates declared BEFORE evaluation:>=9/12,eachfamily>=3/4,
 zero unsafe. If qualified,prepare/launch20,480nominal real PPO controls,
 7200swall,log_std=-4,guarded_progress_v1;else record rejection/noPPO.
-Script runs/continue_corrective_B1_if_qualified_20261027.py;
-receipt115212/qualified_ppo_queue_execution.json. Do not launchduplicates.
-Earlier helpers19628/69348 rejected102445/112446 and terminated.
+Script runs/continue_recovered_corrective_B1_if_qualified_20261027.py;
+receipt122049/qualified_ppo_queue_execution.json. Do not launchduplicates.
+Earlier helpers19628/69348 rejected102445/112446;65484stopped on115212failure.
 
 ## Publication and reproduction
 
 Branch feature/physical-hierarchical-ppo,correctremote
 https://github.com/Leo-7GOAT/Intelligent-driving-system.git;authenticatedLeo-7GOAT.
-Code5ababeb is actually pushed. Root33split/ordered/view/gate checks pass16.43s;
-independentcheckout5ababeb passes33in10.20s. Hosted5ababebCI40496081032passes
-518/15skips/4CARLA exclusions190.91s. Newcorrectiveactor/input-cost code passes
-35root checks9.66s; do not inherit518onto later source without actualnewCI.
+Codefce4fdc is actually pushed. HostedCI40500309114passes530/15skips/4CARLA
+exclusions193.46s. Root35correctiveactor/cost checks pass9.66s;independent
+checkoutfce4fdc passes35in13.19s. The subsequent cleanup/recovery fixes have
+65targeted passes; hosted/independent checks must be verified separately.
 
 Existing prereleasev0.2.0-dev.20261022 has3new12case rule/BCcapsules actually
 downloaded without auth and independently reproduced:1321files/18591controls/
@@ -87,7 +104,8 @@ Independent CLI reproduction COMPLETE under5ababeb:all51429rawcontrols,
 New ordered/split/corrective models remainlocal.
 
 Keep disk12GiB/RAM4GiB/GPU85C floors and original wallcaps. CARLA0.9.15 onD;
-main.venv;isolated.carla-python37 client;ownedports2200..2202,neverforeign2101/2.
+main.venv;isolated.carla-python37 client. Derive ports from registered protocol
+(currentactualRPC2100); never stop a foreign owner based on port number alone.
 No final research acceptance:healthy sufficiently trained B1,PPOvalue vsstrong
 B3,feedback contribution,5independentseeds,120newpairedfinalconditions,
 unseen transfer,fullB2/frequency/shared-safety/control ablations remainrequired.

@@ -19,6 +19,38 @@ def prefix_rows(path):
     return rows, error
 
 
+def frozen_evaluation_prefix(folder,protocol):
+    """Authenticate zero-learning evaluation without inventing a heartbeat."""
+    if (not protocol.get('evaluation_only') or protocol.get('controlled_budget_per_method')!=0
+            or protocol.get('method_budgets',{}).get(folder.name)!=0):
+        raise ValueError('Missing heartbeat is not a registered zero-learning evaluation')
+    summary=json.loads((folder/'summary.json').read_text(encoding='utf-8'))
+    name=json.loads((folder/'latest_checkpoint.json').read_text(encoding='utf-8'))['folder']
+    if Path(name).name!=name:raise ValueError('Invalid frozen checkpoint identity')
+    checkpoint=folder/name;metadata=json.loads((checkpoint/'metadata.json').read_text(encoding='utf-8'))
+    if (not summary.get('reload_exact') or summary.get('stopped_reason') is not None
+            or any(type(record.get(key)) is not int or record[key]!=0
+                   for record in (summary,metadata) for key in ('physics_steps','actions','optimizer_steps'))
+            or (folder/'optimization.jsonl').read_bytes().strip()):
+        raise ValueError('Evaluation prefix contains unverified learning')
+    for filename,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256'),('resume_state.pkl','resume_state_sha256')]:
+        if hashlib.sha256((checkpoint/filename).read_bytes()).hexdigest()!=metadata[key]:
+            raise ValueError('Frozen evaluation checkpoint changed')
+        if filename!='resume_state.pkl' and (folder/filename).read_bytes()!=(checkpoint/filename).read_bytes():
+            raise ValueError('Evaluated model/normalizer differs from checkpoint')
+    if (folder/'config.json').read_bytes()!=(checkpoint/'config.json').read_bytes():
+        raise ValueError('Frozen evaluation configuration changed')
+    for path in folder.glob('transitions*.gz'):
+        rows,error=prefix_rows(path)
+        if rows or error:raise ValueError('Zero-learning evaluation has nonempty/invalid training trace')
+    rows,error=prefix_rows(folder/'evaluation_trace.jsonl.gz')
+    count=sum(len(row['info']['trace']) for row in rows)
+    return {'state':'interrupted_frozen_evaluation','readable_trace_controls':0,
+        'evaluation_controls_readable_lower_bound':count,'evaluation_trace_error':error,
+        'consumed_controls_lower_bound':count,'unknown_unflushed_tail':error is not None,
+        'checkpoint':name,'scope':'Authenticated zero-learning saved model with readable partial evaluation. No synthetic training heartbeat or completed endpoint claim.'}
+
+
 def audit(batch):
     batch = Path(batch)
     protocol = json.loads((batch/'protocol.json').read_text(encoding='utf-8'))
@@ -37,6 +69,9 @@ def audit(batch):
         # learner heartbeat. Do not treat other missing-heartbeat cases as zero
         # cost: a bridge or any additional artifact makes that inference unsafe.
         if not (folder/'heartbeat.json').exists():
+            if protocol.get('evaluation_only'):
+                methods[method]=frozen_evaluation_prefix(folder,protocol)
+                continue
             failure_path = batch/'failure.json'
             failure = json.loads(failure_path.read_text(encoding='utf-8')) if failure_path.exists() else {}
             entries = {p.name for p in folder.iterdir()}

@@ -42,8 +42,10 @@ class Bridge:
 
     def clear(self):
         had_actors=bool(self.owned)
+        original=list(self.owned)
         failures=[]
         survivors=[]
+        pending=[]
         for a in reversed(self.owned):
             try:
                 if hasattr(a,"stop"):a.stop()
@@ -51,12 +53,18 @@ class Bridge:
                 failures.append("stop actor %s: %s" % (a.id,exc))
             try:
                 if a.is_alive and not a.destroy():
-                    raise RuntimeError("destroy returned false")
+                    # A stale Python proxy may still report alive after Unreal
+                    # has already removed an owned actor. Accept only explicit
+                    # world absence; a surviving actor or failed RPC still fails.
+                    if self.world.get_actor(a.id) is not None:
+                        pending.append(a)
+                        continue
                 self.retired_ids.add(a.id)
             except Exception as exc:
                 survivors.append(a)
                 failures.append("destroy actor %s: %s" % (a.id,exc))
-        self.owned=list(reversed(survivors));self.actor=None
+        unresolved={a.id for a in survivors+pending}
+        self.owned=[a for a in original if a.id in unresolved];self.actor=None
         if failures:
             raise RuntimeError("Owned actor cleanup incomplete: " + "; ".join(failures))
         if had_actors:
@@ -64,6 +72,20 @@ class Bridge:
             # the next episode spawns replacements. This is never a policy interaction.
             self.world.tick(15.)
             time.sleep(.05)
+        # Reuse the one existing cleanup tick as a retirement fence. No extra
+        # policy tick, destroy request or foreign actor manipulation is added.
+        for a in pending:
+            try:
+                if self.world.get_actor(a.id) is not None:
+                    raise RuntimeError("destroy returned false")
+                self.retired_ids.add(a.id)
+            except Exception as exc:
+                survivors.append(a)
+                failures.append("destroy actor %s: %s" % (a.id,exc))
+        unresolved={a.id for a in survivors}
+        self.owned=[a for a in original if a.id in unresolved]
+        if failures:
+            raise RuntimeError("Owned actor cleanup incomplete: " + "; ".join(failures))
 
     def loc(self,x,y,z=None):
         z=getattr(self,"spawn_z",.6) if z is None else z

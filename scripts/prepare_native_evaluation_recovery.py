@@ -1,5 +1,6 @@
 """Resume an interrupted endpoint's full development evaluation without learning."""
 import argparse
+import re
 from copy import deepcopy
 from datetime import datetime,timezone
 from pathlib import Path
@@ -12,21 +13,23 @@ sys.path.insert(0,str(ROOT))
 from navstack.experiments import write_json
 from navstack.process_lease import ProcessLease
 from navstack.research import resources_ok
-from scripts.audit_native_method_endpoint import read,sha
+from scripts.audit_native_method_endpoint import read,sha,read_prefix
 from scripts.audit_interrupted_native import audit as interrupted_audit
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 from scripts.evaluate_native_rule import require_finished_parent
 from scripts.audit_native_method_endpoint import audit as endpoint_audit
 
 
-def evaluation_lineage(prior, summary, parent_name, checkpoint_name, method):
+def evaluation_lineage(prior, summary, parent_name, checkpoint_name, method,additional_evaluation_controls=0):
     """A frozen replay keeps uncertainty and consumed costs from every ancestor."""
+    if type(additional_evaluation_controls) is not int or additional_evaluation_controls<0:
+        raise ValueError('Additional interrupted evaluation cost must be a nonnegative integer')
     chain=list(prior.get('recovery_chain',[]))
     if not chain or chain[-1]!=parent_name:
         chain.append(parent_name)
     return {'checkpoint':'resume/'+method,'parent_batch':parent_name,'parent_checkpoint':checkpoint_name,
             'lineage_controls':summary['lineage_control_steps'],
-            'consumed_controls_lower_bound':summary['charged_control_steps_lower_bound'],
+            'consumed_controls_lower_bound':summary['charged_control_steps_lower_bound']+additional_evaluation_controls,
             'retained_optimizer_steps':prior.get('retained_optimizer_steps',0)+summary['optimizer_steps'],
             'unknown_unflushed_parent_tail':bool(prior.get('unknown_unflushed_parent_tail',False)),
             'recovery_chain':chain}
@@ -40,11 +43,15 @@ def verified_interruption(parent):
         disk_stop = (guard.get('reason') is None and type(guard.get('exit_code')) is int
                      and guard['exit_code'] == 1 and (parent/'failure.json').is_file()
                      and read(parent/'failure.json').get('error') == "RuntimeError('Disk below12GiB')")
-        if not disk_stop and (guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int):
+        actor_stop=(guard.get('reason') is None and type(guard.get('exit_code')) is int
+                    and guard['exit_code']==1 and (parent/'failure.json').is_file()
+                    and re.fullmatch(r"InfrastructureFailure\('RuntimeError: Owned actor cleanup incomplete: destroy actor [1-9][0-9]*: destroy returned false'\)",
+                                     read(parent/'failure.json').get('error','')) is not None)
+        if not (disk_stop or actor_stop) and (guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int):
             raise ValueError('Require a verified resource-interrupted parent, never a live task')
         if read(parent/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped':
             raise ValueError('Parent owned-server cleanup is incomplete')
-        if disk_stop:
+        if disk_stop or actor_stop:
             from navstack.process_lease import pid_alive
             worker=read(parent/'worker_process.json');watch=read(parent/'guard.json')
             server=read(parent/'infrastructure/server_start.json')
@@ -55,7 +62,7 @@ def verified_interruption(parent):
                     or stop.get('post_stop_tcp')!=[] or stop.get('post_stop_udp')!=[]
                     or any(type(pid) is not int or pid<=0 or pid_alive(pid) for pid in identities)):
                 raise ValueError('Resource-interrupted processes or cleanup are live, ambiguous or mismatched')
-            return 'worker_disk_below_12GiB'
+            return 'owned_actor_cleanup_failure' if actor_stop else 'worker_disk_below_12GiB'
         return 'wall_deadline'
     from navstack.process_lease import pid_alive
     receipt=read(parent/'process_absence_receipt.json')
@@ -113,14 +120,30 @@ def prepare(parent,method='H',original_goals=False):
         else:
             if not (parent/'interruption_audit.json').exists():interrupted_audit(parent)
             prefix=read(parent/'interruption_audit.json')
+        lost_evaluation_controls=0
+        if not original_goals:
+            trace=folder/'evaluation_trace.jsonl.gz'
+            if trace.exists():
+                rows,_=read_prefix(trace)
+                lost_evaluation_controls=sum(len(row['info']['trace']) for row in rows)
+            if old['methods']==[method]:
+                # Every applied bridge control belongs to this method. Charge
+                # even a readable response whose evaluation row was unflushed.
+                applied=sum(v['applied_controls'] for v in prefix['bridge_streams'].values())
+                lost_evaluation_controls=max(lost_evaluation_controls,applied-summary['physics_steps'])
         batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_evaluation_recovery')
         batch.mkdir();(batch/'infrastructure').mkdir()
         shutil.copytree(parent/'source',batch/'source',ignore=shutil.ignore_patterns('__pycache__'))
         shutil.copytree(parent/'calibration',batch/'calibration')
+        if old.get('extra_supervision'):
+            dataset=parent/'measured_demonstrations.npz'
+            if not dataset.is_file() or sha(dataset)!=old['extra_supervision']['dataset_sha256']:
+                raise ValueError('Preserve the registered teacher dataset through evaluation recovery')
+            shutil.copy2(dataset,batch/'measured_demonstrations.npz')
         destination=batch/'resume'/method;destination.parent.mkdir()
         shutil.copytree(origin,destination)
         if verified_checkpoint_metadata(destination)!=metadata:raise ValueError('Copied checkpoint changed')
-        overrides=['native_road_learning.py','audit_native_method_endpoint.py','watch_existing_pair.py','prepare_native_evaluation_recovery.py','run_carla_owned_foreground.ps1']
+        overrides=['native_road_learning.py','audit_native_method_endpoint.py','watch_existing_pair.py','prepare_native_evaluation_recovery.py','run_carla_owned_foreground.ps1','carla_bridge37.py']
         for name in overrides:shutil.copy2(ROOT/'scripts'/name,batch/'source/scripts'/name)
         write_json(batch/'parent_interruption_audit.json',prefix)
         write_json(batch/'parent_training_summary.json',summary)
@@ -136,8 +159,9 @@ def prepare(parent,method='H',original_goals=False):
             created_epoch=now,deadline_epoch=now+1800,parent_batch=parent.name,
             parent_interruption_audit_sha256=sha(batch/'parent_interruption_audit.json'),
             prior_applied_controls_readable_lower_bound=sum(v['applied_controls'] for v in prefix['bridge_streams'].values()),
-            prior_attempt_scope='Original partial evaluation/streams remain immutable; all4cases reevaluated because original batch is not a complete audited endpoint',
-            recovery={method:evaluation_lineage(prior,summary,parent.name,origin.name,method)},
+            interrupted_evaluation_controls_charged=lost_evaluation_controls,
+            prior_attempt_scope='Original partial evaluation/streams remain immutable; all registered conditions reevaluated because original batch is not a complete audited endpoint',
+            recovery={method:evaluation_lineage(prior,summary,parent.name,origin.name,method,lost_evaluation_controls)},
             harness_overrides=['scripts/'+n for n in overrides],resource_limits={**old['resource_limits'],'wall_seconds':1800})
         if original_goals:
             protocol.update(routes=deepcopy(old['curriculum']['original_routes']),original_goal_transfer=True,

@@ -78,3 +78,25 @@ def test_frozen_replay_cannot_drop_unknown_tail_lost_controls_or_retained_update
     repeated=evaluation_lineage(replay,{**summary,'optimizer_steps':0},'last_training','final','B1')
     assert repeated['recovery_chain']==replay['recovery_chain']
     assert repeated['retained_optimizer_steps']==660 and repeated['unknown_unflushed_parent_tail']
+
+
+@pytest.mark.parametrize('fault',[None,'other_error','live','unclean'])
+def test_actor_cleanup_interruption_requires_exact_error_and_absent_owned_lifecycle(tmp_path,monkeypatch,fault):
+    fixture(tmp_path,monkeypatch)
+    write_json(tmp_path/'guard_final.json',{'reason':None,'exit_code':1,'worker_pid':12341})
+    stop={'status':'owned_empty_server_stopped','shipping_pid':12344,'post_stop_tcp':[],'post_stop_udp':[]}
+    error="InfrastructureFailure('RuntimeError: Owned actor cleanup incomplete: destroy actor 57: destroy returned false')"
+    if fault=='other_error':error="InfrastructureFailure('arbitrary bridge failure')"
+    if fault=='live':monkeypatch.setattr('navstack.process_lease.pid_alive',lambda pid:True)
+    if fault=='unclean':stop['post_stop_udp']=[{'port':2201}]
+    write_json(tmp_path/'failure.json',{'error':error});write_json(tmp_path/'infrastructure/server_stop.json',stop)
+    if fault is None:assert verified_interruption(tmp_path)=='owned_actor_cleanup_failure'
+    else:
+        with pytest.raises(ValueError):verified_interruption(tmp_path)
+
+
+def test_interrupted_evaluation_cost_is_not_lost_on_zero_PPO_replay():
+    summary={'lineage_control_steps':0,'charged_control_steps_lower_bound':16717,'optimizer_steps':0}
+    recovered=evaluation_lineage({},summary,'failed_eval','checkpoint_000000000','B1',5100)
+    assert recovered['consumed_controls_lower_bound']==21817
+    assert recovered['lineage_controls']==recovered['retained_optimizer_steps']==0

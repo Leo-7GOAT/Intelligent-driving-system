@@ -2,7 +2,7 @@
 
 [十二条件开发对照已完成](../reports/native_twelve_case_completed_20261027.json)：同四条已知道路包含弯道停车、静态绕障、行人横穿。规则 B3 为 **12/12**；额外教师监督初始化、**PPO 更新为零**的 H、H0 各为 **11/12**；直接控制 B1 为 **4/12**，其中六次碰撞或越界。B1 仍不合格，这些结果尚未证明 PPO 价值、分层优势或反馈贡献。
 
-[真实 CARLA PPO 双方法批次](../reports/native_twelve_case_PPO_complete_20261027.json)已完整结束：**H11/12、H0为10/12**，实际训练20,541/20,623控制步，各650次Adam，合计 **51,429原始控制帧**审计通过。H保持监督成绩，H0退化一个条件；单种子差异不能证明反馈贡献，也未胜过12/12的强规则。[保留候选顺序的B1](../reports/native_twelve_case_ordered_B1_endpoint_20261027.json)仅 **3/12**，低于原版4/12，已拒绝启动PPO。它的弯道覆盖改善，静态绕障退化；改变拟合留出位置的独立登记对照正在评估，尚无改善结论。
+[真实 CARLA PPO 双方法批次](../reports/native_twelve_case_PPO_complete_20261027.json)已完整结束：**H11/12、H0为10/12**，实际训练20,541/20,623控制步，各650次Adam，合计 **51,429原始控制帧**审计通过。H保持监督成绩，H0退化一个条件；单种子差异不能证明反馈贡献，也未胜过12/12的强规则。[保留候选顺序的B1](../reports/native_twelve_case_ordered_B1_endpoint_20261027.json)为 **3/12**；[改变拟合划分后](../reports/native_twelve_case_phase4_B1_endpoint_20261027.json)为 **6/12**，均未通过PPO入口门槛。后续纠偏拟合版因自有actor清理异常中断，正用相同模型完整补评；原3,578控制帧保留并计入成本。
 
 [此前较小探索强度 H/H0 PPO 对照已全部结束](../reports/native_shared_small_exploration_complete_20261027.json)，均为 **2/4**，合计 **46,493** 个真实训练与评估控制帧已审计，未形成总体反馈优势。[较小噪声 B1 PPO](../reports/native_B1_small_exploration_20261027.json)仍为 2/4，其[公开模型及原始数据包](model_card.md#public-smaller-exploration-b1)已实际下载并独立复现全部 23,025 控制帧。
 
