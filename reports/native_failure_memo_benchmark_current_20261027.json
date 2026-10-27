@@ -1,0 +1,60 @@
+{
+  "scope": "Offline geometric search benchmark on completed audited CARLA states. Per failing case, most frequent exact query; lookup timings exclude first fill. Not end-to-end speedup, driving improvement or physical infeasibility proof.",
+  "batch": "20261027T035356Z_native_supervised_ppo",
+  "method": "H",
+  "raw_audit_sha256": "23b010bdd520aa7a9f9236076021f55a970be06d83e6e035ac4f19ff8b77d8da",
+  "script_sha256": "1c04ec16b0ab8fdda752d319dc477a74885583e5c26f19a31ab79f8cc4e806d0",
+  "memo_source_sha256": "76876eb99832bdf573d958030a77454dcb7b6bcd869b06ef54785728a41a85ea",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "cases": [
+    {
+      "case_id": 1,
+      "start": [
+        5.999997232460031,
+        6.000001739162947,
+        6.657902762441381e-08
+      ],
+      "goal": [
+        12.112068625811276,
+        11.313542633558056,
+        0.764199459585156
+      ],
+      "observed_exact_queries": 90,
+      "status": "no_path",
+      "failure_reason": "open_set_exhausted",
+      "original_expanded_nodes": 138,
+      "uncached_single_wall_seconds": 0.09260979993268847,
+      "memo_fill_wall_seconds": 0.0889112000586465,
+      "cache_lookup_count": 100,
+      "cache_lookup_wall_seconds_mean": 3.274299670010805e-05,
+      "cache_lookup_wall_seconds_max": 0.0002568999771028757,
+      "canonical_search_outcomes_identical": true,
+      "new_nodes_per_cache_lookup": 0
+    },
+    {
+      "case_id": 3,
+      "start": [
+        8.266805925965398,
+        19.59066615380626,
+        0.0019436415425673204
+      ],
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "observed_exact_queries": 80,
+      "status": "timeout",
+      "failure_reason": "search_budget",
+      "original_expanded_nodes": 7200,
+      "uncached_single_wall_seconds": 4.979800599976443,
+      "memo_fill_wall_seconds": 4.980313600040972,
+      "cache_lookup_count": 100,
+      "cache_lookup_wall_seconds_mean": 4.0700999088585375e-05,
+      "cache_lookup_wall_seconds_max": 0.00013870000839233398,
+      "canonical_search_outcomes_identical": true,
+      "new_nodes_per_cache_lookup": 0
+    }
+  ]
+}

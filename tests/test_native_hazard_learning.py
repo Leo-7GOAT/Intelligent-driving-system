@@ -45,6 +45,16 @@ def test_fresh_methods_share_parent_physics_and_actual_hazard_cases_without_inhe
     with pytest.raises(ValueError):registered_native_cases(broken)
 
 
+def test_explicit_failure_memo_registration_changes_compute_only_for_all_methods(tmp_path):
+    parent(tmp_path)
+    ordinary=learning_protocol(tmp_path,4096,7200,11,['H','H0','B1'])
+    memo=learning_protocol(tmp_path,4096,7200,11,['H','H0','B1'],failure_memo=True)
+    assert memo.pop('planner_failure_memo')=='exact_static_failure_v1'
+    assert memo.pop('planner_compute_intervention')
+    assert memo==ordinary
+    with pytest.raises(ValueError):learning_protocol(tmp_path,4096,7200,11,['H'],failure_memo=1)
+
+
 @pytest.mark.parametrize('controls,wall,seed,methods',[(True,7200,11,['H']),(4096,10,11,['H']),
     (4096,7200,True,['H']),(4096,7200,11,['H','H']),(4096,7200,11,['B3'])])
 def test_unregistered_hazard_learning_budget_or_method_is_rejected(tmp_path,controls,wall,seed,methods):

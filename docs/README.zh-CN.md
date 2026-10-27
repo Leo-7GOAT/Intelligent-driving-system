@@ -1,6 +1,8 @@
 # 低速车辆分层决策与控制研究
 
-H/H0与直接B1的教师初始化均在已知完整静态道路达到3/4，PPO更新均为0。两轮已完成B1真实PPO续训仍0/4；H/H0真实PPO正在执行，低学习率B1对照已排队。当前均为单种子开发条件，尚未达到正式研究验收。
+教师初始化后的 H/H0 已完成真实 PPO 训练，四条已知静态道路冻结结果分别为 **2/4、0/4**，均未保住监督初始化的 3/4。共 47,506 帧训练与评估控制记录通过 CARLA 原始对账。两轮已完成 B1 PPO 配置仍为 0/4；低学习率对照正在训练。当前是单种子开发结果，尚未达到研究验收。
+
+[H/H0 完整结果与成本](../reports/native_shared_supervised_ppo_20261027.json)。可选的精确静态失败搜索缓存已通过组件等价性测试与[实测查询基准](../reports/native_failure_memo_benchmark_current_20261027.json)，对应 CARLA 计算成本探测已排队；尚不能据此宣称闭环加速或任务能力改善。
 
 [Execution and queue commands](native_execution.md) · [Measured retention report](../reports/native_supervised_retention_20261027.md)
 

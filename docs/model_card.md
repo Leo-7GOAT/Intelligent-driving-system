@@ -1,5 +1,17 @@
 # Development model card
 
+## Completed supervised-initialized PPO development
+
+The [complete H/H0 record](../reports/native_shared_supervised_ppo_20261027.json)
+contains 41,426 new real training controls and 6,080 frozen evaluation controls,
+all 47,506 frames raw-audited. Both have 650 PPO Adam steps. H reaches 2/4 and
+H0 reaches 0/4 on the same four known static roads, versus 3/4 each before PPO.
+The shared teacher contributes 1,926 unique physical controls; separate fits,
+teacher access and PPO costs are disclosed. Neither establishes PPO value over
+the strong rule or formal hierarchy advantage. B1 lower-LR evaluation is pending.
+These newer models are separate from the teacher-only public capsule below;
+their complete local raw evidence is retained and no new capsule is claimed here.
+
 ## Public measured teacher initialization and rejected PPO catalog
 
 [Actual public-download/independent reproduction](../reports/native_measured_public_reproduction_20261027.json):
@@ -18,8 +30,8 @@ python scripts/reproduce_native_asset.py --archive native_arc_ppo_seed11_2026102
 ```
 
 Each output directory must be new. [Method/cost/failure report](../reports/native_measured_bc_20261027.md).
-The current real-PPO continuation from teacher initialization is not these saved
-weights and remains pending. Teacher supervision, continuous20Hz simulated actions
+The newer real-PPO continuations from teacher initialization are not these saved
+weights; see their separate completed results above. Teacher supervision, continuous20Hz simulated actions
 and shared geometry computations are disclosed together; this is not ordinary
 PPO or a formal hierarchy comparison. Wall20Hz is not achieved. The existing
 prerelease tag is unchanged, and research acceptance is still unmet.

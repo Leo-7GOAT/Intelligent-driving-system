@@ -1,4 +1,37 @@
-# Current work — 2026-10-27 12:44 local
+# Current work — 2026-10-27 13:03 local
+
+`035356` H/H0 is COMPLETE, normally guarded and cleaned up. Results H2/4 and
+H0 zero/4, versus teacher-only3/4 each. New training controls 41,426, frozen
+controls 6,080; all47,506 raw-audited. Each arm has650 PPO Adam steps. See
+`../reports/native_shared_supervised_ppo_20261027.json`; one seed only, no formal
+paired seed interval or hierarchy/collaboration/PPO-value conclusion.
+
+The local queue actually started `040132` lower-LR B1 at12:55; worker4952,
+guard64452 were OS-verified live, with>7,800controls. Do not restart it.
+`043046` frozen B1 crossing-scene probe remains queued after040132 (queue13384).
+New `045435` frozen H/H0/B1 compute probe remains queued after043046
+(queue57768/session85430). This uses the completed rejected arc policies from
+020918 on their ORIGINAL static scenes, zero training, with explicit exact
+failure-memo hooks only. Never treat its results as new independent policies.
+
+The cache is implemented, opt-in and source-frozen per run. It skips dynamics
+and wall-clock budgets; exact input/content changes invalidate entries. Traces
+record zero new nodes on a hit and original nodes separately. Actual offline
+reproduction of H's failed cases matches status/reason/path/cost and original
+node counts. Current lookup benchmark is
+`../reports/native_failure_memo_benchmark_current_20261027.json`; ~4.98s original
+7200-node search versus~.000041s mean subsequent lookups, excluding cache fill.
+No end-to-end speedup or driving benefit is yet established. Earlier benchmark
+receipts remain under `runs/memo_benchmark_history_20261027`.
+
+`045435` preserves the first cache source snapshot (SHA0781829bc5d9...), for
+fixed registered settings. ROOT subsequently also handles replacement of the
+backend config object; do not mutate that frozen probe. ROOT tests:50 integration
+checks, followed by18 cache checks covering the two added invalidation cases.
+Current cache source still needs publication, hosted CI and independent checkout
+verification. The prior417-pass hosted CI below belongs to5073ad9, not this change.
+
+# Earlier state — 2026-10-27 12:44 local
 
 H in `035356` is COMPLETE and raw-audited: 20,704 new training controls,
 650 PPO Adam steps, 17 success / 15 deadline training ends. Frozen endpoint is

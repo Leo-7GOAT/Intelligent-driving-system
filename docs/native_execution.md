@@ -65,3 +65,27 @@ An existing registration is reused through its recorded batch, never silently
 prepared or driven again. This probe uses inspected development scenes. The rule
 reference supplies scene provenance, and can have an older execution version;
 its success rate alone is not a matched architecture comparison.
+
+For an explicit frozen compute probe on the original actor scene, use the same
+preparer with `--failure-memo` and an audited reference rule with that same scene.
+The preparer checks that execution-source changes consist only of the memo hooks
+and trace metadata, and that the geometric backend files are unchanged. This
+does not retrain a policy or modify an already registered batch.
+
+Fresh `prepare_native_hazard_learning.py` jobs also accept `--failure-memo`.
+The registered `exact_static_failure_v1` cache uses exact float64 start/goal
+inputs, current geometry content, vehicle and planner settings. It is bounded
+to 128 entries, skips dynamic and wall-clock-limited searches, and stores only
+failed deterministic searches. Geometry or settings changes invalidate entries.
+A cache hit records zero newly expanded nodes plus the original search node
+count separately. It does not establish physical infeasibility or change actions,
+rewards, trajectory generation, control or success gates.
+
+Offline component reproduction, requiring an already audited complete endpoint:
+
+```powershell
+python scripts/benchmark_native_failure_memo.py --batch runs/COMPLETED_BATCH --method H --output runs/NEW_MEMO_BENCHMARK.json
+```
+
+This uses saved CARLA states without new driving. Lookup timings exclude the
+initial full search; they are not end-to-end latency or realtime evidence.

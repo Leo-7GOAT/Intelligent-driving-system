@@ -42,8 +42,9 @@ def apply_guarded_progress(protocol,config):
             'scope':'Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee.'})
 
 
-def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=False,guarded_progress=False):
+def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=False,guarded_progress=False,failure_memo=False):
     old=read(parent/'protocol.json');config=EnvConfig.from_dict(old['config']).to_dict()
+    if type(failure_memo) is not bool:raise ValueError('Failure memo must be explicitly enabled or disabled')
     if (not old.get('native_hazard') or config['subgoal_mode']!='route_frame_terminal'
             or len(old['routes'])!=4):
         raise ValueError('Require four full native hazard development roads')
@@ -90,17 +91,21 @@ def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=
     if resolved!=config:
         raise ValueError('Fresh H would change the parent shared task/controller/vehicle configuration')
     registered_native_cases(protocol)
+    if failure_memo:
+        from navstack.planner_memo import VERSION
+        protocol['planner_failure_memo']=VERSION
+        protocol['planner_compute_intervention']={'scope':'Exact static deterministic failed searches only; unchanged actions, rewards and task gates. Cache hits charge zero new nodes and report original search nodes separately. No driving-performance or realtime claim.'}
     return protocol
 
 
-def prepare(parent,controls=4096,wall_seconds=7200,seed=11,methods=('H','H0','B1'),endpoint_filter=False,guarded_progress=False):
+def prepare(parent,controls=4096,wall_seconds=7200,seed=11,methods=('H','H0','B1'),endpoint_filter=False,guarded_progress=False,failure_memo=False):
     parent=Path(parent).resolve();require_finished_parent(parent)
     verified=audit(parent)
     if verified!=read(parent/'raw_audit.json'):raise ValueError('Completed B3 raw audit changed')
-    protocol=learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter,guarded_progress)
+    protocol=learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter,guarded_progress,failure_memo)
     healthy,reason=resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free<12*1024**3:raise RuntimeError(str(reason))
-    registration=parent/f'hazard_learning_seed{seed}{"_endpoint" if endpoint_filter else ""}{"_guarded_progress" if guarded_progress else ""}_registration.json'
+    registration=parent/f'hazard_learning_seed{seed}{"_endpoint" if endpoint_filter else ""}{"_guarded_progress" if guarded_progress else ""}{"_memo" if failure_memo else ""}_registration.json'
     with ProcessLease(parent/'hazard_learning_prepare.lock'):
         if registration.exists():raise FileExistsError('This parent/seed already has a fresh learning batch; preserve and continue it')
         batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_hazard_learning')
@@ -134,4 +139,5 @@ if __name__=='__main__':
     parser.add_argument('--methods',nargs='+',choices=['H','H0','B1'],default=['H','H0','B1'])
     parser.add_argument('--endpoint-filter',action='store_true')
     parser.add_argument('--guarded-progress',action='store_true')
-    args=parser.parse_args();prepare(args.parent,args.controls,args.wall_seconds,args.seed,args.methods,args.endpoint_filter,args.guarded_progress)
+    parser.add_argument('--failure-memo',action='store_true')
+    args=parser.parse_args();prepare(args.parent,args.controls,args.wall_seconds,args.seed,args.methods,args.endpoint_filter,args.guarded_progress,args.failure_memo)

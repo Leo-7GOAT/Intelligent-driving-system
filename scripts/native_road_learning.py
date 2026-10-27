@@ -27,6 +27,7 @@ from navstack.native_route import select_routes
 from navstack.research import ResearchRecorder, resources_ok
 from navstack.research import atomic_json
 from navstack.independent_clip_ppo import IndependentClipPPO, load_ppo, GLOBAL_CLIP, INDEPENDENT_CLIP, actor_critic_parameters
+from navstack.planner_memo import configure_planner_memo
 from scripts.carla_steering_audit import guard
 
 
@@ -313,7 +314,7 @@ def run(batch):
             vec = None
             recorder = None
             try:
-                raw = DummyVecEnv([lambda: RecordedRoadEnv(config, client, cases, output)])
+                raw = DummyVecEnv([lambda: configure_planner_memo(RecordedRoadEnv(config, client, cases, output), protocol)])
                 raw.seed(protocol["seed"])
                 recovery=protocol.get('recovery',{}).get(job_name)
                 if recovery:
@@ -522,6 +523,7 @@ def run(batch):
                     mean,var=vec.obs_rms.mean.copy(),vec.obs_rms.var.copy()
                     evaluation_ticks=client.total_ticks
                     evaluation=RecordedRoadEnv(config,client,cases,output) if evaluation_only else CarlaNavigationEnv(config,client,cases)
+                    configure_planner_memo(evaluation, protocol)
                     episodes=[]
                     with gzip.open(output/"evaluation_trace.jsonl.gz","wt",encoding="utf-8") as stream:
                         for case_id,case in enumerate(cases):

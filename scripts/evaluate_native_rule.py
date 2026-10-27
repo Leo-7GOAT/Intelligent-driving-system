@@ -273,6 +273,8 @@ def run(batch):
         config = EnvConfig.from_dict(protocol['config'])
         # Retain H environment semantics; policy_kind identifies rule selection.
         env = CarlaNavigationEnv(config, client)
+        from navstack.planner_memo import configure_planner_memo
+        configure_planner_memo(env, protocol)
         cases = [{'scenario': 'native_curve', 'condition': i, 'native_route': r}
                  for i, r in enumerate(protocol['routes'])]
         if protocol.get('native_hazard'):

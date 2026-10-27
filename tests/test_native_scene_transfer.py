@@ -52,6 +52,18 @@ def test_scene_transfer_keeps_task_semantics_and_lineage_without_training_or_rep
     assert reference == before[1]
 
 
+def test_same_scene_requires_explicit_compute_probe_and_preserves_all_task_semantics():
+    old, reference, lineage = inputs()
+    reference['native_hazard'] = deepcopy(old['native_hazard'])
+    probe = transfer_protocol(old, reference, lineage, 100., 1800, failure_memo=True)
+    assert probe['planner_failure_memo'] == 'exact_static_failure_v1'
+    assert probe['planner_compute_intervention']['same_actor_scene_as_parent']
+    assert probe['native_hazard'] == old['native_hazard'] and probe['recovery'] == lineage
+    assert probe['controlled_budget_per_method'] == 0
+    for method in old['methods']:
+        assert training_config(probe, method, VehicleConfig()) == training_config(old, method, VehicleConfig())
+
+
 @pytest.mark.parametrize('change', ['same_scene', 'changed_route', 'invalid_spawn', 'missing_lineage',
                                   'evaluation_parent', 'previous_transfer', 'named_jobs'])
 def test_transfer_rejects_unregistered_changes_and_missing_provenance(change):

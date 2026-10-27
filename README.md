@@ -1,6 +1,8 @@
 # Executability-aware hierarchical driving research
 
-H/H0teacher initialization and direct B1each reach3/4known full static roads with zero PPO updates. Both completed B1PPO continuations remain0/4. H/H0actual PPO is running; a slower-rate B1diagnostic is queued. All are one-seed development conditions; formal research acceptance remains unmet.
+Teacher-initialized H/H0 complete real PPO training and reach **2/4 and 0/4** on the four known static roads, versus 3/4 before PPO. All 47,506 training/evaluation controls audit against CARLA. The two completed B1 PPO settings remain 0/4; a lower-learning-rate diagnostic is running. These single-seed development results do not meet research acceptance.
+
+[Complete H/H0 results and costs](reports/native_shared_supervised_ppo_20261027.json). An optional exact static-search failure cache has component-equivalence tests and a [measured lookup benchmark](reports/native_failure_memo_benchmark_current_20261027.json); its CARLA compute probe is queued. No end-to-end speedup or driving improvement is established by that benchmark.
 
 [Execution and queue commands](docs/native_execution.md) · [Measured retention report](reports/native_supervised_retention_20261027.md)
 
