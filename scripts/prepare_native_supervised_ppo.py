@@ -16,6 +16,10 @@ from navstack.research import resources_ok
 from scripts.audit_native_method_endpoint import audit, read, sha
 from scripts.evaluate_native_rule import require_finished_parent
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
+from scripts.prepare_native_hazard_learning import apply_guarded_progress
+from scripts.native_road_learning import training_config
+from navstack.config import EnvConfig
+from navstack.experiments import signature
 
 
 def initial_exploration(model, log_std):
@@ -33,7 +37,22 @@ def initial_exploration(model, log_std):
             'initial_log_std': model.policy.log_std.detach().tolist(), 'mean_and_critic_unchanged': True}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3):
+def guarded_initialization(protocol,metadata_config):
+    """Explicit new reward version before ANY PPO update; never rewrite parent."""
+    original=EnvConfig.from_dict(metadata_config['env'])
+    if metadata_config['signature']!=signature(original):
+        raise ValueError('Supervised initialization signature is inconsistent')
+    apply_guarded_progress(protocol,original.to_dict())
+    changed=training_config(protocol,'B1',original.vehicle)
+    before,after=original.to_dict(),changed.to_dict()
+    expected=dict(before['reward']);expected.update(progress_weight=.5,collision=-90.,out_of_bounds=-90.)
+    if {k:v for k,v in before.items() if k!='reward'}!={k:v for k,v in after.items() if k!='reward'} or after['reward']!=expected:
+        raise ValueError('Reward initialization changes unrelated task/control fields')
+    return {**metadata_config,'env':after,'signature':signature(changed),
+            'scope':'Same supervised actor and untouched PPO optimizer, explicitly initialized for guarded_progress_v1 before training'}
+
+
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
@@ -49,7 +68,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3):
     if not healthy or shutil.disk_usage(ROOT).free < 12*1024**3:
         raise RuntimeError(str(reason))
     with ProcessLease(parent/'supervised_ppo_prepare.lock'):
-        registration = parent/'supervised_ppo_registration.json'
+        registration = parent/('supervised_ppo_guarded_registration.json' if guarded_progress else 'supervised_ppo_registration.json')
         if registration.exists():
             raise FileExistsError('Do not repeat the registered supervised-PPO continuation')
         for name, digest in protocol['source_hashes'].items():
@@ -65,6 +84,15 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3):
         shutil.copytree(parent/'calibration', batch/'calibration')
         destination = batch/'resume/B1'
         shutil.copytree(origin, destination)
+        reward_change=None
+        if guarded_progress:
+            original_config=read(origin/'config.json')
+            changed_config=guarded_initialization(protocol,original_config)
+            write_json(destination/'config.json',changed_config)
+            reward_change={'parent_config_sha256':sha(origin/'config.json'),
+                'initialized_config_sha256':sha(destination/'config.json'),
+                'previous_reward':original_config['env']['reward'],'new_reward':changed_config['env']['reward'],
+                'scope':'New reward version before any PPO update; actor/critic architecture and all non-reward environment fields unchanged'}
         torch.set_num_threads(1)
         model = load_ppo(destination/'model.zip', device='cpu')
         change = initial_exploration(model, log_std)
@@ -75,7 +103,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3):
         if sha(destination/'normalization.pkl') != metadata['normalization_sha256']:
             raise ValueError('Supervised observation statistics changed')
         verified_checkpoint_metadata(destination)
-        shutil.copy2(ROOT/'scripts/prepare_native_supervised_ppo.py', batch/'source/scripts/prepare_native_supervised_ppo.py')
+        for name in ('prepare_native_supervised_ppo.py','prepare_native_hazard_learning.py'):
+            shutil.copy2(ROOT/'scripts'/name, batch/'source/scripts'/name)
         now = time.time()
         prior = protocol['recovery']['B1']
         protocol.pop('evaluation_only')
@@ -91,6 +120,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3):
                 'parent_checkpoint': origin.name, 'lineage_controls': 0,
                 'consumed_controls_lower_bound': protocol['extra_supervision']['teacher_controls'],
                 'retained_optimizer_steps': 0, 'unknown_unflushed_parent_tail': False}})
+        if reward_change is not None:
+            protocol['supervised_ppo_intervention']['reward_initialization']=reward_change
         protocol['resource_limits']['wall_seconds'] = wall_seconds
         protocol['source_hashes'] = {p.relative_to(batch/'source').as_posix(): sha(p)
             for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
@@ -108,5 +139,6 @@ if __name__ == '__main__':
     parser.add_argument('--controls', type=int, default=20480)
     parser.add_argument('--wall-seconds', type=int, default=7200)
     parser.add_argument('--log-std', type=float, default=-2.3)
+    parser.add_argument('--guarded-progress',action='store_true')
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress)

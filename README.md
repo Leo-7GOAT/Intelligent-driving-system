@@ -1,5 +1,7 @@
 # Executability-aware hierarchical driving research
 
+Latest [supervised-PPO retention test](reports/native_supervised_retention_20261027.md): the3/4supervised direct model drops to0/4after20,480real PPO controls. All23,427frames verify and observation statistics stay fixed. A matched-initialization shared reward-profile diagnostic is running; no PPO improvement is claimed.
+
 Latest [measured direct-control diagnostic](reports/native_measured_bc_20261027.md):
 extra teacher supervision yields a continuous direct network at **3/4 known
 full static roads**, with zero PPO updates;1,976frozen frames verify. Actual

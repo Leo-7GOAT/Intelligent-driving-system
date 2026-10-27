@@ -1,3 +1,31 @@
+# Current work — 2026-10-27 11:31 local
+
+Active actual CARLA worker:031740native_supervised_ppo (B1only), guard healthy,
+ports2200..2202; more than10kof20,480new controls. It is a matched initialization
+reward-profile diagnostic, NOT a new independent seed. Read actual worker/
+guard/PID identity; never relaunch a started batch. Latest authoritative report:
+../reports/native_supervised_retention_20261027.md and JSON.
+
+024727is complete:20,480new controls/640Adam updates, frozen0/4(three deadlines,
+one bounds), all23,427train/eval frames verify; guard0and owned cleanup normal.
+Teacher behavior3/4was NOT retained. Action MSE rises~217xwith exact unchanged
+observation statistics. Checkpoints and every failure remain.031740starts from
+bit-identical33tensors/normalizer/RNG; reward progress0→.5,collision−30→−90,
+bounds−20→−90are the declared profile. No lower-level or termination change.
+
+Prepared, NOT started:032549native_hierarchical_bc, H/H0frozen teacher initialization,
+896supervised actor steps each,0PPO updates,194macro labels from the same1,926
+physical teacher controls as B1. CARLA endpoints pending; fit accuracy is not
+success. Its wall deadline currently starts at preparation; inspect remaining
+budget before launch after031740owned cleanup. Do not launch against a live
+server or silently repeat fitting. Logs/protocol/checkpoints already exist.
+
+22new profile/categorical/history/recovery-teacher targeted tests pass. Source
+changes still need commit/push and hosted CI. Earlier sourcefcc89b3CI405/3/4and
+published/downloaded capsule receipts remain valid for that source only.
+
+Older records follow; do not override this header.
+
 # Publication update — 2026-10-27 11:02 local
 
 Active real-PPO job remains024727, worker/guard/owned server live and healthy;

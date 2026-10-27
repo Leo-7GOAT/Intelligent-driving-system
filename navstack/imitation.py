@@ -150,6 +150,56 @@ def fit_demonstrations(model, normalizer, observations, actions, returns, train_
     return history
 
 
+def fit_categorical_initialization(model, normalizer, observations, actions, train_mask,
+                                   steps=896, callback=None):
+    """Declared actor-only teaching, with an untouched PPO optimizer/critic."""
+    import torch
+    from .independent_clip_ppo import actor_critic_parameters
+    observations=np.asarray(observations,dtype=np.float32)
+    actions=np.asarray(actions)
+    mask=np.asarray(train_mask,dtype=bool)
+    if (not 1<=steps<=2000 or observations.shape!=(len(actions),*model.observation_space.shape)
+            or actions.ndim!=1 or mask.ndim!=1 or actions.shape!=mask.shape
+            or not mask.any() or mask.all() or not np.isfinite(observations).all()
+            or not np.issubdtype(actions.dtype,np.integer)
+            or np.any(actions<0) or np.any(actions>=model.action_space.n)
+            or model.num_timesteps or model._n_updates or model.policy.optimizer.state):
+        raise ValueError('Require fresh categorical supervision with separate correlated holdout')
+    actor,critic=actor_critic_parameters(model.policy)
+    frozen=[p.detach().clone() for p in critic]
+    normalizer.obs_rms.update(observations[mask])
+    inputs=torch.as_tensor(normalizer.normalize_obs(observations),device=model.device)
+    labels=torch.as_tensor(actions,dtype=torch.long,device=model.device)
+    train=np.flatnonzero(mask);holdout=np.flatnonzero(~mask)
+    optimizer=torch.optim.Adam(actor,lr=1e-3)
+    model.policy.set_training_mode(True)
+    history=[]
+    def metrics(indices):
+        distribution=model.policy.get_distribution(inputs[indices])
+        log_probabilities=distribution.log_prob(labels[indices])
+        if torch.any(log_probabilities < -1e6):
+            raise ValueError('Teacher label contradicts the registered categorical mask')
+        loss=-log_probabilities.mean()
+        accuracy=(distribution.mode()==labels[indices]).float().mean()
+        return loss,accuracy
+    for step in range(steps):
+        loss,_=metrics(train)
+        if not torch.isfinite(loss):raise ValueError('Teacher action is invalid or categorical loss is nonfinite')
+        optimizer.zero_grad(set_to_none=True);loss.backward()
+        torch.nn.utils.clip_grad_norm_(actor,.5,error_if_nonfinite=True)
+        optimizer.step()
+        if step==0 or (step+1)%64==0 or step+1==steps:
+            with torch.no_grad():
+                tl,ta=metrics(train);hl,ha=metrics(holdout)
+            row={'supervised_optimizer_steps':step+1,'train_nll':float(tl),'train_accuracy':float(ta),
+                 'correlated_holdout_nll':float(hl),'correlated_holdout_accuracy':float(ha)}
+            history.append(row)
+            if callback:callback(row)
+    if model.policy.optimizer.state or model.num_timesteps or model._n_updates or any(not torch.equal(p,v) for p,v in zip(critic,frozen)):
+        raise ValueError('Supervised initialization changed critic or PPO learning state')
+    return history
+
+
 def collect_recovery_episode(config, model, normalizer, seed, teacher_probability,
                              mixture_seed, options=None, callback=None,
                              teacher_mode='held_reference'):

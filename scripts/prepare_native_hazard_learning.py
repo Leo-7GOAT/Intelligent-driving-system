@@ -22,6 +22,26 @@ from scripts.evaluate_native_rule import require_finished_parent
 from scripts.native_road_learning import registered_native_cases,training_config
 
 
+def apply_guarded_progress(protocol,config):
+    """Shared, bounded task reward; independent of the selected architecture."""
+    from navstack.native_route import local_layout
+    import math
+    distances=[]
+    for route in protocol['routes']:
+        layout=local_layout(route,route['map'],route['opendrive_sha256'])
+        distances.append(math.dist(layout['path'][0][:2],layout['goal'][:2]))
+    reward=config['reward'];horizon=config['deadline']
+    if (len(distances)!=4 or max(distances)>40 or horizon>45 or reward['gamma_per_second']!=.99
+            or reward['time_weight']!=.1 or reward['risk_weight']!=.4 or reward['comfort_weight']!=.04
+            or reward['beta']!=1. or reward['heading_potential_weight']!=0.
+            or reward['distance_scale']!=40. or reward['deadline']!=-10.):
+        raise ValueError('Guarded progress profile requires its declared distance/time/reward bounds')
+    protocol.update(task_progress_weight=.5,unsafe_event_penalty=-90.,
+        reward_intervention={'version':'guarded_progress_v1','progress_weight_per_meter':.5,
+            'collision':-90.,'out_of_bounds':-90.,'max_initial_distance_m':40.,'max_episode_seconds':45.,
+            'scope':'Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee.'})
+
+
 def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=False,guarded_progress=False):
     old=read(parent/'protocol.json');config=EnvConfig.from_dict(old['config']).to_dict()
     if (not old.get('native_hazard') or config['subgoal_mode']!='route_frame_terminal'
@@ -60,22 +80,7 @@ def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=
         resolved.pop('endpoint_candidate_filter',None)
         protocol['policy_intervention']={'version':'endpoint_clear_v1','scope':'Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher.'}
     if guarded_progress:
-        from navstack.native_route import local_layout
-        import math
-        distances=[]
-        for route in old['routes']:
-            layout=local_layout(route,route['map'],route['opendrive_sha256'])
-            distances.append(math.dist(layout['path'][0][:2],layout['goal'][:2]))
-        reward=config['reward'];horizon=config['deadline']
-        if (max(distances)>40 or horizon>45 or reward['gamma_per_second']!=.99
-                or reward['time_weight']!=.1 or reward['risk_weight']!=.4 or reward['comfort_weight']!=.04
-                or reward['beta']!=1. or reward['heading_potential_weight']!=0.
-                or reward['distance_scale']!=40. or reward['deadline']!=-10.):
-            raise ValueError('Guarded progress profile requires its declared distance/time/reward bounds')
-        protocol.update(task_progress_weight=.5,unsafe_event_penalty=-90.,
-            reward_intervention={'version':'guarded_progress_v1','progress_weight_per_meter':.5,
-                'collision':-90.,'out_of_bounds':-90.,'max_initial_distance_m':40.,'max_episode_seconds':45.,
-                'scope':'Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee.'})
+        apply_guarded_progress(protocol,config)
         # This is a declared common task-reward intervention, not a change to
         # parent vehicle, road, planner, trajectory or MPC configuration.
         protocol_check=training_config(protocol,'H',vehicle).to_dict()
