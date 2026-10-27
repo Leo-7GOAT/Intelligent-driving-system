@@ -1,3 +1,12 @@
+# Latest verification — 2026-10-27 12:16 local
+
+Source0c4d0cbis pushed. Independent checkout0c4d0cbpasses31targeted checks in
+12.27s(log:runs/independent_shared_supervised_targeted_20261027.log). Hosted
+CI40448353031was still in progress on the last observation; its result is pending.
+Actual Hworker17444/guard4972remain live and healthy, with14,708Hcontrols observed.
+H0follows within035356.040132is still prepared and queued, not started.
+The earlier entries below retain the detailed source/model/cost evidence.
+
 # Current authoritative state — 2026-10-27 12:08 local
 
 Active actual CARLA batch035356native_supervised_ppo, HthenH0, each nominal20,480
