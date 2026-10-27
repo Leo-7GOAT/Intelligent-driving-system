@@ -43,7 +43,7 @@ def transfer_protocol(old, reference, lineage, now, wall_seconds, failure_memo=F
     if same_scene and not failure_memo:
         raise ValueError('Reference does not change the scene family/specification')
     protocol = deepcopy(old)
-    for key in ('own_success_replay', 'native_hazard'):
+    for key in ('own_success_replay', 'native_hazard', 'freeze_observation_statistics'):
         protocol.pop(key, None)
     if reference.get('native_hazard') is not None:
         protocol['native_hazard'] = deepcopy(reference['native_hazard'])

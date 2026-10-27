@@ -13,14 +13,15 @@ class NoExecutionEnv(Env):
         raise AssertionError('Parameter initialization must not reset or execute a plant')
 
 
-def test_exploration_initialization_preserves_every_mean_critic_and_optimizer_byte():
+@pytest.mark.parametrize('log_std', [-2.3, -4.])
+def test_exploration_initialization_preserves_every_mean_critic_and_optimizer_byte(log_std):
     model = PPO('MlpPolicy', NoExecutionEnv(), n_steps=8, batch_size=8, seed=11, device='cpu')
     before = {name: value.detach().clone() for name,value in model.policy.named_parameters()}
-    change = initial_exploration(model, -2.3)
+    change = initial_exploration(model, log_std)
     assert change['parameter_changes'] == ['log_std']
     for name, value in model.policy.named_parameters():
         if name != 'log_std': assert torch.equal(before[name], value)
-    assert torch.allclose(model.policy.log_std, torch.tensor([-2.3,-2.3]))
+    assert torch.allclose(model.policy.log_std, torch.tensor([log_std,log_std]))
     assert not model.policy.optimizer.state and model.num_timesteps == model._n_updates == 0
 
 

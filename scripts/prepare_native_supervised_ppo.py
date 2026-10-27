@@ -168,6 +168,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         label='supervised_ppo_guarded' if guarded_progress else 'supervised_ppo'
         if learning_rate is not None:label+='_lr'+format(learning_rate,'.8g')
         if rollout_actions is not None:label+='_rollout'+str(rollout_actions)
+        if methods==['B1'] and log_std!=-2.3:label+='_std'+format(log_std,'.8g')
+        if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
         registration=parent/(label+'_registration.json')
         if registration.exists():
             raise FileExistsError('Do not repeat the registered supervised-PPO continuation')

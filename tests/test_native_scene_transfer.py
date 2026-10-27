@@ -24,7 +24,8 @@ def inputs():
            'continuation_feedback': True, 'feedback_ablation': True,
            'subgoal_mode': 'route_frame_terminal', 'reference_reuse': True,
            'route_goal_candidate': True, 'task_progress_weight': .5, 'unsafe_event_penalty': -90.,
-           'own_success_replay': {'dataset': 'never-load-this.npz'}}
+           'own_success_replay': {'dataset': 'never-load-this.npz'},
+           'freeze_observation_statistics': True}
     reference = {'routes': deepcopy(old['routes']),
                  'native_hazard': {'version': 'native_hazard_v1', 'kind': 'crossing_walker',
                                    'distance_m': 10., 'lateral_m': -2.5}}
@@ -42,6 +43,10 @@ def test_scene_transfer_keeps_task_semantics_and_lineage_without_training_or_rep
     assert protocol['evaluation_only'] and protocol['controlled_budget_per_method'] == 0
     assert protocol['method_budgets'] == {'H': 0, 'H0': 0, 'B1': 0}
     assert protocol['checkpoint_thresholds'] == [] and 'own_success_replay' not in protocol
+    assert 'freeze_observation_statistics' not in protocol
+    from types import SimpleNamespace
+    from scripts.native_road_learning import configure_continuation_normalization
+    configure_continuation_normalization(SimpleNamespace(training=True), protocol, lineage['B1'])
     assert protocol['recovery'] == lineage
     assert protocol['created_epoch'] == 100. and protocol['deadline_epoch'] == 1900.
     for method in old['methods']:

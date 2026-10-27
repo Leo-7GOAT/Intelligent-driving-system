@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT))
 from navstack.experiments import write_json
 from navstack.process_lease import ProcessLease, pid_alive
 from navstack.research import resources_ok
-from scripts.audit_native_method_endpoint import read, sha
+from scripts.audit_native_method_endpoint import read, read_prefix, sha
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
@@ -50,14 +50,51 @@ def startup_only_timeout(failed):
             'cleanup_probe_sha256': sha(probe), 'worker_started': False, 'applied_controls': 0}
 
 
-def prepare(failed):
+def evaluation_metadata_preflight(failed):
+    """One known evaluation-only flag error, after zero bridge requests."""
+    failed = Path(failed)
+    protocol = read(failed / 'protocol.json')
+    final = read(failed / 'guard_final.json')
+    failure = read(failed / 'failure.json')
+    expected = "ValueError('Frozen observation statistics require registered learning continuation')"
+    if (not protocol.get('evaluation_only') or not protocol.get('freeze_observation_statistics')
+            or failure.get('error') != expected or final.get('exit_code') != 1 or final.get('reason') is not None):
+        raise ValueError('Unsupported evaluation metadata preflight failure')
+    for method in protocol['methods']:
+        files = {path.name for path in (failed / method).iterdir()}
+        if not files <= {'config.json', 'resume_event.json'}:
+            raise ValueError('Evaluation preflight has execution evidence')
+    streams = list((failed / 'infrastructure').glob('bridge_*_*.jsonl.gz'))
+    if len(streams) != 2: raise ValueError('Require the complete empty request and response streams')
+    for path in streams:
+        rows, error = read_prefix(path)
+        if error or rows: raise ValueError('Bridge requests/responses are not zero; preserve partial execution')
+    stop = read(failed / 'infrastructure/server_stop.json')
+    start = read(failed / 'infrastructure/server_start.json')
+    worker = read(failed / 'worker_process.json')
+    guard = read(failed / 'guard.json')
+    if (stop.get('status') != 'owned_empty_server_stopped' or not start.get('owned_by_task')
+            or stop.get('shipping_pid') != start.get('shipping_pid')
+            or final.get('worker_pid') != worker.get('pid')):
+        raise ValueError('Evaluation preflight owned cleanup/worker identity is inconsistent')
+    for pid in (worker.get('pid'), guard.get('pid'), start.get('shipping_pid'), start.get('launcher_pid')):
+        if type(pid) is not int or pid <= 0 or pid_alive(pid):
+            raise ValueError('Original preflight process remains live or ambiguous')
+    return {'failed_batch': failed.name, 'failure_sha256': sha(failed / 'failure.json'),
+            'cleanup_sha256': sha(failed / 'infrastructure/server_stop.json'),
+            'empty_bridge_streams': {path.name: sha(path) for path in streams},
+            'worker_started': True, 'applied_controls': 0,
+            'repair': 'Remove training-only freeze_observation_statistics from evaluation-only protocol; saved normalization bytes remain unchanged'}
+
+
+def prepare(failed, evaluation_metadata=False):
     failed = Path(failed).resolve()
-    evidence = startup_only_timeout(failed)
+    evidence = evaluation_metadata_preflight(failed) if evaluation_metadata else startup_only_timeout(failed)
     original = read(failed / 'protocol.json')
     if read(failed / 'prepared.json')['protocol_sha256'] != sha(failed / 'protocol.json'):
         raise ValueError('Prepared protocol changed')
     for method in original['methods']:
-        if (failed / method).exists():
+        if not evaluation_metadata and (failed / method).exists():
             raise ValueError('Method execution evidence must be preserved, not retried as startup')
         verified_checkpoint_metadata(failed / original['recovery'][method]['checkpoint'])
     for name, digest in original['source_hashes'].items():
@@ -69,10 +106,11 @@ def prepare(failed):
     if not okay or shutil.disk_usage(ROOT).free < 12 * 1024**3:
         raise RuntimeError(str(reason))
     with ProcessLease(failed / 'startup_retry_prepare.lock'):
-        registration = failed / 'startup_retry_registration.json'
+        registration = failed / ('evaluation_preflight_repair_registration.json' if evaluation_metadata else 'startup_retry_registration.json')
         if registration.exists():
             raise FileExistsError('One startup child is already registered; inspect that child')
-        batch = ROOT / 'runs' / (datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + '_native_startup_retry')
+        suffix = '_native_evaluation_preflight_repair' if evaluation_metadata else '_native_startup_retry'
+        batch = ROOT / 'runs' / (datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + suffix)
         batch.mkdir()
         write_json(registration, {'batch': batch.name, 'status': 'registered_before_staging'})
         (batch / 'infrastructure').mkdir()
@@ -85,11 +123,12 @@ def prepare(failed):
             if verified_checkpoint_metadata(batch / path) != verified_checkpoint_metadata(failed / path):
                 raise ValueError('Copied checkpoint changed')
         protocol = deepcopy(original)
+        if evaluation_metadata: protocol.pop('freeze_observation_statistics')
         now = time.time()
         protocol.update(created_epoch=now, deadline_epoch=now + original['resource_limits']['wall_seconds'],
                         startup_retry={**evidence, 'failed_protocol_sha256': sha(failed / 'protocol.json'),
                                        'preparer_sha256': sha(Path(__file__)), 'retry_limit': 1,
-                                       'scope': 'Same saved policies, scenes, runtime source and budgets; zero previous worker/controls. Original failed lifecycle remains untouched.'})
+                                       'scope': 'Same saved policies, scenes, runtime source and budgets; zero previous bridge requests/controls for metadata repair, or no previous worker for startup retry. Original failed lifecycle remains untouched.'})
         write_json(batch / 'protocol.json', protocol)
         write_json(batch / 'prepared.json', {'status': 'PREPARED_NOT_STARTED', 'protocol_sha256': sha(batch / 'protocol.json')})
         write_json(batch / 'startup_retry_evidence.json', evidence)
@@ -103,5 +142,6 @@ def prepare(failed):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--failed', required=True)
+    parser.add_argument('--evaluation-metadata', action='store_true')
     args = parser.parse_args()
-    prepare(args.failed)
+    prepare(args.failed, args.evaluation_metadata)

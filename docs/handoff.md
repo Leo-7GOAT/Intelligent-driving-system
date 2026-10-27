@@ -1,4 +1,39 @@
-# Latest verification — 2026-10-27 13:49 local
+# Latest verification — 2026-10-27 14:43 local
+
+42 targeted dynamic-view, transfer/retry and supervised-PPO tests pass in31.13s
+(runs/dynamic_views_closed_probes_targeted_20261027.log). New source publication
+and independent verification are pending; older hosted counts remain historical.
+
+052446 long-collection B1 is COMPLETE:20480train/640Adam,11training successes,
+frozen0/4 (2bounds/2deadlines),22881raw controls audited. 062101 corrected frozen
+crossing transfer is COMPLETE:0/4 (2collision/2bounds),407controls audited.
+045435 cache probe is COMPLETE: H/H0/B1all0/4,7866raw controls audited,H178hits,
+H0/B1zero; all task outcomes match original rejected policies. All owned servers
+cleaned normally. See ../reports/native_closed_probes_20261027.json.
+
+043046 startup failure and053256 evaluation-metadata failure remain intact.
+The latter started a worker but sent zero bridge requests; a fresh062101child
+removed only the inherited training-only freeze flag after verifying both empty
+closed streams, worker termination and owned-server cleanup. Old queues61196/
+58196 have terminated; do not wait on their preserved locks.
+
+Actually RUNNING:062725native_supervised_ppo B1,worker39128/guard6420,
+root session2968. At14:40heartbeat4832controls/3optimization phases,healthy.
+Only initial log_std changes -2.3to-4 versus052446; all other32policy tensors,
+normalizer andRNG match (runs/native_small_exploration_initialization_parity_20261027.json).
+Same20480budget,1280collection,320minibatch,10epochs,LR3e-5,guarded reward.
+Its first success precedes its first PPO update; no frozen endpoint exists yet.
+No critic warmup/replay/mixed-data training or live future queue is claimed.
+
+runs/20261027_mixed_measured_views_v4 is COMPLETE:3617existing teacher controls,
+1491measured actor-change frames,163known held-steer brake projections,0new
+controls/fit/PPO updates. Static1926prefix exactly matches original published
+observations/actions/returns/mask. See ../reports/native_mixed_measured_views_20261027.json.
+Uses actual actor/frame identities, no obstacle integration. Incompatible historical
+macro catalogs are NOT relabelled. Dataset has not trained a new policy. Earlier
+v1/v2/v3 conversion failures remain. Full research objective is still unmet.
+
+# Earlier verification — 2026-10-27 13:49 local
 
 Sourcee63d004 is actually pushed. Hosted CI40456742519 passes444/15skips/
 4CARLA exclusions in173.00s (runs/native_rollout_startup_hosted_ci_20261027.log).

@@ -1,0 +1,158 @@
+{
+  "scope": "Read-only direct-policy data views, not a new model, PPO improvement, independent seed or unseen condition.",
+  "manifest": {
+    "scope": "Measured direct B1 views in one explicit target configuration. Extra supervision only; all cases/failures included. No high-level action relabelling, fitting or new driving.",
+    "sources": [
+      {
+        "batch": "20261027T003800Z_native_rule",
+        "raw_audit_sha256": "bcf1eb5dd220df08cccf06766af8260a0b3df0682441e050759772195077a354",
+        "protocol_sha256": "d5d8a7ba089700d3ee5390004938865b50f8e517936bd8cc299da7d91a15a4d1",
+        "trace_sha256": "8abb8c446db00f8e6f530fe16b47989febadd941c1075f831234797f72a8cabb",
+        "controls": 1926,
+        "bridge_projection_source_sha256": "cb8d63ec12ff2ea0aebb8c9252534f192d06b76367a80cfa3528acce1a8440e5",
+        "target_config_differences": {
+          "method": [
+            "H",
+            "B1"
+          ],
+          "flat_hold": [
+            10,
+            1
+          ]
+        }
+      },
+      {
+        "batch": "20261026T140210Z_native_rule",
+        "raw_audit_sha256": "53db7fc790963a1855c88dfdcc464e21ce361325a597c5cc6f24d126fe981621",
+        "protocol_sha256": "71f8f1dddcb0dc1d15cdebf0c12270883aba49a4550ce5609dba9c83b3abcd6a",
+        "trace_sha256": "7382642b2abfd21958891772acc557b7d3ad17392940c989f2d1b0506cfcea58",
+        "controls": 1691,
+        "bridge_projection_source_sha256": "42893d1c8944dfa7f7531540a79f51522eb14bbc44322a0a27f0801d322ba965",
+        "target_config_differences": {
+          "method": [
+            "H",
+            "B1"
+          ],
+          "route_goal_candidate": [
+            null,
+            true
+          ],
+          "flat_hold": [
+            10,
+            1
+          ],
+          "reference_reuse": [
+            null,
+            true
+          ]
+        }
+      }
+    ],
+    "cases": [
+      {
+        "group": 0,
+        "source_id": 0,
+        "case_id": 0,
+        "controls": 361,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 1,
+        "source_id": 0,
+        "case_id": 1,
+        "controls": 900,
+        "termination_reason": "deadline",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 2,
+        "source_id": 0,
+        "case_id": 2,
+        "controls": 317,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 3,
+        "source_id": 0,
+        "case_id": 3,
+        "controls": 348,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 4,
+        "source_id": 1,
+        "case_id": 0,
+        "controls": 441,
+        "termination_reason": "success",
+        "dynamic_actors": 1,
+        "measured_actor_changed_frames": 391,
+        "acknowledged_brake_projection_controls": 49
+      },
+      {
+        "group": 5,
+        "source_id": 1,
+        "case_id": 1,
+        "controls": 459,
+        "termination_reason": "success",
+        "dynamic_actors": 1,
+        "measured_actor_changed_frames": 409,
+        "acknowledged_brake_projection_controls": 70
+      },
+      {
+        "group": 6,
+        "source_id": 1,
+        "case_id": 2,
+        "controls": 391,
+        "termination_reason": "success",
+        "dynamic_actors": 1,
+        "measured_actor_changed_frames": 341,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 7,
+        "source_id": 1,
+        "case_id": 3,
+        "controls": 400,
+        "termination_reason": "success",
+        "dynamic_actors": 1,
+        "measured_actor_changed_frames": 350,
+        "acknowledged_brake_projection_controls": 44
+      }
+    ],
+    "teacher_unique_controls": 3617,
+    "dataset_sha256": "db93a121045427b0bc78a5d8388f8875bb0812feb9fd999406b5a4725bdfaaa2",
+    "reference_config_sha256": "c993dac332e4f8c85691006cb0795c460f03953bd91d0bed4b8e03588c2d4e8f",
+    "view_source_sha256": "d8182ded58e18835760e463fe9705b036eaf4f4bdf2b61640511330959ccb80c",
+    "script_sha256": "b4c64aa63a4332a7cf69ed967bcaf8e41582595d31de2a63b8f6429090a3b038",
+    "conversion_wall_seconds": 418.9219999999041,
+    "brake_projection": "Only known held-measured-steer brake requests may use their exact acknowledged rate/absolute-limited command. Raw requests and frame evidence remain unchanged; QP tolerance is not enlarged.",
+    "holdout": "Every fifth control within each case; correlated diagnostics only",
+    "returns": "Recorded teacher discounted returns, not a new reward profile or direct-policy counterfactual",
+    "new_controls": 0,
+    "supervised_optimizer_steps": 0,
+    "ppo_updates": 0
+  },
+  "dataset_root_relative": "runs/20261027_mixed_measured_views_v4",
+  "static_prefix_exact_match_to_published_teacher_dataset": {
+    "observations": true,
+    "actions": true,
+    "returns": true,
+    "train_mask": true
+  },
+  "static_original_dataset_sha256": "b2f298bef7e0f1cde667602fdda8fbe629852cde04cc3c5b639390db1b37bcba",
+  "dynamic_unique_controls": 1691,
+  "actor_changed_frames": 1491,
+  "acknowledged_brake_projections": 163,
+  "target_scope_limit": "Direct B1 observations/commands only. Historical high-level catalogs differ; no H/H0 numeric action labels are transferred between them. Fair comparisons require appropriate common supervision or a new shared teacher collection."
+}
