@@ -1,4 +1,21 @@
-# Latest verification — 2026-10-27 15:30 local
+# Latest verification — 2026-10-27 15:37 local
+
+Functional source255691a8fa39965e3f873c1b51ed6e89f2db1abf is actually pushed
+and remote-verified. Hosted CI40467624798 SUCCEEDS:464passed/15skips/
+4CARLA exclusions in190.34s. Independent checkout255691a passes15hazard/rule
+tests in5.98s and its CLI exposes --hazard-distance. Source3cd2132's prior48
+targeted checks and the actual public model/data reproduction remain recorded.
+Logs: runs/native_completed_small_exploration_hosted_ci_20261027.log and
+runs/independent_native_hazard_distance_20261027.log. New CLI is verified;
+earlier pending publication/CI notes below are historical.
+
+Actual070950H training at15:37:2707controls/8phases,worker58236/guard62452,
+healthy. Wrapper PID62888 and distance13queue PID41164 are OS-verified live.
+H0 has not started; no frozen endpoint or later pilot driving is claimed.
+062725B1 and064630mixed BC are complete/raw-audited/cleaned; their scores are
+2/4 and0/4 respectively. All failures and development scope remain unchanged.
+
+# Earlier verification — 2026-10-27 15:30 local
 
 062725 small-noise B1 is COMPLETE:20480real train controls/640Adam,
 25training successes/12deadlines/0unsafe; frozen2/4 (2deadlines,2successes),
