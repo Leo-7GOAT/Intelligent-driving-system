@@ -40,5 +40,21 @@
     "passed": 28,
     "seconds": 5.68,
     "log": "runs/native_scene_transfer_targeted_v3_20261027.log"
-  }
+  },
+  "verified_source_commit": "5073ad92aca48a61cc70f2d1a83107b634587241",
+  "independent_checkout": {
+    "passed": 28,
+    "seconds": 5.72,
+    "log": "runs/independent_native_scene_transfer_20261027.log"
+  },
+  "hosted_ci": {
+    "run_id": 40450360091,
+    "conclusion": "success",
+    "passed": 417,
+    "skipped": 10,
+    "deselected": 4,
+    "seconds": 170.47,
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40450360091"
+  },
+  "queue_status": "Local bounded queue process13384 is waiting for040132 normal owned cleanup; probe remains not started"
 }

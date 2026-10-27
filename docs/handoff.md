@@ -1,4 +1,31 @@
-# Current work — 2026-10-27 12:33 local
+# Current work — 2026-10-27 12:44 local
+
+H in `035356` is COMPLETE and raw-audited: 20,704 new training controls,
+650 PPO Adam steps, 17 success / 15 deadline training ends. Frozen endpoint is
+**2/4** (roads 0/2 success, roads 1/3 deadline). All 23,184 train/evaluation
+controls verify against actual CARLA. Road 3 progresses only 1.65 m and has 83
+planner failures / 830 interventions. This loses the teacher parent's 3/4;
+no PPO benefit or hierarchy/collaboration advantage is established. See
+`../reports/native_H_supervised_endpoint_20261027.json`.
+
+The completed evaluation contains 340.70 s of repeated failed searches at
+exactly repeated observed pose/action inputs within a case. Exact deterministic
+failure memoization is an evidence-based throughput candidate, but **not yet
+implemented or equivalence-tested**. Do not imply physical infeasibility or
+change the active batch. H0 is now training (~2k controls on last observation),
+using the original frozen source and registered budget.
+
+Source `5073ad9` is pushed. Independent checkout passes 28 targeted checks in
+5.72 s. Actual hosted CI `40450360091` passes **417 / 10 skips / 4 exclusions**
+in 170.47 s; log `runs/native_scene_transfer_hosted_ci_20261027.log`.
+
+Both bounded local queues were OS-verified live: 040132 after035356 (PID 69896,
+session83755), then043046 after040132 (PID 13384, session98286). They require
+normal guard exit, owned empty-server cleanup, summary, lifecycle lock release
+and unchanged child protocol. They stop on parent failure. Children are still
+not started; inspect queue receipts and OS identity before any manual launch.
+
+# Earlier preparation — 2026-10-27 12:33 local
 
 `035356` H has more than 20,000 actual controls and remains guarded; H0 follows.
 The existing B1 low-LR queue remains running. Do not launch anything on its ports.
