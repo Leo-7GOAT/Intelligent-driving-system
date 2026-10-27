@@ -56,3 +56,15 @@ Preparation is not execution. Never repeat registered/started evidence. Use the
 owned server, version/empty-world probe, identified worker and resource guard
 from the handoff. Original research acceptance, five independent trained seeds,
 new paired confirmation conditions and PPO value over strong B3remain unmet.
+
+
+## Published and independently reproduced
+
+Both the teacher-initialized direct model and rejected complete PPO catalog
+capsules are now uploaded, actually downloaded without authentication and
+reproduced in independent checkoutfcc89b3. All1,038files/71,490raw controls/
+16measured-start actions/2byte-identical figures verify. The405-test hosted CPU
+suite passes;14new targeted tests also pass in independent Windows checkout.
+[Receipt](native_measured_public_reproduction_20261027.json) and
+[download/reproduction commands](../docs/model_card.md#public-measured-teacher-initialization-and-rejected-ppo-catalog).
+The active real-PPO continuation is not yet released or counted as completed.

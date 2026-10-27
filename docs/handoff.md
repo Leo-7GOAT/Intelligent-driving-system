@@ -1,3 +1,33 @@
+# Publication update — 2026-10-27 11:02 local
+
+Active real-PPO job remains024727, worker/guard/owned server live and healthy;
+more than10kof20,480new controls executed. Do not confuse its pending endpoint
+with the supervisor-only parent3/4. No new teacher/replay is executed during PPO.
+
+Sourcefcc89b3is actually pushed; hosted CI40441212842passes405/3skips/4CARLA
+exclusions in167.73s. Independent Windows checkoutfcc89b3passes14new targeted
+checks in10.43s. The two new prerelease assets are actually public-downloaded
+without authentication and independently reproduce1,038files,71,490controls,
+16measured-start actions and2byte-identical figures. See
+../reports/native_measured_public_reproduction_20261027.json and model_card.md.
+
+Teacher capsule: native_direct_teacher_seed11_20261027_full_repro.zip,
+SHAea6013bd78c516f7c060246d46d83f02082f70fb263611eec91df0e50ba97e18.
+It includes measured observations/actions and all four frozen outcomes, with0PPO
+updates. Rejected arc capsule:native_arc_ppo_seed11_20261027_repro.zip,
+SHA1b5480f25b737b568dc623b9cc19d557bed95dfb474b6f9d56009ecf5d7456ea.
+All3methods0/4are retained. Local earlier teacher `_repro.zip` omits the dataset;
+only `_full_repro.zip` was uploaded. Initial missing-requests download attempt
+also remains in local logs; successful downloads use standard-library urllib.
+
+Next concrete gate: let existing024727finish and audit its actual training and
+frozen endpoints. This is a correlated development continuation; even a positive
+result would not establish five independent seeds, unseen120paired conditions,
+PPO value over B3or complete research acceptance. Preserve failures; no repeat
+of already-started batches and no deletion of locks/live foreign processes.
+
+Older transition records follow and do not override this header.
+
 # Current verified work — 2026-10-27 10:52 local
 
 Active: `runs/20261027T024727Z_native_supervised_ppo`, B1only, real PPO after

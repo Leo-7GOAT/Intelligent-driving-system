@@ -1,5 +1,29 @@
 # Development model card
 
+## Public measured teacher initialization and rejected PPO catalog
+
+[Actual public-download/independent reproduction](../reports/native_measured_public_reproduction_20261027.json):
+1,038files,71,490raw controls,16measured-start actions and2byte-identical figures.
+Hosted sourcefcc89b3passes405tests/3skips/4CARLA exclusions in167.73s;14new tests
+also pass in independent Windows checkout. No new driving is claimed by replay.
+
+| Capsule | Actual scope | SHA256 |
+|---|---|---|
+| [Continuous direct teacher initialization](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_direct_teacher_seed11_20261027_full_repro.zip) | 3/4known full static roads;1,926teacher controls,896supervised updates;0PPO updates;1,976frozen controls. Includes measured supervision dataset. | `ea6013bd78c516f7c060246d46d83f02082f70fb263611eec91df0e50ba97e18` |
+| [Rejected arc-catalog PPO](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_arc_ppo_seed11_20261027_repro.zip) | H/H0/B1all0/4;all69,514training/evaluation controls retained. No improvement claim. | `1b5480f25b737b568dc623b9cc19d557bed95dfb474b6f9d56009ecf5d7456ea` |
+
+```powershell
+python scripts/reproduce_native_asset.py --archive native_direct_teacher_seed11_20261027_full_repro.zip --sha256 ea6013bd78c516f7c060246d46d83f02082f70fb263611eec91df0e50ba97e18 --output runs/public_teacher_reproduction
+python scripts/reproduce_native_asset.py --archive native_arc_ppo_seed11_20261027_repro.zip --sha256 1b5480f25b737b568dc623b9cc19d557bed95dfb474b6f9d56009ecf5d7456ea --output runs/public_arc_reproduction
+```
+
+Each output directory must be new. [Method/cost/failure report](../reports/native_measured_bc_20261027.md).
+The current real-PPO continuation from teacher initialization is not these saved
+weights and remains pending. Teacher supervision, continuous20Hz simulated actions
+and shared geometry computations are disclosed together; this is not ordinary
+PPO or a formal hierarchy comparison. Wall20Hz is not achieved. The existing
+prerelease tag is unchanged, and research acceptance is still unmet.
+
 ## Measured static-body development (2026-10-27)
 
 [Actual geometry/reward report](../reports/native_static_body_learning_20261027.md):
