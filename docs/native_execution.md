@@ -48,3 +48,20 @@ The wrapper changes process orchestration only. Simulation action frequency is
 not a wall-time guarantee; cycle P95/P99/max and missed periods remain separately
 measured. The current experiments are single-seed known-road development, with
 all failed and interrupted phases retained.
+
+Frozen scene-family development probes use completed, raw-audited PPO endpoints
+and a completed, raw-audited rule batch as the scene reference:
+
+```powershell
+python scripts/prepare_native_scene_transfer.py --parent runs/COMPLETED_PPO_BATCH --reference-rule runs/AUDITED_RULE_SCENE_BATCH
+```
+
+Launch its printed prepared batch with the same registered wrapper, after the
+active owned lifecycle finishes. Preparation preserves all four route geometries,
+copies the exact final model/normalizer/RNG, retains inherited interaction costs,
+and removes auxiliary replay. Only the registered actor scene changes; training
+and optimizer budgets are zero. Its actual CARLA controls are evaluation costs.
+An existing registration is reused through its recorded batch, never silently
+prepared or driven again. This probe uses inspected development scenes. The rule
+reference supplies scene provenance, and can have an older execution version;
+its success rate alone is not a matched architecture comparison.

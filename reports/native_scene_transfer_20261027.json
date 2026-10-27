@@ -1,0 +1,44 @@
+{
+  "scope": "Prepared frozen development scene-transfer probe; not yet launched and no new CARLA result. All parent failures retained. Reference rule contributes scenes only, not an execution-code-matched architecture comparison.",
+  "batch": "20261027T043046Z_native_scene_transfer",
+  "parent": "20261027T031740Z_native_supervised_ppo",
+  "reference_scene_batch": "20261026T140210Z_native_rule",
+  "protocol_sha256": "9b3f717f794046473dfb2f44a6c2a9c1f46a19de478bce59b679269c51c0ddfc",
+  "original_source_changes": [],
+  "added_source_files": [
+    "scripts/prepare_native_scene_transfer.py"
+  ],
+  "new_training_controls": 0,
+  "new_optimizer_updates": 0,
+  "models": [
+    {
+      "method": "B1",
+      "model_sha256": "dd73e209b73ec055217cd35d9c1ef8efbe95014f35158361f3a2364f8d92787f",
+      "identical_to_parent_evaluated_model": true,
+      "identical_normalizer": true,
+      "semantics_match_saved_config": true
+    }
+  ],
+  "registered_scene_change": {
+    "from": {
+      "version": "native_hazard_v1",
+      "kind": "static_vehicle",
+      "distance_m": 10.0,
+      "static_geometry": "projected_box_strips12_v1"
+    },
+    "to": {
+      "version": "native_hazard_v1",
+      "kind": "crossing_walker",
+      "distance_m": 10.0,
+      "lateral_m": -2.5
+    },
+    "training_updates_added": 0,
+    "routes_unchanged": true,
+    "split": "development; known roads and previously inspected reference scenes"
+  },
+  "targeted_tests": {
+    "passed": 28,
+    "seconds": 5.68,
+    "log": "runs/native_scene_transfer_targeted_v3_20261027.log"
+  }
+}

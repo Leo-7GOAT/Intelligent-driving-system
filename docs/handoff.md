@@ -1,3 +1,27 @@
+# Current work — 2026-10-27 12:33 local
+
+`035356` H has more than 20,000 actual controls and remains guarded; H0 follows.
+The existing B1 low-LR queue remains running. Do not launch anything on its ports.
+
+New `scripts/prepare_native_scene_transfer.py` stages an exact frozen completed
+PPO model on a different, already audited development actor scene. It keeps route
+geometry, execution code, model, normalization, RNG and task gates, preserves
+lineage costs, and adds zero training/auxiliary updates. The rule reference
+supplies scenes only, not a code-matched architecture comparator.
+
+Actual prepared probe `20261027T043046Z_native_scene_transfer` copies completed
+guarded B1 `031740` onto crossing-walker scenes from rule batch `140210` (4/4).
+It is **PREPARED, NOT STARTED**, with no new driving result. All copied weights
+and normalization exactly match the parent, all original source files are
+unchanged, and resolved training semantics match saved config. See
+`../reports/native_scene_transfer_20261027.json`. Launch only after the active
+and queued learning phases finish normally. This diagnoses whether the failed
+static-trained baseline transfers to open crossing scenes; do not count it as
+new training, a healthy baseline, independent data, or PPO improvement.
+
+Tests: 28 scene-transfer/recovery checks pass in 5.68 s. Registered launcher's
+read-only validation passes. Source publication/independent checks are pending.
+
 # Latest verification — 2026-10-27 12:25 local
 
 Source `0c4d0cb` is pushed. Its hosted CI run `40448353031` completed successfully:
