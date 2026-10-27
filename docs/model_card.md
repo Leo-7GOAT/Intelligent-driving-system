@@ -1,5 +1,22 @@
 # Development model card
 
+## Public frozen Grid A* deployment ablation
+
+The [actual public capsule](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_frozen_B2_seed11_20261027_repro.zip)
+contains433files/11,195,187bytes,SHA256
+`d4cf6cb5080ccde01110d240dd8c5ee6ed4d2b14985d83f5e2942133e34f1a6b`.
+[Independent unauthenticated-download reproduction](../reports/native_frozen_B2_public_reproduction_20261027.json)
+verifies8,639controls,12measured-start actions,frozen normalization and a
+byte-identical packaged figure. Same trainedH actor,new Grid A* backend,
+zero retraining:4/12versus H11/12. Legacy cubic postprocessing failed often;
+braking/timeout dominates. This is not a reasonable upper bound on B2capability
+or a trainedB2result. The stronger existing body_spline_v1 is separately queued;
+eight valid offline initial references are not closed-loop completion.
+
+```powershell
+python scripts/reproduce_native_asset.py --archive native_frozen_B2_seed11_20261027_repro.zip --sha256 d4cf6cb5080ccde01110d240dd8c5ee6ed4d2b14985d83f5e2942133e34f1a6b --output runs/NEW_FROZEN_B2_REPRO
+```
+
 ## Public twelve-condition PPO
 
 The [completed real-PPO pair](../reports/native_twelve_case_PPO_complete_20261027.json)

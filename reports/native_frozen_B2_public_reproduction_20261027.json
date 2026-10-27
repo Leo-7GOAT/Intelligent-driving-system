@@ -1,0 +1,30 @@
+{
+  "scope": "Actual publicly downloaded frozen planner deployment ablation,not trainedB2 or research acceptance.",
+  "asset": "native_frozen_B2_seed11_20261027_repro.zip",
+  "bytes": 11195187,
+  "sha256": "d4cf6cb5080ccde01110d240dd8c5ee6ed4d2b14985d83f5e2942133e34f1a6b",
+  "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_frozen_B2_seed11_20261027_repro.zip",
+  "unauthenticated_download_verified": true,
+  "reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "d4cf6cb5080ccde01110d240dd8c5ee6ed4d2b14985d83f5e2942133e34f1a6b",
+    "asset_source_commit": "8f8257ae6caf655bd2f9b69235e4fb07598438eb",
+    "reproduction_source_commit": "8f8257ae6caf655bd2f9b69235e4fb07598438eb",
+    "verified_files": 433,
+    "methods": [
+      {
+        "method": "B2",
+        "raw_audit_sha256": "aab3920ef045c9551a3e5e8e2be62824821878852ddbfc645dabad1a56510b16",
+        "verified_controls": 8639,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "6978a7668b30590b1bbfe895af4617bc177852cda4fddd534233f150ce11bf24",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  },
+  "result": "4/12;8deadlines dominated by failed planning and braking. Legacy cubic postprocessing; stronger existing body-spline version queued separately. No new driving during reproduction."
+}

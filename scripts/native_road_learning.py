@@ -111,6 +111,10 @@ def training_config(protocol, method, vehicle):
     config.planner.heuristic_mode=heuristic
     config.planner.vectorized_primitives=True
     config.planner.analytic_expansion=True
+    postprocess=protocol.get('grid_postprocess','legacy')
+    if postprocess not in ('legacy','body_spline_v1') or (postprocess!='legacy' and method!='B2'):
+        raise ValueError('Explicit Grid A* postprocessing is supported only for B2')
+    config.planner.grid_postprocess=postprocess
     # An explicit new task reward applies equally to all methods. Historical
     # protocols keep the original potential-only progress signal unchanged.
     if 'task_progress_weight' in protocol:
