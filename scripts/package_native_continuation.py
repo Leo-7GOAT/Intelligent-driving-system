@@ -119,6 +119,11 @@ def package(batch, output):
             raise ValueError('Endpoint raw audit no longer matches: '+method)
         endpoint_audits[method]=rebuilt
     selected=set(batch.glob('*.json'))
+    supervised_dataset=batch/'measured_demonstrations.npz'
+    if supervised_dataset.is_file():
+        if sha(supervised_dataset.read_bytes())!=protocol.get('extra_supervision',{}).get('dataset_sha256'):
+            raise ValueError('Supervised dataset is unregistered or its bytes changed')
+        selected.add(supervised_dataset)
     for name in ('source','calibration','resume','analysis',*methods):
         selected.update(p for p in (batch/name).rglob('*') if p.is_file()
                         and '__pycache__' not in p.parts and p.suffix in SUFFIXES)

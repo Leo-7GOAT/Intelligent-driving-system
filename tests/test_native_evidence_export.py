@@ -76,3 +76,20 @@ def test_hash_bound_metadata_cannot_be_silently_redacted(complete_segment,tmp_pa
         exporter.package(batch,tmp_path/'invalid.zip')
     assert not (tmp_path/'invalid.zip').exists()
     assert (tmp_path/'invalid.zip.partial').exists()
+
+
+def test_supervised_dataset_bytes_are_exported_and_tampering_is_rejected(complete_segment,tmp_path):
+    batch,put=complete_segment
+    dataset=batch/'measured_demonstrations.npz'
+    np.savez_compressed(dataset,observations=np.zeros((2,3)),actions=np.zeros((2,2)))
+    protocol=json.loads((batch/'protocol.json').read_text())
+    protocol['extra_supervision']={'dataset_sha256':exporter.sha(dataset.read_bytes())}
+    put('protocol.json',protocol)
+    output=tmp_path/'supervised.zip'
+    exporter.package(batch,output)
+    with zipfile.ZipFile(output) as archive:
+        assert archive.read('segment/measured_demonstrations.npz')==dataset.read_bytes()
+    dataset.write_bytes(b'changed data')
+    with pytest.raises(ValueError,match='dataset'):
+        exporter.package(batch,tmp_path/'changed.zip')
+    assert not (tmp_path/'changed.zip').exists()
