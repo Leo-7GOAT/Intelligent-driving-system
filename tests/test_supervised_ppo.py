@@ -3,7 +3,7 @@ import pytest
 import torch
 from gymnasium import Env, spaces
 from stable_baselines3 import PPO
-from scripts.prepare_native_supervised_ppo import initial_exploration, guarded_initialization
+from scripts.prepare_native_supervised_ppo import initial_exploration, guarded_initialization, categorical_exploration, fresh_learning_rate
 
 
 class NoExecutionEnv(Env):
@@ -54,3 +54,36 @@ def test_guarded_reward_initialization_preserves_all_nonreward_semantics_and_ori
     assert protocol['reward_intervention']['version']=='guarded_progress_v1'
     broken=deepcopy(original);broken['signature']={}
     with pytest.raises(ValueError,match='signature'):guarded_initialization(protocol,broken)
+
+
+def test_categorical_exploration_calibrates_train_views_without_resetting_mean_order_or_critic():
+    from stable_baselines3.common.vec_env import DummyVecEnv,VecNormalize
+    class CategoricalEnv(NoExecutionEnv):
+        action_space=spaces.Discrete(3)
+    raw=DummyVecEnv([CategoricalEnv]);norm=VecNormalize(raw,norm_reward=False)
+    model=PPO('MlpPolicy',norm,n_steps=8,batch_size=8,seed=11,device='cpu')
+    with torch.no_grad():model.policy.action_net.bias.copy_(torch.tensor([8.,0.,0.]))
+    before={name:p.detach().clone() for name,p in model.policy.named_parameters()}
+    rms=(norm.obs_rms.mean.copy(),norm.obs_rms.var.copy(),norm.obs_rms.count)
+    changed=categorical_exploration(model,norm,np.zeros((6,3),dtype=np.float32),.9)
+    assert changed['temperature']>1 and abs(changed['initialized_mean_max_probability']-.9)<1e-4
+    assert changed['deterministic_calibration_actions_unchanged']
+    assert set(changed['parameter_changes'])<= {'action_net.weight','action_net.bias'}
+    assert all(torch.equal(before[name],p) for name,p in model.policy.named_parameters() if not name.startswith('action_net.'))
+    np.testing.assert_array_equal(norm.obs_rms.mean,rms[0]);np.testing.assert_array_equal(norm.obs_rms.var,rms[1])
+    assert norm.obs_rms.count==rms[2] and not model.policy.optimizer.state and not model.num_timesteps
+    norm.close()
+
+
+def test_lower_learning_rate_survives_checkpoint_loading_without_changing_policy_or_running_plant(tmp_path):
+    model=PPO('MlpPolicy',NoExecutionEnv(),n_steps=8,batch_size=8,seed=11,device='cpu')
+    before={name:p.detach().clone() for name,p in model.policy.named_parameters()}
+    info=fresh_learning_rate(model,3e-5)
+    assert info['initialized_learning_rate']==3e-5
+    assert all(torch.equal(before[name],p) for name,p in model.policy.named_parameters())
+    assert not model.policy.optimizer.state and model.num_timesteps==model._n_updates==0
+    model.save(tmp_path/'model.zip');loaded=PPO.load(tmp_path/'model.zip',device='cpu')
+    assert all(loaded.lr_schedule(progress)==3e-5 for progress in (0.,.5,1.))
+    assert all(group['lr']==3e-5 for group in loaded.policy.optimizer.param_groups)
+    loaded.num_timesteps=1
+    with pytest.raises(ValueError):fresh_learning_rate(loaded,3e-5)

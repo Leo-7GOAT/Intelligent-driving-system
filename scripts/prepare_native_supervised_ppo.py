@@ -9,6 +9,8 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import torch
+import numpy as np
+import pickle
 from navstack.experiments import write_json
 from navstack.independent_clip_ppo import load_ppo
 from navstack.process_lease import ProcessLease
@@ -37,13 +39,68 @@ def initial_exploration(model, log_std):
             'initial_log_std': model.policy.log_std.detach().tolist(), 'mean_and_critic_unchanged': True}
 
 
-def guarded_initialization(protocol,metadata_config):
+def categorical_exploration(model,normalizer,observations,target_probability=.9):
+    """Soften learned logits, preserving their deterministic ordering.
+
+    Calibration uses teacher TRAINING views only, not evaluation outcomes.
+    """
+    if (not .5<=target_probability<1. or model.num_timesteps or model._n_updates or model.policy.optimizer.state
+            or hasattr(model.policy,'log_std')):
+        raise ValueError('Require untouched categorical supervised initialization')
+    head=getattr(model.policy.action_net,'head',model.policy.action_net)
+    if not isinstance(head,torch.nn.Linear):raise ValueError('Unsupported categorical head')
+    before={name:value.detach().clone() for name,value in model.policy.named_parameters()}
+    model.policy.set_training_mode(False)
+    inputs=torch.as_tensor(normalizer.normalize_obs(observations),dtype=torch.float32,device=model.device)
+    with torch.no_grad():
+        logits=model.policy.get_distribution(inputs).distribution.logits.detach()
+        original_actions=logits.argmax(1)
+        initial=float(logits.softmax(1).amax(1).mean())
+        lo,hi=1.,64.
+        if initial>target_probability:
+            for _ in range(32):
+                middle=(lo+hi)/2
+                if float((logits/middle).softmax(1).amax(1).mean())>target_probability:lo=middle
+                else:hi=middle
+            temperature=hi
+        else:temperature=1.
+        head.weight.div_(temperature)
+        if head.bias is not None:head.bias.div_(temperature)
+        distribution=model.policy.get_distribution(inputs).distribution
+        if not torch.equal(original_actions,distribution.probs.argmax(1)):
+            raise ValueError('Positive logit scaling changed deterministic calibration actions')
+        actual=float(distribution.probs.amax(1).mean())
+        if initial>target_probability and abs(actual-target_probability)>1e-4:
+            raise ValueError('Requested categorical exploration probability is outside the bounded calibration range')
+    allowed={id(p) for p in head.parameters()}
+    changed=[name for name,value in model.policy.named_parameters() if not torch.equal(before[name],value)]
+    if any(id(value) not in allowed and not torch.equal(before[name],value) for name,value in model.policy.named_parameters()):
+        raise ValueError('Categorical calibration changed encoder/critic parameters')
+    return {'parameter_changes':changed,'temperature':temperature,'target_probability':target_probability,
+            'initial_mean_max_probability':initial,'initialized_mean_max_probability':actual,
+            'calibration_examples':len(observations),'calibration_split':'teacher_training_only',
+            'deterministic_calibration_actions_unchanged':True,'encoder_and_critic_unchanged':True}
+
+
+def fresh_learning_rate(model,rate):
+    if (not np.isfinite(rate) or not 1e-6<=rate<=1e-3 or model.num_timesteps
+            or model._n_updates or model.policy.optimizer.state):
+        raise ValueError('Learning-rate tuning requires an untouched PPO optimizer')
+    previous=[group['lr'] for group in model.policy.optimizer.param_groups]
+    model.learning_rate=float(rate);model._setup_lr_schedule()
+    model.policy.optimizer.defaults['lr']=float(rate)
+    for group in model.policy.optimizer.param_groups:group['lr']=float(rate)
+    return {'previous_optimizer_learning_rates':previous,'initialized_learning_rate':float(rate),
+            'scope':'Constant PPO schedule and optimizer initialization only; no model parameter or update changes'}
+
+
+def guarded_initialization(protocol,metadata_config,method='B1'):
     """Explicit new reward version before ANY PPO update; never rewrite parent."""
     original=EnvConfig.from_dict(metadata_config['env'])
     if metadata_config['signature']!=signature(original):
         raise ValueError('Supervised initialization signature is inconsistent')
     apply_guarded_progress(protocol,original.to_dict())
-    changed=training_config(protocol,'B1',original.vehicle)
+    changed=training_config(protocol,method,original.vehicle)
     before,after=original.to_dict(),changed.to_dict()
     expected=dict(before['reward']);expected.update(progress_weight=.5,collision=-90.,out_of_bounds=-90.)
     if {k:v for k,v in before.items() if k!='reward'}!={k:v for k,v in after.items() if k!='reward'} or after['reward']!=expected:
@@ -52,76 +109,97 @@ def guarded_initialization(protocol,metadata_config):
             'scope':'Same supervised actor and untouched PPO optimizer, explicitly initialized for guarded_progress_v1 before training'}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
+    if learning_rate is not None and (not np.isfinite(learning_rate) or not 1e-6<=learning_rate<=1e-3):
+        raise ValueError('Invalid bounded PPO learning rate')
     require_finished_parent(parent)
     protocol = read(parent/'protocol.json')
-    if (protocol.get('methods') != ['B1'] or not protocol.get('evaluation_only')
-            or not protocol.get('extra_supervision') or audit(parent, 'B1') != read(parent/'B1/endpoint_raw_audit.json')):
-        raise ValueError('Require complete raw-audited supervised-only direct diagnostic')
-    evaluated = read(parent/'B1/evaluation.json')
-    if len(evaluated['episodes']) != 4 or sum(r['success'] for r in evaluated['episodes']) < 3:
-        raise ValueError('Require the predeclared three-of-four known-road representation gate')
+    methods=protocol.get('methods')
+    if (methods not in (['B1'],['H','H0']) or not protocol.get('evaluation_only') or not protocol.get('extra_supervision')):
+        raise ValueError('Require a complete supervised-only direct or H/H0 diagnostic')
+    origins={}
+    for method in methods:
+        if audit(parent,method)!=read(parent/method/'endpoint_raw_audit.json'):
+            raise ValueError('Parent raw audit changed')
+        evaluated=read(parent/method/'evaluation.json')
+        if len(evaluated['episodes'])!=4 or sum(r['success'] for r in evaluated['episodes'])<3:
+            raise ValueError('Require the predeclared three-of-four representation gate for EVERY registered method')
+        origin=parent/method/read(parent/method/'latest_checkpoint.json')['folder']
+        metadata=verified_checkpoint_metadata(origin)
+        if metadata['physics_steps'] or metadata['optimizer_steps']:
+            raise ValueError('The parent is not a zero-PPO supervised initialization')
+        origins[method]=(origin,metadata)
     healthy, reason = resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free < 12*1024**3:
         raise RuntimeError(str(reason))
     with ProcessLease(parent/'supervised_ppo_prepare.lock'):
-        registration = parent/('supervised_ppo_guarded_registration.json' if guarded_progress else 'supervised_ppo_registration.json')
+        label='supervised_ppo_guarded' if guarded_progress else 'supervised_ppo'
+        if learning_rate is not None:label+='_lr'+format(learning_rate,'.8g')
+        registration=parent/(label+'_registration.json')
         if registration.exists():
             raise FileExistsError('Do not repeat the registered supervised-PPO continuation')
         for name, digest in protocol['source_hashes'].items():
             if sha(parent/'source'/name) != digest:
                 raise ValueError('Parent frozen source changed')
-        origin = parent/'B1'/read(parent/'B1/latest_checkpoint.json')['folder']
-        metadata = verified_checkpoint_metadata(origin)
-        if metadata['physics_steps'] or metadata['optimizer_steps']:
-            raise ValueError('The parent is not a zero-PPO supervised initialization')
         batch = ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_supervised_ppo')
         batch.mkdir();(batch/'infrastructure').mkdir()
         shutil.copytree(parent/'source', batch/'source', ignore=shutil.ignore_patterns('__pycache__'))
         shutil.copytree(parent/'calibration', batch/'calibration')
-        destination = batch/'resume/B1'
-        shutil.copytree(origin, destination)
-        reward_change=None
-        if guarded_progress:
-            original_config=read(origin/'config.json')
-            changed_config=guarded_initialization(protocol,original_config)
-            write_json(destination/'config.json',changed_config)
-            reward_change={'parent_config_sha256':sha(origin/'config.json'),
-                'initialized_config_sha256':sha(destination/'config.json'),
-                'previous_reward':original_config['env']['reward'],'new_reward':changed_config['env']['reward'],
-                'scope':'New reward version before any PPO update; actor/critic architecture and all non-reward environment fields unchanged'}
         torch.set_num_threads(1)
-        model = load_ppo(destination/'model.zip', device='cpu')
-        change = initial_exploration(model, log_std)
-        original_model_sha256 = metadata['model_sha256']
-        model.save(destination/'model.zip')
-        metadata['model_sha256'] = sha(destination/'model.zip')
-        write_json(destination/'metadata.json', metadata)
-        if sha(destination/'normalization.pkl') != metadata['normalization_sha256']:
-            raise ValueError('Supervised observation statistics changed')
-        verified_checkpoint_metadata(destination)
+        dataset=parent/'measured_demonstrations.npz'
+        if not dataset.is_file() or sha(dataset)!=protocol['extra_supervision']['dataset_sha256']:
+            raise ValueError('Registered teacher training views missing or changed')
+        shutil.copy2(dataset,batch/'measured_demonstrations.npz')
+        arrays=np.load(dataset,allow_pickle=False)
+        interventions={};recovery={}
+        for method,(origin,metadata) in origins.items():
+            destination=batch/'resume'/method;shutil.copytree(origin,destination)
+            reward_change=None
+            if guarded_progress:
+                original_config=read(origin/'config.json')
+                changed_config=guarded_initialization(protocol,original_config,method)
+                write_json(destination/'config.json',changed_config)
+                reward_change={'parent_config_sha256':sha(origin/'config.json'),
+                    'initialized_config_sha256':sha(destination/'config.json'),
+                    'previous_reward':original_config['env']['reward'],'new_reward':changed_config['env']['reward'],
+                    'scope':'New reward version before any PPO update; all non-reward environment fields unchanged'}
+            model=load_ppo(destination/'model.zip',device='cpu')
+            if method=='B1':change=initial_exploration(model,log_std)
+            else:
+                with (destination/'normalization.pkl').open('rb') as stream:normalizer=pickle.load(stream)
+                change=categorical_exploration(model,normalizer,arrays[method+'_observations'][arrays['train_mask']],categorical_probability)
+            if learning_rate is not None:change['learning_rate_initialization']=fresh_learning_rate(model,learning_rate)
+            original_model_sha256=metadata['model_sha256']
+            model.save(destination/'model.zip');metadata['model_sha256']=sha(destination/'model.zip')
+            write_json(destination/'metadata.json',metadata)
+            if sha(destination/'normalization.pkl')!=metadata['normalization_sha256']:
+                raise ValueError('Supervised observation statistics changed')
+            verified_checkpoint_metadata(destination)
+            interventions[method]={**change,'parent_model_sha256':original_model_sha256,
+                'initialized_model_sha256':metadata['model_sha256'],'supervised_updates_added':0}
+            if reward_change is not None:interventions[method]['reward_initialization']=reward_change
+            prior=protocol['recovery'][method]
+            recovery[method]={**prior,'checkpoint':'resume/'+method,'parent_batch':parent.name,
+                'parent_checkpoint':origin.name,'lineage_controls':0,
+                'consumed_controls_lower_bound':protocol['extra_supervision']['teacher_controls'],
+                'retained_optimizer_steps':0,'unknown_unflushed_parent_tail':False}
         for name in ('prepare_native_supervised_ppo.py','prepare_native_hazard_learning.py'):
             shutil.copy2(ROOT/'scripts'/name, batch/'source/scripts'/name)
         now = time.time()
-        prior = protocol['recovery']['B1']
         protocol.pop('evaluation_only')
         protocol.update(created_epoch=now, deadline_epoch=now+wall_seconds, parent_batch=parent.name,
-            controlled_budget_per_method=controls, method_budgets={'B1': controls},
+            controlled_budget_per_method=controls, method_budgets={m:controls for m in methods},
             freeze_observation_statistics=True, checkpoint_thresholds=sorted({min(controls,n) for n in (1280,2560,controls)}),
-            scope='Real native PPO after disclosed teacher supervision; frozen train-only statistics, calibrated Gaussian exploration; not ordinary from-scratch PPO or a hierarchy comparison',
-            supervised_ppo_intervention={**change, 'parent_model_sha256': original_model_sha256,
-                'initialized_model_sha256': metadata['model_sha256'], 'supervised_updates_added': 0,
+            scope='Real native PPO after disclosed shared teacher supervision; frozen train-only statistics and explicit exploration initialization; not ordinary from-scratch PPO or formal hierarchy superiority',
+            comparison='Same physical teacher source; action spaces, rates, supervised losses, exploration and compute separately disclosed. Not independent confirmation.',
+            supervised_ppo_intervention={'methods':interventions,'supervised_updates_added':0,
                 'statistics': 'Frozen at teacher training examples; correlated holdout excluded from fitting',
                 'comparison_limit': 'Teacher access,20Hz continuous control and exploration differ from old categorical2Hz B1. All must be shared or controlled in formal comparisons.'},
-            recovery={'B1': {**prior, 'checkpoint': 'resume/B1', 'parent_batch': parent.name,
-                'parent_checkpoint': origin.name, 'lineage_controls': 0,
-                'consumed_controls_lower_bound': protocol['extra_supervision']['teacher_controls'],
-                'retained_optimizer_steps': 0, 'unknown_unflushed_parent_tail': False}})
-        if reward_change is not None:
-            protocol['supervised_ppo_intervention']['reward_initialization']=reward_change
+            recovery=recovery)
+        if methods==['B1']:protocol['supervised_ppo_intervention'].update(interventions['B1'])
         protocol['resource_limits']['wall_seconds'] = wall_seconds
         protocol['source_hashes'] = {p.relative_to(batch/'source').as_posix(): sha(p)
             for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
@@ -140,5 +218,7 @@ if __name__ == '__main__':
     parser.add_argument('--wall-seconds', type=int, default=7200)
     parser.add_argument('--log-std', type=float, default=-2.3)
     parser.add_argument('--guarded-progress',action='store_true')
+    parser.add_argument('--categorical-probability',type=float,default=.9)
+    parser.add_argument('--learning-rate',type=float)
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate)

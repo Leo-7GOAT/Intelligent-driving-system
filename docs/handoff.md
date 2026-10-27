@@ -1,3 +1,41 @@
+# Current authoritative state — 2026-10-27 12:08 local
+
+Active actual CARLA batch035356native_supervised_ppo, HthenH0, each nominal20,480
+new controls,7200s total guard. Hhas~10kcontrols and actual training successes;
+frozen endpoints not yet complete. Worker17444/guard4972were OS-verified; consult
+worker_process.json and current identity, not these historical PID numbers.
+Owned ports2200..2202. Do not relaunch started evidence.
+
+032549teacher-only H/H0is COMPLETE: both3/4,3848raw evaluation controls audit,
+zero PPO updates,896supervised actor steps each. Same1926physical teacher source
+as B1,194macro views. Root single-command wrapper completed actual lifecycle and
+normal cleanup. Queued activation changes only clock fields (typed canonical
+JSON equality verified); original protocol/prepared receipts remain preserved.
+See ../reports/native_hierarchical_teacher_20261027.json.
+
+031740guarded-profile B1is COMPLETE:20480train/640Adam, frozen0/4(one bounds,
+three deadlines),23448raw controls audit;18deadline/13bounds/4collision training
+ends, no success. Profile did not fix retention. Sparse024727remains0/4and
+unchanged. See ../reports/native_guarded_supervised_ppo_20261027.json and
+../reports/native_supervised_retention_20261027.md.
+
+Queued PREPARED_NOT_STARTED:040132native_supervised_ppo, B1guarded profile,
+constant learning rate3e-5vsprior3e-4. All33initial policy tensors/normalizer/RNG
+match031740exactly. Do not rerun fitting or prepare another child. After035356
+normal owned cleanup, launch with:
+`pwsh -NoProfile -File scripts/run_registered_native.ps1 -Batch runs/20261027T040132Z_native_supervised_ppo -ActivateQueued`.
+The wrapper sets the actual client path, probes empty0.9.15, adopts the real
+worker and guards/cleans only its own server. It records queued resource
+activation without changing model/task/seed/physical budget.
+
+Source9e7955fhosted CI40445641563passes407/10skips/4CARLA exclusions in106.01s;
+Windows-only metadata/activation checks pass7/7locally and actual lifecycle
+works. New generic H/H0exploration and learning-rate initialization changes have
+19targeted checks passing and actual Htraining, but need their new push/CI and
+independent-checkout receipts. Full research acceptance remains unmet.
+
+Older transition notes follow; the header above takes precedence.
+
 # Current work — 2026-10-27 11:31 local
 
 Active actual CARLA worker:031740native_supervised_ppo (B1only), guard healthy,

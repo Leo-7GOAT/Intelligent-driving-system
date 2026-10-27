@@ -46,3 +46,40 @@ Preparation is not execution. Use the registered existing batch instead of
 repeating a parent. Full research acceptance, a sufficiently trained healthy
 PPO baseline, five independent seeds,120new paired CARLA conditions, and a
 validated PPO high-level contribution remain open.
+
+
+## Completed shared-profile and teacher-access checks
+
+The matched guarded-progress B1phase031740also completes0/4after20,480actual
+training controls/640PPO Adam updates. Frozen outcomes are one bounds failure
+and three deadlines; all23,448training/evaluation controls audit. Training has
+18deadlines,13bounds and4collisions, zero successes. Teacher-example action MSE
+is0.009942(training)/0.01056(correlated holdout), with exactly fixed observation
+statistics. The profile therefore did not resolve retention; no improvement is
+claimed. [Complete shared-profile ledger](native_guarded_supervised_ppo_20261027.json).
+
+H/H0supervised-only032549both complete3/4known static roads, zero PPO updates.
+All3,848new evaluation controls audit. Their teacher source is the same1,926
+physical controls as B1, producing194macro labels per method; each gets896extra
+supervised actor steps. These are representation results, not learned RL value.
+[Actual frame/model/lifecycle ledger](native_hierarchical_teacher_20261027.json).
+The new single-command launcher completed both arms and verified normal owned
+cleanup. Queued activation preserves typed non-clock protocol values exactly.
+
+Actual H/H0PPO batch035356is now running with the shared guarded-progress profile.
+Before training, positive scaling of only the categorical output heads calibrates
+maximum-action probability to0.9on154teacher-training views. Encoders, critics,
+normalization and deterministic calibration actions remain unchanged. The
+unscaled classifiers were~0.999993confident; this explicit initialization permits
+policy exploration. It is not a rule action replacement. Categorical/continuous
+exploration and action periods are different and separately reported. The frozen
+PPO endpoints remain pending.
+
+A further B1diagnostic040132is PREPARED, not started: learning rate3e-4→3e-5with
+the same guarded reward,33bit-identical initial policy tensors, normalizer and
+RNG bytes. This tests a slower fine-tuning rate after the measured forgetting.
+Its original models and failed controls are not replaced. The constant schedule
+and optimizer rate survive save/load in the targeted test. It has no completed
+training or success claim yet.
+
+[Single-command execution and queue activation](../docs/native_execution.md).

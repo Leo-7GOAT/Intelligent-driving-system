@@ -1,0 +1,116 @@
+{
+  "scope": "Teacher-supervised H/H0 representation endpoints, zero new PPO training. Same1,926physical teacher controls as B1;194macro views rather than1,926direct views, separately disclosed. Single-seed known-road development only.",
+  "batch": "20261027T032549Z_native_hierarchical_bc",
+  "seed": 11,
+  "teacher_controls": 1926,
+  "macro_labels_per_method": 194,
+  "supervised_actor_updates_per_method": 896,
+  "methods": {
+    "H": {
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "progress": 24.297685373459178,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "termination_reason": "success",
+          "physics_steps": 315,
+          "progress": 22.407569819844596,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "termination_reason": "success",
+          "physics_steps": 348,
+          "progress": 20.244348853323782,
+          "interventions": 0
+        }
+      ],
+      "raw_controls_verified": 1924,
+      "ppo_updates": 0,
+      "model_sha256": "5faf5af1f5957acb5ff4e047d9ea6dfc0294b6e9370023b03202cf2860a5caa5",
+      "normalization_sha256": "f4012ad8a0fb2e4e091ff94f013bb325cb3cda907aed362d5747fd5e058e09b2",
+      "raw_audit_sha256": "dff66fc80e0249d463461e78ae421455db92fce009a8919e607e651fa2573261",
+      "final_correlated_fit": {
+        "supervised_optimizer_steps": 896,
+        "train_nll": 7.251640454342123e-06,
+        "train_accuracy": 1.0,
+        "correlated_holdout_nll": 0.4985441267490387,
+        "correlated_holdout_accuracy": 0.925000011920929
+      }
+    },
+    "H0": {
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "progress": 24.300813498436604,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "termination_reason": "success",
+          "physics_steps": 315,
+          "progress": 22.406631936308326,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "termination_reason": "success",
+          "physics_steps": 348,
+          "progress": 20.237545790870215,
+          "interventions": 0
+        }
+      ],
+      "raw_controls_verified": 1924,
+      "ppo_updates": 0,
+      "model_sha256": "b5ddb3fa497cacfa7b1b4d88f6aa4dac172c2c423c56d33a6db5dc4efe2da841",
+      "normalization_sha256": "5a37492ff1a65db9f2fa6f8cc78846979973258a9b637af59b6b72fc3047d6e5",
+      "raw_audit_sha256": "3ec7a1de1fd7092b8d54ded9bc84f679d49612ba859ea3f585de907ad8d7f74d",
+      "final_correlated_fit": {
+        "supervised_optimizer_steps": 896,
+        "train_nll": 7.171135621319991e-06,
+        "train_accuracy": 1.0,
+        "correlated_holdout_nll": 0.5568401217460632,
+        "correlated_holdout_accuracy": 0.8999999761581421
+      }
+    }
+  },
+  "all_raw_controls_verified": 3848,
+  "launcher": {
+    "status": "COMPLETE_AND_OWNED_SERVER_STOPPED",
+    "guard": {
+      "epoch": 1793072715.176928,
+      "worker_pid": 8652,
+      "exit_code": 0,
+      "reason": null
+    },
+    "normal_cleanup": "owned_empty_server_stopped",
+    "activation_sha256": "30a699082de60c27b0ecff652fe83d2019e1614268bbec168f7ca7c8a0dd84d9",
+    "typed_nonclock_protocol_exactly_unchanged": true,
+    "execution_sha256": "123051e705db48175e8bff7e248acb6c28a462366d587e21db74efe2ec24f021"
+  },
+  "independent_confirmation": false,
+  "ppo_value_claim": false
+}

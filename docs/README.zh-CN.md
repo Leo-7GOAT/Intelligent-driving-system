@@ -1,5 +1,11 @@
 # 低速车辆分层决策与控制研究
 
+H/H0与直接B1的教师初始化均在已知完整静态道路达到3/4，PPO更新均为0。两轮已完成B1真实PPO续训仍0/4；H/H0真实PPO正在执行，低学习率B1对照已排队。当前均为单种子开发条件，尚未达到正式研究验收。
+
+[Execution and queue commands](native_execution.md) · [Measured retention report](../reports/native_supervised_retention_20261027.md)
+
+Earlier development snapshots follow.
+
 最新[监督后PPO保持性实测](../reports/native_supervised_retention_20261027.md)：监督初始化直接模型从3/4退化至真实PPO训练20,480步后的0/4；23,427帧已审计，归一化统计完全未变。相同初始权重/RNG的共享奖励配置对照正在执行，尚无PPO改善结论。
 
 最新[实测直接控制诊断](../reports/native_measured_bc_20261027.md)：额外教师监督初始化的连续直接网络在四条已知完整静态道路上为 **3/4**，1,976控制帧已审计，PPO更新为0。对应真实PPO续训已启动，结果单独核算。弧线候选PPO版本H/H0/B1均0/4，已否决改进结论并保留全部69,514帧；尚未通过正式研究验收。

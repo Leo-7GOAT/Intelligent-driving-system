@@ -1,5 +1,11 @@
 # Executability-aware hierarchical driving research
 
+H/H0teacher initialization and direct B1each reach3/4known full static roads with zero PPO updates. Both completed B1PPO continuations remain0/4. H/H0actual PPO is running; a slower-rate B1diagnostic is queued. All are one-seed development conditions; formal research acceptance remains unmet.
+
+[Execution and queue commands](docs/native_execution.md) · [Measured retention report](reports/native_supervised_retention_20261027.md)
+
+Earlier development snapshots follow.
+
 Latest [supervised-PPO retention test](reports/native_supervised_retention_20261027.md): the3/4supervised direct model drops to0/4after20,480real PPO controls. All23,427frames verify and observation statistics stay fixed. A matched-initialization shared reward-profile diagnostic is running; no PPO improvement is claimed.
 
 Latest [measured direct-control diagnostic](reports/native_measured_bc_20261027.md):
