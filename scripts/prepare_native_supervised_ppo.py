@@ -131,8 +131,7 @@ def guarded_initialization(protocol,metadata_config,method='B1'):
             'scope':'Same supervised actor and untouched PPO optimizer, explicitly initialized for guarded_progress_v1 before training'}
 
 
-def representation_gate(protocol,evaluated):
-    """Keep the existing75% development gate over the complete actual inventory."""
+def representation_inventory(protocol,evaluated):
     from navstack.native_cases import registered_native_cases
     cases=registered_native_cases(protocol) if protocol.get('native_case_manifest') else None
     count=len(cases) if cases is not None else 4
@@ -140,6 +139,12 @@ def representation_gate(protocol,evaluated):
     if (len(episodes)!=count or any(type(r.get('case_id')) is not int or type(r.get('success')) is not bool for r in episodes)
             or {r['case_id'] for r in episodes}!=set(range(count))):
         raise ValueError('Representation gate requires every registered condition exactly once')
+    return cases,episodes,count
+
+
+def representation_gate(protocol,evaluated):
+    """Keep the existing75% development gate over the complete actual inventory."""
+    cases,episodes,count=representation_inventory(protocol,evaluated)
     required=(3*count+3)//4;successes=sum(r['success'] for r in episodes)
     if successes<required:
         raise ValueError('Require the predeclared75percent representation gate for EVERY registered method')
@@ -154,6 +159,41 @@ def representation_gate(protocol,evaluated):
             'families':families,'scope':'Complete development initialization gate, not research acceptance or independent confirmation'}
 
 
+def basic_motion_training_gate(protocol,evaluated):
+    """Explicit B1 learning-entry profile, never full-task qualification."""
+    cases,episodes,count=representation_inventory(protocol,evaluated)
+    if protocol.get('methods')!=['B1'] or cases is None:
+        raise ValueError('Basic-motion entry requires explicit complete B1 development conditions')
+    basic=[row for row in episodes if cases[row['case_id']].get('native_hazard') is None]
+    required=(3*len(basic)+3)//4
+    if (len(basic)<4 or sum(row['success'] for row in basic)<required
+            or any(not isinstance(row.get('termination_reason'),str) for row in basic)
+            or any(row.get('termination_reason') in ('collision','out_of_bounds') for row in basic)):
+        raise ValueError('Require75percent unobstructed motion success with zero basic-motion unsafe episodes')
+    return {'profile':'basic_motion_training_v1','basic_successes':sum(r['success'] for r in basic),
+        'basic_cases':len(basic),'required_basic_successes':required,'minimum_basic_fraction':.75,
+        'full_task_successes':sum(r['success'] for r in episodes),'full_task_cases':count,
+        'full_task_qualification_claimed':False,
+        'scope':'PPO learning-entry sanity only. Full-task initialization may remain unqualified; no relaxation of final research acceptance or healthy-final-baseline claim.'}
+
+
+def copy_cleanup_harness(archived,current,destination):
+    """Allow only Bridge.clear lifecycle changes, not hidden actuation changes."""
+    import ast
+    def signature(path):
+        tree=ast.parse(Path(path).read_text(encoding='utf-8'))
+        for node in tree.body:
+            if isinstance(node,ast.ClassDef) and node.name=='Bridge':
+                node.body=[member for member in node.body if not isinstance(member,ast.FunctionDef) or member.name!='clear']
+        return ast.dump(tree,include_attributes=False)
+    if signature(archived)!=signature(current):
+        raise ValueError('Cleanup harness override changes code outside Bridge.clear')
+    change={'parent_sha256':sha(archived),'initialized_sha256':sha(current),
+        'scope':'Bridge.clear only; actuation, sensing, scenario generation and policy semantics unchanged by AST comparison'}
+    shutil.copy2(current,destination)
+    return change
+
+
 def supervised_input_cost(protocol,method):
     costs=[protocol['extra_supervision']['teacher_controls'],
            protocol['recovery'][method]['consumed_controls_lower_bound']]
@@ -162,7 +202,7 @@ def supervised_input_cost(protocol,method):
     return max(costs)
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
@@ -170,6 +210,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         raise ValueError('Invalid bounded PPO learning rate')
     if rollout_actions is not None and (type(rollout_actions) is not int or not 2<=rollout_actions<=4096):
         raise ValueError('Invalid bounded PPO rollout')
+    if initialization_gate not in ('complete_inventory_v1','basic_motion_training_v1'):
+        raise ValueError('Unknown explicit development training-entry profile')
     require_finished_parent(parent)
     protocol = read(parent/'protocol.json')
     methods=protocol.get('methods')
@@ -180,7 +222,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if audit(parent,method)!=read(parent/method/'endpoint_raw_audit.json'):
             raise ValueError('Parent raw audit changed')
         evaluated=read(parent/method/'evaluation.json')
-        representation_gates[method]=representation_gate(protocol,evaluated)
+        representation_gates[method]=(basic_motion_training_gate if initialization_gate=='basic_motion_training_v1' else representation_gate)(protocol,evaluated)
         origin=parent/method/read(parent/method/'latest_checkpoint.json')['folder']
         metadata=verified_checkpoint_metadata(origin)
         if metadata['physics_steps'] or metadata['optimizer_steps']:
@@ -192,6 +234,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                 raise ValueError('Matched rollout diagnostic requires a changed minibatch multiple and a budget divisible by both lengths')
         origins[method]=(origin,metadata)
     protocol['supervised_representation_gates']=representation_gates
+    protocol['initialization_gate_profile']=initialization_gate
     healthy, reason = resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free < 12*1024**3:
         raise RuntimeError(str(reason))
@@ -201,6 +244,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if rollout_actions is not None:label+='_rollout'+str(rollout_actions)
         if methods==['B1'] and log_std!=-2.3:label+='_std'+format(log_std,'.8g')
         if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
+        if initialization_gate=='basic_motion_training_v1':label+='_basic_motion_v1'
+        if current_cleanup_harness:label+='_cleanup_snapshot'
         registration=parent/(label+'_registration.json')
         if registration.exists():
             raise FileExistsError('Do not repeat the registered supervised-PPO continuation')
@@ -252,6 +297,9 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                 'retained_optimizer_steps':0,'unknown_unflushed_parent_tail':False}
         for name in ('prepare_native_supervised_ppo.py','prepare_native_hazard_learning.py'):
             shutil.copy2(ROOT/'scripts'/name, batch/'source/scripts'/name)
+        if current_cleanup_harness:
+            protocol['cleanup_harness_override']=copy_cleanup_harness(parent/'source/scripts/carla_bridge37.py',
+                ROOT/'scripts/carla_bridge37.py',batch/'source/scripts/carla_bridge37.py')
         now = time.time()
         protocol.pop('evaluation_only')
         protocol.update(created_epoch=now, deadline_epoch=now+wall_seconds, parent_batch=parent.name,
@@ -264,6 +312,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                 'comparison_limit': 'Teacher access,20Hz continuous control and exploration differ from old categorical2Hz B1. All must be shared or controlled in formal comparisons.'},
             recovery=recovery)
         if methods==['B1']:protocol['supervised_ppo_intervention'].update(interventions['B1'])
+        if initialization_gate=='basic_motion_training_v1':
+            protocol['scope']='Real CARLA PPO learning from a basic-motion-qualified but full-task-unqualified B1 initializer; remaining hazards are training objectives. Not a final healthy-baseline or research-acceptance claim.'
         if rollout_actions is not None:
             protocol['rollout_actions']=rollout_actions
             protocol['rollout_length_experiment']={
@@ -293,5 +343,7 @@ if __name__ == '__main__':
     parser.add_argument('--categorical-probability',type=float,default=.9)
     parser.add_argument('--learning-rate',type=float)
     parser.add_argument('--rollout-actions',type=int)
+    parser.add_argument('--initialization-gate',choices=['complete_inventory_v1','basic_motion_training_v1'],default='complete_inventory_v1')
+    parser.add_argument('--current-cleanup-harness',action='store_true')
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness)
