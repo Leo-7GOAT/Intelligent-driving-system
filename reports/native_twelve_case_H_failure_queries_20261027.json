@@ -1,0 +1,196 @@
+{
+  "scope": "Six offline production reference queries at two audited CARLA states using the exact frozen source. Fresh references, no prior reference reuse. No ticks, MPC execution, policy updates or completion/physical-infeasibility proof.",
+  "batch": "20261027T100609Z_native_supervised_ppo",
+  "method": "H",
+  "case_id": 7,
+  "first_failed_decision": 25,
+  "endpoint_raw_audit_sha256": "bfc8422b0172427fd3132c3095b5df0be8f0254b8cf2701d34241310f8c4a6c0",
+  "evaluation_trace_sha256": "eb17258ef88ca06f529d2d2ca09ff9e7e31a496fbe82b7fc03c194cda3b0aad8",
+  "nodes_per_query": 7200,
+  "wall_budget_seconds": 180,
+  "actual_wall_seconds": 7.594000000040978,
+  "queries": [
+    {
+      "decision": 25,
+      "action": 2,
+      "recorded_action": 2,
+      "state": {
+        "x": 20.75256636959655,
+        "y": 13.13295595497697,
+        "yaw": -1.5370891962204682,
+        "v": 1.5781554479687792,
+        "steering": -0.3165299789397017,
+        "acceleration": 1.1984064165659092,
+        "time": 12.500000186264515
+      },
+      "target": [
+        21.320609711995207,
+        6.534252200409705,
+        -1.0476733623760435
+      ],
+      "speed": 1.5,
+      "mode": "plan_failed",
+      "plan": {
+        "status": "no_path",
+        "expanded_nodes": 1543,
+        "cost": null,
+        "planning_time": 1.8995682999957353,
+        "failure_reason": "open_set_exhausted",
+        "terminal_goal_prefix": false
+      },
+      "reference_points": 0
+    },
+    {
+      "decision": 25,
+      "action": 12,
+      "recorded_action": 2,
+      "state": {
+        "x": 20.75256636959655,
+        "y": 13.13295595497697,
+        "yaw": -1.5370891962204682,
+        "v": 1.5781554479687792,
+        "steering": -0.3165299789397017,
+        "acceleration": 1.1984064165659092,
+        "time": 12.500000186264515
+      },
+      "target": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "speed": 1.5,
+      "mode": "reference",
+      "plan": {
+        "status": "success",
+        "expanded_nodes": 32,
+        "cost": 7.335,
+        "planning_time": 0.044962799991481006,
+        "failure_reason": null,
+        "terminal_goal_prefix": true
+      },
+      "reference_points": 61
+    },
+    {
+      "decision": 25,
+      "action": 22,
+      "recorded_action": 2,
+      "state": {
+        "x": 20.75256636959655,
+        "y": 13.13295595497697,
+        "yaw": -1.5370891962204682,
+        "v": 1.5781554479687792,
+        "steering": -0.3165299789397017,
+        "acceleration": 1.1984064165659092,
+        "time": 12.500000186264515
+      },
+      "target": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "speed": 1.5,
+      "mode": "reference",
+      "plan": {
+        "status": "success",
+        "expanded_nodes": 32,
+        "cost": 7.335,
+        "planning_time": 0.048591300030238926,
+        "failure_reason": null,
+        "terminal_goal_prefix": true
+      },
+      "reference_points": 61
+    },
+    {
+      "decision": 26,
+      "action": 2,
+      "recorded_action": 2,
+      "state": {
+        "x": 20.759040794143974,
+        "y": 13.027476836544624,
+        "yaw": -1.5502438138458872,
+        "v": -4.428367700078965e-05,
+        "steering": -0.4149582652566819,
+        "acceleration": 0.00030232238382738204,
+        "time": 13.000000193715096
+      },
+      "target": [
+        21.37146632955071,
+        6.454369040570017,
+        -1.0476733623760435
+      ],
+      "speed": 1.5,
+      "mode": "plan_failed",
+      "plan": {
+        "status": "no_path",
+        "expanded_nodes": 1429,
+        "cost": null,
+        "planning_time": 1.731472000014037,
+        "failure_reason": "open_set_exhausted",
+        "terminal_goal_prefix": false
+      },
+      "reference_points": 0
+    },
+    {
+      "decision": 26,
+      "action": 12,
+      "recorded_action": 2,
+      "state": {
+        "x": 20.759040794143974,
+        "y": 13.027476836544624,
+        "yaw": -1.5502438138458872,
+        "v": -4.428367700078965e-05,
+        "steering": -0.4149582652566819,
+        "acceleration": 0.00030232238382738204,
+        "time": 13.000000193715096
+      },
+      "target": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "speed": 1.5,
+      "mode": "plan_failed",
+      "plan": {
+        "status": "no_path",
+        "expanded_nodes": 1577,
+        "cost": null,
+        "planning_time": 1.8728660000488162,
+        "failure_reason": "open_set_exhausted",
+        "terminal_goal_prefix": true
+      },
+      "reference_points": 0
+    },
+    {
+      "decision": 26,
+      "action": 22,
+      "recorded_action": 2,
+      "state": {
+        "x": 20.759040794143974,
+        "y": 13.027476836544624,
+        "yaw": -1.5502438138458872,
+        "v": -4.428367700078965e-05,
+        "steering": -0.4149582652566819,
+        "acceleration": 0.00030232238382738204,
+        "time": 13.000000193715096
+      },
+      "target": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "speed": 1.5,
+      "mode": "plan_failed",
+      "plan": {
+        "status": "no_path",
+        "expanded_nodes": 1577,
+        "cost": null,
+        "planning_time": 1.9497546999482438,
+        "failure_reason": "open_set_exhausted",
+        "terminal_goal_prefix": true
+      },
+      "reference_points": 0
+    }
+  ],
+  "new_controls": 0,
+  "PPO_updates": 0
+}

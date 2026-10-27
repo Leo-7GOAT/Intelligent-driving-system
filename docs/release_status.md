@@ -1,4 +1,22 @@
-# Native clipping asset verified — 2026-10-24 16:15 local
+# Public twelve-condition development assets — 2026-10-27
+
+Three new rule/supervised-initializer capsules are actually uploaded to the
+existing development prerelease. Unauthenticated downloads independently
+reproduce1,321files/18,591rawcontrols/36policy start actions/two byte-identical
+repository figures. [Asset links, hashes and commands](model_card.md#public-twelve-condition-development-evidence),
+[reproduction receipt](../reports/native_twelve_case_public_reproduction_20261027.json).
+Rule B3 is12/12;actor-supervised H/H0each11/12;pooled direct B1is4/12with six
+unsafe episodes. These saved initializers have zero PPO updates.
+
+Source2775416 is actually pushed/remote-verified. HostedCI40492684111 passes
+511/15skips/4CARLA exclusions in191.50s. The documented hierarchical archive
+CLI also passes from an independent checkout at2775416,including24startactions,
+9,803rawcontrols and its exact versioned repository figure. The real-PPO H
+endpoint separately retains11/12with25,454totalrawcontrols;H0 is stilltraining.
+The prerelease tag and previous assets are unchanged. Research acceptance,
+PPOvalue,feedbackbenefit and a healthy final B1 remain open.
+
+# Earlier native clipping asset verification — 2026-10-24 16:15 local
 
 `native_clipping_seed11_20261024.zip` is uploaded to the existing development
 prerelease. GitHub asset671661062 reports110,064,724bytes and SHA256

@@ -2,6 +2,13 @@
 
 These descriptions intentionally omit unproven superiority, final success-rate targets, production safety and real-vehicle claims.
 
+Latest verified development wording (2026-10-27):
+
+- 中文：实现 PPO→局部目标/速度→前向 Hybrid A*→时间轨迹→MPC→CARLA 实际反馈闭环；单种子真实 PPO 训练20,541控制步后，在四条已知道路组成的12组开发条件中完成11组，25,454训练及评估控制帧逐帧审计。公开发布并独立复现三组模型/规则证据包的18,591控制帧、36个起点策略动作和两张结果图；GitHub CPU回归511项通过。规则对照12/12，健康完整B1和独立研究优势尚未建立。
+- English: Built a PPO→local pose/speed→forward Hybrid A*→timed trajectory→MPC→measured CARLA feedback loop. A single-seed policy completes11/12known-road development conditions after20,541real PPO training controls, with25,454training/evaluation controls audited frame by frame. Published and independently reproduced18,591controls,36measured-start policy actions and two figures across three evidence capsules;511hosted CPU tests pass. The strong rule achieves12/12; a healthy full-task flat baseline and independent superiority remain unestablished.
+
+The earlier descriptions below refer to their respective archived batches.
+
 ## 中文
 
 **基于 PPO、Hybrid A* 与 MPC 的低速车辆分层决策与控制研究**
