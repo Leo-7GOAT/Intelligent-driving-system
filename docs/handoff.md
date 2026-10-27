@@ -1,3 +1,35 @@
+# Current verified transition — 2026-10-27 10:14 local
+
+Active batch: `runs/20261027T020918Z_native_hazard_learning`, fresh H/H0/B1,
+seed11,20,480nominal real controls each,7,200s guard. Frozen catalog is explicit
+`kinematic_arcs_goal_v1`; actual B3 parent015226completed3/4and its raw audit
+passes. Only candidate geometry differs from prior3/4B3. All four roads remain
+development. PPO independently selects actions; no B3 teacher or replay. Read
+actual worker/guard/heartbeat/source hashes before acting. Do not relaunch.
+The worker's explicit `NAVSTACK_CARLA_PYTHON` is mandatory in each launch shell.
+
+Previous offset-catalog guarded endpoints are now closed: H2/4,H0zero/4,B1zero/4.
+See ../reports/native_guarded_results_20261027.json. B1trained20,710lineage controls,
+charged21,640including930discarded controls; frozen020349is deadline/collision/
+bounds/bounds. Raw frame verification covers both B1training segments21,640,
+H0original10,240and recovered13,840train/eval, and H23,273train/eval. No healthy
+full-task baseline, formal advantage or independent confirmation is established.
+
+Disk guards ended B1training014402and evaluation015515; all records retained.
+Evaluation-only020349completed with identical model/statistics and zero updates.
+Its original phase-local audit omitted an inherited unknown-tail flag because
+the preparer dropped it. The combined ledger retains the parent's true flag;
+future preparers propagate the flag and chain. Do not rewrite frozen inputs.
+
+Five historical evidence directories are byte-verified on D and accessed via
+junctions at their original paths. No failed evidence was discarded. The local
+archive receipt and per-file SHA manifests are retained;25+GiBwas restored on C.
+Avoid large concurrent local verification jobs during CARLA runs.20resource/
+lineage tests pass; source4cd64d5independent CPU389/1/4and hosted CI387/3/4pass.
+The new resource/lineage extension still needs its own pushed CI receipt.
+
+The notes below describe earlier transitions and must not override this header.
+
 # Latest active work — 2026-10-27 morning
 
 Authoritative latest report: ../reports/native_static_body_learning_20261027.md;
@@ -43,7 +75,7 @@ configuration/routes/calibration match prior2/4B3; only static representation
 changes. Road1still fails coarse112/fine970-node exhausted searches, not a
 proof of physical impossibility. Case3cycleP95is6.065s: do not claim realtime.
 
-Latest continuation is `runs/20261027T014402Z_native_recovery`, H0 then B1,
+Previous continuation was `runs/20261027T014402Z_native_recovery`, H0 then B1,
 with inherited frozen route-offset geometry and guarded-progress reward.
 H0 retains10,240lineage controls/320Adam updates and adds10,240nominal controls;
 B1 is fresh with20,480nominal controls. Saved RNG/model/normalization hashes
@@ -2972,4 +3004,4 @@ Verified recovery endpoint update: H0 has completed10,240new controls and320new
 Adam updates, reaching20,480lineage controls/640retained updates. Frozen result
 is0/4,all deadlines; this segment's13,840training/evaluation controls pass the
 raw CARLA frame audit. The interrupted ancestor's unknown tail remains flagged.
-B1 is now the active method in014402; no complete paired comparison yet.
+B1 subsequently completed via015515and frozen020349; see the current header.

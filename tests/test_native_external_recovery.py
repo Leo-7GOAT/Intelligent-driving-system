@@ -3,7 +3,7 @@ from copy import deepcopy
 import pytest
 from navstack.experiments import write_json
 from scripts.audit_native_method_endpoint import sha
-from scripts.prepare_native_evaluation_recovery import verified_interruption
+from scripts.prepare_native_evaluation_recovery import verified_interruption, evaluation_lineage
 
 
 def fixture(parent,monkeypatch):
@@ -41,3 +41,40 @@ def test_external_absence_rejects_stale_live_or_changed_records(tmp_path,monkeyp
     else:receipt['protocol_port_span']=[2000,2001,2002]
     write_json(tmp_path/'process_absence_receipt.json',receipt)
     with pytest.raises(ValueError):verified_interruption(tmp_path)
+
+
+@pytest.mark.parametrize('fault',[None,'wrong_error','exit_zero','live','wrong_worker','wrong_server','unclean'])
+def test_completed_training_disk_stop_requires_exact_failure_and_owned_absent_processes(tmp_path,monkeypatch,fault):
+    fixture(tmp_path,monkeypatch)
+    final={'reason':None,'exit_code':1,'worker_pid':12341}
+    stop={'status':'owned_empty_server_stopped','shipping_pid':12344,'post_stop_tcp':[],'post_stop_udp':[]}
+    failure={'error':"RuntimeError('Disk below12GiB')"}
+    if fault=='wrong_error':failure['error']="RuntimeError('arbitrary learner bug')"
+    elif fault=='exit_zero':final['exit_code']=0
+    elif fault=='live':monkeypatch.setattr('navstack.process_lease.pid_alive',lambda pid:True)
+    elif fault=='wrong_worker':final['worker_pid']=12399
+    elif fault=='wrong_server':stop['shipping_pid']=12399
+    elif fault=='unclean':stop['post_stop_tcp']=[{'port':2200}]
+    write_json(tmp_path/'guard_final.json',final)
+    write_json(tmp_path/'failure.json',failure)
+    write_json(tmp_path/'infrastructure/server_stop.json',stop)
+    if fault is None:
+        assert verified_interruption(tmp_path)=='worker_disk_below_12GiB'
+    else:
+        with pytest.raises(ValueError):verified_interruption(tmp_path)
+
+
+def test_frozen_replay_cannot_drop_unknown_tail_lost_controls_or_retained_updates():
+    prior={'unknown_unflushed_parent_tail':True,'retained_optimizer_steps':320,
+           'recovery_chain':['original','first_recovery']}
+    before=deepcopy(prior)
+    summary={'lineage_control_steps':20710,'charged_control_steps_lower_bound':21640,'optimizer_steps':340}
+    replay=evaluation_lineage(prior,summary,'last_training','checkpoint_final','B1')
+    assert replay['unknown_unflushed_parent_tail'] is True
+    assert replay['consumed_controls_lower_bound']-replay['lineage_controls']==930
+    assert replay['retained_optimizer_steps']==660
+    assert replay['recovery_chain']==['original','first_recovery','last_training']
+    assert prior==before
+    repeated=evaluation_lineage(replay,{**summary,'optimizer_steps':0},'last_training','final','B1')
+    assert repeated['recovery_chain']==replay['recovery_chain']
+    assert repeated['retained_optimizer_steps']==660 and repeated['unknown_unflushed_parent_tail']

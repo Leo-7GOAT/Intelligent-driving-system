@@ -831,15 +831,113 @@
         "shipping_pid": 21564
       },
       "infrastructure_server_stop.json_sha256": "d70e782238d78fdfe527110cd68158987b203ca33b0da69fb0b99658222c1c85"
+    },
+    {
+      "batch": "20261027T015226Z_native_rule",
+      "hazard": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 10.0,
+        "static_geometry": "projected_box_strips12_v1"
+      },
+      "final_goal_candidate": true,
+      "protocol_sha256": "2096a7369c45e0f069b0f1708d4fabba0920af8d0b75556b9e9b4660f5868c1f",
+      "reference_reuse": true,
+      "registered_cases": 4,
+      "training_controls": 0,
+      "optimizer_updates": 0,
+      "completed_cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "progress": 24.2978753261079,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 1.0351030414807205,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 317,
+          "progress": 22.425155951715826,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 341,
+          "progress": 20.109482347563496,
+          "interventions": 0,
+          "plan_failures": 0
+        }
+      ],
+      "status": "complete",
+      "raw_audit.json": {
+        "scope": "Raw frame verification of rule-only native evaluation; no learned-policy or training claim",
+        "batch_complete": true,
+        "registered_cases": 4,
+        "uncompleted_cases": [],
+        "batch": "20261027T015226Z_native_rule",
+        "protocol_sha256": "2096a7369c45e0f069b0f1708d4fabba0920af8d0b75556b9e9b4660f5868c1f",
+        "summary_sha256": "69fbbf418b8b48c6f5d14ec75f1212cb593156d6ff3c119e0f9bc0fc66a38fce",
+        "failure_sha256": null,
+        "trace_sha256": "49bc1c0ae8ceb5e0fcd487fc211bc85938b6706504315308ef9ca2acea56bc70",
+        "bridge_response_sha256": "c17017058e97ae35b1ab09227906cb5021d9be314505fe3085ed048367a2a032",
+        "scene_hashes": {
+          "scene_0000.json": "4316dd658b8a44f17d3aab2a9de71f1dec979c698c4561bf6300ca1c3fc451a5",
+          "scene_0001.json": "85624c1e1bf84d336f42305429673caecd33f9209593ebad07c7f2d578a2a254",
+          "scene_0002.json": "540a0486555d9b62d2783042f50e874645df7afee153412e3ccecbe4e9e06321",
+          "scene_0003.json": "1b5d439389f0657a9ff587b5eb66fbce6fdff55394a9db20a40df7a11ef7cebf"
+        },
+        "evaluation_controls_verified": 1919,
+        "reset_ticks_verified": 123,
+        "world_ticks_verified": 2042,
+        "cases_verified": 4,
+        "termination_counts": {
+          "success": 3,
+          "deadline": 1
+        },
+        "training_physics_steps": 0,
+        "optimizer_updates": 0
+      },
+      "raw_audit.json_sha256": "3388c96c136bffa3f0a53823cc040b80de23bf724921dc740843816a5f1b0c4e",
+      "guard_final.json": {
+        "epoch": 1793066858.5124538,
+        "worker_pid": 16888,
+        "exit_code": 0,
+        "reason": null
+      },
+      "guard_final.json_sha256": "3031acb335a6e56b370620a3a0147c67cfd7d36ea309e25b807258ad12be6e1e",
+      "infrastructure_server_stop.json": {
+        "shipping_pid": 33904,
+        "status": "owned_empty_server_stopped",
+        "post_stop_tcp": [],
+        "epoch": 1793066860,
+        "post_stop_udp": []
+      },
+      "infrastructure_server_stop.json_sha256": "98e8d28ad827eaa7facd879becdfdb627a269f8554b056008f5326eebd2255a5"
     }
   ],
   "cpu": {
-    "passed": 380,
+    "passed": 388,
     "skipped": 1,
     "carla_deselected": 4,
-    "seconds": 124.76,
-    "log_sha256": "03671a7405918606096e48ad0bbc20e204bca2eef88d30389c359057b5be6979",
-    "junit_sha256": "b53a2082f59957328824520faf47630b46db8c3f39cc7b3ad7fdafe05594b56d"
+    "seconds": 127.68,
+    "log_sha256": "bf124aa43b2bc115702e6c5cfb9bcfaeff402fc907c06fadab6138105a765168",
+    "junit_sha256": "cf604e733177a8f0d5534b34cbe8946b4e91baaa4163f2bee866fd45515d1125"
   },
   "walker_spawn_preflight": {
     "scope": "Spawn-only infrastructure preflight; no ego, controls, PPO, rewards or success-rate evidence",
@@ -1693,9 +1791,465 @@
       "protocol_sha256": "0b98bd28a21f54099ca1ae4791a9b9cec3280baeb2adf9da8e7168bd73123637",
       "methods": {
         "H": {
+          "physics_steps": 20761,
+          "actions": 2080,
+          "episodes": 27,
+          "optimizer_steps": 650,
+          "lineage_control_steps": 20761,
+          "charged_control_steps_lower_bound": 20761,
+          "wall_seconds": 1446.5450625419617,
+          "modes": {
+            "plan_failed": 1400,
+            "reference": 440,
+            "wait": 239,
+            "parking_brake": 1
+          },
+          "status": "evaluated",
+          "model_sha256": "6e1bd2d31f026e06ac860228de40facd03bee4e4477fd99eed332126521743b5",
+          "normalization_sha256": "71c5adb4b3b5cafbf2d533916333b7c8bc73f250baac612cac6c03d927a83e25",
+          "evaluation": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 348,
+              "progress": 24.257416421684848,
+              "interventions": 0,
+              "plan_failures": 0
+            },
+            {
+              "case_id": 1,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 0,
+              "plan_failures": 0
+            },
+            {
+              "case_id": 2,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 364,
+              "progress": 20.08376789622687,
+              "interventions": 10,
+              "plan_failures": 1
+            }
+          ],
+          "raw_audit": {
+            "schema_version": 1,
+            "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+            "batch": "20261027T004817Z_native_hazard_learning",
+            "method": "H",
+            "protocol_sha256": "0b98bd28a21f54099ca1ae4791a9b9cec3280baeb2adf9da8e7168bd73123637",
+            "config_sha256": "8ff9e01d7cfaaec142af460334bf084ed39d70f7cdd174e064794759f15ee44d",
+            "summary_sha256": "30ed23ad950e7fa434054bc4eff4b667d98da40f672123c11864661502a06caf",
+            "evaluation_sha256": "ccdea73431dcfbd55fd32c2f737a673e948fcd6950a6f1751f9c0778af84c1ec",
+            "evaluation_trace_sha256": "00bbf098f0bf969ac5af9f824b4bf71da7022ac6a52d4805f649c93190727cdc",
+            "optimization_sha256": "7b5653381d778b83a508abe3a64994e8a77d2d14b2b25113d9004d1884f84f1d",
+            "transition_hashes": {
+              "transitions_000000000_1793062182802581800.jsonl.gz": "f26004c9aefb98e58515b54be74b5fd87c760b7b71d0f3e024ed971849531d74"
+            },
+            "bridge_response_stream": "bridge_059faff7_responses.jsonl.gz",
+            "bridge_response_sha256": "decd78956087aa63198765d426ddd22797ce142fc7a36b2b4ca30660e45f1c7b",
+            "bridge_complete_rows": 23336,
+            "training_control_frames_verified": 20761,
+            "evaluation_control_frames_verified": 2512,
+            "total_applied_controls_verified": 23273,
+            "training_world_ticks_verified": 21628,
+            "evaluation_world_ticks_verified": 2636,
+            "training_termination_reasons": {
+              "deadline": 19,
+              "success": 8
+            },
+            "checkpoint": "checkpoint_000020480",
+            "checkpoint_metadata_sha256": "314c122aa68241d68c992f4dca81d6ee578c5d8fc89d8a02d2b1849a196f4fce",
+            "lineage_controls": 20761,
+            "charged_controls_lower_bound": 20761,
+            "segment_optimizer_steps": 650,
+            "optimizer_steps_total_lower_bound": 650,
+            "unknown_unflushed_ancestor_tail": false
+          },
+          "raw_audit_sha256": "e342aeb2539a9437b845e1a73d01256aeabc69b6d8cceeabe3bb62af96d81c50"
+        },
+        "H0": {
           "status": "running",
-          "physics_steps": 11980,
-          "actions": 1199
+          "physics_steps": 10130,
+          "actions": 1013
+        },
+        "B1": {
+          "status": "not_started"
+        }
+      },
+      "status": "failed",
+      "scope": "Fresh real CARLA native-hazard PPO development; known roads, no rule teacher, replay, inherited model or formal superiority claim",
+      "seed": 11,
+      "budget_per_method": 20480,
+      "policy_variant": "unshared_endpoint_v1",
+      "policy_intervention": {
+        "version": "endpoint_clear_v1",
+        "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
+      },
+      "reward_intervention": {
+        "version": "guarded_progress_v1",
+        "progress_weight_per_meter": 0.5,
+        "collision": -90.0,
+        "out_of_bounds": -90.0,
+        "max_initial_distance_m": 40.0,
+        "max_episode_seconds": 45.0,
+        "scope": "Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee."
+      },
+      "evaluation_only": false,
+      "parent_batch": "20261027T003800Z_native_rule",
+      "guard_final": {
+        "epoch": 1793064604.4488056,
+        "worker_pid": 47232,
+        "exit_code": 1,
+        "reason": null
+      },
+      "cleanup_status": "owned_empty_server_stopped"
+    },
+    {
+      "batch": "20261027T013823Z_native_recovery",
+      "protocol_sha256": "aec02fcea5ae27960e93e78fc4327caa032468607cb28308d70027a9323fd3d6",
+      "methods": {
+        "H0": {
+          "status": "not_started"
+        },
+        "B1": {
+          "status": "not_started"
+        }
+      },
+      "status": "failed",
+      "scope": "Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison.",
+      "seed": 11,
+      "budget_per_method": 20480,
+      "policy_variant": "unshared_endpoint_v1",
+      "policy_intervention": {
+        "version": "endpoint_clear_v1",
+        "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
+      },
+      "reward_intervention": {
+        "version": "guarded_progress_v1",
+        "progress_weight_per_meter": 0.5,
+        "collision": -90.0,
+        "out_of_bounds": -90.0,
+        "max_initial_distance_m": 40.0,
+        "max_episode_seconds": 45.0,
+        "scope": "Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee."
+      },
+      "evaluation_only": false,
+      "parent_batch": "20261027T004817Z_native_hazard_learning",
+      "cleanup_status": "owned_empty_server_stopped"
+    },
+    {
+      "batch": "20261027T014402Z_native_recovery",
+      "protocol_sha256": "f06a50d87108a7cf1dbf14f85fbca909dbcec1b1ae9b7a98743358b52c3fb182",
+      "methods": {
+        "H0": {
+          "physics_steps": 10240,
+          "actions": 1024,
+          "episodes": 11,
+          "optimizer_steps": 320,
+          "lineage_control_steps": 20480,
+          "charged_control_steps_lower_bound": 20480,
+          "wall_seconds": 279.3795368671417,
+          "modes": {
+            "wait": 32,
+            "reference": 80,
+            "plan_failed": 912
+          },
+          "status": "evaluated",
+          "model_sha256": "637c32c4fe2ae6e5d0bf8c07a39c35b3f62134490296c11501bb92fbd5f40238",
+          "normalization_sha256": "2841821b004d79cf6abebd6d717147f3eab6ce3181634bda35c1e16cd341b6e6",
+          "evaluation": [
+            {
+              "case_id": 0,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            },
+            {
+              "case_id": 1,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            },
+            {
+              "case_id": 2,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.29008556094822424,
+              "interventions": 870,
+              "plan_failures": 87
+            },
+            {
+              "case_id": 3,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            }
+          ],
+          "raw_audit": {
+            "schema_version": 1,
+            "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+            "batch": "20261027T014402Z_native_recovery",
+            "method": "H0",
+            "protocol_sha256": "f06a50d87108a7cf1dbf14f85fbca909dbcec1b1ae9b7a98743358b52c3fb182",
+            "config_sha256": "ec11daa579a2995f41b90e0256b561ee7c8a89180f1d641ea6f80966440d78ce",
+            "summary_sha256": "805471788ea02de92b8b86b87e896bc37fa14d540e3cf8120626e34eb947c346",
+            "evaluation_sha256": "06fec34ca2b116eae81230dd796ae9b4e63065f61be933641630f97dd3080cf4",
+            "evaluation_trace_sha256": "de444adf496086924192a80779694b38244b1963e0a71d1ed21567989aac3cb3",
+            "optimization_sha256": "5ef072b828e08016ed3c2caf8555599b4916798ce85c2f46bb74b6542d2ff8ba",
+            "transition_hashes": {
+              "transitions_000000000_1793065480195138300.jsonl.gz": "0ee6ab2cd20df49aacf7a209fd0a35dba302046e92d29f4da140bc8484b6bbc3"
+            },
+            "bridge_response_stream": "bridge_f8af7821_responses.jsonl.gz",
+            "bridge_response_sha256": "6d34ebbfad42d5bc81935bd712addc74df55f7bdc7c67ff5225023a301abde01",
+            "bridge_complete_rows": 13871,
+            "training_control_frames_verified": 10240,
+            "evaluation_control_frames_verified": 3600,
+            "total_applied_controls_verified": 13840,
+            "training_world_ticks_verified": 10611,
+            "evaluation_world_ticks_verified": 3724,
+            "training_termination_reasons": {
+              "deadline": 11
+            },
+            "checkpoint": "checkpoint_000010240",
+            "checkpoint_metadata_sha256": "d32340e3e0eb9f99cf85a253efc63c6be1054f750d850827516fc2faa0de2529",
+            "lineage_controls": 20480,
+            "charged_controls_lower_bound": 20480,
+            "segment_optimizer_steps": 320,
+            "optimizer_steps_total_lower_bound": 640,
+            "unknown_unflushed_ancestor_tail": true
+          },
+          "raw_audit_sha256": "80e62c98a4efe22413cb62efaec067b3d3d009391a6b74ab1c2667fdcd807272"
+        },
+        "B1": {
+          "status": "running",
+          "physics_steps": 10895,
+          "actions": 1113
+        }
+      },
+      "status": "failed",
+      "scope": "Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison.",
+      "seed": 11,
+      "budget_per_method": 20480,
+      "policy_variant": "unshared_endpoint_v1",
+      "policy_intervention": {
+        "version": "endpoint_clear_v1",
+        "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
+      },
+      "reward_intervention": {
+        "version": "guarded_progress_v1",
+        "progress_weight_per_meter": 0.5,
+        "collision": -90.0,
+        "out_of_bounds": -90.0,
+        "max_initial_distance_m": 40.0,
+        "max_episode_seconds": 45.0,
+        "scope": "Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee."
+      },
+      "evaluation_only": false,
+      "parent_batch": "20261027T013823Z_native_recovery",
+      "guard_final": {
+        "epoch": 1793066015.786992,
+        "worker_pid": 1788,
+        "exit_code": 1,
+        "reason": null
+      },
+      "cleanup_status": "owned_empty_server_stopped"
+    },
+    {
+      "batch": "20261027T015515Z_native_recovery",
+      "protocol_sha256": "3c832271d9b233d86dea14bac414a44583ead4f449934cb0999f7a475ffd0956",
+      "methods": {
+        "B1": {
+          "physics_steps": 10679,
+          "actions": 1088,
+          "episodes": 49,
+          "optimizer_steps": 340,
+          "lineage_control_steps": 20710,
+          "charged_control_steps_lower_bound": 21640,
+          "wall_seconds": 175.20702481269836,
+          "modes": {
+            "flat": 1088
+          },
+          "status": "trained",
+          "model_sha256": "8a4a65880ff4acd27c092974c6f01b8af59f5e02d1d1507cf5418e3176d173c7",
+          "normalization_sha256": "53899ec611216ce417f84d4644371544240a1e6d11ed76decc3123c2efaae988"
+        }
+      },
+      "status": "failed",
+      "scope": "Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison.",
+      "seed": 11,
+      "budget_per_method": 20480,
+      "policy_variant": "unshared_endpoint_v1",
+      "policy_intervention": {
+        "version": "endpoint_clear_v1",
+        "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
+      },
+      "reward_intervention": {
+        "version": "guarded_progress_v1",
+        "progress_weight_per_meter": 0.5,
+        "collision": -90.0,
+        "out_of_bounds": -90.0,
+        "max_initial_distance_m": 40.0,
+        "max_episode_seconds": 45.0,
+        "scope": "Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee."
+      },
+      "evaluation_only": false,
+      "parent_batch": "20261027T014402Z_native_recovery",
+      "guard_final": {
+        "epoch": 1793066344.6910088,
+        "worker_pid": 19628,
+        "exit_code": 1,
+        "reason": null
+      },
+      "cleanup_status": "owned_empty_server_stopped"
+    },
+    {
+      "batch": "20261027T020349Z_native_evaluation_recovery",
+      "protocol_sha256": "f20526fa4845687df1bbdf87e30d53bc4e93ff9c2aedd173e7b94ad6818d9c5e",
+      "methods": {
+        "B1": {
+          "physics_steps": 0,
+          "actions": 0,
+          "episodes": 0,
+          "optimizer_steps": 0,
+          "lineage_control_steps": 20710,
+          "charged_control_steps_lower_bound": 21640,
+          "wall_seconds": 0.09662818908691406,
+          "modes": {},
+          "status": "evaluated",
+          "model_sha256": "8a4a65880ff4acd27c092974c6f01b8af59f5e02d1d1507cf5418e3176d173c7",
+          "normalization_sha256": "53899ec611216ce417f84d4644371544240a1e6d11ed76decc3123c2efaae988",
+          "evaluation": [
+            {
+              "case_id": 0,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.7617402241316853,
+              "interventions": 0,
+              "plan_failures": 0
+            },
+            {
+              "case_id": 1,
+              "success": false,
+              "termination_reason": "collision",
+              "physics_steps": 140,
+              "progress": 3.1191832739286802,
+              "interventions": 0,
+              "plan_failures": 0
+            },
+            {
+              "case_id": 2,
+              "success": false,
+              "termination_reason": "out_of_bounds",
+              "physics_steps": 253,
+              "progress": 12.90574434481647,
+              "interventions": 0,
+              "plan_failures": 0
+            },
+            {
+              "case_id": 3,
+              "success": false,
+              "termination_reason": "out_of_bounds",
+              "physics_steps": 244,
+              "progress": 7.027193331976802,
+              "interventions": 0,
+              "plan_failures": 0
+            }
+          ],
+          "raw_audit": {
+            "schema_version": 1,
+            "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+            "batch": "20261027T020349Z_native_evaluation_recovery",
+            "method": "B1",
+            "protocol_sha256": "f20526fa4845687df1bbdf87e30d53bc4e93ff9c2aedd173e7b94ad6818d9c5e",
+            "config_sha256": "dc20d610d7665ea280cc09e05b386ba22aeaa7f22b13e9dac2a8331e6249d85d",
+            "summary_sha256": "411a5b5b4a6c3c2b5e6abf10bce86fe0c61b68df3b6b5697581b2900552e2fea",
+            "evaluation_sha256": "125ef591f4c9ead8f45e570237b0bf985da73465f2712b027c9e182f879570dd",
+            "evaluation_trace_sha256": "bec005022cd55c51890c59148deb58333ad6c2a95c5ba6a1228b0b16ab352eb8",
+            "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "transition_hashes": {
+              "transitions_000000000_1793066666959877800.jsonl.gz": "f5a3078555cc3cc2c37275e65c9881c62c7d8a69370d8c035e5f256879f7ce3f"
+            },
+            "bridge_response_stream": "bridge_2fd64eae_responses.jsonl.gz",
+            "bridge_response_sha256": "7d667cf4904cc91916cc5e82e7fae67cef03075a5a22c6ee6c467cd635b23836",
+            "bridge_complete_rows": 1545,
+            "training_control_frames_verified": 0,
+            "evaluation_control_frames_verified": 1537,
+            "total_applied_controls_verified": 1537,
+            "training_world_ticks_verified": 0,
+            "evaluation_world_ticks_verified": 1660,
+            "training_termination_reasons": {},
+            "checkpoint": "checkpoint_000000000",
+            "checkpoint_metadata_sha256": "61282628cd6f82d142646e2fc914ecd7564fb3c44149a8336287e3a5edd4f22c",
+            "lineage_controls": 20710,
+            "charged_controls_lower_bound": 21640,
+            "segment_optimizer_steps": 0,
+            "optimizer_steps_total_lower_bound": 660,
+            "unknown_unflushed_ancestor_tail": false
+          },
+          "raw_audit_sha256": "a7c6eb33025601218b85871b521d63a9073db0253c73991155a37d83d10e1265"
+        }
+      },
+      "status": "complete",
+      "scope": "Frozen saved-endpoint reevaluation after verified interruption; zero new training/optimization; old partial attempts retained and charged, not independent conditions",
+      "seed": 11,
+      "budget_per_method": 0,
+      "policy_variant": "unshared_endpoint_v1",
+      "policy_intervention": {
+        "version": "endpoint_clear_v1",
+        "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
+      },
+      "reward_intervention": {
+        "version": "guarded_progress_v1",
+        "progress_weight_per_meter": 0.5,
+        "collision": -90.0,
+        "out_of_bounds": -90.0,
+        "max_initial_distance_m": 40.0,
+        "max_episode_seconds": 45.0,
+        "scope": "Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee."
+      },
+      "evaluation_only": true,
+      "parent_batch": "20261027T015515Z_native_recovery",
+      "guard_final": {
+        "epoch": 1793066696.1325002,
+        "worker_pid": 44336,
+        "exit_code": 0,
+        "reason": null
+      },
+      "cleanup_status": "owned_empty_server_stopped"
+    },
+    {
+      "batch": "20261027T020918Z_native_hazard_learning",
+      "protocol_sha256": "704b693ba705be4f3b67bbe37bc65cb5ec20124214a2c4e049c24050661ad4dc",
+      "methods": {
+        "H": {
+          "status": "running",
+          "physics_steps": 14020,
+          "actions": 1402
         },
         "H0": {
           "status": "not_started"
@@ -1723,7 +2277,7 @@
         "scope": "Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee."
       },
       "evaluation_only": false,
-      "parent_batch": "20261027T003800Z_native_rule"
+      "parent_batch": "20261027T015226Z_native_rule"
     }
   ],
   "endpoint_initialization_parity": {

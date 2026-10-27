@@ -19,15 +19,43 @@ from scripts.evaluate_native_rule import require_finished_parent
 from scripts.audit_native_method_endpoint import audit as endpoint_audit
 
 
+def evaluation_lineage(prior, summary, parent_name, checkpoint_name, method):
+    """A frozen replay keeps uncertainty and consumed costs from every ancestor."""
+    chain=list(prior.get('recovery_chain',[]))
+    if not chain or chain[-1]!=parent_name:
+        chain.append(parent_name)
+    return {'checkpoint':'resume/'+method,'parent_batch':parent_name,'parent_checkpoint':checkpoint_name,
+            'lineage_controls':summary['lineage_control_steps'],
+            'consumed_controls_lower_bound':summary['charged_control_steps_lower_bound'],
+            'retained_optimizer_steps':prior.get('retained_optimizer_steps',0)+summary['optimizer_steps'],
+            'unknown_unflushed_parent_tail':bool(prior.get('unknown_unflushed_parent_tail',False)),
+            'recovery_chain':chain}
+
+
 def verified_interruption(parent):
     """Accept normal wall receipts or fresh, separately verified process loss."""
     final=parent/'guard_final.json'
     if final.exists():
         guard=read(final)
-        if guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int:
-            raise ValueError('Require a verified wall-interrupted parent, never a live task')
+        disk_stop = (guard.get('reason') is None and type(guard.get('exit_code')) is int
+                     and guard['exit_code'] == 1 and (parent/'failure.json').is_file()
+                     and read(parent/'failure.json').get('error') == "RuntimeError('Disk below12GiB')")
+        if not disk_stop and (guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int):
+            raise ValueError('Require a verified resource-interrupted parent, never a live task')
         if read(parent/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped':
             raise ValueError('Parent owned-server cleanup is incomplete')
+        if disk_stop:
+            from navstack.process_lease import pid_alive
+            worker=read(parent/'worker_process.json');watch=read(parent/'guard.json')
+            server=read(parent/'infrastructure/server_start.json')
+            stop=read(parent/'infrastructure/server_stop.json')
+            identities=(worker['pid'],watch['pid'],server['shipping_pid'],server['launcher_pid'])
+            if (guard.get('worker_pid')!=worker['pid'] or not server.get('owned_by_task')
+                    or stop.get('shipping_pid')!=server['shipping_pid']
+                    or stop.get('post_stop_tcp')!=[] or stop.get('post_stop_udp')!=[]
+                    or any(type(pid) is not int or pid<=0 or pid_alive(pid) for pid in identities)):
+                raise ValueError('Resource-interrupted processes or cleanup are live, ambiguous or mismatched')
+            return 'worker_disk_below_12GiB'
         return 'wall_deadline'
     from navstack.process_lease import pid_alive
     receipt=read(parent/'process_absence_receipt.json')
@@ -109,9 +137,7 @@ def prepare(parent,method='H',original_goals=False):
             parent_interruption_audit_sha256=sha(batch/'parent_interruption_audit.json'),
             prior_applied_controls_readable_lower_bound=sum(v['applied_controls'] for v in prefix['bridge_streams'].values()),
             prior_attempt_scope='Original partial evaluation/streams remain immutable; all4cases reevaluated because original batch is not a complete audited endpoint',
-            recovery={method:{'checkpoint':'resume/'+method,'parent_batch':parent.name,'parent_checkpoint':origin.name,
-                'lineage_controls':summary['lineage_control_steps'],'consumed_controls_lower_bound':summary['charged_control_steps_lower_bound'],
-                'retained_optimizer_steps':prior.get('retained_optimizer_steps',0)+summary['optimizer_steps']}},
+            recovery={method:evaluation_lineage(prior,summary,parent.name,origin.name,method)},
             harness_overrides=['scripts/'+n for n in overrides],resource_limits={**old['resource_limits'],'wall_seconds':1800})
         if original_goals:
             protocol.update(routes=deepcopy(old['curriculum']['original_routes']),original_goal_transfer=True,

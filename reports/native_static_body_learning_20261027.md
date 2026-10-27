@@ -177,3 +177,27 @@ Adam updates, reaching20,480lineage controls/640retained updates. Frozen result
 is0/4,all deadlines; this segment's13,840training/evaluation controls pass the
 raw CARLA frame audit. The interrupted ancestor's unknown tail remains flagged.
 B1 is now the active method in014402; no complete paired comparison yet.
+
+
+## Closed guarded-reward endpoints and the next isolated catalog
+
+[Frame/model/cost ledger](native_guarded_results_20261027.json): H2/4,H0zero/4,
+B1zero/4 on the four known full static roads. H/H0/B1lineage controls are
+20,761/20,480/20,710; charged B1training is21,640including930lost checkpoint-tail
+controls. Retained Adam updates are650/640/660. B1is not a healthy comparator:
+its final outcomes are deadline, collision, bounds, bounds. There is no formal
+seed interval, equal-cost superiority claim or test-set generalization claim.
+
+B1training prefixes10,961and10,679and H0original10,240controls now also verify
+against complete raw bridge frames, actuator evidence and hazard reset geometry.
+The B1frozen recovery has zero updates and identical model/statistics. A metadata
+bug omitted its inherited unknown-tail flag; the old receipt is retained, the
+combined ledger keeps uncertainty, and future preparers now propagate it.
+
+Actual arc-catalog B3batch015226completes3/4with1,919controls and normal cleanup.
+Its only environment difference from prior3/4B3is the catalog geometry. Road1
+makes1.035mprogress then waits; better initial endpoint connections did not
+solve the full road. No failed case is dropped. Fresh paired batch020918is now
+training H/H0/B1with the new signature, equal nominal20,480-control budgets and
+unchanged measured vehicle, strip obstacle, planner, timed trajectory and MPC.
+It has no inherited weights or rule teacher; endpoints are still pending.
