@@ -54,10 +54,13 @@ def analyze(batch,method,output):
             if row['case_id'] in seen:continue
             seen.add(row['case_id'])
             initial=row['info']['initial_scenario'];scene=scenes[initial['road_sha256']]
-            if initial['dynamic'] or initial['static']:
-                raise ValueError('This diagnostic is limited to the recorded empty native roads')
             env=NavigationEnv(config)
-            env.world=World(scene['width'],scene['height'],road=RoadGrid(scene['road_grid']))
+            from navstack.world import MovingObstacle
+            # Every obstacle is reconstructed from this recorded initial
+            # observation. No scripted future or plant integration is used.
+            env.world=World(scene['width'],scene['height'],static=initial['static'],
+                dynamic=[MovingObstacle(**actor) for actor in initial['dynamic']],road=RoadGrid(scene['road_grid']))
+            env.world.road_collision_backend=getattr(config,'road_collision_backend','scalar')
             env.goal=initial['goal'];env.last_behavior=np.zeros(4);env.execution_outcome=np.zeros(6,dtype=np.float32)
             env.navigation_route=scene['native_layout']['path'] if config.subgoal_mode=='route_frame_terminal' else None
             # No plant integration or tick is permitted: only measured initial state.

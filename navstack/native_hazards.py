@@ -6,12 +6,41 @@ states; the policy receives measured positions/velocities, not future scripts.
 import math
 
 
+def projected_box_strips(points,count=12):
+    """Conservative strip cover of the convex projection of actual box vertices.
+
+    Every convex-hull edge is among the point pairs. Intersections with each
+    closed x strip therefore bound the entire projected body in that strip.
+    No obstacle shrinkage, map dilation or ego-state change is performed.
+    """
+    if (type(count) is not int or not 1<=count<=20 or not isinstance(points,(list,tuple))
+            or not 4<=len(points)<=8 or any(not isinstance(p,(list,tuple)) or len(p)!=2 or any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) for v in p) for p in points)):
+        raise ValueError('Require4..8finite projected box vertices and1..20strips')
+    xmin=min(p[0] for p in points);xmax=max(p[0] for p in points)
+    if xmax-xmin<1e-8 or max(p[1] for p in points)-min(p[1] for p in points)<1e-8:raise ValueError('Degenerate projected body')
+    result=[];epsilon=1e-7
+    for index in range(count):
+        lo=xmin+(xmax-xmin)*index/count;hi=xmin+(xmax-xmin)*(index+1)/count
+        ys=[p[1] for p in points if lo<=p[0]<=hi]
+        for a in points:
+            for b in points:
+                if abs(b[0]-a[0])<1e-12:continue
+                for boundary in (lo,hi):
+                    fraction=(boundary-a[0])/(b[0]-a[0])
+                    if 0<=fraction<=1:ys.append(a[1]+fraction*(b[1]-a[1]))
+        if not ys:raise ValueError('Empty projected body strip')
+        result.append([lo-epsilon,min(ys)-epsilon,hi+epsilon,max(ys)+epsilon])
+    return result
+
+
 def resolve_native_hazard(layout,spec):
-    allowed={'version','kind','distance_m','lateral_m','speed_m_s','start_delay_s'}
+    allowed={'version','kind','distance_m','lateral_m','speed_m_s','start_delay_s','static_geometry'}
     if not isinstance(spec,dict) or set(spec)-allowed or spec.get('version')!='native_hazard_v1':
         raise ValueError('Invalid native hazard schema/version')
     kind=spec.get('kind')
     if kind not in ('static_vehicle','crossing_walker'):raise ValueError('Unknown native hazard kind')
+    if 'static_geometry' in spec and (kind!='static_vehicle' or spec['static_geometry'] not in ('axis_aligned_box_v1','projected_box_strips12_v1')):
+        raise ValueError('Unknown or non-static body geometry version')
     values={key:spec.get(key,default) for key,default in
             [('distance_m',10.),('lateral_m',0. if kind=='static_vehicle' else -3.5),('speed_m_s',.8),('start_delay_s',2.5)]}
     if any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) for v in values.values()):
@@ -37,12 +66,14 @@ def resolve_native_hazard(layout,spec):
     else:raise ValueError('Hazard distance exceeds route')
     if not .5<x<layout['width']-.5 or not .5<y<layout['height']-.5:raise ValueError('Hazard spawn outside registered extent')
     direction=-1. if values['lateral_m']>0 else 1.
-    return {'version':'native_hazard_v1','kind':kind,'distance_m':distance,'lateral_m':values['lateral_m'],
+    result={'version':'native_hazard_v1','kind':kind,'distance_m':distance,'lateral_m':values['lateral_m'],
         'spawn_pose':[x,y,yaw],'coordinate_scope':'route point is actor origin, not ego rear axle',
         'task_family':'static_obstacle' if kind=='static_vehicle' else 'dynamic_interaction',
         'walker_direction_local':[-direction*math.sin(yaw),direction*math.cos(yaw)],
         'walker_speed_m_s':values['speed_m_s'] if kind=='crossing_walker' else 0.,
         'start_delay_s':values['start_delay_s'] if kind=='crossing_walker' else 0.}
+    if 'static_geometry' in spec:result['static_geometry']=spec['static_geometry']
+    return result
 
 
 def verify_native_hazard_scene(layout,spec,observed,static,dynamic):
@@ -55,9 +86,15 @@ def verify_native_hazard_scene(layout,spec,observed,static,dynamic):
         elif actual!=value:raise ValueError('Native hazard metadata differs from registration')
     if type(observed.get('actor_id')) is not int or observed['actor_id']<=0:raise ValueError('Native hazard lacks actual actor identity')
     if expected['kind']=='static_vehicle':
-        if len(static)!=1 or dynamic or not observed.get('actor_type','').startswith('vehicle.'):
+        strip=spec.get('static_geometry')=='projected_box_strips12_v1'
+        if len(static)!=(12 if strip else 1) or dynamic or not observed.get('actor_type','').startswith('vehicle.'):
             raise ValueError('Native static actor inventory differs')
-        box=static[0];point=[(box[0]+box[2])/2,(box[1]+box[3])/2]
+        if strip:
+            rectangles=projected_box_strips(observed.get('static_body_vertices_local_xy',[]))
+            if any(len(a)!=4 or any(abs(x-y)>1e-7 for x,y in zip(a,b)) for a,b in zip(static,rectangles)):
+                raise ValueError('Static strip cover differs from measured projected body')
+        box=[min(b[0] for b in static),min(b[1] for b in static),max(b[2] for b in static),max(b[3] for b in static)]
+        point=[(box[0]+box[2])/2,(box[1]+box[3])/2]
     else:
         if static or len(dynamic)!=1 or not observed.get('actor_type','').startswith('walker.'):
             raise ValueError('Native walker inventory differs')

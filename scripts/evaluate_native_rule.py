@@ -53,7 +53,7 @@ def feedforward_calibration(path, original):
     return path, fit_path
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False,static_geometry=None):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -65,12 +65,14 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
     selected_port=old['carla_rpc_port'] if rpc_port is None else rpc_port
     if type(selected_port) is not int or not 1024<=selected_port<=65533:raise ValueError('Invalid native rule RPC port')
     hazard=None
+    if static_geometry is not None and hazard_kind!='static_vehicle':raise ValueError('Static body geometry requires a declared parked vehicle')
     if hazard_kind is not None:
         if catalog!='route_frame_terminal' or hazard_kind not in ('static_vehicle','crossing_walker'):
             raise ValueError('Native hazard evaluation requires the explicit new route catalog source')
         from navstack.native_hazards import resolve_native_hazard
         from navstack.native_route import local_layout
         hazard={'version':'native_hazard_v1','kind':hazard_kind,'distance_m':10.}
+        if static_geometry is not None:hazard['static_geometry']=static_geometry
         if hazard_lateral is not None:
             if hazard_kind!='crossing_walker':raise ValueError('Explicit hazard lateral requires a walker')
             hazard['lateral_m']=hazard_lateral
@@ -309,5 +311,6 @@ if __name__ == '__main__':
     parser.add_argument('--final-goal-candidate',action='store_true')
     parser.add_argument('--hazard-lateral',type=float)
     parser.add_argument('--reference-reuse',action='store_true')
+    parser.add_argument('--static-geometry',choices=['axis_aligned_box_v1','projected_box_strips12_v1'])
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse,args.static_geometry) if args.prepare else run(args.batch)

@@ -213,6 +213,12 @@ class Bridge:
         static=[]
         for a in self.static_actors:
             points=[self.local(v.x,v.y) for v in a.bounding_box.get_world_vertices(a.get_transform())]
+            if self.native_hazard and a.id==self.native_hazard['actor_id']:
+                self.native_hazard['static_body_vertices_local_xy']=[list(p) for p in points]
+                if self.native_hazard.get('static_geometry')=='projected_box_strips12_v1':
+                    from navstack.native_hazards import projected_box_strips
+                    static.extend(projected_box_strips(points))
+                    continue
             static.append([min(v[0] for v in points),min(v[1] for v in points),max(v[0] for v in points),max(v[1] for v in points)])
         # Verify the actual installed road, retaining the result for every case.
         misses=[]

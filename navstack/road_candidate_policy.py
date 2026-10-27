@@ -1,4 +1,4 @@
-"""Structured policy input for measured roads; no action mask or controller.
+"""Structured road-policy inputs with explicitly versioned optional filters.
 
 The 605 existing state/candidate features are followed by the same 64x64 binary
 road raster supplied to every method. Road and candidate geometry retain fixed

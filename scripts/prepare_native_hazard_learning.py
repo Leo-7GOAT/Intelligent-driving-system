@@ -22,7 +22,7 @@ from scripts.evaluate_native_rule import require_finished_parent
 from scripts.native_road_learning import registered_native_cases,training_config
 
 
-def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=False):
+def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=False,guarded_progress=False):
     old=read(parent/'protocol.json');config=EnvConfig.from_dict(old['config']).to_dict()
     if (not old.get('native_hazard') or config['subgoal_mode']!='route_frame_terminal'
             or len(old['routes'])!=4):
@@ -58,20 +58,43 @@ def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=
     if endpoint_filter:
         resolved.pop('endpoint_candidate_filter',None)
         protocol['policy_intervention']={'version':'endpoint_clear_v1','scope':'Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher.'}
+    if guarded_progress:
+        from navstack.native_route import local_layout
+        import math
+        distances=[]
+        for route in old['routes']:
+            layout=local_layout(route,route['map'],route['opendrive_sha256'])
+            distances.append(math.dist(layout['path'][0][:2],layout['goal'][:2]))
+        reward=config['reward'];horizon=config['deadline']
+        if (max(distances)>40 or horizon>45 or reward['gamma_per_second']!=.99
+                or reward['time_weight']!=.1 or reward['risk_weight']!=.4 or reward['comfort_weight']!=.04
+                or reward['beta']!=1. or reward['heading_potential_weight']!=0.
+                or reward['distance_scale']!=40. or reward['deadline']!=-10.):
+            raise ValueError('Guarded progress profile requires its declared distance/time/reward bounds')
+        protocol.update(task_progress_weight=.5,unsafe_event_penalty=-90.,
+            reward_intervention={'version':'guarded_progress_v1','progress_weight_per_meter':.5,
+                'collision':-90.,'out_of_bounds':-90.,'max_initial_distance_m':40.,'max_episode_seconds':45.,
+                'scope':'Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee.'})
+        # This is a declared common task-reward intervention, not a change to
+        # parent vehicle, road, planner, trajectory or MPC configuration.
+        protocol_check=training_config(protocol,'H',vehicle).to_dict()
+        if endpoint_filter:protocol_check.pop('endpoint_candidate_filter',None)
+        for key in ('progress_weight','collision','out_of_bounds'):protocol_check['reward'][key]=config['reward'][key]
+        resolved=protocol_check
     if resolved!=config:
         raise ValueError('Fresh H would change the parent shared task/controller/vehicle configuration')
     registered_native_cases(protocol)
     return protocol
 
 
-def prepare(parent,controls=4096,wall_seconds=7200,seed=11,methods=('H','H0','B1'),endpoint_filter=False):
+def prepare(parent,controls=4096,wall_seconds=7200,seed=11,methods=('H','H0','B1'),endpoint_filter=False,guarded_progress=False):
     parent=Path(parent).resolve();require_finished_parent(parent)
     verified=audit(parent)
     if verified!=read(parent/'raw_audit.json'):raise ValueError('Completed B3 raw audit changed')
-    protocol=learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter)
+    protocol=learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter,guarded_progress)
     healthy,reason=resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free<12*1024**3:raise RuntimeError(str(reason))
-    registration=parent/f'hazard_learning_seed{seed}{"_endpoint" if endpoint_filter else ""}_registration.json'
+    registration=parent/f'hazard_learning_seed{seed}{"_endpoint" if endpoint_filter else ""}{"_guarded_progress" if guarded_progress else ""}_registration.json'
     with ProcessLease(parent/'hazard_learning_prepare.lock'):
         if registration.exists():raise FileExistsError('This parent/seed already has a fresh learning batch; preserve and continue it')
         batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_hazard_learning')
@@ -104,4 +127,5 @@ if __name__=='__main__':
     parser.add_argument('--seed',type=int,default=11)
     parser.add_argument('--methods',nargs='+',choices=['H','H0','B1'],default=['H','H0','B1'])
     parser.add_argument('--endpoint-filter',action='store_true')
-    args=parser.parse_args();prepare(args.parent,args.controls,args.wall_seconds,args.seed,args.methods,args.endpoint_filter)
+    parser.add_argument('--guarded-progress',action='store_true')
+    args=parser.parse_args();prepare(args.parent,args.controls,args.wall_seconds,args.seed,args.methods,args.endpoint_filter,args.guarded_progress)

@@ -733,15 +733,113 @@
         "post_stop_tcp": []
       },
       "infrastructure_server_stop.json_sha256": "7a6d277cc96ccdc04e109c6d4a1654208acf1e6a9b3987329d03d5f0c907ed72"
+    },
+    {
+      "batch": "20261027T003800Z_native_rule",
+      "hazard": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 10.0,
+        "static_geometry": "projected_box_strips12_v1"
+      },
+      "final_goal_candidate": true,
+      "protocol_sha256": "d5d8a7ba089700d3ee5390004938865b50f8e517936bd8cc299da7d91a15a4d1",
+      "reference_reuse": true,
+      "registered_cases": 4,
+      "training_controls": 0,
+      "optimizer_updates": 0,
+      "completed_cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "progress": 24.29791972794379,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 317,
+          "progress": 22.42514883012532,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 348,
+          "progress": 20.229963558605355,
+          "interventions": 0,
+          "plan_failures": 0
+        }
+      ],
+      "status": "complete",
+      "raw_audit.json": {
+        "scope": "Raw frame verification of rule-only native evaluation; no learned-policy or training claim",
+        "batch_complete": true,
+        "registered_cases": 4,
+        "uncompleted_cases": [],
+        "batch": "20261027T003800Z_native_rule",
+        "protocol_sha256": "d5d8a7ba089700d3ee5390004938865b50f8e517936bd8cc299da7d91a15a4d1",
+        "summary_sha256": "1b78e61bf7f8e2d9f071abeef9ba0db9dc873c3e3b87b14ac6c351eb254ca53c",
+        "failure_sha256": null,
+        "trace_sha256": "8abb8c446db00f8e6f530fe16b47989febadd941c1075f831234797f72a8cabb",
+        "bridge_response_sha256": "f4001ebd16f6fd53a5f051500583cab26747922a9ffca5ea48f08341a7c2f2c9",
+        "scene_hashes": {
+          "scene_0000.json": "4316dd658b8a44f17d3aab2a9de71f1dec979c698c4561bf6300ca1c3fc451a5",
+          "scene_0001.json": "85624c1e1bf84d336f42305429673caecd33f9209593ebad07c7f2d578a2a254",
+          "scene_0002.json": "540a0486555d9b62d2783042f50e874645df7afee153412e3ccecbe4e9e06321",
+          "scene_0003.json": "1b5d439389f0657a9ff587b5eb66fbce6fdff55394a9db20a40df7a11ef7cebf"
+        },
+        "evaluation_controls_verified": 1926,
+        "reset_ticks_verified": 123,
+        "world_ticks_verified": 2049,
+        "cases_verified": 4,
+        "termination_counts": {
+          "success": 3,
+          "deadline": 1
+        },
+        "training_physics_steps": 0,
+        "optimizer_updates": 0
+      },
+      "raw_audit.json_sha256": "bcf1eb5dd220df08cccf06766af8260a0b3df0682441e050759772195077a354",
+      "guard_final.json": {
+        "epoch": 1793061683.657055,
+        "worker_pid": 9692,
+        "exit_code": 0,
+        "reason": null
+      },
+      "guard_final.json_sha256": "b7078766ca1d9409e1e8d2f62318041823a04160ab3465b581898988404c5e76",
+      "infrastructure_server_stop.json": {
+        "post_stop_udp": [],
+        "post_stop_tcp": [],
+        "status": "owned_empty_server_stopped",
+        "epoch": 1793061685,
+        "shipping_pid": 21564
+      },
+      "infrastructure_server_stop.json_sha256": "d70e782238d78fdfe527110cd68158987b203ca33b0da69fb0b99658222c1c85"
     }
   ],
   "cpu": {
-    "passed": 368,
+    "passed": 380,
     "skipped": 1,
     "carla_deselected": 4,
-    "seconds": 125.2,
-    "log_sha256": "2f98df6baca3a7d1c4f033c289c7d0f6bc80cf1d50f58b122aa17bda715b4c35",
-    "junit_sha256": "13554811e4739c7607f5dc0837148205b13a9290f8c07b80c00a62ae302ab22b"
+    "seconds": 124.76,
+    "log_sha256": "03671a7405918606096e48ad0bbc20e204bca2eef88d30389c359057b5be6979",
+    "junit_sha256": "b53a2082f59957328824520faf47630b46db8c3f39cc7b3ad7fdafe05594b56d"
   },
   "walker_spawn_preflight": {
     "scope": "Spawn-only infrastructure preflight; no ego, controls, PPO, rewards or success-rate evidence",
@@ -1410,6 +1508,7 @@
       "budget_per_method": 4096,
       "policy_variant": "unshared_v1",
       "policy_intervention": null,
+      "reward_intervention": null,
       "evaluation_only": false,
       "parent_batch": "20261026T140943Z_native_rule",
       "guard_final": {
@@ -1451,6 +1550,7 @@
         "version": "endpoint_clear_v1",
         "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
       },
+      "reward_intervention": null,
       "evaluation_only": false,
       "parent_batch": "20261026T140943Z_native_rule",
       "process_absence_receipt": {
@@ -1493,12 +1593,82 @@
           "charged_control_steps_lower_bound": 4160,
           "wall_seconds": 0.06183981895446777,
           "modes": {},
-          "status": "trained",
+          "status": "evaluated",
           "model_sha256": "2a8acb17eebde945373ec744e56b6c8623c8fae76cecb87fe5e5d232678a700e",
-          "normalization_sha256": "ac4a7b150266df347922c65eaa9911258ebb6b5c2c724c2a74329020ce6f99d9"
+          "normalization_sha256": "ac4a7b150266df347922c65eaa9911258ebb6b5c2c724c2a74329020ce6f99d9",
+          "evaluation": [
+            {
+              "case_id": 0,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.3955929244895273,
+              "interventions": 250,
+              "plan_failures": 25
+            },
+            {
+              "case_id": 1,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 0,
+              "plan_failures": 0
+            },
+            {
+              "case_id": 2,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90
+            },
+            {
+              "case_id": 3,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "progress": 0.08062717247769058,
+              "interventions": 890,
+              "plan_failures": 89
+            }
+          ],
+          "raw_audit": {
+            "schema_version": 1,
+            "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+            "batch": "20261027T002654Z_native_evaluation_recovery",
+            "method": "H",
+            "protocol_sha256": "0ed3172adaa6ef3d31cc9e9fa3abd546d39c080dda6dd23ad48e4befa6488f73",
+            "config_sha256": "2c812c562cb2e42f993df0d18b43d08ceb12f7a91d88a1bc8ba0497b3d823b63",
+            "summary_sha256": "f9dbd9eb2b3e70b8f7c5a4f460f3236e1e82b2d92844521329eccd02f8fb7185",
+            "evaluation_sha256": "95f69822bce4bd6f03c0d83d74b81fac2a097024b784e882285aed1155e0e7ef",
+            "evaluation_trace_sha256": "7019a3987011832346be44381b22a11c3e140c1dcb903ad7035073ad894dcd96",
+            "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "transition_hashes": {
+              "transitions_000000000_1793060875519072200.jsonl.gz": "c2e58dc52245351a504a08e54353b8546f964ea6c4a9d1d23b34648f5719379e"
+            },
+            "bridge_response_stream": "bridge_bd702fb4_responses.jsonl.gz",
+            "bridge_response_sha256": "899af088cc68118c45d7b71f2a21492a4369b265cb3a2b7512e4630da320878e",
+            "bridge_complete_rows": 3608,
+            "training_control_frames_verified": 0,
+            "evaluation_control_frames_verified": 3600,
+            "total_applied_controls_verified": 3600,
+            "training_world_ticks_verified": 0,
+            "evaluation_world_ticks_verified": 3723,
+            "training_termination_reasons": {},
+            "checkpoint": "checkpoint_000000000",
+            "checkpoint_metadata_sha256": "96e8dee88717a656424a81bbb730935c639046c4e02c79ed6a5d113f22ee4a77",
+            "lineage_controls": 4160,
+            "charged_controls_lower_bound": 4160,
+            "segment_optimizer_steps": 0,
+            "optimizer_steps_total_lower_bound": 130,
+            "unknown_unflushed_ancestor_tail": false
+          },
+          "raw_audit_sha256": "fa2eb2b7c71376a01722a2209b7cf129098d7683c93fbad5659acf4643b93899"
         }
       },
-      "status": "running",
+      "status": "complete",
       "scope": "Frozen saved-endpoint reevaluation after verified interruption; zero new training/optimization; old partial attempts retained and charged, not independent conditions",
       "seed": 11,
       "budget_per_method": 0,
@@ -1507,8 +1677,53 @@
         "version": "endpoint_clear_v1",
         "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
       },
+      "reward_intervention": null,
       "evaluation_only": true,
-      "parent_batch": "20261026T145818Z_native_hazard_learning"
+      "parent_batch": "20261026T145818Z_native_hazard_learning",
+      "guard_final": {
+        "epoch": 1793061446.3197982,
+        "worker_pid": 53144,
+        "exit_code": 0,
+        "reason": null
+      },
+      "cleanup_status": "owned_empty_server_stopped"
+    },
+    {
+      "batch": "20261027T004817Z_native_hazard_learning",
+      "protocol_sha256": "0b98bd28a21f54099ca1ae4791a9b9cec3280baeb2adf9da8e7168bd73123637",
+      "methods": {
+        "H": {
+          "status": "running",
+          "physics_steps": 11980,
+          "actions": 1199
+        },
+        "H0": {
+          "status": "not_started"
+        },
+        "B1": {
+          "status": "not_started"
+        }
+      },
+      "status": "running",
+      "scope": "Fresh real CARLA native-hazard PPO development; known roads, no rule teacher, replay, inherited model or formal superiority claim",
+      "seed": 11,
+      "budget_per_method": 20480,
+      "policy_variant": "unshared_endpoint_v1",
+      "policy_intervention": {
+        "version": "endpoint_clear_v1",
+        "scope": "Necessary endpoint freedom only; no local/global connection mask; wait retained. Ablated/unknown feedback remains unmasked. Same condition is already required by B3/planner; no rule actions or teacher."
+      },
+      "reward_intervention": {
+        "version": "guarded_progress_v1",
+        "progress_weight_per_meter": 0.5,
+        "collision": -90.0,
+        "out_of_bounds": -90.0,
+        "max_initial_distance_m": 40.0,
+        "max_episode_seconds": 45.0,
+        "scope": "Explicit non-PBRS global-distance progress reward; same physical-step parts for every selected method. Other rewards and task termination gates unchanged. No planner/local-goal reward or safety guarantee."
+      },
+      "evaluation_only": false,
+      "parent_batch": "20261027T003800Z_native_rule"
     }
   ],
   "endpoint_initialization_parity": {
@@ -1544,5 +1759,40 @@
     "additional_control_tail_unknown": true,
     "new_controls": 0,
     "new_optimizer_updates": 0
+  },
+  "strip_geometry_lattice_diagnostic": {
+    "scope": "Bounded offline planning on the same measured strip-union scene; not actual driving; search exhaustion is not an infeasibility proof",
+    "scene_sha256": "85624c1e1bf84d336f42305429673caecd33f9209593ebad07c7f2d578a2a254",
+    "rows": [
+      {
+        "lattice": "coarse",
+        "node_budget": 7200,
+        "status": "no_path",
+        "nodes": 112,
+        "reason": "open_set_exhausted",
+        "seconds": 0.08855360001325607,
+        "samples": 0
+      },
+      {
+        "lattice": "fine",
+        "node_budget": 7200,
+        "status": "no_path",
+        "nodes": 970,
+        "reason": "open_set_exhausted",
+        "seconds": 0.798157999990508,
+        "samples": 0
+      },
+      {
+        "lattice": "fine",
+        "node_budget": 28800,
+        "status": "no_path",
+        "nodes": 970,
+        "reason": "open_set_exhausted",
+        "seconds": 0.7367353999288753,
+        "samples": 0
+      }
+    ],
+    "new_controls": 0,
+    "optimizer_updates": 0
   }
 }

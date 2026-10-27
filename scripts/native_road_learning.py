@@ -112,6 +112,11 @@ def training_config(protocol, method, vehicle):
         if isinstance(weight,bool) or not isinstance(weight,(int,float)):
             raise ValueError('Task progress weight must be an explicit finite number')
         config.reward=RewardConfig(**{**asdict(config.reward),'progress_weight':weight})
+    if 'unsafe_event_penalty' in protocol:
+        penalty=protocol['unsafe_event_penalty']
+        if isinstance(penalty,bool) or not isinstance(penalty,(int,float)) or not np.isfinite(penalty) or penalty>=0:
+            raise ValueError('Unsafe-event penalty must be a finite negative shared task reward')
+        config.reward=RewardConfig(**{**asdict(config.reward),'collision':penalty,'out_of_bounds':penalty})
     return config
 
 

@@ -1,5 +1,8 @@
 # Native hazards, physical-time cadence and reference lifecycle
 
+Later measured geometry and shared-reward work is recorded in the
+[2026-10-27report](native_static_body_learning_20261027.md).
+
 These are seed11 development experiments on the same four known roads. Original
 research acceptance remains unmet. Rule-only B3 results contain zero PPO updates
 and cannot establish learned high-level value. The [measured ledger](native_hazards_cadence_summary_20261026.json)
@@ -157,7 +160,8 @@ verify against the readable raw prefix. An additional1,541readable evaluation
 controls are a lower bound; buffered tail loss remains unknown.
 `20261027T002654Z_native_evaluation_recovery` reruns every original case using
 byte-identical saved model/normalizer, with zero new learning. The old partial
-evaluation remains separate and charged. Its result is pending complete audit.
+evaluation remains separate and charged. The completed frozen result is0/4,
+all deadlines,3,600frame-verified new controls with normal guard/owned cleanup.
 This is still seed11development, not independent confirmation.
 
 ```powershell

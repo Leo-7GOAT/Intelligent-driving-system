@@ -1,6 +1,7 @@
 # Latest active work — 2026-10-27 morning
 
-Authoritative new report: ../reports/native_hazards_cadence_20261026.md and its
+Authoritative latest report: ../reports/native_static_body_learning_20261027.md;
+earlier records: ../reports/native_hazards_cadence_20261026.md and its
 JSON ledger. Six native hazard B3 phases are now finished: three parked-car
 versions0/4; final-goal plus reference reuse2/4; original walker three successes
 then one spawn failure; uniformly−2.5m walker4/4. All complete phases and the
@@ -28,17 +29,31 @@ the saved checkpoint are frame-verified. Readable old evaluation controls have
 only a1,541lower bound because raw gzip tails were not closed; all partial
 files remain immutable. This is not a completed endpoint or new training seed.
 
-Active batch is`runs/20261027T002654Z_native_evaluation_recovery`: same saved
+Frozen batch`runs/20261027T002654Z_native_evaluation_recovery` is complete: same saved
 model/checkpoint/normalization bytes, zero new training or optimizer updates,
 all4original conditions repeated because the prior evaluation was incomplete.
-Partial old attempts remain charged separately. Read current heartbeat before
-acting. The recovery preparer accepts a fresh verified process/port-absence
+Partial old attempts remain charged separately. Result0/4,all deadlines,3,600
+new frame-verified controls; guard0and normal owned cleanup. The recovery
+preparer accepts a fresh verified process/port-absence
 receipt without manufacturing a wall-deadline or normal-stop receipt.
 
-Worker initially verified as PID53144; authoritative creation/executable/command
+The conservative measured-body12-strip B3 batch
+`runs/20261027T003800Z_native_rule` is complete3/4,1,926controls. All physical
+configuration/routes/calibration match prior2/4B3; only static representation
+changes. Road1still fails coarse112/fine970-node exhausted searches, not a
+proof of physical impossibility. Case3cycleP95is6.065s: do not claim realtime.
+
+Active batch is`runs/20261027T004817Z_native_hazard_learning`, fresh H/H0/B1,
+each nominal20,480controls,seed11,shared strip geometry and guarded_progress_v1:
+progress.5per metre toward global goal, collision/bounds−90, other reward and
+task gates unchanged. H0ablates feedback; B1selects direct speed/steering.
+No teacher/replay/inherited model. Full-budget frozen endpoints, not training
+successes, determine the next gate. Live H logs show at least one static success.
+
+Worker initially verified as PID47232; authoritative creation/executable/command
 identity is `worker_process.json`, not the number in this document. Owned CARLA
 is on2200..2202, guarded by the frozen watch_existing_pair worker through a
-1,800s wall window. Read guard/heartbeat/failure/summary and actual process
+7,200s wall window. Read guard/heartbeat/failure/summary and actual process
 identity before acting. Do not relaunch this started batch, delete locks, change
 frozen files, or kill foreign2101/2102 owners. The parent contains an immutable
 seed11child registration; follow that child rather than preparing it again.
@@ -53,10 +68,11 @@ Source921e069is actually pushed. Hosted CI40338847695passes345/3skips/4CARLA
 exclusions; independent Windows checkout passes347/1/4. It reproduces21,725raw
 controls,all4cadence initial actions and a byte-identical trajectory figure;
 ../reports/native_hazards_reproduction_20261026.json is the actual receipt.
-The subsequent hazard-learning/filter/reset/external-recovery changes have
-368/1/4root regression;23recovery/endpoint targeted checks pass. Their publication
-and the complete masked endpoint must be recorded
-separately. Original five-seed, new120-condition, healthy-B1, PPO-value and full
+Source7ae55abCI40427033435passes366/3skips/4CARLA exclusions; its independent
+Windows checkout passes368/1/4. Later geometry/reward changes pass380/1/4locally,
+with actual Python3.7bridge compilation. Their publication and full trained
+endpoints must be recorded separately. Original five-seed, new120-condition,
+healthy-B1, PPO-value and full
 research acceptance gates remain unchanged and unmet.
 
 # Earlier completed work — 2026-10-26 20:20 local

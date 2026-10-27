@@ -1,5 +1,15 @@
 # Development model card
 
+## Measured static-body development (2026-10-27)
+
+[Actual geometry/reward report](../reports/native_static_body_learning_20261027.md):
+B3 reaches3/4known full static roads with measured conservative strip geometry;
+this rule result is not a PPO model. The previous endpoint-filter H has4,160
+training controls/130Adam updates and0/4frozen evaluation after verified process-loss
+recovery. The new strip/reward H/H0/B1models are still training, with equal
+nominal20,480-control budgets and all outcomes retained. No new asset release
+or formal acceptance is implied until an actual publication receipt is recorded.
+
 ## Native cadence and hazard development
 
 [Measured report](../reports/native_hazards_cadence_20261026.md): fresh seed11

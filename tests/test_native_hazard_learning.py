@@ -72,3 +72,23 @@ def test_endpoint_experiment_changes_only_declared_policy_filter_under_parent_ph
     resolved=training_config(protocol,'H',VehicleConfig()).to_dict()
     assert resolved.pop('endpoint_candidate_filter') is True
     assert resolved==original.to_dict() and 'policy_intervention' in protocol
+
+
+def test_guarded_progress_is_shared_physical_reward_and_preserves_parent_low_level(tmp_path):
+    original=parent(tmp_path)
+    protocol=learning_protocol(tmp_path,20480,7200,11,['H','H0','B1'],endpoint_filter=True,guarded_progress=True)
+    for method in protocol['methods']:
+        cfg=training_config(protocol,method,VehicleConfig())
+        assert cfg.reward.progress_weight==.5 and cfg.reward.collision==cfg.reward.out_of_bounds==-90.
+        assert cfg.reward.success==original.reward.success and cfg.vehicle==original.vehicle
+        assert cfg.planner==original.planner and cfg.control_dt==original.control_dt
+    # Conservative bounded-objective check, not a safety/learning guarantee:
+    # discounted progress <= .5*initial_distance; terminal-zero PBRS <=1.
+    unsafe_upper=.5*40+1-90*.99**45
+    waiting_lower=-(.1+.4+.04)*45-10
+    assert unsafe_upper<waiting_lower
+
+
+@pytest.mark.parametrize('penalty',[True,float('nan'),1.])
+def test_unsafe_event_penalty_cannot_be_nonnegative_or_nonfinite(penalty):
+    with pytest.raises(ValueError):training_config({'episode_seconds':45.,'unsafe_event_penalty':penalty},'H',VehicleConfig())
