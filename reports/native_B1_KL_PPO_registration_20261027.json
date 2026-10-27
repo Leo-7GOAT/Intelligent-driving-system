@@ -22,10 +22,11 @@
     "KL_traces"
   ],
   "queue_after": "20261027T134723Z_native_frozen_B2",
-  "status": "ACTUALLY_STARTED_TRAINING_AFTER_VERIFIED_B2_CLEANUP",
+  "status": "TRAINING_COMPLETE_FROZEN_EVALUATION_ACTUALLY_RUNNING",
   "protocol_sha256": "230503623a0919e38f7faff76fba4ea7500bef15f59c5c4430e787be4e607e1b",
   "worker_pid": 57964,
-  "activated_protocol_sha256": {
+  "activated_protocol_sha256": "fffe439043f3d6ae5e2ee18416a7e1a53139ae2d8d7434a6c9dd4387b56d13d8",
+  "activation_receipt": {
     "policy_or_task_changes": 0,
     "original_protocol_sha256": "230503623a0919e38f7faff76fba4ea7500bef15f59c5c4430e787be4e607e1b",
     "status": "ACTIVATED_BEFORE_ANY_LIFECYCLE",
@@ -33,5 +34,8 @@
     "queued_created_epoch": 1793109676.2034233,
     "activated_protocol_sha256": "fffe439043f3d6ae5e2ee18416a7e1a53139ae2d8d7434a6c9dd4387b56d13d8",
     "activated_epoch": 1793109765.831
-  }
+  },
+  "actual_training_controls": 20480,
+  "actual_optimizer_steps": 199,
+  "frozen_result": null
 }

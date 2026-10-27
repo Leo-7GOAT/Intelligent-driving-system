@@ -1,4 +1,4 @@
-# Current handoff — 2026-10-27 22:04 local
+# Current handoff — 2026-10-27 22:35 local
 
 Continue the original thesis objective. Do not restart the project, restore the
 old plant, lower final gates, or claim completion. Never duplicate an activated
@@ -45,7 +45,7 @@ vehicle/task/budget. No training. Deployment planner ablation,NOTretrained B2
 or independent confirmation. scripts/prepare_native_planner_ablation.py;
 runs/native_frozen_B2_queue_20261027.log and batch queue_execution.json.
 
-140111 native_supervised_ppo ACTUALLY TRAINING afterB2normalcleanup,worker57964,
+140111 native_supervised_ppo TRAINING COMPLETE20480controls/199Adam,now ACTUALLY FROZEN-EVALUATING all12conditions;worker57964/guard66000,
 queuePID24524; runs/queue_native_KL_PPO_after_B2_20261027.ps1. Original and
 new initial policy tensors,empty Adam,norm/RNG/config exact; same seed11,
 20480controls,lr3e-5,std-4,7200s. ONLYlearner change is SB3target_kl=.01.
@@ -66,14 +66,14 @@ branchfeature/physical-hierarchical-ppo,authenticatedLeo-7GOAT.
 Source5c342ce ACTUALLY pushed. Hosted40510261079SUCCESS556passed/15skips/
 4CARLA exclusions83.86s;independent38targeted pass13.58s. Previousb4134ae
 hosted40506931939SUCCESS547/15/4in159.44s;independent67pass12.81s.
-8f8257a ACTUALLY pushed/remote verified:hosted40517711560SUCCESS567/15/4in90.73s;independent full581/1skip/4CARLA exclusions285.46s. d974637body-spline source hosted40519686500SUCCESS570/15/4in121.18s;root49targeted6.09s/independent49in8.81s. NEWcontinuation changes pass20targeted11.01s;do not inherit older CIcounts.
+8f8257a ACTUALLY pushed/remote verified:hosted40517711560SUCCESS567/15/4in90.73s;independent full581/1skip/4CARLA exclusions285.46s. d974637body-spline source hosted40519686500SUCCESS570/15/4in121.18s;root49targeted6.09s/independent49in8.81s. ae3d238continuation source ACTUALLY pushed/remoteverified;hosted40521153471SUCCESS573/15/4in194.80s;root20targeted11.01s/independent20in10.96s.
 
 Existing prereleasev0.2.0-dev.20261022 has actual publicly downloaded,
 independently reproduced assets:three rule/BCcapsules1321files/18591controls/
 36startactions/two byte-identical figures;realPPOcapsule587files/51429controls/
 24startactions/byte-identical packaged figure. See model_card.md and reports
 native_twelve_case_public_reproduction_20261027.json and
-native_twelve_case_PPO_public_reproduction_20261027.json. Frozen legacyB2capsule is also actually public/downloaded/independently reproduced:433files/8639controls/12startactions/byte-identical figure. NewB1models local.
+native_twelve_case_PPO_public_reproduction_20261027.json. Frozen legacyB2capsule is also actually public/downloaded/independently reproduced:433files/8639controls/12startactions/byte-identical figure. B1basic-motionPPOcapsule477files/43,808,905bytes/SHA b97dcb80ed2bf92f7898e39780c6fa52c77346304c26eaf93f2dc770b27f533c is currently UPLOADING,not yet confirmed public/downloaded/reproduced. Owned ghPID66688/toolsession3495;do not duplicate or claim uploaded before success. Its local package is runs/native_B1_basic_motion_PPO_seed11_20261027_repro.zip;all28337controls raw-audited. Other newerB1models local.
 No final release or research acceptance.
 
 ## Constraints and remaining target

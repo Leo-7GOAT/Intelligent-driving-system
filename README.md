@@ -8,7 +8,7 @@ The [completed smaller-exploration H/H0 PPO comparison](reports/native_shared_sm
 
 [Full independent reconstruction of the earlier mixed teacher dataset](reports/native_mixed_measured_full_reconstruction_20261027.json) now reproduces all 3,617 frames, five arrays and the complete NPZ bytes exactly. This adds zero driving, fitting or PPO updates. The earlier 600-second failed reconstruction remains preserved; the completed attempt used an upfront 900-second budget and took 809.75 seconds. [Dynamic hierarchical view verification](reports/native_hierarchical_dynamic_views_20261027.json).
 
-All these tasks are development conditions. Five independent trained seeds, 120 new paired final conditions, a healthy fully trained B1, complete ablations, PPO value versus strong rules and unseen transfer remain open. The new static obstacle distance is 13m; this does not erase the earlier 10m failures. Hosted source5ababeb passes **518CPU tests**,15skips/4CARLA exclusions;33new targeted checks also pass in the independent locked environment. CPU verification is separate from CARLA results.
+All these tasks are development conditions. Five independent trained seeds, 120 new paired final conditions, a healthy fully trained B1, complete ablations, PPO value versus strong rules and unseen transfer remain open. The new static obstacle distance is 13m; this does not erase the earlier 10m failures. Hosted sourceae3d238 passes **573CPU tests**,15skips/4CARLA exclusions;20continuation checks also pass in the independent locked environment. CPU verification is separate from CARLA results.
 
 [Execution and queue commands](docs/native_execution.md) · [Current handoff](docs/handoff.md) · [Chinese README](docs/README.zh-CN.md)
 

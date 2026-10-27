@@ -1,5 +1,7 @@
 # CPU regression CI
 
+Sourceae3d238 actually passes **573tests,15skips,4CARLA exclusions**in194.80s: [run40521153471](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40521153471). Its20targeted continuation checks pass11.01s/root and10.96s/independent. Source8f8257a also passed full independent Windows regression581/1skip/4exclusions285.46s, and hosted567/15/4in90.73s. These are source-specific CPU results,not driving qualification.
+
 Source5c342ce actually passes **556tests,15skips,4CARLA exclusions**in83.86s: [run40510261079](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40510261079). Independent targeted38pass13.58s. Previousb4134ae passes547/15/4in159.44s. New B2/KL changes have36targeted checks passing9.21s; hosted verification for those changes must be recorded separately.
 
 Source5ababeb actually passes **518tests,15skips,4CARLA exclusions**in190.91s:
