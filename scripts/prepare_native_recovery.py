@@ -56,6 +56,18 @@ def copy_verified_checkpoint(source,destination,config_source=None):
     return metadata
 
 
+def copy_missing_case_dependencies(destination):
+    """Supply the current worker's imports without replacing frozen geometry."""
+    destination=Path(destination);added=[]
+    for name in ('native_cases.py','native_hazards.py','native_route.py'):
+        target=destination/'navstack'/name
+        if target.exists():continue
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(ROOT/'navstack'/name,target)
+        added.append('navstack/'+name)
+    return added
+
+
 def prepare(parent, wall_seconds, rpc_port=None):
     parent=Path(parent).resolve()
     if not 900<=wall_seconds<=7200:raise ValueError('Recovery wall budget outside bounds')
@@ -81,6 +93,7 @@ def prepare(parent, wall_seconds, rpc_port=None):
     batch.mkdir();(batch/'infrastructure').mkdir()
     shutil.copytree(parent/'calibration',batch/'calibration')
     shutil.copytree(parent/'source',batch/'source',ignore=shutil.ignore_patterns('__pycache__'))
+    added_dependencies=copy_missing_case_dependencies(batch/'source')
     # Vehicle/reward/geometry/PPO semantics stay at the parent frozen version.
     # Only orchestration/checkpointing is replaced and fully rehashed. The
     # lifecycle files are frozen too because a successful worker exit alone is
@@ -146,6 +159,7 @@ def prepare(parent, wall_seconds, rpc_port=None):
     old.pop('fresh_cadence_experiment',None)
     old.update(created_epoch=now,deadline_epoch=now+wall_seconds,methods=list(methods),method_budgets=budgets,
         source_hashes=hashes,recovery=recovery,parent_batch=parent.name,
+        recovery_source_dependencies_added=added_dependencies,
         scope='Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison.',
         disk_free_bytes=shutil.disk_usage(ROOT).free)
     old['resource_limits']['wall_seconds']=wall_seconds

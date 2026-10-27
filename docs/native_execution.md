@@ -185,3 +185,9 @@ For a larger direct-view inventory, declare the conversion budget before startin
 for example `--wall-seconds 900` on `build_native_measured_views.py`. The default
 remains 600s and the accepted range is 60..1800s; resource floors stay unchanged.
 This does not alter an already running conversion or its preserved failures.
+
+Recovery staging supplies any missing case-registry imports required by the
+current worker. Existing archived case, hazard and route modules are retained;
+added files are listed and hashed in the child protocol. This avoids an import
+failure when an older checkpoint predates the case-registry module, without
+replacing its measured geometry or checkpoint bytes.

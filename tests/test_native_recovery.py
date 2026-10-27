@@ -15,6 +15,26 @@ from scripts.prepare_native_recovery import claim_recovery
 from scripts.continue_native_learning import verified_endpoint
 
 
+def test_recovery_case_dependencies_are_importable_without_a_carla_runtime(tmp_path):
+    import subprocess,sys
+    from scripts.prepare_native_recovery import copy_missing_case_dependencies
+    added=copy_missing_case_dependencies(tmp_path)
+    assert set(added)=={'navstack/native_cases.py','navstack/native_hazards.py','navstack/native_route.py'}
+    (tmp_path/'navstack/__init__.py').write_text('')
+    code='import sys;sys.path.insert(0,sys.argv[1]);from navstack.native_cases import registered_native_cases;assert registered_native_cases({"routes":[]})==[];print("IMPORTED_WITHOUT_EXECUTION")'
+    completed=subprocess.run([sys.executable,'-c',code,str(tmp_path)],capture_output=True,text=True,check=True)
+    assert completed.stdout.strip()=='IMPORTED_WITHOUT_EXECUTION'
+
+
+def test_recovery_never_overwrites_archived_case_or_geometry_dependencies(tmp_path):
+    from scripts.prepare_native_recovery import copy_missing_case_dependencies
+    folder=tmp_path/'navstack';folder.mkdir()
+    original={name:('archived:'+name).encode() for name in ('native_cases.py','native_hazards.py','native_route.py')}
+    for name,payload in original.items():(folder/name).write_bytes(payload)
+    assert copy_missing_case_dependencies(tmp_path)==[]
+    assert {name:(folder/name).read_bytes() for name in original}==original
+
+
 @pytest.mark.parametrize('algorithm', [PPO, IndependentClipPPO])
 def test_native_learning_state_checkpoint_roundtrip_and_hash_guard(tmp_path, algorithm):
     torch.set_num_threads(1)
