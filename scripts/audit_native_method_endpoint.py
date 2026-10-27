@@ -236,7 +236,25 @@ def audit(batch: Path, method: str) -> dict:
         if info.get("termination_reason"):
             case["terminal"] = info["episode_metrics"]
     expected_cases = {episode["case_id"]: episode for episode in evaluation["episodes"]}
-    if evaluation_only and (len(protocol.get('routes',[]))!=4 or set(expected_cases)!=set(range(4))):
+    if protocol.get('native_case_manifest'):
+        from navstack.native_cases import registered_native_cases, verify_registered_native_begin
+        inventory = set(range(len(registered_native_cases(protocol))))
+        if set(expected_cases) != inventory:
+            raise ValueError('Evaluation requires every registered development condition')
+        verified_case_resets = set()
+        case_episode_ids = {}
+        for row in evaluation_rows:
+            for tick in row['info']['trace']:
+                episode = tick['backend_evidence']['episode_id']
+                if case_episode_ids.setdefault(row['case_id'],episode) != episode:
+                    raise ValueError('One registered evaluation condition contains multiple episodes')
+                key = (row['case_id'],episode)
+                if key not in verified_case_resets:
+                    begin = next((r for r in acknowledgements.values() if r.get('episode_id') == episode and 'reset_ticks' in r),None)
+                    if begin is None: raise ValueError('Missing registered native reset acknowledgement')
+                    verify_registered_native_begin(begin,protocol,row['case_id'])
+                    verified_case_resets.add(key)
+    elif evaluation_only and (len(protocol.get('routes',[]))!=4 or set(expected_cases)!=set(range(4))):
         raise ValueError('Evaluation-only recovery requires all four registered cases')
     if set(evaluation_cases) != set(expected_cases):
         raise ValueError("Evaluation trace cases differ from evaluation summary")
@@ -275,14 +293,14 @@ def audit(batch: Path, method: str) -> dict:
                 raise ValueError("Missing actuator reset acknowledgement")
             actuator_state_values(begin)
     training_reset_ticks = sum(resets.get(episode, 0) for episode in training_episodes | idle_resets)
-    if protocol.get('native_hazard'):
-        from navstack.native_hazards import verify_native_hazard_begin
+    if protocol.get('native_hazard') or protocol.get('native_case_manifest'):
+        from navstack.native_cases import verify_registered_native_begin
         begins={r['episode_id']:r for r in acknowledgements.values() if 'reset_ticks' in r}
         registered={}
         for episode in training_episodes | evaluation_episodes | idle_resets:
             begin=begins.get(episode)
             if begin is None:raise ValueError('Missing native hazard reset acknowledgement')
-            verify_native_hazard_begin(begin,protocol['native_hazard'])
+            verify_registered_native_begin(begin,protocol)
             registered[episode]=[(a['actor_id'],a['actor_type']) for a in begin.get('native_dynamic_actors',[])]
         for (episode,_),response in actual.items():
             if episode in registered and [(a['actor_id'],a['actor_type']) for a in response.get('native_dynamic_actors',[])]!=registered[episode]:

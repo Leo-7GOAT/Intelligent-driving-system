@@ -148,3 +148,33 @@ on every original road and records a new actor-placement condition in the
 protocol. The default remains 10 metres. Such a diagnostic changes the task
 conditions; it does not repair the original scores or establish PPO improvement,
 physical infeasibility, independent confirmation or unseen-test performance.
+
+The versioned [twelve-condition development inventory](../configs/native_development_cases_v1.json)
+combines the same four roads with obstacle-free curve/parking, static cars and
+crossing walkers. Prepare one common-catalog rule diagnostic with:
+
+```powershell
+python scripts/evaluate_native_rule.py --prepare runs/COMPLETED_NATIVE_BASE --source-method H --catalog route_frame_terminal --continuation-feedback --calibration runs/MEASURED_FF/calibration.json --planner-nodes 7200 --planner-heuristic dubins_v1 --road-collision-backend batch_sat_v1 --final-goal-candidate --reference-reuse --case-manifest configs/native_development_cases_v1.json --wall-seconds 1800
+```
+
+Launch its printed batch with `-Kind rule`, then run `audit_native_rule.py`.
+The manifest is copied and hashed before activation. It is mutually exclusive
+with a global hazard and must include every original road. Actual reset
+condition, route and actor identities must match; duplicate physical conditions
+and missing evaluations are rejected. Changing only a representation/default
+alias does not create another physical condition. The existing four-condition
+protocols retain their original inventory and audit results.
+
+This inventory is development only. It does not supply independent training
+seeds, new road layouts or the required 120 final conditions. The static actors
+are 13m along each route, distinct from the retained historical 10m cases.
+Common collection avoids reinterpreting numeric high-level actions between
+historical catalogs. The rule pilot still has zero PPO updates; learned results
+require separate actual training and frozen evaluation.
+
+Fresh PPO preparation retains the full manifest for every selected method.
+Frozen transfers require a saved runtime that supports the manifest; an older
+four-case runtime is rejected rather than silently evaluating a subset. The
+older static teacher-fit entry points also refuse an unsupported mixed manifest.
+Dynamic hierarchical teaching still needs its own per-frame view implementation;
+the twelve-case pilot does not claim that this supervision is already available.

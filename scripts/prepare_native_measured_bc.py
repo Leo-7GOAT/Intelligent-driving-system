@@ -92,6 +92,8 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None):
     if type(seed) is not int or not 0 <= seed < 2**31 or not 1 <= epochs <= 128:
         raise ValueError('Invalid bounded supervised diagnostic')
     require_finished_parent(parent)
+    if views is None and read(parent/'protocol.json').get('native_case_manifest') is not None:
+        raise ValueError('Explicit mixed cases require audited registered views; refusing four-case subset supervision')
     if audit(parent) != read(parent/'raw_audit.json'):
         raise ValueError('Teacher raw audit changed')
     protocol = learning_protocol(parent, 640, 1800, seed, ['B1'])

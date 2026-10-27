@@ -39,14 +39,19 @@ def transfer_protocol(old, reference, lineage, now, wall_seconds, failure_memo=F
         raise ValueError('Require a completed native PPO endpoint and bounded transfer window')
     if len(old.get('routes', [])) != 4 or old['routes'] != reference.get('routes'):
         raise ValueError('Reference must preserve all four original route geometries')
-    same_scene = reference.get('native_hazard') == old.get('native_hazard')
+    manifests = (old.get('native_case_manifest'),reference.get('native_case_manifest'))
+    if any(item is not None for item in manifests) and 'navstack/native_cases.py' not in old.get('source_hashes',{}):
+        raise ValueError('Saved runtime does not support explicit native condition manifests; do not silently evaluate a four-case subset')
+    same_scene = (reference.get('native_hazard'),manifests[1]) == (old.get('native_hazard'),manifests[0])
     if same_scene and not failure_memo:
         raise ValueError('Reference does not change the scene family/specification')
     protocol = deepcopy(old)
-    for key in ('own_success_replay', 'native_hazard', 'freeze_observation_statistics'):
+    for key in ('own_success_replay', 'native_hazard', 'native_case_manifest', 'case_manifest_sha256', 'freeze_observation_statistics'):
         protocol.pop(key, None)
     if reference.get('native_hazard') is not None:
         protocol['native_hazard'] = deepcopy(reference['native_hazard'])
+    if manifests[1] is not None:
+        protocol['native_case_manifest'] = deepcopy(manifests[1])
     registered_native_cases(protocol)  # Validate every resolved spawn before staging.
     protocol.update(
         created_epoch=now, deadline_epoch=now + wall_seconds,
@@ -63,6 +68,8 @@ def transfer_protocol(old, reference, lineage, now, wall_seconds, failure_memo=F
                         'training_updates_added': 0, 'routes_unchanged': True,
                         'split': 'development; known roads and previously inspected reference scenes'},
         resource_limits={**old['resource_limits'], 'wall_seconds': wall_seconds})
+    if any(item is not None for item in manifests):
+        protocol['scene_transfer'].update(from_case_manifest=deepcopy(manifests[0]),to_case_manifest=deepcopy(manifests[1]))
     if failure_memo:
         from navstack.planner_memo import VERSION
         protocol['planner_failure_memo'] = VERSION

@@ -1,4 +1,39 @@
-# Latest verification — 2026-10-27 15:37 local
+# Latest verification — 2026-10-27 16:10 local
+
+Active070950 H remains OS-verified alive,worker58236/guard62452,>17700controls/
+55phases at16:08. H0 has not started. No source/protocol/low-level changes to
+that running batch. Do not restart it due to slow planner cycles or a stale lock.
+
+New080111native_rule is PREPARED,not started:12common-catalog development
+conditions,4open curve/parking+4static13m+4crossing walker10m/-2.5m. Source366
+files,input validation passes. Root/frozen compiled requests are identical.
+../reports/native_twelve_case_development_20261027.json. Registered manifest:
+../configs/native_development_cases_v1.json. New duplicate checks ignore mere
+representation/default aliases; actual reset condition/route/actor inventory
+and all variable-size evaluation cases must audit. No new observation, future
+actor script or policy condition-ID feature is introduced.
+
+Queue PID20124 is actually live,waiting070950normal completion/owned cleanup/
+lifecycle-handle release before rule activation. Script
+runs/queue_native_080111_after_070950_20261027.ps1. Own old waiting PID41164 was
+verified,stopped before any child activation,and superseded to avoid driving
+the same four static13mconditions twice. Original071952files/queued receipt
+snapshot remain; current receipt explicitly saysSUPERSEDED_BEFORE_CHILD_START,
+0controls. No other work or actors were stopped. Do not launch071952.
+
+75targeted integration tests pass in15.58s,including positive/
+corrupted rule/policy raw-reset evidence,transfer compatibility and registered
+view validation. Unsupported old runtimes/teacher-fit entry points refuse a
+mixed manifest rather than silently fitting/evaluating the first four cases.
+Fresh PPO preserves the same12case manifest. Dynamic hierarchical supervision
+is not implemented yet; do not claim a fitted common12case teacher model.
+LegacyB1(23025controls)andB3(1926)
+raw audit files reproduce byte-for-byte using current auditors. New source still
+needs publication/independent regression/hostedCI. Existing464CPU result below
+belongs to255691a. The12conditions have not driven and cannot be counted as
+learned success,120unseen conditions or5independent seeds. Full goal stays open.
+
+# Earlier verification — 2026-10-27 15:37 local
 
 Functional source255691a8fa39965e3f873c1b51ed6e89f2db1abf is actually pushed
 and remote-verified. Hosted CI40467624798 SUCCEEDS:464passed/15skips/

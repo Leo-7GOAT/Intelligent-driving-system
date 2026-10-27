@@ -10,6 +10,12 @@ The new [public B1 model/raw-data capsule](docs/model_card.md#public-smaller-exp
 
 [Execution and queue commands](docs/native_execution.md) · [Measured retention report](reports/native_supervised_retention_20261027.md)
 
+A [twelve-condition common-catalog rule pilot](reports/native_twelve_case_development_20261027.json)
+is prepared and queued after the active H/H0 batch: four curve/parking, four
+static-obstacle and four walker conditions on the same known roads. Its case
+registration and frame auditors are tested; it has not driven yet. It is a
+development inventory, not independent seeds or the 120 unseen final conditions.
+
 Earlier development snapshots follow.
 
 Latest [supervised-PPO retention test](reports/native_supervised_retention_20261027.md): the3/4supervised direct model drops to0/4after20,480real PPO controls. All23,427frames verify and observation statistics stay fixed. A matched-initialization shared reward-profile diagnostic is running; no PPO improvement is claimed.

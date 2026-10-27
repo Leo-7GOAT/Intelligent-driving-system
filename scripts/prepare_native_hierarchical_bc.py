@@ -32,6 +32,8 @@ def prepare(parent,seed=11,steps=896):
     if type(seed) is not int or not 0<=seed<2**31 or not 1<=steps<=2000:
         raise ValueError('Invalid bounded categorical supervision')
     require_finished_parent(parent)
+    if read(parent/'protocol.json').get('native_case_manifest') is not None:
+        raise ValueError('Explicit mixed cases require per-frame dynamic hierarchical views; refusing four-case subset supervision')
     if audit(parent)!=read(parent/'raw_audit.json'):raise ValueError('Teacher raw audit changed')
     protocol=learning_protocol(parent,640,1800,seed,['H','H0'],endpoint_filter=True)
     vehicle=VehicleConfig(**read(parent/'calibration/calibration.json')['vehicle'])

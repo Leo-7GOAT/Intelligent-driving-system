@@ -10,11 +10,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.audit_native_method_endpoint import read, sha, read_prefix, _verify_ticks, verify_initial_actuator
 from navstack.metrics import timing_summary
+from navstack.native_cases import registered_native_cases, verify_registered_native_begin
 
 
 def audit(batch, allow_completed_prefix=False):
     batch = Path(batch)
     protocol = read(batch/'protocol.json')
+    registered_cases = registered_native_cases(protocol)
     partial = allow_completed_prefix and not (batch/'summary.json').exists()
     if partial:
         failure = read(batch/'failure.json')
@@ -25,7 +27,7 @@ def audit(batch, allow_completed_prefix=False):
             raise ValueError('Partial audit requires a recorded failure and normal owned cleanup')
         results = [read(p) for p in sorted(batch.glob('case_*.json'))]
         ids = [r['case_id'] for r in results]
-        if not ids or ids != list(range(len(ids))) or len(ids) >= len(protocol['routes']):
+        if not ids or ids != list(range(len(ids))) or len(ids) >= len(registered_cases):
             raise ValueError('Partial audit requires a strict completed case prefix')
         summary = {'status': 'complete', 'policy_kind': 'rule_only_B3', 'episodes': results,
                    'training_physics_steps': 0, 'optimizer_updates': 0}
@@ -113,7 +115,7 @@ def audit(batch, allow_completed_prefix=False):
         if info['termination_reason']:
             case['terminal'] = info['episode_metrics']
     expected = {r['case_id']: r for r in summary['episodes']}
-    inventory = set(range(len(summary['episodes']) if partial else len(protocol['routes'])))
+    inventory = set(range(len(summary['episodes']) if partial else len(registered_cases)))
     if len(expected) != len(summary['episodes']) or set(expected) != inventory or set(cases) != inventory:
         raise ValueError('Incomplete or duplicated registered case inventory')
     scene_hashes = {}
@@ -131,19 +133,23 @@ def audit(batch, allow_completed_prefix=False):
         path = batch/f'scene_{case_id:04d}.json'
         scene = read(path)
         if (scene['initial'] != case['initial']
-                or scene['scene']['native_layout']['geometry_id'] != protocol['routes'][case_id]['geometry_id']
+                or scene['scene']['native_layout']['geometry_id'] != registered_cases[case_id]['native_route']['geometry_id']
                 or scene['scene']['road_grid']['sha256'] != case['initial']['road_sha256']):
             raise ValueError('Scene identity differs from the registered route or recorded task')
         scene_hashes[path.name] = sha(path)
-        if protocol.get('native_hazard'):
-            from navstack.native_hazards import verify_native_hazard_scene,verify_native_hazard_begin
-            verify_native_hazard_scene(scene['scene']['native_layout'],protocol['native_hazard'],
-                scene['scene'].get('native_hazard',{}),scene['scene']['static'],scene['initial']['dynamic'])
+        if protocol.get('native_hazard') or protocol.get('native_case_manifest'):
+            from navstack.native_hazards import verify_native_hazard_scene
+            spec=registered_cases[case_id].get('native_hazard')
+            if spec is not None:
+                verify_native_hazard_scene(scene['scene']['native_layout'],spec,
+                    scene['scene'].get('native_hazard',{}),scene['scene']['static'],scene['initial']['dynamic'])
             episode=next(iter(case['episodes']))
             begin=next((r for r in acknowledgements.values() if r.get('episode_id')==episode and 'reset_ticks' in r),None)
             if begin is None or begin.get('scene')!=scene['scene']:
                 raise ValueError('Native hazard scene differs from raw reset acknowledgement')
-            verify_native_hazard_begin(begin,protocol['native_hazard'])
+            verify_registered_native_begin(begin,protocol,case_id)
+            if protocol.get('native_case_manifest') and scene['initial']['dynamic'] != begin['dynamic']:
+                raise ValueError('Registered case initial actor observations differ from measured reset')
             identities=[(a['actor_id'],a['actor_type']) for a in begin.get('native_dynamic_actors',[])]
             if any([(a['actor_id'],a['actor_type']) for a in r.get('native_dynamic_actors',[])]!=identities
                    for (owner,_),r in actual.items() if owner==episode):
@@ -156,8 +162,8 @@ def audit(batch, allow_completed_prefix=False):
         raise ValueError('World/reset/control accounting mismatch')
     return {'scope': ('Incomplete rule diagnostic: only completed prefix verified; missing cases are infrastructure failures, not successes'
                       if partial else 'Raw frame verification of rule-only native evaluation; no learned-policy or training claim'),
-            'batch_complete': not partial, 'registered_cases': len(protocol['routes']),
-            'uncompleted_cases': sorted(set(range(len(protocol['routes'])))-inventory),
+            'batch_complete': not partial, 'registered_cases': len(registered_cases),
+            'uncompleted_cases': sorted(set(range(len(registered_cases)))-inventory),
             'batch': batch.name, 'protocol_sha256': sha(batch/'protocol.json'),
             'summary_sha256': None if partial else sha(batch/'summary.json'),
             'failure_sha256': sha(batch/'failure.json') if partial else None,

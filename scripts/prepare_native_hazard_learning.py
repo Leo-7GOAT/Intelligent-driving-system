@@ -45,7 +45,7 @@ def apply_guarded_progress(protocol,config):
 def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=False,guarded_progress=False,failure_memo=False):
     old=read(parent/'protocol.json');config=EnvConfig.from_dict(old['config']).to_dict()
     if type(failure_memo) is not bool:raise ValueError('Failure memo must be explicitly enabled or disabled')
-    if (not old.get('native_hazard') or config['subgoal_mode']!='route_frame_terminal'
+    if (not (old.get('native_hazard') or old.get('native_case_manifest')) or config['subgoal_mode']!='route_frame_terminal'
             or len(old['routes'])!=4):
         raise ValueError('Require four full native hazard development roads')
     if (type(controls) is not int or not 640<=controls<=100000
@@ -55,7 +55,7 @@ def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=
     if not methods or len(set(methods))!=len(methods) or set(methods)-{'H0','H','B1'}:
         raise ValueError('Select unique H0/H/B1 methods')
     protocol={'scope':'Fresh real CARLA native-hazard PPO development; known roads, no rule teacher, replay, inherited model or formal superiority claim',
-        'methods':list(methods),'seed':seed,'routes':old['routes'],'native_hazard':old['native_hazard'],
+        'methods':list(methods),'seed':seed,'routes':old['routes'],'native_hazard':old.get('native_hazard'),
         'record_initial_parameters':True,
         'controlled_budget_per_method':controls,'episode_seconds':config['deadline'],
         'deterministic_training_route_evaluation':True,'road_candidate_policy':True,'feedback_ablation':True,
@@ -75,6 +75,10 @@ def learning_protocol(parent,controls,wall_seconds,seed,methods,endpoint_filter=
         'resource_limits':{'wall_seconds':wall_seconds,'disk_min_GiB':12,'ram_min_GiB':4,'gpu_stop_temperature_C':85,'automatic_retries':0},
         'comparison':'H0/H share unshared actor architecture, task and low level; H0 ablates execution/continuation feedback. Equally informed B1 directly selects categorical speed/steering. All selected methods have the same new physical budget; unfinished phases remain incomplete.',
         'stopping_rule':'One fixed development endpoint per selected method. No automatic retry, early success selection or final-test claim.'}
+    if old.get('native_case_manifest') is not None:
+        from copy import deepcopy
+        protocol['native_case_manifest']=deepcopy(old['native_case_manifest'])
+        protocol.pop('native_hazard',None)
     vehicle=VehicleConfig(**read(parent/'calibration/calibration.json')['vehicle'])
     resolved=training_config(protocol,'H',vehicle).to_dict()
     if endpoint_filter:

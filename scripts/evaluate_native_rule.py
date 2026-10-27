@@ -15,6 +15,7 @@ from navstack.config import EnvConfig
 from navstack.env import rule_action
 from navstack.experiments import write_json, jsonable, signature
 from navstack.metrics import timing_summary
+from navstack.native_cases import registered_native_cases
 from navstack.research import atomic_json, resources_ok
 from scripts.audit_native_method_endpoint import read, sha
 from scripts.carla_steering_audit import guard
@@ -53,7 +54,7 @@ def feedforward_calibration(path, original):
     return path, fit_path
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False,static_geometry=None,candidate_geometry=None,hazard_distance=None):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False,static_geometry=None,candidate_geometry=None,hazard_distance=None,case_manifest=None):
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -62,6 +63,13 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
     if not okay or shutil.disk_usage(ROOT).free < 12*1024**3:
         raise RuntimeError('Resource guard: '+str(reason))
     old = read(parent/'protocol.json')
+    manifest=None
+    if case_manifest is not None:
+        if (catalog!='route_frame_terminal' or hazard_kind is not None or hazard_distance is not None
+                or hazard_lateral is not None or static_geometry is not None):
+            raise ValueError('Explicit development cases require their own actor specs and route catalog')
+        manifest=read(Path(case_manifest))
+        registered_native_cases({'routes':old['routes'],'native_case_manifest':manifest})
     selected_port=old['carla_rpc_port'] if rpc_port is None else rpc_port
     if type(selected_port) is not int or not 1024<=selected_port<=65533:raise ValueError('Invalid native rule RPC port')
     hazard=None
@@ -191,6 +199,12 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
             protocol['scene_intervention']={'version':'explicit_native_hazard_distance_v1',
                 'distance_m':hazard_distance,
                 'scope':'New development actor-placement conditions on all four original roads. Original failed conditions remain; not a repair or rerun of their results, matched-task policy improvement, unseen confirmation or PPO evidence.'}
+    if manifest is not None:
+        write_json(batch/'case_manifest.json',manifest)
+        protocol.update(native_case_manifest=manifest,case_manifest_sha256=sha(batch/'case_manifest.json'),
+            scope='Rule-only paired native development conditions across original roads; all declared families/cases retained. Not PPO, independent seeds or unseen final confirmation.',
+            scene_intervention={'version':manifest['version'],'cases':len(manifest['cases']),
+                'scope':'Explicit new development condition inventory, shared by every subsequent selected method; original failures remain unchanged.'})
     write_json(batch/'protocol.json', protocol)
     write_json(batch/'prepared.json', {'status': 'PREPARED_NOT_STARTED', 'protocol_sha256': sha(batch/'protocol.json')})
     print(batch, flush=True)
@@ -267,6 +281,11 @@ def run(batch):
         raise ValueError('Rule configuration differs from the hierarchical interface')
     if sha(batch/'calibration/calibration.json') != protocol['calibration_sha256']:
         raise ValueError('Calibration changed')
+    if protocol.get('native_case_manifest'):
+        if (sha(batch/'case_manifest.json') != protocol['case_manifest_sha256']
+                or read(batch/'case_manifest.json') != protocol['native_case_manifest']):
+            raise ValueError('Registered native case manifest changed')
+        registered_native_cases(protocol)
     guard(batch, protocol)
     with (batch/'started.json').open('x', encoding='utf-8') as stream:
         json.dump({'epoch': time.time(), 'policy_kind': 'rule_only_B3'}, stream)
@@ -279,10 +298,7 @@ def run(batch):
         env = CarlaNavigationEnv(config, client)
         from navstack.planner_memo import configure_planner_memo
         configure_planner_memo(env, protocol)
-        cases = [{'scenario': 'native_curve', 'condition': i, 'native_route': r}
-                 for i, r in enumerate(protocol['routes'])]
-        if protocol.get('native_hazard'):
-            cases=[{**case,'native_hazard':protocol['native_hazard']} for case in cases]
+        cases = registered_native_cases(protocol)
         episodes, controls = evaluate_cases(env, cases, batch, lambda: guard(batch, protocol),
                                            protocol.get('rule_speed_policy', 'native_score'))
         write_json(batch/'summary.json', {'status': 'complete', 'policy_kind': 'rule_only_B3',
@@ -318,8 +334,9 @@ if __name__ == '__main__':
     parser.add_argument('--final-goal-candidate',action='store_true')
     parser.add_argument('--hazard-lateral',type=float)
     parser.add_argument('--hazard-distance',type=float,help='Explicit new development actor placement in route arc metres; requires start/goal clearance on every road')
+    parser.add_argument('--case-manifest',type=Path,help='Versioned paired DEVELOPMENT case manifest, mutually exclusive with a global hazard')
     parser.add_argument('--reference-reuse',action='store_true')
     parser.add_argument('--static-geometry',choices=['axis_aligned_box_v1','projected_box_strips12_v1'])
     parser.add_argument('--candidate-geometry',choices=['route_offsets_v1','kinematic_arcs_goal_v1'])
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse,args.static_geometry,args.candidate_geometry,args.hazard_distance) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse,args.static_geometry,args.candidate_geometry,args.hazard_distance,args.case_manifest) if args.prepare else run(args.batch)

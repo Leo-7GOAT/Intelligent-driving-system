@@ -24,6 +24,7 @@ from navstack.carla_bridge import BridgeClient, CarlaNavigationEnv
 from navstack.config import EnvConfig, VehicleConfig, RewardConfig
 from navstack.experiments import actor_vector, write_json, signature, append_json, jsonable
 from navstack.native_route import select_routes
+from navstack.native_cases import registered_native_cases
 from navstack.research import ResearchRecorder, resources_ok
 from navstack.research import atomic_json
 from navstack.independent_clip_ppo import IndependentClipPPO, load_ppo, GLOBAL_CLIP, INDEPENDENT_CLIP, actor_critic_parameters
@@ -131,20 +132,6 @@ def learning_schedule(protocol,config,rollout_actions):
         raise ValueError('PPO batch must divide the registered rollout')
     return {'n_steps':rollout_actions,'batch_size':batch_size,'n_epochs':protocol['ppo_epochs'],
             'gamma':config.gamma,'gae_lambda':.95**(config.control_dt*config.substeps)}
-
-
-def registered_native_cases(protocol):
-    cases=[{'scenario':'native_curve','condition':index,'native_route':route}
-           for index,route in enumerate(protocol['routes'])]
-    if protocol.get('native_hazard') is not None:
-        from navstack.native_hazards import resolve_native_hazard
-        from navstack.native_route import local_layout
-        spec=protocol['native_hazard']
-        for case in cases:
-            route=case['native_route']
-            resolve_native_hazard(local_layout(route,route['map'],route['opendrive_sha256']),spec)
-            case['native_hazard']=dict(spec)
-    return cases
 
 
 class RecordedRoadEnv(CarlaNavigationEnv):
@@ -542,11 +529,13 @@ def run(batch):
                     evaluation.close()
                     np.testing.assert_array_equal(mean,vec.obs_rms.mean)
                     np.testing.assert_array_equal(var,vec.obs_rms.var)
-                    write_json(output/"evaluation.json",{"scope":"Frozen deterministic probes on all four TRAINING roads, no extra policy updates or independent-condition claim",
+                    evaluation_scope=("Frozen deterministic probes on all registered development conditions, no extra policy updates or independent-condition claim"
+                        if protocol.get('native_case_manifest') else "Frozen deterministic probes on all four TRAINING roads, no extra policy updates or independent-condition claim")
+                    write_json(output/"evaluation.json",{"scope":evaluation_scope,
                         "episodes":episodes,"world_ticks":client.total_ticks-evaluation_ticks,
                         "model_sha256":hashlib.sha256((output/"model.zip").read_bytes()).hexdigest(),
                         "normalization_sha256":hashlib.sha256((output/"normalization.pkl").read_bytes()).hexdigest()})
-                    print(json.dumps({"method":method,"job_name":job_name,"evaluation_success":sum(e["success"] for e in episodes),"episodes":4}),flush=True)
+                    print(json.dumps({"method":method,"job_name":job_name,"evaluation_success":sum(e["success"] for e in episodes),"episodes":len(cases)}),flush=True)
             finally:
                 if recorder is not None:
                     recorder.close()

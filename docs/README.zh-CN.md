@@ -10,6 +10,8 @@
 
 [Execution and queue commands](native_execution.md) · [Measured retention report](../reports/native_supervised_retention_20261027.md)
 
+[十二条件、共同动作表的规则诊断](../reports/native_twelve_case_development_20261027.json)已准备并排在当前 H/H0 批次之后：同四条已知道路，各含无障碍弯道停车、静态绕障、动态横穿。场景登记和原始帧审计已测试，但该批次尚未驾驶。这是开发清单，不是独立训练种子，也不是要求的 120 组未见最终条件。
+
 Earlier development snapshots follow.
 
 最新[监督后PPO保持性实测](../reports/native_supervised_retention_20261027.md)：监督初始化直接模型从3/4退化至真实PPO训练20,480步后的0/4；23,427帧已审计，归一化统计完全未变。相同初始权重/RNG的共享奖励配置对照正在执行，尚无PPO改善结论。
