@@ -22,7 +22,7 @@ from navstack.experiments import write_json, signature
 from navstack.imitation import fit_demonstrations
 from navstack.measured_demo import measured_flat_env, measured_label, advance_measured_flat
 from navstack.process_lease import ProcessLease
-from navstack.road_candidate_policy import FlatRoadCandidateActorCriticPolicy, RoadCandidateVecNormalize
+from navstack.road_candidate_policy import FlatRoadCandidateActorCriticPolicy, OrderedFlatRoadCandidatePolicy, RoadCandidateVecNormalize
 from scripts.audit_native_method_endpoint import read, read_prefix, sha
 from scripts.audit_native_rule import audit
 from scripts.evaluate_native_rule import require_finished_parent
@@ -87,10 +87,12 @@ def load_registered_views(views, reference_config, config, parent):
     return arrays, manifest
 
 
-def prepare(parent, seed=11, epochs=128, views=None, reference_config=None):
+def prepare(parent, seed=11, epochs=128, views=None, reference_config=None,flat_head='pooled_v1'):
     parent = Path(parent).resolve()
     if type(seed) is not int or not 0 <= seed < 2**31 or not 1 <= epochs <= 128:
         raise ValueError('Invalid bounded supervised diagnostic')
+    if flat_head not in ('pooled_v1','ordered_candidates_v1'):
+        raise ValueError('Unknown versioned direct-policy actor head')
     require_finished_parent(parent)
     if views is None and read(parent/'protocol.json').get('native_case_manifest') is not None:
         raise ValueError('Explicit mixed cases require audited registered views; refusing four-case subset supervision')
@@ -108,6 +110,7 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None):
         raise ValueError('Measured views require their explicit reference configuration')
     view_data, view_manifest = load_registered_views(views, reference_config, config, parent) if views else (None,None)
     view_suffix = '_views'+view_manifest['dataset_sha256'][:12] if views else ''
+    if flat_head!='pooled_v1':view_suffix+='_head'+flat_head
     registration = parent/f'measured_direct_bc_v2_seed{seed}{view_suffix}_registration.json'
     with ProcessLease(parent/'measured_direct_bc_prepare.lock'):
         if registration.exists():
@@ -123,6 +126,9 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None):
             'holdout': 'Every fifth control within each case; correlated fit diagnostic, not independent validation',
             'differences_from_prior_B1': 'Continuous acceleration/steering at20Hz plus disclosed teacher supervision; not a single-factor comparison',
             'fairness': 'Formal hierarchy comparisons require equivalent teacher access and separately charged teacher, supervised and on-policy costs.'})
+        fit_registration=read(batch/'fit_registration.json')
+        fit_registration['flat_actor_head']=flat_head
+        write_json(batch/'fit_registration.json',fit_registration)
         if views:
             write_json(batch/'measured_view_provenance.json', view_manifest)
             fit_registration = read(batch/'fit_registration.json')
@@ -180,7 +186,8 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None):
             raw = DummyVecEnv([lambda: NavigationEnv(config)])
             raw.envs[0].case_index = 0
             norm = RoadCandidateVecNormalize(raw, norm_reward=False, gamma=config.gamma)
-            model = PPO(FlatRoadCandidateActorCriticPolicy, norm,
+            policy_type=OrderedFlatRoadCandidatePolicy if flat_head=='ordered_candidates_v1' else FlatRoadCandidateActorCriticPolicy
+            model = PPO(policy_type, norm,
                         **learning_schedule(protocol, config, 320), seed=seed, device='cpu')
             def progress(row):
                 health()
@@ -225,6 +232,10 @@ def prepare(parent, seed=11, epochs=128, views=None, reference_config=None):
                 protocol['extra_supervision'].update(teacher_batches=[s['batch'] for s in view_manifest['sources']],
                     measured_view_manifest_sha256=sha(batch/'measured_view_provenance.json'),
                     scope='Static and dynamic measured direct-control supervision; frozen evaluation uses every registered development condition. Not a single-factor PPO comparison or independent confirmation.')
+            if flat_head!='pooled_v1':
+                protocol['flat_actor_intervention']={'version':flat_head,
+                    'scope':'Direct acceleration/steering from all ordered candidate embeddings; same inputs/data/limits, no planner or MPC execution by B1. Only actor fusion changes; larger parameter count and compute disclosed separately.',
+                    'parameters':sum(p.numel() for p in model.policy.parameters())}
             protocol['source_hashes'] = {p.relative_to(batch/'source').as_posix(): sha(p)
                 for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
             write_json(batch/'protocol.json', protocol)
@@ -243,5 +254,6 @@ if __name__ == '__main__':
     parser.add_argument('--epochs', type=int, default=128)
     parser.add_argument('--views')
     parser.add_argument('--reference-config')
+    parser.add_argument('--flat-head',choices=['pooled_v1','ordered_candidates_v1'],default='pooled_v1')
     args = parser.parse_args()
-    prepare(args.parent, args.seed, args.epochs, args.views, args.reference_config)
+    prepare(args.parent, args.seed, args.epochs, args.views, args.reference_config,args.flat_head)

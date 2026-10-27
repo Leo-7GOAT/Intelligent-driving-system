@@ -1,3 +1,20 @@
+# Latest verification — 2026-10-27 18:38 local
+
+Completed actual evidence supersedes older pending notes below:
+- 070950 H/H0 PPO both2/4;46,493raw controls audited; normal guard0/owned cleanup. No aggregate feedback advantage. ../reports/native_shared_small_exploration_complete_20261027.json.
+- 080111 rule B3 succeeds12/12 in4,329controls/4,700world ticks. Same catalog,known4roads ×3families. Not PPO or final confirmation.
+- 094138 H/H0 actor-only supervised initialization each11/12,896supervised steps per method,zeroPPO; raw eval4,914/4,889controls. Only failure Hcase7deadline,H0case5deadline.
+- 095043 pooled continuous B1 actor initialization4/12,1,792supervised steps,zeroPPO;4,459raw evalcontrols. Six unsafe episodes. NOT a healthy B1 and NOT eligible for PPO continuation. ../reports/native_twelve_case_completed_20261027.json.
+- Complete independent mixed-view reconstruction succeeds:3,617frames,all arrays and NPZ bytes exact,809.75s under upfront900s budget; original600sfailure preserved. ../reports/native_mixed_measured_full_reconstruction_20261027.json.
+
+Actually ACTIVE:100609 H/H0 real PPO,worker18764/guard53376/wrapper24324. H>14,500controls/45phases at18:38; H0 has not yet started. Nominal20,480controls each,shared7,200swall,LR3e-5,initialcategoricalprobability.99. New twelve-case training distribution and teacher; do not infer single-factor effects against oldfour-case batches. Registered frozen source/protocol untouched.
+
+Actually QUEUED:102445 ordered direct B1,queue70260 waits for100609normalguard/ownedemptycleanup/lifecycle release. Script runs/queue_native_102445_after_100609_20261027.ps1. Fit COMPLETE1,792supervised steps on exactlysame4,329teacherframes/mask/seed/epochs as095043; no driving evaluation yet. Larger actor fusion retains31ordered embeddings, same direct accel/steering and inputs, no planner/MPC execution. Hypothesized bottleneck only; no benefit claim. Validation367sourcefiles. Do not launch duplicates.
+
+Current changes: variable-size75%representation gate retains originalfraction (12requires9) and complete integer-ID/bool/unique inventory checks; ordered-flat policy preserves seeded nonfusion weights and global RNG atinitialization, save/load and optimizer membership verified.60targeted root tests pass16.06s. Last published source1edb566 CPUCI503/15skips/4CARLA exclusions belongs to prior source, not these new changes. Gate/ordered code publication and independent checks follow.
+
+Resources retain disk12GiB/RAM4GiB/GPU85C floors; no limits weakened. Final objective remains open: healthy B1/PPOvalue/feedbackcontribution/fiveindependentseeds/120newfinalconditions/ablations/videos. New12case evidence and models remain local until separately packaged/publicly reproduced.
+
 # Latest verification — 2026-10-27 16:51 local
 
 Case-inventory sourcee3bc6ccf862a9006689412ef36f2b790ff543878 is actually pushed.

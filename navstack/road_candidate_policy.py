@@ -100,6 +100,32 @@ class FlatRoadCandidateActorCriticPolicy(ActorCriticPolicy):
         self.mlp_extractor=RoadCandidateExtractor(flat=True,actuator_inputs=self.observation_space.shape[0]-4701).to(self.device)
 
 
+class OrderedFlatRoadExtractor(RoadCandidateExtractor):
+    """Direct control retains every fixed-catalog candidate instead of pooling."""
+    def forward_actor(self, features):
+        state,candidates,road=self.parts(features)
+        context=self.policy_net_context(torch.cat((state,self.policy_net_road(road)),dim=1))
+        encoded=self.policy_net_candidate(candidates).flatten(1)
+        return self.policy_net_fusion(torch.cat((context,encoded),dim=1))
+
+
+class OrderedFlatRoadCandidatePolicy(FlatRoadCandidateActorCriticPolicy):
+    def _build_mlp_extractor(self):
+        if self.observation_space.shape not in ((4701,),(4705,)) or not isinstance(self.action_space,spaces.Box) or self.action_space.shape!=(2,):
+            raise ValueError('Ordered flat policy requires4701 or4705inputs and2direct continuous controls')
+        self.mlp_extractor=OrderedFlatRoadExtractor(flat=True,actuator_inputs=self.observation_space.shape[0]-4701).to(self.device)
+
+    def _build(self,lr_schedule):
+        # Build the original encoders, critic and head first. Only the actor
+        # fusion changes; its initialization must not shift their seeded bytes.
+        super()._build(lr_schedule)
+        with torch.random.fork_rng(devices=[]):
+            fusion=nn.Sequential(nn.Linear(64+31*32,128),nn.Tanh(),nn.Linear(128,64),nn.Tanh())
+            if self.ortho_init:fusion.apply(partial(self.init_weights,gain=np.sqrt(2)))
+        self.mlp_extractor.policy_net_fusion=fusion.to(self.device)
+        self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)
+
+
 class UnsharedRoadCandidatePolicy(RoadCandidateActorCriticPolicy):
     """Versioned fixed-catalog head; shared encoders/critic, independent logits.
 

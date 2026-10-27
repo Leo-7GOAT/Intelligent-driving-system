@@ -13,6 +13,29 @@ class NoExecutionEnv(Env):
         raise AssertionError('Parameter initialization must not reset or execute a plant')
 
 
+@pytest.mark.parametrize('count,successes',[(4,3),(12,9),(12,11)])
+def test_representation_gate_retains_three_quarters_without_truncating_twelve_cases(count,successes):
+    from test_native_case_manifest import protocol
+    from scripts.prepare_native_supervised_ppo import representation_gate
+    p=protocol() if count==12 else {}
+    gate=representation_gate(p,{'episodes':[{'case_id':i,'success':i<successes} for i in range(count)]})
+    assert gate['cases']==count and gate['required_successes']==3*count//4
+    assert gate['successes']==successes and gate['minimum_fraction']==.75
+
+
+@pytest.mark.parametrize('fault',['insufficient','missing','duplicate','untyped'])
+def test_representation_gate_rejects_incomplete_or_underqualified_expanded_initialization(fault):
+    from test_native_case_manifest import protocol
+    from scripts.prepare_native_supervised_ppo import representation_gate
+    rows=[{'case_id':i,'success':True} for i in range(12)]
+    if fault=='insufficient':
+        for row in rows[8:]:row['success']=False
+    elif fault=='missing':rows.pop()
+    elif fault=='duplicate':rows[-1]['case_id']=0
+    else:rows[0]['success']='true'
+    with pytest.raises(ValueError):representation_gate(protocol(),{'episodes':rows})
+
+
 @pytest.mark.parametrize('log_std', [-2.3, -4.])
 def test_exploration_initialization_preserves_every_mean_critic_and_optimizer_byte(log_std):
     model = PPO('MlpPolicy', NoExecutionEnv(), n_steps=8, batch_size=8, seed=11, device='cpu')

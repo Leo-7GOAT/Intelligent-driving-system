@@ -1,28 +1,16 @@
 # Executability-aware hierarchical driving research
 
-The [smaller-exploration B1 PPO](reports/native_B1_small_exploration_20261027.json) completes **2/4 known static roads**, versus 0/4 for its matched larger-noise control. It uses 20,480 real training controls and 640 Adam steps; all **23,025** training/evaluation controls audit against CARLA. It still falls below its 3/4 teacher initialization: road 0 stops 1.093m from the goal against the unchanged 0.8m tolerance, and road 1 does not move. Earlier teacher-initialized H/H0 are **2/4 and 0/4**; their smaller-exploration comparison is now training. These single-seed development results do not meet research acceptance or establish hierarchy advantage.
+The [completed twelve-condition development comparison](reports/native_twelve_case_completed_20261027.json) uses four known roads across curve/parking, static obstacles and crossing walkers. Rule-only B3 succeeds **12/12**. With separately charged teacher supervision and **zero PPO updates**, H and H0 each succeed **11/12**; direct B1 succeeds **4/12**, with six collision/bounds episodes. B1 remains unqualified, and these results do not establish PPO value, hierarchy advantage or feedback benefit.
 
-The new [public B1 model/raw-data capsule](docs/model_card.md#public-smaller-exploration-b1) has been downloaded without authentication and independently reproduced: 463 files, 23,025 raw controls, four measured-start actions and a byte-identical figure. Four preceding B1 PPO settings remain 0/4, including lower learning rate and longer collection; all failures remain. [Earlier completed probes](reports/native_closed_probes_20261027.json).
+Real CARLA PPO continuation of both H/H0 is running in batch `20261027T100609Z_native_supervised_ppo`: 20,480 nominal controls per method, frozen lower-level stack, actor learning rate 3e-5 and initial maximum categorical probability 0.99. An ordered-candidate direct B1 actor has completed 1,792 supervised updates on the same 4,329 teacher controls and is queued for frozen evaluation. Its larger actor fusion preserves candidate order; it has no driving result yet. The original pooled B1 failures remain.
 
-[Complete H/H0 results and costs](reports/native_shared_supervised_ppo_20261027.json). The completed optional exact static-search cache probe records 178 H cache hits and audits 7,866 CARLA controls across H/H0/B1. All three remain 0/4, matching the original rejected policies' task outcomes. No controlled aggregate speedup or driving improvement is established. A separate frozen B1 crossing transfer is 0/4 with two collisions and two bounds failures in 407 controls.
+The [completed smaller-exploration H/H0 PPO comparison](reports/native_shared_small_exploration_complete_20261027.json) scores **2/4 each**, with **46,493** training/evaluation controls audited against CARLA. There is no aggregate feedback gap. The [smaller-exploration B1 PPO](reports/native_B1_small_exploration_20261027.json) also remains 2/4 on its known static task; its [public model/raw-data capsule](docs/model_card.md#public-smaller-exploration-b1) has been downloaded and independently reproduced, including all 23,025 raw controls.
 
-[Measured static/dynamic direct-policy views](reports/native_mixed_measured_views_20261027.json) cover 3,617 existing teacher controls, including 1,491 frames with measured actor motion. Conversion adds **zero driving or optimizer updates**; the original static prefix reproduces exactly. A subsequent actor fit uses 1,536 separately charged supervised updates but scores **0/4** in [audited frozen static evaluation](reports/native_mixed_bc_endpoint_20261027.json), including one bounds failure. This initialization is rejected for PPO continuation. Historical high-level IDs are not relabelled between incompatible catalogs. [Independent CPU and sampled-frame verification](reports/native_mixed_bc_verification_20261027.json).
+[Full independent reconstruction of the earlier mixed teacher dataset](reports/native_mixed_measured_full_reconstruction_20261027.json) now reproduces all 3,617 frames, five arrays and the complete NPZ bytes exactly. This adds zero driving, fitting or PPO updates. The earlier 600-second failed reconstruction remains preserved; the completed attempt used an upfront 900-second budget and took 809.75 seconds. [Dynamic hierarchical view verification](reports/native_hierarchical_dynamic_views_20261027.json).
 
-[Execution and queue commands](docs/native_execution.md) · [Measured retention report](reports/native_supervised_retention_20261027.md)
+All these tasks are development conditions. Five independent trained seeds, 120 new paired final conditions, a healthy fully trained B1, complete ablations, PPO value versus strong rules and unseen transfer remain open. The new static obstacle distance is 13m; this does not erase the earlier 10m failures. Latest local targeted regression: 60 passed; hosted CPU verification is reported separately from CARLA results.
 
-A [twelve-condition common-catalog rule pilot](reports/native_twelve_case_development_20261027.json)
-is prepared and queued after the active H/H0 batch: four curve/parking, four
-static-obstacle and four walker conditions on the same known roads. Its case
-registration and frame auditors are tested; it has not driven yet. It is a
-development inventory, not independent seeds or the 120 unseen final conditions.
-
-[Dynamic hierarchical observation reconstruction](reports/native_hierarchical_dynamic_views_20261027.json)
-now validates actual archived actor frames: both H/H0 views cover 1,691 recorded
-controls and 171 macro decisions in the original teacher catalog. All 194 static
-teacher observations/labels per method reproduce exactly. This is data-interface
-verification, not another trained policy or driving result. The [completed
-smaller-exploration H endpoint](reports/native_H_small_exploration_endpoint_20261027.json)
-remains 2/4 with 23,220 controls audited; H0 is still training.
+[Execution and queue commands](docs/native_execution.md) · [Current handoff](docs/handoff.md) · [Chinese README](docs/README.zh-CN.md)
 
 Earlier development snapshots follow.
 

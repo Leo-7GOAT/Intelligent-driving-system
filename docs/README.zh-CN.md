@@ -1,18 +1,16 @@
 # 低速车辆分层决策与控制研究
 
-[较小探索噪声 B1 PPO](../reports/native_B1_small_exploration_20261027.json)已完成，四条已知道路冻结结果为 **2/4**，对应较大噪声版本为 0/4。实际训练 20,480 控制步、640 次 Adam 更新，全部 **23,025** 个训练与评估控制帧通过 CARLA 原始对账。它仍低于监督初始化的 3/4：道路 0 距终点 1.093 米，未达到原定 0.8 米容差；道路 1 未移动。此前 H/H0 为 **2/4、0/4**，两者较小探索强度对照现已开始真实训练。当前是单种子开发结果，尚未达到研究验收或证明分层优势。
+[十二条件开发对照已完成](../reports/native_twelve_case_completed_20261027.json)：同四条已知道路包含弯道停车、静态绕障、行人横穿。规则 B3 为 **12/12**；额外教师监督初始化、**PPO 更新为零**的 H、H0 各为 **11/12**；直接控制 B1 为 **4/12**，其中六次碰撞或越界。B1 仍不合格，这些结果尚未证明 PPO 价值、分层优势或反馈贡献。
 
-新的 [B1 模型与原始数据包](model_card.md#public-smaller-exploration-b1)已实际公开下载并独立复现：463 个文件、23,025 控制帧、四个实测起点动作和逐字节相同的结果图。此前四轮 B1 PPO 仍为 0/4，全部失败保留。[早期探测与原始审计](../reports/native_closed_probes_20261027.json)。
+H/H0 的真实 CARLA PPO 续训正在执行，批次 `20261027T100609Z_native_supervised_ppo`，每方法名义预算 20,480 控制步，低层冻结，学习率 3e-5，初始最大动作概率 0.99。保留候选顺序的新版直接 B1 已在同一组 4,329 教师控制帧上完成 1,792 次监督更新，排队进行冻结评估；它使用更大的策略融合网络，目前尚无驾驶效果结论。原 B1 失败全部保留。
 
-[H/H0 完整结果与成本](../reports/native_shared_supervised_ppo_20261027.json)。精确静态失败搜索缓存的 CARLA 探测已完成，H 实际命中 178 次，三方法共审计 7,866 控制步；三者仍为 0/4，任务结果与原失败策略一致，尚不能宣称总体加速或驾驶能力改善。另一次冻结 B1 动态横穿迁移为 0/4，407 控制步中两次碰撞、两次越界。
+[此前较小探索强度 H/H0 PPO 对照已全部结束](../reports/native_shared_small_exploration_complete_20261027.json)，均为 **2/4**，合计 **46,493** 个真实训练与评估控制帧已审计，未形成总体反馈优势。[较小噪声 B1 PPO](../reports/native_B1_small_exploration_20261027.json)仍为 2/4，其[公开模型及原始数据包](model_card.md#public-smaller-exploration-b1)已实际下载并独立复现全部 23,025 控制帧。
 
-[静态与动态实测直接控制数据](../reports/native_mixed_measured_views_20261027.json)覆盖既有教师 3,617 个控制帧，其中 1,491 帧记录动态目标移动。转换未增加驾驶或优化器更新，静态前缀完全复现原数据。后续模型拟合单独消耗 1,536 次监督更新，但[静态冻结评估](../reports/native_mixed_bc_endpoint_20261027.json)为 **0/4**，含一次越界，不采用它继续 PPO。未在不兼容高层动作表之间重新解释数字动作编号。[独立 CPU 与实测帧抽样核验](../reports/native_mixed_bc_verification_20261027.json)。
+[早期混合教师数据的完整独立重建](../reports/native_mixed_measured_full_reconstruction_20261027.json)现已完成：3,617 控制帧、五个数组及整个 NPZ 文件逐字节一致，新增驾驶、拟合、PPO 更新均为零。原 600 秒失败记录保留；新尝试事先登记 900 秒预算，实际耗时 809.75 秒。[动态高层观测核验](../reports/native_hierarchical_dynamic_views_20261027.json)。
 
-[Execution and queue commands](native_execution.md) · [Measured retention report](../reports/native_supervised_retention_20261027.md)
+上述均为开发条件。五个独立训练种子、120 组全新配对最终条件、健康且充分训练的 B1、完整消融、相对强规则的 PPO 价值及未见迁移仍待完成。新静态障碍距起点 13 米，不能据此宣称原 10 米失败已修复。当前本地针对性回归 60 项通过；托管 CPU 验证与 CARLA 实验单独报告。
 
-[十二条件、共同动作表的规则诊断](../reports/native_twelve_case_development_20261027.json)已准备并排在当前 H/H0 批次之后：同四条已知道路，各含无障碍弯道停车、静态绕障、动态横穿。场景登记和原始帧审计已测试，但该批次尚未驾驶。这是开发清单，不是独立训练种子，也不是要求的 120 组未见最终条件。
-
-[动态高层观测重建](../reports/native_hierarchical_dynamic_views_20261027.json)已在原教师动作表下验证：H/H0 各覆盖实际存档的 1,691 控制帧、171 个宏决策；每种方法原有的 194 个静态教师观测及标签均逐字节一致。这是数据接口验证，不是新策略或驾驶成绩。[较小探索强度 H 的完整端点](../reports/native_H_small_exploration_endpoint_20261027.json)仍为 2/4，23,220 帧已审计，H0 仍在训练。
+[执行及队列入口](native_execution.md) · [当前交接状态](handoff.md)
 
 Earlier development snapshots follow.
 

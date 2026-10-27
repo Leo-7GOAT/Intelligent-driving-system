@@ -131,6 +131,29 @@ def guarded_initialization(protocol,metadata_config,method='B1'):
             'scope':'Same supervised actor and untouched PPO optimizer, explicitly initialized for guarded_progress_v1 before training'}
 
 
+def representation_gate(protocol,evaluated):
+    """Keep the existing75% development gate over the complete actual inventory."""
+    from navstack.native_cases import registered_native_cases
+    cases=registered_native_cases(protocol) if protocol.get('native_case_manifest') else None
+    count=len(cases) if cases is not None else 4
+    episodes=evaluated['episodes']
+    if (len(episodes)!=count or any(type(r.get('case_id')) is not int or type(r.get('success')) is not bool for r in episodes)
+            or {r['case_id'] for r in episodes}!=set(range(count))):
+        raise ValueError('Representation gate requires every registered condition exactly once')
+    required=(3*count+3)//4;successes=sum(r['success'] for r in episodes)
+    if successes<required:
+        raise ValueError('Require the predeclared75percent representation gate for EVERY registered method')
+    families={}
+    for row in episodes:
+        spec=cases[row['case_id']].get('native_hazard') if cases is not None else None
+        family=('known_roads' if cases is None else 'curve_parking' if spec is None
+                else 'static_obstacle' if spec['kind']=='static_vehicle' else 'dynamic_interaction')
+        totals=families.setdefault(family,{'successes':0,'cases':0})
+        totals['cases']+=1;totals['successes']+=row['success']
+    return {'successes':successes,'cases':count,'required_successes':required,'minimum_fraction':.75,
+            'families':families,'scope':'Complete development initialization gate, not research acceptance or independent confirmation'}
+
+
 def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
@@ -144,13 +167,12 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
     methods=protocol.get('methods')
     if (methods not in (['B1'],['H','H0']) or not protocol.get('evaluation_only') or not protocol.get('extra_supervision')):
         raise ValueError('Require a complete supervised-only direct or H/H0 diagnostic')
-    origins={}
+    origins={};representation_gates={}
     for method in methods:
         if audit(parent,method)!=read(parent/method/'endpoint_raw_audit.json'):
             raise ValueError('Parent raw audit changed')
         evaluated=read(parent/method/'evaluation.json')
-        if len(evaluated['episodes'])!=4 or sum(r['success'] for r in evaluated['episodes'])<3:
-            raise ValueError('Require the predeclared three-of-four representation gate for EVERY registered method')
+        representation_gates[method]=representation_gate(protocol,evaluated)
         origin=parent/method/read(parent/method/'latest_checkpoint.json')['folder']
         metadata=verified_checkpoint_metadata(origin)
         if metadata['physics_steps'] or metadata['optimizer_steps']:
@@ -161,6 +183,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                     or controls%rollout_actions or controls%learner['n_steps']):
                 raise ValueError('Matched rollout diagnostic requires a changed minibatch multiple and a budget divisible by both lengths')
         origins[method]=(origin,metadata)
+    protocol['supervised_representation_gates']=representation_gates
     healthy, reason = resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free < 12*1024**3:
         raise RuntimeError(str(reason))

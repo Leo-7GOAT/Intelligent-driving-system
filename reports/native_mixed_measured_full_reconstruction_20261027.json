@@ -1,0 +1,22 @@
+{
+  "scope": "Complete independent raw-teacher dataset reconstruction; no new controls, fitting or PPO updates.",
+  "source_commit": "8d0a2d640cdbb79c0312fd2a7bab1817a1e7bb13",
+  "registered_wall_budget_seconds": 900,
+  "actual_wall_seconds": 809.75,
+  "teacher_unique_controls": 3617,
+  "cases_verified": 8,
+  "arrays_exact": [
+    "actions",
+    "groups",
+    "observations",
+    "returns",
+    "train_mask"
+  ],
+  "original_dataset_sha256": "db93a121045427b0bc78a5d8388f8875bb0812feb9fd999406b5a4725bdfaaa2",
+  "independent_dataset_sha256": "db93a121045427b0bc78a5d8388f8875bb0812feb9fd999406b5a4725bdfaaa2",
+  "dataset_bytes_identical": true,
+  "old600_second_failure_preserved": true,
+  "new_controls": 0,
+  "ppo_updates": 0,
+  "source_manifest_sha256": "787c5156e62af3ede922659f70cf3f27682ee351e8b04c29d9900069f6853841"
+}
