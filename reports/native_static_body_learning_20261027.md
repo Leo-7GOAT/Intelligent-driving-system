@@ -170,3 +170,10 @@ with a new `--output` file. No CARLA server is contacted by this diagnostic.
 Latest Windows CPU regression:388passed/1skipped/4CARLA exclusions in127.68s;
 the subsequently added deduplication/no-execution inventory test also passes
 (all4candidate tests). The checkpoint/recovery/hazard subset passes23tests.
+
+
+Verified recovery endpoint update: H0 has completed10,240new controls and320new
+Adam updates, reaching20,480lineage controls/640retained updates. Frozen result
+is0/4,all deadlines; this segment's13,840training/evaluation controls pass the
+raw CARLA frame audit. The interrupted ancestor's unknown tail remains flagged.
+B1 is now the active method in014402; no complete paired comparison yet.

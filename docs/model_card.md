@@ -299,3 +299,10 @@ Only load serialization files from a trusted, hash-verified source. The reproduc
 ```
 
 The project retains its MIT license and original attribution. Dependency software is installed separately under its respective licenses; see [third-party notices](THIRD_PARTY_NOTICES.md).
+
+
+Verified recovery endpoint update: H0 has completed10,240new controls and320new
+Adam updates, reaching20,480lineage controls/640retained updates. Frozen result
+is0/4,all deadlines; this segment's13,840training/evaluation controls pass the
+raw CARLA frame audit. The interrupted ancestor's unknown tail remains flagged.
+B1 is now the active method in014402; no complete paired comparison yet.

@@ -3,8 +3,12 @@
 Latest [measured body geometry and shared-reward learning](reports/native_static_body_learning_20261027.md):
 conservative measured-body strips improve rule B3 static performance from2/4to3/4
 on known roads. The endpoint-filter PPO follow-up remains0/4after audited frozen
-recovery. A fresh paired20,480-control H/H0/B1development batch is running; no
-independent-confirmation, healthy-full-B1 or formal RL-value claim is made.
+recovery. New guarded-reward H completes20,761training controls and2/4known-road
+endpoints; recovered H0 is0/4after20,480lineage controls. B1 is still training.
+These are incomplete single-seed development comparisons; formal RL value and
+a healthy full-task B1 remain unestablished. The earlier negative-result
+[public model/data capsules](docs/model_card.md#public-hazard-evidence-2026-10-27)
+were actually downloaded and independently reproduced, including raw frames.
 
 Latest [native-hazard and cadence development](reports/native_hazards_cadence_20261026.md):
 fresh10Hz direct PPO uses20,765 real training controls but remains0/4 on known6m

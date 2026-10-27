@@ -2966,3 +2966,10 @@ Resource snapshot:12 logical CPUs,~74.9GB free disk,~41GiB available RAM, three 
 Validation: full regression70passed5conditional skips. New tests cover common candidate geometry across methods, exact H0 ablation, candidate-score permutation, unmasked probabilities, fixed normalization, real PPO updates, checkpoint/resume and custom class reload; CARLA calibration preserves605input settings. New initializer has a standalone default requiring no historical local data; verified that its task/config/cases exactly equal the existing v8 reference. CLI transfer now selects fixed milestone checkpoints from generic run_group and supports a separate measured calibration batch. `publication_preflight.py` scans Git publication candidates without printing possible secret values;212files/no findings atinitialcheck.
 
 Next concrete work: inspect completed300k/1M candidate milestones and B1; finish new actual CARLA adaptation, retain all negatives, compare per-family progress/interventions. New pair learning is not independent confirmation; do not claim five seeds or healthy605-input B1. Fair605-input baseline, richer interaction/generalization training, native-road/control calibration, full five-seed formal comparisons, fresh120-condition CARLA confirmation and real success/failure videos still remain. Existing evaluated conditions are development/historical only. Recover only after confirmed terminal/missing owner via `.venv/Scripts/python.exe scripts/development_watchdog.py --batch <exactbatch>`; do not clearSTOP/failure blindly or duplicate live workers.
+
+
+Verified recovery endpoint update: H0 has completed10,240new controls and320new
+Adam updates, reaching20,480lineage controls/640retained updates. Frozen result
+is0/4,all deadlines; this segment's13,840training/evaluation controls pass the
+raw CARLA frame audit. The interrupted ancestor's unknown tail remains flagged.
+B1 is now the active method in014402; no complete paired comparison yet.
