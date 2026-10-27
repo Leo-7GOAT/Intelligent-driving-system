@@ -1,0 +1,29 @@
+{
+  "scope": "Post-fit direct actor comparison: same data/mask/seed/epochs and exact frozen normalization/critic. Actor weights may differ after fitting; larger ordered fusion only architectural intervention.",
+  "pooled_batch": "20261027T095043Z_native_measured_bc",
+  "ordered_batch": "20261027T102445Z_native_measured_bc",
+  "pooled_parameters": 212293,
+  "ordered_parameters": 347589,
+  "critic_tensors_exact": [
+    "mlp_extractor.value_net_road.0.weight",
+    "mlp_extractor.value_net_road.0.bias",
+    "mlp_extractor.value_net_road.2.weight",
+    "mlp_extractor.value_net_road.2.bias",
+    "mlp_extractor.value_net_road.6.weight",
+    "mlp_extractor.value_net_road.6.bias",
+    "mlp_extractor.value_net_candidate.0.weight",
+    "mlp_extractor.value_net_candidate.0.bias",
+    "mlp_extractor.value_net_fusion.0.weight",
+    "mlp_extractor.value_net_fusion.0.bias",
+    "mlp_extractor.value_net_fusion.2.weight",
+    "mlp_extractor.value_net_fusion.2.bias",
+    "value_net.weight",
+    "value_net.bias"
+  ],
+  "normalization_bytes_exact": true,
+  "normalization_sha256": "6f6a3ae3210815325ac6d3f3a3b2f3299021fad0a1570e7925835e309cefeda0",
+  "teacher_dataset_sha256": "4a368af1b0bce676520691d2a750f4a26c7f3ce3a6e385a92ba385daf0b3ab2e",
+  "supervised_steps_each": 1792,
+  "PPO_updates_each": 0,
+  "driving_improvement_proven": false
+}

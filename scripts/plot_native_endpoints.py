@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Polygon
 import numpy as np
 from navstack.road_grid import RoadGrid
+from navstack.native_cases import registered_native_cases
 from navstack.world import body_corners
 
 
@@ -29,6 +30,10 @@ def render(batch,output,methods=None):
     if output.exists() or manifest_path.exists():
         raise FileExistsError('Preserve previous endpoint figure')
     protocol=read(batch/'protocol.json')
+    case_inventory=None
+    if protocol.get('native_case_manifest') is not None:
+        registered_native_cases(protocol)
+        case_inventory=protocol['native_case_manifest']['cases']
     registered=protocol['methods']
     methods=registered if methods is None else methods
     if not methods or len(set(methods))!=len(methods) or any(m not in registered for m in methods):
@@ -84,14 +89,19 @@ def render(batch,output,methods=None):
             ax.add_patch(Polygon(footprint,facecolor='#b3261e',edgecolor='#b3261e',alpha=.20,lw=1))
             ax.arrow(last['x'],last['y'],2*math.cos(last['yaw']),2*math.sin(last['yaw']),width=.07,color='#b3261e',length_includes_head=True)
             ax.set(xlim=(0,road.width),ylim=(0,road.height),aspect='equal',xlabel='Local x (m)',ylabel='Local y (m)')
-            ax.set_title(f"{method} | road {case_id} | {episode['termination_reason']}\n"
+            case_label=(f"case {case_id} / road {case_inventory[case_id]['route_index']}" if case_inventory is not None else f"road {case_id}")
+            ax.set_title(f"{method} | {case_label} | {episode['termination_reason']}\n"
                          f"progress {episode['progress']:.2f} m | intervention {100*episode['intervention_rate']:.1f}%",fontsize=9)
             evidence[method]['cases'].append({'case_id':case_id,'controls':len(states),
                 'road_sha256':road.sha256,'termination_reason':episode['termination_reason'],
                 'success':episode['success'],'final_state':last,'goal':goal})
     handles,labels=axes[0,0].get_legend_handles_labels()
     fig.legend(handles,labels,loc='lower center',ncol=4,fontsize=9,frameon=False)
-    if partial:
+    if case_inventory is not None:
+        roads=len({case['route_index'] for case in case_inventory})
+        arm_scope=f"PARTIAL: {len(methods)}/{len(registered)} arms" if partial else 'all outcomes retained'
+        fig.suptitle(f"Seed {protocol['seed']} | frozen probes on {columns} DEVELOPMENT conditions / {roads} known roads | {arm_scope}",fontsize=13)
+    elif partial:
         fig.suptitle(f"Seed {protocol['seed']} | all {columns} TRAINING roads | PARTIAL: {len(methods)}/{len(registered)} registered arms\nAll outcomes retained within each displayed arm",fontsize=13)
     else:
         # Preserve the published complete-inventory figure's exact rendering.
