@@ -1,3 +1,31 @@
+# Current verified work — 2026-10-27 10:52 local
+
+Active: `runs/20261027T024727Z_native_supervised_ppo`, B1only, real PPO after
+explicit teacher initialization,20,480new controls,7,200s guard, actual20Hz
+simulated action period, continuous acceleration/steering. Stats are frozen
+at teacher training examples; log_std−2.3is an explicit initial exploration
+intervention, all mean/critic bytes unchanged. No teacher/replay during PPO.
+Read worker/guard/heartbeat/OS identity before acting. Do not restart.
+
+Authoritative latest report: ../reports/native_measured_bc_20261027.md and JSON.
+Supervised-only parent023447completes3/4known full static roads,1,976frame-verified
+controls, zero collision/bounds/interventions, zero PPO training/updates;
+1,926actual teacher controls and896supervised steps are separately charged.
+The failed road is stationary. Logical20Hz is not realtime: P95.075–.104s.
+This is a representation diagnostic, not ordinary-PPO competence or hierarchy
+advantage. The new PPO endpoint is pending and must not inherit the3/4claim.
+
+Arc version020918is complete and rejected: H/H0/B1all0/4;69,514raw controls audit.
+Hinitializer30tensors+postinit RNG match old route-offset H2/4. Local connection
+coverage alone did not solve learning. Preserve all models/failures.
+
+New code has9targeted measured-view/exploration tests passing. Latest pushed
+source46ee18fhas hosted CI395/3skips/4CARLA exclusions in166.27s; its20resource/
+lineage tests also pass in independent checkout. New measured-BC/PPO preparers
+still require their commit, hosted CI and artifact reproduction receipts.
+
+Older transition notes follow; they must not override this header.
+
 # Current verified transition — 2026-10-27 10:14 local
 
 Active batch: `runs/20261027T020918Z_native_hazard_learning`, fresh H/H0/B1,

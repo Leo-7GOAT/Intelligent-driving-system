@@ -1,5 +1,12 @@
 # Executability-aware hierarchical driving research
 
+Latest [measured direct-control diagnostic](reports/native_measured_bc_20261027.md):
+extra teacher supervision yields a continuous direct network at **3/4 known
+full static roads**, with zero PPO updates;1,976frozen frames verify. Actual
+PPO continuation is now running and has a separate result. The candidate-arc
+PPO version was rejected (H/H0/B1all0/4); all69,514frames are retained.
+These single-seed development results do not establish formal acceptance.
+
 Latest [measured body geometry and shared-reward learning](reports/native_static_body_learning_20261027.md):
 conservative measured-body strips improve rule B3 static performance from2/4to3/4
 on known roads. The endpoint-filter PPO follow-up remains0/4after audited frozen

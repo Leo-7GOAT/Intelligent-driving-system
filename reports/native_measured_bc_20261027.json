@@ -1,0 +1,144 @@
+{
+  "scope": "Single seed, four known static development roads. Teacher-supervised continuous direct control, NOT PPO training or unseen validation. Full frozen real-CARLA outcome, including the failed road.",
+  "teacher_batch": "20261027T003800Z_native_rule",
+  "teacher_controls": 1926,
+  "teacher_data_cases": [
+    {
+      "case_id": 0,
+      "controls": 361,
+      "termination_reason": "success"
+    },
+    {
+      "case_id": 1,
+      "controls": 900,
+      "termination_reason": "deadline"
+    },
+    {
+      "case_id": 2,
+      "controls": 317,
+      "termination_reason": "success"
+    },
+    {
+      "case_id": 3,
+      "controls": 348,
+      "termination_reason": "success"
+    }
+  ],
+  "supervised_optimizer_steps": 896,
+  "supervised_value_weight": 0,
+  "fit_final": {
+    "supervised_epoch": 128,
+    "supervised_optimizer_steps": 896,
+    "train_action_mse": 5.9713485825341195e-05,
+    "holdout_action_mse": 0.001272226101718843,
+    "train_value_mse": 268.3633117675781,
+    "holdout_value_mse": 268.517822265625
+  },
+  "holdout_scope": "Correlated teacher-control fit only, no independent condition claim",
+  "direct_policy": {
+    "action": "continuous acceleration/steering",
+    "physical_action_period_seconds": 0.05,
+    "clock": "synchronous simulation; wall20Hz not achieved",
+    "executed_planner_or_mpc": false,
+    "shared_geometric_observation_computation": true
+  },
+  "cases": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 384,
+      "progress": 24.244354296375526,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "decision_cycle_times": {
+        "count": 384,
+        "median": 0.06479655002476647,
+        "p95": 0.10414335000095888,
+        "p99": 0.12257669196347713,
+        "max": 0.32417240005452186,
+        "over_period_fraction": 0.5234375,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 0.0,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "decision_cycle_times": {
+        "count": 900,
+        "median": 0.07768809999106452,
+        "p95": 0.09293898002943023,
+        "p99": 0.11330220295349135,
+        "max": 0.39095689996611327,
+        "over_period_fraction": 1.0,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 319,
+      "progress": 22.256714421789155,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "decision_cycle_times": {
+        "count": 319,
+        "median": 0.04935830004978925,
+        "p95": 0.09471559001831337,
+        "p99": 0.10892342394450677,
+        "max": 0.31360959995072335,
+        "over_period_fraction": 0.49843260188087773,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 373,
+      "progress": 20.24667495975374,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "decision_cycle_times": {
+        "count": 373,
+        "median": 0.04122610006015748,
+        "p95": 0.07487736004404723,
+        "p99": 0.09302851202897726,
+        "max": 0.31428449996747077,
+        "over_period_fraction": 0.34584450402144773,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    }
+  ],
+  "successes": 3,
+  "collision_or_bounds_episodes": 0,
+  "frozen_controls_verified": 1976,
+  "new_on_policy_training_controls": 0,
+  "ppo_optimizer_updates": 0,
+  "model_sha256": "bc854fe15c641af0f5f63733c296f33c1819e1d0dfff89d6b01e8576f3b076fd",
+  "normalization_sha256": "ba629b37e56cd9cde6f76aee369debf64b24982d85c927577dc817e002da5042",
+  "protocol_sha256": "b4ac92ee54423835de76ad041122fbe74ff8dc5f290bffbd6018bcf6088c2bd1",
+  "raw_audit_sha256": "ead284ffaae3174c6b82ea831feece609d3d251dd75e3d2630a6aaea307c3125",
+  "figure_sha256": "2107f9bb00abd60606185dde88ad7937f1e0c858b6f2e7de57565b49ed379895",
+  "startup_attempts_preserved": [
+    "20261027T023232Z_native_measured_bc:failed data conversion before any gradient update; QP residuals require production action clipping",
+    "20261027T023447Z_native_measured_bc/preflight_attempt_01:missing calibration hash before started.json/bridge; original protocol and logs preserved, only missing hash repaired"
+  ],
+  "initial_config_scope_addendum": "Resume initialization config carries an inherited fresh-PPO scope phrase from the original staging helper; its explicit backend, zero PPO counters, supervised-step metadata and this ledger identify supervised initialization. Future source now sets this scope correctly before saving.",
+  "research_limit": "Capacity/exploration diagnostic with simultaneous supervision, continuous-action and frequency changes. Not an architecture advantage, ordinary-PPO result, or independent final confirmation. Formal H/H0/B1 comparisons must share equivalent teacher access and charge teacher/supervised/on-policy costs.",
+  "next_registered_actual_run": "20261027T024727Z_native_supervised_ppo:real PPO, fixed train-only normalization, initial Gaussian log_std=-2.3; no extra teacher queries or replay during this phase"
+}
