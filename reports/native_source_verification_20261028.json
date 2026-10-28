@@ -1,0 +1,33 @@
+{
+  "scope": "Executed CPU source verification; separate from CARLA capability and research acceptance.",
+  "source_commit": "6f9777be066cd98b6d30937445e1960a8d233c19",
+  "hosted": {
+    "run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40619710076",
+    "conclusion": "success",
+    "passed": 620,
+    "skipped": 15,
+    "CARLA_deselected": 4,
+    "seconds": 123.46
+  },
+  "independent_checkout": {
+    "source_commit": "6f9777be066cd98b6d30937445e1960a8d233c19",
+    "targeted_tests_passed": 30,
+    "seconds": 8.38,
+    "coverage": "Fixed learner reward units,attached/detached serialization,actual SB3 rollout rewards,PPO initialization,KL profile and physical input-cost accounting."
+  },
+  "earlier_full_local_regression": {
+    "source_commit": "4f351780a6c06150bfeced12c318ef6d831bcc5d",
+    "passed": 629,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "seconds": 211.28,
+    "boundary": "Predates five fixed-reward-unit tests and related preparation code; not attributed to the newer source."
+  },
+  "earlier_independent_partition_checks": {
+    "source_commit": "4f351780a6c06150bfeced12c318ef6d831bcc5d",
+    "passed": 70,
+    "seconds": 10.44
+  },
+  "publication_preflight_findings": 0,
+  "research_acceptance": "UNMET"
+}

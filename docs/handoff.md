@@ -2,6 +2,12 @@
 
 Latest state supersedes snapshots below. Goal ACTIVE and all research gates UNMET.
 
+Source6f9777b ACTUALLY PUSHED/remote verified;hosted40619710076 SUCCESS
+620passed/15skips/4CARLA exclusions123.46s;independent30targeted8.38s.
+reports/native_source_verification_20261028.json records precise source boundaries.
+Current acceptance ledger/release status updated to28Oct;older0/4/smoke text
+is historical only. Actual Hheartbeat6282controls at10:17local;guard healthy.
+
 Critic013034 COMPLETE:**4/12**,6bounds/1collision/1deadline,20480training+
 4128evaluation=24608raw controls.281actual Adam updates confirmed from every
 saved state versus562nested post-hook calls. Raw counters/source retained.

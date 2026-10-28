@@ -1,5 +1,32 @@
 # Research acceptance ledger
 
+## Current audit — 2026-10-28
+
+The original objective and thresholds remain unchanged. Overall research
+acceptance is **UNMET**. This section supersedes earlier dated snapshots below.
+
+| Requirement | Latest actual evidence | Status |
+|---|---|---|
+| Real PPO/planning/MPC/CARLA loop | Completed H/H0PPO100609has20541/20623training controls and650Adam each;51429training/evaluation controls raw-audited. New common-mask seed11PPO013316is actually training | Executed; final capability unqualified |
+| Healthy sufficiently trained B1 | Standard KL4/12,102400-control continuation2/12,and faster critic4/12with7unsafe. Last20480-control profile has281actual Adam steps;562raw hook calls corrected from saved state | Not achieved |
+| H superiority versus healthy B1 | Healthy comparator absent; current12conditions were used for development | Unproven |
+| PPO value versus strong B3 | H11/12and strong B312/12on known12; no independent benefit established | Unproven |
+| Learned feedback contribution | Old mask/feature confound identified. New common-mask actor-only seed11H/H0each11/12;seed22H10/12,H012/12. New matched PPO is running/queued | Unproven |
+| Five independently trained seeds | Fifteen actor-only initializers for11/22/33/44/55verified;these are zero-PPO checkpoints,not five trained policies | Not achieved |
+| Train/validation/final isolation | New36training/24geometry-separated validation inventory registered;worker/auditors separate their resets. First new-distribution batch is queued. Existing12scores remain development | Implemented mechanism; new validation evidence pending |
+| At least120NEWpaired final conditions,30per core family | No new final confirmation set activated or inspected in this version | Not achieved |
+| Light85%/75%core,CARLA80%/70%core,unsafe<=5% | Known-road development scores do not qualify as independent final results;B1unsafe clearly exceeds target | Not achieved |
+| Required B2/other ablations | Frozen body-spline B27/12,zero retraining;remaining trained planner/frequency/shared-safety/fixed-reference control comparisons incomplete | Incomplete |
+| Reproducible GitHub delivery | Public H/H0PPO,rule/BC,legacy B2and B1negative-PPO capsules downloaded/reproduced;current source pushed,hosted620CPU passes and independent30targeted passes | Development delivery executed; final release withheld |
+
+See [development endpoints](../reports/native_development_execution_20261028.md),
+[faster critic negative result](../reports/native_B1_critic_rate_endpoint_20261028.json),
+[new partitions](../reports/native_training_validation_partition_20261028.md),
+[fixed reward-unit profile](../reports/native_fixed_reward_units_20261028.md),and
+[executed source verification](../reports/native_source_verification_20261028.json).
+The fixed-unit profile is queued,not measured. No formal superiority interval
+or causal performance claim is supplied from these development runs.
+
 ## Current audit — 2026-10-26
 
 Latest terminal-margin development: matched own-success selection gives3/4

@@ -1,3 +1,16 @@
+# Latest development delivery — 2026-10-28
+
+Current code is actually pushed through source6f9777b;hosted620CPU checks pass,
+and30related tests pass from its independent checkout. The original research
+acceptance remains unmet;see [current ledger](research_acceptance.md).
+The B1negative-PPO130748capsule is also actually uploaded as six parts plus a
+manifest,downloaded without authentication and independently reconstructed;
+[receipt](../reports/native_B1_PPO_public_parts_20261028.json). Later B1negative
+endpoints retain their local models/raw data and published audit summaries.
+New train36/validation24and fixed learner-reward-unit batches are actually
+queued;they have no completed result. The existing development prerelease
+remains distinct from an accepted final research release.
+
 # Completed real PPO public reproduction — 2026-10-27
 
 The twelve-condition real-PPO capsule is actually uploaded, downloaded without
