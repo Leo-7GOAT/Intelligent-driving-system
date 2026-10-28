@@ -1,5 +1,12 @@
 # CPU regression CI
 
+Current partition/optimizer-count source completes local **629passed,1skip,
+4CARLA deselections in211.28s**,after correcting the rule fixture mismatch.
+Nineteen targeted critic/partition checks pass8.86s. Hosted and independent
+verification for this newer source are recorded separately after push.
+
+Source345b1ac hosted [40616036339](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40616036339) completes598passed/15skips/4CARLA deselections194.63s. Its32targeted checks independently pass8.44s. Later train/validation partition handling and the optimizer hook-count fix have separate verification recorded in reports/native_training_validation_partition_20261028.md;do not assign the preceding CI count to newer code.
+
 Source8478f19 hosted run [40607068483](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40607068483) completes **591passed,15skips,4CARLA deselections in110.14s**. Its44targeted tests pass in the independent locked environment in5.45s. New shared-mask changes have a separate full local regression of610passed/1skip/4CARLA deselections in153.16s; subsequent critic-rate changes have30targeted passes in5.70s and the full current local regression passes612/1skip/4CARLA deselections in143.83s.
 
 Sourceae3d238 actually passes **573tests,15skips,4CARLA exclusions**in194.80s: [run40521153471](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40521153471). Its20targeted continuation checks pass11.01s/root and10.96s/independent. Source8f8257a also passed full independent Windows regression581/1skip/4exclusions285.46s, and hosted567/15/4in90.73s. These are source-specific CPU results,not driving qualification.

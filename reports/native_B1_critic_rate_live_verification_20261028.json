@@ -1,0 +1,24 @@
+{
+  "scope": "Actual CARLA-trained immutable2560-control checkpoint; optimizer roles and rates verified from saved Adam state. Not CPU dummy training or final performance.",
+  "batch": "20261028T013034Z_native_supervised_ppo",
+  "checkpoint": "checkpoint_000002560",
+  "model_sha256": "071460109c82053427a761aee058a25a3b06aa0cb39264267413c1dbcfa2f5a6",
+  "actual_training_controls": 2560,
+  "actual_Adam_steps": 22,
+  "Adam_steps_each_group": 22,
+  "recorded_post_hook_calls": 44,
+  "count_correction": "Frozen013034optimizer overrides Adam.step and nested PyTorch profile wrappers dispatch the external post-hook twice per actual update. All saved per-parameter Adam steps are22. Rates/weights are unaffected; frozen source and original counters retained.",
+  "groups": [
+    {
+      "role": "actor",
+      "learning_rate_multiplier": 1.0,
+      "last_step_effective_lr": 3e-05
+    },
+    {
+      "role": "critic",
+      "learning_rate_multiplier": 30.0,
+      "last_step_effective_lr": 0.0009
+    }
+  ],
+  "critic_tanh_head_absolute_output_bound": 7.036584854125977
+}

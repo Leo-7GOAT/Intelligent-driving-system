@@ -213,7 +213,7 @@ def fresh_target_kl(model, target_kl):
             'scope':'Existing SB3 per-rollout epoch early stop; physical budget and endpoint unchanged. Not a hard bound on cumulative policy drift.'}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
@@ -262,6 +262,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if rollout_actions is not None:label+='_rollout'+str(rollout_actions)
         if target_kl is not None:label+='_kl'+format(target_kl,'.8g')
         if critic_rate_profile:label+='_critic30_v1'
+        if partition_inventory:label+='_partitions_'+sha(Path(partition_inventory))[:16]
         if methods==['B1'] and log_std!=-2.3:label+='_std'+format(log_std,'.8g')
         if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
         if initialization_gate=='basic_motion_training_v1':label+='_basic_motion_v1'
@@ -327,6 +328,11 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if current_cleanup_harness:
             protocol['cleanup_harness_override']=copy_cleanup_harness(parent/'source/scripts/carla_bridge37.py',
                 ROOT/'scripts/carla_bridge37.py',batch/'source/scripts/carla_bridge37.py')
+        if partition_inventory:
+            from scripts.native_partition_initialization import install_inventory
+            install_inventory(protocol,batch/'source',partition_inventory)
+            shutil.copy2(partition_inventory,batch/'native_partition_inventory.json')
+            shutil.copy2(ROOT/'scripts/native_partition_initialization.py',batch/'source/scripts/native_partition_initialization.py')
         now = time.time()
         protocol.pop('evaluation_only')
         protocol.update(created_epoch=now, deadline_epoch=now+wall_seconds, parent_batch=parent.name,
@@ -374,5 +380,6 @@ if __name__ == '__main__':
     parser.add_argument('--current-cleanup-harness',action='store_true')
     parser.add_argument('--target-kl',type=float)
     parser.add_argument('--critic-rate-profile',choices=['actor1_critic30_v1'])
+    parser.add_argument('--partition-inventory',type=Path,help='New versioned training/validation inventory,applied before the first PPO update')
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory)

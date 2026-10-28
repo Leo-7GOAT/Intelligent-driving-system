@@ -16,7 +16,7 @@ from navstack.native_cases import registered_native_cases, verify_registered_nat
 def audit(batch, allow_completed_prefix=False):
     batch = Path(batch)
     protocol = read(batch/'protocol.json')
-    registered_cases = registered_native_cases(protocol)
+    registered_cases = registered_native_cases(protocol,'evaluation')
     partial = allow_completed_prefix and not (batch/'summary.json').exists()
     if partial:
         failure = read(batch/'failure.json')
@@ -147,7 +147,7 @@ def audit(batch, allow_completed_prefix=False):
             begin=next((r for r in acknowledgements.values() if r.get('episode_id')==episode and 'reset_ticks' in r),None)
             if begin is None or begin.get('scene')!=scene['scene']:
                 raise ValueError('Native hazard scene differs from raw reset acknowledgement')
-            verify_registered_native_begin(begin,protocol,case_id)
+            verify_registered_native_begin(begin,protocol,case_id,partition='evaluation')
             if protocol.get('native_case_manifest') and scene['initial']['dynamic'] != begin['dynamic']:
                 raise ValueError('Registered case initial actor observations differ from measured reset')
             identities=[(a['actor_id'],a['actor_type']) for a in begin.get('native_dynamic_actors',[])]

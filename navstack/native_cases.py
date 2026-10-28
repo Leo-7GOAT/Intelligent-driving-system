@@ -8,7 +8,16 @@ from .native_route import local_layout
 VERSION = 'native_development_cases_v1'
 
 
-def registered_native_cases(protocol):
+def registered_native_cases(protocol, partition='training'):
+    if partition not in ('training','evaluation'):
+        raise ValueError('Unknown native case partition')
+    if 'native_validation' in protocol:
+        from .native_partitions import validate_native_partitions
+        validate_native_partitions(protocol)
+        if partition=='evaluation':
+            validation=protocol['native_validation']
+            return registered_native_cases({'routes':validation['routes'],
+                'native_case_manifest':validation['manifest']})
     routes = protocol['routes']
     manifest = protocol.get('native_case_manifest')
     if manifest is None:
@@ -50,12 +59,12 @@ def registered_native_cases(protocol):
     return cases
 
 
-def verify_registered_native_begin(begin, protocol, expected_case_id=None):
+def verify_registered_native_begin(begin, protocol, expected_case_id=None, partition='training'):
     """Bind actual reset condition, route geometry and measured actor inventory."""
     if protocol.get('native_case_manifest') is None:
         verify_native_hazard_begin(begin, protocol.get('native_hazard'))
         return
-    cases = registered_native_cases(protocol)
+    cases = registered_native_cases(protocol,partition)
     scene = begin.get('scene', {}); case_id = scene.get('condition')
     if (type(case_id) is not int or not 0 <= case_id < len(cases)
             or expected_case_id is not None and case_id != expected_case_id):

@@ -298,7 +298,7 @@ def run(batch):
         env = CarlaNavigationEnv(config, client)
         from navstack.planner_memo import configure_planner_memo
         configure_planner_memo(env, protocol)
-        cases = registered_native_cases(protocol)
+        cases = registered_native_cases(protocol,'evaluation')
         episodes, controls = evaluate_cases(env, cases, batch, lambda: guard(batch, protocol),
                                            protocol.get('rule_speed_policy', 'native_score'))
         write_json(batch/'summary.json', {'status': 'complete', 'policy_kind': 'rule_only_B3',

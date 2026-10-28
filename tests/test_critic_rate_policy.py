@@ -20,9 +20,11 @@ class Plant(Env):
 def test_actual_adam_updates_use_role_rates_and_restore_schedule_base():
     actor=torch.nn.Parameter(torch.tensor(1.,dtype=torch.float64));critic=torch.nn.Parameter(actor.detach().clone())
     optimizer=CriticRateAdam([{'params':[actor],'learning_rate_multiplier':1.},{'params':[critic],'learning_rate_multiplier':30.}],lr=3e-5)
-    actor.grad=torch.ones_like(actor);critic.grad=torch.ones_like(critic);optimizer.step()
+    calls=[];hook=optimizer.register_step_post_hook(lambda *args:calls.append(1))
+    actor.grad=torch.ones_like(actor);critic.grad=torch.ones_like(critic);optimizer.step();hook.remove()
     assert abs(float(((1-critic)/(1-actor)).detach())-30)<1e-8
     assert [g['lr'] for g in optimizer.param_groups]==[3e-5,3e-5]
+    assert len(calls)==int(optimizer.state[actor]['step'])==int(optimizer.state[critic]['step'])==1
 
 
 def test_fresh_promotion_preserves_every_prediction_and_real_sb3_training_roundtrip(tmp_path):
@@ -35,9 +37,11 @@ def test_fresh_promotion_preserves_every_prediction_and_real_sb3_training_roundt
     with torch.no_grad():
         torch.testing.assert_close(a,model.policy.get_distribution(x).distribution.mean,rtol=0,atol=0)
         torch.testing.assert_close(v,model.policy.predict_values(x),rtol=0,atol=0)
-    model.learn(8)
+    calls=[];hook=model.policy.optimizer.register_step_post_hook(lambda *args:calls.append(1))
+    model.learn(8);hook.remove()
     assert model.num_timesteps==8 and isinstance(model.policy.optimizer,CriticRateAdam)
     assert [g['last_step_effective_lr'] for g in model.policy.optimizer.param_groups]==[3e-5,30*3e-5]
+    assert len(calls)==2==max(int(s['step']) for s in model.policy.optimizer.state.values())
     model.save(tmp_path/'trained.zip');loaded=load_ppo(tmp_path/'trained.zip',device='cpu')
     assert isinstance(loaded.policy.optimizer,CriticRateAdam) and loaded.num_timesteps==8
     assert [g['learning_rate_multiplier'] for g in loaded.policy.optimizer.param_groups]==[1.,30.]

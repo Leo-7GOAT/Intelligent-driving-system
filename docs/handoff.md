@@ -1,4 +1,37 @@
-# Current handoff — 2026-10-28 09:35 local
+# Current handoff — 2026-10-28 09:58 local
+
+Latest additions:source345b1ac is actually pushed;hosted40616036339 SUCCESS
+598/15skips/4CARLA exclusions194.63s,independent32targeted8.44s.
+Critic013034is ACTUALLY TRAINING(worker46252),not just queued. Its frozen
+custom Adam.step invokes the external post-hook twice per actual update;
+checkpoint2560contains22actual Adam steps versus44hook calls. Rates3e-5/9e-4
+verified from saved state. Preserve raw counters and correct endpoint reports
+from Adam state;do not call doubled hook counts actual updates. Root optimizer
+fix uses pre/post rate hooks and inherits Adam.step;19critic/partition tests pass.
+
+New geometry-only train36/validation24inventory is registered in experiments/
+native_development_train36_validation24_v1.json;no final-test claim. Four new
+validation roads are separated from132historical registered route inventories
+by>=12m centreline clearance. Source supports separate collection/evaluation
+inventories and separate raw-reset audits. New H/H0seed11batch014801is PREPARED,
+ValidateOnly388source files;not yet launched/queued. Parent original12teacher
+conditions retain exact indices;weights,normalizer,reward and low level unchanged.
+reports/native_training_validation_partition_20261028.md details evidence.
+Latest full source rerun in runs/native_partitions_count_fixed_full_cpu_20261028.log;
+earlier625passes predate last additions;one later rule fixture mismatch is fixed.
+
+UPDATE10:02local:complete current CPU **629passed/1skip/4CARLA exclusions211.28s**.
+Partition batch014801ACTUALLY QUEUED after013440,queue31656,receipt/script in
+runs/queue_train36_validation24_after_seed22_PPO_20261028.ps1. No duplicate launch.
+Critic013034TRAINING COMPLETE20480controls/281actual Adam steps,562raw hook
+calls;all parameter-state steps agree. Frozen12case evaluation active. Critic
+output bound14.4825still cannot cover raw-90unsafe terminal target. Preserve
+the result before choosing the next minimal learning change;do not blindly add
+another long continuation. reports/native_B1_critic_rate_training_20261028.json.
+
+Common-mask seed22BC003323 COMPLETED H10/12,H012/12,zeroPPO. Both audited.
+Its actual PPO013440is queued after shared seed11PPO013316,which is queued after
+critic013034. QueuePIDs3268/29896. Do not duplicate activation.
 
 Latest state supersedes the older snapshot below. Do not duplicate active queues.
 

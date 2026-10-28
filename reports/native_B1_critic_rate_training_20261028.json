@@ -1,0 +1,13 @@
+{
+  "scope": "Completed real CARLA training checkpoint; frozen evaluation still pending. No new controls for this read-only audit.",
+  "batch": "20261028T013034Z_native_supervised_ppo",
+  "checkpoint": "checkpoint_000020480",
+  "actual_training_controls": 20480,
+  "actual_Adam_steps": 281,
+  "recorded_post_hook_calls": 562,
+  "all_per_parameter_Adam_steps_identical": true,
+  "critic_absolute_output_bound": 14.482521057128906,
+  "unsafe_terminal_reward": -90,
+  "model_sha256": "ed27078947950d8a90b380cf15e4259777ec556cdc2a091c20c4153b218acf02",
+  "count_correction": "Nested optimizer wrappers dispatch two external post-hooks per one actual Adam update. Frozen model/source/counters preserved."
+}
