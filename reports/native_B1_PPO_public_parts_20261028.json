@@ -46,7 +46,7 @@
   "result": "130748B1:4/12,20480realtraining controls,640Adam,3unsafe;not the newer KL-stop endpoint.",
   "download_without_auth": true,
   "archive_reassembled_byte_exact": true,
-  "independent_reproduction_status": "PENDING",
+  "independent_reproduction_status": "COMPLETE",
   "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_basic_motion_PPO_seed11_20261027_repro.zip.parts.json",
   "previous_attempts": [
     {
@@ -58,5 +58,26 @@
       "status": "HTTP408starter_not_downloadable"
     }
   ],
-  "cleanup": "Failed remote starter records remain; automatic approval rejected their cleanup command. No successful existing asset was replaced."
+  "cleanup": "Failed remote starter records remain; automatic approval rejected their cleanup command. No successful existing asset was replaced.",
+  "independent_reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "b97dcb80ed2bf92f7898e39780c6fa52c77346304c26eaf93f2dc770b27f533c",
+    "asset_source_commit": "8f8257ae6caf655bd2f9b69235e4fb07598438eb",
+    "reproduction_source_commit": "8478f1924d2158cdd582ac586afa587435a64a05",
+    "verified_files": 477,
+    "methods": [
+      {
+        "method": "B1",
+        "raw_audit_sha256": "598c95b0f5c0e13064740455f752111764aa1d31bc27fc739aaed7ed02ee3438",
+        "verified_controls": 28337,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "da593a697844bb3e9366d2070de1ed60c5ea5dc185a6101a9d891d8c08d58f31",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  }
 }

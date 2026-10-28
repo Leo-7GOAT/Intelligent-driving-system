@@ -10,7 +10,7 @@ are actually public,downloaded without authentication and reassembled into the
 exact original43,808,905byte/477filecapsule,SHA256
 `b97dcb80ed2bf92f7898e39780c6fa52c77346304c26eaf93f2dc770b27f533c`.
 [Transfer receipt](../reports/native_B1_PPO_public_parts_20261028.json).
-Full independent raw/model/figure reproduction remains pending.
+Independent checkout8478f19has now verified all28,337rawcontrols,12measured-start actions,frozen normalization and a byte-identical packaged figure. No new driving is claimed.
 
 Download the six parts and manifest together,then:
 

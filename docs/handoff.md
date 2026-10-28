@@ -85,8 +85,9 @@ downloaded WITHOUTAUTH and reassembled byte-exact:43808905bytes/477files,
 SHA b97dcb80ed2bf92f7898e39780c6fa52c77346304c26eaf93f2dc770b27f533c.
 Two earlier whole-body uploads returnedHTTP408and left starter assets;they are
 not downloadable successes. Cleanup command was auto-approval-rejected;records
-remain. ../reports/native_B1_PPO_public_parts_20261028.json. Independent new
-parts/model/raw/figure reproduction is still pending;do not claim it finished.
+remain. ../reports/native_B1_PPO_public_parts_20261028.json. Independent checkout8478f19has COMPLETED parts/model/raw/figure reproduction:all28337controls,12startactions,frozen stats,byte-identical figure.
+
+Mechanism audit COMPLETE:all497H/541H0decisions reproduce from measured histories. Fixed-original-mask zero-all-feedback changes11/497Hactions;zero-continuation5,zero-outcomes8. Removing mask changes18/497. H0negative-control feedback changes0/541. See ../reports/native_feedback_dependence_20261028.json;no new controls/updates or closed-loop causal claim. Two targeted helper/policy tests pass4.73s. Existing H/H0mask/feature confound motivates a NEWversion with common physical endpoint mask and internal learned-feedback ablation;do not rewrite old outcomes.
 
 ## Source / remaining full target
 
@@ -95,8 +96,7 @@ branchfeature/physical-hierarchical-ppo,authenticatedLeo-7GOAT;no forcepush.
 Existing prereleasev0.2.0-dev.20261022is development only,not final acceptance.
 Latest actually verified hosted sourceae3d238passes573/15skips/4CARLA exclusions
 194.80s;independent20targeted10.96s. Earlier8f8257afullindependent581/1skip/
-4exclusions285.46s. New parts/PIDcode has44targeted checks;hosted result must
-be recorded separately. Independent checkout and locked environment remain at
+4exclusions285.46s. Source8478f19hosted40607068483SUCCESS591/15/4in110.14s;root44targeted4.45s/independent44in5.45s. New mechanism-audit source separately has2targeted tests. Independent checkout and locked environment remain at
 their original runs/prerelease_20261022paths through the verified junction.
 
 Still UNMET:healthy sufficiently trained B1;PPOvalue vsstrongB3;explainable
