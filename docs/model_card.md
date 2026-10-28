@@ -1,5 +1,28 @@
 # Development model card
 
+## Public negative B1 PPO capsule in small transfer parts
+
+The130748B1model finishes4/12after20,480real training controls/640Adam steps,
+with28,337training+evaluation controls raw-audited. It is an unqualified
+development baseline. Two whole-archive uploads timed out;the six small parts
+and [manifest](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_basic_motion_PPO_seed11_20261027_repro.zip.parts.json)
+are actually public,downloaded without authentication and reassembled into the
+exact original43,808,905byte/477filecapsule,SHA256
+`b97dcb80ed2bf92f7898e39780c6fa52c77346304c26eaf93f2dc770b27f533c`.
+[Transfer receipt](../reports/native_B1_PPO_public_parts_20261028.json).
+Full independent raw/model/figure reproduction remains pending.
+
+Download the six parts and manifest together,then:
+
+```powershell
+python scripts/native_asset_parts.py join --manifest PARTS/native_B1_basic_motion_PPO_seed11_20261027_repro.zip.parts.json --sha256 b97dcb80ed2bf92f7898e39780c6fa52c77346304c26eaf93f2dc770b27f533c --output runs/NEW_B1_PPO.zip
+python scripts/reproduce_native_asset.py --archive runs/NEW_B1_PPO.zip --sha256 b97dcb80ed2bf92f7898e39780c6fa52c77346304c26eaf93f2dc770b27f533c --output runs/NEW_B1_PPO_REPRO
+```
+
+Joining validates every part and the explicitly trusted whole-archive hash.
+No model bytes or failed episodes were removed to reduce transfer size.
+The newer KL-stop140111endpoint is a separate4/12result and remains local.
+
 ## Public frozen Grid A* deployment ablation
 
 The [actual public capsule](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_frozen_B2_seed11_20261027_repro.zip)

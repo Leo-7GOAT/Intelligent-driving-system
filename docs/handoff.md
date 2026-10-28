@@ -1,94 +1,109 @@
-# Current handoff — 2026-10-27 22:35 local
+# Current handoff — 2026-10-28 08:10 local
 
-Continue the original thesis objective. Do not restart the project, restore the
-old plant, lower final gates, or claim completion. Never duplicate an activated
-batch. Historical long handoff: ../reports/handoff_before_native_twelve_case_20261027.md.
+Continue the original thesis objective;no restart,old plant,lower final gates,
+duplicate activation or false completion. Historical long handoff remains in
+../reports/handoff_before_native_twelve_case_20261027.md;Git preserves later states.
 
-## Actual endpoints
+## Actual development evidence
 
-All twelve conditions are DEVELOPMENT: four known roads × curve/parking,
-static car13m, dynamic walker. Earlier static10m failures remain separate.
+All12conditions are FOUR KNOWN ROADS ×curve/parking,staticcar13m,dynamicwalker.
+They are not120independent final conditions. Earlier10mstatic failures remain.
+Rule08011112/12;actor-supervised094138H/H0each11/12withzeroPPO.
+RealPPO100609H11/12,H010/12:20541/20623trainingcontrols,650Adam each,
+51429totalrawcontrols audited. Hretains BCscore;H0losesone. StrongB3is12/12;
+PPOvalue,feedbackbenefit and independent hierarchy advantage are UNPROVEN.
 
-| Configuration | Safe completion | Actual work / limitation |
-|---|---:|---|
-| B3 rule080111 |12/12|4329eval controls;4700world ticks;zeroPPO |
-| H/H0 actor-only094138 |11/12each|896supervised updates each;9803eval controls;zeroPPO |
-| H/H0 realPPO100609 |11/12,10/12|20541/20623train;650Adam each;51429total controls raw audited |
-| B1 pooled BC095043 |4/12|1792supervised updates;4459eval;6unsafe;zeroPPO |
-| B1 ordered BC102445 |3/12|same4329teacher frames;5265eval;5unsafe;zeroPPO |
-| B1 phase4 BC112446 |6/12|changed fit mask/train-only norm;7123eval;1unsafe;zeroPPO |
-| B1 corrective124542 |7/12|curves2/4,static2/4,dynamic3/4;4bounds;4965eval;zeroPPO |
-| B2 frozen134723 |4/12|8639eval controls;866decisions;zero new training;Hparent11/12 |
-| B1 realPPO130748 |4/12|20480train;640Adam;7857eval;28337current controls raw audited |
+B1pooledBC0950434/12,orderedBC1024453/12,phase4BC1124466/12.
+Corrective1245427/12butfourbounds/basic2/4;zeroPPO,rejected initializer.
+Its two infrastructure interruptions retain3578+4030controls;full replay4965.
+Snapshot cleanup crossed the old actor57failure and completed owned-empty stop.
 
-Corrective115212/122049 failed at owned actor57cleanup;3578+4030controls
-remain retained/charged.124542 reran ALL12 with exact model/norm/RNG/config,
-passed the former failure transition and normal owned-empty shutdown. Its total
-three evaluation attempts cost12573controls.544additional actor-only updates,
-2336cumulative;47counterfactual planner/MPC labels are computed commands,not
-measured teacher execution. Corrective basic motion2/4unsafe is unsuitable as
-stable initializer. ../reports/native_twelve_case_corrective_B1_endpoint_20261027.json.
+B1realPPO1307484/12after20480controls/640Adam,7857eval/28337currentrawframes.
+Matched KL-stop140111also4/12after20480controls/199Adam,7673eval/28153raw.
+KLstop preserves curves3/4versus1/4but losesstatic2/4to0/4;dynamic1/4both.
+No overall gain or healthy-baseline claim. Parent BC6/12;all failures remain.
+../reports/native_B1_KL_PPO_endpoint_20261028.json.
 
-130748 used phase4initializer with explicit basic_motion_training_v1 entry:
-basic3/4zero unsafe, full-task6/12unqualified. Original strict rejections remain.
-Final research gates unchanged. Frozen result4/12:curves1/4,static2/4,dynamic1/4;
-two bounds,one collision.19training successes do not substitute for this frozen
-result. KLmedian.023774,max.341952;45/64phases>.015. This supports a bounded
-update-size diagnostic,not proof of cause. ../reports/native_B1_basic_motion_PPO_endpoint_20261027.json.
+Frozen H-to-B2legacy1347234/12,8639evalcontrols,zero new training.
+Eight deadlines are dominated by failed planning/braking;not fair upper-bound
+B2capability. Existing body_spline_v1 repairs all8offlineinitial open/static
+queries versus2/8legacy;computed references are not driving success.
+Body-spline141335 STOPPED by exact Disk below12GiB guard after1486controls,
+guard1/reasonNone,owned_empty_server_stopped. No complete B2score.
 
-## Active sequential queue — inspect actual receipts before action
+## ACTUALLY ACTIVE / QUEUED — inspect receipts before action
 
-134723 native_frozen_B2 COMPLETED4/12,8639rawcontrols audited,normalguard0/ownedcleanup. Historical worker7496,
-queue22776. Parent trainedH100609model/norm/RNGexact, onlyenv.method H→B2;
-existing GridAStarPlanner with geometric postprocessing, same trajectory/MPC/
-vehicle/task/budget. No training. Deployment planner ablation,NOTretrained B2
-or independent confirmation. scripts/prepare_native_planner_ablation.py;
-runs/native_frozen_B2_queue_20261027.log and batch queue_execution.json.
+ACTUALLY TRAINING:20261027T235448Z_native_continuation,worker22840/guard14288,
+wrapper60012. Parent140111exact policy/Adam/norm/RNG/settings;81920NEWcontrols,
+target102400cumulative,10800swall,deadline1793156543.444(~11:02local).
+Current progress is in B1/heartbeat.json;report actual controls,not intention.
+All12frozen endpoint,zero extra supervision,0automatic retries. This is larger
+B1tuning budget than currentH20541,NOTan equal-budget research comparison.
+Parent evaluation7673now charged;registered teacher NPZ retained by hash.
+Old helper48844 stopped on the B2failure;do not restart its old barrier.
+New actual launch:runs/native_KL_B1_long_manual_launch_20261028.json and
+runs/native_KL_B1_long_launcher_20261028.log. Queued activation preserves
+original protocol/prepared snapshots and changes wallclock only.
 
-140111 native_supervised_ppo TRAINING COMPLETE20480controls/199Adam,now ACTUALLY FROZEN-EVALUATING all12conditions;worker57964/guard66000,
-queuePID24524; runs/queue_native_KL_PPO_after_B2_20261027.ps1. Original and
-new initial policy tensors,empty Adam,norm/RNG/config exact; same seed11,
-20480controls,lr3e-5,std-4,7200s. ONLYlearner change is SB3target_kl=.01.
-Normal per-rollout epoch early stop is not a hard bound on cumulative drift.
-Same fixed endpoint/all12cases;no checkpoint selection or independent claim.
-../reports/native_B1_KL_PPO_registration_20261027.json. Do not launch duplicate.
-Queue requires normal guard,owned_empty_server_stopped and lifecycle lease
-release. On error preserve receipts;do not bypass ownership checks.
+ACTUALLY WAITING:20261028T000521Z_native_evaluation_recovery,queue64524,
+after235448normalguard/owned-empty cleanup/lifecycle release. All12B2conditions
+will rerun with exact saved model/norm/RNG/config,existing body_spline_v1,
+zero updates. Prior1486controls charged:31269inheritedinputs,650retainedHAdam.
+runs/queue_recovered_B2_after_long_B1_20261028.ps1 and child's queue_execution.json.
+../reports/native_B2_disk_recovery_20261028.json. Never duplicate this phase.
+Grid search is finite-grid but does not enforce Hybrid max_nodes;record actual
+nodes,timings and150spline evaluations;do not claim equal compute or realtime.
 
-141335 native_frozen_B2 PREPARED/VALIDATED and ACTUALLY queued after140111,queue41036. Existing body_spline_v1 uses150least-squares evaluations and swept-body/curvature certification. All8offlineopen/staticinitialqueries now reference-valid versus2/8legacy;no physical execution in queries. Both planner method and declared postprocessor change;model/norm/RNG unchanged. Runtime override is training_config ONLY,AST verified;other loop/plant code unchanged. See ../reports/native_B2_body_spline_registration_20261027.json. Grid search is finite-grid but does not enforce Hybrid max_nodes;record actual nodes/timings and do not claim equal compute.
+Recovery PID29180was reused after old guard exit. Staging now reads creation
+time and accepts only a verified NEWinstance;unknown/original live processes
+still reject. No foreign process adopted/terminated.44targeted parts/PID/
+interruption/prefix checks pass4.45s. Runtime training is its frozen source.
 
-Bounded long-training helper48844 ACTUALLY WAITING,not prepared/training. After140111and141335both normal owned cleanup,reaudit parent and continue its exact policy/Adam/norm/RNG to102400cumulative controls(+81920),10800swall,0retries;one fixed all12endpoint. Source/teacher hash changes fail closed. Charges parent eval controls and retains teacher NPZ. This is larger-budget B1tuning,NOTmatchedHcomparison or a healthy-baseline claim. See ../reports/native_B1_long_training_preregistration_20261027.json;local script runs/continue_KL_B1_after_spline_B2_20261027.ps1;parent long_training_queue_execution.json. Never launchduplicates.
+Seed22initialization COMPLETED:144307hierarchicalBC(H/H0),144319measuredBC(B1).
+896/896/1792actor-supervised updates;zeroPPO,zero seed22CARLAevaluation so far.
+Every measured array/task/norm statistic matches its seed11counterpart;
+policy tensors differ and PPO optimizers are untouched. Not completed
+independent CARLA policies. ../reports/native_seed22_initialization_20261028.json.
 
-## Source verification and publication
+## Storage and public reproduction
 
-Remotehttps://github.com/Leo-7GOAT/Intelligent-driving-system.git,
-branchfeature/physical-hierarchical-ppo,authenticatedLeo-7GOAT.
-Source5c342ce ACTUALLY pushed. Hosted40510261079SUCCESS556passed/15skips/
-4CARLA exclusions83.86s;independent38targeted pass13.58s. Previousb4134ae
-hosted40506931939SUCCESS547/15/4in159.44s;independent67pass12.81s.
-8f8257a ACTUALLY pushed/remote verified:hosted40517711560SUCCESS567/15/4in90.73s;independent full581/1skip/4CARLA exclusions285.46s. d974637body-spline source hosted40519686500SUCCESS570/15/4in121.18s;root49targeted6.09s/independent49in8.81s. ae3d238continuation source ACTUALLY pushed/remoteverified;hosted40521153471SUCCESS573/15/4in194.80s;root20targeted11.01s/independent20in10.96s.
+Closed runs/prerelease_20261022 moved to dedicated Dproject archive with
+original Cpath junction;46410files/4914560944bytes verified. Read-only Git-object
+cleanup interruption was retained;all46134remaining source files reverified
+before duplicate Cbytes retired. Original interpreter path actually imports
+Python3.11.9/Torch2.14.1+cpu. Other old large runfolders were ALREADYjunctioned
+to their existing Darchive;preserve them. ../reports/native_storage_recovery_long_training_20261028.json.
+The local detailed relocation receipt has the destination. No simulator reinstall.
+Keep disk12GiB/RAM4GiB/GPU85C floors and fixed wallcaps. CARLA0.9.15onD,
+main.venv/.carla-python37,actualRPC2100;never kill foreign processes by port/PID.
 
-Existing prereleasev0.2.0-dev.20261022 has actual publicly downloaded,
-independently reproduced assets:three rule/BCcapsules1321files/18591controls/
-36startactions/two byte-identical figures;realPPOcapsule587files/51429controls/
-24startactions/byte-identical packaged figure. See model_card.md and reports
-native_twelve_case_public_reproduction_20261027.json and
-native_twelve_case_PPO_public_reproduction_20261027.json. Frozen legacyB2capsule is also actually public/downloaded/independently reproduced:433files/8639controls/12startactions/byte-identical figure. B1basic-motionPPOcapsule477files/43,808,905bytes/SHA b97dcb80ed2bf92f7898e39780c6fa52c77346304c26eaf93f2dc770b27f533c is currently UPLOADING,not yet confirmed public/downloaded/reproduced. Owned ghPID66688/toolsession3495;do not duplicate or claim uploaded before success. Its local package is runs/native_B1_basic_motion_PPO_seed11_20261027_repro.zip;all28337controls raw-audited. Other newerB1models local.
-No final release or research acceptance.
+Public/downloaded/independently reproduced assets already cover realH/H0PPO
+51429controls,rule/BC18591controls,and legacyB28639controls,including frozen
+start actions and byte-identical figures. See model_card.md and associated reports.
+New negative B1PPO130748capsule is now ACTUALLY uploaded as6smallparts+manifest,
+downloaded WITHOUTAUTH and reassembled byte-exact:43808905bytes/477files,
+SHA b97dcb80ed2bf92f7898e39780c6fa52c77346304c26eaf93f2dc770b27f533c.
+Two earlier whole-body uploads returnedHTTP408and left starter assets;they are
+not downloadable successes. Cleanup command was auto-approval-rejected;records
+remain. ../reports/native_B1_PPO_public_parts_20261028.json. Independent new
+parts/model/raw/figure reproduction is still pending;do not claim it finished.
 
-## Constraints and remaining target
+## Source / remaining full target
 
-Disk12GiB/RAM4GiB/GPU85C floors;fixed wallcaps/no automatic retry. Existing
-CARLA0.9.15 onD,main.venv and isolated.carla-python37. Derive ports from
-protocol(currentRPC2100);never stop foreign processes by port alone.
-Independent checkout:runs/prerelease_20261022/native_road_checkout; Python
-runs/prerelease_20261022/clean_checkout/.venv/Scripts/python.exe. Never mutate
-frozen batch sources/protocols; queued activation clocks follow wrapper only.
+Correctremotehttps://github.com/Leo-7GOAT/Intelligent-driving-system.git,
+branchfeature/physical-hierarchical-ppo,authenticatedLeo-7GOAT;no forcepush.
+Existing prereleasev0.2.0-dev.20261022is development only,not final acceptance.
+Latest actually verified hosted sourceae3d238passes573/15skips/4CARLA exclusions
+194.80s;independent20targeted10.96s. Earlier8f8257afullindependent581/1skip/
+4exclusions285.46s. New parts/PIDcode has44targeted checks;hosted result must
+be recorded separately. Independent checkout and locked environment remain at
+their original runs/prerelease_20261022paths through the verified junction.
 
-Still required:healthy adequately trained B1,PPOvalue vsstrongB3,explainable
-feedback benefit,5independent trained seeds,120NEWpairedfinalconditions with
-at least30each core family,unseen transfer,B2training/frequency/shared-safety/
-control ablations,locked final protocol and statistical intervals. Final
-targets remain light85%/75%core,CARLA80%/70%core,unsafe<=5%,H-B1>=10pp with
-paired95%lower>0 (or a prelocked efficiency hypothesis before final testing).
-Keep working;no guessed overall completion percentage and no false completion.
+Still UNMET:healthy sufficiently trained B1;PPOvalue vsstrongB3;explainable
+feedback contribution;5independent trained seeds;120NEWpairedfinalconditions
+with>=30each core family;unseen transfer;trainedB2/frequency/shared-safety/
+fixed-reference-control ablations;locked final protocol and paired intervals.
+Targets unchanged:light85%/75%core,CARLA80%/70%core,unsafe<=5%,H-B1>=10pp with
+95%pairedlower>0(or prelocked efficiency hypothesis BEFORE final testing).
+Do not treat the current12known conditions,greenCPUCI,publication or elapsed
+wallwindow as completion. Keep goal active and continue from actual receipts.

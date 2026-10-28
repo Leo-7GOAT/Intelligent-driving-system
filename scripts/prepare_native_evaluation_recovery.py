@@ -7,6 +7,10 @@ from pathlib import Path
 import shutil
 import sys
 import time
+import os
+import math
+import subprocess
+import json
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
@@ -35,6 +39,34 @@ def evaluation_lineage(prior, summary, parent_name, checkpoint_name, method,addi
             'recovery_chain':chain}
 
 
+def windows_process_creation_epoch(pid):
+    """Read only creation time; do not adopt or terminate a reused PID."""
+    if os.name!='nt' or type(pid) is not int or pid<=0:return None
+    script=(f"$p=Get-CimInstance Win32_Process -Filter 'ProcessId={pid}';"
+            "if($null -eq $p){exit 2};"
+            "@{creation_epoch=([DateTimeOffset]$p.CreationDate).ToUnixTimeMilliseconds()/1000} | ConvertTo-Json -Compress")
+    try:
+        result=subprocess.run(['pwsh','-NoProfile','-Command',script],capture_output=True,
+            encoding='utf-8-sig',errors='replace',timeout=15,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+        if result.returncode:return None
+        value=json.loads(result.stdout)['creation_epoch']
+        return float(value) if type(value) in (int,float) and math.isfinite(value) else None
+    except (OSError,ValueError,KeyError,subprocess.TimeoutExpired):return None
+
+
+def recorded_lifecycle_gone(identities,ended_epoch):
+    from navstack.process_lease import pid_alive
+    if any(type(pid) is not int or pid<=0 for pid in identities):return False
+    live=[pid for pid in identities if pid_alive(pid)]
+    if not live:return True
+    now=time.time()
+    if type(ended_epoch) not in (int,float) or not math.isfinite(ended_epoch) or not 0<ended_epoch<=now:return False
+    for pid in live:
+        created=windows_process_creation_epoch(pid)
+        if created is None or not ended_epoch+1<created<=now+1:return False
+    return True
+
+
 def verified_interruption(parent):
     """Accept normal wall receipts or fresh, separately verified process loss."""
     final=parent/'guard_final.json'
@@ -60,7 +92,7 @@ def verified_interruption(parent):
             if (guard.get('worker_pid')!=worker['pid'] or not server.get('owned_by_task')
                     or stop.get('shipping_pid')!=server['shipping_pid']
                     or stop.get('post_stop_tcp')!=[] or stop.get('post_stop_udp')!=[]
-                    or any(type(pid) is not int or pid<=0 or pid_alive(pid) for pid in identities)):
+                    or not recorded_lifecycle_gone(identities,guard.get('epoch'))):
                 raise ValueError('Resource-interrupted processes or cleanup are live, ambiguous or mismatched')
             return 'owned_actor_cleanup_failure' if actor_stop else 'worker_disk_below_12GiB'
         return 'wall_deadline'

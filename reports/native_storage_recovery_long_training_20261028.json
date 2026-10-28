@@ -1,0 +1,21 @@
+{
+  "scope": "Closed project artifacts relocated to dedicated Dproject archive with original Cpath junction,not data deletion or simulator reinstallation.",
+  "directory": "runs/prerelease_20261022",
+  "files": 46410,
+  "bytes": 4914560944,
+  "remaining_files_reverified": 46134,
+  "status": "VERIFIED_MOVED_WITH_ORIGINAL_PATH_JUNCTION",
+  "verification": "Initial move copy_function verified each file before source removal; after read-only Git-object cleanup interruption,every remaining source file was reverified.",
+  "independent_interpreter_after_move": "Actually imports Python3.11.9/Torch2.14.1+cpu through original path",
+  "other_historical_directories": "Already-junctioned historical evidence was preserved in its existing archive;not moved again.",
+  "resource_floor_disk_GiB": 12,
+  "long_B1_batch": "20261027T235448Z_native_continuation",
+  "long_B1_worker_pid": 22840,
+  "long_B1_guard_pid": 14288,
+  "long_B1_status": "ACTUALLY_TRAINING",
+  "new_control_budget": 81920,
+  "cumulative_control_target": 102400,
+  "wall_seconds": 10800,
+  "launcher_clock_activation": "Queued protocol/prepared snapshots preserved;activation rebases wallclock only,zero model/task changes.",
+  "active_protocol_sha256": "ef844cc463e11c6a26cf43a05a1addd3f1fc1b56560f926caa3f59bd13667c2a"
+}
