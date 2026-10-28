@@ -86,6 +86,13 @@ def training_config(protocol, method, vehicle):
     feedback = ("ablated" if method == "H0" else "enabled") if protocol.get("feedback_ablation", False) else "off"
     if protocol.get('continuation_feedback', False):
         feedback = 'continuation_ablated' if method == 'H0' else 'continuation'
+    shared_mask=protocol.get('shared_endpoint_mask_v1',False)
+    if type(shared_mask) is not bool:raise ValueError('Shared endpoint mask must be an explicit boolean')
+    if shared_mask:
+        if (not protocol.get('continuation_feedback') or not protocol.get('feedback_ablation')
+                or not protocol.get('road_candidate_policy') or protocol.get('candidate_head')!='unshared_endpoint_v1'):
+            raise ValueError('Shared mask requires the complete endpoint feedback comparison')
+        feedback='continuation'
     config = EnvConfig(method="H" if method == "H0" else method, vehicle=vehicle, road_observation=True,
         execution_feedback=feedback,candidate_observation=protocol.get('road_candidate_policy',False),
         road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),
@@ -339,8 +346,8 @@ def run(batch):
                             from navstack.road_candidate_policy import LocalWitnessRoadPolicy
                             policy=LocalWitnessRoadPolicy
                         elif method!='B1' and selected_head == 'unshared_endpoint_v1':
-                            from navstack.road_candidate_policy import EndpointClearRoadPolicy
-                            policy=EndpointClearRoadPolicy
+                            from navstack.road_candidate_policy import endpoint_policy_class
+                            policy=endpoint_policy_class(protocol,method)
                     vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
                     algorithm = IndependentClipPPO if job.get('gradient_clip_mode') == INDEPENDENT_CLIP else PPO
                     model = algorithm(policy, vec, **learning_schedule(protocol,config,rollout_actions),

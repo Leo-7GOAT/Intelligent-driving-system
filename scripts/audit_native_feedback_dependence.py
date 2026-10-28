@@ -27,7 +27,10 @@ def ablate(raw,variant):
 def unmasked_logits(policy,normalized):
     features=policy.extract_features(torch.as_tensor(normalized,dtype=torch.float32))
     if not hasattr(policy.mlp_extractor,'backbone') or not hasattr(policy.action_net,'head'):raise ValueError('Require the registered endpoint-clear policy')
-    return policy.action_net.head(policy.mlp_extractor.backbone.forward_actor(features))
+    extractor=policy.mlp_extractor
+    latent=(extractor.forward_actor_unmasked(features) if hasattr(extractor,'forward_actor_unmasked')
+            else extractor.backbone.forward_actor(features))
+    return policy.action_net.head(latent)
 
 
 def probabilities(policy,normalized,fixed_mask):

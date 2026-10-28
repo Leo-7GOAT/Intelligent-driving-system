@@ -18,7 +18,7 @@ from navstack.experiments import write_json,signature
 from navstack.imitation import fit_categorical_initialization
 from navstack.process_lease import ProcessLease
 from navstack.research import resources_ok
-from navstack.road_candidate_policy import EndpointClearRoadPolicy,RoadCandidateVecNormalize
+from navstack.road_candidate_policy import endpoint_policy_class,RoadCandidateVecNormalize
 from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.audit_native_policy_sequence import observation_env,advance_observation
 from scripts.audit_native_rule import audit
@@ -28,23 +28,26 @@ from scripts.prepare_native_hazard_learning import learning_protocol
 from navstack.native_cases import registered_native_cases
 
 
-def prepare(parent,seed=11,steps=896):
+def prepare(parent,seed=11,steps=896,shared_endpoint_mask=False):
     parent=Path(parent).resolve()
     if type(seed) is not int or not 0<=seed<2**31 or not 1<=steps<=2000:
         raise ValueError('Invalid bounded categorical supervision')
+    if type(shared_endpoint_mask) is not bool:raise ValueError('Shared endpoint mask requires an explicit boolean')
     require_finished_parent(parent)
     verified=audit(parent)
     if verified!=read(parent/'raw_audit.json'):raise ValueError('Teacher raw audit changed')
     protocol=learning_protocol(parent,640,1800,seed,['H','H0'],endpoint_filter=True)
+    if shared_endpoint_mask:protocol['shared_endpoint_mask_v1']=True
     case_count=len(registered_native_cases(protocol))
     vehicle=VehicleConfig(**read(parent/'calibration/calibration.json')['vehicle'])
-    registration=parent/f'measured_hierarchical_bc_seed{seed}_registration.json'
+    registration=parent/(f'measured_hierarchical_bc_seed{seed}'+('_shared_endpoint_mask_v1' if shared_endpoint_mask else '')+'_registration.json')
     with ProcessLease(parent/'hierarchical_bc_prepare.lock'):
         if registration.exists():raise FileExistsError('Inspect the registered teaching phase instead of repeating')
         batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_hierarchical_bc')
         batch.mkdir();write_json(registration,{'batch':batch.name,'status':'registered_before_fit'})
         write_json(batch/'fit_registration.json',{'scope':'Same actual B3teacher cases as continuous B1; every registered case and macro decision, including failures. Extra supervision, zero PPO updates.',
             'seed':seed,'supervised_steps_per_method':steps,'teacher_batch':parent.name,
+            'shared_endpoint_mask_v1':shared_endpoint_mask,'policy_classes':{m:endpoint_policy_class(protocol,m).__name__ for m in ('H','H0')},
             'teacher_raw_audit_sha256':sha(parent/'raw_audit.json'),'fit_wall_seconds':900,
             'holdout':'Every fifth decision within each case; correlated fit only, no independent validation'})
         deadline=time.time()+900
@@ -74,7 +77,7 @@ def prepare(parent,seed=11,steps=896):
             for method in protocol['methods']:
                 health();config=training_config(protocol,method,vehicle)
                 observations=[];actions=[];masks=[]
-                for case in range(case_count):
+                for case in ([] if shared_endpoint_mask and method=='H0' else range(case_count)):
                     selected=[r for r in rows if r['case_id']==case]
                     scene=read(parent/f'scene_{case:04d}.json')['scene']
                     begin=begins[selected[0]['info']['trace'][0]['backend_evidence']['episode_id']]
@@ -85,12 +88,15 @@ def prepare(parent,seed=11,steps=896):
                         observations.append(env._observation());actions.append(int(row['policy_action']));masks.append(i%5!=0)
                         advance_observation(env,row)
                     env.close()
-                observations=np.asarray(observations,dtype=np.float32)
-                actions=np.asarray(actions,dtype=np.int64);masks=np.asarray(masks,dtype=bool)
+                if shared_endpoint_mask and method=='H0':
+                    observations=arrays['H_observations'].copy();actions=arrays['actions'].copy();masks=arrays['train_mask'].copy()
+                else:
+                    observations=np.asarray(observations,dtype=np.float32)
+                    actions=np.asarray(actions,dtype=np.int64);masks=np.asarray(masks,dtype=bool)
                 arrays[method+'_observations']=observations;arrays['actions']=actions;arrays['train_mask']=masks
                 raw=DummyVecEnv([lambda:NavigationEnv(config)]);raw.envs[0].case_index=0
                 norm=RoadCandidateVecNormalize(raw,norm_reward=False,gamma=config.gamma)
-                model=PPO(EndpointClearRoadPolicy,norm,**learning_schedule(protocol,config,32),seed=seed,device='cpu')
+                model=PPO(endpoint_policy_class(protocol,method),norm,**learning_schedule(protocol,config,32),seed=seed,device='cpu')
                 def progress(row):
                     health();write_json(batch/(method+'_fit_heartbeat.json'),{'epoch':time.time(),**row})
                     print(json.dumps({'method':method,**row}),flush=True)
@@ -122,6 +128,10 @@ def prepare(parent,seed=11,steps=896):
                     'methods':fits,'macro_labels_per_method':len(arrays['actions']),
                     'fairness':'Same physical teacher cases; macro versus direct labels and different losses/compute are separately disclosed. No ordinary-PPO or architecture superiority claim.'})
             protocol['source_hashes']={p.relative_to(batch/'source').as_posix():sha(p) for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
+            if shared_endpoint_mask:
+                protocol['shared_mask_ablation']={'version':'shared_endpoint_mask_v1','common_raw_observations_and_endpoint_mask':True,
+                    'network_feedback_H0':'candidate feedback and execution outcomes zero inside both actor/critic;mask reads the original endpoint-clear bits',
+                    'new_actor_supervised_updates':{'H':steps,'H0':steps},'scope':'Actual actor-only fits,zeroPPO. Same physical information/mask,only learned feedback access differs.'}
             write_json(batch/'protocol.json',protocol);write_json(batch/'prepared.json',{'status':'PREPARED_NOT_STARTED','protocol_sha256':sha(batch/'protocol.json')})
             print(batch,flush=True);return batch
         except BaseException as exc:
@@ -131,4 +141,5 @@ def prepare(parent,seed=11,steps=896):
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--parent',required=True)
     parser.add_argument('--seed',type=int,default=11);parser.add_argument('--steps',type=int,default=896)
-    args=parser.parse_args();prepare(args.parent,args.seed,args.steps)
+    parser.add_argument('--shared-endpoint-mask',action='store_true')
+    args=parser.parse_args();prepare(args.parent,args.seed,args.steps,args.shared_endpoint_mask)

@@ -1,3 +1,43 @@
+# Current handoff — 2026-10-28 09:35 local
+
+Latest state supersedes the older snapshot below. Do not duplicate active queues.
+
+- B1 continuation235448 COMPLETE:81920new training controls,102400cumulative,
+  853new Adam steps/1052cumulative lowerbound. Frozen **2/12**,7bounds/1collision;
+  not healthy. reports/native_B1_long_PPO_endpoint_20261028.json binds87220raw
+  segment controls. Old inherited ledger omits7123known initialization-evaluation
+  controls; retained and separately disclosed. No more continuation of this model.
+- Recovered body-spline B2000521 COMPLETE:**7/12**,6357new eval controls,0new
+  learning. Prior1486partial controls charged. Raw audit/guard0/owned-empty stop
+  verified. reports/native_B2_body_spline_endpoint_20261028.json.
+- Common-mask seed11BC002857 COMPLETE:H/H0**11/12each**,0PPO. H reused exact;
+  only H0 refitted896actor steps. Shared original physical endpoint mask and raw
+  information; learned H0actor AND critic feedback zeroed internally. Both raw
+  audits complete. New result does not establish feedback performance benefit.
+- Common-mask seed22BC003323 ACTUALLY evaluating,queue38856. Critic-rate B1
+  013034 is ACTUALLY QUEUED after its normal guard/owned-empty cleanup,queue63380.
+  Fresh phase4BC weights/norm/RNG/config and physical sources match140111 EXACT;
+  actor3e-5,critic9e-4,20480controls,7200swall,KL.01. Only disjoint critic Adam
+  rate differs. No trained optimizer reset. ValidateOnly passes369source files;
+  reports/native_B1_critic_rate_initialization_20261028.json records equality/costs.
+- Shared-mask seed11PPO013316 PREPARED,not yet activated. Both original complete
+  representation gates pass.20480physical controls per H/H0,guarded reward,
+  original categorical exploration and frozen teacher stats. Queue after013034.
+- All15actor-supervised initializers for fixed seeds11/22/33/44/55 are complete;
+  zero PPO at initialization. Paired H/H0critic/norm/data exact,networks distinct
+  across seeds. reports/native_fixed_seed_initializations_20261028.json.
+- Fair-mask full CPU regression610passed/1skip/4CARLA exclusions153.16s.
+  Critic-rate30targeted checks pass5.70s; full current regression612passed/1skip/4CARLA exclusions143.83s,recorded in
+  runs/shared_mask_critic30_full_cpu_20261028.log. Runtime batch sources frozen.
+- Cfree22.7GB,last measured;12GiBfloor retained. Only one CARLA server at a time.
+
+Still UNMET:healthy B1,PPOvalue vs strong rule,feedback benefit,5independent
+trained policies,120NEWpaired final conditions,train/dev/final separation,
+unseen transfer,remaining ablations and locked statistical confirmation.
+User objective and all final acceptance gates remain unchanged.
+
+---
+
 # Current handoff — 2026-10-28 08:10 local
 
 Continue the original thesis objective;no restart,old plant,lower final gates,

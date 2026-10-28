@@ -170,3 +170,18 @@ class EndpointClearRoadPolicy(UnsharedRoadCandidatePolicy):
         self.mlp_extractor=EndpointClearExtractor(self.mlp_extractor)
         self.action_net=LocalWitnessHead(self.action_net)
         self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)
+
+
+class SharedEndpointAblatedRoadPolicy(EndpointClearRoadPolicy):
+    """H0: same physical endpoint gate as H,zero feedback in learned networks."""
+    def _build(self,lr_schedule):
+        super()._build(lr_schedule)
+        from .candidate_filter import SharedEndpointFeedbackAblationExtractor
+        self.mlp_extractor=SharedEndpointFeedbackAblationExtractor(self.mlp_extractor.backbone)
+        self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)
+
+
+def endpoint_policy_class(protocol,method):
+    shared=protocol.get('shared_endpoint_mask_v1',False)
+    if type(shared) is not bool:raise ValueError('Shared endpoint mask must be an explicit boolean')
+    return SharedEndpointAblatedRoadPolicy if shared and method=='H0' else EndpointClearRoadPolicy

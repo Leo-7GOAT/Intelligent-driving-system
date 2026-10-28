@@ -1,0 +1,219 @@
+{
+  "batch": "20261027T235448Z_native_continuation",
+  "method": "B1",
+  "successes": 2,
+  "cases": 12,
+  "families": {
+    "curve_parking": {
+      "successes": 1,
+      "cases": 4,
+      "unsafe": 2
+    },
+    "static_obstacle": {
+      "successes": 0,
+      "cases": 4,
+      "unsafe": 4
+    },
+    "dynamic_interaction": {
+      "successes": 1,
+      "cases": 4,
+      "unsafe": 2
+    }
+  },
+  "termination_counts": {
+    "out_of_bounds": 7,
+    "success": 2,
+    "deadline": 2,
+    "collision": 1
+  },
+  "evaluation_controls": 5300,
+  "raw_audit": {
+    "schema_version": 1,
+    "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+    "batch": "20261027T235448Z_native_continuation",
+    "method": "B1",
+    "protocol_sha256": "ef844cc463e11c6a26cf43a05a1addd3f1fc1b56560f926caa3f59bd13667c2a",
+    "config_sha256": "7e3ad4f83ab14d830afcefc2746c8746ac627f9119da25dc016e9b5bc2ef7ee3",
+    "summary_sha256": "98d80ea56606bf9894df4b8c131d6403940fdfff46a1d1b19766708efcdbdfc2",
+    "evaluation_sha256": "200eef2ba44b3f44b469138bf80ac8396791d2c0fa02b4534141d09cadbb7806",
+    "evaluation_trace_sha256": "31d2d23bfbec82eef96dbeefc243b772d54bd7680ea725160ac6676d8f160d51",
+    "optimization_sha256": "9ac99b6870d94926b8670327740e0a34ac04307039b7304d95894bfc566ccb25",
+    "transition_hashes": {
+      "transitions_000000000_1793145769188716900.jsonl.gz": "69c15bc11a7bec5c107674b447f1e5608882c0df56f9b19de04f4e99c312abfd"
+    },
+    "bridge_response_stream": "bridge_ada565d1_responses.jsonl.gz",
+    "bridge_response_sha256": "071c9e425658379c8bcece9d6f3754f800f9bb95a2f562a8794243cf6a3d3b8f",
+    "bridge_complete_rows": 87511,
+    "training_control_frames_verified": 81920,
+    "evaluation_control_frames_verified": 5300,
+    "total_applied_controls_verified": 87220,
+    "training_world_ticks_verified": 86073,
+    "evaluation_world_ticks_verified": 5672,
+    "training_termination_reasons": {
+      "success": 20,
+      "deadline": 54,
+      "out_of_bounds": 47,
+      "collision": 12
+    },
+    "checkpoint": "checkpoint_000081920",
+    "checkpoint_metadata_sha256": "28dc31cc015d5bafae2ac0b1fc5a17124890298419a20aed05e5f85bf381524c",
+    "lineage_controls": 102400,
+    "charged_controls_lower_bound": 114402,
+    "segment_optimizer_steps": 853,
+    "optimizer_steps_total_lower_bound": 1052,
+    "unknown_unflushed_ancestor_tail": false
+  },
+  "guard": {
+    "epoch": 1793150419.6411998,
+    "worker_pid": 22840,
+    "exit_code": 0,
+    "reason": null
+  },
+  "owned_cleanup_status": "owned_empty_server_stopped",
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 857,
+      "actions": 857,
+      "progress": 22.20117847035809,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 96,
+      "actions": 96,
+      "progress": 4.970187076145358,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 306,
+      "actions": 306,
+      "progress": 22.25599732071877,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 3,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 900,
+      "progress": 18.337995909583395,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 4,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 153,
+      "actions": 153,
+      "progress": 7.994582506684566,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 5,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 230,
+      "actions": 230,
+      "progress": 4.136109068961854,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 6,
+      "success": false,
+      "termination_reason": "collision",
+      "physics_steps": 95,
+      "actions": 95,
+      "progress": 6.703428430443228,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 7,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 504,
+      "actions": 504,
+      "progress": 17.40159223603804,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 8,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 748,
+      "actions": 748,
+      "progress": 22.034806270182088,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 9,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 132,
+      "actions": 132,
+      "progress": 4.97801787233886,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 10,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 379,
+      "actions": 379,
+      "progress": 21.997838328125486,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 11,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 900,
+      "progress": 16.92599362281302,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    }
+  ],
+  "scope": "Completed102400-control seed11 B1 development experiment.2/12successes and8unsafe; rejected as healthy baseline. More controls did not repair learning.",
+  "new_training_controls": 81920,
+  "cumulative_training_controls": 102400,
+  "new_Adam_steps": 853,
+  "cumulative_Adam_steps_lower_bound": 1052,
+  "diagnosis": {
+    "critic_last_linear_absolute_output_upper_bound": 7.144166469573975,
+    "unsafe_terminal_reward": -90,
+    "interpretation": "Tanh-limited features and final linear weights imply insufficient absolute value range for the instantaneous unsafe terminal target. A measured representational/optimization symptom, not established sole cause.",
+    "next_single_variable_test": "Fresh matched initialization,actor rate3e-5 and critic rate9e-4; no promotion/reset of trained optimizer."
+  },
+  "costs": "Raw segment87220includes81920training+5300evaluation. Registered inherited cost lowerbound114402 omits known7123 original initialization-evaluation controls; known corrected cumulative input lowerbound121525 before current5300endpoint controls. Old ledger retained."
+}

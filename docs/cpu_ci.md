@@ -1,5 +1,7 @@
 # CPU regression CI
 
+Source8478f19 hosted run [40607068483](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40607068483) completes **591passed,15skips,4CARLA deselections in110.14s**. Its44targeted tests pass in the independent locked environment in5.45s. New shared-mask changes have a separate full local regression of610passed/1skip/4CARLA deselections in153.16s; subsequent critic-rate changes have30targeted passes in5.70s and the full current local regression passes612/1skip/4CARLA deselections in143.83s.
+
 Sourceae3d238 actually passes **573tests,15skips,4CARLA exclusions**in194.80s: [run40521153471](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40521153471). Its20targeted continuation checks pass11.01s/root and10.96s/independent. Source8f8257a also passed full independent Windows regression581/1skip/4exclusions285.46s, and hosted567/15/4in90.73s. These are source-specific CPU results,not driving qualification.
 
 Source5c342ce actually passes **556tests,15skips,4CARLA exclusions**in83.86s: [run40510261079](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40510261079). Independent targeted38pass13.58s. Previousb4134ae passes547/15/4in159.44s. New B2/KL changes have36targeted checks passing9.21s; hosted verification for those changes must be recorded separately.

@@ -1,0 +1,407 @@
+{
+  "scope": "Second fixed-seed common-mask actor-supervised initialization,zeroPPO; no independent trained-policy claim.",
+  "both_methods_share_physical_endpoint_mask_and_raw_information": true,
+  "new_PPO_controls": 0,
+  "methods": [
+    {
+      "batch": "20261028T003323Z_native_shared_mask_bc",
+      "method": "H",
+      "successes": 10,
+      "cases": 12,
+      "families": {
+        "curve_parking": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "static_obstacle": {
+          "successes": 2,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "dynamic_interaction": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "termination_counts": {
+        "success": 10,
+        "deadline": 2
+      },
+      "evaluation_controls": 5445,
+      "raw_audit": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261028T003323Z_native_shared_mask_bc",
+        "method": "H",
+        "protocol_sha256": "47cc3007b433cc3568e05f32267dafc8c03c67e446577065e89d404ab5a6313f",
+        "config_sha256": "f45b09e7f16fca2bbd57a86e834338df2cddbbc799d6a4c8a1863a60ccbd89b7",
+        "summary_sha256": "79dbd273d838fee29866cb67afb172d594d34986d5bf558f823ab361cb677d9b",
+        "evaluation_sha256": "ef09c4e0ea34fd92fe04e2ffecfc067e776b56c81c8b089bc8ef1b52fb913ceb",
+        "evaluation_trace_sha256": "783802f6ca1024abcadf7ff553baa3644d50d6517fb5a31b1edc3e70036640e8",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793150960711041400.jsonl.gz": "a58bfedb905233bc97bff403d2c89699861c3f5454d1790207b0c25e6774f0d1"
+        },
+        "bridge_response_stream": "bridge_00496e67_responses.jsonl.gz",
+        "bridge_response_sha256": "433a1a9e11e6742e557f10b3c8d9061e107e4a644123c3054bfa682744cc0e30",
+        "bridge_complete_rows": 5469,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 5445,
+        "total_applied_controls_verified": 5445,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 5816,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "01d23ebdc7d9aadedb2a199099410d13aed889381264c41f9aabaf83ff93de05",
+        "lineage_controls": 0,
+        "charged_controls_lower_bound": 4329,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 0,
+        "unknown_unflushed_ancestor_tail": false
+      },
+      "guard": {
+        "epoch": 1793151242.4499671,
+        "worker_pid": 54532,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_cleanup_status": "owned_empty_server_stopped",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "actions": 34,
+          "progress": 24.275288618962673,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 351,
+          "actions": 36,
+          "progress": 23.88262504176669,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 311,
+          "actions": 32,
+          "progress": 22.213659294080216,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "actions": 31,
+          "progress": 20.38589748192861,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 356,
+          "actions": 36,
+          "progress": 24.1133950873515,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "progress": 0.8876497141890916,
+          "interventions": 740,
+          "plan_failures": 74,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "actions": 34,
+          "progress": 22.42169843030968,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "progress": 13.63965989820728,
+          "interventions": 650,
+          "plan_failures": 65,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 421,
+          "actions": 43,
+          "progress": 24.25327209533865,
+          "interventions": 70,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 9,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 444,
+          "actions": 45,
+          "progress": 23.76922320215914,
+          "interventions": 90,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 391,
+          "actions": 40,
+          "progress": 22.27089389348634,
+          "interventions": 70,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 388,
+          "actions": 39,
+          "progress": 20.21790434058192,
+          "interventions": 80,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        }
+      ]
+    },
+    {
+      "batch": "20261028T003323Z_native_shared_mask_bc",
+      "method": "H0",
+      "successes": 12,
+      "cases": 12,
+      "families": {
+        "curve_parking": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "static_obstacle": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "dynamic_interaction": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "termination_counts": {
+        "success": 12
+      },
+      "evaluation_controls": 4339,
+      "raw_audit": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261028T003323Z_native_shared_mask_bc",
+        "method": "H0",
+        "protocol_sha256": "47cc3007b433cc3568e05f32267dafc8c03c67e446577065e89d404ab5a6313f",
+        "config_sha256": "f45b09e7f16fca2bbd57a86e834338df2cddbbc799d6a4c8a1863a60ccbd89b7",
+        "summary_sha256": "b134051d5b5015000528f583ce223aaf161d1678c82c116375b265cd2411ac83",
+        "evaluation_sha256": "210fc93c8de0728b823c42a925c270db2552b9065726a0da574ab76f8a98450d",
+        "evaluation_trace_sha256": "0ac54ed0b3a0447d35764e400b48f3517680a9ff29a829f1231da61fbcf71900",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793151137099818500.jsonl.gz": "f2c8667440385c528e994b07b38353961be6509d9fcec90bda6f5cf068f3a999"
+        },
+        "bridge_response_stream": "bridge_a2eac6c6_responses.jsonl.gz",
+        "bridge_response_sha256": "0b50d0d24147c27c524adb13ef5a1952c21440129891e02f4650c4df7dce3d24",
+        "bridge_complete_rows": 4363,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 4339,
+        "total_applied_controls_verified": 4339,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 4710,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "e2a21bc93a2ea5a05b23f22e5844973b13b61e04806cd3bbe9f078aa3b1c8edd",
+        "lineage_controls": 0,
+        "charged_controls_lower_bound": 4329,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 0,
+        "unknown_unflushed_ancestor_tail": false
+      },
+      "guard": {
+        "epoch": 1793151242.4499671,
+        "worker_pid": 54532,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_cleanup_status": "owned_empty_server_stopped",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "actions": 34,
+          "progress": 24.279602444733438,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 347,
+          "actions": 35,
+          "progress": 23.79120339308454,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 311,
+          "actions": 32,
+          "progress": 22.178361419733154,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "actions": 31,
+          "progress": 20.394193741024665,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 356,
+          "actions": 36,
+          "progress": 24.11352304380704,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 5,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 374,
+          "actions": 38,
+          "progress": 23.835949082313867,
+          "interventions": 10,
+          "plan_failures": 1,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 331,
+          "actions": 34,
+          "progress": 22.069184558995964,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 7,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "actions": 34,
+          "progress": 20.005677964229456,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 421,
+          "actions": 43,
+          "progress": 24.2551496189066,
+          "interventions": 70,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 9,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 444,
+          "actions": 45,
+          "progress": 23.766298753721376,
+          "interventions": 90,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "progress": 22.19199868149693,
+          "interventions": 60,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 388,
+          "actions": 39,
+          "progress": 20.218033866550982,
+          "interventions": 80,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        }
+      ]
+    }
+  ],
+  "conclusion": "Complete12conditions for both methods passed the original initialization gate; realPPO batch013440 prepared separately."
+}

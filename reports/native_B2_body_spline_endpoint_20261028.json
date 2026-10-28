@@ -1,0 +1,205 @@
+{
+  "batch": "20261028T000521Z_native_evaluation_recovery",
+  "method": "B2",
+  "successes": 7,
+  "cases": 12,
+  "families": {
+    "curve_parking": {
+      "successes": 3,
+      "cases": 4,
+      "unsafe": 0
+    },
+    "static_obstacle": {
+      "successes": 1,
+      "cases": 4,
+      "unsafe": 0
+    },
+    "dynamic_interaction": {
+      "successes": 3,
+      "cases": 4,
+      "unsafe": 1
+    }
+  },
+  "termination_counts": {
+    "success": 7,
+    "deadline": 4,
+    "out_of_bounds": 1
+  },
+  "evaluation_controls": 6357,
+  "raw_audit": {
+    "schema_version": 1,
+    "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+    "batch": "20261028T000521Z_native_evaluation_recovery",
+    "method": "B2",
+    "protocol_sha256": "094c0d9ef7d2fb16d0e4abd41424cc0c8470342a27321a8b19e63b1063022123",
+    "config_sha256": "866b19f4138466df3b45072a9564e6a1cc4883ce70fc3c391396a0a19e2b7bf5",
+    "summary_sha256": "c800572771cebe1fe5a1502a8146b590321f8dc75afd890d5fc3748b22c4e04c",
+    "evaluation_sha256": "7daf1cf1aab116b294f2f145ebf0fe09ef20d45481a05e908d3a7d708c8b4fb4",
+    "evaluation_trace_sha256": "823c426236d0b9aa2e5db36bb0cbf37f025a13691d6aa91a41134bc38732f01d",
+    "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "transition_hashes": {
+      "transitions_000000000_1793150442625359600.jsonl.gz": "78f385c6a6a1be922e25ed11e6bd5cf4106ad28768b902d1dd478dca2cb93399"
+    },
+    "bridge_response_stream": "bridge_065d8f3e_responses.jsonl.gz",
+    "bridge_response_sha256": "8a7878a6e0ae17db21e30c5c3b0b8cca24094da7e2673b95d77ebfa406bd9c0c",
+    "bridge_complete_rows": 6381,
+    "training_control_frames_verified": 0,
+    "evaluation_control_frames_verified": 6357,
+    "total_applied_controls_verified": 6357,
+    "training_world_ticks_verified": 0,
+    "evaluation_world_ticks_verified": 6728,
+    "training_termination_reasons": {},
+    "checkpoint": "checkpoint_000000000",
+    "checkpoint_metadata_sha256": "7e58dd342f89bda399112430b681ed38a0abdfe4332ba96ed3d7a740974bffee",
+    "lineage_controls": 20541,
+    "charged_controls_lower_bound": 31269,
+    "segment_optimizer_steps": 0,
+    "optimizer_steps_total_lower_bound": 650,
+    "unknown_unflushed_ancestor_tail": false
+  },
+  "guard": {
+    "epoch": 1793150618.146723,
+    "worker_pid": 45924,
+    "exit_code": 0,
+    "reason": null
+  },
+  "owned_cleanup_status": "owned_empty_server_stopped",
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 340,
+      "actions": 34,
+      "progress": 24.25664808759637,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "progress": 16.96785869908288,
+      "interventions": 650,
+      "plan_failures": 65,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 320,
+      "actions": 32,
+      "progress": 22.405173752813923,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 306,
+      "actions": 31,
+      "progress": 20.36442020354608,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 4,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "progress": 16.3573867736612,
+      "interventions": 670,
+      "plan_failures": 67,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 5,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "progress": 0.5171020882921802,
+      "interventions": 200,
+      "plan_failures": 20,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 6,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 321,
+      "actions": 33,
+      "progress": 22.52264288092205,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 7,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "progress": 3.6816175428576905,
+      "interventions": 810,
+      "plan_failures": 81,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 8,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 431,
+      "actions": 44,
+      "progress": 24.16928320304714,
+      "interventions": 80,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 9,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 236,
+      "actions": 24,
+      "progress": 7.550497828776994,
+      "interventions": 100,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 10,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 408,
+      "actions": 41,
+      "progress": 22.471433478004755,
+      "interventions": 80,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 11,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 395,
+      "actions": 40,
+      "progress": 20.366050715141256,
+      "interventions": 80,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    }
+  ],
+  "scope": "Completed frozen body_spline_v1 B2 deployment diagnostic,not retrained B2 or equal-compute comparison.",
+  "inherited_partial_evaluation_controls_charged": 1486,
+  "new_training_controls": 0,
+  "compute_limit": "Finite grid AStar does not enforce Hybrid max_nodes; spline refinement has150least-squares evaluation budget. Actual timing/node costs must be reported separately."
+}

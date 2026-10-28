@@ -1,0 +1,18 @@
+{
+  "scope": "Fresh matched seed11 optimizer-rate development test; no physical execution or extra supervision during initialization.",
+  "control_batch": "20261027T140111Z_native_supervised_ppo",
+  "profile_batch": "20261028T013034Z_native_supervised_ppo",
+  "all_network_tensors_identical": true,
+  "normalization_rng_config_bytes_identical": true,
+  "physical_runtime_source_hashes_identical": true,
+  "PPO_counters_zero_and_Adam_empty": true,
+  "actor_learning_rate": 3e-05,
+  "critic_learning_rate": 0.0009,
+  "same_rollout_epochs_KL_reward_cases_budget": true,
+  "only_optimization_difference": "Disjoint critic Adam group rate multiplier30; actor multiplier1. Standard PPO loss and global gradient clipping retained.",
+  "teacher_controls": 4329,
+  "parent_selection_evaluation_controls": 7123,
+  "known_initialization_input_controls_both_profiles": 11452,
+  "cost_disclosure": "Old control recovery ledger omitted the7123 parent initialization-evaluation controls. New profile includes them; old ledger preserved and undercount disclosed.",
+  "registered_protocol_sha256_before_activation": "f3d77dd328128beb882b9158ada999e618edcda78f3cd7dee1022cb0dcf5e6f2"
+}

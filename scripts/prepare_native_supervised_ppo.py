@@ -213,7 +213,7 @@ def fresh_target_kl(model, target_kl):
             'scope':'Existing SB3 per-rollout epoch early stop; physical budget and endpoint unchanged. Not a hard bound on cumulative policy drift.'}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
@@ -223,6 +223,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         raise ValueError('Invalid bounded PPO rollout')
     if target_kl is not None and (isinstance(target_kl,bool) or not np.isfinite(target_kl) or not .001<=target_kl<=.05):
         raise ValueError('Invalid bounded PPO KL target')
+    if critic_rate_profile is not None and (critic_rate_profile!='actor1_critic30_v1' or learning_rate is None or not 1e-6<=learning_rate<=1e-3/30):
+        raise ValueError('Critic-rate profile requires its bounded explicit actor rate')
     if initialization_gate not in ('complete_inventory_v1','basic_motion_training_v1'):
         raise ValueError('Unknown explicit development training-entry profile')
     require_finished_parent(parent)
@@ -230,10 +232,13 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
     methods=protocol.get('methods')
     if (methods not in (['B1'],['H','H0']) or not protocol.get('evaluation_only') or not protocol.get('extra_supervision')):
         raise ValueError('Require a complete supervised-only direct or H/H0 diagnostic')
-    origins={};representation_gates={}
+    if critic_rate_profile and methods!=['B1']:raise ValueError('Critic-rate diagnostic is registered for B1only')
+    origins={};representation_gates={};parent_evaluation_controls={}
     for method in methods:
-        if audit(parent,method)!=read(parent/method/'endpoint_raw_audit.json'):
+        parent_audit=audit(parent,method)
+        if parent_audit!=read(parent/method/'endpoint_raw_audit.json'):
             raise ValueError('Parent raw audit changed')
+        parent_evaluation_controls[method]=parent_audit['evaluation_control_frames_verified']
         evaluated=read(parent/method/'evaluation.json')
         representation_gates[method]=(basic_motion_training_gate if initialization_gate=='basic_motion_training_v1' else representation_gate)(protocol,evaluated)
         origin=parent/method/read(parent/method/'latest_checkpoint.json')['folder']
@@ -256,6 +261,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if learning_rate is not None:label+='_lr'+format(learning_rate,'.8g')
         if rollout_actions is not None:label+='_rollout'+str(rollout_actions)
         if target_kl is not None:label+='_kl'+format(target_kl,'.8g')
+        if critic_rate_profile:label+='_critic30_v1'
         if methods==['B1'] and log_std!=-2.3:label+='_std'+format(log_std,'.8g')
         if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
         if initialization_gate=='basic_motion_training_v1':label+='_basic_motion_v1'
@@ -295,6 +301,9 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                 change=categorical_exploration(model,normalizer,arrays[method+'_observations'][arrays['train_mask']],categorical_probability)
             if learning_rate is not None:change['learning_rate_initialization']=fresh_learning_rate(model,learning_rate)
             if target_kl is not None:change['target_kl_initialization']=fresh_target_kl(model,target_kl)
+            if critic_rate_profile:
+                from navstack.critic_rate_policy import promote_fresh_critic_rate
+                change['critic_rate_initialization']=promote_fresh_critic_rate(model)
             if rollout_change is not None:change['rollout_initialization']=rollout_change
             original_model_sha256=metadata['model_sha256']
             model.save(destination/'model.zip');metadata['model_sha256']=sha(destination/'model.zip')
@@ -303,15 +312,18 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                 raise ValueError('Supervised observation statistics changed')
             verified_checkpoint_metadata(destination)
             interventions[method]={**change,'parent_model_sha256':original_model_sha256,
-                'initialized_model_sha256':metadata['model_sha256'],'supervised_updates_added':0}
+                'initialized_model_sha256':metadata['model_sha256'],'supervised_updates_added':0,
+                'initialization_evaluation_controls_charged':parent_evaluation_controls[method]}
             if reward_change is not None:interventions[method]['reward_initialization']=reward_change
             prior=protocol['recovery'][method]
             recovery[method]={**prior,'checkpoint':'resume/'+method,'parent_batch':parent.name,
                 'parent_checkpoint':origin.name,'lineage_controls':0,
-                'consumed_controls_lower_bound':supervised_input_cost(protocol,method),
+                'consumed_controls_lower_bound':supervised_input_cost(protocol,method)+parent_evaluation_controls[method],
                 'retained_optimizer_steps':0,'unknown_unflushed_parent_tail':False}
         for name in ('prepare_native_supervised_ppo.py','prepare_native_hazard_learning.py'):
             shutil.copy2(ROOT/'scripts'/name, batch/'source/scripts'/name)
+        if critic_rate_profile:
+            shutil.copy2(ROOT/'navstack/critic_rate_policy.py',batch/'source/navstack/critic_rate_policy.py')
         if current_cleanup_harness:
             protocol['cleanup_harness_override']=copy_cleanup_harness(parent/'source/scripts/carla_bridge37.py',
                 ROOT/'scripts/carla_bridge37.py',batch/'source/scripts/carla_bridge37.py')
@@ -361,5 +373,6 @@ if __name__ == '__main__':
     parser.add_argument('--initialization-gate',choices=['complete_inventory_v1','basic_motion_training_v1'],default='complete_inventory_v1')
     parser.add_argument('--current-cleanup-harness',action='store_true')
     parser.add_argument('--target-kl',type=float)
+    parser.add_argument('--critic-rate-profile',choices=['actor1_critic30_v1'])
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile)

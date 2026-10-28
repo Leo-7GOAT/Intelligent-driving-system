@@ -56,8 +56,27 @@ class LocalWitnessHead(nn.Module):
 
 
 class EndpointClearExtractor(LocalWitnessExtractor):
+    def forward_actor_unmasked(self,features):return self.backbone.forward_actor(features)
+
     def forward_actor(self,features):
         candidates=features[:,351:599].reshape(-1,31,8)
         mask=(candidates[:,:,5]>.5).clone();mask[:,0]=True
         mask=torch.where(candidates[:,0,5:6]>.5,mask,torch.ones_like(mask))
-        return torch.cat((self.backbone.forward_actor(features),mask.to(features.dtype)),dim=1)
+        return torch.cat((self.forward_actor_unmasked(features),mask.to(features.dtype)),dim=1)
+
+
+class SharedEndpointFeedbackAblationExtractor(EndpointClearExtractor):
+    """Keep the common physical mask; hide feedback from actor AND critic."""
+    @staticmethod
+    def learned_inputs(features):
+        if features.ndim!=2 or features.shape[1] not in (4701,4705):raise ValueError('Require road candidate observations')
+        result=features.clone()
+        result[:,351:599].reshape(-1,31,8)[:,:,5:]=0
+        result[:,599:605]=0
+        return result
+
+    def forward_actor_unmasked(self,features):
+        return self.backbone.forward_actor(self.learned_inputs(features))
+
+    def forward_critic(self,features):
+        return self.backbone.forward_critic(self.learned_inputs(features))
