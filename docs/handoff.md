@@ -1,4 +1,37 @@
-# Current handoff — 2026-10-28 09:58 local
+# Current handoff — 2026-10-28 10:13 local
+
+Latest state supersedes snapshots below. Goal ACTIVE and all research gates UNMET.
+
+Critic013034 COMPLETE:**4/12**,6bounds/1collision/1deadline,20480training+
+4128evaluation=24608raw controls.281actual Adam updates confirmed from every
+saved state versus562nested post-hook calls. Raw counters/source retained.
+Curve2/4,static1/4,dynamic1/4;no improvement over control4/12and more unsafe.
+Reject as healthy. reports/native_B1_critic_rate_endpoint_20261028.json.
+
+ACTUALLY TRAINING shared-mask seed11PPO013316,worker60368/guard69120,
+queue/wrapper29896. Hheartbeat last4891controls;check live receipts.
+Then ACTUALLY QUEUED seed22PPO013440(queue3268),train36/validation24seed11
+014801(queue31656),and fixed-reward-unit B1020728(queue41236). All normal
+guard/owned-empty stop/lifecycle lease/hash barriers,one server,no auto retries.
+
+Fixed units is a separate fresh profile matched to standard-Adam KL140111:
+same tensors,optimizer3e-5,config/RNG,obs RMS,physical source,rollout/epochs/KL
+and original12cases;only learner rewards scaled.05. Raw task reward/metrics
+unchanged;unsafe learner target-4.5fits initial critic range. NOTcombined with
+fast critic or new scene partition. ValidateOnly369files;actual initialization
+equality report in reports/native_B1_fixed_reward_units_initialization_20261028.json.
+First preparation020529failed before registration/controls due detached SB3
+pickle transient fields;partial retained with preparation_failure.json. New
+serializer/real-SB3-rollout/frozen-RMS tests pass30related checks in6.85s.
+No result exists for020728yet. scripts/prepare_native_supervised_ppo.py adds
+--ppo-reward-scale .05;normalizer class/source is serialized and frozen.
+
+Source4f35178 ACTUALLY PUSHED;hosted40618587881 SUCCESS615/15skips/4CARLA
+exclusions196.94s;independent70targeted10.44s;rootfull629/1skip/4exclusions211.28s.
+Those counts precede the fixed-unit additions;new additions have30targeted passes.
+Do not claim all final goals complete or relabel development cases as final.
+
+## Earlier verified snapshots
 
 Latest additions:source345b1ac is actually pushed;hosted40616036339 SUCCESS
 598/15skips/4CARLA exclusions194.63s,independent32targeted8.44s.

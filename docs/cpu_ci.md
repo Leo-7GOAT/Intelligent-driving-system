@@ -1,5 +1,7 @@
 # CPU regression CI
 
+Source4f35178 hosted [40618587881](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40618587881) passes615/15skips/4CARLA deselections196.94s;its70targeted checks pass in the independent locked environment in10.44s. Later fixed-reward-unit additions have30related targeted passes6.85s;hosted verification of those additions is separate.
+
 Current partition/optimizer-count source completes local **629passed,1skip,
 4CARLA deselections in211.28s**,after correcting the rule fixture mismatch.
 Nineteen targeted critic/partition checks pass8.86s. Hosted and independent

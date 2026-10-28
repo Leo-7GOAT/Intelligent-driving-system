@@ -213,7 +213,7 @@ def fresh_target_kl(model, target_kl):
             'scope':'Existing SB3 per-rollout epoch early stop; physical budget and endpoint unchanged. Not a hard bound on cumulative policy drift.'}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None,ppo_reward_scale=None):
     parent = Path(parent).resolve()
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
@@ -225,6 +225,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         raise ValueError('Invalid bounded PPO KL target')
     if critic_rate_profile is not None and (critic_rate_profile!='actor1_critic30_v1' or learning_rate is None or not 1e-6<=learning_rate<=1e-3/30):
         raise ValueError('Critic-rate profile requires its bounded explicit actor rate')
+    if ppo_reward_scale is not None and (ppo_reward_scale!=.05 or critic_rate_profile or partition_inventory):
+        raise ValueError('Fixed reward-unit diagnostic is a separate single-variable profile at scale.05')
     if initialization_gate not in ('complete_inventory_v1','basic_motion_training_v1'):
         raise ValueError('Unknown explicit development training-entry profile')
     require_finished_parent(parent)
@@ -263,6 +265,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if target_kl is not None:label+='_kl'+format(target_kl,'.8g')
         if critic_rate_profile:label+='_critic30_v1'
         if partition_inventory:label+='_partitions_'+sha(Path(partition_inventory))[:16]
+        if ppo_reward_scale is not None:label+='_reward_units_005_v1'
         if methods==['B1'] and log_std!=-2.3:label+='_std'+format(log_std,'.8g')
         if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
         if initialization_gate=='basic_motion_training_v1':label+='_basic_motion_v1'
@@ -308,6 +311,12 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
             if rollout_change is not None:change['rollout_initialization']=rollout_change
             original_model_sha256=metadata['model_sha256']
             model.save(destination/'model.zip');metadata['model_sha256']=sha(destination/'model.zip')
+            if ppo_reward_scale is not None:
+                from navstack.fixed_reward_units import initialize_fixed_reward_units
+                with (destination/'normalization.pkl').open('rb') as stream:normalizer=pickle.load(stream)
+                change['PPO_reward_units_initialization']=initialize_fixed_reward_units(normalizer,ppo_reward_scale)
+                with (destination/'normalization.pkl').open('wb') as stream:pickle.dump(normalizer,stream)
+                metadata['normalization_sha256']=sha(destination/'normalization.pkl')
             write_json(destination/'metadata.json',metadata)
             if sha(destination/'normalization.pkl')!=metadata['normalization_sha256']:
                 raise ValueError('Supervised observation statistics changed')
@@ -325,6 +334,10 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
             shutil.copy2(ROOT/'scripts'/name, batch/'source/scripts'/name)
         if critic_rate_profile:
             shutil.copy2(ROOT/'navstack/critic_rate_policy.py',batch/'source/navstack/critic_rate_policy.py')
+        if ppo_reward_scale is not None:
+            shutil.copy2(ROOT/'navstack/fixed_reward_units.py',batch/'source/navstack/fixed_reward_units.py')
+            protocol['PPO_reward_units']={'version':'fixed_physical_reward_units_v1','scale':ppo_reward_scale,
+                'scope':'Fixed learner reward units only; every environment reward/component and raw physical trace remains in original task units.'}
         if current_cleanup_harness:
             protocol['cleanup_harness_override']=copy_cleanup_harness(parent/'source/scripts/carla_bridge37.py',
                 ROOT/'scripts/carla_bridge37.py',batch/'source/scripts/carla_bridge37.py')
@@ -381,5 +394,6 @@ if __name__ == '__main__':
     parser.add_argument('--target-kl',type=float)
     parser.add_argument('--critic-rate-profile',choices=['actor1_critic30_v1'])
     parser.add_argument('--partition-inventory',type=Path,help='New versioned training/validation inventory,applied before the first PPO update')
+    parser.add_argument('--ppo-reward-scale',type=float,choices=[.05],help='Separate fixed1/20learner-reward units diagnostic; raw task rewards unchanged')
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory,args.ppo_reward_scale)
