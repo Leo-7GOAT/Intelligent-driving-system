@@ -1,0 +1,273 @@
+{
+  "scope": "Descriptive complete-inventory H/B3 development comparison; no new driving.",
+  "H_batch": "20261031T070638Z_native_evaluation_recovery",
+  "B3_batch": "20261031T082841Z_native_rule",
+  "script_sha256": "b401a06012681b8afe209739fac28b882064fd4e21897ba47c21078d0321fdf9",
+  "H_raw_audit_sha256": "9f8dd105d54119cb3c38feea35dbda32850e15611d4f2c1658654b6710407bbc",
+  "B3_raw_audit_sha256": "8e6756ffbe8b120c840933bc214a5a2e238bb29c0795738b2eb667eaa09b91d2",
+  "identical_resolved_environment": true,
+  "common_stack_sha256": {
+    "navstack/env.py": "605cea0ae6ba446bd1bad0077342945d2684bc98df12e930bdec5093aa924987",
+    "navstack/config.py": "178c39d32b26eee0260a63184111bbd331d097c6e8c9583ad01934914465a12c",
+    "navstack/planning.py": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+    "navstack/mpc.py": "cf24ffc14bc0829b5ff780a28523c250cc43f6e9425f67dee161849b587a9719",
+    "navstack/trajectory.py": "847ea502d150189efe3f5774651f4a362fb4ee69453f842ef2d67ede57cd7992",
+    "navstack/shield.py": "d31fc73da1ce271c72448a9227614618fc5e0e4f210cae9b7f78863d1b4a4025",
+    "navstack/carla_bridge.py": "0fababbe11793ee7e75efdb4a48b2a555bfab3fd5ff11ea54795a74b5f3035f2",
+    "scripts/carla_bridge37.py": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a"
+  },
+  "aggregates": {
+    "H": {
+      "successes": 24,
+      "cases": 24,
+      "termination_counts": {
+        "success": 24
+      },
+      "physics_steps": 8089,
+      "interventions": 390,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "progress": 517.0595907658844,
+      "simulation_seconds_all_outcomes": 404.45000000000005,
+      "success_only_travel_seconds": [
+        17.0500002540648,
+        17.400000259280205,
+        15.900000236928463,
+        14.800000220537186,
+        11.200000166893005,
+        11.900000177323818,
+        11.050000164657831,
+        9.850000146776438,
+        17.850000265985727,
+        19.05000028386712,
+        16.550000246614218,
+        16.550000246614218,
+        18.05000026896596,
+        19.400000289082527,
+        17.0500002540648,
+        14.95000022277236,
+        19.5500002913177,
+        21.750000324100256,
+        20.550000306218863,
+        19.000000283122063,
+        19.05000028386712,
+        20.35000030323863,
+        18.05000026896596,
+        17.55000026151538
+      ]
+    },
+    "B3": {
+      "successes": 24,
+      "cases": 24,
+      "termination_counts": {
+        "success": 24
+      },
+      "physics_steps": 8033,
+      "interventions": 380,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "progress": 514.8858850437979,
+      "simulation_seconds_all_outcomes": 401.65000000000003,
+      "success_only_travel_seconds": [
+        17.0500002540648,
+        17.30000025779009,
+        15.550000231713057,
+        15.050000224262476,
+        11.500000171363354,
+        11.550000172108412,
+        11.050000164657831,
+        9.500000141561031,
+        17.55000026151538,
+        19.05000028386712,
+        16.550000246614218,
+        16.75000024959445,
+        17.650000263005495,
+        19.05000028386712,
+        17.0500002540648,
+        15.050000224262476,
+        19.5500002913177,
+        21.550000321120024,
+        19.5500002913177,
+        19.05000028386712,
+        19.05000028386712,
+        20.050000298768282,
+        18.05000026896596,
+        17.55000026151538
+      ]
+    }
+  },
+  "pairs": [
+    {
+      "case_id": 0,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 0,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 1,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 2,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 2,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 7,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 3,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": -5,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 4,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": -6,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 5,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 7,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 6,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 0,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 7,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 7,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 8,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 6,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 9,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 0,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 10,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 0,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 11,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": -4,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 12,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 8,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 13,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 7,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 14,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 0,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 15,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": -2,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 16,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 0,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 17,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 4,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 18,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 20,
+      "H_minus_B3_interventions": 10
+    },
+    {
+      "case_id": 19,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": -1,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 20,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 0,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 21,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 6,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 22,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 0,
+      "H_minus_B3_interventions": 0
+    },
+    {
+      "case_id": 23,
+      "H_success": true,
+      "B3_success": true,
+      "H_minus_B3_controls": 0,
+      "H_minus_B3_interventions": 0
+    }
+  ],
+  "limits": "One trained H seed on reused development conditions. B3 has no learned seed. No independent-seed interval or superiority claim. All-outcome duration includes early failures; success-only times are explicitly separate. No wall-clock or real-time superiority inference.",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

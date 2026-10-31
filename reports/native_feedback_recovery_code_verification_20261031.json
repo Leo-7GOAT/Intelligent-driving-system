@@ -1,0 +1,15 @@
+{
+  "scope": "Executed root and independent checkout regression plus actual hosted workflow;no CARLA claim from CPU tests",
+  "verified_commit": "666fa72b1cb2fe71178acc98a5ac8ca9334d30ae",
+  "root_related_tests": 30,
+  "root_test_wall_seconds": 6.5,
+  "independent_related_tests": 30,
+  "independent_test_wall_seconds": 7.57,
+  "independent_checkout_detached": true,
+  "hosted_workflow": {
+    "id": 41202408901,
+    "conclusion": "success",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41202408901"
+  },
+  "research_acceptance": "UNMET"
+}

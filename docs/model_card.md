@@ -13,11 +13,36 @@ To reconstruct from the locally archived batch inputs in a fresh output director
 .\.venv\Scripts\python.exe scripts/analyze_native_feedback_cohort.py --pairs-manifest protocols/native_feedback_development_pairs_20261031.json --output runs/FRESH_feedback_five_seed_reconstruction
 ```
 
-The manifest references local raw/model archives; the newer seed44/55 and fresh
-seed22H0 capsules have not yet been published. This command therefore requires
-those local inputs. Existing public capsules below remain independently verified.
+The manifest references local raw/model archives. Seed44is now publicly verified;
+seed55and fresh seed22H0publication is in progress. The completed H22method in
+its interrupted sibling batch also still needs a public capsule. This command
+therefore requires the full local inputs. Existing public capsules below remain
+independently verified.
 The separate broader B3baseline now completes24/24, matching H24/24; no PPO
 success advantage is established. [B3 audit](../reports/native_B3_broader_validation_endpoint_20261031.json).
+
+The [all-five figure](../reports/figures/native_feedback_five_seed_development_20261031.png)
+rebuilds from the committed descriptive report without loading models:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/plot_native_feedback_cohort.py --report reports/native_feedback_five_seed_development_cohort_20261031.json --output runs/FRESH_feedback_five_seed_figure.png
+```
+
+## Public canonical seed44 pair
+
+Actual unauthenticated download and independent reconstruction verify50,308raw
+controls,24measured initial actions and the byte-identical versioned figure.
+H12/12,H011/12; all12development conditions and both trained models are retained.
+[Receipt](../reports/native_seed44_canonical_public_verification_20261031.json).
+The archive intentionally has no packaged figure; use the committed baseline
+explicitly when reproducing:
+
+```powershell
+$seed44Url = 'https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed44_canonical_feedback_pair_20261031_repro.zip.parts.json'
+$seed44Sha = 'd8971e84b3e753441ba6d3c28f8ad236565e0a69fdf5fab869c2247e9215dffb'
+.\.venv\Scripts\python.exe scripts/download_native_asset.py --manifest-url $seed44Url --sha256 $seed44Sha --output runs/public_seed44_download
+.\.venv\Scripts\python.exe scripts/reproduce_native_asset.py --archive runs/public_seed44_download/native_seed44_canonical_feedback_pair_20261031_repro.zip --sha256 $seed44Sha --output runs/public_seed44_rebuilt --reference-figure reports/figures/native_seed44_canonical_endpoints_20261031.png
+```
 
 ## Public canonical seed33 pair
 

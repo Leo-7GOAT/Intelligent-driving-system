@@ -13,6 +13,9 @@ On the separate24-condition development validation set, the strong shared-stack
 rule baseline B3 finishes **24/24** with8,033 audited controls, matching H's24/24
 success count. [B3 endpoint](reports/native_B3_broader_validation_endpoint_20261031.json).
 PPO superiority over this rule baseline remains unproven.
+[Source-bound complete comparison](reports/native_H_B3_broader_source_bound_comparison_20261031.json)
+also records404.45/401.65simulated seconds and390/380interventions for H/B3;
+all24episodes succeed, so these totals do not benefit from early failures.
 
 An evaluation-only normalization configuration error stopped the dependent queue
 before any controls. The error is fixed without actor refitting or PPO updates;
@@ -22,6 +25,22 @@ The replacement B1 validation/training driver is active; B2 and common-brake
 drivers wait behind it. [Current execution snapshot](reports/native_evaluation_recovery_queue_activation_20261031.json).
 Research acceptance remains **UNMET**. Dated experiment notes below retain their
 original then-current status; see the [current handoff](docs/handoff.md).
+[Verified source666fa72](reports/native_feedback_recovery_code_verification_20261031.json)
+passes30related tests in both the working tree and an independent checkout,
+and its hosted CPU workflow passes. CPU verification is separate from CARLA evidence.
+The [seed44 public capsule](reports/native_seed44_canonical_public_verification_20261031.json)
+now independently reproduces all50,308controls,24initial actions and the exact
+figure. [Download/reconstruction commands](docs/model_card.md#public-canonical-seed44-pair).
+
+Both matched512-step actor-only TRAIN-data probes have now completed the same
+24development validation conditions: **replay8/24; additional measured36data5/24**.
+They perform zero PPO updates; neither qualifies as a healthy final B1baseline.
+[Complete replay result](reports/native_B1_replay_training_view_validation_20261031.json),
+[complete additional-data result](reports/native_B1_measured36_training_view_validation_20261031.json).
+[All-row TRAIN fit diagnosis](reports/native_B1_training_view_fit_regression_diagnosis_20261031.json)
+finds better additional-data fit alongside worse original-data fit; this
+association does not prove the cause of driving failures. The unchanged
+five-seed B1PPOrecipe continues separately; no failed probe is omitted.
 
 Seed11 (31 October): H trained on the explicitly versioned v4 geometry
 completes **12/12 known development conditions, zero unsafe episodes**, after

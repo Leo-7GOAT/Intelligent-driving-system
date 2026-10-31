@@ -1,5 +1,36 @@
 # Current handoff — 2026-10-31 20:45 local
 
+21:00operational update: the corrected actor-only replay/added36probes both
+COMPLETE, raw controls11474/11086 and24initial actions each verified; scores
+8/24versus5/24,unsafe12/24versus14/24. Zero PPOupdates. Additional data fit
+improves on its TRAIN rows but worsens old-row fit; source-bound all-row report
+native_B1_training_view_fit_regression_diagnosis_20261031.json preserves this
+negative result. Do not adopt the5/24actor as a healthy B1baseline or refit it
+again merely because TRAIN loss improved. Native B1driver26916now runs seed22
+initializer gate081944045029,worker52148/guard51464;case5observed20:59.
+B2/shared drivers38164/10408remain waiting and have not driven.
+
+Source666fa72is pushed;hosted workflow41202408901SUCCESS;30related tests pass
+in root and the actual separate checkout. Independent checkout MUST stay666fa72
+until publisher finishes: active publication Python32584,local execution
+runs/remaining_feedback_publication_execution_20261031,tool session36472.
+Three complete archives are already packaged. Seed44is FULLY publicly verified:
+667files/66864585bytes/32parts,SHA d8971e84b3e753441ba6d3c28f8ad236565e0a69fdf5fab869c2247e9215dffb,
+50308controls/24actions/exactfigure. Receipt native_seed44_canonical_public_verification_20261031.json.
+Seed55is uploading;fresh22H0next. Worker has a finite one-hour budget and no
+automatic retry. It writes individual public receipts and status/failure.
+New archives intentionally lack packaged endpoint figures;use the committed
+reports/figures/native_seedXX_canonical_endpoints_20261031.png with
+reproduce_native_asset.py --reference-figure. Publisher already did this for44.
+CompletedH22in its failedH0sibling batch still lacks a portable public capsule;
+do not fake batch completion or discard its failure to force generic packaging.
+
+New H/B3source-bound report verifies identical resolved config and8physical
+source hashes:both24/24;H8089/B38033controls,H390/B3380interventions.
+No PPOsuccess/time/brake superiority is established. All-five feedback figure
+reconstructs from the committed report with script plot_native_feedback_cohort.py;
+render inspected,all-five outcomes and the interval crossing zero displayed.
+
 Goal ACTIVE/UNMET. All five canonical trained H/H0pairs are complete: seeds
 11/22/33/44/55 score H12/12/10/12/12 and H011/11/12/11/12 respectively.
 Totals58/60versus57/60,zero unsafe,on12repeated development conditions.

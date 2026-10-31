@@ -4,7 +4,9 @@ Current update: all five canonical H/H0pairs complete58/60versus57/60on12known
 development conditions. The paired seed95%interval includes zero; no stable
 feedback benefit is established. Separate broader B3validation completes24/24,
 matching H. New summaries and repeatable statistics are source artifacts;
-the newer seed44/55/fresh22H0raw-model capsules are still local, not published.
+seed44's full raw-model capsule is now uploaded,publicly downloaded and independently
+reproduced;[actual receipt](../reports/native_seed44_canonical_public_verification_20261031.json).
+Seed55/fresh22H0publication is in progress; their local packages are complete.
 The normalization evaluation flag error is fixed and the new B1driver is active,
 with B2/common-brake waiting. [Recovery snapshot](../reports/native_evaluation_recovery_queue_activation_20261031.json).
 Older status notes below are historical; research acceptance remains UNMET.
