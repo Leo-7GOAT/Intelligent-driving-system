@@ -7,5 +7,14 @@
     "run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41150127716",
     "conclusion": "success", "passed": 642, "skipped": 16, "CARLA_deselected": 4, "seconds": 191.69
   },
+  "later_confirmed_source": {
+    "commit": "8afab8af7fd7a787fe6eedebb4a31bff59e6f4f1",
+    "hosted_run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41151249917",
+    "passed": 649, "skipped": 16, "CARLA_deselected": 4, "seconds": 194.18,
+    "independent_targeted": {"passed": 68, "seconds": 15.95},
+    "independent_factorial_training_views_exactly_reproduced": 496,
+    "prior_failed_run": "41150831314:unit staging fixtures depended on host having12GiBfree. Added explicit disk fixtures for those tests and a low-disk refusal regression;production guards unchanged."
+  },
+  "subsequent_guard_and_cleanup_selection_checks": {"passed": 38, "seconds": 6.10, "full_hosted_status": "Pending next source commit;not attributed to earlier hosted success."},
   "research_acceptance": "UNMET"
 }

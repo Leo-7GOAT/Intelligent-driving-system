@@ -213,8 +213,12 @@ def fresh_target_kl(model, target_kl):
             'scope':'Existing SB3 per-rollout epoch early stop; physical budget and endpoint unchanged. Not a hard bound on cumulative policy drift.'}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None,ppo_reward_scale=None):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None,ppo_reward_scale=None,cleanup_harness_source=None):
     parent = Path(parent).resolve()
+    if current_cleanup_harness and cleanup_harness_source is not None:
+        raise ValueError('Choose current or explicit archived cleanup harness, not both')
+    cleanup_source = (ROOT/'scripts/carla_bridge37.py' if current_cleanup_harness else
+                      Path(cleanup_harness_source).resolve() if cleanup_harness_source is not None else None)
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
     if learning_rate is not None and (not np.isfinite(learning_rate) or not 1e-6<=learning_rate<=1e-3):
@@ -269,7 +273,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if methods==['B1'] and log_std!=-2.3:label+='_std'+format(log_std,'.8g')
         if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
         if initialization_gate=='basic_motion_training_v1':label+='_basic_motion_v1'
-        if current_cleanup_harness:label+='_cleanup_snapshot'
+        if cleanup_source is not None:label+='_cleanup_snapshot'
         registration=parent/(label+'_registration.json')
         if registration.exists():
             raise FileExistsError('Do not repeat the registered supervised-PPO continuation')
@@ -338,9 +342,9 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
             shutil.copy2(ROOT/'navstack/fixed_reward_units.py',batch/'source/navstack/fixed_reward_units.py')
             protocol['PPO_reward_units']={'version':'fixed_physical_reward_units_v1','scale':ppo_reward_scale,
                 'scope':'Fixed learner reward units only; every environment reward/component and raw physical trace remains in original task units.'}
-        if current_cleanup_harness:
+        if cleanup_source is not None:
             protocol['cleanup_harness_override']=copy_cleanup_harness(parent/'source/scripts/carla_bridge37.py',
-                ROOT/'scripts/carla_bridge37.py',batch/'source/scripts/carla_bridge37.py')
+                cleanup_source,batch/'source/scripts/carla_bridge37.py')
         if partition_inventory:
             from scripts.native_partition_initialization import install_inventory
             install_inventory(protocol,batch/'source',partition_inventory)
@@ -391,9 +395,10 @@ if __name__ == '__main__':
     parser.add_argument('--rollout-actions',type=int)
     parser.add_argument('--initialization-gate',choices=['complete_inventory_v1','basic_motion_training_v1'],default='complete_inventory_v1')
     parser.add_argument('--current-cleanup-harness',action='store_true')
+    parser.add_argument('--cleanup-harness-source',type=Path,help='Explicit archived bridge; the existing AST check still permits changes only inside Bridge.clear')
     parser.add_argument('--target-kl',type=float)
     parser.add_argument('--critic-rate-profile',choices=['actor1_critic30_v1'])
     parser.add_argument('--partition-inventory',type=Path,help='New versioned training/validation inventory,applied before the first PPO update')
     parser.add_argument('--ppo-reward-scale',type=float,choices=[.05],help='Separate fixed1/20learner-reward units diagnostic; raw task rewards unchanged')
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory,args.ppo_reward_scale)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory,args.ppo_reward_scale,args.cleanup_harness_source)

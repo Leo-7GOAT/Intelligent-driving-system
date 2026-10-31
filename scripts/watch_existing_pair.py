@@ -13,6 +13,11 @@ from navstack.owned_process import OwnedProcess
 from navstack.process_lease import ProcessLease
 from navstack.research import atomic_json,resources_ok
 
+ALLOWED_WORKERS = ('paired_update_stability.py','collect_executed_demonstrations.py','train_demonstration_warmstart.py',
+    'train_recovery_demonstrations.py','fit_recovery_actor.py','relabel_recovery_teacher.py',
+    'train_current_state_aggregation.py','train_aggregated_ppo.py','audit_normalization_transfer.py','native_road_learning.py',
+    'evaluate_native_rule.py','evaluate_native_policy_weights.py','native_curve_control.py')
+
 
 def command_identifies_batch(command, batch):
     """Resolve an explicit --batch token; never rely on a name substring."""
@@ -23,6 +28,20 @@ def command_identifies_batch(command, batch):
         value = arguments[arguments.index('--batch')+1]
         return Path(value).resolve() == Path(batch).resolve()
     except (ValueError,IndexError,OSError):
+        return False
+
+
+def command_identifies_worker(command, batch):
+    if not command_identifies_batch(command, batch):
+        return False
+    try:
+        arguments = [part.strip('"') for part in shlex.split(command, posix=False)][1:]
+        while arguments and arguments[0] in ('-u', '-B'):
+            arguments.pop(0)
+        # Inspect Python's actual script operand, not an allowed name embedded
+        # in another argument, diagnostic text, or a python -c expression.
+        return bool(arguments) and Path(arguments[0]).name in ALLOWED_WORKERS
+    except (ValueError, OSError):
         return False
 
 
@@ -51,11 +70,7 @@ def main():
     a=p.parse_args();batch=Path(a.batch).resolve()
     identity=json.loads(Path(a.identity).read_text(encoding='utf-8-sig'))
     protocol=json.loads((batch/'protocol.json').read_text(encoding='utf-8'))
-    allowed=('paired_update_stability.py','collect_executed_demonstrations.py','train_demonstration_warmstart.py',
-             'train_recovery_demonstrations.py','fit_recovery_actor.py','relabel_recovery_teacher.py',
-             'train_current_state_aggregation.py','train_aggregated_ppo.py','audit_normalization_transfer.py','native_road_learning.py',
-             'evaluate_native_rule.py','evaluate_native_policy_weights.py')
-    if not command_identifies_batch(identity['command'],batch) or not any(name in identity['command'] for name in allowed):
+    if not command_identifies_worker(identity['command'],batch):
         raise ValueError('Adopted command does not identify an allowed registered worker')
     if protocol.get('cleanup_owned_carla') and (not a.powershell or not Path(a.powershell).is_file()):
         raise ValueError('Registered native run requires a verified PowerShell executable for owned-empty-server cleanup')

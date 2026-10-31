@@ -1,3 +1,17 @@
+# Current handoff — 2026-10-31 08:56 local
+
+Original goal ACTIVE/UNMET. Latest evidence: reports/completed_native_diagnostics_20261031.md.
+
+- B1fixed units020728COMPLETE2/12,5bounds/1collision/4deadline;20480train,208Adam,7417eval;27897rawcontrols and12initial actions audited. Rejected. Public480file model/raw capsule uploaded/downloaded;independent replay pending.
+- Repaired native control pair004553035320/MPC and004553454599/Pursuit COMPLETE4/4each,1904+1907RPC-bound controls. Both guard0/owned-empty stop. Pursuit lower lateral/speed error and jerk;MPCsmoothness result does not transfer. First024600guard-failed MPC1905controls retained/separately audited. Native1297file capsule public/downloaded;independent reconstruction pending.
+- Hfrozen evaluation001732ACTUALLY RUNNING worker32988/guard15576. No new PPOupdates.
+- Queue53904waits Hreevaluation→fresh B1rollout1280batch004737;queue37576waits B1→H0-only001825;queue44456waits H0→seed22PPO013440;queue47244waits seed22→train36/validation24batch014801. All fixed wall/resource/cleanup guards remain.
+- New B1rollout1280changes collection length only versus320control;initial tensors,empty optimizer,normalizer/RNG/config bytes independently equal;20480controls endpoint,all12development conditions,no checkpoint picking. Prepared and ValidateOnly369files;not started.
+- Latest confirmed full hosted source8afab8a649passed/16skip/4CARLA deselections194.18s;independent68checks15.95s. Later guard/cleanup-source checks38passed6.10s and actual native guarded pair passed;next full hosted run pending.
+- Old queue records below are superseded. Active plan receipts: runs/B1_rollout_owned_queue_launches_20261031.json and remaining runs/repaired_control_owned_queue_launches_20261031.json entries3/4.
+
+## Archived handoff before this completion
+
 # Current handoff — 2026-10-31 08:24 local
 
 This supersedes all older live/queue statuses below. Original goal ACTIVE,UNMET.

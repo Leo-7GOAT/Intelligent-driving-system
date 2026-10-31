@@ -1,0 +1,59 @@
+{
+  "scope": "Complete one-seed known-condition development diagnostic; failed hypothesis, not a healthy baseline or final confirmation.",
+  "batch": "20261028T020728Z_native_supervised_ppo",
+  "successes": 2,
+  "cases": 12,
+  "termination_counts": {
+    "out_of_bounds": 5,
+    "success": 2,
+    "deadline": 4,
+    "collision": 1
+  },
+  "families": {
+    "curve_parking": {
+      "cases": 4,
+      "successes": 1,
+      "unsafe": 1
+    },
+    "static_obstacle": {
+      "cases": 4,
+      "successes": 1,
+      "unsafe": 3
+    },
+    "dynamic_interaction": {
+      "cases": 4,
+      "successes": 0,
+      "unsafe": 2
+    }
+  },
+  "actual_training_controls": 20480,
+  "actual_Adam_steps": 208,
+  "evaluation_controls": 7417,
+  "raw_controls_verified": 27897,
+  "measured_start_actions_reproduced": 12,
+  "reload_exact": true,
+  "physical_reward_units_unchanged": true,
+  "fixed_PPO_reward_multiplier": 0.05,
+  "initialization_comparison": "reports/native_B1_fixed_reward_units_initialization_20261028.json",
+  "matched_KL_control": {
+    "batch": "20261027T140111Z_native_supervised_ppo",
+    "successes": 4,
+    "cases": 12,
+    "unsafe": 3,
+    "training_controls": 20480,
+    "Adam_steps": 199
+  },
+  "conclusion": "Constant reward-unit scaling does not improve driving:2/12versus4/12matched control,6unsafeversus3. Rejected as a healthy baseline.",
+  "normalization_factorial": "reports/native_B1_fixed_units_normalization_final_20261031.json;same496training observations,statistics-only action change exactly0;teacher action MSE increases under updated weights. Not proof of a sole causal mechanism.",
+  "input_cost_lower_bound_including_current_evaluation": 39349,
+  "raw_audit_sha256": "208e4f83bd0e87bb9688c98277138aed03fdc5e1d7e2d84fcddf0cd618c810e7",
+  "protocol_sha256": "5b43740fffba618515234319ece057d366f3194490c1e041f0b79ae56b2c00ea",
+  "model_sha256": "9db09bb2297544a0300fc7c0827b3ab81574bd77f9eba046eff777d863e8b3f4",
+  "normalization_sha256": "c6cb3bc9e1f0e186998f7c8ddbf9e57ed714aea899ea938e137294ab84b1a04c",
+  "lifecycle": {
+    "worker_exit": 0,
+    "reason": null,
+    "server_stop": "owned_empty_server_stopped"
+  },
+  "research_acceptance": "UNMET"
+}

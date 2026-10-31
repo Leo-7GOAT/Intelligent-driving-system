@@ -5,6 +5,12 @@ from test_native_case_manifest import protocol
 from scripts.prepare_native_supervised_ppo import basic_motion_training_gate,representation_gate,copy_cleanup_harness
 
 
+def test_current_and_archived_cleanup_selection_are_mutually_exclusive(tmp_path):
+    from scripts.prepare_native_supervised_ppo import prepare
+    with pytest.raises(ValueError, match='not both'):
+        prepare(tmp_path, current_cleanup_harness=True, cleanup_harness_source=tmp_path/'bridge.py')
+
+
 def example():
     p=protocol();p['methods']=['B1']
     rows=[{'case_id':i,'success':i in (0,1,2,4,6,8),

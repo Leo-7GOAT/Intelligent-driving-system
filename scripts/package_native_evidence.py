@@ -5,7 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import sys
 import zipfile
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from scripts.package_native_continuation import portable_metadata,scan_payload
 
 
 def package(batches, output, extras=()):
@@ -13,6 +16,7 @@ def package(batches, output, extras=()):
     if output.exists():
         raise FileExistsError("Preserve existing evidence archive")
     content = {}
+    transformations = {}
     episode_count = 0
     for batch in map(Path, batches):
         summary = json.loads((batch / "summary.json").read_text(encoding="utf-8"))
@@ -26,16 +30,32 @@ def package(batches, output, extras=()):
         files = [batch / name for name in ("protocol.json", "summary.json")]
         if (batch/"probe_gap_audit.json").exists():
             files.append(batch/"probe_gap_audit.json")
-        for folder in ("calibration", "source", "analysis", "planning_audit", "brake_probe", "throttle_probe", "throttle_probe_manual1"):
+        for folder in ("calibration", "source", "analysis", "planning_audit", "brake_probe", "throttle_probe", "throttle_probe_manual1", "fixed_references"):
             if (batch / folder).exists():
                 files.extend(p for p in (batch / folder).rglob("*") if p.is_file() and "__pycache__" not in p.parts)
+        files.extend(path for path in (batch/'infrastructure').glob('*') if path.is_file() and
+                     (path.name.endswith(('_requests.jsonl.gz','_responses.jsonl.gz')) or path.name=='server_stop.json' or path.name.startswith('stop_probe_') and path.suffix=='.json'))
+        files.extend(batch/name for name in ('guard_final.json','launcher_failure.json') if (batch/name).exists())
         for episode in summary["episodes"]:
             case = batch / ("case_%02d" % episode["case_id"])
             files.extend(p for p in case.iterdir() if p.is_file())
         for path in files:
-            if path.suffix not in (".py", ".json", ".jsonl", ".gz", ".png"):
+            if path.suffix not in (".py", ".ps1", ".json", ".jsonl", ".gz", ".png"):
                 raise ValueError("Unexpected file type")
-            content[batch.name + "/" + path.relative_to(batch).as_posix()] = path.read_bytes()
+            name = batch.name + "/" + path.relative_to(batch).as_posix()
+            payload = original = path.read_bytes()
+            if path.suffix=='.json':
+                changes=[]
+                value=portable_metadata(json.loads(payload),changes)
+                if changes:
+                    protected=(path.name in ('protocol.json','summary.json') or
+                               any(part in ('source','calibration','fixed_references') or part.startswith('case_') for part in path.relative_to(batch).parts))
+                    if protected:raise ValueError('Cannot transform registered raw input: '+name)
+                    payload=json.dumps(value,indent=2).encode()
+                    transformations[name]={'original_sha256':hashlib.sha256(original).hexdigest(),
+                        'export_sha256':hashlib.sha256(payload).hexdigest(),'changes':changes}
+            scan_payload(path.name,payload)
+            content[name] = payload
     for folder in map(Path, extras):
         for path in folder.rglob("*"):
             if not path.is_file() or "__pycache__" in path.parts:
@@ -67,6 +87,7 @@ def package(batches, output, extras=()):
         "Each batch has original frozen Python source and calibration, not an installed environment.\n"
     ).encode()
     manifest = {"scope": "All development control cases and probes; no formal comparison or independent-seed claim",
+                "metadata_transformations":transformations,
                 "files": {name: hashlib.sha256(data).hexdigest() for name, data in sorted(content.items())}}
     content["manifest.json"] = json.dumps(manifest, indent=2).encode()
     output.parent.mkdir(parents=True, exist_ok=True)
