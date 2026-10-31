@@ -1,4 +1,4 @@
-# Current handoff — 2026-10-31 16:54 local
+# Current handoff — 2026-10-31 17:08 local
 
 Original objective ACTIVE/UNMET. Supersedes every older process description.
 
@@ -15,7 +15,8 @@ Original objective ACTIVE/UNMET. Supersedes every older process description.
   H0_v4_broader_public_verification,B1_v4_broader_public_verification_20261031.json.
   All failures and original Hinterrupted evaluation costs remain charged.
 - ACTUAL ACTIVE native pair:seed33batch20261031T082311523384Z_native_supervised_ppo,
-  worker67772,guard64284. Hhas actual PPO updates. Driveractual60176(launcher5444)
+  worker67772,guard64284. Htraining now completes20644controls/650Adam;
+  Hdevelopment evaluation is in progress. H0not started at last observation. Driveractual60176(launcher5444)
   execution runs/remaining_v4_seed_PPO_execution_20261031_v4 then does44and55.
   Do not restart/reprepare its children or mutate frozen snapshots. Verify live
   CIM/creation receipts before adopting any PID. Parent B1owned cleanup is complete.
@@ -58,6 +59,18 @@ Original objective ACTIVE/UNMET. Supersedes every older process description.
   catastrophic PPOdrift on these training observations;it does not prove
   driving quality,coverage sufficiency or unseen generalization. No fitting
   or validation-state training. Report native_B1_broader36_training_oracle_drift.
+- Full new diagnostic bundle is PUBLIC and independently reproduced:
+  native_broader_training_feedback_diagnostics_20261031.zip,199599bytes,
+  SHA256df158c5c5b147e27acd64ffd7730e2400ede25fb7cb5ddd22dd2f0c9ece81ca8.
+  Source4e7f6b2,239valid TRAIN label checks plus823H/985H0decisions all
+  non-timing/non-script-byte fields exact against public parent capsules.
+  Hchanges24actions,H0zero;H-only win case13has no argmax sensitivity on
+  Hvisited states. Not causal performance evidence. Receipt
+  native_broader_diagnostic_public_verification_20261031.json.
+  Full per-decision files live in runs/broader_feedback_diagnostics_20261031
+  and the public ZIP,aggregate in native_broader_feedback_reliance_summary.
+  Hosted4e7f6b2run41186775836is SUCCESS;full-log request was transient and
+  count not inferred. Root13reward-binding/actor/runtime tests pass5.49s.
 - Current source tests:51scene/spawn/preparation;9trajectory-query;7pristine
   geometry(+7independent);3training-lineage;6actor-fit;4runtime compatibility;
   5B3validation selector. Hosted0643passes723/18skip/4CARLA deselected;

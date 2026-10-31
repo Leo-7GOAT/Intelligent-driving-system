@@ -1,0 +1,50 @@
+{
+  "scope": "Actual unauthenticated diagnostic download and independent reconstruction using separately verified public parent capsules;no new driving or fitting",
+  "public_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_broader_training_feedback_diagnostics_20261031.zip",
+  "archive_sha256": "df158c5c5b147e27acd64ffd7730e2400ede25fb7cb5ddd22dd2f0c9ece81ca8",
+  "bytes": 199599,
+  "files": 16,
+  "source_commit": "4e7f6b25e9cdfc91d6a90300d3d387773ce4acab",
+  "parent_capsules": {
+    "H": {
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H_v4_broader_evaluation_20261031_repro.zip.parts.json",
+      "archive_sha256": "60ae20888d8a16626cfc1323dca4a9d16743cc709a8b8ad8a821cc7695641fbd"
+    },
+    "H0": {
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H0_v4_broader_20261031_repro.zip.parts.json",
+      "archive_sha256": "2fa0be88ced379a579fa3ffd1fdab0cbbef63da1a8345c8fad41467147e9e7b3"
+    },
+    "B1": {
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_v4_broader_20261031_repro.zip.parts.json",
+      "archive_sha256": "1d5a00e01d637a5360c0157a221ad1d14e8eab950db7510f27d580c969fa175a"
+    }
+  },
+  "reconstructions": [
+    {
+      "method": "B1",
+      "all_non_timing_non_scriptbyte_fields_exact": true,
+      "report_sha256": "2be2e79079191717dc98a92b628ab870806e711f726ca989fff1d0dbeb843a0f",
+      "states_or_decisions": 239,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "method": "H",
+      "all_non_timing_non_scriptbyte_fields_exact": true,
+      "report_sha256": "9f21a2b680368167b1dfe9903498661c8c3b111127e09edb8bf62fd5624ac4e3",
+      "states_or_decisions": 823,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "method": "H0",
+      "all_non_timing_non_scriptbyte_fields_exact": true,
+      "report_sha256": "bd860ce176a3089e2b9153ad4f79c51e6a12de8d28dfcc7b71cc1082fd90b854",
+      "states_or_decisions": 985,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "wall_seconds": 63.875,
+  "research_acceptance": "UNMET"
+}

@@ -52,6 +52,9 @@ The [complete feedback-input check](reports/native_broader_feedback_reliance_sum
 reconstructs1,808decisions: hiding learned feedback changes24/823Hactions and
 0/985H0actions while preserving weights and the physical mask. Input sensitivity
 does not establish a causal success benefit.
+The [complete diagnostic asset](reports/native_broader_diagnostic_public_verification_20261031.json)
+is publicly downloadable and independently reproduces all239valid label checks
+and1,808H/H0decisions from the verified parent model capsules.
 The other four B1seed initializers are now [copied and verified on v4 geometry](reports/native_B1_remaining_seed_v4_preparations_20261031.json).
 Their [same-recipe actor fits](reports/native_B1_independent_approach_fits_20261031.json)
 are complete;they remain unactivated zero-PPO checkpoints,not completed training runs.
