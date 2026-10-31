@@ -24,6 +24,9 @@ Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
   worker58000/guard8880,target20,480controls,
   same initial policy tensors/empty optimizer/normalizer/RNGas v3004737;only
   environment geometry field changes. Original v3teacher data disclosed.
+  Training is now COMPLETE20,480controls/72Adam/39episodes/1635.32s;reload exact.
+  Same worker is performing all12frozen evaluations. Do not rerun training or
+  report an endpoint score before the completion/raw-audit receipt.
 - Queues8900H0→migration and9516migration→v4B1training have activated their child.
   Current remaining queues:19508v4B1→Hfrozen v4migration023833;
   62136H→H0frozen v4migration023839. Waiter49052was superseded only
@@ -71,6 +74,12 @@ Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
   uses the newly corrected v4plot,which shows the256collision grid. V3H0plot
   still reproduces byte-for-byte(a61e2f80…). Seven plot/geometry checks pass7.06s,
   and44preparation/partition checks pass7.19s.
+  Public migration independent checkout2fe4af8has now completed all437files,
+  6542controls,12actions,frozenRMSand identical corrected256-grid PNG. Public
+  query inputs also reproduce exact statuses/nodes/costs/path hashes. Receipt
+  reports/native_geometry_public_verification_20261031.json.
+- Latest code2fe4af8is pushed/remote verified. Full local672passed/1skip/4CARLA
+  exclusions217.71s. Hosted41162252424SUCCESS657/16skip/4CARLA191.76s.
 
 ## Archived handoff before the geometry diagnostic
 

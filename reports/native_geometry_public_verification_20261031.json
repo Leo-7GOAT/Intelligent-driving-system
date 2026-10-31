@@ -1,0 +1,110 @@
+{
+  "scope": "Executed public download,independent raw/inference/figure reconstruction and identical saved-query planning outcome;zero controls or updates",
+  "source_commit": "2fe4af88fb8e99ba48aa30fd5215bc76331550f8",
+  "migration_manifest": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_geometry_v4_migration_20261031_chunk2m_repro.zip.parts.json",
+  "migration_parts": 9,
+  "migration_archive_bytes": 18247209,
+  "migration_reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "8d9720f2f0510e532ab4acb3af4404fe937bf86b13ff384d8d86c5ae1599e7fa",
+    "asset_source_commit": "19da5ac36076b1f7447ce11924d35f09f431a4af",
+    "reproduction_source_commit": "2fe4af88fb8e99ba48aa30fd5215bc76331550f8",
+    "verified_files": 437,
+    "methods": [
+      {
+        "method": "B1",
+        "raw_audit_sha256": "27218578b57ef4c7e8e54a3e11e15f85bf56f3101ec2cba8cb4a1b3c5577c735",
+        "verified_controls": 6542,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "34cdb6729cac885bf0004f1f32cb1d6b0974cc9af75ecec129cae612bc897a0c",
+    "figure_byte_identical": true,
+    "figure_baseline": "explicit_reference"
+  },
+  "public_fine_export_gzip": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_geometry_fine_grid_export_20261031.json.gz",
+  "fine_export_gzip_sha256": "c866c4a1242add8d2cadec15765d70266829d1f2f19e07648d13a661daa86eee",
+  "fine_export_decompressed_sha256": "920c4d357d2686a984f5a38848844dd95fd4e3c8f52fc823673abcb4e929d7d2",
+  "independent_query": {
+    "scope": "Offline one saved-query geometry comparison;not new driving,success-rate or real-time proof",
+    "fixture_sha256": "3bca0b623b320e4480964ad033aa4349a1d665bf692aa6573af31d1003d4c11a",
+    "fine_export_sha256": "920c4d357d2686a984f5a38848844dd95fd4e3c8f52fc823673abcb4e929d7d2",
+    "source_hashes": {
+      "scripts/compare_fine_grid_query.py": "caa750cf066748f68f9704a5416ce0f06800daac100d7c0cb09d817bc814b7f2",
+      "navstack/config.py": "8c44b8db17b9e35c6997899e86866eb174e65a8b91934a05c174670cc4ad52df",
+      "navstack/native_route.py": "7e80cda6c3dd932d7a95c02d2c981b09daf4bd134011753b94f6163e34cb1051",
+      "navstack/planning.py": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+      "navstack/world.py": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+      "navstack/road_grid.py": "e385c41e14011211f6cedc33e29ebb007578a8a27bc4556e1dce03d56c1f895e",
+      "navstack/road_grid_batch.py": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e"
+    },
+    "planner": {
+      "xy_resolution": 0.4,
+      "yaw_resolution": 0.15,
+      "primitive_length": 0.8,
+      "collision_step": 0.12,
+      "goal_tolerance": 0.55,
+      "yaw_tolerance": 0.2,
+      "max_nodes": 7200,
+      "max_seconds": null,
+      "steer_cost": 0.05,
+      "steer_change_cost": 0.08,
+      "grid_resolution": 0.5,
+      "heuristic_weight": 1.5,
+      "analytic_expansion": true,
+      "vectorized_primitives": true,
+      "grid_postprocess": "legacy",
+      "heuristic_mode": "dubins_v1"
+    },
+    "queries": [
+      {
+        "version": "carla_driving_indexed_union_64_v3",
+        "grid_sha256": "935ae295fa5f20c4789f5b8cde8d551496ab30451f7bfb6b83c4f4880a52f84a",
+        "status": "timeout",
+        "reason": "search_budget",
+        "expanded_nodes": 7200,
+        "cost": null,
+        "path_points": 0,
+        "path_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "wall_seconds": 5.519475199980661
+      },
+      {
+        "version": "carla_driving_indexed_union_256_v4",
+        "grid_sha256": "933857fae1a76192fdbf9d73ed4539ad36fd1cc1a37473803fc7fe33e6ce696d",
+        "status": "success",
+        "reason": null,
+        "expanded_nodes": 1,
+        "cost": 25.490173000154194,
+        "path_points": 1625,
+        "path_sha256": "e99514de77ae815cbe96477006a2a3008fc38250a09e08e21873000cb0b2197b",
+        "wall_seconds": 0.034748899983242154
+      }
+    ],
+    "new_physical_controls": 0,
+    "optimizer_updates": 0
+  },
+  "planner_fields_exactly_reproduced": [
+    "version",
+    "grid_sha256",
+    "status",
+    "reason",
+    "expanded_nodes",
+    "cost",
+    "path_points",
+    "path_sha256"
+  ],
+  "source_text_equal_allowing_Git_newlines": {
+    "scripts/compare_fine_grid_query.py": true,
+    "navstack/config.py": true,
+    "navstack/native_route.py": true,
+    "navstack/planning.py": true,
+    "navstack/world.py": true,
+    "navstack/road_grid.py": true,
+    "navstack/road_grid_batch.py": true
+  },
+  "transfer_failure": "Original8MiBpart upload408and its incomplete manifest retained;new2MiBparts contain identical archive bytes,no deletion/clobber",
+  "acceptance": "UNMET;known-development migration and one offline query do not establish independent trained performance"
+}

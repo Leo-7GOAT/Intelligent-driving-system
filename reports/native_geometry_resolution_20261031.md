@@ -56,6 +56,25 @@ Public code19da5acpasses GitHub CI657tests/16skips/4CARLA deselections in159.70s
 ([executed run](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41160661963)).
 An independent checkout passes30targeted new-geometry/preparation tests in12.60s.
 
+The final source2fe4af8also passes672local tests/1skip/4CARLA deselections in
+217.71seconds and hosted657tests/16skips/4deselections in191.76seconds
+([executed CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41162252424)).
+Seven plot/geometry checks pass7.06seconds;44preparation/partition checks pass
+7.19seconds. The corrected v4figure displays the256collision cells;the v3H0
+figure still reproduces exactly.
+
+The437-file B1migration capsule has been downloaded publicly and independently
+reproduced,including6,542controls,12initial actions,frozen statistics and its
+fine-grid figure. Both public inputs to the saved query also reproduce the
+same statuses,nodes,costs and complete path hashes. Exact receipts and URLs:
+`native_geometry_public_verification_20261031.json`. The7,864-byte fine-grid
+gzip export is derived local occupancy data;the full CARLA map is not included.
+After downloading/decompressing the inputs linked in that receipt:
+
+```powershell
+python scripts/compare_fine_grid_query.py --fixture downloads/native_recorded_timeout_query_20261031.json --fine-export downloads/fine_grid_export.json --output runs/fine_grid_query_reproduction.json
+```
+
 Evidence: `native_B1_rollout1280_bounds_sources_v2_20261031.json`,
 `native_B1_rollout1280_lane_coverage_20261031.json`,
 `native_fine_grid_diagnostic_20261031.json`,and

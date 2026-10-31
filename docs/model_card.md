@@ -45,7 +45,19 @@ The completed frozen migration is7/12,with1bounds failure and4deadlines;
 basic motion is3/4withzero unsafe. All6,542new CARLA controls and12initial
 actions are audited. Model and normalizer bytes equal the original v3endpoint.
 [Endpoint](../reports/native_B1_geometry_v4_endpoint_20261031.json).
-Matched v4PPO training is now active;no trained-v4score is available yet.
+The frozen migration's [nine-part public manifest](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_geometry_v4_migration_20261031_chunk2m_repro.zip.parts.json)
+has archive SHA256
+`8d9720f2f0510e532ab4acb3af4404fe937bf86b13ff384d8d86c5ae1599e7fa`.
+Its18,247,209bytes contain437files. Independent checkout2fe4af8reproduces all
+6,542controls,12actions,frozen normalization and the identical fine-grid
+[figure](../reports/figures/native_B1_geometry_v4_migration_20261031.png).
+Use that file as `--reference-figure` after joining the nine parts.
+[Executed receipt](../reports/native_geometry_public_verification_20261031.json).
+The earlier8MiB-parts manifest is incomplete following an upload408;use the
+`chunk2m` manifest above.
+
+Matched v4PPO training has completed20,480controls/72Adam steps;its frozen
+twelve-case evaluation is running. No trained-v4score is available yet.
 
 ## Public shared-mask H frozen reevaluation
 
