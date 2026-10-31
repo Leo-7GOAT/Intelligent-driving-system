@@ -1,0 +1,16 @@
+{
+  "scope": "Independent clean code checkout verification of basic PPO interruption restart;not driving-success proof",
+  "source_commit": "284a52c9b1140b044e5f5699deb204de8f47ae69",
+  "independent_related_tests_passed": 166,
+  "independent_test_seconds": 9.83,
+  "root_new_course_tests_passed": 16,
+  "root_new_course_test_seconds": 3.39,
+  "separate_publisher_checkout_still_pinned": "6a5486aa4083bc2f14f32762c1983fc0e5dfbafa",
+  "external_interruption_original_controls_readable": 2408,
+  "original_lost_Adam_steps": 1,
+  "trained_weights_retained_from_original_course": false,
+  "new_execution": "B1_basic_PPO_execution_20261101_v2_external_interruption",
+  "new_course_learning_claim": "Registered actual native learning;complete endpoints pending",
+  "new_controls_in_this_verification": 0,
+  "research_acceptance": "UNMET"
+}

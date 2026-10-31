@@ -1,3 +1,13 @@
+# Current proof — 2026-11-01 07:31
+
+Code284a52c9b1140b044e5f5699deb204de8f47ae69pushed. Secondary independent
+checkout166relatedtestsPASS9.83sec;root16newtestsPASS3.39sec. Newcourse62176
+andworker35632ACTUALLYLIVE,seed11newbatch20261031T232838093068Z_native_B1_basic_PPO_course,
+879controlsobserved07:31. No retained trained weights from oldinterruptedcourse.
+RemainingB2publisher70304ACTUALLYLIVE,tool23727,44currentlypublicreconstruction;
+next55. It now passes explicit versionedfigure;maincheckout6a5486astayspinned.
+Previously recorded processhandles/status timestamps are historical,notliveness.
+
 # Authoritative external-interruption recovery — 2026-11-01 07:30
 
 OriginalPython/CARLAprocesses gone;causeUNKNOWN,not claimed reboot. Original
