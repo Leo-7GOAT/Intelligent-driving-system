@@ -40,7 +40,7 @@ def plot(report, output):
     differences.invert_yaxis()
     p_value = statistics['exploratory_exact_sign_flip_p_two_sided']
     differences.set_title(f'Mean {mean:+.2f} pp; 95% t interval [{lower:.2f}, {upper:.2f}]\nExact sign-flip p = {p_value:g}; retrospective analysis', fontsize=10)
-    fig.suptitle('Planner ablation: 12 reused DEVELOPMENT conditions, five trained seed pairs\nShared teacher priors; historical tuning costs differ; no final confirmation', fontsize=11)
+    fig.suptitle('Planner-stack comparison: 12 reused DEVELOPMENT conditions, five trained seed pairs\nWalker spawn initialization differs; no isolated causal or final-confirmation claim', fontsize=11)
     output.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output, dpi=180, metadata={'Software': 'navstack development planner figure'}); plt.close(fig)
     metadata.write_text(json.dumps({'scope': __doc__, 'source_report_sha256': sha(report),

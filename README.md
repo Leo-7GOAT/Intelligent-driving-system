@@ -9,7 +9,11 @@ exploratory exact sign-flip p=.125. Approximate t and exact-test evidence differ
 these12 repeated known conditions do not establish a confirmatory advantage.
 The comparison binds identical initial weights/statistics/RNG,requested physical
 budgets and shared physical/policy modules;only the declared planner environment
-settings differ. Historical tuning/teacher-prior costs are not equalized.
+settings differ in those modules. All five B2 bridges additionally use the0.2m
+pre-settlement walker-spawn clearance patch;the Hreferences use the earlier
+initialization. Therefore this is **not an isolated causal planner-effect claim**.
+Historical tuning/teacher-prior costs are not equalized.
+[Bridge-harness audit](reports/native_H_B2_five_seed_development_harness_audit_20261031.json).
 [All-five comparison and every episode](reports/native_H_B2_five_seed_development_comparison_20261031.json),
 [final B2 endpoint](reports/native_B2_v4_seed55_endpoint_20261031.json).
 B1's new all-five basic-motion checks have now started automatically.
@@ -32,6 +36,14 @@ A failed network run can reuse checked public downloads with repeatable
 `--public-download-cache runs/PRIOR_public_download` arguments. Original receipts,
 manifest identity and the entire archive hash are rechecked;local training archives
 without these public-download receipts are rejected.
+
+[Actual all-five independent reconstruction](reports/native_public_feedback_five_seed_independent_verification_20261031.json)
+now passes:all six previously public-downloaded archives rehashed,all reference
+fields identical,10 Adam/statistics checks,five distinct policy tensors per method
+and the byte-identical main figure. The independent source checkout also passes
+150 related CPU tests;its hosted workflow succeeds. The two earlier failed
+network reconstructions are retained. This run reused the verified public-download
+cache rather than downloading already-correct archives again.
 
 Use a fresh output directory and allow4GiB free disk space. This reconstructs
 DEVELOPMENT evidence;the research acceptance thresholds remain unmet.

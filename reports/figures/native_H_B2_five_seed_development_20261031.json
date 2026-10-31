@@ -1,8 +1,8 @@
 {
   "scope": "Rebuild the five-seed DEVELOPMENT planner-ablation figure.",
   "source_report_sha256": "773b5ff5897ef6cc1b7ea448a6780a832072c552f5b8faccebfc1a05baadbb70",
-  "script_sha256": "d5a286a3d7bc34b4a1494c984ed2fb4ba0f852c5cd13cae51088f1cd426ca58f",
-  "figure_sha256": "662f1f0795d1b92432b916714dba0b45f0bdee823bcc727991634c35a08b5440",
+  "script_sha256": "db84d661eaf938ff27edc0e975a9a20a5fb0d26ccf9ac1d15415adbabd6f371f",
+  "figure_sha256": "81efcd7bf430d8e6e387f6e8186af2a2e82c024d8b62fa0053a7fa389ca9bb78",
   "statistics": {
     "independent_training_seeds": 5,
     "paired_mean_difference": 0.2333333333333333,

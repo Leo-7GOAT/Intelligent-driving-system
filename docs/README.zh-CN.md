@@ -11,9 +11,16 @@
 .\.venv\Scripts\python.exe scripts/reproduce_public_feedback_cohort.py --output runs/FRESH_public_feedback_cohort
 ```
 
+全部五组结果的独立重建现已实际通过：六份此前公开下载包的凭证、清单与整包SHA256
+重新核验，所有统计字段、10个Adam状态及冻结归一化、每种方法5份不同策略参数均通过，
+主图逐字节一致。明确复用已验证的公开下载缓存；此前两个网络失败目录保留。
+独立目录150项相关CPU测试及托管工作流均通过。
+[完整独立复现凭证](../reports/native_public_feedback_five_seed_independent_verification_20261031.json)。
+
 B2五个种子全部完成9/12、8/12、10/12、10/12、7/12。H/B2共58/60对44/60，
 配对均值差+23.33个百分点，95% t区间[+3.43,+43.24]，精确符号置换p=.125。
 这是12个重复开发条件的探索比较，两种统计方法的证据不同，不能冒充正式确认。
+五个B2批次另有行人生成高度修正，H使用旧版本；该差值不能完全归因于规划器。
 [完整配对与所有回合](../reports/native_H_B2_five_seed_development_comparison_20261031.json)。
 B1新五种子的基本运动门槛检查已经自动开始；统一制动和频率消融继续排队。
 这些仍是已知开发条件；独立最终测试和研究主张尚未达标。

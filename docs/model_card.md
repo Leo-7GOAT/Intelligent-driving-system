@@ -41,6 +41,15 @@ It retrieves all six capsules without authentication and requires4GiB free disk.
 It compares every cohort field and the exact main figure,checks10 actual Adam
 states and frozen observation statistics,and requires five distinct final policy
 tensors in each method. It performs no fitting or driving.
+[Actual independent all-five public-input reconstruction](../reports/native_public_feedback_five_seed_independent_verification_20261031.json)
+completes from source6a5486a:all six original public-download receipts and full
+archive hashes rechecked,all cohort fields identical,10 actual Adam states and
+frozen-statistics checks,five distinct final policy tensors per method,and exact
+figure SHA256cafca085ed2550173858f647a6de72c4dccbcedfa6ef03497325720c8c94eb87.
+The successful run explicitly reused prior verified public transfers;two failed
+fresh network attempts remain retained. It adds zero driving or learning.
+Independent150related CPU tests and hosted41215466456also pass.
+
 The separate broader B3baseline now completes24/24, matching H24/24; no PPO
 success advantage is established. [B3 audit](../reports/native_B3_broader_validation_endpoint_20261031.json).
 

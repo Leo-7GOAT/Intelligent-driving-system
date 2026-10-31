@@ -1,3 +1,37 @@
+# Authoritative update — 2026-10-31 23:41 local
+
+FULL PUBLIC H/H0FIVE-SEED RECONSTRUCTION SUCCESS at source
+6a5486aa4083bc2f14f32762c1983fc0e5dfbafa:6actual prior public downloads rechecked,
+all reference fields identical,10Adam/statistics proofs,5distinct policies each,
+main PNGexactcafca085ed2550173858f647a6de72c4dccbcedfa6ef03497325720c8c94eb87.
+Source independent150tests12.21sec,hosted41215466456SUCCESS.
+Receipt reports/native_public_feedback_five_seed_independent_verification_20261031.json.
+Actual output runs/prerelease_20261022/public_feedback_five_seed_rebuild_20261031_v3_verified_public_cache.
+The public-cache option validates original public URL/receipt/manifest/fullarchive;
+no local training archive substitution. Earlier two failed network attempts retained.
+
+B1maturation driver60572is driving seed22gate after seed11passes4/4basic,
+9/12overall. No new B1PPO yet;all5gatesmustpass before any PPOstarts.
+Shared70788andcadence59456remain queued. Actual status files override this snapshot.
+B2ALL5native complete44/60vsH58/60,zero unsafe. Additional bridge audit now binds
+all5H/B2bridgehashes to walker+.2m pre-settlement initialization patch.
+Thus numerical difference is NOTan isolated causal planner-effect proof.
+Report native_H_B2_five_seed_development_harness_audit_20261031.json;figure
+caption/readme disclose this. Families H/B2:curve20/19,static18/6,dynamic20/19.
+
+B2public capsule preparation ALL5complete;finite1hour publication driver45944
+ACTUALLYLIVE: runs/B2_five_seed_publication_20261031,status.json,tool16248.
+Script runs/publish_B2_five_capsules_20261031.py;2upload workers,atmost3attempts
+permissing part,no correctasset overwrite,manifestLAST,then actual public
+re-download and independent reconstruction perseed. Perseedpublic verification
+reports are written only on success. Remote prerelease had517assets beforethis
+queue;all5B2manifests use512KiBparts. No B2public completion claimed yet.
+IMPORTANT:the publisher also uses native_road_checkout6a5486a;DO NOTadvance that
+checkout until this driver is terminal. Root may commit docs/reports normally.
+Goal ACTIVE/UNMET:healthyB1,feedback/RL-vs-rule benefit,newfinal120conditions and
+lightweight independent thresholds remain. Continue core research,not repeat
+completed H/H0training/public reconstruction/B2training.
+
 # Latest continuation — 2026-10-31 23:34 local
 
 B2 ALL FIVE COMPLETE:11/22/33/44/55 score9/8/10/10/7 of12,zero unsafe,
