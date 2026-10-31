@@ -1,0 +1,27 @@
+{
+  "phase": "ALL_FIVE_REGISTERED_B2_PPO_SEEDS_COMPLETE",
+  "pid": 32792,
+  "epoch": 1793460324.7651372,
+  "completed": [
+    {
+      "seed": 11,
+      "batch": "20261031T104032928978Z_native_planner_training"
+    },
+    {
+      "seed": 22,
+      "batch": "20261031T104126873363Z_native_planner_training"
+    },
+    {
+      "seed": 33,
+      "batch": "20261031T104129314279Z_native_planner_training"
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T104131479611Z_native_planner_training"
+    },
+    {
+      "seed": 55,
+      "batch": "20261031T104133575143Z_native_planner_training"
+    }
+  ]
+}

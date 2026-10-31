@@ -56,7 +56,7 @@ def endpoint(batch, method, count):
         'raw_controls': raw['total_applied_controls_verified']}
 
 
-def run(pairs_manifest, execution, output):
+def run(pairs_manifest, execution, output, inputs_root=None):
     pairs_manifest, execution, output = map(Path, (pairs_manifest, execution, output))
     state = read(execution / 'status.json'); require_complete_cohort(state)
     if (execution / 'failure.json').exists():
@@ -67,8 +67,9 @@ def run(pairs_manifest, execution, output):
     if output.exists():
         raise FileExistsError('Preserve the previous planner comparison')
     results = []; inventory = None
+    inputs=ROOT if inputs_root is None else Path(inputs_root).resolve()
     for pair, trained in zip(pairs, state['completed']):
-        h, b2 = resolve_batch(ROOT, pair['h']), resolve_batch(ROOT, 'runs/' + trained['batch'])
+        h, b2 = resolve_batch(inputs, pair['h']), resolve_batch(inputs, 'runs/' + trained['batch'])
         protocols = [read(p / 'protocol.json') for p in (h, b2)]
         if any(p['seed'] != pair['seed'] for p in protocols):
             raise ValueError('Actual policy seed differs from the paired inventory')
@@ -141,4 +142,5 @@ if __name__ == '__main__':
     parser.add_argument('--pairs-manifest', default=str(ROOT / 'protocols/native_feedback_development_pairs_20261031.json'))
     parser.add_argument('--execution', required=True)
     parser.add_argument('--output', required=True)
-    args = parser.parse_args(); run(args.pairs_manifest, args.execution, args.output)
+    parser.add_argument('--inputs-root',help='Root containing restored public runs/BATCH directories')
+    args = parser.parse_args(); run(args.pairs_manifest, args.execution, args.output,args.inputs_root)

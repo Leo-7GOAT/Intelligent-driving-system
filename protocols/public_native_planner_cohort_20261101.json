@@ -1,0 +1,140 @@
+{
+  "scope": "Rebuild the complete retrospective H/B2DEVELOPMENT comparison from ten public model/raw capsules;walker initialization mismatch retained,not isolated causal confirmation",
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "capsules": [
+    {
+      "slot": "seed11_pair",
+      "batch": "20261031T025409165666Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H_H0_v4_PPO_20261031_repro.zip.parts.json",
+      "sha256": "1374429bca525b878cfdb86fb9ffd9f6b1d3943c24ff8208c056b6458e009351",
+      "reference_figure": null,
+      "seed": 11,
+      "analysis_method": "H"
+    },
+    {
+      "slot": "seed22_H_with_interruption",
+      "batch": "20261031T025409042778Z_native_supervised_ppo",
+      "methods": [
+        "H"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed22_H_completed_with_H0_interruption_20261031_repro.zip.parts.json",
+      "sha256": "e70b381b397e344f2f6354f23aa81f841762b8a6675020f5e720fc1f8be951ed",
+      "reference_figure": "reports/figures/native_seed22_H_completed_with_H0_interruption_20261031.png",
+      "seed": 22,
+      "analysis_method": "H"
+    },
+    {
+      "slot": "seed33_pair",
+      "batch": "20261031T093156483162Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed33_canonical_feedback_pair_20261031_repro.zip.parts.json",
+      "sha256": "647e96acd757a62aa30639402d51dd53bc811d1a7348e16b73ed385b09b7bde0",
+      "reference_figure": null,
+      "seed": 33,
+      "analysis_method": "H"
+    },
+    {
+      "slot": "seed44_pair",
+      "batch": "20261031T093202647818Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed44_canonical_feedback_pair_20261031_repro.zip.parts.json",
+      "sha256": "d8971e84b3e753441ba6d3c28f8ad236565e0a69fdf5fab869c2247e9215dffb",
+      "reference_figure": "reports/figures/native_seed44_canonical_endpoints_20261031.png",
+      "seed": 44,
+      "analysis_method": "H"
+    },
+    {
+      "slot": "seed55_pair",
+      "batch": "20261031T093206498809Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed55_canonical_feedback_pair_20261031_repro.zip.parts.json",
+      "sha256": "a46025038116e0f0f789f3509a9bf42e468683f6bb352bfbb67712c6ec0bc4e6",
+      "reference_figure": "reports/figures/native_seed55_canonical_endpoints_20261031.png",
+      "seed": 55,
+      "analysis_method": "H"
+    },
+    {
+      "slot": "B2_seed11",
+      "seed": 11,
+      "analysis_method": "B2",
+      "methods": [
+        "B2"
+      ],
+      "batch": "20261031T104032928978Z_native_planner_training",
+      "sha256": "dfc81e823b161afe63fde22da8da58e6dd5189b1825d826a5f0accb7aaff1950",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed11_trained_20261031_repro.zip.parts.json",
+      "reference_figure": "reports/figures/native_B2_seed11_trained_endpoint_20261101.png"
+    },
+    {
+      "slot": "B2_seed22",
+      "seed": 22,
+      "analysis_method": "B2",
+      "methods": [
+        "B2"
+      ],
+      "batch": "20261031T104126873363Z_native_planner_training",
+      "sha256": "7b317ac1ab6012faa7bb659d7148cfda56d6665d451b47bc3d24677f62346455",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed22_trained_20261031_repro.zip.parts.json",
+      "reference_figure": "reports/figures/native_B2_seed22_trained_endpoint_20261101.png"
+    },
+    {
+      "slot": "B2_seed33",
+      "seed": 33,
+      "analysis_method": "B2",
+      "methods": [
+        "B2"
+      ],
+      "batch": "20261031T104129314279Z_native_planner_training",
+      "sha256": "791a9e0ead298c9589244af3aed52dd044a93e4970b406bb86782b8cb990436e",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed33_trained_20261031_repro.zip.parts.json",
+      "reference_figure": "reports/figures/native_B2_seed33_trained_endpoint_20261101.png"
+    },
+    {
+      "slot": "B2_seed44",
+      "seed": 44,
+      "analysis_method": "B2",
+      "methods": [
+        "B2"
+      ],
+      "batch": "20261031T104131479611Z_native_planner_training",
+      "sha256": "a0b814589f1124450f2e04efc063d7f9f801a1a88fc6495b92f295e1f86d3fd0",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed44_trained_20261031_repro.zip.parts.json",
+      "reference_figure": "reports/figures/native_B2_seed44_trained_endpoint_20261101.png"
+    },
+    {
+      "slot": "B2_seed55",
+      "seed": 55,
+      "analysis_method": "B2",
+      "methods": [
+        "B2"
+      ],
+      "batch": "20261031T104133575143Z_native_planner_training",
+      "sha256": "37fbbf692bc4572d0626cf64b7f00402d3447415a50b538f627b4a6581eda89e",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed55_trained_20261031_repro.zip.parts.json",
+      "reference_figure": "reports/figures/native_B2_seed55_trained_endpoint_20261101.png"
+    }
+  ],
+  "pairs_manifest": "protocols/native_feedback_development_pairs_20261031.json",
+  "execution_state": "protocols/native_B2_completed_cohort_state_20261101.json",
+  "expected_report": "reports/native_H_B2_five_seed_development_comparison_20261031.json",
+  "expected_figure": "reports/figures/native_H_B2_five_seed_development_20261031.png"
+}
