@@ -3,7 +3,7 @@ import argparse
 from itertools import product
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path,PureWindowsPath
 import pickle
 import sys
 import numpy as np
@@ -32,7 +32,16 @@ def paired_seed_statistics(differences):
             'assumptions': 'tinterval assumes approximately normal seed differences;sign-flip null assumes symmetric exchangeable seed differences. Small N,known development conditions and retrospective analysis do not establish confirmatory significance.'}
 
 
-def run(manifest_path, output):
+def resolve_batch(inputs_root,relative):
+    root=Path(inputs_root).resolve();name=Path(relative)
+    if name.is_absolute() or PureWindowsPath(relative).drive or '..' in name.parts:
+        raise ValueError('Relative archived batch path inside the declared inputs root required')
+    path=(root/name).resolve()
+    if not path.is_relative_to(root):raise ValueError('Archived batch escapes the declared inputs root')
+    return path
+
+
+def run(manifest_path, output, inputs_root=None):
     manifest_path, output = Path(manifest_path).resolve(), Path(output).resolve()
     manifest = read(manifest_path)
     pairs = manifest['pairs']
@@ -46,7 +55,7 @@ def run(manifest_path, output):
     recipes = {'H': [], 'H0': []}
     tasks, overshoot = [], []
     for row in pairs:
-        h, h0 = [(ROOT / row[k]).resolve() for k in ('h', 'h0')]
+        h, h0 = [resolve_batch(ROOT if inputs_root is None else inputs_root,row[k]) for k in ('h','h0')]
         for batch, method in ((h, 'H'), (h0, 'H0')):
             protocol, summary = read(batch/'protocol.json'), read(batch/method/'summary.json')
             if (protocol['seed'] != row['seed'] or summary['physics_steps'] <= 0
@@ -101,5 +110,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--pairs-manifest', required=True)
     parser.add_argument('--output', required=True)
+    parser.add_argument('--inputs-root',help='Root containing restored runs/BATCH directories;defaults to this checkout')
     args = parser.parse_args()
-    run(args.pairs_manifest, args.output)
+    run(args.pairs_manifest, args.output,args.inputs_root)

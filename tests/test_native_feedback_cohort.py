@@ -1,5 +1,5 @@
 import pytest
-from scripts.analyze_native_feedback_cohort import paired_seed_statistics
+from scripts.analyze_native_feedback_cohort import paired_seed_statistics,resolve_batch
 
 
 def test_equal_seed_pairs_do_not_create_evidence_from_repeated_cases():
@@ -25,3 +25,12 @@ def test_actual_mixed_seed_effect_cannot_support_positive_interval_lower_bound()
 def test_rejects_insufficient_or_invalid_independent_seed_effects(values):
     with pytest.raises(ValueError):
         paired_seed_statistics(values)
+
+
+def test_restored_public_inputs_can_live_outside_the_source_checkout(tmp_path):
+    assert resolve_batch(tmp_path,'runs/registered_batch')==tmp_path/'runs/registered_batch'
+
+
+@pytest.mark.parametrize('path',['../foreign','/absolute/batch','C:/foreign/batch','C:relative'])
+def test_cohort_recipe_cannot_escape_its_declared_restored_input_root(tmp_path,path):
+    with pytest.raises(ValueError):resolve_batch(tmp_path,path)
