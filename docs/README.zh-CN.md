@@ -6,7 +6,10 @@
 H0仅静态条件5超时；单种子一例差异尚不能证明反馈机制有效（精确检验p=1.0）。
 [完整配对报告](../reports/native_v4_trained_seed11_feedback_pair_20261031.json)。
 
-后续seed33的H为8/12、四次超时。核查发现该批保存的学习率是3e-4，参考版本为3e-5，
+后续高学习率seed33现已完整结束：H为8/12、四次超时；H0为6/12、六次超时，均无碰撞/越界。
+[H完整端点](../reports/native_H_v4_seed33_high_lr_endpoint_20261031.json)、
+[H0完整端点](../reports/native_H0_v4_seed33_high_lr_endpoint_20261031.json)。
+核查发现该批保存的学习率是3e-4，参考版本为3e-5，
 此前只核对环境配置的校验漏掉了这一差异。原结果保留，不混入同配置主队列；
 已准备显式3e-5的33/44/55批次，并核对完整优化器参数及初始权重、归一化和随机状态。
 [差异记录](../reports/native_H_seed33_initialization_gate_vs_high_lr_20261031.json)

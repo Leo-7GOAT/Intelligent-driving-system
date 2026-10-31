@@ -9,11 +9,15 @@ the owned server has been cleaned up. The one-case gap is not significant
 (exact discordance p=1.0).
 [Complete paired evidence](reports/native_v4_trained_seed11_feedback_pair_20261031.json).
 
-The later seed33trial scores H8/12,four deadlines. Its saved initializer
+The later high-rate seed33 trial completes H **8/12** and H0 **6/12**,
+with four/six deadlines and zero collision/bounds episodes.
+[H raw endpoint](reports/native_H_v4_seed33_high_lr_endpoint_20261031.json),
+[H0 raw endpoint](reports/native_H0_v4_seed33_high_lr_endpoint_20261031.json).
+Its saved initializer
 retained learning rate3e-4 rather than the3e-5reference;this mismatch was
 missed by the earlier environment-only comparison. The trial is retained
 and excluded from the matched canonical cohort. Corrected33/44/55trials
-are prepared with full saved-optimizer checks and unchanged initial tensors,
+are registered with full saved-optimizer checks and unchanged initial tensors,
 normalization and RNG. [Detected mismatch](reports/native_H_seed33_initialization_gate_vs_high_lr_20261031.json),
 [verified prepared profiles](reports/native_canonical_H_H0_lr_profile_preparation_20261031.json).
 
