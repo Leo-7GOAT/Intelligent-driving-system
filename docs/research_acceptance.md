@@ -81,8 +81,8 @@ acceptance is **UNMET**. This section supersedes earlier dated snapshots below.
 | Healthy sufficiently trained B1 | Low-rate known12 B110/12 with2bounds;broader36train/24validation B19/24 with9bounds/3collisions. Matched training-view actor probes and four additional PPOseeds queued | Not achieved |
 | H superiority versus healthy B1 | Healthy comparator absent; current12conditions were used for development | Unproven |
 | PPO value versus strong B3 | Strong B312/12known12;broader24validation B3queued. No independent PPObenefit established | Unproven |
-| Learned feedback contribution | v4 seed11 H12/H011,exact p=1;broader H24/H021,exact p=.25. Feedback-input sensitivity is measured separately and is not causal success evidence | Unproven |
-| Five independently trained seeds | Two Hseeds complete;seed22H0recovery consumes unequal gross budget. High-rate seed33H8/H06 retained separately. Corrected33/44/55and fresh seed22H0registered;corrected33actually running | Not achieved |
+| Learned feedback contribution | v4 seed11 H12/H011,p=1;canonical seed33 H10/H012,p=.5;broader H24/H021,p=.25. Seed33Hstatic failures involve repeated planning failure/braking;input hiding does not change their visited-state argmax | Inconsistent development effects;not established |
+| Five independently trained seeds | Canonical H11/22/33complete;H0seed11/33complete,seed22old recovery unequal gross budget. Corrected44running,55and fresh22H0queued. High-rate33retained separately and does not count as another independent seed | Not achieved |
 | Train/validation/final isolation | Completed36training/24geometry-separated development validation for H/H0/B1;all original12conditions remain development. All4156new supervision labels use TRAINcontrols only | Development separation executed; final confirmation pending |
 | At least120NEWpaired final conditions,30per core family | No new final confirmation set activated or inspected in this version | Not achieved |
 | Light85%/75%core,CARLA80%/70%core,unsafe<=5% | Known-road development scores do not qualify as independent final results;B1unsafe clearly exceeds target | Not achieved |

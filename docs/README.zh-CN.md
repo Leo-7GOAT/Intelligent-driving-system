@@ -14,9 +14,14 @@ H0仅静态条件5超时；单种子一例差异尚不能证明反馈机制有�
 已准备显式3e-5的33/44/55批次，并核对完整优化器参数及初始权重、归一化和随机状态。
 [差异记录](../reports/native_H_seed33_initialization_gate_vs_high_lr_20261031.json)
 与[准备核验](../reports/native_canonical_H_H0_lr_profile_preparation_20261031.json)。
-修正后的seed33 H已完成20,561真实训练控制步、650次Adam，开发记录为10/12，
-条件5和7静态超时；H0已开始训练。整批数据流关闭后再进行完整原始帧与推理审计，
-当前仅为[已记录端点](../reports/native_H_seed33_lr_correction_recorded_endpoint_20261031.json)，不计为最终测试结论。
+修正后的seed33整批现已审计完成：**H10/12，H012/12**，均无碰撞/越界，
+各20,561真实训练控制步、650次Adam；全部50,843原始控制帧、24个初始动作已核验，
+服务器正常清理，第44种子自动开始。[完整配对](../reports/native_v4_seed33_canonical_feedback_pair_20261031.json)。
+H条件5和7静态超时，差值-16.67个百分点、精确p=.5，不能宣称反馈收益稳定。
+两次失败分别有81/68次规划失败和810/680次制动干预；H0均成功且无这些干预。
+[完整状态核验](../reports/native_seed33_canonical_feedback_failure_diagnostics_20261031.json)
+重建547/435次决策；固定H权重隐藏反馈只改变19次动作，在两次失败的180个已访问决策中均不改变动作。
+这不是反事实驾驶结果，也不能把低碰撞率当作任务完成。此前等待审计的记录作为历史保留。
 
 B2已[准备5个种子的零PPO初始化](../reports/native_B2_five_pristine_training_preparations_20261031.json)：
 与对应H的初始权重、归一化、随机状态逐字节相同，仅替换二维A*及合理的车体可行样条后处理；

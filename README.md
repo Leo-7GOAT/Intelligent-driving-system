@@ -1,6 +1,6 @@
 # Executability-aware hierarchical driving research
 
-Latest (31 October): H trained on the explicitly versioned v4 geometry
+Seed11 (31 October): H trained on the explicitly versioned v4 geometry
 completes **12/12 known development conditions, zero unsafe episodes**, after
 20,563 real CARLA training controls and 650 Adam steps. Its matched H0 endpoint
 is **11/12, zero unsafe**, after 20,562 training controls/650 Adam steps.
@@ -20,11 +20,17 @@ and excluded from the matched canonical cohort. Corrected33/44/55trials
 are registered with full saved-optimizer checks and unchanged initial tensors,
 normalization and RNG. [Detected mismatch](reports/native_H_seed33_initialization_gate_vs_high_lr_20261031.json),
 [verified prepared profiles](reports/native_canonical_H_H0_lr_profile_preparation_20261031.json).
-Corrected seed33 H has now completed20,561training controls/650Adam steps
-and records10/12development successes,two static deadlines;H0has started.
-[Recorded endpoint](reports/native_H_seed33_lr_correction_recorded_endpoint_20261031.json).
-Full raw/inference audits await closure of the running pair's bridge stream;
-this is not a fully audited paired result or a final-test improvement claim.
+Corrected seed33 now completes **H10/12 versus H012/12**,zero unsafe,with
+20,561training controls/650Adam steps each. All50,843raw controls and24initial
+actions verify;owned cleanup completed and seed44started automatically.
+[Complete canonical pair](reports/native_v4_seed33_canonical_feedback_pair_20261031.json).
+The difference is-16.67percentage points,exact discordance p=.5;this counterexample
+does not support a stable feedback benefit. H's two static deadlines have81/68
+planning failures and810/680brake-control interventions;H0passes both without
+those interventions. [Full-state diagnosis](reports/native_seed33_canonical_feedback_failure_diagnostics_20261031.json)
+reproduces547H/435H0decisions. Hiding feedback changes19Hactions overall and
+none on the180visited decisions in its two failed episodes;these are not
+counterfactual drives. The earlier pending-audit report remains historical.
 
 B2 now has [five prepared pristine PPO learners](reports/native_B2_five_pristine_training_preparations_20261031.json),
 each byte-identical to its matched H initializer in weights,normalization and RNG.
