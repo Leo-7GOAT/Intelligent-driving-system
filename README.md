@@ -30,16 +30,23 @@ This is one-seed development validation,
 not the final120-condition confirmation or a comparison against B1's different
 twelve-condition endpoint.
 
-B1 has now started actual PPO on the same36-training/24-validation inventory,
+B1 has completed actual PPO on the same36-training/24-validation inventory,
 using the exact known12 low-rate initializer tensors,normalization and RNG,
-with20,480registered controls and learning rate3e-6. Its endpoint is pending.
+with20,480controls/640Adam updates and learning rate3e-6. It scores **9/24**:
+4/8curve,2/8static,3/8dynamic,with9bounds,3collisions and3deadlines.
+It remains unqualified for safety/generalization. All30,839raw controls and24
+initial actions verify and [publicly reproduce](reports/B1_v4_broader_public_verification_20261031.json).
+[Paired native-system evidence](reports/native_v4_broader_H_B1_pair_20261031.json)
+reports the declared planner/filter/cadence differences and does not establish
+isolated PPO contribution or a five-seed superiority result.
 [Initialization and source proof](reports/native_B1_broader36_validation24_preparation_20261031.json).
 The [training-only trajectory audit](reports/native_B1_lower_lr_full_trajectory_oracle_20261031.json)
 now covers80fixed-stride/last-state oracle queries across all12first completed
 training episodes. No new controls,actor fitting or PPO updates are performed;
 oracle disagreement alone establishes no policy improvement.
 The other four B1seed initializers are now [copied and verified on v4 geometry](reports/native_B1_remaining_seed_v4_preparations_20261031.json).
-They remain unactivated zero-PPO checkpoints;they are not four completed training runs.
+Their [same-recipe actor fits](reports/native_B1_independent_approach_fits_20261031.json)
+are complete;they remain unactivated zero-PPO checkpoints,not completed training runs.
 
 The second trained H seed also completes12/12,zero unsafe;all24,858controls
 verify. Its recovered H0sibling completes10/12,zero unsafe,with all lost

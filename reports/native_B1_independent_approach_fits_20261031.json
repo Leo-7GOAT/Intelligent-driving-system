@@ -1,0 +1,92 @@
+{
+  "scope": "Four independent actor-supervised initializers;not native PPO trained policies. Same29TRAIN correction labels and512fit steps as seed11;critic/norm/RNG preserved;all native gates unactivated.",
+  "seeds": [
+    {
+      "seed": 22,
+      "batch": "20261031T081944045029Z_native_approach_bc",
+      "model_sha256": "8afe5b9dbde6acabf4d02a4738e679f089a5c40ea58c2af2c79e714304067df7",
+      "protocol_sha256": "031ca2e1c22d3dc09c617a067a02f082ee1525f19bbe32d1c4d2167c6ecf0cd1",
+      "same_teacher_dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+      "fit_steps": 512,
+      "extra_reference_rows": 29,
+      "critic_unchanged": true,
+      "normalization_and_rng_bytes_exact": true,
+      "saved_rollout": 320,
+      "zero_PPO_controls": 0,
+      "optimizer_steps": 0,
+      "schedule_alignment": {
+        "original_protocol_sha256": "b98095847813c1ea5e4288623bc1e8365e86c08bcdff3d9ccd7eeb35076c7748",
+        "previous_declared_rollout": 1280,
+        "saved_zero_PPO_rollout": 320,
+        "model_norm_rng_unchanged": true,
+        "scope": "Before any native lifecycle,align the evaluation gate to the saved empty buffer. Future PPO requires its explicit1280rollout initialization;no actor refit or control repeated."
+      }
+    },
+    {
+      "seed": 33,
+      "batch": "20261031T082156390592Z_native_approach_bc",
+      "model_sha256": "1b90d72191067bdb8c1309c2729405129f7c2b68ecc68aa2c5e52edfecddd079",
+      "protocol_sha256": "49ffdbb065ffd4ca58a542852cf3a0ebc4152c03a1aa8c11d797b2c30c1db0fa",
+      "same_teacher_dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+      "fit_steps": 512,
+      "extra_reference_rows": 29,
+      "critic_unchanged": true,
+      "normalization_and_rng_bytes_exact": true,
+      "saved_rollout": 320,
+      "zero_PPO_controls": 0,
+      "optimizer_steps": 0,
+      "schedule_alignment": {
+        "original_protocol_sha256": "49064acc59b11e8a694dca00a38f45f6362bb7ecc2bf70ed03bf97925968e325",
+        "previous_declared_rollout": 1280,
+        "saved_zero_PPO_rollout": 320,
+        "model_norm_rng_unchanged": true,
+        "scope": "Before any native lifecycle,align the evaluation gate to the saved empty buffer. Future PPO requires its explicit1280rollout initialization;no actor refit or control repeated."
+      }
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T082223755520Z_native_approach_bc",
+      "model_sha256": "216da6219b1212d1607ee6dcd217a77c6642d8ff56f90422b917a5dcbe7928df",
+      "protocol_sha256": "ea6bbb4d6f51d91f43c1533550bab577c98cb73f6878600eca59251160174360",
+      "same_teacher_dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+      "fit_steps": 512,
+      "extra_reference_rows": 29,
+      "critic_unchanged": true,
+      "normalization_and_rng_bytes_exact": true,
+      "saved_rollout": 320,
+      "zero_PPO_controls": 0,
+      "optimizer_steps": 0,
+      "schedule_alignment": {
+        "original_protocol_sha256": "deb74b934b505edc0cf8dcbe9b93b4267c86ad7cdc25665e059e87efbe1dc45b",
+        "previous_declared_rollout": 1280,
+        "saved_zero_PPO_rollout": 320,
+        "model_norm_rng_unchanged": true,
+        "scope": "Before any native lifecycle,align the evaluation gate to the saved empty buffer. Future PPO requires its explicit1280rollout initialization;no actor refit or control repeated."
+      }
+    },
+    {
+      "seed": 55,
+      "batch": "20261031T082250535153Z_native_approach_bc",
+      "model_sha256": "fe5eefcf84daaafe3f37b1fd9e6e45830b9d63804f89b38d47aa2630fcf516f0",
+      "protocol_sha256": "aff63ff0048f036b54f50efd29cf1b919a785be82ca5e721d80bd80b17be4203",
+      "same_teacher_dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+      "fit_steps": 512,
+      "extra_reference_rows": 29,
+      "critic_unchanged": true,
+      "normalization_and_rng_bytes_exact": true,
+      "saved_rollout": 320,
+      "zero_PPO_controls": 0,
+      "optimizer_steps": 0,
+      "schedule_alignment": {
+        "original_protocol_sha256": "23a4a81fa7109051aed3a766645787d712bff5f61f85d859fe643fdfb47e5a97",
+        "previous_declared_rollout": 1280,
+        "saved_zero_PPO_rollout": 320,
+        "model_norm_rng_unchanged": true,
+        "scope": "Before any native lifecycle,align the evaluation gate to the saved empty buffer. Future PPO requires its explicit1280rollout initialization;no actor refit or control repeated."
+      }
+    }
+  ],
+  "native_controls": 0,
+  "PPO_updates": 0,
+  "research_acceptance": "UNMET"
+}

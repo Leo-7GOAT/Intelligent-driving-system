@@ -1,0 +1,15 @@
+{
+  "scope": "Prepared unactivated rule-only B3 on the exact24development validation conditions;not a measured result",
+  "batch": "20261031T082841Z_native_rule",
+  "protocol_sha256": "1e2e03b8e11b3502401006b7f8d72636b76ce4676e4f1e6376d8bbef6446ce68",
+  "parent": "20261031T070638Z_native_evaluation_recovery",
+  "all_H_environment_fields_identical": true,
+  "same_training_and_validation_inventories": true,
+  "validation_conditions": 24,
+  "PPO_updates": 0,
+  "model_loading": false,
+  "new_controls": 0,
+  "source_files_verified": 389,
+  "wall_seconds": 1800,
+  "research_acceptance": "UNMET"
+}

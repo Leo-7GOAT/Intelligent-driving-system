@@ -152,6 +152,7 @@ def prepare(parent,oracle,steps=512,weight=20.,initializer=None):
                 current=deepcopy(protocol)
                 for key in ('jobs','freeze_observation_statistics','own_success_replay'):current.pop(key,None)
                 now=time.time();current.update(evaluation_only=True,controlled_budget_per_method=0,method_budgets={'B1':0},
+                    rollout_actions=model.n_steps,ppo_batch_size=model.batch_size,ppo_epochs=model.n_epochs,
                     checkpoint_thresholds=[],created_epoch=now,deadline_epoch=now+1800,parent_batch=parent.name,
                     scope='Actor-only replay/approach B1 initializer;zero PPO updates;all12known conditions;not final confirmation',
                     approach_initialization={**read(pair/'registration.json'),'arm':arm,'fit':fit,

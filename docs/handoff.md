@@ -1,54 +1,56 @@
-# Current handoff — 2026-10-31 16:17 local
+# Current handoff — 2026-10-31 16:36 local
 
-Original objective ACTIVE/UNMET. This supersedes earlier live-process reports.
+Original objective ACTIVE/UNMET. Supersedes every older process description.
 
-- Broader H completes24/24;H0now completes21/24,zero unsafe,three static
-  deadlines(cases9,13,15). H20521training/650Adam;H020561/650Adam.
-  H0all30292controls/24start actions verify. Pair12.5pp,p=.25,one development
-  seed;feedback advantage remains unproved. Reports native_v4_broader_feedback_pair
-  and native_H0_v4_broader_spawn_recovered_endpoint_20261031.json.
-- The initial readonly H0inference audit missed validation roads because it read
-  training scene files only. It now reads actual reset scene payloads from the
-  method's hash-bound bridge response stream. Original failure is retained;
-  exact bound-stream auditor and both audit outputs are preserved in the batch.
-  No CARLA control or optimization was repeated.51targeted tests pass.
-- B1broader batch20261031T073909784878Z_native_supervised_ppo TRAINING COMPLETE,
-  worker4840is now running24geometry-separated DEVELOPMENT validation conditions.
-  Training20480controls/640Adam is complete;no further update during validation.
-  Registered36training conditions,
-  7200seconds,lr3e-6,rollout1280,targetKL.01. Same initial tensors/norm/RNG as
-  completed10/12known12low-rate branch;zero PPO before this new branch.
-  New profile admits only canonical walker0.2mspawn-clearance/evidence AST edits.
-  Source380files and ValidateOnly both verified. Endpoint postprocessor registered.
-  Bounded readonly comparison/publication worker is also registered;receipt
-  runs/B1_broader_completion_launch_20261031.json. It waits for complete raw audit,
-  verifies source bindings,compares against H24,uploads all failures and verifies
-  an unauthenticated independent download. No metrics-driven early stopping.
-- Seed33/44/55H/H0initialization gates all complete;these have ZERO PPO and are
-  not independently trained seeds yet. Original waiting-only driver55888 was
-  retained-handle verified and superseded before any child creation. No worker
-  or CARLA server was stopped. Its execution_v3and receipt remain intact.
-- New driver runs/run_remaining_v4_seed_PPO_broader_dependency_20261031.py,
-  execution runs/remaining_v4_seed_PPO_execution_20261031_v4,actual Python60176
-  (launcher5444). It waits for B1normal guard+owned cleanup+released lifecycle,
-  then executes the same33/44/55matched H/H0PPO plan with original budgets and
-  gates. Frozen source includes current explicit walker-profile preparer;
-  workspace-copy hashes verified. Queue50796activated B1after seed55ownedcleanup.
-  Read current receipts/CIM before any process adoption;PIDs here become stale.
-- H/H0broader capsules are now PUBLIC and independently reproduced,all8089/30292
-  controls and24initial actions each. Reports H_v4_broader_evaluation_public_verification
-  and H0_v4_broader_public_verification_20261031.json. Full source0643CI passes
-  723tests/18skips/4CARLA deselected;later0602CI also succeeds.
-- Four other B1seeds22/33/44/55are copied to explicitv4geometry;all checkpoint
-  bytes unchanged and four tensor fingerprints distinct. They remain UNACTIVATED
-  zero-PPO checkpoints,awaiting matched actor refinement and entry gates;do not
-  count them as trained policies. Actualcopy report
-  native_B1_remaining_seed_v4_preparations_20261031.json.
-- Next:finish/audit B1broader,continue the remaining matched independent PPO
-  pairs,then use actual outcomes to improve healthy B1and test PPO-vs-strong-B3.
-  Final120fresh paired conditions,>=5independent trained seeds,healthy B1and
-  formal superiority/feedback evidence remain UNMET. Do not call24development
-  validation final testing,or compare H24against B1known12as a paired result.
+- Broader36train/24geometry-separated DEVELOPMENT validation now complete:
+  H24/24,zero unsafe;H021/24,three static deadlines,zero unsafe;
+  B19/24(curve4/8,static2/8,dynamic3/8),9bounds/3collision/3deadline.
+  H20521train/650Adam,H020561/650,B120480/640. B1is NOT healthy on this
+  distribution;do not turn its deficit into a formal five-seed hierarchy claim.
+  H/B1native-system comparison explicitly reports candidate-filter and cadence
+  differences;it is not proof PPO beats strong B3. H/H0gap12.5pp,p=.25.
+- All three complete capsules are PUBLIC and independently reproduced:
+  H8089raw/24start actions,H030292/24,B130839/24,byte-identical figures.
+  Receipts H_v4_broader_evaluation_public_verification,
+  H0_v4_broader_public_verification,B1_v4_broader_public_verification_20261031.json.
+  All failures and original Hinterrupted evaluation costs remain charged.
+- ACTUAL ACTIVE native pair:seed33batch20261031T082311523384Z_native_supervised_ppo,
+  worker67772,guard64284. Hhas actual PPO updates. Driveractual60176(launcher5444)
+  execution runs/remaining_v4_seed_PPO_execution_20261031_v4 then does44and55.
+  Do not restart/reprepare its children or mutate frozen snapshots. Verify live
+  CIM/creation receipts before adopting any PID. Parent B1owned cleanup is complete.
+- Four B1seed22/33/44/55v4copies and512step actor fits are complete,using the
+  SAME29TRAIN corrections/base teacher bytes as seed11. Distinct weights,
+  exact critics/norm/RNG,zero PPO. Report native_B1_independent_approach_fits.
+  Model saved rollout320 differed from inherited donor protocol1280;BEFORE
+  ANY NATIVE LAUNCH,protocols were aligned to320,original protocol/prepared
+  bytes and a repair ledger preserved. No model bytes or fitting repeated.
+  Future PPO explicitly rebuilds the empty buffer to1280. Actualmodel/declared
+  schedules,zero counters and all four source/data identities were checked.
+- B3exact24validation batch20261031T082841Z_native_rule is PREPARED/UNACTIVATED.
+  All Henv fields,training/validation inventories and physical source are
+  identical. New explicit validation selector rejects simultaneous changes to
+  catalog/control/planning;5tests plus actual ValidateOnly389sourcefiles pass.
+- ACTUAL WAITING queue:execution runs/B3_and_B1_independent_cohort_execution_20261031,
+  Python47500(launcher42340),script runs/run_B3_and_independent_B1_cohort_20261031.py.
+  Frozen source/preparer/plan and protocol hashes verified. Waits up to8hours
+  for original three H/H0PPOpairs,then B3and all four B1initializer gates/PPO.
+  B1new20480controls each,lr3e-6,KL.01,logstd-4,rollout1280,frozen observation
+  stats. These four use the SAMEknown12training inventory as the existing
+  seed11B1and five-seed H/H0cohort;broader36/24is a separate development branch.
+  No retries/seed omissions;failure stops the chain and preserves actors/logs.
+  Wait cap applies only to dependency waiting,not total training. Journal
+  status.json and plan.json are authoritative. No extra native process now.
+- Current source tests:51scene/spawn/preparation;9trajectory-query;7pristine
+  geometry(+7independent);3training-lineage;6actor-fit;4runtime compatibility;
+  5B3validation selector. Hosted0643passes723/18skip/4CARLA deselected;
+  later0602also succeeds. Newer hosted statuses require verification.
+- Main blockers remain healthy full-task B1,>=5actual trained policies per
+  formal comparison,PPO-vs-strong-B3value,adequate mechanism ablations,and
+  >=120FRESH final paired conditions. No final inventory activated/viewed here.
+  Diagnose B1new-layout failures from TRAIN traces;do not train on validation
+  states or claim these development conditions are final. Candidate geometry
+  features/coverage and training length are possible explanations,not proven.
 
 # Archived earlier handoff
 

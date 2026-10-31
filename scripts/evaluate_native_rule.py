@@ -1,5 +1,6 @@
 """Existing B3 catalog policy on the exact native training roads, with no PPO claim."""
 import argparse
+from copy import deepcopy
 from datetime import datetime, timezone
 import gzip
 import json
@@ -54,7 +55,10 @@ def feedforward_calibration(path, original):
     return path, fit_path
 
 
-def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False,static_geometry=None,candidate_geometry=None,hazard_distance=None,case_manifest=None):
+def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation_feedback=False, speed_policy='native_score', calibration=None, planner_nodes=None, planner_heuristic=None, road_collision_backend=None,hazard_kind=None,rpc_port=None,final_goal_candidate=False,hazard_lateral=None,reference_reuse=False,static_geometry=None,candidate_geometry=None,hazard_distance=None,case_manifest=None,development_validation=False):
+    if type(development_validation) is not bool:raise ValueError('Validation selection must be explicit boolean')
+    if development_validation and (any(x is not None for x in (catalog,calibration,planner_nodes,planner_heuristic,road_collision_backend,hazard_kind,hazard_lateral,static_geometry,candidate_geometry,hazard_distance,case_manifest)) or continuation_feedback or final_goal_candidate or reference_reuse or speed_policy!='native_score'):
+        raise ValueError('Paired validation reuses the unchanged H interface;no simultaneous mechanism intervention')
     parent = Path(parent).resolve()
     require_finished_parent(parent)
     if not 300 <= wall_seconds <= 3600:
@@ -63,6 +67,9 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
     if not okay or shutil.disk_usage(ROOT).free < 12*1024**3:
         raise RuntimeError('Resource guard: '+str(reason))
     old = read(parent/'protocol.json')
+    if development_validation:
+        from navstack.native_partitions import validate_native_partitions
+        validate_native_partitions(old)
     manifest=None
     if case_manifest is not None:
         if (catalog!='route_frame_terminal' or hazard_kind is not None or hazard_distance is not None
@@ -205,6 +212,12 @@ def prepare(parent, source_method, wall_seconds=1800, catalog=None, continuation
             scope='Rule-only paired native development conditions across original roads; all declared families/cases retained. Not PPO, independent seeds or unseen final confirmation.',
             scene_intervention={'version':manifest['version'],'cases':len(manifest['cases']),
                 'scope':'Explicit new development condition inventory, shared by every subsequent selected method; original failures remain unchanged.'})
+    if development_validation:
+        manifest=deepcopy(old['native_case_manifest'])
+        write_json(batch/'case_manifest.json',manifest)
+        protocol.update(native_case_manifest=manifest,case_manifest_sha256=sha(batch/'case_manifest.json'),
+            native_validation=deepcopy(old['native_validation']),
+            scope='Rule-only B3 on the exact registered geometry-separated DEVELOPMENT validation conditions;unchanged H planning/control/filter configuration,zero PPO,not final confirmation')
     write_json(batch/'protocol.json', protocol)
     write_json(batch/'prepared.json', {'status': 'PREPARED_NOT_STARTED', 'protocol_sha256': sha(batch/'protocol.json')})
     print(batch, flush=True)
@@ -338,5 +351,6 @@ if __name__ == '__main__':
     parser.add_argument('--reference-reuse',action='store_true')
     parser.add_argument('--static-geometry',choices=['axis_aligned_box_v1','projected_box_strips12_v1'])
     parser.add_argument('--candidate-geometry',choices=['route_offsets_v1','kinematic_arcs_goal_v1'])
+    parser.add_argument('--development-validation',action='store_true',help='Reuse the complete parent validation inventory and exact H interface without simultaneous intervention')
     args = parser.parse_args()
-    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse,args.static_geometry,args.candidate_geometry,args.hazard_distance,args.case_manifest) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.source_method, args.wall_seconds, args.catalog, args.continuation_feedback, args.speed_policy, args.calibration, args.planner_nodes, args.planner_heuristic, args.road_collision_backend,args.hazard_kind,args.rpc_port,args.final_goal_candidate,args.hazard_lateral,args.reference_reuse,args.static_geometry,args.candidate_geometry,args.hazard_distance,args.case_manifest,args.development_validation) if args.prepare else run(args.batch)

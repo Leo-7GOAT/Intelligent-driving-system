@@ -1,0 +1,59 @@
+{
+  "scope": "Actually started finite local queue;not completed native experiments",
+  "execution": "B3_and_B1_independent_cohort_execution_20261031",
+  "driver_script_sha256": "58e1e0195721835343bd206e23b18e1523cfd140caf66a8ead9fbfdc0e4e0634",
+  "source_manifest_sha256": "77f99d393383c0cace90d6248b4e1e420ca9124482629a267b738bf14b52114e",
+  "frozen_source_files_verified": 291,
+  "plan": {
+    "dependency_execution": "remaining_v4_seed_PPO_execution_20261031_v4",
+    "wait_seconds": 28800,
+    "B3": {
+      "batch": "20261031T082841Z_native_rule",
+      "protocol_sha256": "1e2e03b8e11b3502401006b7f8d72636b76ce4676e4f1e6376d8bbef6446ce68"
+    },
+    "B1_seeds": [
+      {
+        "seed": 22,
+        "initializer": "20261031T081944045029Z_native_approach_bc",
+        "initializer_protocol_sha256": "031ca2e1c22d3dc09c617a067a02f082ee1525f19bbe32d1c4d2167c6ecf0cd1"
+      },
+      {
+        "seed": 33,
+        "initializer": "20261031T082156390592Z_native_approach_bc",
+        "initializer_protocol_sha256": "49ffdbb065ffd4ca58a542852cf3a0ebc4152c03a1aa8c11d797b2c30c1db0fa"
+      },
+      {
+        "seed": 44,
+        "initializer": "20261031T082223755520Z_native_approach_bc",
+        "initializer_protocol_sha256": "ea6bbb4d6f51d91f43c1533550bab577c98cb73f6878600eca59251160174360"
+      },
+      {
+        "seed": 55,
+        "initializer": "20261031T082250535153Z_native_approach_bc",
+        "initializer_protocol_sha256": "aff63ff0048f036b54f50efd29cf1b919a785be82ca5e721d80bd80b17be4203"
+      }
+    ],
+    "B1_controls_each": 20480,
+    "B1_training_distribution": "Same known12inventory as the existing five-seed H/H0cohort and completed seed11B1low-rate arm;the broader36/24branch is separate development evidence",
+    "B1_rollout": 1280,
+    "B1_learning_rate": 3e-06,
+    "B1_target_kl": 0.01,
+    "B1_log_std": -4,
+    "no_retries": true,
+    "no_seed_omissions": true
+  },
+  "actual_status": {
+    "phase": "WAITING_FOR_REMAINING_THREE_H_H0_PPO_PAIRS",
+    "epoch": 1793435804.744837,
+    "pid": 47500,
+    "created": []
+  },
+  "launch": {
+    "creation_epoch": 1793435711.092,
+    "scope": "Finite serial queue;wait for original three H/H0PPO pairs,then B3and four independent B1gates/PPO;no retries or omissions",
+    "pid": 42340,
+    "script": "runs/run_B3_and_independent_B1_cohort_20261031.py"
+  },
+  "no_interrupt_to_current_H_H0_pairs": true,
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,107 @@
+{
+  "scope": "One trained-seed native-system development comparison;not final confirmation or isolated PPO contribution",
+  "seed": 11,
+  "cases": 24,
+  "endpoints": [
+    {
+      "method": "H",
+      "batch": "20261031T070638Z_native_evaluation_recovery",
+      "model_sha256": "da2796dde60d0d770c1bfa4cd7201a6f090f2f256390798891578d8a46d6afd6",
+      "normalization_sha256": "a23a094938ecf6046d7e966088db8f57d7697f188c9fabb0b3155107d1a70169",
+      "raw_audit_sha256": "9f8dd105d54119cb3c38feea35dbda32850e15611d4f2c1658654b6710407bbc",
+      "verified_controls": 8089,
+      "training": {
+        "batch": "20261031T025445532080Z_native_supervised_ppo",
+        "summary_sha256": "7505fe1474751de10d6fa1fdf3c00a87c14c9206494c853d0111b0fe1a77e6b8",
+        "physical_controls": 20521,
+        "optimizer_steps": 650,
+        "charged_controls_lower_bound": 34674,
+        "lineage_controls": 20521
+      },
+      "successes": 24,
+      "termination_counts": {
+        "success": 24
+      },
+      "unsafe_episodes": 0
+    },
+    {
+      "method": "B1",
+      "batch": "20261031T073909784878Z_native_supervised_ppo",
+      "model_sha256": "2631ea0440682082c352bb1a84aa520b710658fca7a733c9aa34a48934b8f9da",
+      "normalization_sha256": "5467f5990fc1a8047ceec964a5cb6c7b75896d40168ff6ae8bcce8da3f34be26",
+      "raw_audit_sha256": "a3202f013e87e57241d43c65eb7f77b3b1368820e2d8e5866156e9423a37a12b",
+      "verified_controls": 30839,
+      "training": {
+        "batch": "20261031T073909784878Z_native_supervised_ppo",
+        "summary_sha256": "f7a2f559036d818e42d457975fb9018c42b0c60cc2054814719f9fee6248d02a",
+        "physical_controls": 20480,
+        "optimizer_steps": 640,
+        "charged_controls_lower_bound": 64611,
+        "lineage_controls": 20480
+      },
+      "successes": 9,
+      "termination_counts": {
+        "success": 9,
+        "out_of_bounds": 9,
+        "deadline": 3,
+        "collision": 3
+      },
+      "unsafe_episodes": 12
+    }
+  ],
+  "families": {
+    "curve_parking": {
+      "cases": 8,
+      "H": 8,
+      "B1": 4
+    },
+    "static_obstacle": {
+      "cases": 8,
+      "H": 8,
+      "B1": 2
+    },
+    "dynamic_interaction": {
+      "cases": 8,
+      "H": 8,
+      "B1": 3
+    }
+  },
+  "H_only_success_cases": [
+    1,
+    2,
+    5,
+    6,
+    8,
+    9,
+    11,
+    12,
+    13,
+    15,
+    17,
+    19,
+    21,
+    22,
+    23
+  ],
+  "B1_only_success_cases": [],
+  "paired_difference_percentage_points": 62.5,
+  "conditional_exact_discordance_p_two_sided": 6.103515625e-05,
+  "declared_environment_differences": {
+    "endpoint_candidate_filter": {
+      "H": true,
+      "B1": null
+    },
+    "method": {
+      "H": "H",
+      "B1": "B1"
+    },
+    "flat_hold": {
+      "H": 10,
+      "B1": 1
+    }
+  },
+  "limits": "One training seed;development conditions already viewed. H includes candidate feasibility filtering and MPC while B1 directly controls each physical step. These are native-system differences,not evidence that PPO beats a strong rule high level. Teacher inputs,tuning and interrupted ancestor costs are not equalized by a common new-training budget. No seed-level95percent interval or formal superiority claim.",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}
