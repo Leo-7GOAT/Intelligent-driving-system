@@ -1,0 +1,63 @@
+{
+  "scope": "Actual frozen runtime restoration and configuration equality;CPUspaces only,no episode reset,integration or CARLAcontrols",
+  "results": [
+    {
+      "method": "H",
+      "enabled": false,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "normalization_stats_unchanged_on_restore": true,
+      "policy_tensor_sha256": "4b42460c8462b96ed223dc57ddc17d1554f23d4c382df7538239ececf92b25e0",
+      "retained_actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    },
+    {
+      "method": "H",
+      "enabled": true,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "normalization_stats_unchanged_on_restore": true,
+      "policy_tensor_sha256": "4b42460c8462b96ed223dc57ddc17d1554f23d4c382df7538239ececf92b25e0",
+      "retained_actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    },
+    {
+      "method": "B1",
+      "enabled": false,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "normalization_stats_unchanged_on_restore": true,
+      "policy_tensor_sha256": "8d8134ff76921014ec4728442812e5ac0baceae519ee7e027816a51bea3bc36b",
+      "retained_actual_Adam_steps": 610,
+      "nominal_SB3_updates": 153,
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    },
+    {
+      "method": "B1",
+      "enabled": true,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "normalization_stats_unchanged_on_restore": true,
+      "policy_tensor_sha256": "8d8134ff76921014ec4728442812e5ac0baceae519ee7e027816a51bea3bc36b",
+      "retained_actual_Adam_steps": 610,
+      "nominal_SB3_updates": 153,
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    }
+  ],
+  "both_mode_policy_tensors_identical_each_method": true,
+  "ValidateOnly_all_four": "INPUTS_VALIDATED_NOT_SERVER_PROBED",
+  "executed_verifier_sha256": "31ff566d60c783786012d7d9bb72f00d20dc2ac03ef1b64084a51573875ece1e",
+  "original_failed_verifier_sha256": "f458c7e42f10fe8f2e5a006d083260ea56e2a9821c6283e5a74f222456556dde",
+  "verification_correction": "Original verifier incorrectly equated nominal SB3epoch counter with actual Adam updates;now check saved per-parameter Adamstep state against metadata. No training or model changes.",
+  "research_acceptance": "UNMET"
+}

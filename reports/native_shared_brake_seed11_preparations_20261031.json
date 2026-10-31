@@ -1,0 +1,40 @@
+{
+  "scope": "Four actual prepared frozen-policy OFF/ONdeployment probes;not driving results or retrained safety adaptation",
+  "entries": [
+    {
+      "method": "H",
+      "seed": 11,
+      "enabled": false,
+      "batch": "20261031T112142137695Z_native_shared_brake_OFF",
+      "protocol_sha256": "412f4eee040b0f1017b6d2a8d1603b2b86d171011a7903c9c806494e779ddf53"
+    },
+    {
+      "method": "H",
+      "seed": 11,
+      "enabled": true,
+      "batch": "20261031T112144048198Z_native_shared_brake_ON",
+      "protocol_sha256": "7af4958f72e3b52e764941c36b1e779630c3b85c8df6e27efd94867dc6395435"
+    },
+    {
+      "method": "B1",
+      "seed": 11,
+      "enabled": false,
+      "batch": "20261031T112154814655Z_native_shared_brake_OFF",
+      "protocol_sha256": "d1ae8d070d6e5508084179d3183aeab3040f158d2efb058bf8059e4383e0bb91"
+    },
+    {
+      "method": "B1",
+      "seed": 11,
+      "enabled": true,
+      "batch": "20261031T112156197746Z_native_shared_brake_ON",
+      "protocol_sha256": "5a026c664fe275060d5790bf5470275e277ca352d1dca6014fe89b60cfdc3aae"
+    }
+  ],
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "related_tests": {
+    "passed": 17,
+    "seconds": 3.4
+  },
+  "research_acceptance": "UNMET"
+}

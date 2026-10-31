@@ -1,0 +1,106 @@
+{
+  "scope": "Complete registered development endpoint;not independent final confirmation.",
+  "batch": "20261031T093202647818Z_native_supervised_ppo",
+  "method": "H0",
+  "cases": 12,
+  "successes": 11,
+  "termination_counts": {
+    "success": 11,
+    "deadline": 1
+  },
+  "new_training_controls": 20586,
+  "model_lineage_controls": 20586,
+  "new_optimizer_steps": 650,
+  "raw_controls_verified": 25462,
+  "evaluation_controls": 4876,
+  "measured_start_actions_reproduced": 12,
+  "model_sha256": "2cf765c756ffcbcf39fd6eb01a3cca2b1465429318a3f6ca13d24b47171f5ff4",
+  "normalization_sha256": "537c66338ff955ee17bfb2e0eb53ff69c84b426b13e854d10c2f8929e91bf35a",
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 340,
+      "progress": 24.266723179355527
+    },
+    {
+      "case_id": 1,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 351,
+      "progress": 23.831223282983572
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 311,
+      "progress": 22.203395017634026
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 301,
+      "progress": 20.274997483409987
+    },
+    {
+      "case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 356,
+      "progress": 24.124428633130236
+    },
+    {
+      "case_id": 5,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 341,
+      "progress": 23.81751929424862
+    },
+    {
+      "case_id": 6,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 338,
+      "progress": 22.434670095074157
+    },
+    {
+      "case_id": 7,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 11.703209610150102
+    },
+    {
+      "case_id": 8,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 421,
+      "progress": 24.24040448119594
+    },
+    {
+      "case_id": 9,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 455,
+      "progress": 23.98369258563071
+    },
+    {
+      "case_id": 10,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 381,
+      "progress": 22.19845013655855
+    },
+    {
+      "case_id": 11,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 381,
+      "progress": 20.25951711573307
+    }
+  ],
+  "research_acceptance": "UNMET"
+}
