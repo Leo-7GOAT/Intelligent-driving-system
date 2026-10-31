@@ -9,6 +9,14 @@ the owned server has been cleaned up. The one-case gap is not significant
 (exact discordance p=1.0).
 [Complete paired evidence](reports/native_v4_trained_seed11_feedback_pair_20261031.json).
 
+The later seed33trial scores H8/12,four deadlines. Its saved initializer
+retained learning rate3e-4 rather than the3e-5reference;this mismatch was
+missed by the earlier environment-only comparison. The trial is retained
+and excluded from the matched canonical cohort. Corrected33/44/55trials
+are prepared with full saved-optimizer checks and unchanged initial tensors,
+normalization and RNG. [Detected mismatch](reports/native_H_seed33_initialization_gate_vs_high_lr_20261031.json),
+[verified prepared profiles](reports/native_canonical_H_H0_lr_profile_preparation_20261031.json).
+
 A separate 36-training/24-geometry-separated development-validation branch now
 completes **24/24, zero unsafe**, with8/8in each core family after20,521native
 training controls/650Adam steps. A walker-spawn initialization failure was
@@ -58,6 +66,10 @@ and1,808H/H0decisions from the verified parent model capsules.
 The other four B1seed initializers are now [copied and verified on v4 geometry](reports/native_B1_remaining_seed_v4_preparations_20261031.json).
 Their [same-recipe actor fits](reports/native_B1_independent_approach_fits_20261031.json)
 are complete;they remain unactivated zero-PPO checkpoints,not completed training runs.
+Another [matched actor-only coverage pair](reports/native_B1_measured_training_view_actor_fits_20261031.json)
+uses4,156B1views of20,521verified HTRAINcontrols,including failed/unfinished
+episodes. Its lower training steering error is not driving or validation
+evidence;both24case validation arms are queued with all extra prior costs disclosed.
 
 The second trained H seed also completes12/12,zero unsafe;all24,858controls
 verify. Its recovered H0sibling completes10/12,zero unsafe,with all lost

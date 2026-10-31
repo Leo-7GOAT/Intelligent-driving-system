@@ -1,3 +1,73 @@
+# Current handoff — 2026-10-31 17:58 local
+
+Original objective ACTIVE/UNMET. This supersedes ALL earlier live queue references.
+
+- Native high-LRseed33pair remains ACTUALLY RUNNING batch
+  20261031T082311523384Z_native_supervised_ppo,worker67772,guard64284,
+  original lifecycle wrapper55360. Hfinished20644controls/650Adam and8/12
+  known12validation,4deadlines;H0training20604/650complete,evaluation running.
+  Do not score the whole pair or package incomplete evaluation. Guard healthy.
+- ROOT CAUSE FOUND:the33/44/55initializers retain3e-4,while canonical
+  seed11and22use3e-5. The previous env-only matcher missed LR. H33median
+  KL.0683,max.6743,61/65phases>.015,actorL2 2.32 versus~.4canonical.
+  Original H33BCgate11/12. Preserve the high-LRtrial and its consumed effort;
+  no causal claim until matched-rate comparison. Report
+  native_H_seed33_initialization_gate_vs_high_lr_20261031.json.
+- Only Pythonorchestration60176and idle dependent queues were retained-handle
+  stopped BEFORE further trials;native wrapper/worker/watchdog confirmed live
+  through read-only retained handles. Original receipts and states preserved.
+- ACTUAL CANONICAL queue:execution remaining_v4_seed_PPO_execution_20261031_v5_lr_bound,
+  Python47784(launcher68704),runs/run_canonical_H_H0_lr_bound_cohort_20261031.py.
+  It waits for original high-LRseed33owned cleanup;audits original complete
+  outcomes if normal,otherwise retains failure without scoring;then runs:
+  seed33 20261031T093156483162Z_native_supervised_ppo;
+  seed44 20261031T093202647818Z_native_supervised_ppo;
+  seed55 20261031T093206498809Z_native_supervised_ppo;
+  seed22H0only 20261031T093208454506Z_native_H0_canonical_budget_replica.
+  All are prepared,NOT started. Explicit3e-5fullsaved-model profiles match
+  seed11before any trial. New33old/new initial policy tensors,norm,RNGexact;
+  only LR/schedule/Adamrates differ.18targeted tests and actual4ValidateOnly
+  checks pass. Newfrozenpostprocessor resolves workspace and auditors from
+  its immutable snapshot;no mutable root preparation needed during execution.
+- Seed22H0fresh budget replica reuses the EXACT original zero-PPOcheckpoint.
+  Existing H22retained;no duplicate Htraining. Earlier GPUtruncation/recovery
+  and all extra historical method effort stay reported. This is a predeclared
+  new canonical training trial regardless of outcome,NOT a sixth independent
+  seed and NOT equal total historical tuning effort.
+- ACTUAL DEPENDENT queue:execution
+  B3_and_B1_independent_cohort_execution_20261031_v4_training_view_probes,
+  Python68480(launcher66212),runs/run_B3_B1_and_training_view_probes_20261031.py.
+  Waits for canonical3pairs AND fresh22H0budget replica;then B3exact24,
+  BOTH new actor-only coverage probes,then unchanged4independent B1known12
+  gates/PPO(22/33/44/55,20480controls,lr3e-6,KL.01,rollout1280,scale.05).
+  No retries,seed omissions or selecting a subset of actor-probe outcomes.
+  Originalseed11B1known12low-rate arm remains its reference. Broader36/24
+  branch is separate development evidence.8hour cap is dependency wait only.
+- New B1TRAIN dataset is COMPLETE:20521Htraining frames verified against
+  original bridge states/commands/sensors/clocks;4156fixed-stride5and last
+  precontrol labels across ALL36training conditions and51episodes,including
+  failures/lastpartial episode. NO evaluation trace labels. No plant integration.
+  Dataset runs/B1_from_H_training36_measured_views_20261031,
+  SHA98943a7ae5e71ec89e7cabb076ebd931c3dd6e1c3828557882635d166bb78e88.
+- Matched512actor-only fits now prepared for24development validation:
+  replay 20261031T093757339917Z_native_replay_training_view_bc;
+  measured36 20261031T094314260006Z_native_measured36_training_view_bc.
+  BothzeroPPO;critic/norm/RNGexact. NewTRAIN steering MSE.018325replay
+  versus.002062measured;originalTRAIN error increases slightly. TRAIN fit
+  is NOT driving/generalization proof. Additional Hteacher prior costs are
+  explicit and not completely ancestry-deduplicated;not equal-input evidence.
+  Replayfit saved before missing optional metadata field KeyError. Fixed by
+  using protocol lineage steps;metadata completed from saved actor and last
+  heartbeat WITHOUT repeating512updates. Intermediate history absent,
+  originalfailed preparer/log retained. BothactualValidateOnly380files pass.
+- Previously complete broader DEVELOPMENT scores unchanged:H24/24,H021/24,
+  B19/24(9bounds,3collision,3deadlines). All3capsules publicly reproduced,
+  and diagnostic239TRAIN labels plus1808feedback decisions publicly verified.
+  No final120condition inventory activated. Healthy B1,canonical5seeds,
+  PPOvsstrongB3,B2andremaining ablations/statistics remain unfinished.
+
+# Archived handoff before current optimizer-profile correction
+
 # Current handoff — 2026-10-31 17:08 local
 
 Original objective ACTIVE/UNMET. Supersedes every older process description.

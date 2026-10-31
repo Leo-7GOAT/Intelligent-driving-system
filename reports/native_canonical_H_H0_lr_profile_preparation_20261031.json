@@ -1,0 +1,508 @@
+{
+  "scope": "Actual unactivated canonical profile preparation;all18targeted tests and full saved-model checks passed;no canonical trial started yet",
+  "batches": [
+    {
+      "seed": 33,
+      "batch": "20261031T093156483162Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "protocol_sha256": "f3cde2a33790a92aff2b14d2bf7a2dca2440e283f1af368f2d2fc91481a205f7",
+      "profiles": {
+        "H": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.EndpointClearRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        },
+        "H0": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.SharedEndpointAblatedRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T093202647818Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "protocol_sha256": "786aa9159a304d65a492198bac09276bc67b22375a1daa7eb3ba8c1b5f61d038",
+      "profiles": {
+        "H": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.EndpointClearRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        },
+        "H0": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.SharedEndpointAblatedRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        }
+      }
+    },
+    {
+      "seed": 55,
+      "batch": "20261031T093206498809Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "protocol_sha256": "d95cbdf13d2f0e423d940d0d14735c825acfe6ea29ca9f1e09656761bde9e253",
+      "profiles": {
+        "H": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.EndpointClearRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        },
+        "H0": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.SharedEndpointAblatedRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        }
+      }
+    },
+    {
+      "seed": 22,
+      "batch": "20261031T093208454506Z_native_H0_canonical_budget_replica",
+      "methods": [
+        "H0"
+      ],
+      "protocol_sha256": "be2e7e22b55bef520bcf084640ec0b69929536fe09e5b61f6b8d9873e8bf867c",
+      "profiles": {
+        "H0": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.SharedEndpointAblatedRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        }
+      },
+      "budget_replica_not_new_seed": true
+    }
+  ],
+  "seed33_old_new_initial_policy_tensors_norm_and_rng_exact": true,
+  "only_seed33_learner_change": "3e-4to3e-5in constant schedule,Adam defaults and groups",
+  "actual_queue_status": {
+    "phase": "WAITING_FOR_CURRENT_HIGH_LR_SEED33_OWNED_CLEANUP",
+    "pid": 47784,
+    "epoch": 1793440554.846823,
+    "created_batches": []
+  },
+  "source_files_verified": 304,
+  "frozen_postprocessor_workspace_resolution_verified": true,
+  "launch": {
+    "canonical_launcher_pid": 68704,
+    "scope": "Corrected explicit3e-5canonical H/H0pairs plus fresh seed22H0budget replica;unchanged B3/B1queue depends on their completion",
+    "canonical_creation_epoch": 1793439279.143,
+    "dependent_creation_epoch": 1793439279.151,
+    "dependent_launcher_pid": 20432
+  },
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,38 @@
+{
+  "scope": "Actual training-only measured B1views;all20521Htraining controls tied to exact CARLAresponses,4156sampled labels;no evaluation labels,no new driving or learning",
+  "batch": "20261031T025445532080Z_native_supervised_ppo",
+  "method": "H",
+  "protocol_sha256": "88ac0970a258821f52d06beed83cb8ae4a3ef7a78597eacb8f1ebc0b4ed6f7c9",
+  "teacher_summary_sha256": "7505fe1474751de10d6fa1fdf3c00a87c14c9206494c853d0111b0fe1a77e6b8",
+  "teacher_training_controls": 20521,
+  "teacher_learning_optimizer_steps": 650,
+  "teacher_charged_controls_lower_bound": 34674,
+  "reference_config_sha256": "10c18632fc3f9541da515fc4f9ad6287fe4ab6cfd3e708d01f7e9965a7a9684b",
+  "script_sha256": "ac1b41bf62e4a6576c8e95a545e55727454bf3577b465020a2e43e8f2b2825ec",
+  "tick_verifier_sha256": "39f94b633f2d26b93337dc3349ea911ab63407053bbaa6539ed58a9a4559904c",
+  "trace_hashes": {
+    "transitions_000000000_1793428765284391100.jsonl.gz": "56eae58754f3cdf86f2c5736a61c78aa1288b86399f26af9f41b4907b1b11904"
+  },
+  "bridge_hashes": {
+    "bridge_d3afb5b2_responses.jsonl.gz": "97bbac624c5c25501b78393ce45ce7b8acff114f6e91011c6a0796e61d135caf"
+  },
+  "stride": 5,
+  "wall_seconds": 600,
+  "selection": "Every training episode,regardless of success/failure,including the final unfinished episode;stride5physical controls plus last pre-control state when stride=5. No validation states or outcome filtering.",
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "training_conditions": 36,
+  "sampled_rows": 4156,
+  "dataset_sha256": "98943a7ae5e71ec89e7cabb076ebd931c3dd6e1c3828557882635d166bb78e88",
+  "elapsed_seconds": 440.8279999999795,
+  "limits": "Measured executed Hcontrols are extra supervision with their original PPO/teacher costs disclosed;not independently optimal controls or evidence of B1driving. All failed/unfinished training episodes are retained.",
+  "research_acceptance": "UNMET",
+  "training_episodes": 51,
+  "last_partial_training_episode_retained": {
+    "training_episode": 50,
+    "condition": 14,
+    "verified_controls": 70,
+    "sampled_rows": 15
+  }
+}

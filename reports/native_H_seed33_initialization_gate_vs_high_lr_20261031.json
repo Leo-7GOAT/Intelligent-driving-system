@@ -1,0 +1,374 @@
+{
+  "scope": "Detected optimizer-rate mismatch before remaining native trials;causal effect requires the newly matched-rate trial",
+  "reference_batch": "20261031T025409165666Z_native_supervised_ppo",
+  "reference_lr": 3e-05,
+  "mismatched_lr": 0.0003,
+  "profiles": [
+    {
+      "batch": "20261031T082311523384Z_native_supervised_ppo",
+      "method": "H",
+      "differences": {
+        "optimizer_defaults": {
+          "actual": {
+            "lr": 0.0003,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          },
+          "expected": {
+            "lr": 3e-05,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          }
+        },
+        "learning_rate_schedule": {
+          "actual": [
+            0.0003,
+            0.0003,
+            0.0003
+          ],
+          "expected": [
+            3e-05,
+            3e-05,
+            3e-05
+          ]
+        },
+        "optimizer_group_rates": {
+          "actual": [
+            0.0003
+          ],
+          "expected": [
+            3e-05
+          ]
+        }
+      }
+    },
+    {
+      "batch": "20261031T082311523384Z_native_supervised_ppo",
+      "method": "H0",
+      "differences": {
+        "optimizer_defaults": {
+          "actual": {
+            "lr": 0.0003,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          },
+          "expected": {
+            "lr": 3e-05,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          }
+        },
+        "learning_rate_schedule": {
+          "actual": [
+            0.0003,
+            0.0003,
+            0.0003
+          ],
+          "expected": [
+            3e-05,
+            3e-05,
+            3e-05
+          ]
+        },
+        "optimizer_group_rates": {
+          "actual": [
+            0.0003
+          ],
+          "expected": [
+            3e-05
+          ]
+        }
+      }
+    },
+    {
+      "batch": "20261031T041003482907Z_native_initialization_v4",
+      "method": "H",
+      "differences": {
+        "optimizer_defaults": {
+          "actual": {
+            "lr": 0.0003,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          },
+          "expected": {
+            "lr": 3e-05,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          }
+        },
+        "learning_rate_schedule": {
+          "actual": [
+            0.0003,
+            0.0003,
+            0.0003
+          ],
+          "expected": [
+            3e-05,
+            3e-05,
+            3e-05
+          ]
+        },
+        "optimizer_group_rates": {
+          "actual": [
+            0.0003
+          ],
+          "expected": [
+            3e-05
+          ]
+        }
+      }
+    },
+    {
+      "batch": "20261031T041003482907Z_native_initialization_v4",
+      "method": "H0",
+      "differences": {
+        "optimizer_defaults": {
+          "actual": {
+            "lr": 0.0003,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          },
+          "expected": {
+            "lr": 3e-05,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          }
+        },
+        "learning_rate_schedule": {
+          "actual": [
+            0.0003,
+            0.0003,
+            0.0003
+          ],
+          "expected": [
+            3e-05,
+            3e-05,
+            3e-05
+          ]
+        },
+        "optimizer_group_rates": {
+          "actual": [
+            0.0003
+          ],
+          "expected": [
+            3e-05
+          ]
+        }
+      }
+    },
+    {
+      "batch": "20261031T041003481908Z_native_initialization_v4",
+      "method": "H",
+      "differences": {
+        "optimizer_defaults": {
+          "actual": {
+            "lr": 0.0003,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          },
+          "expected": {
+            "lr": 3e-05,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          }
+        },
+        "learning_rate_schedule": {
+          "actual": [
+            0.0003,
+            0.0003,
+            0.0003
+          ],
+          "expected": [
+            3e-05,
+            3e-05,
+            3e-05
+          ]
+        },
+        "optimizer_group_rates": {
+          "actual": [
+            0.0003
+          ],
+          "expected": [
+            3e-05
+          ]
+        }
+      }
+    },
+    {
+      "batch": "20261031T041003481908Z_native_initialization_v4",
+      "method": "H0",
+      "differences": {
+        "optimizer_defaults": {
+          "actual": {
+            "lr": 0.0003,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          },
+          "expected": {
+            "lr": 3e-05,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "eps": 1e-05,
+            "weight_decay": 0,
+            "amsgrad": false,
+            "maximize": false,
+            "foreach": null,
+            "capturable": false,
+            "differentiable": false,
+            "fused": null,
+            "decoupled_weight_decay": false
+          }
+        },
+        "learning_rate_schedule": {
+          "actual": [
+            0.0003,
+            0.0003,
+            0.0003
+          ],
+          "expected": [
+            3e-05,
+            3e-05,
+            3e-05
+          ]
+        },
+        "optimizer_group_rates": {
+          "actual": [
+            0.0003
+          ],
+          "expected": [
+            3e-05
+          ]
+        }
+      }
+    }
+  ],
+  "seed33_H_initial_successes": 11,
+  "seed33_H_high_lr_successes": 8,
+  "seed33_H_high_lr_KL_median": 0.06827771663665771,
+  "seed33_H_high_lr_KL_max": 0.6742926239967346,
+  "correction": "Explicit3e-5and complete saved-PPO-profile verification before any new native canonical cohort execution;retain all current high-LRresults",
+  "research_acceptance": "UNMET"
+}
