@@ -48,6 +48,16 @@ def test_exploration_initialization_preserves_every_mean_critic_and_optimizer_by
     assert not model.policy.optimizer.state and model.num_timesteps == model._n_updates == 0
 
 
+def test_same_requested_exploration_keeps_exact_fresh_policy_bytes():
+    model=PPO('MlpPolicy',NoExecutionEnv(),n_steps=8,batch_size=8,seed=11,device='cpu')
+    initial_exploration(model,-4.)
+    before={name:value.detach().clone() for name,value in model.policy.state_dict().items()}
+    change=initial_exploration(model,-4.)
+    assert change['parameter_changes']==[]
+    assert all(torch.equal(value,model.policy.state_dict()[name]) for name,value in before.items())
+    assert not model.policy.optimizer.state and model.num_timesteps==model._n_updates==0
+
+
 @pytest.mark.parametrize('fault', ['interactions', 'updates', 'range'])
 def test_supervised_initialization_cannot_reset_a_previously_trained_ppo_distribution(fault):
     model = PPO('MlpPolicy', NoExecutionEnv(), n_steps=8, batch_size=8, seed=11, device='cpu')

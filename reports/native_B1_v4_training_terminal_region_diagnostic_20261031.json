@@ -1,0 +1,769 @@
+{
+  "scope": "Offline TRAINING-state goal-pose contract diagnostic;original position/yaw/speed success thresholds retained. No tracking,driving or improvement claim.",
+  "batch": "20261031T022652Z_native_supervised_ppo",
+  "query_manifest_sha256": "ea3bba7501cb672dd49dbafd8b222ec2766e8b7f8cfbac9c76fa5d38b9851ded",
+  "script_sha256": "c67e7f710bbe0e4bccfb3ccc8b5adc360cee75f6fe3309439d6b005fed0ef7c0",
+  "region_source_sha256": "5a01a32b80614563bf6ff4e02468705ad38ff0eb12f8b6fb04035795e8f7efaa",
+  "cases": [
+    {
+      "condition": 0,
+      "training_episode": 0,
+      "control_index": 297,
+      "state": {
+        "x": 24.753183981715043,
+        "y": 10.073568167325273,
+        "yaw": 0.40900441863078907,
+        "v": 1.6770130281333628,
+        "steering": 0.06241439873861902,
+        "acceleration": 1.2963198629121564,
+        "time": 14.850000221282244
+      },
+      "goal": [
+        29.796714319069707,
+        12.359322086966923,
+        0.5222659966307686
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        29.796714319069707,
+        12.359322086966923,
+        0.5222659966307686
+      ],
+      "position_offset_metres": 0.0,
+      "yaw_offset_rad": 0.0,
+      "exact_goal_connection": true,
+      "analytic_queries": 1,
+      "path_points": 371,
+      "path_length": 5.541159209074424,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.7063493391058497,
+        "steering": 0.027913108150516626
+      },
+      "seconds": 0.015999999945051968
+    },
+    {
+      "condition": 0,
+      "training_episode": 0,
+      "control_index": 337,
+      "state": {
+        "x": 27.665312801117583,
+        "y": 11.47862669186947,
+        "yaw": 0.49102085861557754,
+        "v": 1.613450395601797,
+        "steering": 0.09123659667816116,
+        "acceleration": 1.349990548235649,
+        "time": 16.850000251084566
+      },
+      "goal": [
+        29.796714319069707,
+        12.359322086966923,
+        0.5222659966307686
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        29.250499775176113,
+        12.506460362201864,
+        0.6972659966307688
+      ],
+      "position_offset_metres": 0.5656854249492382,
+      "yaw_offset_rad": 0.17500000000000027,
+      "exact_goal_connection": false,
+      "analytic_queries": 27,
+      "path_points": 127,
+      "path_length": 1.8926529071509335,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.6385372270716174,
+        "steering": 0.09903983355936379
+      },
+      "seconds": 0.03100000007543713
+    },
+    {
+      "condition": 0,
+      "training_episode": 0,
+      "control_index": 357,
+      "state": {
+        "x": 28.966790912011206,
+        "y": 12.201317379142115,
+        "yaw": 0.5315046356103084,
+        "v": 0.0005854631553268534,
+        "steering": 0.1266511022527805,
+        "acceleration": -18.749462190456306,
+        "time": 17.850000265985727
+      },
+      "goal": [
+        29.796714319069707,
+        12.359322086966923,
+        0.5222659966307686
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.030999999959021807
+    },
+    {
+      "condition": 1,
+      "training_episode": 1,
+      "control_index": 270,
+      "state": {
+        "x": 19.65109603152888,
+        "y": 18.66730720594451,
+        "yaw": 0.9758368348521369,
+        "v": 1.6414741730571305,
+        "steering": 0.0784369589379069,
+        "acceleration": -0.8094228634700851,
+        "time": 13.500000201165676
+      },
+      "goal": [
+        22.97632870348976,
+        23.45306935920438,
+        1.0470276415190511
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        22.97632870348976,
+        23.45306935920438,
+        1.0470276415190511
+      ],
+      "position_offset_metres": 0.0,
+      "yaw_offset_rad": 0.0,
+      "exact_goal_connection": true,
+      "analytic_queries": 1,
+      "path_points": 390,
+      "path_length": 5.830142418365823,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.705493706564536,
+        "steering": 0.04318723655541601
+      },
+      "seconds": 0.015999999945051968
+    },
+    {
+      "condition": 1,
+      "training_episode": 1,
+      "control_index": 310,
+      "state": {
+        "x": 21.447071853297125,
+        "y": 21.55018585721076,
+        "yaw": 1.044114222869248,
+        "v": 1.6977693444413844,
+        "steering": -0.0029158364307836403,
+        "acceleration": -0.8525240571046309,
+        "time": 15.500000230967999
+      },
+      "goal": [
+        22.97632870348976,
+        23.45306935920438,
+        1.0470276415190511
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        22.42989367336001,
+        23.306752040177887,
+        1.0470276415190511
+      ],
+      "position_offset_metres": 0.5656854249492395,
+      "yaw_offset_rad": 0.0,
+      "exact_goal_connection": false,
+      "analytic_queries": 27,
+      "path_points": 136,
+      "path_length": 2.0128713904884283,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.7884063490720241,
+        "steering": 0.021185586757085473
+      },
+      "seconds": 0.03100000007543713
+    },
+    {
+      "condition": 1,
+      "training_episode": 1,
+      "control_index": 330,
+      "state": {
+        "x": 22.212757668867045,
+        "y": 22.86644420053637,
+        "yaw": 1.0552930287983688,
+        "v": 0.00040055887777892276,
+        "steering": -0.051583974914739206,
+        "acceleration": -15.318948586037639,
+        "time": 16.50000024586916
+      },
+      "goal": [
+        22.97632870348976,
+        23.45306935920438,
+        1.0470276415190511
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        22.629952528911637,
+        23.65312821475601,
+        1.0470276415190511
+      ],
+      "position_offset_metres": 0.400000000000001,
+      "yaw_offset_rad": 0.0,
+      "exact_goal_connection": false,
+      "analytic_queries": 27,
+      "path_points": 61,
+      "path_length": 0.8906123108430304,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": 0.8950688720828954,
+        "steering": -0.02337292837184008
+      },
+      "seconds": 0.030999999959021807
+    },
+    {
+      "condition": 2,
+      "training_episode": 2,
+      "control_index": 294,
+      "state": {
+        "x": 23.69462447299739,
+        "y": 8.369657265227248,
+        "yaw": -0.3792005833975498,
+        "v": 1.3627026207269939,
+        "steering": -0.0774871082854733,
+        "acceleration": -1.3414573300979526,
+        "time": 14.70000021904707
+      },
+      "goal": [
+        28.135424875625418,
+        6.0,
+        -0.5232536299210251
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        28.135424875625418,
+        6.0,
+        -0.5232536299210251
+      ],
+      "position_offset_metres": 0.0,
+      "yaw_offset_rad": 0.0,
+      "exact_goal_connection": true,
+      "analytic_queries": 1,
+      "path_points": 337,
+      "path_length": 5.038588563869699,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.4558124088404942,
+        "steering": -0.08240197242317915
+      },
+      "seconds": 0.01600000006146729
+    },
+    {
+      "condition": 2,
+      "training_episode": 2,
+      "control_index": 334,
+      "state": {
+        "x": 26.352623926176037,
+        "y": 7.226431025124987,
+        "yaw": -0.44580064962214117,
+        "v": 1.466252428323429,
+        "steering": -0.10641641316168665,
+        "acceleration": -1.2869619627991824,
+        "time": 16.700000248849392
+      },
+      "goal": [
+        28.135424875625418,
+        6.0,
+        -0.5232536299210251
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        27.98882613173072,
+        6.546359596134721,
+        -0.34825362992102527
+      ],
+      "position_offset_metres": 0.5656854249492372,
+      "yaw_offset_rad": 0.17499999999999982,
+      "exact_goal_connection": false,
+      "analytic_queries": 27,
+      "path_points": 120,
+      "path_length": 1.7726108129697256,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.5379971590340884,
+        "steering": -0.06976208955049515
+      },
+      "seconds": 0.030999999959021807
+    },
+    {
+      "condition": 2,
+      "training_episode": 2,
+      "control_index": 354,
+      "state": {
+        "x": 27.604862542467934,
+        "y": 6.5994431752282985,
+        "yaw": -0.4970095089588398,
+        "v": 0.00028649690071122415,
+        "steering": -0.09165220240457919,
+        "acceleration": -12.38182204555153,
+        "time": 17.700000263750553
+      },
+      "goal": [
+        28.135424875625418,
+        6.0,
+        -0.5232536299210251
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.030999999959021807
+    },
+    {
+      "condition": 3,
+      "training_episode": 3,
+      "control_index": 260,
+      "state": {
+        "x": 19.409903082431995,
+        "y": 10.667624635638616,
+        "yaw": -1.0606062572765511,
+        "v": 1.5367346580251005,
+        "steering": -0.016114474710174923,
+        "acceleration": 0.8873500245008472,
+        "time": 13.000000193715096
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "position_offset_metres": 0.0,
+      "yaw_offset_rad": 0.0,
+      "exact_goal_connection": true,
+      "analytic_queries": 1,
+      "path_points": 347,
+      "path_length": 5.178089669716997,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.6037884518623555,
+        "steering": -0.0447302020078547
+      },
+      "seconds": 0.01600000006146729
+    },
+    {
+      "condition": 3,
+      "training_episode": 3,
+      "control_index": 300,
+      "state": {
+        "x": 20.87455282731551,
+        "y": 8.026786764489797,
+        "yaw": -1.0701820524500945,
+        "v": 1.5601099189845622,
+        "steering": 0.031656438642590365,
+        "acceleration": 0.850300286622915,
+        "time": 15.000000223517418
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        21.79249777451587,
+        6.5463404360721595,
+        -1.0476733623760435
+      ],
+      "position_offset_metres": 0.5656854249492383,
+      "yaw_offset_rad": 0.0,
+      "exact_goal_connection": false,
+      "analytic_queries": 27,
+      "path_points": 118,
+      "path_length": 1.742297821034927,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.6173990729140932,
+        "steering": 0.05907424606382847
+      },
+      "seconds": 0.0470000000204891
+    },
+    {
+      "condition": 3,
+      "training_episode": 3,
+      "control_index": 320,
+      "state": {
+        "x": 21.536283038125106,
+        "y": 6.854280433115091,
+        "yaw": -1.049407156187388,
+        "v": 0.000324314286491917,
+        "steering": 0.19269729703358485,
+        "acceleration": -15.157753417536629,
+        "time": 16.00000023841858
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.030999999959021807
+    },
+    {
+      "condition": 5,
+      "training_episode": 17,
+      "control_index": 301,
+      "state": {
+        "x": 17.495110540510673,
+        "y": 19.65126192488141,
+        "yaw": 1.1067799341162905,
+        "v": 1.7381141307746315,
+        "steering": 0.030850695838208302,
+        "acceleration": 0.4325228507693235,
+        "time": 15.050000224262476
+      },
+      "goal": [
+        22.97632870348976,
+        23.45306935920438,
+        1.0470276415190511
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.0470000000204891
+    },
+    {
+      "condition": 5,
+      "training_episode": 17,
+      "control_index": 341,
+      "state": {
+        "x": 18.8636273128212,
+        "y": 22.39568472013231,
+        "yaw": 1.0882118382028505,
+        "v": 1.410718008358456,
+        "steering": -0.05172608199512862,
+        "acceleration": 0.5910312680197636,
+        "time": 17.0500002540648
+      },
+      "goal": [
+        22.97632870348976,
+        23.45306935920438,
+        1.0470276415190511
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.030999999959021807
+    },
+    {
+      "condition": 5,
+      "training_episode": 17,
+      "control_index": 361,
+      "state": {
+        "x": 19.289148542152077,
+        "y": 23.191553388776374,
+        "yaw": 1.0608158917468273,
+        "v": 0.00047190433634820036,
+        "steering": -0.10930496451743954,
+        "acceleration": -13.859101144950648,
+        "time": 18.05000026896596
+      },
+      "goal": [
+        22.97632870348976,
+        23.45306935920438,
+        1.0470276415190511
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.03200000000651926
+    },
+    {
+      "condition": 7,
+      "training_episode": 7,
+      "control_index": 303,
+      "state": {
+        "x": 21.277615694952086,
+        "y": 11.099787691450114,
+        "yaw": -1.4640840611266668,
+        "v": 1.4166696048209495,
+        "steering": 0.3667874169739587,
+        "acceleration": -1.1290119604865723,
+        "time": 15.150000225752592
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        21.99233292605494,
+        6.19983515153907,
+        -1.2226733623760435
+      ],
+      "position_offset_metres": 0.39999999999999886,
+      "yaw_offset_rad": 0.17499999999999982,
+      "exact_goal_connection": false,
+      "analytic_queries": 27,
+      "path_points": 332,
+      "path_length": 4.967067913014753,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.4569638564764658,
+        "steering": 0.3354747839448473
+      },
+      "seconds": 0.045999999972991645
+    },
+    {
+      "condition": 7,
+      "training_episode": 7,
+      "control_index": 343,
+      "state": {
+        "x": 22.176413962997003,
+        "y": 8.100189198259365,
+        "yaw": -1.1112714177125467,
+        "v": 1.5739389568447826,
+        "steering": 0.16713515700583614,
+        "acceleration": -1.3452524488468924,
+        "time": 17.150000255554914
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.03200000000651926
+    },
+    {
+      "condition": 7,
+      "training_episode": 7,
+      "control_index": 363,
+      "state": {
+        "x": 22.57375326774145,
+        "y": 7.323252365665238,
+        "yaw": -1.0947024777668348,
+        "v": 0.0005184964291710982,
+        "steering": 0.02907172864511346,
+        "acceleration": -17.539172115850416,
+        "time": 18.150000270456076
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.03100000007543713
+    },
+    {
+      "condition": 10,
+      "training_episode": 10,
+      "control_index": 400,
+      "state": {
+        "x": 21.745873898606135,
+        "y": 9.259534250799238,
+        "yaw": -0.24068131930314873,
+        "v": 1.7304884638443623,
+        "steering": 0.0005358671687645344,
+        "acceleration": 0.9714028309568512,
+        "time": 20.000000298023224
+      },
+      "goal": [
+        28.135424875625418,
+        6.0,
+        -0.5232536299210251
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        28.135424875625418,
+        6.0,
+        -0.5232536299210251
+      ],
+      "position_offset_metres": 0.0,
+      "yaw_offset_rad": 0.0,
+      "exact_goal_connection": true,
+      "analytic_queries": 1,
+      "path_points": 480,
+      "path_length": 7.202237725966719,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.6936887906121507,
+        "steering": -0.02950951495019706
+      },
+      "seconds": 0.015999999945051968
+    },
+    {
+      "condition": 10,
+      "training_episode": 10,
+      "control_index": 440,
+      "state": {
+        "x": 25.48238857996344,
+        "y": 8.369729286332246,
+        "yaw": -0.22129510446402634,
+        "v": 2.180062709897215,
+        "steering": -0.05835722475956879,
+        "acceleration": 0.7010411745717704,
+        "time": 22.000000327825546
+      },
+      "goal": [
+        28.135424875625418,
+        6.0,
+        -0.5232536299210251
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.045999999972991645
+    },
+    {
+      "condition": 10,
+      "training_episode": 10,
+      "control_index": 460,
+      "state": {
+        "x": 27.292739591585896,
+        "y": 7.879733075983974,
+        "yaw": -0.28303064064147954,
+        "v": 0.0002376404379107397,
+        "steering": 0.10658092137133532,
+        "acceleration": -11.777240111913883,
+        "time": 23.000000342726707
+      },
+      "goal": [
+        28.135424875625418,
+        6.0,
+        -0.5232536299210251
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.03200000000651926
+    },
+    {
+      "condition": 11,
+      "training_episode": 11,
+      "control_index": 370,
+      "state": {
+        "x": 18.67907464724009,
+        "y": 13.711832403527673,
+        "yaw": -0.820922535231206,
+        "v": 1.7149145780740613,
+        "steering": -0.06773079779795396,
+        "acceleration": 1.3588283036199922,
+        "time": 18.500000275671482
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "old_oracle_mode": "reference",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": true,
+      "target": [
+        21.79249777451587,
+        6.5463404360721595,
+        -1.2226733623760435
+      ],
+      "position_offset_metres": 0.5656854249492383,
+      "yaw_offset_rad": 0.17499999999999982,
+      "exact_goal_connection": false,
+      "analytic_queries": 27,
+      "path_points": 522,
+      "path_length": 7.87866952853222,
+      "CV_dynamic_safe": true,
+      "controller_status": "solved",
+      "controller_command": {
+        "acceleration": -1.692273597379802,
+        "steering": -0.0929532550813019
+      },
+      "seconds": 0.15600000007543713
+    },
+    {
+      "condition": 11,
+      "training_episode": 11,
+      "control_index": 410,
+      "state": {
+        "x": 20.883776655652518,
+        "y": 11.136148863371432,
+        "yaw": -0.9009017069163545,
+        "v": 1.731900870000207,
+        "steering": -0.09151449662562718,
+        "acceleration": 1.3210673768051961,
+        "time": 20.500000305473804
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.030999999959021807
+    },
+    {
+      "condition": 11,
+      "training_episode": 11,
+      "control_index": 430,
+      "state": {
+        "x": 21.84320937377887,
+        "y": 9.871298446304566,
+        "yaw": -0.9516334359766292,
+        "v": 0.0020989132720485157,
+        "steering": -0.05590920793641288,
+        "acceleration": -19.76138155172634,
+        "time": 21.500000320374966
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "old_oracle_mode": "wait",
+      "exact_goal_full_body_free": true,
+      "region_connection_found": false,
+      "seconds": 0.030999999959021807
+    }
+  ],
+  "new_physical_controls": 0,
+  "optimizer_updates": 0,
+  "production_behavior_changed": false,
+  "wall_seconds": 1.5929999999934807
+}

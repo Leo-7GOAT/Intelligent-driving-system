@@ -1,14 +1,22 @@
 # Executability-aware hierarchical driving research
 
-Latest (31 October): the common-mask seed11 PPO pair completes **H 9/12,
-H0 7/12**, both without unsafe episodes. One seed does not establish a feedback
-benefit. Longer-rollout B1 completes **6/12 with four bounds failures**.
-An explicitly versioned finer collision grid removes two recorded raster-only
-boundary flags; frozen B1 migration then completes **7/12 with one bounds
-failure**, with zero new updates. Matched PPO on the new geometry completes
-**7/12 with zero unsafe episodes and five deadlines** after20,480real controls
-and72Adam steps. [Diagnosis and evidence](reports/native_geometry_resolution_20261031.md).
-These are known development conditions; research acceptance remains unmet.
+Latest (31 October): H trained on the explicitly versioned v4 geometry
+completes **12/12 known development conditions, zero unsafe episodes**, after
+20,563 real CARLA training controls and 650 Adam steps. All 24,900 training and
+evaluation controls and twelve measured-start actions verify. H0 has completed
+20,562 training controls/650 Adam steps; its evaluation is still running.
+[Completed H method evidence](reports/native_H_v4_seed11_method_complete_20261031.json).
+
+The separate **frozen-weight** v4 migration scores H 9/12 versus H0 10/12,
+with no unsafe episodes. This reverses the earlier v3 gap and establishes no
+feedback benefit. B1 trained on v4 scores **7/12, zero unsafe, five deadlines**;
+its [public raw/model capsule](reports/B1_v4_PPO_public_verification_20261031.json)
+independently reproduces all 27,737 controls and the figure. Two matched
+training-data-only actor fits are queued to test the approach/parking defect;
+they have zero PPO updates and no native scores yet.
+[Diagnosis](reports/native_B1_v4_stop_diagnosis_20261031.md).
+These are development conditions; five trained seeds, a healthy full-task B1,
+new final conditions and research acceptance remain unmet.
 
 Earlier execution snapshot:
 

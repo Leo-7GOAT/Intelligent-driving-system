@@ -1,5 +1,34 @@
 # Development model card
 
+## V4 trained H and completed public B1 evidence (31 October)
+
+The newly trained H method completes **12/12 known development conditions**,
+including 4/4 in every core family, without collision or bounds failures.
+It uses 20,563 real CARLA training controls and 650 Adam steps after disclosed
+teacher initialization; all 24,900 training/evaluation controls and twelve
+measured-start actions verify. Model SHA256 is
+`dbde8619f1b25db2f37731343ec6d6204269cfd464023b63c1e5d0485a8ce537`.
+The [method report](../reports/native_H_v4_seed11_method_complete_20261031.json)
+is explicitly an early completed-method audit: H0 evaluation and whole-batch
+cleanup are still pending. It is one seed and does not establish generalization.
+
+Frozen old H/H0 weights on the same v4 geometry instead score **9/12 versus
+10/12**, zero unsafe in both arms, paired difference -8.33 percentage points,
+exact discordance p=1.0. This is a deployment migration, not v4 training.
+[Paired evidence](../reports/native_v4_frozen_feedback_pair_20261031.json).
+It supersedes any interpretation of the older v3 positive gap as robust.
+
+The real-PPO B1 v4 endpoint is **7/12, zero unsafe, five deadlines** after
+20,480 training controls/72 Adam steps. Its
+[public manifest](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_v4_PPO_20261031_repro.zip.parts.json)
+has 22 parts, 44,337,162 bytes/489 files, archive SHA256
+`4ada740da758379a5a02661e5836e814c890f8e13a0e0311452de2cebc10c860`.
+Unauthenticated download and independent checkout 2fe4af8 reproduce all
+27,737 raw controls, twelve start actions, frozen statistics and identical PNG.
+[Executed receipt](../reports/B1_v4_PPO_public_verification_20261031.json).
+The baseline remains below the full-task target. Matched actor-only replay and
+approach fits are prepared and queued; their fit loss is not performance proof.
+
 ## Shared-mask feedback pair and fine-grid diagnostic (31 October)
 
 The completed seed11 pair is **H9/12 versus H0 7/12**, with no unsafe

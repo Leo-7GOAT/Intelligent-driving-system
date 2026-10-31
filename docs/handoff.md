@@ -1,4 +1,61 @@
-# Current handoff — 2026-10-31 11:22 local
+# Current handoff — 2026-10-31, trained H v4 complete
+
+Original objective ACTIVE/UNMET. This section supersedes all earlier live
+process identities. Verify receipts and creation times before acting.
+
+- Batch025409165666 H is complete **12/12, zero unsafe, all core families4/4**.
+  Actual20,563training controls/650Adam,4,337evaluation controls;all24,900raw
+  frames and12measured-start actions verify. Early report
+  reports/native_H_v4_seed11_method_complete_20261031.json. It does not claim
+  whole-batch closure. H0 training has also completed20,562controls/650Adam;
+  its evaluation is running under worker40148/guard65320. Whole-batch raw
+  postprocessors wait for H0,normal guard0andowned-empty server cleanup.
+- Frozen-v4 migration pair023833/023839 is complete **H9/12,H010/12**,zero
+  unsafe. Difference-8.33pp,exact discordance p=1.0. This reverses the older
+  v3gap;feedback benefit remains unproven. Reports
+  native_H_geometry_v4_endpoint_20261031.json,
+  native_H0_geometry_v4_endpoint_20261031.json,
+  native_v4_frozen_feedback_pair_20261031.json.
+- B1v4PPO022652 remains7/12,zero unsafe/five deadlines. Public upload and
+  unauthenticated independent reconstruction are now COMPLETE:22parts,
+  44,337,162bytes/489files,27,737controls,12actions,identical PNG. Receipt
+  reports/B1_v4_PPO_public_verification_20261031.json. Do not repeat publication.
+- Offline exact policy-history reconstruction shows the original zero-PPO
+  initializer already brakes at the four stopped failures' visited states;
+  final PPO brakes somewhat more. This is not initial-policy closed-loop
+  performance. Training-only approach queries40states,29solved reference
+  labels/11waits. A27interior-goal-pose prototype recovers only1of10waits and
+  is NOT wired into production. No task gate or geometry changes in this probe.
+- Two matched actor fits are complete,each512MSEsteps from the SAME original
+  zero-PPO model. Replay uses original3467teacher TRAIN rows;approach adds all
+  29valid solved-reference training labels(weight20),including braking. Critic,
+  empty PPO optimizer,normalizer/RNGbytes/log_std unchanged. No native score yet.
+  Pair034614808334;replay034614809334;approach034641272228. Reports
+  native_B1_v4_approach_pair_preparation_20261031.json and
+  native_B1_v4_stop_diagnosis_20261031.md. This is supervised baseline development.
+- Current owned sequential queues:64312 seed11pair→replay034614809334;
+  63196replay→approach034641272228;67468approach→seed22pair025409042778;
+  28112seed22→train36/validation24pair025445532080. Receipt
+  runs/approach_pair_owned_queue_launches_20261031.json. Old seed22waiter66736
+  was superseded ONLYwhilewaiting,after identity/child-unstarted checks;
+  receipt runs/seed22_v4_waiter_superseded_for_B1_approach_pair_20261031.json.
+  All native launchers remain single-server,strict normal cleanup,no retries.
+- Read-only postprocessors69256/57704wait for replay/approach closure;receipt
+  runs/approach_pair_postprocessors_launches_20261031.json. Existing six H/H0
+  watchers retain their distinct outputs and21600s caps. Do not duplicate runs.
+- B1long031506is PREPARED_NOT_QUEUED_NOT_STARTED;preserve its registration and
+  runs/native_continuation.json pointer. Do not confuse preparation with training.
+- Fresh-exploration initialization now permits an exact idempotent request on
+  a still-untrained model;all non-log_std changes/trained-state use still reject.
+  Full local CPU **676passed,1skip,4CARLA deselected,187.30s**;targeted24pass7.35s.
+  Logs runs/approach_pair_full_cpu_20261031.log and
+  runs/approach_pair_targeted_tests_20261031.log. No hosted result claimed yet.
+- Five independently trained seeds,healthy full-task B1,at least120NEWpaired
+  final conditions,frequency/shared-safety ablations,PPOversusstrongB3and
+  statistically supported hierarchy/feedback value remain open. All known12
+  and separated36/24inventories are DEVELOPMENT;do not relabel them final.
+
+## Archived handoff — 2026-10-31 11:22 local
 
 Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
 

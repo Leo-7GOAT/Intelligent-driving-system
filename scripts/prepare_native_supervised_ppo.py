@@ -34,7 +34,7 @@ def initial_exploration(model, log_std):
     with torch.no_grad():
         model.policy.log_std.fill_(log_std)
     changed = [name for name, value in model.policy.named_parameters() if not torch.equal(before[name], value)]
-    if changed != ['log_std']:
+    if changed not in ([], ['log_std']):
         raise ValueError('Exploration initialization changed parameters beyond log_std')
     return {'parameter_changes': changed, 'previous_log_std': before['log_std'].tolist(),
             'initial_log_std': model.policy.log_std.detach().tolist(), 'mean_and_critic_unchanged': True}

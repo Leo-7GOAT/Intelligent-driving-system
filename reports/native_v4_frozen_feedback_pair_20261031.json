@@ -1,0 +1,118 @@
+{
+  "scope": "One independently trained seed pair on twelve known development conditions;exploratory feedback ablation,not final confirmation",
+  "seed": 11,
+  "H_successes": 9,
+  "H0_successes": 10,
+  "cases": 12,
+  "H_only_success_cases": [
+    4
+  ],
+  "H0_only_success_cases": [
+    1,
+    5
+  ],
+  "paired_difference_percentage_points": -8.333333333333334,
+  "conditional_exact_discordance_p_two_sided": 1.0,
+  "families": {
+    "curve_parking": {
+      "cases": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "H_success": 3,
+      "H0_success": 4
+    },
+    "static_obstacle": {
+      "cases": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "H_success": 2,
+      "H0_success": 2
+    },
+    "dynamic_interaction": {
+      "cases": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "H_success": 4,
+      "H0_success": 4
+    }
+  },
+  "source_and_model_proof": [
+    {
+      "batch": "20261031T023833Z_native_geometry_migration",
+      "raw_controls": 6620,
+      "raw_audit_sha256": "f6b873fc4722eeee39023a3c197135cb5abc706abcaea3e00580ddcb4da1a324",
+      "model_sha256": "4b47cbcef1ad3413a03c0bd824a4cf3f15d4345890d5db1bd472e67a89f4d166",
+      "summary": {
+        "physics_steps": 0,
+        "actions": 0,
+        "episodes": 0,
+        "optimization_phases": 0,
+        "optimizer_steps": 0,
+        "reward_components": {},
+        "modes": {},
+        "action_histogram": {},
+        "method": "H",
+        "job_name": "H",
+        "rollout_actions": 32,
+        "ppo_epochs": 10,
+        "batch_size": 32,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 0,
+        "reset_ticks": 0,
+        "actor_l2_change": 0.0,
+        "reload_exact": true,
+        "wall_seconds": 0.11408114433288574,
+        "stopped_reason": null,
+        "lineage_control_steps": 20674,
+        "charged_control_steps_lower_bound": 46260,
+        "inherited_controls_not_in_checkpoint": 25586,
+        "scope": "Frozen checkpoint on new256collision geometry;zero PPO updates;known development conditions;deployment migration only,not trained-v4 or final confirmation"
+      }
+    },
+    {
+      "batch": "20261031T023839Z_native_geometry_migration",
+      "raw_controls": 5883,
+      "raw_audit_sha256": "41b47ec29061f40dc6a4748aaec8239e48844ff454438fe68b713f01b00acf7b",
+      "model_sha256": "d01d3c9633b3df95c27a79f303fdae89cb0a6ac28645cb893e8253360d71b9b1",
+      "summary": {
+        "physics_steps": 0,
+        "actions": 0,
+        "episodes": 0,
+        "optimization_phases": 0,
+        "optimizer_steps": 0,
+        "reward_components": {},
+        "modes": {},
+        "action_histogram": {},
+        "method": "H0",
+        "job_name": "H0",
+        "rollout_actions": 32,
+        "ppo_epochs": 10,
+        "batch_size": 32,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 0,
+        "reset_ticks": 0,
+        "actor_l2_change": 0.0,
+        "reload_exact": true,
+        "wall_seconds": 0.1071629524230957,
+        "stopped_reason": null,
+        "lineage_control_steps": 20618,
+        "charged_control_steps_lower_bound": 37251,
+        "inherited_controls_not_in_checkpoint": 16633,
+        "scope": "Frozen checkpoint on new256collision geometry;zero PPO updates;known development conditions;deployment migration only,not trained-v4 or final confirmation"
+      }
+    }
+  ],
+  "limits": "One training seed;conditions reused in development;actual physical budgets differ by phase overshoot;H includes retained training and a separately charged interrupted evaluation. No seed-level confidence interval or PPO-vs-rule advantage established.",
+  "research_acceptance": "UNMET"
+}

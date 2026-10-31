@@ -1,5 +1,25 @@
 # Research acceptance ledger
 
+Current 31 October update: trained-v4 H completes **12/12 development cases**,
+zero unsafe, after 20,563 real training controls/650 Adam steps. All 24,900 raw
+controls and twelve measured-start actions verify. H0 training is complete
+(20,562 controls/650 Adam); evaluation is pending. This is one seed on known
+conditions, not the five-seed/new-final-condition acceptance result.
+[H method report](../reports/native_H_v4_seed11_method_complete_20261031.json).
+
+The separately completed frozen-v4 migration is H9/12 versus H0 10/12,
+zero unsafe, difference -8.33 percentage points, exact discordance p=1.0.
+Its reversal of the earlier v3 gap precludes a robust feedback-benefit claim.
+The trained-v4 B1 is 7/12, zero unsafe/five deadlines. Its complete public
+capsule has now been downloaded and independently reproduced: 27,737 controls,
+twelve actions and identical figure. Its full-task competence is still below
+target. Training-only approach/replay actor fits have no native score yet.
+[Frozen pair](../reports/native_v4_frozen_feedback_pair_20261031.json),
+[B1 public receipt](../reports/B1_v4_PPO_public_verification_20261031.json),
+[baseline diagnosis](../reports/native_B1_v4_stop_diagnosis_20261031.md).
+**The full original research acceptance remains UNMET.** Earlier snapshots below
+retain their original outcomes and do not override this update.
+
 Latest 31 October: the audited common-mask seed11 pair is H9/12 versus H0 7/12,
 both with zero unsafe episodes. H-only successes are4/5/6;H0-only success is1.
 The conditional exact discordance p-value is.625;one training seed cannot
