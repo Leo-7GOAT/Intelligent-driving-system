@@ -1,0 +1,1225 @@
+{
+  "scope": "Compare complete flat-policy observations at fixed-stride measured states.",
+  "batch": "20261031T022652Z_native_supervised_ppo",
+  "raw_audit_sha256": "901ec62efce6e7731cab3585ad0191e771bcae2d9283c8964ac2ce22a84e4ecc",
+  "script_sha256": "3d4926ea397d0986e08484ddebc846c1e10afc816d9186703e61f8d15eb99770",
+  "prototype_sha256": "f166a25fba4a031d2b3f8224d108624ab3130cd87c779eabd3870afce145695d",
+  "history_helper_sha256": "9ba227ec52867cfeb2ff4cbe46155c96aeb4525eb69a65eed39fbd7d885b839d",
+  "selection": "Every fixed-stride control plus first/terminal control of every case,without success/failure exclusion",
+  "stride": 100,
+  "native_histories_verified": 7257,
+  "sampled_observations": 88,
+  "all_inputs_and_deterministic_actions_exact": true,
+  "normalization_frozen": true,
+  "observation_timings": {
+    "original_cells": {
+      "median": 0.009447499993257225,
+      "p95": 0.16198803497245534,
+      "max": 0.2248366998974234,
+      "count": 88
+    },
+    "rectangle_partition": {
+      "median": 0.009787300019524992,
+      "p95": 0.07284932986367491,
+      "max": 0.11817330005578697,
+      "count": 88
+    }
+  },
+  "construction": [
+    {
+      "case_id": 0,
+      "seconds": {
+        "original_cells": 0.0005504000000655651,
+        "rectangle_partition": 0.0030786998104304075
+      },
+      "rectangles": {
+        "original_cells": 17833,
+        "rectangle_partition": 179
+      }
+    },
+    {
+      "case_id": 1,
+      "seconds": {
+        "original_cells": 0.0011525999289005995,
+        "rectangle_partition": 0.0026153000071644783
+      },
+      "rectangles": {
+        "original_cells": 41262,
+        "rectangle_partition": 283
+      }
+    },
+    {
+      "case_id": 2,
+      "seconds": {
+        "original_cells": 0.00033900002017617226,
+        "rectangle_partition": 0.0015497999265789986
+      },
+      "rectangles": {
+        "original_cells": 14177,
+        "rectangle_partition": 167
+      }
+    },
+    {
+      "case_id": 3,
+      "seconds": {
+        "original_cells": 0.0006216000765562057,
+        "rectangle_partition": 0.0016614999622106552
+      },
+      "rectangles": {
+        "original_cells": 30783,
+        "rectangle_partition": 185
+      }
+    },
+    {
+      "case_id": 4,
+      "seconds": {
+        "original_cells": 0.0004259999841451645,
+        "rectangle_partition": 0.0016318999696522951
+      },
+      "rectangles": {
+        "original_cells": 17833,
+        "rectangle_partition": 179
+      }
+    },
+    {
+      "case_id": 5,
+      "seconds": {
+        "original_cells": 0.0010007999371737242,
+        "rectangle_partition": 0.0028522000648081303
+      },
+      "rectangles": {
+        "original_cells": 41262,
+        "rectangle_partition": 283
+      }
+    },
+    {
+      "case_id": 6,
+      "seconds": {
+        "original_cells": 0.0003229000139981508,
+        "rectangle_partition": 0.0017470999155193567
+      },
+      "rectangles": {
+        "original_cells": 14177,
+        "rectangle_partition": 167
+      }
+    },
+    {
+      "case_id": 7,
+      "seconds": {
+        "original_cells": 0.0006065999623388052,
+        "rectangle_partition": 0.002426499966531992
+      },
+      "rectangles": {
+        "original_cells": 30783,
+        "rectangle_partition": 185
+      }
+    },
+    {
+      "case_id": 8,
+      "seconds": {
+        "original_cells": 0.0005910000763833523,
+        "rectangle_partition": 0.0019227999728173018
+      },
+      "rectangles": {
+        "original_cells": 17833,
+        "rectangle_partition": 179
+      }
+    },
+    {
+      "case_id": 9,
+      "seconds": {
+        "original_cells": 0.0009276000782847404,
+        "rectangle_partition": 0.0025111001450568438
+      },
+      "rectangles": {
+        "original_cells": 41262,
+        "rectangle_partition": 283
+      }
+    },
+    {
+      "case_id": 10,
+      "seconds": {
+        "original_cells": 0.00039389985613524914,
+        "rectangle_partition": 0.0028818000573664904
+      },
+      "rectangles": {
+        "original_cells": 14177,
+        "rectangle_partition": 167
+      }
+    },
+    {
+      "case_id": 11,
+      "seconds": {
+        "original_cells": 0.0007374999113380909,
+        "rectangle_partition": 0.0028077999595552683
+      },
+      "rectangles": {
+        "original_cells": 30783,
+        "rectangle_partition": 185
+      }
+    }
+  ],
+  "samples": [
+    {
+      "case_id": 0,
+      "decision": 0,
+      "frame_before": 24428,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.06908720009960234,
+        "rectangle_partition": 0.04851870005950332
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 0,
+      "decision": 100,
+      "frame_before": 24528,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.04396410007029772,
+        "original_cells": 0.06347319995984435
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 0,
+      "decision": 200,
+      "frame_before": 24628,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.027767400024458766,
+        "rectangle_partition": 0.02759009995497763
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 0,
+      "decision": 300,
+      "frame_before": 24728,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.007040600059553981,
+        "original_cells": 0.009043700061738491
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 0,
+      "decision": 352,
+      "frame_before": 24780,
+      "termination_reason": "success",
+      "observation_seconds": {
+        "original_cells": 0.008133500115945935,
+        "rectangle_partition": 0.00890000001527369
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 1,
+      "decision": 0,
+      "frame_before": 24812,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.07683210005052388,
+        "original_cells": 0.19615199998952448
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 1,
+      "decision": 100,
+      "frame_before": 24912,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.1667188999708742,
+        "rectangle_partition": 0.11817330005578697
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 1,
+      "decision": 200,
+      "frame_before": 25012,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.04191339993849397,
+        "original_cells": 0.0802386999130249
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 1,
+      "decision": 300,
+      "frame_before": 25112,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.00651760003529489,
+        "rectangle_partition": 0.00977270002476871
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 1,
+      "decision": 350,
+      "frame_before": 25162,
+      "termination_reason": "success",
+      "observation_seconds": {
+        "rectangle_partition": 0.008954199962317944,
+        "original_cells": 0.006414400180801749
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 2,
+      "decision": 0,
+      "frame_before": 25194,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.059920200146734715,
+        "rectangle_partition": 0.0492809999268502
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 2,
+      "decision": 100,
+      "frame_before": 25294,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.034210999961942434,
+        "original_cells": 0.04244769993238151
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 2,
+      "decision": 200,
+      "frame_before": 25394,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.016956199891865253,
+        "rectangle_partition": 0.017178799957036972
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 2,
+      "decision": 300,
+      "frame_before": 25494,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.005601400043815374,
+        "original_cells": 0.004052800126373768
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 2,
+      "decision": 400,
+      "frame_before": 25594,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.00839820015244186,
+        "rectangle_partition": 0.006739400094375014
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 2,
+      "decision": 491,
+      "frame_before": 25685,
+      "termination_reason": "success",
+      "observation_seconds": {
+        "rectangle_partition": 0.006999599980190396,
+        "original_cells": 0.00576619990170002
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 0,
+      "frame_before": 25717,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.16190229984931648,
+        "rectangle_partition": 0.07366979983635247
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 100,
+      "frame_before": 25817,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.055838000029325485,
+        "original_cells": 0.1213644000235945
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 200,
+      "frame_before": 25917,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.05879419995471835,
+        "rectangle_partition": 0.033480399986729026
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 300,
+      "frame_before": 26017,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.004739099880680442,
+        "original_cells": 0.004724099999293685
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 400,
+      "frame_before": 26117,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.004376400029286742,
+        "rectangle_partition": 0.00520169991068542
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 500,
+      "frame_before": 26217,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.005297400057315826,
+        "original_cells": 0.0064610999543219805
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 600,
+      "frame_before": 26317,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.005832300055772066,
+        "rectangle_partition": 0.004313900135457516
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 700,
+      "frame_before": 26417,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.007718499982729554,
+        "original_cells": 0.0057431000750511885
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 800,
+      "frame_before": 26517,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.009851299924775958,
+        "rectangle_partition": 0.0072125999722629786
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 3,
+      "decision": 899,
+      "frame_before": 26616,
+      "termination_reason": "deadline",
+      "observation_seconds": {
+        "rectangle_partition": 0.009444300085306168,
+        "original_cells": 0.004255099920555949
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 4,
+      "decision": 0,
+      "frame_before": 26648,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.07752439985051751,
+        "rectangle_partition": 0.060490200063213706
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 4,
+      "decision": 100,
+      "frame_before": 26748,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.022666400065645576,
+        "original_cells": 0.0311835000757128
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 4,
+      "decision": 200,
+      "frame_before": 26848,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.026586699998006225,
+        "rectangle_partition": 0.026332100154832006
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 4,
+      "decision": 300,
+      "frame_before": 26948,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.008060000138357282,
+        "original_cells": 0.005874500144273043
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 4,
+      "decision": 331,
+      "frame_before": 26979,
+      "termination_reason": "success",
+      "observation_seconds": {
+        "original_cells": 0.007007799809798598,
+        "rectangle_partition": 0.008810100145637989
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 0,
+      "frame_before": 27011,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.059906299924477935,
+        "original_cells": 0.14978089998476207
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 100,
+      "frame_before": 27111,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.12674210011027753,
+        "rectangle_partition": 0.058214800199493766
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 200,
+      "frame_before": 27211,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.05702249985188246,
+        "original_cells": 0.1266135999467224
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 300,
+      "frame_before": 27311,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.015734699787572026,
+        "rectangle_partition": 0.010233700042590499
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 400,
+      "frame_before": 27411,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.008087700000032783,
+        "original_cells": 0.006411500042304397
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 500,
+      "frame_before": 27511,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.005898899864405394,
+        "rectangle_partition": 0.004321899963542819
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 600,
+      "frame_before": 27611,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.004311600001528859,
+        "original_cells": 0.004510799888521433
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 700,
+      "frame_before": 27711,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.00482399994507432,
+        "rectangle_partition": 0.004371700109913945
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 800,
+      "frame_before": 27811,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.004168800078332424,
+        "original_cells": 0.004086700035259128
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 5,
+      "decision": 899,
+      "frame_before": 27910,
+      "termination_reason": "deadline",
+      "observation_seconds": {
+        "original_cells": 0.003984199836850166,
+        "rectangle_partition": 0.004323899978771806
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 6,
+      "decision": 0,
+      "frame_before": 27942,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.045814699959009886,
+        "original_cells": 0.054839499993249774
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 6,
+      "decision": 100,
+      "frame_before": 28042,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.023879999993368983,
+        "rectangle_partition": 0.02078979997895658
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 6,
+      "decision": 200,
+      "frame_before": 28142,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.020565399900078773,
+        "original_cells": 0.027244800003245473
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 6,
+      "decision": 300,
+      "frame_before": 28242,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.0058726000133901834,
+        "rectangle_partition": 0.004233099985867739
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 6,
+      "decision": 329,
+      "frame_before": 28271,
+      "termination_reason": "success",
+      "observation_seconds": {
+        "rectangle_partition": 0.006956700002774596,
+        "original_cells": 0.006693999981507659
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 0,
+      "frame_before": 28303,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.10594680020585656,
+        "rectangle_partition": 0.04482009983621538
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 100,
+      "frame_before": 28403,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.013682899996638298,
+        "original_cells": 0.020773200085386634
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 200,
+      "frame_before": 28503,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.026321099838241935,
+        "rectangle_partition": 0.021254499908536673
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 300,
+      "frame_before": 28603,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.005995400017127395,
+        "original_cells": 0.005921800155192614
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 400,
+      "frame_before": 28703,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.005077600013464689,
+        "rectangle_partition": 0.005189200164750218
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 500,
+      "frame_before": 28803,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.0058895000256598,
+        "original_cells": 0.006704600062221289
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 600,
+      "frame_before": 28903,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.004045400070026517,
+        "rectangle_partition": 0.0041495999321341515
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 700,
+      "frame_before": 29003,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.00519739999435842,
+        "original_cells": 0.0040380998980253935
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 800,
+      "frame_before": 29103,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.00467139994725585,
+        "rectangle_partition": 0.00587620004080236
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 7,
+      "decision": 899,
+      "frame_before": 29202,
+      "termination_reason": "deadline",
+      "observation_seconds": {
+        "rectangle_partition": 0.004516799934208393,
+        "original_cells": 0.004031199961900711
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 8,
+      "decision": 0,
+      "frame_before": 29234,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.06075039994902909,
+        "rectangle_partition": 0.04494030005298555
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 8,
+      "decision": 100,
+      "frame_before": 29334,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.05130500020459294,
+        "original_cells": 0.06317660002969205
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 8,
+      "decision": 200,
+      "frame_before": 29434,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.05344190006144345,
+        "rectangle_partition": 0.042843000032007694
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 8,
+      "decision": 300,
+      "frame_before": 29534,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.02391869993880391,
+        "original_cells": 0.022830800153315067
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 8,
+      "decision": 400,
+      "frame_before": 29634,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.006186899961903691,
+        "rectangle_partition": 0.006763099925592542
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 8,
+      "decision": 439,
+      "frame_before": 29673,
+      "termination_reason": "success",
+      "observation_seconds": {
+        "rectangle_partition": 0.00935080018825829,
+        "original_cells": 0.005962600000202656
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 9,
+      "decision": 0,
+      "frame_before": 29705,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.18839399982243776,
+        "rectangle_partition": 0.07766390009783208
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 9,
+      "decision": 100,
+      "frame_before": 29805,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.10872259992174804,
+        "original_cells": 0.2248366998974234
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 9,
+      "decision": 200,
+      "frame_before": 29905,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.1620342000387609,
+        "rectangle_partition": 0.06973630003631115
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 9,
+      "decision": 300,
+      "frame_before": 30005,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.0597159001044929,
+        "original_cells": 0.11701679998077452
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 9,
+      "decision": 400,
+      "frame_before": 30105,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.023813800187781453,
+        "rectangle_partition": 0.012926299823448062
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 9,
+      "decision": 458,
+      "frame_before": 30163,
+      "termination_reason": "success",
+      "observation_seconds": {
+        "rectangle_partition": 0.009211400058120489,
+        "original_cells": 0.008414099924266338
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 0,
+      "frame_before": 30195,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.06783719989471138,
+        "rectangle_partition": 0.04828409990295768
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 100,
+      "frame_before": 30295,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.03780619986355305,
+        "original_cells": 0.05260420008562505
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 200,
+      "frame_before": 30395,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.06002849992364645,
+        "rectangle_partition": 0.04495030012913048
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 300,
+      "frame_before": 30495,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.02921710000373423,
+        "original_cells": 0.03235049988143146
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 400,
+      "frame_before": 30595,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.013831899967044592,
+        "rectangle_partition": 0.008970000082626939
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 500,
+      "frame_before": 30695,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.005707500036805868,
+        "original_cells": 0.004608300048857927
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 600,
+      "frame_before": 30795,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.007016099989414215,
+        "rectangle_partition": 0.005271600093692541
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 700,
+      "frame_before": 30895,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.0075981998816132545,
+        "original_cells": 0.00500220013782382
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 800,
+      "frame_before": 30995,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.0042276999447494745,
+        "rectangle_partition": 0.004479299997910857
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 10,
+      "decision": 899,
+      "frame_before": 31094,
+      "termination_reason": "deadline",
+      "observation_seconds": {
+        "rectangle_partition": 0.005026400089263916,
+        "original_cells": 0.008970499970018864
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 0,
+      "frame_before": 31126,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.14723980007693172,
+        "rectangle_partition": 0.07132559991441667
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 100,
+      "frame_before": 31226,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.06971059995703399,
+        "original_cells": 0.13783310004509985
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 200,
+      "frame_before": 31326,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.12783579993993044,
+        "rectangle_partition": 0.060891499975696206
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 300,
+      "frame_before": 31426,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.027709299931302667,
+        "original_cells": 0.059755400056019425
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 400,
+      "frame_before": 31526,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.004847399890422821,
+        "rectangle_partition": 0.009801900014281273
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 500,
+      "frame_before": 31626,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.006135300034657121,
+        "original_cells": 0.004783299984410405
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 600,
+      "frame_before": 31726,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.004796300083398819,
+        "rectangle_partition": 0.005230099894106388
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 700,
+      "frame_before": 31826,
+      "termination_reason": null,
+      "observation_seconds": {
+        "rectangle_partition": 0.011157500091940165,
+        "original_cells": 0.005868199979886413
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 800,
+      "frame_before": 31926,
+      "termination_reason": null,
+      "observation_seconds": {
+        "original_cells": 0.0043426998890936375,
+        "rectangle_partition": 0.00941290007904172
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    },
+    {
+      "case_id": 11,
+      "decision": 899,
+      "frame_before": 32025,
+      "termination_reason": "deadline",
+      "observation_seconds": {
+        "rectangle_partition": 0.009271600050851703,
+        "original_cells": 0.0048998999409377575
+      },
+      "policy_action_exact": true,
+      "all_raw_observation_values_exact": true
+    }
+  ],
+  "limits": "Offline interleaved sampled-state compute only;not full closed-loop speed or universal numeric equivalence. Kernel construction separately reported. No runtime enabled.",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "production_behavior_changed": false,
+  "wall_seconds": 6.891000000061467
+}

@@ -22,8 +22,11 @@ independently reproduces all 27,737 controls and the figure. Matched actor-only
 fits now score **replay8/12 with3bounds versus approach10/12 with2bounds**.
 All10,193controls/24start actions verify and both public capsules independently
 reproduce. The added training-state labels repair two conditions but safety
-remains unqualified. Both initializers have matched20,480-control PPO queued;
-these new PPO phases have not started.
+remains unqualified. The replay initializer's matched 20,480-control PPO phase
+has now completed: **4/12, four bounds failures and one collision**, after 51
+optimizer steps. This regression is preserved and rejected as a healthy baseline.
+The paired approach initializer is now actually training under the same budget.
+[Completed replay PPO endpoint](reports/native_B1_v4_replay_fit_PPO_endpoint_20261031.json).
 [Complete fit comparison](reports/native_B1_v4_approach_pair_complete_20261031.json).
 [Diagnosis](reports/native_B1_v4_stop_diagnosis_20261031.md).
 These are development conditions; five trained seeds, a healthy full-task B1,
@@ -34,6 +37,12 @@ H's environment decision P95 is348ms but its maximum is4.22s; full-runner
 latency is not logged. B1's shared feedback computation alone has220ms P95
 against a50ms period. Fixed-weight feedback hiding changes10/439Hactions and
 zero H0actions; this demonstrates sensitivity, not a performance benefit.
+
+An [offline rectangle-partition experiment](reports/rectangle_kernel_development_20261031.md)
+preserves all 367,105 tested planner collision decisions and both recorded
+search results. The failed search median falls 4.243→3.248 s; sampled B1
+observation P95 falls 162→73 ms, while its median slightly worsens. This
+prototype is not enabled in training and does not establish realtime operation.
 
 Earlier execution snapshot:
 
