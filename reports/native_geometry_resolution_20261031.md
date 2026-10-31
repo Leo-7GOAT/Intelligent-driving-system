@@ -75,6 +75,20 @@ After downloading/decompressing the inputs linked in that receipt:
 python scripts/compare_fine_grid_query.py --fixture downloads/native_recorded_timeout_query_20261031.json --fine-export downloads/fine_grid_export.json --output runs/fine_grid_query_reproduction.json
 ```
 
+The matched v4PPO phase subsequently completes20,480controls/72Adam steps and
+scores7/12withzero unsafe/five deadlines. All27,737controls and12initial actions
+are raw-audited. Stored Adam steps all equal72;normalization mean/variance/count
+are exactly frozen. Basic motion3/4passes the learning-entry sanity profile;
+full-task static/dynamic2/4each remain below target. This does not establish
+hierarchy/PPO superiority or independent generalization.
+
+Four deadline failures are stopped1.45–2.37mshort of the goal,with speed and yaw
+gates satisfied;the fifth is3.45maway and too fast. Their last learned normalized
+accelerations are−.497,−.116,+.058,−.255,−.222respectively. The stated.8mgoal
+tolerance is retained. See `native_B1_v4_terminal_failures_20261031.json` and
+`native_B1_v4_training_analysis_20261031.json`. Further diagnosis concerns learned
+terminal braking,not permission to enlarge the success region.
+
 Evidence: `native_B1_rollout1280_bounds_sources_v2_20261031.json`,
 `native_B1_rollout1280_lane_coverage_20261031.json`,
 `native_fine_grid_diagnostic_20261031.json`,and

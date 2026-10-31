@@ -56,8 +56,18 @@ Use that file as `--reference-figure` after joining the nine parts.
 The earlier8MiB-parts manifest is incomplete following an upload408;use the
 `chunk2m` manifest above.
 
-Matched v4PPO training has completed20,480controls/72Adam steps;its frozen
-twelve-case evaluation is running. No trained-v4score is available yet.
+Matched v4PPO completes **7/12,zero unsafe,five deadlines**,after20,480training
+controls/72actual Adam steps. All27,737training/evaluation controls and12initial
+actions are audited. Basic motion is3/4withzero unsafe;static and dynamic are
+each2/4. Full-task capability remains below target.
+[Endpoint](../reports/native_B1_geometry_v4_PPO_endpoint_20261031.json),
+[optimizer/statistics analysis](../reports/native_B1_v4_training_analysis_20261031.json).
+Four failures stop1.45–2.37mshort while speed/yaw gates already pass;case7is
+3.45maway and still too fast. No success threshold is changed.
+[Terminal states](../reports/native_B1_v4_terminal_failures_20261031.json).
+The normalization statistics remain exactly frozen;all saved Adam parameter
+steps equal72. The new model's public packet is being processed separately;
+the public migration packet above contains the previous v3-trained model.
 
 ## Public shared-mask H frozen reevaluation
 

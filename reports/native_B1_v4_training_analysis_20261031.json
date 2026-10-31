@@ -1,0 +1,74 @@
+{
+  "scope": "One fixed20,480-control v4PPO development endpoint;not final confirmation or five trained seeds",
+  "batch": "20261031T022652Z_native_supervised_ppo",
+  "successes": 7,
+  "cases": 12,
+  "unsafe": 0,
+  "deadlines": 5,
+  "families": {
+    "curve_parking": {
+      "cases": 4,
+      "successes": 3,
+      "unsafe": 0
+    },
+    "static_obstacle": {
+      "cases": 4,
+      "successes": 2,
+      "unsafe": 0
+    },
+    "dynamic_interaction": {
+      "cases": 4,
+      "successes": 2,
+      "unsafe": 0
+    }
+  },
+  "training_controls": 20480,
+  "evaluation_controls": 7257,
+  "raw_controls_verified": 27737,
+  "optimization_phases": 16,
+  "actual_Adam_steps": 72,
+  "saved_Adam_parameter_steps": [
+    72
+  ],
+  "normalization_statistics_exactly_frozen": true,
+  "RMS_count": 3467.0001,
+  "last_failed_policy_actions_normalized_acceleration_steering": {
+    "3": [
+      -0.49713027477264404,
+      -0.23109441995620728
+    ],
+    "5": [
+      -0.11607742309570312,
+      -0.16599538922309875
+    ],
+    "7": [
+      0.05756177008152008,
+      -0.16018076241016388
+    ],
+    "10": [
+      -0.25526002049446106,
+      0.08945823460817337
+    ],
+    "11": [
+      -0.22231221199035645,
+      -0.9761074781417847
+    ]
+  },
+  "input_cost_lower_bound_including_current_evaluation": 39189,
+  "matched_v3_training_endpoint": {
+    "batch": "20261031T004737Z_native_supervised_ppo",
+    "controls": 20480,
+    "Adam_steps": 87,
+    "successes": 6,
+    "unsafe": 4
+  },
+  "v3_trained_frozen_v4_migration": {
+    "batch": "20261031T022009Z_native_geometry_migration",
+    "new_training": 0,
+    "successes": 7,
+    "unsafe": 1
+  },
+  "conclusion": "Basic-motion entry sanity passes3/4withzero unsafe;full task remains7/12andbelow target. Geometry/version effects and changed realized KL stopping are not evidence of standalone PPO superiority.",
+  "terminal_diagnosis": "Four failures stop1.45-2.37m before goal while speed/yaw gates pass;case7remains3.45m away and too fast. Success thresholds unchanged.",
+  "research_acceptance": "UNMET"
+}

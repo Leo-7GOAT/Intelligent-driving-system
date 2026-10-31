@@ -1,4 +1,4 @@
-# Current handoff — 2026-10-31 10:56 local
+# Current handoff — 2026-10-31 11:22 local
 
 Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
 
@@ -25,8 +25,16 @@ Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
   same initial policy tensors/empty optimizer/normalizer/RNGas v3004737;only
   environment geometry field changes. Original v3teacher data disclosed.
   Training is now COMPLETE20,480controls/72Adam/39episodes/1635.32s;reload exact.
-  Same worker is performing all12frozen evaluations. Do not rerun training or
-  report an endpoint score before the completion/raw-audit receipt.
+  Full endpoint is COMPLETE7/12,zero unsafe,five deadlines;families3/4,2/4,2/4.
+  Guard0/owned-empty cleanup;27,737controls and12actions audited. All saved
+  Adam parameter steps72;RMSmean/variance/count exactly frozen3467.0001.
+  Four failures stop1.45–2.37mshort with speed/yaw gates passing;case7is3.45m
+  away/too fast. Reports native_B1_geometry_v4_PPO_endpoint_20261031.json,
+  native_B1_v4_training_analysis_20261031.json,native_B1_v4_terminal_failures_20261031.json.
+  Modelc4cc9c09…,normalizer49b9e7de…. Never rerun this completed phase.
+- Hfrozen v4migration023833is ACTUALLY RUNNING,worker16652/guard49088;last
+  observed case7. Its new H0migration023839is still queued,not simultaneously
+  driving. Both retain old policy weights/lineage with zero new PPO updates.
 - Queues8900H0→migration and9516migration→v4B1training have activated their child.
   Current remaining queues:19508v4B1→Hfrozen v4migration023833;
   62136H→H0frozen v4migration023839. Waiter49052was superseded only
@@ -80,6 +88,18 @@ Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
   reports/native_geometry_public_verification_20261031.json.
 - Latest code2fe4af8is pushed/remote verified. Full local672passed/1skip/4CARLA
   exclusions217.71s. Hosted41162252424SUCCESS657/16skip/4CARLA191.76s.
+- New B1v4PPO public publisher56860was launched with a2400s cap. It plots,
+  packages,uploads2MiBparts,downloads without auth,and uses the independent
+  checkout to reproduce all raw frames/inference/PNG. No driving/updates/retries.
+  Actual receipt runs/B1_v4_PPO_publication_launch_20261031.json;logs
+  runs/B1_v4_PPO_publication_20261031.log/.err.log. Do not claim publication
+  complete until reports/B1_v4_PPO_public_verification_20261031.json exists.
+  Failure receipt runs/B1_v4_PPO_publication_failure_20261031.json if it fails.
+- Unchanged B1continuation031506to cumulative102400(81920extra) is PREPARED,
+  NOT QUEUED/STARTED. It owns the current runs/native_continuation.json pointer;
+  do not mistake this for execution. Strong negative acceleration in the four
+  stopped failures makes an unchanged small-noise long run questionable;inspect
+  the terminal-state evidence before activating. Preserve its registration.
 
 ## Archived handoff before the geometry diagnostic
 

@@ -5,8 +5,9 @@ H0 7/12**, both without unsafe episodes. One seed does not establish a feedback
 benefit. Longer-rollout B1 completes **6/12 with four bounds failures**.
 An explicitly versioned finer collision grid removes two recorded raster-only
 boundary flags; frozen B1 migration then completes **7/12 with one bounds
-failure**, with zero new updates. Matched PPO training on the new geometry is
-now running. [Diagnosis and evidence](reports/native_geometry_resolution_20261031.md).
+failure**, with zero new updates. Matched PPO on the new geometry completes
+**7/12 with zero unsafe episodes and five deadlines** after20,480real controls
+and72Adam steps. [Diagnosis and evidence](reports/native_geometry_resolution_20261031.md).
 These are known development conditions; research acceptance remains unmet.
 
 Earlier execution snapshot:
