@@ -11,7 +11,10 @@ H0仅静态条件5超时；单种子一例差异尚不能证明反馈机制有�
 四次失败提前停在距终点1.45–2.37米处，原成功距离阈值未改。两臂等量监督拟合现已完成：
 重放8/12、3次越界；加入训练阶段接近终点样本后10/12、2次越界。二者均零PPO更新，
 不能称为PPO收益或合格安全基线。全部10,193评估控制帧及两份公开数据包已独立复现。
-相同20,480控制步的真实PPO对照已排队、尚未启动。
+相同20,480控制步的真实PPO对照现已完成：重放初始化为4/12，接近终点初始化为6/12，
+两者均4次越界、1次碰撞，仍不合格。两份公开训练包及完整对照已从公开下载数据独立复现，
+全部53,324控制帧和失败均保留。较小学习率的新试验已实际训练，尚无完整评估结果。
+[完整PPO对照](../reports/native_B1_v4_actor_fit_PPO_pair_20261031.md)。
 [完整对照](../reports/native_B1_v4_approach_pair_complete_20261031.json)。
 这些均为开发条件；五个独立训练种子、健康完整任务B1及全新最终条件等验收仍未完成。
 
@@ -108,6 +111,19 @@ python -m venv .venv
 最新本地和独立checkout全量回归均为 **133通过、5条件跳过**。跳过项不计为实测通过。原生地图、执行器和完整物理帧实测见[原生道路报告](../reports/native_road_learning_20261022.md)及[恢复训练报告](../reports/recovery_stability_20261023.md)。
 
 ## 开发模型复现
+
+当前原生B1的完整开发证据可用以下两步下载并复现，无需GitHub登录或重新启动CARLA：
+
+```powershell
+$capsuleUrl = 'https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_v4_approach_PPO_20261031_repro.zip.parts.json'
+$capsuleSha = 'ebc35169fb1efee6841f21b595071de12a20cae85074aef574290c28469b58f7'
+.\.venv\Scripts\python.exe scripts/download_native_asset.py --manifest-url $capsuleUrl --sha256 $capsuleSha --output runs/public_B1_approach_download
+.\.venv\Scripts\python.exe scripts/reproduce_native_asset.py --archive runs/public_B1_approach_download/native_B1_v4_approach_PPO_20261031_repro.zip --sha256 $capsuleSha --output runs/public_B1_approach_reproduced
+```
+
+命令校验全部21个分片与整包哈希，再核对25,745个真实控制记录、12个起始动作并重建结果图。
+该包保留6/12成功及全部失败，不代表合格基线或最终确认。下载器限制并发、时间和磁盘占用，
+不覆盖已有目录；中断文件保留。每次复现使用新输出路径。此前轻量开发资产的复现方式保留如下。
 
 将开发预发布资产解压到`runs/`，得到`runs/development_v8_seed11/`后执行：
 

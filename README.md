@@ -233,6 +233,29 @@ For existing locally saved historical data, rebuild the historical report with:
 
 ## Reproduce the development asset
 
+For the current native B1 approach-PPO evidence, download all checked parts and
+reconstruct the raw audit, frozen-model start actions and result figure with:
+
+```powershell
+$capsuleUrl = 'https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_v4_approach_PPO_20261031_repro.zip.parts.json'
+$capsuleSha = 'ebc35169fb1efee6841f21b595071de12a20cae85074aef574290c28469b58f7'
+.\.venv\Scripts\python.exe scripts/download_native_asset.py --manifest-url $capsuleUrl --sha256 $capsuleSha --output runs/public_B1_approach_download
+.\.venv\Scripts\python.exe scripts/reproduce_native_asset.py --archive runs/public_B1_approach_download/native_B1_v4_approach_PPO_20261031_repro.zip --sha256 $capsuleSha --output runs/public_B1_approach_reproduced
+```
+
+The downloader uses Python's standard library, needs no GitHub login, checks
+every part and the complete 44,030,278-byte archive, and refuses existing output
+directories. Requests have a bounded wall budget, at most three concurrent
+transfers and a free-space check; partial evidence is preserved on failure.
+This capsule deliberately includes the failed **6/12** development endpoint,
+all **25,745** native training/evaluation controls and its exact operational
+watchdog snapshot. Reproduction performs no new CARLA driving or PPO updates.
+Use fresh output paths. Other public capsule URLs and trusted hashes are in
+their verification reports; the same downloader accepts this project's release
+parts manifests. All remain development evidence, not research acceptance.
+
+The earlier lightweight asset is retained below for historical reproduction.
+
 The development pre-release asset is `development_v8_seed11.zip` (SHA256 `ad656334aa8386d1efcf0afbd14b5ef45f3fc4fae1da763b0dc8542469cc6b1c`). It contains both200k H/H0 checkpoints, frozen source/normalization/configuration, optimizer and training-episode summaries, and all20 development evaluation traces. Read the [model card](docs/model_card.md) before interpreting the results. This is a bounded development asset, not the full final experiment archive.
 
 Download the asset from the [development pre-release](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261022):

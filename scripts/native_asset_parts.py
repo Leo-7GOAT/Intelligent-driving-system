@@ -36,9 +36,8 @@ def split(archive,directory,part_bytes=MAX_PART):
     return path
 
 
-def join(manifest_path,output,expected_sha256):
-    manifest_path,output=Path(manifest_path),Path(output)
-    manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+def validate_manifest(manifest,expected_sha256):
+    if not isinstance(manifest,dict):raise ValueError('Manifest must be an object')
     if (manifest.get('version')!=VERSION or not isinstance(expected_sha256,str)
             or not re.fullmatch('[0-9a-f]{64}',expected_sha256) or manifest.get('sha256')!=expected_sha256
             or type(manifest.get('bytes')) is not int or not 0<manifest['bytes']<=2*1024**3):
@@ -54,10 +53,18 @@ def join(manifest_path,output,expected_sha256):
                 or not isinstance(part['sha256'],str) or not re.fullmatch('[0-9a-f]{64}',part['sha256'])):
             raise ValueError('Unsafe,duplicate or malformed part')
         names.add(part['name'])
+    if sum(p['bytes'] for p in parts)!=manifest['bytes']:raise ValueError('Total size mismatch')
+    return parts
+
+
+def join(manifest_path,output,expected_sha256):
+    manifest_path,output=Path(manifest_path),Path(output)
+    manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+    parts=validate_manifest(manifest,expected_sha256)
+    for part in parts:
         path=manifest_path.parent/part['name']
         if path.is_symlink() or path.stat().st_size!=part['bytes'] or digest(path)!=part['sha256']:
             raise ValueError('Part bytes differ from declared digest')
-    if sum(p['bytes'] for p in parts)!=manifest['bytes']:raise ValueError('Total size mismatch')
     temporary=output.with_name(output.name+'.partial')
     if output.exists() or temporary.exists():raise FileExistsError('Preserve existing output or interrupted assembly')
     output.parent.mkdir(parents=True,exist_ok=True)
