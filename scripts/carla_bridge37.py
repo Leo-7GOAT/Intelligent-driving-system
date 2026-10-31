@@ -208,13 +208,21 @@ class Bridge:
             else:
                 bp=self.world.get_blueprint_library().find('walker.pedestrian.0001')
                 if bp.has_attribute('is_invincible'):bp.set_attribute('is_invincible','false')
+                walker_transform=self.transform(x,y,yaw)
+                # Character capsules can overlap the road at the vehicle's
+                # .6m reset height. Raise initialization only; retain exact XY,
+                # yaw and the existing30ticks of gravity settlement.
+                walker_transform.location.z+=.2
                 try:
-                    hazard=self.world.spawn_actor(bp,self.transform(x,y,yaw))
+                    hazard=self.world.spawn_actor(bp,walker_transform)
                 except RuntimeError as exc:
                     raise RuntimeError('Native crossing walker spawn failed at local pose %r: %s' % ([x,y,yaw],exc))
                 self.owned.append(hazard);self.dynamic=[hazard]
                 self.walker_speed=self.native_hazard['walker_speed_m_s'];self.walker_delay=self.native_hazard['start_delay_s']
                 self.walker_direction=self.native_hazard['walker_direction_local']
+                self.native_hazard={**self.native_hazard,'walker_spawn_initialization':{
+                    'version':'native_walker_clearance_020_v1','requested_world_z':walker_transform.location.z,
+                    'clearance_added_m':.2,'settle_ticks':30}}
             self.native_hazard={**self.native_hazard,'actor_id':hazard.id,'actor_type':hazard.type_id}
         sensor=self.world.spawn_actor(self.world.get_blueprint_library().find("sensor.other.collision"),carla.Transform(),attach_to=self.actor)
         self.owned.append(sensor)
@@ -253,6 +261,10 @@ class Bridge:
             self.acceleration_controller=AccelerationPI(self.cal["recommended_adapter"])
         self.goal=self.native_layout["goal"] if self.native_layout else [27.,goal_y,0.]
         static=[]
+        if self.native_hazard and self.native_hazard['kind']=='crossing_walker':
+            self.native_hazard['walker_spawn_initialization'].update(
+                settled_world_z=self.dynamic[0].get_location().z,
+                capsule_half_height=self.dynamic[0].bounding_box.extent.z)
         for a in self.static_actors:
             points=[self.local(v.x,v.y) for v in a.bounding_box.get_world_vertices(a.get_transform())]
             if self.native_hazard and a.id==self.native_hazard['actor_id']:

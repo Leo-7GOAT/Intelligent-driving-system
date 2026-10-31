@@ -109,6 +109,25 @@ def test_frozen_replay_cannot_drop_unknown_tail_lost_controls_or_retained_update
     assert repeated['retained_optimizer_steps']==660 and repeated['unknown_unflushed_parent_tail']
 
 
+@pytest.mark.parametrize('fault',[None,'live','unclean','wrong_worker','exit_zero','wrong_error','bad_pose'])
+def test_exact_native_walker_spawn_failure_requires_dead_owned_empty_lifecycle(tmp_path,monkeypatch,fault):
+    fixture(tmp_path,monkeypatch)
+    final={'reason':None,'exit_code':1,'worker_pid':12341,'epoch':900.}
+    stop={'status':'owned_empty_server_stopped','shipping_pid':12344,'post_stop_tcp':[],'post_stop_udp':[]}
+    error="InfrastructureFailure('RuntimeError: Native crossing walker spawn failed at local pose [15.5, 4.25, 0.25]: Spawn failed because of collision at spawn position')"
+    if fault=='live':monkeypatch.setattr('navstack.process_lease.pid_alive',lambda pid:True)
+    elif fault=='unclean':stop['post_stop_tcp']=[2200]
+    elif fault=='wrong_worker':final['worker_pid']=12399
+    elif fault=='exit_zero':final['exit_code']=0
+    elif fault=='wrong_error':error=error.replace('collision at spawn position','arbitrary runtime failure')
+    elif fault=='bad_pose':error=error.replace('[15.5, 4.25, 0.25]','[15.5, 4.25]')
+    write_json(tmp_path/'guard_final.json',final);write_json(tmp_path/'failure.json',{'error':error})
+    write_json(tmp_path/'infrastructure/server_stop.json',stop)
+    if fault is None:assert verified_interruption(tmp_path)=='native_crossing_walker_spawn_collision'
+    else:
+        with pytest.raises(ValueError):verified_interruption(tmp_path)
+
+
 @pytest.mark.parametrize('fault',[None,'other_error','live','unclean'])
 def test_actor_cleanup_interruption_requires_exact_error_and_absent_owned_lifecycle(tmp_path,monkeypatch,fault):
     fixture(tmp_path,monkeypatch)
