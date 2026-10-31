@@ -1,3 +1,12 @@
+# Current actual evidence — 2026-11-01 07:32
+
+Restartseed11checkpoint_000001280ACTUALLYSAVED,Adam1,all3model/norm/RNGhashes
+verified. Newrawcontrols1353observed,worker35632anddriver62176live. First lost
+oldAdamupdate remains lost/charged,not confusedwithnewretainedAdam. B2seed44
+ACTUALPUBLICRECONSTRUCTIONCOMPLETE;receipt20261101nowexists. Remaining55is
+uploading under70304,tool23727;correctobjectsnotreuploaded. Independent166tests
+PASS9.83secsource284a52c. GoalstillUNMET,allnewcourseendpointsstillpending.
+
 # Current proof — 2026-11-01 07:31
 
 Code284a52c9b1140b044e5f5699deb204de8f47ae69pushed. Secondary independent

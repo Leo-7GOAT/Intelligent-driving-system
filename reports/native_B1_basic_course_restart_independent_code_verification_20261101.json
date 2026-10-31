@@ -12,5 +12,37 @@
   "new_execution": "B1_basic_PPO_execution_20261101_v2_external_interruption",
   "new_course_learning_claim": "Registered actual native learning;complete endpoints pending",
   "new_controls_in_this_verification": 0,
-  "research_acceptance": "UNMET"
+  "research_acceptance": "UNMET",
+  "first_new_trained_checkpoint": {
+    "batch": "20261031T232838093068Z_native_B1_basic_PPO_course",
+    "metadata": {
+      "folder": "checkpoint_000001280",
+      "threshold": 1280,
+      "physics_steps": 1280,
+      "actions": 1280,
+      "episodes": 3,
+      "optimization_phases": 1,
+      "optimizer_steps": 1,
+      "reward_components": {
+        "event": 60.0,
+        "time": -6.399999999999886,
+        "risk": -8.25394344657386,
+        "comfort": -1.0553734815469182,
+        "potential": 2.0741704096794242,
+        "task_progress": 36.52401134972167
+      },
+      "modes": {
+        "flat": 1280
+      },
+      "action_histogram": {},
+      "world_ticks": 1403,
+      "lineage_control_steps": 1280,
+      "charged_control_steps_lower_bound": 47819,
+      "model_sha256": "8fb24ff98ee18b541cadd594e318389ea6ba5bfd0d284328ecf2d8cd03a42aca",
+      "normalization_sha256": "53c53cb32215ebe73bba54524a3fdff9461626f8a284c26ed39217c953a5cfec",
+      "resume_state_sha256": "21dff7225495a4055722f1f15077b864e4f76630bf351ebf0bf45f71ab313993",
+      "note": "Learning state retained; recovery starts a new CARLA episode and counts all reset/lost interactions"
+    },
+    "all_three_saved_file_hashes_verified": true
+  }
 }
