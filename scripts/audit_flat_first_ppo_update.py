@@ -58,6 +58,9 @@ def analyze(batch, output):
     model = load_ppo(origin / 'model.zip', device='cpu')
     if model.num_timesteps or model._n_updates or model.policy.optimizer.state:
         raise ValueError('Require a zero-PPO initializer')
+    baseline_rate = float(model.lr_schedule(1.))
+    if not 0 < baseline_rate <= 1e-3 or model.lr_schedule(0.) != baseline_rate:
+        raise ValueError('Require the registered finite constant learning rate')
     with (origin / 'normalization.pkl').open('rb') as stream:
         norm = pickle.load(stream)
     norm.training = False
@@ -142,7 +145,7 @@ def analyze(batch, output):
         raise ValueError('First completed checkpoint differs')
     target = load_ppo(target_dir / 'model.zip', device='cpu')
     branches = []
-    for rate in (3e-5, 1e-5, 3e-6):
+    for rate in dict.fromkeys((baseline_rate, 3e-5, 1e-5, 3e-6)):
         branch = load_ppo(origin / 'model.zip', device='cpu')
         branch.rollout_buffer = copy.deepcopy(model.rollout_buffer)
         branch.lr_schedule = lambda progress, rate=rate: rate
@@ -157,7 +160,7 @@ def analyze(batch, output):
             hook.remove()
         exact = all(torch.equal(value, target.policy.state_dict()[name])
                     for name, value in branch.policy.state_dict().items())
-        if rate == 3e-5:
+        if rate == baseline_rate:
             if not exact or len(steps) != actual['optimizer_steps']:
                 differences = {name: float((value - target.policy.state_dict()[name]).abs().max())
                                for name, value in branch.policy.state_dict().items()
@@ -172,7 +175,7 @@ def analyze(batch, output):
                 torch.distributions.Normal(old_mean, old_std),
                 torch.distributions.Normal(new.mean.double(), new.stddev.double())).sum(-1)
         branches.append({'learning_rate': rate, 'optimizer_steps': len(steps),
-                         'baseline_parameters_exact': exact if rate == 3e-5 else None,
+                         'baseline_parameters_exact': exact if rate == baseline_rate else None,
                          'exact_full_rollout_kl_mean': float(kl.mean()),
                          'exact_full_rollout_kl_max': float(kl.max()),
                          'metrics': {key: float(value) for key, value in branch.logger.name_to_value.items()}})

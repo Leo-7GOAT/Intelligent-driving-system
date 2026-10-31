@@ -24,7 +24,8 @@ spec=importlib.util.spec_from_file_location('exact_flat_history',Path(__file__).
 history=importlib.util.module_from_spec(spec);spec.loader.exec_module(history)
 
 
-def query(batch,oracle_config,output,approach=False):
+def query(batch,oracle_config,output,approach=False,coverage=False):
+    if approach and coverage:raise ValueError('Choose one explicit training-query profile')
     batch,oracle_config,output=map(Path,(batch,oracle_config,output));folder=batch/'B1'
     output.mkdir(parents=True,exist_ok=False);started=time.monotonic();deadline=started+900
     protocol=read(batch/'protocol.json');raw=read(folder/'endpoint_raw_audit.json')
@@ -37,12 +38,15 @@ def query(batch,oracle_config,output,approach=False):
         or teacher.reward!=cfg.reward or teacher.road_geometry_version!=cfg.road_geometry_version
         or teacher.planner.max_seconds is not None or teacher.goal_tolerance!=cfg.goal_tolerance):
         raise ValueError('Oracle task/geometry/vehicle/reward differs')
-    offsets=(180,120,60,20,0) if approach else (60,20,0)
+    offsets=(0,40,80,120,160,200) if coverage else (180,120,60,20,0) if approach else (60,20,0)
     maximum=12*len(offsets)
     registration={'scope':__doc__,'batch':batch.name,'raw_audit_sha256':sha(folder/'endpoint_raw_audit.json'),
         'oracle_config_sha256':sha(oracle_config),'script_sha256':sha(Path(__file__)),
-        'history_source_sha256':sha(Path(history.__file__)),'selection':'First training state per registered condition with time>=5s,abs(speed)<.05m/s and goal distance in(goal_tolerance,4m);fixed preceding offsets. No evaluation states or outcome-based selection.',
+        'history_source_sha256':sha(Path(history.__file__)),'selection':
+            'First completed training episode per registered condition,regardless of outcome;fixed absolute controls0,40,80,120,160,200 when present. No evaluation states or outcome selection.' if coverage else
+            'First training state per registered condition with time>=5s,abs(speed)<.05m/s and goal distance in(goal_tolerance,4m);fixed preceding offsets. No evaluation states or outcome-based selection.',
         'offsets_controls':list(offsets),'approach_profile':approach,
+        'coverage_profile':'first_episode_early_controls_v1' if coverage else None,
         'maximum_queries':maximum,'wall_seconds':900,'new_controls':0,'PPO_updates':0,'supervised_updates':0}
     (output/'registration.json').write_text(json.dumps(registration,indent=2),encoding='utf-8')
     shutil.copy2(Path(__file__),output/'executed_query_script.py');shutil.copy2(Path(history.__file__),output/'executed_history_script.py')
@@ -69,6 +73,9 @@ def query(batch,oracle_config,output,approach=False):
             if episode not in completed:continue
             begin=begins[rows[0]['trace'][0]['backend_evidence']['episode_id']];condition=begin['scene']['condition']
             if condition in selected:continue
+            if coverage:
+                selected[condition]=(episode,[index for index in offsets if index<len(rows)])
+                continue
             goal=begin['scene']['goal'];state=begin['state']
             for index,row in enumerate(rows):
                 distance=math.hypot(state['x']-goal[0],state['y']-goal[1])
@@ -131,5 +138,7 @@ def query(batch,oracle_config,output,approach=False):
 if __name__=='__main__':
     p=argparse.ArgumentParser()
     for name in ('batch','oracle-config','output'):p.add_argument('--'+name,required=True)
-    p.add_argument('--approach',action='store_true',help='Also query6/9seconds before the first stopping state;all original queries remain included')
-    a=p.parse_args();query(a.batch,a.oracle_config,a.output,a.approach)
+    profiles=p.add_mutually_exclusive_group()
+    profiles.add_argument('--approach',action='store_true',help='Also query6/9seconds before the first stopping state;all original queries remain included')
+    profiles.add_argument('--coverage',action='store_true',help='Query fixed early controls of the first completed training episode of every condition,regardless of outcome')
+    a=p.parse_args();query(a.batch,a.oracle_config,a.output,a.approach,a.coverage)

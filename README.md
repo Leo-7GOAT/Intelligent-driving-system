@@ -44,7 +44,11 @@ learning-rate B1 probe is [registered](reports/native_B1_v4_approach_lower_lr_pr
 from the same approach initializer; its physical runtime, normalization, RNG
 and task criteria are preserved. It has now [started actual native PPO updates](reports/native_B1_v4_approach_lower_lr_first_update_20261031.json):
 the first 1,280 controls produce 40 Adam steps with frozen observation statistics.
-No improved-driving result is claimed yet.
+Its [complete registered endpoint](reports/native_B1_v4_approach_lower_lr_complete_20261031.md)
+now scores **10/12, two bounds failures, zero collisions/deadlines**, after
+20,480 native training controls and 610 Adam steps. Basic motion is4/4,static
+and dynamic3/4each; safety remains unqualified. This improves the3e-5probe but
+does not exceed its actor-only initializer's10/12count or establish PPO value.
 These are development conditions; five trained seeds, a healthy full-task B1,
 new final conditions and research acceptance remain unmet.
 
