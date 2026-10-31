@@ -28,7 +28,10 @@ success gates. An exclusive file handle prevents simultaneous launchers.
 `-ActivateQueued -ActivateOnly` activates a queue entry without starting a server;
 normally use the combined command above. Repeated activation is rejected.
 
-For a registered rule diagnostic, add `-Kind rule`. Explicit runtime overrides
+For a registered rule diagnostic, add `-Kind rule`. For a fixed-reference
+controller diagnostic, add `-Kind control`to both validation and execution;
+its guard explicitly recognizes`native_curve_control.py`as the actual script.
+Explicit runtime overrides
 are `-Python` and `-CarlaPython`. The default main runtime is `.venv`; the default
 client is `.carla-python37/runtime/python.exe` or `NAVSTACK_CARLA_PYTHON`.
 No reinstall, environment upgrade or old-plant restoration occurs.

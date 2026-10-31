@@ -2,6 +2,13 @@
 
 Original goal ACTIVE/UNMET. Latest evidence: reports/completed_native_diagnostics_20261031.md.
 
+Two bounded postprocessors are also actually launched:36796waits Hreevaluation,
+23360waits new B1rollout1280. They only read the completed experiment/model,
+audit raw frames/inference and save new reports;no driving or optimizer updates.
+Each stops on phase failure or its10800-second cap,with no retries. Receipts in
+runs/endpoint_postprocessors_actual_launches_20261031.json. These are running
+local programs,not a claim that a model keeps reasoning outside the session.
+
 - B1fixed units020728COMPLETE2/12,5bounds/1collision/4deadline;20480train,208Adam,7417eval;27897rawcontrols and12initial actions audited. Rejected. Public480file model/raw capsule uploaded/downloaded and independently reproduced27897controls/12actions/identical PNG.
 - Repaired native control pair004553035320/MPC and004553454599/Pursuit COMPLETE4/4each,1904+1907RPC-bound controls. Both guard0/owned-empty stop. Pursuit lower lateral/speed error and jerk;MPCsmoothness result does not transfer. First024600guard-failed MPC1905controls retained/separately audited. Native1297file capsule public/downloaded and independently reproducedall5716frames/three metric reports/identical PNG.
 - Hfrozen evaluation001732ACTUALLY RUNNING worker32988/guard15576. No new PPOupdates.

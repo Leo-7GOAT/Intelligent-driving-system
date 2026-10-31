@@ -2,15 +2,21 @@
 
 ## 31October execution update
 
-The fixed-reference lightweight control probe completes80episodes/38962steps,
-with all states and terminal/metric aggregates verified;MPC and Pursuit/PI each
-complete40/40but show a tracking/comfort/compute tradeoff. These are not trained
-PPO seeds or CARLA confirmation. An earlier20-episode/10190-step centreline
-version remains separate. The native controller pair is queued. Shared-mask H
-completed20674real training controls but its evaluation stopped on an unknown
-actor guard after10completed cases;no complete score is declared. B1fixed reward
-units is actually training;H0-only training and frozen Hreevaluation are prepared
-and queued with strict owned-empty lifecycle barriers. [Detailed evidence](../reports/controller_and_native_recovery_20261031.md).
+The fixed-reference lightweight probe completes80episodes/38962steps;MPC and
+Pursuit/PIeach40/40,with a tracking/comfort/compute tradeoff. The actual native
+pair now also completes4/4each,with3811RPC-bound controls and lower native
+tracking error/jerk for Pursuit. The earlier1905-control guard-failed native run
+and10190-control lightweight prefix remain separately charged. These are control
+diagnostics,not trained PPO seeds or final confirmation.
+
+B1fixed reward units completes2/12with six unsafe episodes after20480training
+controls/208Adam;it is rejected as healthy. All27897rawcontrols and12initial
+actions independently reproduce from the public capsule. Htraining20674controls
+is retained;fresh frozen reevaluation is running after the original ownership
+guard failure. New B1rollout1280,H0-only,seed22and separated train/validation
+phases follow through strict owned-empty lifecycle queues.
+[Completed evidence](../reports/completed_native_diagnostics_20261031.md) and
+[public independent reconstructions](../reports/completed_native_public_reproduction_20261031.json).
 The full original acceptance remains **UNMET**.
 
 ## Current audit — 2026-10-28
