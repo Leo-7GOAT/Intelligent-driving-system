@@ -12,7 +12,7 @@ function New-NativeGuardSnapshot {
     param([Parameter(Mandatory=$true)][string]$SourceRoot,[Parameter(Mandatory=$true)][string]$Destination)
     if(Test-Path -LiteralPath $Destination){throw 'Preserve existing operational guard snapshot'}
     $snapshotFiles=@(Get-ChildItem -LiteralPath (Join-Path $SourceRoot 'navstack') -Filter '*.py' -File -Recurse)
-    foreach($snapshotName in @('watch_existing_pair.py','stop_owned_carla.ps1','run_registered_native.ps1')) {
+    foreach($snapshotName in @('watch_existing_pair.py','stop_owned_carla.ps1','probe_carla37.py','run_registered_native.ps1')) {
         $snapshotFiles+=Get-Item -LiteralPath (Join-Path $SourceRoot ('scripts/'+$snapshotName)) -ErrorAction Stop
     }
     $snapshotRoot=Join-Path $Destination 'source'

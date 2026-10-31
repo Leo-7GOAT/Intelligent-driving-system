@@ -2,10 +2,12 @@
 
 Latest operational update:seed22H also completes12/12development cases with
 zero unsafe after20539training controls/650Adam. All24858Hcontrols verify.
-Its later H0is interrupted by a guard telemetry CLI timeout and is now actually
-recovering from10072controls/320Adam. At least6698nonretained controls remain
-charged. This is not a normally closed second feedback pair or a matched
-consumed-budget result. [Fault/recovery evidence](../reports/native_seed22_GPU_timeout_recovery_20261031.json).
+Its later H0was interrupted by a guard telemetry CLI timeout and now completes
+10/12,zero unsafe,after checkpoint recovery. At least6698nonretained controls
+remain charged;retained lineage20537controls/650Adam differs from gross
+consumption. The original first-cleanup error remains alongside verified
+fallback cleanup. This is not a matched consumed-budget feedback result.
+[Completion/recovery evidence](../reports/native_seed22_recovery_completion_and_probe_fix_20261031.json).
 Five completed seeds and independent final confirmation remain unmet.
 
 Current 31 October update: trained-v4 H completes **12/12 development cases**,

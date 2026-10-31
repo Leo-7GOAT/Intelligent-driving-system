@@ -71,7 +71,7 @@ def test_explicit_operational_guard_validation_still_writes_nothing(tmp_path):
 
 def test_operational_snapshot_is_separate_hash_bound_and_never_overwrites(tmp_path):
     origin=tmp_path/'guard source';(origin/'navstack').mkdir(parents=True);(origin/'scripts').mkdir()
-    files=['navstack/__init__.py','scripts/watch_existing_pair.py','scripts/stop_owned_carla.ps1','scripts/run_registered_native.ps1']
+    files=['navstack/__init__.py','scripts/watch_existing_pair.py','scripts/stop_owned_carla.ps1','scripts/probe_carla37.py','scripts/run_registered_native.ps1']
     for name in files:(origin/name).write_text('# inert fixture '+name,encoding='utf-8')
     driver=tmp_path/'snapshot_only.ps1'
     driver.write_text('''param([string]$Source,[string]$Origin,[string]$Destination)

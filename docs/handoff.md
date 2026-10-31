@@ -3,6 +3,38 @@
 Original objective ACTIVE/UNMET. This section supersedes all earlier live
 process identities. Verify receipts and creation times before acting.
 
+- Latest actual state:recovered H0finished10465new training controls/330Adam,
+  retained lineage20537/650Adam. Full endpoint10/12,zero unsafe;static cases5/7
+  hit deadlines. New segment15887rawcontrols and12start actions audit. Hseed22
+  remains12/12. Pair report native_v4_seed22_recovered_feedback_pair_20261031.json;
+  p=.5,one developmental recovered pair,not a consumed-budget-matched result.
+- The operational override snapshot omitted probe_carla37.py. Its first cleanup
+  failed,then the ORIGINAL fallback correctly confirmed the empty server and
+  stopped it. Preserve launcher_failure.json/server_cleanup.json. Guard exit0,
+  complete summary,owned stop/empty ports and dead recorded lifecycle were
+  explicitly verified. Reconciliation receipts
+  native_H0_recovery_cleanup_reconciliation_20261031.json and
+  native_seed22_recovery_completion_and_probe_fix_20261031.json. No training rerun.
+  Snapshot now includes the probe;18dependency/cleanup tests pass14.39s. The
+  actual new snapshot probe also connects readonly to active CARLA0.9.15and
+  sees its3actors;it never advances the world. Complete cleanup on the new
+  dependency snapshot will be observed at the next native stage exit.
+- First queue61728stopped on the preserved parent launcher failure. After
+  verified fallback cleanup,B1replay042301092506was explicitly activated clock
+  only and launched once. ACTUALLY TRAINING worker69712(wrapper49880):first
+ 1280controls include2actual Adam updates,actorL2change.0156. No endpoint yet.
+  Actual new guard snapshot contains the probe and correct hashes. Receipts
+  runs/B1_replay_PPO_reconciled_launch_20261031.json and
+  runs/B1_current_guard_snapshot_readonly_probe_20261031.json. Downstream queues
+  17716/652/10840/67120/22264remain valid,using the updated root launcher at start.
+- Remaining-seed driver is now V3,actual worker55888(wrapper9476),waiting ALL
+  original gates,no prepared children. Status
+  runs/remaining_v4_seed_PPO_execution_20261031_v3/status.json;launch
+  runs/remaining_v4_seed_PPO_probe_fixed_driver_launch_20261031.json. V2worker71584
+  was stopped only while waiting with no children;receipt
+  runs/guard_driver_v2_superseded_for_probe_dependency_20261031.json. Do not
+  invoke either older driver. V3freezes the dependency-complete new launcher.
+
 - NEW authoritative operational state:seed22parent025409042778STOPPED after
   one10s nvidia-smi probe timeout raised in its legacy guard. Actual worker
   ended;owned-empty server cleanup confirmed. This was NOT a measured overheat:
