@@ -11,3 +11,5 @@
 # Historical evidence retains its original bytes, including line endings/spaces.
 legacy_snapshot_20261016/** -text -whitespace
 reports/legacy_to_current.patch -text -whitespace
+# This completed execution register is hash-bound by the original cohort report.
+protocols/native_B2_completed_cohort_state_20261101.json -text -whitespace
