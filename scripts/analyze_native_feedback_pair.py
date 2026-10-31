@@ -56,7 +56,7 @@ def analyze(h,h0,output):
         'paired_difference_percentage_points':100*(len(wins)-len(losses))/12,
         'conditional_exact_discordance_p_two_sided':float(binomtest(len(wins),len(wins)+len(losses)).pvalue) if wins or losses else 1.,
         'families':families,'source_and_model_proof':proof,
-        'limits':'One training seed;conditions reused in development;actual physical budgets differ by phase overshoot;H includes retained training and a separately charged interrupted evaluation. No seed-level confidence interval or PPO-vs-rule advantage established.',
+        'limits':'One training seed;conditions reused in development;actual physical budgets and inherited costs are reported per method,including phase overshoot. No seed-level confidence interval or PPO-vs-rule advantage established.',
         'research_acceptance':'UNMET'}
     with output.open('x',encoding='utf-8') as f:json.dump(result,f,indent=2)
     print(json.dumps({k:v for k,v in result.items() if k!='source_and_model_proof'}));return result

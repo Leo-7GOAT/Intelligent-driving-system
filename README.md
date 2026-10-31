@@ -2,10 +2,12 @@
 
 Latest (31 October): H trained on the explicitly versioned v4 geometry
 completes **12/12 known development conditions, zero unsafe episodes**, after
-20,563 real CARLA training controls and 650 Adam steps. All 24,900 training and
-evaluation controls and twelve measured-start actions verify. H0 has completed
-20,562 training controls/650 Adam steps; its evaluation is still running.
-[Completed H method evidence](reports/native_H_v4_seed11_method_complete_20261031.json).
+20,563 real CARLA training controls and 650 Adam steps. Its matched H0 endpoint
+is **11/12, zero unsafe**, after 20,562 training controls/650 Adam steps.
+All 50,348 training/evaluation controls and 24 measured-start actions verify;
+the owned server has been cleaned up. The one-case gap is not significant
+(exact discordance p=1.0).
+[Complete paired evidence](reports/native_v4_trained_seed11_feedback_pair_20261031.json).
 
 The separate **frozen-weight** v4 migration scores H 9/12 versus H0 10/12,
 with no unsafe episodes. This reverses the earlier v3 gap and establishes no

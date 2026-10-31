@@ -3,13 +3,20 @@
 Original objective ACTIVE/UNMET. This section supersedes all earlier live
 process identities. Verify receipts and creation times before acting.
 
-- Batch025409165666 H is complete **12/12, zero unsafe, all core families4/4**.
+- Batch025409165666 is FULLY COMPLETE: **H12/12,H011/12,zero unsafe**.
+  Both method postprocessors completed and normal guard0/owned-empty server
+  cleanup is recorded. H0's only failure is static case5(deadline). Actual
+  H020,562training/4,886evaluation controls/650Adam. Combined50,348rawcontrols
+  and24start actions verify. Reports native_H_v4_seed11_endpoint_20261031.json,
+  native_H0_v4_seed11_endpoint_20261031.json,and
+  native_v4_trained_seed11_feedback_pair_20261031.json;exact p=1.0.
+  B1replay034614809334is now ACTUALLY EVALUATING under worker28880;
+  approach034641272228stillwaits for its normal owned cleanup.
+- Earlier completed-H method snapshot remains intact for provenance.
   Actual20,563training controls/650Adam,4,337evaluation controls;all24,900raw
   frames and12measured-start actions verify. Early report
-  reports/native_H_v4_seed11_method_complete_20261031.json. It does not claim
-  whole-batch closure. H0 training has also completed20,562controls/650Adam;
-  its evaluation is running under worker40148/guard65320. Whole-batch raw
-  postprocessors wait for H0,normal guard0andowned-empty server cleanup.
+  reports/native_H_v4_seed11_method_complete_20261031.json. This earlier method
+  report does not claim whole-batch closure;use the completed pair above.
 - Frozen-v4 migration pair023833/023839 is complete **H9/12,H010/12**,zero
   unsafe. Difference-8.33pp,exact discordance p=1.0. This reverses the older
   v3gap;feedback benefit remains unproven. Reports
@@ -49,7 +56,29 @@ process identities. Verify receipts and creation times before acting.
   a still-untrained model;all non-log_std changes/trained-state use still reject.
   Full local CPU **676passed,1skip,4CARLA deselected,187.30s**;targeted24pass7.35s.
   Logs runs/approach_pair_full_cpu_20261031.log and
-  runs/approach_pair_targeted_tests_20261031.log. No hosted result claimed yet.
+  runs/approach_pair_targeted_tests_20261031.log. Hosted verification follows.
+- Sourceff3963a is pushed/remote verified;hosted41167159676is SUCCESS.
+  Hosted661passed/16skip/4CARLA exclusions193.69s. New initializer-geometry
+  guard tests pass7checks3.50s;full root now682passed/1skip/4CARLA exclusions
+  197.56s. Log runs/pristine_initialization_full_cpu_20261031.log.
+  Independent checkoutff3963apasses40targeted checks in9.36s. Initial command
+  used a nonexistent partition-test filename and
+  ran zero tests;retained separately. Corrected invocation passed all40.
+- Remaining seed33/44/55pristine zero-PPO initializers now have separate v4
+  copies040926397622/041003482907/041003481908. Model,normalization and RNGbytes
+  are exact;only environment geometry field changes. Original v3teacher inputs
+  remain disclosed. All three frozen388-file launch validations pass. They
+  are queued AFTER the train36/validation24pair,then33→44→55,with exact parent
+  normal-cleanup checks. Queue PIDs24484/60144/64416;receipt
+  runs/remaining_v4_seed_queue_launches_20261031.json. Six read-only endpoint
+  postprocessors also launched;receipt remaining_v4_seed_postprocessors_launches_20261031.json.
+  These are representation gates,NOT completed independent PPO seeds. After
+  each complete audit,use existing guarded supervised-PPO preparation and
+  original75percent representation gate;never skip a failed fixed seed.
+- Bounded H/H0v4public publisher59436is now launched(2400s),local complete
+  archive66,513,018bytes/609files,SHA1374429bca525b878cfdb86fb9ffd9f6b1d3943c24ff8208c056b6458e009351.
+  It uploads/downloads/reconstructs50,348controls;do not claim public completion
+  before reports/H_H0_v4_PPO_public_verification_20261031.json exists.
 - Five independently trained seeds,healthy full-task B1,at least120NEWpaired
   final conditions,frequency/shared-safety ablations,PPOversusstrongB3and
   statistically supported hierarchy/feedback value remain open. All known12

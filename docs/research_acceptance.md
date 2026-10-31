@@ -2,10 +2,12 @@
 
 Current 31 October update: trained-v4 H completes **12/12 development cases**,
 zero unsafe, after 20,563 real training controls/650 Adam steps. All 24,900 raw
-controls and twelve measured-start actions verify. H0 training is complete
-(20,562 controls/650 Adam); evaluation is pending. This is one seed on known
-conditions, not the five-seed/new-final-condition acceptance result.
-[H method report](../reports/native_H_v4_seed11_method_complete_20261031.json).
+controls and twelve measured-start actions verify. H0 also completes11/12,
+zero unsafe, after20,562controls/650Adam. The pair has50,348verified controls,
+24exact start actions and normal owned cleanup. One discordant static case
+gives exact p=1.0;this does not establish feedback benefit. This is one seed on
+known conditions,not the five-seed/new-final-condition acceptance result.
+[Complete pair](../reports/native_v4_trained_seed11_feedback_pair_20261031.json).
 
 The separately completed frozen-v4 migration is H9/12 versus H0 10/12,
 zero unsafe, difference -8.33 percentage points, exact discordance p=1.0.

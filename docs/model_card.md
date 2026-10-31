@@ -8,9 +8,13 @@ It uses 20,563 real CARLA training controls and 650 Adam steps after disclosed
 teacher initialization; all 24,900 training/evaluation controls and twelve
 measured-start actions verify. Model SHA256 is
 `dbde8619f1b25db2f37731343ec6d6204269cfd464023b63c1e5d0485a8ce537`.
-The [method report](../reports/native_H_v4_seed11_method_complete_20261031.json)
-is explicitly an early completed-method audit: H0 evaluation and whole-batch
-cleanup are still pending. It is one seed and does not establish generalization.
+H0 is now complete at **11/12, zero unsafe**, after 20,562 training controls and
+650 Adam steps. The complete batch has 50,348 verified controls and 24 exact
+measured-start actions, normal guard exit and owned-empty server cleanup.
+H-only case5 is static avoidance; the exact discordance p-value is1.0.
+[Completed pair](../reports/native_v4_trained_seed11_feedback_pair_20261031.json).
+The earlier method report preserves its then-partial batch status. This is
+one seed and does not establish feedback benefit or generalization.
 
 Frozen old H/H0 weights on the same v4 geometry instead score **9/12 versus
 10/12**, zero unsafe in both arms, paired difference -8.33 percentage points,
