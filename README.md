@@ -25,7 +25,10 @@ reproduce. The added training-state labels repair two conditions but safety
 remains unqualified. The replay initializer's matched 20,480-control PPO phase
 has now completed: **4/12, four bounds failures and one collision**, after 51
 optimizer steps. This regression is preserved and rejected as a healthy baseline.
-The paired approach initializer is now actually training under the same budget.
+The paired approach PPO endpoint also completes: **6/12, four bounds failures
+and one collision**, after 61 optimizer steps under the same physical budget.
+Both PPO endpoints regress from their actor-fit initializers and remain unhealthy.
+[Complete matched PPO comparison](reports/native_B1_v4_actor_fit_PPO_pair_20261031.json).
 [Completed replay PPO endpoint](reports/native_B1_v4_replay_fit_PPO_endpoint_20261031.json).
 Its [public failed-endpoint capsule](reports/B1_v4_replay_PPO_public_verification_20261031.json)
 reproduces all 27,579 controls and the result figure; the separately bound
@@ -35,9 +38,11 @@ is also published and downloaded with exact hashes.
 [Diagnosis](reports/native_B1_v4_stop_diagnosis_20261031.md).
 [Exact PPO-update diagnosis](reports/native_B1_v4_replay_update_diagnosis_20261031.md)
 reproduces all first-rollout actions and checkpoint parameters. A smaller
-learning-rate B1 probe is [prepared and sequentially queued](reports/native_B1_v4_approach_lower_lr_preparation_20261031.json)
+learning-rate B1 probe is [registered](reports/native_B1_v4_approach_lower_lr_preparation_20261031.json)
 from the same approach initializer; its physical runtime, normalization, RNG
-and task criteria are preserved. No improved-driving result is claimed yet.
+and task criteria are preserved. It has now [started actual native PPO updates](reports/native_B1_v4_approach_lower_lr_first_update_20261031.json):
+the first 1,280 controls produce 40 Adam steps with frozen observation statistics.
+No improved-driving result is claimed yet.
 These are development conditions; five trained seeds, a healthy full-task B1,
 new final conditions and research acceptance remain unmet.
 
