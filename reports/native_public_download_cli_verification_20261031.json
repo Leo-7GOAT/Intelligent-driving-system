@@ -39,5 +39,17 @@
   "independent_test_log_sha256": "67f8f4c3c85275e10555c903ea01f8359ba4005fdc010102909865f85e7ddba0",
   "new_controls": 0,
   "optimizer_updates": 0,
-  "research_acceptance": "UNMET"
+  "research_acceptance": "UNMET",
+  "hosted_full_CPU_regression": {
+    "source_commit": "3a9334aecd850d47de510a451080966cb654a159",
+    "run_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41176370088",
+    "conclusion": "success",
+    "passed": 709,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "warnings": 3,
+    "seconds": 197.85,
+    "log_sha256": "16595c8ae0d4784103818cc64b421d0bd8acdb9279a5486885665dfc686e4c91",
+    "scope": "Full CPU regression on hosted Ubuntu;not native CARLA driving or research acceptance"
+  }
 }

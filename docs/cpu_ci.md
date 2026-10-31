@@ -144,3 +144,14 @@ passes302tests/3platform-or-opt-in skips/4CARLA deselections in145.38s.
 Independent fixed Windows checkout passes304/1skip/4deselections in168.97s.
 This is CPU verification; CARLA training and research gates are separate.
 The earlier counts above retain their historical revision scope.
+# Latest hosted verification (31 October)
+
+Source `3a9334aecd850d47de510a451080966cb654a159` passes the complete hosted
+CPU regression: **709 passed, 18 skipped, 4 CARLA deselected, 3 warnings** in
+197.85 seconds on Ubuntu. [Actual run](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41176370088).
+The public download/reproduction CLI also passes 21 targeted checks locally
+and in the independent Windows environment, then downloads and reproduces the
+actual public native evidence package. [Verification receipt](../reports/native_public_download_cli_verification_20261031.json).
+These checks do not replace native CARLA driving or the research acceptance
+criteria. Earlier source-specific records below remain historical evidence.
+
