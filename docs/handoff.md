@@ -1,3 +1,34 @@
+# Latest continuation — 2026-10-31 23:34 local
+
+B2 ALL FIVE COMPLETE:11/22/33/44/55 score9/8/10/10/7 of12,zero unsafe,
+103003training controls,3250actual Adam,133687raw controls,60initial actions.
+Driver32792exited success;B1driver60572has automatically started all-five gates,
+currently seed11batch20261031T131044921585Z_native_B1_actor_maturation.
+Shared70788andcadence59456remain waiting. Do not restart completed B2.
+H/B2known-development paired comparison58/60vs44/60:mean+23.33pp,
+95%t[+3.43,+43.24]pp,exact sign-flip p=.125. Exploratory,not confirmation.
+Report native_H_B2_five_seed_development_comparison_20261031.json binds exact
+initial model/statistics/RNG,physical budget/source and all episodes. Five B2
+capsules have been prepared,NOTpublished;receipt lists every hash/part manifest.
+
+H22missing public capsule COMPLETE:archive e70b381b397e344f2f6354f23aa81f841762b8a6675020f5e720fc1f8be951ed,
+93mixed-size parts. Public receipt native_seed22_completed_H_retained_H0_public_verification_20261031.json
+verifies599files/24858controls/12actions/exactfigure;68incomplete H0files and
+2original unclosed gzip prefixes retained. Exact public reconstruction at346b2c5.
+The missing-only repair finished and exited;all six H/H0capsules now public.
+
+Independent checkout f127699passed144related tests11.10sec. Its first complete
+public-cohort reconstruction correctly rejected a truncated download(part012);
+the second retained manifest RemoteDisconnected. Neither generated results.
+Those two failed output directories are preserved. New downloader adds bounded
+manifest retries;new optional --public-download-cache rechecks original public
+receipt/manifest/entire archive,never a raw local-training directory. Root25tests
+for downloader/cache/recipe pass5.93sec. A fresh independent all-six reconstruction
+using these previously verified public transfers is about to start;do not claim
+success until its reproduction.json exists. Keep checkout fixed while running.
+Research goal remains ACTIVE/UNMET;healthyB1,RL-vs-rule/feedback benefit and new
+final120conditions remain outstanding. Earlier snapshots below are historical.
+
 # Current handoff — 2026-10-31 20:45 local
 
 LATEST22:10: B2seeds11AND22COMPLETE. Seed22batch104126873363scores8/12,

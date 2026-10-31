@@ -16,6 +16,7 @@ sys.path.insert(0,str(ROOT))
 from scripts.analyze_native_feedback_cohort import run as analyze_cohort,resolve_batch
 from scripts.download_native_asset import download,release_url
 from scripts.reproduce_native_asset import reproduce
+from scripts.native_asset_parts import validate_manifest
 
 
 def read(path):return json.loads(Path(path).read_text(encoding='utf-8-sig'))
@@ -81,7 +82,27 @@ def model_proof(inputs,pairs):
     return rows
 
 
-def run(recipe_path,output):
+def cached_download(row,cache,target):
+    """Reuse only an exact archive with its matching original public-download receipt."""
+    cache,target=Path(cache),Path(target)
+    receipt=read(cache/'download_receipt.json')
+    if receipt.get('manifest_url')!=row['manifest_url']:return None
+    name=row['manifest_url'].rsplit('/',1)[1].removesuffix('.parts.json')
+    manifest=read(cache/(name+'.parts.json'));parts=validate_manifest(manifest,row['sha256'])
+    archive=cache/name
+    if (receipt.get('archive_byte_exact') is not True or receipt.get('archive')!=name
+            or receipt.get('sha256')!=row['sha256'] or receipt.get('bytes')!=manifest['bytes']
+            or receipt.get('parts')!=len(parts) or manifest.get('archive')!=name
+            or archive.stat().st_size!=manifest['bytes'] or sha(archive)!=row['sha256']):
+        raise ValueError('Cached public archive/receipt fails its original trusted hash')
+    target.mkdir(parents=True,exist_ok=False)
+    for source in (archive,cache/(name+'.parts.json'),cache/'download_receipt.json'):
+        shutil.copy2(source,target/source.name)
+    return {**receipt,'transfer_source':'verified_prior_public_download',
+            'original_download_receipt_sha256':sha(cache/'download_receipt.json')}
+
+
+def run(recipe_path,output,public_download_caches=()):
     recipe_path,output=Path(recipe_path).resolve(),Path(output).resolve()
     recipe=read(recipe_path);validate_recipe(recipe)
     if output.exists():raise FileExistsError('Preserve previous public-cohort reconstruction')
@@ -99,7 +120,13 @@ def run(recipe_path,output):
             if sha(ROOT/name)!=digest:raise ValueError('Reconstruction source changed:'+name)
     def get(row):
         target=output/'downloads'/row['slot']
-        result=download(row['manifest_url'],target,row['sha256'],wall_seconds=1200)
+        result=None
+        for cache in public_download_caches:
+            result=cached_download(row,cache,target)
+            if result is not None:break
+        if result is None:
+            result=download(row['manifest_url'],target,row['sha256'],wall_seconds=1200)
+            result['transfer_source']='new_unauthenticated_public_download'
         return row,target/result['archive'],result
     try:
         with concurrent.futures.ThreadPoolExecutor(max_workers=3) as workers:
@@ -118,6 +145,8 @@ def run(recipe_path,output):
             shutil.copytree(source,inputs/'runs'/row['batch'],ignore=shutil.ignore_patterns('__pycache__'))
             capsules.append({'slot':row['slot'],'archive_sha256':row['sha256'],
                 'public_manifest_url':row['manifest_url'],'unauthenticated_download':True,
+                'transfer_source':download_receipt['transfer_source'],
+                'original_download_receipt_sha256':download_receipt.get('original_download_receipt_sha256'),
                 'methods':receipt['methods'],'figure_byte_identical':receipt['figure_byte_identical'],
                 'retained_incomplete_sibling_files':receipt.get('incomplete_sibling_files_verified',0)})
         verify_source();pairs_path=resolve_batch(ROOT,recipe['pairs_manifest'])
@@ -153,4 +182,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--recipe',default=str(ROOT/'protocols/public_native_feedback_cohort_20261031.json'))
     parser.add_argument('--output',required=True)
-    args=parser.parse_args();run(args.recipe,args.output)
+    parser.add_argument('--public-download-cache',action='append',default=[],
+                        help='Optional existing public-download directory;exact archive,manifest and original receipt are rechecked')
+    args=parser.parse_args();run(args.recipe,args.output,args.public_download_cache)

@@ -1,0 +1,19 @@
+{
+  "scope": "Rebuild the five-seed DEVELOPMENT planner-ablation figure.",
+  "source_report_sha256": "773b5ff5897ef6cc1b7ea448a6780a832072c552f5b8faccebfc1a05baadbb70",
+  "script_sha256": "d5a286a3d7bc34b4a1494c984ed2fb4ba0f852c5cd13cae51088f1cd426ca58f",
+  "figure_sha256": "662f1f0795d1b92432b916714dba0b45f0bdee823bcc727991634c35a08b5440",
+  "statistics": {
+    "independent_training_seeds": 5,
+    "paired_mean_difference": 0.2333333333333333,
+    "paired_95pct_t_interval": [
+      0.03430096765833496,
+      0.43236569900833166
+    ],
+    "exploratory_exact_sign_flip_p_two_sided": 0.125,
+    "assumptions": "tinterval assumes approximately normal seed differences;sign-flip null assumes symmetric exchangeable seed differences. Small N,known development conditions and retrospective analysis do not establish confirmatory significance."
+  },
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

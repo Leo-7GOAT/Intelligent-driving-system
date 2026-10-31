@@ -27,6 +27,12 @@ cohort field, checks10 saved optimizers/statistics and rebuilds the main figure:
 .\.venv\Scripts\python.exe scripts/reproduce_public_feedback_cohort.py --output runs/FRESH_public_feedback_cohort
 ```
 
+The planner comparison figure is [rebuildable from the complete report](reports/figures/native_H_B2_five_seed_development_20261031.png).
+A failed network run can reuse checked public downloads with repeatable
+`--public-download-cache runs/PRIOR_public_download` arguments. Original receipts,
+manifest identity and the entire archive hash are rechecked;local training archives
+without these public-download receipts are rejected.
+
 Use a fresh output directory and allow4GiB free disk space. This reconstructs
 DEVELOPMENT evidence;the research acceptance thresholds remain unmet.
 

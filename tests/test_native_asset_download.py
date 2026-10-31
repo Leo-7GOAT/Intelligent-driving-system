@@ -1,5 +1,6 @@
 import io
 import json
+from http.client import RemoteDisconnected
 
 import pytest
 
@@ -110,3 +111,19 @@ def test_persistent_corruption_has_three_attempt_limit_and_no_assembled_archive(
     assert requests.count(BASE+part['name']) == 3
     assert len(list(output.glob(part['name']+'.attempt*.failure.json'))) == 3
     assert not (output/source.name).exists()
+
+
+def test_disconnected_manifest_is_retried_with_failure_disclosed(tmp_path, monkeypatch):
+    source, manifest, _, _ = remote(tmp_path, monkeypatch)
+    original = module.urlopen
+    calls = 0
+    def flaky(request, timeout):
+        nonlocal calls
+        if request.full_url == BASE+manifest.name:
+            calls += 1
+            if calls == 1: raise RemoteDisconnected('observed network failure')
+        return original(request, timeout)
+    monkeypatch.setattr(module, 'urlopen', flaky)
+    receipt = module.download(BASE+manifest.name, tmp_path/'download', digest(source))
+    assert calls == 2 and receipt['archive_byte_exact']
+    assert receipt['manifest_network_failures'] == [{'attempt': 1, 'error': 'observed network failure'}]

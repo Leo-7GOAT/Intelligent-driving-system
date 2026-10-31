@@ -1,0 +1,75 @@
+{
+  "phase": "ALL_FIVE_B2_CAPSULES_PREPARED_NOT_YET_PUBLISHED",
+  "epoch": 1793460701.5028708,
+  "prepared": [
+    {
+      "seed": 11,
+      "batch": "20261031T104032928978Z_native_planner_training",
+      "files": 557,
+      "bytes": 32517487,
+      "sha256": "dfc81e823b161afe63fde22da8da58e6dd5189b1825d826a5f0accb7aaff1950",
+      "verified_controls": {
+        "B2": 26670
+      },
+      "metadata_files_transformed": 8,
+      "archive": "native_B2_seed11_trained_20261031_repro.zip",
+      "manifest": "native_B2_seed11_trained_20261031_parts/native_B2_seed11_trained_20261031_repro.zip.parts.json"
+    },
+    {
+      "seed": 22,
+      "batch": "20261031T104126873363Z_native_planner_training",
+      "files": 558,
+      "bytes": 32082511,
+      "sha256": "7b317ac1ab6012faa7bb659d7148cfda56d6665d451b47bc3d24677f62346455",
+      "verified_controls": {
+        "B2": 27016
+      },
+      "metadata_files_transformed": 8,
+      "archive": "native_B2_seed22_trained_20261031_repro.zip",
+      "manifest": "native_B2_seed22_trained_20261031_parts/native_B2_seed22_trained_20261031_repro.zip.parts.json"
+    },
+    {
+      "seed": 33,
+      "batch": "20261031T104129314279Z_native_planner_training",
+      "files": 560,
+      "bytes": 32424780,
+      "sha256": "791a9e0ead298c9589244af3aed52dd044a93e4970b406bb86782b8cb990436e",
+      "verified_controls": {
+        "B2": 26018
+      },
+      "metadata_files_transformed": 8,
+      "archive": "native_B2_seed33_trained_20261031_repro.zip",
+      "manifest": "native_B2_seed33_trained_20261031_parts/native_B2_seed33_trained_20261031_repro.zip.parts.json"
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T104131479611Z_native_planner_training",
+      "files": 560,
+      "bytes": 32469036,
+      "sha256": "a0b814589f1124450f2e04efc063d7f9f801a1a88fc6495b92f295e1f86d3fd0",
+      "verified_controls": {
+        "B2": 26064
+      },
+      "metadata_files_transformed": 8,
+      "archive": "native_B2_seed44_trained_20261031_repro.zip",
+      "manifest": "native_B2_seed44_trained_20261031_parts/native_B2_seed44_trained_20261031_repro.zip.parts.json"
+    },
+    {
+      "seed": 55,
+      "batch": "20261031T104133575143Z_native_planner_training",
+      "files": 556,
+      "bytes": 32828866,
+      "sha256": "37fbbf692bc4572d0626cf64b7f00402d3447415a50b538f627b4a6581eda89e",
+      "verified_controls": {
+        "B2": 27919
+      },
+      "metadata_files_transformed": 8,
+      "archive": "native_B2_seed55_trained_20261031_repro.zip",
+      "manifest": "native_B2_seed55_trained_20261031_parts/native_B2_seed55_trained_20261031_repro.zip.parts.json"
+    }
+  ],
+  "scope": "Five completed B2 development model/raw capsules prepared and hash-checked;not yet public",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

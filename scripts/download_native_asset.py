@@ -2,6 +2,7 @@
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import hashlib
+from http.client import HTTPException
 import json
 from pathlib import Path
 import re
@@ -56,7 +57,15 @@ def download(manifest_url, directory, expected_sha256, wall_seconds=1200):
         raise FileExistsError('Use a fresh output directory; interrupted evidence is preserved')
     started = time.monotonic()
     deadline = started+wall_seconds
-    payload = read_bounded(manifest_url, 1024**2, deadline)
+    manifest_failures = []
+    for attempt in range(1, 4):
+        try:
+            payload = read_bounded(manifest_url, 1024**2, deadline)
+            break
+        except (OSError, HTTPException, TimeoutError) as error:
+            manifest_failures.append({'attempt': attempt, 'error': str(error)})
+            if attempt == 3 or time.monotonic() >= deadline:
+                raise
     manifest = json.loads(payload)
     parts = validate_manifest(manifest, expected_sha256)
     archive_name = manifest.get('archive')
@@ -86,7 +95,7 @@ def download(manifest_url, directory, expected_sha256, wall_seconds=1200):
                     raise ValueError('Downloaded part differs: '+part['name'])
                 temporary.rename(directory/part['name'])
                 return
-            except (OSError, ValueError, TimeoutError) as error:
+            except (OSError, HTTPException, ValueError, TimeoutError) as error:
                 evidence = directory/(part['name']+f'.attempt{attempt}.failure.json')
                 evidence.write_text(json.dumps({'attempt': attempt, 'error': str(error),
                                                'new_controls': 0}), encoding='utf-8')
@@ -104,7 +113,9 @@ def download(manifest_url, directory, expected_sha256, wall_seconds=1200):
             raise
     result = join(manifest_path, directory/archive_name, expected_sha256)
     result.update(manifest_url=manifest_url, archive=archive_name,
-                  wall_seconds=time.monotonic()-started, new_controls=0, optimizer_updates=0)
+                  wall_seconds=time.monotonic()-started, new_controls=0, optimizer_updates=0,
+                  manifest_network_failures=manifest_failures,
+                  retained_part_failure_records=[p.name for p in sorted(directory.glob('*.failure.json'))])
     with (directory/'download_receipt.json').open('x', encoding='utf-8') as stream:
         json.dump(result, stream, indent=2)
     return result
