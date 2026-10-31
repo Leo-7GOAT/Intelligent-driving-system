@@ -1,0 +1,14 @@
+{
+  "scope": "Actual release upload and unauthenticated download of exact operational guard supplement; original raw capsule preserved.",
+  "public_asset": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_v4_replay_PPO_20261031_guard.zip",
+  "archive_sha256": "034d5d7a7451fafee170fdef652d5e6e5d3253ed485f1041f4fedd5ff6c8f79f",
+  "archive_bytes": 136531,
+  "verified_files": 56,
+  "parent_archive_sha256": "34b86773b541171b99b68b1d58fc8fbd1b8d05bb10bb155232d77a7a0ffbaec6",
+  "guard_manifest_sha256": "44ca3f1e7eb4972e3d90d07b093b780c40f17ff21b5c849dddfbdbe48efadec0",
+  "probe_sha256": "638c1bf85a56626c7b785234530f05b05a9bab13de069be8c19fca1c74aa476a",
+  "operational_source_ledger_verified": true,
+  "source_tests_passed": 18,
+  "new_controls": 0,
+  "optimizer_updates": 0
+}

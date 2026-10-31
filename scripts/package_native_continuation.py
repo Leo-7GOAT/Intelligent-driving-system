@@ -10,7 +10,7 @@ import gzip
 import hashlib
 import io
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
 import subprocess
 import sys
@@ -31,6 +31,80 @@ def sha(data):
 
 def read(path):
     return json.loads(Path(path).read_text(encoding='utf-8-sig'))
+
+
+def operational_guard_files(batch):
+    """Bind the actual operational override separately from policy source."""
+    batch = Path(batch).resolve()
+    execution_path = batch/'launcher_execution.json'
+    execution = read(execution_path) if execution_path.exists() else {}
+    if not execution.get('guard_current_override'):
+        if (batch/'launcher_override').exists():
+            raise ValueError('Undeclared operational guard snapshot')
+        return set()
+    manifest_path = batch/'launcher_override/manifest.json'
+    if sha(manifest_path.read_bytes()) != execution['guard_manifest_sha256']:
+        raise ValueError('Operational guard manifest differs')
+    entries = read(manifest_path)['files']
+    if not isinstance(entries, dict) or not 1 <= len(entries) <= 512:
+        raise ValueError('Invalid operational guard file inventory')
+    root = batch/'launcher_override/source'
+    selected = {manifest_path, execution_path}
+    permitted_scripts = {'watch_existing_pair.py', 'stop_owned_carla.ps1',
+                         'probe_carla37.py', 'run_registered_native.ps1'}
+    for relative, expected in entries.items():
+        path = PurePosixPath(relative)
+        if (path.is_absolute() or path.as_posix() != relative or '\\' in relative or '..' in path.parts or len(path.parts) != 2
+                or not ((path.parts[0] == 'navstack' and path.suffix == '.py')
+                        or (path.parts[0] == 'scripts' and path.name in permitted_scripts))):
+            raise ValueError('Operational source path is not a registered code file')
+        source = root/relative
+        if not source.resolve().is_relative_to(root.resolve()):
+            raise ValueError('Operational source escapes its snapshot')
+        if not source.is_file() or source.stat().st_size > 5*1024**2 or sha(source.read_bytes()) != expected:
+            raise ValueError('Operational source differs: '+relative)
+        selected.add(source)
+    guard = batch/execution['guard_source_relative']
+    if (execution['guard_source_relative'] != 'launcher_override/source/scripts/watch_existing_pair.py'
+            or guard not in selected or sha(guard.read_bytes()) != execution['guard_source_sha256']):
+        raise ValueError('Executed guard source differs')
+    return selected
+
+
+def package_guard_snapshot(batch, output, parent_archive_sha256):
+    """Supplement an earlier capsule without rewriting its raw evidence."""
+    batch, output = Path(batch).resolve(), Path(output)
+    if not re.fullmatch('[0-9a-f]{64}', parent_archive_sha256):
+        raise ValueError('Require the original capsule SHA256')
+    guard = read(batch/'guard_final.json')
+    if type(guard.get('exit_code')) is not int or guard['exit_code'] != 0 or guard.get('reason') is not None:
+        raise ValueError('Require completed guarded execution')
+    if read(batch/'infrastructure/server_stop.json').get('status') != 'owned_empty_server_stopped':
+        raise ValueError('Require owned cleanup evidence')
+    selected = operational_guard_files(batch)
+    if not selected:
+        raise ValueError('No operational guard override to supplement')
+    temporary = output.with_name(output.name+'.partial')
+    if output.exists() or temporary.exists():
+        raise FileExistsError('Preserve existing guard archive')
+    output.parent.mkdir(parents=True, exist_ok=True)
+    files = {}
+    with zipfile.ZipFile(temporary, 'x', zipfile.ZIP_DEFLATED) as archive:
+        for path in sorted(selected):
+            payload = path.read_bytes()
+            scan_payload(path.name, payload)
+            name = batch.name+'/'+path.relative_to(batch).as_posix()
+            archive.writestr(name, payload)
+            files[name] = {'bytes': len(payload), 'sha256': sha(payload)}
+        manifest = {'scope': 'Exact operational guard supplement; no policy, model, metrics or raw control changes',
+                    'batch': batch.name, 'parent_archive_sha256': parent_archive_sha256,
+                    'files': files, 'packager_sha256': sha(Path(__file__).read_bytes())}
+        archive.writestr('manifest.json', json.dumps(manifest, indent=2))
+    temporary.rename(output)
+    result = {'files': len(files), 'bytes': output.stat().st_size, 'sha256': sha(output.read_bytes()),
+              'parent_archive_sha256': parent_archive_sha256, 'new_controls': 0, 'optimizer_updates': 0}
+    print(json.dumps(result))
+    return result
 
 
 def portable_metadata(value, changes, pointer=''):
@@ -128,8 +202,11 @@ def package(batch, output):
         selected.update(p for p in (batch/name).rglob('*') if p.is_file()
                         and '__pycache__' not in p.parts and p.suffix in SUFFIXES)
     selected.update(p for p in (batch/'infrastructure').iterdir() if p.is_file() and p.suffix in ('.json','.gz'))
+    operational_sources = operational_guard_files(batch)
+    selected.update(operational_sources)
     # These files are directly hash-bound by endpoint and continuation auditors.
     protected={batch/'protocol.json',batch/'summary.json'}
+    protected.update(operational_sources)
     protected.update(batch/'source'/relative for relative in protocol['source_hashes'])
     protected.update((batch/'calibration').rglob('*.json'))
     protected.update((batch/'resume').rglob('*.json'))
@@ -207,5 +284,11 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--batch',required=True)
     parser.add_argument('--output',required=True)
+    parser.add_argument('--guard-only',action='store_true',help='Supplement a previously published capsule with its exact operational guard snapshot')
+    parser.add_argument('--parent-archive-sha256')
     args=parser.parse_args()
-    package(args.batch,args.output)
+    if args.guard_only:
+        package_guard_snapshot(args.batch,args.output,args.parent_archive_sha256 or '')
+    else:
+        if args.parent_archive_sha256:parser.error('--parent-archive-sha256 requires --guard-only')
+        package(args.batch,args.output)

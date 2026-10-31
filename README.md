@@ -27,6 +27,10 @@ has now completed: **4/12, four bounds failures and one collision**, after 51
 optimizer steps. This regression is preserved and rejected as a healthy baseline.
 The paired approach initializer is now actually training under the same budget.
 [Completed replay PPO endpoint](reports/native_B1_v4_replay_fit_PPO_endpoint_20261031.json).
+Its [public failed-endpoint capsule](reports/B1_v4_replay_PPO_public_verification_20261031.json)
+reproduces all 27,579 controls and the result figure; the separately bound
+[operational guard snapshot](reports/B1_v4_replay_PPO_guard_public_verification_20261031.json)
+is also published and downloaded with exact hashes.
 [Complete fit comparison](reports/native_B1_v4_approach_pair_complete_20261031.json).
 [Diagnosis](reports/native_B1_v4_stop_diagnosis_20261031.md).
 [Exact PPO-update diagnosis](reports/native_B1_v4_replay_update_diagnosis_20261031.md)

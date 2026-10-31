@@ -42,6 +42,19 @@ zero driving controls or deployed PPO updates.
 Evidence: `native_B1_v4_replay_fit_PPO_endpoint_20261031.json`,
 `native_B1_v4_replay_first_update_lr_audit_20261031.json` and
 `native_B1_v4_replay_PPO_terminal_drift_20261031.json`.
+
+The complete failed endpoint is now public in 21 hash-checked transfer parts.
+Unauthenticated download and isolated reconstruction verify all **27,579**
+training/evaluation controls, twelve measured-start actions and a byte-identical
+result figure. See [public verification](B1_v4_replay_PPO_public_verification_20261031.json).
+The first archive omitted the separately captured operational watchdog source;
+an [exact guard supplement](B1_v4_replay_PPO_guard_public_verification_20261031.json)
+adds all 56 hash-checked snapshot/launcher files and binds the original archive
+SHA256. The original package is preserved. Future full packages include and
+verify this operational snapshot directly. Eighteen packaging tests cover
+missing/tampered source, manifest and executed-guard mismatches, path escape,
+undeclared overrides and unchanged historical exports.
+
 Run the first-update audit with `NAVSTACK_AUDIT_SOURCE_ROOT` set to the completed
 batch's archived `source`, using a fresh output path. Preparation now exposes
 `--freeze-observation-statistics` as an explicit registered continuation profile;
