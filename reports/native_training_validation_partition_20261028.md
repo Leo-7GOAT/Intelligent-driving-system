@@ -1,5 +1,14 @@
 # Separate native development training and validation
 
+Latest execution readiness (31 October): the v4 batch
+`20261031T025445532080Z_native_supervised_ppo` has passed read-only launcher
+validation of all 389 frozen files and its unchanged registered protocol.
+It retains 36 training/24 geometry-separated development validation conditions,
+20,480 controls each for H/H0, and is waiting behind the actually running
+lower-rate B1 probe. Neither native validation results nor final confirmation
+are available yet. See the [actual prelaunch receipt](native_v4_broader_prelaunch_readiness_20261031.json).
+The earlier batch descriptions below are historical execution snapshots.
+
 The registered inventory is
 [native_development_train36_validation24_v1.json](../experiments/native_development_train36_validation24_v1.json),
 SHA256 `07d0724d87f4a3bb117265656e2a0d1296c02a749b1bd37186401d8229800961`.
