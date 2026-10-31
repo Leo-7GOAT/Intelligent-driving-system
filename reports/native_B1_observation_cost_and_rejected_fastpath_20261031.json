@@ -1,0 +1,36 @@
+{
+  "scope": "Read-only profiling and rejected local fast-path proposal on12measured B1initial states;no new driving or deployment change",
+  "captured_native_observation_starts": 12,
+  "geometry_batches": 236,
+  "full_body_pose_queries": 195743,
+  "rear_axle_occupied_cell_proofs": 0,
+  "all_captured_boolean_outputs_exact": true,
+  "timing_seconds": {
+    "original": [
+      1.478534499881789,
+      1.3214183999225497
+    ],
+    "experimental": [
+      1.3404251001775265,
+      1.3640503000933677
+    ]
+  },
+  "interleaved_median_speedup": 1.0353035193161235,
+  "applied_to_native_workers": false,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "limits": "Exploratory captured workload only. No broad numerical-contact/mutating-map/planner-path equivalence or production deployment established. Do not alter running source snapshots.",
+  "research_acceptance": "UNMET",
+  "observation_profile": {
+    "calls": 12,
+    "cumulative_seconds": 2.1642648,
+    "execution_feedback_cumulative_seconds": 2.0583718,
+    "feedback_fraction_of_observation_cost": 0.9510720684455987,
+    "analytic_connection_calls": 238,
+    "note": "Instrumented cumulative times are nested;do not sum them or infer whole-stack real-time behavior."
+  },
+  "executed_probe_sha256": "6685135b1d8d09bd5dd5c3515ed1a37e99611d501ab34af2865f3ebd8c4f7339",
+  "profile_sha256": "037dd4a4f3b6df8467c6239145270a30316f2f0e086b1bfc1825feb17a2b6b59",
+  "decision": "NOT_ADOPTED:zero occupied-centre proofs on captured workload;two noisy interleaved samples provide no demonstrated useful speedup",
+  "source_availability": "Local ignored runs/probe_exact_road_interior_rejection_20261031.py and pstats retained;not a published reproducible performance claim"
+}

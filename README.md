@@ -5,6 +5,11 @@ deadlines,zero collision/bounds episodes,20,615training controls/650Adam steps.
 All26,670raw controls and12initial actions verify;seed22has started automatically.
 [Complete trained B2endpoint](reports/native_B2_v4_seed11_endpoint_20261031.json).
 This is one planner-ablation seed,not a five-seed or unseen-final conclusion.
+Seed22also completes **8/12**,four deadlines,zero unsafe,20,576training controls/
+650Adam steps;all27,016raw controls and12initial actions verify.
+[Seed22endpoint](reports/native_B2_v4_seed22_endpoint_20261031.json).
+Seed33has started. These two endpoints reuse the same12development conditions;
+the five-seed planner-ablation result is still incomplete.
 
 The shared-brake queue's postprocessor was corrected against actual native
 `info.trace` logs before it started any probe. Its replacement waits for the
@@ -16,6 +21,9 @@ or new policy training. The completed20Hz native endpoints supply the baseline.
 [Queue/schema recovery receipt](reports/native_control_cadence_and_shared_trace_recovery_activation_20261031.json),
 [two actual prepared/restored Hprobes](reports/native_control_cadence_seed11_preparation_20261031.json).
 **No shared-brake or cadence driving results are claimed yet.**
+[Sourceb0f11bc verification](reports/native_control_cadence_independent_code_verification_20261031.json)
+passes85related tests in both the working tree and an independent checkout;
+its hosted CPU workflow also succeeds. This does not establish deployment performance.
 
 Latest execution update (31October21:18): the original seed22B1initializer
 finishes6/12and fails the unchanged basic-motion safety gate; **no PPOlearning

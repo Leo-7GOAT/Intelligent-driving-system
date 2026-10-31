@@ -1,5 +1,29 @@
 # Current handoff — 2026-10-31 20:45 local
 
+LATEST22:10: B2seeds11AND22COMPLETE. Seed22batch104126873363scores8/12,
+4deadlines,zero unsafe;20576training controls/650Adam;all27016rawcontrols and
+12initial actions verify. Native_B2_v4_seed22_endpoint_20261031.json saved.
+Driver32792now truly runs seed33batch20261031T104129314279Z_native_planner_training.
+No B1maturation/shared/cadence native probes have started;their queued drivers
+60572/70788/59456remain waiting. Original five-seed inventories unchanged.
+
+Codeb0f11bc842095aa7baba03217dc1c6bb917b25f8is pushed;root85related tests PASS
+8.14sec,independent checkout85PASS14.06sec,hosted41208046981SUCCESS. Receipt
+native_control_cadence_independent_code_verification_20261031.json.
+Current independent checkout is b0f11bc;no publication jobs depend on it.
+
+Read-only latency diagnosis on12measured B1seed22initial states:observation
+2.164s total,execution feedback2.058s(~95%),analytic connections/road SATdominate.
+Profile runs/B1_native_observation_cost_profile_20261031.pstats. Reconstructed
+all12actions exactly. Prototype occupied-rear-axle shortcut tested236captured
+geometry batches/195743poses,all booloutputs exact,BUT zero shortcut hits and
+two noisy timings give no useful demonstrated improvement. NOT ADOPTED;do not
+spend more goal turns repeating it or alter live workers. Local executed source
+runs/probe_exact_road_interior_rejection_20261031.py andrawprobe retained.
+Report native_B1_observation_cost_and_rejected_fastpath_20261031.json explicitly
+limits it to local exploratory input profiling,not published perf/realtime proof.
+No controls/learning/new model fitting in this profiling. Goal ACTIVE/UNMET.
+
 AUTHORITATIVE21:59update: B2seed11COMPLETE,9/12,3deadlines,zero unsafe;
 20615training controls/650Adam;all26670raw controls/12initial actions verify.
 Report native_B2_v4_seed11_endpoint_20261031.json. B2driver32792actually runs
