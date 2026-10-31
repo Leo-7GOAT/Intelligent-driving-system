@@ -39,3 +39,29 @@ work remains charged. This is a new operational recovery evaluation, not an
 uninterrupted original run, a new independent training seed or final confirmation.
 The untouched H0 initialization must train in its own subsequent lifecycle;
 the blocked original queue is preserved until that lifecycle is registered.
+
+Recovery has now completed all **24/24** geometry-separated development
+validation conditions, with **8/8 per core family**, zero unsafe episodes and
+8,089 audited controls/24 reproduced initial actions. Model, normalization and
+RNG bytes match the original final checkpoint. The original 5,367 interrupted
+evaluation controls remain charged. See
+`native_broader_H_spawn_recovery_complete_20261031.json` and
+`native_H_v4_broader_spawn_recovered_endpoint_20261031.json`.
+
+All 8,089 controls include 7,687 reference-tracking, 390 dynamic-brake and
+12 terminal-brake controls; there are no policy-wait or failed-plan brake
+controls. The environment-decision P95/P99/max are 0.210/0.359/1.171 seconds,
+with one of823decisions above the0.5-second period. This timer excludes policy
+prediction, normalization and runner serialization, so it is not a full-runner
+realtime certificate. [Complete runtime audit](native_H_v4_broader_recovered_runtime_20261031.json).
+
+H0 is actually training as `20261031T071026696107Z_native_H0_spawn_recovery`,
+using the untouched original zero-PPO model/normalization/RNG/configuration.
+AST comparison finds only `Bridge.begin` changed; step/read/actuation and all
+vehicle, reward and planning sources remain unchanged. Its separate 20,480-
+control budget and all original training/validation conditions are preserved.
+After normal owned cleanup, a registered queue reconnects the unchanged seed33,
+44 and55 initialization gates and existing independent-PPO driver. The old
+failed queue and preparation failure before any native lifecycle remain intact.
+The H0 helper's missing vehicle argument was corrected before registration;
+the failed preparation directory contains no native controls or optimizer steps.

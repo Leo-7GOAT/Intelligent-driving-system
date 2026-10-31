@@ -1,0 +1,28 @@
+{
+  "scope": "H0-only fresh PPO from the original untouched broader initializer after H completed training and infrastructure-only validation interruption;no H retraining.",
+  "batch": "20261031T071026696107Z_native_H0_spawn_recovery",
+  "parent": "20261031T025445532080Z_native_supervised_ppo",
+  "model_normalization_RNG_config_bytes_exact": true,
+  "PPO_controls_and_optimizer_steps_initially_zero": true,
+  "training_validation_inventories_exact": true,
+  "bridge_changed_functions": [
+    "Bridge.begin"
+  ],
+  "vehicle_actuation_step_read_and_reward_sources_unchanged": true,
+  "new_training_budget": 20480,
+  "wall_seconds": 7200,
+  "protocol_sha256": "555fdec7546876d864f617625eae452b6e116fdcc203488fce62a98e5af5b2ae",
+  "source_files": 389,
+  "model_sha256": "b7612f16688799254ba19fc01b643cbd4cde642f0a284fc46dd6910788ecbbd6",
+  "normalization_sha256": "0ee557017eca0168169a5aba6e9821fefe878f1298bbfd993ac4f1e0ddfeedf1",
+  "RNG_sha256": "423a36d96ad53088e235cefadac957116a0fde68cf28e2afb871026ef4ab0f81",
+  "operational_profile": "native_walker_clearance_020_v1",
+  "research_acceptance": "UNMET",
+  "saved_model_optimizer_verified_empty": true,
+  "queue_chain": [
+    "20261031T070638Z_native_evaluation_recovery",
+    "20261031T071026696107Z_native_H0_spawn_recovery",
+    "20261031T040926397622Z_native_initialization_v4"
+  ],
+  "readonly_postprocessors_registered": true
+}

@@ -9,6 +9,16 @@ the owned server has been cleaned up. The one-case gap is not significant
 (exact discordance p=1.0).
 [Complete paired evidence](reports/native_v4_trained_seed11_feedback_pair_20261031.json).
 
+A separate 36-training/24-geometry-separated development-validation branch now
+completes **24/24, zero unsafe**, with8/8in each core family after20,521native
+training controls/650Adam steps. A walker-spawn initialization failure was
+diagnosed and fixed; the unchanged trained H checkpoint was reevaluated with
+zero new learning and all interrupted costs retained.
+[Complete recovered validation](reports/native_broader_H_spawn_recovery_complete_20261031.json).
+Its H0 counterpart is actually training. This is one-seed development validation,
+not the final120-condition confirmation or a comparison against B1's different
+twelve-condition endpoint.
+
 The second trained H seed also completes12/12,zero unsafe;all24,858controls
 verify. Its recovered H0sibling completes10/12,zero unsafe,with all lost
 interactions charged. This recovery is not an equal-consumed-budget pair.

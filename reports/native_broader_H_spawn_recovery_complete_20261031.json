@@ -1,0 +1,24 @@
+{
+  "scope": "Completed frozen-H24-condition development validation after diagnosed actor-initialization recovery;not final confirmation or a new training seed.",
+  "batch": "20261031T070638Z_native_evaluation_recovery",
+  "parent": "20261031T025445532080Z_native_supervised_ppo",
+  "cases": 24,
+  "successes": 24,
+  "unsafe_episodes": 0,
+  "core_successes": {
+    "curve_parking": 8,
+    "static": 8,
+    "dynamic": 8
+  },
+  "training_controls_retained": 20521,
+  "retained_Adam_steps": 650,
+  "new_training_controls": 0,
+  "new_optimizer_steps": 0,
+  "original_interrupted_evaluation_controls_charged": 5367,
+  "new_evaluation_controls": 8089,
+  "raw_audit_sha256": "9f8dd105d54119cb3c38feea35dbda32850e15611d4f2c1658654b6710407bbc",
+  "model_normalization_RNG_bytes_exact_to_original_checkpoint": true,
+  "H0_initial_model_optimizer_empty": true,
+  "source_software_profile": "native_walker_clearance_020_v1",
+  "research_acceptance": "UNMET;one seed24development conditions,not120newfinal conditions"
+}
