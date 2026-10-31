@@ -7,6 +7,23 @@ import math
 import numpy as np
 
 
+def _body_corners_many(poses, vehicle, margin=0.):
+    """Same scalar-libm rotations and matrix operations, batched allocations."""
+    count = len(poses)
+    cosine = np.fromiter(map(math.cos, poses[:, 2]), dtype=float, count=count)
+    sine = np.fromiter(map(math.sin, poses[:, 2]), dtype=float, count=count)
+    rotation = np.empty((count, 2, 2))
+    rotation[:, 0, 0] = cosine
+    rotation[:, 0, 1] = sine
+    rotation[:, 1, 0] = -sine
+    rotation[:, 1, 1] = cosine
+    local = np.array([[-vehicle.rear-margin, -vehicle.width/2-margin],
+                      [vehicle.front+margin, -vehicle.width/2-margin],
+                      [vehicle.front+margin, vehicle.width/2+margin],
+                      [-vehicle.rear-margin, vehicle.width/2+margin]])
+    return local @ rotation + poses[:, None, :2]
+
+
 class ExactRoadBatch:
     """Cache occupied cells, group work spatially, retain the scalar contact oracle."""
     def __init__(self, grid, chunk_size=128):
@@ -34,9 +51,9 @@ class ExactRoadBatch:
             self._refresh()
         result=np.zeros(len(poses),dtype=bool);self.last_scalar_fallbacks=0
         if not len(poses) or not len(self.rectangles):return result
-        # Identical corner construction is intentional: optimize SAT and cell
-        # enumeration first, without introducing a different trig calculation.
-        corners=np.asarray([body_corners(p,vehicle,margin) for p in poses])
+        # Preserve scalar libm and local-matrix operation order; share array
+        # construction instead of allocating three matrices per pose.
+        corners=_body_corners_many(poses,vehicle,margin)
         tolerance=1e-12;contact_band=1e-8
         groups=[np.arange(len(poses))]
         if len(poses)>self.chunk_size:

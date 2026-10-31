@@ -8,7 +8,7 @@ from navstack.env import NavigationEnv
 from navstack.experiments import signature
 from navstack.native_route import sample_road_grid
 from navstack.road_grid import RoadGrid,road_digest
-from navstack.road_grid_batch import ExactRoadBatch
+from navstack.road_grid_batch import ExactRoadBatch, _body_corners_many
 from navstack.world import World, body_corners
 from navstack.vehicle import VehiclePlant, VehicleState
 
@@ -20,6 +20,18 @@ def grid():
 
 def oracle(grid,poses,vehicle,margin):
     return np.array([grid.intersects(body_corners(p,vehicle,margin)) for p in poses])
+
+
+def test_batched_corner_coordinates_are_bit_identical_to_original_scalar_libm():
+    rng = np.random.default_rng(20261031)
+    poses = np.c_[rng.uniform(-1e6, 1e6, (10000, 2)), rng.uniform(-100*np.pi, 100*np.pi, 10000)]
+    poses = np.r_[poses, [[0., -0., angle] for angle in (0., -0., np.pi/2, -np.pi/2, np.pi)]]
+    for vehicle in (VehicleConfig(), VehicleConfig(front=3.811, rear=.9803, width=2.1634, wheelbase=3.0046)):
+        for margin in (0., .1, .25):
+            expected = np.asarray([body_corners(p, vehicle, margin) for p in poses])
+            actual = _body_corners_many(poses, vehicle, margin)
+            np.testing.assert_array_equal(actual.view(np.uint64), expected.view(np.uint64))
+    assert _body_corners_many(np.empty((0, 3)), VehicleConfig()).shape == (0, 4, 2)
 
 
 def test_batched_closed_cell_sat_matches_scalar_across_full_body_and_margins():

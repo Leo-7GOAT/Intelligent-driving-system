@@ -1,0 +1,98 @@
+{
+  "scope": "Offline saved-query compute comparison;no CARLA ticks,PPO updates or active source changes.",
+  "baseline_batch": "20261031T004553035320Z_native_curve_control",
+  "fixture_sha256": "3bca0b623b320e4480964ad033aa4349a1d665bf692aa6573af31d1003d4c11a",
+  "baseline_kernel_sha256": "41fcb252190d52b5c001c19ccacfa74b5f053aeab278ce20405127d001d8bf0d",
+  "candidate_kernel_sha256": "4f980a67414953ebbada82b76cafa01891f18410284d8afef08ee90186337139",
+  "dependencies": {
+    "navstack/config.py": {
+      "baseline_sha256": "389bc42ca7603292036d1b678855eef72264376de65b74afd8f30edda933187e",
+      "current_sha256": "389bc42ca7603292036d1b678855eef72264376de65b74afd8f30edda933187e",
+      "text_equal": true
+    },
+    "navstack/planning.py": {
+      "baseline_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+      "current_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+      "text_equal": true
+    },
+    "navstack/world.py": {
+      "baseline_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+      "current_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+      "text_equal": true
+    },
+    "navstack/road_grid.py": {
+      "baseline_sha256": "8b04d6c9056f58b0d17a1c76c49aadddd296543692679056dfdcf7e4c1ff50ac",
+      "current_sha256": "8b04d6c9056f58b0d17a1c76c49aadddd296543692679056dfdcf7e4c1ff50ac",
+      "text_equal": true
+    },
+    "navstack/vehicle.py": {
+      "baseline_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+      "current_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+      "text_equal": true
+    },
+    "navstack/dubins_guide.py": {
+      "baseline_sha256": "59c6972c3b1ce9c0a2ad4de3ffd15ca4db9256a7eb2ef38a20e66ab7d4dda900",
+      "current_sha256": "59c6972c3b1ce9c0a2ad4de3ffd15ca4db9256a7eb2ef38a20e66ab7d4dda900",
+      "text_equal": true
+    }
+  },
+  "repeats": 3,
+  "actual_planner_batches": 7626,
+  "actual_planner_poses": 549151,
+  "collision_flags_exact": true,
+  "full_search_exact": {
+    "status": "timeout",
+    "failure_reason": "search_budget",
+    "expanded_nodes": 7200,
+    "cost": null,
+    "path_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "path_samples": 0
+  },
+  "kernel_timings": {
+    "baseline": {
+      "median": 5.346377999987453,
+      "min": 5.0814455000218,
+      "max": 5.660342599963769,
+      "samples_seconds": [
+        5.0814455000218,
+        5.346377999987453,
+        5.660342599963769
+      ]
+    },
+    "batched_corners": {
+      "median": 2.620723900035955,
+      "min": 2.4988509999820963,
+      "max": 2.68578120006714,
+      "samples_seconds": [
+        2.4988509999820963,
+        2.620723900035955,
+        2.68578120006714
+      ]
+    }
+  },
+  "search_timings": {
+    "baseline": {
+      "median": 6.439639799995348,
+      "min": 6.317987999995239,
+      "max": 6.67438670003321,
+      "samples_seconds": [
+        6.317987999995239,
+        6.439639799995348,
+        6.67438670003321
+      ]
+    },
+    "batched_corners": {
+      "median": 3.6675507000181824,
+      "min": 3.611205199966207,
+      "max": 3.7527289000572637,
+      "samples_seconds": [
+        3.611205199966207,
+        3.7527289000572637,
+        3.6675507000181824
+      ]
+    }
+  },
+  "concurrent_load": "An independently frozen CARLA development phase may be running;interleaved samples are not a hardware/realtime certification.",
+  "new_physical_controls": 0,
+  "optimizer_updates": 0
+}

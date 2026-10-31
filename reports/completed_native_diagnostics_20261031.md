@@ -71,7 +71,5 @@ update;longer collection tests observing full terminal feedback before updating.
 It is a bounded development hypothesis,not an adopted improvement or extra seed.
 [Initialization proof](native_B1_rollout1280_preparation_20261031.json).
 
-Hfrozen reevaluation is currently running;the longer-collection B1,H0training,
-seed22PPO and train36/validation24phases follow through verified owned-process
-queues. Healthy B1,five independent trained seeds,the120-condition fresh final
+Hfrozen reevaluation has completed9/12,all core families3/4,zero unsafe;the longer-collection B1is actually training. H0training,seed22PPO and train36/validation24phases follow through verified owned-process queues. See the later exact-corner report for the complete Hdiagnosis. Healthy B1,five independent trained seeds,the120-condition fresh final
 test and the original success/safety/advantage gates remain unmet.

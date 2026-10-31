@@ -12,9 +12,7 @@ diagnostics,not trained PPO seeds or final confirmation.
 B1fixed reward units completes2/12with six unsafe episodes after20480training
 controls/208Adam;it is rejected as healthy. All27897rawcontrols and12initial
 actions independently reproduce from the public capsule. Htraining20674controls
-is retained;fresh frozen reevaluation is running after the original ownership
-guard failure. New B1rollout1280,H0-only,seed22and separated train/validation
-phases follow through strict owned-empty lifecycle queues.
+is retained;fresh frozen reevaluation completes9/12with three deadlines,no unsafe and3/4in each core family after the original ownership guard failure. New B1rollout1280is actually training;H0-only,seed22and separated train/validation phases follow through strict owned-empty lifecycle queues.
 [Completed evidence](../reports/completed_native_diagnostics_20261031.md) and
 [public independent reconstructions](../reports/completed_native_public_reproduction_20261031.json).
 The full original acceptance remains **UNMET**.
