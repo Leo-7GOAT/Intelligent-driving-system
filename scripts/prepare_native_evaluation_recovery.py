@@ -81,11 +81,19 @@ def verified_interruption(parent):
                                      read(parent/'failure.json').get('error','')) is not None)
         foreign_stop=(guard.get('reason') is None and type(guard.get('exit_code')) is int and guard['exit_code']==1
                       and (parent/'failure.json').is_file() and read(parent/'failure.json').get('error')=="InfrastructureFailure('RuntimeError: Foreign actors appeared; refusing to tick')")
-        if not (disk_stop or actor_stop or foreign_stop) and (guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int):
+        gpu_timeout_stop=(type(guard.get('exit_code')) is int and guard['exit_code']==1 and guard.get('reason')==
+            "guard_exception: TimeoutExpired(['nvidia-smi', '--query-gpu=temperature.gpu', '--format=csv,noheader,nounits'], 10)")
+        telemetry=read(parent/'guard.json').get('gpu_telemetry',{}) if (parent/'guard.json').is_file() else {}
+        attempts=telemetry.get('attempts',[])
+        gpu_unavailable_stop=(type(guard.get('exit_code')) is int and guard['exit_code']==1
+            and guard.get('reason')=='gpu_telemetry_unavailable' and telemetry.get('status')=='unavailable'
+            and telemetry.get('temperature_c') is None and isinstance(attempts,list) and len(attempts)==2
+            and all(isinstance(a,dict) and a.get('status') in ('timeout','nonzero_exit','invalid_temperature','unavailable_or_malformed') for a in attempts))
+        if not (disk_stop or actor_stop or foreign_stop or gpu_timeout_stop or gpu_unavailable_stop) and (guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int):
             raise ValueError('Require a verified resource-interrupted parent, never a live task')
         if read(parent/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped':
             raise ValueError('Parent owned-server cleanup is incomplete')
-        if disk_stop or actor_stop or foreign_stop:
+        if disk_stop or actor_stop or foreign_stop or gpu_timeout_stop or gpu_unavailable_stop:
             from navstack.process_lease import pid_alive
             worker=read(parent/'worker_process.json');watch=read(parent/'guard.json')
             server=read(parent/'infrastructure/server_start.json')
@@ -105,7 +113,9 @@ def verified_interruption(parent):
                         or not guard['epoch']-5<=probe.get('observed_epoch',0)<=stop.get('epoch',0)):
                     raise ValueError('Foreign actor guard recovery requires independently recorded empty matching server before owned shutdown')
                 return 'foreign_actor_guard_fresh_server_only_cause_unknown'
-            return 'owned_actor_cleanup_failure' if actor_stop else 'worker_disk_below_12GiB'
+            return ('gpu_telemetry_probe_timeout' if gpu_timeout_stop else
+                    'gpu_telemetry_unavailable_after_two_bounded_probes' if gpu_unavailable_stop else
+                    'owned_actor_cleanup_failure' if actor_stop else 'worker_disk_below_12GiB')
         return 'wall_deadline'
     from navstack.process_lease import pid_alive
     receipt=read(parent/'process_absence_receipt.json')

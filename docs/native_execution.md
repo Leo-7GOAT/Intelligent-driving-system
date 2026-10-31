@@ -194,3 +194,22 @@ current worker. Existing archived case, hazard and route modules are retained;
 added files are listed and hashed in the child protocol. This avoids an import
 failure when an older checkpoint predates the case-registry module, without
 replacing its measured geometry or checkpoint bytes.
+# Operational GPU telemetry guard (31 October)
+
+For a new, unstarted registered lifecycle, add `-UseCurrentGuard` to
+`scripts/run_registered_native.ps1`. The launcher saves a separate
+`launcher_override/source` and hash manifest before starting the worker.
+`launcher_execution.json` identifies the exact guard source. The registered
+policy, physical config and frozen worker source stay unchanged.
+
+The updated guard makes at most two10-second NVIDIA temperature probes. A
+successful reading at85C still stops the worker; two unavailable readings
+also stop it. This handles a single transient CLI timeout without disabling
+thermal monitoring or allowing unlimited retries. `-ValidateOnly` remains
+read-only and does not create an override snapshot. Existing failed lifecycle
+folders must be preserved; prepare a recovery child instead of relaunching them.
+
+The actual seed22H0recovery is documented in
+`reports/native_seed22_GPU_timeout_recovery_20261031.json`. Its completed H
+sibling is not retrained, and at least6,698nonretained controls remain charged.
+This recovery is not an equal-consumed-budget feedback comparison.

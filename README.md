@@ -9,6 +9,11 @@ the owned server has been cleaned up. The one-case gap is not significant
 (exact discordance p=1.0).
 [Complete paired evidence](reports/native_v4_trained_seed11_feedback_pair_20261031.json).
 
+The second trained H seed also completes12/12,zero unsafe;all24,858controls
+verify. Its H0sibling is recovering after a recorded GPU-telemetry guard timeout,
+with all lost interactions charged. This is not a second closed/matched pair.
+[Recovery evidence](reports/native_seed22_GPU_timeout_recovery_20261031.json).
+
 The separate **frozen-weight** v4 migration scores H 9/12 versus H0 10/12,
 with no unsafe episodes. This reverses the earlier v3 gap and establishes no
 feedback benefit. B1 trained on v4 scores **7/12, zero unsafe, five deadlines**;

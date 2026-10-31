@@ -5,8 +5,30 @@ param(
     [string]$CarlaPython,
     [switch]$ValidateOnly,
     [switch]$ActivateQueued,
-    [switch]$ActivateOnly
+    [switch]$ActivateOnly,
+    [switch]$UseCurrentGuard
 )
+function New-NativeGuardSnapshot {
+    param([Parameter(Mandatory=$true)][string]$SourceRoot,[Parameter(Mandatory=$true)][string]$Destination)
+    if(Test-Path -LiteralPath $Destination){throw 'Preserve existing operational guard snapshot'}
+    $snapshotFiles=@(Get-ChildItem -LiteralPath (Join-Path $SourceRoot 'navstack') -Filter '*.py' -File -Recurse)
+    foreach($snapshotName in @('watch_existing_pair.py','stop_owned_carla.ps1','run_registered_native.ps1')) {
+        $snapshotFiles+=Get-Item -LiteralPath (Join-Path $SourceRoot ('scripts/'+$snapshotName)) -ErrorAction Stop
+    }
+    $snapshotRoot=Join-Path $Destination 'source'
+    $snapshotHashes=@{}
+    foreach($snapshotFile in $snapshotFiles) {
+        $snapshotRelative=[IO.Path]::GetRelativePath($SourceRoot,$snapshotFile.FullName)
+        if($snapshotRelative.StartsWith('..')){throw 'Operational guard source escapes project'}
+        $snapshotTarget=Join-Path $snapshotRoot $snapshotRelative
+        New-Item -ItemType Directory -Path (Split-Path -Parent $snapshotTarget) -Force | Out-Null
+        Copy-Item -LiteralPath $snapshotFile.FullName -Destination $snapshotTarget -ErrorAction Stop
+        $snapshotHashes[$snapshotRelative.Replace('\','/')]=(Get-FileHash -LiteralPath $snapshotTarget -Algorithm SHA256).Hash.ToLowerInvariant()
+    }
+    $snapshotManifest=Join-Path $Destination 'manifest.json'
+    @{scope='Operational watchdog override only;worker policy,physical config and frozen source remain unchanged';files=$snapshotHashes;gpu_probe_attempts=2;gpu_timeout_each_seconds=10;temperature_stop_c=85} | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $snapshotManifest -Encoding utf8
+    return @{script=(Join-Path $snapshotRoot 'scripts/watch_existing_pair.py');manifest_sha256=(Get-FileHash -LiteralPath $snapshotManifest -Algorithm SHA256).Hash.ToLowerInvariant()}
+}
 function Test-NativeReadinessProbe {
     param([Parameter(Mandatory=$true)]$Probe)
     # probe_carla37 reports connection timeouts as JSON with process exit0.
@@ -31,6 +53,8 @@ $taskPython=(Resolve-Path -LiteralPath $Python).Path
 $taskClient=(Resolve-Path -LiteralPath $CarlaPython).Path
 $taskWorkerName=switch($Kind){'rule'{'evaluate_native_rule.py'} 'control'{'native_curve_control.py'} default{'native_road_learning.py'}}
 $taskWorkerScript=Join-Path $taskSource ('scripts/'+$taskWorkerName)
+$taskGuardScript=Join-Path $taskSource 'scripts/watch_existing_pair.py'
+if($UseCurrentGuard -and -not(Test-Path -LiteralPath (Join-Path $taskRoot 'scripts/watch_existing_pair.py') -PathType Leaf)){throw 'Explicit current watchdog source missing'}
 foreach($taskRequired in @('calibration_sha256','source_hashes','deadline_epoch','created_epoch','carla_rpc_port','resource_limits')) {
     if ($taskProtocol.PSObject.Properties.Name -notcontains $taskRequired) { throw "Missing registered input: $taskRequired" }
 }
@@ -89,7 +113,12 @@ $taskInfrastructure=Join-Path $taskBatch 'infrastructure'
 New-Item -ItemType Directory -Path $taskInfrastructure -Force | Out-Null
 $taskServerHost=$null
 try {
-    @{wrapper_sha256=(Get-FileHash -LiteralPath $PSCommandPath -Algorithm SHA256).Hash.ToLowerInvariant();wrapper='scripts/run_registered_native.ps1';protocol_sha256=(Get-FileHash -LiteralPath $taskProtocolPath -Algorithm SHA256).Hash.ToLowerInvariant();epoch=[DateTimeOffset]::UtcNow.ToUnixTimeSeconds()} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $taskBatch 'launcher_execution.json') -Encoding utf8
+    $taskGuardManifest=$null
+    if($UseCurrentGuard) {
+        $taskGuardSnapshot=New-NativeGuardSnapshot -SourceRoot $taskRoot -Destination (Join-Path $taskBatch 'launcher_override')
+        $taskGuardScript=$taskGuardSnapshot.script;$taskGuardManifest=$taskGuardSnapshot.manifest_sha256
+    }
+    @{wrapper_sha256=(Get-FileHash -LiteralPath $PSCommandPath -Algorithm SHA256).Hash.ToLowerInvariant();wrapper='scripts/run_registered_native.ps1';protocol_sha256=(Get-FileHash -LiteralPath $taskProtocolPath -Algorithm SHA256).Hash.ToLowerInvariant();epoch=[DateTimeOffset]::UtcNow.ToUnixTimeSeconds();guard_current_override=[bool]$UseCurrentGuard;guard_source_relative=[IO.Path]::GetRelativePath($taskBatch,$taskGuardScript).Replace('\','/');guard_source_sha256=(Get-FileHash -LiteralPath $taskGuardScript -Algorithm SHA256).Hash.ToLowerInvariant();guard_manifest_sha256=$taskGuardManifest} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $taskBatch 'launcher_execution.json') -Encoding utf8
     $taskServerScript=Join-Path $taskSource 'scripts/run_carla_owned_foreground.ps1'
     $taskServerHost=Start-Process -FilePath $taskPwsh -ArgumentList @('-NoProfile','-File',('"'+$taskServerScript+'"'),'-RpcPort',[string]$taskProtocol.carla_rpc_port,'-RenderOffScreen','-OutputDirectory',('"'+$taskInfrastructure+'"')) -PassThru -WindowStyle Hidden -RedirectStandardOutput (Join-Path $taskInfrastructure 'server_host_stdout.log') -RedirectStandardError (Join-Path $taskInfrastructure 'server_host_stderr.log')
     $taskReady=$false
@@ -118,7 +147,7 @@ try {
     }
     if($null -eq $taskWorker){throw 'Could not identify exactly one task-launched worker'}
     @{pid=$taskWorker.ProcessId;executable=$taskWorker.ExecutablePath;command=$taskWorker.CommandLine;creation_epoch=([DateTimeOffset]$taskWorker.CreationDate.ToUniversalTime()).ToUnixTimeMilliseconds()/1000;verified_at=[DateTimeOffset]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $taskBatch 'worker_process.json') -Encoding utf8
-    & $taskPython -u (Join-Path $taskSource 'scripts/watch_existing_pair.py') --batch $taskBatch --identity (Join-Path $taskBatch 'worker_process.json') --powershell $taskPwsh > (Join-Path $taskBatch 'guard_stdout.log') 2> (Join-Path $taskBatch 'guard_stderr.log')
+    & $taskPython -u $taskGuardScript --batch $taskBatch --identity (Join-Path $taskBatch 'worker_process.json') --powershell $taskPwsh > (Join-Path $taskBatch 'guard_stdout.log') 2> (Join-Path $taskBatch 'guard_stderr.log')
     if($LASTEXITCODE -ne 0){throw 'Guard failed; inspect its immutable logs and actual worker identity'}
     $taskFinal=Get-Content -LiteralPath (Join-Path $taskBatch 'guard_final.json') -Raw | ConvertFrom-Json
     if($taskFinal.exit_code -ne 0 -or $null -ne $taskFinal.reason){throw 'Worker ended nonnormally; inspect guard_final.json'}

@@ -3,6 +3,51 @@
 Original objective ACTIVE/UNMET. This section supersedes all earlier live
 process identities. Verify receipts and creation times before acting.
 
+- NEW authoritative operational state:seed22parent025409042778STOPPED after
+  one10s nvidia-smi probe timeout raised in its legacy guard. Actual worker
+  ended;owned-empty server cleanup confirmed. This was NOT a measured overheat:
+  subsequent query returned45C in0.062s. Hwas already complete12/12with20539
+  training controls/650Adam and4319evaluation controls;all24858rawcontrols and
+  12start actions now audit. Report native_H_v4_seed22_completed_method_after_GPU_timeout_20261031.json.
+- H0parent consumed at least16770controls;checkpoint10072/320Adam retained.
+  At least6698controls plus any unknown unflushed tail remain charged. Its new
+  recovery045159is ACTUALLY RUNNING under worker14448/guard27668,only H0,
+  remaining budget10408controls to lineage20480. Model/normalizer/RNGbytes,
+  env config,17physical/learning module texts and native actuation script are
+  unchanged. Report native_seed22_GPU_timeout_recovery_20261031.json. Do not
+  relaunch either parent method. New H0postprocessor writes
+  native_H0_v4_seed22_recovered_endpoint_20261031.json after normal cleanup.
+- GPUguard fix:two bounded10s probes;85C threshold unchanged;two failures stop.
+  Explicit -UseCurrentGuard snapshots/hash-binds operational sources separately,
+  leaving worker/policy snapshots intact. Recovery already uses it and reports
+  healthy45-50C. Full local700passed/1skip/4CARLA exclusions/3warnings246.47s;
+  initial65guard checks12.03s and51snapshot checks13.43s. Logs
+  runs/gpu_guard_recovery_full_cpu_20261031.log. Hosted result pending for fix.
+- Current queues ALL use -UseCurrentGuard:61728recovery045159→B1replayPPO042301092506;
+  17716replayPPO→approachPPO042300931172;652approachPPO→broader025445532080;
+  10840broader→seed33gate040926397622;67120seed33→seed44gate041003482907;
+  22264seed44→seed55gate041003481908. Receipt runs/gpu_guard_owned_queue_launches_20261031.json.
+  Old waiting queues42340/15780/24484/60144/64416and preparation worker30576
+  were superseded only after identity/creation/untouched-child checks;no native
+  worker affected. Receipt runs/gpu_guard_waiters_superseded_20261031.json.
+- New remaining-seed driver V2is live,actual worker71584(wrapper64060),still
+  waiting ALL33/44/55gates with no prepared children. Its updated frozen launcher
+  explicitly selects the snapshotted new guard. Source291files and all old
+  snapshots retained. Status runs/remaining_v4_seed_PPO_execution_20261031_v2/status.json;
+  launch runs/remaining_v4_seed_PPO_gpu_guard_driver_launch_20261031.json.
+  Do NOT invoke the superseded original driver or independently prepare children.
+- Prior runtime/reliance sourcebd645aeis independently reproduced:all four
+  runtime JSONs byte-identical;all439H/494H0decisions and counterfactual
+  probabilities identical apart from offline wall time. Independent14tests
+  pass13.26s. Receipt native_v4_runtime_feedback_independent_verification_20261031.json.
+  Hosted41169543613SUCCESS. These add zero driving/updates.
+- A20s nonblocking20Hz local profile of the resumed worker captured305active
+  Python samples with8read errors. Feedback appears in142stacks,batch-road SAT
+  in115,scalar-road SATin36. These overlapping active-stack proportions are
+  approximate,not wall-time percentages. Raw private-path profile stays local:
+  runs/H0_gpu_recovery_cpu_profile_20261031.txt. This supports a separate exact
+  SAT compute prototype;NO kernel optimization has been implemented/enabled yet.
+
 - New readonly runtime/reliance audit is complete;report
   reports/native_v4_runtime_and_feedback_20261031.md. All4complete endpoints
   retain every frame,including terminal sensor refreshes;actual controls are

@@ -30,6 +30,35 @@ def test_verified_external_absence_keeps_unknown_exit_cause_and_has_no_fake_stop
     assert not (tmp_path/'infrastructure/server_stop.json').exists()
 
 
+@pytest.mark.parametrize('fault',[None,'live','other_command','occupied'])
+def test_exact_legacy_gpu_probe_timeout_requires_dead_owned_lifecycle_and_empty_ports(tmp_path,monkeypatch,fault):
+    fixture(tmp_path,monkeypatch)
+    reason="guard_exception: TimeoutExpired(['nvidia-smi', '--query-gpu=temperature.gpu', '--format=csv,noheader,nounits'], 10)"
+    if fault=='other_command':reason="guard_exception: TimeoutExpired(['arbitrary-command'], 10)"
+    write_json(tmp_path/'guard_final.json',{'reason':reason,'exit_code':1,'worker_pid':12341,'epoch':900.})
+    write_json(tmp_path/'infrastructure/server_stop.json',{'status':'owned_empty_server_stopped',
+        'shipping_pid':12344,'post_stop_tcp':[2200] if fault=='occupied' else [],'post_stop_udp':[]})
+    if fault=='live':monkeypatch.setattr('navstack.process_lease.pid_alive',lambda pid:True)
+    if fault is None:assert verified_interruption(tmp_path)=='gpu_telemetry_probe_timeout'
+    else:
+        with pytest.raises(ValueError):verified_interruption(tmp_path)
+
+
+@pytest.mark.parametrize('fault',[None,'one_attempt','temperature','live'])
+def test_new_gpu_unavailable_receipt_requires_both_failed_probes_and_owned_cleanup(tmp_path,monkeypatch,fault):
+    fixture(tmp_path,monkeypatch)
+    write_json(tmp_path/'guard_final.json',{'reason':'gpu_telemetry_unavailable','exit_code':1,'worker_pid':12341,'epoch':900.})
+    write_json(tmp_path/'infrastructure/server_stop.json',{'status':'owned_empty_server_stopped',
+        'shipping_pid':12344,'post_stop_tcp':[],'post_stop_udp':[]})
+    telemetry={'status':'unavailable','temperature_c':45 if fault=='temperature' else None,
+        'attempts':[{'status':'timeout'}]*(1 if fault=='one_attempt' else 2)}
+    write_json(tmp_path/'guard.json',{'pid':12342,'gpu_telemetry':telemetry})
+    if fault=='live':monkeypatch.setattr('navstack.process_lease.pid_alive',lambda pid:True)
+    if fault is None:assert verified_interruption(tmp_path)=='gpu_telemetry_unavailable_after_two_bounded_probes'
+    else:
+        with pytest.raises(ValueError):verified_interruption(tmp_path)
+
+
 @pytest.mark.parametrize('fault',['stale','occupied','changed','live','identity','ports'])
 def test_external_absence_rejects_stale_live_or_changed_records(tmp_path,monkeypatch,fault):
     receipt=fixture(tmp_path,monkeypatch)

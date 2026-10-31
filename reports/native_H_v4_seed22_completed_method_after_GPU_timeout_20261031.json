@@ -1,0 +1,20 @@
+{
+  "scope": "Completed Hmethod in a parent whose later H0GPU-probe guard failed;not normal whole-pair closure",
+  "batch": "20261031T025409042778Z_native_supervised_ppo",
+  "method": "H",
+  "seed": 22,
+  "successes": 12,
+  "cases": 12,
+  "unsafe": 0,
+  "training_controls": 20539,
+  "optimizer_steps": 650,
+  "evaluation_controls": 4319,
+  "all_raw_controls_verified": 24858,
+  "measured_start_actions_reproduced": 12,
+  "normalization_frozen": true,
+  "model_sha256": "091512ffb368c503c7a49b7b2e7fb49696b64a691d3c45e86040b904465642e3",
+  "normalization_sha256": "5d8d4640097ce5839c71bcd3e697202e455c60828390a8cd57877e0bd65f135e",
+  "raw_audit_sha256": "066b71cc36bf88b11d002fc98ca6727d19d492e5e2c3ebb10c88aa284f22378d",
+  "H0_recovery_child": "20261031T045159Z_native_recovery",
+  "research_acceptance": "UNMET"
+}

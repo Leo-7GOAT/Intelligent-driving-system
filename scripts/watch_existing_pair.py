@@ -19,6 +19,28 @@ ALLOWED_WORKERS = ('paired_update_stability.py','collect_executed_demonstrations
     'evaluate_native_rule.py','evaluate_native_policy_weights.py','native_curve_control.py')
 
 
+def query_gpu_temperature(runner=None):
+    """At most two ten-second probes;unavailable telemetry still fails closed."""
+    runner=subprocess.run if runner is None else runner
+    attempts=[]
+    for _ in range(2):
+        try:
+            result=runner(['nvidia-smi','--query-gpu=temperature.gpu','--format=csv,noheader,nounits'],
+                capture_output=True,text=True,timeout=10,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+            if result.returncode:
+                attempts.append({'status':'nonzero_exit','returncode':result.returncode});continue
+            values=[int(value) for value in result.stdout.split()]
+            if not values or any(not 0<=value<=125 for value in values):
+                attempts.append({'status':'invalid_temperature'});continue
+            attempts.append({'status':'ok'})
+            return {'status':'ok','temperature_c':max(values),'attempts':attempts}
+        except subprocess.TimeoutExpired:
+            attempts.append({'status':'timeout','timeout_seconds':10})
+        except (OSError,ValueError):
+            attempts.append({'status':'unavailable_or_malformed'})
+    return {'status':'unavailable','temperature_c':None,'attempts':attempts}
+
+
 def command_identifies_batch(command, batch):
     """Resolve an explicit --batch token; never rely on a name substring."""
     try:
@@ -87,11 +109,11 @@ def main():
                     for f in scope.glob('*heartbeat.json')]+[f.stat().st_mtime for name in ('progress.json','stdout.log')
                     for f in [batch/name] if f.exists()])
                 if now-recent>300:ok,reason=False,'no_progress_300s'
-                gpu=subprocess.run(['nvidia-smi','--query-gpu=temperature.gpu','--format=csv,noheader,nounits'],
-                    capture_output=True,text=True,timeout=10,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
-                if gpu.returncode==0 and max(map(int,gpu.stdout.split()))>=85:ok,reason=False,'gpu_temperature_85C'
+                gpu=query_gpu_temperature()
+                if gpu['status']!='ok':ok,reason=False,'gpu_telemetry_unavailable'
+                elif gpu['temperature_c']>=85:ok,reason=False,'gpu_temperature_85C'
                 atomic_json(batch/'guard.json',{'pid':os.getpid(),'worker_pid':child.pid,'epoch':now,'last_progress':recent,
-                    'deadline_epoch':protocol['deadline_epoch'],'healthy':ok,'reason':reason})
+                    'deadline_epoch':protocol['deadline_epoch'],'healthy':ok,'reason':reason,'gpu_telemetry':gpu})
                 if not ok:
                     # Retained process handle prevents PID reuse from targeting
                     # another task. Bridge EOF cleanup precedes the empty probe.

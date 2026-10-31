@@ -1,5 +1,13 @@
 # Research acceptance ledger
 
+Latest operational update:seed22H also completes12/12development cases with
+zero unsafe after20539training controls/650Adam. All24858Hcontrols verify.
+Its later H0is interrupted by a guard telemetry CLI timeout and is now actually
+recovering from10072controls/320Adam. At least6698nonretained controls remain
+charged. This is not a normally closed second feedback pair or a matched
+consumed-budget result. [Fault/recovery evidence](../reports/native_seed22_GPU_timeout_recovery_20261031.json).
+Five completed seeds and independent final confirmation remain unmet.
+
 Current 31 October update: trained-v4 H completes **12/12 development cases**,
 zero unsafe, after 20,563 real training controls/650 Adam steps. All 24,900 raw
 controls and twelve measured-start actions verify. H0 also completes11/12,

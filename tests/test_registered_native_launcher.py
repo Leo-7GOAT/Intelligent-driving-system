@@ -54,9 +54,45 @@ def fixture(tmp_path):
     return batch,protocol
 
 
-def validate(batch):
+def validate(batch,current_guard=False):
     return subprocess.run([POWERSHELL,'-NoProfile','-File',str(SCRIPT),'-Batch',str(batch),
-        '-Python',sys.executable,'-CarlaPython',sys.executable,'-ValidateOnly'],capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=20)
+        '-Python',sys.executable,'-CarlaPython',sys.executable,'-ValidateOnly',
+        *(['-UseCurrentGuard'] if current_guard else [])],capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=20)
+
+
+def test_explicit_operational_guard_validation_still_writes_nothing(tmp_path):
+    batch,_=fixture(tmp_path)
+    before={p.relative_to(batch):p.read_bytes() for p in batch.rglob('*') if p.is_file()}
+    result=validate(batch,current_guard=True)
+    assert result.returncode==0,result.stderr
+    assert before=={p.relative_to(batch):p.read_bytes() for p in batch.rglob('*') if p.is_file()}
+    assert not (batch/'launcher_override').exists()
+
+
+def test_operational_snapshot_is_separate_hash_bound_and_never_overwrites(tmp_path):
+    origin=tmp_path/'guard source';(origin/'navstack').mkdir(parents=True);(origin/'scripts').mkdir()
+    files=['navstack/__init__.py','scripts/watch_existing_pair.py','scripts/stop_owned_carla.ps1','scripts/run_registered_native.ps1']
+    for name in files:(origin/name).write_text('# inert fixture '+name,encoding='utf-8')
+    driver=tmp_path/'snapshot_only.ps1'
+    driver.write_text('''param([string]$Source,[string]$Origin,[string]$Destination)
+$ErrorActionPreference='Stop'
+$tokens=$null;$errors=$null
+$ast=[System.Management.Automation.Language.Parser]::ParseFile($Source,[ref]$tokens,[ref]$errors)
+$function=$ast.Find({param($node) $node -is [System.Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq 'New-NativeGuardSnapshot'},$true)
+. ([scriptblock]::Create($function.Extent.Text))
+New-NativeGuardSnapshot -SourceRoot $Origin -Destination $Destination | ConvertTo-Json -Compress
+''',encoding='utf-8')
+    destination=tmp_path/'operational snapshot'
+    command=[POWERSHELL,'-NoProfile','-File',str(driver),'-Source',str(SCRIPT),'-Origin',str(origin),'-Destination',str(destination)]
+    first=subprocess.run(command,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=20)
+    assert first.returncode==0,first.stderr
+    manifest=json.loads((destination/'manifest.json').read_text(encoding='utf-8-sig'))
+    assert set(manifest['files'])==set(files) and manifest['temperature_stop_c']==85
+    for name in files:
+        assert (destination/'source'/name).read_bytes()==(origin/name).read_bytes()
+        assert manifest['files'][name]==hashlib.sha256((origin/name).read_bytes()).hexdigest()
+    second=subprocess.run(command,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=20)
+    assert second.returncode!=0 and 'Preserve existing' in second.stderr
 
 
 def test_launcher_metadata_gate_is_read_only_and_does_not_claim_server_readiness(tmp_path):
