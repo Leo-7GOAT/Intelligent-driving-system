@@ -1,4 +1,34 @@
-# Current handoff — 2026-10-31 17:58 local
+# Current handoff — 2026-10-31 18:37 local
+
+Original goal remains ACTIVE/UNMET;this block supersedes old live statuses below.
+Canonical queue47784 is ACTUALLY RUNNING seed33 batch093156483162. Htraining
+complete20561controls/650Adam,recorded known12evaluation10/12,two static
+deadlines5/7;H0now actually training. Worker18536,guard29604healthy. Full
+method raw/inference audits intentionally wait for pair/bridge closure;do not
+promote the recorded Hsummary into a fully audited paired endpoint yet.
+See native_H_seed33_lr_correction_recorded_endpoint_20261031.json.
+
+Old high-rate seed33batch082311523384 COMPLETED H8/12,H06/12,4/6deadlines,
+zero unsafe;normal owned cleanup and both audits completed automatically before
+canonical activation. Both reports are committed. No old native process was
+killed. Canonical queue then continues44,55,fresh seed22H0;dependent68480
+remains waiting and will run B3,paired training-view probes,four B1seeds.
+Use existing drivers/statuses;do not duplicate completed trials or revive old queues.
+
+NEW public provenance ACTUALLY reproduced: native_training36_measured_views_20261031_repro.zip,
+18parts/965files/37549119bytes,SHA46ecf67e4cbfc3d7a55cb534c66d0820189133a3b8810df73ebbd2092a77ecd8.
+Independent unauthenticated download and496.063second reconstruction verify all
+20521TRAINcontrols,36conditions,51episodes,4156byte-identical labels. Full raw
+Htraining,all checkpoints,partial interrupted validation,failure and unstarted
+H0retained;auxiliary private paths redacted with hashes/ledger. This does NOT
+improve measured B1driving or count as new PPO. Receipt
+native_training36_measured_views_public_verification_20261031.json;download and
+reproduce_native_training_views.py commands in README. Public asset sourceb83f6fd;
+independent checkoutbcf1e39,18targeted tests passed4.33s and hosted41192679399SUCCESS.
+Completed old first archive without packager snapshot is retained locally and
+was NOT uploaded;the *_repro.zip public archive is authoritative.
+
+# Prior operational snapshot — 2026-10-31 17:58 local
 
 Original objective ACTIVE/UNMET. This supersedes ALL earlier live queue references.
 

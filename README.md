@@ -20,6 +20,11 @@ and excluded from the matched canonical cohort. Corrected33/44/55trials
 are registered with full saved-optimizer checks and unchanged initial tensors,
 normalization and RNG. [Detected mismatch](reports/native_H_seed33_initialization_gate_vs_high_lr_20261031.json),
 [verified prepared profiles](reports/native_canonical_H_H0_lr_profile_preparation_20261031.json).
+Corrected seed33 H has now completed20,561training controls/650Adam steps
+and records10/12development successes,two static deadlines;H0has started.
+[Recorded endpoint](reports/native_H_seed33_lr_correction_recorded_endpoint_20261031.json).
+Full raw/inference audits await closure of the running pair's bridge stream;
+this is not a fully audited paired result or a final-test improvement claim.
 
 A separate 36-training/24-geometry-separated development-validation branch now
 completes **24/24, zero unsafe**, with8/8in each core family after20,521native
@@ -74,6 +79,21 @@ Another [matched actor-only coverage pair](reports/native_B1_measured_training_v
 uses4,156B1views of20,521verified HTRAINcontrols,including failed/unfinished
 episodes. Its lower training steering error is not driving or validation
 evidence;both24case validation arms are queued with all extra prior costs disclosed.
+The [public training provenance capsule](reports/native_training36_measured_views_public_verification_20261031.json)
+now independently reconstructs all20,521training controls and4,156labels,
+including all51training episodes and the unfinished tail. The dataset is byte
+identical;the interrupted validation records and unstarted H0are preserved.
+This adds reproducibility evidence,not a driving result. To reproduce offline:
+
+```powershell
+$viewsUrl = 'https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_training36_measured_views_20261031_repro.zip.parts.json'
+$viewsSha = '46ecf67e4cbfc3d7a55cb534c66d0820189133a3b8810df73ebbd2092a77ecd8'
+.\.venv\Scripts\python.exe scripts/download_native_asset.py --manifest-url $viewsUrl --sha256 $viewsSha --output runs/public_training_views_download
+.\.venv\Scripts\python.exe scripts/reproduce_native_training_views.py --archive runs/public_training_views_download/native_training36_measured_views_20261031_repro.zip --sha256 $viewsSha --output runs/public_training_views_rebuilt
+```
+
+Use fresh output directories. The reconstruction has a900second computation
+budget and performs zero new controls,supervised fits or PPOupdates.
 
 The second trained H seed also completes12/12,zero unsafe;all24,858controls
 verify. Its recovered H0sibling completes10/12,zero unsafe,with all lost

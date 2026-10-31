@@ -1,7 +1,11 @@
 # Latest development delivery — 2026-10-31
 
-Source193a5de is pushed and its [hosted CPU workflow](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41190933878)
-has completed successfully. Broader-development H24/24,H021/24,B19/24 and
+Sourcebcf1e39 is pushed and its [hosted CPU workflow](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41192679399)
+has completed successfully. The [new training provenance capsule](../reports/native_training36_measured_views_public_verification_20261031.json)
+is actually uploaded,downloaded without authentication and independently rebuilt:
+965files,20,521training controls,4,156byte-identical labels,including every
+failed/unfinished training episode and original interrupted validation records.
+Broader-development H24/24,H021/24,B19/24 and
 the training/feedback diagnostics have public assets with actual independent
 download/reconstruction receipts linked from the main README. These are
 development results;healthy B1,five matched seeds and final confirmation remain

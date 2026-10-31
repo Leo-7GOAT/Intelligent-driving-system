@@ -14,6 +14,15 @@ H0仅静态条件5超时；单种子一例差异尚不能证明反馈机制有�
 已准备显式3e-5的33/44/55批次，并核对完整优化器参数及初始权重、归一化和随机状态。
 [差异记录](../reports/native_H_seed33_initialization_gate_vs_high_lr_20261031.json)
 与[准备核验](../reports/native_canonical_H_H0_lr_profile_preparation_20261031.json)。
+修正后的seed33 H已完成20,561真实训练控制步、650次Adam，开发记录为10/12，
+条件5和7静态超时；H0已开始训练。整批数据流关闭后再进行完整原始帧与推理审计，
+当前仅为[已记录端点](../reports/native_H_seed33_lr_correction_recorded_endpoint_20261031.json)，不计为最终测试结论。
+
+新增训练数据的[公开复现凭证](../reports/native_training36_measured_views_public_verification_20261031.json)
+已完成：无登录下载18个分片、965个文件，在独立checkout重新核验20,521次训练控制，
+覆盖36个条件、51个训练回合，重建4,156条标签且数据包逐字节一致，用时496秒。
+失败、末尾未完成回合、原验证中断及H0未开始状态均保留。该证据不代表B1驾驶能力提升。
+下载及一条离线重建命令见[英文README](../README.md)，无需启动CARLA。
 
 另一条36训练/24隔离开发验证条件的分支现已完成：H为24/24，三类各8/8，无碰撞/越界。
 行人初始生成高度故障修复后，使用原训练检查点完整重评，未重复训练H；原中断消耗保留。

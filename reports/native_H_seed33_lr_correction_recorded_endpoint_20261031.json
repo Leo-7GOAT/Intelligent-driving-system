@@ -1,0 +1,38 @@
+{
+  "scope": "Completed saved H training and recorded12case development evaluation inside still-running H/H0 lifecycle;full raw and inference audit pending stream closure",
+  "batch": "20261031T093156483162Z_native_supervised_ppo",
+  "method": "H",
+  "protocol_sha256": "07df8b8ce835d739262cfd3d38c071513c32bacb2c27f73d6950f99acc279c4a",
+  "summary_sha256": "240907eb3227be448d585e8af7277787a10c66a3aa894256c79763ce0a24fd08",
+  "evaluation_sha256": "0fe76d687ea50481877b70b5353a1ba62570a556f0e9115c9f7db43fbff2519f",
+  "training_controls": 20561,
+  "optimizer_steps": 650,
+  "optimization_phases": 65,
+  "learning_rates": [
+    3e-05
+  ],
+  "KL_median": 0.0034443028271198273,
+  "KL_max": 0.08228031545877457,
+  "phases_KL_over_015": 10,
+  "actor_l2_change": 0.3836528956890106,
+  "recorded_development_cases": 12,
+  "recorded_successes": 10,
+  "recorded_failures": [
+    {
+      "case_id": 5,
+      "termination_reason": "deadline"
+    },
+    {
+      "case_id": 7,
+      "termination_reason": "deadline"
+    }
+  ],
+  "recorded_evaluation_controls": 5426,
+  "model_sha256": "bc6f67841183333b86fb64f8871b895c591ab19bc8895b644b77a2618edd2f6d",
+  "normalization_sha256": "cc696d532762986dd6d70b0ccbd5150929d4d30771994a8baba3b2bbad2904b7",
+  "raw_audit_status": "PENDING_WHOLE_PAIR_AND_STREAM_CLOSURE",
+  "previous_high_rate_H_successes": 8,
+  "pair_status": "H0_REAL_PPO_STARTED",
+  "limits": "Single developmental learning-rate correction with unchanged pristine policy tensors/norm/RNG;not a causal feedback or final-generalization result. All prior high-rate outcomes and consumed costs retained.",
+  "research_acceptance": "UNMET"
+}
