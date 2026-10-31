@@ -1,0 +1,12 @@
+{
+  "scope": "Actual independent checkout verification of the final all-five shared-brake continuation profile;CPU only",
+  "verified_code_commit": "34a7f3b30f9f647094f552bf73a2fcfa43b15317",
+  "independent_related_tests": 50,
+  "independent_test_wall_seconds": 13.04,
+  "root_latest_changed_area_tests": 41,
+  "root_latest_test_wall_seconds": 11.35,
+  "new_cohort_profile_tests": 6,
+  "shared_brake_native_controls": 0,
+  "no_old_seed11_B1_policy_reuse": true,
+  "research_acceptance": "UNMET"
+}

@@ -16,6 +16,9 @@ of all five new B1policies and B2,then runs the20paired deployment probes.
 It reuses four unstarted Hprobes;both old B1seed11probes remain retained and
 unused because that policy version changed. There is no shared-brake result yet.
 [Replacement queue receipt](reports/native_shared_brake_matured_B1_queue_activation_20261031.json).
+[Final continuation verification](reports/native_shared_brake_matured_B1_independent_verification_20261031.json)
+passes50related CPU tests from an independent checkout; no shared-brake drive
+has been claimed from these checks.
 [Independent verification of code9eec6e6](reports/native_matured_B1_independent_code_verification_20261031.json)
 passes44related tests, rebuilds the byte-identical feedback figure and reproduces
 every field of the complete H/B3comparison. This CPU evidence is separate from

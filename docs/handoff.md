@@ -11,8 +11,14 @@ New root cohort resolver6tests pass;old21shared-brake tests still pass.
 Receipt native_shared_brake_matured_B1_queue_activation_20261031.json.
 Actual B2seed11still training,15501controls observed21:25. Root bindings and
 all live snapshots immutable. Code9eec's hosted41205080566nowSUCCESS;source
-38ce845metadata commit is also pushed. This new shared-continuation change
-needs commit/push and independent tests before the next handoff.
+38ce845metadata commit is also pushed. New shared-continuation code34a7f3b
+is pushed and50related tests actually pass from its independent checkout in
+13.04sec;root41changed-area tests pass11.35sec. Report
+native_shared_brake_matured_B1_independent_verification_20261031.json.
+Hosted34a7workflow41205580510is still running at21:29. B2seed11has17850controls/
+56optimization phases observed21:28. No code/snapshot/weight changes to running
+jobs. Goal remains ACTIVE/UNMET;next focus is actual queued native results and
+the still-missing research/confirmation components,not another installation.
 
 AUTHORITATIVE21:18update;all older live statuses below are historical:
 Original B1driver26916FAILED at seed22initial gate:6/12,5bounds/1collision,
