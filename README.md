@@ -1,5 +1,7 @@
 # Executability-aware hierarchical driving research
 
+07:30 update: external interruption ended the original course after2,408 controls/1Adam update,with no saved trained checkpoint. Raw prefixes are preserved and lost work charged;an explicit pristine-initializer replacement has actually started. Checkpoints now save every1,280 controls. [Interruption and live replacement](reports/native_B1_basic_course_external_interruption_20261101.json).
+
 1 November update: the fixed extra1,024 actor fits per seed are rejected as a
 solution to B1basic-motion failure. All five TRAIN action errors decreased,but
 four of five native basic gates failed;full-task scores were9/4/5/5/7 of12.

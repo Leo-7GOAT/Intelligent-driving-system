@@ -27,6 +27,19 @@ def basic_qualification(episodes):
     return sum(r['success'] for r in episodes)>=3 and unsafe==0
 
 
+def require_old_processes_absent(identities):
+    """Read-only recovery check:PID reuse never grants process-management authority."""
+    pids=','.join(str(int(r['pid'])) for r in identities)
+    command=f"Get-CimInstance Win32_Process | Where-Object {{$_.ProcessId -in @({pids})}} | Select-Object ProcessId,Name | ConvertTo-Json -Compress"
+    result=subprocess.run([shutil.which('pwsh'),'-NoProfile','-Command',command],check=True,capture_output=True,text=True,timeout=30)
+    actual=json.loads(result.stdout) if result.stdout.strip() else []
+    if isinstance(actual,dict):actual=[actual]
+    for old in identities:
+        if any(r['ProcessId']==old['pid'] and r['Name'].lower()==old['name'].lower() for r in actual):
+            raise RuntimeError('Old process identity remains live or ambiguous;no restart')
+    return actual
+
+
 def run(execution):
     execution=Path(execution).resolve();root=execution.parent.parent;source=execution/'source'
     plan=read(execution/'plan.json');hashes=read(execution/'source_manifest.json')
@@ -58,9 +71,13 @@ def run(execution):
         verify()
         with ProcessLease(execution/'pipeline.lock'):
             with (execution/'started.json').open('x',encoding='utf-8') as f:json.dump({'pid':os.getpid(),'epoch':time.time()},f)
-            identity=plan['dependency_process'];owner=OwnedProcess(identity['pid'],identity['creation_epoch'],identity['executable'],allow_terminate=False)
+            if plan.get('external_interruption_restart'):
+                inventory=require_old_processes_absent(plan['interrupted_processes'])
+                atomic_json(execution/'old_process_liveness.json',{'epoch':time.time(),'actual_reused_PID_inventory':inventory,'no_process_killed':True})
+            else:
+                identity=plan['dependency_process'];owner=OwnedProcess(identity['pid'],identity['creation_epoch'],identity['executable'],allow_terminate=False)
             until=time.monotonic()+7200
-            while owner.poll() is None:
+            while owner is not None and owner.poll() is None:
                 if time.monotonic()>until:raise TimeoutError('Finite old-gate wait expired;no native course started')
                 status('WAITING_FOR_ALL_FIVE_OLD_GATES_AND_OWNED_DRIVER_EXIT',dependency_pid=owner.pid)
                 time.sleep(10)

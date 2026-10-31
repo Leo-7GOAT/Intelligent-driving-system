@@ -1,3 +1,28 @@
+# Authoritative external-interruption recovery — 2026-11-01 07:30
+
+OriginalPython/CARLAprocesses gone;causeUNKNOWN,not claimed reboot. Original
+PID25348reused by svchost.exe7:22;NOTmanaged/killed. Last genuine heartbeat2408,
+1actualAdamupdateat1280,butNOtrainedcheckpoint. Actualinterruption_audit.json
+preserves truncated gzip originals,unknownunflushedtail,consumedlowerbound2408.
+Explicit NEW pristine-initializer experiment,not trained-weight recovery.
+NewprepB1_basic_PPO_interruption_restart_preparation_20261101ALL5;seed11cost+2408
+and lostAdam1declared;other4zero. Source/learnerunchanged except operational
+checkpoint intervalnow1280. Oldraw/batches untouched. Newdriver62176LIVE,
+executionB1_basic_PPO_execution_20261101_v2_external_interruption,tool45134,
+seed11batch20261031T232838093068Z_native_B1_basic_PPO_course. Read-onlyCIMchecks
+rejectmatchingoldprocessnames,acceptabsent/reusedforeignname,noforeigntermination.
+Require oldmaturationfailedall5andnormalcleanupsstillchecked beforedriving.
+
+B2original45944andreferenceverifier47464also gone. Public11/22/33previously
+ACTUALLYCOMPLETE;44hadpartuploadfailures before networkinventoryquery failed.
+Missing-onlyremaining44/55resumerACTUALLYSTARTED tool23727,execution
+B2_remaining_publication_20261101_v2,scriptpublish_remaining_B2_20261101_v2.py.
+Itpreservescorrectremoteobjects,usesfreshpublicdownloaddirs,and nowpassesexplicit
+versionedreferencefiguretoindependentreproducer. DONOTadvance native_road_checkout
+6a5486auntilthisresumerterminal. Secondary basic_course_code_checkout_20261101
+is availableforCPUtestsandmayadvance. Mainrepositoryheadbeforethisrecoverye465bc3.
+GoalACTIVE/UNMET. Do notdeclareoldtrainingstilllivefromstalePID/statusfiles.
+
 # Actual update proof — 2026-11-01 00:08 local
 
 BasicPPOseed11first optimization ACTUALLYDONE at1280real controls:1Adamstep,

@@ -1,0 +1,95 @@
+{
+  "scope": "Actual external interruption;cause unknown,no old Python/CARLAprocess remains. PID25348now belongs to svchost.exe and was not managed.",
+  "interruption_audit": {
+    "epoch": 1793489283.1901686,
+    "scope": "Readable-prefix audit only; absent footer/tail is not fabricated or silently repaired. OS liveness must be separately checked before recovery.",
+    "batch": "20261031T155537318174Z_native_B1_basic_PPO_course",
+    "methods": {
+      "B1": {
+        "state": "interrupted",
+        "readable_trace_controls": 2408,
+        "trace_errors": [
+          {
+            "file": "transitions_000000000_1793462737743435500.jsonl.gz",
+            "error": "EOFError: Compressed file ended before the end-of-stream marker was reached"
+          }
+        ],
+        "optimization_error": null,
+        "last_optimization": {
+          "physics_steps": 1280,
+          "optimization_phases": 1,
+          "optimizer_steps": 1
+        },
+        "consumed_controls_lower_bound": 2408,
+        "checkpoints": [],
+        "unknown_unflushed_tail": true
+      }
+    },
+    "bridge_streams": {
+      "bridge_a48b6255_responses.jsonl.gz": {
+        "sha256": "3115123224978e38750ee0a0f3fbe3701987d21a4ce400f40a3037ecddbfb2e1",
+        "complete_rows": 2369,
+        "read_error": "EOFError: Compressed file ended before the end-of-stream marker was reached",
+        "applied_controls": 2360
+      }
+    }
+  },
+  "new_prepared_batches": [
+    {
+      "seed": 11,
+      "batch": "20261031T232838093068Z_native_B1_basic_PPO_course",
+      "protocol_sha256": "45bb8f8ff963c9f28e7e71b5fcf71b1c6a5e085b84cbc42bb0791b118aed4a3b",
+      "initial_model_sha256": "c477f9146e9bb680dddf3a924e64d7117794b0221dc506489c2faefca9e26f60",
+      "PPO_updates_before_start": 0
+    },
+    {
+      "seed": 22,
+      "batch": "20261031T232842374284Z_native_B1_basic_PPO_course",
+      "protocol_sha256": "6ff4ff6508b0b116e85bd954f9c5cb8d6d490a89685cc924bd937549777333fd",
+      "initial_model_sha256": "fab0e7fe7f5b573a910c8a98b40284136e4d0c9d9e43bef7e9e5bfc6b58e9738",
+      "PPO_updates_before_start": 0
+    },
+    {
+      "seed": 33,
+      "batch": "20261031T232844835057Z_native_B1_basic_PPO_course",
+      "protocol_sha256": "a85cccb95dd1e6199f67ac1ee91458f0d7baf5e7487e952e10b231dbb3e40c41",
+      "initial_model_sha256": "1a45219853191ce5d9eb64f729106cb51ca3636746efe6ac0d8c17378e6b0cb6",
+      "PPO_updates_before_start": 0
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T232847378556Z_native_B1_basic_PPO_course",
+      "protocol_sha256": "4be27d5b20860793b998ee1561b66826c7afbb350e4c2ce85d72c39c89b4d66e",
+      "initial_model_sha256": "5d1810770153287f7ada564e5a17e05d53e5f11bb29c285644e99469d261e1db",
+      "PPO_updates_before_start": 0
+    },
+    {
+      "seed": 55,
+      "batch": "20261031T232849128094Z_native_B1_basic_PPO_course",
+      "protocol_sha256": "4a11afa4d1c2631b7f398f678f8a78077eb7ad5159765c8b9299c2cab8536d12",
+      "initial_model_sha256": "cab8d8f07a7b52e8b4ed01ed8cd24935937f2f6bf39c6b169ef80a10f7fac594",
+      "PPO_updates_before_start": 0
+    }
+  ],
+  "new_execution": "B1_basic_PPO_execution_20261101_v2_external_interruption",
+  "checkpoint_interval_controls": 1280,
+  "research_acceptance": "UNMET",
+  "actual_replacement_execution": {
+    "phase": "TRAINING_BASIC_MOTION_WITH_ACTUAL_PPO",
+    "pid": 62176,
+    "epoch": 1793489357.0515149,
+    "completed": [],
+    "seed": 11,
+    "batch": "20261031T232838093068Z_native_B1_basic_PPO_course"
+  },
+  "read_only_old_process_audit": {
+    "epoch": 1793489355.6698277,
+    "actual_reused_PID_inventory": [
+      {
+        "ProcessId": 25348,
+        "Name": "svchost.exe"
+      }
+    ],
+    "no_process_killed": true
+  }
+}

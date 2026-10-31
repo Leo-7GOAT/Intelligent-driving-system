@@ -34,7 +34,7 @@ def course_protocol(original,parent_name,controls=10240):
     protocol['native_case_manifest']['cases']=basic
     protocol.update(evaluation_only=False,controlled_budget_per_method=controls,method_budgets={'B1':controls},
         rollout_actions=1280,ppo_batch_size=320,ppo_epochs=10,learning_rate=3e-5,
-        freeze_observation_statistics=True,checkpoint_thresholds=[2560,5120,7680,10240],
+        freeze_observation_statistics=True,checkpoint_thresholds=list(range(1280,10241,1280)),
         PPO_reward_units={'version':'fixed_physical_reward_units_v1','scale':.05},
         basic_motion_learning={'version':'all_five_basic_PPO10240_lr3e5_v1','parent':parent_name,
             'original_full_case_manifest':deepcopy(original['native_case_manifest']),

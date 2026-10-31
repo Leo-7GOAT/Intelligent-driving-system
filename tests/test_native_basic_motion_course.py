@@ -2,6 +2,7 @@ from copy import deepcopy
 import pytest
 from scripts.prepare_native_basic_motion_ppo import course_protocol
 from scripts.run_native_basic_motion_ppo_cohort import require_failed_predecessor,basic_qualification
+from scripts import run_native_basic_motion_ppo_cohort as runner
 from scripts.audit_native_ppo_configuration import action_profile
 from gymnasium import spaces
 from types import SimpleNamespace
@@ -24,6 +25,7 @@ def test_course_is_explicitly_learning_before_qualification_and_keeps_full_task_
     assert course['basic_motion_learning']['additional_supervised_updates']==0
     assert 'supervised_representation_gates' not in course and 'initialization_gate_profile' not in course
     assert course['basic_motion_learning']['maximum_basic_unsafe_episodes']==0
+    assert course['checkpoint_thresholds']==list(range(1280,10241,1280))
 
 
 @pytest.mark.parametrize('fault',['missing_road','selected_road','other_method','validation','replay','wrong_budget'])
@@ -63,3 +65,14 @@ def test_flat_ppo_profile_covers_continuous_bounds_and_exploration_without_chang
     assert a['action_shape']==[2] and a['initial_log_std']==[-4.,-4.]
     assert a!=action_profile(spaces.Box(-.5,.5,(2,)),policy)
     assert a!=action_profile(spaces.Box(-1.,1.,(2,)),SimpleNamespace(log_std=torch.tensor([-3.,-4.])))
+
+
+@pytest.mark.parametrize('actual,allowed',[('[]',True),('{"ProcessId":42,"Name":"svchost.exe"}',True),('{"ProcessId":42,"Name":"python.exe"}',False)])
+def test_external_interruption_never_manages_a_reused_pid_or_overlaps_a_possible_owner(monkeypatch,actual,allowed):
+    def query(command,**kwargs):
+        assert 'Get-CimInstance' in command[-1] and 'Stop-Process' not in command[-1]
+        return SimpleNamespace(stdout=actual)
+    monkeypatch.setattr(runner.subprocess,'run',query)
+    if allowed:runner.require_old_processes_absent([{'pid':42,'name':'python.exe'}])
+    else:
+        with pytest.raises(RuntimeError):runner.require_old_processes_absent([{'pid':42,'name':'python.exe'}])
