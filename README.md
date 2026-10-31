@@ -1,5 +1,21 @@
 # Executability-aware hierarchical driving research
 
+The complete H/B2paired report now independently rebuilds from10public capsules:
+all reference fields identical,10actual Adam/frozen-normalizer checks,5distinct
+trained policies per method,and the exact main figure. Independent178CPU tests
+pass. [Actual verification](reports/native_public_H_B2_five_seed_independent_verification_20261101.json).
+Public reproduction entry point (fresh output,6GiBfree disk):
+
+```powershell
+.\.venv\Scripts\python.exe scripts/reproduce_public_planner_cohort.py --output runs/FRESH_public_planner_cohort
+```
+
+B1basic-PPOseed11finishes10,240controls/9actual Adam steps,then3/4successes with
+one bounds violation:the unchanged safety gate FAILS. Other seeds continue;
+this version is not a healthy baseline. [Actual endpoint](reports/native_B1_basic_PPO_seed11_endpoint_20261031.json).
+The conditional full-task queue cannot qualify this failed result. No threshold
+was relaxed. Historical uploads/reproduction are separate from research success.
+
 All five B2public capsules now independently reconstruct133,687raw controls,60initial actions and the exact versioned figures. [Complete public inventory](reports/native_B2_all_five_public_completion_20261101.json).
 The conditional full-task B1queue is live:only after ALL5basic courses qualify,it retains each trained policy/Adam/RNG state and adds20,480controls on the original12conditions. Totalpolicylineage is30,720controls;coursecosts are not hidden. [Queue and actual trained-checkpoint CPUrestore](reports/native_B1_full_after_basic_queue_activation_20261101.json). No full-task child has started yet.
 

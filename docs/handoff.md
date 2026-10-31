@@ -1,3 +1,34 @@
+# Actual comparison rebuild and basic-course outcome — 2026-11-01 07:49
+
+PUBLIC H/B2TEN-CAPSULE RECONSTRUCTION COMPLETE at285cd308b78824d53347e25a3badd442bb5f4522.
+Every original paired-report field identical,10actualAdam/normchecks,5distinct
+trained tensors eachmethod,exactmainfigure81efcd7bf430d8e6e387f6e8186af2a2e82c024d8b62fa0053a7fa389ca9bb78.
+Independent178tests9.69sec. Outputpublic_H_B2_five_seed_rebuild_20261101;
+receipt native_public_H_B2_five_seed_independent_verification_20261101.json.
+Uses10actual prior public downloads with receipt/manifest/archive hashes rechecked,
+NOtrainingarchives substituted. Mainrawcontrols259138;extraH0siblings also audited.
+OriginalB2executionregisterCRLFbyteshasha39dd46...are preserved using per-file
+.gitattributes -text,not weakened comparison or fabricatedmetadata. Reproducer
+sourcecheckoutnative_road_checkout285cd30isnowIDLE;mayadvanceafterlivejobcheck.
+
+CORE:basic-PPOseed11COMPLETE,10240controls,9ACTUALAdamsteps dueKLearlystop,
+3/4success with1out_of_bounds(case3),raw11966/4actions audited. QualificationFALSE.
+Reportnative_B1_basic_PPO_seed11_endpoint_20261031.json. Fullqueue66252cannot
+start from failedresult;will reject onceall5basiccoursesfinish. Othercourses
+still runall5asregistered;62176nowseed22batch20261031T232842374284Z_native_B1_basic_PPO_course.
+Do not call baseline healthy or pretendPPOused320Adamsteps. No droppedseed/waivedgate.
+
+Next ROOT-CAUSE work:investigate actorKLearlystop starvingcritic/learning before
+anotherexpensive nativevariant. Current8rollouts permit320Adamsteps nominal but
+only9actuallyrun;criticexplainedvariance negative. These are observations,not
+causalproof. Existingcritic_rate_policy.pysupportsactor1/critic30profile,doNOT
+blindly stack it. A meaningful bounded matched-replay diagnostic can reconstruct
+the FIRST1280TRAIN controls from measured_demo,recorded bridgebegins,original
+Torchrng/numpy states;uncappedstochastic actions must reproduce recorded clipped
+actions. Must reproduce actualfirst native checkpoint's weights/Adam state before
+using any offline LRalternative comparison. Never treat a surrogate replay or
+TRAIN fit as driving success. Final120conditions remain UNTOUCHED/goalUNMET.
+
 # Independent next-stage verification — 2026-11-01 07:38
 
 Source3bfeb77b93dade0f4146edb7abcf916d9d71eb1aispushed. Secondarycheckout
