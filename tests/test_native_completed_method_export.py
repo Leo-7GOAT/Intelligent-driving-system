@@ -2,7 +2,9 @@ import hashlib
 import json
 from pathlib import Path
 import pytest
-from scripts.native_completed_method_export import completed_method_profile,validate_exported_inventory
+import gzip
+from scripts.native_completed_method_export import completed_method_profile,validate_exported_inventory,scan_retained_truncated_gzip,truncated_gzip_record
+from scripts.package_native_continuation import scan_payload
 
 
 def write(path,value):
@@ -72,3 +74,36 @@ def test_method_mismatch_cannot_be_silently_accepted_by_normal_archive_reproduce
 def test_normal_full_method_inventory_stays_compatible(tmp_path):
     batch,protocol=sample(tmp_path)
     assert validate_exported_inventory(batch,protocol,{'methods':['H','H0']}) is False
+
+
+def test_original_interrupted_gzip_bytes_are_bound_without_a_fabricated_footer(tmp_path):
+    batch,protocol=sample(tmp_path)
+    write(batch/'H/endpoint_raw_audit.json',{'bridge_response_stream':'bridge_H_responses.jsonl.gz'})
+    payload=gzip.compress(b'{"frame":1}\n{"frame":2')[:-8]
+    path=batch/'infrastructure/bridge_H0_responses.jsonl.gz';path.write_bytes(payload)
+    p=profile(batch,protocol);record=p['retained_truncated_gzip']['infrastructure/bridge_H0_responses.jsonl.gz']
+    assert record['gzip_end_marker_present'] is False and record['prefix_ends_in_newline'] is False
+    scan_retained_truncated_gzip(path.name,payload,record,scan_payload)
+    assert path.read_bytes()==payload
+    with pytest.raises(EOFError):gzip.decompress(path.read_bytes())
+
+
+def test_completed_target_stream_cannot_use_the_interrupted_sibling_exception(tmp_path):
+    batch,protocol=sample(tmp_path)
+    write(batch/'H/endpoint_raw_audit.json',{'bridge_response_stream':'bridge_H_responses.jsonl.gz'})
+    (batch/'infrastructure/bridge_H_responses.jsonl.gz').write_bytes(gzip.compress(b'original')[:-8])
+    with pytest.raises(ValueError,match='Completed-method'):
+        profile(batch,protocol)
+
+
+def test_readable_interrupted_prefix_still_requires_private_data_scan():
+    private=('/'+'/'.join(('home','fixture','private'))).encode()
+    payload=gzip.compress(private)[:-8];record,_=truncated_gzip_record(payload)
+    with pytest.raises(ValueError,match='Private'):
+        scan_retained_truncated_gzip('original.gz',payload,record,scan_payload)
+
+
+def test_truncated_prefix_cannot_be_replaced_with_changed_bytes():
+    payload=gzip.compress(b'frame=1')[:-8];record,_=truncated_gzip_record(payload)
+    with pytest.raises(ValueError,match='changed'):
+        scan_retained_truncated_gzip('original.gz',gzip.compress(b'frame=2')[:-8],record,scan_payload)

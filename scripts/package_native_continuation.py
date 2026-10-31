@@ -253,7 +253,11 @@ def package(batch, output, completed_method=None):
                     if path in protected:
                         raise ValueError('Cannot redact hash-bound input: '+relative)
                     payload=json.dumps(value,indent=2,ensure_ascii=False).encode()
-            scan_payload(path.name,payload)
+            if profile and relative in profile['retained_truncated_gzip']:
+                from scripts.native_completed_method_export import scan_retained_truncated_gzip
+                scan_retained_truncated_gzip(relative,payload,profile['retained_truncated_gzip'][relative],scan_payload)
+            else:
+                scan_payload(path.name,payload)
             name=batch.name+'/'+relative
             archive.writestr(name,payload)
             files[name]={'sha256':sha(payload),'bytes':len(payload)}

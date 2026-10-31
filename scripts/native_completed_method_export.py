@@ -1,9 +1,53 @@
 """Explicit interrupted-batch export contract;never select among completed arms."""
 from pathlib import Path
+import gzip
+import hashlib
+import re
+import zlib
 from scripts.audit_native_method_endpoint import read,sha
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 VERSION='completed_method_with_incomplete_siblings_v1'
+
+
+def truncated_gzip_record(payload):
+    decoder=zlib.decompressobj(16+zlib.MAX_WBITS)
+    prefix=decoder.decompress(payload)
+    if decoder.eof or decoder.unused_data:
+        raise ValueError('Only an original single-member interrupted gzip prefix is allowed')
+    return {'compressed_sha256':hashlib.sha256(payload).hexdigest(),
+        'readable_prefix_sha256':hashlib.sha256(prefix).hexdigest(),
+        'readable_prefix_bytes':len(prefix),'gzip_end_marker_present':False,
+        'prefix_ends_in_newline':prefix.endswith(b'\n')},prefix
+
+
+def retained_truncated_gzip(batch,method,incomplete):
+    files=list((batch/'infrastructure').glob('*.gz'))
+    files += [p for sibling in incomplete for p in (batch/sibling).rglob('*.gz')]
+    records={}
+    raw_path=batch/method/'endpoint_raw_audit.json'
+    target_response=read(raw_path)['bridge_response_stream'] if raw_path.exists() else None
+    protected_streams=({target_response,target_response.replace('_responses.jsonl.gz','_requests.jsonl.gz')}
+                       if target_response is not None else set())
+    for path in files:
+        payload=path.read_bytes()
+        try:gzip.decompress(payload)
+        except EOFError:
+            if (path.parent==batch/'infrastructure' and
+                    (target_response is None or path.name in protected_streams
+                     or not path.name.endswith(('_requests.jsonl.gz','_responses.jsonl.gz')))):
+                raise ValueError('Completed-method or unbound gzip stream cannot be exported as interrupted')
+            record,_=truncated_gzip_record(payload)
+            records[path.relative_to(batch).as_posix()]=record
+    return records
+
+
+def scan_retained_truncated_gzip(name,payload,expected,scanner):
+    record,prefix=truncated_gzip_record(payload)
+    if record!=expected:raise ValueError('Retained interrupted gzip bytes/prefix changed')
+    if re.search(rb'(?i)[A-Z]:[\\/]+Users[\\/]|/(?:home|Users)/',prefix):
+        raise ValueError('Private home-path prefix in interrupted gzip')
+    scanner(name+'.readable-prefix',prefix)
 
 
 def completed_method_profile(batch,protocol,method,check_processes=True):
@@ -55,6 +99,7 @@ def completed_method_profile(batch,protocol,method,check_processes=True):
         'incomplete_file_sha256':{m:{p.relative_to(batch).as_posix():sha(p)
             for p in sorted((batch/m).rglob('*')) if p.is_file() and '__pycache__' not in p.parts}
             for m in incomplete},
+        'retained_truncated_gzip':retained_truncated_gzip(batch,method,incomplete),
         'scope':'Only the completed method is scored/reproduced. Original protocol,all sibling method files/checkpoints/raw prefixes and failure evidence are retained;the batch is not declared complete.'}
 
 
