@@ -33,7 +33,7 @@ class ExactRoadBatch:
         self._refresh()
 
     def _refresh(self):
-        self.mask=self.grid.drivable.copy()
+        self.mask=self.grid.collision_drivable.copy()
         self.cell_size=(self.grid.dx,self.grid.dy)
         yy,xx=np.nonzero(~self.mask)
         self.rectangles=np.c_[xx*self.grid.dx,yy*self.grid.dy,
@@ -47,7 +47,7 @@ class ExactRoadBatch:
         if poses.ndim!=2 or poses.shape[1]!=3 or not np.isfinite(poses).all():
             raise ValueError('Finite N x3 poses required')
         if not math.isfinite(margin) or margin<0:raise ValueError('Nonnegative finite margin required')
-        if self.cell_size!=(self.grid.dx,self.grid.dy) or not np.array_equal(self.mask,self.grid.drivable):
+        if self.cell_size!=(self.grid.dx,self.grid.dy) or not np.array_equal(self.mask,self.grid.collision_drivable):
             self._refresh()
         result=np.zeros(len(poses),dtype=bool);self.last_scalar_fallbacks=0
         if not len(poses) or not len(self.rectangles):return result

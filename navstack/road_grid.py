@@ -3,6 +3,7 @@ import hashlib
 import json
 import math
 import numpy as np
+from .native_route import ROAD_VERSIONS, REFINED_GRID_VERSION
 
 
 ROAD_SIZE = 64
@@ -20,27 +21,37 @@ class RoadGrid:
             raise ValueError("Road grid hash mismatch")
         self.width, self.height = float(data["width"]), float(data["height"])
         cells = np.asarray(data["drivable"])
-        if (data["version"] not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3") or cells.shape != (ROAD_SIZE, ROAD_SIZE)
+        if (data["version"] not in ROAD_VERSIONS or cells.shape != (ROAD_SIZE, ROAD_SIZE)
                 or not np.isin(cells, [0, 1]).all() or not np.isfinite([self.width, self.height]).all()
                 or not 0 < min(self.width, self.height) <= max(self.width, self.height) <= 64):
             raise ValueError("Invalid measured road grid")
         self.drivable = cells.astype(bool)
-        self.dx, self.dy = self.width / ROAD_SIZE, self.height / ROAD_SIZE
+        self.size = 256 if data['version'] == REFINED_GRID_VERSION else ROAD_SIZE
+        if self.size == 256:
+            collision = np.asarray(data.get('collision_drivable'))
+            if collision.shape != (256,256) or not np.isin(collision,[0,1]).all():
+                raise ValueError('Invalid fine collision raster')
+            self.collision_drivable = collision.astype(bool)
+        else:
+            if 'collision_drivable' in data:
+                raise ValueError('Fine collision raster requires its explicit geometry version')
+            self.collision_drivable = self.drivable
+        self.dx, self.dy = self.width / self.size, self.height / self.size
         self.sha256 = digest
         self.payload = payload
 
     def occupied(self, x, y):
         if not math.isfinite(x+y) or not 0 <= x <= self.width or not 0 <= y <= self.height:
             return True
-        return not self.drivable[min(ROAD_SIZE-1, int(y/self.dy)), min(ROAD_SIZE-1, int(x/self.dx))]
+        return not self.collision_drivable[min(self.size-1, int(y/self.dy)), min(self.size-1, int(x/self.dx))]
 
     def rectangles(self, corners, reach=0.):
         lo, hi = corners.min(axis=0)-reach, corners.max(axis=0)+reach
         first = np.maximum(0, np.floor(lo/[self.dx, self.dy]).astype(int)-1)
-        last = np.minimum(ROAD_SIZE, np.floor(hi/[self.dx, self.dy]).astype(int)+2)
+        last = np.minimum(self.size, np.floor(hi/[self.dx, self.dy]).astype(int)+2)
         if np.any(last <= first):
             return np.empty((0, 4))
-        yy, xx = np.nonzero(~self.drivable[first[1]:last[1], first[0]:last[0]])
+        yy, xx = np.nonzero(~self.collision_drivable[first[1]:last[1], first[0]:last[0]])
         xx, yy = xx+first[0], yy+first[1]
         return np.c_[xx*self.dx, yy*self.dy, (xx+1)*self.dx, (yy+1)*self.dy]
 

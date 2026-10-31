@@ -1,5 +1,16 @@
 # Executability-aware hierarchical driving research
 
+Latest (31 October): the common-mask seed11 PPO pair completes **H 9/12,
+H0 7/12**, both without unsafe episodes. One seed does not establish a feedback
+benefit. Longer-rollout B1 completes **6/12 with four bounds failures**.
+An explicitly versioned finer collision grid removes two recorded raster-only
+boundary flags; frozen B1 migration then completes **7/12 with one bounds
+failure**, with zero new updates. Matched PPO training on the new geometry is
+now running. [Diagnosis and evidence](reports/native_geometry_resolution_20261031.md).
+These are known development conditions; research acceptance remains unmet.
+
+Earlier execution snapshot:
+
 31 October: [completed native diagnostics](reports/completed_native_diagnostics_20261031.md): fixed-reward-unit B1 finishes **2/12**,with6unsafe episodes after20,480real training controls/208Adam steps. It is rejected as healthy. The actual fixed-reference CARLA pair completes **MPC4/4,Pursuit/PI4/4**,with3811RPC-bound controls;Pursuit has lower tracking error and jerk here. Neither result establishes research acceptance. Both raw-data capsules are public. Shared-mask Hfrozen reevaluation finishes9/12,all core families3/4,zero unsafe;the fresh B1rollout1280study is now actually training. Subsequent bounded training remains queued.
 
 A [numerically checked geometry optimization](reports/exact_corner_compute_20261031.md) reduces one recorded7200-node search median6.440→3.668s while preserving all549151collision decisions and the same failed search result. Full local regression passes668tests;active/queued frozen experiments retain their original code.

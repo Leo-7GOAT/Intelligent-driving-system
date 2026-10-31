@@ -121,11 +121,12 @@ class Bridge:
             prepared_layout=local_layout(r['native_route'],self.map.name,hashlib.sha256(self.map.to_opendrive().encode()).hexdigest())
             prepared_hazard=resolve_native_hazard(prepared_layout,r['native_hazard'])
         self.road_geometry_version=r.get("road_geometry_version","carla_driving_64_v1")
-        if self.road_geometry_version not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"):
+        from navstack.native_route import ROAD_VERSIONS, REFINED_GRID_VERSION
+        if self.road_geometry_version not in ROAD_VERSIONS:
             raise ValueError("Unknown road geometry version")
         if self.road_geometry_version != "carla_driving_64_v1" and (not r.get("road_observation") or r.get("scenario")!="native_curve"):
             raise ValueError("Refined geometry requires shared native road observation")
-        if self.road_geometry_version == "carla_driving_indexed_union_64_v3" and not hasattr(self,"road_surface_index"):
+        if self.road_geometry_version in ("carla_driving_indexed_union_64_v3", REFINED_GRID_VERSION) and not hasattr(self,"road_surface_index"):
             from navstack.lane_projection import DrivingSurfaceIndex
             self.road_surface_index=DrivingSurfaceIndex(self.map,carla.LaneType.Driving)
         self.clear();self.events=[];self.imu_frame=-1;self.sensor_event=threading.Event();self.active_episode=r["episode_id"]
@@ -158,7 +159,7 @@ class Bridge:
         if self.native_layout and r.get("road_observation",False):
             from navstack.native_route import sample_road_grid
             def is_driving(x,y):
-                if self.road_geometry_version == "carla_driving_indexed_union_64_v3":
+                if self.road_geometry_version in ("carla_driving_indexed_union_64_v3", REFINED_GRID_VERSION):
                     return self.road_surface_index.contains(self.loc(x,y,z=self.spawn_z-.6))
                 if self.road_geometry_version == "carla_driving_refined_union_64_v2":
                     from navstack.lane_projection import on_driving_surface
@@ -166,7 +167,17 @@ class Bridge:
                     return on_driving_surface(self.map,point,carla.LaneType.Driving)
                 waypoint=self.map.get_waypoint(self.loc(x,y),project_to_road=False,lane_type=carla.LaneType.Driving)
                 return waypoint is not None and abs(waypoint.transform.location.z-(self.spawn_z-.6))<1.5
-            self.road_grid=sample_road_grid(self.native_layout,is_driving,self.road_geometry_version)
+            # A map/layout/version cache changes no samples or physics; the
+            # fine raster is otherwise needlessly rebuilt on every reset.
+            if self.road_geometry_version == REFINED_GRID_VERSION:
+                if not hasattr(self,'road_grid_cache'):self.road_grid_cache={}
+                key=(hashlib.sha256(self.map.to_opendrive().encode()).hexdigest(),
+                     json.dumps(self.native_layout,sort_keys=True),self.road_geometry_version)
+                if key not in self.road_grid_cache:
+                    self.road_grid_cache[key]=sample_road_grid(self.native_layout,is_driving,self.road_geometry_version)
+                self.road_grid=self.road_grid_cache[key]
+            else:
+                self.road_grid=sample_road_grid(self.native_layout,is_driving,self.road_geometry_version)
         self.dynamic=[];self.static_actors=[];self.native_hazard=prepared_hazard;self.walker_direction=None;self.walker_delay=0.
         case_rng=random.Random(210000+condition)
         start_y=case_rng.uniform(6.5,7.5);goal_y=start_y
@@ -312,7 +323,7 @@ class Bridge:
                     raw_inside=self.map.get_waypoint(point,project_to_road=False,lane_type=carla.LaneType.Driving) is not None
                     if not raw_inside:
                         raw_misses.append([point.x,point.y,point.z])
-                    if self.road_geometry_version == "carla_driving_indexed_union_64_v3":
+                    if self.road_geometry_version in ("carla_driving_indexed_union_64_v3", "carla_driving_indexed_union_256_v4"):
                         inside=self.road_surface_index.contains(point)
                     elif self.road_geometry_version == "carla_driving_refined_union_64_v2":
                         from navstack.lane_projection import on_driving_surface

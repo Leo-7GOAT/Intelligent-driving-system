@@ -1,0 +1,84 @@
+{
+  "scope": "Offline geometry diagnostic;not changed driving scores or evidence of trained-v4 performance",
+  "source_sha256": "920c4d357d2686a984f5a38848844dd95fd4e3c8f52fc823673abcb4e929d7d2",
+  "diagnosis_sha256": "96c193e3e8c3814950c3a2a9f479b22843f58ad4da733a76ccf7f2c231c2c2bc",
+  "OpenDRIVE_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+  "cases": [
+    {
+      "case_id": 3,
+      "old_raster_intersection": true,
+      "new_raster_intersection": false,
+      "task_box_violation": false,
+      "common64_policy_grid_identical": true,
+      "old_cell_metres": [
+        0.4319660568987789,
+        0.399841862273259
+      ],
+      "new_cell_metres": [
+        0.10799151422469473,
+        0.09996046556831475
+      ],
+      "new_body_clearance_metres": 0.37860077010736354,
+      "new_grid_sha256": "a0837986943657f25f98684bd3e0309ca4ae104a60ea2956954a45790c982ec6",
+      "construction_seconds": 3.156000000075437
+    },
+    {
+      "case_id": 5,
+      "old_raster_intersection": false,
+      "new_raster_intersection": false,
+      "task_box_violation": true,
+      "common64_policy_grid_identical": true,
+      "old_cell_metres": [
+        0.4527551359920275,
+        0.46020420873756845
+      ],
+      "new_cell_metres": [
+        0.11318878399800687,
+        0.11505105218439211
+      ],
+      "new_body_clearance_metres": 1.1403919903407165,
+      "new_grid_sha256": "933857fae1a76192fdbf9d73ed4539ad36fd1cc1a37473803fc7fe33e6ce696d",
+      "construction_seconds": 4.796999999904074
+    },
+    {
+      "case_id": 7,
+      "old_raster_intersection": false,
+      "new_raster_intersection": false,
+      "task_box_violation": true,
+      "common64_policy_grid_identical": true,
+      "old_cell_metres": [
+        0.4319660568987789,
+        0.399841862273259
+      ],
+      "new_cell_metres": [
+        0.10799151422469473,
+        0.09996046556831475
+      ],
+      "new_body_clearance_metres": 0.7469803647057972,
+      "new_grid_sha256": "a0837986943657f25f98684bd3e0309ca4ae104a60ea2956954a45790c982ec6",
+      "construction_seconds": 3.156000000075437
+    },
+    {
+      "case_id": 9,
+      "old_raster_intersection": true,
+      "new_raster_intersection": false,
+      "task_box_violation": false,
+      "common64_policy_grid_identical": true,
+      "old_cell_metres": [
+        0.4527551359920275,
+        0.46020420873756845
+      ],
+      "new_cell_metres": [
+        0.11318878399800687,
+        0.11505105218439211
+      ],
+      "new_body_clearance_metres": 0.43456714720471173,
+      "new_grid_sha256": "933857fae1a76192fdbf9d73ed4539ad36fd1cc1a37473803fc7fe33e6ce696d",
+      "construction_seconds": 4.796999999904074
+    }
+  ],
+  "new_physical_controls": 0,
+  "optimizer_updates": 0,
+  "conclusion": "Both raster-only endpoints are inside finer sampled geometry;both task-box violations remain invalid. Requires separately registered native migration and retraining;old6/12and4unsafe unchanged.",
+  "limitation": "Five map samples per cell do not certify continuous lane coverage or rendered asphalt mesh;no lane-width dilation."
+}

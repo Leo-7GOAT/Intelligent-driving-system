@@ -213,12 +213,16 @@ def fresh_target_kl(model, target_kl):
             'scope':'Existing SB3 per-rollout epoch early stop; physical budget and endpoint unchanged. Not a hard bound on cumulative policy drift.'}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None,ppo_reward_scale=None,cleanup_harness_source=None):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None,ppo_reward_scale=None,cleanup_harness_source=None,geometry_version=None):
     parent = Path(parent).resolve()
     if current_cleanup_harness and cleanup_harness_source is not None:
         raise ValueError('Choose current or explicit archived cleanup harness, not both')
     cleanup_source = (ROOT/'scripts/carla_bridge37.py' if current_cleanup_harness else
                       Path(cleanup_harness_source).resolve() if cleanup_harness_source is not None else None)
+    if geometry_version is not None:
+        from navstack.native_route import REFINED_GRID_VERSION
+        if geometry_version!=REFINED_GRID_VERSION or cleanup_source is not None or partition_inventory:
+            raise ValueError('Fine geometry is a separate explicit profile;its registered source includes the cleanup bridge')
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
     if learning_rate is not None and (not np.isfinite(learning_rate) or not 1e-6<=learning_rate<=1e-3):
@@ -235,6 +239,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         raise ValueError('Unknown explicit development training-entry profile')
     require_finished_parent(parent)
     protocol = read(parent/'protocol.json')
+    if geometry_version is not None and protocol['road_geometry_version']!='carla_driving_indexed_union_64_v3':
+        raise ValueError('Fine geometry initialization requires registered v3 source')
     methods=protocol.get('methods')
     if (methods not in (['B1'],['H','H0']) or not protocol.get('evaluation_only') or not protocol.get('extra_supervision')):
         raise ValueError('Require a complete supervised-only direct or H/H0 diagnostic')
@@ -274,6 +280,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
         if initialization_gate=='basic_motion_training_v1':label+='_basic_motion_v1'
         if cleanup_source is not None:label+='_cleanup_snapshot'
+        if geometry_version is not None:label+='_geometry_v4'
         registration=parent/(label+'_registration.json')
         if registration.exists():
             raise FileExistsError('Do not repeat the registered supervised-PPO continuation')
@@ -329,6 +336,18 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                 'initialized_model_sha256':metadata['model_sha256'],'supervised_updates_added':0,
                 'initialization_evaluation_controls_charged':parent_evaluation_controls[method]}
             if reward_change is not None:interventions[method]['reward_initialization']=reward_change
+            if geometry_version is not None:
+                from scripts.prepare_native_geometry_migration import migrated_config
+                config_before=read(destination/'config.json')
+                new_protocol={**protocol,'road_geometry_version':geometry_version}
+                vehicle=EnvConfig.from_dict(config_before['env']).vehicle
+                config_after=migrated_config(config_before,new_protocol,vehicle,method)
+                write_json(destination/'config.json',config_after)
+                interventions[method]['geometry_initialization']={
+                    'from':protocol['road_geometry_version'],'to':geometry_version,
+                    'parent_config_sha256':sha(origin/'config.json'),
+                    'initialized_config_sha256':sha(destination/'config.json'),
+                    'scope':'Explicit new geometry before first PPO update;network shape unchanged;teacher views were collected on v3 and remain disclosed'}
             prior=protocol['recovery'][method]
             recovery[method]={**prior,'checkpoint':'resume/'+method,'parent_batch':parent.name,
                 'parent_checkpoint':origin.name,'lineage_controls':0,
@@ -345,6 +364,15 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if cleanup_source is not None:
             protocol['cleanup_harness_override']=copy_cleanup_harness(parent/'source/scripts/carla_bridge37.py',
                 cleanup_source,batch/'source/scripts/carla_bridge37.py')
+        if geometry_version is not None:
+            from scripts.prepare_native_geometry_migration import OVERRIDES
+            for relative in OVERRIDES:shutil.copy2(ROOT/relative,batch/'source'/relative)
+            protocol['road_geometry_version']=geometry_version
+            protocol['geometry_initialization']={
+                'version':geometry_version,'first_PPO_update_after_change':True,
+                'source_overrides':{name:sha(batch/'source'/name) for name in OVERRIDES},
+                'policy_observation':'same64x64 grid;256x256 shared full-body collision/planning/risk raster',
+                'teacher_scope':'Original v3 teacher dataset reused;no new teacher supervision;not from-scratch PPO or a one-variable comparison if other flags change'}
         if partition_inventory:
             from scripts.native_partition_initialization import install_inventory
             install_inventory(protocol,batch/'source',partition_inventory)
@@ -400,5 +428,6 @@ if __name__ == '__main__':
     parser.add_argument('--critic-rate-profile',choices=['actor1_critic30_v1'])
     parser.add_argument('--partition-inventory',type=Path,help='New versioned training/validation inventory,applied before the first PPO update')
     parser.add_argument('--ppo-reward-scale',type=float,choices=[.05],help='Separate fixed1/20learner-reward units diagnostic; raw task rewards unchanged')
+    parser.add_argument('--geometry-version',choices=['carla_driving_indexed_union_256_v4'],help='Explicit new collision geometry before the first PPO update;requires new experiment and disclosed v3 teacher input')
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory,args.ppo_reward_scale,args.cleanup_harness_source)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory,args.ppo_reward_scale,args.cleanup_harness_source,args.geometry_version)

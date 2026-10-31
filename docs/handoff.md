@@ -1,3 +1,50 @@
+# Current handoff — 2026-10-31 10:31 local
+
+Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
+
+- H0shared-mask001825is COMPLETE7/12,5deadlines,no unsafe;20,618new training
+  controls/650Adam,7,044evaluation controls. All27,662rawframes and12initial
+  actions audited. Guard0andowned-empty cleanup confirmed. H9/12versusH07/12
+  is ONE seed;H-only cases4/5/6,H0-only1,p=.625. Report
+  reports/native_shared_mask_feedback_pair_20261031.json. No formal benefit claim.
+- Longer-rollout B1004737is COMPLETE6/12,4bounds,2deadlines;20,480training
+  controls/87Adam,5,720eval. Its six-part public asset downloaded and independently
+  reproduced483files/26,200controls/12actions/identical PNG. Receipt
+  reports/B1_rollout1280_public_verification_20261031.json. Not a healthy baseline.
+- Root now implements explicit carla_driving_indexed_union_256_v4. Original
+  versions remain64x64and unchanged. Common policy grid stays64;shared body SAT,
+  planner and risk use256collision cells. No lane-width dilation. Offline local
+  map diagnostics isolate two coarse-raster terminations;two task-box violations
+  remain. These are not revised old outcomes or mesh-safety certification.
+- Regression671passed/1skip/4CARLA deselected167.30s;later preparation/migration
+  subset30passed5.38s. Full-test log runs/fine_grid_full_cpu_20261031.log.
+- Frozen B1v4migration022009is COMPLETE7/12,1bounds/4deadlines,zero updates,
+  all12known conditions;basic motion3/4zero unsafe. All6542controls and12actions
+  audited;normal owned cleanup. Separate v4PPO batch022652is ACTUALLY TRAINING,
+  worker58000/guard8880,target20,480controls,
+  same initial policy tensors/empty optimizer/normalizer/RNGas v3004737;only
+  environment geometry field changes. Original v3teacher data disclosed.
+- Queues8900H0→migration and9516migration→v4B1training have activated their child.
+  Current remaining queues:
+  49052v4B1→unchanged seed22batch013440;47244seed22→train36/validation24batch014801.
+  Verify receipts/process creation identities;old waiting queues44456and67436
+  were superseded only before either could activate its child. Old locks/logs
+  remain. Current receipts:geometry_owned_queue_launches_20261031.json and
+  geometry_training_owned_queue_launches_20261031.json. No automatic retries.
+- Bounded read-only postprocessors audit migration and v4training once normally
+  closed. Actual launcher receipts live in runs/B1_geometry_postprocessor_launch_20261031.json
+  and runs/B1_geometry_training_postprocessor_launch_20261031.json. Do not
+  duplicate either experiment. Inspect current live heartbeat,not this snapshot.
+
+- H0public capsule5042b3c2…is uploaded in4parts,32,732,190bytes/502files;
+  unauthenticated download reassembles exact bytes. First premature download
+  failed404before upload completed;failure log retained,retry used a new folder.
+  Independent checkout7dfbb3dreproduces502files/27662controls/12actions/frozenRMS
+  and identical PNG. Receipt reports/H0_shared_mask_public_verification_20261031.json.
+  Archive has no packaged plot;use the committed PNGas explicit reference.
+
+## Archived handoff before the geometry diagnostic
+
 # Current handoff — 2026-10-31 09:21 local
 
 Original goal ACTIVE/UNMET. Latest evidence: reports/exact_corner_compute_20261031.md and reports/completed_native_diagnostics_20261031.md. Source7dfbb3dcorner optimization has668full local passes/1skip/4CARLA exclusions164.55s;hosted41155398942passes653/16skip/4CARLA158.15s;independent7geometry checks4.41s,all549151hard-query flags/nodes/path unchanged. Public Hcapsule457files/6569controls/12actions/PNG also independently reproduced.

@@ -1,0 +1,29 @@
+{
+  "figure_reference": "reports/figures/native_H0_shared_mask_20261031.png",
+  "reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "5042b3c2f905717e5448cdc677191844e96324f130810586ba54f5c08035114b",
+    "asset_source_commit": "1b96df116543fb4847e9b6c392125075d3a4fe55",
+    "reproduction_source_commit": "7dfbb3d471eb1597478ccdb2dc81e25a1dad1080",
+    "verified_files": 502,
+    "methods": [
+      {
+        "method": "H0",
+        "raw_audit_sha256": "7ea5c19da71a52f568f8407952463bfc51214a97d3d81a145f2c625880c5a35a",
+        "verified_controls": 27662,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "a61e2f80b02e0654a839b5d38f799db370ac3d6d38d50c80b76fa66bfcae3cc1",
+    "figure_byte_identical": true,
+    "figure_baseline": "explicit_reference"
+  },
+  "archive_bytes": 32732190,
+  "parts": 4,
+  "scope": "Executed public unauthenticated download and independent reconstruction;zero driving/updates",
+  "initial_download": "Premature404before upload completed;failure retained,successful retry used fresh destination",
+  "public_manifest": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H0_shared_mask_20261031_repro.zip.parts.json"
+}

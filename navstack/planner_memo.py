@@ -52,7 +52,7 @@ class ExactStaticFailureMemo:
         # cache too. Do not trust just a payload's original digest or object id.
         road_key = None if road is None else (
             road.width, road.height, road.dx, road.dy,
-            road.drivable.shape, road.drivable.dtype.str, road.drivable.tobytes())
+            road.collision_drivable.shape, road.collision_drivable.dtype.str, road.collision_drivable.tobytes())
         return (id(world), world.width, world.height,
                 tuple(tuple(rect) for rect in world.static),
                 world.road_collision_backend, bool(getattr(world, 'measured_offroad', False)),

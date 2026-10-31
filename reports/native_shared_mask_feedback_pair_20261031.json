@@ -1,0 +1,163 @@
+{
+  "scope": "One independently trained seed pair on twelve known development conditions;exploratory feedback ablation,not final confirmation",
+  "seed": 11,
+  "H_successes": 9,
+  "H0_successes": 7,
+  "cases": 12,
+  "H_only_success_cases": [
+    4,
+    5,
+    6
+  ],
+  "H0_only_success_cases": [
+    1
+  ],
+  "paired_difference_percentage_points": 16.666666666666668,
+  "conditional_exact_discordance_p_two_sided": 0.625,
+  "families": {
+    "curve_parking": {
+      "cases": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "H_success": 3,
+      "H0_success": 4
+    },
+    "static_obstacle": {
+      "cases": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "H_success": 3,
+      "H0_success": 0
+    },
+    "dynamic_interaction": {
+      "cases": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "H_success": 3,
+      "H0_success": 3
+    }
+  },
+  "source_and_model_proof": [
+    {
+      "batch": "20261031T001732Z_native_evaluation_recovery",
+      "raw_controls": 6569,
+      "raw_audit_sha256": "247616a02bfda0f62c1091206c273c12572c0a96d6e6088d826db04f6e258f26",
+      "model_sha256": "4b47cbcef1ad3413a03c0bd824a4cf3f15d4345890d5db1bd472e67a89f4d166",
+      "summary": {
+        "physics_steps": 0,
+        "actions": 0,
+        "episodes": 0,
+        "optimization_phases": 0,
+        "optimizer_steps": 0,
+        "reward_components": {},
+        "modes": {},
+        "action_histogram": {},
+        "method": "H",
+        "job_name": "H",
+        "rollout_actions": 32,
+        "ppo_epochs": 10,
+        "batch_size": 32,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 0,
+        "reset_ticks": 0,
+        "actor_l2_change": 0.0,
+        "reload_exact": true,
+        "wall_seconds": 0.08538508415222168,
+        "stopped_reason": null,
+        "lineage_control_steps": 20674,
+        "charged_control_steps_lower_bound": 39691,
+        "inherited_controls_not_in_checkpoint": 19017,
+        "scope": "Frozen saved-endpoint reevaluation after verified interruption; zero new training/optimization; old partial attempts retained and charged, not independent conditions"
+      }
+    },
+    {
+      "batch": "20261031T001825Z_native_recovery",
+      "raw_controls": 27662,
+      "raw_audit_sha256": "7ea5c19da71a52f568f8407952463bfc51214a97d3d81a145f2c625880c5a35a",
+      "model_sha256": "d01d3c9633b3df95c27a79f303fdae89cb0a6ac28645cb893e8253360d71b9b1",
+      "summary": {
+        "physics_steps": 20618,
+        "actions": 2080,
+        "episodes": 38,
+        "optimization_phases": 65,
+        "optimizer_steps": 650,
+        "reward_components": {
+          "event": 520.0,
+          "time": -103.08999999997873,
+          "risk": -231.36711336627755,
+          "comfort": -12.299884101995028,
+          "potential": 25.86997931227778,
+          "task_progress": 385.42544201939376
+        },
+        "modes": {
+          "reference": 1379,
+          "plan_failed": 466,
+          "wait": 153,
+          "parking_brake": 8,
+          "dynamic_brake": 74
+        },
+        "action_histogram": {
+          "26": 584,
+          "6": 21,
+          "30": 53,
+          "22": 164,
+          "17": 1,
+          "12": 137,
+          "2": 62,
+          "10": 292,
+          "28": 99,
+          "7": 6,
+          "8": 2,
+          "25": 10,
+          "0": 153,
+          "5": 123,
+          "16": 2,
+          "29": 14,
+          "9": 160,
+          "1": 1,
+          "20": 120,
+          "19": 43,
+          "18": 3,
+          "13": 1,
+          "27": 18,
+          "21": 2,
+          "15": 4,
+          "23": 1,
+          "24": 1,
+          "14": 1,
+          "4": 1,
+          "3": 1
+        },
+        "method": "H0",
+        "job_name": "H0",
+        "rollout_actions": 32,
+        "ppo_epochs": 10,
+        "batch_size": 32,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 21826,
+        "reset_ticks": 1208,
+        "actor_l2_change": 2.1788413524627686,
+        "reload_exact": true,
+        "wall_seconds": 1479.6810729503632,
+        "stopped_reason": null,
+        "lineage_control_steps": 20618,
+        "charged_control_steps_lower_bound": 30207,
+        "inherited_controls_not_in_checkpoint": 9589,
+        "scope": "Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison."
+      }
+    }
+  ],
+  "limits": "One training seed;conditions reused in development;actual physical budgets differ by phase overshoot;H includes retained training and a separately charged interrupted evaluation. No seed-level confidence interval or PPO-vs-rule advantage established.",
+  "research_acceptance": "UNMET"
+}

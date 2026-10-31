@@ -1,5 +1,16 @@
 # Research acceptance ledger
 
+Latest 31 October: the audited common-mask seed11 pair is H9/12 versus H0 7/12,
+both with zero unsafe episodes. H-only successes are4/5/6;H0-only success is1.
+The conditional exact discordance p-value is.625;one training seed cannot
+support a seed-level benefit claim. B1rollout1280finishes6/12with4bounds.
+The separately versioned v4frozen migration finishes7/12with1bounds/4deadlines;
+basic motion is3/4withzero unsafe,but the full task remains below target.
+This is zero-update deployment migration. Matched real PPO on v4has started.
+All12conditions are development. Five trained seeds,120NEWfinal conditions,
+healthy full-task B1,PPO-versus-rule value and formal benefit statistics remain
+unmet. [Geometry and execution evidence](../reports/native_geometry_resolution_20261031.md).
+
 ## 31October execution update
 
 The fixed-reference lightweight probe completes80episodes/38962steps;MPC and

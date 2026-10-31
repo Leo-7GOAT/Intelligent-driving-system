@@ -1,5 +1,52 @@
 # Development model card
 
+## Shared-mask feedback pair and fine-grid diagnostic (31 October)
+
+The completed seed11 pair is **H9/12 versus H0 7/12**, with no unsafe
+episodes in either run. Curve/parking is3/4versus4/4,static avoidance3/4versus0/4,
+and dynamic interaction3/4versus3/4. Hhas three exclusive successes,H0one;
+the conditional exact discordance test givesp=.625. One training seed and
+reused development conditions do not establish a feedback benefit. The
+[paired report](../reports/native_shared_mask_feedback_pair_20261031.json)
+checks common conditions,environment,mask and low-level source bytes. H0adds
+20,618real training controls/650Adam steps and7,044evaluation controls.
+
+H0's [four-part public manifest](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H0_shared_mask_20261031_repro.zip.parts.json)
+registers a32,732,190-byte archive with SHA256
+`5042b3c2f905717e5448cdc677191844e96324f130810586ba54f5c08035114b`.
+Independent checkout7dfbb3dreproduces502files,27,662rawcontrols,12actions,
+frozen normalization and the identical
+[reference figure](../reports/figures/native_H0_shared_mask_20261031.png).
+Pass that figure to `reproduce_native_asset.py --reference-figure` because
+this archive was packaged before the plot was generated.
+[Executed receipt](../reports/H0_shared_mask_public_verification_20261031.json).
+
+The longer-rollout B1endpoint is **6/12,4bounds,2deadlines**,after20,480training
+controls/87Adam steps. It remains unqualified. Its
+[public capsule manifest](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_rollout1280_20261031_repro.zip.parts.json)
+has six parts;the43,002,730-byte archive SHA256is
+`d3c117af733a348de1e99190da9fb840238ba7921f665b061737bf9098924e34`.
+Independent checkout7dfbb3dreproduces483files,26,200rawcontrols,12initial
+actions,frozen statistics and the identical PNG.
+[Executed receipt](../reports/B1_rollout1280_public_verification_20261031.json).
+
+An offline diagnosis separates two actual task-box violations from two
+raster-only terminations. The explicitly versioned v4collision raster uses
+256x256cells instead of64x64,with the original64x64policy grid preserved.
+At the recorded two raster-only endpoints,v4body clearances are approximately
+.379mand.435m. No lane width is enlarged and no prior score is changed.
+Five map samples per cell still do not certify continuous lane/mesh coverage.
+Collision-derived witness/risk features may change even with the same64grid.
+[Geometry diagnosis](../reports/native_fine_grid_diagnostic_20261031.json).
+Frozen-checkpoint migration and training with v4are separate registered phases;
+the former cannot be counted as learning on the new geometry.
+
+The completed frozen migration is7/12,with1bounds failure and4deadlines;
+basic motion is3/4withzero unsafe. All6,542new CARLA controls and12initial
+actions are audited. Model and normalizer bytes equal the original v3endpoint.
+[Endpoint](../reports/native_B1_geometry_v4_endpoint_20261031.json).
+Matched v4PPO training is now active;no trained-v4score is available yet.
+
 ## Public shared-mask H frozen reevaluation
 
 The retained seed11Hcheckpoint completes **9/12**,with three deadlines,no unsafe

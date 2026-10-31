@@ -3,6 +3,10 @@ import hashlib
 import json
 import math
 
+REFINED_GRID_VERSION = "carla_driving_indexed_union_256_v4"
+ROAD_VERSIONS = ("carla_driving_64_v1", "carla_driving_refined_union_64_v2",
+                 "carla_driving_indexed_union_64_v3", REFINED_GRID_VERSION)
+
 
 def sample_road_grid(layout, is_driving, version="carla_driving_64_v1"):
     """Sample actual map at cell corners and centre, without advancing physics.
@@ -20,7 +24,7 @@ def sample_road_grid(layout, is_driving, version="carla_driving_64_v1"):
     cells = [[int(vertices[y][x] and vertices[y][x+1] and vertices[y+1][x]
                   and vertices[y+1][x+1] and is_driving((x+.5)*dx, (y+.5)*dy))
               for x in range(size)] for y in range(size)]
-    if version not in ("carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"):
+    if version not in ROAD_VERSIONS:
         raise ValueError("Unknown measured-road geometry version")
     data = {"version": version, "width": width, "height": height,
             "drivable": cells, "geometry_id": layout["geometry_id"],
@@ -29,6 +33,19 @@ def sample_road_grid(layout, is_driving, version="carla_driving_64_v1"):
         data["sampling"] = "four cell corners plus centre; refined local Driving-lane union; no lane-width dilation; not continuous mesh proof"
     if version == "carla_driving_indexed_union_64_v3":
         data["sampling"] = "four cell corners plus centre; refined indexed Driving-lane union across roads; no lane-width dilation; not continuous mesh proof"
+    if version == REFINED_GRID_VERSION:
+        # Keep the common policy observation unchanged. Only the explicitly
+        # versioned shared collision/risk/planning raster has finer cells.
+        fine_size = 256
+        fx, fy = width/fine_size, height/fine_size
+        fine_vertices = [[bool(is_driving(x*fx, y*fy)) for x in range(fine_size+1)]
+                         for y in range(fine_size+1)]
+        fine = [[int(fine_vertices[y][x] and fine_vertices[y][x+1]
+                     and fine_vertices[y+1][x] and fine_vertices[y+1][x+1]
+                     and is_driving((x+.5)*fx, (y+.5)*fy))
+                 for x in range(fine_size)] for y in range(fine_size)]
+        data.update(collision_drivable=fine,
+                    sampling="64x64 common policy observation;256x256 shared collision/risk/planning;four corners plus centre;indexed Driving-lane union;no width dilation;not continuous mesh proof")
     data["sha256"] = hashlib.sha256(json.dumps(data, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
     return data
 

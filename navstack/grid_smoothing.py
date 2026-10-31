@@ -76,7 +76,7 @@ def body_spline(raw_xy, start, goal, world, vehicle):
     rects = list(world.static)
     if world.road is not None:
         road = world.road
-        yy,xx = np.nonzero(~road.drivable)
+        yy,xx = np.nonzero(~road.collision_drivable)
         rects.extend(np.c_[xx*road.dx,yy*road.dy,(xx+1)*road.dx,(yy+1)*road.dy].tolist())
     rects = np.asarray(rects,float).reshape(-1,4)
     centers, radii = (rects[:,:2]+rects[:,2:])/2, (rects[:,2:]-rects[:,:2])/2

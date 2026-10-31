@@ -1,0 +1,19 @@
+{
+  "scope": "Matched v3/v4 fresh supervised PPO initialization;not a result",
+  "baseline": "20261031T004737Z_native_supervised_ppo",
+  "new_batch": "20261031T022652Z_native_supervised_ppo",
+  "controls_each": 20480,
+  "initial_policy_tensors_exact": true,
+  "optimizer_empty": true,
+  "normalizer_bytes_exact": true,
+  "RNG_bytes_exact": true,
+  "changed_env_fields": [
+    "road_geometry_version"
+  ],
+  "rollout_actions_each": [
+    1280,
+    1280
+  ],
+  "stopping_rule": "One20480-control endpoint;all12known development conditions;no checkpoint picking",
+  "teacher_scope": "Same original v3 dataset;no new supervision;v4changes shared collision geometry before any PPO update"
+}

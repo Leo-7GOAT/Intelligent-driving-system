@@ -1,0 +1,61 @@
+{
+  "scope": "Full polygon coverage under0.1m sampled CARLA lane-width ribbons,not rendered asphalt mesh/swept-volume certification. Original scores and gates unchanged.",
+  "surface_export_sha256": "f0581b3ae3c11f552ed62e84929c732a4b5a368045624e1553d2482bea088d5a",
+  "OpenDRIVE_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+  "ribbon_spacing_m": 0.1,
+  "shapely_version": "2.1.2",
+  "GEOS_version": "3.13.1",
+  "width_dilation_m": 0.0,
+  "cases": [
+    {
+      "case_id": 3,
+      "raster_intersection": true,
+      "task_box_violation": false,
+      "dense_samples": 1127,
+      "dense_misses": 0,
+      "complete_body_covered_by_lane_union": false,
+      "body_area_m2": 10.366775411288259,
+      "body_area_outside_lane_union_m2": 5.825952810165464e-08,
+      "body_to_union_boundary_clearance_m": 0.0,
+      "lane_ribbons": 412
+    },
+    {
+      "case_id": 5,
+      "raster_intersection": false,
+      "task_box_violation": true,
+      "dense_samples": 1127,
+      "dense_misses": 0,
+      "complete_body_covered_by_lane_union": false,
+      "body_area_m2": 10.366775411288291,
+      "body_area_outside_lane_union_m2": 1.1919367304890507e-05,
+      "body_to_union_boundary_clearance_m": 0.0,
+      "lane_ribbons": 264
+    },
+    {
+      "case_id": 7,
+      "raster_intersection": false,
+      "task_box_violation": true,
+      "dense_samples": 1127,
+      "dense_misses": 0,
+      "complete_body_covered_by_lane_union": true,
+      "body_area_m2": 10.366775411288215,
+      "body_area_outside_lane_union_m2": 0.0,
+      "body_to_union_boundary_clearance_m": 0.7640297420668373,
+      "lane_ribbons": 284
+    },
+    {
+      "case_id": 9,
+      "raster_intersection": true,
+      "task_box_violation": false,
+      "dense_samples": 1127,
+      "dense_misses": 0,
+      "complete_body_covered_by_lane_union": true,
+      "body_area_m2": 10.366775411288259,
+      "body_area_outside_lane_union_m2": 0.0,
+      "body_to_union_boundary_clearance_m": 0.43257261718528806,
+      "lane_ribbons": 324
+    }
+  ],
+  "new_physical_controls": 0,
+  "optimizer_updates": 0
+}
