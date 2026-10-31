@@ -1,5 +1,8 @@
 # Executability-aware hierarchical driving research
 
+All five B2public capsules now independently reconstruct133,687raw controls,60initial actions and the exact versioned figures. [Complete public inventory](reports/native_B2_all_five_public_completion_20261101.json).
+The conditional full-task B1queue is live:only after ALL5basic courses qualify,it retains each trained policy/Adam/RNG state and adds20,480controls on the original12conditions. Totalpolicylineage is30,720controls;coursecosts are not hidden. [Queue and actual trained-checkpoint CPUrestore](reports/native_B1_full_after_basic_queue_activation_20261101.json). No full-task child has started yet.
+
 07:30 update: external interruption ended the original course after2,408 controls/1Adam update,with no saved trained checkpoint. Raw prefixes are preserved and lost work charged;an explicit pristine-initializer replacement has actually started. Checkpoints now save every1,280 controls. [Interruption and live replacement](reports/native_B1_basic_course_external_interruption_20261101.json).
 
 1 November update: the fixed extra1,024 actor fits per seed are rejected as a

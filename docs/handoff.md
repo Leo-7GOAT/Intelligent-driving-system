@@ -1,3 +1,23 @@
+# Latest actual progress — 2026-11-01 07:37
+
+B2PUBLICALL5COMPLETE. Inventorynative_B2_all_five_public_completion_20261101.json
+verifies133687controls/60actions/allfigures. Publisher70304terminalsuccess;
+original45944/47464gone. native_road_checkout6a5486amayadvanceaftercheckingno
+other users. NOreupload/retrain needed. Alloriginalfailuresretained.
+
+NEXTSTAGE ACTUALLYQUEUED:driver66252,tool31512,execution
+B1_full_after_basic_PPO_execution_20261101,immutable328frozenfiles (actualmanifest
+count authoritative). Exactread-onlyhandle62176. RequiresALL5trainedbasiccourses
+qualified then orderlydriverexitandallnativecleanups,otherwiseNOchild starts.
+Factoryretainsactualtrainedcheckpoint/optimizer/norm/RNG,restoresoriginal12
+conditions,adds20480controls,policylineage30720. MoretotalbudgetthanH20480,
+notanequalbudgetclaim. Every1280save. Noextraactorfit/newfinalconditions.
+Actualtrainedcheckpoint1280CPURESTORE with full-caseconfigSUCCEEDED,Adam1and
+numtimesteps1280retained,0resets/control/updates;queueactivationreportrecordsproof.
+Root21relatedtestsPASS3.92sec. Actualnativefull-tasktransitionstillpending.
+Corecourse62176/35632live,3841controls/3actualAdamobserved07:34. Futurefullstage
+mustNOTusepristineprofileverifierwhichcorrectlyrejectstrainedmodels. GoalUNMET.
+
 # Current actual evidence — 2026-11-01 07:32
 
 Restartseed11checkpoint_000001280ACTUALLYSAVED,Adam1,all3model/norm/RNGhashes
