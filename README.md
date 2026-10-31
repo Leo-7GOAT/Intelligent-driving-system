@@ -44,6 +44,14 @@ The [training-only trajectory audit](reports/native_B1_lower_lr_full_trajectory_
 now covers80fixed-stride/last-state oracle queries across all12first completed
 training episodes. No new controls,actor fitting or PPO updates are performed;
 oracle disagreement alone establishes no policy improvement.
+The [broader training-state audit](reports/native_B1_broader36_training_oracle_drift_20261031.json)
+adds242queries across all36first training conditions,239valid. Initial/final
+command-label MSE is0.280265/0.280675 with identical normalized inputs;this
+does not isolate the cause of failed new-road driving.
+The [complete feedback-input check](reports/native_broader_feedback_reliance_summary_20261031.json)
+reconstructs1,808decisions: hiding learned feedback changes24/823Hactions and
+0/985H0actions while preserving weights and the physical mask. Input sensitivity
+does not establish a causal success benefit.
 The other four B1seed initializers are now [copied and verified on v4 geometry](reports/native_B1_remaining_seed_v4_preparations_20261031.json).
 Their [same-recipe actor fits](reports/native_B1_independent_approach_fits_20261031.json)
 are complete;they remain unactivated zero-PPO checkpoints,not completed training runs.

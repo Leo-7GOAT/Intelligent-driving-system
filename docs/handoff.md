@@ -1,4 +1,4 @@
-# Current handoff — 2026-10-31 16:36 local
+# Current handoff — 2026-10-31 16:54 local
 
 Original objective ACTIVE/UNMET. Supersedes every older process description.
 
@@ -31,16 +31,33 @@ Original objective ACTIVE/UNMET. Supersedes every older process description.
   All Henv fields,training/validation inventories and physical source are
   identical. New explicit validation selector rejects simultaneous changes to
   catalog/control/planning;5tests plus actual ValidateOnly389sourcefiles pass.
-- ACTUAL WAITING queue:execution runs/B3_and_B1_independent_cohort_execution_20261031,
-  Python47500(launcher42340),script runs/run_B3_and_independent_B1_cohort_20261031.py.
+- ACTUAL WAITING queue:execution runs/B3_and_B1_independent_cohort_execution_20261031_v2,
+  Python36820(launcher26900),script runs/run_B3_and_independent_B1_cohort_reward_bound_20261031.py.
   Frozen source/preparer/plan and protocol hashes verified. Waits up to8hours
   for original three H/H0PPOpairs,then B3and all four B1initializer gates/PPO.
   B1new20480controls each,lr3e-6,KL.01,logstd-4,rollout1280,frozen observation
-  stats. These four use the SAMEknown12training inventory as the existing
+  stats and explicit PPOreward scale.05. These four use the SAMEknown12training inventory as the existing
   seed11B1and five-seed H/H0cohort;broader36/24is a separate development branch.
   No retries/seed omissions;failure stops the chain and preserves actors/logs.
   Wait cap applies only to dependency waiting,not total training. Journal
   status.json and plan.json are authoritative. No extra native process now.
+- Additional prelaunch check found four plain saved normalizers inherited a
+  donor protocol fixed-reward descriptor. BEFORE any gate/PPOlaunch,only the
+  idle waiting queue was retained-handle stopped;original journal retained.
+  Gate protocols now correctly declare their plain normalizers;future PPO
+  explicitly converts to fixed scale.05. No model/norm/RNG bytes changed.
+  All4temporary reconstructed learners match seed11rollout,LR,KL,epochs,batch,
+  gamma/GAE/entropy/value/clip settings.13targeted tests pass. Reports
+  native_B1_independent_reward_units_prelaunch_fix,
+  native_B1_cohort_offline_PPO_configuration_verification and
+  native_B3_and_B1_reward_bound_queue_20261031.json are authoritative.
+- New broader B1TRAIN-only diagnostic:242queries/239valid labels,all36first
+  completed training conditions,stride80and last pre-control state;3invalid
+  poses rejected. Initial/final command-label MSE.280265/.280675;steering
+  MSE.004076/.004034. Identical RMSand normalized inputs. This does not show
+  catastrophic PPOdrift on these training observations;it does not prove
+  driving quality,coverage sufficiency or unseen generalization. No fitting
+  or validation-state training. Report native_B1_broader36_training_oracle_drift.
 - Current source tests:51scene/spawn/preparation;9trajectory-query;7pristine
   geometry(+7independent);3training-lineage;6actor-fit;4runtime compatibility;
   5B3validation selector. Hosted0643passes723/18skip/4CARLA deselected;

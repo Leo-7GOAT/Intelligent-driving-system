@@ -1,0 +1,78 @@
+{
+  "scope": "Prelaunch correction;only own waiting queue stopped,no native training or server interrupted",
+  "old_execution": "B3_and_B1_independent_cohort_execution_20261031",
+  "old_pid": 47500,
+  "old_creation_epoch": 1793435711.14161,
+  "old_status": {
+    "phase": "WAITING_FOR_REMAINING_THREE_H_H0_PPO_PAIRS",
+    "epoch": 1793436605.9733272,
+    "pid": 47500,
+    "created": []
+  },
+  "replacement_execution": "B3_and_B1_independent_cohort_execution_20261031_v2",
+  "repairs": [
+    {
+      "seed": 22,
+      "initializer": "20261031T081944045029Z_native_approach_bc",
+      "proof": {
+        "original_protocol_sha256": "031ca2e1c22d3dc09c617a067a02f082ee1525f19bbe32d1c4d2167c6ecf0cd1",
+        "inherited_descriptor_removed": {
+          "version": "fixed_physical_reward_units_v1",
+          "scale": 0.05,
+          "scope": "Fixed learner reward units only; every environment reward/component and raw physical trace remains in original task units."
+        },
+        "actual_normalizer_class": "RoadCandidateVecNormalize",
+        "scope": "Zero-PPO evaluation gate keeps its exact original normalizer;PPOprepare must explicitly initialize fixed reward scale.05. No model/norm/RNG bytes or physical rewards changed."
+      },
+      "updated_protocol_sha256": "93328728f756e3de72c43c40475a26d466534030c77823df7e5de8ee95d1560e"
+    },
+    {
+      "seed": 33,
+      "initializer": "20261031T082156390592Z_native_approach_bc",
+      "proof": {
+        "original_protocol_sha256": "49ffdbb065ffd4ca58a542852cf3a0ebc4152c03a1aa8c11d797b2c30c1db0fa",
+        "inherited_descriptor_removed": {
+          "version": "fixed_physical_reward_units_v1",
+          "scale": 0.05,
+          "scope": "Fixed learner reward units only; every environment reward/component and raw physical trace remains in original task units."
+        },
+        "actual_normalizer_class": "RoadCandidateVecNormalize",
+        "scope": "Zero-PPO evaluation gate keeps its exact original normalizer;PPOprepare must explicitly initialize fixed reward scale.05. No model/norm/RNG bytes or physical rewards changed."
+      },
+      "updated_protocol_sha256": "01291391233ba8cce77a2ab5cd8404ac49c4cc2ff93e3a981792ae04b4ef89ef"
+    },
+    {
+      "seed": 44,
+      "initializer": "20261031T082223755520Z_native_approach_bc",
+      "proof": {
+        "original_protocol_sha256": "ea6bbb4d6f51d91f43c1533550bab577c98cb73f6878600eca59251160174360",
+        "inherited_descriptor_removed": {
+          "version": "fixed_physical_reward_units_v1",
+          "scale": 0.05,
+          "scope": "Fixed learner reward units only; every environment reward/component and raw physical trace remains in original task units."
+        },
+        "actual_normalizer_class": "RoadCandidateVecNormalize",
+        "scope": "Zero-PPO evaluation gate keeps its exact original normalizer;PPOprepare must explicitly initialize fixed reward scale.05. No model/norm/RNG bytes or physical rewards changed."
+      },
+      "updated_protocol_sha256": "ca365478ca710a4f6b0fbb858f29f97dda6b5d02e4d352fc2e379a2bc6e34bc2"
+    },
+    {
+      "seed": 55,
+      "initializer": "20261031T082250535153Z_native_approach_bc",
+      "proof": {
+        "original_protocol_sha256": "aff63ff0048f036b54f50efd29cf1b919a785be82ca5e721d80bd80b17be4203",
+        "inherited_descriptor_removed": {
+          "version": "fixed_physical_reward_units_v1",
+          "scale": 0.05,
+          "scope": "Fixed learner reward units only; every environment reward/component and raw physical trace remains in original task units."
+        },
+        "actual_normalizer_class": "RoadCandidateVecNormalize",
+        "scope": "Zero-PPO evaluation gate keeps its exact original normalizer;PPOprepare must explicitly initialize fixed reward scale.05. No model/norm/RNG bytes or physical rewards changed."
+      },
+      "updated_protocol_sha256": "9cfaec40c6e9b03ec82b42ea0d78192763655e48196784769b8268d7fa4d4a06"
+    }
+  ],
+  "required_PPO_reward_scale": 0.05,
+  "new_controls": 0,
+  "optimizer_updates": 0
+}

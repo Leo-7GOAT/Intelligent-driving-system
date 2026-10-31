@@ -46,6 +46,23 @@ def verify_initializer_runtime(source,runtime):
     return {'critical_files':len(critical),'permitted_non_B1_additions':permitted}
 
 
+def verified_reward_units(normalizer,declaration):
+    """A copied protocol cannot change a detached checkpoint's reward transform."""
+    state=normalizer.__dict__
+    if state.get('norm_reward') is not False:
+        raise ValueError('Require explicit nonadaptive learner reward units')
+    kind=type(normalizer).__name__
+    if kind=='RoadCandidateVecNormalize':
+        if declaration is not None or 'fixed_reward_scale' in state:
+            raise ValueError('Ordinary normalizer cannot claim fixed reward units')
+        return None
+    if (kind!='FixedRewardUnitsNormalize' or state.get('fixed_reward_scale')!=.05
+            or not isinstance(declaration,dict) or declaration.get('scale')!=.05
+            or declaration.get('version')!='fixed_physical_reward_units_v1'):
+        raise ValueError('Saved fixed reward units differ from the protocol')
+    return deepcopy(declaration)
+
+
 def prepare(parent,oracle,steps=512,weight=20.,initializer=None):
     parent,oracle=Path(parent).resolve(),Path(oracle).resolve()
     if RUNTIME!=parent/'source' or type(steps) is not int or not 64<=steps<=2000 or not 1<=weight<=50:
@@ -129,6 +146,7 @@ def prepare(parent,oracle,steps=512,weight=20.,initializer=None):
                 if initializer_config is not None:write_json(destination/'config.json',initializer_config)
                 model=load_ppo(origin/'model.zip',device='cpu')
                 with (origin/'normalization.pkl').open('rb') as f:norm=pickle.load(f)
+                reward_units=verified_reward_units(norm,(entry if initializer is not None else protocol).get('PPO_reward_units'))
                 observations=base['observations'];actions=base['actions'];returns=base['returns'];groups=base['groups'];weights=np.ones(len(actions))
                 if arm=='approach':
                     observations=np.concatenate((observations,correction['observations']));actions=np.concatenate((actions,correction['actions']))
@@ -150,6 +168,8 @@ def prepare(parent,oracle,steps=512,weight=20.,initializer=None):
                 np.savez_compressed(batch/'measured_demonstrations.npz',observations=observations,actions=actions,returns=returns,
                     groups=groups,train_mask=np.ones(len(actions),dtype=bool),weights=weights)
                 current=deepcopy(protocol)
+                current.pop('PPO_reward_units',None)
+                if reward_units is not None:current['PPO_reward_units']=reward_units
                 for key in ('jobs','freeze_observation_statistics','own_success_replay'):current.pop(key,None)
                 now=time.time();current.update(evaluation_only=True,controlled_budget_per_method=0,method_budgets={'B1':0},
                     rollout_actions=model.n_steps,ppo_batch_size=model.batch_size,ppo_epochs=model.n_epochs,
