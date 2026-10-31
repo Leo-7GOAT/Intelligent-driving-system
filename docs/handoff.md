@@ -1,4 +1,34 @@
-# Current handoff — 2026-10-31 18:37 local
+# Current handoff — 2026-10-31 18:52 local
+
+NEW ACTUALLY LIVE B2queue: runs/B2_five_seed_PPO_execution_20261031,
+Python15744,launcher44024;exact process identity in its local process_identity.json.
+It waits on a read-only retained handle to dependency68480and fails closed if
+that process exits/fails before its success marker. Driver source417f53f,
+frozen308files verified. Its source snapshot is immutable;later root CLI changes
+do not alter this running driver. Plan/counters/identity/source manifest are local.
+No B2CARLAtraining has started. After B1completion it will train and raw/inference
+audit all11/22/33/44/55,20480physical controls/7200sec each,no retries/omissions.
+Driver is tracked scripts/run_native_planner_cohort.py. It invokes tracked auditors
+directly;no missing local postprocessor helper dependency.
+
+Actual prepared B2batches:11=20261031T104032928978Z_native_planner_training;
+22=20261031T104126873363Z_native_planner_training;
+33=20261031T104129314279Z_native_planner_training;
+44=20261031T104131479611Z_native_planner_training;
+55=20261031T104133575143Z_native_planner_training.
+All5ValidateOnlypassed and actual frozen-runtime restore succeeded;zero resets/
+controls/updates,empty Adam,frozen obs,distinct policy tensor hashes,GridAStarbackend.
+Initial model/norm/RNGbytes equal respective pristine H,not trained Hweights;
+same reward/MPC/teacher priors/budget,only B2/body_spline_v1config changes.
+19targeted tests pass root13.87sec and independent checkout417f53f3.76sec.
+Public reports native_B2_five_pristine_training_preparations_20261031.json,
+native_B2_frozen_pristine_restore_verification_20261031.json,
+native_B2_five_seed_queue_activation_20261031.json. Do not count these as trained
+seeds or repeat preparation over existing registrations. Root preparer later adds
+an optional explicit reference-checkpoint path for public-capsule layout portability;
+all five existing prepared/frozen sources keep their executed original bytes.
+
+# Prior operational snapshot — 2026-10-31 18:37 local
 
 Original goal remains ACTIVE/UNMET;this block supersedes old live statuses below.
 Canonical queue47784 is ACTUALLY RUNNING seed33 batch093156483162. Htraining

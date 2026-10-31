@@ -18,6 +18,14 @@ H0仅静态条件5超时；单种子一例差异尚不能证明反馈机制有�
 条件5和7静态超时；H0已开始训练。整批数据流关闭后再进行完整原始帧与推理审计，
 当前仅为[已记录端点](../reports/native_H_seed33_lr_correction_recorded_endpoint_20261031.json)，不计为最终测试结论。
 
+B2已[准备5个种子的零PPO初始化](../reports/native_B2_five_pristine_training_preparations_20261031.json)：
+与对应H的初始权重、归一化、随机状态逐字节相同，仅替换二维A*及合理的车体可行样条后处理；
+保持奖励、MPC、信息、教师先验和每种子20,480物理控制预算。
+[5次冻结代码实际恢复](../reports/native_B2_frozen_pristine_restore_verification_20261031.json)
+验证了不同初始策略参数、空优化器与冻结观测统计。B2接续进程已启动，
+[正等待现有B1队列完成](../reports/native_B2_five_seed_queue_activation_20261031.json)，尚未开始B2训练，
+不能把初始化或旧的冻结权重换规划器结果称为已训练B2成绩。
+
 新增训练数据的[公开复现凭证](../reports/native_training36_measured_views_public_verification_20261031.json)
 已完成：无登录下载18个分片、965个文件，在独立checkout重新核验20,521次训练控制，
 覆盖36个条件、51个训练回合，重建4,156条标签且数据包逐字节一致，用时496秒。

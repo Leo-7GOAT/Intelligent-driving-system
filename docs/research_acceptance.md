@@ -86,7 +86,7 @@ acceptance is **UNMET**. This section supersedes earlier dated snapshots below.
 | Train/validation/final isolation | Completed36training/24geometry-separated development validation for H/H0/B1;all original12conditions remain development. All4156new supervision labels use TRAINcontrols only | Development separation executed; final confirmation pending |
 | At least120NEWpaired final conditions,30per core family | No new final confirmation set activated or inspected in this version | Not achieved |
 | Light85%/75%core,CARLA80%/70%core,unsafe<=5% | Known-road development scores do not qualify as independent final results;B1unsafe clearly exceeds target | Not achieved |
-| Required B2/other ablations | Frozen body-spline B27/12,zero retraining;fixed-reference MPCand pursuit/PIeach4/4,no MPCdominance. Trained planner/frequency/shared-safety comparisons incomplete | Incomplete |
+| Required B2/other ablations | Frozen body-spline B27/12,zero retraining;five pristine matched B2PPOinitializers now restored/verified and queued behind B1,zero B2updates yet. Fixed-reference MPCand pursuit/PIeach4/4,no MPCdominance;frequency/shared-safety incomplete | Incomplete |
 | Reproducible GitHub delivery | Broader H/H0/B1and feedback/training diagnostics publicly downloaded and independently reproduced. Hosted193a5deworkflow successful;independentb83f6fdtargeted18tests pass | Development delivery executed; final release withheld |
 
 See [development endpoints](../reports/native_development_execution_20261028.md),

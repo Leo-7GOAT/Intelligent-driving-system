@@ -26,6 +26,24 @@ and records10/12development successes,two static deadlines;H0has started.
 Full raw/inference audits await closure of the running pair's bridge stream;
 this is not a fully audited paired result or a final-test improvement claim.
 
+B2 now has [five prepared pristine PPO learners](reports/native_B2_five_pristine_training_preparations_20261031.json),
+each byte-identical to its matched H initializer in weights,normalization and RNG.
+Only Grid A* with body-feasible spline postprocessing replaces Hybrid A*;
+reward,MPC,information,teacher priors and20,480control budget remain shared.
+[Five actual frozen-code restores](reports/native_B2_frozen_pristine_restore_verification_20261031.json)
+verify distinct initial policy tensors,empty optimizers and frozen statistics.
+The [finite B2queue is running and waiting](reports/native_B2_five_seed_queue_activation_20261031.json)
+for the existing B1cohort;these initializers have **zero B2 PPO updates**.
+This differs from the historical frozen-H planner-swap result and provides no
+trained-B2score yet. In a fresh restored archive,initialize each trial once:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/prepare_native_planner_training.py --parent runs/RESTORED_CANONICAL_H_BATCH --reference-checkpoint runs/RESTORED_SEED11_H_BATCH/resume/H
+# Use the printed new batch path;the existing live queue must not be duplicated.
+pwsh -NoProfile -File scripts/run_registered_native.ps1 -Batch runs/PRINTED_NEW_BATCH -ValidateOnly
+pwsh -NoProfile -File scripts/run_registered_native.ps1 -Batch runs/PRINTED_NEW_BATCH -ActivateQueued -UseCurrentGuard
+```
+
 A separate 36-training/24-geometry-separated development-validation branch now
 completes **24/24, zero unsafe**, with8/8in each core family after20,521native
 training controls/650Adam steps. A walker-spawn initialization failure was

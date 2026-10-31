@@ -55,7 +55,7 @@ def training_protocol(original, metadata, record, parent_name, controls, wall_se
     return protocol
 
 
-def prepare(parent, controls=20480, wall_seconds=7200):
+def prepare(parent, controls=20480, wall_seconds=7200, reference_checkpoint=None):
     parent = Path(parent).resolve()
     original = read(parent / 'protocol.json')
     origin = parent / 'resume/H'
@@ -63,7 +63,9 @@ def prepare(parent, controls=20480, wall_seconds=7200):
     record = planner_replacement_record(read(origin / 'config.json'), 'body_spline_v1')
     record['scope'] = 'Same pristine H actor before any PPO;new B2 planner-specific PPO training follows'
     protocol = training_protocol(original, metadata, record, parent.name, controls, wall_seconds)
-    profile = verify_learner(origin, ROOT / 'runs/20261031T025409165666Z_native_supervised_ppo/resume/H')
+    reference_checkpoint = (Path(reference_checkpoint).resolve() if reference_checkpoint is not None
+                            else ROOT / 'runs/20261031T025409165666Z_native_supervised_ppo/resume/H')
+    profile = verify_learner(origin, reference_checkpoint)
     for name, digest in original['source_hashes'].items():
         if sha(parent / 'source' / name) != digest:
             raise ValueError('Parent frozen source changed: ' + name)
@@ -110,6 +112,7 @@ def prepare(parent, controls=20480, wall_seconds=7200):
             'normalization_sha256': sha(destination / 'normalization.pkl'),
             'resume_state_sha256': sha(destination / 'resume_state.pkl'),
             'complete_saved_learner_verification': profile,
+            'learner_reference_model_sha256': sha(reference_checkpoint / 'model.zip'),
             'initial_weights_normalization_rng_byte_identical': True,
             'environment_changes': {'method': ['H', 'B2'],
                                     'planner.grid_postprocess': ['legacy', 'body_spline_v1']},
@@ -134,5 +137,7 @@ if __name__ == '__main__':
     parser.add_argument('--parent', required=True)
     parser.add_argument('--controls', type=int, default=20480)
     parser.add_argument('--wall-seconds', type=int, default=7200)
+    parser.add_argument('--reference-checkpoint', type=Path,
+                        help='Explicit canonical pristine H checkpoint;allows public capsules outside the original run layout')
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds)
+    prepare(args.parent, args.controls, args.wall_seconds, args.reference_checkpoint)

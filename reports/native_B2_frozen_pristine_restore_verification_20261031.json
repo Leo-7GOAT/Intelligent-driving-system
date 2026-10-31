@@ -71,5 +71,11 @@
     "seconds": 13.87
   },
   "executed_verifier_sha256": "f29ee368cde032ad3f9234024f898c1e79c7fb105061bf08ccd3c8ce71f6bf76",
-  "research_acceptance": "UNMET"
+  "research_acceptance": "UNMET",
+  "independent_checkout_verification": {
+    "source_commit": "417f53f299722ef28c6a42ee67995e513929b954",
+    "passed": 19,
+    "seconds": 3.76,
+    "executed_from_independent_checkout": true
+  }
 }
