@@ -1,0 +1,11 @@
+{
+  "scope": "Retrospective descriptive analysis of all five canonical trained feedback pairs on12KNOWNdevelopment conditions;not confirmatory preregistration",
+  "requested_controls_each": 20480,
+  "pairs": [
+    {"seed": 11, "h": "runs/20261031T025409165666Z_native_supervised_ppo", "h0": "runs/20261031T025409165666Z_native_supervised_ppo"},
+    {"seed": 22, "h": "runs/20261031T025409042778Z_native_supervised_ppo", "h0": "runs/20261031T093208454506Z_native_H0_canonical_budget_replica"},
+    {"seed": 33, "h": "runs/20261031T093156483162Z_native_supervised_ppo", "h0": "runs/20261031T093156483162Z_native_supervised_ppo"},
+    {"seed": 44, "h": "runs/20261031T093202647818Z_native_supervised_ppo", "h0": "runs/20261031T093202647818Z_native_supervised_ppo"},
+    {"seed": 55, "h": "runs/20261031T093206498809Z_native_supervised_ppo", "h0": "runs/20261031T093206498809Z_native_supervised_ppo"}
+  ]
+}

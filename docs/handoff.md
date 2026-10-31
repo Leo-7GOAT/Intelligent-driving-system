@@ -1,4 +1,44 @@
-# Current handoff — 2026-10-31 19:10 local
+# Current handoff — 2026-10-31 20:45 local
+
+Goal ACTIVE/UNMET. All five canonical trained H/H0pairs are complete: seeds
+11/22/33/44/55 score H12/12/10/12/12 and H011/11/12/11/12 respectively.
+Totals58/60versus57/60,zero unsafe,on12repeated development conditions.
+Mean paired seed difference+1.67pp,95% t interval[-11.82,+15.16]pp,p=1.0.
+Report native_feedback_five_seed_development_cohort_20261031.json and tracked
+scripts/analyze_native_feedback_cohort.py reconstruct all five pairs. H0seed22
+uses fresh batch20261031T093208454506Z_native_H0_canonical_budget_replica;
+the interrupted older branch remains retained/charged separately.
+Canonical queue47784has COMPLETED; do not restart it.
+
+B3batch20261031T082841Z_native_rule COMPLETE:24/24,8033audited controls.
+Same broader development conditions as H24/24; no PPOsuccess advantage.
+
+The former B1driver68480failed when the replay actor-only validation inherited
+freeze_observation_statistics=True, which is reserved for learning continuations.
+Original replaybatch093757339917has ZERO controls; failure/guard exit retained.
+Old B2driver15744and shared-brake64036also exited on dependency failure.
+Their status.json files are STALE; failure.json is authoritative.
+No B2/shared-brake native controls occurred. Do not revive those executions.
+
+Replacement ACTUALLY LIVE executions (20:42verified):
+- B1: runs/B3_and_B1_independent_cohort_execution_20261031_v5_eval_profile_fix,
+  Python26916. New replay child20261031T123039922770Z_native_replay_eval_configuration_recovery
+  worker63800/guard2100, actual case23controls observed; then measured36actor gate,
+  then four registered B1PPOseeds. Completed B3is hash-checked and reused.
+- B2: runs/B2_five_seed_PPO_execution_20261031_v2_eval_profile_fix,
+  Python38164, waiting on exact B1identity26916 through retained read-only handle.
+- Shared brake: runs/shared_brake_five_seed_execution_20261031_v2_eval_profile_fix,
+  Python10408, waiting on exact B2identity38164, updated B1execution reference.
+All source snapshots remain frozen; new executions retain failed predecessors.
+See reports/native_evaluation_recovery_queue_activation_20261031.json.
+Root prepare_native_training_view_pair now removes the learning-only flag for
+actor evaluation; no refit or PPO update during recovery. Measured36unstarted
+batch094314260006was corrected with original metadata preserved.
+30related tests pass. No changes to bound prepare_native_supervised_ppo.py.
+Continue actual queues, publish remaining local evidence, and address healthy
+B1/PPO-vs-rule/feedback/frequency/light/fresh-final gaps without changing goals.
+
+# Historical handoff — 2026-10-31 19:10 local
 
 Authoritative update;older live-status snapshots below are historical.
 Goal ACTIVE/UNMET. Canonical seed33 batch093156483162 COMPLETE and normal owned

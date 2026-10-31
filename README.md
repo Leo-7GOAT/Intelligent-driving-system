@@ -1,5 +1,28 @@
 # Executability-aware hierarchical driving research
 
+Current development result (31 October): all five canonical H/H0 seed pairs are
+complete: **58/60 versus 57/60**, zero collision/bounds episodes. These are
+**12 known conditions repeated across five trained policies**, not 120 unique
+conditions. The mean paired seed difference is **+1.67 percentage points**,
+95% t interval **[-11.82, +15.16] pp**, exploratory sign-flip p=1.0.
+[All-five reconstruction and limitations](reports/native_feedback_five_seed_development_cohort_20261031.json).
+This does not establish a stable feedback benefit. The older interrupted seed22
+branch remains preserved; its fresh equal-budget H0 replica scores11/12.
+
+On the separate24-condition development validation set, the strong shared-stack
+rule baseline B3 finishes **24/24** with8,033 audited controls, matching H's24/24
+success count. [B3 endpoint](reports/native_B3_broader_validation_endpoint_20261031.json).
+PPO superiority over this rule baseline remains unproven.
+
+An evaluation-only normalization configuration error stopped the dependent queue
+before any controls. The error is fixed without actor refitting or PPO updates;
+the retained failure and new continuation are documented in the
+[recovery receipt](reports/native_training_view_eval_configuration_recovery_20261031.json).
+The replacement B1 validation/training driver is active; B2 and common-brake
+drivers wait behind it. [Current execution snapshot](reports/native_evaluation_recovery_queue_activation_20261031.json).
+Research acceptance remains **UNMET**. Dated experiment notes below retain their
+original then-current status; see the [current handoff](docs/handoff.md).
+
 Seed11 (31 October): H trained on the explicitly versioned v4 geometry
 completes **12/12 known development conditions, zero unsafe episodes**, after
 20,563 real CARLA training controls and 650 Adam steps. Its matched H0 endpoint
@@ -15,7 +38,8 @@ All125,451training/evaluation controls verify;five distinct initial Torch RNG
 states and final policy tensors confirm separate sampled training runs.
 [Five-H completion proof](reports/native_H_five_seed_development_completion_20261031.json).
 These are12conditions repeated across5policies,not60unseen conditions or final
-confirmation. The fresh equal-budget seed22H0replica and four B1seeds remain pending.
+confirmation. The fresh equal-budget seed22H0replica has now completed11/12;
+four additional B1seeds remain pending.
 
 The later high-rate seed33 trial completes H **8/12** and H0 **6/12**,
 with four/six deadlines and zero collision/bounds episodes.

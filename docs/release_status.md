@@ -1,5 +1,14 @@
 # Latest development delivery — 2026-10-31
 
+Current update: all five canonical H/H0pairs complete58/60versus57/60on12known
+development conditions. The paired seed95%interval includes zero; no stable
+feedback benefit is established. Separate broader B3validation completes24/24,
+matching H. New summaries and repeatable statistics are source artifacts;
+the newer seed44/55/fresh22H0raw-model capsules are still local, not published.
+The normalization evaluation flag error is fixed and the new B1driver is active,
+with B2/common-brake waiting. [Recovery snapshot](../reports/native_evaluation_recovery_queue_activation_20261031.json).
+Older status notes below are historical; research acceptance remains UNMET.
+
 Sourcebfa1740 is pushed and its [hosted CPU workflow](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41194528717)
 has completed successfully. The [new training provenance capsule](../reports/native_training36_measured_views_public_verification_20261031.json)
 is actually uploaded,downloaded without authentication and independently rebuilt:

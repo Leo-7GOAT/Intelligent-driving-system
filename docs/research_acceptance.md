@@ -1,5 +1,19 @@
 # Research acceptance ledger
 
+Current 31October update supersedes older status snapshots: **five canonical
+H/H0 trained pairs are complete**, H58/60,H057/60,zero unsafe,12unique known
+development conditions. Paired seed mean+1.67pp,95% t interval[-11.82,+15.16]pp,
+exploratory sign-flip p=1.0: stable feedback benefit is **not established**.
+[All-five evidence](../reports/native_feedback_five_seed_development_cohort_20261031.json).
+Fresh equal-budget seed22H0is11/12; the older interrupted/recovered branch and
+its excess costs remain preserved, excluded from this matched endpoint.
+B3also completes24/24on the separate development validation set, matching H.
+Healthy B1, trained B2, frequency/common-brake results, PPO's advantage over
+strong rules, light independent thresholds and120new paired final conditions
+remain outstanding. The original acceptance targets remain **UNMET**.
+Current B1/B2/common-brake execution identities supersede failed predecessor
+queues; see [actual recovery snapshot](../reports/native_evaluation_recovery_queue_activation_20261031.json).
+
 Latest operational update:seed22H also completes12/12development cases with
 zero unsafe after20539training controls/650Adam. All24858Hcontrols verify.
 Its later H0was interrupted by a guard telemetry CLI timeout and now completes

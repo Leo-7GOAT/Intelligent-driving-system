@@ -1,5 +1,24 @@
 # Development model card
 
+Latest canonical feedback cohort: five separately trained H/H0 seed pairs,
+58/60 versus57/60 successes on12 repeated DEVELOPMENT conditions, zero unsafe
+episodes. The paired seed mean is+1.67pp,95% t interval[-11.82,+15.16]pp;
+exploratory exact sign-flip p=1.0. This is retrospective development evidence,
+not proof of feedback benefit or new final confirmation. Seed22uses the fresh
+equal-budget H0replica; the interrupted older branch and its costs are retained.
+[Complete five-seed report](../reports/native_feedback_five_seed_development_cohort_20261031.json).
+To reconstruct from the locally archived batch inputs in a fresh output directory:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/analyze_native_feedback_cohort.py --pairs-manifest protocols/native_feedback_development_pairs_20261031.json --output runs/FRESH_feedback_five_seed_reconstruction
+```
+
+The manifest references local raw/model archives; the newer seed44/55 and fresh
+seed22H0 capsules have not yet been published. This command therefore requires
+those local inputs. Existing public capsules below remain independently verified.
+The separate broader B3baseline now completes24/24, matching H24/24; no PPO
+success advantage is established. [B3 audit](../reports/native_B3_broader_validation_endpoint_20261031.json).
+
 ## Public canonical seed33 pair
 
 The corrected canonical seed33pair is H10/12 versus H012/12 on known development

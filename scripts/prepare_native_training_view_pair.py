@@ -20,6 +20,15 @@ from scripts.prepare_native_supervised_ppo import copy_walker_spawn_harness
 from scripts.native_partition_initialization import install_inventory
 
 
+def evaluation_input_protocol(protocol):
+    current=deepcopy(protocol)
+    # Evaluation freezes statistics in the evaluation loop. This separate flag
+    # is deliberately restricted by the runtime to actual learning continuations.
+    for name in ('jobs','own_success_replay','freeze_observation_statistics'):
+        current.pop(name,None)
+    return current
+
+
 def prepare(parent,views,inventory,steps=512,resume_pair=None,resume_replay=None):
     parent,views,inventory=map(lambda p:Path(p).resolve(),(parent,views,inventory))
     if type(steps) is not int or not 64<=steps<=2000:raise ValueError('Bounded actor fit required')
@@ -133,8 +142,7 @@ def prepare(parent,views,inventory,steps=512,resume_pair=None,resume_replay=None
             (destination/'metadata.json').write_text(json.dumps(metadata,indent=2),encoding='utf-8');verified_checkpoint_metadata(destination)
             np.savez_compressed(batch/'measured_demonstrations.npz',observations=observations,actions=actions,returns=returns,groups=groups,
                 train_mask=np.ones(len(actions),dtype=bool),weights=fit_weights)
-            current=deepcopy(protocol)
-            for name in ('jobs','own_success_replay'):current.pop(name,None)
+            current=evaluation_input_protocol(protocol)
             install_inventory(current,batch/'source',inventory)
             change=copy_walker_spawn_harness(parent/'source/scripts/carla_bridge37.py',ROOT/'scripts/carla_bridge37.py',batch/'source/scripts/carla_bridge37.py')
             now=time.time();current.update(methods=['B1'],evaluation_only=True,controlled_budget_per_method=0,method_budgets={'B1':0},
