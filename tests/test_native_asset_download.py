@@ -75,3 +75,38 @@ def test_expired_download_budget_never_opens_a_connection(monkeypatch):
     def never_request(*args, **kwargs):raise AssertionError('Network must not be reached')
     monkeypatch.setattr(module, 'urlopen', never_request)
     with pytest.raises(TimeoutError):module.read_bounded(BASE+'evidence.zip.part001', 37, 0)
+
+
+def test_truncated_response_is_retained_and_only_that_part_is_retried(tmp_path, monkeypatch):
+    source, manifest, data, requests = remote(tmp_path, monkeypatch)
+    part = json.loads(data[BASE+manifest.name])['parts'][0]
+    original = module.urlopen
+    failed = False
+
+    def truncated_once(request, timeout):
+        nonlocal failed
+        if request.full_url == BASE+part['name'] and not failed:
+            failed = True
+            requests.append(request.full_url)
+            return io.BytesIO(data[request.full_url][:-4])
+        return original(request, timeout)
+
+    monkeypatch.setattr(module, 'urlopen', truncated_once)
+    output = tmp_path/'download'
+    result = module.download(BASE+manifest.name, output, digest(source))
+    assert result['archive_byte_exact']
+    assert requests.count(BASE+part['name']) == 2
+    assert len(requests) == result['parts']+2
+    assert (output/(part['name']+'.attempt1.partial')).read_bytes() == data[BASE+part['name']][:-4]
+    assert (output/(part['name']+'.attempt1.failure.json')).is_file()
+
+
+def test_persistent_corruption_has_three_attempt_limit_and_no_assembled_archive(tmp_path, monkeypatch):
+    source, manifest, data, requests = remote(tmp_path, monkeypatch)
+    part = json.loads(data[BASE+manifest.name])['parts'][0]
+    data[BASE+part['name']] = b'x'*part['bytes']
+    output = tmp_path/'download'
+    with pytest.raises(ValueError): module.download(BASE+manifest.name, output, digest(source))
+    assert requests.count(BASE+part['name']) == 3
+    assert len(list(output.glob(part['name']+'.attempt*.failure.json'))) == 3
+    assert not (output/source.name).exists()

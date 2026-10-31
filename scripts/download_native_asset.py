@@ -76,13 +76,22 @@ def download(manifest_url, directory, expected_sha256, wall_seconds=1200):
         stream.write(payload)
 
     def fetch(part):
-        data = read_bounded(base+'/'+part['name'], part['bytes'], deadline)
-        temporary = directory/(part['name']+'.partial')
-        with temporary.open('xb') as stream:
-            stream.write(data)
-        if len(data) != part['bytes'] or hashlib.sha256(data).hexdigest() != part['sha256']:
-            raise ValueError('Downloaded part differs: '+part['name'])
-        temporary.rename(directory/part['name'])
+        for attempt in range(1, 4):
+            try:
+                data = read_bounded(base+'/'+part['name'], part['bytes'], deadline)
+                temporary = directory/(part['name']+f'.attempt{attempt}.partial')
+                with temporary.open('xb') as stream:
+                    stream.write(data)
+                if len(data) != part['bytes'] or hashlib.sha256(data).hexdigest() != part['sha256']:
+                    raise ValueError('Downloaded part differs: '+part['name'])
+                temporary.rename(directory/part['name'])
+                return
+            except (OSError, ValueError, TimeoutError) as error:
+                evidence = directory/(part['name']+f'.attempt{attempt}.failure.json')
+                evidence.write_text(json.dumps({'attempt': attempt, 'error': str(error),
+                                               'new_controls': 0}), encoding='utf-8')
+                if attempt == 3 or time.monotonic() >= deadline:
+                    raise
 
     with ThreadPoolExecutor(max_workers=min(3, len(parts))) as workers:
         futures = [workers.submit(fetch, part) for part in parts]

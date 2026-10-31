@@ -1,14 +1,18 @@
 # Executability-aware hierarchical driving research
 
-Four B2 planner-ablation seeds have completed actual native PPO and all12 known
-DEVELOPMENT conditions: seeds11/22/33/44 score **9/12,8/12,10/12,10/12**, with
-zero collision/bounds episodes and650 actual Adam steps each. Seed55 has finished
-20,623 training controls/650 Adam steps and is being evaluated. All-five inference
-waits for its complete raw/action audits. These are repeated known conditions.
-[Seed11](reports/native_B2_v4_seed11_endpoint_20261031.json),
-[seed22](reports/native_B2_v4_seed22_endpoint_20261031.json),
-[seed33](reports/native_B2_v4_seed33_endpoint_20261031.json),
-[seed44](reports/native_B2_v4_seed44_endpoint_20261031.json).
+All five B2 planner-ablation seeds now complete actual native PPO and all12
+known DEVELOPMENT conditions: **9/12,8/12,10/12,10/12,7/12**. All103,003 training
+controls,133,687 total raw controls and60 initial actions verify;each policy
+completes650 actual Adam steps. Matched H/B2 success counts are **58/60 vs44/60**.
+The mean paired seed difference is **+23.33pp**,95% t interval **[+3.43,+43.24]pp**;
+exploratory exact sign-flip p=.125. Approximate t and exact-test evidence differ;
+these12 repeated known conditions do not establish a confirmatory advantage.
+The comparison binds identical initial weights/statistics/RNG,requested physical
+budgets and shared physical/policy modules;only the declared planner environment
+settings differ. Historical tuning/teacher-prior costs are not equalized.
+[All-five comparison and every episode](reports/native_H_B2_five_seed_development_comparison_20261031.json),
+[final B2 endpoint](reports/native_B2_v4_seed55_endpoint_20261031.json).
+B1's new all-five basic-motion checks have now started automatically.
 
 All six capsules needed for the canonical five-seed H/H0 comparison are now
 public. The previously missing H22 capsule passes unauthenticated download and

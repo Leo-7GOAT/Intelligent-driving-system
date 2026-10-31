@@ -1,0 +1,4271 @@
+{
+  "scope": "Pair all five trained H/B2 policies on the complete known DEVELOPMENT inventory.",
+  "pairs_manifest_sha256": "22f1532a900981359ed02d3245b1d4ed3667f3a6bddb65c4d3c9ce8c65414c7e",
+  "B2_execution_state_sha256": "a39dd46aac90b6349972ac062ccebcfeeb8ef38d8d3d74266a86432adaa6c2d7",
+  "results": [
+    {
+      "seed": 11,
+      "cases": 12,
+      "successes": {
+        "H": 12,
+        "B2": 9
+      },
+      "families": {
+        "curve_parking": {
+          "H": 4,
+          "B2": 4
+        },
+        "static_obstacle": {
+          "H": 4,
+          "B2": 1
+        },
+        "dynamic_interaction": {
+          "H": 4,
+          "B2": 4
+        }
+      },
+      "operating_metrics": {
+        "H": {
+          "termination_counts": {
+            "success": 12
+          },
+          "all_episode_totals": {
+            "physics_steps": 4337,
+            "simulation_seconds": 216.8500032313168,
+            "progress": 272.5181866645766,
+            "interventions": 300,
+            "plan_failures": 1,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            8,
+            9,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 163.85000244155526,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 340,
+              "simulation_seconds": 17.00000025331974,
+              "progress": 24.279553505342925,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 340,
+                "median": 0.007600650016684085,
+                "p95": 0.009277339978143572,
+                "p99": 0.011362186948535974,
+                "max": 0.31795990001410246,
+                "over_period_fraction": 0.0029411764705882353,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.12431830004788935,
+                "p95": 0.1633189500076696,
+                "p99": 0.31825482998508997,
+                "max": 0.3922239999519661,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 348,
+              "simulation_seconds": 17.400000259280205,
+              "progress": 23.97166598239366,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 348,
+                "median": 0.012113799981307238,
+                "p95": 0.014491434989031403,
+                "p99": 0.01735550201963632,
+                "max": 0.32649970008060336,
+                "over_period_fraction": 0.0028735632183908046,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.27907829999458045,
+                "p95": 0.39294579001143565,
+                "p99": 0.41233034800039603,
+                "max": 0.4125676000257954,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 311,
+              "simulation_seconds": 15.550000231713057,
+              "progress": 22.213746812387885,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 311,
+                "median": 0.007381799980066717,
+                "p95": 0.00901570002315566,
+                "p99": 0.00991791998967528,
+                "max": 0.31012869998812675,
+                "over_period_fraction": 0.003215434083601286,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 32,
+                "median": 0.1156673000077717,
+                "p95": 0.15996845001354812,
+                "p99": 0.2699630509992132,
+                "max": 0.3162919000023976,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 305,
+              "simulation_seconds": 15.250000227242708,
+              "progress": 20.35890395681019,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 305,
+                "median": 0.010533699998632073,
+                "p95": 0.01236300002783537,
+                "p99": 0.01457442001439628,
+                "max": 0.3158982000313699,
+                "over_period_fraction": 0.003278688524590164,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.23361160000786185,
+                "p95": 0.3353066999698058,
+                "p99": 0.35873810000484807,
+                "max": 0.359515400021337,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 356,
+              "simulation_seconds": 17.80000026524067,
+              "progress": 24.1243613719915,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 356,
+                "median": 0.010183550009969622,
+                "p95": 0.013276325014885515,
+                "p99": 0.015960384998470533,
+                "max": 0.3183119000168517,
+                "over_period_fraction": 0.0028089887640449437,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 36,
+                "median": 0.15808615001151338,
+                "p95": 0.20080712498747744,
+                "p99": 0.32034760003443785,
+                "max": 0.3719299000222236,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 345,
+              "simulation_seconds": 17.25000025704503,
+              "progress": 24.001503160027784,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 345,
+                "median": 0.014106500078924,
+                "p95": 0.016669520060531795,
+                "p99": 0.018827448035590354,
+                "max": 0.32755719998385757,
+                "over_period_fraction": 0.002898550724637681,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.26467950001824647,
+                "p95": 0.41730770998401556,
+                "p99": 0.8274772400688359,
+                "max": 1.027315300074406,
+                "over_period_fraction": 0.02857142857142857,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 341,
+              "simulation_seconds": 17.0500002540648,
+              "progress": 22.533514891331833,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 341,
+                "median": 0.009115400025621057,
+                "p95": 0.011520500062033534,
+                "p99": 0.012872739997692407,
+                "max": 0.3238025000318885,
+                "over_period_fraction": 0.002932551319648094,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.13027930003590882,
+                "p95": 0.18987950999289738,
+                "p99": 0.29329743603011554,
+                "max": 0.3301482000388205,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 359,
+              "simulation_seconds": 17.950000267475843,
+              "progress": 20.209073826819516,
+              "interventions": 10,
+              "plan_failures": 1,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 359,
+                "median": 0.010201300028711557,
+                "p95": 0.012790740048512815,
+                "p99": 0.015060314016882348,
+                "max": 0.31668659998103976,
+                "over_period_fraction": 0.005571030640668524,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 36,
+                "median": 0.15521215001353994,
+                "p95": 1.1116504250094295,
+                "p99": 3.867368375026852,
+                "max": 4.2241967000300065,
+                "over_period_fraction": 0.05555555555555555,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 420,
+              "simulation_seconds": 21.000000312924385,
+              "progress": 24.319604646345773,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 420,
+                "median": 0.006937149970326573,
+                "p95": 0.008770885039120909,
+                "p99": 0.00978686698828824,
+                "max": 0.32046890002675354,
+                "over_period_fraction": 0.002380952380952381,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 42,
+                "median": 0.13147624995326623,
+                "p95": 0.15592563002719542,
+                "p99": 0.31214321095962005,
+                "max": 0.3926191999344155,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 450,
+              "simulation_seconds": 22.500000335276127,
+              "progress": 24.031124433368728,
+              "interventions": 90,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 450,
+                "median": 0.010872400016523898,
+                "p95": 0.01431935000582598,
+                "p99": 0.016458059032447625,
+                "max": 0.32582280004862696,
+                "over_period_fraction": 0.0022222222222222222,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 45,
+                "median": 0.28473239997401834,
+                "p95": 0.34678433993831276,
+                "p99": 0.38990723596420157,
+                "max": 0.4207250999752432,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 22.203630589713367,
+              "interventions": 60,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.007069699931889772,
+                "p95": 0.008899700012989342,
+                "p99": 0.01116844003554432,
+                "max": 0.3185090000042692,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.11880099994596094,
+                "p95": 0.14646145997103308,
+                "p99": 0.2687377400393594,
+                "max": 0.32378150010481477,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.27150348804349,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.009721299982629716,
+                "p95": 0.011881300015375018,
+                "p99": 0.013804899947717785,
+                "max": 0.3197904999833554,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.24969620001502335,
+                "p95": 0.32723150997189804,
+                "p99": 0.3362270119902678,
+                "max": 0.34099509997759014,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        },
+        "B2": {
+          "termination_counts": {
+            "success": 9,
+            "deadline": 3
+          },
+          "all_episode_totals": {
+            "physics_steps": 6055,
+            "simulation_seconds": 302.75000451132655,
+            "progress": 222.57414802958255,
+            "interventions": 2780,
+            "plan_failures": 243,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            8,
+            9,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 167.7500024996698,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 340,
+              "simulation_seconds": 17.00000025331974,
+              "progress": 24.255343792029606,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 340,
+                "median": 0.009222549968399107,
+                "p95": 0.012262694886885583,
+                "p99": 0.015149188095238091,
+                "max": 0.31234579998999834,
+                "over_period_fraction": 0.0029411764705882353,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.1653923998819664,
+                "p95": 0.2703271899837996,
+                "p99": 0.5407364251045514,
+                "max": 0.6112566001247615,
+                "over_period_fraction": 0.029411764705882353,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 345,
+              "simulation_seconds": 17.25000025704503,
+              "progress": 23.97971446036588,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 345,
+                "median": 0.013903799932450056,
+                "p95": 0.016854240139946342,
+                "p99": 0.025328308064490563,
+                "max": 0.32101060007698834,
+                "over_period_fraction": 0.002898550724637681,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.3462312000337988,
+                "p95": 1.0457615100080146,
+                "p99": 1.2807424181047815,
+                "max": 1.3977729000616819,
+                "over_period_fraction": 0.2857142857142857,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 360,
+              "simulation_seconds": 18.0000002682209,
+              "progress": 22.42377743563087,
+              "interventions": 20,
+              "plan_failures": 2,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 360,
+                "median": 0.008832549909129739,
+                "p95": 0.011337485047988594,
+                "p99": 0.013978757113218322,
+                "max": 0.3201176000293344,
+                "over_period_fraction": 0.002777777777777778,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 36,
+                "median": 0.18671194999478757,
+                "p95": 0.4786359501304105,
+                "p99": 0.7217316300142552,
+                "max": 0.8231091999914497,
+                "over_period_fraction": 0.05555555555555555,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 301,
+              "simulation_seconds": 15.050000224262476,
+              "progress": 20.28852946950656,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 301,
+                "median": 0.012395699974149466,
+                "p95": 0.015128100058063865,
+                "p99": 0.01797670009545982,
+                "max": 0.31863210001029074,
+                "over_period_fraction": 0.0033222591362126247,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.24239189992658794,
+                "p95": 0.3832432999042794,
+                "p99": 0.9725714200641954,
+                "max": 1.2199930001515895,
+                "over_period_fraction": 0.03225806451612903,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 16.35706391825208,
+              "interventions": 670,
+              "plan_failures": 67,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.008989249938167632,
+                "p95": 0.013072089885827153,
+                "p99": 0.014387907979544248,
+                "max": 0.31474329996854067,
+                "over_period_fraction": 0.0022222222222222222,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.30038320005405694,
+                "p95": 0.4814860999933443,
+                "p99": 1.6497911631455633,
+                "max": 3.4205826001707464,
+                "over_period_fraction": 0.044444444444444446,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 0.4680251014355683,
+              "interventions": 880,
+              "plan_failures": 88,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.010065599926747382,
+                "p95": 0.013073174888268112,
+                "p99": 0.014851375019643452,
+                "max": 0.32543660001829267,
+                "over_period_fraction": 0.0022222222222222222,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 1.6248036000179127,
+                "p95": 2.2334566400037144,
+                "p99": 2.6779261249979016,
+                "max": 4.55936610000208,
+                "over_period_fraction": 1.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 317,
+              "simulation_seconds": 15.850000236183405,
+              "progress": 22.441859036625303,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 317,
+                "median": 0.012195399962365627,
+                "p95": 0.01721378001384437,
+                "p99": 0.023470575949177112,
+                "max": 0.3174046999774873,
+                "over_period_fraction": 0.0031545741324921135,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 32,
+                "median": 0.17963610007427633,
+                "p95": 0.3120437848963774,
+                "p99": 0.9430164360324862,
+                "max": 1.1921648001298308,
+                "over_period_fraction": 0.03125,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 1.5849568029344603,
+              "interventions": 860,
+              "plan_failures": 86,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.011420649942010641,
+                "p95": 0.014080099994316697,
+                "p99": 0.015533648980781434,
+                "max": 0.3289962001144886,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.377500900067389,
+                "p95": 0.4786693200003356,
+                "p99": 0.7700735071068628,
+                "max": 0.893279500072822,
+                "over_period_fraction": 0.03333333333333333,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 431,
+              "simulation_seconds": 21.550000321120024,
+              "progress": 24.163480196226693,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 431,
+                "median": 0.009339699987322092,
+                "p95": 0.012119099963456392,
+                "p99": 0.014969480037689208,
+                "max": 0.31359550007618964,
+                "over_period_fraction": 0.002320185614849188,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 44,
+                "median": 0.1709268999984488,
+                "p95": 0.6269858200452292,
+                "p99": 0.6768549290322698,
+                "max": 0.6938440999947488,
+                "over_period_fraction": 0.09090909090909091,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 471,
+              "simulation_seconds": 23.550000350922346,
+              "progress": 23.86656326474875,
+              "interventions": 120,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 471,
+                "median": 0.014398299856111407,
+                "p95": 0.017524850089102983,
+                "p99": 0.019205030077137055,
+                "max": 0.31393379997462034,
+                "over_period_fraction": 0.0021231422505307855,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 48,
+                "median": 0.4808501999359578,
+                "p95": 1.1804595098947175,
+                "p99": 2.2134136109286926,
+                "max": 2.4826571999583393,
+                "over_period_fraction": 0.4791666666666667,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 409,
+              "simulation_seconds": 20.450000304728746,
+              "progress": 22.45788600159047,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 409,
+                "median": 0.009784800000488758,
+                "p95": 0.01345901996828615,
+                "p99": 0.01928010808303954,
+                "max": 0.32430370012298226,
+                "over_period_fraction": 0.0024449877750611247,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 41,
+                "median": 0.19565330003388226,
+                "p95": 0.7662589999381453,
+                "p99": 0.8197223200462759,
+                "max": 0.8332992000505328,
+                "over_period_fraction": 0.12195121951219512,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.28694855023631,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.013167000142857432,
+                "p95": 0.01653779996559024,
+                "p99": 0.019127079984173168,
+                "max": 0.3250736000481993,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.34315109997987747,
+                "p95": 0.8867740598740058,
+                "p99": 1.0241251459065823,
+                "max": 1.0495046998839825,
+                "over_period_fraction": 0.23076923076923078,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        }
+      },
+      "unsafe_episodes": {
+        "H": 0,
+        "B2": 0
+      },
+      "difference": 0.25,
+      "proof": [
+        {
+          "batch": "20261031T025409165666Z_native_supervised_ppo",
+          "method": "H",
+          "model_sha256": "dbde8619f1b25db2f37731343ec6d6204269cfd464023b63c1e5d0485a8ce537",
+          "raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f",
+          "training_controls": 20563,
+          "actual_Adam_steps": 650,
+          "raw_controls": 24900
+        },
+        {
+          "batch": "20261031T104032928978Z_native_planner_training",
+          "method": "B2",
+          "model_sha256": "88232106628dc0d5f05945a601551df3f6f3056e07678d4736413afa25a997da",
+          "raw_audit_sha256": "a2fc269efb1b13c7fe97e2aaf64c3f5f20492e5c9001528f4b0bfa9385ddf7d6",
+          "training_controls": 20615,
+          "actual_Adam_steps": 650,
+          "raw_controls": 26670
+        }
+      ],
+      "walker_bridge_source_equal": false
+    },
+    {
+      "seed": 22,
+      "cases": 12,
+      "successes": {
+        "H": 12,
+        "B2": 8
+      },
+      "families": {
+        "curve_parking": {
+          "H": 4,
+          "B2": 4
+        },
+        "static_obstacle": {
+          "H": 4,
+          "B2": 1
+        },
+        "dynamic_interaction": {
+          "H": 4,
+          "B2": 3
+        }
+      },
+      "operating_metrics": {
+        "H": {
+          "termination_counts": {
+            "success": 12
+          },
+          "all_episode_totals": {
+            "physics_steps": 4319,
+            "simulation_seconds": 215.95000321790576,
+            "progress": 272.15599347381226,
+            "interventions": 270,
+            "plan_failures": 0,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            8,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 140.8000020980835,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 335,
+              "simulation_seconds": 16.75000024959445,
+              "progress": 24.0144879601962,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 335,
+                "median": 0.006726599996909499,
+                "p95": 0.010825039981864393,
+                "p99": 0.015015169978141825,
+                "max": 0.319000200019218,
+                "over_period_fraction": 0.0029850746268656717,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.1185017500538379,
+                "p95": 0.1698867599596269,
+                "p99": 0.296684721997008,
+                "max": 0.35356570000294596,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 350,
+              "simulation_seconds": 17.50000026077032,
+              "progress": 23.985172185968363,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 350,
+                "median": 0.012476000003516674,
+                "p95": 0.01745633000391536,
+                "p99": 0.028751888066763036,
+                "max": 0.3160173000069335,
+                "over_period_fraction": 0.005714285714285714,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.26086620008572936,
+                "p95": 0.6041775500634684,
+                "p99": 0.665273456003051,
+                "max": 0.6869625999825075,
+                "over_period_fraction": 0.11428571428571428,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 311,
+              "simulation_seconds": 15.550000231713057,
+              "progress": 22.214934985215663,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 311,
+                "median": 0.0064177000895142555,
+                "p95": 0.009996749984566122,
+                "p99": 0.016681849968153965,
+                "max": 0.3132754999678582,
+                "over_period_fraction": 0.006430868167202572,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 32,
+                "median": 0.09872900001937523,
+                "p95": 0.242684884998016,
+                "p99": 0.31054020100040364,
+                "max": 0.3202502999920398,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 308,
+              "simulation_seconds": 15.400000229477882,
+              "progress": 20.45120812699488,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 308,
+                "median": 0.009752299985848367,
+                "p95": 0.012636464962270107,
+                "p99": 0.015110584007343282,
+                "max": 0.32054659991990775,
+                "over_period_fraction": 0.003246753246753247,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.21767169993836433,
+                "p95": 0.3112521499861032,
+                "p99": 0.3744983899639919,
+                "max": 0.3920407999539748,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 356,
+              "simulation_seconds": 17.80000026524067,
+              "progress": 24.12438776897702,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 356,
+                "median": 0.009160300076473504,
+                "p95": 0.013487625023117289,
+                "p99": 0.021885345032205756,
+                "max": 0.3215130999451503,
+                "over_period_fraction": 0.0028089887640449437,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 36,
+                "median": 0.14071440004045144,
+                "p95": 0.2056134500016924,
+                "p99": 0.3214466849691232,
+                "max": 0.38091339997481555,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 368,
+              "simulation_seconds": 18.400000274181366,
+              "progress": 23.98745721131815,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 368,
+                "median": 0.014084949973039329,
+                "p95": 0.01834098498220555,
+                "p99": 0.020483443939592685,
+                "max": 0.3259611999383196,
+                "over_period_fraction": 0.002717391304347826,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 37,
+                "median": 0.2774936000350863,
+                "p95": 0.6462793200742436,
+                "p99": 0.985744519950822,
+                "max": 0.9902842999435961,
+                "over_period_fraction": 0.10810810810810811,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 339,
+              "simulation_seconds": 16.950000252574682,
+              "progress": 22.468626110304342,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 339,
+                "median": 0.008536299923434854,
+                "p95": 0.012340250005945562,
+                "p99": 0.015370192010886971,
+                "max": 0.31104469997808337,
+                "over_period_fraction": 0.0029498525073746312,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.11758925003232434,
+                "p95": 0.1949958249577321,
+                "p99": 0.32624519694247317,
+                "max": 0.3896246999502182,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 341,
+              "simulation_seconds": 17.0500002540648,
+              "progress": 20.251476671713963,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 341,
+                "median": 0.01004229998216033,
+                "p95": 0.01535250002052635,
+                "p99": 0.021364900050684848,
+                "max": 0.31170890002977103,
+                "over_period_fraction": 0.002932551319648094,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.13924419996328652,
+                "p95": 0.3243179900455288,
+                "p99": 2.6922246040287305,
+                "max": 3.9064170999918133,
+                "over_period_fraction": 0.02857142857142857,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 411,
+              "simulation_seconds": 20.550000306218863,
+              "progress": 24.288512615933698,
+              "interventions": 60,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 411,
+                "median": 0.006863499991595745,
+                "p95": 0.009268650028388947,
+                "p99": 0.012105089996475723,
+                "max": 0.3113466000650078,
+                "over_period_fraction": 0.0024330900243309003,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 42,
+                "median": 0.12420909997308627,
+                "p95": 0.19400861499598243,
+                "p99": 0.27105622799368534,
+                "max": 0.3191324999788776,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 438,
+              "simulation_seconds": 21.90000032633543,
+              "progress": 23.83721699191158,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 438,
+                "median": 0.010697450023144484,
+                "p95": 0.07803833505604413,
+                "p99": 0.1410035520221572,
+                "max": 0.31249150005169213,
+                "over_period_fraction": 0.091324200913242,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 44,
+                "median": 0.2757410499616526,
+                "p95": 1.605863184976625,
+                "p99": 1.7638699690287467,
+                "max": 1.8337457000743598,
+                "over_period_fraction": 0.22727272727272727,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 22.21749308526163,
+              "interventions": 60,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.005761199980042875,
+                "p95": 0.008532700012438,
+                "p99": 0.01087555997073649,
+                "max": 0.31927650002762675,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.10060270002577454,
+                "p95": 0.14144707008963456,
+                "p99": 0.2707298759813417,
+                "max": 0.32686909998301417,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.315019760016774,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.008746200008317828,
+                "p95": 0.012454099953174591,
+                "p99": 0.014899119944311664,
+                "max": 0.32130219996906817,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.21618500002659857,
+                "p95": 0.3082532500033267,
+                "p99": 0.33708314999938005,
+                "max": 0.34368469996843487,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        },
+        "B2": {
+          "termination_counts": {
+            "success": 8,
+            "deadline": 4
+          },
+          "all_episode_totals": {
+            "physics_steps": 6440,
+            "simulation_seconds": 322.0000047981739,
+            "progress": 203.89746524874215,
+            "interventions": 3430,
+            "plan_failures": 308,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            8,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 142.0000021159649,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 341,
+              "simulation_seconds": 17.0500002540648,
+              "progress": 24.29942610117525,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 341,
+                "median": 0.008460599929094315,
+                "p95": 0.010282500181347132,
+                "p99": 0.013683279883116526,
+                "max": 0.30958519992418587,
+                "over_period_fraction": 0.002932551319648094,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.14832490007393062,
+                "p95": 0.3188734100665897,
+                "p99": 0.6500232719955948,
+                "max": 0.8204411999322474,
+                "over_period_fraction": 0.02857142857142857,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 345,
+              "simulation_seconds": 17.25000025704503,
+              "progress": 23.963320833462593,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 345,
+                "median": 0.012980200117453933,
+                "p95": 0.016559839900583028,
+                "p99": 0.02558005198836327,
+                "max": 0.3263455000706017,
+                "over_period_fraction": 0.005797101449275362,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.3166223999578506,
+                "p95": 0.7847163599217309,
+                "p99": 0.867139369989745,
+                "max": 0.9004506999626756,
+                "over_period_fraction": 0.2571428571428571,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 321,
+              "simulation_seconds": 16.050000239163637,
+              "progress": 22.39233492380688,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 321,
+                "median": 0.007868199842050672,
+                "p95": 0.010619399836286902,
+                "p99": 0.016684099938720484,
+                "max": 0.32022869982756674,
+                "over_period_fraction": 0.003115264797507788,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 33,
+                "median": 0.17163820005953312,
+                "p95": 0.5697873800992963,
+                "p99": 0.8427941280417144,
+                "max": 0.910718800034374,
+                "over_period_fraction": 0.06060606060606061,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 301,
+              "simulation_seconds": 15.050000224262476,
+              "progress": 20.262677572396562,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 301,
+                "median": 0.01125109987333417,
+                "p95": 0.015680599957704544,
+                "p99": 0.019034500000998378,
+                "max": 0.3151055001653731,
+                "over_period_fraction": 0.0033222591362126247,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.237868299940601,
+                "p95": 0.38060635002329946,
+                "p99": 0.912764539988711,
+                "max": 1.1327653999906033,
+                "over_period_fraction": 0.03225806451612903,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 12.289130046650488,
+              "interventions": 690,
+              "plan_failures": 69,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.010417299927212298,
+                "p95": 0.015438079962041228,
+                "p99": 0.024944209044333546,
+                "max": 0.31131680007092655,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.3918518499704078,
+                "p95": 0.7369048698921686,
+                "p99": 1.911511927098035,
+                "max": 3.2708584999199957,
+                "over_period_fraction": 0.2777777777777778,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.009114600135944784,
+                "p95": 0.011871129937935621,
+                "p99": 0.013702286027837544,
+                "max": 0.3246601999271661,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 2.0090678001288325,
+                "p95": 2.344405174872372,
+                "p99": 2.5366271079611034,
+                "max": 2.691240399843082,
+                "over_period_fraction": 1.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 311,
+              "simulation_seconds": 15.550000231713057,
+              "progress": 22.169678291261526,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 311,
+                "median": 0.013475700048729777,
+                "p95": 0.017836199956946075,
+                "p99": 0.02991156002972254,
+                "max": 0.3224444000516087,
+                "over_period_fraction": 0.003215434083601286,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 32,
+                "median": 0.19650134991388768,
+                "p95": 0.3026268200250342,
+                "p99": 0.9085793728684086,
+                "max": 1.1674453997984529,
+                "over_period_fraction": 0.03125,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 0.0,
+              "interventions": 900,
+              "plan_failures": 90,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.011382799944840372,
+                "p95": 0.013966829946730286,
+                "p99": 0.016637083017267285,
+                "max": 0.31932549993507564,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 1.0717279500095174,
+                "p95": 1.2885675600264221,
+                "p99": 1.3409346309490502,
+                "max": 1.42716859979555,
+                "over_period_fraction": 1.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 430,
+              "simulation_seconds": 21.500000320374966,
+              "progress": 24.270145348929095,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 430,
+                "median": 0.008818349917419255,
+                "p95": 0.011343525047414005,
+                "p99": 0.013670258978381747,
+                "max": 0.31313100014813244,
+                "over_period_fraction": 0.004651162790697674,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 43,
+                "median": 0.18348410003818572,
+                "p95": 0.5862968201283364,
+                "p99": 0.6423470479575916,
+                "max": 0.6722114000003785,
+                "over_period_fraction": 0.09302325581395349,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 11.452642477419493,
+              "interventions": 710,
+              "plan_failures": 59,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.011261200066655874,
+                "p95": 0.014268659916706384,
+                "p99": 0.015717934120912103,
+                "max": 0.31591030000709,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.7660306000616401,
+                "p95": 0.9712619650992564,
+                "p99": 1.280730056960601,
+                "max": 1.6168730000499636,
+                "over_period_fraction": 0.8777777777777778,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 410,
+              "simulation_seconds": 20.500000305473804,
+              "progress": 22.468593691604624,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 410,
+                "median": 0.00799009995535016,
+                "p95": 0.010750730021391064,
+                "p99": 0.012302279979921865,
+                "max": 0.3107392000965774,
+                "over_period_fraction": 0.0024390243902439024,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 41,
+                "median": 0.15504120010882616,
+                "p95": 0.606846199836582,
+                "p99": 0.6705973000265659,
+                "max": 0.7074176999740303,
+                "over_period_fraction": 0.0975609756097561,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.3295159620356,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.011622399790212512,
+                "p95": 0.013676099944859743,
+                "p99": 0.015406539849936958,
+                "max": 0.32270799996331334,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.3235907000489533,
+                "p95": 0.6547504100948572,
+                "p99": 0.7947836260357867,
+                "max": 0.8731784999836236,
+                "over_period_fraction": 0.2564102564102564,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        }
+      },
+      "unsafe_episodes": {
+        "H": 0,
+        "B2": 0
+      },
+      "difference": 0.3333333333333333,
+      "proof": [
+        {
+          "batch": "20261031T025409042778Z_native_supervised_ppo",
+          "method": "H",
+          "model_sha256": "091512ffb368c503c7a49b7b2e7fb49696b64a691d3c45e86040b904465642e3",
+          "raw_audit_sha256": "066b71cc36bf88b11d002fc98ca6727d19d492e5e2c3ebb10c88aa284f22378d",
+          "training_controls": 20539,
+          "actual_Adam_steps": 650,
+          "raw_controls": 24858
+        },
+        {
+          "batch": "20261031T104126873363Z_native_planner_training",
+          "method": "B2",
+          "model_sha256": "70f12f4518f39a82ed32ae1cefdec034c00b516969be4cdd53b65a753e9aa11b",
+          "raw_audit_sha256": "240bbcec6b9fb06456f97f4d1c3143d8e8da812d0b3cebfa2b2c368853219598",
+          "training_controls": 20576,
+          "actual_Adam_steps": 650,
+          "raw_controls": 27016
+        }
+      ],
+      "walker_bridge_source_equal": false
+    },
+    {
+      "seed": 33,
+      "cases": 12,
+      "successes": {
+        "H": 10,
+        "B2": 10
+      },
+      "families": {
+        "curve_parking": {
+          "H": 4,
+          "B2": 4
+        },
+        "static_obstacle": {
+          "H": 2,
+          "B2": 2
+        },
+        "dynamic_interaction": {
+          "H": 4,
+          "B2": 4
+        }
+      },
+      "operating_metrics": {
+        "H": {
+          "termination_counts": {
+            "success": 10,
+            "deadline": 2
+          },
+          "all_episode_totals": {
+            "physics_steps": 5426,
+            "simulation_seconds": 271.30000404268503,
+            "progress": 245.15533977917488,
+            "interventions": 1780,
+            "plan_failures": 149,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            9,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 181.30000270158052,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 340,
+              "simulation_seconds": 17.00000025331974,
+              "progress": 24.27960248197664,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 340,
+                "median": 0.009050949942320585,
+                "p95": 0.011183729954063895,
+                "p99": 0.014026109988335526,
+                "max": 0.3189540999010205,
+                "over_period_fraction": 0.0029411764705882353,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.14286715001799166,
+                "p95": 0.21269967487314712,
+                "p99": 0.34650827908189996,
+                "max": 0.40359950019046664,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 348,
+              "simulation_seconds": 17.400000259280205,
+              "progress": 23.98962027877885,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 348,
+                "median": 0.014405349968001246,
+                "p95": 0.018267275032121683,
+                "p99": 0.02311581109650428,
+                "max": 0.3229908000212163,
+                "over_period_fraction": 0.005747126436781609,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.3497911999002099,
+                "p95": 0.5026468900730833,
+                "p99": 0.5209761680243536,
+                "max": 0.5284102000296116,
+                "over_period_fraction": 0.08571428571428572,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 311,
+              "simulation_seconds": 15.550000231713057,
+              "progress": 22.214368196800116,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 311,
+                "median": 0.009081600001081824,
+                "p95": 0.010876150103285909,
+                "p99": 0.012414150056429199,
+                "max": 0.3084009001031518,
+                "over_period_fraction": 0.003215434083601286,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 32,
+                "median": 0.1460609999485314,
+                "p95": 0.19824185995385052,
+                "p99": 0.28011055894196046,
+                "max": 0.31666609994135797,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 301,
+              "simulation_seconds": 15.050000224262476,
+              "progress": 20.22348672107671,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 301,
+                "median": 0.012420899933204055,
+                "p95": 0.01570039987564087,
+                "p99": 0.03856709995307028,
+                "max": 0.3221096000634134,
+                "over_period_fraction": 0.0033222591362126247,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.3068001000210643,
+                "p95": 0.4056999001186341,
+                "p99": 0.43101356001570823,
+                "max": 0.43145269993692636,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 356,
+              "simulation_seconds": 17.80000026524067,
+              "progress": 24.113566100164828,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 356,
+                "median": 0.010852049919776618,
+                "p95": 0.013482949987519532,
+                "p99": 0.01579722489695996,
+                "max": 0.32142880000174046,
+                "over_period_fraction": 0.0028089887640449437,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 36,
+                "median": 0.16146450000815094,
+                "p95": 0.29511635011294857,
+                "p99": 0.3543939501396379,
+                "max": 0.38564090011641383,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 5.341075111955149,
+              "interventions": 810,
+              "plan_failures": 81,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.011997199966572225,
+                "p95": 0.014042469940613955,
+                "p99": 0.015185039909556507,
+                "max": 0.3146079999860376,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.4366509000537917,
+                "p95": 0.4959773049806245,
+                "p99": 0.587941136076115,
+                "max": 0.7395238000899553,
+                "over_period_fraction": 0.022222222222222223,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 338,
+              "simulation_seconds": 16.900000251829624,
+              "progress": 22.449525874340956,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 338,
+                "median": 0.009376649977639318,
+                "p95": 0.012083540088497102,
+                "p99": 0.014956630105152724,
+                "max": 0.31423660018481314,
+                "over_period_fraction": 0.0029585798816568047,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.1307672499679029,
+                "p95": 0.18897679504007095,
+                "p99": 0.3322857729718092,
+                "max": 0.39290079986676574,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 11.73478166016526,
+              "interventions": 680,
+              "plan_failures": 68,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.008929300005547702,
+                "p95": 0.012271230167243628,
+                "p99": 0.013809560027439147,
+                "max": 0.3082249001599848,
+                "over_period_fraction": 0.0022222222222222222,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 3.5818118999013677,
+                "p95": 4.318405079899821,
+                "p99": 4.430971160100307,
+                "max": 4.613444300135598,
+                "over_period_fraction": 0.7666666666666667,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 420,
+              "simulation_seconds": 21.000000312924385,
+              "progress": 24.320294815455178,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 420,
+                "median": 0.007014150032773614,
+                "p95": 0.009110935055650764,
+                "p99": 0.011022462949622423,
+                "max": 0.31359470007009804,
+                "over_period_fraction": 0.002380952380952381,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 42,
+                "median": 0.12231165007688105,
+                "p95": 0.16447141998214646,
+                "p99": 0.3327370920497918,
+                "max": 0.4012927000876516,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 450,
+              "simulation_seconds": 22.500000335276127,
+              "progress": 24.04945067663807,
+              "interventions": 90,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 450,
+                "median": 0.010852899984456599,
+                "p95": 0.01496968998108059,
+                "p99": 0.01828785091871394,
+                "max": 0.3170795999467373,
+                "over_period_fraction": 0.0022222222222222222,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 45,
+                "median": 0.25679500005207956,
+                "p95": 0.321838440047577,
+                "p99": 0.4082767680287362,
+                "max": 0.4247373000252992,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 22.178440197083543,
+              "interventions": 60,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.006858599837869406,
+                "p95": 0.01083220005966723,
+                "p99": 0.01300772014074027,
+                "max": 0.31142170005477965,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.1171436000149697,
+                "p95": 0.170191409974359,
+                "p99": 0.2653133439784866,
+                "max": 0.31811479991301894,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.26112766473956,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.009520899970084429,
+                "p95": 0.011744600022211671,
+                "p99": 0.01381710008718073,
+                "max": 0.3144199999514967,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.23578680003993213,
+                "p95": 0.32171175999101254,
+                "p99": 0.3388582500163465,
+                "max": 0.3475345999468118,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        },
+        "B2": {
+          "termination_counts": {
+            "success": 10,
+            "deadline": 2
+          },
+          "all_episode_totals": {
+            "physics_steps": 5440,
+            "simulation_seconds": 272.00000405311584,
+            "progress": 232.89333959531461,
+            "interventions": 1130,
+            "plan_failures": 80,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            9,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 182.00000271201134,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 341,
+              "simulation_seconds": 17.0500002540648,
+              "progress": 24.2408259287654,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 341,
+                "median": 0.00951769994571805,
+                "p95": 0.01254800008609891,
+                "p99": 0.01595159997232264,
+                "max": 0.316964800003916,
+                "over_period_fraction": 0.002932551319648094,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.16240649996325374,
+                "p95": 0.31706878989934917,
+                "p99": 0.4034242719458412,
+                "max": 0.44294729991815984,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 345,
+              "simulation_seconds": 17.25000025704503,
+              "progress": 23.96603328284458,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 345,
+                "median": 0.014572599902749062,
+                "p95": 0.01805103998631239,
+                "p99": 0.022842136034742,
+                "max": 0.32105779997073114,
+                "over_period_fraction": 0.002898550724637681,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.35804160009138286,
+                "p95": 0.9465230201138183,
+                "p99": 1.076869333959184,
+                "max": 1.1359544999431819,
+                "over_period_fraction": 0.3142857142857143,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 321,
+              "simulation_seconds": 16.050000239163637,
+              "progress": 22.35713335254127,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 321,
+                "median": 0.008742100093513727,
+                "p95": 0.011852100025862455,
+                "p99": 0.014787039998918788,
+                "max": 0.32180360006168485,
+                "over_period_fraction": 0.003115264797507788,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 33,
+                "median": 0.17966790008358657,
+                "p95": 0.6584665400907392,
+                "p99": 0.8896682840120047,
+                "max": 0.8978567000012845,
+                "over_period_fraction": 0.09090909090909091,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 301,
+              "simulation_seconds": 15.050000224262476,
+              "progress": 20.30956111062901,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 301,
+                "median": 0.012732600094750524,
+                "p95": 0.01501319999806583,
+                "p99": 0.016231199959293008,
+                "max": 0.31449120002798736,
+                "over_period_fraction": 0.0033222591362126247,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.35849040001630783,
+                "p95": 0.7721484999638051,
+                "p99": 1.0070278801256791,
+                "max": 1.033805400133133,
+                "over_period_fraction": 0.16129032258064516,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 341,
+              "simulation_seconds": 17.0500002540648,
+              "progress": 24.21900934027989,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 341,
+                "median": 0.01096059987321496,
+                "p95": 0.013444199925288558,
+                "p99": 0.014584079943597327,
+                "max": 0.317526200087741,
+                "over_period_fraction": 0.002932551319648094,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.18208319996483624,
+                "p95": 1.2945159598253664,
+                "p99": 2.6832538620429047,
+                "max": 3.3544175000861287,
+                "over_period_fraction": 0.11428571428571428,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 0.3086582569354839,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.009330149972811341,
+                "p95": 0.012091400101780891,
+                "p99": 0.014832323116715996,
+                "max": 0.32315299985930324,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.1699671500828117,
+                "p95": 0.36528156001586404,
+                "p99": 0.6923854791047052,
+                "max": 0.6993977001402527,
+                "over_period_fraction": 0.03333333333333333,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 321,
+              "simulation_seconds": 16.050000239163637,
+              "progress": 22.505464045903285,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 321,
+                "median": 0.012630400015041232,
+                "p95": 0.01587819983251393,
+                "p99": 0.017909840168431407,
+                "max": 0.3250579999294132,
+                "over_period_fraction": 0.003115264797507788,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 33,
+                "median": 0.18716449989005923,
+                "p95": 0.26901771998964236,
+                "p99": 1.023287579892203,
+                "max": 1.347199099836871,
+                "over_period_fraction": 0.030303030303030304,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 4.220195317917625,
+              "interventions": 800,
+              "plan_failures": 80,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.010533599997870624,
+                "p95": 0.01425461492035538,
+                "p99": 0.01858584307366982,
+                "max": 0.32603239989839494,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.9127883499022573,
+                "p95": 1.1493491299566814,
+                "p99": 1.3978446649387477,
+                "max": 1.6227134000509977,
+                "over_period_fraction": 0.9777777777777777,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 427,
+              "simulation_seconds": 21.35000031813979,
+              "progress": 24.096503389954012,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 427,
+                "median": 0.009929200168699026,
+                "p95": 0.01332443009596318,
+                "p99": 0.016614574049599474,
+                "max": 0.326601600041613,
+                "over_period_fraction": 0.00234192037470726,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 43,
+                "median": 0.2040262999944389,
+                "p95": 0.6170125900302083,
+                "p99": 0.6671867739036679,
+                "max": 0.6705384999513626,
+                "over_period_fraction": 0.20930232558139536,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 451,
+              "simulation_seconds": 22.550000336021185,
+              "progress": 23.88693905716951,
+              "interventions": 100,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 451,
+                "median": 0.015002300031483173,
+                "p95": 0.021084249950945377,
+                "p99": 0.024523999891243875,
+                "max": 0.3266004000324756,
+                "over_period_fraction": 0.0022172949002217295,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 46,
+                "median": 0.47565024998039007,
+                "p95": 1.0970422999816947,
+                "p99": 1.3886636399896803,
+                "max": 1.5909102000296116,
+                "over_period_fraction": 0.4782608695652174,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 411,
+              "simulation_seconds": 20.550000306218863,
+              "progress": 22.508916347859007,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 411,
+                "median": 0.00854099984280765,
+                "p95": 0.011106649995781481,
+                "p99": 0.01419915000442414,
+                "max": 0.31572409998625517,
+                "over_period_fraction": 0.0024330900243309003,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 42,
+                "median": 0.15538759995251894,
+                "p95": 0.6296881949645464,
+                "p99": 0.7148597821826113,
+                "max": 0.7488487001974136,
+                "over_period_fraction": 0.16666666666666666,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.27410016451555,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.012112800031900406,
+                "p95": 0.014507400104776025,
+                "p99": 0.016354960063472385,
+                "max": 0.32553239981643856,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.33685800014063716,
+                "p95": 0.6928439700743183,
+                "p99": 0.9136436859704545,
+                "max": 1.048729999922216,
+                "over_period_fraction": 0.3076923076923077,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        }
+      },
+      "unsafe_episodes": {
+        "H": 0,
+        "B2": 0
+      },
+      "difference": 0.0,
+      "proof": [
+        {
+          "batch": "20261031T093156483162Z_native_supervised_ppo",
+          "method": "H",
+          "model_sha256": "bc6f67841183333b86fb64f8871b895c591ab19bc8895b644b77a2618edd2f6d",
+          "raw_audit_sha256": "575b1ae6c801e8d0947949984cb7474f3b3d10787f6f833453ae2f18d0c0a226",
+          "training_controls": 20561,
+          "actual_Adam_steps": 650,
+          "raw_controls": 25987
+        },
+        {
+          "batch": "20261031T104129314279Z_native_planner_training",
+          "method": "B2",
+          "model_sha256": "e33f87c02ea676121a473d08be53b03e4dddac1c688049f8ed76989437f2963f",
+          "raw_audit_sha256": "d6788fc9b2cf96465b3daacb7f7963ea79d8b8156ed46df95103466cb57c6275",
+          "training_controls": 20578,
+          "actual_Adam_steps": 650,
+          "raw_controls": 26018
+        }
+      ],
+      "walker_bridge_source_equal": false
+    },
+    {
+      "seed": 44,
+      "cases": 12,
+      "successes": {
+        "H": 12,
+        "B2": 10
+      },
+      "families": {
+        "curve_parking": {
+          "H": 4,
+          "B2": 4
+        },
+        "static_obstacle": {
+          "H": 4,
+          "B2": 2
+        },
+        "dynamic_interaction": {
+          "H": 4,
+          "B2": 4
+        }
+      },
+      "operating_metrics": {
+        "H": {
+          "termination_counts": {
+            "success": 12
+          },
+          "all_episode_totals": {
+            "physics_steps": 4344,
+            "simulation_seconds": 217.2000032365322,
+            "progress": 272.5865944426106,
+            "interventions": 290,
+            "plan_failures": 0,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            9,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 181.55000270530581,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 341,
+              "simulation_seconds": 17.0500002540648,
+              "progress": 24.313807561633105,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 341,
+                "median": 0.006089299917221069,
+                "p95": 0.007669300073757768,
+                "p99": 0.010919079929590231,
+                "max": 0.33386689983308315,
+                "over_period_fraction": 0.002932551319648094,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.09660990000702441,
+                "p95": 0.15699925005901605,
+                "p99": 0.27801626599393725,
+                "max": 0.339450899977237,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 348,
+              "simulation_seconds": 17.400000259280205,
+              "progress": 23.991022906567895,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 348,
+                "median": 0.009920949931256473,
+                "p95": 0.01223644004203379,
+                "p99": 0.015660102923866357,
+                "max": 0.31926750019192696,
+                "over_period_fraction": 0.0028735632183908046,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.22835699981078506,
+                "p95": 0.29953242007177316,
+                "p99": 0.36519470407161836,
+                "max": 0.3927226001396775,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 311,
+              "simulation_seconds": 15.550000231713057,
+              "progress": 22.214357617133327,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 311,
+                "median": 0.005882000084966421,
+                "p95": 0.007718950044363737,
+                "p99": 0.008517589955590663,
+                "max": 0.310200999956578,
+                "over_period_fraction": 0.003215434083601286,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 32,
+                "median": 0.09191639989148825,
+                "p95": 0.14281249998603013,
+                "p99": 0.26837858393555525,
+                "max": 0.3153663999401033,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 305,
+              "simulation_seconds": 15.250000227242708,
+              "progress": 20.356012025235923,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 305,
+                "median": 0.008330999873578548,
+                "p95": 0.0113767399918288,
+                "p99": 0.01304310812614858,
+                "max": 0.31772880000062287,
+                "over_period_fraction": 0.003278688524590164,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.18616340006701648,
+                "p95": 0.28801104985177517,
+                "p99": 0.3455633300123736,
+                "max": 0.3593522000592202,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 356,
+              "simulation_seconds": 17.80000026524067,
+              "progress": 24.12445369617806,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 356,
+                "median": 0.008007250027731061,
+                "p95": 0.010426275024656206,
+                "p99": 0.012561365135479716,
+                "max": 0.31194799998775125,
+                "over_period_fraction": 0.0028089887640449437,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 36,
+                "median": 0.12322629999835044,
+                "p95": 0.1846452749450691,
+                "p99": 0.3028029949055051,
+                "max": 0.3574212999083102,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 368,
+              "simulation_seconds": 18.400000274181366,
+              "progress": 24.028673473889334,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 368,
+                "median": 0.010924850008450449,
+                "p95": 0.013486600061878561,
+                "p99": 0.014823714916128664,
+                "max": 0.32188710011541843,
+                "over_period_fraction": 0.002717391304347826,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 37,
+                "median": 0.22327720001339912,
+                "p95": 0.6459725199267267,
+                "p99": 0.6857350480929018,
+                "max": 0.6972130001522601,
+                "over_period_fraction": 0.08108108108108109,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 338,
+              "simulation_seconds": 16.900000251829624,
+              "progress": 22.445005490246043,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 338,
+                "median": 0.007022300036624074,
+                "p95": 0.010040130012203007,
+                "p99": 0.010888602079357951,
+                "max": 0.3142300001345575,
+                "over_period_fraction": 0.0029585798816568047,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.0997349499957636,
+                "p95": 0.1362151000997983,
+                "p99": 0.2938878080225553,
+                "max": 0.3691879999823868,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 345,
+              "simulation_seconds": 17.25000025704503,
+              "progress": 20.320566204439903,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 345,
+                "median": 0.008694600081071258,
+                "p95": 0.011935359984636306,
+                "p99": 0.015177935957908631,
+                "max": 0.3251384999603033,
+                "over_period_fraction": 0.002898550724637681,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.12854449986480176,
+                "p95": 0.34569325994234523,
+                "p99": 1.5316131740435899,
+                "max": 2.1332700001075864,
+                "over_period_fraction": 0.02857142857142857,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 420,
+              "simulation_seconds": 21.000000312924385,
+              "progress": 24.270825691537777,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 420,
+                "median": 0.006024850066751242,
+                "p95": 0.00800199992954731,
+                "p99": 0.009548599014524371,
+                "max": 0.3190117001067847,
+                "over_period_fraction": 0.002380952380952381,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 42,
+                "median": 0.11400504992343485,
+                "p95": 0.1508343900553882,
+                "p99": 0.29291296798735783,
+                "max": 0.37718650000169873,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 450,
+              "simulation_seconds": 22.500000335276127,
+              "progress": 24.022648925670058,
+              "interventions": 90,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 450,
+                "median": 0.009207250084728003,
+                "p95": 0.011997504963073872,
+                "p99": 0.015233365087769924,
+                "max": 0.3192879999987781,
+                "over_period_fraction": 0.0022222222222222222,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 45,
+                "median": 0.24332759995013475,
+                "p95": 0.2831302199047059,
+                "p99": 0.36041524003259867,
+                "max": 0.41335889999754727,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 22.229461362762837,
+              "interventions": 60,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.006025699898600578,
+                "p95": 0.008672100026160479,
+                "p99": 0.010478419810533523,
+                "max": 0.3125970000401139,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.096758299972862,
+                "p95": 0.131908859894611,
+                "p99": 0.26357121200300715,
+                "max": 0.318904000101611,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.269759487316346,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.008443999802693725,
+                "p95": 0.010445100022479892,
+                "p99": 0.014180039893835707,
+                "max": 0.31173800001852214,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.22180450009182096,
+                "p95": 0.28207310012076053,
+                "p99": 0.3165387820871547,
+                "max": 0.3173619001172483,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        },
+        "B2": {
+          "termination_counts": {
+            "success": 10,
+            "deadline": 2
+          },
+          "all_episode_totals": {
+            "physics_steps": 5453,
+            "simulation_seconds": 272.6500040628016,
+            "progress": 233.22866952894836,
+            "interventions": 2020,
+            "plan_failures": 168,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            9,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 182.6500027216971,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 341,
+              "simulation_seconds": 17.0500002540648,
+              "progress": 24.24123936164014,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 341,
+                "median": 0.009004800114780664,
+                "p95": 0.011376800015568733,
+                "p99": 0.015188800031319291,
+                "max": 0.31463350006379187,
+                "over_period_fraction": 0.002932551319648094,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.15427469997666776,
+                "p95": 0.3124295100104063,
+                "p99": 0.5082113559544077,
+                "max": 0.6032265999820083,
+                "over_period_fraction": 0.02857142857142857,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 345,
+              "simulation_seconds": 17.25000025704503,
+              "progress": 23.97482571672329,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 345,
+                "median": 0.013137499801814556,
+                "p95": 0.01687330007553101,
+                "p99": 0.0207385799754411,
+                "max": 0.3189753999467939,
+                "over_period_fraction": 0.002898550724637681,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.31346950004808605,
+                "p95": 0.8937736500287426,
+                "p99": 1.0153643359895792,
+                "max": 1.0545695999171585,
+                "over_period_fraction": 0.2571428571428571,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 321,
+              "simulation_seconds": 16.050000239163637,
+              "progress": 22.368374155909553,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 321,
+                "median": 0.008393900003284216,
+                "p95": 0.010484700091183186,
+                "p99": 0.012922360096126795,
+                "max": 0.3178185001015663,
+                "over_period_fraction": 0.003115264797507788,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 33,
+                "median": 0.13955670013092458,
+                "p95": 0.43489730004221183,
+                "p99": 0.627593095973134,
+                "max": 0.6855121999979019,
+                "over_period_fraction": 0.06060606060606061,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 301,
+              "simulation_seconds": 15.050000224262476,
+              "progress": 20.303473221704525,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 301,
+                "median": 0.012280600145459175,
+                "p95": 0.01397760002873838,
+                "p99": 0.01499229995533824,
+                "max": 0.31388829997740686,
+                "over_period_fraction": 0.0033222591362126247,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.3058766000904143,
+                "p95": 0.5374963498907164,
+                "p99": 0.8257527100155128,
+                "max": 0.9342817000579089,
+                "over_period_fraction": 0.0967741935483871,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 341,
+              "simulation_seconds": 17.0500002540648,
+              "progress": 24.220384397763656,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 341,
+                "median": 0.011025900021195412,
+                "p95": 0.012735700001940131,
+                "p99": 0.013642280036583557,
+                "max": 0.32117080013267696,
+                "over_period_fraction": 0.002932551319648094,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.19504410005174577,
+                "p95": 1.329523329925723,
+                "p99": 2.674906000047916,
+                "max": 3.3071224000304937,
+                "over_period_fraction": 0.17142857142857143,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 0.4619328770721758,
+              "interventions": 880,
+              "plan_failures": 88,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.009562999941408634,
+                "p95": 0.011780969833489507,
+                "p99": 0.013768629815895108,
+                "max": 0.3194197998382151,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 1.1431906499201432,
+                "p95": 1.2859947799704967,
+                "p99": 1.5502706491295244,
+                "max": 2.2021385999396443,
+                "over_period_fraction": 1.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 317,
+              "simulation_seconds": 15.850000236183405,
+              "progress": 22.440322842393012,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 317,
+                "median": 0.012606400065124035,
+                "p95": 0.016155900061130525,
+                "p99": 0.020052439970895636,
+                "max": 0.32453850004822016,
+                "over_period_fraction": 0.0031545741324921135,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 32,
+                "median": 0.1798300000373274,
+                "p95": 0.33752075496595346,
+                "p99": 0.8540148190129557,
+                "max": 1.0556373000144958,
+                "over_period_fraction": 0.03125,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 4.174734617060704,
+              "interventions": 800,
+              "plan_failures": 80,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.010425649932585657,
+                "p95": 0.013685969996731726,
+                "p99": 0.0156959640677087,
+                "max": 0.3146648001857102,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 1.4209367000730708,
+                "p95": 1.685606264998205,
+                "p99": 1.790078190003987,
+                "max": 2.2614034998696297,
+                "over_period_fraction": 0.9777777777777777,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 431,
+              "simulation_seconds": 21.550000321120024,
+              "progress": 24.306684421041254,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 431,
+                "median": 0.008644200162962079,
+                "p95": 0.010984200052917004,
+                "p99": 0.018368560005910684,
+                "max": 0.3147543000523001,
+                "over_period_fraction": 0.002320185614849188,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 44,
+                "median": 0.1807618000311777,
+                "p95": 0.5716159249888734,
+                "p99": 0.6470366839133204,
+                "max": 0.6800052998587489,
+                "over_period_fraction": 0.09090909090909091,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 467,
+              "simulation_seconds": 23.350000347942114,
+              "progress": 23.99284195464652,
+              "interventions": 110,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 467,
+                "median": 0.013081700075417757,
+                "p95": 0.016987039963714777,
+                "p99": 0.01954866000451146,
+                "max": 0.3286490999162197,
+                "over_period_fraction": 0.0021413276231263384,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 47,
+                "median": 0.5912238999735564,
+                "p95": 0.9060755900107323,
+                "p99": 1.011409685919061,
+                "max": 1.0858564998488873,
+                "over_period_fraction": 0.5106382978723404,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 408,
+              "simulation_seconds": 20.40000030398369,
+              "progress": 22.431922168952823,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 408,
+                "median": 0.008477449999190867,
+                "p95": 0.010834329971112309,
+                "p99": 0.017213523867540086,
+                "max": 0.32493650005199015,
+                "over_period_fraction": 0.0024509803921568627,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 41,
+                "median": 0.15371999982744455,
+                "p95": 0.5944335998501629,
+                "p99": 0.7110130799468608,
+                "max": 0.734365199925378,
+                "over_period_fraction": 0.17073170731707318,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.311933794040755,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.01185130001977086,
+                "p95": 0.013865599874407053,
+                "p99": 0.015256879990920423,
+                "max": 0.31835650000721216,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.3067997000180185,
+                "p95": 0.738976559857838,
+                "p99": 0.8909492940455672,
+                "max": 0.9389351999852806,
+                "over_period_fraction": 0.28205128205128205,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        }
+      },
+      "unsafe_episodes": {
+        "H": 0,
+        "B2": 0
+      },
+      "difference": 0.16666666666666666,
+      "proof": [
+        {
+          "batch": "20261031T093202647818Z_native_supervised_ppo",
+          "method": "H",
+          "model_sha256": "7a39f136042083aeffd4a8b1daa8965792bec6faa2687b1c67c094e044d05f49",
+          "raw_audit_sha256": "733ae826652f0833e4a4a2446498f41e8beab61dfd29b815ac4354b1098597bb",
+          "training_controls": 20502,
+          "actual_Adam_steps": 650,
+          "raw_controls": 24846
+        },
+        {
+          "batch": "20261031T104131479611Z_native_planner_training",
+          "method": "B2",
+          "model_sha256": "a5828b89f56ad695228ffed8b821ef61c1df81735b375801788b896da8a6ca81",
+          "raw_audit_sha256": "88d62f1d2b4f20abaf4a752731c8ac4fbfa3ce68bcc1cc2d4feef70b51b9268e",
+          "training_controls": 20611,
+          "actual_Adam_steps": 650,
+          "raw_controls": 26064
+        }
+      ],
+      "walker_bridge_source_equal": false
+    },
+    {
+      "seed": 55,
+      "cases": 12,
+      "successes": {
+        "H": 12,
+        "B2": 7
+      },
+      "families": {
+        "curve_parking": {
+          "H": 4,
+          "B2": 3
+        },
+        "static_obstacle": {
+          "H": 4,
+          "B2": 0
+        },
+        "dynamic_interaction": {
+          "H": 4,
+          "B2": 4
+        }
+      },
+      "operating_metrics": {
+        "H": {
+          "termination_counts": {
+            "success": 12
+          },
+          "all_episode_totals": {
+            "physics_steps": 4337,
+            "simulation_seconds": 216.8500032313168,
+            "progress": 271.75079570066737,
+            "interventions": 300,
+            "plan_failures": 0,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            2,
+            3,
+            8,
+            9,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 129.90000193566084,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 340,
+              "simulation_seconds": 17.00000025331974,
+              "progress": 24.268628502678304,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 340,
+                "median": 0.005487349932081997,
+                "p95": 0.0068704700213857,
+                "p99": 0.008124391972087329,
+                "max": 0.30746219982393086,
+                "over_period_fraction": 0.0029411764705882353,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.09602940001059324,
+                "p95": 0.14241568000288676,
+                "p99": 0.28960931995417954,
+                "max": 0.35493479995056987,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 348,
+              "simulation_seconds": 17.400000259280205,
+              "progress": 23.987104817596315,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 348,
+                "median": 0.00871650013141334,
+                "p95": 0.011072074889671053,
+                "p99": 0.012537552991416297,
+                "max": 0.32015789998695254,
+                "over_period_fraction": 0.0028735632183908046,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.20254460000433028,
+                "p95": 0.27284520987886934,
+                "p99": 0.34685496196616405,
+                "max": 0.38321650004945695,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 311,
+              "simulation_seconds": 15.550000231713057,
+              "progress": 22.213922506085954,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 311,
+                "median": 0.005521700019016862,
+                "p95": 0.006839600042439997,
+                "p99": 0.00745234992355108,
+                "max": 0.3122511999681592,
+                "over_period_fraction": 0.003215434083601286,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 32,
+                "median": 0.0863490499323234,
+                "p95": 0.12983991497894748,
+                "p99": 0.26682051695883297,
+                "max": 0.3208222999237478,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 305,
+              "simulation_seconds": 15.250000227242708,
+              "progress": 20.36655907662683,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 305,
+                "median": 0.00771309994161129,
+                "p95": 0.008934400090947748,
+                "p99": 0.00975917204283177,
+                "max": 0.3170721000060439,
+                "over_period_fraction": 0.003278688524590164,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.17486369982361794,
+                "p95": 0.27345664997119457,
+                "p99": 0.33129597008228295,
+                "max": 0.35309460014104843,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 356,
+              "simulation_seconds": 17.80000026524067,
+              "progress": 24.130793153754738,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 356,
+                "median": 0.00732209999114275,
+                "p95": 0.009746650059241802,
+                "p99": 0.010702174960169942,
+                "max": 0.3200019998475909,
+                "over_period_fraction": 0.0028089887640449437,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 36,
+                "median": 0.11596019996795803,
+                "p95": 0.17789059999631718,
+                "p99": 0.29806609508814264,
+                "max": 0.3597817001864314,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 361,
+              "simulation_seconds": 18.05000026896596,
+              "progress": 23.740778785893614,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 361,
+                "median": 0.01025900011882186,
+                "p95": 0.014075899962335825,
+                "p99": 0.015664699999615547,
+                "max": 0.3146905000321567,
+                "over_period_fraction": 0.002770083102493075,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 37,
+                "median": 0.21022960008122027,
+                "p95": 0.4072115800809106,
+                "p99": 0.6620790999662132,
+                "max": 0.7055688998661935,
+                "over_period_fraction": 0.05405405405405406,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 338,
+              "simulation_seconds": 16.900000251829624,
+              "progress": 22.329281608164393,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 338,
+                "median": 0.0060526999877765775,
+                "p95": 0.008691854961216449,
+                "p99": 0.009943089890293777,
+                "max": 0.31481119990348816,
+                "over_period_fraction": 0.0029585798816568047,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.08909755002241582,
+                "p95": 0.14112545010866595,
+                "p99": 0.294694123975933,
+                "max": 0.3666727999225259,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 336,
+              "simulation_seconds": 16.800000250339508,
+              "progress": 19.961548076759673,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 336,
+                "median": 0.008022499969229102,
+                "p95": 0.010310974845197052,
+                "p99": 0.011534210003446782,
+                "max": 0.31708479998633265,
+                "over_period_fraction": 0.002976190476190476,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 34,
+                "median": 0.12017915002070367,
+                "p95": 0.28740691009443226,
+                "p99": 1.956800755991139,
+                "max": 2.7380615000147372,
+                "over_period_fraction": 0.029411764705882353,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 421,
+              "simulation_seconds": 21.050000313669443,
+              "progress": 24.258896276968354,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 421,
+                "median": 0.005508499918505549,
+                "p95": 0.006904000183567405,
+                "p99": 0.008011500025168065,
+                "max": 0.306621499825269,
+                "over_period_fraction": 0.0023752969121140144,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 43,
+                "median": 0.1022135999519378,
+                "p95": 0.13231760999187828,
+                "p99": 0.23721208595670729,
+                "max": 0.31132599990814924,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 449,
+              "simulation_seconds": 22.45000033453107,
+              "progress": 23.99230163620578,
+              "interventions": 90,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 449,
+                "median": 0.008684400003403425,
+                "p95": 0.011157459998503327,
+                "p99": 0.013095912039279935,
+                "max": 0.3141975000035018,
+                "over_period_fraction": 0.0022271714922048997,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 45,
+                "median": 0.23794079991057515,
+                "p95": 0.3078794999979436,
+                "p99": 0.3650461079366506,
+                "max": 0.384440999943763,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 391,
+              "simulation_seconds": 19.5500002913177,
+              "progress": 22.1906752838098,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 391,
+                "median": 0.0053709999192506075,
+                "p95": 0.008640749962069094,
+                "p99": 0.01139682000502944,
+                "max": 0.3093898000661284,
+                "over_period_fraction": 0.0025575447570332483,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 40,
+                "median": 0.08869629993569106,
+                "p95": 0.12079647997161364,
+                "p99": 0.25303798301378255,
+                "max": 0.31635460001416504,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.310305976123615,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.007955299923196435,
+                "p95": 0.009945699945092201,
+                "p99": 0.011297300038859247,
+                "max": 0.31091820006258786,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.20068890019319952,
+                "p95": 0.2555811300873757,
+                "p99": 0.3092893419694155,
+                "max": 0.31696309987455606,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        },
+        "B2": {
+          "termination_counts": {
+            "success": 7,
+            "deadline": 5
+          },
+          "all_episode_totals": {
+            "physics_steps": 7296,
+            "simulation_seconds": 364.8000054359436,
+            "progress": 222.78858751537925,
+            "interventions": 2460,
+            "plan_failures": 211,
+            "mpc_failures": 0
+          },
+          "jointly_successful_cases": [
+            0,
+            2,
+            3,
+            8,
+            9,
+            10,
+            11
+          ],
+          "joint_success_simulation_seconds": 139.80000208318233,
+          "episodes": [
+            {
+              "case_id": 0,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 341,
+              "simulation_seconds": 17.0500002540648,
+              "progress": 24.243091275366904,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 341,
+                "median": 0.00815319991670549,
+                "p95": 0.011224899906665087,
+                "p99": 0.01298540011048317,
+                "max": 0.32164289988577366,
+                "over_period_fraction": 0.002932551319648094,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 35,
+                "median": 0.14636639994569123,
+                "p95": 0.36370362997986355,
+                "p99": 0.45424067009706026,
+                "max": 0.4762198000680655,
+                "over_period_fraction": 0.0,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 1,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 17.492326927210733,
+              "interventions": 490,
+              "plan_failures": 49,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.012351499986834824,
+                "p95": 0.01582663487643003,
+                "p99": 0.020919144025538117,
+                "max": 0.32329610013403,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.592540799989365,
+                "p95": 0.7994917249307035,
+                "p99": 0.9221075091045349,
+                "max": 1.0502959000878036,
+                "over_period_fraction": 0.6777777777777778,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 2,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 361,
+              "simulation_seconds": 18.05000026896596,
+              "progress": 22.279143737726365,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 361,
+                "median": 0.008547900011762977,
+                "p95": 0.01138309994712472,
+                "p99": 0.012863019993528721,
+                "max": 0.309046900132671,
+                "over_period_fraction": 0.002770083102493075,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 37,
+                "median": 0.1461006999015808,
+                "p95": 0.37976537998765686,
+                "p99": 0.6256310119852425,
+                "max": 0.7425079999957234,
+                "over_period_fraction": 0.02702702702702703,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 3,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 301,
+              "simulation_seconds": 15.050000224262476,
+              "progress": 20.22021947790424,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 301,
+                "median": 0.012715999968349934,
+                "p95": 0.01527530001476407,
+                "p99": 0.016875300090759993,
+                "max": 0.3164291998837143,
+                "over_period_fraction": 0.0033222591362126247,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 31,
+                "median": 0.3380887000821531,
+                "p95": 0.4770730499876663,
+                "p99": 0.9088986100628969,
+                "max": 1.0667368001304567,
+                "over_period_fraction": 0.06451612903225806,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 4,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 22.388490066738093,
+              "interventions": 0,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.009351650136522949,
+                "p95": 0.01277668495895341,
+                "p99": 0.014381680847145617,
+                "max": 0.3158503999002278,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.10485065006650984,
+                "p95": 0.2517353899311273,
+                "p99": 0.778173223093616,
+                "max": 3.5164711999241263,
+                "over_period_fraction": 0.011111111111111112,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 5,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 0.4619328770721758,
+              "interventions": 730,
+              "plan_failures": 73,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.00985109992325306,
+                "p95": 0.012306320085190234,
+                "p99": 0.013918667922262101,
+                "max": 0.3185401000082493,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 1.1374158000107855,
+                "p95": 1.3181124600465408,
+                "p99": 1.5882571709994224,
+                "max": 1.8283222999889404,
+                "over_period_fraction": 0.8333333333333334,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 6,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 21.258149426286135,
+              "interventions": 30,
+              "plan_failures": 3,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.009110899991355836,
+                "p95": 0.014597910083830356,
+                "p99": 0.016454432054888446,
+                "max": 0.3145409000571817,
+                "over_period_fraction": 0.0011111111111111111,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.09911299997474998,
+                "p95": 0.27099057513987634,
+                "p99": 0.6303026220947501,
+                "max": 1.1267181001603603,
+                "over_period_fraction": 0.022222222222222223,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 7,
+              "success": false,
+              "termination_reason": "deadline",
+              "physics_steps": 900,
+              "simulation_seconds": 45.000000670552254,
+              "progress": 3.7008494028020067,
+              "interventions": 810,
+              "plan_failures": 81,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 900,
+                "median": 0.011036899872124195,
+                "p95": 0.014048094872850924,
+                "p99": 0.01577206483343616,
+                "max": 0.32394739985466003,
+                "over_period_fraction": 0.0022222222222222222,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 90,
+                "median": 0.9125457500340417,
+                "p95": 1.1446920650778336,
+                "p99": 1.4753404360823332,
+                "max": 1.50221629999578,
+                "over_period_fraction": 0.9666666666666667,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 8,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 431,
+              "simulation_seconds": 21.550000321120024,
+              "progress": 24.261636026318786,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 431,
+                "median": 0.008927500108256936,
+                "p95": 0.011354099842719734,
+                "p99": 0.012477600062265986,
+                "max": 0.31332459999248385,
+                "over_period_fraction": 0.002320185614849188,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 44,
+                "median": 0.17582485009916127,
+                "p95": 0.5631646549911239,
+                "p99": 0.6160193929984235,
+                "max": 0.6171480999328196,
+                "over_period_fraction": 0.11363636363636363,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 9,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 579,
+              "simulation_seconds": 28.950000431388617,
+              "progress": 24.011177260754337,
+              "interventions": 170,
+              "plan_failures": 5,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 579,
+                "median": 0.013768400065600872,
+                "p95": 0.017776599992066624,
+                "p99": 0.019894026005640632,
+                "max": 0.31752340006642044,
+                "over_period_fraction": 0.0017271157167530224,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 58,
+                "median": 0.5280852499417961,
+                "p95": 1.2003815749892965,
+                "p99": 1.769947793909814,
+                "max": 2.151326699880883,
+                "over_period_fraction": 0.5517241379310345,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 10,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 402,
+              "simulation_seconds": 20.10000029951334,
+              "progress": 22.14746997892393,
+              "interventions": 80,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 402,
+                "median": 0.008753850008361042,
+                "p95": 0.011405399907380343,
+                "p99": 0.01343886791262776,
+                "max": 0.3096133000217378,
+                "over_period_fraction": 0.0024875621890547263,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 41,
+                "median": 0.1566469999961555,
+                "p95": 0.6444870999548584,
+                "p99": 0.7653668000828476,
+                "max": 0.8051504001487046,
+                "over_period_fraction": 0.14634146341463414,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            },
+            {
+              "case_id": 11,
+              "success": true,
+              "termination_reason": "success",
+              "physics_steps": 381,
+              "simulation_seconds": 19.05000028386712,
+              "progress": 20.32410105827554,
+              "interventions": 70,
+              "plan_failures": 0,
+              "mpc_failures": 0,
+              "control_cycle_times": {
+                "count": 381,
+                "median": 0.012409399962052703,
+                "p95": 0.01578189991414547,
+                "p99": 0.019779520016163586,
+                "max": 0.3179120998829603,
+                "over_period_fraction": 0.0026246719160104987,
+                "period": 0.05,
+                "unit": "seconds"
+              },
+              "decision_cycle_times": {
+                "count": 39,
+                "median": 0.3291428000666201,
+                "p95": 0.7109188600908966,
+                "p99": 0.8040429238602518,
+                "max": 0.829848799854517,
+                "over_period_fraction": 0.28205128205128205,
+                "period": 0.5,
+                "unit": "seconds"
+              }
+            }
+          ]
+        }
+      },
+      "unsafe_episodes": {
+        "H": 0,
+        "B2": 0
+      },
+      "difference": 0.4166666666666667,
+      "proof": [
+        {
+          "batch": "20261031T093206498809Z_native_supervised_ppo",
+          "method": "H",
+          "model_sha256": "fa12201979763b5e0e9c38d0e3f0d7df46b543f18de8c63ad6c8ddfb5432b951",
+          "raw_audit_sha256": "9e4422ff630d492fb58a3863265e93c77ddc5f07c513241067a2320efad39620",
+          "training_controls": 20523,
+          "actual_Adam_steps": 650,
+          "raw_controls": 24860
+        },
+        {
+          "batch": "20261031T104133575143Z_native_planner_training",
+          "method": "B2",
+          "model_sha256": "35c4d5c1b86ed5e4feda8eaebaa686e46eb3873c264ec639bd4310edcb6e728f",
+          "raw_audit_sha256": "5700fb4acaaed9f32052ec56d24e0e87111667577aab0f31edc4b4c5bb327a88",
+          "training_controls": 20623,
+          "actual_Adam_steps": 650,
+          "raw_controls": 27919
+        }
+      ],
+      "walker_bridge_source_equal": false
+    }
+  ],
+  "successes": {
+    "H": 58,
+    "B2": 44
+  },
+  "episodes_each_method": 60,
+  "unique_known_conditions": 12,
+  "statistics": {
+    "independent_training_seeds": 5,
+    "paired_mean_difference": 0.2333333333333333,
+    "paired_95pct_t_interval": [
+      0.03430096765833496,
+      0.43236569900833166
+    ],
+    "exploratory_exact_sign_flip_p_two_sided": 0.125,
+    "assumptions": "tinterval assumes approximately normal seed differences;sign-flip null assumes symmetric exchangeable seed differences. Small N,known development conditions and retrospective analysis do not establish confirmatory significance."
+  },
+  "limits": "Retrospective DEVELOPMENT comparison with shared H teacher priors;historical tuning costs not equalized. Same12known conditions repeated across five independently trained policies. No fresh final confirmation or PPO-vs-rule/feedback necessity claim.",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}
