@@ -14,6 +14,7 @@ import sys
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
 
 
 def digest(data):
@@ -48,8 +49,8 @@ def reproduce(archive_path, expected_sha256, output, reference_figure=None):
     if not batch.is_relative_to(output/'asset'):
         raise ValueError('Batch path escapes extracted asset')
     protocol = json.loads((batch/'protocol.json').read_text(encoding='utf-8'))
-    if protocol['methods'] != manifest['methods']:
-        raise ValueError('Registered methods differ from exported inventory')
+    from scripts.native_completed_method_export import validate_exported_inventory
+    partial=validate_exported_inventory(batch,protocol,manifest)
     evidence = output/'rebuild'
     evidence.mkdir()
     environment = dict(os.environ, NAVSTACK_AUDIT_SOURCE_ROOT=str(batch/'source'))
@@ -79,7 +80,8 @@ def reproduce(archive_path, expected_sha256, output, reference_figure=None):
             'new_controls':result['new_controls'], 'optimizer_updates':result['optimizer_updates']})
         print(json.dumps(rows[-1]), flush=True)
     figure = evidence/'frozen_endpoints.png'
-    run('plot_native_endpoints.py', '--batch', batch, '--output', figure)
+    selection=[argument for method in manifest['methods'] for argument in ('--method',method)] if partial else []
+    run('plot_native_endpoints.py', '--batch', batch, '--output', figure,*selection)
     expected_figure = Path(reference_figure).resolve() if reference_figure is not None else batch/'analysis/frozen_endpoints.png'
     if not expected_figure.is_file():
         raise FileNotFoundError('Figure baseline missing; supply the versioned repository figure with --reference-figure')
@@ -91,6 +93,10 @@ def reproduce(archive_path, expected_sha256, output, reference_figure=None):
         'verified_files':len(manifest['files']), 'methods':rows,
         'figure_sha256':digest(figure.read_bytes()), 'figure_byte_identical':True,
         'figure_baseline':'explicit_reference' if reference_figure is not None else 'packaged_analysis'}
+    if partial:
+        receipt.update(completed_method_export=manifest['completed_method_export'],
+            incomplete_sibling_files_verified=sum(len(names) for names in manifest['retained_incomplete_method_files'].values()),
+            batch_complete=False,scope='Completed-method raw/inference/figure reproduction inside a retained interrupted batch;all incomplete sibling file bytes verified;no sibling performance score or new driving')
     (output/'reproduction.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
     print(json.dumps(receipt), flush=True)
 

@@ -1,8 +1,10 @@
-"""Export every registered native endpoint with unchanged model and raw bytes.
+"""Export native endpoints with unchanged model and raw bytes.
 
 Auxiliary JSON paths are redacted with a transformation ledger. Inputs used by
 the raw endpoint auditor cannot be transformed; their original hashes must hold.
-No incomplete batch, successful-case subset or runtime installation is exported.
+Whole-batch export rejects incomplete runs. An explicit completed-method profile
+retains every incomplete sibling file and failure;it never declares batch success.
+No successful-case subset or runtime installation is exported.
 """
 import argparse
 import base64
@@ -172,22 +174,30 @@ def scan_payload(name, payload, depth=0):
         encoded(json.loads(payload))
 
 
-def package(batch, output):
+def package(batch, output, completed_method=None):
     batch,output=Path(batch).resolve(),Path(output)
     temporary=output.with_name(output.name+'.partial')
     if output.exists() or temporary.exists():
         raise FileExistsError('Preserve existing complete or partial asset')
-    protocol,summary=read(batch/'protocol.json'),read(batch/'summary.json')
-    methods=protocol['methods']
-    if not methods or len(methods)!=len(set(methods)):
+    protocol=read(batch/'protocol.json')
+    summary=read(batch/'summary.json') if (batch/'summary.json').exists() else {}
+    registered_methods=protocol['methods']
+    if not registered_methods or len(registered_methods)!=len(set(registered_methods)):
         raise ValueError('Registered jobs must be nonempty and unique')
-    if (batch/'failure.json').exists() or summary.get('status')!='complete':
-        raise ValueError('Require a normally completed batch')
-    if sorted(row.get('job_name',row['method']) for row in summary['methods'])!=sorted(methods):
-        raise ValueError('Require every registered endpoint, without selection')
-    guard=read(batch/'guard_final.json')
-    if type(guard.get('exit_code')) is not int or guard['exit_code']!=0 or guard.get('reason') is not None:
-        raise ValueError('Require normal guard completion')
+    profile=None
+    if completed_method is None:
+        methods=registered_methods
+        if (batch/'failure.json').exists() or summary.get('status')!='complete':
+            raise ValueError('Require a normally completed batch')
+        if sorted(row.get('job_name',row['method']) for row in summary['methods'])!=sorted(methods):
+            raise ValueError('Require every registered endpoint, without selection')
+        guard=read(batch/'guard_final.json')
+        if type(guard.get('exit_code')) is not int or guard['exit_code']!=0 or guard.get('reason') is not None:
+            raise ValueError('Require normal guard completion')
+    else:
+        from scripts.native_completed_method_export import completed_method_profile
+        profile=completed_method_profile(batch,protocol,completed_method)
+        methods=[completed_method]
     if read(batch/'infrastructure/server_stop.json').get('status')!='owned_empty_server_stopped':
         raise ValueError('Require verified owned-server cleanup')
     for relative,digest in protocol['source_hashes'].items():
@@ -205,7 +215,7 @@ def package(batch, output):
         if sha(supervised_dataset.read_bytes())!=protocol.get('extra_supervision',{}).get('dataset_sha256'):
             raise ValueError('Supervised dataset is unregistered or its bytes changed')
         selected.add(supervised_dataset)
-    for name in ('source','calibration','resume','analysis',*methods):
+    for name in ('source','calibration','resume','analysis',*registered_methods):
         selected.update(p for p in (batch/name).rglob('*') if p.is_file()
                         and '__pycache__' not in p.parts and p.suffix in SUFFIXES)
     selected.update(p for p in (batch/'infrastructure').iterdir() if p.is_file() and p.suffix in ('.json','.gz'))
@@ -213,11 +223,18 @@ def package(batch, output):
     selected.update(operational_sources)
     # These files are directly hash-bound by endpoint and continuation auditors.
     protected={batch/'protocol.json',batch/'summary.json'}
+    if profile:
+        protected.update(batch/name for name in profile['failure_evidence_sha256'])
+        protected.update(batch/name for rows in profile['incomplete_file_sha256'].values() for name in rows)
+        for method in registered_methods:
+            for path in (batch/method).rglob('*'):
+                if path.is_file() and '__pycache__' not in path.parts and path.suffix not in SUFFIXES:
+                    raise ValueError('Incomplete method file must not be silently omitted: '+path.name)
     protected.update(operational_sources)
     protected.update(batch/'source'/relative for relative in protocol['source_hashes'])
     protected.update((batch/'calibration').rglob('*.json'))
     protected.update((batch/'resume').rglob('*.json'))
-    for method in methods:
+    for method in registered_methods:
         folder=batch/method
         protected.update(folder/name for name in ('config.json','summary.json','evaluation.json',
                          'endpoint_raw_audit.json','latest_checkpoint.json'))
@@ -246,6 +263,7 @@ def package(batch, output):
         extras={'LICENSE':(ROOT/'LICENSE').read_bytes(),
                 'requirements.lock.txt':(ROOT/'requirements.lock.txt').read_bytes(),
                 'README.txt':(
+                    ('COMPLETED METHOD ONLY; ORIGINAL BATCH INTERRUPTED. ALL INCOMPLETE SIBLING FILES RETAINED.\n' if profile else '')+
                     'DEVELOPMENT EVIDENCE, NOT RESEARCH ACCEPTANCE OR A FINAL MODEL.\n'
                     'All registered methods, failures and controls in this segment are retained. Model/norm/raw bytes are unchanged.\n'
                     'Source, saved checkpoints and inherited resume checkpoints are included; install dependencies independently.\n'
@@ -271,6 +289,10 @@ def package(batch, output):
             'verified_controls':{m:a['total_applied_controls_verified'] for m,a in endpoint_audits.items()},
             'not_exported':[p.relative_to(batch).as_posix() for p in sorted(batch.rglob('*'))
                             if p.is_file() and p not in selected and '__pycache__' not in p.parts]}
+        if profile:
+            manifest.update(schema_version=2,scope=profile['scope'],completed_method_export=profile,
+                retained_incomplete_method_files={method:sorted(name for name in files if name.startswith(batch.name+'/'+method+'/'))
+                    for method in profile['incomplete_methods']})
         manifest_bytes=json.dumps(manifest,indent=2).encode()
         scan_payload('manifest.json',manifest_bytes)
         archive.writestr('manifest.json',manifest_bytes)
@@ -291,11 +313,13 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--batch',required=True)
     parser.add_argument('--output',required=True)
+    parser.add_argument('--completed-method',help='Explicit complete method in an interrupted batch;all incomplete sibling data retained')
     parser.add_argument('--guard-only',action='store_true',help='Supplement a previously published capsule with its exact operational guard snapshot')
     parser.add_argument('--parent-archive-sha256')
     args=parser.parse_args()
     if args.guard_only:
+        if args.completed_method:parser.error('--completed-method cannot be combined with --guard-only')
         package_guard_snapshot(args.batch,args.output,args.parent_archive_sha256 or '')
     else:
         if args.parent_archive_sha256:parser.error('--parent-archive-sha256 requires --guard-only')
-        package(args.batch,args.output)
+        package(args.batch,args.output,args.completed_method)
