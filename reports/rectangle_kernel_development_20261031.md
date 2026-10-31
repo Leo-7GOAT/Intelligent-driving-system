@@ -61,6 +61,15 @@ Raw aggregate reports are `rectangle_kernel_recorded_budget_benchmark_20261031.j
 `rectangle_kernel_recorded_success_benchmark_20261031.json` and
 `rectangle_kernel_B1_observations_20261031.json` in this directory.
 
+Independent reproduction at commit `bc4bae88b509fd66d1f5c23a7291635f9fcd7a93`
+passes all 10 targeted tests and repeats both searches and the complete measured
+observation history using the previously verified public capsules. All checked
+semantic outputs agree. Three dependency files have checkout line-ending byte
+differences; their normalized Python texts and archived source byte hashes are
+checked separately. The [verification receipt](rectangle_kernel_independent_verification_20261031.json)
+retains these hashes. [Hosted CPU regression](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41173897666)
+also completed successfully. Neither verification performs a new native drive.
+
 Separately, the matched replay-fit B1 continuation completed 20,480 new native
 training controls and 51 optimizer steps. Its development endpoint is **4/12**,
 with four bounds failures, one collision and three deadlines. This regresses

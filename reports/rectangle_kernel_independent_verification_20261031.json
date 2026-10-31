@@ -1,0 +1,108 @@
+{
+  "scope": "Independent detached checkout and isolated Python; previously downloaded and verified public H/H0 and B1 capsules; no simulator control or policy deployment.",
+  "source_commit": "bc4bae88b509fd66d1f5c23a7291635f9fcd7a93",
+  "targeted_tests_passed": 10,
+  "targeted_test_log_sha256": "5e94793780541c2fe3d6be5857707b9fd5c895b2a00a61da53cc9e44734d64c4",
+  "replications": [
+    {
+      "original": "rectangle_kernel_recorded_budget_benchmark_20261031.json",
+      "replica": "rectangle_budget_independent_20261031.json",
+      "replica_sha256": "ca077bb80360228e492baea938191608b087dd509f2aac7de23101b3c573d255",
+      "all_semantic_checks_exact": true,
+      "baseline_batch": "20261031T025409165666Z_native_supervised_ppo",
+      "dependencies": {
+        "navstack/config.py": {
+          "original_sha256": "178c39d32b26eee0260a63184111bbd331d097c6e8c9583ad01934914465a12c",
+          "current_sha256": "8c44b8db17b9e35c6997899e86866eb174e65a8b91934a05c174670cc4ad52df",
+          "source_text_equal": true
+        },
+        "navstack/planning.py": {
+          "original_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+          "current_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+          "source_text_equal": true
+        },
+        "navstack/world.py": {
+          "original_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+          "current_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+          "source_text_equal": true
+        },
+        "navstack/road_grid.py": {
+          "original_sha256": "080a14742b6f28b847627b079b9bfce8696d08f9ee1d1cbcc2439b98113c41f1",
+          "current_sha256": "e385c41e14011211f6cedc33e29ebb007578a8a27bc4556e1dce03d56c1f895e",
+          "source_text_equal": true
+        },
+        "navstack/road_grid_batch.py": {
+          "original_sha256": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e",
+          "current_sha256": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e",
+          "source_text_equal": true
+        },
+        "navstack/vehicle.py": {
+          "original_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+          "current_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+          "source_text_equal": true
+        },
+        "navstack/dubins_guide.py": {
+          "original_sha256": "59c6972c3b1ce9c0a2ad4de3ffd15ca4db9256a7eb2ef38a20e66ab7d4dda900",
+          "current_sha256": "1635a072f580d9dc387d28e7e718f41a5db56282d6621752c603bc7fe836d88c",
+          "source_text_equal": true
+        }
+      }
+    },
+    {
+      "original": "rectangle_kernel_recorded_success_benchmark_20261031.json",
+      "replica": "rectangle_success_independent_20261031.json",
+      "replica_sha256": "df68c8519247ac185f342b9265509e3cf5ee7c9501195e036185d9f2e279ace6",
+      "all_semantic_checks_exact": true,
+      "baseline_batch": "20261031T025409165666Z_native_supervised_ppo",
+      "dependencies": {
+        "navstack/config.py": {
+          "original_sha256": "178c39d32b26eee0260a63184111bbd331d097c6e8c9583ad01934914465a12c",
+          "current_sha256": "8c44b8db17b9e35c6997899e86866eb174e65a8b91934a05c174670cc4ad52df",
+          "source_text_equal": true
+        },
+        "navstack/planning.py": {
+          "original_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+          "current_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+          "source_text_equal": true
+        },
+        "navstack/world.py": {
+          "original_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+          "current_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+          "source_text_equal": true
+        },
+        "navstack/road_grid.py": {
+          "original_sha256": "080a14742b6f28b847627b079b9bfce8696d08f9ee1d1cbcc2439b98113c41f1",
+          "current_sha256": "e385c41e14011211f6cedc33e29ebb007578a8a27bc4556e1dce03d56c1f895e",
+          "source_text_equal": true
+        },
+        "navstack/road_grid_batch.py": {
+          "original_sha256": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e",
+          "current_sha256": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e",
+          "source_text_equal": true
+        },
+        "navstack/vehicle.py": {
+          "original_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+          "current_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+          "source_text_equal": true
+        },
+        "navstack/dubins_guide.py": {
+          "original_sha256": "59c6972c3b1ce9c0a2ad4de3ffd15ca4db9256a7eb2ef38a20e66ab7d4dda900",
+          "current_sha256": "1635a072f580d9dc387d28e7e718f41a5db56282d6621752c603bc7fe836d88c",
+          "source_text_equal": true
+        }
+      }
+    },
+    {
+      "original": "rectangle_kernel_B1_observations_20261031.json",
+      "replica": "rectangle_observations_independent_20261031.json",
+      "replica_sha256": "754efc0e1400cb59db2855161699002dadcee10bd127f59f86a776c09a58b9f9",
+      "all_semantic_checks_exact": true
+    }
+  ],
+  "dependency_byte_hash_limit": "Three checkout files use different line endings; original archived byte hashes and normalized Python source texts are verified, not byte-identical current files.",
+  "hosted_regression_run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41173897666",
+  "hosted_regression_conclusion": "success",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}
