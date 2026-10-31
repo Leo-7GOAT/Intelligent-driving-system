@@ -1,0 +1,53 @@
+{
+  "scope": "Second complete public-archive reconstruction from stable independent source;zero driving or updates",
+  "reason": "Independent checkout transitioned ff3963a to be6a50d during the first verification. Entry-point source bytes match both commits. A second complete verification kept be6a50d fixed throughout.",
+  "executed_entry_points": {
+    "scripts/reproduce_native_asset.py": {
+      "identical_across_original_checkout_transition": true,
+      "git_blob_payload_sha256": "e47149f44a35a1370932e17013eaea41c1c354d262b60207e2bd4461bb8dfab5"
+    },
+    "scripts/audit_native_method_endpoint.py": {
+      "identical_across_original_checkout_transition": true,
+      "git_blob_payload_sha256": "21407dbb5700ef3327a0ffd349bd993511baf6c538c57860fac95d68656b1542"
+    },
+    "scripts/audit_native_policy_inference.py": {
+      "identical_across_original_checkout_transition": true,
+      "git_blob_payload_sha256": "2dbfc815c497df73b05d57f06549bfd9b3d7ff42cb97511bc033c28c1d31dbd2"
+    },
+    "scripts/plot_native_endpoints.py": {
+      "identical_across_original_checkout_transition": true,
+      "git_blob_payload_sha256": "c044d5a2d772e47c41bb81aadbf9b5cd0737728f50efefbb1c44b4eacf9834d9"
+    }
+  },
+  "reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "1374429bca525b878cfdb86fb9ffd9f6b1d3943c24ff8208c056b6458e009351",
+    "asset_source_commit": "ff3963ae099f870922a138f14079398de9da501d",
+    "reproduction_source_commit": "be6a50d41e29be82edd5272dfa988b562ea92a2f",
+    "verified_files": 609,
+    "methods": [
+      {
+        "method": "H",
+        "raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f",
+        "verified_controls": 24900,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      },
+      {
+        "method": "H0",
+        "raw_audit_sha256": "e02948a388e140254d62068bff0844dcace6f282e63c255f27cd9ab7b4f66f63",
+        "verified_controls": 25448,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "cfe787706a4de8af4ca1d5aa04cde3d7e133276e54199d01b1fa75099afe8a08",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  },
+  "research_acceptance": "UNMET"
+}

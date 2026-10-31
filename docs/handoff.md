@@ -75,10 +75,23 @@ process identities. Verify receipts and creation times before acting.
   These are representation gates,NOT completed independent PPO seeds. After
   each complete audit,use existing guarded supervised-PPO preparation and
   original75percent representation gate;never skip a failed fixed seed.
-- Bounded H/H0v4public publisher59436is now launched(2400s),local complete
+- Bounded H/H0v4public publisher59436is COMPLETE:32parts downloaded unauthenticated,
+  all609files/50,348controls/24actions/frozen statistics/identical PNG reproduced.
+  Publication receipt reports/H_H0_v4_PPO_public_verification_20261031.json.
+  A second full stable-source reproduction also passes atbe6a50d after the
+  first verification overlapped the independent checkout update;executed entry
+  source bytes match both commits. Supplemental receipt
+  reports/H_H0_v4_PPO_stable_source_verification_20261031.json. Complete
   archive66,513,018bytes/609files,SHA1374429bca525b878cfdb86fb9ffd9f6b1d3943c24ff8208c056b6458e009351.
-  It uploads/downloads/reconstructs50,348controls;do not claim public completion
-  before reports/H_H0_v4_PPO_public_verification_20261031.json exists.
+- B1replay034614809334is now COMPLETE8/12but3bounds and1deadline,zero PPO;
+  all5,251controls/12actions audited. It is NOT a healthy baseline. Approach
+  034641272228is ACTUALLY EVALUATING under worker51756. Read-only comparison
+  waiter67212has3600s cap,source hash binding,no repeated controls;receipt
+  runs/B1_v4_approach_comparison_launch_20261031.json. Its new analyzer checks
+  both complete raw bindings/conditions/physical configs and unchanged model
+  SHA;no paired result claimed before native_B1_v4_approach_pair_complete_20261031.json.
+- Sourcebe6a50dis pushed/remote verified;independent seven initializer/geometry
+  checks pass4.45s. Hosted verification for that commit is still pending here.
 - Five independently trained seeds,healthy full-task B1,at least120NEWpaired
   final conditions,frequency/shared-safety ablations,PPOversusstrongB3and
   statistically supported hierarchy/feedback value remain open. All known12

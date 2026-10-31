@@ -16,6 +16,17 @@ H-only case5 is static avoidance; the exact discordance p-value is1.0.
 The earlier method report preserves its then-partial batch status. This is
 one seed and does not establish feedback benefit or generalization.
 
+The [public trained-H/H0 manifest](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H_H0_v4_PPO_20261031_repro.zip.parts.json)
+has 32 parts, 66,513,018 bytes/609 files, archive SHA256
+`1374429bca525b878cfdb86fb9ffd9f6b1d3943c24ff8208c056b6458e009351`.
+Unauthenticated download and complete independent reconstruction verify all
+50,348 raw controls, 24 initial actions, frozen statistics and identical PNG.
+[Publication receipt](../reports/H_H0_v4_PPO_public_verification_20261031.json).
+A second complete reproduction keeps checkout be6a50d fixed after a concurrent
+checkout transition during the first verification; the reproduction entry-point
+source bytes also match both commits.
+[Stable-source verification](../reports/H_H0_v4_PPO_stable_source_verification_20261031.json).
+
 Frozen old H/H0 weights on the same v4 geometry instead score **9/12 versus
 10/12**, zero unsafe in both arms, paired difference -8.33 percentage points,
 exact discordance p=1.0. This is a deployment migration, not v4 training.
