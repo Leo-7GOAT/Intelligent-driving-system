@@ -1,0 +1,66 @@
+{
+  "scope": "Actual first physical PPO update;not a completed endpoint or baseline qualification",
+  "batch": "20261031T073909784878Z_native_supervised_ppo",
+  "first_update": {
+    "physics_steps": 1280,
+    "actions": 1280,
+    "episodes": 2,
+    "optimization_phases": 1,
+    "optimizer_steps": 40,
+    "reward_components": {
+      "event": -70.0,
+      "time": -6.399999999999886,
+      "risk": -7.102795749571901,
+      "comfort": -1.1683086440024497,
+      "potential": 1.8669820913618413,
+      "task_progress": 32.072941641597566
+    },
+    "modes": {
+      "flat": 1280
+    },
+    "action_histogram": {},
+    "actor_l2_change": 0.012757645919919014,
+    "metrics": {
+      "train/learning_rate": 3e-06,
+      "train/entropy_loss": 5.162148249149323,
+      "train/policy_gradient_loss": -0.017392264529480526,
+      "train/value_loss": 3.2507582366466523,
+      "train/approx_kl": 0.005883718840777874,
+      "train/clip_fraction": 0.06296874987892806,
+      "train/loss": 1.6160191297531128,
+      "train/explained_variance": -0.686913251876831,
+      "train/std": 0.018315047025680542,
+      "train/n_updates": 10.0,
+      "train/clip_range": 0.2
+    }
+  },
+  "first_update_record_sha256": "06d39657930336f54b7c1ed0b6e31120549682fe5b4ee90ed52267ba6ba7eefe",
+  "activation": {
+    "policy_or_task_changes": 0,
+    "activated_epoch": 1793433137.489,
+    "original_protocol_sha256": "f4855c076cf03c630ec7bcddb17e5ada8703305b05e90faee380c59e5657aac2",
+    "activated_protocol_sha256": "8540399fa7d510f612f70ff13a85c84a7fdcbd8b5458510559d81c35df883324",
+    "queued_created_epoch": 1793432352.0083313,
+    "status": "ACTIVATED_BEFORE_ANY_LIFECYCLE",
+    "wall_seconds": 7200
+  },
+  "guard_observation": {
+    "pid": 19884,
+    "worker_pid": 4840,
+    "epoch": 1793433387.3225398,
+    "last_progress": 1793433382.9099705,
+    "deadline_epoch": 1793440337.489,
+    "healthy": true,
+    "reason": null,
+    "gpu_telemetry": {
+      "status": "ok",
+      "temperature_c": 34,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    }
+  },
+  "research_acceptance": "UNMET"
+}

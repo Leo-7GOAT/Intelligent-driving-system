@@ -55,7 +55,7 @@ with one of823decisions above the0.5-second period. This timer excludes policy
 prediction, normalization and runner serialization, so it is not a full-runner
 realtime certificate. [Complete runtime audit](native_H_v4_broader_recovered_runtime_20261031.json).
 
-H0 is actually training as `20261031T071026696107Z_native_H0_spawn_recovery`,
+H0 has completed as `20261031T071026696107Z_native_H0_spawn_recovery`,
 using the untouched original zero-PPO model/normalization/RNG/configuration.
 AST comparison finds only `Bridge.begin` changed; step/read/actuation and all
 vehicle, reward and planning sources remain unchanged. Its separate 20,480-
@@ -65,3 +65,25 @@ After normal owned cleanup, a registered queue reconnects the unchanged seed33,
 failed queue and preparation failure before any native lifecycle remain intact.
 The H0 helper's missing vehicle argument was corrected before registration;
 the failed preparation directory contains no native controls or optimizer steps.
+
+H0 completes20,561training controls/650Adam steps and scores21/24:8/8curve,
+5/8static,8/8dynamic,zero collision/bounds. Cases9,13,15 hit deadlines.
+All30,292training/evaluation controls and24initial actions verify. The first
+read-only inference audit failed because training scene files omit validation
+roads. The corrected auditor reads the actual reset scene payloads from the
+method's hash-bound bridge response stream;there are zero new physical controls
+or updates. The original failure and both audit records remain intact.
+[Complete H0 endpoint](native_H0_v4_broader_spawn_recovered_endpoint_20261031.json).
+
+The24paired conditions yield three H-only wins and no H0-only wins:12.5pp,
+exact two-sided p=.25. This one-seed development comparison establishes no
+statistical feedback benefit or PPO-vs-rule contribution.
+[Complete paired report](native_v4_broader_feedback_pair_20261031.json).
+
+Seed33/44/55H/H0initialization gates have all completed. Their remaining matched
+PPO program now waits for B1's registered36train/24validation phase to complete
+normally. Only the prior idle waiting driver was superseded with a retained,
+creation-time/executable-verified handle;no CARLA worker/server was interrupted.
+The replacement freezes the preparer source and keeps all original seeds,
+budgets,physical profiles and gates. B1 is actual worker4840;do not infer process
+ownership from this stale text without checking the live lifecycle receipts.

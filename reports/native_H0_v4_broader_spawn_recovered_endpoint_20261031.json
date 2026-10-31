@@ -1,0 +1,199 @@
+{
+  "scope": "Complete registered geometry-separated development endpoint;not independent final confirmation.",
+  "batch": "20261031T071026696107Z_native_H0_spawn_recovery",
+  "method": "H0",
+  "cases": 24,
+  "successes": 21,
+  "termination_counts": {
+    "success": 21,
+    "deadline": 3
+  },
+  "new_training_controls": 20561,
+  "model_lineage_controls": 20561,
+  "new_optimizer_steps": 650,
+  "raw_controls_verified": 30292,
+  "evaluation_controls": 9731,
+  "measured_start_actions_reproduced": 24,
+  "model_sha256": "85b1007c1d235877fdfd7fdae5f176814bd809a87884b1797037aed8862ea7c0",
+  "normalization_sha256": "6242c77a10e251b5536c6cbb282484b8733d031eaf30a18ee29649864fa3d5fc",
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 341,
+      "progress": 24.32955981117456
+    },
+    {
+      "case_id": 1,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 350,
+      "progress": 23.9858486369701
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 318,
+      "progress": 22.449393964016537
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 301,
+      "progress": 20.563526142439216
+    },
+    {
+      "case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 231,
+      "progress": 16.089426548816103
+    },
+    {
+      "case_id": 5,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 238,
+      "progress": 16.40870517527522
+    },
+    {
+      "case_id": 6,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 219,
+      "progress": 15.418773606196211
+    },
+    {
+      "case_id": 7,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 197,
+      "progress": 13.051299351187804
+    },
+    {
+      "case_id": 8,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 358,
+      "progress": 24.373765521777337
+    },
+    {
+      "case_id": 9,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 3.169168210289186
+    },
+    {
+      "case_id": 10,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 331,
+      "progress": 22.32191640742684
+    },
+    {
+      "case_id": 11,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 329,
+      "progress": 20.48334514447084
+    },
+    {
+      "case_id": 12,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 361,
+      "progress": 24.408408880164306
+    },
+    {
+      "case_id": 13,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 5.554590456642796
+    },
+    {
+      "case_id": 14,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 341,
+      "progress": 22.459401098173696
+    },
+    {
+      "case_id": 15,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 6.770779842548377
+    },
+    {
+      "case_id": 16,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 391,
+      "progress": 24.294151498049995
+    },
+    {
+      "case_id": 17,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 439,
+      "progress": 23.98919867045424
+    },
+    {
+      "case_id": 18,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 411,
+      "progress": 22.302953091854448
+    },
+    {
+      "case_id": 19,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 381,
+      "progress": 20.66381896389313
+    },
+    {
+      "case_id": 20,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 381,
+      "progress": 24.354422653320736
+    },
+    {
+      "case_id": 21,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 406,
+      "progress": 23.930399166676942
+    },
+    {
+      "case_id": 22,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 361,
+      "progress": 22.29009332766064
+    },
+    {
+      "case_id": 23,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 346,
+      "progress": 20.497408795583294
+    }
+  ],
+  "postprocessing_reconciliation": {
+    "preserved_failure_sha256": "91e59cdc95d13a30825245ec4746f8d514542677fc6324d249b99a919ba1d28d",
+    "cause": "Training scene files exclude geometry-separated validation roads;read measured scene payloads from recorded bridge reset responses,not fabricated layouts",
+    "new_controls": 0,
+    "new_optimizer_steps": 0,
+    "inference_audit_sha256": "04535469ed0e1e3804177717df5985b430e816a33fd3a36b238130d9a9f7818f",
+    "executed_auditor_sha256": "a8565c82dd407a15cc12703052a8ffc11e88d973eca0e669c3b25aa51734a239",
+    "stream_bound_to_raw_endpoint_audit": true
+  },
+  "research_acceptance": "UNMET"
+}

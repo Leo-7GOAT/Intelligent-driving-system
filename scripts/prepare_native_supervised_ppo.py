@@ -194,6 +194,40 @@ def copy_cleanup_harness(archived,current,destination):
     return change
 
 
+def copy_walker_spawn_harness(archived,current,destination):
+    """Permit only the diagnosed pre-control walker clearance and evidence edits."""
+    import ast
+    original=Path(archived).read_text(encoding='utf-8')
+    updated=Path(current).read_text(encoding='utf-8')
+    patches=[
+        ('                try:\n                    hazard=self.world.spawn_actor(bp,self.transform(x,y,yaw))\n',
+         '                walker_transform=self.transform(x,y,yaw)\n                walker_transform.location.z+=.2\n                try:\n                    hazard=self.world.spawn_actor(bp,walker_transform)\n'),
+        ("                self.walker_direction=self.native_hazard['walker_direction_local']\n",
+         "                self.walker_direction=self.native_hazard['walker_direction_local']\n"
+         "                self.native_hazard={**self.native_hazard,'walker_spawn_initialization':{\n"
+         "                    'version':'native_walker_clearance_020_v1','requested_world_z':walker_transform.location.z,\n"
+         "                    'clearance_added_m':.2,'settle_ticks':30}}\n"),
+        ('        static=[]\n',
+         "        static=[]\n        if self.native_hazard and self.native_hazard['kind']=='crossing_walker':\n"
+         "            self.native_hazard['walker_spawn_initialization'].update(\n"
+         "                settled_world_z=self.dynamic[0].get_location().z,\n"
+         "                capsule_half_height=self.dynamic[0].bounding_box.extent.z)\n")]
+    signature=lambda text:ast.dump(ast.parse(text),include_attributes=False)
+    if signature(original)!=signature(updated):
+        expected=original
+        for before,after in patches:
+            if expected.count(before)!=1:raise ValueError('Walker initialization source structure differs')
+            expected=expected.replace(before,after)
+        if signature(expected)!=signature(updated):
+            raise ValueError('Walker initialization override changes unrelated bridge behavior')
+    if 'native_walker_clearance_020_v1' not in updated:
+        raise ValueError('Missing explicit walker initialization profile')
+    change={'version':'native_walker_clearance_020_v1','parent_sha256':sha(archived),
+            'initialized_sha256':sha(current),'scope':'Only native walker pre-control Z clearance and settled-height evidence;XY,yaw,walking,vehicle actuation and other bridge code unchanged by AST comparison'}
+    shutil.copy2(current,destination)
+    return change
+
+
 def supervised_input_cost(protocol,method):
     costs=[protocol['extra_supervision']['teacher_controls'],
            protocol['recovery'][method]['consumed_controls_lower_bound']]
@@ -213,10 +247,14 @@ def fresh_target_kl(model, target_kl):
             'scope':'Existing SB3 per-rollout epoch early stop; physical budget and endpoint unchanged. Not a hard bound on cumulative policy drift.'}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None,ppo_reward_scale=None,cleanup_harness_source=None,geometry_version=None,freeze_observation_statistics=False):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None,ppo_reward_scale=None,cleanup_harness_source=None,geometry_version=None,freeze_observation_statistics=False,walker_spawn_clearance=False):
     parent = Path(parent).resolve()
     if type(freeze_observation_statistics) is not bool:
         raise ValueError('Observation-statistics profile must be an explicit boolean')
+    if type(walker_spawn_clearance) is not bool:
+        raise ValueError('Walker initialization profile must be an explicit boolean')
+    if walker_spawn_clearance and (current_cleanup_harness or cleanup_harness_source is not None or geometry_version is not None):
+        raise ValueError('Walker initialization must be a separate explicit bridge profile')
     if current_cleanup_harness and cleanup_harness_source is not None:
         raise ValueError('Choose current or explicit archived cleanup harness, not both')
     cleanup_source = (ROOT/'scripts/carla_bridge37.py' if current_cleanup_harness else
@@ -282,6 +320,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
         if initialization_gate=='basic_motion_training_v1':label+='_basic_motion_v1'
         if freeze_observation_statistics:label+='_frozen_obs_v1'
+        if walker_spawn_clearance:label+='_walker_clearance_020_v1'
         if cleanup_source is not None:label+='_cleanup_snapshot'
         if geometry_version is not None:label+='_geometry_v4'
         registration=parent/(label+'_registration.json')
@@ -381,6 +420,9 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
             install_inventory(protocol,batch/'source',partition_inventory)
             shutil.copy2(partition_inventory,batch/'native_partition_inventory.json')
             shutil.copy2(ROOT/'scripts/native_partition_initialization.py',batch/'source/scripts/native_partition_initialization.py')
+        if walker_spawn_clearance:
+            protocol['walker_spawn_initialization']=copy_walker_spawn_harness(
+                parent/'source/scripts/carla_bridge37.py',ROOT/'scripts/carla_bridge37.py',batch/'source/scripts/carla_bridge37.py')
         now = time.time()
         protocol.pop('evaluation_only')
         protocol.update(created_epoch=now, deadline_epoch=now+wall_seconds, parent_batch=parent.name,
@@ -435,5 +477,6 @@ if __name__ == '__main__':
     parser.add_argument('--ppo-reward-scale',type=float,choices=[.05],help='Separate fixed1/20learner-reward units diagnostic; raw task rewards unchanged')
     parser.add_argument('--geometry-version',choices=['carla_driving_indexed_union_256_v4'],help='Explicit new collision geometry before the first PPO update;requires new experiment and disclosed v3 teacher input')
     parser.add_argument('--freeze-observation-statistics',action='store_true',help='Explicit continuation profile; preserve the initializer observation statistics throughout PPO')
+    parser.add_argument('--walker-spawn-clearance',action='store_true',help='Explicit diagnosed walker initialization profile;retain XY/task/actuation and record settled height')
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory,args.ppo_reward_scale,args.cleanup_harness_source,args.geometry_version,args.freeze_observation_statistics)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory,args.ppo_reward_scale,args.cleanup_harness_source,args.geometry_version,args.freeze_observation_statistics,args.walker_spawn_clearance)

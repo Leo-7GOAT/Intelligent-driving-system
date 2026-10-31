@@ -1,0 +1,286 @@
+{
+  "scope": "Registered B1 development training before physical execution;not a healthy baseline or outcome claim",
+  "batch": "20261031T073909784878Z_native_supervised_ppo",
+  "protocol_sha256": "f4855c076cf03c630ec7bcddb17e5ada8703305b05e90faee380c59e5657aac2",
+  "same_initializer_as": "20261031T055729299388Z_native_supervised_ppo",
+  "all_policy_tensors_equal": true,
+  "normalization_bytes_equal": true,
+  "resume_rng_bytes_equal": true,
+  "ppo_controls_before_training": 0,
+  "optimizer_steps_before_training": 0,
+  "ppo_control_budget": 20480,
+  "wall_budget_seconds": 7200,
+  "rollout_actions": 1280,
+  "learning_rate": 3e-06,
+  "target_kl": 0.01,
+  "training_conditions": 36,
+  "validation_conditions": 24,
+  "partition_inventory_sha256": "07d0724d87f4a3bb117265656e2a0d1296c02a749b1bd37186401d8229800961",
+  "source_differences_from_known12_low_lr_training": [
+    "navstack/native_cases.py",
+    "navstack/native_partitions.py",
+    "scripts/carla_bridge37.py",
+    "scripts/native_partition_initialization.py",
+    "scripts/native_road_learning.py",
+    "scripts/prepare_native_supervised_ppo.py"
+  ],
+  "walker_spawn_initialization": {
+    "version": "native_walker_clearance_020_v1",
+    "parent_sha256": "ae6b0d83fbb8a131ea39b482dbb0f0d6e9193d189b16e54052a606636bc8f8fe",
+    "initialized_sha256": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a",
+    "scope": "Only native walker pre-control Z clearance and settled-height evidence;XY,yaw,walking,vehicle actuation and other bridge code unchanged by AST comparison"
+  },
+  "extra_supervision": {
+    "teacher_batch": "20261027T080111Z_native_rule",
+    "cases": [
+      {
+        "group": 0,
+        "source_id": 0,
+        "case_id": 0,
+        "controls": 340,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 1,
+        "source_id": 0,
+        "case_id": 1,
+        "controls": 347,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 2,
+        "source_id": 0,
+        "case_id": 2,
+        "controls": 311,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 3,
+        "source_id": 0,
+        "case_id": 3,
+        "controls": 301,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 4,
+        "source_id": 0,
+        "case_id": 4,
+        "controls": 356,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 5,
+        "source_id": 0,
+        "case_id": 5,
+        "controls": 361,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 6,
+        "source_id": 0,
+        "case_id": 6,
+        "controls": 339,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 7,
+        "source_id": 0,
+        "case_id": 7,
+        "controls": 345,
+        "termination_reason": "success",
+        "dynamic_actors": 0,
+        "measured_actor_changed_frames": 0,
+        "acknowledged_brake_projection_controls": 0
+      },
+      {
+        "group": 8,
+        "source_id": 0,
+        "case_id": 8,
+        "controls": 415,
+        "termination_reason": "success",
+        "dynamic_actors": 1,
+        "measured_actor_changed_frames": 365,
+        "acknowledged_brake_projection_controls": 23
+      },
+      {
+        "group": 9,
+        "source_id": 0,
+        "case_id": 9,
+        "controls": 444,
+        "termination_reason": "success",
+        "dynamic_actors": 1,
+        "measured_actor_changed_frames": 394,
+        "acknowledged_brake_projection_controls": 66
+      },
+      {
+        "group": 10,
+        "source_id": 0,
+        "case_id": 10,
+        "controls": 381,
+        "termination_reason": "success",
+        "dynamic_actors": 1,
+        "measured_actor_changed_frames": 331,
+        "acknowledged_brake_projection_controls": 13
+      },
+      {
+        "group": 11,
+        "source_id": 0,
+        "case_id": 11,
+        "controls": 389,
+        "termination_reason": "success",
+        "dynamic_actors": 1,
+        "measured_actor_changed_frames": 339,
+        "acknowledged_brake_projection_controls": 33
+      }
+    ],
+    "teacher_controls": 4329,
+    "dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+    "epochs": null,
+    "supervised_optimizer_steps": 2304,
+    "history": [
+      {
+        "supervised_epoch": 1,
+        "supervised_optimizer_steps": 14,
+        "train_action_mse": 0.10371197760105133,
+        "holdout_action_mse": 0.10150854289531708,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 10,
+        "supervised_optimizer_steps": 140,
+        "train_action_mse": 0.004589094314724207,
+        "holdout_action_mse": 0.0044133965857326984,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 20,
+        "supervised_optimizer_steps": 280,
+        "train_action_mse": 0.003437610575929284,
+        "holdout_action_mse": 0.004069638438522816,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 30,
+        "supervised_optimizer_steps": 420,
+        "train_action_mse": 0.0027045458555221558,
+        "holdout_action_mse": 0.004158623982220888,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 40,
+        "supervised_optimizer_steps": 560,
+        "train_action_mse": 0.0023781713098287582,
+        "holdout_action_mse": 0.005138609558343887,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 50,
+        "supervised_optimizer_steps": 700,
+        "train_action_mse": 0.0026161065325140953,
+        "holdout_action_mse": 0.00694623589515686,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 60,
+        "supervised_optimizer_steps": 840,
+        "train_action_mse": 0.0020854095928370953,
+        "holdout_action_mse": 0.006599549204111099,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 70,
+        "supervised_optimizer_steps": 980,
+        "train_action_mse": 0.002319469815120101,
+        "holdout_action_mse": 0.006376025266945362,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 80,
+        "supervised_optimizer_steps": 1120,
+        "train_action_mse": 0.0021607980597764254,
+        "holdout_action_mse": 0.006920344661921263,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 90,
+        "supervised_optimizer_steps": 1260,
+        "train_action_mse": 0.0019553496968001127,
+        "holdout_action_mse": 0.0068009477108716965,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 100,
+        "supervised_optimizer_steps": 1400,
+        "train_action_mse": 0.0018779023084789515,
+        "holdout_action_mse": 0.006757977418601513,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 110,
+        "supervised_optimizer_steps": 1540,
+        "train_action_mse": 0.001765524153597653,
+        "holdout_action_mse": 0.006793768610805273,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 120,
+        "supervised_optimizer_steps": 1680,
+        "train_action_mse": 0.0019028212409466505,
+        "holdout_action_mse": 0.006612580735236406,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      },
+      {
+        "supervised_epoch": 128,
+        "supervised_optimizer_steps": 1792,
+        "train_action_mse": 0.0020513879135251045,
+        "holdout_action_mse": 0.007658761460334063,
+        "train_value_mse": 261.93084716796875,
+        "holdout_value_mse": 262.97235107421875
+      }
+    ],
+    "holdout_scope": "Only original teacher TRAIN rows plus optional reachable training-state labels;no fit holdout or independent validation claim",
+    "teacher_batches": [
+      "20261027T080111Z_native_rule"
+    ],
+    "measured_view_manifest_sha256": "67abdc04bee8f8c9fcf32a5eb61fe777bdc20ca5cd684c75c17515f3147c5ee4",
+    "scope": "Disclosed actor-only replay and optional counterfactual B3/MPC approach labels;return placeholders never value targets"
+  },
+  "init_model_sha256": "90a36aec6e52538b21664af21802dd5e7381739b250df02de70a360faf494ed4",
+  "init_normalization_sha256": "e718b900d5355f8b73669bae47d9e4c7d7d64892f98e029294f48045a372b133",
+  "init_rng_sha256": "074978791df7d39e66dc118799e675f8af030897890100e1a20cb1dda54eee78",
+  "research_acceptance": "UNMET"
+}

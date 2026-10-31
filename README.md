@@ -15,9 +15,19 @@ training controls/650Adam steps. A walker-spawn initialization failure was
 diagnosed and fixed; the unchanged trained H checkpoint was reevaluated with
 zero new learning and all interrupted costs retained.
 [Complete recovered validation](reports/native_broader_H_spawn_recovery_complete_20261031.json).
-Its H0 counterpart is actually training. This is one-seed development validation,
+Its H0 counterpart now completes **21/24**, zero unsafe, after20,561training
+controls/650Adam steps;the three failures are static-obstacle deadlines.
+All30,292H0controls and24measured initial actions verify. The paired gap is
+12.5percentage points,exact two-sided p=0.25;this does not establish feedback
+benefit. [Broader paired evidence](reports/native_v4_broader_feedback_pair_20261031.json).
+This is one-seed development validation,
 not the final120-condition confirmation or a comparison against B1's different
 twelve-condition endpoint.
+
+B1 has now started actual PPO on the same36-training/24-validation inventory,
+using the exact known12 low-rate initializer tensors,normalization and RNG,
+with20,480registered controls and learning rate3e-6. Its endpoint is pending.
+[Initialization and source proof](reports/native_B1_broader36_validation24_preparation_20261031.json).
 
 The second trained H seed also completes12/12,zero unsafe;all24,858controls
 verify. Its recovered H0sibling completes10/12,zero unsafe,with all lost

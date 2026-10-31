@@ -1,3 +1,42 @@
+# Current handoff — 2026-10-31 15:56 local
+
+Original objective ACTIVE/UNMET. This supersedes earlier live-process reports.
+
+- Broader H completes24/24;H0now completes21/24,zero unsafe,three static
+  deadlines(cases9,13,15). H20521training/650Adam;H020561/650Adam.
+  H0all30292controls/24start actions verify. Pair12.5pp,p=.25,one development
+  seed;feedback advantage remains unproved. Reports native_v4_broader_feedback_pair
+  and native_H0_v4_broader_spawn_recovered_endpoint_20261031.json.
+- The initial readonly H0inference audit missed validation roads because it read
+  training scene files only. It now reads actual reset scene payloads from the
+  method's hash-bound bridge response stream. Original failure is retained;
+  exact bound-stream auditor and both audit outputs are preserved in the batch.
+  No CARLA control or optimization was repeated.51targeted tests pass.
+- B1broader batch20261031T073909784878Z_native_supervised_ppo ACTUALLY TRAINING,
+  worker4840,36train/24geometry-separated DEVELOPMENT validation.20480controls,
+  7200seconds,lr3e-6,rollout1280,targetKL.01. Same initial tensors/norm/RNG as
+  completed10/12known12low-rate branch;zero PPO before this new branch.
+  New profile admits only canonical walker0.2mspawn-clearance/evidence AST edits.
+  Source380files and ValidateOnly both verified. Endpoint postprocessor registered.
+- Seed33/44/55H/H0initialization gates all complete;these have ZERO PPO and are
+  not independently trained seeds yet. Original waiting-only driver55888 was
+  retained-handle verified and superseded before any child creation. No worker
+  or CARLA server was stopped. Its execution_v3and receipt remain intact.
+- New driver runs/run_remaining_v4_seed_PPO_broader_dependency_20261031.py,
+  execution runs/remaining_v4_seed_PPO_execution_20261031_v4,actual Python60176
+  (launcher5444). It waits for B1normal guard+owned cleanup+released lifecycle,
+  then executes the same33/44/55matched H/H0PPO plan with original budgets and
+  gates. Frozen source includes current explicit walker-profile preparer;
+  workspace-copy hashes verified. Queue50796activated B1after seed55ownedcleanup.
+  Read current receipts/CIM before any process adoption;PIDs here become stale.
+- Next:finish/audit B1broader,continue the remaining matched independent PPO
+  pairs,then use actual outcomes to improve healthy B1and test PPO-vs-strong-B3.
+  Final120fresh paired conditions,>=5independent trained seeds,healthy B1and
+  formal superiority/feedback evidence remain UNMET. Do not call24development
+  validation final testing,or compare H24against B1known12as a paired result.
+
+# Archived earlier handoff
+
 # Current handoff — 2026-10-31, trained H v4 complete
 
 Original objective ACTIVE/UNMET. This section supersedes all earlier live

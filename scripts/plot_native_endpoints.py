@@ -18,6 +18,7 @@ import numpy as np
 from navstack.road_grid import RoadGrid
 from navstack.native_cases import registered_native_cases
 from navstack.world import body_corners
+from scripts.audit_native_policy_inference import recorded_scenes
 
 
 def read(path): return json.loads(path.read_text(encoding='utf-8-sig'))
@@ -33,7 +34,8 @@ def render(batch,output,methods=None):
     case_inventory=None
     if protocol.get('native_case_manifest') is not None:
         registered_native_cases(protocol)
-        case_inventory=protocol['native_case_manifest']['cases']
+        case_inventory=(protocol['native_validation']['manifest'] if protocol.get('native_validation')
+                        else protocol['native_case_manifest'])['cases']
     registered=protocol['methods']
     methods=registered if methods is None else methods
     if not methods or len(set(methods))!=len(methods) or any(m not in registered for m in methods):
@@ -48,10 +50,8 @@ def render(batch,output,methods=None):
             if sha(folder/name)!=audit[key]: raise ValueError('Raw-audited figure input changed')
         config=read(folder/'config.json')['env']
         evaluation=read(folder/'evaluation.json')
-        scenes={}
-        for path in folder.glob('scene_*.json'):
-            grid=RoadGrid(read(path)['scene']['road_grid'])
-            scenes[grid.sha256]=grid
+        scenes={digest:RoadGrid(scene['road_grid'])
+                for digest,scene in recorded_scenes(batch,folder).items()}
         cases={}
         with gzip.open(folder/'evaluation_trace.jsonl.gz','rt',encoding='utf-8') as stream:
             for line in stream:
@@ -100,7 +100,8 @@ def render(batch,output,methods=None):
     if case_inventory is not None:
         roads=len({case['route_index'] for case in case_inventory})
         arm_scope=f"PARTIAL: {len(methods)}/{len(registered)} arms" if partial else 'all outcomes retained'
-        fig.suptitle(f"Seed {protocol['seed']} | frozen probes on {columns} DEVELOPMENT conditions / {roads} known roads | {arm_scope}",fontsize=13)
+        road_scope='geometry-separated validation roads' if protocol.get('native_validation') else 'known roads'
+        fig.suptitle(f"Seed {protocol['seed']} | frozen probes on {columns} DEVELOPMENT conditions / {roads} {road_scope} | {arm_scope}",fontsize=13)
     elif partial:
         fig.suptitle(f"Seed {protocol['seed']} | all {columns} TRAINING roads | PARTIAL: {len(methods)}/{len(registered)} registered arms\nAll outcomes retained within each displayed arm",fontsize=13)
     else:
@@ -115,6 +116,8 @@ def render(batch,output,methods=None):
         'figure_sha256':sha(output),'methods':evidence,'new_controls':0,
         'complete_registered_arm_inventory':not partial,
         'omitted_registered_arms':[m for m in registered if m not in methods]}
+    if protocol.get('native_validation'):
+        manifest['scope']='Audited measured trajectories on geometry-separated DEVELOPMENT validation roads,not final research confirmation;all outcomes retained.'
     with manifest_path.open('x',encoding='utf-8') as stream: json.dump(manifest,stream,indent=2)
     print(json.dumps({'figure':str(output),'methods':methods,'cases_per_method':columns,'new_controls':0}))
 

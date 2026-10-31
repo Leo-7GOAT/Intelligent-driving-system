@@ -26,6 +26,36 @@ def read(path):return json.loads(Path(path).read_text(encoding='utf-8'))
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def recorded_scenes(batch, folder):
+    """Include measured evaluation resets, which training scene files omit."""
+    scenes={}
+    for file in folder.glob('scene_*.json'):
+        scene=read(file)['scene'];scenes[scene['road_grid']['sha256']]=scene
+    audit_path=folder/'endpoint_raw_audit.json'
+    if audit_path.is_file():
+        audit=read(audit_path)
+        name=audit['bridge_response_stream']
+        if Path(name).name!=name:raise ValueError('Invalid measured bridge stream name')
+        files=[batch/'infrastructure'/name]
+        if sha(files[0])!=audit['bridge_response_sha256']:
+            raise ValueError('Measured scene stream differs from raw endpoint audit')
+    else:
+        files=sorted((batch/'infrastructure').glob('*_responses.jsonl.gz'))
+    for file in files:
+        with gzip.open(file,'rt',encoding='utf-8') as stream:
+            for line in stream:
+                response=json.loads(line).get('response',{})
+                scene=response.get('scene')
+                if scene is None:continue
+                digest=scene['road_grid']['sha256']
+                if digest in scenes:
+                    for key in ('width','height','road_grid','native_layout'):
+                        if scenes[digest][key]!=scene[key]:
+                            raise ValueError('Conflicting measured scene for one road hash')
+                scenes[digest]=scene
+    return scenes
+
+
 def analyze(batch,method,output):
     batch=Path(batch);folder=batch/method;output=Path(output)
     if output.exists():raise FileExistsError('Preserve previous inference evidence')
@@ -38,9 +68,7 @@ def analyze(batch,method,output):
         if sha(folder/name)!=evaluation[key]:raise ValueError('Evaluation model/normalizer mismatch')
     config=EnvConfig.from_dict(read(folder/'config.json')['env'])
     if not config.road_observation:raise ValueError('Measured road input required')
-    scenes={}
-    for file in folder.glob('scene_*.json'):
-        scene=read(file)['scene'];scenes[scene['road_grid']['sha256']]=scene
+    scenes=recorded_scenes(batch,folder)
     torch.set_num_threads(1)
     model=PPO.load(folder/'model.zip',device='cpu')
     with (folder/'normalization.pkl').open('rb') as stream:norm=pickle.load(stream)
