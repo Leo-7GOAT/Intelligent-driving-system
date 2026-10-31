@@ -1,0 +1,11 @@
+{
+  "scope": "Executed source checks; separate from CARLA outcomes and research acceptance.",
+  "source_commit": "4859dee7283a22e11d0155ad2af16f3b52019dfe",
+  "local_full": {"passed": 657, "skipped": 1, "CARLA_deselected": 4, "seconds": 172.19},
+  "independent_checkout": {"passed": 73, "seconds": 15.17, "scope": "Ownership recovery, partitions, cleanup, raw controller binding, alternative controller and reference validation."},
+  "hosted": {
+    "run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41150127716",
+    "conclusion": "success", "passed": 642, "skipped": 16, "CARLA_deselected": 4, "seconds": 191.69
+  },
+  "research_acceptance": "UNMET"
+}
