@@ -108,7 +108,8 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-最新本地和独立checkout全量回归均为 **133通过、5条件跳过**。跳过项不计为实测通过。原生地图、执行器和完整物理帧实测见[原生道路报告](../reports/native_road_learning_20261022.md)及[恢复训练报告](../reports/recovery_stability_20261023.md)。
+早期记录中的133通过、5条件跳过属于历史快照，不代表当前版本；CPU验证范围见[CI说明](cpu_ci.md)。
+新下载入口专项测试在本地和独立目录均21项通过。跳过项不计为实测通过。原生地图、执行器和完整物理帧实测见[原生道路报告](../reports/native_road_learning_20261022.md)及[恢复训练报告](../reports/recovery_stability_20261023.md)。
 
 ## 开发模型复现
 
@@ -124,6 +125,7 @@ $capsuleSha = 'ebc35169fb1efee6841f21b595071de12a20cae85074aef574290c28469b58f7'
 命令校验全部21个分片与整包哈希，再核对25,745个真实控制记录、12个起始动作并重建结果图。
 该包保留6/12成功及全部失败，不代表合格基线或最终确认。下载器限制并发、时间和磁盘占用，
 不覆盖已有目录；中断文件保留。每次复现使用新输出路径。此前轻量开发资产的复现方式保留如下。
+[实际下载与独立复现记录](../reports/native_public_download_cli_verification_20261031.json)已核验整包哈希、原始控制、起始动作和逐字节相同的结果图。
 
 将开发预发布资产解压到`runs/`，得到`runs/development_v8_seed11/`后执行：
 

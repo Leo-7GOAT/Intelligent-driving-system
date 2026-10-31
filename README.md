@@ -253,6 +253,9 @@ watchdog snapshot. Reproduction performs no new CARLA driving or PPO updates.
 Use fresh output paths. Other public capsule URLs and trusted hashes are in
 their verification reports; the same downloader accepts this project's release
 parts manifests. All remain development evidence, not research acceptance.
+[Executed CLI and independent reproduction verification](reports/native_public_download_cli_verification_20261031.json)
+records the actual download, 21 passing targeted tests in each environment and
+the byte-identical rebuilt figure.
 
 The earlier lightweight asset is retained below for historical reproduction.
 
