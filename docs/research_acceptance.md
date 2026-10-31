@@ -1,5 +1,17 @@
 # Research acceptance ledger
 
+Latest21:18execution update: original seed22B1initializer6/12fails basic motion
+with unsafe episodes; its PPOwas never activated and no gate is waived. All four
+original pending B1PPOseeds remain unstarted. B2has actually started independent
+planner-specific PPOusing the original five fixed initializers. New B1version
+gives all five seeds an equal1,024additional TRAIN-only actor fits at5e-5;
+the5,120extra supervised updates are disclosed. Critic/statistics/RNG remain fixed;
+all five actual frozen restores/input validations pass,zero new native controls
+or PPOupdates. All five gates must be audited and pass before any new PPOseed.
+[Preparation](../reports/native_B1_all_five_actor_maturation_preparation_20261031.json),
+[actual queues and retained failure](../reports/native_B2_independent_and_B1_maturation_activation_20261031.json).
+These are development changes,not healthy-baseline or final-confirmation evidence.
+
 Current 31October update supersedes older status snapshots: **five canonical
 H/H0 trained pairs are complete**, H58/60,H057/60,zero unsafe,12unique known
 development conditions. Paired seed mean+1.67pp,95% t interval[-11.82,+15.16]pp,

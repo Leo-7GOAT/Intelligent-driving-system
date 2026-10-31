@@ -1,5 +1,18 @@
 # Executability-aware hierarchical driving research
 
+Latest execution update (31October21:18): the original seed22B1initializer
+finishes6/12and fails the unchanged basic-motion safety gate; **no PPOlearning
+was started from that initializer**. The dependent old queues exited and their
+failures are retained. B2now trains independently using its same five registered
+pristine initializers. A new B1version applies the same additional1,024TRAIN-only
+actor fits to **all five seeds**, with unchanged critic/statistics/RNG and no
+seed selection. All five input validations and actual frozen-runtime restores
+pass; native driving is still pending. Its live queue waits behind B2and will
+audit every basic gate before starting any PPOseed.
+[Actual execution/failure receipt](reports/native_B2_independent_and_B1_maturation_activation_20261031.json),
+[all-five preparation proof](reports/native_B1_all_five_actor_maturation_preparation_20261031.json).
+The old shared-brake queue has exited and has no measured result.
+
 Current development result (31 October): all five canonical H/H0 seed pairs are
 complete: **58/60 versus 57/60**, zero collision/bounds episodes. These are
 **12 known conditions repeated across five trained policies**, not 120 unique
@@ -21,8 +34,8 @@ An evaluation-only normalization configuration error stopped the dependent queue
 before any controls. The error is fixed without actor refitting or PPO updates;
 the retained failure and new continuation are documented in the
 [recovery receipt](reports/native_training_view_eval_configuration_recovery_20261031.json).
-The replacement B1 validation/training driver is active; B2 and common-brake
-drivers wait behind it. [Current execution snapshot](reports/native_evaluation_recovery_queue_activation_20261031.json).
+That replacement B1driver later stopped at the seed22basic-motion gate,as
+reported above. [Earlier recovery snapshot](reports/native_evaluation_recovery_queue_activation_20261031.json).
 Research acceptance remains **UNMET**. Dated experiment notes below retain their
 original then-current status; see the [current handoff](docs/handoff.md).
 [Verified source666fa72](reports/native_feedback_recovery_code_verification_20261031.json)
@@ -39,8 +52,9 @@ They perform zero PPO updates; neither qualifies as a healthy final B1baseline.
 [complete additional-data result](reports/native_B1_measured36_training_view_validation_20261031.json).
 [All-row TRAIN fit diagnosis](reports/native_B1_training_view_fit_regression_diagnosis_20261031.json)
 finds better additional-data fit alongside worse original-data fit; this
-association does not prove the cause of driving failures. The unchanged
-five-seed B1PPOrecipe continues separately; no failed probe is omitted.
+association does not prove the cause of driving failures. The original B1cohort
+stopped at its seed22gate; the new all-five initialization version above is
+separately registered. No failed probe is omitted.
 
 Seed11 (31 October): H trained on the explicitly versioned v4 geometry
 completes **12/12 known development conditions, zero unsafe episodes**, after

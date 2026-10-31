@@ -1,0 +1,106 @@
+{
+  "scope": "Actually completed all five fixed TRAIN-only actor fits,launcher input validation and exact frozen-runtime restores;no new CARLA reset/control/PPOupdate",
+  "additional_supervised_optimizer_steps_each": 1024,
+  "additional_supervised_optimizer_steps_total": 5120,
+  "actor_learning_rate": 5e-05,
+  "common_training_rows": 3496,
+  "cases_not_yet_driven": 12,
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "prepared_batches": [
+    {
+      "seed": 11,
+      "batch": "20261031T131044921585Z_native_B1_actor_maturation",
+      "protocol_sha256": "7eb9e180f2e742d8f3d32a3c10a466e1e9b1f7b1cfa1fd09324e9e0512b7417f",
+      "model_sha256": "a2d706bdb1d20a0ec650c12840a30dfd79398bbad9db0f035aeb066ac0d5256d"
+    },
+    {
+      "seed": 22,
+      "batch": "20261031T131138220112Z_native_B1_actor_maturation",
+      "protocol_sha256": "a11409ff6814197381e5ba623300dc909224d3bb4a4e49a278949b71e038b6f3",
+      "model_sha256": "fa3ad7cfd7df2c4b37dfac5e3aafdf4709f5bce7d5328a2bfa02f93e537179c1"
+    },
+    {
+      "seed": 33,
+      "batch": "20261031T131235976652Z_native_B1_actor_maturation",
+      "protocol_sha256": "6d67caee4acb512b96efd064f1f626de532c68237a473286476a400ccd0b2de2",
+      "model_sha256": "40ba6f3ee71d3ff84809b95c466b8db2fd10269abe7eca6d72c5912d51ef93b9"
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T131332227703Z_native_B1_actor_maturation",
+      "protocol_sha256": "e60e1d3a0883e0e4058e1662e882442c12ea5889d7a57dd00f55ccfa37406a8e",
+      "model_sha256": "15d7d7dff1d34c7f4af27e051e7c93c731db2d1965811481c30bfd01810eee65"
+    },
+    {
+      "seed": 55,
+      "batch": "20261031T131429935122Z_native_B1_actor_maturation",
+      "protocol_sha256": "2de1e1f54fd5e5f387c8f34ddcfbac8a95104d1ef35a5860d1cf70d1f8a5022e",
+      "model_sha256": "eb50e368e032645f96a865afd61cddff69bb561fbd3da5a44f5d9e27a9fb4206"
+    }
+  ],
+  "actual_frozen_restores": [
+    {
+      "seed": 11,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "empty_PPO_and_Adam_state": true,
+      "normalization_statistics_unchanged": true,
+      "policy_tensor_sha256": "8d16696588dd14ac73ddf3f2c51173c28a09ea3dd3ca7765724d6c9e36976aa9",
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    },
+    {
+      "seed": 22,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "empty_PPO_and_Adam_state": true,
+      "normalization_statistics_unchanged": true,
+      "policy_tensor_sha256": "e1357b48d308fa1eb0d416c0aaff746a1bf47912027b17372126c63a3fd996b8",
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    },
+    {
+      "seed": 33,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "empty_PPO_and_Adam_state": true,
+      "normalization_statistics_unchanged": true,
+      "policy_tensor_sha256": "6bb30aebba92c80100faffdcf9ebfa4d2b6d90c6abf0076c0f988a9cdda65d4b",
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    },
+    {
+      "seed": 44,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "empty_PPO_and_Adam_state": true,
+      "normalization_statistics_unchanged": true,
+      "policy_tensor_sha256": "fb353918b3e1d7be8a7aa81816378c3e1f997bfb13eaa62362cc74cd757b6529",
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    },
+    {
+      "seed": 55,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "empty_PPO_and_Adam_state": true,
+      "normalization_statistics_unchanged": true,
+      "policy_tensor_sha256": "587d78c7e87fbacf2be1c76718fed90f3dc7919aabacc92becd66a7d1971aee5",
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    }
+  ],
+  "prior_failures_retained": true,
+  "research_acceptance": "UNMET"
+}

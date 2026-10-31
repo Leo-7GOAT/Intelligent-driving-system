@@ -1,0 +1,79 @@
+{
+  "scope": "Actual independent B2activation and all-five B1maturation continuation after retained seed22basic-motion failure;no B1success claim",
+  "snapshot_epoch": 1793452651.0607219,
+  "retained_B1_gate_failure": {
+    "epoch": 1793451807.2864454,
+    "error": "ValueError('Require75percent unobstructed motion success with zero basic-motion unsafe episodes')",
+    "created": [],
+    "scope": "No retries,seed omission,foreign process kill or metric change;retain all original lifecycles"
+  },
+  "original_seed22_gate": {
+    "successes": 6,
+    "cases": 12,
+    "raw_controls": 4404,
+    "basic_motion_gate_passed": false,
+    "PPO_updates": 0
+  },
+  "B2": {
+    "execution": "B2_five_seed_PPO_execution_20261031_v3_independent_after_B1_gate_failure",
+    "pid": 32792,
+    "plan_sha256": "43ac1ae77b3b948f165cd22b5b795362425e6bc8303dc8829b47ba9273edfdee",
+    "snapshot_status": {
+      "phase": "RUNNING_REGISTERED_B2_PPO",
+      "pid": 32792,
+      "epoch": 1793452011.2411346,
+      "completed": [],
+      "seed": 11,
+      "batch": "20261031T104032928978Z_native_planner_training"
+    },
+    "native_training_heartbeat": {
+      "epoch": 1793452646.6909614,
+      "pid": 15416,
+      "physics_steps": 9687,
+      "actions": 977,
+      "optimization_phases": 30
+    },
+    "native_guard": {
+      "pid": 32664,
+      "worker_pid": 15416,
+      "epoch": 1793452647.3697433,
+      "last_progress": 1793452646.6919608,
+      "deadline_epoch": 1793459213.208,
+      "healthy": true,
+      "reason": null,
+      "gpu_telemetry": {
+        "status": "ok",
+        "temperature_c": 42,
+        "attempts": [
+          {
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "unchanged_five_initializers": true
+  },
+  "B1": {
+    "execution": "B1_all_five_matured_PPO_execution_20261031",
+    "pid": 60572,
+    "plan_sha256": "8234c92c388f2be6696ecbf17af9a845f8d9c3f0aff2a505792cbd1d0d0874ec",
+    "snapshot_status": {
+      "pid": 60572,
+      "epoch": 1793452647.230159,
+      "phase": "WAITING_FOR_REGISTERED_B2_COHORT",
+      "created": [],
+      "gates": [],
+      "dependency_pid": 32792,
+      "dependency_live_via_retained_handle": true
+    },
+    "fixed_extra_TRAIN_actor_fits_each": 1024,
+    "extra_actor_fits_total": 5120,
+    "actor_learning_rate": 5e-05,
+    "all_five_basic_gates_before_any_PPO": true,
+    "PPO_controls_each_if_all_gates_pass": 20480,
+    "no_seed_selection": true
+  },
+  "old_shared_brake_queue": "Exited on old dependency failure;not live;no shared-brake controls",
+  "root_regression_tests_for_new_guards": 14,
+  "research_acceptance": "UNMET"
+}

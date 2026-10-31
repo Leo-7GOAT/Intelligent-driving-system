@@ -6,9 +6,13 @@ feedback benefit is established. Separate broader B3validation completes24/24,
 matching H. New summaries and repeatable statistics are source artifacts;
 seed44's full raw-model capsule is now uploaded,publicly downloaded and independently
 reproduced;[actual receipt](../reports/native_seed44_canonical_public_verification_20261031.json).
-Seed55/fresh22H0publication is in progress; their local packages are complete.
-The normalization evaluation flag error is fixed and the new B1driver is active,
-with B2/common-brake waiting. [Recovery snapshot](../reports/native_evaluation_recovery_queue_activation_20261031.json).
+Seed55/fresh22H0also finish actual public download and independent reconstruction;
+their receipts are linked from the model card. Fresh22's failed transfer and
+missing-object-only repair are retained. The later seed22B1initializer fails its
+basic-motion gate6/12; no PPOwas started from it. B2now actually trains independently.
+All five B1actors receive the same fixed extra TRAINfit and pass frozen-code/input
+checks;their new driving/PPOqueue waits behind B2. Shared brake is pending;its old
+queue exited. [Current execution receipt](../reports/native_B2_independent_and_B1_maturation_activation_20261031.json).
 Older status notes below are historical; research acceptance remains UNMET.
 
 Sourcebfa1740 is pushed and its [hosted CPU workflow](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41194528717)

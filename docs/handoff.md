@@ -1,5 +1,54 @@
 # Current handoff — 2026-10-31 20:45 local
 
+AUTHORITATIVE21:18update;all older live statuses below are historical:
+Original B1driver26916FAILED at seed22initial gate:6/12,5bounds/1collision,
+4404audited controls/12initial actions; basic-motion safety gate FAILED.
+No original22/33/44/55PPOwas started. Driver26916,dependent B238164and shared10408
+have exited,all failures retained. Their status.json files are STALE.
+
+ACTUALLY LIVE B2execution:
+runs/B2_five_seed_PPO_execution_20261031_v3_independent_after_B1_gate_failure,
+Python32792,tool session85650,worker15416/guard32664. Seed11original batch
+20261031T104032928978Z_native_planner_training is truly training (>8686controls
+and27optimization phases already observed21:16). Original five B2initializers
+and20480-control recipe unchanged. New tracked runner explicitly verifies the
+closed failed B1predecessor,normal native cleanup and all old process deaths;
+it retains the B1failure and does NOT claim B1completion. All five B2PPOseeds
+will continue/audit sequentially if the native lifecycle succeeds.
+
+New B1ALL-FIVE actor maturation is PREPARED,NOT DRIVEN:
+fixed plan protocols/native_B1_all_five_actor_maturation_20261031.json,
+prep runs/B1_all_five_actor_maturation_preparation_20261031. All five original
+zero-PPOactors get1024extra TRAIN-only fits each at5e-5 on the same3496rows,
+including corrective rows. No seed selection,no broader/validation labels.
+Empty buffers aligned1280/batch320,critic/norm/RNG preserved. All5actual
+frozen-runtime restores and launcher ValidateOnly checks PASS;five distinct
+policy tensor hashes. Report native_B1_all_five_actor_maturation_preparation_20261031.json.
+New ACTUALLY LIVE waiting queue:
+runs/B1_all_five_matured_PPO_execution_20261031,Python60572,tool session5248,
+retained read-only handle to B2driver32792. Frozen310sourcefiles,workspace
+bindings immutable. It drives/audits ALL5initial gates before ANYPPO. Any failed
+basic gate is retained;all5are still audited,then no PPOstarts. If all pass,
+all5get20480controls,LR3e-6,1280rollout,batch320,std-4,KL.01,fixed reward.05,
+frozenobs. Seed11already has fixed reward normalizer,so does not promote it again;
+the other4are promoted once. Root prepare_native_supervised_ppo.py stays bound.
+New initializers are11=131044921585,22=131138220112,33=131235976652,
+44=131332227703,55=131429935122,all20261031TZ_native_B1_actor_maturation;
+use actual prep status for full names. Shared-brake OLD queue is dead;new paired
+deployment queue must wait for healthy completed B1policies and reuse Hmodels.
+
+Public capsules44/55/fresh22H0are ALL verified:125443controls/60initial actions
+and all3exact endpoint figures. New22HTTP408upload failure retained;14correct
+objects hash-checked,onlymissing15/16/17parts+manifest uploaded,then actual
+unauthenticated download/independent reconstruction passed. Completion receipt
+native_seed22_fresh_H0_canonical_public_verification_20261031.json. Publisher32584
+has exited failed historically;repair session20183completed successfully.
+Independent checkout can now advance from666fa72;no publishing job uses it.
+Latest pusheda19afdbhosted workflow41203628741SUCCESS. New14guard/cohort tests
+pass;new sources/receipts need commit,push,independent verification. All research
+thresholds,healthy baseline,feedback benefit,PPO-vs-rule,frequency,light and fresh
+120-final conditions remain UNMET. Keep goal ACTIVE;do not restart old queues.
+
 21:00operational update: the corrected actor-only replay/added36probes both
 COMPLETE, raw controls11474/11086 and24initial actions each verified; scores
 8/24versus5/24,unsafe12/24versus14/24. Zero PPOupdates. Additional data fit

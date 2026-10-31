@@ -1,0 +1,34 @@
+{
+  "scope": "Actual public upload,unauthenticated download and independent reconstruction after retained HTTP408;only4missing transfer objects uploaded,14correct objects reused",
+  "archive_sha256": "769e67dfebbf69b82669fc067ae3b7413a5cc0b975b14298d2d41d30e060e37c",
+  "asset_source_commit": "666fa72b1cb2fe71178acc98a5ac8ca9334d30ae",
+  "reproduction_source_commit": "666fa72b1cb2fe71178acc98a5ac8ca9334d30ae",
+  "verified_files": 566,
+  "methods": [
+    {
+      "method": "H0",
+      "raw_audit_sha256": "2258c30ada4770cb297416aca767f3265474fc1038f0351b4b03e85b2226bb94",
+      "verified_controls": 25439,
+      "measured_start_actions_reproduced": 12,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "477a851453dba3d919d873b1c7943b2772c13bb645c6b9d6c0c0371875fce5ac",
+  "figure_byte_identical": true,
+  "figure_baseline": "explicit_reference",
+  "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed22_fresh_H0_20261031_repro.zip.parts.json",
+  "public_archive_bytes": 34598719,
+  "public_parts": 17,
+  "unauthenticated_download_verified": true,
+  "versioned_reference_figure": "reports/figures/native_seed22_fresh_H0_canonical_endpoints_20261031.png",
+  "retained_transfer_failure_sha256": "0d06609fd136c296bb5183600a2da9b52681630df7376a44133df8c3837baaf1",
+  "uploaded_missing_objects": [
+    "native_seed22_fresh_H0_20261031_repro.zip.part015",
+    "native_seed22_fresh_H0_20261031_repro.zip.part016",
+    "native_seed22_fresh_H0_20261031_repro.zip.part017",
+    "native_seed22_fresh_H0_20261031_repro.zip.parts.json"
+  ],
+  "research_acceptance": "UNMET"
+}

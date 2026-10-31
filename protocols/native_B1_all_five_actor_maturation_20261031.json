@@ -1,0 +1,14 @@
+{
+  "scope": "New DEVELOPMENT initialization version after seed22 basic-motion failure. No final data or validation labels;all five seeds receive the same fixed additional TRAIN fit,without selecting successful seeds.",
+  "additional_actor_steps": 1024,
+  "actor_learning_rate": 0.00005,
+  "prior_failures_and_all_costs_retained": true,
+  "validation": "All12known native conditions for every actor;unchanged75percent basic-motion success with zero basic-motion unsafe episodes before PPO. A failed gate is preserved,never waived.",
+  "parents": [
+    {"seed":11,"batch":"20261031T055729299388Z_native_supervised_ppo"},
+    {"seed":22,"batch":"20261031T081944045029Z_native_approach_bc"},
+    {"seed":33,"batch":"20261031T082156390592Z_native_approach_bc"},
+    {"seed":44,"batch":"20261031T082223755520Z_native_approach_bc"},
+    {"seed":55,"batch":"20261031T082250535153Z_native_approach_bc"}
+  ]
+}

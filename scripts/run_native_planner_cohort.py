@@ -19,6 +19,27 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def closed_failure_dependency(root, plan):
+    """A failed B1 initialization may release the simulator for independent B2."""
+    record = plan.get('closed_failed_predecessor')
+    if record is None:
+        return False
+    from scripts.evaluate_native_rule import require_finished_parent
+    from scripts.prepare_native_evaluation_recovery import recorded_lifecycle_gone
+    dependency = root / 'runs' / plan['dependency_execution']
+    failure = dependency / 'failure.json'
+    if sha(failure) != record['failure_sha256'] or read(failure).get('created') != []:
+        raise ValueError('Require the exact retained pre-PPO failure,without orphan learning children')
+    batches = record['closed_native_batches']
+    if not batches or any(Path(name).name != name for name in batches):
+        raise ValueError('Require explicit closed native batch identities')
+    for name in batches:
+        require_finished_parent(root / 'runs' / name)
+    if not recorded_lifecycle_gone(record['process_pids'], record['closed_epoch']):
+        raise ValueError('Predecessor driver/worker/guard is still live or unverified')
+    return True
+
+
 def run(execution):
     execution = Path(execution).resolve()
     root = execution.parent.parent
@@ -74,7 +95,8 @@ def run(execution):
             dependency = root / 'runs' / plan['dependency_execution']
             expected = 'B3_AND_FOUR_INDEPENDENT_B1_PPO_SEEDS_COMPLETE'
             until = time.monotonic() + plan['wait_seconds']
-            while read(dependency / 'status.json')['phase'] != expected:
+            independent = closed_failure_dependency(root, plan)
+            while not independent and read(dependency / 'status.json')['phase'] != expected:
                 if (dependency / 'failure.json').exists():
                     raise RuntimeError('Predecessor failed;unactivated B2 trials preserved')
                 if time.monotonic() > until:
@@ -90,13 +112,17 @@ def run(execution):
                 status('WAITING_FOR_REGISTERED_B1_COHORT', dependency_pid=owner.pid,
                        dependency_live_via_retained_handle=True)
                 time.sleep(10)
-            if (dependency / 'failure.json').exists():
-                raise RuntimeError('Predecessor failure evidence must be resolved before activation')
-            predecessor = read(dependency / 'status.json')['created']
-            if [r['seed'] for r in predecessor] != [22, 33, 44, 55]:
-                raise ValueError('Predecessor independent seed inventory differs')
-            for row in predecessor:
-                require_finished_parent(root / 'runs' / row['batch'])
+            if independent:
+                status('FAILED_B1_INITIALIZATION_RETAINED_STARTING_INDEPENDENT_B2',
+                       B1_training_complete=False)
+            else:
+                if (dependency / 'failure.json').exists():
+                    raise RuntimeError('Predecessor failure evidence must be resolved before activation')
+                predecessor = read(dependency / 'status.json')['created']
+                if [r['seed'] for r in predecessor] != [22, 33, 44, 55]:
+                    raise ValueError('Predecessor independent seed inventory differs')
+                for row in predecessor:
+                    require_finished_parent(root / 'runs' / row['batch'])
             for row in plan['batches']:
                 verify_sources()
                 batch = root / 'runs' / row['batch']

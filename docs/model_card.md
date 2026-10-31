@@ -13,8 +13,8 @@ To reconstruct from the locally archived batch inputs in a fresh output director
 .\.venv\Scripts\python.exe scripts/analyze_native_feedback_cohort.py --pairs-manifest protocols/native_feedback_development_pairs_20261031.json --output runs/FRESH_feedback_five_seed_reconstruction
 ```
 
-The manifest references local raw/model archives. Seed44is now publicly verified;
-seed55and fresh seed22H0publication is in progress. The completed H22method in
+The manifest references local raw/model archives. Seed44,seed55and fresh seed22H0
+are now publicly downloaded and independently verified. The completed H22method in
 its interrupted sibling batch also still needs a public capsule. This command
 therefore requires the full local inputs. Existing public capsules below remain
 independently verified.
@@ -29,6 +29,15 @@ rebuilds from the committed descriptive report without loading models:
 ```
 
 ## Public canonical seed44 pair
+
+The later capsules are also complete: [seed55 receipt](../reports/native_seed55_canonical_public_verification_20261031.json)
+verifies49,696controls/24initial actions;[fresh seed22H0receipt](../reports/native_seed22_fresh_H0_canonical_public_verification_20261031.json)
+verifies25,439controls/12actions. Both rebuild their versioned figures exactly.
+Fresh22's HTTP408transfer failure is retained;14correct uploaded objects were
+hash-checked and only4missing objects were uploaded in a separate bounded repair.
+No model,training or driving was repeated. For these capsules use the same
+download/reproduce commands below,substituting the manifest URL,archive hash and
+versioned reference-figure path from the respective receipt.
 
 Actual unauthenticated download and independent reconstruction verify50,308raw
 controls,24measured initial actions and the byte-identical versioned figure.
