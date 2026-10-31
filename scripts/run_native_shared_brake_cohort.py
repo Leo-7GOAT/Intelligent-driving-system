@@ -19,6 +19,23 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def b1_parent_map(state, profile, seed11=None):
+    if profile == 'all_five_matured_v1':
+        expected_phase, seeds = 'ALL_FIVE_MATURED_B1_PPO_SEEDS_COMPLETE', [11, 22, 33, 44, 55]
+    elif profile == 'original_four_plus_seed11':
+        expected_phase, seeds = 'B3_AND_FOUR_INDEPENDENT_B1_PPO_SEEDS_COMPLETE', [22, 33, 44, 55]
+    else:
+        raise ValueError('Unknown explicit B1 cohort profile')
+    if state['phase'] != expected_phase or [r['seed'] for r in state['created']] != seeds:
+        raise ValueError('Independent B1 cohort is incomplete')
+    result = {r['seed']: r['batch'] for r in state['created']}
+    if profile == 'original_four_plus_seed11':
+        result[11] = seed11
+    if any(not isinstance(name, str) or Path(name).name != name or name in ('.', '..') for name in result.values()):
+        raise ValueError('Explicit direct-child policy batches are required')
+    return result
+
+
 def run(execution):
     execution = Path(execution).resolve()
     root, frozen = execution.parent.parent, execution / 'source'
@@ -26,6 +43,9 @@ def run(execution):
         raise ValueError('Execution must be inside the project runs directory')
     manifest = read(execution / 'source_manifest.json')
     plan = read(execution / 'plan.json')
+    b1_profile = plan.get('B1_cohort_profile', 'original_four_plus_seed11')
+    if b1_profile not in ('original_four_plus_seed11', 'all_five_matured_v1'):
+        raise ValueError('Unknown explicit B1 cohort profile')
     if [r['seed'] for r in plan['H_models']] != [11, 22, 33, 44, 55] or not 60 <= plan['wait_seconds'] <= 86400:
         raise ValueError('Require all five paired seeds and a bounded dependency wait')
 
@@ -70,7 +90,8 @@ def run(execution):
                 json.dump({'pid': os.getpid(), 'epoch': time.time(), 'script_sha256': sha(Path(__file__)),
                            'plan_sha256': sha(execution / 'plan.json')}, stream)
             dependency = root / 'runs' / plan['dependency_execution']
-            expected = 'ALL_FIVE_REGISTERED_B2_PPO_SEEDS_COMPLETE'
+            expected = ('ALL_FIVE_MATURED_B1_PPO_SEEDS_COMPLETE' if b1_profile == 'all_five_matured_v1'
+                        else 'ALL_FIVE_REGISTERED_B2_PPO_SEEDS_COMPLETE')
             until = time.monotonic() + plan['wait_seconds']
             while read(dependency / 'status.json')['phase'] != expected:
                 if (dependency / 'failure.json').exists() or time.monotonic() >= until:
@@ -82,22 +103,24 @@ def run(execution):
                     if read(dependency / 'status.json')['phase'] == expected:
                         break
                     raise RuntimeError('Predecessor exited before completion')
-                status('WAITING_FOR_REGISTERED_B2_COHORT', dependency_pid=owner.pid,
+                status('WAITING_FOR_REGISTERED_B1_COHORT' if b1_profile == 'all_five_matured_v1'
+                       else 'WAITING_FOR_REGISTERED_B2_COHORT', dependency_pid=owner.pid,
                        dependency_live_via_retained_handle=True)
                 time.sleep(10)
             if (dependency / 'failure.json').exists():
                 raise RuntimeError('Predecessor failure evidence retained')
-            prior = read(dependency / 'status.json')['completed']
+            b2 = root / 'runs' / plan['B2_execution'] if b1_profile == 'all_five_matured_v1' else dependency
+            if (b2 / 'failure.json').exists() or read(b2 / 'status.json')['phase'] != 'ALL_FIVE_REGISTERED_B2_PPO_SEEDS_COMPLETE':
+                raise ValueError('Complete B2 predecessor is required')
+            prior = read(b2 / 'status.json')['completed']
             if [r['seed'] for r in prior] != [11, 22, 33, 44, 55]:
                 raise ValueError('Predecessor seed inventory differs')
             for row in prior:
                 require_finished_parent(root / 'runs' / row['batch'])
             b1 = read(root / 'runs' / plan['B1_execution'] / 'status.json')
-            if b1['phase'] != 'B3_AND_FOUR_INDEPENDENT_B1_PPO_SEEDS_COMPLETE' or [r['seed'] for r in b1['created']] != [22, 33, 44, 55]:
-                raise ValueError('Independent B1cohort is incomplete')
+            b1_parents = b1_parent_map(b1, b1_profile, plan.get('B1_seed11'))
             parents = {(r['seed'], 'H'): r['batch'] for r in plan['H_models']}
-            parents.update({(r['seed'], 'B1'): r['batch'] for r in b1['created']})
-            parents[(11, 'B1')] = plan['B1_seed11']
+            parents.update({(seed, 'B1'): batch for seed, batch in b1_parents.items()})
             reference = read(root / 'runs' / plan['H_models'][0]['batch'] / 'protocol.json')
             for seed in (11, 22, 33, 44, 55):
                 for method in ('H', 'B1'):

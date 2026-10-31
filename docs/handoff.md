@@ -1,5 +1,19 @@
 # Current handoff — 2026-10-31 20:45 local
 
+21:26continuation addition: NEW shared-brake driver63328ACTUALLY LIVE,
+runs/shared_brake_five_seed_execution_20261031_v3_matured_B1,tool session40474.
+Waits through retained read-only identity handle to new B1driver60572;requires
+all5matured B1PPOseeds and completed independent B2before any deployment probe.
+Frozen312sourcefiles,plan profile all_five_matured_v1;seed11uses NEW matured
+policy,not old11. Four preprepared Hprobes retained/reused;two OLD B1seed11
+probes remain unstarted/unused. No shared-brake CARLAcontrols or results.
+New root cohort resolver6tests pass;old21shared-brake tests still pass.
+Receipt native_shared_brake_matured_B1_queue_activation_20261031.json.
+Actual B2seed11still training,15501controls observed21:25. Root bindings and
+all live snapshots immutable. Code9eec's hosted41205080566nowSUCCESS;source
+38ce845metadata commit is also pushed. This new shared-continuation change
+needs commit/push and independent tests before the next handoff.
+
 AUTHORITATIVE21:18update;all older live statuses below are historical:
 Original B1driver26916FAILED at seed22initial gate:6/12,5bounds/1collision,
 4404audited controls/12initial actions; basic-motion safety gate FAILED.
