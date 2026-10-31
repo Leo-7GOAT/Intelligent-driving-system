@@ -1,5 +1,31 @@
 # Executability-aware hierarchical driving research
 
+1 November update: the fixed extra1,024 actor fits per seed are rejected as a
+solution to B1basic-motion failure. All five TRAIN action errors decreased,but
+four of five native basic gates failed;full-task scores were9/4/5/5/7 of12.
+All23,610 evaluation controls and5,120 additional actor updates remain charged.
+[TRAIN fit diagnostic](reports/native_B1_all_five_actor_maturation_fit_diagnostic_20261031.json),
+[failed gates and new execution](reports/native_B1_maturation_rejection_and_basic_PPO_activation_20261101.json).
+
+A separately versioned **actual PPO basic-motion course** has started. All five
+original pristine actors receive the same10,240-control budget on all four known
+unobstructed roads,with no added supervised fit. Qualification is evaluated after
+learning:atleast3/4successes and zero collision/bounds. This course supplies a
+learning sanity check;it is not a healthy full-task baseline or equal-budget H/B1
+comparison. Its extra interactions must enter future matched-budget accounting.
+All five input validations,actual frozen-runtime CPU restores and complete saved
+learner-profile comparisons pass. A continuous-action audit bug was corrected:
+B1profiles now include its actual Box bounds and exploration standard deviations.
+
+B2seeds11/22/33have also completed actual public download and independent
+reconstruction using versioned figure baselines;later seeds remain queued.
+[Seed11](reports/native_B2_seed11_public_verification_20261101.json),
+[seed22](reports/native_B2_seed22_public_verification_20261101.json),
+[seed33](reports/native_B2_seed33_public_verification_20261101.json).
+Original missing packaged-figure failures remain retained;archives/raw/model
+bytes were not modified and correct public downloads were reused.
+
+
 All five B2 planner-ablation seeds now complete actual native PPO and all12
 known DEVELOPMENT conditions: **9/12,8/12,10/12,10/12,7/12**. All103,003 training
 controls,133,687 total raw controls and60 initial actions verify;each policy

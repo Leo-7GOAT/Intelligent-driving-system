@@ -1,0 +1,29 @@
+{
+  "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+  "archive_sha256": "7b317ac1ab6012faa7bb659d7148cfda56d6665d451b47bc3d24677f62346455",
+  "asset_source_commit": "f1276992f02e4ae492172023400bf8fd07b38707",
+  "reproduction_source_commit": "6a5486aa4083bc2f14f32762c1983fc0e5dfbafa",
+  "verified_files": 558,
+  "methods": [
+    {
+      "method": "B2",
+      "raw_audit_sha256": "240bbcec6b9fb06456f97f4d1c3143d8e8da812d0b3cebfa2b2c368853219598",
+      "verified_controls": 27016,
+      "measured_start_actions_reproduced": 12,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "fe0f1a44dd871f20689ce65453d9173046182e629e628fb26e2bde87bab849df",
+  "figure_byte_identical": true,
+  "figure_baseline": "explicit_reference",
+  "seed": 22,
+  "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed22_trained_20261031_repro.zip.parts.json",
+  "unauthenticated_download_verified": true,
+  "original_public_download_receipt_sha256": "df922d207c79931eb8d15a0458b87dd5a70d46339c06f9edc30844f4ac6b8368",
+  "versioned_reference_figure": "reports/figures/native_B2_seed22_trained_endpoint_20261101.png",
+  "recovery_scope": "Original public archive/parts unchanged;explicit independently rendered versioned figure supplied after missing packaged figure-baseline failure. No experiment or public download repeated.",
+  "new_controls": 0,
+  "research_acceptance": "UNMET"
+}

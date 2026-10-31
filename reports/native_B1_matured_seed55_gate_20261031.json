@@ -1,0 +1,19 @@
+{
+  "scope": "New all-five B1actor-maturation development cohort;all outcomes retained,not final confirmation",
+  "seed": 55,
+  "batch": "20261031T131429935122Z_native_B1_actor_maturation",
+  "cases": 12,
+  "successes": 7,
+  "termination_counts": {
+    "out_of_bounds": 5,
+    "success": 7
+  },
+  "new_training_controls": 0,
+  "new_optimizer_steps": 0,
+  "raw_controls_verified": 4730,
+  "evaluation_controls": 4730,
+  "model_sha256": "eb50e368e032645f96a865afd61cddff69bb561fbd3da5a44f5d9e27a9fb4206",
+  "normalization_sha256": "6472429dcec3f2396ddf508c85c70b2d9e00e672f8d5c08521dc3d9c56a1f1c0",
+  "raw_audit_sha256": "2e1608248c384b9182e124efee639f7675137905c96689be4a02d6b95ddf5a3f",
+  "research_acceptance": "UNMET"
+}

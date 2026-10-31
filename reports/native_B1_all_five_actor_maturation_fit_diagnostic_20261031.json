@@ -1,0 +1,833 @@
+{
+  "scope": "TRAIN-only all-five before/after actor-maturation fit diagnostic;no fitting/driving.",
+  "script_sha256": "554bd257626827d011794082706b8bcbd134a142d42eb223bf0cfaca7867c456",
+  "plan_sha256": "678fd06c9e7e635c8afdbebda50f4d267d02aaa3475688e5b6e5d47b2f8fc91b",
+  "TRAIN_dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+  "results": [
+    {
+      "seed": 11,
+      "models": [
+        {
+          "version": "before",
+          "batch": "20261031T055729299388Z_native_supervised_ppo",
+          "model_sha256": "ad1b01bb0f1349171d44602d8e812058bdae84ddf676630a18ecbccffccf0414",
+          "normalization_sha256": "e718b900d5355f8b73669bae47d9e4c7d7d64892f98e029294f48045a372b133",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.0033183961641043425,
+                0.0001434721634723246
+              ],
+              "coordinate_absolute_error_p95": [
+                0.05032024160027504,
+                0.023338772356510162
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.0031205863694565095,
+                0.00014375070083923015
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.0033305489923805,
+                0.00014345503586810082
+              ],
+              "coordinate_absolute_error_p95": [
+                0.04911899194121361,
+                0.023207854479551315
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.0033305495602700664,
+                0.00014345517555756627
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.00186551280785352,
+                0.0001455172459827736
+              ],
+              "coordinate_absolute_error_p95": [
+                0.08488775044679642,
+                0.026223504915833473
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.0018655132960934053,
+                0.00014551722868669332
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.0006804424338042736,
+                0.0001357936125714332
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.0249871127307415,
+                0.00020606386533472687
+              ]
+            }
+          }
+        },
+        {
+          "version": "matured",
+          "batch": "20261031T131044921585Z_native_B1_actor_maturation",
+          "model_sha256": "a2d706bdb1d20a0ec650c12840a30dfd79398bbad9db0f035aeb066ac0d5256d",
+          "normalization_sha256": "e718b900d5355f8b73669bae47d9e4c7d7d64892f98e029294f48045a372b133",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.002827616175636649,
+                8.840491500450298e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.034183621406555176,
+                0.018110554665327072
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.002458370012561361,
+                7.805622422409556e-05
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.0028503015637397766,
+                8.904068090487272e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.03425576910376549,
+                0.018223099410533905
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.002850301689866106,
+                8.904069341208626e-05
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.00011556463141459972,
+                1.2395614248816855e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.023525860160589218,
+                0.007260064594447613
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.000115564624258684,
+                1.2395612715882157e-05
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.00029356410959735513,
+                8.160275319823995e-05
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.023743849247694016,
+                0.00014982385619077832
+              ]
+            }
+          }
+        }
+      ],
+      "critic_exact": true
+    },
+    {
+      "seed": 22,
+      "models": [
+        {
+          "version": "before",
+          "batch": "20261031T081944045029Z_native_approach_bc",
+          "model_sha256": "8afe5b9dbde6acabf4d02a4738e679f089a5c40ea58c2af2c79e714304067df7",
+          "normalization_sha256": "aa0b871714b2e176491020ca0c1f74a2c3f354a7ff7d2e8d841b1e387a18aa35",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.00362969096750021,
+                0.00012612073624040931
+              ],
+              "coordinate_absolute_error_p95": [
+                0.04987034574151039,
+                0.022455772385001183
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.0034633938286751814,
+                0.00011817691676014309
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.0036399075761437416,
+                0.00012660877837333828
+              ],
+              "coordinate_absolute_error_p95": [
+                0.049519360065460205,
+                0.02247200347483158
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.0036399056248486244,
+                0.0001266086321147867
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.002408279338851571,
+                6.777560338377953e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.11011473089456558,
+                0.014661130495369434
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.0024082793505142727,
+                6.777561135574743e-05
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.000914101954549551,
+                0.00012066335330018774
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.02591506578028202,
+                0.00017519430548418313
+              ]
+            }
+          }
+        },
+        {
+          "version": "matured",
+          "batch": "20261031T131138220112Z_native_B1_actor_maturation",
+          "model_sha256": "fa3ad7cfd7df2c4b37dfac5e3aafdf4709f5bce7d5328a2bfa02f93e537179c1",
+          "normalization_sha256": "aa0b871714b2e176491020ca0c1f74a2c3f354a7ff7d2e8d841b1e387a18aa35",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.0028550801798701286,
+                9.345932630822062e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.04366479441523552,
+                0.019248440861701965
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.002499176824257113,
+                8.291168226645699e-05
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.0028769460041075945,
+                9.410734492121264e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.043680742383003235,
+                0.019323274493217468
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.002876949521883306,
+                9.410737766738907e-05
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.00024100796144921333,
+                1.5988449376891367e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.0283881314098835,
+                0.008221954107284546
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.00024100795758468202,
+                1.5988447861230208e-05
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.0003895992995239794,
+                8.946586603997275e-05
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.023203464224934578,
+                0.00013203831622377038
+              ]
+            }
+          }
+        }
+      ],
+      "critic_exact": true
+    },
+    {
+      "seed": 33,
+      "models": [
+        {
+          "version": "before",
+          "batch": "20261031T082156390592Z_native_approach_bc",
+          "model_sha256": "1b90d72191067bdb8c1309c2729405129f7c2b68ecc68aa2c5e52edfecddd079",
+          "normalization_sha256": "1a0a8c9bd87c35f3c51f591da88c23643b3efef13abb93d750576dac9b2afe07",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.00373252434656024,
+                0.00013574563490692526
+              ],
+              "coordinate_absolute_error_p95": [
+                0.05616818368434906,
+                0.02332814410328865
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.003485168910258055,
+                0.00012820001216866842
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.003747721668332815,
+                0.00013620922982227057
+              ],
+              "coordinate_absolute_error_p95": [
+                0.05574605613946915,
+                0.023344337940216064
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.0037477214972311793,
+                0.00013620944403362726
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.001915738102979958,
+                8.032293408177793e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.1089315116405487,
+                0.016625601798295975
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.0019157381877824985,
+                8.032294272761294e-05
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.0011810115538537502,
+                0.00012726406566798687
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.024722745642066002,
+                0.00020931006292812526
+              ]
+            }
+          }
+        },
+        {
+          "version": "matured",
+          "batch": "20261031T131235976652Z_native_B1_actor_maturation",
+          "model_sha256": "40ba6f3ee71d3ff84809b95c466b8db2fd10269abe7eca6d72c5912d51ef93b9",
+          "normalization_sha256": "1a0a8c9bd87c35f3c51f591da88c23643b3efef13abb93d750576dac9b2afe07",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.002927191089838743,
+                9.580161713529378e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.04305782914161682,
+                0.019345952197909355
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.002561230109183257,
+                8.507571235986263e-05
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.002949673915281892,
+                9.646058606449515e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.04313291236758232,
+                0.019449107348918915
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.0029496739358123624,
+                9.646056823762814e-05
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.00023927366419229656,
+                1.702175177342724e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.03295469284057617,
+                0.008236229419708252
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.00023927364897100107,
+                1.7021754897426384e-05
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.00043783639557659626,
+                9.015839896164834e-05
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.023476315662264824,
+                0.00014796173491049558
+              ]
+            }
+          }
+        }
+      ],
+      "critic_exact": true
+    },
+    {
+      "seed": 44,
+      "models": [
+        {
+          "version": "before",
+          "batch": "20261031T082223755520Z_native_approach_bc",
+          "model_sha256": "216da6219b1212d1607ee6dcd217a77c6642d8ff56f90422b917a5dcbe7928df",
+          "normalization_sha256": "b085f2f363bc64cf1e1d11552e7958ac0b285d14affa637931d4660ce0848fdc",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.003945325501263142,
+                0.00012052778765792027
+              ],
+              "coordinate_absolute_error_p95": [
+                0.06004994362592697,
+                0.021808603778481483
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.0036976139220210665,
+                0.0001113878869786244
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.003960543777793646,
+                0.00012108930968679488
+              ],
+              "coordinate_absolute_error_p95": [
+                0.05988655611872673,
+                0.02194221317768097
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.003960545250319842,
+                0.00012108941436070474
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.0021259193308651447,
+                5.33961683686357e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.11763748526573181,
+                0.013746696524322033
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.002125919240621317,
+                5.339617071367174e-05
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.001227139146067202,
+                0.00011354693560861051
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.02629782073199749,
+                0.00018272543093189597
+              ]
+            }
+          }
+        },
+        {
+          "version": "matured",
+          "batch": "20261031T131332227703Z_native_B1_actor_maturation",
+          "model_sha256": "15d7d7dff1d34c7f4af27e051e7c93c731db2d1965811481c30bfd01810eee65",
+          "normalization_sha256": "b085f2f363bc64cf1e1d11552e7958ac0b285d14affa637931d4660ce0848fdc",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.002997654490172863,
+                8.646127389511093e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.039521023631095886,
+                0.018508896231651306
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.0026290915246831013,
+                7.739540642812732e-05
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.0030202975030988455,
+                8.701824845047668e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.03942793235182762,
+                0.018545839935541153
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.0030202966480172605,
+                8.701814544693837e-05
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.0002906291629187763,
+                1.9874651115969755e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.03860846906900406,
+                0.008768091909587383
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.00029062917537356825,
+                1.9874654396717075e-05
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.000521867536008358,
+                7.892054418334737e-05
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.02343735657632351,
+                0.0001531909074401483
+              ]
+            }
+          }
+        }
+      ],
+      "critic_exact": true
+    },
+    {
+      "seed": 55,
+      "models": [
+        {
+          "version": "before",
+          "batch": "20261031T082250535153Z_native_approach_bc",
+          "model_sha256": "fe5eefcf84daaafe3f37b1fd9e6e45830b9d63804f89b38d47aa2630fcf516f0",
+          "normalization_sha256": "6472429dcec3f2396ddf508c85c70b2d9e00e672f8d5c08521dc3d9c56a1f1c0",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.0037241107784211636,
+                0.00014491527690552175
+              ],
+              "coordinate_absolute_error_p95": [
+                0.053960710763931274,
+                0.023848138749599457
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.0034780211379452303,
+                0.00013566822263841378
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.0037392296362668276,
+                0.0001454833400202915
+              ],
+              "coordinate_absolute_error_p95": [
+                0.053116995841264725,
+                0.023946790024638176
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.0037392249240400716,
+                0.0001454830487610158
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.001916653010994196,
+                7.699924753978848e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.0890018567442894,
+                0.016608064994215965
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.0019166529889955478,
+                7.699925338486004e-05
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.0011125681921839714,
+                0.00013583945110440254
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.025204159319400787,
+                0.00022429162345360965
+              ]
+            }
+          }
+        },
+        {
+          "version": "matured",
+          "batch": "20261031T131429935122Z_native_B1_actor_maturation",
+          "model_sha256": "eb50e368e032645f96a865afd61cddff69bb561fbd3da5a44f5d9e27a9fb4206",
+          "normalization_sha256": "6472429dcec3f2396ddf508c85c70b2d9e00e672f8d5c08521dc3d9c56a1f1c0",
+          "blocks": {
+            "all": {
+              "rows": 3496,
+              "coordinate_mse": [
+                0.0031261667609214783,
+                0.00010436309821670875
+              ],
+              "coordinate_absolute_error_p95": [
+                0.03797531500458717,
+                0.020058363676071167
+              ],
+              "target_std": [
+                0.38986629247665405,
+                0.4310998320579529
+              ],
+              "weighted_coordinate_mse": [
+                0.0027392561070066915,
+                9.325116397216333e-05
+              ]
+            },
+            "original": {
+              "rows": 3467,
+              "coordinate_mse": [
+                0.003149937139824033,
+                0.00010504576493985951
+              ],
+              "coordinate_absolute_error_p95": [
+                0.037998925894498825,
+                0.020062550902366638
+              ],
+              "target_std": [
+                0.390676885843277,
+                0.43198588490486145
+              ],
+              "weighted_coordinate_mse": [
+                0.0031499380461196503,
+                0.00010504581434611583
+              ]
+            },
+            "corrective": {
+              "rows": 29,
+              "coordinate_mse": [
+                0.00028436939464882016,
+                2.27476248255698e-05
+              ],
+              "coordinate_absolute_error_p95": [
+                0.028826411813497543,
+                0.009051205590367317
+              ],
+              "target_std": [
+                0.2757495641708374,
+                0.2781889736652374
+              ],
+              "weighted_coordinate_mse": [
+                0.00028436941234353944,
+                2.274762458165763e-05
+              ]
+            },
+            "moving_original": {
+              "rows": 3089,
+              "coordinate_mse": [
+                0.0004910068237222731,
+                9.666276309872046e-05
+              ]
+            },
+            "slow_original": {
+              "rows": 378,
+              "coordinate_mse": [
+                0.024878602474927902,
+                0.00017355098680127412
+              ]
+            }
+          }
+        }
+      ],
+      "critic_exact": true
+    }
+  ],
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "limits": "Training reconstruction error is not holdout accuracy or a causal closed-loop failure explanation. No evaluation observations or labels enter these calculations;all five prepared actors included. More actor fits are not justified merely by this diagnostic.",
+  "research_acceptance": "UNMET"
+}

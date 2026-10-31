@@ -1,5 +1,17 @@
 # Development model card
 
+B1basic-PPO-coursev1starts from all five original pristine supervised actors,
+not selected successful matured actors. Each gets10,240 actual native controls
+on the same four known unobstructed roads,3e-5 PPOlearning rate,1,280-action
+rollouts,320minibatches,10epochs,targetKL.01,logstd-4,and fixed.05reward units.
+Observation moments/physical reward/controller remain unchanged;no extra actor
+fit is added. All five actual frozen-runtime restores and saved learner recipes
+pass. This is additional curriculum interaction,not full-task qualification.
+The rejected maturation version's full-task scores9/4/5/5/7,and every unsafe
+outcome/23,610evaluation controls/5,120actor fits,are retained separately.
+[Initialization/activation ledger](../reports/native_B1_maturation_rejection_and_basic_PPO_activation_20261101.json).
+
+
 Native controller-frequency sensitivity is separately registered as deployment
 stress at10/4Hz requested acceleration/steering updates. Actual CARLAphysics,
 actuator PID/steering-rate loop and event checks stay20Hz;Hpolicy stays2Hz.

@@ -1,3 +1,52 @@
+# Actual update proof — 2026-11-01 00:08 local
+
+BasicPPOseed11first optimization ACTUALLYDONE at1280real controls:1Adamstep,
+actorL2change.011022,KLearlystopping retained. Do not assume320Adamstepspercourse;
+report ACTUALoptimizer counts. Root163relatedtestsPASS6.66sec. Newqueue source
+frozen326files remains immutable. Newnetwork verifications11/22/33complete.
+
+# Authoritative continuation — 2026-11-01 00:07 local
+
+MAIN CORE ACTION:all-five basic-motion PPO course25348ACTUALLYLIVE,
+runs/B1_all_five_basic_PPO_course_execution_20261101,tool89590,frozen326files.
+Old60572finished all5gate audits thenFAILED normally;shared70788/cadence59456
+will exit their failed dependency. Do NOTrevive old gates/PPOor waive criteria.
+Old matured fullscores9/4/5/5/7;4basic gates fail;23610raw evaluation controls.
+Newcourse driver waited exact owned60572handle,verified all5terminal cleanups,
+bound oldfailureSHA,and now drives seed11batch20261031T155537318174Z_native_B1_basic_PPO_course,
+worker55336. It is collecting its FIRST1280-action PPOrollout;no update claimed
+before an actual optimization log exists. Planned5*10240controls,all4basicroads,
+no additional supervised fit. Gate AFTERlearning unchanged>=3/4zero unsafe.
+All5pristine original parents used,same3e-5LR/1280rollout/320batch/10epochs/.01KL/
+-4std/.05reward units/frozen obs. No healthy full-task or equal-budget H/B1claim.
+
+New scripts:prepare_native_basic_motion_ppo.py,run_native_basic_motion_ppo_cohort.py,
+analyze_native_actor_maturation_fit.py. TRAIN-only actual all10before/after
+inferences show lower errors for every matured seed despite bad driving;not causal
+or holdout evidence. Do not add another blind actor-fit pass. Actual frozen
+restores and ValidateOnlyALL5pass;5distinct policy tensor hashes,0reset/control.
+Found actual audit_native_ppo_configuration.py bug:action_space.nassumedDiscrete;
+fixedcontinuousBoxbounds/shape/logstd,discreteprofileunchanged. Root25relatedtests
+pass3.75sec incl13newcurriculumtests;all5actual saved learner profiles match.
+Prepared courses contain frozen original audit module,but newdriver's immutable
+snapshot contains the fixed continuous verifier. Nativeworker doesn't callthat
+initializer audit;actual restore confirms runtime compatibility.
+
+B2PUBLICSUPPLEMENT:originalpublisher45944stilllive,sourcecheckout6a5486aMUSTSTAYFIXED.
+Its public raw/model audits pass but archives lack packaged figure baseline,so
+originalreproductions fail correctly. DO NOTalter ZIPs/parts or weakenfigurechecks.
+All5independent versioned referencefigures nowreports/figures/native_B2_seedSEED_trained_endpoint_20261101.png.
+Separate verifier47464,tool75520,executionruns/B2_versioned_reference_public_verification_20261101
+reuses exact original verified PUBLICdownloads,passes --reference-figure,and
+writesnative_B2_seedSEED_public_verification_20261101.jsononlyonsuccess.
+11/22/33alreadyACTUALLYCOMPLETE;waiting44download,next55. No repeated experiment
+or correctpublicdownload. Originalfailed dirs retained. Do notadvancecheckout
+until BOTH45944and47464terminal. Both are finite andnoCARLAcontrols.
+
+GoalACTIVE/UNMET. FinishbasicPPOlearning,then develop/verifyfull-task B1 with
+allcurriculumcosts charged;feedback/RL-vs-rule value and NEWfinal120conditions
+remainunmet. Do not repeat finishedH/H0five-seedpublicreconstruction/B2training.
+
 # Latest gate result — 2026-10-31 23:45 local
 
 B1matured seed22gate FAILED:Require75percent unobstructed-motion success

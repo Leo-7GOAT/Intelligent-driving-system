@@ -6,6 +6,15 @@ import pickle
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from navstack.independent_clip_ppo import load_ppo
+from gymnasium import spaces
+
+
+def action_profile(space,policy):
+    if isinstance(space,spaces.Discrete):return {'action_count':int(space.n)}
+    if not isinstance(space,spaces.Box) or space.shape!=(2,) or not hasattr(policy,'log_std'):
+        raise ValueError('Unsupported saved PPOaction distribution')
+    return {'action_count':2,'action_shape':list(space.shape),'action_lower':space.low.tolist(),
+            'action_upper':space.high.tolist(),'initial_log_std':policy.log_std.detach().cpu().tolist()}
 
 
 def profile(checkpoint):
@@ -24,7 +33,7 @@ def profile(checkpoint):
         optimizer_defaults={k:v for k,v in model.policy.optimizer.defaults.items() if k not in ('params',)},
         policy_class=type(model.policy).__module__+'.'+type(model.policy).__name__,
         observation_shape=list(model.observation_space.shape),action_space=type(model.action_space).__name__,
-        action_count=int(model.action_space.n),gradient_clip_mode=model.__dict__.get('gradient_clip_mode','global'),
+        **action_profile(model.action_space,model.policy),gradient_clip_mode=model.__dict__.get('gradient_clip_mode','global'),
         normalizer={'class':type(norm).__module__+'.'+type(norm).__name__,
             **{k:state.get(k) for k in ('norm_obs','norm_reward','clip_obs','clip_reward','epsilon','fixed_reward_scale')}})
     return values
