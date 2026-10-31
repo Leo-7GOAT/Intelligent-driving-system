@@ -44,8 +44,13 @@ unauthenticated download/independent reconstruction passed. Completion receipt
 native_seed22_fresh_H0_canonical_public_verification_20261031.json. Publisher32584
 has exited failed historically;repair session20183completed successfully.
 Independent checkout can now advance from666fa72;no publishing job uses it.
-Latest pusheda19afdbhosted workflow41203628741SUCCESS. New14guard/cohort tests
-pass;new sources/receipts need commit,push,independent verification. All research
+Latest code9eec6e651e7fdd4c5d8a8edb83a4d610178a7a04is actually pushed.
+44related tests pass in root7.10sec and independent checkout8.55sec;exact feedback
+figure and every H/B3comparison field independently reconstruct. Receipt
+native_matured_B1_independent_code_verification_20261031.json. Code9eec's hosted
+workflow41205080566is still running at21:22;earlier a19workflow41203628741SUCCESS.
+Current B2seed11already14391controls/45optimization phases;B1queue60572still
+waits through retained handle to32792. All research
 thresholds,healthy baseline,feedback benefit,PPO-vs-rule,frequency,light and fresh
 120-final conditions remain UNMET. Keep goal ACTIVE;do not restart old queues.
 

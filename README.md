@@ -12,6 +12,10 @@ audit every basic gate before starting any PPOseed.
 [Actual execution/failure receipt](reports/native_B2_independent_and_B1_maturation_activation_20261031.json),
 [all-five preparation proof](reports/native_B1_all_five_actor_maturation_preparation_20261031.json).
 The old shared-brake queue has exited and has no measured result.
+[Independent verification of code9eec6e6](reports/native_matured_B1_independent_code_verification_20261031.json)
+passes44related tests, rebuilds the byte-identical feedback figure and reproduces
+every field of the complete H/B3comparison. This CPU evidence is separate from
+the running CARLA experiments and the unmet research acceptance targets.
 
 Current development result (31 October): all five canonical H/H0 seed pairs are
 complete: **58/60 versus 57/60**, zero collision/bounds episodes. These are
