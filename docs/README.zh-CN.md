@@ -6,6 +6,11 @@
 H0仅静态条件5超时；单种子一例差异尚不能证明反馈机制有效（精确检验p=1.0）。
 [完整配对报告](../reports/native_v4_trained_seed11_feedback_pair_20261031.json)。
 
+H的5个训练种子现已全部完成：累计102,688次真实训练控制、3,250次实际Adam更新，
+开发评估58/60；全部125,451训练/评估帧已核验，5个初始Torch随机状态及最终策略参数均不同。
+[5种子H训练凭证](../reports/native_H_five_seed_development_completion_20261031.json)。
+这是12个已知开发条件各评估5次，不能称为60个未见条件或最终验收；H0预算配对重跑和B1队列仍未齐全。
+
 后续高学习率seed33现已完整结束：H为8/12、四次超时；H0为6/12、六次超时，均无碰撞/越界。
 [H完整端点](../reports/native_H_v4_seed33_high_lr_endpoint_20261031.json)、
 [H0完整端点](../reports/native_H0_v4_seed33_high_lr_endpoint_20261031.json)。
@@ -26,6 +31,10 @@ H条件5和7静态超时，差值-16.67个百分点、精确p=.5，不能宣称�
 已上传、无登录下载并独立复现：全部50,843原始控制帧、24个初始动作、逐字节一致的轨迹图，
 以及982次反馈决策的全部非耗时字段。成功和失败均完整保留；
 [哈希及复现命令](model_card.md#public-canonical-seed33-pair)。
+第44种子也已完整审计：H12/12、H011/12，均无碰撞/越界，实际训练控制20,502/20,586次、
+各650次Adam。[配对记录](../reports/native_v4_seed44_canonical_feedback_pair_20261031.json)。
+11/33/44三个完整配对的[描述性中期结果](../reports/native_canonical_feedback_three_seed_interim_20261031.json)
+平均成功率差为0个百分点，尚不能宣称反馈收益稳定。
 
 B2已[准备5个种子的零PPO初始化](../reports/native_B2_five_pristine_training_preparations_20261031.json)：
 与对应H的初始权重、归一化、随机状态逐字节相同，仅替换二维A*及合理的车体可行样条后处理；
@@ -34,6 +43,12 @@ B2已[准备5个种子的零PPO初始化](../reports/native_B2_five_pristine_tra
 验证了不同初始策略参数、空优化器与冻结观测统计。B2接续进程已启动，
 [正等待现有B1队列完成](../reports/native_B2_five_seed_queue_activation_20261031.json)，尚未开始B2训练，
 不能把初始化或旧的冻结权重换规划器结果称为已训练B2成绩。
+
+[统一制动器接续队列](../reports/native_shared_brake_cohort_activation_20261031.json)已实际启动，
+等待B2完成后评估H/B1各5种子、关闭/开启共20个冻结策略部署对照；目前6个批次准备好，尚无新驾驶结果。
+保留原有动态轨迹检查，仅追加同一执行制动器，避免原shared_shield开关同时移除H动态检查的混杂。
+[恢复核验](../reports/native_shared_brake_frozen_restore_20261031.json)确认同一模型两组参数一致、归一化未变；
+这是部署干预，不是更换训练安全包装后重训，也不构成安全达标证明。
 
 新增训练数据的[公开复现凭证](../reports/native_training36_measured_views_public_verification_20261031.json)
 已完成：无登录下载18个分片、965个文件，在独立checkout重新核验20,521次训练控制，

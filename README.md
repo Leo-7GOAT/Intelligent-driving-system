@@ -9,6 +9,14 @@ the owned server has been cleaned up. The one-case gap is not significant
 (exact discordance p=1.0).
 [Complete paired evidence](reports/native_v4_trained_seed11_feedback_pair_20261031.json).
 
+All five Htraining seeds now finish real PPO: **58/60 development episodes**
+on12known conditions,102,688training controls and3,250actual Adam updates.
+All125,451training/evaluation controls verify;five distinct initial Torch RNG
+states and final policy tensors confirm separate sampled training runs.
+[Five-H completion proof](reports/native_H_five_seed_development_completion_20261031.json).
+These are12conditions repeated across5policies,not60unseen conditions or final
+confirmation. The fresh equal-budget seed22H0replica and four B1seeds remain pending.
+
 The later high-rate seed33 trial completes H **8/12** and H0 **6/12**,
 with four/six deadlines and zero collision/bounds episodes.
 [H raw endpoint](reports/native_H_v4_seed33_high_lr_endpoint_20261031.json),
@@ -36,6 +44,11 @@ has been uploaded,downloaded without login and independently reproduced:
 all50,843controls,24initial actions,the byte-identical figure and all982feedback
 decisions,with every non-timing diagnostic field identical.
 [Trusted hash and reproduction commands](docs/model_card.md#public-canonical-seed33-pair).
+Seed44also completes fully audited H12/12,H011/12,zero unsafe,with20,502/20,586
+training controls and650Adam each. [Complete seed44pair](reports/native_v4_seed44_canonical_feedback_pair_20261031.json).
+The [three-pair interim](reports/native_canonical_feedback_three_seed_interim_20261031.json)
+for11/33/44has mean feedback success difference0percentage points;seed22's fresh
+replica and seed55were not included in that dated interim. No stable benefit is established.
 
 B2 now has [five prepared pristine PPO learners](reports/native_B2_five_pristine_training_preparations_20261031.json),
 each byte-identical to its matched H initializer in weights,normalization and RNG.
@@ -54,6 +67,23 @@ trained-B2score yet. In a fresh restored archive,initialize each trial once:
 pwsh -NoProfile -File scripts/run_registered_native.ps1 -Batch runs/PRINTED_NEW_BATCH -ValidateOnly
 pwsh -NoProfile -File scripts/run_registered_native.ps1 -Batch runs/PRINTED_NEW_BATCH -ActivateQueued -UseCurrentGuard
 ```
+
+A separate [shared-brake deployment cohort](reports/native_shared_brake_cohort_activation_20261031.json)
+is actually waiting behind B2:five H/B1seed pairs,OFF/ONfor each,20planned
+probes from10trained policies. Six probes are prepared;none has driven yet.
+The scoped source overlay retains H's original dynamic trajectory check in both
+arms;the stock shared_shield flag alone would disable it. Only the same existing
+post-command stopping brake is added. [Frozen restore proof](reports/native_shared_brake_frozen_restore_20261031.json)
+checks matching OFF/ONpolicy tensors,unchanged normalization and zero updates.
+This is deployment intervention,not retraining under a safety wrapper or evidence
+of safe completion. On a fresh trusted completed parent,prepare both arms once:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/prepare_native_shared_brake.py --parent runs/COMPLETED_PARENT --method H
+```
+
+The command prints a registration JSON containing both new batch paths;evaluate
+both with run_registered_native.ps1 in order. Do not duplicate the existing live queue.
 
 A separate 36-training/24-geometry-separated development-validation branch now
 completes **24/24, zero unsafe**, with8/8in each core family after20,521native

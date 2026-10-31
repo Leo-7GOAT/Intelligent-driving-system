@@ -28,8 +28,12 @@ def require_closed_method_parent(parent):
     if (type(final.get('exit_code')) is not int
             or read(parent / 'infrastructure/server_stop.json')['status'] != 'owned_empty_server_stopped'):
         raise ValueError('Require terminal guard and verified owned cleanup')
-    with (parent / 'run_registered_native.lock').open('r+b'):
-        pass
+    lock = parent / 'run_registered_native.lock'
+    if lock.exists():
+        with lock.open('r+b'):
+            pass
+    # Public evidence archives omit operational lock files. Terminal cleanup and
+    # independent worker/watchdog liveness verification remain mandatory below.
     identities = [read(parent / name)['pid'] for name in ('worker_process.json', 'guard.json')]
     if not recorded_lifecycle_gone(identities, final['epoch']):
         raise ValueError('Recorded parent worker/watchdog is still live or unverified')

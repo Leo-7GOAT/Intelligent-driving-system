@@ -89,8 +89,8 @@ def test_rejects_already_wrapped_parent_and_unknown_source_structures():
         worker_overlay('def unrelated(): pass\n')
 
 
-@pytest.mark.parametrize('live', [False, True])
-def test_closed_sibling_failure_requires_verified_process_exit(tmp_path, monkeypatch, live):
+@pytest.mark.parametrize('live,lock_present', [(False, True), (True, True), (False, False), (True, False)])
+def test_closed_sibling_failure_requires_verified_process_exit(tmp_path, monkeypatch, live, lock_present):
     import json
     import scripts.prepare_native_shared_brake as module
     (tmp_path/'infrastructure').mkdir()
@@ -99,7 +99,8 @@ def test_closed_sibling_failure_requires_verified_process_exit(tmp_path, monkeyp
                 'infrastructure/server_stop.json': {'status': 'owned_empty_server_stopped'}}
     for name, value in evidence.items():
         (tmp_path/name).write_text(json.dumps(value))
-    (tmp_path/'run_registered_native.lock').touch()
+    if lock_present:
+        (tmp_path/'run_registered_native.lock').touch()
     monkeypatch.setattr(module, 'recorded_lifecycle_gone', lambda ids, ended: not live)
     if live:
         with pytest.raises(ValueError, match='still live'):
