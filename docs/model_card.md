@@ -24,11 +24,23 @@ To reconstruct from the locally archived batch inputs in a fresh output director
 .\.venv\Scripts\python.exe scripts/analyze_native_feedback_cohort.py --pairs-manifest protocols/native_feedback_development_pairs_20261031.json --output runs/FRESH_feedback_five_seed_reconstruction
 ```
 
-The manifest references local raw/model archives. Seed44,seed55and fresh seed22H0
-are now publicly downloaded and independently verified. The completed H22method in
-its interrupted sibling batch also still needs a public capsule. This command
-therefore requires the full local inputs. Existing public capsules below remain
-independently verified.
+All six canonical capsules are now public,including the completed H22method
+with its original interrupted H0sibling. Its unauthenticated public reconstruction
+verifies599files,24,858controls,12actions and the exact figure;all68partial H0files
+and both original unclosed gzip prefixes remain intact. The incomplete batch is
+never classified as completed.
+[H22 public receipt](../reports/native_seed22_completed_H_retained_H0_public_verification_20261031.json).
+The public-only all-five reconstruction entry point is:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/reproduce_public_feedback_cohort.py --output runs/FRESH_public_feedback_cohort
+```
+
+The hash-pinned recipe is `protocols/public_native_feedback_cohort_20261031.json`.
+It retrieves all six capsules without authentication and requires4GiB free disk.
+It compares every cohort field and the exact main figure,checks10 actual Adam
+states and frozen observation statistics,and requires five distinct final policy
+tensors in each method. It performs no fitting or driving.
 The separate broader B3baseline now completes24/24, matching H24/24; no PPO
 success advantage is established. [B3 audit](../reports/native_B3_broader_validation_endpoint_20261031.json).
 

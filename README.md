@@ -1,15 +1,30 @@
 # Executability-aware hierarchical driving research
 
-B2seed11now completes actual PPOand all12known development cases: **9/12**,three
-deadlines,zero collision/bounds episodes,20,615training controls/650Adam steps.
-All26,670raw controls and12initial actions verify;seed22has started automatically.
-[Complete trained B2endpoint](reports/native_B2_v4_seed11_endpoint_20261031.json).
-This is one planner-ablation seed,not a five-seed or unseen-final conclusion.
-Seed22also completes **8/12**,four deadlines,zero unsafe,20,576training controls/
-650Adam steps;all27,016raw controls and12initial actions verify.
-[Seed22endpoint](reports/native_B2_v4_seed22_endpoint_20261031.json).
-Seed33has started. These two endpoints reuse the same12development conditions;
-the five-seed planner-ablation result is still incomplete.
+Four B2 planner-ablation seeds have completed actual native PPO and all12 known
+DEVELOPMENT conditions: seeds11/22/33/44 score **9/12,8/12,10/12,10/12**, with
+zero collision/bounds episodes and650 actual Adam steps each. Seed55 has finished
+20,623 training controls/650 Adam steps and is being evaluated. All-five inference
+waits for its complete raw/action audits. These are repeated known conditions.
+[Seed11](reports/native_B2_v4_seed11_endpoint_20261031.json),
+[seed22](reports/native_B2_v4_seed22_endpoint_20261031.json),
+[seed33](reports/native_B2_v4_seed33_endpoint_20261031.json),
+[seed44](reports/native_B2_v4_seed44_endpoint_20261031.json).
+
+All six capsules needed for the canonical five-seed H/H0 comparison are now
+public. The previously missing H22 capsule passes unauthenticated download and
+independent reconstruction:24,858 raw controls,12 initial actions and the exact
+figure. All68 interrupted H0 sibling files and the two original unclosed gzip
+prefixes remain preserved;that batch is explicitly incomplete.
+[H22 public verification](reports/native_seed22_completed_H_retained_H0_public_verification_20261031.json).
+One command downloads the six hash-pinned public capsules, reconstructs every
+cohort field, checks10 saved optimizers/statistics and rebuilds the main figure:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/reproduce_public_feedback_cohort.py --output runs/FRESH_public_feedback_cohort
+```
+
+Use a fresh output directory and allow4GiB free disk space. This reconstructs
+DEVELOPMENT evidence;the research acceptance thresholds remain unmet.
 
 The shared-brake queue's postprocessor was corrected against actual native
 `info.trace` logs before it started any probe. Its replacement waits for the

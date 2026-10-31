@@ -1,0 +1,209 @@
+{
+  "scope": "Actual public complete-Hreconstruction;all original H0failure/checkpoint/raw data and unclosed gzip prefixes retained. Bounded missing-only network repair,no repeated experiment",
+  "archive_sha256": "e70b381b397e344f2f6354f23aa81f841762b8a6675020f5e720fc1f8be951ed",
+  "asset_source_commit": "346b2c51eef12534fe352998fe9687c6315c19d7",
+  "reproduction_source_commit": "346b2c51eef12534fe352998fe9687c6315c19d7",
+  "verified_files": 599,
+  "methods": [
+    {
+      "method": "H",
+      "raw_audit_sha256": "066b71cc36bf88b11d002fc98ca6727d19d492e5e2c3ebb10c88aa284f22378d",
+      "verified_controls": 24858,
+      "measured_start_actions_reproduced": 12,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "50cc24fb6b5eea71784cb50a3cf64115477bd9c4e1583c9e41588c26ffedc3ed",
+  "figure_byte_identical": true,
+  "figure_baseline": "explicit_reference",
+  "completed_method_export": {
+    "version": "completed_method_with_incomplete_siblings_v1",
+    "registered_methods": [
+      "H",
+      "H0"
+    ],
+    "completed_methods": [
+      "H"
+    ],
+    "incomplete_methods": [
+      "H0"
+    ],
+    "batch_complete": false,
+    "batch_summary_present": false,
+    "failure_evidence_sha256": {
+      "guard_final.json": "735171564685074e8111c8dd5a67d0f978dd82bc2b5b8cf1500cf99f8eba14d5",
+      "interruption_audit.json": "e1375b8c01870de691c3e6a2caedac498f990160936be4025605130ec9d6df49",
+      "launcher_failure.json": "e197dccebc60b14f96541dcba8c1e7e28e6d3367308b3125f9a16be4b4ff2d81"
+    },
+    "original_interruption_states": {
+      "H": {
+        "state": "complete",
+        "readable_trace_controls": 20539,
+        "trace_errors": [],
+        "optimization_error": null,
+        "last_optimization": {
+          "physics_steps": 20539,
+          "optimization_phases": 65,
+          "optimizer_steps": 650
+        },
+        "consumed_controls_lower_bound": 20539,
+        "checkpoints": [
+          {
+            "folder": "checkpoint_000001280",
+            "physics_steps": 1581
+          },
+          {
+            "folder": "checkpoint_000002560",
+            "physics_steps": 2859
+          },
+          {
+            "folder": "checkpoint_000010000",
+            "physics_steps": 10133
+          },
+          {
+            "folder": "checkpoint_000020000",
+            "physics_steps": 20219
+          },
+          {
+            "folder": "checkpoint_000020480",
+            "physics_steps": 20539
+          }
+        ],
+        "unknown_unflushed_tail": false
+      },
+      "H0": {
+        "state": "interrupted",
+        "readable_trace_controls": 16770,
+        "trace_errors": [],
+        "optimization_error": null,
+        "last_optimization": {
+          "physics_steps": 16690,
+          "optimization_phases": 53,
+          "optimizer_steps": 530
+        },
+        "consumed_controls_lower_bound": 16770,
+        "checkpoints": [
+          {
+            "folder": "checkpoint_000001280",
+            "physics_steps": 1574
+          },
+          {
+            "folder": "checkpoint_000002560",
+            "physics_steps": 2833
+          },
+          {
+            "folder": "checkpoint_000010000",
+            "physics_steps": 10072
+          }
+        ],
+        "unknown_unflushed_tail": true
+      }
+    },
+    "incomplete_file_sha256": {
+      "H0": {
+        "H0/checkpoint_000001280/config.json": "38d451bb9106513bbe9fcd7281922cf7453fb65e9f74c3db0bfe584e6ce6cb03",
+        "H0/checkpoint_000001280/metadata.json": "7dce2c2ae40074e9d3d3d63f949dd0b725a986836c4af98883fb8eebca840d22",
+        "H0/checkpoint_000001280/model.zip": "91742c362370efbf4681ce1af19cc1ea934df7755b820a689c79f9677c0a73c6",
+        "H0/checkpoint_000001280/normalization.pkl": "53e1f156b530a445350d985c883a77305d7fb205008b44aeea5eccc9ac675802",
+        "H0/checkpoint_000001280/resume_state.pkl": "6d420d2e0cc331651d37ac5f54023aa3bb05e2b66b128dc0123d9245a2bc8a0b",
+        "H0/checkpoint_000002560/config.json": "38d451bb9106513bbe9fcd7281922cf7453fb65e9f74c3db0bfe584e6ce6cb03",
+        "H0/checkpoint_000002560/metadata.json": "516946ddcffb5edf81f939439136fda3d6da4fbbd0bf1f55adbba5be17fbab57",
+        "H0/checkpoint_000002560/model.zip": "9efb3fec469bd0b22957aef8a2fdb0a991546e77d03aa722741854f35cc29c36",
+        "H0/checkpoint_000002560/normalization.pkl": "1189f2c51046caebe8259ab04c46bec26628d0ccd743e147c907536d1a071f35",
+        "H0/checkpoint_000002560/resume_state.pkl": "9fa15462a7ba42095daee0b215450445b939337fb75ee943fde9a4571eab9173",
+        "H0/checkpoint_000010000/config.json": "38d451bb9106513bbe9fcd7281922cf7453fb65e9f74c3db0bfe584e6ce6cb03",
+        "H0/checkpoint_000010000/metadata.json": "8dcc9ef7a6d7c67eb81808f64c1c6e569ac1a1dc296654b3aaaf1d8721d4825e",
+        "H0/checkpoint_000010000/model.zip": "76f7cb8f7e8c58d645c4c82a87b4fd8bb73449148687df5ec298d2c361b4b73e",
+        "H0/checkpoint_000010000/normalization.pkl": "5e97d1d0d568e822f92812d050eee5d667a2c40b30e24a1830cfd9296d1d0b7e",
+        "H0/checkpoint_000010000/resume_state.pkl": "b1570b150f1120ffe6f6bae017358b470cee169188ed15e371b10739c72698ec",
+        "H0/config.json": "38d451bb9106513bbe9fcd7281922cf7453fb65e9f74c3db0bfe584e6ce6cb03",
+        "H0/episodes.jsonl": "829ae0b308c57d24ecac4ad03904e05c1ff04cf42ff3923d9afcd8fa9b2e9a07",
+        "H0/heartbeat.json": "62212be7f22399b01e5d6c979bf15cedbd0fc7736cd0625459b8ffa6d9ba9983",
+        "H0/latest_checkpoint.json": "c14ebfe26cf98bacc14a1c825956e1a503352c597cb5019f16e44f5656c13fe1",
+        "H0/optimization.jsonl": "6d5ec09952be96b7b5b33eded9e49b99f0c003b31201a305ed5e05d5c839b435",
+        "H0/policy_architecture.json": "71a882a3d866243a39aa6dc0e98060e31c838d51623c73b994eccceb32c902d1",
+        "H0/resume_event.json": "7608263922cd8d01aacd517db99d5c435d61792a2ac0ef57b332afe676af3d5b",
+        "H0/sb3/progress.csv": "c0f50a5b7e17ff2d3e9c95de044f6b00ce6cd8b50443537c844b9a82552d5349",
+        "H0/scene_0001.json": "cc61923e46db73591dc443a13d1a2c46f0a3f208fa087fcbc801b2fac4db471c",
+        "H0/scene_0002.json": "ad131bb185e9e8c9e38f5d87e509133e4dc217782be0d4cc8a68885515fe80ce",
+        "H0/scene_0003.json": "7fb6b801d347136dd3fc833dc368c4d37acde2abd9c2bdf43ad3c9ab3699e186",
+        "H0/scene_0004.json": "36aa372fe134111f4c5255e188df54d10a58dfd6f1bd2dd80e95c90c4bbc1534",
+        "H0/scene_0005.json": "47f5f019c6fccd7deeaa7f70ba842eade6c4f1040b2b41b43d4172ed73edcab0",
+        "H0/scene_0006.json": "945f153557dd27f0c6e88b1671f7e5274d4c33cb8cb1b6c6131eca998c5db211",
+        "H0/scene_0007.json": "3dfbf2851a5a904e8c9fb868ece6199a6b84ab35c6db8747f4e060152e4586fc",
+        "H0/scene_0008.json": "acd06dd04fd5935e51509900ff87a7cec39816286e30d807e140fecb498d30db",
+        "H0/scene_0009.json": "063bf5328e9c01703c59a71d29063936f3f5f98c35c3a8719bc7a437843c395f",
+        "H0/scene_0010.json": "46a11b8fee7b72f780da7ab486a6bb3c6b3b42dc841485287587423c6f690bb0",
+        "H0/scene_0011.json": "f33f97271291f120d5ca254b02d91bc90e9f88faf3757b4e8c733558988a9deb",
+        "H0/scene_0012.json": "43b7bbe543c5c5ff168519bd7781fcb2806c7f4fdc55ee189f048d1b6a4d1493",
+        "H0/scene_0013.json": "f8041517c22ac3df2bf774a6780f8a1fc9be839dcc7b6900fad257f30fa3270e",
+        "H0/scene_0014.json": "543d99623b83364a5e1c41a711f30284c99d3298be88377153c1288c03a19cfb",
+        "H0/scene_0015.json": "c3c559b82353b3250b3f5998de84abfc22ce0109fdae03295b1bb549b42baeda",
+        "H0/scene_0016.json": "65003a921ac73d477cf33e2e518fafe6d13d2b2e8d50f09b9445c125bba95748",
+        "H0/scene_0017.json": "393ee3a0a667ea1b50123accc832679021ae49c69ebe91017011a9e0dc079085",
+        "H0/scene_0018.json": "e22e459c82647eb641eaff5f6ced677ce3898e4a6b0b5521bfa81f59b4cd58e1",
+        "H0/scene_0019.json": "23aabeb143121f22b509e44caa3855fc64bea67186f0ef681bc63afcc187f492",
+        "H0/scene_0020.json": "822ee8fb6c9126a118ddca63cee66a6aa564ade311d797a9ad4214a7d8ce2332",
+        "H0/scene_0021.json": "0c901135a5d7d903618f94ce33df3d03e299627190debc7e1129d9d4ddcabbcb",
+        "H0/scene_0022.json": "c28ffa4610a832c34319cdaddda979f3e35bbee943b2704413dba6bb9237b195",
+        "H0/scene_0023.json": "2c8f937b702d4f2b883ad32f52a8f01fe9f1c791b59f69b9c63c973aaea33503",
+        "H0/scene_0024.json": "94893ca035a629ad46d4959232410f91eeeb95ad5ec28c740320e5f8993839c8",
+        "H0/scene_0025.json": "b9282e95b409fe2dcf116b157078944ab10d35cfff2fdc1f4ee19967ab3d51c0",
+        "H0/scene_0026.json": "bd4834ae30548d3344784bd87e4d6bf4ca029bd23bc5a21c5478d2a1cd38782d",
+        "H0/scene_0027.json": "7d062b37b7ed8f7512655365baac07673b10f190aabeed1a01d202ad2d34793e",
+        "H0/scene_0028.json": "80959741b9cde336b9e9886dd4a299c062b51a3a9ce979b09c06a7847cf2e904",
+        "H0/scene_0029.json": "550295724357a1bd502dc08e33ffb6ca8cd2568a42c855875d968924bdfe2893",
+        "H0/scene_0030.json": "3b8e93c6caaa092b1cbcd829089abc24dd17e0221774e7dd1c6af41556f79e45",
+        "H0/scene_0031.json": "1a18f7033adb5ca0b42fe4a0d5865cad58e1eda6abe9d4810645b3738e65e974",
+        "H0/scene_0032.json": "9b416ae57e43addc50db465921fc84bec9458eb7682174c89c5f9028bea5c0e1",
+        "H0/scene_0033.json": "c5f4aff488b7b2925b0a76d038c184fdf9a8fc356cf19e0e71af17447742fffb",
+        "H0/scene_0034.json": "3da2f96e0402cb8c5c4f7f0742c4a4709816dfe5a774cf21425dadfc2cfd8fd4",
+        "H0/scene_0035.json": "9bdfaa9c8c4b67acaf019c7db1c4c384b31d4ee4c6c274ea524bcf6c851ad8d0",
+        "H0/scene_0036.json": "c122992e0de13f89d9288b233f8cdc4b39b0e49a12ffcf2f797411bccd0edbbf",
+        "H0/scene_0037.json": "be8bcf3c05e45faf46e63336fc12c8b3890c04b9895da60caaba250068e8b028",
+        "H0/scene_0038.json": "32afde47cebcabceff7fd123fc3a62425b7dafbfbdf77e5264f4c08497314024",
+        "H0/scene_0039.json": "c9e93d01e53c6fd577acd311770ad321c17e81d66312ae364862616ce8c2daf0",
+        "H0/scene_0040.json": "cc80dcf483ec2432205611605f7374ecacb9d52c7335d881f41fa4b9cb24d069",
+        "H0/scene_0041.json": "be7a993aac23de10c2d355032d2f0a6d07c29b905dc3faee2a4985c2528b6f45",
+        "H0/scene_0042.json": "b77f45ccd1ccb68704b282219fc77179e2fc870b7e861950292de3405ff5fb41",
+        "H0/scene_0043.json": "20b60457c3c6c99a0dfa4b8e95e67edff19a79fb74bba021289730a259c7cf80",
+        "H0/scene_0044.json": "633985647b8efb02d14b8459ecdf8da4b646143204a21f8afc018dee9fb1df6a",
+        "H0/transitions_000000000_1793421240690822500.jsonl.gz": "3aca02e8e263c4baa4d739b3df3ef96aeba74c742bc6e943699484c2094271b7"
+      }
+    },
+    "retained_truncated_gzip": {
+      "infrastructure/bridge_1f08535e_requests.jsonl.gz": {
+        "compressed_sha256": "dde31eb1cd02413e795bc21557feb906d465a91a9fd50473bf4022740f55c33a",
+        "readable_prefix_sha256": "301b608d9e67b56bbfaeb41f6576dd35cbcecf47264ba4515490abdd3630fabd",
+        "readable_prefix_bytes": 4041500,
+        "gzip_end_marker_present": false,
+        "prefix_ends_in_newline": false
+      },
+      "infrastructure/bridge_1f08535e_responses.jsonl.gz": {
+        "compressed_sha256": "4714c5ecbd6c400ab6d70df339fc97a4c586813996afbc355b8ce4f674ce2c6c",
+        "readable_prefix_sha256": "67558632ed133a0efc74ac060d744997ccc54b5669d450800d6823717f243de7",
+        "readable_prefix_bytes": 33682841,
+        "gzip_end_marker_present": false,
+        "prefix_ends_in_newline": false
+      }
+    },
+    "scope": "Only the completed method is scored/reproduced. Original protocol,all sibling method files/checkpoints/raw prefixes and failure evidence are retained;the batch is not declared complete."
+  },
+  "incomplete_sibling_files_verified": 68,
+  "batch_complete": false,
+  "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed22_H_completed_with_H0_interruption_20261031_repro.zip.parts.json",
+  "public_archive_bytes": 54998988,
+  "public_parts": 93,
+  "unauthenticated_download_verified": true,
+  "transfer": {
+    "preserved_original_large_parts": 4,
+    "small_part_bytes": 524288,
+    "failed_transfer_history_retained": true,
+    "two_pass_network_repair": true,
+    "failed_network_attempts": []
+  },
+  "versioned_reference_figure": "reports/figures/native_seed22_H_completed_with_H0_interruption_20261031.png",
+  "research_acceptance": "UNMET"
+}
