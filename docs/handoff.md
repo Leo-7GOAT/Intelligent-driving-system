@@ -1,5 +1,45 @@
 # Current handoff — 2026-10-31 20:45 local
 
+AUTHORITATIVE21:59update: B2seed11COMPLETE,9/12,3deadlines,zero unsafe;
+20615training controls/650Adam;all26670raw controls/12initial actions verify.
+Report native_B2_v4_seed11_endpoint_20261031.json. B2driver32792actually runs
+seed22batch20261031T104126873363Z_native_planner_training,worker69724;
+18434controls observed21:57. Other original B2batches unchanged.
+
+Shared-brake postprocessor had an actual schema bug:it read row.trace instead
+of row.info.trace. Corrected root runner and tests;scanner actually rerun on
+H4337/B15019native controls. Before ANYprobe activated,old waiting63328was
+verified by exact owned process handle/no children and intentionally closed.
+Original sources/plans/prepared probes retained;orchestrator_superseded.json
+records closure. DO NOTrestart63328or edit any frozen source.
+NEW ACTUALLY LIVE shared driver70788,execution
+runs/shared_brake_five_seed_execution_20261031_v4_trace_schema_fix,tool session62229,
+frozen312files. Still waits on exact B1driver60572;newstate/failurefiles authoritative.
+
+NEW ACTUALLY LIVE control-cadence queue59456,execution
+runs/control_cadence_five_seed_execution_20261031,tool session24714,frozen315files;
+waits through retained read-only handle to shared70788. After shared20complete,
+it runs20H/B1probes:5seeds x2methods xholds2/5. Native20Hz trained endpoints
+are reused as baseline. This is deployment-only requested-accel/steer hold:
+physics/actuator inner loop stay20Hz,Hpolicy2Hz,MPCprediction grid20Hz unchanged.
+MPCnot retuned;B1holds its own direct action. Actual recompute flags distinguish
+held frames/failed solve events;recompute-only solver timings exclude holds.
+No shared/cadence driving has occurred. No safety/final superiority claim.
+
+Hseed11frequencyprobes ARE prepared and actual frozen-code restored,not driven:
+hold2=20261031T133749867856Z_native_control_hold2,
+hold5=20261031T133752011973Z_native_control_hold5. Both exact same policy tensor
+hashes/norm/RNG;native launcher ValidateOnlypassed. Evidence
+native_control_cadence_seed11_preparation_20261031.json and
+native_control_cadence_and_shared_trace_recovery_activation_20261031.json.
+Root-bound navstack/control_cadence.py, scripts/prepare_native_control_cadence.py
+and scripts/carla_bridge37.py MUST stay unchanged while queue59456needs them.
+New cadence module/overlay/trace31tests pass;shared schema10tests pass against
+actual native schema. New source/receipts need push +independent verification.
+Goal ACTIVE/UNMET. Main remaining bottleneck remains healthy B1and learned
+contribution;fresh final120conditions must remain untouched until development
+and preregistration qualify. Missing public completeH22capsule still unresolved.
+
 21:26continuation addition: NEW shared-brake driver63328ACTUALLY LIVE,
 runs/shared_brake_five_seed_execution_20261031_v3_matured_B1,tool session40474.
 Waits through retained read-only identity handle to new B1driver60572;requires

@@ -1,0 +1,55 @@
+{
+  "scope": "Two actually prepared and frozen-runtime restored native control-cadence deployment probes;no new driving",
+  "parent": "20261031T025409165666Z_native_supervised_ppo",
+  "batches": [
+    {
+      "hold_steps": 2,
+      "batch": "20261031T133749867856Z_native_control_hold2",
+      "protocol_sha256": "988c2c3098c08fa76e4f9b98e9d406529976228239faba67afc53c249ff9d611"
+    },
+    {
+      "hold_steps": 5,
+      "batch": "20261031T133752011973Z_native_control_hold5",
+      "protocol_sha256": "a0f6ffbe04c3b7900186e9dbcd15854a088efff99a9f2a220db843bfa284e9ab"
+    }
+  ],
+  "actual_restores": [
+    {
+      "method": "H",
+      "hold_steps": 2,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "physics_seconds": 0.05,
+      "H_policy_period_seconds": 0.5,
+      "MPCdesign_grid_unchanged": true,
+      "normalization_statistics_unchanged": true,
+      "policy_tensor_sha256": "4b42460c8462b96ed223dc57ddc17d1554f23d4c382df7538239ececf92b25e0",
+      "retained_actual_Adam_steps": 650,
+      "new_CARLA_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    },
+    {
+      "method": "H",
+      "hold_steps": 5,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "physics_seconds": 0.05,
+      "H_policy_period_seconds": 0.5,
+      "MPCdesign_grid_unchanged": true,
+      "normalization_statistics_unchanged": true,
+      "policy_tensor_sha256": "4b42460c8462b96ed223dc57ddc17d1554f23d4c382df7538239ececf92b25e0",
+      "retained_actual_Adam_steps": 650,
+      "new_CARLA_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    }
+  ],
+  "same_policy_tensors_both_arms": true,
+  "new_CARLA_controls": 0,
+  "new_PPO_updates": 0,
+  "no_MPC_retuning": true,
+  "physics_seconds": 0.05,
+  "native_baseline_reused_without_redrive": true,
+  "research_acceptance": "UNMET"
+}

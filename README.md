@@ -1,5 +1,22 @@
 # Executability-aware hierarchical driving research
 
+B2seed11now completes actual PPOand all12known development cases: **9/12**,three
+deadlines,zero collision/bounds episodes,20,615training controls/650Adam steps.
+All26,670raw controls and12initial actions verify;seed22has started automatically.
+[Complete trained B2endpoint](reports/native_B2_v4_seed11_endpoint_20261031.json).
+This is one planner-ablation seed,not a five-seed or unseen-final conclusion.
+
+The shared-brake queue's postprocessor was corrected against actual native
+`info.trace` logs before it started any probe. Its replacement waits for the
+five new B1policies. A subsequent20-probe control-cadence queue is also live and
+waiting:10/4Hz requested acceleration/steering updates,while CARLAphysics and
+actuator inner loop remain20Hz. Hkeeps2Hz policy decisions and the original20Hz
+MPCprediction grid;this is frozen deployment sensitivity,not controller retuning
+or new policy training. The completed20Hz native endpoints supply the baseline.
+[Queue/schema recovery receipt](reports/native_control_cadence_and_shared_trace_recovery_activation_20261031.json),
+[two actual prepared/restored Hprobes](reports/native_control_cadence_seed11_preparation_20261031.json).
+**No shared-brake or cadence driving results are claimed yet.**
+
 Latest execution update (31October21:18): the original seed22B1initializer
 finishes6/12and fails the unchanged basic-motion safety gate; **no PPOlearning
 was started from that initializer**. The dependent old queues exited and their

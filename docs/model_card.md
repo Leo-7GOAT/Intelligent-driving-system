@@ -1,5 +1,16 @@
 # Development model card
 
+Native controller-frequency sensitivity is separately registered as deployment
+stress at10/4Hz requested acceleration/steering updates. Actual CARLAphysics,
+actuator PID/steering-rate loop and event checks stay20Hz;Hpolicy stays2Hz.
+H's MPCprediction model/horizon/weights stay unchanged,so this does not compare
+separately retuned optimal-frequency controllers. B1holds its own direct policy
+action;there is no planner/MPCsubstitution. Weights,statistics and RNG are copied
+exactly. Existing completed20Hz endpoints are the paired baseline;all12conditions
+and all5underlying trained seeds are required. No deployment results exist yet.
+[Prepared/restored probes](../reports/native_control_cadence_seed11_preparation_20261031.json),
+[actual queue](../reports/native_control_cadence_and_shared_trace_recovery_activation_20261031.json).
+
 Latest canonical feedback cohort: five separately trained H/H0 seed pairs,
 58/60 versus57/60 successes on12 repeated DEVELOPMENT conditions, zero unsafe
 episodes. The paired seed mean is+1.67pp,95% t interval[-11.82,+15.16]pp;

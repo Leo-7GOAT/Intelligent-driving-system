@@ -1,5 +1,7 @@
 import pytest
-from scripts.run_native_shared_brake_cohort import b1_parent_map
+import gzip
+import json
+from scripts.run_native_shared_brake_cohort import b1_parent_map,shared_trace_counts
 
 
 def state(seeds=(11,22,33,44,55),phase='ALL_FIVE_MATURED_B1_PPO_SEEDS_COMPLETE'):
@@ -25,3 +27,24 @@ def test_unregistered_batch_path_is_rejected():
     bad=state();bad['created'][0]['batch']='../foreign'
     with pytest.raises(ValueError,match='direct-child'):
         b1_parent_map(bad,'all_five_matured_v1')
+
+
+def test_actual_native_info_trace_schema_counts_controls_and_independent_brake_flags(tmp_path):
+    path=tmp_path/'trace.jsonl.gz'
+    rows=[{'case_id':0,'policy_action':1,'info':{'trace':[
+        {'shared_shield_intervention':False},{'shared_shield_intervention':True}]}},
+        {'case_id':1,'policy_action':2,'info':{'trace':[{'shared_shield_intervention':False}]}}]
+    with gzip.open(path,'wt',encoding='utf-8') as stream:
+        for row in rows:stream.write(json.dumps(row)+'\n')
+    assert shared_trace_counts(path)==(3,1)
+
+
+@pytest.mark.parametrize('row',[
+    {'trace':[{'shared_shield_intervention':True}]},
+    {'info':{'trace':[]}},
+    {'info':{'trace':[{'shared_shield_intervention':1}]}}])
+def test_missing_or_malformed_control_evidence_cannot_be_scored(row,tmp_path):
+    path=tmp_path/'trace.jsonl.gz'
+    with gzip.open(path,'wt',encoding='utf-8') as stream:stream.write(json.dumps(row)+'\n')
+    with pytest.raises((KeyError,ValueError)):
+        shared_trace_counts(path)

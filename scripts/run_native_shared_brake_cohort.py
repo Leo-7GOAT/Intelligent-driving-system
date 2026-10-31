@@ -36,6 +36,22 @@ def b1_parent_map(state, profile, seed11=None):
     return result
 
 
+def shared_trace_counts(path):
+    controls = interventions = 0
+    with gzip.open(path, 'rt', encoding='utf-8') as stream:
+        for line in stream:
+            ticks = json.loads(line)['info']['trace']
+            if not isinstance(ticks, list) or not ticks:
+                raise ValueError('Require the native per-decision measured control trace')
+            for tick in ticks:
+                value = tick['shared_shield_intervention']
+                if type(value) is not bool:
+                    raise ValueError('Shared intervention must be an explicit recorded boolean')
+                controls += 1
+                interventions += value
+    return controls, interventions
+
+
 def run(execution):
     execution = Path(execution).resolve()
     root, frozen = execution.parent.parent, execution / 'source'
@@ -169,12 +185,7 @@ def run(execution):
                         episodes = read(folder / 'evaluation.json')['episodes']
                         if summary['physics_steps'] or summary['optimizer_steps'] or summary['actor_l2_change'] != 0:
                             raise ValueError('Frozen deployment probe unexpectedly trained')
-                        controls = shield = 0
-                        with gzip.open(folder / 'evaluation_trace.jsonl.gz', 'rt', encoding='utf-8') as stream:
-                            for line in stream:
-                                ticks = json.loads(line)['trace']
-                                controls += len(ticks)
-                                shield += sum(t['shared_shield_intervention'] for t in ticks)
+                        controls, shield = shared_trace_counts(folder / 'evaluation_trace.jsonl.gz')
                         count = len(reference['native_case_manifest']['cases'])
                         if (controls != raw['evaluation_control_frames_verified']
                                 or sorted(e['case_id'] for e in episodes) != list(range(count))
