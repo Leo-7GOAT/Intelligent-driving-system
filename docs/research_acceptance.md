@@ -25,6 +25,13 @@ fails the original safety target;matched real PPO is queued,not measured.
 **The full original research acceptance remains UNMET.** Earlier snapshots below
 retain their original outcomes and do not override this update.
 
+The latest [runtime and learned-input audit](../reports/native_v4_runtime_and_feedback_20261031.md)
+reproduces all439H/494H0decisions. H changes10actions when only learned feedback
+is hidden; H0 negative control changes none. This is sensitivity,not successful
+counterfactual execution or benefit. H's environment-step P95/max are348ms/4.22s;
+B1feedback alone has220msP95at a50msperiod. Policy/runner time is missing,so no
+hard realtime claim is supported. All failure,terminal and braking frames remain.
+
 Latest 31 October: the audited common-mask seed11 pair is H9/12 versus H0 7/12,
 both with zero unsafe episodes. H-only successes are4/5/6;H0-only success is1.
 The conditional exact discordance p-value is.625;one training seed cannot

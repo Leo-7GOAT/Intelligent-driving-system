@@ -1,0 +1,284 @@
+{
+  "scope": "Aggregate every audited evaluation frame,including failures and interventions.",
+  "batch": "20261031T025409165666Z_native_supervised_ppo",
+  "method": "H",
+  "raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f",
+  "analyzer_sha256": "be5b7ac8b669394e7592177efc801ef2b393a1eaafe672141c4845c02e456e5e",
+  "results": {
+    "counts": {
+      "cases": 12,
+      "successes": 12,
+      "unsafe_episodes": 0,
+      "decisions": 439,
+      "controls": 4337
+    },
+    "termination_counts": {
+      "success": 12
+    },
+    "latencies": {
+      "environment_decision": {
+        "count": 439,
+        "median": 0.15255899995099753,
+        "p95": 0.34772918993839985,
+        "p99": 0.41815873198676856,
+        "max": 4.2241967000300065,
+        "over_period_fraction": 0.00683371298405467,
+        "period": 0.5,
+        "unit": "seconds"
+      },
+      "control_cycle": {
+        "count": 4337,
+        "median": 0.009356700000353158,
+        "p95": 0.014394320035353302,
+        "p99": 0.01663679990451783,
+        "max": 0.32755719998385757,
+        "over_period_fraction": 0.0029974636845745907,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "planner_search": {
+        "count": 113,
+        "median": 0.00735050009097904,
+        "p95": 0.04750490000005809,
+        "p99": 2.777078724005249,
+        "max": 4.084200199926272,
+        "over_period_fraction": 0.02654867256637168,
+        "period": 0.5,
+        "unit": "seconds"
+      },
+      "execution_feedback": {
+        "count": 439,
+        "median": 0.04843329999130219,
+        "p95": 0.19355253993999205,
+        "p99": 0.2417147739720531,
+        "max": 0.2769848998868838,
+        "over_period_fraction": 0.0,
+        "period": 0.5,
+        "unit": "seconds"
+      }
+    },
+    "mode_decisions": {
+      "reference": 405,
+      "wait": 2,
+      "parking_brake": 2,
+      "plan_failed": 1,
+      "dynamic_brake": 29
+    },
+    "mode_controls": {
+      "reference": 4033,
+      "wait": 2,
+      "parking_brake": 2,
+      "plan_failed": 10,
+      "dynamic_brake": 290
+    },
+    "categorical_action_decisions": {
+      "26": 215,
+      "22": 36,
+      "12": 42,
+      "2": 107,
+      "28": 28,
+      "0": 2,
+      "30": 5,
+      "20": 4
+    },
+    "controller_status_controls": {
+      "solved": 4033,
+      "wait": 2,
+      "parking_brake": 2,
+      "plan_failed": 10,
+      "dynamic_brake": 290
+    },
+    "planner_status_queries": {
+      "success": 112,
+      "timeout": 1
+    },
+    "expanded_nodes": 13768,
+    "intervention_controls": 300,
+    "shared_shield_controls": 0,
+    "stationary_controls_abs_v_below_0_05": 347,
+    "negative_acceleration_request_controls": 2190,
+    "actual_brake_controls_above_1e_6": 340,
+    "vehicle_control_coverage_controls": 4337,
+    "vehicle_control_missing_controls": 0,
+    "vehicle_controls_recovered_from_raw_same_frame": 12,
+    "success_only_travel_seconds": [
+      17.00000025331974,
+      17.400000259280205,
+      15.550000231713057,
+      15.250000227242708,
+      17.80000026524067,
+      17.25000025704503,
+      17.0500002540648,
+      17.950000267475843,
+      21.000000312924385,
+      22.500000335276127,
+      19.05000028386712,
+      19.05000028386712
+    ],
+    "all_episode_durations_seconds": [
+      17.00000025331974,
+      17.400000259280205,
+      15.550000231713057,
+      15.250000227242708,
+      17.80000026524067,
+      17.25000025704503,
+      17.0500002540648,
+      17.950000267475843,
+      21.000000312924385,
+      22.500000335276127,
+      19.05000028386712,
+      19.05000028386712
+    ],
+    "per_case": [
+      {
+        "case_id": 0,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 340,
+        "decisions": 34,
+        "simulation_seconds": 17.00000025331974,
+        "progress_metres": 24.279553505342925,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 1,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 348,
+        "decisions": 35,
+        "simulation_seconds": 17.400000259280205,
+        "progress_metres": 23.97166598239366,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 2,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 311,
+        "decisions": 32,
+        "simulation_seconds": 15.550000231713057,
+        "progress_metres": 22.213746812387885,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 3,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 305,
+        "decisions": 31,
+        "simulation_seconds": 15.250000227242708,
+        "progress_metres": 20.35890395681019,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 4,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 356,
+        "decisions": 36,
+        "simulation_seconds": 17.80000026524067,
+        "progress_metres": 24.1243613719915,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 5,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 345,
+        "decisions": 35,
+        "simulation_seconds": 17.25000025704503,
+        "progress_metres": 24.001503160027784,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 6,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 341,
+        "decisions": 35,
+        "simulation_seconds": 17.0500002540648,
+        "progress_metres": 22.533514891331833,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 7,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 359,
+        "decisions": 36,
+        "simulation_seconds": 17.950000267475843,
+        "progress_metres": 20.209073826819516,
+        "interventions": 10,
+        "plan_failures": 1,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 8,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 420,
+        "decisions": 42,
+        "simulation_seconds": 21.000000312924385,
+        "progress_metres": 24.319604646345773,
+        "interventions": 70,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 9,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 450,
+        "decisions": 45,
+        "simulation_seconds": 22.500000335276127,
+        "progress_metres": 24.031124433368728,
+        "interventions": 90,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 10,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 381,
+        "decisions": 39,
+        "simulation_seconds": 19.05000028386712,
+        "progress_metres": 22.203630589713367,
+        "interventions": 60,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 11,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 381,
+        "decisions": 39,
+        "simulation_seconds": 19.05000028386712,
+        "progress_metres": 20.27150348804349,
+        "interventions": 70,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      }
+    ]
+  },
+  "timing_limits": "Environment decision timer excludes policy prediction/normalization and runner serialization. Control cycle excludes planning and the later candidate-feedback observation. These synchronized execution timings are not full-runner latency or a hard realtime certificate.",
+  "mechanism_limits": "Parking brake,policy-selected waiting,dynamic braking,planner-failure fallback and shared shield are reported separately. Stationary time alone does not classify stagnation. No controller superiority or learned-feedback benefit inferred.",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

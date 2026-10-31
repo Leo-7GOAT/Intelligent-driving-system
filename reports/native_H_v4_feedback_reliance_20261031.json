@@ -1,0 +1,4410 @@
+{
+  "scope": "Reconstruct all decisions,then hide learned feedback with weights/mask fixed.\n\nThis is an observational-state intervention,not new driving or performance of\nan ablated policy. H0 supplies a negative control because it already hides it.\n",
+  "batch": "20261031T025409165666Z_native_supervised_ppo",
+  "method": "H",
+  "script_sha256": "ceb04dffbd008b6e7a25adca81d8101ffee247bbf8d8ef388c9ead243dfb4c60",
+  "raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f",
+  "model_sha256": "dbde8619f1b25db2f37731343ec6d6204269cfd464023b63c1e5d0485a8ce537",
+  "decisions_reproduced": 439,
+  "native_control_history_verified": 4337,
+  "changed_actions": 10,
+  "mean_probability_total_variation": 0.03245387232624677,
+  "weights_statistics_and_physical_mask_unchanged": true,
+  "results": [
+    {
+      "case_id": 0,
+      "decision": 0,
+      "measured_before_frame": 22892,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.053297847509384155,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 1,
+      "measured_before_frame": 22902,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.011552060022950172,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 2,
+      "measured_before_frame": 22912,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.00798775814473629,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 3,
+      "measured_before_frame": 22922,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0035736961290240288,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 4,
+      "measured_before_frame": 22932,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003217164194211364,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 5,
+      "measured_before_frame": 22942,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003232611808925867,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 6,
+      "measured_before_frame": 22952,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0030549850780516863,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 7,
+      "measured_before_frame": 22962,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0033560642041265965,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 8,
+      "measured_before_frame": 22972,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003586958395317197,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 9,
+      "measured_before_frame": 22982,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0030442173592746258,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 10,
+      "measured_before_frame": 22992,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004441841505467892,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 11,
+      "measured_before_frame": 23002,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003472547046840191,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 12,
+      "measured_before_frame": 23012,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0033058077096939087,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 13,
+      "measured_before_frame": 23022,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004424776881933212,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 14,
+      "measured_before_frame": 23032,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004563391208648682,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 15,
+      "measured_before_frame": 23042,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004266990348696709,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 16,
+      "measured_before_frame": 23052,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003689324017614126,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 17,
+      "measured_before_frame": 23062,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004544233903288841,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 18,
+      "measured_before_frame": 23072,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.013293789699673653,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 19,
+      "measured_before_frame": 23082,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.17066140472888947,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 20,
+      "measured_before_frame": 23092,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.1855659782886505,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 21,
+      "measured_before_frame": 23102,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.11120736598968506,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 22,
+      "measured_before_frame": 23112,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.04654628410935402,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 23,
+      "measured_before_frame": 23122,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.025412729009985924,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 24,
+      "measured_before_frame": 23132,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.02482529915869236,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 25,
+      "measured_before_frame": 23142,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.024636726826429367,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 26,
+      "measured_before_frame": 23152,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.006280945148319006,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 27,
+      "measured_before_frame": 23162,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.019695516675710678,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 28,
+      "measured_before_frame": 23172,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.006581180728971958,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 29,
+      "measured_before_frame": 23182,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005041033495217562,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 30,
+      "measured_before_frame": 23192,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005363226868212223,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 31,
+      "measured_before_frame": 23202,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.0040065874345600605,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 32,
+      "measured_before_frame": 23212,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.0043563260696828365,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 0,
+      "decision": 33,
+      "measured_before_frame": 23222,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005579555872827768,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 0,
+      "measured_before_frame": 23263,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.001414816826581955,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 1,
+      "measured_before_frame": 23273,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.006779170595109463,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 2,
+      "measured_before_frame": 23283,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.0024284450337290764,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 3,
+      "measured_before_frame": 23293,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.001437396160326898,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 4,
+      "measured_before_frame": 23303,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.0019283044384792447,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 5,
+      "measured_before_frame": 23313,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.004715355113148689,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 6,
+      "measured_before_frame": 23323,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.004422226920723915,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 7,
+      "measured_before_frame": 23333,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.012159504927694798,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 8,
+      "measured_before_frame": 23343,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.042411427944898605,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 9,
+      "measured_before_frame": 23353,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004260587505996227,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 10,
+      "measured_before_frame": 23363,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003979556728154421,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 11,
+      "measured_before_frame": 23373,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003124239156022668,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 12,
+      "measured_before_frame": 23383,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002168121747672558,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 13,
+      "measured_before_frame": 23393,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0014667989453300834,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 14,
+      "measured_before_frame": 23403,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0013698195107281208,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 15,
+      "measured_before_frame": 23413,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0147064458578825,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 16,
+      "measured_before_frame": 23423,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.012501939199864864,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 17,
+      "measured_before_frame": 23433,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.09869688004255295,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 18,
+      "measured_before_frame": 23443,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.07406729459762573,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 19,
+      "measured_before_frame": 23453,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.1907007247209549,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 20,
+      "measured_before_frame": 23463,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.1768261194229126,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 21,
+      "measured_before_frame": 23473,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.21331138908863068,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 22,
+      "measured_before_frame": 23483,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.1221897229552269,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 23,
+      "measured_before_frame": 23493,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.10871181637048721,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 24,
+      "measured_before_frame": 23503,
+      "actual_action": 2,
+      "hidden_feedback_action": 12,
+      "action_changed": true,
+      "probability_total_variation": 0.23272022604942322,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 25,
+      "measured_before_frame": 23513,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.20159812271595,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 26,
+      "measured_before_frame": 23523,
+      "actual_action": 2,
+      "hidden_feedback_action": 12,
+      "action_changed": true,
+      "probability_total_variation": 0.2026696354150772,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 27,
+      "measured_before_frame": 23533,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.029701462015509605,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 28,
+      "measured_before_frame": 23543,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.011467921547591686,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 29,
+      "measured_before_frame": 23553,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005809991154819727,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 30,
+      "measured_before_frame": 23563,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.0051725213415920734,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 31,
+      "measured_before_frame": 23573,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005707043223083019,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 32,
+      "measured_before_frame": 23583,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005076320841908455,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 33,
+      "measured_before_frame": 23593,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.0041957879438996315,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 1,
+      "decision": 34,
+      "measured_before_frame": 23603,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005155401304364204,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 0,
+      "measured_before_frame": 23642,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.15109390020370483,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 1,
+      "measured_before_frame": 23652,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.028003618121147156,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 2,
+      "measured_before_frame": 23662,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.014330859296023846,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 3,
+      "measured_before_frame": 23672,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.011617683805525303,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 4,
+      "measured_before_frame": 23682,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.014861839823424816,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 5,
+      "measured_before_frame": 23692,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.011202395893633366,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 6,
+      "measured_before_frame": 23702,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.01171655673533678,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 7,
+      "measured_before_frame": 23712,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.009831665083765984,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 8,
+      "measured_before_frame": 23722,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.009258151985704899,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 9,
+      "measured_before_frame": 23732,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0161893367767334,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 10,
+      "measured_before_frame": 23742,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.023150619119405746,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 11,
+      "measured_before_frame": 23752,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.025235526263713837,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 12,
+      "measured_before_frame": 23762,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.020851468667387962,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 13,
+      "measured_before_frame": 23772,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.017125779762864113,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 14,
+      "measured_before_frame": 23782,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0267725121229887,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 15,
+      "measured_before_frame": 23792,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.17279575765132904,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 16,
+      "measured_before_frame": 23802,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.14999110996723175,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 17,
+      "measured_before_frame": 23812,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.11764553189277649,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 18,
+      "measured_before_frame": 23822,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.10062350332736969,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 19,
+      "measured_before_frame": 23832,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.09001046419143677,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 20,
+      "measured_before_frame": 23842,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.09924687445163727,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 21,
+      "measured_before_frame": 23852,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.06521614640951157,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 22,
+      "measured_before_frame": 23862,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.06401146203279495,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 23,
+      "measured_before_frame": 23872,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.12564411759376526,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 24,
+      "measured_before_frame": 23882,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.040638234466314316,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 25,
+      "measured_before_frame": 23892,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.010460644029080868,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 26,
+      "measured_before_frame": 23902,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.008110912516713142,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 27,
+      "measured_before_frame": 23912,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.00717522855848074,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 28,
+      "measured_before_frame": 23922,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.0064997063018381596,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 29,
+      "measured_before_frame": 23932,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.009509407915174961,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 30,
+      "measured_before_frame": 23942,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.015705928206443787,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 2,
+      "decision": 31,
+      "measured_before_frame": 23952,
+      "actual_action": 0,
+      "hidden_feedback_action": 0,
+      "action_changed": false,
+      "probability_total_variation": 0.04103348031640053,
+      "recorded_mode": "wait"
+    },
+    {
+      "case_id": 3,
+      "decision": 0,
+      "measured_before_frame": 23984,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003847150132060051,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 1,
+      "measured_before_frame": 23994,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002363838255405426,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 2,
+      "measured_before_frame": 24004,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0030146900098770857,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 3,
+      "measured_before_frame": 24014,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.001127361785620451,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 4,
+      "measured_before_frame": 24024,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004300414118915796,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 5,
+      "measured_before_frame": 24034,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.00315800029784441,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 6,
+      "measured_before_frame": 24044,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0027546011842787266,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 7,
+      "measured_before_frame": 24054,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003726346418261528,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 8,
+      "measured_before_frame": 24064,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0012485128827393055,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 9,
+      "measured_before_frame": 24074,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0013552650343626738,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 10,
+      "measured_before_frame": 24084,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0011611899826675653,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 11,
+      "measured_before_frame": 24094,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.000883823842741549,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 12,
+      "measured_before_frame": 24104,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003021667944267392,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 13,
+      "measured_before_frame": 24114,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.016895398497581482,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 14,
+      "measured_before_frame": 24124,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.09258141368627548,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 15,
+      "measured_before_frame": 24134,
+      "actual_action": 22,
+      "hidden_feedback_action": 26,
+      "action_changed": true,
+      "probability_total_variation": 0.26423513889312744,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 16,
+      "measured_before_frame": 24144,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.22263844311237335,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 17,
+      "measured_before_frame": 24154,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.08852407336235046,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 18,
+      "measured_before_frame": 24164,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.057240549474954605,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 19,
+      "measured_before_frame": 24174,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.024458276107907295,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 20,
+      "measured_before_frame": 24184,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.03495534509420395,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 21,
+      "measured_before_frame": 24194,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.051429446786642075,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 22,
+      "measured_before_frame": 24204,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.09740498661994934,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 23,
+      "measured_before_frame": 24214,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.14470098912715912,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 24,
+      "measured_before_frame": 24224,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.015164516866207123,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 25,
+      "measured_before_frame": 24234,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.008334370329976082,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 26,
+      "measured_before_frame": 24244,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005645827855914831,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 27,
+      "measured_before_frame": 24254,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004207885358482599,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 28,
+      "measured_before_frame": 24264,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004668415989726782,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 29,
+      "measured_before_frame": 24274,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005950496532022953,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 3,
+      "decision": 30,
+      "measured_before_frame": 24284,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.00495188171043992,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 0,
+      "measured_before_frame": 24320,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.006091271061450243,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 1,
+      "measured_before_frame": 24330,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0012265803525224328,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 2,
+      "measured_before_frame": 24340,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0009983419440686703,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 3,
+      "measured_before_frame": 24350,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0010908831609413028,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 4,
+      "measured_before_frame": 24360,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0005735760205425322,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 5,
+      "measured_before_frame": 24370,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0004973268369212747,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 6,
+      "measured_before_frame": 24380,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0009160168119706213,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 7,
+      "measured_before_frame": 24390,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0016352643724530935,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 8,
+      "measured_before_frame": 24400,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.001559035386890173,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 9,
+      "measured_before_frame": 24410,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.006100035738199949,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 10,
+      "measured_before_frame": 24420,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.007739019114524126,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 11,
+      "measured_before_frame": 24430,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.005658393260091543,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 12,
+      "measured_before_frame": 24440,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.010340570472180843,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 13,
+      "measured_before_frame": 24450,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.013638285920023918,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 14,
+      "measured_before_frame": 24460,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.016723377630114555,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 15,
+      "measured_before_frame": 24470,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.005608368199318647,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 16,
+      "measured_before_frame": 24480,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.013537148013710976,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 17,
+      "measured_before_frame": 24490,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.019004030153155327,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 18,
+      "measured_before_frame": 24500,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.02725166082382202,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 19,
+      "measured_before_frame": 24510,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.03518514335155487,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 20,
+      "measured_before_frame": 24520,
+      "actual_action": 22,
+      "hidden_feedback_action": 26,
+      "action_changed": true,
+      "probability_total_variation": 0.12084774672985077,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 21,
+      "measured_before_frame": 24530,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.09277510643005371,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 22,
+      "measured_before_frame": 24540,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.04469100758433342,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 23,
+      "measured_before_frame": 24550,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.03695067763328552,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 24,
+      "measured_before_frame": 24560,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.03924274817109108,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 25,
+      "measured_before_frame": 24570,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.021203061565756798,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 26,
+      "measured_before_frame": 24580,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.03203507140278816,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 27,
+      "measured_before_frame": 24590,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.017322860658168793,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 28,
+      "measured_before_frame": 24600,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.022303229197859764,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 29,
+      "measured_before_frame": 24610,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.00614373991265893,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 30,
+      "measured_before_frame": 24620,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005895908921957016,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 31,
+      "measured_before_frame": 24630,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005609920714050531,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 32,
+      "measured_before_frame": 24640,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005164782982319593,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 33,
+      "measured_before_frame": 24650,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.0049324179999530315,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 34,
+      "measured_before_frame": 24660,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005031002685427666,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 4,
+      "decision": 35,
+      "measured_before_frame": 24670,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005981802009046078,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 0,
+      "measured_before_frame": 24707,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.04480532556772232,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 1,
+      "measured_before_frame": 24717,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.051031358540058136,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 2,
+      "measured_before_frame": 24727,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0030714182648807764,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 3,
+      "measured_before_frame": 24737,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.006262356415390968,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 4,
+      "measured_before_frame": 24747,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0008092952193692327,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 5,
+      "measured_before_frame": 24757,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0003938428417313844,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 6,
+      "measured_before_frame": 24767,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0005865494022145867,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 7,
+      "measured_before_frame": 24777,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0003200701321475208,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 8,
+      "measured_before_frame": 24787,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0006679153884761035,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 9,
+      "measured_before_frame": 24797,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0002429754240438342,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 10,
+      "measured_before_frame": 24807,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0013991962186992168,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 11,
+      "measured_before_frame": 24817,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0008276333101093769,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 12,
+      "measured_before_frame": 24827,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0003908950020559132,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 13,
+      "measured_before_frame": 24837,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0006547105731442571,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 14,
+      "measured_before_frame": 24847,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0008082258282229304,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 15,
+      "measured_before_frame": 24857,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004737193696200848,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 16,
+      "measured_before_frame": 24867,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.03227715566754341,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 17,
+      "measured_before_frame": 24877,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.028065640479326248,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 18,
+      "measured_before_frame": 24887,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.12828636169433594,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 19,
+      "measured_before_frame": 24897,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.09530802071094513,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 20,
+      "measured_before_frame": 24907,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.033241599798202515,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 21,
+      "measured_before_frame": 24917,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.025738094002008438,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 22,
+      "measured_before_frame": 24927,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.03586972504854202,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 23,
+      "measured_before_frame": 24937,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.07013029605150223,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 24,
+      "measured_before_frame": 24947,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.08776362240314484,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 25,
+      "measured_before_frame": 24957,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.1134716346859932,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 26,
+      "measured_before_frame": 24967,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.0639517530798912,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 27,
+      "measured_before_frame": 24977,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.08227963745594025,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 28,
+      "measured_before_frame": 24987,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.027624337002635002,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 29,
+      "measured_before_frame": 24997,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.009441457688808441,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 30,
+      "measured_before_frame": 25007,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005580990109592676,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 31,
+      "measured_before_frame": 25017,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005191026255488396,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 32,
+      "measured_before_frame": 25027,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.006159740034490824,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 33,
+      "measured_before_frame": 25037,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.007044004742056131,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 5,
+      "decision": 34,
+      "measured_before_frame": 25047,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005116130691021681,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 0,
+      "measured_before_frame": 25083,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.02569825015962124,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 1,
+      "measured_before_frame": 25093,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0028609761502593756,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 2,
+      "measured_before_frame": 25103,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.01307617500424385,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 3,
+      "measured_before_frame": 25113,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0033371830359101295,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 4,
+      "measured_before_frame": 25123,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0027017153333872557,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 5,
+      "measured_before_frame": 25133,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0009050040971487761,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 6,
+      "measured_before_frame": 25143,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0002776357578113675,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 7,
+      "measured_before_frame": 25153,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.000576258753426373,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 8,
+      "measured_before_frame": 25163,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0004034493467770517,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 9,
+      "measured_before_frame": 25173,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0008009264129213989,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 10,
+      "measured_before_frame": 25183,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0006734414491802454,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 11,
+      "measured_before_frame": 25193,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0005668356316164136,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 12,
+      "measured_before_frame": 25203,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0013084097299724817,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 13,
+      "measured_before_frame": 25213,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0008590574725531042,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 14,
+      "measured_before_frame": 25223,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0015087475767359138,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 15,
+      "measured_before_frame": 25233,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0007583333645015955,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 16,
+      "measured_before_frame": 25243,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003797908779233694,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 17,
+      "measured_before_frame": 25253,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.053474344313144684,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 18,
+      "measured_before_frame": 25263,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.020283281803131104,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 19,
+      "measured_before_frame": 25273,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.031430721282958984,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 20,
+      "measured_before_frame": 25283,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.05080976337194443,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 21,
+      "measured_before_frame": 25293,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.042340945452451706,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 22,
+      "measured_before_frame": 25303,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.014776499941945076,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 23,
+      "measured_before_frame": 25313,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.021752668544650078,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 24,
+      "measured_before_frame": 25323,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.06278999149799347,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 25,
+      "measured_before_frame": 25333,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.04994889348745346,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 26,
+      "measured_before_frame": 25343,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.016144493594765663,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 27,
+      "measured_before_frame": 25353,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.014303005300462246,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 28,
+      "measured_before_frame": 25363,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.01155147235840559,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 29,
+      "measured_before_frame": 25373,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.009492434561252594,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 30,
+      "measured_before_frame": 25383,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.009119453839957714,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 31,
+      "measured_before_frame": 25393,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.009273654781281948,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 32,
+      "measured_before_frame": 25403,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.010449989698827267,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 33,
+      "measured_before_frame": 25413,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.011141112074255943,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 6,
+      "decision": 34,
+      "measured_before_frame": 25423,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.018952665850520134,
+      "recorded_mode": "parking_brake"
+    },
+    {
+      "case_id": 7,
+      "decision": 0,
+      "measured_before_frame": 25455,
+      "actual_action": 30,
+      "hidden_feedback_action": 30,
+      "action_changed": false,
+      "probability_total_variation": 0.05368334800004959,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 1,
+      "measured_before_frame": 25465,
+      "actual_action": 30,
+      "hidden_feedback_action": 30,
+      "action_changed": false,
+      "probability_total_variation": 0.0418238565325737,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 2,
+      "measured_before_frame": 25475,
+      "actual_action": 30,
+      "hidden_feedback_action": 30,
+      "action_changed": false,
+      "probability_total_variation": 0.06047841161489487,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 3,
+      "measured_before_frame": 25485,
+      "actual_action": 30,
+      "hidden_feedback_action": 30,
+      "action_changed": false,
+      "probability_total_variation": 0.014756597578525543,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 4,
+      "measured_before_frame": 25495,
+      "actual_action": 30,
+      "hidden_feedback_action": 30,
+      "action_changed": false,
+      "probability_total_variation": 0.010652028024196625,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 5,
+      "measured_before_frame": 25505,
+      "actual_action": 20,
+      "hidden_feedback_action": 20,
+      "action_changed": false,
+      "probability_total_variation": 0.013070479035377502,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 6,
+      "measured_before_frame": 25515,
+      "actual_action": 20,
+      "hidden_feedback_action": 20,
+      "action_changed": false,
+      "probability_total_variation": 0.014861579053103924,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 7,
+      "measured_before_frame": 25525,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.025835534557700157,
+      "recorded_mode": "plan_failed"
+    },
+    {
+      "case_id": 7,
+      "decision": 8,
+      "measured_before_frame": 25535,
+      "actual_action": 20,
+      "hidden_feedback_action": 20,
+      "action_changed": false,
+      "probability_total_variation": 0.07829513400793076,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 9,
+      "measured_before_frame": 25545,
+      "actual_action": 20,
+      "hidden_feedback_action": 20,
+      "action_changed": false,
+      "probability_total_variation": 0.07865525782108307,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 10,
+      "measured_before_frame": 25555,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.001117400941438973,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 11,
+      "measured_before_frame": 25565,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0002795172040350735,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 12,
+      "measured_before_frame": 25575,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0017953857313841581,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 13,
+      "measured_before_frame": 25585,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0027409656904637814,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 14,
+      "measured_before_frame": 25595,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0013912777649238706,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 15,
+      "measured_before_frame": 25605,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0025806704070419073,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 16,
+      "measured_before_frame": 25615,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0018239178461953998,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 17,
+      "measured_before_frame": 25625,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002503668889403343,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 18,
+      "measured_before_frame": 25635,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.00441364198923111,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 19,
+      "measured_before_frame": 25645,
+      "actual_action": 22,
+      "hidden_feedback_action": 26,
+      "action_changed": true,
+      "probability_total_variation": 0.14000245928764343,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 20,
+      "measured_before_frame": 25655,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.016092956066131592,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 21,
+      "measured_before_frame": 25665,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.02885264903306961,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 22,
+      "measured_before_frame": 25675,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.041063010692596436,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 23,
+      "measured_before_frame": 25685,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.060752078890800476,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 24,
+      "measured_before_frame": 25695,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.04210733249783516,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 25,
+      "measured_before_frame": 25705,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.0313434936106205,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 26,
+      "measured_before_frame": 25715,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.09847862273454666,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 27,
+      "measured_before_frame": 25725,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.03582358360290527,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 28,
+      "measured_before_frame": 25735,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.017825322225689888,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 29,
+      "measured_before_frame": 25745,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.012193737551569939,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 30,
+      "measured_before_frame": 25755,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.019770821556448936,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 31,
+      "measured_before_frame": 25765,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.016622791066765785,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 32,
+      "measured_before_frame": 25775,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005754918325692415,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 33,
+      "measured_before_frame": 25785,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.009861120954155922,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 34,
+      "measured_before_frame": 25795,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.006923559121787548,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 7,
+      "decision": 35,
+      "measured_before_frame": 25805,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.007256498094648123,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 0,
+      "measured_before_frame": 25845,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.024879613891243935,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 1,
+      "measured_before_frame": 25855,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.008561896160244942,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 2,
+      "measured_before_frame": 25865,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.005715383216738701,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 3,
+      "measured_before_frame": 25875,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003794811200350523,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 4,
+      "measured_before_frame": 25885,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0037180238869041204,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 5,
+      "measured_before_frame": 25895,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0037423509638756514,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 6,
+      "measured_before_frame": 25905,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0028857807628810406,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 8,
+      "decision": 7,
+      "measured_before_frame": 25915,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.05507459118962288,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 8,
+      "decision": 8,
+      "measured_before_frame": 25925,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.07036752998828888,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 8,
+      "decision": 9,
+      "measured_before_frame": 25935,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.07328246533870697,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 8,
+      "decision": 10,
+      "measured_before_frame": 25945,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0760665237903595,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 8,
+      "decision": 11,
+      "measured_before_frame": 25955,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.07765195518732071,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 8,
+      "decision": 12,
+      "measured_before_frame": 25965,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.07802412658929825,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 8,
+      "decision": 13,
+      "measured_before_frame": 25975,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.07836975902318954,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 14,
+      "measured_before_frame": 25985,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.006570851895958185,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 15,
+      "measured_before_frame": 25995,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002694986993446946,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 16,
+      "measured_before_frame": 26005,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0018673853483051062,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 17,
+      "measured_before_frame": 26015,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0014092910569161177,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 18,
+      "measured_before_frame": 26025,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0018651887075975537,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 19,
+      "measured_before_frame": 26035,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0020008147694170475,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 20,
+      "measured_before_frame": 26045,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0020348108373582363,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 21,
+      "measured_before_frame": 26055,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002149052917957306,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 22,
+      "measured_before_frame": 26065,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002305916976183653,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 23,
+      "measured_before_frame": 26075,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0018602167256176472,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 24,
+      "measured_before_frame": 26085,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0021817837841808796,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 25,
+      "measured_before_frame": 26095,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.008124967105686665,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 26,
+      "measured_before_frame": 26105,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.013637226074934006,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 27,
+      "measured_before_frame": 26115,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.13282069563865662,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 28,
+      "measured_before_frame": 26125,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.12148981541395187,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 29,
+      "measured_before_frame": 26135,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.06980486959218979,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 30,
+      "measured_before_frame": 26145,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.043052300810813904,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 31,
+      "measured_before_frame": 26155,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.023773562163114548,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 32,
+      "measured_before_frame": 26165,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.025482386350631714,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 33,
+      "measured_before_frame": 26175,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.020633170381188393,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 34,
+      "measured_before_frame": 26185,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.015273540280759335,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 35,
+      "measured_before_frame": 26195,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.04776753485202789,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 36,
+      "measured_before_frame": 26205,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.015184146352112293,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 37,
+      "measured_before_frame": 26215,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.007984417490661144,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 38,
+      "measured_before_frame": 26225,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.006808050908148289,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 39,
+      "measured_before_frame": 26235,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004103229381144047,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 40,
+      "measured_before_frame": 26245,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004571405705064535,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 8,
+      "decision": 41,
+      "measured_before_frame": 26255,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004889010917395353,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 0,
+      "measured_before_frame": 26296,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.0011657512513920665,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 1,
+      "measured_before_frame": 26306,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.0036279556807130575,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 2,
+      "measured_before_frame": 26316,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.0008755442686378956,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 3,
+      "measured_before_frame": 26326,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.0059578255750238895,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 4,
+      "measured_before_frame": 26336,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.00448941346257925,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 5,
+      "measured_before_frame": 26346,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.02522936277091503,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 6,
+      "measured_before_frame": 26356,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.02864081598818302,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 7,
+      "measured_before_frame": 26366,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.08353005349636078,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 9,
+      "decision": 8,
+      "measured_before_frame": 26376,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.004901397041976452,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 9,
+      "decision": 9,
+      "measured_before_frame": 26386,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.033571045845746994,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 9,
+      "decision": 10,
+      "measured_before_frame": 26396,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.02854194864630699,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 9,
+      "decision": 11,
+      "measured_before_frame": 26406,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.024945590645074844,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 9,
+      "decision": 12,
+      "measured_before_frame": 26416,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.02184879593551159,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 9,
+      "decision": 13,
+      "measured_before_frame": 26426,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.019211307168006897,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 9,
+      "decision": 14,
+      "measured_before_frame": 26436,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.01698361337184906,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 9,
+      "decision": 15,
+      "measured_before_frame": 26446,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.015110008418560028,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 9,
+      "decision": 16,
+      "measured_before_frame": 26456,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.013524438254535198,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 17,
+      "measured_before_frame": 26466,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.00527325039729476,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 18,
+      "measured_before_frame": 26476,
+      "actual_action": 28,
+      "hidden_feedback_action": 28,
+      "action_changed": false,
+      "probability_total_variation": 0.02386266551911831,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 19,
+      "measured_before_frame": 26486,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.003684788942337036,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 20,
+      "measured_before_frame": 26496,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0019691602792590857,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 21,
+      "measured_before_frame": 26506,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0014911987818777561,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 22,
+      "measured_before_frame": 26516,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.001416693557985127,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 23,
+      "measured_before_frame": 26526,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002563866786658764,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 24,
+      "measured_before_frame": 26536,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0006990453694015741,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 25,
+      "measured_before_frame": 26546,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0009521656902506948,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 26,
+      "measured_before_frame": 26556,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.007667003199458122,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 27,
+      "measured_before_frame": 26566,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.015297786332666874,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 28,
+      "measured_before_frame": 26576,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.03236367180943489,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 29,
+      "measured_before_frame": 26586,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.04080723971128464,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 30,
+      "measured_before_frame": 26596,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.12455190718173981,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 31,
+      "measured_before_frame": 26606,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.18590781092643738,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 32,
+      "measured_before_frame": 26616,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.17672765254974365,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 33,
+      "measured_before_frame": 26626,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.08541703969240189,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 34,
+      "measured_before_frame": 26636,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.11962477117776871,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 35,
+      "measured_before_frame": 26646,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.16085398197174072,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 36,
+      "measured_before_frame": 26656,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.11355383694171906,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 37,
+      "measured_before_frame": 26666,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.02272963523864746,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 38,
+      "measured_before_frame": 26676,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.010021421127021313,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 39,
+      "measured_before_frame": 26686,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.006032765842974186,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 40,
+      "measured_before_frame": 26696,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004673623479902744,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 41,
+      "measured_before_frame": 26706,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004202091135084629,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 42,
+      "measured_before_frame": 26716,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004343491513282061,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 43,
+      "measured_before_frame": 26726,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.003937717992812395,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 9,
+      "decision": 44,
+      "measured_before_frame": 26736,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004358229693025351,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 0,
+      "measured_before_frame": 26777,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.09965703636407852,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 1,
+      "measured_before_frame": 26787,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.015989821404218674,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 2,
+      "measured_before_frame": 26797,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.012564650736749172,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 3,
+      "measured_before_frame": 26807,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.00622346717864275,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 4,
+      "measured_before_frame": 26817,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.008081111125648022,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 5,
+      "measured_before_frame": 26827,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0061151874251663685,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 6,
+      "measured_before_frame": 26837,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.006330184172838926,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 10,
+      "decision": 7,
+      "measured_before_frame": 26847,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0514027364552021,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 10,
+      "decision": 8,
+      "measured_before_frame": 26857,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.06323817372322083,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 10,
+      "decision": 9,
+      "measured_before_frame": 26867,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.05773182958364487,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 10,
+      "decision": 10,
+      "measured_before_frame": 26877,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0542922243475914,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 10,
+      "decision": 11,
+      "measured_before_frame": 26887,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.052359409630298615,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 10,
+      "decision": 12,
+      "measured_before_frame": 26897,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.051493868231773376,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 13,
+      "measured_before_frame": 26907,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.017701618373394012,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 14,
+      "measured_before_frame": 26917,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.010126756504178047,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 15,
+      "measured_before_frame": 26927,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0075976792722940445,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 16,
+      "measured_before_frame": 26937,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.009360886178910732,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 17,
+      "measured_before_frame": 26947,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.009200657717883587,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 18,
+      "measured_before_frame": 26957,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.011035499162971973,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 19,
+      "measured_before_frame": 26967,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.011076396331191063,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 20,
+      "measured_before_frame": 26977,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.012189725413918495,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 21,
+      "measured_before_frame": 26987,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.01662319526076317,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 22,
+      "measured_before_frame": 26997,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.10291332006454468,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 23,
+      "measured_before_frame": 27007,
+      "actual_action": 22,
+      "hidden_feedback_action": 26,
+      "action_changed": true,
+      "probability_total_variation": 0.20427866280078888,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 24,
+      "measured_before_frame": 27017,
+      "actual_action": 22,
+      "hidden_feedback_action": 12,
+      "action_changed": true,
+      "probability_total_variation": 0.14452460408210754,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 25,
+      "measured_before_frame": 27027,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.08674079179763794,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 26,
+      "measured_before_frame": 27037,
+      "actual_action": 2,
+      "hidden_feedback_action": 12,
+      "action_changed": true,
+      "probability_total_variation": 0.10555969923734665,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 27,
+      "measured_before_frame": 27047,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.17292551696300507,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 28,
+      "measured_before_frame": 27057,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.13069623708724976,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 29,
+      "measured_before_frame": 27067,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.0785994678735733,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 30,
+      "measured_before_frame": 27077,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.11212858557701111,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 31,
+      "measured_before_frame": 27087,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.06402290612459183,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 32,
+      "measured_before_frame": 27097,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.01604442670941353,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 33,
+      "measured_before_frame": 27107,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.012944010086357594,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 34,
+      "measured_before_frame": 27117,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.010434136725962162,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 35,
+      "measured_before_frame": 27127,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.011380276642739773,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 36,
+      "measured_before_frame": 27137,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.009179076179862022,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 37,
+      "measured_before_frame": 27147,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.0149773471057415,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 10,
+      "decision": 38,
+      "measured_before_frame": 27157,
+      "actual_action": 0,
+      "hidden_feedback_action": 0,
+      "action_changed": false,
+      "probability_total_variation": 0.0077451239340007305,
+      "recorded_mode": "wait"
+    },
+    {
+      "case_id": 11,
+      "decision": 0,
+      "measured_before_frame": 27189,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002308768453076482,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 1,
+      "measured_before_frame": 27199,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002690686145797372,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 2,
+      "measured_before_frame": 27209,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0021167865488678217,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 3,
+      "measured_before_frame": 27219,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.00019693923240993172,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 4,
+      "measured_before_frame": 27229,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0011600583093240857,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 5,
+      "measured_before_frame": 27239,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0011070773471146822,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 6,
+      "measured_before_frame": 27249,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.00024703057715669274,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 11,
+      "decision": 7,
+      "measured_before_frame": 27259,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.022578708827495575,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 11,
+      "decision": 8,
+      "measured_before_frame": 27269,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.010332240723073483,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 11,
+      "decision": 9,
+      "measured_before_frame": 27279,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.009663754142820835,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 11,
+      "decision": 10,
+      "measured_before_frame": 27289,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.009355614893138409,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 11,
+      "decision": 11,
+      "measured_before_frame": 27299,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.009097210131585598,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 11,
+      "decision": 12,
+      "measured_before_frame": 27309,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.008841467089951038,
+      "recorded_mode": "dynamic_brake"
+    },
+    {
+      "case_id": 11,
+      "decision": 13,
+      "measured_before_frame": 27319,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.008587636984884739,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 14,
+      "measured_before_frame": 27329,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0018949334044009447,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 15,
+      "measured_before_frame": 27339,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004609242547303438,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 16,
+      "measured_before_frame": 27349,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.000643353967461735,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 17,
+      "measured_before_frame": 27359,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.000445988611318171,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 18,
+      "measured_before_frame": 27369,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0009262716630473733,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 19,
+      "measured_before_frame": 27379,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.0009584034560248256,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 20,
+      "measured_before_frame": 27389,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.002923179417848587,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 21,
+      "measured_before_frame": 27399,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.004684068262577057,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 22,
+      "measured_before_frame": 27409,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.018723003566265106,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 23,
+      "measured_before_frame": 27419,
+      "actual_action": 26,
+      "hidden_feedback_action": 26,
+      "action_changed": false,
+      "probability_total_variation": 0.17716453969478607,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 24,
+      "measured_before_frame": 27429,
+      "actual_action": 22,
+      "hidden_feedback_action": 26,
+      "action_changed": true,
+      "probability_total_variation": 0.23401540517807007,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 25,
+      "measured_before_frame": 27439,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.14767566323280334,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 26,
+      "measured_before_frame": 27449,
+      "actual_action": 22,
+      "hidden_feedback_action": 22,
+      "action_changed": false,
+      "probability_total_variation": 0.10026036947965622,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 27,
+      "measured_before_frame": 27459,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.08851578086614609,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 28,
+      "measured_before_frame": 27469,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.09769445657730103,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 29,
+      "measured_before_frame": 27479,
+      "actual_action": 12,
+      "hidden_feedback_action": 12,
+      "action_changed": false,
+      "probability_total_variation": 0.056265007704496384,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 30,
+      "measured_before_frame": 27489,
+      "actual_action": 2,
+      "hidden_feedback_action": 12,
+      "action_changed": true,
+      "probability_total_variation": 0.11951956152915955,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 31,
+      "measured_before_frame": 27499,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.06581448763608932,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 32,
+      "measured_before_frame": 27509,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.03211179003119469,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 33,
+      "measured_before_frame": 27519,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.013830423355102539,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 34,
+      "measured_before_frame": 27529,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.008021478541195393,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 35,
+      "measured_before_frame": 27539,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004999997094273567,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 36,
+      "measured_before_frame": 27549,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.004416346084326506,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 37,
+      "measured_before_frame": 27559,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.005785683169960976,
+      "recorded_mode": "reference"
+    },
+    {
+      "case_id": 11,
+      "decision": 38,
+      "measured_before_frame": 27569,
+      "actual_action": 2,
+      "hidden_feedback_action": 2,
+      "action_changed": false,
+      "probability_total_variation": 0.0050509776920080185,
+      "recorded_mode": "parking_brake"
+    }
+  ],
+  "wall_seconds": 31.67200000002049,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "limits": "Same visited states only;no counterfactual trajectories or success rates. Nonzero sensitivity is not evidence of performance benefit or feedback sufficiency.",
+  "research_acceptance": "UNMET"
+}

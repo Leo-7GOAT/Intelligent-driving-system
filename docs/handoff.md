@@ -3,6 +3,32 @@
 Original objective ACTIVE/UNMET. This section supersedes all earlier live
 process identities. Verify receipts and creation times before acting.
 
+- New readonly runtime/reliance audit is complete;report
+  reports/native_v4_runtime_and_feedback_20261031.md. All4complete endpoints
+  retain every frame,including terminal sensor refreshes;actual controls are
+  recovered from same episode/frame native responses(12permethod),none dropped.
+  HenvdecisionP95/P99/max348/418/4224ms,0.68%above500ms;H0P95705ms,10.12%above.
+  B1PPOfeedback aloneP95220msat50msperiod;full prediction/runner latency not
+  logged,so no realtime certificate. Hstationary8.00%,dynamic brake290controls;
+  H0stationary24.31%,failed-plan brake460controls;B1PPOstationary36.24%.
+- New full-history assay reproduces all439H/494H0decisions and9223native
+  control histories. Fixed weights/statistics/physical endpoint mask;hide only
+  learned feedback. H10actions change across1/3/4/7/10/11;H00changes/zeroTV.
+  H's exclusive success case5has no changed action on Hvisitedstates,so this
+  does NOT explain the performance gap. Reports native_H_v4_feedback_reliance_20261031.json
+  and native_H0_v4_feedback_reliance_20261031.json. No new controls/PPO updates.
+  Both use the exact frozen batch runtime via NAVSTACK_AUDIT_SOURCE_ROOT.
+- New readonly tools summarize_native_runtime.py/audit_native_feedback_reliance.py
+  leave all active/queued frozen sources intact. Dynamic history/shared mask/
+  terminal-frame regression subset14passed8.36s. No new full local suite claimed.
+  Initial runtime probes failed on terminal refreshes lacking vehicle_control;
+  logs retained. The corrected tool joins original native actuator reports,
+  covers every frame and rejects missing/conflicting reports.
+- Seed22pair025409042778has Htraining COMPLETE20539controls/650Adam and H
+  evaluation complete;H0is ACTUALLY TRAINING worker42192,last observed11835controls.
+  Original method postprocessors still wait for whole-batch normal cleanup.
+  Do not create their default audit/inference output files early.
+
 - Batch025409165666 is FULLY COMPLETE: **H12/12,H011/12,zero unsafe**.
   Both method postprocessors completed and normal guard0/owned-empty server
   cleanup is recorded. H0's only failure is static case5(deadline). Actual

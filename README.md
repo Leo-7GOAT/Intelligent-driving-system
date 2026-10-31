@@ -24,6 +24,12 @@ these new PPO phases have not started.
 These are development conditions; five trained seeds, a healthy full-task B1,
 new final conditions and research acceptance remain unmet.
 
+[Runtime and feedback audit](reports/native_v4_runtime_and_feedback_20261031.md):
+H's environment decision P95 is348ms but its maximum is4.22s; full-runner
+latency is not logged. B1's shared feedback computation alone has220ms P95
+against a50ms period. Fixed-weight feedback hiding changes10/439Hactions and
+zero H0actions; this demonstrates sensitivity, not a performance benefit.
+
 Earlier execution snapshot:
 
 31 October: [completed native diagnostics](reports/completed_native_diagnostics_20261031.md): fixed-reward-unit B1 finishes **2/12**,with6unsafe episodes after20,480real training controls/208Adam steps. It is rejected as healthy. The actual fixed-reference CARLA pair completes **MPC4/4,Pursuit/PI4/4**,with3811RPC-bound controls;Pursuit has lower tracking error and jerk here. Neither result establishes research acceptance. Both raw-data capsules are public. Shared-mask Hfrozen reevaluation finishes9/12,all core families3/4,zero unsafe;the fresh B1rollout1280study is now actually training. Subsequent bounded training remains queued.

@@ -16,6 +16,15 @@ H-only case5 is static avoidance; the exact discordance p-value is1.0.
 The earlier method report preserves its then-partial batch status. This is
 one seed and does not establish feedback benefit or generalization.
 
+The [complete runtime/reliance audit](../reports/native_v4_runtime_and_feedback_20261031.md)
+adds no driving or updates. H has8.00%stationary control frames and290internal
+dynamic-brake controls; H0 has24.31%stationary frames and460failed-plan brake
+controls. Environment decision P95/max are348ms/4.22s for H; this excludes
+policy prediction and is not a full-runner realtime certificate. A fixed-weight,
+unchanged-mask intervention reproduces all439/494decisions and changes10H
+actions/zero H0actions. H's exclusive success case5 is not among the changed
+actions on H's trajectory; performance benefit remains unproven.
+
 The [public trained-H/H0 manifest](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H_H0_v4_PPO_20261031_repro.zip.parts.json)
 has 32 parts, 66,513,018 bytes/609 files, archive SHA256
 `1374429bca525b878cfdb86fb9ffd9f6b1d3943c24ff8208c056b6458e009351`.
