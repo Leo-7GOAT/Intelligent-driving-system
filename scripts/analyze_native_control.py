@@ -16,9 +16,46 @@ from navstack.trajectory import Trajectory, tracking_error
 from navstack.vehicle import VehicleState
 
 
+def bind_controller_frames(batch,protocol,episodes):
+    """Bind every saved controller measurement/request to its raw bridge RPC."""
+    from scripts.audit_native_method_endpoint import read_prefix
+    requests={};responses={};hashes={}
+    for kind,destination,field in [('requests',requests,'request'),('responses',responses,'response')]:
+        files=list((batch/'infrastructure').glob(f'bridge_*_{kind}.jsonl.gz'))
+        if len(files)!=1:raise ValueError('Controller probe requires one complete owned bridge stream')
+        rows,error=read_prefix(files[0])
+        if error:raise ValueError('Controller bridge stream is truncated')
+        hashes[files[0].name]=hashlib.sha256(files[0].read_bytes()).hexdigest()
+        for row in rows:
+            value=row[field];key=(value.get('episode_id'),value.get('request_id'))
+            if key in destination:raise ValueError('Duplicate controller RPC identity')
+            destination[key]=value
+    expected={key for key,value in requests.items() if value['op']=='step'};used=set()
+    for episode in episodes:
+        case_id=episode['case_id'];folder=batch/f'case_{case_id:02d}'
+        scene=json.loads((folder/'scene.json').read_text(encoding='utf-8'))
+        traces=[json.loads(line) for line in gzip.open(folder/'transitions.jsonl.gz','rt',encoding='utf-8')]
+        if len(traces)!=episode['control_ticks']:raise ValueError('Controller trace count differs')
+        for row in traces:
+            measurement=row['measurement'];key=(measurement['episode_id'],measurement['request_id'])
+            request=requests.get(key)
+            if key in used or key not in expected or responses.get(key)!=measurement:raise ValueError('Saved controller measurement differs from actual bridge acknowledgement')
+            if request['expected_frame']!=measurement['frame']-1 or any(request[k]!=row['requested_command'][k] for k in ('acceleration','steering')):raise ValueError('Controller requested command/frame differs from owned RPC')
+            used.add(key)
+        episode_id=traces[0]['measurement']['episode_id']
+        begins=[responses[key] for key,r in requests.items() if r['op']=='begin' and r['episode_id']==episode_id and key in responses]
+        if len(begins)!=1 or begins[0]['scene']!=scene or scene['native_layout']['geometry_id']!=protocol['routes'][case_id]['geometry_id']:
+            raise ValueError('Controller reset scene/route differs from its raw owned episode')
+    if used!=expected:raise ValueError('Unaccounted actual controller commands')
+    return {'actual_control_frames_bound':len(used),'bridge_stream_sha256':hashes,
+            'scope':'All saved measurements and requested commands exactly match owned raw bridge RPC streams;not a Python plant reconstruction.'}
+
+
 def analyze(batch):
     batch = Path(batch)
     summary = json.loads((batch / "summary.json").read_text(encoding="utf-8"))
+    protocol=json.loads((batch/'protocol.json').read_text(encoding='utf-8')) if (batch/'protocol.json').is_file() else {}
+    binding=bind_controller_frames(batch,protocol,summary['episodes']) if protocol.get('comparison_controller') else None
     fig, axes = plt.subplots(2, 3, figsize=(13, 8), constrained_layout=True)
     axes = axes.ravel()
     results = []
@@ -76,7 +113,8 @@ def analyze(batch):
     for ax in axes[4:]:
         ax.grid(alpha=.2)
         ax.legend(fontsize=8)
-    fig.suptitle("Native-road fixed-reference MPC diagnosis: four development routes, no PPO")
+    controller=protocol.get('comparison_controller')
+    fig.suptitle(f"Native-road fixed-reference {controller}: four development routes, no PPO" if controller else "Native-road fixed-reference MPC diagnosis: four development routes, no PPO")
     output = batch / "analysis"
     output.mkdir(exist_ok=True)
     fig.savefig(output / "native_control.png", dpi=160)
@@ -84,6 +122,7 @@ def analyze(batch):
     record = {"scope": "All actual frames retained; velocity/yaw derivatives are measured-state diagnostics, not IMU acceleration channels. First derivative sample omitted, not zero-filled.",
               "source_summary_sha256": hashlib.sha256((batch / "summary.json").read_bytes()).hexdigest(),
               "total_control_frames": sum(r["verified_frame_count"] for r in results), "episodes": results}
+    if binding:record['bridge_frame_binding']=binding
     (output / "verified_summary.json").write_text(json.dumps(record, indent=2), encoding="utf-8")
     print(json.dumps({"frames": record["total_control_frames"], "outcomes": [r["termination_reason"] for r in results],
           "min_actual_acceleration": [r["minimum_actual_acceleration_m_s2"] for r in results],

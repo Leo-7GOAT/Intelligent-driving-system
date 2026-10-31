@@ -10,12 +10,16 @@ import numpy as np
 def compare(baseline, candidate):
     baseline, candidate = Path(baseline), Path(candidate)
     protocols = [json.loads((p / "protocol.json").read_text(encoding="utf-8")) for p in (baseline, candidate)]
+    controller_pair=any(p.get('comparison_controller') for p in protocols)
+    if controller_pair and ({p.get('comparison_controller') for p in protocols}!={'mpc20','pursuit_pi'} or protocols[0]['source_hashes']!=protocols[1]['source_hashes']):
+        raise ValueError('Paired controllers require both declared variants and identical complete frozen source')
     for key in ("routes", "target_speed_m_s", "episode_seconds", "dt", "mpc_horizon",
                 "goal_tolerance_m", "goal_speed_m_s", "goal_yaw_tolerance_rad"):
         if protocols[0][key] != protocols[1][key]:
             raise ValueError("Unmatched protocol field: " + key)
     calibrations = [json.loads((p / "calibration/calibration.json").read_text(encoding="utf-8")) for p in (baseline, candidate)]
     actuator_configurations = [dict(c["recommended_adapter"]) for c in calibrations]
+    if controller_pair and calibrations[0]!=calibrations[1]:raise ValueError('Controller comparison requires exactly the same actuator calibration')
     for calibration in calibrations:
         calibration.pop("status", None)
         calibration.pop("throttle_fit_sha256", None)
@@ -36,8 +40,9 @@ def compare(baseline, candidate):
         case_name = "case_%02d" % old["case_id"]
         refs = [json.loads((p / case_name / "reference.json").read_text(encoding="utf-8")) for p in (baseline, candidate)]
         for key in ("x", "y", "yaw", "s", "kappa", "v", "a", "t"):
-            if not np.allclose(refs[0][key], refs[1][key], atol=1e-6, rtol=0):
+            if not (np.array_equal(refs[0][key],refs[1][key]) if controller_pair else np.allclose(refs[0][key], refs[1][key], atol=1e-6, rtol=0)):
                 raise ValueError("Different reference " + key)
+        if controller_pair and refs[0]['start_time']!=refs[1]['start_time']:raise ValueError('Different reference clock')
         pair = {"case_id": old["case_id"], "geometry_id": old["geometry_id"]}
         for label, batch, episode in (("baseline", baseline, old), ("candidate", candidate, new)):
             trace = batch / case_name / "transitions.jsonl.gz"
@@ -53,6 +58,10 @@ def compare(baseline, candidate):
               "reference_tolerance": "All eight arrays equal within 1e-6 absolute; measured reset velocity numerical noise only",
               "baseline": str(baseline), "candidate": str(candidate), "actuator_configurations": actuator_configurations,
               "episodes": rows}
+    if controller_pair:
+        result.update(comparison_kind='Fixed-reference controller,MPC20versus timed pursuit/PI',
+                      reference_tolerance='All eight arrays exactly equal;fixed rest reference and shared start clock',
+                      shared_calibration=True,controllers=[p['comparison_controller'] for p in protocols])
     (candidate / "analysis/paired_comparison.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(json.dumps([{ "case": r["case_id"], "success": [r[k]["success"] for k in ("baseline", "candidate")],
         "jerk": [r[k]["jerk_rms_m_s3"] for k in ("baseline", "candidate")],

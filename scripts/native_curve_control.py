@@ -29,7 +29,11 @@ def write(path, value):
     Path(path).write_text(json.dumps(value, indent=2, default=jsonable), encoding="utf-8")
 
 
-def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, plan_method="H", road_geometry_version="carla_driving_64_v1"):
+def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, plan_method="H", road_geometry_version="carla_driving_64_v1",comparison_controller=None,calibration_source=None,rpc_port=2000,fixed_references=None):
+    if comparison_controller not in (None,'mpc20','pursuit_pi') or type(rpc_port) is not int or not 1024<=rpc_port<=65533:
+        raise ValueError('Unknown controller or invalid registered RPC port')
+    if comparison_controller and (adapter!='legacy' or planning_audit or calibration_source is None or fixed_references is None):
+        raise ValueError('Paired controller diagnostic requires unchanged explicit current calibration and native centreline reference')
     if adapter == "acceleration_ff_v2" and fit_path is None:
         raise ValueError("Measured throttle fit is required")
     healthy, reason = resources_ok(ROOT)
@@ -38,17 +42,33 @@ def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, 
     parent = Path(survey_batch)
     survey = json.loads((parent / "native_routes.json").read_text(encoding="utf-8"))
     routes = select_routes(survey)
+    if comparison_controller:
+        from navstack.reference_manifest import load_fixed_reference
+        for i,route in enumerate(routes):load_fixed_reference(fixed_references,i,route['geometry_id'])
     if planning_audit and adapter != "legacy":
         raise ValueError("First searched-road execution uses unchanged legacy actuation")
-    if road_geometry_version != "carla_driving_64_v1" and not planning_audit:
+    if road_geometry_version != "carla_driving_64_v1" and not planning_audit and not comparison_controller:
         raise ValueError("Refined road execution requires shared grid planning audit")
-    batch = ROOT / "runs" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"_native_curve_control")
+    stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ' if comparison_controller else '%Y%m%dT%H%M%SZ')
+    batch = ROOT / "runs" / (stamp+"_native_curve_control")
     batch.mkdir()
     (batch / "infrastructure").mkdir()
     (batch / "calibration").mkdir()
+    if comparison_controller:shutil.copytree(fixed_references,batch/'fixed_references')
     shutil.copy2(parent / "calibration/calibration.json", batch / "calibration/calibration.json")
     calibration_path = batch / "calibration/calibration.json"
+    if calibration_source:
+        if not comparison_controller:raise ValueError('Calibration override is limited to the paired controller diagnostic')
+        current=Path(calibration_source)
+        old_calibration=json.loads(calibration_path.read_text(encoding='utf-8'))
+        new_calibration=json.loads(current.read_text(encoding='utf-8'))
+        if old_calibration['vehicle']!=new_calibration['vehicle']:raise ValueError('Paired controller calibration changes vehicle geometry')
+        shutil.copy2(current,calibration_path)
+        if (current.parent/'throttle_fit.json').is_file():shutil.copy2(current.parent/'throttle_fit.json',batch/'calibration/throttle_fit.json')
     calibration = json.loads(calibration_path.read_text(encoding="utf-8"))
+    if comparison_controller:
+        from navstack.carla_actuation import validate_actuator_interface
+        validate_actuator_interface(calibration['recommended_adapter'],'ff_state_v1',True,'native_curve')
     if adapter != "legacy":
         calibration["recommended_adapter"]["longitudinal_mode"] = "legacy" if adapter == "manual_first_v1" else adapter
         if adapter in ("manual_first_v1", "acceleration_pi_v1", "acceleration_ff_v2"):
@@ -73,6 +93,9 @@ def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, 
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
             hashes[relative.as_posix()] = hashlib.sha256(source.read_bytes()).hexdigest()
+    for name in ('run_carla_owned_foreground.ps1','start_carla.ps1','stop_owned_carla.ps1'):
+        source=ROOT/'scripts'/name;target=batch/'source/scripts'/name
+        shutil.copy2(source,target);hashes['scripts/'+name]=hashlib.sha256(source.read_bytes()).hexdigest()
     now = time.time()
     registered_plans = None
     if planning_audit:
@@ -87,11 +110,16 @@ def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, 
             shutil.copy2(file,plan_folder/file.name)
             registered_plans.append({"file":file.name,"sha256":hashlib.sha256(file.read_bytes()).hexdigest(),
                 "road_sha256":record["road_sha256"]})
-    write(batch / "protocol.json", {"scope": "Native-road fixed-reference MPC, no PPO or Hybrid A* performance claim; four geometrically selected development routes",
+    from navstack.pursuit_controller import PARAMETERS
+    write(batch / "protocol.json", {"scope": "Native-road fixed-reference controller comparison,not PPO or hierarchy evidence" if comparison_controller else "Native-road fixed-reference MPC, no PPO or Hybrid A* performance claim; four geometrically selected development routes",
+          "comparison_controller":comparison_controller,
+          "fixed_references_manifest_sha256":hashlib.sha256((batch/'fixed_references/manifest.json').read_bytes()).hexdigest() if comparison_controller else None,
+          "controller_parameters":PARAMETERS if comparison_controller=='pursuit_pi' else {},
+          "carla_rpc_port":rpc_port,"cleanup_owned_carla":True,
           "registered_hybrid_plans": registered_plans,
           "registered_plan_method": plan_method if registered_plans else None,
           "road_geometry_version":road_geometry_version,
-          "longitudinal_adapter": adapter, "created_epoch": now, "deadline_epoch": now+900, "source_hashes": hashes,
+          "longitudinal_adapter": calibration['recommended_adapter'].get('longitudinal_mode','legacy') if comparison_controller else adapter, "created_epoch": now, "deadline_epoch": now+900, "source_hashes": hashes,
           "survey_sha256": hashlib.sha256((parent / "native_routes.json").read_bytes()).hexdigest(),
           "calibration_sha256": hashlib.sha256((batch / "calibration/calibration.json").read_bytes()).hexdigest(),
           "routes": routes, "target_speed_m_s": 1., "episode_seconds": 45., "dt": .05,
@@ -99,6 +127,8 @@ def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, 
           "resource_limits": {"wall_seconds": 900, "disk_min_GiB": 12, "ram_min_GiB": 4,
                               "gpu_stop_temperature_C": 85, "automatic_retries": 0},
           "disk_free_bytes": shutil.disk_usage(ROOT).free})
+    if comparison_controller:
+        write(batch/'prepared.json',{'status':'PREPARED_NOT_STARTED','protocol_sha256':hashlib.sha256((batch/'protocol.json').read_bytes()).hexdigest()})
     write(ROOT / "runs/native_curve_control.json", {"batch": str(batch)})
     print(batch)
 
@@ -140,14 +170,22 @@ def run(batch):
         for case_id, route in enumerate(protocol["routes"]):
             guard(batch, protocol)
             plans = protocol.get("registered_hybrid_plans")
-            measured = client.request("begin", scenario="native_curve", native_route=route, condition=case_id, road_observation=bool(plans),
-                road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"))
+            paired=bool(protocol.get('comparison_controller'))
+            measured = client.request("begin", scenario="native_curve", native_route=route, condition=case_id, road_observation=bool(plans) or paired,
+                road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),actuator_observation='ff_state_v1' if paired else 'off')
             if measured["road_surface_probe"]["offroad_points_world"]:
                 raise RuntimeError("Initial actual footprint is off the native road")
             state = VehicleState(**measured["state"])
             goal = measured["scene"]["goal"]
             road_world = None
             spatial_path = measured["scene"]["native_layout"]["path"]
+            if paired:
+                from navstack.road_grid import RoadGrid
+                from navstack.world import World
+                grid=RoadGrid(measured['scene']['road_grid'])
+                road_world=World(measured['scene']['width'],measured['scene']['height'],road=grid)
+                if abs(state.v)>1e-4 or abs(state.time)>1e-6:raise ValueError('Fixed reference requires measured rest/reset clock')
+                if hashlib.sha256((batch/'fixed_references/manifest.json').read_bytes()).hexdigest()!=protocol['fixed_references_manifest_sha256']:raise ValueError('Registered fixed reference manifest changed')
             if plans:
                 from navstack.road_grid import RoadGrid
                 from navstack.world import World
@@ -163,7 +201,10 @@ def run(batch):
                 spatial_path = np.asarray(record["path"])
                 if not road_world.free_many(spatial_path,vehicle).all():
                     raise ValueError("Registered path does not fit actual road grid")
-            reference = parameterize(spatial_path, protocol["target_speed_m_s"], state.v, vehicle, state.time, stop=True)
+            if paired:
+                from navstack.reference_manifest import load_fixed_reference
+                reference,_,_=load_fixed_reference(batch/'fixed_references',case_id,route['geometry_id'],grid.sha256,goal)
+            else:reference = parameterize(spatial_path, protocol["target_speed_m_s"], state.v, vehicle, state.time, stop=True)
             if road_world is not None and not road_world.free_many(np.c_[reference.x,reference.y,reference.yaw],vehicle).all():
                 raise ValueError("Time-parameterized reference violates registered road grid")
             case = batch / ("case_%02d" % case_id)
@@ -171,6 +212,9 @@ def run(batch):
             write(case / "scene.json", measured["scene"])
             write(case / "reference.json", asdict(reference))
             controller = MPC(vehicle, protocol["dt"], protocol["mpc_horizon"])
+            if protocol.get('comparison_controller')=='pursuit_pi':
+                from navstack.pursuit_controller import TimedPursuitPI
+                controller=TimedPursuitPI(vehicle,protocol['dt'],**protocol['controller_parameters'])
             previous = Command(**measured["command"])
             errors, cycle_times, qp_times, path_length, failures = [], [], [], 0., 0
             reason = None
@@ -180,6 +224,7 @@ def run(batch):
                         raise RuntimeError("Diagnostic deadline reached")
                     if len(cycle_times) % 100 == 0:
                         guard(batch, protocol)
+                        write(batch/'control_heartbeat.json',{'epoch':time.time(),'case_id':case_id,'controls':len(cycle_times)})
                     started = time.perf_counter()
                     control = controller.step(state, reference, previous)
                     before = state
@@ -200,6 +245,7 @@ def run(batch):
                 write(case / "terminal_measurement.json", final)
                 reason = terminal_reason(final, goal, protocol, road_world, vehicle)
             summary = {"case_id": case_id, "geometry_id": route["geometry_id"], "heading_change_degrees": route["heading_change_degrees"],
+                  "controller":protocol.get('comparison_controller') or 'mpc20',
                   "success": reason == "success", "termination_reason": reason, "control_ticks": len(errors),
                   "actual_seconds": state.time, "actual_path_length_m": path_length, "reference_length_m": float(reference.s[-1]),
                   "final_state": asdict(state), "final_goal_distance_m": math.hypot(state.x-goal[0], state.y-goal[1]),
@@ -231,5 +277,9 @@ if __name__ == "__main__":
     parser.add_argument("--planning-audit", help="Execute all four saved Hybrid A* paths under shared raster boundaries")
     parser.add_argument("--plan-method", choices=["H","B2"], default="H", help="Method in registered planning audit; no policy training")
     parser.add_argument("--road-geometry-version",choices=["carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"],default="carla_driving_64_v1")
+    parser.add_argument('--comparison-controller',choices=['mpc20','pursuit_pi'])
+    parser.add_argument('--calibration-source',type=Path)
+    parser.add_argument('--rpc-port',type=int,default=2000)
+    parser.add_argument('--fixed-references',type=Path)
     args = parser.parse_args()
-    prepare(args.prepare, args.adapter, args.fit, args.planning_audit, args.plan_method,args.road_geometry_version) if args.prepare else run(args.batch)
+    prepare(args.prepare, args.adapter, args.fit, args.planning_audit, args.plan_method,args.road_geometry_version,args.comparison_controller,args.calibration_source,args.rpc_port,args.fixed_references) if args.prepare else run(args.batch)

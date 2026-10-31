@@ -238,7 +238,7 @@ def audit(batch: Path, method: str) -> dict:
     expected_cases = {episode["case_id"]: episode for episode in evaluation["episodes"]}
     if protocol.get('native_case_manifest'):
         from navstack.native_cases import registered_native_cases, verify_registered_native_begin
-        inventory = set(range(len(registered_native_cases(protocol,'evaluation'))))
+        inventory = set(range(len(registered_native_cases(protocol,'evaluation') if protocol.get('native_validation') else registered_native_cases(protocol))))
         if protocol.get('native_validation') and evaluation.get('partition')!='validation':
             raise ValueError('Native validation evaluation lacks its explicit partition binding')
         if set(expected_cases) != inventory:
@@ -254,7 +254,8 @@ def audit(batch: Path, method: str) -> dict:
                 if key not in verified_case_resets:
                     begin = next((r for r in acknowledgements.values() if r.get('episode_id') == episode and 'reset_ticks' in r),None)
                     if begin is None: raise ValueError('Missing registered native reset acknowledgement')
-                    verify_registered_native_begin(begin,protocol,row['case_id'],partition='evaluation')
+                    if protocol.get('native_validation'):verify_registered_native_begin(begin,protocol,row['case_id'],partition='evaluation')
+                    else:verify_registered_native_begin(begin,protocol,row['case_id'])
                     verified_case_resets.add(key)
     elif evaluation_only and (len(protocol.get('routes',[]))!=4 or set(expected_cases)!=set(range(4))):
         raise ValueError('Evaluation-only recovery requires all four registered cases')
@@ -302,7 +303,8 @@ def audit(batch: Path, method: str) -> dict:
         for episode in training_episodes | evaluation_episodes | idle_resets:
             begin=begins.get(episode)
             if begin is None:raise ValueError('Missing native hazard reset acknowledgement')
-            verify_registered_native_begin(begin,protocol,partition='evaluation' if episode in evaluation_episodes else 'training')
+            if protocol.get('native_validation'):verify_registered_native_begin(begin,protocol,partition='evaluation' if episode in evaluation_episodes else 'training')
+            else:verify_registered_native_begin(begin,protocol)
             registered[episode]=[(a['actor_id'],a['actor_type']) for a in begin.get('native_dynamic_actors',[])]
         for (episode,_),response in actual.items():
             if episode in registered and [(a['actor_id'],a['actor_type']) for a in response.get('native_dynamic_actors',[])]!=registered[episode]:

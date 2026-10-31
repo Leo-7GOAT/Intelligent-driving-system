@@ -308,7 +308,7 @@ def run(batch):
             write_json(output/"config.json", {"env": config.to_dict(), "signature": signature(config),
                 "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]})
             cases = registered_native_cases(protocol)
-            evaluation_cases = registered_native_cases(protocol,'evaluation')
+            evaluation_cases = registered_native_cases(protocol,'evaluation') if protocol.get('native_validation') else cases
             client = BridgeClient(batch)
             vec = None
             recorder = None

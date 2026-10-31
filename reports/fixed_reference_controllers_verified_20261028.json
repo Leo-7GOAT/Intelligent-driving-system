@@ -1,0 +1,59 @@
+{
+  "scope": "Lightweight controlled fixed-reference comparison,not CARLA or independently trained PPO evidence.",
+  "batch": "20261028T024216Z_fixed_reference_controllers_cpu",
+  "summary_sha256": "07d340ee0dd21702942e3366ffbc67ef8871ed9131cc4562d7c4f6de63cadd14",
+  "protocol_sha256": "7894403ed7bbd039d6b85dc2f528786b2fd0eb168e4ccf10bff1fe3414e2d254",
+  "raw_control_frames_replayed": 38962,
+  "paired_conditions": 40,
+  "episodes": 80,
+  "initial_condition_seeds": 5,
+  "neural_training_seeds": 0,
+  "aggregate": [
+    {
+      "plant_variant": "lag_delay_scale",
+      "controller": "mpc20",
+      "cases": 20,
+      "successes": 20,
+      "mean_episode_lateral_rmse_m": 0.05810708718788753,
+      "mean_episode_jerk_rms_m_s3": 1.1392102977057867,
+      "mean_final_goal_distance_m": 0.11317576510156942,
+      "mean_successful_episode_seconds": 24.367500000000206,
+      "mean_episode_control_P95_seconds": 0.0019785174951539373
+    },
+    {
+      "plant_variant": "lag_delay_scale",
+      "controller": "pursuit_pi",
+      "cases": 20,
+      "successes": 20,
+      "mean_episode_lateral_rmse_m": 0.028673762919569367,
+      "mean_episode_jerk_rms_m_s3": 1.584585619965979,
+      "mean_final_goal_distance_m": 0.16608319766533233,
+      "mean_successful_episode_seconds": 24.42500000000021,
+      "mean_episode_control_P95_seconds": 0.00013512499339412898
+    },
+    {
+      "plant_variant": "nominal",
+      "controller": "mpc20",
+      "cases": 20,
+      "successes": 20,
+      "mean_episode_lateral_rmse_m": 0.04951405274916776,
+      "mean_episode_jerk_rms_m_s3": 1.2945765811086725,
+      "mean_final_goal_distance_m": 0.13012630501916017,
+      "mean_successful_episode_seconds": 24.325000000000205,
+      "mean_episode_control_P95_seconds": 0.0021967764964210797
+    },
+    {
+      "plant_variant": "nominal",
+      "controller": "pursuit_pi",
+      "cases": 20,
+      "successes": 20,
+      "mean_episode_lateral_rmse_m": 0.024467917112502187,
+      "mean_episode_jerk_rms_m_s3": 1.9219221094252774,
+      "mean_final_goal_distance_m": 0.09597508796445532,
+      "mean_successful_episode_seconds": 24.287500000000215,
+      "mean_episode_control_P95_seconds": 0.00014268025406636296
+    }
+  ],
+  "verification": "Every physical state,tracking sample,terminal classification,goal distance,jerk and timing aggregate reconstructed from registered inputs and raw commands.",
+  "conclusion": "Both controllers complete40/40. Pursuit has lower lateral error and CPU cost;MPC has lower physical-integrator jerk. This is a control tradeoff,not uniform MPC superiority or real-time/CARLA proof."
+}

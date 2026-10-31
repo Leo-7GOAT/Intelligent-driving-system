@@ -1,0 +1,9 @@
+{
+  "actual_control_frames_bound": 1938,
+  "bridge_stream_sha256": {
+    "bridge_bcc2826b_requests.jsonl.gz": "0695ec984abcc8502641649cdb831f3400b2da16ab9455f98482a0591e41bbcb",
+    "bridge_bcc2826b_responses.jsonl.gz": "dbc5f0b8b2950699c180d8e5a7eb3d3ed5b6672333e449579934edb78b2f6c23"
+  },
+  "scope": "Historical completed native fixed-reference MPC raw binding,not new controller-pair execution",
+  "batch": "20261022T150456Z_native_curve_control"
+}

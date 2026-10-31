@@ -6,7 +6,7 @@ from navstack.native_cases import registered_native_cases
 from navstack.native_partitions import validate_native_partitions
 
 REPLACEMENTS=[
- ('            cases = registered_native_cases(protocol)\n','            cases = registered_native_cases(protocol)\n            evaluation_cases = registered_native_cases(protocol,\'evaluation\')\n'),
+ ('            cases = registered_native_cases(protocol)\n','            cases = registered_native_cases(protocol)\n            evaluation_cases = registered_native_cases(protocol,\'evaluation\') if protocol.get(\'native_validation\') else cases\n'),
  ('evaluation=RecordedRoadEnv(config,client,cases,output) if evaluation_only else CarlaNavigationEnv(config,client,cases)',
   'evaluation=RecordedRoadEnv(config,client,evaluation_cases,output) if evaluation_only else CarlaNavigationEnv(config,client,evaluation_cases)'),
  ('for case_id,case in enumerate(cases):','for case_id,case in enumerate(evaluation_cases):'),

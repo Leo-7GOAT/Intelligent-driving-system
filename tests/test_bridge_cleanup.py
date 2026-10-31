@@ -5,6 +5,26 @@ import types
 import pytest
 
 
+@pytest.mark.parametrize('snapshot_present',[True,False])
+def test_unknown_actor_guard_records_identity_but_never_ticks_destroys_or_ignores_it(monkeypatch,snapshot_present):
+    monkeypatch.setitem(sys.modules,'carla',types.ModuleType('carla'))
+    spec=importlib.util.spec_from_file_location('bridge_foreign_test',Path(__file__).parents[1]/'scripts/carla_bridge37.py')
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    class Actor:
+        id=77;type_id='vehicle.foreign';is_alive=True
+        def destroy(self):raise AssertionError('Must never destroy an unknown actor')
+    class World:
+        def get_actors(self):return [Actor()]
+        def get_snapshot(self):return types.SimpleNamespace(frame=9,find=lambda identity:Actor() if snapshot_present else None)
+        def tick(self,*args):raise AssertionError('Must never tick with an unknown actor')
+    bridge=module.Bridge.__new__(module.Bridge);bridge.cal={'recommended_adapter':{}}
+    bridge.world=World();bridge.owned=[];bridge.retired_ids=set()
+    with pytest.raises(RuntimeError,match='Foreign actors appeared'):
+        bridge.begin({'episode_id':'fixture','scenario':'static'})
+    assert bridge.foreign_actor_diagnostic['actors']==[{'id':77,'type_id':'vehicle.foreign','is_alive':True,'present_in_snapshot':snapshot_present}]
+    assert bridge.owned==[] and bridge.retired_ids==set()
+
+
 def test_cleanup_attempts_all_owned_actors_despite_sensor_stop_failure(monkeypatch):
     monkeypatch.setitem(sys.modules, "carla", types.ModuleType("carla"))
     spec = importlib.util.spec_from_file_location("bridge_cleanup_test", Path(__file__).parents[1] / "scripts/carla_bridge37.py")

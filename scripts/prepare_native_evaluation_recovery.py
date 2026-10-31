@@ -79,11 +79,13 @@ def verified_interruption(parent):
                     and guard['exit_code']==1 and (parent/'failure.json').is_file()
                     and re.fullmatch(r"InfrastructureFailure\('RuntimeError: Owned actor cleanup incomplete: destroy actor [1-9][0-9]*: destroy returned false'\)",
                                      read(parent/'failure.json').get('error','')) is not None)
-        if not (disk_stop or actor_stop) and (guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int):
+        foreign_stop=(guard.get('reason') is None and type(guard.get('exit_code')) is int and guard['exit_code']==1
+                      and (parent/'failure.json').is_file() and read(parent/'failure.json').get('error')=="InfrastructureFailure('RuntimeError: Foreign actors appeared; refusing to tick')")
+        if not (disk_stop or actor_stop or foreign_stop) and (guard.get('reason')!='wall_deadline' or type(guard.get('exit_code')) is not int):
             raise ValueError('Require a verified resource-interrupted parent, never a live task')
         if read(parent/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped':
             raise ValueError('Parent owned-server cleanup is incomplete')
-        if disk_stop or actor_stop:
+        if disk_stop or actor_stop or foreign_stop:
             from navstack.process_lease import pid_alive
             worker=read(parent/'worker_process.json');watch=read(parent/'guard.json')
             server=read(parent/'infrastructure/server_start.json')
@@ -94,6 +96,15 @@ def verified_interruption(parent):
                     or stop.get('post_stop_tcp')!=[] or stop.get('post_stop_udp')!=[]
                     or not recorded_lifecycle_gone(identities,guard.get('epoch'))):
                 raise ValueError('Resource-interrupted processes or cleanup are live, ambiguous or mismatched')
+            if foreign_stop:
+                probe_path=Path(stop.get('probe','')).resolve()
+                if not probe_path.is_relative_to((parent/'infrastructure').resolve()):raise ValueError('Empty shutdown probe escapes parent infrastructure')
+                probe=read(probe_path)
+                if (probe.get('status')!='CONNECTED' or probe.get('actors')!=[] or probe.get('client_version')!='0.9.15'
+                        or probe.get('server_version')!='0.9.15' or probe.get('port')!=read(parent/'protocol.json')['carla_rpc_port']
+                        or not guard['epoch']-5<=probe.get('observed_epoch',0)<=stop.get('epoch',0)):
+                    raise ValueError('Foreign actor guard recovery requires independently recorded empty matching server before owned shutdown')
+                return 'foreign_actor_guard_fresh_server_only_cause_unknown'
             return 'owned_actor_cleanup_failure' if actor_stop else 'worker_disk_below_12GiB'
         return 'wall_deadline'
     from navstack.process_lease import pid_alive

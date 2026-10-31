@@ -100,3 +100,20 @@ def test_interrupted_evaluation_cost_is_not_lost_on_zero_PPO_replay():
     recovered=evaluation_lineage({},summary,'failed_eval','checkpoint_000000000','B1',5100)
     assert recovered['consumed_controls_lower_bound']==21817
     assert recovered['lineage_controls']==recovered['retained_optimizer_steps']==0
+
+
+@pytest.mark.parametrize('fault',[None,'occupied','wrong_port','outside','live'])
+def test_foreign_guard_recovery_requires_empty_recorded_server_and_ended_owned_lifecycle(tmp_path,monkeypatch,fault):
+    fixture(tmp_path,monkeypatch)
+    monkeypatch.setattr('scripts.prepare_native_evaluation_recovery.recorded_lifecycle_gone',lambda *args:fault!='live')
+    write_json(tmp_path/'guard_final.json',{'reason':None,'exit_code':1,'worker_pid':12341,'epoch':1000.})
+    write_json(tmp_path/'failure.json',{'error':"InfrastructureFailure('RuntimeError: Foreign actors appeared; refusing to tick')"})
+    probe=tmp_path/'infrastructure/stop_probe.json'
+    if fault=='outside':probe=tmp_path/'outside.json'
+    write_json(probe,{'status':'CONNECTED','actors':[{'id':99}] if fault=='occupied' else [],'client_version':'0.9.15','server_version':'0.9.15',
+        'port':2201 if fault=='wrong_port' else 2200,'observed_epoch':1000.1})
+    write_json(tmp_path/'infrastructure/server_stop.json',{'status':'owned_empty_server_stopped','shipping_pid':12344,'post_stop_tcp':[],
+        'post_stop_udp':[],'epoch':1000.2,'probe':str(probe)})
+    if fault is None:assert verified_interruption(tmp_path)=='foreign_actor_guard_fresh_server_only_cause_unknown'
+    else:
+        with pytest.raises(ValueError):verified_interruption(tmp_path)

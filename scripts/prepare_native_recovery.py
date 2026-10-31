@@ -68,12 +68,17 @@ def copy_missing_case_dependencies(destination):
     return added
 
 
-def prepare(parent, wall_seconds, rpc_port=None):
+def prepare(parent, wall_seconds, rpc_port=None, selected_methods=None):
     parent=Path(parent).resolve()
     if not 900<=wall_seconds<=7200:raise ValueError('Recovery wall budget outside bounds')
     healthy,reason=resources_ok(ROOT)
     if not healthy or shutil.disk_usage(ROOT).free<12*1024**3:raise RuntimeError(str(reason))
     old=json.loads((parent/'protocol.json').read_text(encoding='utf-8'))
+    if selected_methods is not None:
+        if not selected_methods or len(set(selected_methods))!=len(selected_methods) or set(selected_methods)-set(old['methods']):
+            raise ValueError('Explicit recovery selection must be a unique nonempty subset of parent methods')
+        from scripts.prepare_native_evaluation_recovery import verified_interruption
+        verified_interruption(parent)
     if rpc_port is None:
         rpc_port=old.get('carla_rpc_port',2000)
     if isinstance(rpc_port,bool) or not isinstance(rpc_port,int) or not 1024<=rpc_port<=65533:
@@ -93,6 +98,11 @@ def prepare(parent, wall_seconds, rpc_port=None):
     batch.mkdir();(batch/'infrastructure').mkdir()
     shutil.copytree(parent/'calibration',batch/'calibration')
     shutil.copytree(parent/'source',batch/'source',ignore=shutil.ignore_patterns('__pycache__'))
+    if old.get('extra_supervision'):
+        dataset=parent/'measured_demonstrations.npz'
+        if not dataset.is_file() or hashlib.sha256(dataset.read_bytes()).hexdigest()!=old['extra_supervision']['dataset_sha256']:
+            raise ValueError('Registered teacher provenance missing or changed')
+        shutil.copy2(dataset,batch/dataset.name)
     added_dependencies=copy_missing_case_dependencies(batch/'source')
     # Vehicle/reward/geometry/PPO semantics stay at the parent frozen version.
     # Only orchestration/checkpointing is replaced and fully rehashed. The
@@ -107,6 +117,7 @@ def prepare(parent, wall_seconds, rpc_port=None):
     shutil.copy2(parent/'interruption_audit.json',batch/'parent_interruption_audit.json')
     recovery,methods,budgets={},{},{}
     for method in old['methods']:
+        if selected_methods is not None and method not in selected_methods:continue
         target=old.get('lineage_targets',{}).get(method,old['controlled_budget_per_method'])
         status=audit['methods'][method]
         if status['state']=='complete':continue
@@ -162,6 +173,7 @@ def prepare(parent, wall_seconds, rpc_port=None):
         recovery_source_dependencies_added=added_dependencies,
         scope='Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison.',
         disk_free_bytes=shutil.disk_usage(ROOT).free)
+    if selected_methods is not None:old['explicit_recovery_method_selection']=list(selected_methods)
     old['resource_limits']['wall_seconds']=wall_seconds
     if 'jobs' in old:
         old['jobs']=[job for job in old['jobs'] if job['name'] in methods]
@@ -184,4 +196,5 @@ def prepare(parent, wall_seconds, rpc_port=None):
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--parent',required=True);p.add_argument('--wall-seconds',type=int,default=7200)
     p.add_argument('--rpc-port',type=int)
-    a=p.parse_args();prepare(a.parent,a.wall_seconds,a.rpc_port)
+    p.add_argument('--methods',nargs='+',help='Explicit subset; preserves other parent methods without rerunning them')
+    a=p.parse_args();prepare(a.parent,a.wall_seconds,a.rpc_port,a.methods)

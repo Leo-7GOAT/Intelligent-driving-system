@@ -1,5 +1,18 @@
 # Research acceptance ledger
 
+## 31October execution update
+
+The fixed-reference lightweight control probe completes80episodes/38962steps,
+with all states and terminal/metric aggregates verified;MPC and Pursuit/PI each
+complete40/40but show a tracking/comfort/compute tradeoff. These are not trained
+PPO seeds or CARLA confirmation. An earlier20-episode/10190-step centreline
+version remains separate. The native controller pair is queued. Shared-mask H
+completed20674real training controls but its evaluation stopped on an unknown
+actor guard after10completed cases;no complete score is declared. B1fixed reward
+units is actually training;H0-only training and frozen Hreevaluation are prepared
+and queued with strict owned-empty lifecycle barriers. [Detailed evidence](../reports/controller_and_native_recovery_20261031.md).
+The full original acceptance remains **UNMET**.
+
 ## Current audit — 2026-10-28
 
 The original objective and thresholds remain unchanged. Overall research

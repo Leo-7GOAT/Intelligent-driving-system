@@ -1,6 +1,6 @@
 param(
     [Parameter(Mandatory=$true)][string]$Batch,
-    [ValidateSet('learning','rule')][string]$Kind='learning',
+    [ValidateSet('learning','rule','control')][string]$Kind='learning',
     [string]$Python,
     [string]$CarlaPython,
     [switch]$ValidateOnly,
@@ -29,7 +29,7 @@ if (-not $CarlaPython) { $CarlaPython=$env:NAVSTACK_CARLA_PYTHON }
 if (-not $CarlaPython) { $CarlaPython=Join-Path $taskRoot '.carla-python37/runtime/python.exe' }
 $taskPython=(Resolve-Path -LiteralPath $Python).Path
 $taskClient=(Resolve-Path -LiteralPath $CarlaPython).Path
-$taskWorkerName=if($Kind -eq 'rule'){'evaluate_native_rule.py'}else{'native_road_learning.py'}
+$taskWorkerName=switch($Kind){'rule'{'evaluate_native_rule.py'} 'control'{'native_curve_control.py'} default{'native_road_learning.py'}}
 $taskWorkerScript=Join-Path $taskSource ('scripts/'+$taskWorkerName)
 foreach($taskRequired in @('calibration_sha256','source_hashes','deadline_epoch','created_epoch','carla_rpc_port','resource_limits')) {
     if ($taskProtocol.PSObject.Properties.Name -notcontains $taskRequired) { throw "Missing registered input: $taskRequired" }

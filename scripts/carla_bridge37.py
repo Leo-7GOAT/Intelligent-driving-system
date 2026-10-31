@@ -129,7 +129,15 @@ class Bridge:
             from navstack.lane_projection import DrivingSurfaceIndex
             self.road_surface_index=DrivingSurfaceIndex(self.map,carla.LaneType.Driving)
         self.clear();self.events=[];self.imu_frame=-1;self.sensor_event=threading.Event();self.active_episode=r["episode_id"]
-        if any(a.id not in self.retired_ids and a.type_id.startswith(("vehicle.","walker.","sensor.")) for a in self.world.get_actors()):
+        unexpected=[a for a in self.world.get_actors() if a.id not in self.retired_ids and a.type_id.startswith(("vehicle.","walker.","sensor."))]
+        if unexpected:
+            # Diagnostics only: unknown actors are still never adopted,
+            # destroyed or allowed through the pre-tick ownership guard.
+            snapshot=self.world.get_snapshot()
+            self.foreign_actor_diagnostic={'snapshot_frame':snapshot.frame,
+                'actors':[{'id':a.id,'type_id':a.type_id,'is_alive':a.is_alive,
+                           'present_in_snapshot':snapshot.find(a.id) is not None} for a in unexpected],
+                'retired_actor_ids':sorted(self.retired_ids)}
             raise RuntimeError("Foreign actors appeared; refusing to tick")
         condition=int(r.get("condition",0));scenario=r.get("scenario","static")
         self.native_layout=None;self.spawn_z=.6
@@ -391,6 +399,7 @@ if __name__=="__main__":
             if not response.get("ok"):
                 response["bridge_diagnostic"]={"last_tick_frame":b.frame,"imu_frame":getattr(b,"imu_frame",None),
                     "active_episode":getattr(b,"active_episode",None),"owned_actor_ids":[a.id for a in b.owned]}
+                if hasattr(b,'foreign_actor_diagnostic'):response['bridge_diagnostic']['foreign_actor_guard']=b.foreign_actor_diagnostic
             print("CARLA_JSON:"+json.dumps(response),flush=True)
     except Exception as exc:
         print("CARLA_JSON:"+json.dumps({"ok":False,"infrastructure_failure":True,"error":repr(exc)}),flush=True)

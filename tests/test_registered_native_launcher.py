@@ -83,6 +83,18 @@ def test_launcher_rejects_bad_inputs_before_any_lifecycle(tmp_path,fault):
     assert not (batch/'infrastructure').exists() and not (batch/'worker_process.json').exists()
 
 
+def test_control_worker_kind_validates_metadata_without_any_server_or_process_launch(tmp_path):
+    batch,p=fixture(tmp_path)
+    path=batch/'source/scripts/native_curve_control.py';path.write_text('# inert control fixture,never executed\n')
+    p['source_hashes']['scripts/native_curve_control.py']=hashlib.sha256(path.read_bytes()).hexdigest()
+    (batch/'protocol.json').write_text(json.dumps(p))
+    result=subprocess.run([POWERSHELL,'-NoProfile','-File',str(SCRIPT),'-Batch',str(batch),'-Kind','control',
+        '-Python',sys.executable,'-CarlaPython',sys.executable,'-ValidateOnly'],capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=20)
+    assert result.returncode==0,result.stderr
+    assert json.loads(result.stdout)['worker']=='native_curve_control.py'
+    assert not (batch/'infrastructure').exists() and not (batch/'worker_process.json').exists()
+
+
 def test_queue_activation_preserves_all_nonclock_inputs_and_original_bytes(tmp_path):
     batch,original=fixture(tmp_path)
     before=(batch/'protocol.json').read_bytes()

@@ -1,4 +1,49 @@
-# Current handoff — 2026-10-28 10:13 local
+# Current handoff — 2026-10-31 08:24 local
+
+This supersedes all older live/queue statuses below. Original goal ACTIVE,UNMET.
+
+Final current regression657passed/1skip/4CARLA deselections172.19s.
+At08:25B1worker31216had7826controls;worker/guard33992and queue32916creation
+identities verified live. This update is being committed/pushed;read git HEAD
+for the exact new revision. Component raw-data public capsule remains pending.
+
+- Actual B1fixed-unit batch020728is TRAINING,worker31216/guard33992,
+  wrapper60176. At08:23it exceeded7000real controls. Original20k protocol/model
+  unchanged;only queued activation clock refreshed after verifying all old
+  queue PIDs absent,server process absent and RPC2100..2102empty.
+- Shared-mask PPO013316STOPPED28Oct on exact Foreign actors appeared guard,
+  during evaluation reset. Htraining COMPLETE20674controls/650Adam;partial
+  evaluation10cases/7success/3deadline/4864controls,NOTa12case endpoint. H0never
+  started. Guard1,owned-empty server stop and independent empty probe retained.
+  Cause unknown;no unknown actor was adopted/destroyed. Diagnostics now capture
+  unknown identities while preserving pre-tick refusal,even if snapshot absent.
+- Fresh Hreevaluation001732(31Oct) PREPARED,zero updates,trained checkpoint
+  retained;H0-only recovery001825 PREPARED,original untouched H0initialization
+  retained,teacherNPZ hashed/carried. BothValidateOnly pass. Generic recovery
+  --methods H0avoids retraining H;legacy case API compatibility preserved.
+- Actual NEW queue order after active B1:H0-only001825,Hreeval001732,
+  native MPC024600457573,native Pursuit024604590505,seed22PPO013440,
+  train36/validation24PPO014801. QueuePIDs32916/44644/60116/36700/69492/67020.
+  Inspect queue_execution_20261031.json,not old queue_execution.json. All child
+  programs launched;none of these children activated yet. One server only,
+  normal guard/owned-empty cleanup/lease/hash barriers,no automatic retry.
+- Fixed-reference control CPU run024216COMPLETE80episodes,38962controls;
+  40pairs,five INITIAL-CONDITION seeds,zero neural training seeds. Both40/40.
+  Pursuit better lateral error/CPU cost;MPC lower jerk. Full state/tracking/
+  termination/timing reconstruction passed. Original centreline run023315has
+  20completed episodes/10190controls then invalid reference;retained,separate.
+  Total integrator cost49152,NOTCARLA. Two native controller probes onlyqueued.
+  reports/controller_and_native_recovery_20261031.md and figures give details.
+- New raw controller binding verified1938HISTORICAL CARLAframes;not new pair
+  execution. Controller-core full regression650/1skip/4CARLA exclusions162.29s;
+  later ownership/recovery/partition58targeted6.24s. Current full rerun lives in
+  runs/controller_recovery_full_cpu_20261031.log. Older pushed commit0653d81;
+  current changes require final publication check/commit/push and independent CI.
+- Goal still lacks healthy B1,5trained seeds,120NEWfinal conditions,PPOvalue,
+  feedback performance benefit,complete ablations and formal paired statistics.
+  Do not report completion or substitute controller-only80episodes for these.
+
+## Earlier verified snapshots (historical)
 
 Latest state supersedes snapshots below. Goal ACTIVE and all research gates UNMET.
 
