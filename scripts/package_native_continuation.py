@@ -120,11 +120,18 @@ def portable_metadata(value, changes, pointer=''):
         try:
             nested=json.loads(value)
         except json.JSONDecodeError:
-            return value
-        before=len(changes)
-        nested=portable_metadata(nested,changes,pointer+'/$embedded_json')
-        if len(changes)!=before:
-            return json.dumps(nested,ensure_ascii=False)
+            nested=None
+        if nested is not None:
+            before=len(changes)
+            nested=portable_metadata(nested,changes,pointer+'/$embedded_json')
+            if len(changes)!=before:
+                return json.dumps(nested,ensure_ascii=False)
+    if isinstance(value,str) and re.search(
+            r'(?i)[A-Z]:[\\/]+Users[\\/]+[A-Za-z0-9_.-]+[\\/]|/(?:home|Users)/[A-Za-z0-9_.-]+/', value):
+        digest=sha(value.encode())
+        changes.append({'json_pointer':pointer,'original_value_sha256':digest,
+                        'redaction_scope':'entire auxiliary metadata string containing a private home path'})
+        return 'origin_metadata/'+digest[:24]
     return value
 
 

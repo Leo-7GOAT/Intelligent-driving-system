@@ -47,6 +47,10 @@ The complete failed endpoint is now public in 21 hash-checked transfer parts.
 Unauthenticated download and isolated reconstruction verify all **27,579**
 training/evaluation controls, twelve measured-start actions and a byte-identical
 result figure. See [public verification](B1_v4_replay_PPO_public_verification_20261031.json).
+The [independent first-update verification](B1_v4_replay_PPO_public_update_verification_20261031.json)
+also reconstructs all 1,280 sampled training actions and every first-checkpoint
+parameter from that downloaded capsule. All non-timing report fields, including
+the three optimizer branches and exact KL values, agree with the original audit.
 The first archive omitted the separately captured operational watchdog source;
 an [exact guard supplement](B1_v4_replay_PPO_guard_public_verification_20261031.json)
 adds all 56 hash-checked snapshot/launcher files and binds the original archive
@@ -54,6 +58,11 @@ SHA256. The original package is preserved. Future full packages include and
 verify this operational snapshot directly. Eighteen packaging tests cover
 missing/tampered source, manifest and executed-guard mismatches, path escape,
 undeclared overrides and unchanged historical exports.
+Auxiliary failure prose containing private home paths is redacted as a complete
+metadata string with its original SHA256 retained in the transformation ledger.
+Hash-bound raw inputs remain protected from redaction. This preserves launch
+failure status and original evidence identity without publishing personal paths;
+four additional Windows/Unix/embedded-JSON/error-prose tests pass (22 total).
 
 Run the first-update audit with `NAVSTACK_AUDIT_SOURCE_ROOT` set to the completed
 batch's archived `source`, using a fresh output path. Preparation now exposes

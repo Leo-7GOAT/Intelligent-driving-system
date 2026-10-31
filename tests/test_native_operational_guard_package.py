@@ -1,10 +1,11 @@
 import hashlib
 import json
 import zipfile
+from pathlib import PureWindowsPath
 
 import pytest
 
-from scripts.package_native_continuation import operational_guard_files, package_guard_snapshot
+from scripts.package_native_continuation import operational_guard_files, package_guard_snapshot, portable_metadata, scan_payload
 
 
 def digest(path):
@@ -71,3 +72,20 @@ def test_guard_export_rejects_mismatched_or_unregistered_sources_before_writing(
 
 def test_historical_run_without_operational_override_needs_no_new_snapshot(tmp_path):
     assert operational_guard_files(tmp_path) == set()
+
+
+@pytest.mark.parametrize('style', ['windows', 'unix', 'embedded_json', 'invalid_json_prose'])
+def test_auxiliary_error_path_redaction_preserves_original_hash_and_failure_status(style):
+    private = str(PureWindowsPath('C:/', 'Users', 'fixture', 'project', 'missing.json'))
+    if style == 'unix':private = '/'+'/'.join(('home', 'fixture', 'project', 'missing.json'))
+    error = "Cannot find path '"+private+"' because it does not exist."
+    if style == 'invalid_json_prose':error = '[failed] '+error
+    if style == 'embedded_json':error = json.dumps({'error': error})
+    original = {'status': 'LAUNCH_OR_SUPERVISION_FAILURE', 'error': error}
+    changes = []
+    exported = portable_metadata(original, changes)
+    assert original['error'] == error and exported['status'] == original['status']
+    assert changes and all(len(row['original_value_sha256']) == 64 for row in changes)
+    if style != 'embedded_json':
+        assert changes[0]['original_value_sha256'] == hashlib.sha256(error.encode()).hexdigest()
+    scan_payload('launcher_failure.json', json.dumps(exported).encode())
