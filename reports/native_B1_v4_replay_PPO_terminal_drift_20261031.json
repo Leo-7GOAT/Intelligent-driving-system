@@ -1,0 +1,604 @@
+{
+  "scope": "Every known-condition last decision reconstructed from measured states/history;initial-policy counterfactual is not new closed-loop performance",
+  "batch": "20261031T042301092506Z_native_supervised_ppo",
+  "script_sha256": "9ba227ec52867cfeb2ff4cbe46155c96aeb4525eb69a65eed39fbd7d885b839d",
+  "raw_audit_sha256": "eb4fb4023c5b95298937b3314383b48b9ff7a6f18c8247caa46f3488a96965e2",
+  "checkpoints_initial_final": [
+    {
+      "model_sha256": "7c11c8ed67de2917ac71d24d5b3daa0a01b5394f9baf9c0fcf669fb5144fc60e",
+      "normalization_sha256": "e718b900d5355f8b73669bae47d9e4c7d7d64892f98e029294f48045a372b133",
+      "physics_steps": 0,
+      "optimizer_steps": 0
+    },
+    {
+      "model_sha256": "b1dc27b9461b15121302949a57229658ef2e3e031e5b6da85a88926001ea4a5b",
+      "normalization_sha256": "a332edca8b802cddd136bbc8eafc5485e6d33951508bf2269019b7a138bc3fdb",
+      "physics_steps": 20480,
+      "optimizer_steps": 51
+    }
+  ],
+  "measured_control_history_verified": 7099,
+  "last_decision_actions_reproduced": 12,
+  "normalization_statistics_identical": true,
+  "results": [
+    {
+      "case_id": 0,
+      "reason": "out_of_bounds",
+      "measured_before_last_state": {
+        "x": 31.83658564699908,
+        "y": 13.845114205408187,
+        "yaw": 0.3701098830165632,
+        "v": 0.6580942979367712,
+        "steering": 0.3922779564344618,
+        "acceleration": 1.489613125631355,
+        "time": 39.050000581890345
+      },
+      "measured_before_last_frame": 25376,
+      "initial_action": [
+        0.14166571199893951,
+        0.7565497159957886
+      ],
+      "final_action": [
+        0.13362357020378113,
+        0.7844790816307068
+      ],
+      "recorded_action": [
+        0.13362357020378113,
+        0.7844790816307068
+      ],
+      "initial_distribution": {
+        "mean": [
+          0.14166571199893951,
+          0.7565497159957886
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 0.9999999999999949
+      },
+      "final_distribution": {
+        "mean": [
+          0.13362357020378113,
+          0.7844790816307068
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 0.9999999999998506
+      }
+    },
+    {
+      "case_id": 1,
+      "reason": "success",
+      "measured_before_last_state": {
+        "x": 22.48512737671331,
+        "y": 23.281596598659455,
+        "yaw": 1.0515385037734273,
+        "v": 1.1275504074190479,
+        "steering": 0.19786433244781804,
+        "acceleration": 1.4458639982431563,
+        "time": 17.400000259280205
+      },
+      "measured_before_last_frame": 25756,
+      "initial_action": [
+        -0.3594036400318146,
+        0.32855427265167236
+      ],
+      "final_action": [
+        -0.36955341696739197,
+        0.35178449749946594
+      ],
+      "recorded_action": [
+        -0.36955341696739197,
+        0.35178449749946594
+      ],
+      "initial_distribution": {
+        "mean": [
+          -0.3594036400318146,
+          0.32855427265167236
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 4.940536132884445e-86
+      },
+      "final_distribution": {
+        "mean": [
+          -0.36955341696739197,
+          0.35178449749946594
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 8.10394869536385e-91
+      }
+    },
+    {
+      "case_id": 2,
+      "reason": "deadline",
+      "measured_before_last_state": {
+        "x": 28.736279900279055,
+        "y": 7.39419487247644,
+        "yaw": -0.3013973974153199,
+        "v": -1.2847445092068867e-10,
+        "steering": 0.1322404721515799,
+        "acceleration": -1.985943074926146e-08,
+        "time": 44.950000669807196
+      },
+      "measured_before_last_frame": 26687,
+      "initial_action": [
+        -0.33344557881355286,
+        0.22342881560325623
+      ],
+      "final_action": [
+        -0.38062435388565063,
+        0.24295543134212494
+      ],
+      "recorded_action": [
+        -0.38062435388565063,
+        0.24295543134212494
+      ],
+      "initial_distribution": {
+        "mean": [
+          -0.33344557881355286,
+          0.22342881560325623
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 2.3333827917592403e-74
+      },
+      "final_distribution": {
+        "mean": [
+          -0.38062435388565063,
+          0.24295543134212494
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 3.3184475377022772e-96
+      }
+    },
+    {
+      "case_id": 3,
+      "reason": "out_of_bounds",
+      "measured_before_last_state": {
+        "x": 22.63825101093849,
+        "y": 5.903754097733132,
+        "yaw": -1.442634662101546,
+        "v": 0.5723543803379583,
+        "steering": -0.43291571761747005,
+        "acceleration": 1.3350345566499122,
+        "time": 27.750000413507223
+      },
+      "measured_before_last_frame": 27274,
+      "initial_action": [
+        0.02983054704964161,
+        -0.6700025796890259
+      ],
+      "final_action": [
+        0.0036179497838020325,
+        -0.6601590514183044
+      ],
+      "recorded_action": [
+        0.0036179497838020325,
+        -0.6601590514183044
+      ],
+      "initial_distribution": {
+        "mean": [
+          0.02983054704964161,
+          -0.6700025796890259
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 0.9483109488456124
+      },
+      "final_distribution": {
+        "mean": [
+          0.0036179497838020325,
+          -0.6601590514183044
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 0.5782878389047703
+      }
+    },
+    {
+      "case_id": 4,
+      "reason": "success",
+      "measured_before_last_state": {
+        "x": 29.03784719245345,
+        "y": 12.255182965452361,
+        "yaw": 0.593889849935687,
+        "v": 0.3569274676431437,
+        "steering": -0.1657743867310118,
+        "acceleration": 1.340620510523648,
+        "time": 19.150000285357237
+      },
+      "measured_before_last_frame": 27689,
+      "initial_action": [
+        -0.3426017165184021,
+        -0.30934107303619385
+      ],
+      "final_action": [
+        -0.3559516966342926,
+        -0.2953762412071228
+      ],
+      "recorded_action": [
+        -0.3559516966342926,
+        -0.2953762412071228
+      ],
+      "initial_distribution": {
+        "mean": [
+          -0.3426017165184021,
+          -0.30934107303619385
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 2.235974336671117e-78
+      },
+      "final_distribution": {
+        "mean": [
+          -0.3559516966342926,
+          -0.2953762412071228
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 2.0485019733916284e-84
+      }
+    },
+    {
+      "case_id": 5,
+      "reason": "success",
+      "measured_before_last_state": {
+        "x": 22.626740631796892,
+        "y": 22.926323884683782,
+        "yaw": 1.0123448993299746,
+        "v": 0.4834824656575775,
+        "steering": -0.0035645456718379842,
+        "acceleration": 0.6267379536044817,
+        "time": 18.450000274926424
+      },
+      "measured_before_last_frame": 28090,
+      "initial_action": [
+        -1.0,
+        0.010549107566475868
+      ],
+      "final_action": [
+        -1.0,
+        0.017680002376437187
+      ],
+      "recorded_action": [
+        -1.0,
+        0.017680002376437187
+      ],
+      "initial_distribution": {
+        "mean": [
+          -1.0145598649978638,
+          0.010549107566475868
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 0.0
+      },
+      "final_distribution": {
+        "mean": [
+          -1.0275311470031738,
+          0.017680002376437187
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 0.0
+      }
+    },
+    {
+      "case_id": 6,
+      "reason": "success",
+      "measured_before_last_state": {
+        "x": 27.593279872791783,
+        "y": 6.591891174641269,
+        "yaw": -0.5419255849557887,
+        "v": 0.06329990556864196,
+        "steering": 0.2481427586115214,
+        "acceleration": 1.9085348690310866,
+        "time": 16.700000248849392
+      },
+      "measured_before_last_frame": 28456,
+      "initial_action": [
+        1.0,
+        0.42298179864883423
+      ],
+      "final_action": [
+        1.0,
+        0.44031909108161926
+      ],
+      "recorded_action": [
+        1.0,
+        0.44031909108161926
+      ],
+      "initial_distribution": {
+        "mean": [
+          1.0074678659439087,
+          0.42298179864883423
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 1.0
+      },
+      "final_distribution": {
+        "mean": [
+          1.011717438697815,
+          0.44031909108161926
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 1.0
+      }
+    },
+    {
+      "case_id": 7,
+      "reason": "deadline",
+      "measured_before_last_state": {
+        "x": 22.998892572427028,
+        "y": 6.007553904245729,
+        "yaw": -1.1402530269263602,
+        "v": 1.3634571016824457e-10,
+        "steering": -0.2548644449536168,
+        "acceleration": 2.011790481968746e-09,
+        "time": 44.950000669807196
+      },
+      "measured_before_last_frame": 29387,
+      "initial_action": [
+        -0.038271501660346985,
+        -0.491690993309021
+      ],
+      "final_action": [
+        -0.043284811079502106,
+        -0.4820185601711273
+      ],
+      "recorded_action": [
+        -0.043284811079502106,
+        -0.4820185601711273
+      ],
+      "initial_distribution": {
+        "mean": [
+          -0.038271501660346985,
+          -0.491690993309021
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 0.01832897479221375
+      },
+      "final_distribution": {
+        "mean": [
+          -0.043284811079502106,
+          -0.4820185601711273
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 0.009062507643592232
+      }
+    },
+    {
+      "case_id": 8,
+      "reason": "out_of_bounds",
+      "measured_before_last_state": {
+        "x": 31.927770832400608,
+        "y": 14.9726489310775,
+        "yaw": 0.49691696411095876,
+        "v": 0.5664675446694998,
+        "steering": -0.20905308358563196,
+        "acceleration": 0.4615637835885167,
+        "time": 42.55000063404441
+      },
+      "measured_before_last_frame": 30270,
+      "initial_action": [
+        -0.13010823726654053,
+        -0.3955932557582855
+      ],
+      "final_action": [
+        -0.15587273240089417,
+        -0.38699600100517273
+      ],
+      "recorded_action": [
+        -0.15587273240089417,
+        -0.38699600100517273
+      ],
+      "initial_distribution": {
+        "mean": [
+          -0.13010823726654053,
+          -0.3955932557582855
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 6.074370611353828e-13
+      },
+      "final_distribution": {
+        "mean": [
+          -0.15587273240089417,
+          -0.38699600100517273
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 8.727956030152006e-18
+      }
+    },
+    {
+      "case_id": 9,
+      "reason": "collision",
+      "measured_before_last_state": {
+        "x": 12.857150590621217,
+        "y": 9.801247531904018,
+        "yaw": 0.9872718368781239,
+        "v": 1.4275654421144641,
+        "steering": 0.31108045109136795,
+        "acceleration": 1.6212139960701655,
+        "time": 10.700000159442425
+      },
+      "measured_before_last_frame": 30516,
+      "initial_action": [
+        0.07229124009609222,
+        0.5538418889045715
+      ],
+      "final_action": [
+        0.09082414209842682,
+        0.5706477761268616
+      ],
+      "recorded_action": [
+        0.09082414209842682,
+        0.5706477761268616
+      ],
+      "initial_distribution": {
+        "mean": [
+          0.07229124009609222,
+          0.5538418889045715
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 0.9999604264462056
+      },
+      "final_distribution": {
+        "mean": [
+          0.09082414209842682,
+          0.5706477761268616
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 0.9999996445763821
+      }
+    },
+    {
+      "case_id": 10,
+      "reason": "deadline",
+      "measured_before_last_state": {
+        "x": 28.50151723228548,
+        "y": 9.459167634178419,
+        "yaw": 0.042488072031122925,
+        "v": -7.418526344764691e-06,
+        "steering": -0.2564043469286847,
+        "acceleration": 3.85657169454988e-05,
+        "time": 44.950000669807196
+      },
+      "measured_before_last_frame": 31447,
+      "initial_action": [
+        -1.0,
+        -0.4873371124267578
+      ],
+      "final_action": [
+        -1.0,
+        -0.49150678515434265
+      ],
+      "recorded_action": [
+        -1.0,
+        -0.49150678515434265
+      ],
+      "initial_distribution": {
+        "mean": [
+          -1.0313233137130737,
+          -0.4873371124267578
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 0.0
+      },
+      "final_distribution": {
+        "mean": [
+          -1.049816608428955,
+          -0.49150678515434265
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 0.0
+      }
+    },
+    {
+      "case_id": 11,
+      "reason": "out_of_bounds",
+      "measured_before_last_state": {
+        "x": 22.639133240554408,
+        "y": 6.268602084373899,
+        "yaw": -1.5258061816301294,
+        "v": 0.5359869805616668,
+        "steering": -0.3457246719502818,
+        "acceleration": -0.8366469749320515,
+        "time": 27.750000413507223
+      },
+      "measured_before_last_frame": 32034,
+      "initial_action": [
+        -0.037957414984703064,
+        -0.5627822279930115
+      ],
+      "final_action": [
+        -0.06868640333414078,
+        -0.5582484006881714
+      ],
+      "recorded_action": [
+        -0.06868640333414078,
+        -0.5582484006881714
+      ],
+      "initial_distribution": {
+        "mean": [
+          -0.037957414984703064,
+          -0.5627822279930115
+        ],
+        "std": [
+          0.018315639346837997,
+          0.018315639346837997
+        ],
+        "positive_acceleration_probability": 0.01911385719158417
+      },
+      "final_distribution": {
+        "mean": [
+          -0.06868640333414078,
+          -0.5582484006881714
+        ],
+        "std": [
+          0.018317315727472305,
+          0.018309971317648888
+        ],
+        "positive_acceleration_probability": 8.848519416956514e-05
+      }
+    }
+  ],
+  "new_physical_controls": 0,
+  "optimizer_updates": 0,
+  "wall_seconds": 3.2810000001918525
+}

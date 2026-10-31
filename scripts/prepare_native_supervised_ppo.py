@@ -213,8 +213,10 @@ def fresh_target_kl(model, target_kl):
             'scope':'Existing SB3 per-rollout epoch early stop; physical budget and endpoint unchanged. Not a hard bound on cumulative policy drift.'}
 
 
-def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None,ppo_reward_scale=None,cleanup_harness_source=None,geometry_version=None):
+def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_progress=False,categorical_probability=.9,learning_rate=None,rollout_actions=None,initialization_gate='complete_inventory_v1',current_cleanup_harness=False,target_kl=None,critic_rate_profile=None,partition_inventory=None,ppo_reward_scale=None,cleanup_harness_source=None,geometry_version=None,freeze_observation_statistics=False):
     parent = Path(parent).resolve()
+    if type(freeze_observation_statistics) is not bool:
+        raise ValueError('Observation-statistics profile must be an explicit boolean')
     if current_cleanup_harness and cleanup_harness_source is not None:
         raise ValueError('Choose current or explicit archived cleanup harness, not both')
     cleanup_source = (ROOT/'scripts/carla_bridge37.py' if current_cleanup_harness else
@@ -279,6 +281,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         if methods==['B1'] and log_std!=-2.3:label+='_std'+format(log_std,'.8g')
         if methods!=['B1'] and categorical_probability!=.9:label+='_prob'+format(categorical_probability,'.8g')
         if initialization_gate=='basic_motion_training_v1':label+='_basic_motion_v1'
+        if freeze_observation_statistics:label+='_frozen_obs_v1'
         if cleanup_source is not None:label+='_cleanup_snapshot'
         if geometry_version is not None:label+='_geometry_v4'
         registration=parent/(label+'_registration.json')
@@ -401,6 +404,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                              'this is a development hypothesis, not evidence of improved driving or reliable bootstrap values.',
                 'stopping_rule':'One fixed physical endpoint and all four original cases; no early checkpoint selection.'}
         protocol['resource_limits']['wall_seconds'] = wall_seconds
+        if freeze_observation_statistics:
+            protocol['freeze_observation_statistics'] = True
         protocol['source_hashes'] = {p.relative_to(batch/'source').as_posix(): sha(p)
             for p in (batch/'source').rglob('*') if p.is_file() and '__pycache__' not in p.parts}
         write_json(batch/'protocol.json', protocol)
@@ -429,5 +434,6 @@ if __name__ == '__main__':
     parser.add_argument('--partition-inventory',type=Path,help='New versioned training/validation inventory,applied before the first PPO update')
     parser.add_argument('--ppo-reward-scale',type=float,choices=[.05],help='Separate fixed1/20learner-reward units diagnostic; raw task rewards unchanged')
     parser.add_argument('--geometry-version',choices=['carla_driving_indexed_union_256_v4'],help='Explicit new collision geometry before the first PPO update;requires new experiment and disclosed v3 teacher input')
+    parser.add_argument('--freeze-observation-statistics',action='store_true',help='Explicit continuation profile; preserve the initializer observation statistics throughout PPO')
     args = parser.parse_args()
-    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory,args.ppo_reward_scale,args.cleanup_harness_source,args.geometry_version)
+    prepare(args.parent, args.controls, args.wall_seconds, args.log_std, args.guarded_progress,args.categorical_probability,args.learning_rate,args.rollout_actions,args.initialization_gate,args.current_cleanup_harness,args.target_kl,args.critic_rate_profile,args.partition_inventory,args.ppo_reward_scale,args.cleanup_harness_source,args.geometry_version,args.freeze_observation_statistics)
