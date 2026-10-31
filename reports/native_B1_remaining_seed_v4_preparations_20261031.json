@@ -1,0 +1,74 @@
+{
+  "scope": "Four independently initialized seed weights copied to v4 geometry;zero native evaluation or PPO and not yet a trained or qualified baseline cohort",
+  "seeds": [
+    {
+      "seed": 22,
+      "parent": "20261027T144319Z_native_measured_bc",
+      "batch": "20261031T081001890273Z_native_initialization_v4",
+      "model_sha256": "697073dc5727813b62e6e59f09e67ec1799b73c83f364163c6af803c1f2e0eb1",
+      "policy_tensor_sha256": "11f579066eb1212b763210db5b1f8d683fa95360470be66e706fa617624e0d01",
+      "checkpoint_bytes_unchanged": {
+        "model.zip": true,
+        "normalization.pkl": true,
+        "resume_state.pkl": true
+      },
+      "new_controls": 0,
+      "PPO_updates": 0,
+      "additional_supervised_updates": 0,
+      "protocol_sha256": "7d0c58737ae4e7a647b75c365cfaf013f4b1ca934f0b039dc0347776bb6fac47",
+      "next_gate": "Not activated;requires the same declared actor-refinement recipe and basic-motion qualification before PPO"
+    },
+    {
+      "seed": 33,
+      "parent": "20261028T004311Z_native_measured_bc",
+      "batch": "20261031T081004671033Z_native_initialization_v4",
+      "model_sha256": "d5f9d4a6e2c33c49fc1a2216e66995622da12b8d522fbc29633f79ee3d5058c0",
+      "policy_tensor_sha256": "156fda227ef041952c9b17a279b2249099b7a198d911071d9c1e72f2735fb6e3",
+      "checkpoint_bytes_unchanged": {
+        "model.zip": true,
+        "normalization.pkl": true,
+        "resume_state.pkl": true
+      },
+      "new_controls": 0,
+      "PPO_updates": 0,
+      "additional_supervised_updates": 0,
+      "protocol_sha256": "82a21d50faee5f13c2aef88cc5b448f6937bc5e06430fdb3f16e07128c918a92",
+      "next_gate": "Not activated;requires the same declared actor-refinement recipe and basic-motion qualification before PPO"
+    },
+    {
+      "seed": 44,
+      "parent": "20261028T004711Z_native_measured_bc",
+      "batch": "20261031T081007399931Z_native_initialization_v4",
+      "model_sha256": "ca56a6eabb6d2a9d68bc4498a02041c9bd330c2fd5b3a3f91d7be452d3135a9e",
+      "policy_tensor_sha256": "661b408d25e423fbe9ffde42144de5bbbe60bd69bfdf3a474ecadfa8f2f1336e",
+      "checkpoint_bytes_unchanged": {
+        "model.zip": true,
+        "normalization.pkl": true,
+        "resume_state.pkl": true
+      },
+      "new_controls": 0,
+      "PPO_updates": 0,
+      "additional_supervised_updates": 0,
+      "protocol_sha256": "cef029961e628befdc32f13bfe58d9b60942c41d5e0d6ec06ae48f3dfe3aaae4",
+      "next_gate": "Not activated;requires the same declared actor-refinement recipe and basic-motion qualification before PPO"
+    },
+    {
+      "seed": 55,
+      "parent": "20261028T005113Z_native_measured_bc",
+      "batch": "20261031T081010075595Z_native_initialization_v4",
+      "model_sha256": "ce1aaa9f1c0eda5c9d759871f967d534bc593adca2f8b1e4ee51a1f74f90b29d",
+      "policy_tensor_sha256": "a2ec1760b06c7cc26c17f5efd115416d8b1c7cc97b98551cbe3783bab7118bdd",
+      "checkpoint_bytes_unchanged": {
+        "model.zip": true,
+        "normalization.pkl": true,
+        "resume_state.pkl": true
+      },
+      "new_controls": 0,
+      "PPO_updates": 0,
+      "additional_supervised_updates": 0,
+      "protocol_sha256": "59b741bca5852a7e55769184211543a1b5912410c83afdbec9099a1b4acbffef",
+      "next_gate": "Not activated;requires the same declared actor-refinement recipe and basic-motion qualification before PPO"
+    }
+  ],
+  "research_acceptance": "UNMET"
+}

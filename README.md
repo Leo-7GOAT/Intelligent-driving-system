@@ -15,6 +15,9 @@ training controls/650Adam steps. A walker-spawn initialization failure was
 diagnosed and fixed; the unchanged trained H checkpoint was reevaluated with
 zero new learning and all interrupted costs retained.
 [Complete recovered validation](reports/native_broader_H_spawn_recovery_complete_20261031.json).
+Its [public frozen-evaluation capsule](reports/H_v4_broader_evaluation_public_verification_20261031.json)
+independently reproduces all8,089controls and24initial actions;this recovery
+segment performs zero new training and retains its ancestor-cost record.
 Its H0 counterpart now completes **21/24**, zero unsafe, after20,561training
 controls/650Adam steps;the three failures are static-obstacle deadlines.
 All30,292H0controls and24measured initial actions verify. The paired gap is
@@ -35,6 +38,8 @@ The [training-only trajectory audit](reports/native_B1_lower_lr_full_trajectory_
 now covers80fixed-stride/last-state oracle queries across all12first completed
 training episodes. No new controls,actor fitting or PPO updates are performed;
 oracle disagreement alone establishes no policy improvement.
+The other four B1seed initializers are now [copied and verified on v4 geometry](reports/native_B1_remaining_seed_v4_preparations_20261031.json).
+They remain unactivated zero-PPO checkpoints;they are not four completed training runs.
 
 The second trained H seed also completes12/12,zero unsafe;all24,858controls
 verify. Its recovered H0sibling completes10/12,zero unsafe,with all lost

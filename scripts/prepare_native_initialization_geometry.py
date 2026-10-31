@@ -26,17 +26,18 @@ from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 def require_pristine(parent, protocol):
     prepared = read(parent/'prepared.json')
+    methods=protocol.get('methods')
     if (prepared['status'] != 'PREPARED_NOT_STARTED'
             or prepared['protocol_sha256'] != sha(parent/'protocol.json')
             or protocol.get('evaluation_only') is not True
-            or protocol.get('methods') != ['H', 'H0']
-            or protocol.get('shared_endpoint_mask_v1') is not True
+            or methods not in (['H', 'H0'], ['B1'])
+            or (methods==['H','H0'] and protocol.get('shared_endpoint_mask_v1') is not True)
             or protocol.get('road_geometry_version') != 'carla_driving_indexed_union_64_v3'
             or protocol.get('controlled_budget_per_method') != 0
-            or protocol.get('method_budgets') != {'H': 0, 'H0': 0}):
-        raise ValueError('Require pristine registered zero-PPO shared-mask initializer')
+            or protocol.get('method_budgets') != {method:0 for method in methods}):
+        raise ValueError('Require pristine registered zero-PPO H/H0 or direct B1 initializer')
     forbidden = ('launcher_execution.json', 'activation.json', 'guard_final.json',
-                 'failure.json', 'launcher_failure.json', 'H', 'H0')
+                 'failure.json', 'launcher_failure.json', 'H', 'H0', 'B1')
     if any((parent/name).exists() for name in forbidden) or any((parent/'infrastructure').iterdir()):
         raise ValueError('Initializer has execution evidence; preserve its lifecycle')
 
