@@ -3,6 +3,8 @@ import shutil
 
 import pytest
 
+pytestmark = pytest.mark.usefixtures('ample_training_disk')
+
 import scripts.prepare_native_rollout_pair as pairing
 from navstack.experiments import write_json
 

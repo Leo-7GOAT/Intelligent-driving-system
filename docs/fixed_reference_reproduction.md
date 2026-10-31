@@ -1,5 +1,7 @@
 # Reproduce the fixed-reference controller study
 
+[Public-download independent reproduction receipt](../reports/fixed_reference_public_reproduction_20261031.json): all145file digests,38,962state transitions,metrics and PNG match at checkoutcd989d9. The initially failed line-ending check is retained in that receipt.
+
 This is a lightweight VehiclePlant comparison, not CARLA or PPO evidence. All
 80 completed episodes and the earlier failed version's 20 completed episodes
 are retained. Only the complete version contributes to the reported scores.

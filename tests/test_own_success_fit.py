@@ -1,6 +1,8 @@
 import numpy as np
 import torch
 import pytest
+
+pytestmark = pytest.mark.usefixtures('ample_training_disk')
 from stable_baselines3 import PPO
 from test_discrete_flat_policy import Probe
 from navstack.discrete_flat_policy import DiscreteFlatRoadPolicy

@@ -6,6 +6,8 @@ from types import SimpleNamespace
 
 import numpy as np
 import pytest
+
+pytestmark = pytest.mark.usefixtures('ample_training_disk')
 import torch
 
 from navstack.config import EnvConfig, PlannerConfig, VehicleConfig

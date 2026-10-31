@@ -6,6 +6,8 @@ from pathlib import Path
 
 import pytest
 
+pytestmark = pytest.mark.usefixtures('ample_training_disk')
+
 from navstack.experiments import write_json
 import scripts.combine_native_endpoints as combined
 import scripts.continue_native_learning as continuation

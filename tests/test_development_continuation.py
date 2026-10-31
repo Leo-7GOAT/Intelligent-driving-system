@@ -4,6 +4,8 @@ from pathlib import Path
 
 import pytest
 
+pytestmark = pytest.mark.usefixtures('ample_training_disk')
+
 from navstack.process_lease import ProcessLease
 from scripts import continue_development as continuation
 
@@ -61,6 +63,15 @@ def test_copy_preserves_source_checkpoint_and_cumulative_provenance(parent):
     assert all(p.read_bytes() == data for p, data in originals.items())
     assert continuation.read(copied / "resolved_config.json")["deadline_epoch"] == protocol["deadline_epoch"] - 120
     assert continuation.read(root / "runs" / "continuation.json")["batch"] == str(new)
+
+
+def test_low_disk_still_refuses_staging_before_creating_child(parent, monkeypatch):
+    from types import SimpleNamespace
+    batch, _, root = parent
+    monkeypatch.setattr(continuation.shutil, 'disk_usage', lambda path: SimpleNamespace(free=1024**3))
+    with pytest.raises(RuntimeError, match='resource guard'):
+        prepare(parent)
+    assert list((root/'runs').iterdir()) == [batch]
 
 
 @pytest.mark.parametrize("owner", ["supervisor", "worker"])

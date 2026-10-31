@@ -6,6 +6,8 @@ import shutil
 
 import pytest
 
+pytestmark = pytest.mark.usefixtures('ample_training_disk')
+
 from navstack.experiments import write_json
 from scripts.native_road_learning import registered_jobs
 import scripts.prepare_native_recovery as recovery

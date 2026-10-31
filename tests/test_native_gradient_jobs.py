@@ -1,4 +1,6 @@
 import pytest
+
+pytestmark = pytest.mark.usefixtures('ample_training_disk')
 from pathlib import Path
 import shutil
 from navstack.independent_clip_ppo import GLOBAL_CLIP, INDEPENDENT_CLIP

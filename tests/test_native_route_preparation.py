@@ -2,6 +2,8 @@ import json
 
 import pytest
 
+pytestmark = pytest.mark.usefixtures('ample_training_disk')
+
 from navstack.config import VehicleConfig
 from navstack.experiments import write_json
 from scripts.native_road_learning import training_config
