@@ -1,4 +1,4 @@
-# Current handoff — 2026-10-31 15:56 local
+# Current handoff — 2026-10-31 16:17 local
 
 Original objective ACTIVE/UNMET. This supersedes earlier live-process reports.
 
@@ -12,12 +12,18 @@ Original objective ACTIVE/UNMET. This supersedes earlier live-process reports.
   method's hash-bound bridge response stream. Original failure is retained;
   exact bound-stream auditor and both audit outputs are preserved in the batch.
   No CARLA control or optimization was repeated.51targeted tests pass.
-- B1broader batch20261031T073909784878Z_native_supervised_ppo ACTUALLY TRAINING,
-  worker4840,36train/24geometry-separated DEVELOPMENT validation.20480controls,
+- B1broader batch20261031T073909784878Z_native_supervised_ppo TRAINING COMPLETE,
+  worker4840is now running24geometry-separated DEVELOPMENT validation conditions.
+  Training20480controls/640Adam is complete;no further update during validation.
+  Registered36training conditions,
   7200seconds,lr3e-6,rollout1280,targetKL.01. Same initial tensors/norm/RNG as
   completed10/12known12low-rate branch;zero PPO before this new branch.
   New profile admits only canonical walker0.2mspawn-clearance/evidence AST edits.
   Source380files and ValidateOnly both verified. Endpoint postprocessor registered.
+  Bounded readonly comparison/publication worker is also registered;receipt
+  runs/B1_broader_completion_launch_20261031.json. It waits for complete raw audit,
+  verifies source bindings,compares against H24,uploads all failures and verifies
+  an unauthenticated independent download. No metrics-driven early stopping.
 - Seed33/44/55H/H0initialization gates all complete;these have ZERO PPO and are
   not independently trained seeds yet. Original waiting-only driver55888 was
   retained-handle verified and superseded before any child creation. No worker
@@ -29,6 +35,15 @@ Original objective ACTIVE/UNMET. This supersedes earlier live-process reports.
   gates. Frozen source includes current explicit walker-profile preparer;
   workspace-copy hashes verified. Queue50796activated B1after seed55ownedcleanup.
   Read current receipts/CIM before any process adoption;PIDs here become stale.
+- H/H0broader capsules are now PUBLIC and independently reproduced,all8089/30292
+  controls and24initial actions each. Reports H_v4_broader_evaluation_public_verification
+  and H0_v4_broader_public_verification_20261031.json. Full source0643CI passes
+  723tests/18skips/4CARLA deselected;later0602CI also succeeds.
+- Four other B1seeds22/33/44/55are copied to explicitv4geometry;all checkpoint
+  bytes unchanged and four tensor fingerprints distinct. They remain UNACTIVATED
+  zero-PPO checkpoints,awaiting matched actor refinement and entry gates;do not
+  count them as trained policies. Actualcopy report
+  native_B1_remaining_seed_v4_preparations_20261031.json.
 - Next:finish/audit B1broader,continue the remaining matched independent PPO
   pairs,then use actual outcomes to improve healthy B1and test PPO-vs-strong-B3.
   Final120fresh paired conditions,>=5independent trained seeds,healthy B1and

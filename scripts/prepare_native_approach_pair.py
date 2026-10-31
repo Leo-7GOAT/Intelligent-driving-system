@@ -27,7 +27,26 @@ fit_module=importlib.util.module_from_spec(fit_spec);fit_spec.loader.exec_module
 fit_corrective_actor=fit_module.fit_corrective_actor
 
 
-def prepare(parent,oracle,steps=512,weight=20.):
+def verify_initializer_runtime(source,runtime):
+    import ast
+    critical=('candidate_policy','road_candidate_policy','independent_clip_ppo','config','env',
+              'measured_demo','imitation','carla_actuation','world','road_grid')
+    permitted=[]
+    for name in critical:
+        relative=Path('navstack')/(name+'.py');left=Path(source)/relative;right=Path(runtime)/relative
+        if sha(left)==sha(right):continue
+        if name!='road_candidate_policy':raise ValueError('Independent initializer runtime differs: '+name)
+        def signature(path):
+            tree=ast.parse(path.read_text(encoding='utf-8'))
+            tree.body=[node for node in tree.body if getattr(node,'name',None) not in
+                       ('SharedEndpointAblatedRoadPolicy','endpoint_policy_class')]
+            return ast.dump(tree,include_attributes=False)
+        if signature(left)!=signature(right):raise ValueError('Independent B1policy source differs')
+        permitted.append('Only H0class/factory additions in road_candidate_policy;all B1code AST exact')
+    return {'critical_files':len(critical),'permitted_non_B1_additions':permitted}
+
+
+def prepare(parent,oracle,steps=512,weight=20.,initializer=None):
     parent,oracle=Path(parent).resolve(),Path(oracle).resolve()
     if RUNTIME!=parent/'source' or type(steps) is not int or not 64<=steps<=2000 or not 1<=weight<=50:
         raise ValueError('Require exact parent frozen runtime and bounded matched fit')
@@ -58,12 +77,38 @@ def prepare(parent,oracle,steps=512,weight=20.):
     with np.load(oracle/'corrective_training_queries.npz',allow_pickle=False) as loaded:
         correction={k:loaded[k][keep].copy() for k in ('observations','actions','groups')}
     np.testing.assert_array_equal(correction['actions'],np.array([r['label'] for r,k in zip(available,keep) if k],dtype=np.float32))
-    origin=parent/'resume/B1';initial=verified_checkpoint_metadata(origin)
+    origin=parent/'resume/B1'
+    initializer_proof=None;initializer_config=None
+    if initializer is not None:
+        initializer=Path(initializer).resolve();entry=read(initializer/'protocol.json')
+        if (read(initializer/'prepared.json')!={'status':'PREPARED_NOT_STARTED','protocol_sha256':sha(initializer/'protocol.json')}
+                or entry['methods']!=['B1'] or not entry.get('evaluation_only')
+                or entry['road_geometry_version']!=protocol['road_geometry_version']
+                or entry['calibration_sha256']!=protocol['calibration_sha256']
+                or sha(initializer/'measured_demonstrations.npz')!=sha(base_path)
+                or any((initializer/n).exists() for n in ('B1','started.json','activation.json','launcher_execution.json','failure.json'))
+                or any((initializer/'infrastructure').iterdir())):
+            raise ValueError('External seed initializer must be pristine and share geometry,calibration and teacher bytes')
+        for name,digest in entry['source_hashes'].items():
+            if sha(initializer/'source'/name)!=digest:raise ValueError('External seed source changed')
+        compatibility=verify_initializer_runtime(initializer/'source',RUNTIME)
+        from scripts.prepare_native_supervised_ppo import guarded_initialization
+        origin=initializer/'resume/B1'
+        initializer_config=guarded_initialization(deepcopy(protocol),read(origin/'config.json'),'B1')
+        if initializer_config['env']!=read(parent/'resume/B1/config.json')['env']:
+            raise ValueError('External seed changes physical/task configuration')
+        protocol=deepcopy(protocol);protocol['seed']=entry['seed']
+        initializer_proof={'batch':initializer.name,'protocol_sha256':sha(initializer/'protocol.json'),
+            'seed':entry['seed'],'shared_teacher_bytes':True,'physical_task_matches_donor':True,
+            'source_compatibility':compatibility,
+            'scope':'Distinct existing zero-PPO seed weights;common fixed training-state corrections,not donor PPO weights'}
+    initial=verified_checkpoint_metadata(origin)
     if initial['physics_steps'] or initial['optimizer_steps']:raise ValueError('Fit starts from zero-PPO initializer,not trained donor weights')
     summary=read(parent/'B1/summary.json');charged=summary['charged_control_steps_lower_bound']+raw['evaluation_control_frames_verified']
     okay,reason=resources_ok(REPO)
     if not okay or shutil.disk_usage(REPO).free<12*1024**3:raise RuntimeError(str(reason))
-    registration=parent/'reachable_approach_pair_registration.json'
+    registration=parent/('reachable_approach_pair_registration.json' if initializer is None else
+                         'reachable_approach_seed'+str(protocol['seed'])+'_registration.json')
     with ProcessLease(parent/'reachable_approach_pair_prepare.lock'):
         if registration.exists():raise FileExistsError('Do not repeat registered paired fits')
         pair=REPO/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_native_approach_pair')
@@ -71,15 +116,17 @@ def prepare(parent,oracle,steps=512,weight=20.):
         write_json(pair/'registration.json',{'scope':__doc__,'parent':parent.name,'oracle_manifest_sha256':sha(oracle/'manifest.json'),
             'actor_fit_source_sha256':sha(fit_path),
             'steps_each':steps,'weight':weight,'wall_seconds':600,'base_training_rows':len(base['actions']),
+            'external_initializer':initializer_proof,
             'extra_reference_rows':int(keep.sum()),'safe_wait_rows_not_fit':int((~keep).sum()),
             'selection':'All valid solved-reference oracle labels,including braking;no positive-action or outcome-based selection. Original teacher holdout rows remain excluded.',
             'new_controls':0,'PPO_updates':0,'postfit_gate':'All12known development conditions;no checkpoint picking;not independent validation'})
         torch.set_num_threads(1);result=[]
         try:
-            for arm in ('replay','approach'):
+            for arm in (('replay','approach') if initializer is None else ('approach',)):
                 batch=REPO/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_native_'+arm+'_bc')
                 batch.mkdir();(batch/'infrastructure').mkdir();shutil.copytree(RUNTIME,batch/'source',ignore=shutil.ignore_patterns('__pycache__'))
                 shutil.copytree(parent/'calibration',batch/'calibration');destination=batch/'resume/B1';shutil.copytree(origin,destination)
+                if initializer_config is not None:write_json(destination/'config.json',initializer_config)
                 model=load_ppo(origin/'model.zip',device='cpu')
                 with (origin/'normalization.pkl').open('rb') as f:norm=pickle.load(f)
                 observations=base['observations'];actions=base['actions'];returns=base['returns'];groups=base['groups'];weights=np.ones(len(actions))
@@ -134,4 +181,5 @@ def prepare(parent,oracle,steps=512,weight=20.):
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--parent',required=True);p.add_argument('--oracle',required=True)
     p.add_argument('--steps',type=int,default=512);p.add_argument('--weight',type=float,default=20.)
-    a=p.parse_args();prepare(a.parent,a.oracle,a.steps,a.weight)
+    p.add_argument('--initializer',help='Pristine independent B1seed;fit only the predeclared approach recipe using the common donor TRAIN labels')
+    a=p.parse_args();prepare(a.parent,a.oracle,a.steps,a.weight,a.initializer)
