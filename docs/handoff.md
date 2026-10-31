@@ -1,6 +1,6 @@
 # Current handoff — 2026-10-31 09:21 local
 
-Original goal ACTIVE/UNMET. Latest evidence: reports/exact_corner_compute_20261031.md and reports/completed_native_diagnostics_20261031.md. Rootcorner optimization has668full CPU passes/1skip/4CARLA exclusions164.55s;full hosted/independent checks pending new source commit.
+Original goal ACTIVE/UNMET. Latest evidence: reports/exact_corner_compute_20261031.md and reports/completed_native_diagnostics_20261031.md. Source7dfbb3dcorner optimization has668full local passes/1skip/4CARLA exclusions164.55s;hosted41155398942passes653/16skip/4CARLA158.15s;independent7geometry checks4.41s,all549151hard-query flags/nodes/path unchanged. Public Hcapsule457files/6569controls/12actions/PNG also independently reproduced.
 
 Two bounded postprocessors were launched:36796completed Hreevaluation,
 23360waits new B1rollout1280. They only read the completed experiment/model,
@@ -13,7 +13,7 @@ local programs,not a claim that a model keeps reasoning outside the session.
 - Repaired native control pair004553035320/MPC and004553454599/Pursuit COMPLETE4/4each,1904+1907RPC-bound controls. Both guard0/owned-empty stop. Pursuit lower lateral/speed error and jerk;MPCsmoothness result does not transfer. First024600guard-failed MPC1905controls retained/separately audited. Native1297file capsule public/downloaded and independently reproducedall5716frames/three metric reports/identical PNG.
 - Hfrozen evaluation001732COMPLETE9/12,three deadlines,no unsafe,each family3/4;6569controls/12initial actions audited;zero new updates,retains20674training controls/650Adam. Postprocessor36796completed.
 - Queue53904has activated fresh B1rollout1280batch004737;queue37576waits B1→H0-only001825;queue44456waits H0→seed22PPO013440;queue47244waits seed22→train36/validation24batch014801. All fixed wall/resource/cleanup guards remain.
-- New B1rollout1280changes collection length only versus320control;initial tensors,empty optimizer,normalizer/RNG/config bytes independently equal;20480controls endpoint,all12development conditions,no checkpoint picking. ValidateOnly369files passed;ACTUALLY TRAINING worker70952/guard48444,over11000controls atlast check. Its frozen road kernel remains41fcb252;new root optimization was not applied.
+- New B1rollout1280changes collection length only versus320control;initial tensors,empty optimizer,normalizer/RNG/config bytes independently equal;20480controls endpoint,all12development conditions,no checkpoint picking. ValidateOnly369files passed;TRAINING COMPLETE20480controls/87Adam,16phases;worker70952/guard48444currently performs all12frozen evaluations. Its frozen road kernel remains41fcb252;new root optimization was not applied.
 - Latest confirmed full hosted source8afab8a649passed/16skip/4CARLA deselections194.18s;independent68checks15.95s. Latest b099b38full hosted run41152850977passes652/16skip/4CARLA deselections86.26s;38targeted independent tests7.11s. Both native guarded runs and independent public reconstructions passed.
 - Old queue records below are superseded. Active plan receipts: runs/B1_rollout_owned_queue_launches_20261031.json and remaining runs/repaired_control_owned_queue_launches_20261031.json entries3/4.
 

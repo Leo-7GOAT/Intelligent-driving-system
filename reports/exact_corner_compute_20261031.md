@@ -51,9 +51,19 @@ and search dependencies have identical source text,allowing Git line-ending
 conversion. Original registered byte hashes are never changed. The benchmark
 uses no CARLA connection,plant integration,optimizer update or new driving.
 
+Git converts the derived JSON fixture to LF. Its decoded query values are exactly
+equal to the original CRLF fixture,whose
+[byte-exact release copy](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_recorded_timeout_query_20261031.json)
+has SHA256`3bca0b623b320e4480964ad033aa4349a1d665bf692aa6573af31d1003d4c11a`.
+Use that download as`--fixture`when checking the original byte hash.
+
 The live B1rollout1280study and every previously prepared queued batch retain
 their original frozen kernel`41fcb252…`;no running experiment was patched.
 This optimization is a new source version for subsequent preparation/use.
 Full local CPU regression passes668tests,1skip/4CARLA exclusions in164.55s.
-The new full hosted run and independent-checkout checks are recorded separately
-after execution. All original research acceptance gates remain unmet.
+Source7dfbb3dalso passes the full hosted run653tests/16skips/4CARLA exclusions
+in158.15s,and independent geometry checks7/7in4.41s. The independent hard-query
+repeat preserves all flags/nodes/status/path and measures6.133→3.671s.
+The public Hmodel/raw/figure and661-decision diagnosis independently reproduce.
+[Executed receipts](H_public_and_exact_corner_verification_20261031.json).
+All original research acceptance gates remain unmet.

@@ -1,5 +1,30 @@
 # Development model card
 
+## Public shared-mask H frozen reevaluation
+
+The retained seed11Hcheckpoint completes **9/12**,with three deadlines,no unsafe
+episodes and3/4in each core family. This is a development result,below the
+overall80%target,and does not show PPO value over the12/12strong rule. Its
+original lineage has20,674training controls/650Adam steps;this phase adds zero
+training or optimization.
+
+The457-file frozen reevaluation capsule is public in two parts beside its
+[manifest](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H_shared_mask_frozen_reevaluation_20261031_repro.zip.parts.json).
+It contains the model,normalizer,frozen sources and all6,569new evaluation
+controls;it does not contain every ancestor training interaction. SHA256:
+`e396916448b185df02e695f570f6950013711440d0a60f335338129050f64acd`.
+After downloading the two parts and manifest together:
+
+```powershell
+python scripts/native_asset_parts.py join --manifest downloads/native_H_shared_mask_frozen_reevaluation_20261031_repro.zip.parts.json --output downloads/H_shared_mask.zip --sha256 e396916448b185df02e695f570f6950013711440d0a60f335338129050f64acd
+python scripts/reproduce_native_asset.py --archive downloads/H_shared_mask.zip --sha256 e396916448b185df02e695f570f6950013711440d0a60f335338129050f64acd --output runs/H_shared_mask_reproduction
+```
+
+Independent checkout7dfbb3dverifies all457files,6,569rawcontrols,12initial
+actions,frozen normalization,the byte-identical PNG and the complete661-decision
+planning-outcome report. [Executed receipts](../reports/H_public_and_exact_corner_verification_20261031.json).
+
+
 ## Public fixed-reward-unit B1 failure and native controller comparison
 
 The31October B1endpoint is **2/12**,with5bounds failures and1collision after

@@ -24,5 +24,16 @@
     "independent_public_raw_controls": {"B1": 27897, "native_controller_paired": 3811, "native_controller_failed_supervision": 1905},
     "both_public_figures_byte_identical": true
   },
+  "latest_exact_geometry_source": {
+    "commit": "7dfbb3d471eb1597478ccdb2dc81e25a1dad1080",
+    "local_full": {"passed": 668, "skipped": 1, "CARLA_deselected": 4, "seconds": 164.55},
+    "hosted_run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41155398942",
+    "hosted": {"conclusion": "success", "passed": 653, "skipped": 16, "CARLA_deselected": 4, "seconds": 158.15},
+    "independent_geometry_tests": {"passed": 7, "seconds": 4.41},
+    "independent_exact_hard_query_poses": 549151,
+    "independent_H_public_raw_controls": 6569,
+    "independent_H_measured_start_actions": 12,
+    "H_figure_byte_identical": true
+  },
   "research_acceptance": "UNMET"
 }
