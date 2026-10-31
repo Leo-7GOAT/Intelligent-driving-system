@@ -22,7 +22,11 @@ process identities. Verify receipts and creation times before acting.
   leaving worker/policy snapshots intact. Recovery already uses it and reports
   healthy45-50C. Full local700passed/1skip/4CARLA exclusions/3warnings246.47s;
   initial65guard checks12.03s and51snapshot checks13.43s. Logs
-  runs/gpu_guard_recovery_full_cpu_20261031.log. Hosted result pending for fix.
+  runs/gpu_guard_recovery_full_cpu_20261031.log. Sourcecb9c84fis pushed/remote
+  verified;hosted41171158775SUCCESS683passed/18skip/4CARLA exclusions195.45s.
+  Independent cb9c84falso passes71guard/recovery checks21.07s. Actual resumed
+  guard source bytes equal committed source. Receipt
+  native_GPU_guard_source_verification_20261031.json.
 - Current queues ALL use -UseCurrentGuard:61728recovery045159→B1replayPPO042301092506;
   17716replayPPO→approachPPO042300931172;652approachPPO→broader025445532080;
   10840broader→seed33gate040926397622;67120seed33→seed44gate041003482907;
@@ -36,6 +40,9 @@ process identities. Verify receipts and creation times before acting.
   snapshots retained. Status runs/remaining_v4_seed_PPO_execution_20261031_v2/status.json;
   launch runs/remaining_v4_seed_PPO_gpu_guard_driver_launch_20261031.json.
   Do NOT invoke the superseded original driver or independently prepare children.
+  Its source_commit is the base commit at freeze time;per-file hashes bind the
+  then-uncommitted operational fix. The active guard's exact committed bytes
+  are now independently checked againstcb9c84f. Source snapshots are immutable.
 - Prior runtime/reliance sourcebd645aeis independently reproduced:all four
   runtime JSONs byte-identical;all439H/494H0decisions and counterfactual
   probabilities identical apart from offline wall time. Independent14tests

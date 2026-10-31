@@ -1,0 +1,33 @@
+{
+  "scope": "Executed watchdog/recovery source verification,unit fault injection and real healthy resumed-worker observation;not completed final research acceptance",
+  "source_commit": "cb9c84f09b99c521ca750edf50551f366cac5586",
+  "source_push_remote_verified": true,
+  "local_CPU": {
+    "passed": 700,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "warnings": 3,
+    "seconds": 246.47
+  },
+  "independent_guard_recovery_checks": {
+    "source_commit": "cb9c84f09b99c521ca750edf50551f366cac5586",
+    "passed": 71,
+    "seconds": 21.07
+  },
+  "actual_resumed_guard_matches_committed_source_bytes": true,
+  "actual_guard_sha256": "ae93f94213e824fa4f07c7bb195d143361548129b5b015b4783df11927d5410b",
+  "operational_manifest_sha256": "2dc9c632dc46c1a8571f9e557193ba301c5bee58306b0d9f1ab43bb0be41887f",
+  "probe_fault_tests": "Single timeout then valid reading;two timeouts/nonzero/malformed/missing readings;hot85C reading;strict dead-owned/empty-port recovery;read-only validation;separate immutable hash-bound snapshot",
+  "native_evidence": "Recovery worker14448actually resumed H0and completed10465new controls/330new Adam steps;it is still evaluating all12conditions. No assertion that an actual transient was recovered by retry before shutdown;the original shutdown and lost costs remain preserved.",
+  "new_training_controls_counted_in_this_readonly_report": 0,
+  "research_acceptance": "UNMET",
+  "hosted_CPU": {
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41171158775",
+    "conclusion": "SUCCESS",
+    "passed": 683,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "warnings": 3,
+    "seconds": 195.45
+  }
+}
