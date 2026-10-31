@@ -1,5 +1,6 @@
 """Finite B2 cohort after a verified predecessor;no experiment retries or kills."""
 import argparse
+from collections import Counter
 import hashlib
 import json
 import os
@@ -49,10 +50,10 @@ def run(execution):
         atomic_json(execution / 'status.json', {'phase': phase, 'pid': os.getpid(),
                     'epoch': time.time(), 'completed': completed, **extra})
 
-    def call(command, log, timeout):
+    def call(command, log, timeout, environment=None):
         with (execution / log).open('x', encoding='utf-8') as stream:
             child = subprocess.Popen(list(map(str, command)), cwd=root,
-                                     stdout=stream, stderr=subprocess.STDOUT)
+                                     stdout=stream, stderr=subprocess.STDOUT, env=environment)
             atomic_json(execution / 'last_child.json', {'pid': child.pid, 'epoch': time.time(),
                                                        'log': log, 'timeout_seconds': timeout})
             try:
@@ -117,10 +118,49 @@ def run(execution):
                       '-ActivateQueued', '-UseCurrentGuard'], 'seed' + str(row['seed']) + '_lifecycle.log', 7800)
                 require_finished_parent(batch)
                 status('AUDITING_COMPLETE_B2_ENDPOINT', seed=row['seed'], batch=batch.name)
-                call([sys.executable, frozen / 'scripts/finish_native_endpoint_evidence_frozen.py',
-                      '--batch', batch.name, '--method', 'B2', '--report',
-                      'native_B2_v4_seed' + str(row['seed']) + '_endpoint_20261031.json',
-                      '--timeout-seconds', '600'], 'seed' + str(row['seed']) + '_audit.log', 660)
+                environment = dict(os.environ, NAVSTACK_AUDIT_SOURCE_ROOT=str(batch / 'source'))
+                inference = batch / 'B2/measured_start_inference.json'
+                call([sys.executable, frozen / 'scripts/audit_native_method_endpoint.py',
+                      '--batch', batch, '--method', 'B2'],
+                     'seed' + str(row['seed']) + '_raw_audit.log', 300, environment)
+                call([sys.executable, frozen / 'scripts/audit_native_policy_inference.py',
+                      '--batch', batch, '--method', 'B2', '--output', inference],
+                     'seed' + str(row['seed']) + '_inference_audit.log', 300, environment)
+                folder = batch / 'B2'
+                summary = read(folder / 'summary.json')
+                episodes = read(folder / 'evaluation.json')['episodes']
+                raw = read(folder / 'endpoint_raw_audit.json')
+                actions = read(inference)
+                current = read(batch / 'protocol.json')
+                inventory = current.get('native_validation', {}).get('manifest', current['native_case_manifest'])
+                expected_cases = len(inventory['cases'])
+                if (sorted(e['case_id'] for e in episodes) != list(range(expected_cases))
+                        or len(actions['results']) != expected_cases
+                        or raw['training_control_frames_verified'] != summary['physics_steps']
+                        or summary['optimizer_steps'] <= 0):
+                    raise ValueError('Incomplete B2 learning or registered evaluation inventory')
+                result = {
+                    'scope': 'Actual planner-specific PPO and all registered development cases;not final confirmation',
+                    'batch': batch.name, 'method': 'B2', 'seed': row['seed'],
+                    'cases': expected_cases, 'successes': sum(e['success'] for e in episodes),
+                    'termination_counts': dict(Counter(e['termination_reason'] for e in episodes)),
+                    'new_training_controls': summary['physics_steps'],
+                    'new_optimizer_steps': summary['optimizer_steps'],
+                    'model_lineage_controls': summary['lineage_control_steps'],
+                    'raw_controls_verified': raw['total_applied_controls_verified'],
+                    'evaluation_controls': raw['evaluation_control_frames_verified'],
+                    'measured_start_actions_reproduced': len(actions['results']),
+                    'model_sha256': sha(folder / 'model.zip'),
+                    'normalization_sha256': sha(folder / 'normalization.pkl'),
+                    'raw_audit_sha256': sha(folder / 'endpoint_raw_audit.json'),
+                    'inference_audit_sha256': sha(inference),
+                    'episodes': [{k: e[k] for k in ('case_id', 'success', 'termination_reason',
+                                                   'physics_steps', 'progress')} for e in episodes],
+                    'research_acceptance': 'UNMET',
+                }
+                report = root / 'reports' / ('native_B2_v4_seed' + str(row['seed']) + '_endpoint_20261031.json')
+                with report.open('x', encoding='utf-8') as stream:
+                    json.dump(result, stream, indent=2)
                 completed.append({'seed': row['seed'], 'batch': batch.name})
                 status('B2_SEED_COMPLETE', seed=row['seed'])
             status('ALL_FIVE_REGISTERED_B2_PPO_SEEDS_COMPLETE')
