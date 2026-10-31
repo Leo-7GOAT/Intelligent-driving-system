@@ -1,0 +1,463 @@
+{
+  "scope": "Five actual zero-PPO B2 preparations from respective matched canonical Hpristine learners;not completed training",
+  "batches": [
+    {
+      "seed": 11,
+      "batch": "20261031T104032928978Z_native_planner_training",
+      "protocol_sha256": "014708b2d82665556e1cd8c8531cda2d7985fa4f8d7c437482a4ee6b6e74c69f",
+      "initialization": {
+        "version": "fresh_B2_body_spline_v1",
+        "reference_H_batch": "20261031T025409165666Z_native_supervised_ppo",
+        "reference_H_checkpoint": "resume/H",
+        "reference_protocol_sha256": "afc39c3abd7e79da671cd9089fce930c2d82b8a76db6e4d58729b7157d609830",
+        "model_sha256": "ee446452b7d81bee2201c6c0a3b7f0488fa5cda1b6fa4faf8876a2d9fd2e663a",
+        "normalization_sha256": "0ee557017eca0168169a5aba6e9821fefe878f1298bbfd993ac4f1e0ddfeedf1",
+        "resume_state_sha256": "d9d66ec64181691cf0632be9383f9b9cb5651b6c97bd443fd3469487d973ce9d",
+        "complete_saved_learner_verification": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.EndpointClearRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        },
+        "initial_weights_normalization_rng_byte_identical": true,
+        "environment_changes": {
+          "method": [
+            "H",
+            "B2"
+          ],
+          "planner.grid_postprocess": [
+            "legacy",
+            "body_spline_v1"
+          ]
+        },
+        "new_supervised_updates": 0,
+        "PPO_updates_before_start": 0,
+        "limits": "Shared H teacher priors and previous planner development costs remain disclosed;this does not equalize total historical tuning effort. New task-specific optimizer updates must actually run before calling B2 trained."
+      }
+    },
+    {
+      "seed": 22,
+      "batch": "20261031T104126873363Z_native_planner_training",
+      "protocol_sha256": "7a7a13dc1f288b37aa28da0349033126461be940c2e215039a2a36137eab066c",
+      "initialization": {
+        "version": "fresh_B2_body_spline_v1",
+        "reference_H_batch": "20261031T025409042778Z_native_supervised_ppo",
+        "reference_H_checkpoint": "resume/H",
+        "reference_protocol_sha256": "142f9606f20b19762a45f524d8ea3b9260c563e5b16b788a60e09ac59452c77f",
+        "model_sha256": "8cbf639a2a3dad35131f6be55b60ea70fb5d67b5b9c2f852d8800953b65d8eb0",
+        "normalization_sha256": "db5ceed4dddb57d9f27b19967d49cef8927287e736c2c3f8a6a4ece7149006fc",
+        "resume_state_sha256": "e261cf590f3202cc6a9976c8d87cc8d06baaa1bad12368b7cebe0a4c1e267de9",
+        "complete_saved_learner_verification": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.EndpointClearRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        },
+        "initial_weights_normalization_rng_byte_identical": true,
+        "environment_changes": {
+          "method": [
+            "H",
+            "B2"
+          ],
+          "planner.grid_postprocess": [
+            "legacy",
+            "body_spline_v1"
+          ]
+        },
+        "new_supervised_updates": 0,
+        "PPO_updates_before_start": 0,
+        "limits": "Shared H teacher priors and previous planner development costs remain disclosed;this does not equalize total historical tuning effort. New task-specific optimizer updates must actually run before calling B2 trained."
+      }
+    },
+    {
+      "seed": 33,
+      "batch": "20261031T104129314279Z_native_planner_training",
+      "protocol_sha256": "8ff663282e2c3346c037294609c4cb3b431cb2172c855dee1409ac81880ad487",
+      "initialization": {
+        "version": "fresh_B2_body_spline_v1",
+        "reference_H_batch": "20261031T093156483162Z_native_supervised_ppo",
+        "reference_H_checkpoint": "resume/H",
+        "reference_protocol_sha256": "07df8b8ce835d739262cfd3d38c071513c32bacb2c27f73d6950f99acc279c4a",
+        "model_sha256": "57b77b7ff6a5dbfd63dd9ff477ab9aacd5d4ef0f3b91f6d0f826428c4ef6b23e",
+        "normalization_sha256": "a02aceb2c2e573167f2f14f01c46f111a2d38d2d4e6fe34e1e1978a57d2ae0b7",
+        "resume_state_sha256": "8a37a248b8fe31ee51da0d77cb41b90db5f1d1b03a10e5aa7f13898a424c506f",
+        "complete_saved_learner_verification": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.EndpointClearRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        },
+        "initial_weights_normalization_rng_byte_identical": true,
+        "environment_changes": {
+          "method": [
+            "H",
+            "B2"
+          ],
+          "planner.grid_postprocess": [
+            "legacy",
+            "body_spline_v1"
+          ]
+        },
+        "new_supervised_updates": 0,
+        "PPO_updates_before_start": 0,
+        "limits": "Shared H teacher priors and previous planner development costs remain disclosed;this does not equalize total historical tuning effort. New task-specific optimizer updates must actually run before calling B2 trained."
+      }
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T104131479611Z_native_planner_training",
+      "protocol_sha256": "43c60173a4d0bddf0bfc489c45399169e9ec16eade79658fc5d58340702c8450",
+      "initialization": {
+        "version": "fresh_B2_body_spline_v1",
+        "reference_H_batch": "20261031T093202647818Z_native_supervised_ppo",
+        "reference_H_checkpoint": "resume/H",
+        "reference_protocol_sha256": "786aa9159a304d65a492198bac09276bc67b22375a1daa7eb3ba8c1b5f61d038",
+        "model_sha256": "e88e46e7cee0443a3010776e2539ac15b85420893a9efe1c5954dfd69e46f087",
+        "normalization_sha256": "63056b65672a16cd206da3d32e1da5648ed80a5283cd5bd1ec3e3b213c564f54",
+        "resume_state_sha256": "b1dbe11f0b699de5832523833680a679b128d31aa02a1a20c0311dbc27522d9e",
+        "complete_saved_learner_verification": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.EndpointClearRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        },
+        "initial_weights_normalization_rng_byte_identical": true,
+        "environment_changes": {
+          "method": [
+            "H",
+            "B2"
+          ],
+          "planner.grid_postprocess": [
+            "legacy",
+            "body_spline_v1"
+          ]
+        },
+        "new_supervised_updates": 0,
+        "PPO_updates_before_start": 0,
+        "limits": "Shared H teacher priors and previous planner development costs remain disclosed;this does not equalize total historical tuning effort. New task-specific optimizer updates must actually run before calling B2 trained."
+      }
+    },
+    {
+      "seed": 55,
+      "batch": "20261031T104133575143Z_native_planner_training",
+      "protocol_sha256": "fb6ea75deec1753cbaefb3566c7c53841d36179b9ec2f464910ec485d42a62e2",
+      "initialization": {
+        "version": "fresh_B2_body_spline_v1",
+        "reference_H_batch": "20261031T093206498809Z_native_supervised_ppo",
+        "reference_H_checkpoint": "resume/H",
+        "reference_protocol_sha256": "d95cbdf13d2f0e423d940d0d14735c825acfe6ea29ca9f1e09656761bde9e253",
+        "model_sha256": "b2c5694fd0c20ff1aafac2555e6ec8bf9fd440858071d36e26958f6cbd98c756",
+        "normalization_sha256": "73b254190165b3a8eebeac1f980a4479e82f786269566daa14aa9b02641e97ed",
+        "resume_state_sha256": "f23c90f14470bc535b5888041af1f0e6a45b696561563bbda361ec80050372b9",
+        "complete_saved_learner_verification": {
+          "complete_saved_PPO_profile_matches_reference": true,
+          "profile": {
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "gamma": 0.9949874371066204,
+            "gae_lambda": 0.9746794344808963,
+            "ent_coef": 0.0,
+            "vf_coef": 0.5,
+            "max_grad_norm": 0.5,
+            "normalize_advantage": true,
+            "target_kl": null,
+            "learning_rate_schedule": [
+              3e-05,
+              3e-05,
+              3e-05
+            ],
+            "clip_schedule": [
+              0.2,
+              0.2,
+              0.2
+            ],
+            "clip_vf_schedule": null,
+            "optimizer_group_rates": [
+              3e-05
+            ],
+            "optimizer_class": "torch.optim.adam.Adam",
+            "optimizer_defaults": {
+              "lr": 3e-05,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-05,
+              "weight_decay": 0,
+              "amsgrad": false,
+              "maximize": false,
+              "foreach": null,
+              "capturable": false,
+              "differentiable": false,
+              "fused": null,
+              "decoupled_weight_decay": false
+            },
+            "policy_class": "navstack.road_candidate_policy.EndpointClearRoadPolicy",
+            "observation_shape": [
+              4705
+            ],
+            "action_space": "Discrete",
+            "action_count": 31,
+            "gradient_clip_mode": "global",
+            "normalizer": {
+              "class": "navstack.road_candidate_policy.RoadCandidateVecNormalize",
+              "norm_obs": true,
+              "norm_reward": false,
+              "clip_obs": 10.0,
+              "clip_reward": 10.0,
+              "epsilon": 1e-08,
+              "fixed_reward_scale": null
+            }
+          },
+          "scope": "Pristine learner recipe only;weights,RNG and statistics may differ across independent training seeds"
+        },
+        "initial_weights_normalization_rng_byte_identical": true,
+        "environment_changes": {
+          "method": [
+            "H",
+            "B2"
+          ],
+          "planner.grid_postprocess": [
+            "legacy",
+            "body_spline_v1"
+          ]
+        },
+        "new_supervised_updates": 0,
+        "PPO_updates_before_start": 0,
+        "limits": "Shared H teacher priors and previous planner development costs remain disclosed;this does not equalize total historical tuning effort. New task-specific optimizer updates must actually run before calling B2 trained."
+      }
+    }
+  ],
+  "controls_each": 20480,
+  "wall_seconds_each": 7200,
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,75 @@
+{
+  "scope": "Actual restoration through each frozen B2runtime on CPUspace-only environments;zero resets or plant integration,not CARLA driving",
+  "results": [
+    {
+      "seed": 11,
+      "frozen_restore_succeeded": true,
+      "observation_statistics_frozen": true,
+      "pristine": true,
+      "policy_tensor_sha256": "17afcd4fbc680d7ad0e2ad2ca7e944436a931adf7cbe4dd3d8b91f54b57f24c9",
+      "backend_class": "GridAStarPlanner",
+      "resets": 0,
+      "controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "seed": 22,
+      "frozen_restore_succeeded": true,
+      "observation_statistics_frozen": true,
+      "pristine": true,
+      "policy_tensor_sha256": "a3d63d886c426ff421964a8affa28c6158be872827b0e90ce074bc8d691744cf",
+      "backend_class": "GridAStarPlanner",
+      "resets": 0,
+      "controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "seed": 33,
+      "frozen_restore_succeeded": true,
+      "observation_statistics_frozen": true,
+      "pristine": true,
+      "policy_tensor_sha256": "c7cb3439d85c63258dc6ea083d8def53d380395b518e0fb2caa30c16c250e911",
+      "backend_class": "GridAStarPlanner",
+      "resets": 0,
+      "controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "seed": 44,
+      "frozen_restore_succeeded": true,
+      "observation_statistics_frozen": true,
+      "pristine": true,
+      "policy_tensor_sha256": "0990368deb69778dbe9bedf9889fb923473b2e9670a54b8f4d8af30a0445bf91",
+      "backend_class": "GridAStarPlanner",
+      "resets": 0,
+      "controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "seed": 55,
+      "frozen_restore_succeeded": true,
+      "observation_statistics_frozen": true,
+      "pristine": true,
+      "policy_tensor_sha256": "062da0b48bc4ba54da92979e0bc947cfc21425cf4c8725b11a081672ba5ebcc5",
+      "backend_class": "GridAStarPlanner",
+      "resets": 0,
+      "controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "distinct_pristine_policy_tensor_hashes": 5,
+  "ValidateOnly_all_five": "INPUTS_VALIDATED_NOT_SERVER_PROBED",
+  "source_files_verified": [
+    388,
+    388,
+    389,
+    389,
+    389
+  ],
+  "related_tests": {
+    "passed": 19,
+    "seconds": 13.87
+  },
+  "executed_verifier_sha256": "f29ee368cde032ad3f9234024f898c1e79c7fb105061bf08ccd3c8ce71f6bf76",
+  "research_acceptance": "UNMET"
+}
