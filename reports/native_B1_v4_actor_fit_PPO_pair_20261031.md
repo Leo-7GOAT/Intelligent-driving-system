@@ -17,6 +17,15 @@ The two-case difference does not establish a benefit across independent seeds.
 Both are rejected as healthy full-task baselines, rather than used to claim a
 hierarchy advantage.
 
+Both complete trained endpoints are now public, including their failures.
+The [replay capsule](B1_v4_replay_PPO_public_verification_20261031.json) and
+[approach capsule](B1_v4_approach_PPO_public_verification_20261031.json) independently
+reproduce all raw controls, twelve initial actions each and their result PNGs.
+An isolated checkout then reruns this full comparison from the two downloaded
+capsules: [all 53,324 controls and comparison fields agree](B1_v4_actor_fit_PPO_pair_public_verification_20261031.json).
+The operational export tests pass 22/22 in that checkout; hosted regression at
+the export-source commit also passes. Publication adds no new driving.
+
 `scripts/analyze_native_fit_ppo_pair.py` re-audits all **53,324** physical
 controls, checks all input/model hashes and optimizer boundaries, and verifies
 the common task, source, geometry, reward units and saved PPO schedule. Both

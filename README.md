@@ -29,6 +29,8 @@ The paired approach PPO endpoint also completes: **6/12, four bounds failures
 and one collision**, after 61 optimizer steps under the same physical budget.
 Both PPO endpoints regress from their actor-fit initializers and remain unhealthy.
 [Complete matched PPO comparison](reports/native_B1_v4_actor_fit_PPO_pair_20261031.json).
+[Both publicly downloaded endpoints reproduce the full comparison](reports/B1_v4_actor_fit_PPO_pair_public_verification_20261031.json),
+including all 53,324 controls, failures and result figures.
 [Completed replay PPO endpoint](reports/native_B1_v4_replay_fit_PPO_endpoint_20261031.json).
 Its [public failed-endpoint capsule](reports/B1_v4_replay_PPO_public_verification_20261031.json)
 reproduces all 27,579 controls and the result figure; the separately bound
