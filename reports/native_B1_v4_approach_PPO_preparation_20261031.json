@@ -1,0 +1,79 @@
+{
+  "scope": "Matched new real-PPO preparation after completed actor-only approach comparison;not results or healthy-final-baseline qualification",
+  "batches": [
+    {
+      "arm": "replay",
+      "batch": "20261031T042301092506Z_native_supervised_ppo",
+      "parent": "20261031T034614809334Z_native_replay_bc",
+      "original_fit_policy_tensors_exact": true,
+      "normalization_and_RNG_bytes_exact": true,
+      "PPO_optimizer_empty": true,
+      "PPO_controls_and_updates_initially_zero": true,
+      "env_config_exact": true,
+      "learning_schedule": {
+        "rollout_actions": 1280,
+        "minibatch": 320,
+        "epochs": 10,
+        "learning_rate": 3e-05,
+        "target_kl": 0.01,
+        "initial_log_std": [
+          -4.0,
+          -4.0
+        ]
+      },
+      "controls": 20480,
+      "wall_seconds": 7200,
+      "learning_entry": {
+        "profile": "basic_motion_training_v1",
+        "basic_successes": 4,
+        "basic_cases": 4,
+        "required_basic_successes": 3,
+        "minimum_basic_fraction": 0.75,
+        "full_task_successes": 8,
+        "full_task_cases": 12,
+        "full_task_qualification_claimed": false,
+        "scope": "PPO learning-entry sanity only. Full-task initialization may remain unqualified; no relaxation of final research acceptance or healthy-final-baseline claim."
+      },
+      "charged_input_controls_lower_bound": 44440
+    },
+    {
+      "arm": "approach",
+      "batch": "20261031T042300931172Z_native_supervised_ppo",
+      "parent": "20261031T034641272228Z_native_approach_bc",
+      "original_fit_policy_tensors_exact": true,
+      "normalization_and_RNG_bytes_exact": true,
+      "PPO_optimizer_empty": true,
+      "PPO_controls_and_updates_initially_zero": true,
+      "env_config_exact": true,
+      "learning_schedule": {
+        "rollout_actions": 1280,
+        "minibatch": 320,
+        "epochs": 10,
+        "learning_rate": 3e-05,
+        "target_kl": 0.01,
+        "initial_log_std": [
+          -4.0,
+          -4.0
+        ]
+      },
+      "controls": 20480,
+      "wall_seconds": 7200,
+      "learning_entry": {
+        "profile": "basic_motion_training_v1",
+        "basic_successes": 4,
+        "basic_cases": 4,
+        "required_basic_successes": 3,
+        "minimum_basic_fraction": 0.75,
+        "full_task_successes": 10,
+        "full_task_cases": 12,
+        "full_task_qualification_claimed": false,
+        "scope": "PPO learning-entry sanity only. Full-task initialization may remain unqualified; no relaxation of final research acceptance or healthy-final-baseline claim."
+      },
+      "charged_input_controls_lower_bound": 44131
+    }
+  ],
+  "selection": "Both registered actor fits retained,including unsafe cases. Same previously defined basic-motion learning entry4/4safe;no change to full-task or final success/safety gates.",
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "research_acceptance": "UNMET"
+}

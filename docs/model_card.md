@@ -42,7 +42,22 @@ Unauthenticated download and independent checkout 2fe4af8 reproduce all
 27,737 raw controls, twelve start actions, frozen statistics and identical PNG.
 [Executed receipt](../reports/B1_v4_PPO_public_verification_20261031.json).
 The baseline remains below the full-task target. Matched actor-only replay and
-approach fits are prepared and queued; their fit loss is not performance proof.
+approach fits now complete **8/12 with3bounds/1deadline versus10/12 with2bounds**.
+Both have4/4safe basic-motion cases and zero PPO updates; approach repairs
+cases7/10 with no replay-only win. This is single-seed supervision evidence,
+with safety still unqualified. [Complete comparison](../reports/native_B1_v4_approach_pair_complete_20261031.json).
+
+Both raw/model capsules have public five-part manifests:
+[replay](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_v4_replay_fit_20261031_repro.zip.parts.json),
+[approach](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_v4_approach_fit_20261031_repro.zip.parts.json).
+The archive SHA256 values are respectively
+`11071c988535ee5a194efd29da8901cbda57ea019a831ff2f5b148a1437b375d` and
+`1053eaa04d967a68988f07a3527276c8e7c0056e042a3c0cefc228168b66a72a`.
+Independent fixed checkout be6a50d reproduces446/445files,5,251/4,942controls,
+twelve start actions per arm,frozen statistics and identical figures.
+[Replay receipt](../reports/B1_v4_replay_fit_public_verification_20261031.json),
+[approach receipt](../reports/B1_v4_approach_fit_public_verification_20261031.json).
+Their matched real-PPO phases each have20,480controls queued;no outcome yet.
 
 ## Shared-mask feedback pair and fine-grid diagnostic (31 October)
 

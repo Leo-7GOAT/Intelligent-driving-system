@@ -1,0 +1,49 @@
+{
+  "scope": "Executed source/CPU and complete actor-fit native/public verification;not final research acceptance",
+  "verified_source_commit": "ace81388ad20d52e6f537064d45eaf5ba7a22243",
+  "hosted_CPU": {
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41167985455",
+    "conclusion": "SUCCESS",
+    "passed": 667,
+    "skipped": 16,
+    "CARLA_deselected": 4,
+    "warnings": 3,
+    "seconds": 193.81
+  },
+  "local_CPU": {
+    "scope": "Precommit worktree corresponding to be6a50d;subsequent source delta is the readonly pair analyzer,actually executed below",
+    "passed": 682,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "warnings": 3,
+    "seconds": 197.56,
+    "local_log": "pristine_initialization_full_cpu_20261031.log"
+  },
+  "independent_checks": {
+    "source_commit": "be6a50d41e29be82edd5272dfa988b562ea92a2f",
+    "passed": 7,
+    "seconds": 4.45,
+    "scope": "Pristine-initialization and geometry guards;not CARLA training"
+  },
+  "source_delta_be6_to_ace": [
+    "scripts/analyze_native_approach_pair.py"
+  ],
+  "complete_actor_fit_comparison": {
+    "report": "native_B1_v4_approach_pair_complete_20261031.json",
+    "all_native_control_frames_verified": 10193,
+    "measured_start_actions_exact": 24,
+    "replay_successes": 8,
+    "replay_bounds": 3,
+    "approach_successes": 10,
+    "approach_bounds": 2,
+    "PPO_updates": 0,
+    "success_gate_changes": 0
+  },
+  "public_reconstruction_receipts": [
+    "B1_v4_replay_fit_public_verification_20261031.json",
+    "B1_v4_approach_fit_public_verification_20261031.json"
+  ],
+  "new_real_PPO": "Two matched20480-control phases prepared and actually queued,not started;native_B1_v4_approach_PPO_preparation_20261031.json",
+  "remaining_seeds": "Fixed33/44/55phase-transition program actually live,awaiting ALLoriginal representation gates;not yet prepared/trained PPOchildren",
+  "research_acceptance": "UNMET"
+}

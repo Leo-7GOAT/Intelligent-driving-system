@@ -10,8 +10,8 @@ process identities. Verify receipts and creation times before acting.
   and24start actions verify. Reports native_H_v4_seed11_endpoint_20261031.json,
   native_H0_v4_seed11_endpoint_20261031.json,and
   native_v4_trained_seed11_feedback_pair_20261031.json;exact p=1.0.
-  B1replay034614809334is now ACTUALLY EVALUATING under worker28880;
-  approach034641272228stillwaits for its normal owned cleanup.
+  Both B1actor-fit evaluations have since completed;seed22v4PPOpair025409042778
+  is ACTUALLY TRAINING under worker42192,currently H. Check its live heartbeat.
 - Earlier completed-H method snapshot remains intact for provenance.
   Actual20,563training controls/650Adam,4,337evaluation controls;all24,900raw
   frames and12measured-start actions verify. Early report
@@ -36,18 +36,29 @@ process identities. Verify receipts and creation times before acting.
 - Two matched actor fits are complete,each512MSEsteps from the SAME original
   zero-PPO model. Replay uses original3467teacher TRAIN rows;approach adds all
   29valid solved-reference training labels(weight20),including braking. Critic,
-  empty PPO optimizer,normalizer/RNGbytes/log_std unchanged. No native score yet.
+  empty PPO optimizer,normalizer/RNGbytes/log_std unchanged. Full native scores:
+  replay8/12,3bounds/1deadline;approach10/12,2bounds. Both basic families4/4safe.
+  All10,193rawcontrols/24start actions verify. Complete comparison
+  native_B1_v4_approach_pair_complete_20261031.json. Still zero PPO updates.
   Pair034614808334;replay034614809334;approach034641272228. Reports
   native_B1_v4_approach_pair_preparation_20261031.json and
   native_B1_v4_stop_diagnosis_20261031.md. This is supervised baseline development.
-- Current owned sequential queues:64312 seed11pair→replay034614809334;
-  63196replay→approach034641272228;67468approach→seed22pair025409042778;
-  28112seed22→train36/validation24pair025445532080. Receipt
-  runs/approach_pair_owned_queue_launches_20261031.json. Old seed22waiter66736
+- Queues64312/63196completed both actor fits;67468activated seed22PPO025409042778.
+  Current queues63456:seed22→B1replayPPO042301092506;
+  42340:replayPPO→B1approachPPO042300931172;
+  15780:approachPPO→train36/validation24pair025445532080. Both new B1PPOphases
+  have20,480controls,original1280rollout/schedule,identical empty-PPOinitial
+  actor tensors/RNG/normalization and physical config. Each basic-motion entry
+  is4/4safe;neither is a healthy-final-baseline claim. Report
+  native_B1_v4_approach_PPO_preparation_20261031.json;actual queue receipt
+  runs/B1_approach_PPO_owned_queue_launches_20261031.json. Waiter28112was
+  superseded ONLYwhilewaiting,before child activation,with retained verified
+  handle;receipt runs/validation_waiter_superseded_for_B1_approach_PPO_20261031.json.
+  Old seed22waiter66736
   was superseded ONLYwhilewaiting,after identity/child-unstarted checks;
   receipt runs/seed22_v4_waiter_superseded_for_B1_approach_pair_20261031.json.
   All native launchers remain single-server,strict normal cleanup,no retries.
-- Read-only postprocessors69256/57704wait for replay/approach closure;receipt
+- Read-only postprocessors69256/57704completed both actor-fit endpoints;receipt
   runs/approach_pair_postprocessors_launches_20261031.json. Existing six H/H0
   watchers retain their distinct outputs and21600s caps. Do not duplicate runs.
 - B1long031506is PREPARED_NOT_QUEUED_NOT_STARTED;preserve its registration and
@@ -72,9 +83,17 @@ process identities. Verify receipts and creation times before acting.
   normal-cleanup checks. Queue PIDs24484/60144/64416;receipt
   runs/remaining_v4_seed_queue_launches_20261031.json. Six read-only endpoint
   postprocessors also launched;receipt remaining_v4_seed_postprocessors_launches_20261031.json.
-  These are representation gates,NOT completed independent PPO seeds. After
-  each complete audit,use existing guarded supervised-PPO preparation and
-  original75percent representation gate;never skip a failed fixed seed.
+  These are representation gates,NOT completed independent PPO seeds. A real
+  continuation program is now live under actual Python PID30576(wrapper58700),
+  WAITING_FOR_ALL_THREE_COMPLETE_SEED_GATES. It freezes289preparation/launcher
+  source files,requires ALLthree original75percent gates,then prepares and
+  runs H/H0PPO33→44→55with20,480controls per method/7200s per pair. No retries,
+  seed omissions or task changes;exact seed11env comparison before launch.
+  Do NOT independently prepare the same children:the program owns those
+  registrations. Live status runs/remaining_v4_seed_PPO_execution_20261031/status.json;
+  launch runs/remaining_v4_seed_PPO_driver_launch_20261031.json;public queue proof
+  reports/native_remaining_v4_seed_PPO_queue_20261031.json. Actual driver
+  runs/run_remaining_v4_seed_PPO_20261031.py;source/hash ledger kept beside status.
 - Bounded H/H0v4public publisher59436is COMPLETE:32parts downloaded unauthenticated,
   all609files/50,348controls/24actions/frozen statistics/identical PNG reproduced.
   Publication receipt reports/H_H0_v4_PPO_public_verification_20261031.json.
@@ -85,13 +104,21 @@ process identities. Verify receipts and creation times before acting.
   archive66,513,018bytes/609files,SHA1374429bca525b878cfdb86fb9ffd9f6b1d3943c24ff8208c056b6458e009351.
 - B1replay034614809334is now COMPLETE8/12but3bounds and1deadline,zero PPO;
   all5,251controls/12actions audited. It is NOT a healthy baseline. Approach
-  034641272228is ACTUALLY EVALUATING under worker51756. Read-only comparison
-  waiter67212has3600s cap,source hash binding,no repeated controls;receipt
+  034641272228is COMPLETE10/12with2bounds;all4,942controls/12actions audited.
+  Read-only comparison waiter67212completed successfully,source hash bound,
+  no repeated controls;receipt
   runs/B1_v4_approach_comparison_launch_20261031.json. Its new analyzer checks
   both complete raw bindings/conditions/physical configs and unchanged model
-  SHA;no paired result claimed before native_B1_v4_approach_pair_complete_20261031.json.
+  SHA;full result native_B1_v4_approach_pair_complete_20261031.json now exists.
+  Both five-part public capsules have completed unauthenticated independent
+  reconstruction at fixed checkoutbe6a50d:446/445files,5251/4942controls,12actions
+  each,frozen stats/identical PNG. Receipts B1_v4_replay_fit_public_verification_20261031.json
+  and B1_v4_approach_fit_public_verification_20261031.json. No new PPO yet.
 - Sourcebe6a50dis pushed/remote verified;independent seven initializer/geometry
-  checks pass4.45s. Hosted verification for that commit is still pending here.
+  checks pass4.45s. Hosted41167689480SUCCESS667passed/16skip/4CARLA exclusions
+  190.79s. Latest pushed sourceace8138host41167985455also SUCCESS. The comparison
+  analyzer is now actually executed on both complete endpoints. No new
+  production learning/geometry source changes after the682-test local suite.
 - Five independently trained seeds,healthy full-task B1,at least120NEWpaired
   final conditions,frequency/shared-safety ablations,PPOversusstrongB3and
   statistically supported hierarchy/feedback value remain open. All known12

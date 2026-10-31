@@ -13,9 +13,13 @@ The separate **frozen-weight** v4 migration scores H 9/12 versus H0 10/12,
 with no unsafe episodes. This reverses the earlier v3 gap and establishes no
 feedback benefit. B1 trained on v4 scores **7/12, zero unsafe, five deadlines**;
 its [public raw/model capsule](reports/B1_v4_PPO_public_verification_20261031.json)
-independently reproduces all 27,737 controls and the figure. Two matched
-training-data-only actor fits are queued to test the approach/parking defect;
-they have zero PPO updates and no native scores yet.
+independently reproduces all 27,737 controls and the figure. Matched actor-only
+fits now score **replay8/12 with3bounds versus approach10/12 with2bounds**.
+All10,193controls/24start actions verify and both public capsules independently
+reproduce. The added training-state labels repair two conditions but safety
+remains unqualified. Both initializers have matched20,480-control PPO queued;
+these new PPO phases have not started.
+[Complete fit comparison](reports/native_B1_v4_approach_pair_complete_20261031.json).
 [Diagnosis](reports/native_B1_v4_stop_diagnosis_20261031.md).
 These are development conditions; five trained seeds, a healthy full-task B1,
 new final conditions and research acceptance remain unmet.

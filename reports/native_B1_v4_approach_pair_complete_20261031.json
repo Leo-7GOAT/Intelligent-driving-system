@@ -1,0 +1,243 @@
+{
+  "scope": "Compare both complete actor-fit endpoints; no checkpoint or condition selection.",
+  "registration_sha256": "a67a0cc521c0efdae84cc0a31db736f2d666eb0b4c18f61884bff7343ad32234",
+  "analyzer_sha256": "cd995042947bac3191499691dd81098fe61ff14360d27bcb2464e8ee6e222494",
+  "seed": 11,
+  "arms": {
+    "replay": {
+      "batch": "20261031T034614809334Z_native_replay_bc",
+      "successes": 8,
+      "cases": 12,
+      "termination_counts": {
+        "success": 8,
+        "out_of_bounds": 3,
+        "deadline": 1
+      },
+      "raw_controls_verified": 5251,
+      "new_PPO_controls": 0,
+      "PPO_updates": 0,
+      "actor_fit_steps": 512,
+      "basic_motion_entry": {
+        "profile": "basic_motion_training_v1",
+        "basic_successes": 4,
+        "basic_cases": 4,
+        "required_basic_successes": 3,
+        "minimum_basic_fraction": 0.75,
+        "full_task_successes": 8,
+        "full_task_cases": 12,
+        "full_task_qualification_claimed": false,
+        "scope": "PPO learning-entry sanity only. Full-task initialization may remain unqualified; no relaxation of final research acceptance or healthy-final-baseline claim.",
+        "passes": true
+      },
+      "raw_audit_sha256": "5ede8bca843bb491aadbdbb8a3c1718690cfc6d0936dd1bfc9a447fd8d2d1f8c",
+      "model_sha256": "efca18d4c22f9cbe425313de360299a8cbb3a4cfaaab485da2fb2529b0fd13bd",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "progress": 24.121019997471443
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 350,
+          "progress": 24.120623499702337
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 377,
+          "progress": 22.535037809205487
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 320,
+          "progress": 20.18261814954797
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "progress": 23.958753908885416
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 515,
+          "progress": 21.16802309988154
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 318,
+          "progress": 21.99329994839405
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 543,
+          "progress": 17.93238445938394
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 445,
+          "progress": 24.30763360411221
+        },
+        {
+          "case_id": 9,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 387,
+          "progress": 19.6575683028871
+        },
+        {
+          "case_id": 10,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 21.98092415921464
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 390,
+          "progress": 20.254810674867887
+        }
+      ]
+    },
+    "approach": {
+      "batch": "20261031T034641272228Z_native_approach_bc",
+      "successes": 10,
+      "cases": 12,
+      "termination_counts": {
+        "success": 10,
+        "out_of_bounds": 2
+      },
+      "raw_controls_verified": 4942,
+      "new_PPO_controls": 0,
+      "PPO_updates": 0,
+      "actor_fit_steps": 512,
+      "basic_motion_entry": {
+        "profile": "basic_motion_training_v1",
+        "basic_successes": 4,
+        "basic_cases": 4,
+        "required_basic_successes": 3,
+        "minimum_basic_fraction": 0.75,
+        "full_task_successes": 10,
+        "full_task_cases": 12,
+        "full_task_qualification_claimed": false,
+        "scope": "PPO learning-entry sanity only. Full-task initialization may remain unqualified; no relaxation of final research acceptance or healthy-final-baseline claim.",
+        "passes": true
+      },
+      "raw_audit_sha256": "c83f8ed7183316bac2cc3645ac45f6d42a0d873b27b03f87372ec55a4d7dac0e",
+      "model_sha256": "eef3fb9dd9b32fe33fe38cf79a031cde1c2b3f7c89868cea51dd07bffe288dae",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 369,
+          "progress": 24.270622072957618
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 466,
+          "progress": 24.16262039146734
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 302,
+          "progress": 22.178427382525076
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 307,
+          "progress": 19.946996652459156
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 365,
+          "progress": 24.284937475680056
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 504,
+          "progress": 23.258203577187583
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 377,
+          "progress": 22.02820644377721
+        },
+        {
+          "case_id": 7,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 323,
+          "progress": 19.944425477018697
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 429,
+          "progress": 24.037380048472453
+        },
+        {
+          "case_id": 9,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 674,
+          "progress": 21.807818250632945
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 406,
+          "progress": 22.160437919005116
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 420,
+          "progress": 19.98574476920787
+        }
+      ]
+    }
+  },
+  "approach_only_cases": [
+    7,
+    10
+  ],
+  "replay_only_cases": [],
+  "approach_minus_replay_percentage_points": 16.666666666666668,
+  "limits": "One seed,known development conditions,actor-only fits from the same zero-PPO initialization. Additional valid training-state reference labels and fit compute are disclosed;no PPO learning,independent confirmation or healthy full-task qualification implied.",
+  "research_acceptance": "UNMET"
+}

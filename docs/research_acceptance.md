@@ -15,7 +15,10 @@ Its reversal of the earlier v3 gap precludes a robust feedback-benefit claim.
 The trained-v4 B1 is 7/12, zero unsafe/five deadlines. Its complete public
 capsule has now been downloaded and independently reproduced: 27,737 controls,
 twelve actions and identical figure. Its full-task competence is still below
-target. Training-only approach/replay actor fits have no native score yet.
+target. Training-only approach/replay actor fits complete10/12with2bounds versus
+8/12with3bounds/1deadline. Their10,193rawcontrols/24actions/public figures
+independently reproduce. This is zero-PPO supervision improvement and still
+fails the original safety target;matched real PPO is queued,not measured.
 [Frozen pair](../reports/native_v4_frozen_feedback_pair_20261031.json),
 [B1 public receipt](../reports/B1_v4_PPO_public_verification_20261031.json),
 [baseline diagnosis](../reports/native_B1_v4_stop_diagnosis_20261031.md).

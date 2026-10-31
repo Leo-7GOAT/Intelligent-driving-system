@@ -39,11 +39,20 @@ targets. This selection is based on oracle validity, not positive acceleration
 or later evaluation success. The critic, empty PPO optimizer, normalization
 bytes, RNG bytes and log standard deviation remain unchanged.
 
-Both models will run the same fixed twelve development conditions. Their
-native results are pending; the additional fits are not PPO updates or new
-independent seeds. Donor training/evaluation interactions are charged as input
-costs. This is a baseline-strengthening experiment, not evidence that PPO has
-improved or that the hierarchy is superior.
+Both models have now completed the same fixed twelve development conditions.
+Replay is **8/12, three bounds failures and one deadline**; approach is
+**10/12, two bounds failures**. All four basic-motion conditions succeed in
+both arms. Approach repairs cases7/10 and loses no replay success, but cases5/9
+still exit bounds. All10,193evaluation controls and24measured-start actions
+verify; public model/raw capsules also independently reproduce. The two fits
+remain zero-PPO updates and do not qualify as healthy final baselines.
+
+Both receive the same new20,480-control PPO budget, original1280-action
+collection schedule, frozen statistics, exploration and task/reward gates.
+The existing basic-motion learning-entry profile is used for both, with4/4safe;
+this does not relax the full-task or final safety targets. The new PPO phases
+are prepared/queued, not started. Donor training/evaluation interactions remain
+charged as inputs. The current gain is supervision, not PPO or hierarchy value.
 
 Evidence: `native_B1_v4_approach_pair_preparation_20261031.json`. Local immutable
 query manifests and executed sources are under
