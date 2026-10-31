@@ -1,4 +1,37 @@
-# Current handoff — 2026-10-31 18:52 local
+# Current handoff — 2026-10-31 19:10 local
+
+Authoritative update;older live-status snapshots below are historical.
+Goal ACTIVE/UNMET. Canonical seed33 batch093156483162 COMPLETE and normal owned
+cleanup verified:H10/12,H012/12,zero unsafe,each20561training controls/650Adam.
+All50843rawcontrols and24initial actions audited. Exact paired p=.5,diff-16.67pp;
+this contradicts stable feedback benefit. Hfails static5/7 with81/68planning
+failures,810/680brake-control interventions;H0passes both without those failures.
+Full feedback audit547H/435H0decisions:19Hargmax changes overall,0of180on failed
+visited decisions;H0negative control0changes. Do not infer counterfactual driving.
+Complete pair/failure diagnostics reports committed and source7dd8475pushed.
+
+Canonical driver47784 ACTUALLY RUNNING seed44batch093202647818,worker28260
+creation1793444046.648,guard14072. Hfinished20502controls/650Adam,recorded12/12;
+H0actually training. Whole44pair raw audit awaits H0stream closure;do not score
+as a fully audited pair yet. Next55then fresh seed22H0.
+Dependent68480still waiting;B2driver15744still waiting through retained read-only
+dependency handle. Both verified live;all respective source snapshots immutable.
+Codebfa1740hosted workflow41194528717SUCCESS. Independent checkout now7dd8475.
+Do not fetch short SHA;use full git rev-parse HEAD output for local fetch.
+
+PUBLICATION COMPLETE: native_seed33_canonical_feedback_pair_20261031_repro.zip,
+669files/67070602bytes,SHA647e96acd757a62aa30639402d51dd53bc811d1a7348e16b73ed385b09b7bde0.
+All models/raw/checkpoints and complete feedback diagnostics included;8auxiliary
+JSON private-path redactions logged.32parts+manifest actually uploaded/downloaded
+without login. Independent checkout7dd8475reproduces50843controls,24actions,
+byte-identical figure. Both PACKAGED feedback auditors actually rerun and every
+non-timing field including script SHAidentical:547H/435H0decisions. Public receipt
+native_seed33_canonical_public_verification_20261031.json;commands in model_card.
+Upload/reproduction execsessions24615/58706/90988/52233all completed successfully.
+No repeat needed. Continue the live registered queues and remaining research gaps.
+Main.venvhas no psutil;use existing resource checks/CIM for metadata.
+
+# Prior operational snapshot — 2026-10-31 18:52 local
 
 NEW ACTUALLY LIVE B2queue: runs/B2_five_seed_PPO_execution_20261031,
 Python15744,launcher44024;exact process identity in its local process_identity.json.

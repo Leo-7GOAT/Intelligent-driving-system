@@ -31,6 +31,11 @@ those interventions. [Full-state diagnosis](reports/native_seed33_canonical_feed
 reproduces547H/435H0decisions. Hiding feedback changes19Hactions overall and
 none on the180visited decisions in its two failed episodes;these are not
 counterfactual drives. The earlier pending-audit report remains historical.
+The [complete public capsule](reports/native_seed33_canonical_public_verification_20261031.json)
+has been uploaded,downloaded without login and independently reproduced:
+all50,843controls,24initial actions,the byte-identical figure and all982feedback
+decisions,with every non-timing diagnostic field identical.
+[Trusted hash and reproduction commands](docs/model_card.md#public-canonical-seed33-pair).
 
 B2 now has [five prepared pristine PPO learners](reports/native_B2_five_pristine_training_preparations_20261031.json),
 each byte-identical to its matched H initializer in weights,normalization and RNG.

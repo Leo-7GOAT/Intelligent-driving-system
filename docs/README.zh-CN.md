@@ -22,6 +22,10 @@ H条件5和7静态超时，差值-16.67个百分点、精确p=.5，不能宣称�
 [完整状态核验](../reports/native_seed33_canonical_feedback_failure_diagnostics_20261031.json)
 重建547/435次决策；固定H权重隐藏反馈只改变19次动作，在两次失败的180个已访问决策中均不改变动作。
 这不是反事实驾驶结果，也不能把低碰撞率当作任务完成。此前等待审计的记录作为历史保留。
+该批[完整公开数据包](../reports/native_seed33_canonical_public_verification_20261031.json)
+已上传、无登录下载并独立复现：全部50,843原始控制帧、24个初始动作、逐字节一致的轨迹图，
+以及982次反馈决策的全部非耗时字段。成功和失败均完整保留；
+[哈希及复现命令](model_card.md#public-canonical-seed33-pair)。
 
 B2已[准备5个种子的零PPO初始化](../reports/native_B2_five_pristine_training_preparations_20261031.json)：
 与对应H的初始权重、归一化、随机状态逐字节相同，仅替换二维A*及合理的车体可行样条后处理；

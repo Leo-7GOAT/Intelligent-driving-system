@@ -1,5 +1,36 @@
 # Development model card
 
+## Public canonical seed33 pair
+
+The corrected canonical seed33pair is H10/12 versus H012/12 on known development
+conditions,zero collision/bounds episodes. Each completes20,561real CARLAtraining
+controls/650Adam steps;this negative feedback comparison is retained without
+checkpoint or outcome selection. H's two static failures involve repeated
+planning failure and brake interventions,not successful safe task completion.
+[Paired evidence](../reports/native_v4_seed33_canonical_feedback_pair_20261031.json),
+[failure diagnosis](../reports/native_seed33_canonical_feedback_failure_diagnostics_20261031.json).
+
+The public capsule has669files,67,070,602bytes and32parts. It contains both models,
+normalization,RNG/initializers,all checkpoints,all raw controls,full feedback input
+diagnostics and the executed diagnostic source. Auxiliary path redactions are
+recorded;protected raw/model inputs remain byte-identical. It is development
+evidence,not a final model or independent confirmation.
+[Actual public/independent verification](../reports/native_seed33_canonical_public_verification_20261031.json)
+rebuilds all50,843controls,24initial actions,the exact trajectory figure and all
+982feedback decisions;every non-timing feedback field matches.
+
+```powershell
+$seed33Url = 'https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed33_canonical_feedback_pair_20261031_repro.zip.parts.json'
+$seed33Sha = '647e96acd757a62aa30639402d51dd53bc811d1a7348e16b73ed385b09b7bde0'
+.\.venv\Scripts\python.exe scripts/download_native_asset.py --manifest-url $seed33Url --sha256 $seed33Sha --output runs/public_seed33_download
+.\.venv\Scripts\python.exe scripts/reproduce_native_asset.py --archive runs/public_seed33_download/native_seed33_canonical_feedback_pair_20261031_repro.zip --sha256 $seed33Sha --output runs/public_seed33_rebuilt
+```
+
+Use fresh directories. To independently rerun the packaged full feedback checks,
+set NAVSTACK_AUDIT_SOURCE_ROOT to the extracted batch/source and invoke its
+analysis/feedback_reliance/executed_auditor.py with --batch EXTRACTED_BATCH,
+--method H (then H0) and a fresh --output. These are offline checks,not new drives.
+
 ## V4 trained H and completed public B1 evidence (31 October)
 
 The newly trained H method completes **12/12 known development conditions**,
