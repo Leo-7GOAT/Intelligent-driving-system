@@ -1,3 +1,18 @@
+# Latest gate result — 2026-10-31 23:45 local
+
+B1matured seed22gate FAILED:Require75percent unobstructed-motion success
+with zero basic-motion unsafe episodes. All-five driver60572continues seed33,
+then44/55as promised;it will not train any PPOif one gate fails. Seed11passed
+4/4basic but9/12full with3bounds. The fully healthy baseline remains UNSOLVED.
+Do not describe actor-maturation/basic-gate completion as healthy baseline or
+repeat this same failed version. Preserve all5outcomes and original failures.
+New development must diagnose basic failure and version any necessary learning
+curriculum/observations/training redesign;never waive the frozen gate or alter
+started protocols. Shared/cadence downstream require the completed five trained
+B1policies and will not run from these gate models.
+Rootc2b0191is pushed;H/H0all-five public reconstruction is actually complete.
+B2publication45944stilllive,seed11uploading;sourcecheckout6a5486amuststayfixed.
+
 # Authoritative update — 2026-10-31 23:41 local
 
 FULL PUBLIC H/H0FIVE-SEED RECONSTRUCTION SUCCESS at source
