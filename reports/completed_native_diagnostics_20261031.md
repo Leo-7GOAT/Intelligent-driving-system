@@ -58,8 +58,10 @@ The B1 model/raw archive is also public in six transfer parts beside its
 Its43,449,446bytes/480files assemble to SHA256
 `8678d1e3f9d7d13fce8639a00956d11b8230935dc5dd232acfc01f03046272d5`.
 Use`native_asset_parts.py join`and`reproduce_native_asset.py`as documented in
-the model card. Public download and exact reassembly have passed;independent
-model/raw/figure reconstruction is recorded separately after execution.
+the model card. Public download,exact reassembly and independent model/raw/figure
+reconstruction have passed. The independent native-controller reconstruction
+also reproduces all5716frames,all three metric reports and the paired PNG.
+[Executed receipts](completed_native_public_reproduction_20261031.json).
 
 A fresh matched B1collection-length test is prepared:320→1280actions per
 rollout,same20,480physical-control budget,320mini-batch,epochs,learning rate,

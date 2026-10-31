@@ -1,5 +1,28 @@
 # Development model card
 
+## Public fixed-reward-unit B1 failure and native controller comparison
+
+The31October B1endpoint is **2/12**,with5bounds failures and1collision after
+20,480real training controls/208Adam steps. It remains an unhealthy baseline.
+Its480-file model/raw capsule is public in six parts beside the
+[manifest](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_fixed_reward_units_20261031_repro.zip.parts.json).
+Download all six parts and the manifest together,then run:
+
+```powershell
+python scripts/native_asset_parts.py join --manifest downloads/native_B1_fixed_reward_units_20261031_repro.zip.parts.json --output downloads/B1_fixed_units.zip --sha256 8678d1e3f9d7d13fce8639a00956d11b8230935dc5dd232acfc01f03046272d5
+python scripts/reproduce_native_asset.py --archive downloads/B1_fixed_units.zip --sha256 8678d1e3f9d7d13fce8639a00956d11b8230935dc5dd232acfc01f03046272d5 --output runs/B1_fixed_units_reproduction
+```
+
+Independent checkoutb099b38has reproduced all27,897rawcontrols,12measured-start
+actions,frozen normalization and the byte-identical packaged PNG. It also
+reconstructs all5716rawframes from the
+[native controller archive](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_fixed_reference_controllers_20261031_repro.zip),
+including the separately retained1905-control guard failure,and its paired
+figure. [Exact receipts](../reports/completed_native_public_reproduction_20261031.json).
+Both repaired controllers finish4/4;Pursuit has lower native tracking error and
+jerk. This is not evidence of MPC dominance or PPO advantage.
+
+
 ## Public negative B1 PPO capsule in small transfer parts
 
 The130748B1model finishes4/12after20,480real training controls/640Adam steps,

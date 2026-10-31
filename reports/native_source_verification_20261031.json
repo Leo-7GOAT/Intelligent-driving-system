@@ -15,6 +15,14 @@
     "independent_factorial_training_views_exactly_reproduced": 496,
     "prior_failed_run": "41150831314:unit staging fixtures depended on host having12GiBfree. Added explicit disk fixtures for those tests and a low-disk refusal regression;production guards unchanged."
   },
-  "subsequent_guard_and_cleanup_selection_checks": {"passed": 38, "seconds": 6.10, "full_hosted_status": "Pending next source commit;not attributed to earlier hosted success."},
+  "subsequent_guard_and_cleanup_selection_checks": {"passed": 38, "seconds": 6.10},
+  "latest_confirmed_source": {
+    "commit": "b099b3812815abed9ee90e77bac6dd0a0a1c77c4",
+    "hosted_run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41152850977",
+    "conclusion": "success", "passed": 652, "skipped": 16, "CARLA_deselected": 4, "seconds": 86.26,
+    "independent_targeted": {"passed": 38, "seconds": 7.11},
+    "independent_public_raw_controls": {"B1": 27897, "native_controller_paired": 3811, "native_controller_failed_supervision": 1905},
+    "both_public_figures_byte_identical": true
+  },
   "research_acceptance": "UNMET"
 }

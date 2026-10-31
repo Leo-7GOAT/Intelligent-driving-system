@@ -1,0 +1,49 @@
+{
+  "scope": "Actual public download and independent locked-checkout reproduction;no new driving or updates.",
+  "native_controllers": {
+    "scope": "Independent downloaded raw-RPC audit and figure rebuild;no new driving.",
+    "source_commit": "b099b3812815abed9ee90e77bac6dd0a0a1c77c4",
+    "verified_files": 1297,
+    "archive_sha256": "d99c88c32f6406d954557403a7a2cf75fa84e6639d3f4c99f64ab9435919f23f",
+    "raw_frames_bound_by_batch": {
+      "20261028T024600457573Z_native_curve_control": 1905,
+      "20261031T004553035320Z_native_curve_control": 1904,
+      "20261031T004553454599Z_native_curve_control": 1907
+    },
+    "paired_frames": 3811,
+    "prior_failed_supervision_frames": 1905,
+    "all_three_metric_reports_exactly_reconstructed": true,
+    "figure_byte_identical": true,
+    "figure_sha256": "34452ce9465c3c2fb95c25e321ca863f517304035dcf629c1326f4ebd87cc43f",
+    "new_physical_controls": 0,
+    "optimizer_updates": 0
+  },
+  "B1_fixed_reward_units": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "8678d1e3f9d7d13fce8639a00956d11b8230935dc5dd232acfc01f03046272d5",
+    "asset_source_commit": "8afab8af7fd7a787fe6eedebb4a31bff59e6f4f1",
+    "reproduction_source_commit": "b099b3812815abed9ee90e77bac6dd0a0a1c77c4",
+    "verified_files": 480,
+    "methods": [
+      {
+        "method": "B1",
+        "raw_audit_sha256": "208e4f83bd0e87bb9688c98277138aed03fdc5e1d7e2d84fcddf0cd618c810e7",
+        "verified_controls": 27897,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "f1365afb9aefaf82ac3c4608166dc7961c601be3c555185b78fc523d8ba9c37c",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  },
+  "native_download_without_authentication": true,
+  "B1_download_without_authentication": true,
+  "B1_public_parts": 6,
+  "B1_export_head": "8afab8af7fd7a787fe6eedebb4a31bff59e6f4f1",
+  "B1_packager_worktree_had_local_changes": true,
+  "source_boundary": "Export head describes the packager checkout. Physical experiment source is the unchanged hash-registered frozen batch runtime included in each archive.",
+  "research_acceptance": "UNMET"
+}
