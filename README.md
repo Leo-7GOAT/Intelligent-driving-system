@@ -29,6 +29,11 @@ The paired approach initializer is now actually training under the same budget.
 [Completed replay PPO endpoint](reports/native_B1_v4_replay_fit_PPO_endpoint_20261031.json).
 [Complete fit comparison](reports/native_B1_v4_approach_pair_complete_20261031.json).
 [Diagnosis](reports/native_B1_v4_stop_diagnosis_20261031.md).
+[Exact PPO-update diagnosis](reports/native_B1_v4_replay_update_diagnosis_20261031.md)
+reproduces all first-rollout actions and checkpoint parameters. A smaller
+learning-rate B1 probe is [prepared and sequentially queued](reports/native_B1_v4_approach_lower_lr_preparation_20261031.json)
+from the same approach initializer; its physical runtime, normalization, RNG
+and task criteria are preserved. No improved-driving result is claimed yet.
 These are development conditions; five trained seeds, a healthy full-task B1,
 new final conditions and research acceptance remain unmet.
 

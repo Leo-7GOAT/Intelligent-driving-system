@@ -47,5 +47,19 @@ batch's archived `source`, using a fresh output path. Preparation now exposes
 `--freeze-observation-statistics` as an explicit registered continuation profile;
 37 supervised-preparation, entry-gate and replay checks pass.
 
+The resulting 3e-6 approach-initialized probe is registered as
+`20261031T055729299388Z_native_supervised_ppo`. Its policy tensors, normalizer
+and RNG bytes match the original 3e-5 approach probe; all physical source hashes
+and environment fields match. Only configuration metadata scope text differs.
+All 378 archived inputs pass launcher validation. It has the same 20,480-control
+budget, 1,280-action rollout, 320-sample minibatches, ten epochs, 0.01 KL target,
+fixed 1/20 reward units and frozen observation statistics. It is queued after
+the current approach PPO endpoint and before the broader H/H0 campaign, using
+the owned-empty-server cleanup gate and a bounded read-only completion audit.
+The old idle queue alone was replaced after checking its creation time,
+executable, exact script and untouched child. No worker or server was stopped.
+See `native_B1_v4_approach_lower_lr_preparation_20261031.json` for preparation
+and queue evidence; no native score is available for this probe yet.
+
 All results here are development diagnostics. The main five-seed/new-condition
 research acceptance remains UNMET.
