@@ -128,7 +128,7 @@ def analyze(batch):
                 continue
             scene = scenes[index]["scene"]
             road = RoadGrid(scene["road_grid"])
-            axis.imshow(~road.drivable, origin="lower", extent=(0, road.width, 0, road.height), cmap="Greys", vmin=0, vmax=1, alpha=.55)
+            axis.imshow(~getattr(road,'collision_drivable',road.drivable), origin="lower", extent=(0, road.width, 0, road.height), cmap="Greys", vmin=0, vmax=1, alpha=.55)
             reference = np.asarray(scene["native_layout"]["path"])
             axis.plot(reference[:, 0], reference[:, 1], "--", color="tab:blue", label="survey centreline (not policy reference)")
             trajectory = traces[index]

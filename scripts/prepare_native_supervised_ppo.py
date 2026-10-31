@@ -221,8 +221,8 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
                       Path(cleanup_harness_source).resolve() if cleanup_harness_source is not None else None)
     if geometry_version is not None:
         from navstack.native_route import REFINED_GRID_VERSION
-        if geometry_version!=REFINED_GRID_VERSION or cleanup_source is not None or partition_inventory:
-            raise ValueError('Fine geometry is a separate explicit profile;its registered source includes the cleanup bridge')
+        if geometry_version!=REFINED_GRID_VERSION or cleanup_source is not None:
+            raise ValueError('Fine geometry requires its explicit profile;its registered source includes the cleanup bridge')
     if type(controls) is not int or not 640 <= controls <= 100000 or not 900 <= wall_seconds <= 7200:
         raise ValueError('Invalid bounded native learning budget')
     if learning_rate is not None and (not np.isfinite(learning_rate) or not 1e-6<=learning_rate<=1e-3):
@@ -287,7 +287,7 @@ def prepare(parent, controls=20480, wall_seconds=7200, log_std=-2.3, guarded_pro
         for name, digest in protocol['source_hashes'].items():
             if sha(parent/'source'/name) != digest:
                 raise ValueError('Parent frozen source changed')
-        batch = ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_supervised_ppo')
+        batch = ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_native_supervised_ppo')
         batch.mkdir();(batch/'infrastructure').mkdir()
         shutil.copytree(parent/'source', batch/'source', ignore=shutil.ignore_patterns('__pycache__'))
         shutil.copytree(parent/'calibration', batch/'calibration')

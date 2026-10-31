@@ -43,6 +43,19 @@ match v3004737. It retains the original v3teacher dataset,which is disclosed
 extra supervision. Endpoint selection stays fixed at20,480controls with all
 twelve cases;neither phase counts as new final conditions or additional seeds.
 
+The same recorded Hcase9initial static-planning query was also compared under
+both geometries,with the recorded7200-node budget,vehicle,start,goal,costs and
+Dubins heuristic unchanged. V3exhausts7200nodes;v4finds an analytic connection
+at node1,with1625path points. This is a changed geometry result,not merely the
+earlier allocation optimization. One query does not establish a full driving
+success rate or a real-time bound. See `native_fine_grid_recorded_query_20261031.json`.
+Frozen H/H0v4migrations023833/023839are separately registered behind the active
+B1PPO phase,with zero new training and the same twelve development conditions.
+
+Public code19da5acpasses GitHub CI657tests/16skips/4CARLA deselections in159.70s
+([executed run](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41160661963)).
+An independent checkout passes30targeted new-geometry/preparation tests in12.60s.
+
 Evidence: `native_B1_rollout1280_bounds_sources_v2_20261031.json`,
 `native_B1_rollout1280_lane_coverage_20261031.json`,
 `native_fine_grid_diagnostic_20261031.json`,and

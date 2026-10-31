@@ -1,0 +1,270 @@
+{
+  "batch": "20261031T022009Z_native_geometry_migration",
+  "scope": "Audited measured trajectories on training roads, not held-out research confirmation. Arrows show goal/terminal yaw; gray cells are sampled non-driving road cells.",
+  "protocol_sha256": "e3c214e864ab8ae49f702cf8bbe6032969b12a0b40ad08f1c71fbc813b4235d2",
+  "script_sha256": "c044d5a2d772e47c41bb81aadbf9b5cd0737728f50efefbb1c44b4eacf9834d9",
+  "figure_sha256": "34cdb6729cac885bf0004f1f32cb1d6b0974cc9af75ecec129cae612bc897a0c",
+  "methods": {
+    "B1": {
+      "raw_audit_sha256": "27218578b57ef4c7e8e54a3e11e15f85bf56f3101ec2cba8cb4a1b3c5577c735",
+      "evaluation_trace_sha256": "2eabbcf4d1629d22f15a9aa7c94897c552952d3a4ad3ba0b5a1613552ea84308",
+      "cases": [
+        {
+          "case_id": 0,
+          "controls": 385,
+          "road_sha256": "47b5127a849994af4445e6fba5abf57a090e45734364f19a314c0e7a86259159",
+          "termination_reason": "success",
+          "success": true,
+          "final_state": {
+            "x": 29.72212499985279,
+            "y": 12.815298941993696,
+            "yaw": 0.5945499144118629,
+            "v": 0.00651102554995792,
+            "steering": 0.01395756801691031,
+            "acceleration": -24.579192668983254,
+            "time": 19.250000286847353
+          },
+          "goal": [
+            29.796714319069707,
+            12.359322086966923,
+            0.5222659966307686
+          ]
+        },
+        {
+          "case_id": 1,
+          "controls": 319,
+          "road_sha256": "933857fae1a76192fdbf9d73ed4539ad36fd1cc1a37473803fc7fe33e6ce696d",
+          "termination_reason": "success",
+          "success": true,
+          "final_state": {
+            "x": 22.420594095355476,
+            "y": 22.971583585711095,
+            "yaw": 1.0377032799613302,
+            "v": 0.17659112280818592,
+            "steering": 0.09231364570027993,
+            "acceleration": -23.654895144829183,
+            "time": 15.950000237673521
+          },
+          "goal": [
+            22.97632870348976,
+            23.45306935920438,
+            1.0470276415190511
+          ]
+        },
+        {
+          "case_id": 2,
+          "controls": 350,
+          "road_sha256": "0ddd27a04ef97fc903a9e01e56d554d1d923d0527c09bb2ad828f338bc1df0b0",
+          "termination_reason": "success",
+          "success": true,
+          "final_state": {
+            "x": 27.54824991863167,
+            "y": 6.539800364125792,
+            "yaw": -0.4853328791593867,
+            "v": 0.20746694531757548,
+            "steering": 0.40353952456867714,
+            "acceleration": -0.2647837095227956,
+            "time": 17.50000026077032
+          },
+          "goal": [
+            28.135424875625418,
+            6.0,
+            -0.5232536299210251
+          ]
+        },
+        {
+          "case_id": 3,
+          "controls": 900,
+          "road_sha256": "a0837986943657f25f98684bd3e0309ca4ae104a60ea2956954a45790c982ec6",
+          "termination_reason": "deadline",
+          "success": false,
+          "final_state": {
+            "x": 23.456265453481016,
+            "y": 4.675496024704454,
+            "yaw": -1.301637759376504,
+            "v": -3.511672104226686e-09,
+            "steering": -0.1527561253569929,
+            "acceleration": 1.713926283172148e-08,
+            "time": 45.000000670552254
+          },
+          "goal": [
+            21.64582764152185,
+            6.0,
+            -1.0476733623760435
+          ]
+        },
+        {
+          "case_id": 4,
+          "controls": 332,
+          "road_sha256": "47b5127a849994af4445e6fba5abf57a090e45734364f19a314c0e7a86259159",
+          "termination_reason": "success",
+          "success": true,
+          "final_state": {
+            "x": 29.15265360883024,
+            "y": 12.026398597873177,
+            "yaw": 0.5562812216538058,
+            "v": 0.17684608956365955,
+            "steering": -0.12917485424475145,
+            "acceleration": -16.17896410183281,
+            "time": 16.600000247359276
+          },
+          "goal": [
+            29.796714319069707,
+            12.359322086966923,
+            0.5222659966307686
+          ]
+        },
+        {
+          "case_id": 5,
+          "controls": 316,
+          "road_sha256": "933857fae1a76192fdbf9d73ed4539ad36fd1cc1a37473803fc7fe33e6ce696d",
+          "termination_reason": "out_of_bounds",
+          "success": false,
+          "final_state": {
+            "x": 21.69002150117844,
+            "y": 21.258932205276786,
+            "yaw": 0.9018960646883629,
+            "v": 1.632463702798808,
+            "steering": 0.09512961803327466,
+            "acceleration": -0.566916400586841,
+            "time": 15.800000235438347
+          },
+          "goal": [
+            22.97632870348976,
+            23.45306935920438,
+            1.0470276415190511
+          ]
+        },
+        {
+          "case_id": 6,
+          "controls": 335,
+          "road_sha256": "0ddd27a04ef97fc903a9e01e56d554d1d923d0527c09bb2ad828f338bc1df0b0",
+          "termination_reason": "success",
+          "success": true,
+          "final_state": {
+            "x": 27.644448633657486,
+            "y": 6.250606227494979,
+            "yaw": -0.5775416361100731,
+            "v": 0.1528489337674177,
+            "steering": 0.28886715376166344,
+            "acceleration": -18.82903292804258,
+            "time": 16.75000024959445
+          },
+          "goal": [
+            28.135424875625418,
+            6.0,
+            -0.5232536299210251
+          ]
+        },
+        {
+          "case_id": 7,
+          "controls": 900,
+          "road_sha256": "a0837986943657f25f98684bd3e0309ca4ae104a60ea2956954a45790c982ec6",
+          "termination_reason": "deadline",
+          "success": false,
+          "final_state": {
+            "x": 23.168532690872784,
+            "y": 6.575443090109259,
+            "yaw": -1.1023524329652226,
+            "v": -2.523015141408136e-08,
+            "steering": -0.15288999349565535,
+            "acceleration": -5.828271510104749e-07,
+            "time": 45.000000670552254
+          },
+          "goal": [
+            21.64582764152185,
+            6.0,
+            -1.0476733623760435
+          ]
+        },
+        {
+          "case_id": 8,
+          "controls": 453,
+          "road_sha256": "47b5127a849994af4445e6fba5abf57a090e45734364f19a314c0e7a86259159",
+          "termination_reason": "success",
+          "success": true,
+          "final_state": {
+            "x": 29.174156280415318,
+            "y": 12.132827595551035,
+            "yaw": 0.5215440136592484,
+            "v": 0.0005352745845549595,
+            "steering": 0.14187698360609308,
+            "acceleration": -16.329513765787645,
+            "time": 22.6500003375113
+          },
+          "goal": [
+            29.796714319069707,
+            12.359322086966923,
+            0.5222659966307686
+          ]
+        },
+        {
+          "case_id": 9,
+          "controls": 452,
+          "road_sha256": "933857fae1a76192fdbf9d73ed4539ad36fd1cc1a37473803fc7fe33e6ce696d",
+          "termination_reason": "success",
+          "success": true,
+          "final_state": {
+            "x": 22.532855498012776,
+            "y": 23.0462636744661,
+            "yaw": 0.9956638028516673,
+            "v": 0.14771749052564367,
+            "steering": 0.054787748841232255,
+            "acceleration": -23.59905467670564,
+            "time": 22.600000336766243
+          },
+          "goal": [
+            22.97632870348976,
+            23.45306935920438,
+            1.0470276415190511
+          ]
+        },
+        {
+          "case_id": 10,
+          "controls": 900,
+          "road_sha256": "0ddd27a04ef97fc903a9e01e56d554d1d923d0527c09bb2ad828f338bc1df0b0",
+          "termination_reason": "deadline",
+          "success": false,
+          "final_state": {
+            "x": 28.168004063367796,
+            "y": 6.818259935405865,
+            "yaw": -0.5063343011996428,
+            "v": 4.391005992535171e-10,
+            "steering": -0.47957268880059045,
+            "acceleration": 2.3691351291035256e-09,
+            "time": 45.000000670552254
+          },
+          "goal": [
+            28.135424875625418,
+            6.0,
+            -0.5232536299210251
+          ]
+        },
+        {
+          "case_id": 11,
+          "controls": 900,
+          "road_sha256": "a0837986943657f25f98684bd3e0309ca4ae104a60ea2956954a45790c982ec6",
+          "termination_reason": "deadline",
+          "success": false,
+          "final_state": {
+            "x": 24.81201358384288,
+            "y": 8.713297743299375,
+            "yaw": -1.1167204367175523,
+            "v": 0.9392166110858331,
+            "steering": -0.36794882841559623,
+            "acceleration": 1.4107617204758194,
+            "time": 45.000000670552254
+          },
+          "goal": [
+            21.64582764152185,
+            6.0,
+            -1.0476733623760435
+          ]
+        }
+      ]
+    }
+  },
+  "new_controls": 0,
+  "complete_registered_arm_inventory": true,
+  "omitted_registered_arms": []
+}

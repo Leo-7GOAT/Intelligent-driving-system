@@ -1,0 +1,83 @@
+{
+  "scope": "Prepared new-v4 real PPO,not results or five trained seeds;original v3teacher supervision disclosed",
+  "controls_per_method": 20480,
+  "endpoints": "All registered evaluation conditions;no checkpoint selection",
+  "batches": [
+    {
+      "batch": "20261031T025409165666Z_native_supervised_ppo",
+      "matched_v3_initializer": "20261028T013316Z_native_supervised_ppo",
+      "seed": 11,
+      "methods": {
+        "H": {
+          "initial_policy_tensors_exact": true,
+          "optimizer_empty": true,
+          "normalizer_and_RNG_bytes_exact": true,
+          "changed_env_fields": [
+            "road_geometry_version"
+          ]
+        },
+        "H0": {
+          "initial_policy_tensors_exact": true,
+          "optimizer_empty": true,
+          "normalizer_and_RNG_bytes_exact": true,
+          "changed_env_fields": [
+            "road_geometry_version"
+          ]
+        }
+      },
+      "training_cases": 12,
+      "evaluation_cases": 12
+    },
+    {
+      "batch": "20261031T025409042778Z_native_supervised_ppo",
+      "matched_v3_initializer": "20261028T013440Z_native_supervised_ppo",
+      "seed": 22,
+      "methods": {
+        "H": {
+          "initial_policy_tensors_exact": true,
+          "optimizer_empty": true,
+          "normalizer_and_RNG_bytes_exact": true,
+          "changed_env_fields": [
+            "road_geometry_version"
+          ]
+        },
+        "H0": {
+          "initial_policy_tensors_exact": true,
+          "optimizer_empty": true,
+          "normalizer_and_RNG_bytes_exact": true,
+          "changed_env_fields": [
+            "road_geometry_version"
+          ]
+        }
+      },
+      "training_cases": 12,
+      "evaluation_cases": 12
+    },
+    {
+      "batch": "20261031T025445532080Z_native_supervised_ppo",
+      "matched_v3_initializer": "20261028T013316Z_native_supervised_ppo",
+      "seed": 11,
+      "methods": {
+        "H": {
+          "initial_policy_tensors_exact": true,
+          "optimizer_empty": true,
+          "normalizer_and_RNG_bytes_exact": true,
+          "changed_env_fields": [
+            "road_geometry_version"
+          ]
+        },
+        "H0": {
+          "initial_policy_tensors_exact": true,
+          "optimizer_empty": true,
+          "normalizer_and_RNG_bytes_exact": true,
+          "changed_env_fields": [
+            "road_geometry_version"
+          ]
+        }
+      },
+      "training_cases": 36,
+      "evaluation_cases": 24
+    }
+  ],
+  "broad_partition_limit": "Both geometry and distribution change in the36/24phase;not a single-variable comparison"
+}

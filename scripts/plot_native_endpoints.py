@@ -78,7 +78,7 @@ def render(batch,output,methods=None):
             ax=axes[r,c];initial=case['initial'];episode=case['episode']
             road=scenes[initial['road_sha256']]
             states=case['states'];goal=initial['goal'];last=states[-1]
-            ax.imshow(~road.drivable,origin='lower',extent=(0,road.width,0,road.height),cmap='Greys',vmin=0,vmax=1,alpha=.20)
+            ax.imshow(~getattr(road,'collision_drivable',road.drivable),origin='lower',extent=(0,road.width,0,road.height),cmap='Greys',vmin=0,vmax=1,alpha=.20)
             ax.plot([initial['initial']['x']]+[s['x'] for s in states],
                     [initial['initial']['y']]+[s['y'] for s in states],color='#2266aa',lw=1.5,label='Measured trajectory')
             ax.scatter(initial['initial']['x'],initial['initial']['y'],marker='o',s=18,color='#2266aa',label='Start')

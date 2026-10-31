@@ -74,7 +74,7 @@ def prepare(parent,method='B1'):
         from navstack.config import VehicleConfig
         vehicle=VehicleConfig(**read(parent/'calibration/calibration.json')['vehicle'])
         changed=migrated_config(read(origin/'config.json'),protocol,vehicle,method)
-        batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_geometry_migration')
+        batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_native_geometry_migration')
         batch.mkdir();(batch/'infrastructure').mkdir()
         shutil.copytree(parent/'source',batch/'source',ignore=shutil.ignore_patterns('__pycache__'))
         shutil.copytree(parent/'calibration',batch/'calibration')

@@ -51,7 +51,7 @@ def audit(source, output, grid_postprocess="legacy"):
             write_json(output/f"case_{index:02d}_{method}.json",record)
             results.append({k:v for k,v in record.items() if k!="path"})
             axis = axes[method_index,index]
-            axis.imshow(~road.drivable,origin="lower",extent=(0,road.width,0,road.height),cmap="Greys",vmin=0,vmax=1,alpha=.5)
+            axis.imshow(~getattr(road,'collision_drivable',road.drivable),origin="lower",extent=(0,road.width,0,road.height),cmap="Greys",vmin=0,vmax=1,alpha=.5)
             original = np.asarray(scene["native_layout"]["path"])
             axis.plot(original[:,0],original[:,1],"--",label="original survey")
             if len(plan.path):

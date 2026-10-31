@@ -1,4 +1,4 @@
-# Current handoff — 2026-10-31 10:31 local
+# Current handoff — 2026-10-31 10:56 local
 
 Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
 
@@ -25,16 +25,29 @@ Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
   same initial policy tensors/empty optimizer/normalizer/RNGas v3004737;only
   environment geometry field changes. Original v3teacher data disclosed.
 - Queues8900H0→migration and9516migration→v4B1training have activated their child.
-  Current remaining queues:
-  49052v4B1→unchanged seed22batch013440;47244seed22→train36/validation24batch014801.
+  Current remaining queues:19508v4B1→Hfrozen v4migration023833;
+  62136H→H0frozen v4migration023839. Waiter49052was superseded only
+  while waiting,before seed22activation;receipt in runs/seed22_waiter_superseded_for_H_geometry_migrations_20261031.json.
   Verify receipts/process creation identities;old waiting queues44456and67436
   were superseded only before either could activate its child. Old locks/logs
   remain. Current receipts:geometry_owned_queue_launches_20261031.json and
   geometry_training_owned_queue_launches_20261031.json. No automatic retries.
+  The obsolete unstarted v3seed22/36-24queues58636/47244are now also superseded
+  after exact initial-state comparison passed for their v4replacements.
+  New queue62148:H0migration→seed11v4pair025409165666;
+  66736:seed11→seed22v4pair025409042778;
+  28112:seed22→v4train36/validation24pair025445532080. Each method has20,480controls
+  and original guarded rewards. These batches are PREPARED,not trained results.
+  Current receipts runs/v4_training_owned_queue_launches_20261031.json;proof
+  reports/native_H_v4_training_preparation_20261031.json. Old prepared batches
+  and the rejected unguarded preparations remain intact,unstarted.
 - Bounded read-only postprocessors audit migration and v4training once normally
   closed. Actual launcher receipts live in runs/B1_geometry_postprocessor_launch_20261031.json
   and runs/B1_geometry_training_postprocessor_launch_20261031.json. Do not
   duplicate either experiment. Inspect current live heartbeat,not this snapshot.
+  Six new read-only pair postprocessors use distinct method logs/receipts and
+  dynamic12/24case counts;bounded21600s,no retries. Receipt
+  runs/v4_training_postprocessors_launches_20261031.json.
 
 - H0public capsule5042b3c2…is uploaded in4parts,32,732,190bytes/502files;
   unauthenticated download reassembles exact bytes. First premature download
@@ -42,6 +55,22 @@ Original goal ACTIVE/UNMET. This supersedes earlier live process statuses.
   Independent checkout7dfbb3dreproduces502files/27662controls/12actions/frozenRMS
   and identical PNG. Receipt reports/H0_shared_mask_public_verification_20261031.json.
   Archive has no packaged plot;use the committed PNGas explicit reference.
+
+- The saved Hcase9query changes from7200-node failure tov4analytic success at
+  node1,with unchanged planner budget/start/goal/vehicle/cost/heuristic. Report
+  reports/native_fine_grid_recorded_query_20261031.json. This is offline geometry
+  evidence,not an actual Hsuccess or merely a faster equivalent search.
+- Source19da5acis pushed/remote verified. Hosted41160661963SUCCESS657passed,
+  16skipped,4CARLA deselected159.70s. Independent new-source30checks pass12.60s.
+- B1v4migration asset initial8MiB-parts upload failed408;only part003/manifest
+  were public at inspection,so that manifest is INCOMPLETE. New chunk2m-named
+  transfer has nine2MiBparts of the identical archive8d9720f2…(18,247,209bytes,
+  437files,6542controls),all uploaded and listed. Actual download/reproduction
+  is being verified. Old incomplete assets remain;no deletion/clobber attempted.
+  Download has now reassembled the exact8d9720f2…bytes;independent reconstruction
+  uses the newly corrected v4plot,which shows the256collision grid. V3H0plot
+  still reproduces byte-for-byte(a61e2f80…). Seven plot/geometry checks pass7.06s,
+  and44preparation/partition checks pass7.19s.
 
 ## Archived handoff before the geometry diagnostic
 

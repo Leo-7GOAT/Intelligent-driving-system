@@ -1,0 +1,58 @@
+{
+  "scope": "Offline one saved-query geometry comparison;not new driving,success-rate or real-time proof",
+  "fixture_sha256": "3bca0b623b320e4480964ad033aa4349a1d665bf692aa6573af31d1003d4c11a",
+  "fine_export_sha256": "920c4d357d2686a984f5a38848844dd95fd4e3c8f52fc823673abcb4e929d7d2",
+  "source_hashes": {
+    "scripts/compare_fine_grid_query.py": "caa750cf066748f68f9704a5416ce0f06800daac100d7c0cb09d817bc814b7f2",
+    "navstack/config.py": "178c39d32b26eee0260a63184111bbd331d097c6e8c9583ad01934914465a12c",
+    "navstack/native_route.py": "cdc5ba9aa648aa3bb860526cdb84ae793b60c42f70555a9af5835a1fba2cd76e",
+    "navstack/planning.py": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+    "navstack/world.py": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+    "navstack/road_grid.py": "080a14742b6f28b847627b079b9bfce8696d08f9ee1d1cbcc2439b98113c41f1",
+    "navstack/road_grid_batch.py": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e"
+  },
+  "planner": {
+    "xy_resolution": 0.4,
+    "yaw_resolution": 0.15,
+    "primitive_length": 0.8,
+    "collision_step": 0.12,
+    "goal_tolerance": 0.55,
+    "yaw_tolerance": 0.2,
+    "max_nodes": 7200,
+    "max_seconds": null,
+    "steer_cost": 0.05,
+    "steer_change_cost": 0.08,
+    "grid_resolution": 0.5,
+    "heuristic_weight": 1.5,
+    "analytic_expansion": true,
+    "vectorized_primitives": true,
+    "grid_postprocess": "legacy",
+    "heuristic_mode": "dubins_v1"
+  },
+  "queries": [
+    {
+      "version": "carla_driving_indexed_union_64_v3",
+      "grid_sha256": "935ae295fa5f20c4789f5b8cde8d551496ab30451f7bfb6b83c4f4880a52f84a",
+      "status": "timeout",
+      "reason": "search_budget",
+      "expanded_nodes": 7200,
+      "cost": null,
+      "path_points": 0,
+      "path_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "wall_seconds": 5.052646200056188
+    },
+    {
+      "version": "carla_driving_indexed_union_256_v4",
+      "grid_sha256": "933857fae1a76192fdbf9d73ed4539ad36fd1cc1a37473803fc7fe33e6ce696d",
+      "status": "success",
+      "reason": null,
+      "expanded_nodes": 1,
+      "cost": 25.490173000154194,
+      "path_points": 1625,
+      "path_sha256": "e99514de77ae815cbe96477006a2a3008fc38250a09e08e21873000cb0b2197b",
+      "wall_seconds": 0.05382360005751252
+    }
+  ],
+  "new_physical_controls": 0,
+  "optimizer_updates": 0
+}

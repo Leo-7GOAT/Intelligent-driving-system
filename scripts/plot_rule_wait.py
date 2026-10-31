@@ -26,7 +26,7 @@ def plot(batch,diagnostic,output):
     scene=read(scene_path)['scene'];config=EnvConfig.from_dict(protocol['config'])
     state=report['selection']['state'];candidates=report['candidate_references']['actions']
     fig,(ax,bars)=plt.subplots(1,2,figsize=(11,5),layout='constrained',gridspec_kw={'width_ratios':[1.7,1]})
-    ax.imshow(scene['road_grid']['drivable'],origin='lower',extent=(0,scene['width'],0,scene['height']),
+    ax.imshow(scene['road_grid'].get('collision_drivable',scene['road_grid']['drivable']),origin='lower',extent=(0,scene['width'],0,scene['height']),
         cmap='Greys_r',vmin=0,vmax=1,alpha=.45,interpolation='nearest')
     route=np.asarray(scene['native_layout']['path']);ax.plot(route[:,0],route[:,1],'--',color='#7a8793',label='Known map route')
     trace=report['selection']['measured_prefix_path']
