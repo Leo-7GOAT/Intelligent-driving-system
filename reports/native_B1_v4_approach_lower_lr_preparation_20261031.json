@@ -40,5 +40,6 @@
   "superseded_queue_child_lifecycle_untouched": true,
   "no_worker_or_server_stopped": true,
   "readonly_completion_audit_registered": true,
-  "charged_input_controls_lower_bound": null
+  "charged_input_controls_lower_bound": 44131,
+  "charged_input_cost_source": "protocol.recovery.B1.consumed_controls_lower_bound"
 }
