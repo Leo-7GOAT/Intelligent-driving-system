@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path, PurePosixPath
+import shutil
 import subprocess
 import sys
 import zipfile
@@ -115,12 +116,26 @@ def reproduce(path, expected, output):
     batch = output/'asset'/manifest['batch']
     if not batch.is_relative_to(output/'asset'):
         raise ValueError('Batch escapes asset')
+    # Git normalizes text line endings. Execute the exact hash-registered
+    # dynamics bytes in an isolated source tree instead of changing any hash
+    # or overwriting the user's checkout to match historical CRLF files.
+    runtime = output/'runtime'
+    for directory in ('navstack', 'scripts'):
+        for source in (ROOT/directory).rglob('*.py'):
+            target = runtime/source.relative_to(ROOT)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
+    for name, expected_source in read(batch/'protocol.json')['source_hashes'].items():
+        source = batch/'source'/name
+        if digest(source.read_bytes()) != expected_source:
+            raise ValueError('Archived experiment source differs from registration')
+        shutil.copy2(source, runtime/name)
     for name, arguments in (
         ('analyze_fixed_reference_benchmark.py', ['--batch', batch, '--output', output/'verified.json']),
         ('plot_fixed_reference_benchmark.py', ['--batch', batch, '--output-prefix', output/'controllers']),
     ):
-        result = subprocess.run([sys.executable, str(ROOT/'scripts'/name), *map(str, arguments)],
-                                cwd=ROOT, capture_output=True, text=True)
+        result = subprocess.run([sys.executable, str(runtime/'scripts'/name), *map(str, arguments)],
+                                cwd=runtime, capture_output=True, text=True)
         (output/(name+'.log')).write_text(result.stdout+'\n'+result.stderr, encoding='utf-8')
         if result.returncode:
             raise RuntimeError('Reproduction failed: '+name+'; inspect preserved logs')
