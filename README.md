@@ -1,13 +1,24 @@
 # Executability-aware hierarchical driving research
 
-All five B1basic courses now finish:3/4,2/4,2/4,0/4,2/4successes;all fail the
-unchanged zero-unsafe gate. All51,200training controls,103actual Adam updates
-and58,758raw controls are audited. The retained-state3e-6continuation is actually
-learning:its first1,280new controls produce40new Adam updates;the saved optimizer
-has49steps including9retained updates,and observation statistics remain exact.
-Driving improvement is still unproven. Independent Windows CPUregression passes
-976tests;hosted Linux passes959. [Complete cohort](reports/native_B1_all_five_basic_PPO_course_20261101.json),
-[independent reconstruction,CI and actual checkpoint](reports/native_B1_basic_cohort_independent_verification_20261101.json).
+The first retained-state B1continuation now passes the unchanged basic gate:
+3/4successes,one timeout,zero collision/bounds after10,240additional controls and
+320actual Adam updates. The timeout ends stationary2.164m from goal;this is still
+not a healthy full-task baseline. Seed22is learning;all five receive the same
+recipe. [Actual gate and remaining stall](reports/native_B1_first_lower_rate_basic_gate_and_stall_20261101.json).
+The initial all-five course remains3/4,2/4,2/4,0/4,2/4with every gate failed;
+all51,200training controls and58,758raw controls are preserved.
+
+A new all-five matched-harness H/H0replication is actually queued:36TRAIN and
+24known development-validation conditions,20,480requested controls per method
+and seed. All10pristine independently seeded actors restore unchanged;all5full
+source trees match. No new training or final conditions are claimed yet.
+[Frozen inputs and live queue](reports/native_matched_broader_feedback_queue_activation_20261101.json).
+
+An auxiliary execution predictor was rejected:crossed seed/road validation gives
+Brier.0518against.0463for the simpler historical-failure baseline. Independent
+replay reproduces every prediction exactly. It is not part of the policy,mask or
+controller. [Negative result](reports/native_execution_prediction_cross_seed_probe_20261101.json),
+[independent replay](reports/native_execution_prediction_independent_verification_20261101.json).
 
 Actual PPOcamera evaluation is now queued behind the owned native learning
 stages:H/B1each use two explicitly selected known roads and unchanged saved

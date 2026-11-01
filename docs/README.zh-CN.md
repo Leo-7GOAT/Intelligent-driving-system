@@ -1,8 +1,13 @@
 # 低速车辆分层决策与控制研究
 
-五个B1基础课程均已结束：3/4、2/4、2/4、0/4、2/4，全部未通过零碰撞、越界门槛。51,200训练控制步、103次实际Adam更新、58,758原始控制帧已核验。保留训练状态的3e-6续训现已真实执行；首1,280步完成40次新更新，保存的Adam累计49步（含原9步），观测归一化统计保持完全一致。尚不能证明驾驶改善。
-独立Windows完整回归976项通过，GitHub Linux完整回归959项通过。
-[五种子全部结果](../reports/native_B1_all_five_basic_PPO_course_20261101.json)、[独立重建、CI与真实检查点](../reports/native_B1_basic_cohort_independent_verification_20261101.json)。
+首个B1保留状态续训种子通过了原定基础门槛：追加10,240控制步、320次实际Adam更新后，3/4成功、1次超时，零碰撞、越界。超时回合停在距目标2.164米处，因此仍不是健康的完整任务基线。第二个种子正在按同一方案学习，其余种子保持排队。
+[实际门槛与未解决停滞](../reports/native_B1_first_lower_rate_basic_gate_and_stall_20261101.json)。首阶段五种子3/4、2/4、2/4、0/4、2/4的全部失败和成本继续保留。
+
+新的五种子H/H0同桥接版本复验队列已实际启动等待：36个TRAIN条件、24个已知开发验证条件，各方法各种子请求20,480控制步。十份独立初始化模型恢复、五份完整代码树一致性核验均通过；尚未开始该批训练，更未启用最终测试。
+[冻结输入、实际队列与范围](../reports/native_matched_broader_feedback_queue_activation_20261101.json)。
+
+额外执行预测网络被否决：策略种子和道路同时隔离后，Brier为0.0518，不如简单历史失败基线的0.0463；独立目录重放所有预测完全一致。它未接入PPO、动作掩码或控制器。
+[负结果](../reports/native_execution_prediction_cross_seed_probe_20261101.json)、[独立复验](../reports/native_execution_prediction_independent_verification_20261101.json)。
 
 真实PPO录像队列已启动等待现有训练结束：H、B1各两个明确选定的已知道路条件，模型保持冻结。两份实际CPU恢复与104项回归检查通过；尚未录制，不作为已有视频成果。
 [队列、模型身份、验帧流程与限制](../reports/native_PPO_camera_queue_activation_20261101.json)。

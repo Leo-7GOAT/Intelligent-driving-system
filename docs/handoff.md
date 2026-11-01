@@ -1,4 +1,62 @@
-# Current continuation checkpoint — 2026-11-01 08:59
+# Current research checkpoint — 2026-11-01 09:34
+
+Previous goal turn was PROGRESS:seed11completed its10240-control lower-rate
+extension with320new Adam steps;3/4success,1deadline,zero unsafe,BASICGATEPASS.
+Lineage20480controls;not full-task health. The failure never enters.8mgoal
+tolerance,endsstationary2.1643mfromgoalat45s;do not hide this stall or claim
+overall driving success. Reports`native_B1_basic_lr_extension_seed11_endpoint_20261101.json`
+and`native_B1_first_lower_rate_basic_gate_and_stall_20261101.json`bind evidence.
+
+ACTUALLY TRAINING:62332observer,seed22child
+`20261101T011350364179Z_native_B1_basic_lr_extension`,worker41112.
+Seed11child53620is terminal;revalidate creation identities before management.
+All5retain the same lower-rate recipe;full observer20420still waits every gate.
+Camera observer42060still waits for training/full-stage exits. No RGBframes yet.
+
+NEW ACTUALLY WAITING:72028observer,execution
+`runs/H_H0_matched_broader_execution_20261101`,after exact owned42060finishes.
+Preparation`runs/H_H0_matched_broader_preparation_20261101`has ALL5pristine H/H0pairs:
+11`20261101T011938826336Z_native_matched_broader_feedback`,
+22`20261101T011945179519Z_native_matched_broader_feedback`,
+33`20261101T011949266084Z_native_matched_broader_feedback`,
+44`20261101T011953260380Z_native_matched_broader_feedback`,
+55`20261101T011957251615Z_native_matched_broader_feedback`.
+36TRAIN/24KNOWNdevelopment-validation,20480requested controls per method/seed,
+204800total requested. No new BCfit,no final conditions,no actual broad training
+yet. All5complete517-file source trees identical,both methods share current
+bridge852e6e...before first PPOupdate. All10models actual frozen-runtime restored
+with zeroPPO/emptyAdam,exact actor tensors/statistics and existing12teacher-case
+prefix;5launcher input validations pass. Prior canonical12and mixed-harness
+single-seed broader costs stay charged/historical,not pooled as this new cohort.
+No pipeline observer may skip failed gates or silently retry a native job.
+
+EXECUTION PREDICTOR REJECTED,not deployed. Pilot4160TRAINdecisions/707planning
+failures gave27.3percent Brier improvement. Stricter20,800decision validation
+uses205446already-audited TRAINcontrols from all10canonical H/H0policies;
+trainseeds11/22/33,validation44/55,each fold withholds its complete route.
+Capacity-matched MLP41inputs,32tanh16tanh1,300fixed Adam updates;geometrybaseline
+zeros6past-execution inputs. Mean Brier geometry.07199,feedback.05179,
+simple past-failure baseline.04632. Prespecified stronger criterion FAILS.
+All4independent replay prediction arrays exactly match;33targeted independent
+tests8.99s. No new native controls or policy updates. Keep raw datasets/protocols
+in`runs/selected_execution_prediction_pilot_20261101`and
+`runs/selected_execution_prediction_cross_seed_validation_20261101`;
+production utility`scripts/probe_native_execution_prediction.py`is diagnostic only.
+Reports`native_execution_prediction_cross_seed_probe_20261101.json`and
+`native_execution_prediction_independent_verification_20261101.json`retain failure.
+
+Actual hosted sourceae76d1ddd872519b7c7d0b073d59c97c30e53e81passes968tests,
+18skips/4CARLAexclusions,197.52s:
+https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41261183283
+Independent checkout`basic_course_code_checkout_20261101`is atae76d1dand IDLE
+after33tests/all4MLPfold replays. Existing full Windows976pass at8755337remains
+valid for that source;do not call it a new full run at the later source.
+
+GoalACTIVE/UNMET. Healthy all-five B1,PPOvalue,strong B3 comparison,feedback
+benefit,frequency/shared-safety evidence and120NEWfinal conditions remain.
+No new final conditions have been generated. Do not redo completed publications.
+
+# Historical continuation checkpoint — 2026-11-01 08:59
 
 Read this snapshot before the timestamped historical notes below. Revalidate live
 process creation identities from local receipts;never manage a process by PID alone.
