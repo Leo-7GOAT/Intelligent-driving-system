@@ -1,4 +1,40 @@
-# Latest native endpoint — 2026-11-01 09:36
+# Latest continuation — 2026-11-01 09:53
+
+Seed33completed10240new real PPOcontrols/320Adam updates;its original4case
+evaluation is in progress. Driver62332and full-gate observer20420are unchanged.
+Do not treat the still-running evaluation as a completed or qualified endpoint.
+
+NEW retained-state actor correction diagnostic actually fit both arms:seed22
+endpoint,512separate-Adam actor-only updates each,critic/retainedPPOAdam/counters/
+normalizer exact. No new PPO or driving. Same3496teacher TRAINrows/weights;
+correction arm adds17solved-reference labels from25outcome-independent first
+TRAINepisode queries;all8wait/brake-only labels excluded. Acceleration/steering
+TRAIN MSE .0308003/.00237298 becomes .0310828/.00242406with replay alone,
+.000594401/.0000510366with added on-policy labels. This is not driving evidence.
+Executed fit/data/oracle snapshots remain in
+`runs/B1_seed22_matched_trained_trajectory_fit_20261101` (47.828s,total1024extra
+supervised steps). Zero-PPO fitting guard remains intact;new trained-state API
+is explicit and requires a fresh rollout before any subsequent PPO training.
+
+Both frozen four-case probes are PREPARED,not driven:
+replay `20261101T014911209543Z_native_trained_actor_replay`,
+correction `20261101T014911842823Z_native_trained_actor_trajectory_correction`.
+Both actual launcher input preflights passed;10targeted tests pass6.26s.
+Record `reports/native_B1_trained_trajectory_correction_preflight_20261101.json`.
+
+Old broader observer72028was verified live/childless/waiting then explicitly
+superseded via its creation-bound handle;receipt retained in its old directory.
+No native worker or prepared H/H0training inputs changed. NEW observer30268
+(actual base Python,created2026-11-01T09:50:53.932895+08:00;launch shim55872)
+is actually WAITING on exact camera42060handle. New execution:
+`runs/H_H0_matched_broader_with_corrective_probe_execution_20261101`.
+Order:existing all-five B1extensions/full-gate resolution -> existing camera
+and cleanup -> both4case corrected-actor probes with raw/inference audits ->
+the SAME already prepared all-five36TRAIN/24known-VAL H/H0cohort. No retries,
+no final conditions,no baseline qualification claim from offline loss.
+Do not restart the superseded observer or launch duplicate native batches.
+
+# Historical native endpoint — 2026-11-01 09:36
 
 Seed22lower-rate extension TERMINAL:2/4success,two bounds,320new Adam updates,
 10240new controls,20480policylineage,11557audited raw controls. GateFAIL.

@@ -1,5 +1,12 @@
 # Executability-aware hierarchical driving research
 
+A matched trained-B1 actor diagnostic is now queued before the broader H/H0
+cohort. Both arms retain the same real PPO endpoint and add512actor-only updates;
+only one includes17solved-reference labels at its own TRAIN states. Its action
+fit improves, while replay-only fitting does not. This is not yet a driving
+improvement. Both complete four-case CARLA probes are required before adoption.
+[Recipe, costs, queue supersession and pending closed-loop checks](reports/native_B1_trained_trajectory_correction_preflight_20261101.json).
+
 The first retained-state B1continuation now passes the unchanged basic gate:
 3/4successes,one timeout,zero collision/bounds after10,240additional controls and
 320actual Adam updates. The timeout ends stationary2.164m from goal;this is still

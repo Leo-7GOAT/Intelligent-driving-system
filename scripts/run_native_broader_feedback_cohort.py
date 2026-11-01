@@ -26,6 +26,15 @@ def require_camera_completion(state,failure_present):
         raise ValueError('Exact owned predecessor must finish its native cleanup and complete recording audits')
 
 
+def require_corrective_probe_pair(rows):
+    if (not isinstance(rows,list) or [r.get('arm') for r in rows]!=['replay','trajectory_correction']
+            or len({r.get('batch') for r in rows})!=2
+            or len({r.get('model_sha256') for r in rows})!=2
+            or len({r.get('normalization_sha256') for r in rows})!=1):
+        raise ValueError('Require both distinct matched actor arms in fixed order with shared normalization')
+    return rows
+
+
 def run(execution):
     execution=Path(execution).resolve();root=execution.parent.parent;source=execution/'source'
     sys.path.insert(0,str(source))
@@ -37,6 +46,7 @@ def run(execution):
     from scripts.evaluate_native_rule import require_finished_parent
     plan=read(execution/'plan.json');hashes=read(execution/'source_manifest.json')
     rows=require_preparation(read(root/'runs'/plan['preparation']/'status.json'))
+    probes=require_corrective_probe_pair(plan['pretraining_B1_corrective_probe']) if 'pretraining_B1_corrective_probe' in plan else []
     completed=[];owner=None
     def status(phase,**extra):
         atomic_json(execution/'status.json',{'phase':phase,'pid':os.getpid(),'epoch':time.time(),'completed':completed,**extra})
@@ -57,6 +67,23 @@ def run(execution):
             if p['source_hashes']!=reference:raise ValueError('All five pairs must use exactly the same complete source tree')
             for name,digest in p['source_hashes'].items():
                 if sha(batch/'source'/name)!=digest:raise ValueError('Frozen broader worker changed:'+name)
+        probe_source=None;probe_env=None
+        for row in probes:
+            batch=root/'runs'/row['batch'];path=batch/'queued_protocol.json' if (batch/'queued_protocol.json').is_file() else batch/'protocol.json'
+            if sha(path)!=row['protocol_sha256']:raise ValueError('Registered corrective probe protocol changed')
+            p=read(batch/'protocol.json');origin=batch/'resume/B1'
+            if (p['methods']!=['B1'] or p.get('evaluation_only') is not True or p['method_budgets']!={'B1':0}
+                    or len(p['native_case_manifest']['cases'])!=4 or p.get('native_validation')
+                    or p['trained_actor_correction']['arm']!=row['arm']
+                    or p['trained_actor_correction']['additional_supervised_steps']!=512
+                    or sha(origin/'model.zip')!=row['model_sha256']
+                    or sha(origin/'normalization.pkl')!=row['normalization_sha256']):
+                raise ValueError('Matched corrective probe semantics or artifacts changed')
+            env=read(origin/'config.json')['env']
+            if probe_source is None:probe_source=p['source_hashes'];probe_env=env
+            if p['source_hashes']!=probe_source or env!=probe_env:raise ValueError('Corrective arms change execution or task')
+            for name,digest in p['source_hashes'].items():
+                if sha(batch/'source'/name)!=digest:raise ValueError('Frozen corrective worker changed:'+name)
     def call(command,label,timeout,env=None):
         with (execution/(label+'.log')).open('x',encoding='utf-8') as stream:
             child=subprocess.Popen(list(map(str,command)),cwd=root,env=env,stdout=stream,stderr=subprocess.STDOUT)
@@ -82,6 +109,37 @@ def run(execution):
             predecessor=root/'runs'/plan['dependency_execution']
             prior=read(predecessor/'status.json');require_camera_completion(prior,(predecessor/'failure.json').is_file())
             for row in prior['completed']:require_finished_parent(root/'runs'/row['batch'])
+            probe_results=[]
+            for row in probes:
+                verify();okay,reason=resources_ok(root)
+                if not okay:raise RuntimeError(str(reason))
+                batch=root/'runs'/row['batch'];prefix='corrective_'+row['arm']
+                status('EVALUATING_BOTH_MATCHED_TRAINED_B1_ACTOR_ARMS',arm=row['arm'],batch=batch.name)
+                call([shutil.which('pwsh'),'-NoProfile','-File',source/'scripts/run_registered_native.ps1',
+                    '-Batch',batch,'-Python',root/'.venv/Scripts/python.exe','-CarlaPython',root/'.carla-python37/runtime/python.exe',
+                    '-ActivateQueued','-UseCurrentGuard'],prefix+'_lifecycle',2400)
+                require_finished_parent(batch);env=dict(os.environ,NAVSTACK_AUDIT_SOURCE_ROOT=str(batch/'source'));folder=batch/'B1'
+                call([sys.executable,batch/'source/scripts/audit_native_method_endpoint.py','--batch',batch,'--method','B1'],prefix+'_raw',300,env)
+                call([sys.executable,batch/'source/scripts/audit_native_policy_inference.py','--batch',batch,'--method','B1',
+                    '--output',folder/'measured_start_inference.json'],prefix+'_inference',300,env)
+                summary=read(folder/'summary.json');evaluation=read(folder/'evaluation.json');audit=read(folder/'endpoint_raw_audit.json')
+                episodes=evaluation['episodes']
+                if (summary['physics_steps'] or summary['optimizer_steps']
+                        or len(episodes)!=4 or sorted(e['case_id'] for e in episodes)!=list(range(4))
+                        or len(read(folder/'measured_start_inference.json')['results'])!=4
+                        or evaluation['model_sha256']!=row['model_sha256']
+                        or evaluation['normalization_sha256']!=row['normalization_sha256']):
+                    raise ValueError('Incomplete frozen four-case corrective diagnostic')
+                probe_results.append({'arm':row['arm'],'batch':batch.name,'cases':4,'successes':sum(e['success'] for e in episodes),
+                    'termination_counts':dict(Counter(e['termination_reason'] for e in episodes)),
+                    'raw_controls_verified':audit['total_applied_controls_verified'],'PPO_updates':0,
+                    'additional_supervised_updates':512,'model_sha256':evaluation['model_sha256'],
+                    'normalization_sha256':evaluation['normalization_sha256'],'raw_audit_sha256':sha(folder/'endpoint_raw_audit.json')})
+                atomic_json(execution/'completed_corrective_probe_arms.json',probe_results)
+            if probes:
+                with (root/'reports/native_B1_matched_trained_actor_correction_20261101.json').open('x',encoding='utf-8') as f:
+                    json.dump({'scope':'All4known basic cases after two matched512step trained actor fits;one development seed,not final or healthy full baseline',
+                        'arms':probe_results,'new_PPO_updates':0,'research_acceptance':'UNMET'},f,indent=2)
             for row in rows:
                 verify();okay,reason=resources_ok(root)
                 if not okay:raise RuntimeError(str(reason))

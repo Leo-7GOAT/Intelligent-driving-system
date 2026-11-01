@@ -1,7 +1,7 @@
 from copy import deepcopy
 import pytest
 from scripts import prepare_native_broader_feedback_cohort as preparer
-from scripts.run_native_broader_feedback_cohort import require_preparation,require_camera_completion
+from scripts.run_native_broader_feedback_cohort import require_preparation,require_camera_completion,require_corrective_probe_pair
 
 
 def test_broader_replication_preserves_prior_protocol_and_uses_the_fixed_development_budget(monkeypatch):
@@ -48,3 +48,16 @@ def test_live_or_failed_predecessor_does_not_release_native_resources():
     with pytest.raises(ValueError):require_camera_completion(state,True)
     state['phase']='WAITING_FOR_OWNED_TRAINING_QUEUES_TO_EXIT'
     with pytest.raises(ValueError):require_camera_completion(state,False)
+
+
+def test_corrective_probe_requires_both_distinct_models_and_shared_statistics():
+    rows=[{'arm':a,'batch':str(i),'model_sha256':str(i),'normalization_sha256':'same'}
+          for i,a in enumerate(('replay','trajectory_correction'))]
+    assert require_corrective_probe_pair(rows)==rows
+    for broken in (rows[:1],rows[::-1]):
+        with pytest.raises(ValueError):require_corrective_probe_pair(broken)
+    for key in ('batch','model_sha256'):
+        broken=deepcopy(rows);broken[1][key]=broken[0][key]
+        with pytest.raises(ValueError):require_corrective_probe_pair(broken)
+    broken=deepcopy(rows);broken[1]['normalization_sha256']='different'
+    with pytest.raises(ValueError):require_corrective_probe_pair(broken)

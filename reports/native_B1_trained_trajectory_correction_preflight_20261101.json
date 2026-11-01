@@ -1,0 +1,269 @@
+{
+  "scope": "One trained B1seed,matched TRAIN-only actor fitting diagnostic;actual CARLA paired probes queued,not executed yet",
+  "parent": "20261101T011350364179Z_native_B1_basic_lr_extension",
+  "seed": 22,
+  "parent_model_sha256": "e4cbd3b436d54d6b9f2c59aba5e51c315902aa49aef06594227a741c2d6ccf06",
+  "parent_raw_audit_sha256": "c511716176fe37a6c9a934c15b23032dfb3dacf0875d7aaabcca927a0562d158",
+  "oracle_manifest_sha256": "d13805d2a2379c81d2d3cd3c8ca83e5c040f3d0964fed5dabbb90f27df61ef8b",
+  "steps_each": 512,
+  "learning_rate": 0.0001,
+  "correction_row_weight": 20.0,
+  "teacher_TRAIN_rows": 3496,
+  "solved_reference_rows": 17,
+  "excluded_wait_or_failed_rows": 8,
+  "selection": "All solved-reference labels from outcome-independent first completed TRAIN episode/condition. All wait/brake-only queries excluded; no evaluation data.",
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "wall_seconds": 600,
+  "automatic_retries": 0,
+  "inputs_sha256": "9af602e86dd16869ae182dcf84814e6809f7e39cbe067f4b8480fcfd044971b5",
+  "script_sha256": "6cc4a11cff6fb8d11f94c428ec1c276c9d8b0f9d6a0977db2bcb63167bddf753",
+  "fit_source_sha256": "71d264b87496608a436c6916ec54f2f027085861a263b2ee18458da893d0f232",
+  "limits": "TRAIN loss is diagnostic only. Compare all four known basic cases in CARLA before adoption; no baseline qualification or generalization claim.",
+  "additional_supervised_steps_total": 1024,
+  "elapsed_seconds": 47.82799999997951,
+  "research_acceptance": "UNMET",
+  "results": [
+    {
+      "arm": "replay",
+      "fit": {
+        "version": "trained_actor_separate_Adam_v1",
+        "additional_supervised_steps": 512,
+        "history": [
+          {
+            "additional_supervised_steps": 1,
+            "sampled_action_mse": 0.0004590850439853966,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 64,
+            "sampled_action_mse": 0.0006448752828873694,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 128,
+            "sampled_action_mse": 0.00041359965689480305,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 192,
+            "sampled_action_mse": 0.0004179608076810837,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 256,
+            "sampled_action_mse": 0.002711554756388068,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 320,
+            "sampled_action_mse": 0.004133467562496662,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 384,
+            "sampled_action_mse": 0.0004922468215227127,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 448,
+            "sampled_action_mse": 0.008275188505649567,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 512,
+            "sampled_action_mse": 0.004314093384891748,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          }
+        ],
+        "critic_exact": true,
+        "retained_PPO_optimizer_exact": true,
+        "retained_PPO_counters_exact": true,
+        "normalization_statistics_exact": true,
+        "PPO_updates": 0,
+        "scope": "TRAIN-only offline actor intervention; no holdout accuracy or new-driving claim; fresh rollout required before PPO"
+      },
+      "model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+      "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+      "before_reference_action_MSE": [
+        0.03080029971897602,
+        0.0023729822132736444
+      ],
+      "after_reference_action_MSE": [
+        0.03108280897140503,
+        0.0024240645579993725
+      ]
+    },
+    {
+      "arm": "trajectory_correction",
+      "fit": {
+        "version": "trained_actor_separate_Adam_v1",
+        "additional_supervised_steps": 512,
+        "history": [
+          {
+            "additional_supervised_steps": 1,
+            "sampled_action_mse": 0.002202064963057637,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 64,
+            "sampled_action_mse": 0.0011109485058113933,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 128,
+            "sampled_action_mse": 0.002244430361315608,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 192,
+            "sampled_action_mse": 0.0005647913785651326,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 256,
+            "sampled_action_mse": 0.0004253843508195132,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 320,
+            "sampled_action_mse": 0.008234183304011822,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 384,
+            "sampled_action_mse": 0.0004133149632252753,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 448,
+            "sampled_action_mse": 0.00027962028980255127,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          },
+          {
+            "additional_supervised_steps": 512,
+            "sampled_action_mse": 0.0003304039128124714,
+            "learning_rate": 0.0001,
+            "PPO_updates": 0
+          }
+        ],
+        "critic_exact": true,
+        "retained_PPO_optimizer_exact": true,
+        "retained_PPO_counters_exact": true,
+        "normalization_statistics_exact": true,
+        "PPO_updates": 0,
+        "scope": "TRAIN-only offline actor intervention; no holdout accuracy or new-driving claim; fresh rollout required before PPO"
+      },
+      "model_sha256": "f19ee134980e9325709f15ae4ac532d277597073d5ee00a0f02daa43dd8978ee",
+      "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+      "before_reference_action_MSE": [
+        0.03080029971897602,
+        0.0023729822132736444
+      ],
+      "after_reference_action_MSE": [
+        0.0005944007425568998,
+        5.103661533212289e-05
+      ]
+    }
+  ],
+  "fit_result_sha256": "008da8a0c1f0cd0209d0cff532daddc8e895f79715f978fa0ce5b2d8ae8680e4",
+  "actual_execution": "H_H0_matched_broader_with_corrective_probe_execution_20261101",
+  "observer_pid": 30268,
+  "observer_creation_time": "2026-11-01T09:50:53.932895+08:00",
+  "launch_shim_pid": 55872,
+  "launch_shim_is_not_native_worker": true,
+  "prior_observer_superseded": {
+    "pid": 72028,
+    "creation_epoch": 1793496097.042307,
+    "child_count": 0,
+    "exit_code": 1,
+    "actual_native_workers_changed": 0
+  },
+  "paired_probe_batches": [
+    {
+      "arm": "replay",
+      "batch": "20261101T014911209543Z_native_trained_actor_replay",
+      "protocol_sha256": "b01929ab9b777e726d4e447e2a33ae313d0d71a36c7a8d8bcd5f730f40c5f3aa",
+      "model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+      "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5"
+    },
+    {
+      "arm": "trajectory_correction",
+      "batch": "20261101T014911842823Z_native_trained_actor_trajectory_correction",
+      "protocol_sha256": "e1bb7ccb0326db3d00736d22127c91f19174fb0746f5c4c6b4f4f6b25fdbd9f1",
+      "model_sha256": "f19ee134980e9325709f15ae4ac532d277597073d5ee00a0f02daa43dd8978ee",
+      "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5"
+    }
+  ],
+  "new_plan_sha256": "3ee4f042db09258a251135eaac5829c7b8927f847b2e98c43942641fc169df4e",
+  "observer_source_sha256": "728bf940553d75df60dd59907b9599fce935bd6d8fadd07d6036e748de0b05f3",
+  "order": [
+    "Finish all five existing B1lower-rate extensions and resolve the unchanged all-five full-stage gate",
+    "Complete existing H/B1actual-RGB queue and native cleanup",
+    "Evaluate both matched B1actor arms on all4original basic conditions;raw/inference audits",
+    "Execute the same five already prepared matched H/H0broader pairs"
+  ],
+  "added_probe_controls_upper_bound": 7200,
+  "added_PPO_updates": 0,
+  "training_and_final_conditions_unchanged": true,
+  "continuation_entry": "Read this report,docs/handoff.md,and actual execution/status.json;do not launch a duplicate observer",
+  "local_tests": {
+    "tests": [
+      "tests/test_corrective_imitation.py",
+      "tests/test_native_broader_feedback_cohort.py"
+    ],
+    "passed": 10,
+    "seconds": 6.26,
+    "broader_related_passed": 18,
+    "broader_related_seconds": 6.69
+  },
+  "native_input_preflights": "Both actual registered launchers INPUTS_VALIDATED_NOT_SERVER_PROBED",
+  "actual_closed_loop_probe_controls_so_far": 0,
+  "actual_frozen_worker_CPU_restores": [
+    {
+      "scope": "Actual frozen-worker trained-checkpoint restore and all25saved TRAIN-state predictions;inert environment rejects reset/step",
+      "batch": "20261101T014911209543Z_native_trained_actor_replay",
+      "arm": "replay",
+      "retained_policy_controls": 20480,
+      "retained_PPO_n_updates": 92,
+      "model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+      "prediction_count": 25,
+      "normalization_statistics_exact": true,
+      "maximum_prediction_error": 0.0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "physical_resets": 0
+    },
+    {
+      "scope": "Actual frozen-worker trained-checkpoint restore and all25saved TRAIN-state predictions;inert environment rejects reset/step",
+      "batch": "20261101T014911842823Z_native_trained_actor_trajectory_correction",
+      "arm": "trajectory_correction",
+      "retained_policy_controls": 20480,
+      "retained_PPO_n_updates": 92,
+      "model_sha256": "f19ee134980e9325709f15ae4ac532d277597073d5ee00a0f02daa43dd8978ee",
+      "prediction_count": 25,
+      "normalization_statistics_exact": true,
+      "maximum_prediction_error": 0.0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "physical_resets": 0
+    }
+  ]
+}

@@ -6,7 +6,8 @@ import torch
 from gymnasium import Env,spaces
 from stable_baselines3 import PPO
 
-from navstack.corrective_imitation import fit_corrective_actor
+from navstack.corrective_imitation import fit_corrective_actor,fit_trained_corrective_actor,_exact
+from copy import deepcopy
 from navstack.road_candidate_policy import OrderedFlatRoadCandidatePolicy
 
 
@@ -41,3 +42,29 @@ def test_invalid_correction_rejected_before_fitting(bad):
     if bad=='weight':w[0]=0
     if bad=='PPO_state':model.num_timesteps=1
     with pytest.raises(ValueError):fit_corrective_actor(model,norm,x,y,w,steps=2)
+
+
+def test_trained_fit_preserves_entire_PPO_optimizer_critic_and_counters():
+    model,norm=setup_model()
+    loss=sum(p.square().sum() for p in model.policy.parameters())
+    loss.backward();model.policy.optimizer.step();model.policy.optimizer.zero_grad(set_to_none=True)
+    model.num_timesteps=8;model._n_updates=1
+    before={k:v.clone() for k,v in model.policy.state_dict().items()}
+    optimizer=deepcopy(model.policy.optimizer.state_dict())
+    report=fit_trained_corrective_actor(model,norm,np.zeros((8,4705),dtype=np.float32),
+        np.full((8,2),.25,dtype=np.float32),np.ones(8),steps=3)
+    assert report['additional_supervised_steps']==3 and report['PPO_updates']==0
+    assert (model.num_timesteps,model._n_updates)==(8,1)
+    assert _exact(optimizer,model.policy.optimizer.state_dict())
+    assert all(torch.equal(v,before[k]) for k,v in model.policy.state_dict().items() if 'value_net' in k)
+    assert any(not torch.equal(v,before[k]) for k,v in model.policy.state_dict().items() if 'action_net' in k)
+    assert all(p.grad is None for p in model.policy.parameters())
+    with pytest.raises(ValueError,match='zero-PPO'):
+        fit_corrective_actor(model,norm,np.zeros((8,4705)),np.zeros((8,2)),np.ones(8),steps=1)
+
+
+def test_trained_fit_rejects_pristine_initializer_and_bad_data_before_updates():
+    model,norm=setup_model();before={k:v.clone() for k,v in model.policy.state_dict().items()}
+    with pytest.raises(ValueError,match='trained PPO'):
+        fit_trained_corrective_actor(model,norm,np.zeros((8,4705)),np.zeros((8,2)),np.ones(8),steps=1)
+    assert all(torch.equal(v,before[k]) for k,v in model.policy.state_dict().items())
