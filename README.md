@@ -58,6 +58,20 @@ conditions remain unused.
 [all-outcome and mutually successful-case costs](reports/native_matched_broader_feedback_seed11_costs_20261101.json).
 [Frozen inputs and live queue](reports/native_matched_broader_feedback_queue_activation_20261101.json).
 
+The first complete matched pair is now
+[publicly released](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback).
+Independent public download reconstructs936files,57,412training/evaluation
+controls,48measured-start actions and the exact all-case figure. Both methods,
+all outcomes,models,normalizers and initial checkpoints are retained.
+[Executed public verification](reports/native_matched_broader_seed11_public_verification_20261101.json).
+From source369db6939ee67e540aa6b63c155b3eb27964f2bc with the pinned CPU dependencies,
+use fresh output directories:
+
+```powershell
+.venv/Scripts/python.exe scripts/download_native_asset.py --manifest-url https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed11_20261101_repro.zip.parts.json --sha256 536125ada8d3bf8b4a55d78505d9f53c3a257f79195646c379d4a94e2765e92f --output runs/public_broader_seed11_download
+.venv/Scripts/python.exe scripts/reproduce_native_asset.py --archive runs/public_broader_seed11_download/native_matched_broader_H_H0_seed11_20261101_repro.zip --sha256 536125ada8d3bf8b4a55d78505d9f53c3a257f79195646c379d4a94e2765e92f --output runs/public_broader_seed11_rebuilt
+```
+
 All-five statistics and the24condition figure are automatically queued behind
 the exact owned training process. They require all five seeds, matching complete
 source trees and actual20480control budgets; they do not count120seed-case

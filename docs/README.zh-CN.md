@@ -22,6 +22,9 @@ B1下一项开发诊断已完成拟合：每个基础条件取自身最早三个
 [首组原始绑定配对结果](../reports/native_matched_broader_feedback_seed11_pair_20261101.json)、[完整代价比较](../reports/native_matched_broader_feedback_seed11_costs_20261101.json)。
 [冻结输入、实际队列与范围](../reports/native_matched_broader_feedback_queue_activation_20261101.json)。
 
+首组完整模型和原始日志现已[公开预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback)，并从无需登录的公开地址独立重建通过：936个文件、57,412个训练/评测控制帧、48个测量初态动作、完整图表逐字节一致。两种方法及全部结果均保留，仍是一个开发种子、24个已知条件，尚无反馈优势结论。
+[实际公开下载与独立复现凭证](../reports/native_matched_broader_seed11_public_verification_20261101.json)，英文主README给出两条复现命令。
+
 全五种子的配对统计及24条件图表已启动只读等待程序，要求全部五组、完整代码树一致及实际训练预算齐全后才生成；120个种子-场景评测不会被写成120个独立最终条件。旧12条件公开主图仍逐字节重建一致。
 [登记配对清单](../protocols/native_matched_broader_feedback_pairs_20261101.json)、[实际汇总队列](../reports/native_matched_broader_feedback_analysis_activation_20261101.json)。
 

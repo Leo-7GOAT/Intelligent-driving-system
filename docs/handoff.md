@@ -1,4 +1,44 @@
-# Latest verified pair / automatic analysis — 2026-11-01 11:38
+# Latest complete public pair / owned resource probe — 2026-11-01 11:58
+
+Previous turn PROGRESS:first pair completed and automatic all-five analysis
+prepared;source369db6939ee67e540aa6b63c155b3eb27964f2bc hosted1007PASS,independent27PASS.
+This turn PROGRESS:first COMPLETE paired model/raw archive actually packaged,
+uploaded,publicly downloaded and independently reconstructed. No new method edits.
+
+PUBLIC prerelease v0.2.0-dev.20261101-feedback targets369db6939ee67e540aa6b63c155b3eb27964f2bc.
+Archive `native_matched_broader_H_H0_seed11_20261101_repro.zip`,141286566bytes,
+936files,SHA536125ada8d3bf8b4a55d78505d9f53c3a257f79195646c379d4a94e2765e92f.
+135x1MiBparts+manifestLAST;all remote size/digest/state checks passed,zero failures.
+Unauthenticated public download/independentcheckout369 reconstruction verifies
+57412controls,48start actions,exact all48case figure SHA
+dd4854412258bbf0f74483e1413557149b1f411cdc79f9f1161e1a11b1fc4b1f.
+Public receipt `reports/native_matched_broader_seed11_public_verification_20261101.json`.
+Execution `runs/native_matched_broader_seed11_publication_execution_20261101` TERMINAL
+SUCCESS;publisher34144 TERMINAL. Do not restart/reupload/rebuild this capsule.
+Artifact directory `runs/prerelease_20261022/native_matched_broader_seed11_publication_20261101`.
+Separate local preflight report `native_matched_broader_seed11_capsule_independent_20261101.json`.
+No new training/evaluation controls from packaging or reproduction.
+
+One isolated NullRHIempty-world startup feasibility attempt FAILED before RPC
+readiness on2300..2302;owned shipping42380 exited3after19.469s,total0controls,
+0actor/camera commands. Its primary-preservation proof shows main71516live;
+secondary has exited,no remaining children found. No renderer/launcher/source
+changes adopted,no retry. This is not evidence of physics equivalence or a
+general unsupported-platform claim. SourceCLI/failed readiness/serverlogs stay
+in `runs/isolated_nullrhi_readiness_probe_20261101`;sanitized report
+`reports/native_isolated_nullrhi_startup_probe_20261101.json`.
+Keep existing single-server native queue;do not repeat this resource experiment.
+
+Broader observer40540LIVE,seed22batch`20261101T011945179519Z_native_matched_broader_feedback`,
+worker50292(created1793504098.534,basePython311). Hcompleted20579controls/650Adam,
+worker reports24/24validation (rawverification awaitsH0andcleanup). H0has
+ACTUALLY started,1355controls at11:56. Do not rerun completed H.
+Teacher69732/B1probe68120/analysis37956remain waiting exact existing dependencies.
+Read launch.json/CIM before any management. GoalACTIVE/UNMET;healthyB1/PPO-vs-rule
+and feedback contributions/final120remain missing. No new B1edits before queued
+99label closed-loop outcome;no extra CPUprobes or repeated completed checks.
+
+# Previous verified pair / automatic analysis — 2026-11-01 11:38
 
 First matched broader pair COMPLETE and raw/inference verified. Seed11H24/24,
 H024/24,all three families8/8each,zero unsafe. Actual new training20522/20529

@@ -1,0 +1,49 @@
+{
+  "scope": "One finite isolated empty-world NullRHIstartup feasibility test on RPC2300..2302;not a driving or physics-equivalence experiment.",
+  "references": [
+    "https://carla.readthedocs.io/en/0.9.15/adv_multigpu/"
+  ],
+  "status": "FAILED_BEFORE_READY",
+  "failure": {
+    "error": "RuntimeError('Bounded null-RHI startup did not reach matching empty-world RPC')",
+    "wall_seconds": 19.468999999808148,
+    "new_control_commands": 0
+  },
+  "new_owned_server_pid": 42380,
+  "server_exit_code": 3,
+  "server_stopped": true,
+  "main_server_pid": 71516,
+  "main_server_still_live_at_cleanup": true,
+  "main_training_inputs_changed": false,
+  "additional_control_commands": 0,
+  "actor_spawns": 0,
+  "camera_spawns": 0,
+  "GPU_before": "16311, 8159, 34",
+  "GPU_after_observed": "16311, 8159, 34",
+  "GPU_after_observed_epoch": 1793504954.1881359,
+  "readiness_attempts": [
+    {
+      "file": "readiness_0.json",
+      "status": "CONNECTION_FAILED"
+    }
+  ],
+  "logs_sha256": {
+    "client_0.log": "189b46d190ede8e419f9169e78a688a36fbdbb27f64e90ed9ce86878d85fc0df",
+    "server_stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "server_stdout.log": "37586c164a526245739388fdb5a96d6125c31637e38e2ccb5e6875139569a3b4"
+  },
+  "decision": "Keep the existing native single-server execution queue. Do not infer unsupported Windows physics or GPU equivalence from this failed startup. No launcher,model,policy or training source changed.",
+  "automatic_retries": 0,
+  "startup_arguments": [
+    "CarlaUE4",
+    "-nullrhi",
+    "-carla-rpc-port=2300",
+    "-carla-primary-port=2302",
+    "-quality-level=Low",
+    "-nosplash",
+    "-unattended",
+    "-stdout",
+    "-FullStdOutLogOutput"
+  ],
+  "no_remaining_direct_child_processes_at_cleanup_recheck": true
+}
