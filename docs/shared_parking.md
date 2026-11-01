@@ -66,5 +66,46 @@ python scripts/analyze_native_shared_parking.py --output FRESH_ENGINEERING_AUDIT
 ```
 
 The audit command requires the corresponding preserved run inputs. Existing
-registered lifecycles must not be launched again. Public evidence and standalone
-reproduction details are recorded separately when the capsule is published.
+registered lifecycles must not be launched again.
+
+The [development prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-shared-parking)
+contains all five capsules, including the failed v1 and actual-PPO runs.
+An independent checkout at `ba7b3cfc393b3bc7cec26d6eaa9b0a81a2dd3a6d`
+downloaded them without authentication and verified **2,816 files, 18,936 physical
+control records and four byte-identical figures**. The engineering report rebuilt
+exactly. No additional controls or optimizer updates were performed by this
+reconstruction. All 19 remote asset digests also match the uploaded bytes.
+[Public reconstruction](../reports/native_shared_parking_public_verification_20261101.json),
+[remote assets and Linux CI](../reports/native_shared_parking_public_release_assets_20261101.json).
+
+The same independent checkout then prepared a new owned CARLA lifecycle from
+the downloaded B1 model, selecting original TRAIN case 0 before launch. It
+succeeded in **356 real controls with three parking overrides**. Every action
+reconstructs bit-exactly from the measured history, every engine control matches,
+and the final frame satisfies the unchanged goal gates without intervention.
+The owned server stopped normally. Model and normalizer bytes remain unchanged.
+This adds one reproduction episode, not a new training seed or final condition.
+[Physical replay receipt](../reports/native_shared_parking_public_CARLA_replay_20261101.json).
+
+From a fresh checkout with the README dependencies installed:
+
+```powershell
+python scripts/reproduce_shared_parking_release.py --recipe protocols/public_native_shared_parking_20261101.json --output runs/shared_parking_public_reproduction
+$parent = 'runs/shared_parking_public_reproduction/B1_rebuild/asset/20261101T104233573082Z_native_shared_parking_v2_B1'
+python scripts/prepare_published_native_replay.py --batch $parent --method B1 --output runs/my_public_B1_replay --case 0
+./scripts/run_registered_native.ps1 -Batch runs/my_public_B1_replay -Kind learning -ActivateQueued -UseCurrentGuard -Python .venv/Scripts/python.exe -CarlaPython .carla-python37/runtime/python.exe
+python scripts/audit_native_method_endpoint.py --batch runs/my_public_B1_replay --method B1
+$env:NAVSTACK_AUDIT_SOURCE_ROOT = (Resolve-Path runs/my_public_B1_replay/source).Path
+python scripts/audit_native_policy_inference.py --batch runs/my_public_B1_replay --method B1 --output runs/my_public_B1_replay/B1/measured_start_inference.json
+Remove-Item Env:NAVSTACK_AUDIT_SOURCE_ROOT
+python scripts/audit_native_flat_sequence.py --batch runs/my_public_B1_replay --output runs/my_public_B1_replay/B1/whole_sequence_inference.json
+python scripts/analyze_public_native_replay.py --batch runs/my_public_B1_replay --output runs/my_public_B1_replay/verification.json
+```
+
+The physical commands require the existing CARLA 0.9.15 installation and the
+isolated client described in the README. Each output directory must be new.
+The release tag remains fixed at `77a136477cfe2a2e215aa797efdcb4be30de11f2`;
+its frozen capsule source is `2794b00236319aedbb2ed801f934b61524e2aae4`.
+Use subsequent source `ba7b3cf` or newer for CPU reproduction: it fixes the
+contiguous matrix layout of two rejected experimental policy classes so their
+strict numerical tests also pass on Linux. Released B1/H models use neither class.

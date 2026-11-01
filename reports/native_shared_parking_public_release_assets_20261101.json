@@ -1,0 +1,114 @@
+{
+  "scope": "GitHub server asset digests compared with the frozen local upload parts and public recipe;no asset or tag mutation.",
+  "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-shared-parking",
+  "immutable_target_commit": "77a136477cfe2a2e215aa797efdcb4be30de11f2",
+  "prerelease": true,
+  "verified_assets": [
+    {
+      "name": "native_shared_parking_v2_B1_seed22_20261101.zip.part001",
+      "bytes": 8388608,
+      "sha256": "94a92963f91cdcb6ed8f626aefe8c50c286f22022b87f50ec019125255046649"
+    },
+    {
+      "name": "native_shared_parking_v2_B1_seed22_20261101.zip.part002",
+      "bytes": 6805675,
+      "sha256": "b2d6bab6094a6accd0af0edca49bc5c673b6843de514510c717fb28540684031"
+    },
+    {
+      "name": "native_shared_parking_v2_B1_seed22_20261101.zip.parts.json",
+      "bytes": 625,
+      "sha256": "cc24b28528e4a0eb2320715e28eae22fc2fdb4b70f3c2550b5d946b2330fd943"
+    },
+    {
+      "name": "native_shared_parking_v2_H_seed22_20261101.zip.part001",
+      "bytes": 8388608,
+      "sha256": "be84419aa41eb0c10ac3ff0bdc1a577c4883dffaedf9ed2fb89b7f2b822499ff"
+    },
+    {
+      "name": "native_shared_parking_v2_H_seed22_20261101.zip.part002",
+      "bytes": 2342545,
+      "sha256": "62790660b37cd2b584c470277f580a69dd44c71f7283ee4120349ddc43448e9c"
+    },
+    {
+      "name": "native_shared_parking_v2_H_seed22_20261101.zip.parts.json",
+      "bytes": 622,
+      "sha256": "8b90a954013b676fd006fdfcb6d1a885a39f11e8d361726fd1fc84083f20ef26"
+    },
+    {
+      "name": "native_shared_parking_v2_B3_rule_20261101.zip.part001",
+      "bytes": 2356542,
+      "sha256": "060349aea10bc5000d4573793d66cc2ac7a83b3e2a0752a09e07037aa2dd7cbc"
+    },
+    {
+      "name": "native_shared_parking_v2_B3_rule_20261101.zip.parts.json",
+      "bytes": 422,
+      "sha256": "6f4b9cea83b848a1e3b604c36a6e2fa0032e81672c7dc8cb6015eae21df16c9b"
+    },
+    {
+      "name": "native_shared_parking_v1_failed_B1_20261101.zip.part001",
+      "bytes": 8388608,
+      "sha256": "68f4426a0bd3a4249c7f65586092c2bc23d14cc0fc055774bfa84ea6c29aa0bf"
+    },
+    {
+      "name": "native_shared_parking_v1_failed_B1_20261101.zip.part002",
+      "bytes": 7473429,
+      "sha256": "45ded900a51feefddae37bed4f48d9c11ea01c57e513a137a91901b2558d4394"
+    },
+    {
+      "name": "native_shared_parking_v1_failed_B1_20261101.zip.parts.json",
+      "bytes": 625,
+      "sha256": "ff5822a1a5f6a10cc914d9286d53498d5291a993b45dc500afb842ce551e85b1"
+    },
+    {
+      "name": "native_B1_feedback_PPO_seed22_20261101.zip.part001",
+      "bytes": 8388608,
+      "sha256": "65769e5b29e4f0a7cef86abe666143c57840c9d4c64b42cf889678f9be09a847"
+    },
+    {
+      "name": "native_B1_feedback_PPO_seed22_20261101.zip.part002",
+      "bytes": 8388608,
+      "sha256": "31ea5d140c51da8b32c8f426eb72b2b3287a816c2fe5054aa74c4f82222fe2e6"
+    },
+    {
+      "name": "native_B1_feedback_PPO_seed22_20261101.zip.part003",
+      "bytes": 8388608,
+      "sha256": "cba0b84782ca0b1c4951a9b44b92860967e28d9ef2800da74b13aaede052b78e"
+    },
+    {
+      "name": "native_B1_feedback_PPO_seed22_20261101.zip.part004",
+      "bytes": 8388608,
+      "sha256": "1e5a43c3cbfede02ceb67d8be5703b51e03434ae319c84d65fb99dafef73fad8"
+    },
+    {
+      "name": "native_B1_feedback_PPO_seed22_20261101.zip.part005",
+      "bytes": 8388608,
+      "sha256": "a5c2363f450db467217693768a74773ee065c563633aa9ea747c9a1065d18005"
+    },
+    {
+      "name": "native_B1_feedback_PPO_seed22_20261101.zip.part006",
+      "bytes": 8388608,
+      "sha256": "3359096688b912e39bcbbcae7c1c6d69aa4f548748a7a205c73c65fe21eb4b97"
+    },
+    {
+      "name": "native_B1_feedback_PPO_seed22_20261101.zip.part007",
+      "bytes": 2398975,
+      "sha256": "ec8cce24b87ef4712abf384f727e6f6be5a05964bc542c4102e5a68e078ba59d"
+    },
+    {
+      "name": "native_B1_feedback_PPO_seed22_20261101.zip.parts.json",
+      "bytes": 1575,
+      "sha256": "8ea5569526c93aec58b262130a698112702aeecac6db0813a517377ecb6e4279"
+    }
+  ],
+  "CI": {
+    "commit": "ba7b3cfc393b3bc7cec26d6eaa9b0a81a2dd3a6d",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41301406127",
+    "conclusion": "success",
+    "passed": 1110,
+    "skipped": 18,
+    "deselected": 4,
+    "seconds": 139.67
+  },
+  "new_controls": 0,
+  "new_optimizer_updates": 0
+}

@@ -1,0 +1,189 @@
+{
+  "scope": "Download checked public capsules and rebuild the complete shared-parking audit.",
+  "recipe_sha256": "73dd09218f449fe9d5069a0be594f307986ef675dcb5e70105780b75cf2951e7",
+  "source_commit": "ba7b3cfc393b3bc7cec26d6eaa9b0a81a2dd3a6d",
+  "capsules": [
+    {
+      "role": "B1",
+      "archive_sha256": "5c9959b7d8f1b6ddf4d365fd8544dbdc8650e3dd7fd60ee55ce6ab3ac4f7593c",
+      "download": {
+        "bytes": 15194283,
+        "sha256": "5c9959b7d8f1b6ddf4d365fd8544dbdc8650e3dd7fd60ee55ce6ab3ac4f7593c",
+        "parts": 2,
+        "archive_byte_exact": true,
+        "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-shared-parking/native_shared_parking_v2_B1_seed22_20261101.zip.parts.json",
+        "archive": "native_shared_parking_v2_B1_seed22_20261101.zip",
+        "wall_seconds": 14.452999999979511,
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "manifest_network_failures": [],
+        "retained_part_failure_records": []
+      },
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "5c9959b7d8f1b6ddf4d365fd8544dbdc8650e3dd7fd60ee55ce6ab3ac4f7593c",
+        "asset_source_commit": "2794b00236319aedbb2ed801f934b61524e2aae4",
+        "reproduction_source_commit": "ba7b3cfc393b3bc7cec26d6eaa9b0a81a2dd3a6d",
+        "verified_files": 505,
+        "methods": [
+          {
+            "method": "B1",
+            "raw_audit_sha256": "93fedf212bb889f43bc55e5187a543e556accd01b831adc1878c79a0264209eb",
+            "verified_controls": 1409,
+            "measured_start_actions_reproduced": 4,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "dbb7e4aed729bdfa2efe98ef37778c7e86a86fc494d0e478c235fdc67f4da4e5",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis"
+      }
+    },
+    {
+      "role": "H",
+      "archive_sha256": "ca6877b14fd53add7950d2fac0308680cb8226e8f6424268d6885111d7b4963c",
+      "download": {
+        "bytes": 10731153,
+        "sha256": "ca6877b14fd53add7950d2fac0308680cb8226e8f6424268d6885111d7b4963c",
+        "parts": 2,
+        "archive_byte_exact": true,
+        "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-shared-parking/native_shared_parking_v2_H_seed22_20261101.zip.parts.json",
+        "archive": "native_shared_parking_v2_H_seed22_20261101.zip",
+        "wall_seconds": 3.0620000001508743,
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "manifest_network_failures": [],
+        "retained_part_failure_records": []
+      },
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "ca6877b14fd53add7950d2fac0308680cb8226e8f6424268d6885111d7b4963c",
+        "asset_source_commit": "2794b00236319aedbb2ed801f934b61524e2aae4",
+        "reproduction_source_commit": "ba7b3cfc393b3bc7cec26d6eaa9b0a81a2dd3a6d",
+        "verified_files": 636,
+        "methods": [
+          {
+            "method": "H",
+            "raw_audit_sha256": "977651c8e47f51e913fcd2a73adfa66585138a15dae76debe672353c5f26f3e8",
+            "verified_controls": 1287,
+            "measured_start_actions_reproduced": 4,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "f3c843080b6b341c66bbec3992ff56eddf07af6a17ada291dd168bebf65aa71b",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis"
+      }
+    },
+    {
+      "role": "B3",
+      "archive_sha256": "060349aea10bc5000d4573793d66cc2ac7a83b3e2a0752a09e07037aa2dd7cbc",
+      "download": {
+        "bytes": 2356542,
+        "sha256": "060349aea10bc5000d4573793d66cc2ac7a83b3e2a0752a09e07037aa2dd7cbc",
+        "parts": 1,
+        "archive_byte_exact": true,
+        "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-shared-parking/native_shared_parking_v2_B3_rule_20261101.zip.parts.json",
+        "archive": "native_shared_parking_v2_B3_rule_20261101.zip",
+        "wall_seconds": 2.7659999998286366,
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "manifest_network_failures": [],
+        "retained_part_failure_records": []
+      },
+      "reproduction": {
+        "verified_files": 611,
+        "verified_controls": 1286,
+        "raw_audit_sha256": "fb663eb34c0ac6df8907cd9140b4c383f6fcc6326c7fd820d6ff0ac97697b083",
+        "new_controls": 0,
+        "new_optimizer_updates": 0
+      }
+    },
+    {
+      "role": "v1_defect",
+      "archive_sha256": "fcbfe3e77c0b2b28652eaa179a9b93f737771f0a1efbb0e7e359f23a0da9ffe5",
+      "download": {
+        "bytes": 15862037,
+        "sha256": "fcbfe3e77c0b2b28652eaa179a9b93f737771f0a1efbb0e7e359f23a0da9ffe5",
+        "parts": 2,
+        "archive_byte_exact": true,
+        "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-shared-parking/native_shared_parking_v1_failed_B1_20261101.zip.parts.json",
+        "archive": "native_shared_parking_v1_failed_B1_20261101.zip",
+        "wall_seconds": 3.109999999869615,
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "manifest_network_failures": [],
+        "retained_part_failure_records": []
+      },
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "fcbfe3e77c0b2b28652eaa179a9b93f737771f0a1efbb0e7e359f23a0da9ffe5",
+        "asset_source_commit": "2794b00236319aedbb2ed801f934b61524e2aae4",
+        "reproduction_source_commit": "ba7b3cfc393b3bc7cec26d6eaa9b0a81a2dd3a6d",
+        "verified_files": 503,
+        "methods": [
+          {
+            "method": "B1",
+            "raw_audit_sha256": "cb83a13518733df40fc9c50afb3a47ed98c2c65ee35a2372d9eb0d3aca6be90b",
+            "verified_controls": 3021,
+            "measured_start_actions_reproduced": 4,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "54dab0ccc74f24538148a2edd14ff479bf421f26ee82a28d2cfe7dc549037d59",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis"
+      }
+    },
+    {
+      "role": "PPO",
+      "archive_sha256": "54aae47ef024f2b1f52d92b278581958f81a07dd25ad41519fb721a822b2bdb8",
+      "download": {
+        "bytes": 52730623,
+        "sha256": "54aae47ef024f2b1f52d92b278581958f81a07dd25ad41519fb721a822b2bdb8",
+        "parts": 7,
+        "archive_byte_exact": true,
+        "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-shared-parking/native_B1_feedback_PPO_seed22_20261101.zip.parts.json",
+        "archive": "native_B1_feedback_PPO_seed22_20261101.zip",
+        "wall_seconds": 20.156000000191852,
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "manifest_network_failures": [],
+        "retained_part_failure_records": []
+      },
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "54aae47ef024f2b1f52d92b278581958f81a07dd25ad41519fb721a822b2bdb8",
+        "asset_source_commit": "2794b00236319aedbb2ed801f934b61524e2aae4",
+        "reproduction_source_commit": "ba7b3cfc393b3bc7cec26d6eaa9b0a81a2dd3a6d",
+        "verified_files": 561,
+        "methods": [
+          {
+            "method": "B1",
+            "raw_audit_sha256": "ca32e9db411435a1c078cb62adf5d9797714e103a312493b1cda6c5238d02d8d",
+            "verified_controls": 11933,
+            "measured_start_actions_reproduced": 4,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "329e474e1996d963e79766d103325fab5d53272ba9aec42e06625a463a8a4806",
+        "figure_byte_identical": true,
+        "figure_baseline": "explicit_reference"
+      }
+    }
+  ],
+  "engineering_report_exact": true,
+  "verified_engineering_controls": 7003,
+  "verified_actual_PPO_controls": 11933,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "limits": "Public raw/model/figure reconstruction only;not new driving,independent training seeds or final confirmation."
+}

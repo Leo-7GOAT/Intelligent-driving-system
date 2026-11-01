@@ -7,6 +7,13 @@ criteria remain unchanged. This is a shared low-level transfer, not new PPO
 learning, a five-seed baseline or final confirmation.
 [Implementation, failures and evidence](docs/shared_parking.md).
 
+The [public prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-shared-parking)
+has been independently downloaded and rebuilt: 2,816 files, 18,936 control
+records and four exact figures. A new CARLA replay of the downloaded B1 model
+succeeds in 356 controls with three disclosed parking overrides. Linux CI passes
+1,110 tests; local full CPU regression passes 1,127. These are engineering and
+reproduction checks; research acceptance remains unmet.
+
 Current development: local pose-response supervision improves B1's offline
 feedback responses but its real deployment fails (2/4, two bounds failures).
 All 1,782 controls are audited. The separate basic-road PPO course completes

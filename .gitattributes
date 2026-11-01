@@ -51,3 +51,7 @@ reports/native_B1_terminal_velocity_queries_20261101.json -text -whitespace
 reports/native_shared_parking_engineering_20261101.json -text -whitespace
 reports/figures/native_B1_feedback_PPO_seed22_endpoint_20261101.json -text -whitespace
 protocols/public_native_shared_parking_20261101.json -text -whitespace
+reports/native_shared_parking_public_verification_20261101.json -text -whitespace
+reports/native_shared_parking_public_release_assets_20261101.json -text -whitespace
+reports/native_shared_parking_public_CARLA_replay_20261101.json -text -whitespace
+reports/native_B1_shared_parking_PPO_registration_20261101.json -text -whitespace

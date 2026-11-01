@@ -1,3 +1,43 @@
+# Public shared-parking reproduction COMPLETE; fixed-wrapper PPO RUNNING — 2026-11-01 19:33
+
+Current authoritative state: goal ACTIVE/UNMET. Do not restart historical probes.
+Source ba7b3cfc393b3bc7cec26d6eaa9b0a81a2dd3a6d is pushed; Linux CI41301406127
+SUCCESS:1110PASS/18skip/4excluded139.67s. Two rejected experimental policy classes
+now make the old64-feature prefix contiguous before GEMM;strict equality tests
+are unchanged. Shared-parking B1/H use neither class. Local affected14PASS.
+
+Public release v0.2.0-dev.20261101-shared-parking is published at immutable77a1364.
+Five capsules,19assets,96874638archivebytes. Independent checkout atba7b3cf,
+using the isolated clean-checkout Python, downloaded unauthenticated and rebuilt
+2816files/18936rawcontrols/16measuredstarts/fourbyte-exactfigures;engineering report
+field-exact. All19GitHub asset digests match. No redownload/rebuild needed.
+Receipts:reports/native_shared_parking_public_verification_20261101.json and
+reports/native_shared_parking_public_release_assets_20261101.json.
+
+New independent-checkout physical replay from PUBLIC restored B1 capsule:
+runs/20261101_public_native_reproduction_B1_case0 COMPLETE/ownedserverstopped.
+356realcontrols,3parkingoverrides,success,zero PPOupdates. All356actions bit-exact,
+engine deliveries and unchanged nonintervened goal frame verified. Same model72...
+and normalization bytes. Known TRAINcase0 fixed before launch;not newfinaldata.
+Receipt:reports/native_shared_parking_public_CARLA_replay_20261101.json.
+
+CURRENT ACTUAL TRAINING:20261101T112758733226Z_native_B1_shared_parking_PPO.
+Single seed22 warm start model72...,retains30720PPOlineage/668Adamsteps.
+FIXED10240newactualPPOcontrols;320expectedAdamsteps if all epochs retained.
+Same goalparkingv2/synchronousdelivery/physicalgoals/reward/source throughout;
+frozen observation RMS;no new supervision,exploration reset or source overlays.
+One finalendpoint,all4originalTRAINroads,unchanged>=3/4 ANDzero unsafe basicgate;
+no automatic retry or full-task promotion. Registered budget7200s and resource
+guards;launcher supervision toolsession55315. Registration report is committed.
+Runtime pointer:runs/native_B1_shared_parking_PPO_registration_20261101.json.
+Do not launch that pointer again. Inspect heartbeat/guard before any recovery.
+After terminal cleanup:raw methodaudit,frozen-source measuredstartinference,
+whole-action audit,then scripts/analyze_native_shared_parking_ppo.py. Preserve
+all failed outcomes. The actual course outcome remains unknown at this update.
+
+The older sections below are historical snapshots,including superseded RUNNING
+labels. All their jobs are terminal. Only the course explicitly above is active.
+
 # Shared parking v2 engineering screen COMPLETE; research UNMET — 2026-11-01
 
 All native lifecycles in this goal turn are TERMINAL,ownedemptyserverstopped.
