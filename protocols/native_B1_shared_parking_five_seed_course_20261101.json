@@ -1,0 +1,53 @@
+{
+  "version": "all_five_independent_B1_reflection_and_shared_wrapper_course_v1",
+  "scope": "New common fixed TRAIN-only fit and actual-PPO development adaptation after a successful one-seed pilot. Prior pilot29ef is excluded from these five independent uniformly prepared endpoints.",
+  "parents": [
+    {
+      "seed": 11,
+      "batch": "runs/20261101T005612994446Z_native_B1_basic_lr_extension",
+      "model_sha256": "e7abb6ea1181b934c26053b95500b78d668a7561e682c3d50a53cd0adef8c5d0",
+      "raw_audit_sha256": "9a769b1e7155428f80b15ab0be081d5e3e5bb56fc9180cb80e49b0f5ae8cf000"
+    },
+    {
+      "seed": 22,
+      "batch": "runs/20261101T011350364179Z_native_B1_basic_lr_extension",
+      "model_sha256": "e4cbd3b436d54d6b9f2c59aba5e51c315902aa49aef06594227a741c2d6ccf06",
+      "raw_audit_sha256": "c511716176fe37a6c9a934c15b23032dfb3dacf0875d7aaabcca927a0562d158"
+    },
+    {
+      "seed": 33,
+      "batch": "runs/20261101T013448773461Z_native_B1_basic_lr_extension",
+      "model_sha256": "b92aebcb73b712e03655a690ac6a31b1d2e45b74000a894d1be68c85357a0dea",
+      "raw_audit_sha256": "c5adb8e349572913b2cf82c6838be5143468af5bf8088702e80219c8bb6e6501"
+    },
+    {
+      "seed": 44,
+      "batch": "runs/20261101T015454924014Z_native_B1_basic_lr_extension",
+      "model_sha256": "2898fb14da3dcf7709cc36fc1d53c86db4b56c34e8517373a88906d63811dae1",
+      "raw_audit_sha256": "e72ca2ca714ad74e1461537ada3d56b495af3d96063c15874b1cee75e40e05a1"
+    },
+    {
+      "seed": 55,
+      "batch": "runs/20261101T022104544331Z_native_B1_basic_lr_extension",
+      "model_sha256": "ca7e1ae511d645b03ea326a8cd94462e5c3bf051d82bb90d5fedf6f1600ff033",
+      "raw_audit_sha256": "0e4df861e85403dc6b975adde2f9422761720936acf3cdd048807e4a7f3288ed"
+    }
+  ],
+  "fit_script_sha256": "fa49c1ee647b9bbb8a4ecce4896df5c36fe298cd54656976606b7151abd59072",
+  "dataset": "runs/B1_seed22_reflection_feedback_extension_20261101/fit_inputs.npz",
+  "dataset_sha256": "a35a2391e3f4cdaea4ea3d3eb865c55bc531bd7529c26c97bd84a66837d9c8fe",
+  "auxiliary_steps_each": 1024,
+  "auxiliary_learning_rate": 0.0001,
+  "response_ceilings": {
+    "yaw_radians": 0.025375864934176207,
+    "lateral_metres": 0.03252546302974224
+  },
+  "requested_new_PPO_controls_each": 10240,
+  "requested_PPO_learning_rate": 3e-06,
+  "same_low_level": "batch_sync_v1 and inside_goal_pose_overspeed_brake_v2 fixed throughout new training/evaluation",
+  "training_cases": "All4originalknown basic TRAINroads;common auxiliary data includes3424acknowledged teacher TRAINrows,3424virtualreflections and120virtual pose triplets. No validation labels.",
+  "qualification": "After actual PPO:at least3/4basic successes ANDzero collision/bounds for eachseed. Offline screens retained for everyseed;not a substitute for actuallearning.",
+  "all_five_stopping_rule": "All5registered seeds,one fixed1024actor-fit endpoint and one10240actual-PPO endpoint each. No seed/checkpoint selection or automatic retries. No full-task or final-test promotion from failed gates.",
+  "limits": "Warm-started prior20480actual-PPO parents,not fromscratch. Prior legacy interface histories and all earlier failed branches remain charged. New wrapper is explicit;this course is not a matched H/B1main comparison or proof of PPOvalue.",
+  "new_final_conditions": 0
+}
