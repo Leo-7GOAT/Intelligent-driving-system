@@ -1,4 +1,60 @@
-# Latest public failure evidence — 2026-11-01 08:27
+# Current continuation checkpoint — 2026-11-01 08:59
+
+Read this snapshot before the timestamped historical notes below. Revalidate live
+process creation identities from local receipts;never manage a process by PID alone.
+Goal remains ACTIVE/UNMET;do not mark complete because training/tests/publication finish.
+
+All-five basic PPOcourse62176is TERMINAL:seeds11/22/33/44/55score3/2/2/0/2of4,
+all qualificationFALSE. Total51,200new training controls,103actual Adam updates,
+58,758audited raw controls. Only4known TRAINING conditions repeated across5policies.
+`reports/native_B1_all_five_basic_PPO_course_20261101.json` rebuilds with
+`scripts/analyze_native_basic_course_cohort.py`;independent checkout reproduces
+every field. Do not rerun these completed courses.
+
+ACTUALLY TRAINING:driver62332,execution
+`runs/B1_basic_lower_rate_extension_execution_20261101`,seed11child
+`20261101T005612994446Z_native_B1_basic_lr_extension`,worker53620.
+Its first1280native controls/40new Adam updates are saved;optimizer counters49
+include9retained updates,actual saved rate3e-6,obs mean/variance/count exact.
+The entire continuation is not yet raw-audited or qualified. Each of all5seeds
+receives the same additional10240controls with retained trained weights/Adam/RNG;
+no new BCfit and no gate waiver. Parent interruption loss/unknown tail remains charged.
+
+WAITING:full-task observer20420,execution
+`runs/B1_full_after_lower_rate_extension_execution_20261101`. It may create full
+children only if ALL5extensions qualify. Then each gets20480additional controls;
+eventual lineage40960is not matched to existingH20480. No full child yet.
+
+WAITING:camera observer42060,execution`runs/native_PPO_camera_execution_20261101`,
+after62332and20420exit with its strict cleanup/failure barrier. Prepared H/B1
+camera batches`20261101T004032948606Z_native_PPO_camera`and
+`20261101T004019372592Z_native_PPO_camera`,each original cases0/3. No RGBframes
+yet. Frozen CPUrestores pass;illustrations are selected known cases,not final
+confirmation or matched-budget evidence. Finish actual frame/decode/visual checks
+and a uniquely batch-qualified video catalog before claiming/publishing video success.
+Independent public-input staging`20261101T004659118707Z_native_PPO_camera`is
+CPUONLY,not registered for native launch. Do not start it as a duplicate.
+
+Full independent Windows CPU976pass/1skip/4CARLAexcluded,193.65s at8755337.
+Actual hosted Linux959pass/18skip/4excluded,196.69s:
+https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41258680712
+Earlier failures are retained:unsupported test action-space stand-in corrected
+without weakening auditing;camera edits restored frozen cadence/partition text
+anchors. Keep those anchors compatible with already-frozen preparation helpers.
+`reports/native_B1_basic_cohort_independent_verification_20261101.json` binds all proof.
+
+Exact corner-cell speed probe had1.019x median improvement and was REJECTED;
+no geometry optimization was applied. First3seed landmark inference40decisions
+max2.98e-8action error locates missed braking AND nonterminal lane failure;
+it is descriptive same-state inference,not causal counterfactual driving.
+
+Existing H/H058/60vs57/60and H/B258/60vs44/60/public reconstruction stay complete;
+H/B2bridge initialization differs,so no isolated planner-effect claim. Strong B3
+matches H24/24in the broader development validation. Healthy B1,RLvalue,feedback
+benefit,final120NEWconditions and final acceptance remain unmet. Do not activate
+final tests or count known12/36TRAIN/24VALas final. Do not repeat completed releases.
+
+# Historical public failure evidence — 2026-11-01 08:27
 
 FAILED B1seed11capsulePUBLICCOMPLETE,all96partsandmanifestuploadedwithoutfailed
 networkattempts,actualunauthenticateddownloadandindependentreconstructionpassed.

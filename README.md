@@ -1,5 +1,14 @@
 # Executability-aware hierarchical driving research
 
+All five B1basic courses now finish:3/4,2/4,2/4,0/4,2/4successes;all fail the
+unchanged zero-unsafe gate. All51,200training controls,103actual Adam updates
+and58,758raw controls are audited. The retained-state3e-6continuation is actually
+learning:its first1,280new controls produce40new Adam updates;the saved optimizer
+has49steps including9retained updates,and observation statistics remain exact.
+Driving improvement is still unproven. Independent Windows CPUregression passes
+976tests;hosted Linux passes959. [Complete cohort](reports/native_B1_all_five_basic_PPO_course_20261101.json),
+[independent reconstruction,CI and actual checkpoint](reports/native_B1_basic_cohort_independent_verification_20261101.json).
+
 Actual PPOcamera evaluation is now queued behind the owned native learning
 stages:H/B1each use two explicitly selected known roads and unchanged saved
 models. Frozen CPUrestores and104targeted checks pass;no new camera frames have
@@ -23,12 +32,12 @@ and result field exactly;183related tests pass.
 [Measured replay](reports/native_B1_first_rollout_rate_replay_20261101.json),
 [independent verification](reports/native_B1_matched_rate_replay_independent_verification_20261101.json).
 This does not demonstrate improved driving. A common all-five lower-rate
-continuation is queued after all current courses finish;it retains their trained
+continuation is now running after all initial courses finished;it retains their trained
 weights,Adam moments,normalizer and RNG,adds10,240controls per seed,and keeps the
 same zero-unsafe basic gate. Full-task training waits for all five qualifications;
 its eventual policy lineage would be40,960controls,with curriculum costs disclosed.
 [Actual queues and trained-checkpoint preflight](reports/native_B1_lower_rate_extension_activation_20261101.json).
-Current completed basic courses11/22/33/44score3/4,2/4,2/4,0/4with bounds violations;
+Completed basic courses11/22/33/44/55score3/4,2/4,2/4,0/4,2/4with bounds violations;
 none qualifies. Their failures remain recorded. The complete failed-seed11capsule
 has also passed public download and independent raw/model/figure verification.
 
@@ -43,7 +52,7 @@ Public reproduction entry point (fresh output,6GiBfree disk):
 ```
 
 B1basic-PPOseed11finishes10,240controls/9actual Adam steps,then3/4successes with
-one bounds violation:the unchanged safety gate FAILS. Other seeds continue;
+one bounds violation:the unchanged safety gate FAILS. The other four have now also finished;
 this version is not a healthy baseline. [Actual endpoint](reports/native_B1_basic_PPO_seed11_endpoint_20261031.json).
 The conditional full-task queue cannot qualify this failed result. No threshold
 was relaxed. Historical uploads/reproduction are separate from research success.
