@@ -26,3 +26,5 @@ reports/native_teacher_reference_context_20261101.json -text -whitespace
 reports/native_B1_executed_recovery_collection_and_probe_20261101.json -text -whitespace
 reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json -text -whitespace
 reports/native_B1_original_TRAIN_unprojected_probe_20261101.json -text -whitespace
+reports/native_B1_exploration_PPO_pilot_20261101.json -text -whitespace
+reports/figures/native_B1_exploration_PPO_seed22_endpoint_20261101.json -text -whitespace

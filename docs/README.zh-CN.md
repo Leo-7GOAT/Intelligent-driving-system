@@ -1,7 +1,7 @@
 # 低速车辆分层决策与控制研究
 
-原始训练道路的恢复采集虽为混合驾驶4/4成功，纯策略仍未通过：有训练误差投影约束时2/4、一次越界；固定数据、起始模型及512次更新预算，仅去掉该约束后1/4、两次越界。三个恢复方案共9,010真实控制均已审计，失败模型未晋级。现已实际启动另一项10,240步真实PPO探索试验，教师和辅助拟合均关闭，结果待完成。
-[原始道路结果](../reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json)、[投影约束对照](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json)、[实际PPO启动快照](../reports/native_B1_exploration_PPO_activation_20261101.json)。
+原始训练道路的恢复采集虽为混合驾驶4/4成功，纯策略仍未通过：有训练误差投影约束时2/4、一次越界；固定数据、起始模型及512次更新预算，仅去掉该约束后1/4、两次越界。三个恢复方案共9,010真实控制均已审计，失败模型未晋级。另一次真实PPO探索试验也已完成10,240训练步、320次实际Adam更新，纯策略为2/4成功、一次超时、一次越界；12,219控制帧全部审计，模型未晋级，当前已无本批后台训练。
+[原始道路结果](../reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json)、[投影约束对照](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json)、[真实PPO完整结果](../reports/native_B1_exploration_PPO_pilot_20261101.json)、[公开证据包复现](native_B1_exploration_reproduction.md)。
 
 真实恢复采集与独立纯策略复验已完成：新增训练道路采集1,612控制步，其中教师850、策略762；全部状态输入、动作、接管选择及CARLA帧均已重建核验。固定512次辅助actor Adam提议后，纯B1复验为2/4成功、一次超时、一次越界，全部1,657复验控制帧核验通过，模型未晋级。此轮没有新增PPO更新或最终测试条件。本机全量CPU回归1,091通过、1跳过、4项CARLA排除。
 [完整失败与成本记录](../reports/native_B1_executed_recovery_collection_and_probe_20261101.json)、[采集、拟合与复验命令](native_recovery_collection.md)。

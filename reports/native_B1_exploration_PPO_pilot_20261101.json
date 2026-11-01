@@ -1,0 +1,60 @@
+{
+  "scope": "One bounded real-PPO basic-road pilot changing only initial exploration std.",
+  "batch": "20261101T075805697090Z_native_B1_exploration_PPO",
+  "seed": 22,
+  "protocol_sha256": "902eb710e8a16ed5c75926c491fcc5c790638bfce05baba880a3a620e7e04a83",
+  "intervention": {
+    "version": "initial_Gaussian_std_010_v1",
+    "old_std": [
+      0.01831517554819584,
+      0.018323421478271484
+    ],
+    "new_std": [
+      0.09999999403953552,
+      0.09999999403953552
+    ],
+    "changed_parameter": "log_std",
+    "changed_scalar_parameters": 2,
+    "other_actor_and_critic_weights_exact": true,
+    "PPO_optimizer_moments_exact": true,
+    "PPO_counters_exact": true,
+    "optimizer_updates": 0,
+    "deterministic_mean_network_unchanged": true,
+    "scope": "Explicit initial stochastic exploration intervention before a fresh actual PPOrollout,not a PPOupdate or deterministic-policy performance improvement."
+  },
+  "actual_new_PPO_controls": 10240,
+  "actual_new_PPO_Adam_updates": 320,
+  "new_supervised_updates": 0,
+  "PPO_lineage_controls": 30720,
+  "model_sha256": "9ae73aba21e316f6ca98316d06feffa672819cc3d01c0ca068539b9b6209880b",
+  "normalization_sha256": "1a9ded9a44c4126180ddd3e1c1544fb966982eb664542cbe75d64fcfe71f2ae3",
+  "training_and_eval_controls_verified": 12219,
+  "endpoint_successes": 2,
+  "unsafe_cases": 1,
+  "basic_gate_passed": false,
+  "case_results": [
+    {
+      "case_id": 0,
+      "termination": "out_of_bounds",
+      "controls": 420
+    },
+    {
+      "case_id": 1,
+      "termination": "deadline",
+      "controls": 900
+    },
+    {
+      "case_id": 2,
+      "termination": "success",
+      "controls": 318
+    },
+    {
+      "case_id": 3,
+      "termination": "success",
+      "controls": 341
+    }
+  ],
+  "raw_audit_sha256": "da1df6523c37991b622df149282e292cd2373764f8d31c48cfbe0101978dae0e",
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET;one development pilot,not qualified full-task five-seed evidence."
+}

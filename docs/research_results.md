@@ -1,3 +1,15 @@
+# Actual PPO std.10pilot COMPLETE AND FAILED — 2026-11-01
+
+New training10240controls/320Adam/8phases;PPOlineage30720. Pure known-TRAIN
+endpoint2/4:case0bounds420,case1deadline900,case2success318,case3success341.
+All12219training/eval controls and4start actions verify. Training retains15bounds,
+7success episodes and one unfinished tail. Zero new BC/teacher actions. Model
+9ae73aba...is rejected;no full-task gatewaiver. Owned lifecycle closes normally.
+Together with3failed recovery profiles,thissequence adds21229real controls,
+1536auxiliary Adam proposals and320actual PPOAdam updates. No new final data.
+[Actual result](../reports/native_B1_exploration_PPO_pilot_20261101.json),
+[public capsule and commands](native_B1_exploration_reproduction.md).
+
 # Original-TRAINrecovery and matched projection result — 2026-11-01
 
 Original-TRAINcollection:1334actual controls,664teacher/670learner,mixed4/4,
@@ -13,8 +25,8 @@ zero PPOin these3profiles,no final conditions. No model is promoted.
 [Original-TRAINreport](../reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json),
 [matched ablation](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
 [independent first-report reconstruction and hostedCI](../reports/native_recovery_collection_independent_verification_20261101.json).
-A separately registered actual-PPOstd.10pilot is now executing10240new controls,
-without teacher or BC. Its dated [activation](../reports/native_B1_exploration_PPO_activation_20261101.json)
+The separate actual-PPOstd.10pilot subsequently completes10240new controls
+and fails2/4without teacher or BC. Its historical dated [activation](../reports/native_B1_exploration_PPO_activation_20261101.json)
 is not its eventual result. Overall research acceptance remains UNMET.
 
 # Executed native recovery attempt — 2026-11-01

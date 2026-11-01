@@ -1,5 +1,7 @@
 # Native TRAIN recovery collection and rejected model
 
+Completed actual-PPOpilot:10,240new controls,320actual Adam updates,2/4pure endpoint with1bounds/1deadline. All12,219frames audited;model rejected,owned lifecycle terminal. The preceding activation is a historical snapshot. [Complete result](../reports/native_B1_exploration_PPO_pilot_20261101.json),[public reproduction](native_B1_exploration_reproduction.md). Overall acceptance remains UNMET.
+
 The subsequent all-four-original-TRAINcollection is complete and independently
 audited:1,334controls(664teacher/670learner),mixed4/4,zero unsafe. It starts from
 the rejected2f7287e9...model. Its fixed512-proposal projected fit keeps the
@@ -25,12 +27,12 @@ Further offline fits on this dataset are not queued. A different bounded pilot
 uses actual PPOwith initial Gaussian std.10instead of approximately.018,from
 the fixed replay reference. It preserves all other initial weights,Adam state,
 PPOcounters,RMS,saved RNG,physical action interface,learning rate and reward.
-It executes10,240fresh PPOcontrols on the original four TRAINroads,with no
+It executed10,240fresh PPOcontrols on the original four TRAINroads,with no
 teacher or supervised updates,and then automatically audits the pure endpoint.
 The initial deterministic replay is reused rather than driven again.
 All9,010recovery controls enter its charged-cost lower bound. Full-task entry
 still requires all five independent basic courses to qualify.
-[Actual running snapshot](../reports/native_B1_exploration_PPO_activation_20261101.json).
+[Historical activation snapshot](../reports/native_B1_exploration_PPO_activation_20261101.json).
 
 This is development evidence. Four new TRAIN roads are preselected from
 `experiments/native_development_train36_validation24_v1.json`,indices4..7.

@@ -1,10 +1,12 @@
 # Research acceptance ledger
 
+Completed actual-PPOpilot:10,240new controls,320actual Adam updates,2/4pure endpoint with1bounds/1deadline. All12,219frames audited;model rejected,owned lifecycle terminal. The preceding activation is a historical snapshot. [Complete result](../reports/native_B1_exploration_PPO_pilot_20261101.json),[public reproduction](native_B1_exploration_reproduction.md). Overall acceptance remains UNMET.
+
 The subsequent original-TRAINcollection is mixed4/4,but its projected actor
 probe2/4and matched unprojected probe1/4both fail the unchanged actual driving
 gate. Total9,010recovery-profile controls are audited;no final conditions or
-new PPOwere used in those profiles. A separate actual10,240control PPOpilot
-has started;its activation is not a completed result. Acceptance remains UNMET.
+new PPOwere used in those profiles. The separate10,240control PPOpilot subsequently completes and fails2/4;its
+activation remains a historical snapshot. Acceptance remains UNMET.
 [Matched negative comparison](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
 [actual activation](../reports/native_B1_exploration_PPO_activation_20261101.json).
 

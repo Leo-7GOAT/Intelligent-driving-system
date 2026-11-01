@@ -3,11 +3,13 @@
 Two further original-TRAINrecovery checks also fail:projected2/4with one bounds
 failure;the matched unprojected fit1/4with two. All9,010controls across the three
 recovery profiles are audited;no failed model is promoted. A separate retained
-PPO exploration pilot is now actually running toward10,240new controls,without
-teacher actions or auxiliary fitting. Its result is pending.
+PPO exploration pilot completes10,240new controls and320actual Adam updates;
+its pure endpoint is2/4with one bounds failure and one timeout. All12,219pilot
+controls are audited;the model is rejected. No native training remains active.
 [Original-TRAINresult](reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json),
 [matched projection ablation](reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
-[verified PPOactivation snapshot](reports/native_B1_exploration_PPO_activation_20261101.json).
+[completed PPOresult](reports/native_B1_exploration_PPO_pilot_20261101.json),
+[public capsule and reconstruction](docs/native_B1_exploration_reproduction.md).
 
 Native recovery collection and a separate pure-policy check are complete:
 1,612 TRAIN mixture controls (850 teacher,762 learner),all inputs/actions/frames

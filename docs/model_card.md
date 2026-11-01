@@ -1,12 +1,14 @@
 # Development model card
 
+Completed actual-PPOpilot:10,240new controls,320actual Adam updates,2/4pure endpoint with1bounds/1deadline. All12,219frames audited;model rejected,owned lifecycle terminal. The preceding activation is a historical snapshot. [Complete result](../reports/native_B1_exploration_PPO_pilot_20261101.json),[public reproduction](native_B1_exploration_reproduction.md). Overall acceptance remains UNMET.
+
 Further rejected B1models:c5d11b45...(projected original-TRAINfit)2/4with one
 bounds failure;394d36e7...(same data,parent,weights,seed and512updates,projection
-removed)1/4with two bounds failures. Neither is promoted. A new actual-PPO
-pilot starts from the fixed4f205708...replay reference,changing only the two
+removed)1/4with two bounds failures. Neither is promoted. The later actual-PPO
+pilot started from the fixed4f205708...replay reference,changing only the two
 initial Gaussian log_std scalars to std.10;mean network,critic,Adam state,
 counters and normalizer remain exact before the fresh rollout. This explicit
-intervention and pending pilot are not a learned-capability claim.
+intervention and failed pilot are not a learned-capability claim.
 [Comparison](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
 [activation and parameter proof](../reports/native_B1_exploration_PPO_activation_20261101.json).
 

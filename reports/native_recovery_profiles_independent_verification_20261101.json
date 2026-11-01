@@ -1,0 +1,42 @@
+{
+  "source_commit": "286e72f8661075d399f0c14b6cc848d2261a1f30",
+  "reports": [
+    {
+      "report": "native_B1_executed_recovery_collection_and_probe_20261101.json",
+      "sha256": "43a44cfa3832076dc1b731888cb135966bd6cc29548e1205a12f4fd91373b696",
+      "bytes_identical": true
+    },
+    {
+      "report": "native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json",
+      "sha256": "6cfb4df73a19ecc793651baf151543e7e2b9bcb873f0e8d135a71b1fba88a3d5",
+      "bytes_identical": true
+    },
+    {
+      "report": "native_B1_original_TRAIN_unprojected_probe_20261101.json",
+      "sha256": "62c7a8305518072298817e4a1ca9130b94e35028f5154eb5be4d9f0ffdeab8ac",
+      "bytes_identical": true
+    }
+  ],
+  "new_controls": 0,
+  "new_fit_updates": 0,
+  "raw_inputs": "local audited artifacts,no redownload",
+  "independent_targeted_tests": {
+    "passed": 47,
+    "seconds": 8.85
+  },
+  "root_targeted_tests": {
+    "passed": 47,
+    "seconds": 10.08
+  },
+  "all_three_portable_reports_byte_identical": true,
+  "research_acceptance": "UNMET;negative development evidence,not healthy baseline qualification.",
+  "hosted_CPU_CI": {
+    "source_commit": "286e72f8661075d399f0c14b6cc848d2261a1f30",
+    "run_id": 41287114006,
+    "conclusion": "success",
+    "passed": 1084,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "seconds": 197.68
+  }
+}

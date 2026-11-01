@@ -1,3 +1,33 @@
+# PPO pilot COMPLETE AND FAILED; all native jobs terminal — 2026-11-01 16:14
+
+Latest286e72f is PUSHED;CI41287114006SUCCESS1084pass/18skip/4CARLAexclusions
+197.68s. Independent47tests8.85s and all3recovery reports byte-identical.
+Current actual-PPOreport:reports/native_B1_exploration_PPO_pilot_20261101.json.
+Batch20261101T075805697090Z_native_B1_exploration_PPO completes10240fresh controls,
+320actual Adam,8phases,lineage30720;model9ae73aba...normalizer1a9ded9a...
+Pure4roads:bounds420,deadline900,success318,success341=2/4. GateFAILS.
+All12219raw controls+4measured-start actions verified. Guardnormal0/owned empty
+server stopped. Exec48771TERMINAL;no current simulator/training job active.
+Do not repeat this pilot or queue more budget for the same rejected hypothesis.
+
+All3earlier recovery fits also fail;all9010controls audited. Totalthissequence
+21229new controls,1536auxiliary Adam proposals plus320actual PPOAdam. No new
+final conditions. Unprojected fit changes the auxiliary TRAINMSEscreen only;
+actualdrivinggate never relaxed. No failed model promoted or full-task gatewaived.
+
+The original pre-intervention replay checkpoint is now retained inside
+B1/initial_reference_B1. scripts/audit_native_exploration_initialization.py
+reconstructs std.10in memory and verifies every initial policy/Adam tensor,
+counter,normalizer,RNG/config byte. Rebuild proof is complete,zero new controls.
+Capsule563files/56422535bytes/SHA438778411ba8cba4faf2708c3e07daa39b70c8597927f6db18fc55a1118bdbcf;
+all7parts+manifest actually uploaded toexisting v0.2.0-dev.20261101,tagtarget
+ba932787113168ad5781ee640c6f06d09bbee0e1unchanged. Independent public download
+and reconstruction are the immediate remaining publication check at this snapshot.
+Use explicit versioned endpoint figure --reference-figure;archive predates this
+figure and has only the separate training plot. docs/native_B1_exploration_reproduction.md.
+Raw collection/recovery capsules remain LOCAL;only this PPOpilot newly public.
+GOAL ACTIVE/UNMET. Do not imply healthyB1,PPOvalue,feedback advantage or final120.
+
 # Actual PPO exploration pilot RUNNING — 2026-11-01 16:00
 
 GOAL ACTIVE/UNMET. Recovery-supervision path is now closed for this dataset.

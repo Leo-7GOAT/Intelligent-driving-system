@@ -1,8 +1,9 @@
 # Evidence-bounded project descriptions
 
+Completed actual-PPOpilot:10,240new controls,320actual Adam updates,2/4pure endpoint with1bounds/1deadline. All12,219frames audited;model rejected,owned lifecycle terminal. The preceding activation is a historical snapshot. [Complete result](../reports/native_B1_exploration_PPO_pilot_20261101.json),[public reproduction](native_B1_exploration_reproduction.md). Overall acceptance remains UNMET.
+
 Later original-TRAINrecovery and its projection ablation also fail;all9,010
-recovery-profile controls are audited. The new real-PPOexploration pilot is
-pending,so it contributes no completed success rate or superiority claim.
+recovery-profile controls are audited. The later real-PPOexploration pilot also fails2/4;it supports no superiority claim.
 
 Latest B1recovery experiment remains negative:1,612TRAINmixture controls,
 512auxiliary Adam proposals,then1,657pure-policy controls;2/4with timeout and
