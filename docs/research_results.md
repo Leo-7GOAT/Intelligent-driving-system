@@ -1,3 +1,23 @@
+# Executed native recovery attempt — 2026-11-01
+
+Four new TRAINroads,preselected indices4..7from the existing36TRAINinventory,
+produce1,612actual controls:850teacher,762learner;mixture3/4,one timeout,no
+collision/bounds. All controls,source choices,learner predictions and measured
+observation arrays reproduce exactly. The mixture performs no optimization.
+Only850actually executed valid teacher commands enter the subsequent fixed
+512-proposal actor fit,alongside3,467original executed teacher TRAINrows.
+All original four teacher-group retention ceilings pass;critic,PPOoptimizer,
+PPOcounters and RMS remain exact. New-TRAINlabel MSEfalls.153079to.087721.
+
+The separately run direct B1model still fails:case0success350controls,
+case1deadline900,case2success318,case3bounds89,total1,657verified controls and
+four reproduced initial actions. This is2/4versus the fixed replay's3/4;
+no benefit or healthy baseline is established. New total3,269physical controls,
+512auxiliary Adam proposals,zero PPOupdates,zero new final conditions.
+The owned CARLA lifecycles both close normally. Raw assets remain local.
+[Report](../reports/native_B1_executed_recovery_collection_and_probe_20261101.json),
+[reproduction](native_recovery_collection.md).
+
 # Research results and claim boundaries
 
 ## Verified development snapshot — 2026-11-01, complete matched cohort

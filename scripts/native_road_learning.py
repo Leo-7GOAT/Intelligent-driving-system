@@ -549,7 +549,12 @@ def run(batch):
                 write_json(output/"summary.json", result)
                 results.append(result)
                 print(json.dumps(result), flush=True)
-                if protocol.get("deterministic_training_route_evaluation",False):
+                if protocol.get('native_recovery_collection') is not None:
+                    from scripts.collect_native_recovery import collect
+                    result.update(collect(config,client,cases,loaded,vec,output,protocol,
+                        RecordedRoadEnv,lambda:guard(batch,protocol)))
+                    write_json(output/"summary.json", result)
+                elif protocol.get("deterministic_training_route_evaluation",False):
                     # These are the same four training geometries: development
                     # endpoint probes, not held-out generalization evidence.
                     vec.training=False

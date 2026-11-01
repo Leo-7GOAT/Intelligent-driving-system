@@ -1,3 +1,39 @@
+# Latest native recovery collection and pure-policy probe FAILED — 2026-11-01 15:38
+
+All work below is actually executed,not a pending collector plan.
+Collection20261101T073000482834Z_native_TRAIN_recovery_collection:1612controls,
+850teacher/762learner,3success/1deadline,zero unsafe. Four new TRAINroads
+indices4..7,never24VALor final conditions. All1612measured observation arrays,
+learner proposals,source choices and physical control frames independently
+reconstructed by scripts/audit_native_recovery_collection.py. No optimizer
+updates during collection;PPO/optimizer/RMSfingerprints identical.
+
+Fit runs/B1_seed22_executed_native_recovery_fit_20261101:3467original executed
+teacher TRAINrows+850new executed teacher labels,all outcomes,episode-balanced
+sampling,512new separate actor Adam proposals with prelocked four-group
+retention backtracking. Gatepasses,but is not a driving result. Model2f7287e9...
+retains20480PPOlineage and unchangedcritic/PPOoptimizer/counters/RMS.
+
+Pureprobe20261101T073504221792Z_native_recovery_pure_policy_probe:2/4,
+case0success350,case1deadline900,case2success318,case3bounds89,total1657.
+Allrawframes+4measuredstarts verified. NOteacher in pure evaluation.
+Original≥3/4ANDzero unsafe gateFAILS. ModelisNOTpromoted;do not start the
+five-seed full-task phase from it. Totalnew3269controls,512auxAdam,zeroPPO.
+BothlifecyclesTERMINAL/normal0/ownedemptyserverstopped. No native job running
+at this snapshot. Revalidate PID identities before any future management.
+
+Report reports/native_B1_executed_recovery_collection_and_probe_20261101.json;
+docs/native_recovery_collection.md lists commands and limits. Raw collection,
+models and pure traces are LOCAL,not a public reconstructed capsule. Never
+commit raw measured_start_inference.json with its private absolute root.
+Root full CPU:1091PASS,1skip,4CARLAdeselect,156.11s;prior75609efhostedCIalsoSUCCESS.
+
+Do not repeat this collection,fit,probe or the already public five-pair cohort.
+New-road recovery supervision did not fix original-TRAINclosed-loop coverage;
+next inspect failure histories and,if collecting again,declare all four original
+TRAINroads as a separate fixed recovery profile with fresh source provenance.
+No further train-MSE-only weight sweeps. Original research goal ACTIVE/UNMET.
+
 # Latest native repair FAILED / next required work — 2026-11-01 15:20
 
 The executed-teacher-only repair native probe is COMPLETE AND FAILED the

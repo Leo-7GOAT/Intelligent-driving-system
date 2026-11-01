@@ -1,5 +1,13 @@
 # Development model card
 
+Latest B1recovery model `2f7287e9c84019b7222efc816754bc3b7944dd8eaedc5d6ddeea83d5e4d88793`
+is rejected:2/4on the four known basic TRAIN roads,one deadline and one bounds
+failure. It retains20,480actual PPOcontrols in its lineage plus disclosed
+actor-only interventions;the new phase adds512Adam proposals and zero PPO.
+The preceding850teacher-executed controls are TRAIN labels,while762learner-step
+teacher proposals are excluded. Mixed3/4success is not model performance.
+[Full collection/fit/probe lineage](../reports/native_B1_executed_recovery_collection_and_probe_20261101.json).
+
 ## Verified inventory — 2026-11-01, complete matched development cohort
 
 Model,normalizer,resolved configuration,frozen source and raw controls are bound

@@ -1,5 +1,8 @@
 # 低速车辆分层决策与控制研究
 
+真实恢复采集与独立纯策略复验已完成：新增训练道路采集1,612控制步，其中教师850、策略762；全部状态输入、动作、接管选择及CARLA帧均已重建核验。固定512次辅助actor Adam提议后，纯B1复验为2/4成功、一次超时、一次越界，全部1,657复验控制帧核验通过，模型未晋级。此轮没有新增PPO更新或最终测试条件。本机全量CPU回归1,091通过、1跳过、4项CARLA排除。
+[完整失败与成本记录](../reports/native_B1_executed_recovery_collection_and_probe_20261101.json)、[采集、拟合与复验命令](native_recovery_collection.md)。
+
 真实PPO录像及完整模型/控制日志证据包已[公开预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101)。独立checkout已无需登录下载两个证据包及四个视频，核验1,828控制帧、恢复两份策略、逐字节重建两幅图，并解码全部1,832视频帧。包含B1失败，尚未满足研究验收。
 [实际公开下载与独立复现凭证、SHA256](../reports/native_PPO_RGB_public_verification_20261101.json)。
 [两个公开模型/录像包的复现命令](native_PPO_RGB_reproduction.md)。

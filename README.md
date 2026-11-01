@@ -1,5 +1,14 @@
 # Executability-aware hierarchical driving research
 
+Native recovery collection and a separate pure-policy check are complete:
+1,612 TRAIN mixture controls (850 teacher,762 learner),all inputs/actions/frames
+reconstructed. A fixed512-proposal actor fit retains the critic,PPO state and
+normalizer,but the pure B1probe scores2/4:one timeout and one bounds failure.
+All1,657probe controls are audited. This model is rejected;no new PPO or final
+conditions were used. Full local CPU regression:1,091passed,1skipped,4CARLAexcluded.
+[Complete negative result](reports/native_B1_executed_recovery_collection_and_probe_20261101.json),
+[collection,fit and verification commands](docs/native_recovery_collection.md).
+
 Actual PPO RGB videos and complete model/control-trace capsules are now
 [publicly released as development evidence](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101).
 An independent checkout downloaded both capsules and all four direct video

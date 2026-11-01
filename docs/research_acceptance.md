@@ -1,5 +1,12 @@
 # Research acceptance ledger
 
+Latest executed recovery attempt:1,612actual TRAIN mixture controls,850eligible
+executed-teacher labels,512new auxiliary Adam proposals and1,657pure-policy
+probe controls. B1scores2/4with one deadline and one bounds failure;the unchanged
+basic gate fails. No new PPO or final conditions. Local full CPU regression
+passes1,091tests(1skip,4CARLAexclusions). Overall acceptance remains **UNMET**.
+[Raw-bound negative result](../reports/native_B1_executed_recovery_collection_and_probe_20261101.json).
+
 ## Verified audit snapshot — 2026-11-01, complete matched development cohort
 
 The original targets remain unchanged and overall acceptance is **UNMET**.

@@ -1,5 +1,10 @@
 # Evidence-bounded project descriptions
 
+Latest B1recovery experiment remains negative:1,612TRAINmixture controls,
+512auxiliary Adam proposals,then1,657pure-policy controls;2/4with timeout and
+bounds. No healthy-baseline,added-PPOor final-confirmation claim is supported.
+[Actual result](../reports/native_B1_executed_recovery_collection_and_probe_20261101.json).
+
 Verified development wording — 2026-11-01,complete matched cohort:
 
 - 中文：构建已知地图下的低速车辆PPO分层决策、Hybrid A*规划与MPC控制系统，接入CARLA真实PPO更新、车辆标定及逐帧执行审计。完成同执行版本五种子H/H0开发消融，在24个已知开发条件上分别120/120与119/120；公开模型、归一化、原始日志及可独立重建的统计和主图，核验287,811控制帧。CPU CI1036项通过。反馈差值95%区间跨零，健康非分层基线及独立最终确认尚未完成。
