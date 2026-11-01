@@ -1,4 +1,16 @@
-# Current research checkpoint — 2026-11-01 09:34
+# Latest native endpoint — 2026-11-01 09:36
+
+Seed22lower-rate extension TERMINAL:2/4success,two bounds,320new Adam updates,
+10240new controls,20480policylineage,11557audited raw controls. GateFAIL.
+Learning rate/update count alone is NOT a universal B1repair. Do not skip this
+seed or launch full-task training from the one passing seed11. Complete the
+remaining prespecified33/44/55courses;observer20420will reject full entry unless
+every gate is true. Current actual child:
+`20261101T013448773461Z_native_B1_basic_lr_extension`,seed33,worker38692,
+driver62332. Revalidate all PIDcreation identities before process management.
+Report`native_B1_basic_lr_extension_seed22_endpoint_20261101.json`is retained.
+
+# Historical research checkpoint — 2026-11-01 09:34
 
 Previous goal turn was PROGRESS:seed11completed its10240-control lower-rate
 extension with320new Adam steps;3/4success,1deadline,zero unsafe,BASICGATEPASS.
