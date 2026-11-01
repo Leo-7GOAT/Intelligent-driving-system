@@ -1,5 +1,12 @@
 # Executability-aware hierarchical driving research
 
+Measured B1failure diagnosis now reconstructs40executed decisions across the
+first three completed basic-course seeds. Two failed trajectories enter the goal
+position at1.44/1.50m/s (parking limit.25m/s);their initial actors also provide
+insufficient braking at those same states. Three other failures never enter the
+position tolerance. Same-state inference does not establish causal driving
+outcomes. [Audited landmarks and limits](reports/native_B1_basic_motion_landmark_diagnosis_20261101.json).
+
 The complete failed B1seed11course is now publicly downloaded and independently reconstructed:553files,11,966controls,4initial actions and the exact figure,including its bounds failure and all checkpoints. [Public receipt](reports/native_B1_basic_seed11_failed_gate_public_verification_20261101.json). It is explicitly NOTa qualified baseline.
 
 B1optimizer diagnosis now has a controlled measured-data replay:the same first
@@ -17,9 +24,8 @@ same zero-unsafe basic gate. Full-task training waits for all five qualification
 its eventual policy lineage would be40,960controls,with curriculum costs disclosed.
 [Actual queues and trained-checkpoint preflight](reports/native_B1_lower_rate_extension_activation_20261101.json).
 Current completed basic courses11/22/33score3/4,2/4,2/4with bounds violations;
-none qualifies. Their failures remain recorded. A complete failed-seed11capsule
-passes local independent raw/model/figure verification;public transfer is active,
-and no public-completion claim is made yet.
+none qualifies. Their failures remain recorded. The complete failed-seed11capsule
+has also passed public download and independent raw/model/figure verification.
 
 The complete H/B2paired report now independently rebuilds from10public capsules:
 all reference fields identical,10actual Adam/frozen-normalizer checks,5distinct
@@ -38,7 +44,10 @@ The conditional full-task queue cannot qualify this failed result. No threshold
 was relaxed. Historical uploads/reproduction are separate from research success.
 
 All five B2public capsules now independently reconstruct133,687raw controls,60initial actions and the exact versioned figures. [Complete public inventory](reports/native_B2_all_five_public_completion_20261101.json).
-The conditional full-task B1queue is live:only after ALL5basic courses qualify,it retains each trained policy/Adam/RNG state and adds20,480controls on the original12conditions. Totalpolicylineage is30,720controls;coursecosts are not hidden. [Queue and actual trained-checkpoint CPUrestore](reports/native_B1_full_after_basic_queue_activation_20261101.json). No full-task child has started yet.
+The earlier direct basic-to-full queue was superseded after basic-course failure.
+The current queue first adds the common lower-rate basic extension,then permits
+full-task training only if all five qualify. Eventual lineage is40,960controls
+per seed. [Current queue and retained-state preflight](reports/native_B1_lower_rate_extension_activation_20261101.json).
 
 07:30 update: external interruption ended the original course after2,408 controls/1Adam update,with no saved trained checkpoint. Raw prefixes are preserved and lost work charged;an explicit pristine-initializer replacement has actually started. Checkpoints now save every1,280 controls. [Interruption and live replacement](reports/native_B1_basic_course_external_interruption_20261101.json).
 
@@ -59,8 +68,8 @@ All five input validations,actual frozen-runtime CPU restores and complete saved
 learner-profile comparisons pass. A continuous-action audit bug was corrected:
 B1profiles now include its actual Box bounds and exploration standard deviations.
 
-B2seeds11/22/33have also completed actual public download and independent
-reconstruction using versioned figure baselines;later seeds remain queued.
+B2seeds11/22/33completed public download and independent reconstruction using
+versioned figure baselines;seeds44/55have since completed as well.
 [Seed11](reports/native_B2_seed11_public_verification_20261101.json),
 [seed22](reports/native_B2_seed22_public_verification_20261101.json),
 [seed33](reports/native_B2_seed33_public_verification_20261101.json).

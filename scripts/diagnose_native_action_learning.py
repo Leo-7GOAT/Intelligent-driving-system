@@ -53,7 +53,15 @@ def evaluation_goal_errors(folder, audit):
                 if distance > config['goal_tolerance']: unmet.append('position')
                 if config['parking'] and speed > config['goal_speed']: unmet.append('speed')
                 if config['parking'] and yaw_error > config['goal_yaw_tolerance']: unmet.append('yaw')
-                case['minimum_goal_distance_m'] = min(case['minimum_goal_distance_m'],distance)
+                snapshot = {'distance_m':distance, 'absolute_speed_mps':speed,
+                    'yaw_error_rad':yaw_error, 'unmet_pose_criteria':unmet,
+                    'policy_action':row['policy_action'], 'intervention':tick['intervention'],
+                    'simulation_seconds':state.get('time')}
+                if distance < case['minimum_goal_distance_m']:
+                    case['minimum_goal_distance_m'] = distance
+                    case['closest_measured_approach'] = snapshot
+                if distance <= config['goal_tolerance'] and 'first_position_entry' not in case:
+                    case['first_position_entry'] = snapshot
                 case['pose_qualified_controls'] += int(not unmet)
                 case['pose_qualified_without_intervention_controls'] += int(not unmet and not tick['intervention'])
                 case.update(final_goal_distance_m=distance, final_yaw_error_rad=yaw_error,
@@ -61,7 +69,8 @@ def evaluation_goal_errors(folder, audit):
             if info['termination_reason']:
                 case['recorded_termination_reason'] = info['termination_reason']
     return {'scope':'Measured pose criteria only; collision, bounds, intervention and prior control requirements retain their original terminal priority. No outcome is reclassified.',
-            'cases':[cases[key] for key in sorted(cases)]}
+            'cases':[dict(cases[key], first_position_entry=cases[key].get('first_position_entry'))
+                     for key in sorted(cases)]}
 
 
 def analyze(batch, method):
