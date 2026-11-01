@@ -27,12 +27,20 @@ def sha(path):
     return h.hexdigest()
 
 
-def validate_recipe(recipe):
-    if recipe['seeds']!=[11,22,33,44,55] or len(recipe['capsules'])!=6:
-        raise ValueError('The complete canonical five-seed/six-capsule inventory is required')
+def validate_recipe(recipe,reference_root=None):
+    reference_root=ROOT if reference_root is None else Path(reference_root)
+    broader=recipe.get('cohort_kind')=='matched_broader_36train_24val_v1'
+    if recipe.get('cohort_kind') not in (None,'matched_broader_36train_24val_v1'):
+        raise ValueError('Unknown public feedback cohort interpretation')
+    count=5 if broader else 6
+    if recipe['seeds']!=[11,22,33,44,55] or len(recipe['capsules'])!=count:
+        raise ValueError('The complete declared five-seed capsule inventory is required')
     slots=[r['slot'] for r in recipe['capsules']];batches=[r['batch'] for r in recipe['capsules']]
-    if len(set(slots))!=6 or len(set(batches))!=6:
+    if len(set(slots))!=count or len(set(batches))!=count:
         raise ValueError('Repeated capsule slots/batches are not independent inputs')
+    if broader and ([r.get('seed') for r in recipe['capsules']]!=recipe['seeds']
+            or any(r['methods']!=['H','H0'] for r in recipe['capsules'])):
+        raise ValueError('Every broader seed requires its complete two-method capsule')
     for row in recipe['capsules']:
         for key in ('slot','batch'):
             if not re.fullmatch(r'[A-Za-z0-9_.-]+',row[key]) or row[key] in ('.','..'):
@@ -41,8 +49,8 @@ def validate_recipe(recipe):
         if not re.fullmatch(r'[0-9a-f]{64}',row['sha256']):raise ValueError('Explicit trusted capsule hash required')
         if not row['methods'] or len(set(row['methods']))!=len(row['methods']) or set(row['methods'])-{'H','H0'}:
             raise ValueError('Only explicit complete H/H0method inventories are replayed')
-        if row.get('reference_figure') is not None:resolve_batch(ROOT,row['reference_figure'])
-    for key in ('pairs_manifest','expected_report','expected_figure'):resolve_batch(ROOT,recipe[key])
+        if row.get('reference_figure') is not None:resolve_batch(reference_root,row['reference_figure'])
+    for key in ('pairs_manifest','expected_report','expected_figure'):resolve_batch(reference_root,recipe[key])
 
 
 def model_proof(inputs,pairs):
@@ -102,9 +110,11 @@ def cached_download(row,cache,target):
             'original_download_receipt_sha256':sha(cache/'download_receipt.json')}
 
 
-def run(recipe_path,output,public_download_caches=()):
+def run(recipe_path,output,public_download_caches=(),reference_root=None):
     recipe_path,output=Path(recipe_path).resolve(),Path(output).resolve()
-    recipe=read(recipe_path);validate_recipe(recipe)
+    references=ROOT if reference_root is None else Path(reference_root).resolve()
+    recipe=read(recipe_path);validate_recipe(recipe,references)
+    reference_hashes={recipe[key]:sha(resolve_batch(references,recipe[key])) for key in ('pairs_manifest','expected_report','expected_figure')}
     if output.exists():raise FileExistsError('Preserve previous public-cohort reconstruction')
     ancestor=output.parent
     while not ancestor.exists():ancestor=ancestor.parent
@@ -118,6 +128,8 @@ def run(recipe_path,output,public_download_caches=()):
             raise ValueError('Keep the independent source checkout fixed during reconstruction')
         for name,digest in source_hashes.items():
             if sha(ROOT/name)!=digest:raise ValueError('Reconstruction source changed:'+name)
+        for name,digest in reference_hashes.items():
+            if sha(resolve_batch(references,name))!=digest:raise ValueError('Reference inputs changed:'+name)
     def get(row):
         target=output/'downloads'/row['slot']
         result=None
@@ -134,7 +146,7 @@ def run(recipe_path,output,public_download_caches=()):
         inputs=output/'inputs';(inputs/'runs').mkdir(parents=True)
         for row,archive,download_receipt in downloads:
             verify_source();target=output/'capsules'/row['slot'];log=output/(row['slot']+'_reconstruction.log')
-            figure=resolve_batch(ROOT,row['reference_figure']) if row.get('reference_figure') else None
+            figure=resolve_batch(references,row['reference_figure']) if row.get('reference_figure') else None
             with log.open('x',encoding='utf-8') as stream,redirect_stdout(stream):
                 reproduce(archive,row['sha256'],target,figure)
             receipt=read(target/'reproduction.json')
@@ -149,27 +161,32 @@ def run(recipe_path,output,public_download_caches=()):
                 'original_download_receipt_sha256':download_receipt.get('original_download_receipt_sha256'),
                 'methods':receipt['methods'],'figure_byte_identical':receipt['figure_byte_identical'],
                 'retained_incomplete_sibling_files':receipt.get('incomplete_sibling_files_verified',0)})
-        verify_source();pairs_path=resolve_batch(ROOT,recipe['pairs_manifest'])
+        verify_source();pairs_path=resolve_batch(references,recipe['pairs_manifest'])
         with (output/'cohort_analysis.log').open('x',encoding='utf-8') as stream,redirect_stdout(stream):
             actual=analyze_cohort(pairs_path,output/'cohort',inputs_root=inputs)
-        if actual!=read(resolve_batch(ROOT,recipe['expected_report'])):
+        if actual!=read(resolve_batch(references,recipe['expected_report'])):
             raise ValueError('Full five-seed report differs from the published reference;inspect retained outputs')
         proofs=model_proof(inputs,read(pairs_path)['pairs'])
         from scripts.plot_native_feedback_cohort import plot
         figure=output/'feedback_five_seed.png'
         with (output/'cohort_figure.log').open('x',encoding='utf-8') as stream,redirect_stdout(stream):
             plot(output/'cohort/cohort.json',figure)
-        if sha(figure)!=sha(resolve_batch(ROOT,recipe['expected_figure'])):
+        if sha(figure)!=sha(resolve_batch(references,recipe['expected_figure'])):
             raise ValueError('Public-input five-seed figure differs from the versioned reference')
         verify_source()
         result={'scope':__doc__,'recipe_sha256':sha(recipe_path),'source_commit':source_commit,
             'public_capsules':capsules,'all_reference_cohort_fields_identical':True,
-            'independent_training_seeds':5,'unique_known_development_conditions':12,
+            'independent_training_seeds':5,'unique_known_development_conditions':actual['unique_condition_count'],
             'H_successes':actual['H_successes'],'H0_successes':actual['H0_successes'],
             'episodes_each_method':actual['episodes_per_method'],'statistics':actual['statistics'],
             'model_and_optimizer_proof':proofs,'five_distinct_final_policy_tensors_each_method':True,
             'figure_byte_identical':True,'figure_sha256':sha(figure),'wall_seconds':time.monotonic()-started,
             'new_controls':0,'PPO_updates':0,'supervised_updates':0,'research_acceptance':'UNMET'}
+        if recipe.get('cohort_kind'):
+            if actual.get('cohort_kind')!=recipe['cohort_kind'] or actual['unique_condition_count']!=24:
+                raise ValueError('Broader recipe,reference and reconstructed task disagree')
+            result.update(scope='All five matched-harness broader DEVELOPMENT feedback pairs from five complete public capsules;not final confirmation',
+                cohort_kind=recipe['cohort_kind'],reference_inputs_sha256=reference_hashes)
         (output/'reproduction.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
         print(json.dumps({k:result[k] for k in ('H_successes','H0_successes','statistics','figure_byte_identical','wall_seconds')}),flush=True)
         return result
@@ -184,4 +201,5 @@ if __name__=='__main__':
     parser.add_argument('--output',required=True)
     parser.add_argument('--public-download-cache',action='append',default=[],
                         help='Optional existing public-download directory;exact archive,manifest and original receipt are rechecked')
-    args=parser.parse_args();run(args.recipe,args.output,args.public_download_cache)
+    parser.add_argument('--reference-root',help='Explicit directory containing immutable relative reference paths;defaults to this source checkout')
+    args=parser.parse_args();run(args.recipe,args.output,args.public_download_cache,args.reference_root)
