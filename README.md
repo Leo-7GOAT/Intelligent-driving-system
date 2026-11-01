@@ -1,5 +1,24 @@
 # Executability-aware hierarchical driving research
 
+B1optimizer diagnosis now has a controlled measured-data replay:the same first
+1,280 real TRAIN controls reproduce the original-rate native checkpoint within
+5.22e-8parameter error (numerical,not bitwise). Reducing PPOlearning rate from
+3e-5to3e-6 permits40rather than1Adam steps on that fixed rollout,with lower KL
+and critic TRAINerror. An independent checkout reproduces every dataset array
+and result field exactly;183related tests pass.
+[Measured replay](reports/native_B1_first_rollout_rate_replay_20261101.json),
+[independent verification](reports/native_B1_matched_rate_replay_independent_verification_20261101.json).
+This does not demonstrate improved driving. A common all-five lower-rate
+continuation is queued after all current courses finish;it retains their trained
+weights,Adam moments,normalizer and RNG,adds10,240controls per seed,and keeps the
+same zero-unsafe basic gate. Full-task training waits for all five qualifications;
+its eventual policy lineage would be40,960controls,with curriculum costs disclosed.
+[Actual queues and trained-checkpoint preflight](reports/native_B1_lower_rate_extension_activation_20261101.json).
+Current completed basic courses11/22/33score3/4,2/4,2/4with bounds violations;
+none qualifies. Their failures remain recorded. A complete failed-seed11capsule
+passes local independent raw/model/figure verification;public transfer is active,
+and no public-completion claim is made yet.
+
 The complete H/B2paired report now independently rebuilds from10public capsules:
 all reference fields identical,10actual Adam/frozen-normalizer checks,5distinct
 trained policies per method,and the exact main figure. Independent178CPU tests

@@ -1,3 +1,47 @@
+# Authoritative core-learning progress — 2026-11-01 08:21
+
+CORE ROOT-CAUSE EVIDENCE:actual first1280TRAINrollout reconstructed using recorded
+UNBOUNDED Gaussian actions,measured states/actuatorhistory,and originalRNG.
+Originalrate3e-5produces1Adamstep,checkpointmaxparametererror5.2154e-8(tol1e-7),
+maxsampleerror1.192e-7(tol1e-6). Strictbitwiseactionprobe failedat34with2.98e-8;
+not hidden. Firstfullprototype failedJSONnpfloat32serialization aftertraining;
+retained,not a successful result. Production replayer fixesserialization,saves
+recorded_rollout.npz/before_update_rng.pklBEFOREtraining,and uses actualrecorded
+raw actions rather than regenerated ones. Alternative3e-6produces40Adamsteps,
+meanKL.00374859vs.0139810,valueTRAINMSE.721098vs.844533(before.891875).
+ONEseed/ONErollout,not driving-improvement or independent-seed evidence.
+
+SOURCE99479b54ddd1c36af9c4724f058cb22354b91856pushed. Independent183testsPASS12.58sec.
+Independent coldZIPreproduction verifies553files/11966controls/4initialactions/
+exactfigure. Independent entire1280replay again produces BITIDENTICAL dataset
+arrays and all result fields. Receiptnative_B1_matched_rate_replay_independent_verification_20261101.json.
+Code scripts/replay_native_first_ppo_update.py; no alternate offline model deployed.
+Rootfixture actualtrained-checkpoint copy preflight also proves LRcontinuation
+retainsweights/Adam9/normmoments/RNG,0reset/control/update. No extra BCfits.
+
+ACTUAL PIPELINE (revalidatePIDs):62176originalbasiccourses,nowseed44after11/22/33
+finish3/4,2/4,2/4 ALLFAILunsafe. All5stillcompleteasregistered. Lower-rate
+EXTENSION62332,tool81745,executionB1_basic_lower_rate_extension_execution_20261101
+waitsexact62176handle:requiresall5coursesfinishedwithfailedqualification,binds
+matchedreplayreporthash,then ALL5trainedpolicies eachget10240MOREnativecontrols at
+3e-6withAdam/RNGretained. GateAFTERlearning unchanged>=3/4zero unsafe.
+NewconditionalFULL20420,tool19441,executionB1_full_after_lower_rate_extension_execution_20261101
+waits62332ALL5qualification;adds20480onoriginal12conditions. Totalpolicylineage
+40960,not equal-budgetH20480evidence. Fullfactory now charges retained cumulative
+Adamsteps and bothbasicstages. Obsoletechildless66252was exactidentityverified
+andintentionallyterminated;supersessionreceiptretained,no nativeworker stopped.
+Newqueuesfrozen afterallchanges;DO NOTedit their snapshots/workspacebindings.
+
+FAILUREPUBLICATION916ACTUALLYLIVE,tool38265,executionB1_failed_basic_course_publication_20261101,
+scriptpublish_failed_B1_basic_course_20261101.py. Completefailedseed11archive
+native_B1_basic_seed11_failed_gate_20261101_repro.zip:49871991bytes/553files,
+SHAd13dcf3b07fe1574d8823e23f5c29abcc6e43bbdd1d68e1e5e9b506a5c0aa22a.
+96parts512KiB;manifestLAST;finite30min/3attempts/missing-only;then actualpublic
+re-download/reconstruct. Packagedfigureexists,so no repeatofB2baselinebug.
+Notyetpubliccomplete. Keepmainnative_road_checkout285cd30FIXED while916usesit.
+Secondarybasic_course_code_checkout_20261101at99479b5isnowIDLE(canadvance).
+PublicH/H0andH/B2all5fullrebuildsCOMPLETE;doNOTrepeat. GoalACTIVE/UNMET.
+
 # Actual comparison rebuild and basic-course outcome — 2026-11-01 07:49
 
 PUBLIC H/B2TEN-CAPSULE RECONSTRUCTION COMPLETE at285cd308b78824d53347e25a3badd442bb5f4522.

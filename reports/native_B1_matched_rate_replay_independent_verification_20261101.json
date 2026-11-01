@@ -1,0 +1,95 @@
+{
+  "scope": "Actual independent artifact reconstruction and same-TRAINrollout numerical PPOreplay;not driving-performance evidence",
+  "source_commit": "99479b54ddd1c36af9c4724f058cb22354b91856",
+  "independent_related_tests_passed": 183,
+  "independent_test_seconds": 12.58,
+  "failed_safety_gate_capsule_local_preflight": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "d13dcf3b07fe1574d8823e23f5c29abcc6e43bbdd1d68e1e5e9b506a5c0aa22a",
+    "asset_source_commit": "99479b54ddd1c36af9c4724f058cb22354b91856",
+    "reproduction_source_commit": "99479b54ddd1c36af9c4724f058cb22354b91856",
+    "verified_files": 553,
+    "methods": [
+      {
+        "method": "B1",
+        "raw_audit_sha256": "673af5c566c0ce76e5852e01b4d2f1b6fbda07e46a97e3aa4f0531b009e916d0",
+        "verified_controls": 11966,
+        "measured_start_actions_reproduced": 4,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "e2d3dcc89e41f054a42d7eceb090078e250067fb583857d6894a40e07b36a6c5",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  },
+  "all_reconstructed_rollout_arrays_bit_identical": true,
+  "all_matched_rate_result_fields_identical": true,
+  "independent_rate_results": [
+    {
+      "learning_rate": 3e-05,
+      "offline_Adam_steps": 1,
+      "native_checkpoint_maximum_parameter_error": 5.21540641784668e-08,
+      "mean_KL_on_recorded_rollout": 0.013981036841869354,
+      "value_MSE_before_on_same_TRAIN_rollout": 0.8918753862380981,
+      "value_MSE_after_on_same_TRAIN_rollout": 0.8445327877998352,
+      "metrics": {
+        "train/learning_rate": 3e-05,
+        "train/entropy_loss": 5.1621222496032715,
+        "train/policy_gradient_loss": 0.006194360181694947,
+        "train/value_loss": 0.8774827420711517,
+        "train/approx_kl": 0.01239200122654438,
+        "train/clip_fraction": 0.15000000596046448,
+        "train/loss": 0.4370228350162506,
+        "train/explained_variance": -0.15747499465942383,
+        "train/std": 0.018315641209483147,
+        "train/n_updates": 1,
+        "train/clip_range": 0.2
+      }
+    },
+    {
+      "learning_rate": 3e-06,
+      "offline_Adam_steps": 40,
+      "native_checkpoint_maximum_parameter_error": 0.00011736899614334106,
+      "mean_KL_on_recorded_rollout": 0.003748590825125575,
+      "value_MSE_before_on_same_TRAIN_rollout": 0.8918753862380981,
+      "value_MSE_after_on_same_TRAIN_rollout": 0.7210981845855713,
+      "metrics": {
+        "train/learning_rate": 3e-06,
+        "train/entropy_loss": 5.162091386318207,
+        "train/policy_gradient_loss": -0.016006333875411373,
+        "train/value_loss": 0.8047051593661309,
+        "train/approx_kl": 0.0077416361309587955,
+        "train/clip_fraction": 0.0601562503434252,
+        "train/loss": 0.33272868394851685,
+        "train/explained_variance": -0.15747499465942383,
+        "train/std": 0.018316172063350677,
+        "train/n_updates": 10,
+        "train/clip_range": 0.2
+      }
+    }
+  ],
+  "numerical_native_parameter_absolute_tolerance": 1e-07,
+  "observed_native_parameter_error": 5.21540641784668e-08,
+  "new_controls": 0,
+  "independent_offline_PPO_Adam_steps": 41,
+  "limits": "One seed/one1280control TRAINrollout;independent computation is reproduction,not another independent training seed. Baseline model fails basic safety gate. Offlinefit/KL does not demonstrate driving improvement. Native lower-rate continuation remains queued.",
+  "research_acceptance": "UNMET",
+  "actual_lower_rate_queue": {
+    "phase": "WAITING_FOR_ALL_FIVE_BASIC_RESULTS_FOR_RATE_EXTENSION",
+    "pid": 62332,
+    "epoch": 1793492771.0111127,
+    "created": [],
+    "completed": [],
+    "dependency_pid": 62176
+  },
+  "actual_after_extension_full_queue": {
+    "phase": "WAITING_FOR_ALL_FIVE_TRAINED_BASIC_QUALIFICATIONS",
+    "pid": 20420,
+    "epoch": 1793492763.9534903,
+    "created": [],
+    "completed": [],
+    "dependency_pid": 62332
+  }
+}
