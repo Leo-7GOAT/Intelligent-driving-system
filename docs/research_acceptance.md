@@ -9,9 +9,9 @@ Dated snapshots below preserve their original observations.
 |---|---|---|
 | PPO → local pose/speed → Hybrid A* → timed trajectory → MPC → actual CARLA feedback | Actual native PPO training,restoration and frame audits;five complete common-harness H/H0pairs on36TRAIN/24known-validation conditions | Executed;final capability unqualified |
 | Healthy,sufficiently trained B1 | Five retained-state extensions score3/4,2/4,2/4,0/4,2/4;10bounds,1timeout,only1basic gate passes. Full-task continuation withheld | Not achieved |
-| B1corrective hypothesis | Matched replay/17label fits both3/4with one bounds failure. New99label/512step correction awaits its queued native probe | Driving benefit unproven |
+| B1corrective hypothesis | Matched17label fits both3/4with bounds;new99label fit2/4with2bounds versus replay3/4with1bounds. Three subsequent TRAINscreens fail before driving | Driving benefit unproven |
 | H versus healthy B1:≥10pp paired mean gain and95% lower bound above zero,or prospectively locked efficiency alternative | Qualified complete B1cohort absent | Unproven |
-| Added PPO and strong-B3 comparison | B3scores24/24;new trained Hscores120/120across five policies. Exact pristine teacher-only controls now running;full attribution pending | Unproven |
+| Added PPO and strong-B3 comparison | Teacher-only117/120versus trainedH120/120:mean+2.50pp,95%t[-2.13,+7.13]pp,p=.5. Strong B3remains24/24 | Unproven |
 | Explainable executability-feedback contribution | New H120/120,H0119/120:mean+0.83pp,95%t[-1.48,+3.15]pp,p=1.0. Hslightly slower on mutually successful conditions in every seed | Not established |
 | ≥5independently trained policies | Canonical H/H0,B2and new common-harness five-pair development cohorts complete. Formal H/healthy-B1comparison pending | Development milestone executed;final incomplete |
 | ≥120NEWunique paired final conditions,≥30per core family plus unseen layouts/parameters | Original12and later24remain known development conditions;no new final set activated | Not achieved |
@@ -24,13 +24,16 @@ Dated snapshots below preserve their original observations.
 [full public reconstruction](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json),
 [public recipe](../protocols/public_native_matched_broader_feedback_cohort_20261101.json),
 [all-five B1failures](../reports/native_B1_all_five_lower_rate_extensions_20261101.json),
-[queued new B1probe](../reports/native_B1_three_episode_training_coverage_activation_20261101.json),
-[teacher-only protocol](../reports/native_PPO_teacher_only_attribution_queue_20261101.json).
+[completed failed B1probe](../reports/native_B1_three_episode_training_coverage_probe_20261101.json),
+[complete teacher attribution](../reports/native_broader_PPO_teacher_rule_attribution_20261101.json).
 
 H/H0evaluation interventions total2020/2730;the difference is dominated by one
 H0timeout. Requested budgets are equal;actual training controls103197/102711and
 Adam3270/3250retain their declared one-rollout overshoots. Costs of earlier
 experiments and teacher fitting remain separate and are not erased by this cohort.
+
+The executed-teacher-only B1repair also fails the basic gate:3/4with one
+bounds violation,1182raw controls verified. [Actual repair outcome](../reports/native_B1_executed_teacher_only_repair_probe_20261101.json).
 
 ## Historical execution snapshots
 

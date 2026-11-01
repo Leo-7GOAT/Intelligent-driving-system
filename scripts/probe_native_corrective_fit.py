@@ -13,7 +13,13 @@ import time
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def run(parent,oracle,output):
+def require_replay_inputs(current,previous):
+    import numpy as np
+    for key in ('base_observations','base_actions','base_weights'):
+        np.testing.assert_array_equal(current[key],previous[key])
+
+
+def run(parent,oracle,output,replay_fit=None,require_retention=False):
     parent,oracle,output=map(lambda p:Path(p).resolve(),(parent,oracle,output))
     if any(name.startswith('navstack.') for name in sys.modules):
         raise RuntimeError('Use a fresh interpreter for the exact frozen native runtime')
@@ -61,6 +67,7 @@ def run(parent,oracle,output):
         if mask.dtype!=bool:raise ValueError('Require explicit Boolean teacher TRAIN mask')
         base={k:data[k][mask].copy() for k in ('observations','actions')}
         weights=data['weights'][mask].copy() if 'weights' in data.files else np.ones(int(mask.sum()))
+        base_groups=data['groups'][mask].copy() if require_retention else None
     latest=read(folder/'latest_checkpoint.json')['folder']
     if Path(latest).name!=latest:raise ValueError('Invalid checkpoint path')
     origin=folder/latest;metadata=verified_checkpoint_metadata(origin)
@@ -69,6 +76,25 @@ def run(parent,oracle,output):
     fit_path=ROOT/'navstack/corrective_imitation.py'
     spec=importlib.util.spec_from_file_location('navstack._trained_corrective_fit',fit_path)
     fitter=importlib.util.module_from_spec(spec);spec.loader.exec_module(fitter)
+    reused=None
+    if replay_fit is not None:
+        replay_fit=Path(replay_fit).resolve();previous=read(replay_fit/'complete.json')
+        if (previous['parent']!=parent.name or previous['parent_model_sha256']!=metadata['model_sha256']
+                or previous['steps_each']!=512 or previous['learning_rate']!=1e-4
+                or previous['fit_source_sha256']!=sha(fit_path)
+                or sha(replay_fit/'fit_inputs.npz')!=previous['inputs_sha256']):
+            raise ValueError('Prior replay has different parent,data or fitting implementation')
+        with np.load(replay_fit/'fit_inputs.npz',allow_pickle=False) as d:
+            require_replay_inputs({'base_observations':base['observations'],'base_actions':base['actions'],'base_weights':weights},d)
+        reused=next(r for r in previous['results'] if r['arm']=='replay')
+        if (sha(replay_fit/'replay/model.zip')!=reused['model_sha256']
+                or sha(replay_fit/'replay/normalization.pkl')!=metadata['normalization_sha256']):
+            raise ValueError('Completed replay artifact changed')
+    if require_retention and reused is None:raise ValueError('Retention gate needs the exact existing replay reference')
+    gate_module=None
+    if require_retention:
+        spec=importlib.util.spec_from_file_location('exact_retention_gate',ROOT/'scripts/probe_native_retained_correction.py')
+        gate_module=importlib.util.module_from_spec(spec);spec.loader.exec_module(gate_module)
     torch.set_num_threads(1);output.mkdir(parents=True,exist_ok=False)
     shutil.copy2(Path(__file__),output/'executed_probe.py');shutil.copy2(fit_path,output/'executed_fit.py')
     shutil.copytree(oracle,output/'oracle')
@@ -84,6 +110,12 @@ def run(parent,oracle,output):
         'new_controls':0,'PPO_updates':0,'wall_seconds':600,'automatic_retries':0,
         'inputs_sha256':sha(output/'fit_inputs.npz'),'script_sha256':sha(Path(__file__)),'fit_source_sha256':sha(fit_path),
         'limits':'TRAIN loss is diagnostic only. Compare all four known basic cases in CARLA before adoption; no baseline qualification or generalization claim.'}
+    registration.update(replay_fit_reused=reused is not None,new_supervised_updates=512 if reused is not None else 1024,
+        reused_supervised_updates=512 if reused is not None else 0,require_basic_retention=require_retention)
+    if reused is not None:registration['reused_replay_manifest_sha256']=sha(replay_fit/'complete.json')
+    if require_retention:
+        shutil.copy2(ROOT/'scripts/probe_native_retained_correction.py',output/'executed_retention_gate.py')
+        registration['retention_gate_source_sha256']=sha(output/'executed_retention_gate.py')
     atomic_json(output/'registration.json',registration)
     results=[]
     try:
@@ -108,10 +140,15 @@ def run(parent,oracle,output):
                 okay,why=resources_ok(ROOT)
                 if not okay or time.monotonic()>deadline:raise RuntimeError('Bounded fit resource/deadline guard:'+str(why))
                 atomic_json(output/'heartbeat.json',{'arm':arm,'epoch':time.time(),**row})
-            fit=fitter.fit_trained_corrective_actor(model,norm,observations,actions,sample_weights,
-                steps=512,learning_rate=1e-4,seed=protocol['seed'],callback=progress)
-            destination=output/arm;shutil.copytree(origin,destination)
-            model.save(destination/'model.zip')
+            destination=output/arm
+            if arm=='replay' and reused is not None:
+                model=load_ppo(replay_fit/'replay/model.zip',device='cpu');fit=deepcopy(reused['fit'])
+                fit['reused_fit_manifest_sha256']=sha(replay_fit/'complete.json')
+                shutil.copytree(replay_fit/'replay',destination)
+            else:
+                fit=fitter.fit_trained_corrective_actor(model,norm,observations,actions,sample_weights,
+                    steps=512,learning_rate=1e-4,seed=protocol['seed'],callback=progress)
+                shutil.copytree(origin,destination);model.save(destination/'model.zip')
             changed={**deepcopy(metadata),'model_sha256':sha(destination/'model.zip'),
                      'additional_actor_fit_steps':512,'auxiliary_fit_version':fit['version'],
                      'note':'Trained PPO endpoint plus512separate actor-only Adam updates;PPO weights changed,optimizer and counters retained;fresh rollout required before PPO'}
@@ -120,12 +157,25 @@ def run(parent,oracle,output):
                 raise ValueError('Fit changed saved normalization or original continuation RNG bytes')
             results.append({'arm':arm,'fit':fit,'before':before,'after':diagnose(),
                             'model_sha256':changed['model_sha256'],'normalization_sha256':metadata['normalization_sha256']})
+            if require_retention:
+                model.policy.set_training_mode(False)
+                with torch.no_grad():
+                    base_prediction=model.policy.get_distribution(torch.as_tensor(norm.normalize_obs(base['observations']))).distribution.mean.cpu().numpy()
+                query_prediction=np.asarray(results[-1]['after']['predictions_all_queries'])
+                if arm=='replay':
+                    reference_base=base_prediction;reference_query=query_prediction
+                    fixed=gate_module.retention_gate(reference_base,reference_base,base['actions'],base_groups,
+                        reference_query[keep],reference_query[keep],query['actions'][keep])
+                    atomic_json(output/'fixed_retention_gate_before_correction.json',fixed)
+                else:gate=gate_module.retention_gate(base_prediction,reference_base,base['actions'],base_groups,
+                    query_prediction[keep],reference_query[keep],query['actions'][keep])
             atomic_json(output/'completed_arms.json',results)
             print(json.dumps({'arm':arm,'before_MSE':before['reference_action_MSE'],
                               'after_MSE':results[-1]['after']['reference_action_MSE'],'new_controls':0,'PPO_updates':0}),flush=True)
         result={**registration,'results':results,'additional_supervised_steps_total':1024,
                 'elapsed_seconds':time.monotonic()-started,'research_acceptance':'UNMET'}
-        atomic_json(output/'complete.json',result);return result
+        if require_retention:result['retention_gate']=gate
+        atomic_json(output/('rejected.json' if require_retention and not gate['passed'] else 'complete.json'),result);return result
     except BaseException as error:
         atomic_json(output/'failure.json',{'error':repr(error),'completed_arms':[r['arm'] for r in results]});raise
 
@@ -133,4 +183,5 @@ def run(parent,oracle,output):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ('parent','oracle','output'):parser.add_argument('--'+name,required=True)
-    args=parser.parse_args();run(args.parent,args.oracle,args.output)
+    parser.add_argument('--replay-fit');parser.add_argument('--require-basic-retention',action='store_true')
+    args=parser.parse_args();run(args.parent,args.oracle,args.output,args.replay_fit,args.require_basic_retention)

@@ -11,7 +11,7 @@ has a paired mean+0.83pp,95%tinterval[-1.48,+3.15]pp. The
 retains all five trained pairs and24unique known conditions;120policy-case
 results are not120new final conditions. The separate H/B2study retains its
 bridge-initialization confound. No superiority,safety certification or real-vehicle
-claim is made. Teacher-only attribution and new B1probe remain pending.
+claim is made. Teacher-only attribution is117/120versus trainedH120/120,with a zero-crossing95%interval;the99label B1probe fails2/4with two bounds violations and the executed-label repair3/4with one.
 
 Historical verified wording (2026-10-27):
 

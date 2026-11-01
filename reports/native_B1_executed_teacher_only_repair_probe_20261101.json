@@ -1,0 +1,45 @@
+{
+  "scope": "Actual frozen native B1probe after512actor-only updates on3467executed teacher TRAINrows;one known development seed,not a healthy baseline",
+  "batch": "20261101T071019575543Z_native_trained_actor_teacher_only_cleaning",
+  "model_sha256": "6d1ebeb3f35959c1a2dacd0853e0342b3223bd9012a375ffbb7dc81be9a3cdb6",
+  "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+  "cases": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "controls": 362
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "controls": 184
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "controls": 310
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "controls": 326
+    }
+  ],
+  "successes": 3,
+  "cases_count": 4,
+  "unsafe_cases": 1,
+  "basic_gate_passed": false,
+  "raw_controls_verified": 1182,
+  "raw_audit_sha256": "703b285f1481dc892c1592010e7c7994f637568504d1b5b698c73afd9f4a5615",
+  "measured_start_actions_reproduced": 4,
+  "new_PPO_updates": 0,
+  "additional_supervised_updates_before_evaluation": 512,
+  "parent_actual_PPO_control_lineage": 20480,
+  "parent_and_prior_experiment_costs_retained": true,
+  "limits": "All4known basic roads retained. One bounds violation fails the unchanged safety gate. Better TRAINfit is not driving improvement;the policy is not promoted to a qualified baseline.",
+  "research_acceptance": "UNMET"
+}

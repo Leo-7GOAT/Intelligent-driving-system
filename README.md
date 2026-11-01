@@ -9,18 +9,25 @@ rebuilt both figures byte-for-byte and decoded all 1,832 video frames.
 [Reproduce both public model/video capsules](docs/native_PPO_RGB_reproduction.md).
 This prerelease includes B1's failure and does not meet the final research targets.
 
-The next B1 development diagnostic uses the first three of its own completed
-TRAIN episodes per condition: 121 queries, 99 solved-reference labels and the
-same 512 actor-only updates. Its exact replay policy reuses the already audited
-closed-loop result. The correction endpoint is queued after the teacher
-controls; no new driving outcome is claimed.
-[Actual fit, retained PPO state and queue](reports/native_B1_three_episode_training_coverage_activation_20261101.json).
+The99label B1correction is now evaluated:2/4successes,two bounds failures,
+versus the exact reused replay policy's3/4with one bounds failure. It is rejected.
+Three later TRAINretention/context fits also fail their predeclared screens and
+receive no native driving. Current data repair separates physically executed
+teacher labels from historical counterfactual labels;no healthy baseline is claimed.
+[Actual99label result](reports/native_B1_three_episode_training_coverage_probe_20261101.json),
+[retention failures and costs](reports/native_B1_retention_and_failed_gates_20261101.json),
+[teacher-context command audit](reports/native_teacher_reference_context_20261101.json).
+The physical-teacher-only repair also completes3/4with one bounds failure;
+all1182controls and four starts are verified.
+[Completed failed repair](reports/native_B1_executed_teacher_only_repair_probe_20261101.json).
 
-Five teacher-only H controls are now running after the completed broader cohort,
-using its exact pristine weights and all24known validation conditions. This
-separates teacher initialization from added PPO training; the source-matched
-strong B3 result is reused. The complete five-seed attribution is pending.
-[Attribution protocol and actual frozen-model preflights](reports/native_PPO_teacher_only_attribution_queue_20261101.json).
+All five teacher-only Hcontrols are complete:117/120versus trained H120/120,
+zero unsafe. Added PPOmean+2.50pp has95%tinterval[-2.13,+7.13]pp,p=.5.
+The shared strong rule remains24/24. Stable added-PPOvalue is unestablished.
+All42109teacher-control frames are audited;the full attribution report also
+rebuilds byte-for-byte from an independent checkout.
+[Full attribution](reports/native_broader_PPO_teacher_rule_attribution_20261101.json),
+[independent local-input reconstruction](reports/native_broader_teacher_attribution_independent_verification_20261101.json).
 
 A matched trained-B1 actor diagnostic is complete:replay and17reference-label
 correction each finish3/4with one bounds failure after the same512actor-only

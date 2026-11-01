@@ -1,0 +1,13 @@
+{
+  "scope": "Independent checkout reconstructs all five local teacher/PPO/strong-rule attribution fields;not a new public download or new driving",
+  "source_commit": "09ca078000cdade8271a11949418f2b66c962961",
+  "attribution_report_sha256": "5dfac9890683e58818eba6e0df3a0b1a60c0498356328ed1913fef6a6f32939f",
+  "all_report_bytes_identical": true,
+  "teacher_controls_evaluated": 42109,
+  "pristine_successes": 117,
+  "trained_H_successes": 120,
+  "unique_known_conditions": 24,
+  "new_controls_for_reconstruction": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

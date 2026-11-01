@@ -1,3 +1,130 @@
+# Latest native repair FAILED / next required work — 2026-11-01 15:20
+
+The executed-teacher-only repair native probe is COMPLETE AND FAILED the
+unchanged basic gate:3/4,case1out_of_bounds at184controls. Other controls362/310/326,
+total1182;0new PPO. All raw controls and4measured-start actions verified.
+Raw audit SHA703b285f1481dc892c1592010e7c7994f637568504d1b5b698c73afd9f4a5615. Official report `reports/native_B1_executed_teacher_only_repair_probe_20261101.json`.
+Model6d1ebeb3... is NOT promoted. Worker72792/lifecycle exec15759TERMINAL,
+normal exit0/owned-empty cleanup. ALL native queues now terminal;no current
+training or simulator job remains active. Revalidate any future process IDs.
+
+DO NOT repeat closed-loop replay3/4,99correction2/4,or newclean repair3/4.
+DO NOT add more offline label weighting/fits:four such hypotheses were tried,
+three CPUrejected and one nativefailed. New teacher-only fit used3467actual
+teacher TRAINrows,excluded29counterfactual rows(weight580),512auxiliaryAdam,
+retained20,480PPOcontrol lineage/critic/PPOoptimizer/norm. Better teacher MSEin
+all4groups did NOT fix closed-loop safety. Preserve this negative evidence.
+
+Next useful step is genuine native ON-POLICY recovery data/closed-loop
+competence,not another train-MSE-only fit. Use existing measured bridge,
+RecordedRoadEnv and HeldTeacher(persistent2Hzplan/20HzMPC)to collect a bounded
+explicit teacher/learner mixture on preselected TRAINroads only. Keep PPO/BC
+updates0during collection;count actual teacher-driven and learner-driven
+controls separately. Mixed success is NOT a learned-policy result. Evaluation
+must remain a SEPARATE direct-model-only run. Do not feed mixture traces into
+ordinary policy-inference auditing as if every action came from PPO. Need
+explicit collector role/provenance and real-frame command audit before fitting.
+Choose unused TRAINgeometry from existing36TRAINinventory,never the24known VAL
+roads/futurefinal set. All original H/B1fairness/safety/5seed/final120goals stay.
+No new collector has yet been implemented or started;do not claim it is running.
+
+Source/current evidence pending commit at this snapshot:37targeted root tests
+PASS,new data/retention guards/persistent-label tooling,completed teacher117/120
+attribution and all failed B1results. Fullnew CPUCIand independent37testrun
+should follow commit. Old latest full CI1036PASS. Root native source/plant did
+NOTchange;only diagnostic/auxiliary-fit/preparation tools changed.
+Goal ACTIVE/UNMET:healthyB1,PPOvalue,stablefeedback,fairremainingablations and
+120NEWfinal paired conditions still absent. Main five-pair public reproduction
+is complete and should not be repeated.
+
+# Latest B1data repair / all attribution complete — 2026-11-01 15:12
+
+GOAL ACTIVE/UNMET. Main research goal unchanged. Canonical/new common-harness
+H/H0public cohorts are complete;do not repeat their training/download/audits.
+Main40540,analysis37956,publisher54528,teacher69732,B1probe68120are TERMINAL
+normal completions. No stale PID adoption/termination. New actual native job below.
+
+Five teacher-only controls COMPLETE:117/120versus trainedH120/120,zero unsafe,
+PPOmean+2.50pp,95%t[-2.1274,+7.1274]pp,p=.5. Strong B3still24/24.
+42109new teacher evaluation controls,zero PPO/BCupdates. Source09ca078independent
+reconstruction matches attribution report BYTE-FOR-BYTE SHA
+5dfac9890683e58818eba6e0df3a0b1a60c0498356328ed1913fef6a6f32939f.
+Report `native_broader_PPO_teacher_rule_attribution_20261101.json` and its
+`native_broader_teacher_attribution_independent_verification_20261101.json`.
+No stable added-PPObenefit is proven. These teacher raw logs are local,not yet
+publicly packaged;do not claim public reconstruction of these new teacher controls.
+
+Old99label B1probe COMPLETE NEGATIVE:
+`20261101T032412886357Z_native_trained_actor_trajectory_correction`2/4,
+bounds cases1/3at152/143controls,total958;replay3/4bounds case1at264controls.
+Raw SHA8cf03cb1e647c31d4e992c2131e56e4637eba3702a1576c5557c4b28a7e04e7d.
+Report `native_B1_three_episode_training_coverage_probe_20261101.json`.
+Old52972worker terminal;do not restart. Extra coverage fit was rejected.
+
+TRAINretention diagnosis:all3496base TRAINrows used;99correction increases
+basic group0..3MSEabout2.7–4.0times versus replay. Label rate-projection mismatch
+was tested and DISPROVED:all99solved labels have identical requested/projected
+steering. Do not repeat that hypothesis. Three further CPUfits rejected by
+prelocked gates,zero new native probes:
+- `B1_seed22_retention_weight8_fit_20261101`:512new actor Adam,group0/1/3fail.
+- `B1_seed22_hard_retention_fit_20261101`:512Adam proposals,all basic groups
+  retained via TRAIN-only block backtracking,but query MSEonly14%better,not50%.
+- `B1_seed22_persistent_teacher_matched_fit_20261101`:512new actor Adam,reuses
+  already-fitted replay;new query fit improves,but every original basic group
+  degrades. All three have rejected.jsonand NOcomplete.json/native registration.
+Combined1536new auxiliary Adam proposals,0newPPO/controls. No relaxing gates.
+Report `native_B1_retention_and_failed_gates_20261101.json`.
+
+Actual teacher-reference context audit now COMPLETE:original teacher
+`20261027T080111Z_native_rule`,same env/planning/trajectory/MPCcode as B1runtime.
+All1297reference-prefix commands across4basic roads reproduce with EXACT0error.
+Fresh context compared at68fixed phases(control_index mod40in0/5),with label
+disagreements. This is different supervision,not proof of better driving.
+`reports/native_teacher_reference_context_20261101.json` is hash-bound;keep bytes.
+Initial missing-episode setup and full-fresh-query300sbudget failure preserved in
+`runs/native_teacher_reference_context_audit_20261101`;no controls/fits from audit.
+DO NOT rerun full-fresh-query audit. Completed source has fixed sampling.
+
+New persistent-label generation COMPLETE on EXACTsame121previous TRAINstates:
+all observations BIT-IDENTICAL;4136counterfactual teacher control queries,55.5s,
+zero driving. `B1_seed22_persistent_teacher_queries_20261101`,config exactSHA7cef...
+at `20261031T025409165666Z_native_supervised_ppo/H/config.json`. Its fit FAILED
+retention as above;do not fit more labels or deploy it.
+
+IMPORTANT source-data finding:base3496TRAINrows contain3467actual teacher rows
+(groups0..11,unit weights)and29OLDcounterfactual rows(groups>=1024,weight580).
+The CURRENT single new hypothesis is FIXEDPROVENANCEdata cleanup:from the same
+actual seed22PPOparent(20480-ish controls),512actor-only Adam using only3467
+physically executed teacher TRAINrows,zero new queries. Historical supervision
+remains in ancestry;this does not erase it. Norm/critic/PPOoptimizer/counters
+preserved. Same four basic TRAINretention ceilings pass,all errors BELOWreplay.
+Fit `runs/B1_seed22_executed_teacher_only_fit_20261101` COMPLETE.
+
+ACTUALLY RUNNING native frozen-policy probe:
+`runs/20261101T071019575543Z_native_trained_actor_teacher_only_cleaning`.
+Model6d1ebeb3f35959c1a2dacd0853e0342b3223bd9012a375ffbb7dc81be9a3cdb6,
+normdb467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5.
+Worker72792,creation1793517057.939,basePython311;guard48260;revalidate exact
+worker_process.json/CIMbefore management. At15:11guardhealthy,34C. Single owned
+CARLA2100..2102. Existing exec session15759is native lifecycle,not functions.wait.
+No PPOduring eval,all4original known basic roads,1800s/3600maxcontrols,no retries.
+Fresh batch,not ActivateQueued. Model keeps20kactual PPOlineage plus512new BC;
+B1runtime remains direct acceleration/steering,NOteacher/planner/MPCsubstitution.
+AFTER normal lifecycle:raw endpoint audit and all4measured-start inference;
+read actual evaluation before any healthy-baseline claim. Basic gate remains
+>=3/4ANDzero collision/bounds. Even success would be ONEdevelopment seed,
+not the qualified full five-seed/full-task baseline.
+
+Current root source changes are diagnostic/TRAINfit/data repair only;native job
+uses unchanged parent frozen source. New scripts:
+`probe_native_retained_correction.py`, `query_native_persistent_teacher.py`,
+`audit_native_teacher_reference_context.py`;generic fitter can reuse identical
+prior replay inputs and optionally gate before preparing native probes. Native
+preparer supports explicit single-arm profiles and refuses rejected gates.
+37root targeted tests PASS;new-code full CI/independent tests pending after push.
+Previous completed full CI1036PASS,sourceefe975d. All original research gates,
+new final120,healthyB1,stablefeedback and PPOvalue remain UNMET.
+
 # Latest complete matched cohort / public reproduction — 2026-11-01 14:15
 
 PROGRESS:all five newly trained common-harness pairs COMPLETE and publicly

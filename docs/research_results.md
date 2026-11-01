@@ -29,10 +29,15 @@ fields,ten Adam/normalizer proofs and main figure. The
 and [independent byte-identical cost rebuild](../reports/native_matched_broader_feedback_costs_independent_verification_20261101.json)
 are executable. These remain24unique known conditions.
 
-Teacher-only controls are running;the complete added-PPO attribution is pending.
-The new99reference-label B1model is fitted and its closed-loop probe is queued.
-[Actual B1activation](../reports/native_B1_three_episode_training_coverage_activation_20261101.json).
+[Teacher-only attribution](../reports/native_broader_PPO_teacher_rule_attribution_20261101.json)
+is complete:117/120versus trainedH120/120,+2.50pp,95%t[-2.13,+7.13]pp,p=.5;
+strongB324/24. The [99label B1probe](../reports/native_B1_three_episode_training_coverage_probe_20261101.json)
+fails2/4with two bounds violations versus replay3/4with one. Three subsequent
+TRAINretention/context fits are rejected before driving;no new baseline is adopted.
 No result above establishes healthy-B1superiority,PPOnecessity or final generalization.
+
+The executed-teacher-only B1repair also fails the basic gate:3/4with one
+bounds violation,1182raw controls verified. [Actual repair outcome](../reports/native_B1_executed_teacher_only_repair_probe_20261101.json).
 
 ## Historical results and execution snapshots
 

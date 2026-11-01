@@ -1,0 +1,29 @@
+{
+  "scope": "Clean Git checkout defaults:rebuild paired statistics and figure from already publicly restored inputs;verify exact recipe/reference bytes. Does not repeat full raw-frame/model/public-download auditing.",
+  "source_commit": "09ca078000cdade8271a11949418f2b66c962961",
+  "root_targeted_tests": 44,
+  "independent_targeted_tests": 44,
+  "hosted_CPU_CI": {
+    "source_commit": "efe975dd22304e20830165308d47c480eaa2bfca",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41279842561",
+    "passed": 1036,
+    "skipped": 18,
+    "CARLA_only_deselected": 4,
+    "wall_seconds": 89.13
+  },
+  "cohort_report_byte_identical": true,
+  "cohort_report_sha256": "4f05ccfeecb37ab5f9db01aa5123b6b2c6901334e4097ad40d40a341579ddb38",
+  "main_figure_byte_identical": true,
+  "main_figure_sha256": "207b650e4ddaf29269fa16e2578c95eee961ac76627c21c3fa6ba5202d322982",
+  "four_Git_recipe_and_reference_bindings_exact": {
+    "protocols/native_matched_broader_feedback_pairs_20261101.json": "2cfb30443d6c7665e0d57dab0cd0683b4dadd7463caffc8d63ac46bcff52c0ef",
+    "reports/native_matched_broader_feedback_cohort_20261101.json": "4f05ccfeecb37ab5f9db01aa5123b6b2c6901334e4097ad40d40a341579ddb38",
+    "reports/figures/native_matched_broader_feedback_cohort_20261101.png": "207b650e4ddaf29269fa16e2578c95eee961ac76627c21c3fa6ba5202d322982",
+    "protocols/public_native_matched_broader_feedback_cohort_20261101.json": "940b062fa628ef4d0b0f86061cbe899018a1f552922a132160d3b6c5cfea0a2d"
+  },
+  "public_inputs_and_completed_raw_model_proofs_reused": true,
+  "additional_downloads": 0,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

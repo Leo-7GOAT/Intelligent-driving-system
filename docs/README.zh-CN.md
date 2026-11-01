@@ -4,11 +4,13 @@
 [实际公开下载与独立复现凭证、SHA256](../reports/native_PPO_RGB_public_verification_20261101.json)。
 [两个公开模型/录像包的复现命令](native_PPO_RGB_reproduction.md)。
 
-B1下一项开发诊断已完成拟合：每个基础条件取自身最早三个已完成TRAIN回合，121个查询中99个有效规划/MPC标签，各组仍为512次actor监督更新。仅重放策略与已评测模型的完整参数/优化器一致，直接复用原闭环结果；纠正模型在教师对照完成后自动评测，驾驶改善尚待实测。
-[实际拟合、保留状态与已启动等待的队列](../reports/native_B1_three_episode_training_coverage_activation_20261101.json)。
+99标签B1修正已完成实测：2/4成功、两次越界；复用的重放对照为3/4、一次越界，该修正被否决。后续三项TRAIN保留/上下文拟合也均未通过预设门槛，未追加驾驶评测。当前数据修复区分真实执行教师标签和旧反事实标签，尚未得到健康基线。
+[99标签实测](../reports/native_B1_three_episode_training_coverage_probe_20261101.json)、[保留门槛失败及成本](../reports/native_B1_retention_and_failed_gates_20261101.json)、[教师参考上下文命令核验](../reports/native_teacher_reference_context_20261101.json)。
+仅真实教师标签修复也已完成：3/4成功、一次越界；1182控制帧及四个初态动作均已核验，仍未通过健康门槛。
+[修复后完整失败结果](../reports/native_B1_executed_teacher_only_repair_probe_20261101.json)。
 
-五种子“仅教师初始化H”对照队列已开始运行：与对应H的PPO训练起点权重、归一化、执行代码和24个已知开发验证条件完全一致，用于区分教师先验与后续PPO训练的贡献。复用同任务、46个相同执行模块的强B3结果，避免重跑；完整五种子归因尚未完成。
-[归因协议、实际模型恢复与队列](../reports/native_PPO_teacher_only_attribution_queue_20261101.json)。
+五个“仅教师初始化H”对照已全部完成：117/120成功，追加PPO后H为120/120，双方无碰撞/越界。配对平均+2.50个百分点，95%t区间[-2.13,+7.13]，p=.5；强规则仍为24/24，尚未证明稳定的PPO增益。42,109个新增教师评测控制帧均已核验，完整归因报告由独立目录逐字节重建。
+[完整归因](../reports/native_broader_PPO_teacher_rule_attribution_20261101.json)、[独立本地输入重建](../reports/native_broader_teacher_attribution_independent_verification_20261101.json)。
 
 一组B1已训模型的配对闭环诊断已完成：两组各追加512次actor监督更新，仅一组加入自身训练轨迹上的17个有效规划/MPC标签。两组均3/4成功、一次越界；训练拟合误差下降未转化为相对重放对照的成功率或安全改善，均未通过健康基线门槛。
 [配方、成本、队列接替与待验证范围](../reports/native_B1_trained_trajectory_correction_preflight_20261101.json)。

@@ -11,22 +11,25 @@ by capsule manifests. Final model selection and new confirmation remain pending.
 | Canonical H/H0 | Five trained policies each,12known conditions,H58/60,H057/60;six public capsules and full reconstruction retained |
 | B2 | Five trained planner alternatives,44/60on12known conditions;public H/B2proof retains bridge confound |
 | B1basic PPO/extensions | All five original courses and extensions complete;extension9/20with10bounds,1timeout,one basic gate passes. Not qualified full-task baseline |
-| B1actor diagnostics | Replay/17label fits each3/4with one bounds failure. New99label fit adds512actor-only updates,retaining critic/PPOstate/counters/normalizer;native probe pending |
-| Teacher-only H | Five exact pristine initializers of the new matched cohort;zero added PPO/BC. Native evaluations running;full attribution pending |
+| B1actor diagnostics | Replay/17label fits each3/4with1bounds;99label fit2/4with2bounds. Three later TRAINscreens rejected;no healthy baseline |
+| Teacher-only H | Five exact pristine initializers,zero added PPO/BC;117/120versus trainedH120/120,mean+2.50pp,95%t[-2.13,+7.13]pp;no stable gain |
 | RGBillustrations | Previously PPO-trained H/B1seed11,frozen for recording;4videos/1832sensor frames/1828controls,H2/2,B11/2with bounds failure. Known-case illustrations |
 
 [Complete new public proof](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json),
 [recipe](../protocols/public_native_matched_broader_feedback_cohort_20261101.json),
 [full training/execution costs](../reports/native_matched_broader_feedback_cohort_costs_20261101.json),
 [B1failures](../reports/native_B1_all_five_lower_rate_extensions_20261101.json),
-[new B1fit and queue](../reports/native_B1_three_episode_training_coverage_activation_20261101.json),
-[teacher-only protocol](../reports/native_PPO_teacher_only_attribution_queue_20261101.json),
+[failed new B1probe](../reports/native_B1_three_episode_training_coverage_probe_20261101.json),
+[teacher attribution](../reports/native_broader_PPO_teacher_rule_attribution_20261101.json),
 [RGBproof](../reports/native_PPO_RGB_public_verification_20261101.json).
 
 New feedback mean+0.83pp has95%tinterval[-1.48,+3.15]pp. These models do not
 establish stable feedback benefit,healthy-B1advantage,PPOnecessity or final
 performance thresholds. Frozen worker inputs remain immutable;new methods
 require separate experiment versions.
+
+The executed-teacher-only B1repair also fails the basic gate:3/4with one
+bounds violation,1182raw controls verified. [Actual repair outcome](../reports/native_B1_executed_teacher_only_repair_probe_20261101.json).
 
 ## Historical model and preparation snapshots
 

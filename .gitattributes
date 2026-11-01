@@ -21,3 +21,5 @@ reports/native_matched_broader_seed44_H0_feedback_reliance_20261101.json -text -
 protocols/native_matched_broader_feedback_pairs_20261101.json -text -whitespace
 protocols/public_native_matched_broader_feedback_cohort_20261101.json -text -whitespace
 reports/figures/native_matched_broader_feedback_cohort_20261101.json -text -whitespace
+reports/native_broader_PPO_teacher_rule_attribution_20261101.json -text -whitespace
+reports/native_teacher_reference_context_20261101.json -text -whitespace
