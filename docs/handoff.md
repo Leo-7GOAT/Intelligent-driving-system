@@ -1,4 +1,59 @@
-# Latest continuation — 2026-11-01 09:56
+# Latest attribution-control preparation — 2026-11-01 10:08
+
+Previous goal turn was PROGRESS:matched B1actor fits and independent exact replay
+completed,new native pair queued,code pushed3c2893250195faf7f37bd33fa28c9eb8f84da596.
+This turn preserves all existing queues and adds a necessary teacher-only H
+control to distinguish added PPO from the common supervised prior.
+
+ACTUAL new WAITING observer73064(created2026-11-01T10:07:08.171144+08:00;
+launch shim16492),execution`runs/H_pristine_baseline_execution_20261101`.
+It holds the exact30268process handle and waits for ALL5matched broader H/H0
+pairs and owned cleanup. No native launches or new optimization yet. Finite12h
+wait,1800s per baseline,no retries. The earlier B1/camera/corrective/broader
+workers,observers and frozen training inputs are unchanged.
+
+Preparation`runs/H_pristine_baseline_preparation_20261101`contains5distinct
+zero-PPO Hactors copied from the respective broader cohorts,896inherited
+teacher-supervised updates,zero added fitting:
+11`20261101T020242512174Z_native_pristine_H_baseline`,
+22`20261101T020243559283Z_native_pristine_H_baseline`,
+33`20261101T020244732149Z_native_pristine_H_baseline`,
+44`20261101T020245721142Z_native_pristine_H_baseline`,
+55`20261101T020246624428Z_native_pristine_H_baseline`.
+All5actual frozen-worker CPUrestores and registered launcher validations pass;
+zero counters/emptyAdam,exact initial actor hashes/normalization,one actual
+teacher TRAIN-observation inference. CPUprobe v1used a wrong archive key and
+failed before any driving;preserved source and corrected H_observations/TRAINmask
+probe recorded. No native retry or policy result is hidden.
+
+The completed strong B3`20261031T082841Z_native_rule`has the SAME resolved task,
+36TRAIN/24known-VAL inventory/calibration and46active navstack/bridge modules.
+Only6inactive diagnostic modules differ. All8033measured controls remain raw
+bound;reuse this fixed deterministic reference rather than retrain/replay it.
+Post-cohort report will compare ALL5trained H policies with their own pristine
+controls and separately B3,with paired-seed tintervals/sign-flip descriptions.
+Secondary times use explicit mutually successful case pairs;all-outcome cost
+also retained. This is exploratory development,not RL-necessity proof or final
+confirmation. 24cases×5seeds is not120unique conditions. Extra evaluation cost
+is separate;no additional independent PPOtraining is claimed for teacher-only H.
+
+New sources:`prepare_native_pristine_baselines.py`,`run_native_pristine_baselines.py`,
+`analyze_native_pristine_baselines.py`;13related tests pass4.55s. Protocol,all
+artifact identities/CPUpreflights/live queue:
+`reports/native_PPO_teacher_only_attribution_queue_20261101.json`.
+After all endpoints finish,standalone rebuild:
+`python scripts/analyze_native_pristine_baselines.py --execution runs/H_pristine_baseline_execution_20261101 --output <fresh.json>`.
+
+Actual prior-code hosted regression e2bc98aa4bff1158cb22af4eb09b5eba0e822b3a:
+971passed,18skipped,4CARLAdeselected,197.12s,
+https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41262967134.
+Fourth B1extension remains actual worker32708(created09:55:07.805682+08:00),
+batch`20261101T015454924014Z_native_B1_basic_lr_extension`;last checked10:07:31,
+5338new controls/4phases. Seed55still future. GoalACTIVE/UNMET;do not fill idle
+time by rerunning completed releases or fitting more architectures before the
+registered closed-loop correction and broader attribution results arrive.
+
+# Historical continuation — 2026-11-01 09:56
 
 Seed33TERMINAL:10240new real PPOcontrols/320Adam updates,2/4success,two bounds,
 basicgateFALSE,11861rawcontrols,20480lineage. Full raw/inference audits complete;

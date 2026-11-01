@@ -1,5 +1,11 @@
 # Executability-aware hierarchical driving research
 
+Five teacher-only H controls are queued after the matched broader PPO cohort,
+using its exact pristine weights and all24known validation conditions. This
+separates teacher initialization from added PPO training; the source-matched
+strong B3 result is reused. No new baseline driving results are available yet.
+[Attribution protocol and actual frozen-model preflights](reports/native_PPO_teacher_only_attribution_queue_20261101.json).
+
 A matched trained-B1 actor diagnostic is now queued before the broader H/H0
 cohort. Both arms retain the same real PPO endpoint and add512actor-only updates;
 only one includes17solved-reference labels at its own TRAIN states. Its action
