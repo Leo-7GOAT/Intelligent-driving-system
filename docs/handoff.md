@@ -1,4 +1,60 @@
-# Latest native recording-index preparation — 2026-11-01 10:37
+# Latest actual native recordings / corrective results — 2026-11-01 11:10
+
+All5lower-rate B1extensions COMPLETE:3/2/2/0/2of4,9/20success,10bounds,1timeout,
+only seed11qualified. 51200new training controls/1595actual Adam steps,58991raw
+controls. Seed55ends2/4,315new Adam,11493rawcontrols. Reports
+`native_B1_all_five_lower_rate_extensions_20261101.json`and55endpoint retained.
+The full-task driver20420correctly rejected every-child entry;no full B1starts.
+
+Camera queue42060FAILED before policy controls:subset manifest kept4original
+routes but selected only0/3,violating the unchanged all-roads enumeration guard.
+Old Hbatch`20261101T004032948606Z_native_PPO_camera`,stderr/failure/owned-empty
+server cleanup preserved. Dependent30268/73064observers failed closed before
+native children. Do not restart any of those old executions or old unstarted
+B1camera inputs. Fix only prunes unused routes/remaps slot3->1,then checks actual
+decoded physical-case equality with original0/3;no global guard or policy change.
+48targeted/70broader camera+asset tests pass;actual frozen enumeration/restore of
+BOTH corrected batches passes before native launch. Completed training receipt
+hashes allow a new observer after original dependency process exits;strict
+all-five gate/cleanup checks remain.
+
+NEW camera execution`native_PPO_camera_execution_20261101_v2_subset_fix`COMPLETE.
+H`20261101T024611835234Z_native_PPO_camera`:2/2success,645controls/647RGBframes.
+B1`20261101T024615807894Z_native_PPO_camera`:1success/1bounds,1183controls/1185frames.
+Actual4videos/1832RGBframes/1828controls,zero new PPO/Adam. Original parent cases
+0/3,seed11,Hretains650Adam/B1retains9. All encode/decode/fps/hash/world-frame
+fences checked;both contact sheets viewed (12samples total). Case3palm canopy
+partly occludes ego;do not claim unobstructed or whole-video human inspection.
+Unique IDs/model/norm/seed/parent-case bindings:
+`reports/native_PPO_video_catalog_20261101.json`;full startup-fix/real-result ledger
+`reports/native_PPO_actual_recordings_and_subset_fix_20261101.json`.
+Camera source/meta/models are frozen;graphs in eachbatch/analysis/frozen_endpoints.png.
+Optional packager --camera-media includes models/raw controls/videos/frame
+manifests but explicitly omits bulky original RGBPNGs (kept local).
+
+Matched actor probe COMPLETE:replay512and17label-correction512both3/4with one
+bounds. 1275/1153audited controls;no new PPO. Original17labels do NOT improve
+success/safety over replay;neither branch qualifies. Do not reinterpret the98%
+TRAINfit gain as driving improvement.
+`reports/native_B1_matched_trained_actor_correction_20261101.json`.
+All-five early TRAINoracle queries now COMPLETE:112points/110solved references,
+two wait rows;zero new controls or optimizer updates,no fit. Fifth firstTRAIN
+case3is short so only20queries. All five data sources cover only4known conditions.
+`reports/native_B1_all_five_early_TRAIN_oracle_coverage_20261101.json`.
+
+ACTUAL ongoing broader observer40540,execution
+`H_H0_matched_broader_with_corrective_probe_execution_20261101_v2_camera_subset_fix`,
+has finished both probes and STARTED seed11H/H0pair
+`20261101T011938826336Z_native_matched_broader_feedback`(Hworker68256lastseen).
+The same5prepared training inputs remain unchanged;no new initialization/fits.
+Teacher-only observer69732,execution
+`H_pristine_baseline_execution_20261101_v2_camera_subset_fix`,waits exact40540.
+Their launch.json records contain exact creation epochs/executable identities;
+revalidate before managing. Old failed dependencies and supersession receipts
+remain. GoalACTIVE/UNMET;healthy B1/strong-rule PPOvalue/feedback/final120missing.
+Public media upload+independent archive verification are pending,not success yet.
+
+# Historical recording-index preparation — 2026-11-01 10:37
 
 Previous goal turn was PROGRESS:new teacher-only control queue,980full hosted
 passes,seed44failure/raw-bound figure and90early TRAINoracle references.

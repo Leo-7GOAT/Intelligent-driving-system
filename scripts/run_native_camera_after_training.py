@@ -1,5 +1,6 @@
 """Run registered illustrative PPO recordings after the owned training queue exits."""
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -7,6 +8,23 @@ import shutil
 import subprocess
 import sys
 import time
+
+
+def verify_training_dependencies(plan,root):
+    receipts=plan.get('completed_training_barrier');root=Path(root).resolve()
+    if receipts is None:
+        if not plan.get('dependency_processes'):
+            raise ValueError('Registered live dependencies or completed training receipts required')
+        return
+    expected={str(Path('runs')/plan[name]/filename).replace('\\','/') for name,filename in
+        (('lower_execution','status.json'),('full_execution','status.json'),('full_execution','failure.json'))}
+    if not isinstance(receipts,dict) or set(receipts)!=expected or plan.get('dependency_processes'):
+        raise ValueError('Explicit completed training receipts cannot mix live dependencies')
+    for relative,digest in receipts.items():
+        path=root/relative
+        if (not path.resolve().is_relative_to(root/'runs')
+                or hashlib.sha256(path.read_bytes()).hexdigest()!=digest):
+            raise ValueError('Completed training barrier receipt changed')
 
 
 def require_training_barrier(lower,full,lower_failure,full_failure):
@@ -63,7 +81,8 @@ def run(execution):
         verify()
         with ProcessLease(execution/'pipeline.lock'):
             with (execution/'started.json').open('x',encoding='utf-8') as f:json.dump({'pid':os.getpid(),'epoch':time.time()},f)
-            for identity in plan['dependency_processes']:
+            verify_training_dependencies(plan,root)
+            for identity in plan.get('dependency_processes',[]):
                 owners.append(OwnedProcess(identity['pid'],identity['creation_epoch'],identity['executable'],allow_terminate=False))
             deadline=time.monotonic()+12*3600
             while any(owner.poll() is None for owner in owners):

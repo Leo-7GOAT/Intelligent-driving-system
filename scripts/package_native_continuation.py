@@ -24,7 +24,7 @@ sys.path.insert(0, str(ROOT))
 from scripts.audit_native_method_endpoint import audit
 
 PRIVATE = re.compile(rb'(?i)[A-Z]:[\\/]+Users[\\/]+[A-Za-z0-9_.-]+[\\/]|/(?:home|Users)/[A-Za-z0-9_.-]+/|\bgh[pousr]_[A-Za-z0-9]{30,}|\bgithub_pat_[A-Za-z0-9_]{40,}|\bsk-(?:proj-)?[A-Za-z0-9_-]{40,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----')
-SUFFIXES = {'.py','.ps1','.json','.jsonl','.gz','.csv','.png','.zip','.npz','.pkl','.txt','.md'}
+SUFFIXES = {'.py','.ps1','.json','.jsonl','.gz','.csv','.png','.zip','.npz','.pkl','.txt','.md','.mp4'}
 
 
 def sha(data):
@@ -174,12 +174,29 @@ def scan_payload(name, payload, depth=0):
         encoded(json.loads(payload))
 
 
-def package(batch, output, completed_method=None):
+def package(batch, output, completed_method=None, camera_media=False):
     batch,output=Path(batch).resolve(),Path(output)
     temporary=output.with_name(output.name+'.partial')
     if output.exists() or temporary.exists():
         raise FileExistsError('Preserve existing complete or partial asset')
     protocol=read(batch/'protocol.json')
+    camera_profile=None
+    if camera_media:
+        from scripts.native_road_learning import camera_evaluation_mode
+        if completed_method is not None or not camera_evaluation_mode(protocol):
+            raise ValueError('Camera media export requires a complete frozen native RGBevaluation')
+        encoded=read(batch/'videos/manifest.json')['videos'];decoded=read(batch/'videos/decode_verification.json')['videos']
+        count=len(protocol['native_camera_evaluation']['original_case_ids'])
+        if (len(encoded)!=count or len(decoded)!=count or len({r['file'] for r in encoded})!=count
+                or {r['file'] for r in encoded}!={r['file'] for r in decoded}):
+            raise ValueError('All registered camera outcomes and decoded videos must be retained')
+        for video in encoded:
+            path=batch/'videos'/video['file']
+            if not path.resolve().is_relative_to((batch/'videos').resolve()) or sha(path.read_bytes())!=video['sha256']:
+                raise ValueError('Encoded camera video bytes changed')
+        camera_profile={'scope':'Actual native PPOcamera evaluation,all registered illustrative outcomes;not final confirmation',
+            'videos':count,'sensor_frames':sum(r['frame_count'] for r in encoded),'raw_PNG_pixels_omitted':True,
+            'omission_note':'Original PNGs remain local. Exact videos,source models,all control traces,RGBframe hashes/times and decode receipts are exported;no replacement pixels are generated.'}
     summary=read(batch/'summary.json') if (batch/'summary.json').exists() else {}
     registered_methods=protocol['methods']
     if not registered_methods or len(registered_methods)!=len(set(registered_methods)):
@@ -217,7 +234,11 @@ def package(batch, output, completed_method=None):
         selected.add(supervised_dataset)
     for name in ('source','calibration','resume','analysis',*registered_methods):
         selected.update(p for p in (batch/name).rglob('*') if p.is_file()
-                        and '__pycache__' not in p.parts and p.suffix in SUFFIXES)
+                        and '__pycache__' not in p.parts and p.suffix in SUFFIXES
+                        and not (camera_media and name in registered_methods and p.suffix=='.png'
+                                 and 'camera' in p.relative_to(batch/name).parts))
+    if camera_media:
+        selected.update(p for p in (batch/'videos').iterdir() if p.is_file() and p.suffix in ('.mp4','.json','.png'))
     selected.update(p for p in (batch/'infrastructure').iterdir() if p.is_file() and p.suffix in ('.json','.gz'))
     operational_sources = operational_guard_files(batch)
     selected.update(operational_sources)
@@ -280,6 +301,17 @@ def package(batch, output, completed_method=None):
                     'Then: python scripts/audit_native_policy_inference.py --batch EXTRACTED_BATCH --method METHOD --output NEW_INFERENCE.json\n'
                     'That command loads the saved model and freezes normalization; it performs no plant integration or simulator ticks.\n'
                     'Raw states come from CARLA; no downloaded-asset replay should be called a new drive.\n').encode()}
+        if camera_profile:
+            extras['CAMERA_README.txt']=(
+                'FROZEN NATIVE PPO RGB EVALUATION; DEVELOPMENT ILLUSTRATIONS ONLY.\n'
+                'All registered success/failure videos and complete control traces are included.\n'
+                'Original PNGpixels remain local and are explicitly listed as not_exported;frame hashes/timestamps and encoded videos are preserved.\n'
+                'No new PPOupdates occur during recording. Prior actual training and model/norm identities are in protocol/recovery and endpoint audits.\n'
+                'Recording-local case/route indices may differ from original parent indices;use native_camera_evaluation metadata.\n'
+                'The palm canopy partly occludes original case3;consult raw control trajectories as well as sensor footage.\n'
+                'CPU raw/model/figure reproduction:python scripts/reproduce_native_asset.py --archive ASSET.zip --sha256 DIGEST --output FRESH_DIR\n'
+                'Video verification:python scripts/verify_carla_videos.py --videos EXTRACTED_BATCH/videos (use a fresh copy if preserving original decode receipts).\n'
+            ).encode()
         for name,payload in extras.items():
             scan_payload(name,payload)
             archive.writestr(name,payload)
@@ -293,6 +325,7 @@ def package(batch, output, completed_method=None):
             'verified_controls':{m:a['total_applied_controls_verified'] for m,a in endpoint_audits.items()},
             'not_exported':[p.relative_to(batch).as_posix() for p in sorted(batch.rglob('*'))
                             if p.is_file() and p not in selected and '__pycache__' not in p.parts]}
+        if camera_profile:manifest['native_camera_media']=camera_profile
         if profile:
             manifest.update(schema_version=2,scope=profile['scope'],completed_method_export=profile,
                 retained_incomplete_method_files={method:sorted(name for name in files if name.startswith(batch.name+'/'+method+'/'))
@@ -320,10 +353,11 @@ if __name__=='__main__':
     parser.add_argument('--completed-method',help='Explicit complete method in an interrupted batch;all incomplete sibling data retained')
     parser.add_argument('--guard-only',action='store_true',help='Supplement a previously published capsule with its exact operational guard snapshot')
     parser.add_argument('--parent-archive-sha256')
+    parser.add_argument('--camera-media',action='store_true',help='Include all verified native camera videos/frame metadata;omit bulky original PNGpixels explicitly')
     args=parser.parse_args()
     if args.guard_only:
-        if args.completed_method:parser.error('--completed-method cannot be combined with --guard-only')
+        if args.completed_method or args.camera_media:parser.error('Method/media export cannot be combined with --guard-only')
         package_guard_snapshot(args.batch,args.output,args.parent_archive_sha256 or '')
     else:
         if args.parent_archive_sha256:parser.error('--parent-archive-sha256 requires --guard-only')
-        package(args.batch,args.output,args.completed_method)
+        package(args.batch,args.output,args.completed_method,args.camera_media)

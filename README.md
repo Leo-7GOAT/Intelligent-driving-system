@@ -6,18 +6,21 @@ separates teacher initialization from added PPO training; the source-matched
 strong B3 result is reused. No new baseline driving results are available yet.
 [Attribution protocol and actual frozen-model preflights](reports/native_PPO_teacher_only_attribution_queue_20261101.json).
 
-A matched trained-B1 actor diagnostic is now queued before the broader H/H0
-cohort. Both arms retain the same real PPO endpoint and add512actor-only updates;
-only one includes17solved-reference labels at its own TRAIN states. Its action
-fit improves, while replay-only fitting does not. This is not yet a driving
-improvement. Both complete four-case CARLA probes are required before adoption.
+A matched trained-B1 actor diagnostic is complete:replay and17reference-label
+correction each finish3/4with one bounds failure after the same512actor-only
+updates. Better TRAIN action fit did not improve success/safety over replay.
+Neither arm qualifies as a healthy baseline. All five lower-rate PPOextensions
+also finish3/4,2/4,2/4,0/4,2/4:9/20successes,10bounds,one timeout,1595new Adam
+steps and51,200new controls. Only one basic gate passes.
 [Recipe, costs, queue supersession and pending closed-loop checks](reports/native_B1_trained_trajectory_correction_preflight_20261101.json).
+[Completed matched probe](reports/native_B1_matched_trained_actor_correction_20261101.json),
+[all-five lower-rate course](reports/native_B1_all_five_lower_rate_extensions_20261101.json).
 
 The first retained-state B1continuation now passes the unchanged basic gate:
 3/4successes,one timeout,zero collision/bounds after10,240additional controls and
 320actual Adam updates. The timeout ends stationary2.164m from goal;this is still
 not a healthy full-task baseline. Seeds22and33each finish2/4with two
-bounds violations. Seed44finishes0/4with four bounds failures;seed55is learning.
+bounds violations. Seed44finishes0/4with four bounds failures;seed55finishes2/4.
 The all-five gate stays blocked,and all
 remaining seeds retain the registered recipe.
 [Seed11gate and remaining stall](reports/native_B1_first_lower_rate_basic_gate_and_stall_20261101.json),
@@ -39,10 +42,13 @@ replay reproduces every prediction exactly. It is not part of the policy,mask or
 controller. [Negative result](reports/native_execution_prediction_cross_seed_probe_20261101.json),
 [independent replay](reports/native_execution_prediction_independent_verification_20261101.json).
 
-Actual PPOcamera evaluation is now queued behind the owned native learning
-stages:H/B1each use two explicitly selected known roads and unchanged saved
-models. Frozen CPUrestores and104targeted checks pass;no new camera frames have
-been recorded yet. [Queue,artifact identities and limitations](reports/native_PPO_camera_queue_activation_20261101.json).
+Actual native PPOcamera evaluation is complete:four videos,1832sensor frames
+and1828audited controls. H succeeds on both selected known roads;B1succeeds on
+one and fails bounds on the other. All videos decode/hash-check;first/middle/last
+frames were inspected. Palm canopy partly occludes original case3. These are
+single-seed illustrations from previously trained models,not final comparison.
+[Actual recordings and preserved startup failure/fix](reports/native_PPO_actual_recordings_and_subset_fix_20261101.json),
+[qualified video/model/case identities](reports/native_PPO_video_catalog_20261101.json).
 
 Measured B1failure diagnosis now reconstructs40executed decisions across the
 first three completed basic-course seeds. Two failed trajectories enter the goal

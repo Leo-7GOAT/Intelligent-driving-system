@@ -17,6 +17,7 @@ from scripts.prepare_native_recovery import verified_checkpoint_metadata
 from scripts.native_road_learning import camera_evaluation_mode, training_config
 from navstack.config import VehicleConfig
 from navstack.experiments import signature
+from navstack.native_cases import registered_native_cases
 
 
 def selected_manifest(manifest, ids):
@@ -28,12 +29,28 @@ def selected_manifest(manifest, ids):
     return {**deepcopy(manifest),'cases':[deepcopy(manifest['cases'][i]) for i in ids]}
 
 
+def selected_camera_inputs(routes,manifest,ids):
+    """Keep physical routes unchanged and reindex only their catalog slots."""
+    chosen=selected_manifest(manifest,ids)
+    used=[item['route_index'] for item in chosen['cases']]
+    if any(type(i) is not int or not 0<=i<len(routes) for i in used):
+        raise ValueError('Selected camera case references an invalid parent route')
+    used=sorted(set(used));mapping={old:new for new,old in enumerate(used)}
+    selected_routes=[deepcopy(routes[i]) for i in used]
+    for item in chosen['cases']:item['route_index']=mapping[item['route_index']]
+    original=registered_native_cases({'routes':routes,'native_case_manifest':manifest})
+    actual=registered_native_cases({'routes':selected_routes,'native_case_manifest':chosen})
+    expected=[{**deepcopy(original[i]),'condition':index} for index,i in enumerate(ids)]
+    if actual!=expected:raise ValueError('Camera subset changes the selected physical route or hazard')
+    return selected_routes,chosen,{str(old):new for old,new in mapping.items()}
+
+
 def prepare(parent,method,case_ids):
     parent=Path(parent).resolve();require_finished_parent(parent)
     old=read(parent/'protocol.json');folder=parent/method
     if method not in ('H','H0','B1') or method not in old['methods']:
         raise ValueError('Require an existing native trained policy')
-    manifest=selected_manifest(old['native_case_manifest'],case_ids)
+    routes,manifest,route_mapping=selected_camera_inputs(old['routes'],old['native_case_manifest'],case_ids)
     audit=read(folder/'endpoint_raw_audit.json');evaluation=read(folder/'evaluation.json')
     for name,key in (('config.json','config_sha256'),('evaluation.json','evaluation_sha256'),('summary.json','summary_sha256')):
         if sha(folder/name)!=audit[key]:raise ValueError('Parent endpoint changed after raw audit')
@@ -59,10 +76,11 @@ def prepare(parent,method,case_ids):
         p.pop(key,None)
     p.update(scope='Illustrative actual RGB evaluation of a trained native PPOpolicy on explicitly selected known DEVELOPMENT cases;zero updates,not final confirmation or model selection',
         methods=[method],evaluation_only=True,controlled_budget_per_method=0,method_budgets={method:0},
-        checkpoint_thresholds=[],deterministic_training_route_evaluation=True,native_case_manifest=manifest,
+        checkpoint_thresholds=[],deterministic_training_route_evaluation=True,native_case_manifest=manifest,routes=routes,
         native_camera_evaluation={'version':'frozen_native_RGB_v1','original_case_ids':case_ids,
             'model_sha256':evaluation['model_sha256'],'normalization_sha256':evaluation['normalization_sha256'],
             'parent_batch':parent.name,'parent_raw_audit_sha256':sha(folder/'endpoint_raw_audit.json'),
+            'original_to_recording_route_indices':route_mapping,
             'selection':'Prespecified illustrative cases from known results;all new outcomes retained,no success/failure matching enforced',
             'rendering':'Actual640x360RGB at20Hz;unchanged physical and policy code;rendering enabled with frame fences,not a no-camera timing benchmark'},
         recovery={method:{'checkpoint':'resume/'+method,'parent_batch':parent.name,'parent_checkpoint':latest,

@@ -1,0 +1,155 @@
+{
+  "scope": "Actual frozen native PPO RGBevaluation on two explicitly selected known curve/parking roads,including a B1failure;not final confirmation or a healthy-baseline superiority experiment",
+  "execution": "native_PPO_camera_execution_20261101_v2_subset_fix",
+  "methods": {
+    "H": {
+      "batch": "20261101T024611835234Z_native_PPO_camera",
+      "cases": 2,
+      "original_parent_case_ids": [
+        0,
+        3
+      ],
+      "successes": 2,
+      "termination_counts": {
+        "success": 2
+      },
+      "model_sha256": "dbde8619f1b25db2f37731343ec6d6204269cfd464023b63c1e5d0485a8ce537",
+      "normalization_sha256": "163aec1ecb8115f3a11a0066f9c87c79106e76f7954e6f8ae5412ecf21502d69",
+      "new_PPO_training_controls": 0,
+      "new_Adam_steps": 0,
+      "evaluation_controls_verified": 645,
+      "retained_policy_physical_controls": 20563,
+      "retained_PPO_Adam_steps": 650,
+      "raw_audit_sha256": "0498ebb7e27679de07a34244b070bfdb4d2774281e0fa8aefb5db2a9baffd88d",
+      "CPU_full_case_and_model_preflight": {
+        "scope": "Actual frozen-worker complete case enumeration,selected original physical-case equality,configuration and trained-checkpoint restore;inert environments reject reset/step",
+        "batch": "20261101T024611835234Z_native_PPO_camera",
+        "method": "H",
+        "original_case_ids": [
+          0,
+          3
+        ],
+        "original_to_recording_route_indices": {
+          "0": 0,
+          "3": 1
+        },
+        "decoded_cases": 2,
+        "PPO_saved_decision_steps": 2080,
+        "PPO_saved_n_updates": 650,
+        "actor_parameter_sha256": "819d0dad22a069c723946cefc18c3838965a9c7a8d493d3a94e8ee2f45e04b40",
+        "normalization_statistics_exact": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "physical_resets": 0
+      },
+      "frame_manifest_and_decode_receipts": [
+        {
+          "batch": "20261101T024611835234Z_native_PPO_camera",
+          "method": "H",
+          "source_video_manifest_sha256": "900337d6e1d7bba1aa917fe386972b03e9c26a6695e36a4664ac0d8cfa402210",
+          "decode_verification_sha256": "61ab0dfbf88435703e71c4e5ed83bf425915ff5fc82ab030381cf89ee8c51e86",
+          "contact_sheet_sha256": "20bf8095b10f5c3f1b8e32a60ea56f3a2e2cde5fda26d8723a6f60784b620237",
+          "parent_raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f"
+        }
+      ]
+    },
+    "B1": {
+      "batch": "20261101T024615807894Z_native_PPO_camera",
+      "cases": 2,
+      "original_parent_case_ids": [
+        0,
+        3
+      ],
+      "successes": 1,
+      "termination_counts": {
+        "success": 1,
+        "out_of_bounds": 1
+      },
+      "model_sha256": "f12588a34698c2e270a2feb9a8263458adc93b664c68c20f93418fb65b3b8567",
+      "normalization_sha256": "04dc98613cff561abec793ec44fe17e89c1645404beb6c5db21933024fa8d5aa",
+      "new_PPO_training_controls": 0,
+      "new_Adam_steps": 0,
+      "evaluation_controls_verified": 1183,
+      "retained_policy_physical_controls": 10240,
+      "retained_PPO_Adam_steps": 9,
+      "raw_audit_sha256": "bcdf9facf21671d5d627540a7ab7930e79afce06b5ccb35ad3884b2c21a86c84",
+      "CPU_full_case_and_model_preflight": {
+        "scope": "Actual frozen-worker complete case enumeration,selected original physical-case equality,configuration and trained-checkpoint restore;inert environments reject reset/step",
+        "batch": "20261101T024615807894Z_native_PPO_camera",
+        "method": "B1",
+        "original_case_ids": [
+          0,
+          3
+        ],
+        "original_to_recording_route_indices": {
+          "0": 0,
+          "3": 1
+        },
+        "decoded_cases": 2,
+        "PPO_saved_decision_steps": 10240,
+        "PPO_saved_n_updates": 8,
+        "actor_parameter_sha256": "399aa1a87005f1c042382a106fe12bc4a779ecf80a9ab6ea05e2937e5349cda3",
+        "normalization_statistics_exact": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "physical_resets": 0
+      },
+      "frame_manifest_and_decode_receipts": [
+        {
+          "batch": "20261101T024615807894Z_native_PPO_camera",
+          "method": "B1",
+          "source_video_manifest_sha256": "843458b553d0a07b434a69d268d5879cb37193125e6ef0c2124b46c5310c1196",
+          "decode_verification_sha256": "def10e22f2ea413f14b5ffe6b566504b7803c14e38d9024a7524c37a656481f0",
+          "contact_sheet_sha256": "484facacdb706f2e79109f4c1e56f1b30e0e385df3f34cb8a1ab7376f44086eb",
+          "parent_raw_audit_sha256": "673af5c566c0ce76e5852e01b4d2f1b6fbda07e46a97e3aa4f0531b009e916d0"
+        }
+      ]
+    }
+  },
+  "videos": 4,
+  "actual_sensor_frames": 1832,
+  "actual_control_frames": 1828,
+  "new_PPO_updates": 0,
+  "catalog": "native_PPO_video_catalog_20261101.json",
+  "public_catalog_sha256": "627d9e046b797a87b2a583a7c9e6186d809e3822fd0ed636ef8d248f503f65c1",
+  "visual_inspection": {
+    "inspected": true,
+    "scope": "First/middle/last frame of each of all4videos,12sample frames;every encoded frame separately decoded and checked",
+    "findings": "Actual overhead CARLAroad/ego imagery is visible. Original case3palm canopy partly occludes the ego;raw measured-state trajectories accompany both full videos. No replacement or interpolated frames.",
+    "contact_sheet_hashes": {
+      "20261101T024611835234Z_native_PPO_camera": "20bf8095b10f5c3f1b8e32a60ea56f3a2e2cde5fda26d8723a6f60784b620237",
+      "20261101T024615807894Z_native_PPO_camera": "484facacdb706f2e79109f4c1e56f1b30e0e385df3f34cb8a1ab7376f44086eb"
+    }
+  },
+  "initial_camera_failure": {
+    "batch": "20261101T004032948606Z_native_PPO_camera",
+    "failure": "ValueError('Explicit development manifest omits an original road')",
+    "failure_sha256": "fbd4101781ff0f3f4aed5509415645556d7808aecef75bc76805a2d134e3bb09",
+    "owned_server_cleanup_status": "owned_empty_server_stopped",
+    "policy_controls_before_failure": 0,
+    "scope": "Input manifest enumeration failed before bridge/client creation;empty-server readiness costs remain in its infrastructure logs. It is not a policy failure or a completed recording."
+  },
+  "repair": "Prune unused route entries and reindex selected catalog slots;actual frozen-runtime decoded physical cases exactly match original parent case0/3. Global training all-roads coverage guard stays intact. Models,normalizers,physical task/config and low-level controller unchanged.",
+  "subsequent_queue_reactivation": {
+    "broader_execution": "H_H0_matched_broader_with_corrective_probe_execution_20261101_v2_camera_subset_fix",
+    "broader_observer_pid": 40540,
+    "pristine_execution": "H_pristine_baseline_execution_20261101_v2_camera_subset_fix",
+    "pristine_observer_pid": 69732,
+    "original_failed_dependency_receipts_preserved": true,
+    "prepared_training_or_probe_inputs_changed": false
+  },
+  "local_regression": {
+    "passed": 70,
+    "seconds": 4.63
+  },
+  "previous_code_full_CI": {
+    "source_commit": "9891c60af6333e5ba9a9ac8b1fe6c60079e07db2",
+    "passed": 988,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "seconds": 200.57,
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41265953263"
+  },
+  "publication_status": "Actual media/model evidence ready locally;public upload and independent archive verification are separate pending steps.",
+  "research_acceptance": "UNMET"
+}

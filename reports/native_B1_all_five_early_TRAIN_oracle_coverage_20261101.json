@@ -1,0 +1,86 @@
+{
+  "scope": "Complete all-five early TRAIN-only oracle query inventory after actual PPOcourses;candidate counterfactual commands,not executed corrective driving",
+  "seeds": [
+    {
+      "seed": 11,
+      "batch": "20261101T005612994446Z_native_B1_basic_lr_extension",
+      "queries": 24,
+      "solved_reference_rows": 24,
+      "modes": {
+        "reference": 24
+      },
+      "elapsed_seconds": 13.593000000109896,
+      "manifest_sha256": "95b8f84d36c5fc392f57e028d2b875c61594cba852b861f60e106467b02c5cd7",
+      "dataset_sha256": "21fda0d667dc692d3e90a47ee7a9c8ca5bbc1fc0590205d8af4700f9aa172132",
+      "raw_audit_sha256": "9a769b1e7155428f80b15ab0be081d5e3e5bb56fc9180cb80e49b0f5ae8cf000"
+    },
+    {
+      "seed": 22,
+      "batch": "20261101T011350364179Z_native_B1_basic_lr_extension",
+      "queries": 24,
+      "solved_reference_rows": 24,
+      "modes": {
+        "reference": 24
+      },
+      "elapsed_seconds": 14.797000000020489,
+      "manifest_sha256": "28ba566da8a0f99e58798ade4e4af1b93fb20dfab0bdc66c58a2aca114b2d5ba",
+      "dataset_sha256": "98d47868f680ebc8fe816ac4adf0b794c51c002406ec668aa5db3bde2f9f107b",
+      "raw_audit_sha256": "c511716176fe37a6c9a934c15b23032dfb3dacf0875d7aaabcca927a0562d158"
+    },
+    {
+      "seed": 33,
+      "batch": "20261101T013448773461Z_native_B1_basic_lr_extension",
+      "queries": 24,
+      "solved_reference_rows": 24,
+      "modes": {
+        "reference": 24
+      },
+      "elapsed_seconds": 13.906000000191852,
+      "manifest_sha256": "103d6b51c0b264f565d3d28b2e961b1f1e1c2b5972c0a86c0454fd7534556ff6",
+      "dataset_sha256": "7499317498fdc3fc06839ba8868145060db506d4d3a7a36a9b60e6ecc2b095a4",
+      "raw_audit_sha256": "c5adb8e349572913b2cf82c6838be5143468af5bf8088702e80219c8bb6e6501"
+    },
+    {
+      "seed": 44,
+      "batch": "20261101T015454924014Z_native_B1_basic_lr_extension",
+      "queries": 20,
+      "solved_reference_rows": 18,
+      "modes": {
+        "reference": 18,
+        "wait": 2
+      },
+      "elapsed_seconds": 13.641000000061467,
+      "manifest_sha256": "d3fe0557d81347f907ef3c6cf15edbab244888fc8882d6178b0ce6135196846f",
+      "dataset_sha256": "f7f9dcb555c9cb476c12e452f1a5604d62d9de46c2e095708a75272e31b34fb6",
+      "raw_audit_sha256": "e72ca2ca714ad74e1461537ada3d56b495af3d96063c15874b1cee75e40e05a1"
+    },
+    {
+      "seed": 55,
+      "batch": "20261101T022104544331Z_native_B1_basic_lr_extension",
+      "queries": 20,
+      "solved_reference_rows": 20,
+      "modes": {
+        "reference": 20
+      },
+      "elapsed_seconds": 5.437000000150874,
+      "manifest_sha256": "bc125c4fcab24edfbafeb42ba7759b424d31b78e4510d6ec7908fb518c7ffa50",
+      "dataset_sha256": "abbf26cc11db45768b64d72f8b179fce52b085931f2478fd38077a3d12730e8a",
+      "raw_audit_sha256": "0e4df861e85403dc6b975adde2f9422761720936acf3cdd048807e4a7f3288ed"
+    }
+  ],
+  "queries": 112,
+  "solved_reference_rows": 110,
+  "unique_known_conditions": 4,
+  "selection": "First completed TRAINepisode per condition,regardless outcome;fixed controls0/40/80/120/160/200 when present. No evaluation states.",
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "fit_performed": false,
+  "elapsed_seconds_total": 61.37400000053458,
+  "labels_are_executed_commands": false,
+  "existing_seed22_anchors_requeried": 12,
+  "same_observations_and_labels_exact": true,
+  "relation_to_completed_pair": "The completed17label matched pair remains unchanged;both replay and correction achieved3/4with one bounds episode,so additional17labels did not improve success/safety over replay on that one seed.",
+  "independence_limit": "These are five TRAINdata sources,not five newly fitted or evaluated corrected policies;reused conditions are not final cases.",
+  "research_acceptance": "UNMET"
+}

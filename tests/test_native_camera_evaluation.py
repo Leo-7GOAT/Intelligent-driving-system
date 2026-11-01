@@ -1,7 +1,7 @@
 from copy import deepcopy
 import pytest
 from scripts.native_road_learning import camera_evaluation_mode
-from scripts.prepare_native_camera import selected_manifest
+from scripts.prepare_native_camera import selected_manifest,selected_camera_inputs
 
 
 def camera_protocol():
@@ -41,3 +41,18 @@ def test_camera_manifest_is_a_copied_explicit_development_subset():
         with pytest.raises(ValueError):selected_manifest(manifest,ids)
     manifest['split']='final'
     with pytest.raises(ValueError,match='final confirmation'):selected_manifest(manifest,[0])
+
+
+def test_camera_subset_enumerates_original_physical_roads_without_weakening_training_inventory(monkeypatch):
+    from navstack import native_cases
+    monkeypatch.setattr(native_cases,'local_layout',lambda *args:{})
+    routes=[{'map':'Town10HD','opendrive_sha256':'a'*64,'geometry_id':str(i)} for i in range(4)]
+    manifest={'version':native_cases.VERSION,'split':'development','cases':[{'route_index':i,'hazard':None} for i in range(4)]}
+    before=deepcopy((routes,manifest));chosen=selected_manifest(manifest,[0,3])
+    with pytest.raises(ValueError,match='omits an original road'):
+        native_cases.registered_native_cases({'routes':routes,'native_case_manifest':chosen})
+    new_routes,new_manifest,mapping=selected_camera_inputs(routes,manifest,[0,3])
+    decoded=native_cases.registered_native_cases({'routes':new_routes,'native_case_manifest':new_manifest})
+    assert [r['native_route']['geometry_id'] for r in decoded]==['0','3']
+    assert [r['condition'] for r in decoded]==[0,1] and mapping=={'0':0,'3':1}
+    assert (routes,manifest)==before and [r['route_index'] for r in new_manifest['cases']]==[0,1]
