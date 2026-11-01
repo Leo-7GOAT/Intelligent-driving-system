@@ -1,5 +1,7 @@
 # Actual PPO exploration pilot: complete and rejected
 
+Independent public download/reconstruction is COMPLETE:563files,12,219controls,4measured starts and exact figure;the initial intervention and all35Adam step deltas(+320each)also reproduce. [Executed receipt](../reports/native_B1_exploration_PPO_public_verification_20261101.json),[machine recipe](../protocols/public_native_B1_exploration_PPO_20261101.json).
+
 The seed22pilot performs10,240new actual CARLA PPOcontrols and320Adam updates,
 with no teacher actions or supervised updates. PPOcontrol lineage reaches30,720.
 Only the two initial Gaussian log_std values change(std~.018to.10)from the
@@ -51,7 +53,7 @@ From a checkout containing this document and the locked environment:
 The first command downloads without authentication. The second verifies every
 file,all control frames and four measured-start actions,and rebuilds the figure
 byte-for-byte. The third reapplies the declared std-only intervention in memory,
-then compares every policy/optimizer tensor,counter,normalizer,RNG and config.
+then compares every initial policy/optimizer tensor,counter,normalizer,RNG and config. It also verifies320added Adam steps in all35final optimizer states,10,240new timesteps,80PPOepochs,changed mean-network weights and exact frozen observation RMS.
 No simulator steps,model overwrite or optimizer updates occur in reproduction.
 Use fresh output directories;failed or completed artifacts are preserved.
 

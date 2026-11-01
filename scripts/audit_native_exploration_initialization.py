@@ -1,8 +1,8 @@
-"""Rebuild the explicit std intervention from its retained original checkpoint."""
+"""Rebuild the std intervention and verify the completed pilot's learning state."""
 import argparse
-import hashlib
 import json
 from pathlib import Path
+import pickle
 import sys
 
 
@@ -11,6 +11,7 @@ def audit(batch):
     if any(name.startswith('navstack.') for name in sys.modules):raise RuntimeError('Use a fresh frozen-runtime interpreter')
     sys.path.insert(0,str(runtime))
     import torch
+    import numpy as np
     from navstack.independent_clip_ppo import load_ppo
     from scripts.audit_native_method_endpoint import read,sha
     from scripts.prepare_native_exploration_ppo import set_exploration,equal
@@ -31,11 +32,28 @@ def audit(batch):
             or not equal(left.policy.optimizer.state_dict(),right.policy.optimizer.state_dict())
             or (left.num_timesteps,left._n_updates)!=(right.num_timesteps,right._n_updates)):
         raise ValueError('Initial checkpoint is not exactly the declared std-only intervention')
-    return {'scope':__doc__,'batch':batch.name,'protocol_sha256':sha(batch/'protocol.json'),
+    result={'scope':__doc__,'batch':batch.name,'protocol_sha256':sha(batch/'protocol.json'),
         'source_model_sha256':spec['source_model_sha256'],'intervened_model_sha256':spec['intervened_model_sha256'],
         'all_intervened_policy_tensors_exact':True,'PPO_optimizer_and_counters_exact':True,
         'normalization_RNG_and_config_bytes_exact':True,'new_controls':0,'new_optimizer_updates':0,
         'in_memory_manual_parameter_change_only':'Reapply the registered std.10intervention to the retained original checkpoint,then compare;no file/model overwrite.'}
+    if (batch/'B1/model.zip').exists():
+        final=load_ppo(batch/'B1/model.zip',device='cpu')
+        with (initial/'normalization.pkl').open('rb') as stream:a=pickle.load(stream)
+        with (batch/'B1/normalization.pkl').open('rb') as stream:b=pickle.load(stream)
+        for name in ('mean','var','count'):
+            np.testing.assert_array_equal(getattr(a.__dict__['obs_rms'],name),getattr(b.__dict__['obs_rms'],name))
+        old,new=right.policy.optimizer.state_dict()['state'],final.policy.optimizer.state_dict()['state']
+        if (old.keys()!=new.keys() or any(float(new[k]['step'])-float(old[k]['step'])!=320 for k in old)
+                or final.num_timesteps-right.num_timesteps!=10240 or final._n_updates-right._n_updates!=80
+                or not any(not torch.equal(v,final.policy.state_dict()[k]) for k,v in right.policy.state_dict().items() if k!='log_std')):
+            raise ValueError('Completed PPOmodel lacks the registered updates or changed only std')
+        result['completed_learning_state']={'all_PPO_Adam_parameter_steps_added':320,
+            'PPO_Adam_parameter_states_verified':len(old),'PPO_action_timesteps_added':10240,
+            'PPO_epochs_added':80,'all_observation_RMS_arrays_and_count_exact':True,
+            'policy_tensors_changed_beyond_initial_log_std':True}
+    result['auditor_source_sha256']=sha(Path(__file__))
+    return result
 
 
 if __name__=='__main__':

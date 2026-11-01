@@ -1,3 +1,35 @@
+# Public PPOpilot reconstruction COMPLETE; research still UNMET — 2026-11-01 16:27
+
+Independent checkout9e726d7 downloaded public7parts+manifest unauthenticated:
+archive438778411ba8cba4faf2708c3e07daa39b70c8597927f6db18fc55a1118bdbcf,
+56422535bytes,563files;all12219controls+4start actions rebuild. Explicit Git
+figure08f30f30e4e7b52dd9fc9b2087b2a6ef480b8e06df154e8bcef6f434006ebe4a
+is byte-identical. Original4f205708and intervenedcfde4844initial policies/Adam/
+RMS/RNG/config reconstruct exactly. Additional independent locked-environment
+verification confirms all35PPOAdam states gain320steps,action timesteps+10240,
+PPOepochs+80,mean-network weights changed,andfinalobsRMSmean/var/count EXACT.
+Root final fullCPU1101PASS/1skip/4CARLAexcluded112.76s. Hosted9e726d7CI41288185210
+SUCCESS1084pass/18skip/4excluded. New read-only verifier enhancement is exercised
+on the public restored models and covered by the root fullsuite.
+
+Official receipt:reports/native_B1_exploration_PPO_public_verification_20261101.json.
+Machine recipe:protocols/public_native_B1_exploration_PPO_20261101.json.
+Docs:native_B1_exploration_reproduction.md. Public assets/notes/readback/server
+SHA256s all verified;release remainsprerelease andtargetba932787unchanged.
+No new physical controls/optimizer updates during public reconstruction.
+All native jobs and upload/download/reconstruction tool sessions are TERMINAL.
+No queued next training. Root final metadata/verifier changes need commit at
+this snapshot. Preserve all completed jobs;do not repeat current public checks.
+
+Research goal ACTIVE/UNMET. Current std.10PPOpilot2/4,1bounds/1deadline despite
+10240new controls/320actual Adam. Three earlier recovery hypotheses also fail.
+Totalthissequence21229physical controls/1536auxiliary Adam/320actual PPOAdam.
+No full-task entry/final120activation or model promotion. Do not queue another
+BCweight/epoch/std-only sweep or automatically add budget to this failed version.
+Next useful evidence is measured terminal overshoot/action uncertainty or
+actor-vs-critic gradient analysis from already recorded TRAINrollouts,before a
+separately predeclared new baseline training version. Same original goals.
+
 # PPO pilot COMPLETE AND FAILED; all native jobs terminal — 2026-11-01 16:14
 
 Latest286e72f is PUSHED;CI41287114006SUCCESS1084pass/18skip/4CARLAexclusions

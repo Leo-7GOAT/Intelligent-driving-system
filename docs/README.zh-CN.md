@@ -1,5 +1,7 @@
 # 低速车辆分层决策与控制研究
 
+本批独立公开复现已完成：563文件、12,219控制帧、四个初态动作及结果图逐字节核验通过；35组PPO Adam状态各增加320步，初始干预可精确重建、最终归一化统计保持不变。当前全量CPU回归1,101通过；最近完整GitHub CI1,084通过。研究总体验收仍未通过。 [公开复现证据](../reports/native_B1_exploration_PPO_public_verification_20261101.json).
+
 原始训练道路的恢复采集虽为混合驾驶4/4成功，纯策略仍未通过：有训练误差投影约束时2/4、一次越界；固定数据、起始模型及512次更新预算，仅去掉该约束后1/4、两次越界。三个恢复方案共9,010真实控制均已审计，失败模型未晋级。另一次真实PPO探索试验也已完成10,240训练步、320次实际Adam更新，纯策略为2/4成功、一次超时、一次越界；12,219控制帧全部审计，模型未晋级，当前已无本批后台训练。
 [原始道路结果](../reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json)、[投影约束对照](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json)、[真实PPO完整结果](../reports/native_B1_exploration_PPO_pilot_20261101.json)、[公开证据包复现](native_B1_exploration_reproduction.md)。
 

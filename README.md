@@ -1,5 +1,7 @@
 # Executability-aware hierarchical driving research
 
+This pilot's public reconstruction is complete:563files/12,219controls/4starts,byte-identical figure,exact initial intervention and320added Adam steps in all35PPOparameter states;observation RMS unchanged. Full local CPU:1,101pass;latest completed hostedCI:1,084pass. Overall research acceptance remains UNMET. [Public verification receipt](reports/native_B1_exploration_PPO_public_verification_20261101.json).
+
 Two further original-TRAINrecovery checks also fail:projected2/4with one bounds
 failure;the matched unprojected fit1/4with two. All9,010controls across the three
 recovery profiles are audited;no failed model is promoted. A separate retained
