@@ -246,12 +246,53 @@ measured-start actions,whole endpoint actions and every failed gate. No best see
 or checkpoint is selected. The first two courses have completed:seed11is3/4with
 one bounds failure and fails the basic gate;seed22is4/4with zero unsafe and passes.
 Each performs10,240new actual PPO controls and320saved Adam increments in all35
-parameter states. Both complete raw/action audits are retained. The queue is
-training seed33,next44and55. There is no five-seed qualification yet;full-task
-training and final confirmation have not been activated.
+parameter states. Both complete raw/action audits are retained.
+Seed33has also completed4/4with zero unsafe and passed;seed44is training,next55.
+There is no five-seed qualification yet. Final confirmation has not been activated.
 [Locked recipe](../protocols/native_B1_shared_parking_five_seed_course_20261101.json).
 
 The retained17-case prefix and complete24-condition recovery record also
 reproduce field-for-field from an independent checkout. Its related16CPUtests
 pass;source9a5a409fullCIpasses.
 [Independent verification](../reports/native_B1_validation_independent_verification_20261101.json).
+
+Fixed TRAIN-only response diagnostics compare the first two course initial/final
+models. Seed11's lateral response error changes only0.034145→0.034247,and yaw
+0.028032→0.028051. Its failed native case never gets closer than3.494m to the goal
+and has zero parking overrides. Seed22passes4/4while its response errors also
+change little. These findings do not establish the cause of failure;they locate
+the failed rollout before terminal parking and retain the initial underfitting.
+[Seed11diagnostic](../reports/native_B1_shared_parking_seed11_pose_retention_20261101.json),
+[seed22diagnostic](../reports/native_B1_shared_parking_seed22_pose_retention_20261101.json).
+
+One isolated continuation of every original1,024-step actor fit adds exactly512
+auxiliary Adam updates per seed,2,560total. All five auxiliary optimizer states
+advance to1,536;the sampler states at1,024and1,536reconstruct exactly. Critic,
+log_std,PPOoptimizer,counters and RMS remain unchanged. Actor weights change from
+the same starting checkpoints. Only seeds11and55pass the unchanged offline
+ceilings;the other three fail. This is not a qualified common initialization and
+does not replace any input to the running native queue. No extra continuation or
+native deployment is automatic.
+[Complete CPU candidate audit](../reports/native_B1_reflection_cohort_continuation_20261101.json).
+
+A separate **20,480-control broader learning study** is registered from the
+canonical seed22 final checkpoint that passes the actual basic gate. It uses all
+36existingTRAINconditions and24existingdevelopment-validation conditions. A
+read-only process handle binds its observer to the exact current five-seed
+queue;the new study starts only after that whole queue exits normally with all
+five outcomes retained. This is one development pilot,not five-seed full-task
+qualification or a matched H/B1comparison. No validation labels are used.
+
+The vehicle,environment,reward,planner,MPC,adapter,delivery and parking-helper
+source bytes are preserved. The worker/case-dispatch modules add the existing
+separate-validation support;the bridge additionally records settled walker
+height without changing its motion initialization. A frozen-runtime import check
+caught a missing partition module before launch;that unstarted preparation is
+retained and abandoned with zero controls. The replacement passes the actual
+36/24parser,configuration-signature and launcher input checks. Training has not
+started while the observer waits.
+[Broader study registration](../reports/native_B1_broader_shared_parking_registration_20261101.json).
+
+The14/24reference uses the older29efpilot. The broader study starts fromea2d,
+the independent-cohort seed22endpoint. These different initial models preclude
+interpreting a later score against14/24as an isolated PPO improvement.

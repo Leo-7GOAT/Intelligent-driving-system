@@ -1,3 +1,55 @@
+# Five-seedqueue33PASSED/44RUNNING; broader36/24study observer WAITING — 2026-11-01
+
+GoalACTIVE/UNMET. Exact basicqueue remains executionB1_shared_parking_five_seed_execution_20261101,
+toolsession79437,observerPID72488atlaunch. Now11FAILED3/4(onebounds),22PASSED4/4,
+33PASSED4/4(zero unsafe). Every completedseed10240newPPOcontrols,320Adamupdates
+in35states;complete raw/start/whole-action proofs retained. Seed33model
+05283feeceb51cf9e4c6c3f11c70b3e4b64e4538f6862d0acd5a70bd37fd2802.
+Seed44batch20261101T121900526013Z_native_B1_shared_parking_cohort_seed44isrunning,
+then55. Never reruncompletedbatches or alterfrozeninputs. Noall-fivequalification.
+
+Read-only TRAINresponse diagnostics for11/22 completed. Seed11failedcase3closest
+goal3.494m,headingerror.347rad,speed1.702m/s,zero parkingoverrides. Pose-response
+errorschangeverylittle withPPO(before.034145lateral/.028032yaw,after.034247/.028051).
+Seed22passes4/4despitesimilarvirtualresponseerror. Do notclaimparkingcausedthe
+failure or thattheseofflineerrors aloneidentifyitscause.
+reports/native_B1_shared_parking_seed11/22_pose_retention_20261101.json.
+
+ONEall-fiveCPUextension completed inruns/B1_shared_parking_cohort_fit_continuation_20261101.
+AuxiliaryAdam+512each=2560newCPUupdates,20states/seedat1536. Allsamplerstates
+reconstructexactat1024and1536;critic/logstd/PPOAdam/counters/RMSretained.
+Only11and55passoriginalceilings;22/33/44fail. Do notrelaxceilings orrunanother
+automaticextension. IsolatedcandidatesONLY;actualnativequeueinputsunchanged.
+Receipt:reports/native_B1_reflection_cohort_continuation_20261101.json.
+Theplan'sfixedweightswording meanssameSTARTINGcheckpoints;actorweightsDOupdate.
+
+SECOND OWNED PROGRAM IS WAITING,NOT TRAINING:
+runs/B1_broader_shared_parking_execution_20261101/status.json;
+toolsession93551,observerPID4332atlaunch. It retains an exact read-only Windows
+handle tobasicqueuePID72488,withcreationtime/executableverified. NoPID-onlyadoption.
+AfterallfivebasiccoursesfinishANDtheexactobserverexits,automaticallylaunches:
+20261101T131830295783Z_native_B1_broader_shared_parking_PPO,
+registeredbyruns/B1_broader_shared_parking_preparation_v2_20261101/registration.json.
+20,480NEWactualPPOcontrols on36existingTRAINcases,24existingVALaftertraining;
+one canonicalhealthyseed22startingmodelea2d... (notold29ef),no newlabels/RMS/stdreset.
+Preservedlow-levelbytes;overlaysonlynewworker/casedispatch/partitionmodule and
+bridge'sread-onlysettledwalkerZmetadata. Actualfrozenimport,36/24parser,exact
+configsignatureandlauncherValidateOnlyallpassed. 7200s nativewall,0retries.
+Observerhasfrozenaudits/source_manifest;automaticraw24starts/Adam/RMS/helperaudit.
+Do notlaunchitmanuallyorinterruptthebasicqueue. Ifdependencyfails,theobserver
+stopswithoutretry. ThisisNEWDEVELOPMENTLEARNING,notpromotionofallfivebaseline
+gates ormatchedH/B1evidence. Theold14/24usesdifferent29efinitialmodel;do not
+claimcausalPPObenefitbycomparingthatnumberagainstthenewpilot'seventualscore.
+
+Earlierpreparation20261101T131623568637Z_native_B1_broader_shared_parking_PPO
+ABANDONED_BEFORE_FIRST_LIFECYCLE:missingnative_partitionsmodulecaughtbyoffline
+frozenimport;0controls/updates,markerpreventslaunch. Do notrestartit.
+Registrationproof:reports/native_B1_broader_shared_parking_registration_20261101.json.
+
+Relatedpartition/cohorttests22PASS4.77s;thisstateaccompaniesthenewsourcecommit.
+MainresearchgoalsremainUNMET:fullfive-seedhealthybaseline/faircomparisons,
+addedPPOvalue,collaborationgain,new120finalconditions. Finalsetuntouched.
+
 # Five-seedqueue:11FAILED/22PASSED/33RUNNING; validation14/24 independently VERIFIED — 2026-11-01
 
 GoalACTIVE/UNMET. Exact activequeue remains

@@ -1,0 +1,12 @@
+{
+  "version": "one_fixed_all_five_auxiliary512_continuation_v1",
+  "base_plan": "protocols/native_B1_shared_parking_five_seed_course_20261101.json",
+  "base_plan_sha256": "4a6c0197d8fcc1c4962545645a9710e3a34cec7bb6bcc60b731755311fed4c33",
+  "script_sha256": "eb8b6da1673675aa7f7bc6b101a26f88f5738ba059cb56a9ccebc6ff00dcd18e",
+  "new_auxiliary_steps_each": 512,
+  "learning_rate": 0.0001,
+  "reason": "All five fixed1024-step endpoints miss the unchanged pose-response ceilings while losses continue decreasing. One common512-step exact-Adam/sampler continuation is registered before execution.",
+  "fixed": "Same data,loss,weights,RMS,critic,log_std,PPOAdam,counters and original offline ceilings;only512additional actor updates.",
+  "selection": "Every11/22/33/44/55parent;no intermediate or favorable-seed selection.",
+  "limits": "Isolated candidate initialization study. Does not alter the running native cohort or its checkpoints/protocols. Zero new driving/PPOupdates;no automatic extra fit or native promotion."
+}

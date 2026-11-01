@@ -73,3 +73,10 @@ reports/native_B1_shared_parking_cohort_seed11_20261101.json -text -whitespace
 reports/native_B1_shared_parking_cohort_seed11_whole_sequence_20261101.json -text -whitespace
 reports/native_B1_shared_parking_cohort_seed22_20261101.json -text -whitespace
 reports/native_B1_shared_parking_cohort_seed22_whole_sequence_20261101.json -text -whitespace
+protocols/native_B1_reflection_cohort_continuation_20261101.json -text -whitespace
+reports/native_B1_shared_parking_seed11_pose_retention_20261101.json -text -whitespace
+reports/native_B1_shared_parking_seed22_pose_retention_20261101.json -text -whitespace
+reports/native_B1_reflection_cohort_continuation_20261101.json -text -whitespace
+reports/native_B1_broader_shared_parking_registration_20261101.json -text -whitespace
+reports/native_B1_shared_parking_cohort_seed33_20261101.json -text -whitespace
+reports/native_B1_shared_parking_cohort_seed33_whole_sequence_20261101.json -text -whitespace
