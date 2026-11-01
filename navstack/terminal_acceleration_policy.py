@@ -15,7 +15,8 @@ class TerminalAccelerationExtractor(OrderedFlatRoadExtractor):
 
 class TerminalAccelerationHead(nn.Linear):
     def forward(self,latent):
-        base=F.linear(latent[:,:64],self.weight,self.bias)
+        # A strided prefix can select a different floating-point GEMM kernel.
+        base=F.linear(latent[:,:64].contiguous(),self.weight,self.bias)
         residual=self.policy_net_terminal(latent[:,64:]).squeeze(1)
         return base+torch.stack((residual,torch.zeros_like(residual)),dim=1)
 

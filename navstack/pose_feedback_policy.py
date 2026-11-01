@@ -27,7 +27,8 @@ class PoseFeedbackExtractor(OrderedFlatRoadExtractor):
 
 class PoseFeedbackHead(nn.Linear):
     def forward(self,latent):
-        base=F.linear(latent[:,:64],self.weight,self.bias)
+        # Retain the original contiguous GEMM layout on every BLAS backend.
+        base=F.linear(latent[:,:64].contiguous(),self.weight,self.bias)
         residual=latent[:,64:]@self.policy_net_pose
         return base+torch.stack((torch.zeros_like(residual),residual),dim=1)
 
