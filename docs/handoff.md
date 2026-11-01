@@ -1,3 +1,33 @@
+# One trained B1 PASSES all12known conditions; public PPO reproduction COMPLETE — 2026-11-01 19:55
+
+Goal ACTIVE/UNMET. Every native lifecycle is TERMINAL/ownedserverstopped.
+Fullprobe20261101T114634589144Z_native_B1_shared_parking_full_probe COMPLETE:
+12/12successes,curve4/4,staticvehicle4/4,crossingwalker4/4. All4848physicalcontrols,
+12measuredstarts,exactfrozenparkingcommands and strictengineacks verified.
+Same29ef...trainedmodel and20ea...normalizer as precedingactualPPOcourse;0updates.
+Allknown12developmentconditions;NOT final120conditions,fiveindependentpolicies
+or addedPPOvalue. Dynamic whole-trajectoryaction reconstruction notclaimed.
+Report:reports/native_B1_shared_parking_full_probe_20261101.json.
+
+ActualPPOreleasev0.2.0-dev.20261101-parking-ppo PUBLISHED at immutableb521af521a42c068a819f25f3dee6796866e9c52.
+Capsule native_B1_shared_parking_PPO_seed22_20261101.zip,52881564bytes,572files,
+SHA b9b60fd0b71c23fcacaf36b1f51d613d0c64098b8fd0348be88dfa27bb28905e.
+7parts+manifest uploaded once and all8serverdigests match. Source95d7239CI
+41303560231SUCCESS. Independentcheckoutb521af5 unauthenticateddownload+rebuild
+COMPLETE:all11639rawcontrols,4starts,figure0b91a82879406699d48583a0799586c2078e6e74ea8d5746fcf50548806a94a8
+byte-exact;completelearningreport deep-exact,35Adamstates each+318,obsRMSexact.
+Proof:reports/native_B1_shared_parking_PPO_public_verification_20261101.json.
+No repeatdownloads/inference/cohorts. Full12probe capsule not published yet.
+
+Immediate next research work:retain this successful single-seed endpoint;check
+existing24known development-validation conditions before paying for five-seed
+replication/full-task training. Use a new fixed-case zero-update lifecycle with
+the same frozen worker and low-level. Do not touch/generate final120conditions.
+Five healthy independently trained B1policies,matched-budget comparisons,added
+PPOvalue,interpretablecollaborationgain and formalnewconditions remain mandatory.
+No nativejobs or trainingqueues currently run. The old RUNNING labels below are
+historical;alltheirjobs areclosed. Current source/report changes need commit/push.
+
 # Fixed-wrapper PPO basic gate PASSES; all12known-condition probe RUNNING — 2026-11-01 19:47
 
 Current goal ACTIVE/UNMET. Actual course20261101T112758733226Z_native_B1_shared_parking_PPO

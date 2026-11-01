@@ -153,8 +153,25 @@ cycle P95 is 0.085/0.275/0.067/0.193 seconds against a 0.05-second period;
 over-period fractions are 33.8%/74.1%/26.9%/63.5%. The audit includes P99, maximum,
 control-cycle timing and success-conditioned travel time for every case.
 
-The registered next diagnostic evaluates this frozen endpoint on **all twelve
-original known curve/static-obstacle/crossing-walker conditions**, with zero new
-PPO updates. It does not waive the five-seed gates for formal full-task training
-or activate final confirmation conditions. Its output is pending until the new
-owned lifecycle and audits finish.
+The subsequent frozen probe on **all twelve original known conditions** is now
+complete: **curve/parking4/4,static vehicles4/4,crossing walkers4/4**. All4,848
+controls,12measured-start actions,engine acknowledgements and helper commands
+verify;all successful terminal frames satisfy the original nonintervened goal
+gate. Model/normalizer bytes are unchanged and no new PPO update occurs.
+[Full three-class audit](../reports/native_B1_shared_parking_full_probe_20261101.json).
+These are already-known development conditions,not twelve new final tests or five
+independent policies. The dynamic whole-action reconstruction is not claimed.
+
+The [actual-PPO development release](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-parking-ppo)
+is fixed at source`b521af521a42c068a819f25f3dee6796866e9c52`. Its572-file capsule
+was independently downloaded without authentication;all11,639rawcontrols,four
+measured-start actions,the identical endpoint figure and complete saved-Adam/RMS
+audit reproduce exactly. The checked upload contains seven parts plus a manifest,
+whose server digests match. [Public verification receipt](../reports/native_B1_shared_parking_PPO_public_verification_20261101.json).
+
+```powershell
+$recipe = Get-Content protocols/public_native_B1_shared_parking_PPO_20261101.json -Raw | ConvertFrom-Json
+python scripts/download_native_asset.py --manifest-url $recipe.manifest_url --sha256 $recipe.archive_sha256 --output runs/my_parking_PPO_download
+python scripts/reproduce_native_asset.py --archive (Join-Path runs/my_parking_PPO_download $recipe.archive_name) --sha256 $recipe.archive_sha256 --output runs/my_parking_PPO_rebuild
+python scripts/analyze_native_shared_parking_ppo.py --batch runs/my_parking_PPO_rebuild/asset/20261101T112758733226Z_native_B1_shared_parking_PPO --output runs/my_parking_PPO_learning_audit.json
+```

@@ -10,6 +10,15 @@ was already 4/4, so the result demonstrates retention during PPO, not added PPO
 value or the required five-seed qualification. Decision-cycle overruns remain.
 [Training, assistance costs and latency](docs/shared_parking.md#actual-ppo-with-the-wrapper-fixed).
 
+The same frozen trained policy subsequently succeeds **12/12** across all
+twelve original known development conditions: curve/parking4/4,static vehicles4/4
+and crossing walkers4/4. All4,848controls and12measured-start actions verify.
+This probe performs no additional learning and supplies no new final conditions.
+[Complete three-class probe](reports/native_B1_shared_parking_full_probe_20261101.json).
+The [actual-PPO evidence release](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-parking-ppo)
+has been publicly downloaded and rebuilt:572files,11,639controls,four exact
+start actions,an identical figure and the complete Adam/RMS learning audit.
+
 Shared parking engineering validation: frozen B1, H and strong-rule B3 each
 complete the same four known TRAIN roads (4/4, zero collision/bounds). The aid
 overrides 6/1,409 B1 controls and 8 controls in each H/B3 arm. Goal and success
