@@ -1,10 +1,19 @@
 # Executability-aware hierarchical driving research
 
+Shared parking engineering validation: frozen B1, H and strong-rule B3 each
+complete the same four known TRAIN roads (4/4, zero collision/bounds). The aid
+overrides 6/1,409 B1 controls and 8 controls in each H/B3 arm. Goal and success
+criteria remain unchanged. This is a shared low-level transfer, not new PPO
+learning, a five-seed baseline or final confirmation.
+[Implementation, failures and evidence](docs/shared_parking.md).
+
 Current development: local pose-response supervision improves B1's offline
 feedback responses but its real deployment fails (2/4, two bounds failures).
-All 1,782 controls are audited. A separate 10,240-control basic-road PPO course
-is running with the corrected synchronous interface fixed throughout training;
-its result is pending. The research goals remain unmet.
+All 1,782 controls are audited. The separate basic-road PPO course completes
+10,240 actual training controls and 320 verified Adam updates on the fixed sync
+interface, but remains 2/4 with two bounds failures. All 11,933 controls are
+audited; all 1,693 endpoint actions reconstruct exactly from measured history.
+Local CPU regression: 1,115 passed. The research goals remain unmet.
 [Diagnosis, rejected models and evidence](docs/native_flat_feedback.md).
 
 An additional engine-control audit detects51previous-request acknowledgements

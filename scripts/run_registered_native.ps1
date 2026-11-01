@@ -73,7 +73,7 @@ if(Test-Path -LiteralPath $taskPreparedPath) {
     $taskPreparedValue=Get-Content -LiteralPath $taskPreparedPath -Raw | ConvertFrom-Json
     if($taskPreparedValue.protocol_sha256 -and $taskPreparedValue.protocol_sha256 -ne (Get-FileHash -LiteralPath $taskProtocolPath -Algorithm SHA256).Hash.ToLowerInvariant()){throw 'Prepared protocol hash changed'}
 }
-foreach($taskEvidence in @('started.json','worker_process.json','guard_final.json','launcher_failure.json','launcher_execution.json','infrastructure/server_start.claim','infrastructure/server_start.json')) {
+foreach($taskEvidence in @('abandoned_before_launch.json','started.json','worker_process.json','guard_final.json','launcher_failure.json','launcher_execution.json','infrastructure/server_start.claim','infrastructure/server_start.json')) {
     if (Test-Path -LiteralPath (Join-Path $taskBatch $taskEvidence)) { throw "Preserve existing lifecycle: $taskEvidence; prepare a recovery child instead" }
 }
 if ($ValidateOnly) {

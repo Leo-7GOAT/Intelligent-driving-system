@@ -1,0 +1,329 @@
+{
+  "scope": "Verify common parking assistance against every measured control and unchanged goal gate.",
+  "script_sha256": "0f858d79153cf6f5489717071739208f03b13171a787eda768a9cfa015d612b3",
+  "arms": [
+    {
+      "method": "B1",
+      "batch": "20261101T104233573082Z_native_shared_parking_v2_B1",
+      "version": "inside_goal_pose_overspeed_brake_v2",
+      "helper_sha256": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+      "calibration_sha256": "a853eba6106969e00bbe4d9150a76fe75afdebaf69bc99478c23b7169afe0fff",
+      "successes": 4,
+      "cases": 4,
+      "unsafe_cases": 0,
+      "controls": 1409,
+      "parking_overrides": 6,
+      "parking_override_fraction": 0.0042583392476933995,
+      "case_outcomes": [
+        {
+          "case_id": 0,
+          "termination": "success",
+          "controls": 356,
+          "parking_overrides": 3,
+          "final_frame_intervened": false,
+          "final_speed": 0.09668426344525481
+        },
+        {
+          "case_id": 1,
+          "termination": "success",
+          "controls": 427,
+          "parking_overrides": 2,
+          "final_frame_intervened": false,
+          "final_speed": -4.134049668236516e-05
+        },
+        {
+          "case_id": 2,
+          "termination": "success",
+          "controls": 321,
+          "parking_overrides": 0,
+          "final_frame_intervened": false,
+          "final_speed": 0.2170104989559214
+        },
+        {
+          "case_id": 3,
+          "termination": "success",
+          "controls": 305,
+          "parking_overrides": 1,
+          "final_frame_intervened": false,
+          "final_speed": 0.0998865288428549
+        }
+      ],
+      "parked_intervened_frames": 3,
+      "original_goal_gate_and_nonintervened_terminal_frames_verified": true,
+      "all_engine_controls_acknowledged": true,
+      "raw_audit_sha256": "93fedf212bb889f43bc55e5187a543e556accd01b831adc1878c79a0264209eb",
+      "protocol_sha256": "9a428ebd648b217f8b4a6a929160b981f2c772b78f194590544574fc550315ef",
+      "evaluation_trace_sha256": "13a1b265a623037d78d50e1ab4ed94b61a7479245dbcdd3ce21988510f8bebdb",
+      "new_PPO_updates": 0,
+      "new_supervised_updates": 0,
+      "configuration": {
+        "goal_tolerance": 0.8,
+        "goal_speed": 0.25,
+        "goal_yaw_tolerance": 0.35,
+        "parking": true,
+        "goal_parking_assist": true,
+        "control_dt": 0.05,
+        "vehicle": {
+          "wheelbase": 3.004645563602973,
+          "front": 3.8114617663518553,
+          "rear": 0.9803177517755859,
+          "width": 2.163450002670288,
+          "max_steer": 0.5,
+          "steer_rate": 0.6,
+          "max_speed": 3.0,
+          "max_accel": 1.5,
+          "max_decel": 2.5,
+          "steer_tau": 0.12,
+          "input_delay_steps": 0,
+          "wheelbase_scale": 1.0,
+          "acceleration_scale": 1.0
+        }
+      }
+    },
+    {
+      "method": "H",
+      "batch": "20261101T104236093121Z_native_shared_parking_v2_H",
+      "version": "inside_goal_pose_overspeed_brake_v2",
+      "helper_sha256": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+      "calibration_sha256": "a853eba6106969e00bbe4d9150a76fe75afdebaf69bc99478c23b7169afe0fff",
+      "successes": 4,
+      "cases": 4,
+      "unsafe_cases": 0,
+      "controls": 1287,
+      "parking_overrides": 8,
+      "parking_override_fraction": 0.006216006216006216,
+      "case_outcomes": [
+        {
+          "case_id": 0,
+          "termination": "success",
+          "controls": 335,
+          "parking_overrides": 2,
+          "final_frame_intervened": false,
+          "final_speed": 0.09860556142040064
+        },
+        {
+          "case_id": 1,
+          "termination": "success",
+          "controls": 344,
+          "parking_overrides": 2,
+          "final_frame_intervened": false,
+          "final_speed": 0.09786769349931392
+        },
+        {
+          "case_id": 2,
+          "termination": "success",
+          "controls": 310,
+          "parking_overrides": 2,
+          "final_frame_intervened": false,
+          "final_speed": 0.09833303761743828
+        },
+        {
+          "case_id": 3,
+          "termination": "success",
+          "controls": 298,
+          "parking_overrides": 2,
+          "final_frame_intervened": false,
+          "final_speed": 0.09823195952971199
+        }
+      ],
+      "parked_intervened_frames": 4,
+      "original_goal_gate_and_nonintervened_terminal_frames_verified": true,
+      "all_engine_controls_acknowledged": true,
+      "raw_audit_sha256": "977651c8e47f51e913fcd2a73adfa66585138a15dae76debe672353c5f26f3e8",
+      "protocol_sha256": "32166e9be00ceb50624a157be1018a5e4aca766dc9783c5ff6075efc5b38838b",
+      "evaluation_trace_sha256": "51ab39fc5d7366c863c763d6a43bbedd2499d77cf49ff88a6bf06025b2da7e26",
+      "new_PPO_updates": 0,
+      "new_supervised_updates": 0,
+      "configuration": {
+        "goal_tolerance": 0.8,
+        "goal_speed": 0.25,
+        "goal_yaw_tolerance": 0.35,
+        "parking": true,
+        "goal_parking_assist": true,
+        "control_dt": 0.05,
+        "vehicle": {
+          "wheelbase": 3.004645563602973,
+          "front": 3.8114617663518553,
+          "rear": 0.9803177517755859,
+          "width": 2.163450002670288,
+          "max_steer": 0.5,
+          "steer_rate": 0.6,
+          "max_speed": 3.0,
+          "max_accel": 1.5,
+          "max_decel": 2.5,
+          "steer_tau": 0.12,
+          "input_delay_steps": 0,
+          "wheelbase_scale": 1.0,
+          "acceleration_scale": 1.0
+        }
+      }
+    },
+    {
+      "method": "B3",
+      "batch": "20261101T104917Z_native_rule",
+      "version": "inside_goal_pose_overspeed_brake_v2",
+      "helper_sha256": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+      "calibration_sha256": "a853eba6106969e00bbe4d9150a76fe75afdebaf69bc99478c23b7169afe0fff",
+      "successes": 4,
+      "cases": 4,
+      "unsafe_cases": 0,
+      "controls": 1286,
+      "parking_overrides": 8,
+      "parking_override_fraction": 0.006220839813374806,
+      "case_outcomes": [
+        {
+          "case_id": 0,
+          "termination": "success",
+          "controls": 335,
+          "parking_overrides": 2,
+          "final_frame_intervened": false,
+          "final_speed": 0.09788927959494213
+        },
+        {
+          "case_id": 1,
+          "termination": "success",
+          "controls": 343,
+          "parking_overrides": 2,
+          "final_frame_intervened": false,
+          "final_speed": 0.002265359264408482
+        },
+        {
+          "case_id": 2,
+          "termination": "success",
+          "controls": 310,
+          "parking_overrides": 2,
+          "final_frame_intervened": false,
+          "final_speed": 0.09834372951689874
+        },
+        {
+          "case_id": 3,
+          "termination": "success",
+          "controls": 298,
+          "parking_overrides": 2,
+          "final_frame_intervened": false,
+          "final_speed": 0.09822728657528147
+        }
+      ],
+      "parked_intervened_frames": 4,
+      "original_goal_gate_and_nonintervened_terminal_frames_verified": true,
+      "all_engine_controls_acknowledged": true,
+      "raw_audit_sha256": "fb663eb34c0ac6df8907cd9140b4c383f6fcc6326c7fd820d6ff0ac97697b083",
+      "protocol_sha256": "62e78780a0ea765bfc48d26683a940d2450972d126204eb0ce6b4d60c9fe91a6",
+      "evaluation_trace_sha256": "8a0dda4bd703bf9ab74ed59d129edc85ac77f8aa06fe7ea497c3538fe6c659d6",
+      "new_PPO_updates": 0,
+      "new_supervised_updates": 0,
+      "configuration": {
+        "goal_tolerance": 0.8,
+        "goal_speed": 0.25,
+        "goal_yaw_tolerance": 0.35,
+        "parking": true,
+        "goal_parking_assist": true,
+        "control_dt": 0.05,
+        "vehicle": {
+          "wheelbase": 3.004645563602973,
+          "front": 3.8114617663518553,
+          "rear": 0.9803177517755859,
+          "width": 2.163450002670288,
+          "max_steer": 0.5,
+          "steer_rate": 0.6,
+          "max_speed": 3.0,
+          "max_accel": 1.5,
+          "max_decel": 2.5,
+          "steer_tau": 0.12,
+          "input_delay_steps": 0,
+          "wheelbase_scale": 1.0,
+          "acceleration_scale": 1.0
+        }
+      }
+    }
+  ],
+  "same_physical_parking_capability": true,
+  "v1_defect_retained": {
+    "method": "B1",
+    "batch": "20261101T103609019454Z_native_shared_parking_B1",
+    "version": "inside_goal_pose_full_brake_v1",
+    "helper_sha256": "f6314da2ec8b5e7f4e04ee892d968950e5ff7928c65cb5e2f3b6ea3d7934b50c",
+    "calibration_sha256": "a853eba6106969e00bbe4d9150a76fe75afdebaf69bc99478c23b7169afe0fff",
+    "successes": 1,
+    "cases": 4,
+    "unsafe_cases": 0,
+    "controls": 3021,
+    "parking_overrides": 1621,
+    "parking_override_fraction": 0.5365772922873221,
+    "case_outcomes": [
+      {
+        "case_id": 0,
+        "termination": "deadline",
+        "controls": 900,
+        "parking_overrides": 548,
+        "final_frame_intervened": true,
+        "final_speed": -1.9328685995176538e-10
+      },
+      {
+        "case_id": 1,
+        "termination": "deadline",
+        "controls": 900,
+        "parking_overrides": 476,
+        "final_frame_intervened": true,
+        "final_speed": -6.338052260795631e-09
+      },
+      {
+        "case_id": 2,
+        "termination": "success",
+        "controls": 321,
+        "parking_overrides": 0,
+        "final_frame_intervened": false,
+        "final_speed": 0.2170104989559214
+      },
+      {
+        "case_id": 3,
+        "termination": "deadline",
+        "controls": 900,
+        "parking_overrides": 597,
+        "final_frame_intervened": true,
+        "final_speed": 3.946178144540003e-09
+      }
+    ],
+    "parked_intervened_frames": 1618,
+    "original_goal_gate_and_nonintervened_terminal_frames_verified": true,
+    "all_engine_controls_acknowledged": true,
+    "raw_audit_sha256": "cb83a13518733df40fc9c50afb3a47ed98c2c65ee35a2372d9eb0d3aca6be90b",
+    "protocol_sha256": "ee8532615946b08edd2e6b9e1e2dac0d5fb8e9e8787b3d96c0e58036753660f3",
+    "evaluation_trace_sha256": "9c0c24520195c36c264dc73b2ae1422f0e47e93907cd16ddbcc20b75427c9e3d",
+    "new_PPO_updates": 0,
+    "new_supervised_updates": 0,
+    "configuration": {
+      "goal_tolerance": 0.8,
+      "goal_speed": 0.25,
+      "goal_yaw_tolerance": 0.35,
+      "parking": true,
+      "goal_parking_assist": true,
+      "control_dt": 0.05,
+      "vehicle": {
+        "wheelbase": 3.004645563602973,
+        "front": 3.8114617663518553,
+        "rear": 0.9803177517755859,
+        "width": 2.163450002670288,
+        "max_steer": 0.5,
+        "steer_rate": 0.6,
+        "max_speed": 3.0,
+        "max_accel": 1.5,
+        "max_decel": 2.5,
+        "steer_tau": 0.12,
+        "input_delay_steps": 0,
+        "wheelbase_scale": 1.0,
+        "acceleration_scale": 1.0
+      }
+    }
+  },
+  "v1_reason": "Braking continued after already parked,so the unchanged nonintervened-terminal success gate stayed false. V2 releases at the existing goal_speed;the success gate is not changed.",
+  "unassisted_reference": {
+    "batch": "20261101T100704463570Z_native_reflection_feedback_probe",
+    "B1successes": 3,
+    "bounds": 1
+  },
+  "new_controls": 7003,
+  "new_PPO_updates": 0,
+  "limits": "Single known development seed and4known TRAINroads;frozen deployment transfers,not trained-under-wrapper policies or an isolated PPObenefit. Halso transfers from legacy delivery to sync with identical gains. Five healthy independent policies,full-task tests and120NEWfinalconditions remain unmet.",
+  "research_acceptance": "UNMET"
+}

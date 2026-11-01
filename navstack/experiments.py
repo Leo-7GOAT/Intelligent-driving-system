@@ -149,6 +149,11 @@ def signature(config):
     }
     if config.shared_shield:
         result["shared_shield"] = "execution_brake_v1_no_path_prediction"
+    if config.goal_parking_assist:
+        result['goal_parking_assist']={'version':'inside_goal_pose_overspeed_brake_v2',
+            'position_tolerance':config.goal_tolerance,'heading_tolerance':config.goal_yaw_tolerance,
+            'minimum_travel_m':.1,'release_speed':config.goal_speed,
+            'steering_unchanged':True,'physical_braking_only':True}
     if config.local_candidate_filter:
         result['local_candidate_filter']='clear_and_local_connector_wait_retained_all_unknown_fallback_v1'
     if config.endpoint_candidate_filter:

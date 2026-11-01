@@ -1,3 +1,85 @@
+# Shared parking v2 engineering screen COMPLETE; research UNMET — 2026-11-01 19:55
+
+All native lifecycles in this goal turn are TERMINAL,ownedemptyserverstopped.
+Goal ACTIVE/UNMET. Do not restart closed probes or the abandoned prepared Hv1.
+Root CPU1127PASS/1skip/4CARLAexcluded140.04s on v2;factory+full parking completion
+regression tests passed. Latest pushed code before pending commit is567241ac...
+CI41294888160SUCCESS1097PASS/18skip/4excluded. New source/reports need commit/push.
+
+COMMON EXPLICIT PARKING AID v2: goal_parking_assist=True,method-independent,
+physical full brake ONLY inside unchanged goal position/yaw gates,after actual
+travel>.1m,and while abs(v)>existinggoal_speed. Steering unchanged. At parked
+speed RELEASE to ordinary policy/controller. Original _event and its existing
+allowed_success=not intervention guard are UNCHANGED. All successful terminal
+frames must be nonintervened and satisfy measured original pose/speed/yaw gates.
+The option defaults off;historical serialized configs/signatures remain exact.
+Main Native factory propagates it to H/H0/B1/B2/B3. Rootlauncher blocks an
+abandoned_before_launch.json marker before any lifecycle.
+
+Verified shared v2 transfers on SAME4known TRAINroads (not12newconditions):
+B1 batch20261101T104233573082Z_native_shared_parking_v2_B1:
+  4/4,zero unsafe,1409controls,6parkingoverrides;cases356/427/321/305.
+H batch20261101T104236093121Z_native_shared_parking_v2_H:
+  4/4,zero unsafe,1287controls,8parkingoverrides;cases335/344/310/298.
+B3 batch20261101T104917Z_native_rule:
+  4/4,zero unsafe,1286controls,8parkingoverrides.
+Same helper bytes,calibration,vehicle and goal criteria independently audited
+in reports/native_shared_parking_engineering_20261101.json;3982v2controls.
+All engine acknowledgements match;all raw physical frames verified. H/B1 starts
+reconstructed;B1 whole-sequence verification session42897 was running at last
+snapshot and needs collection. No new training/BC in these frozen transfers.
+B1model72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844;
+Hmodelc46da0e23773fad3856dbc77b7681fcb5e2b32ee02976041a67752dbe9213d36.
+B1lineage30720actualPPOcontrols/H20579;NOT budget-matched research evidence.
+Models were NOT trained under this wrapper;formal shared-wrapper comparisons
+must retrain related methods. Do not call native unassisted B1 qualified.
+
+V1 integration bug RETAINED:20261101T103609019454Z_native_shared_parking_B1,
+1/4,3deadlines,3021physicalcontrols. Aid kept intervening while already parked,
+so original terminal guard correctly suppressed success. V2 fixes release,
+not goal criteria. Prepared H v1 batch20261101T103652093173Z_native_shared_parking_H
+ABANDONED_BEFORE_FIRST_LIFECYCLE,0controls,markerblocksRootlauncher. Never launch.
+Engineering report includes all7003controls across v2three arms+failedv1.
+
+Earlier actual PPO course20261101T094700825994Z_native_B1_feedback_PPO completed
+10240newphysicalTRAINcontrols,320actualAdamsteps in all35saved parameter states,
+80PPOepochs,RMSmean/var/count exact. TRAIN15success/9bounds+recordedtail;
+endpoint2/4,bounds438/634,success311/310. All11933controls strictsync+rawverified;
+1693endpointactions bit-exact from measured history. Model eb2c9daa5b6ccf025429bdb1a1f69c55c7d8a8eecec65dd39cff580546f235ec.
+
+Reflection augmentation:3424acknowledged originalteacherTRAINrows+3424virtual
+reflections,120original/reflected pose triplets. Original architecture/critic/
+PPOAdam/counters/RMS retained. First512auxAdam rejected;exactAdam+sampler512step
+continuation(1024total)passed. Nativepure20261101T100704463570Z_native_reflection_feedback_probe:
+3/4,leftcases0/1andcase2success373/441/321;case3bounds406,1541controls. Case3
+passes within.105mofgoal at1.04m/s with positive requestedacceleration. Model72...
+Unassisted gate UNMET. This is the reference for shared-parking B1.
+
+Separate rejected NNacceleration experiment:108hypothetical velocity queries
+from27measured teacherstates (not108measuredstates),all4TRAINroads near<=3m;
+1297golden held-reference commands exact. Model policy adds177new acceleration
+parameters only;all old weights and steering outputs exact. First512headAdam
+misses braking-sign gate;exact512step continuation passes100%critical18queries,
+queryMSE.57238→.00552. Actual20261101T101916808465Z_native_terminal_acceleration_probe
+still2/4:bounds0/2at456/411,success1/3at422/405=1694controls. Modelcb84e591...
+REJECTED,not used for shared parking. Prepared protocol had a prelaunch count
+correction:27source states generate108hypothetical rows;all original metadata
+snapshots preserved. No physical/policy inputs changed by that correction.
+
+Root additions:parking_assist.py/config/env/experiments/nativefactory;newoptional
+terminal_acceleration_policy.py is rejected-model reproduction only. Original
+flat-sequence auditor v1 is retained byte-exact as audit_native_flat_sequence_v1.py;
+currentauditor also reconstructs intervention feedback,needed for shared wrapper.
+Docs shared_parking.md explain all limits. No new final conditions generated.
+
+CURRENT NEXT WORK: finish commit/push,independent source/report verification,
+package/publish/rebuild the concrete shared engineering evidence using existing
+package_native_continuation.py and package_native_rule_evidence.py. Do not
+repeat earlier public downloads/cohorts. Then actual5seed training under fixed
+shared-wrapper protocol,addedPPOvalue,strongB3comparison,collaboration gain,
+remaining fair ablations and120NEWfinalconditions remain mandatory. The global
+research goal is not complete. No native training currently runs or is queued.
+
 # Pose response diagnosed; real PPO basic course RUNNING — 2026-11-01 17:50
 
 Goal ACTIVE/UNMET. Do not restart old closed jobs or package a failed fit as a

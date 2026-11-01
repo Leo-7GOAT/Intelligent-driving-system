@@ -1,3 +1,12 @@
+# Shared parking engineering checkpoint— 2026-11-01
+
+B1/H/B3 each4/4 on the same4known TRAINroads with the same explicit goal-parking
+aid;6/1409,8/1287,8/1286 physical overrides respectively. All goal/speed/heading
+criteria and the nonintervened-terminal guard are unchanged and audited. This is
+a frozen deployment transfer,not policies trained under the wrapper,5independent
+healthy baselines or added PPOvalue. V1's1/4and3deadlines are retained as a code
+integration defect. Overall acceptance remains UNMET. See docs/shared_parking.md.
+
 # Research acceptance ledger
 
 Control-correspondence disclosure:earlier audits bound requests and measured

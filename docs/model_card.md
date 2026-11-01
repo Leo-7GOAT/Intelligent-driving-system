@@ -1,3 +1,12 @@
+# Shared-parking development transfer— 2026-11-01
+
+Frozen B1model72d465ab and Hmodelc46da0e2,plus strong-ruleB3,each4/4 on the same
+four original TRAINroads using goal_parking_assist=True,v2. No new optimizer
+updates occur in these transfers. This is additional common physical braking
+assistance,not PPOlearning or final confirmation. Native unassisted B1 remains
+unqualified;five healthy independently trained baselines and120NEWfinalconditions
+remain unmet. The failedv1integration and failed neural alternatives are retained.
+
 # Development model card
 
 The fixed replay model4f205708...is also tested under explicit synchronous

@@ -1,0 +1,75 @@
+{
+  "scope": "Verify both reflection fits and the complete fixed native deployment.",
+  "script_sha256": "dc6288e7447194f88a3cb7aec44bf4bba602ac9edd5a10cd2d3f7c830169d9cf",
+  "batch": "20261101T100704463570Z_native_reflection_feedback_probe",
+  "fits": [
+    {
+      "model_sha256": "5d8437458d4015ea0fe852cb53fe791f577d929afc498d48c33c806c2327094c",
+      "changed_actor_tensors": 20,
+      "new_auxiliary_steps": 512,
+      "actual_auxiliary_Adam_states": 20,
+      "actual_step_each": [
+        512
+      ],
+      "architecture_critic_logstd_PPOAdam_counters_RMS_exact": true
+    },
+    {
+      "model_sha256": "72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844",
+      "changed_actor_tensors": 20,
+      "new_auxiliary_steps": 512,
+      "actual_auxiliary_Adam_states": 20,
+      "actual_step_each": [
+        1024
+      ],
+      "architecture_critic_logstd_PPOAdam_counters_RMS_exact": true
+    }
+  ],
+  "continued_auxiliary_Adam_proof": {
+    "parameter_states": 20,
+    "step_increment_each": 512
+  },
+  "continuation_inputs_exact": true,
+  "new_auxiliary_Adam_updates": 1024,
+  "new_PPO_updates": 0,
+  "new_controls": 1541,
+  "virtual_reflection_rows_per_fit": 3424,
+  "actual_teacher_TRAINrows_per_fit": 3424,
+  "virtual_pose_triplets_per_fit": 120,
+  "virtual_rows_are_executed": false,
+  "runtime_reflection_or_teacher": false,
+  "offline_screen_passed": true,
+  "successes": 3,
+  "unsafe_cases": 1,
+  "basic_gate_passed": false,
+  "case_outcomes": [
+    {
+      "case_id": 0,
+      "termination": "success",
+      "controls": 373
+    },
+    {
+      "case_id": 1,
+      "termination": "success",
+      "controls": 441
+    },
+    {
+      "case_id": 2,
+      "termination": "success",
+      "controls": 321
+    },
+    {
+      "case_id": 3,
+      "termination": "out_of_bounds",
+      "controls": 406
+    }
+  ],
+  "all_engine_controls_acknowledged": true,
+  "measured_start_actions_verified": 4,
+  "model_sha256": "72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844",
+  "normalization_sha256": "b8a464e6ba54fb5745d0b4c128ece3a90581e8a082227b05c9d1fb38c7ff79b0",
+  "raw_audit_sha256": "d04cccadedc47f591d38fb41dd10168ae61d689eb9454576167a5053af3fc937",
+  "protocol_sha256": "9bcbab4c5dffce07c35c62807b1aaeca08ccdfb60564cf01bc7b79b56eeb71f4",
+  "evaluation_trace_sha256": "0b49820339a950a644606da54c63dffc2fd7281a823fbe643a44b75296bad436",
+  "limits": "Single known development seed,warmstarted from30720actualPPOcontrols with additional hypothetical supervision. Not five independent healthy policies,full-task qualification,PPOaddedvalue or final confirmation.",
+  "research_acceptance": "UNMET"
+}

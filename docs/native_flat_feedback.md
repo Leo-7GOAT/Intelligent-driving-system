@@ -58,13 +58,45 @@ on every control. The lifecycle exits normally and its owned empty server stops.
 The original outcomes and failed checkpoints are retained. New raw inputs and
 models remain local at this snapshot.
 
+![All four measured TRAIN trajectories](../reports/figures/native_B1_feedback_contrast_probe_20261101.png)
+
+An additional input-reflection diagnostic finds large left/right inconsistencies
+in the fixed replay network. Its observation transform is checked against rebuilt
+geometry, including asymmetric road cells, obstacle vertices, dynamic actors,
+candidate slot permutations and history, and is exactly involutive. Mirrored
+inputs are hypothetical and outside the original measured distribution; their
+output errors are much larger. This does not justify adopting a mirrored policy
+or claiming a driving improvement. The raw-result report is
+[reflection sensitivity](../reports/native_B1_reflection_diagnostic_20261101.json).
+
 A separately registered basic-course PPO continuation starts from this fixed
 fit with `batch_sync_v1` held constant throughout learning. Its budget is 10,240
 new physical training controls, with one final endpoint and all four original
 TRAIN-road evaluations. It keeps the trained Gaussian exploration parameters
 and adds no runtime teacher or supervised updates. It is an explicitly warm-started
 development course; the failed deployment is not used to claim qualification.
-The running job is `20261101T094700825994Z_native_B1_feedback_PPO`.
+The job `20261101T094700825994Z_native_B1_feedback_PPO` is now complete: 10,240 new
+physical training controls, 320 actual Adam steps, 80 PPO epoch updates, with
+unchanged observation RMS. All 35 saved Adam parameter states advance by 320;
+both actor and critic change. The endpoint remains 2/4 with two bounds failures
+(cases 0/1 at 438/634 controls; cases 2/3 succeed at 311/310). The 11,933 training
+and evaluation controls have matching engine acknowledgements. All 1,693 endpoint
+actions are reconstructed bit-exactly from measured history, as are all 1,782
+actions from the preceding offline-fit deployment. The owned server stops normally.
+[Actual PPO proof](../reports/native_B1_feedback_PPO_20261101.json),
+[full PPO endpoint inference](../reports/native_B1_feedback_PPO_whole_sequence_20261101.json),
+[preceding fit endpoint inference](../reports/native_B1_feedback_contrast_whole_sequence_20261101.json).
+
+A subsequent reflection-augmentation experiment uses 3,424 old teacher TRAIN
+rows whose current and previous engine controls match the requests, plus 3,424
+virtual reflected rows. It also retains the pose-response supervision on original
+and reflected inputs. Mirrored labels are hypothetical, not additional CARLA
+demonstrations. The first 512 auxiliary steps fail the fixed screen; a further
+512 steps resume the exact saved auxiliary Adam and deterministic sampler and
+pass the same screen. The direct architecture, critic, PPO optimizer, counters,
+normalizer and log_std remain fixed. Its four-road native probe
+`20261101T100704463570Z_native_reflection_feedback_probe` is running at this snapshot.
+It uses the original direct network with no runtime reflection or teacher.
 
 Evidence: [gain queries](../reports/native_B1_feedback_gain_queries_20261101.json),
 [rejected residual](../reports/native_B1_pose_residual_rejected_20261101.json),
@@ -75,6 +107,8 @@ Evidence: [gain queries](../reports/native_B1_feedback_gain_queries_20261101.jso
 ```powershell
 python scripts/diagnose_flat_feedback_gains.py --root RESTORED_ROOT --output FRESH_DIAGNOSTIC.json --query-output FRESH_QUERY_DATA.npz
 python scripts/analyze_native_feedback_contrast.py --batch RESTORED_PROBE --output FRESH_PROBE_AUDIT.json
+python scripts/plot_native_feedback_probe.py --root RESTORED_ROOT --output FRESH_FIGURE.png
+python scripts/audit_native_flat_sequence.py --batch RESTORED_PPO_BATCH --output FRESH_ACTION_SEQUENCE.json
 python -m pytest tests/test_pose_feedback_policy.py tests/test_control_delivery.py -q
 ```
 

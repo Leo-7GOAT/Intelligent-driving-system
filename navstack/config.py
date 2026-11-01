@@ -122,6 +122,7 @@ class EnvConfig:
     goal_speed: float = 0.25
     goal_yaw_tolerance: float = 0.35
     parking: bool = True
+    goal_parking_assist: bool = False
     prediction_seconds: float = 3.0
     mpc_horizon: int = 20
     shared_shield: bool = False
@@ -149,6 +150,8 @@ class EnvConfig:
     reward: RewardConfig = field(default_factory=RewardConfig)
 
     def __post_init__(self):
+        if type(self.goal_parking_assist) is not bool or (self.goal_parking_assist and not self.parking):
+            raise ValueError('Goal parking assist requires explicit boolean enablement and a parking task')
         if (type(self.endpoint_candidate_filter) is not bool or
                 (self.endpoint_candidate_filter and (not self.candidate_observation or self.execution_feedback=='off' or self.local_candidate_filter))):
             raise ValueError('Endpoint filtering requires candidate feedback and cannot combine with local-connector filtering')
@@ -261,6 +264,7 @@ class EnvConfig:
 
     def to_dict(self):
         result = asdict(self)
+        if not self.goal_parking_assist:result.pop('goal_parking_assist')
         if not self.endpoint_candidate_filter:result.pop('endpoint_candidate_filter')
         # Preserve the serialized configuration of historical, disabled runs.
         if not self.route_goal_candidate:

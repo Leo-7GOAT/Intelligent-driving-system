@@ -155,6 +155,9 @@ class NavigationEnv(gym.Env):
             "static": list(self.world.static),
             "dynamic": [asdict(o) for o in self.world.dynamic],
         }
+        if self.config.goal_parking_assist:
+            self.episode['goal_parking_controls']=0
+            self.episode['goal_parking_eligible_controls']=0
         if self.world.road is not None:
             self.initial_scenario["road_sha256"] = self.world.road.sha256
         if self.config.actuator_observation != "off":
@@ -591,6 +594,16 @@ class NavigationEnv(gym.Env):
                 status = mode
                 diagnostics = {}
                 intervention = mode not in ("wait", "flat", "parking_brake")
+            unassisted_command=command;unassisted_status=status
+            goal_parking_intervention=False;goal_parking_eligible=False
+            if c.goal_parking_assist:
+                from .parking_assist import goal_parking_command
+                command,goal_parking_intervention,goal_parking_eligible=goal_parking_command(
+                    before,self.goal,command,c,self.ever_controlled and ep['distance']>.1)
+                ep['goal_parking_controls']+=int(goal_parking_intervention)
+                ep['goal_parking_eligible_controls']+=int(goal_parking_eligible)
+                intervention|=goal_parking_intervention
+                if goal_parking_intervention:status='goal_parking_assist'
             requested_command = command
             shield_intervention = False
             if c.shared_shield:
@@ -674,6 +687,10 @@ class NavigationEnv(gym.Env):
                 }
             )
             cycle_seconds = time.perf_counter() - cycle_started
+            if c.goal_parking_assist:
+                trace[-1].update(goal_parking_intervention=goal_parking_intervention,
+                    goal_parking_eligible=goal_parking_eligible,unassisted_command=asdict(unassisted_command),
+                    unassisted_controller_status=unassisted_status)
             trace[-1]["control_cycle_seconds"] = cycle_seconds
             ep["control_cycle_times"].append(cycle_seconds)
             if event:
