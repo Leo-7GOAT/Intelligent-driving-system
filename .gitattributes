@@ -18,3 +18,6 @@ reports/native_matched_broader_feedback_cohort_20261101.json -text -whitespace
 reports/native_matched_broader_feedback_cohort_costs_20261101.json -text -whitespace
 reports/native_matched_broader_seed44_H_feedback_reliance_20261101.json -text -whitespace
 reports/native_matched_broader_seed44_H0_feedback_reliance_20261101.json -text -whitespace
+protocols/native_matched_broader_feedback_pairs_20261101.json -text -whitespace
+protocols/public_native_matched_broader_feedback_cohort_20261101.json -text -whitespace
+reports/figures/native_matched_broader_feedback_cohort_20261101.json -text -whitespace

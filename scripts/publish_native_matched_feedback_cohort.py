@@ -37,6 +37,22 @@ def decode_command_output(stdout,stderr):
     return stdout.decode('utf-8'),stdout+b'\n'+stderr
 
 
+def write_public_reproduction_metadata(root,recipe_path,receipt):
+    """Retain the exact recipe bytes used by the public reconstruction."""
+    from scripts.package_native_continuation import scan_payload
+    root=Path(root);payload=Path(recipe_path).read_bytes()
+    if hashlib.sha256(payload).hexdigest()!=receipt['recipe_sha256']:
+        raise ValueError('Recipe bytes differ from the executed reconstruction receipt')
+    outputs=[(root/'protocols/public_native_matched_broader_feedback_cohort_20261101.json',payload),
+        (root/'reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json',
+         json.dumps(receipt,indent=2).encode('utf-8'))]
+    if any(path.exists() for path,_ in outputs):
+        raise FileExistsError('Preserve existing public metadata')
+    for path,data in outputs:scan_payload(path.name,data)
+    for path,data in outputs:
+        with path.open('xb') as stream:stream.write(data)
+
+
 def run(execution):
     execution=Path(execution).resolve();root=execution.parent.parent;source=execution/'source'
     sys.path.insert(0,str(source))
@@ -194,10 +210,7 @@ def run(execution):
             receipt={**result,'release':'https://github.com/'+repo+'/releases/tag/'+tag,
                 'public_metadata_urls':{p.name:'https://github.com/'+repo+'/releases/download/'+tag+'/'+p.name for p in public_metadata.iterdir()},
                 'network_failures':failures,'new_controls':0,'new_optimizer_updates':0,'research_acceptance':'UNMET;known development cohort,no healthy B1or final confirmation claim'}
-            for path,data in ((root/'protocols/public_native_matched_broader_feedback_cohort_20261101.json',recipe),
-                    (root/'reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json',receipt)):
-                payload=json.dumps(data,indent=2).encode();scan_payload(path.name,payload)
-                with path.open('xb') as stream:stream.write(payload)
+            write_public_reproduction_metadata(root,recipe_path,receipt)
             atomic_json(execution/'complete.json',{'seeds':[11,22,33,44,55],'receipt_sha256':sha(root/'reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json'),'new_controls':0,'new_updates':0})
             status('ALL_FIVE_MATCHED_BROADER_PAIRS_PUBLICLY_PUBLISHED_AND_RECONSTRUCTED')
     except BaseException as error:
