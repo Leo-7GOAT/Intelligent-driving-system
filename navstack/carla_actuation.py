@@ -5,6 +5,36 @@ import math
 
 ACTUATOR_STATE_FIELDS = ("signed_pedal", "filtered_acceleration", "feedback_integral")
 
+CONTROL_DELIVERY_MODES = ("actor_async_legacy", "batch_sync_v1")
+
+
+def deliver_vehicle_control(client, actor, control, mode, command_factory=None):
+    """Confirm command submission before the owner issues its one physics tick."""
+    if mode not in CONTROL_DELIVERY_MODES:
+        raise ValueError("Unknown vehicle control delivery version")
+    if mode == "actor_async_legacy":
+        actor.apply_control(control)
+        return
+    if command_factory is None:
+        import carla
+        command_factory = carla.command.ApplyVehicleControl
+    responses = client.apply_batch_sync([command_factory(actor.id, control)], False)
+    if len(responses) != 1 or responses[0].error:
+        raise RuntimeError("Synchronous vehicle control submission failed: " +
+                           (str(responses[0].error) if len(responses) == 1 else "wrong response count"))
+
+
+def vehicle_control_matches(requested, applied, tolerance=1e-5):
+    """Check the engine's last-tick control,allowing float32 wire rounding only."""
+    if not math.isfinite(tolerance) or not 0 < tolerance <= 1e-5:
+        raise ValueError("Invalid applied-control tolerance")
+    for name in ("throttle", "brake", "steer"):
+        x, y = getattr(requested, name), getattr(applied, name)
+        if not math.isfinite(x) or not math.isfinite(y) or abs(x-y) > tolerance:
+            return False
+    return all(getattr(requested, name) == getattr(applied, name)
+               for name in ("gear", "manual_gear_shift", "hand_brake", "reverse"))
+
 
 def actuator_state_values(evidence):
     """Four measured-frame adapter inputs; never synthesize missing state."""

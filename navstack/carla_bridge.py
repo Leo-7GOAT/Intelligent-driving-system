@@ -77,6 +77,12 @@ class BridgeClient:
             if not result.get("ok"):
                 self.last_failure_response=result
                 raise InfrastructureFailure(result.get("error","unknown bridge failure"))
+            if (request['op']=='step' and result.get('control_delivery')=='batch_sync_v1'
+                    and result.get('applied_control_matches_request') is not True):
+                # The reader already preserved the entire applied frame. Abort
+                # rather than learn from an unconfirmed same-frame command.
+                self.last_failure_response=result
+                raise InfrastructureFailure('Synchronous control differs from last-tick engine acknowledgement')
             if result.get("episode_id")!=request["episode_id"]:raise InfrastructureFailure("Mismatched response episode")
             return result
 
@@ -133,6 +139,9 @@ class BridgePlant:
         for key in ("vehicle_control","speed_setpoint","terminal_sensor_drain_seconds","road_surface_probe",
                     "actuation_mode","actuation_state","actuator_observation","native_dynamic_actors"):
             if key in result:self.evidence[key]=result[key]
+        if result.get('control_delivery')=='batch_sync_v1':
+            for key in ('control_delivery','applied_control_matches_request','applied_vehicle_control'):
+                if key in result:self.evidence[key]=result[key]
 
     @property
     def state(self):return self._state

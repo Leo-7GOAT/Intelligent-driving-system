@@ -1,3 +1,52 @@
+# Sync delivery fix verified; B1still unqualified — 2026-11-01 17:20
+
+Previous goal turn PROGRESS:actualPPO/public reconstruction complete. Thisturn
+finds a real frame-contract gap:SDKreturned controls differ from requested pedals
+in51/12219pilotframes(47TRAIN/4eval),allmatching previousrequest. Historical
+frame audits checked measuredstates+requests/bridge echoes,not engine-equality.
+Do not erase old results or claim these lags explain their policy failures.
+
+NEW explicit calibration field recommended_adapter.control_delivery=batch_sync_v1.
+Ego control goes through apply_batch_sync(...,False)beforetheoneownedphysics tick.
+Failed submissions reject;inconsistent post-tick control is preserved in rawreply
+then aborts the client. No extra tick,actuatorgains/goal/observation/rule changes.
+Legacy delivery remains the default for historical compatibility. New training
+must explicitly use the versioned corrected low level,not silently reuse legacy.
+
+Completed transfer20261101T084713744547Z_native_sync_delivery_transfer:
+fixed4f205708replay policy+db467normalizer,all4original TRAINroads,zeroPPO/BC.
+1271controls,allengine controls/gear/handbrake match;strict delivery gatepasses.
+Case0success382,case1bounds256,case2success312,case3success321=3/4. Legacy SAME
+checkpoint was3/4with case1bounds264and5/1275engine mismatches. No driving benefit
+or healthy baseline is established. All1271rawframes+4startsverified;guardnormal0/
+ownedemptycleanup. Lifecycle tool6157TERMINAL,no native job remains active.
+Onlyego delivery was tested;dynamic actor controls remain untested by this fix.
+
+Rootfull1110PASS/1skip/4CARLAexcluded114.36s beforetheadditionalclock-helpertest;
+currentcontrol unit10PASS2.04s and23relatedactuationpartsPASS10.37s. Source/code/
+reports for this fix need commit/push at this snapshot. Do not rerun closedprobe.
+Reports:native_PPO_legacy_control_delivery_20261101.json and
+native_sync_control_delivery_transfer_20261101.json;docs/native_control_delivery.md.
+Newtransferraw remainsLOCAL;earlierPPOpublic563filecapsuleunchanged.
+
+Additionaldiagnostics:1334measured original-TRAINmixturestates,fixed4fpolicy,
+no new controls/fits.128naturalwitnessfliptransitions isolated actionRMS.03764acc/
+.01498steer(normalized),versusfulladjacentRMS.144/.0353. Clock±5swith>=20sremaining
+changesactionRMSroughly.028-.037acc/.008-.009steer. These are offline sensitivity,
+not causaldrivingbenefit. No input masks adopted. Reports native_B1_witness_jump_
+diagnostic_20261101.json and native_B1_clock_sensitivity_20261101.json.
+A separate readonly spot-check on4131TRAINrows finds negative acceleration-vs-
+speed slope on all3318cruiserows,so do not assume positive speedfeedback. Original
+teacherinputs append obsBEFOREcurrentlabels;there is no direct current-action
+leak(only11.8%acc requests equal previouscommand). The lastteacher steeringRMS
+imitationerrors are~.0036-.0050rad;small pointMSEstilldoesnotproveclosedloopgains.
+Do not blindlychangebrakegains:low-speedbrakingdiscontinuitiesarealreadyknown
+from20261022;−2.4emergencythresholdwaspreviouslyverified,not an exact−2.5boundary.
+
+GOAL ACTIVE/UNMET. Need a strong healthy5seedB1,added-PPOvalue,strongB3comparison,
+explainablefeedbackbenefit,fairablationsand120NEWfinalconditions. No finalset
+activated,gatechanged,failedmodelpromoted or ordinarynewtrainingqueued.
+
 # FINAL verification checkpoint — 2026-11-01 16:37
 
 Source5ba24415285cad9413b0580903762f1adde18caf isPUSHED and fullyverified:

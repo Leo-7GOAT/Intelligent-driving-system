@@ -10,6 +10,9 @@ from navstack.process_lease import ProcessLease
 class Bridge:
     def __init__(self, calibration, lock, record_dir=None, host="127.0.0.1", port=2000):
         self.cal=json.loads(Path(calibration).read_text(encoding="utf-8")); self.lock=Path(lock)
+        from navstack.carla_actuation import CONTROL_DELIVERY_MODES
+        self.control_delivery=self.cal['recommended_adapter'].get('control_delivery','actor_async_legacy')
+        if self.control_delivery not in CONTROL_DELIVERY_MODES:raise ValueError('Unknown control delivery version')
         if not isinstance(host,str) or not host or any(c.isspace() for c in host):raise ValueError("invalid CARLA RPC host")
         if isinstance(port,bool) or not isinstance(port,int) or not 1024<=port<=65533:raise ValueError("invalid CARLA RPC base port")
         self.rpc_host=host;self.rpc_port=port
@@ -370,8 +373,10 @@ class Bridge:
         drivetrain=g.get("drivetrain_mode","automatic")
         if drivetrain not in ("automatic","manual_first_v1"):raise ValueError("Unknown drivetrain version")
         manual=drivetrain=="manual_first_v1"
-        self.actor.apply_control(carla.VehicleControl(throttle=throttle,brake=braking,steer=steer,
-                                 manual_gear_shift=manual,gear=1 if manual else 0))
+        from navstack.carla_actuation import deliver_vehicle_control,vehicle_control_matches
+        requested_control=carla.VehicleControl(throttle=throttle,brake=braking,steer=steer,
+                                 manual_gear_shift=manual,gear=1 if manual else 0)
+        deliver_vehicle_control(self.client,self.actor,requested_control,self.control_delivery)
         for actor in self.dynamic:
             # Same condition-dependent open-loop control; policy only sees current measured state.
             direction=carla.Vector3D(self.si,-self.co,0)
@@ -381,7 +386,9 @@ class Bridge:
         self.last_actuation_mode=actuation_mode
         self.command={"acceleration":a,"steering":delta};self.tick()
         applied=self.actor.get_control()
-        return {**self.read(),"applied_vehicle_control":{"throttle":applied.throttle,"brake":applied.brake,"steer":applied.steer,
+        delivery=({'control_delivery':self.control_delivery,'applied_control_matches_request':vehicle_control_matches(requested_control,applied)}
+                  if self.control_delivery!='actor_async_legacy' else {})
+        return {**self.read(),**delivery,"applied_vehicle_control":{"throttle":applied.throttle,"brake":applied.brake,"steer":applied.steer,
                 "gear":applied.gear,"manual_gear_shift":applied.manual_gear_shift,"hand_brake":applied.hand_brake,"reverse":applied.reverse},"vehicle_control":{"throttle":throttle,"brake":braking,"steer":steer},"speed_setpoint":self.speed_target,"actuation_mode":actuation_mode,"actuation_state":self.acceleration_controller.state() if self.acceleration_controller else None}
 
     def handle(self,r):

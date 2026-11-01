@@ -29,3 +29,6 @@ reports/native_B1_original_TRAIN_unprojected_probe_20261101.json -text -whitespa
 reports/native_B1_exploration_PPO_pilot_20261101.json -text -whitespace
 reports/figures/native_B1_exploration_PPO_seed22_endpoint_20261101.json -text -whitespace
 protocols/public_native_B1_exploration_PPO_20261101.json -text -whitespace
+reports/native_PPO_legacy_control_delivery_20261101.json -text -whitespace
+reports/native_B1_witness_jump_diagnostic_20261101.json -text -whitespace
+reports/native_B1_clock_sensitivity_20261101.json -text -whitespace

@@ -1,5 +1,13 @@
 # Executability-aware hierarchical driving research
 
+An additional engine-control audit detects51previous-request acknowledgements
+in the earlier12,219control PPOpilot. Versioned synchronous delivery now passes
+all1,271new frame checks with unchanged model/gains,but its frozen B1transfer
+remains3/4with one bounds failure. Earlier raw outcomes are retained;the timing
+fix is not a PPOlearning benefit or healthy-baseline qualification.
+[Delivery contract and disclosure](docs/native_control_delivery.md),
+[matched transfer result](reports/native_sync_control_delivery_transfer_20261101.json).
+
 This pilot's public reconstruction is complete:563files/12,219controls/4starts,byte-identical figure,exact initial intervention and320added Adam steps in all35PPOparameter states;observation RMS unchanged. Full local CPU:1,101pass;latest completed hostedCI:1,084pass. Overall research acceptance remains UNMET. [Public verification receipt](reports/native_B1_exploration_PPO_public_verification_20261101.json).
 
 Two further original-TRAINrecovery checks also fail:projected2/4with one bounds

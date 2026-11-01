@@ -1,5 +1,11 @@
 # Research acceptance ledger
 
+Control-correspondence disclosure:earlier audits bound requests and measured
+states,but51/12,219returned engine controls match the previous request. The
+versioned synchronous transfer verifies0/1,271mismatches,with unchanged model,
+normalizer and gains. B1remains3/4with bounds;no driving gate is waived and no
+PPOcontribution is inferred. [Evidence](../reports/native_sync_control_delivery_transfer_20261101.json).
+
 This pilot's public reconstruction is complete:563files/12,219controls/4starts,byte-identical figure,exact initial intervention and320added Adam steps in all35PPOparameter states;observation RMS unchanged. Full local CPU:1,101pass;latest completed hostedCI:1,084pass. Overall research acceptance remains UNMET. [Public verification receipt](../reports/native_B1_exploration_PPO_public_verification_20261101.json).
 
 Completed actual-PPOpilot:10,240new controls,320actual Adam updates,2/4pure endpoint with1bounds/1deadline. All12,219frames audited;model rejected,owned lifecycle terminal. The preceding activation is a historical snapshot. [Complete result](../reports/native_B1_exploration_PPO_pilot_20261101.json),[public reproduction](native_B1_exploration_reproduction.md). Overall acceptance remains UNMET.
