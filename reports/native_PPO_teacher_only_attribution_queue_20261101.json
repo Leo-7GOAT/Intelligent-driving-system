@@ -253,5 +253,20 @@
   },
   "analysis_rebuild_entry": "python scripts/analyze_native_pristine_baselines.py --execution runs/H_pristine_baseline_execution_20261101 --output <fresh.json> (only after all paired endpoints finish)",
   "continuation": "Observe the already running owned queue;do not launch duplicate baselines. Existing B1/recording/correction/broader queues and all prepared training inputs remain unchanged.",
-  "research_acceptance": "UNMET"
+  "research_acceptance": "UNMET",
+  "independent_checkout_tests": {
+    "source_commit": "3d4e992f91fb5a0f613120dbee4433ec1d2c78a5",
+    "passed": 34,
+    "seconds": 6.28,
+    "new_controls": 0,
+    "new_optimizer_updates": 0
+  },
+  "current_code_hosted_regression": {
+    "source_commit": "3d4e992f91fb5a0f613120dbee4433ec1d2c78a5",
+    "passed": 980,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "seconds": 127.73,
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41264048875"
+  }
 }

@@ -38,7 +38,11 @@ confirmation. 24cases×5seeds is not120unique conditions. Extra evaluation cost
 is separate;no additional independent PPOtraining is claimed for teacher-only H.
 
 New sources:`prepare_native_pristine_baselines.py`,`run_native_pristine_baselines.py`,
-`analyze_native_pristine_baselines.py`;13related tests pass4.55s. Protocol,all
+`analyze_native_pristine_baselines.py`;34related root tests pass4.90s and34
+independent-checkout tests6.28s at3d4e992f91fb5a0f613120dbee4433ec1d2c78a5.
+Full hosted source3d4e992passes980/18skips/4CARLAexclusions in127.73s:
+https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41264048875.
+Protocol,all
 artifact identities/CPUpreflights/live queue:
 `reports/native_PPO_teacher_only_attribution_queue_20261101.json`.
 After all endpoints finish,standalone rebuild:
@@ -48,8 +52,8 @@ Actual prior-code hosted regression e2bc98aa4bff1158cb22af4eb09b5eba0e822b3a:
 971passed,18skipped,4CARLAdeselected,197.12s,
 https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41262967134.
 Fourth B1extension remains actual worker32708(created09:55:07.805682+08:00),
-batch`20261101T015454924014Z_native_B1_basic_lr_extension`;last checked10:07:31,
-5338new controls/4phases. Seed55still future. GoalACTIVE/UNMET;do not fill idle
+batch`20261101T015454924014Z_native_B1_basic_lr_extension`;last checked10:13:09,
+8264new controls/6phases. Seed55still future. GoalACTIVE/UNMET;do not fill idle
 time by rerunning completed releases or fitting more architectures before the
 registered closed-loop correction and broader attribution results arrive.
 
