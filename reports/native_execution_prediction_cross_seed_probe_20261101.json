@@ -1,0 +1,501 @@
+{
+  "scope": "Exploratory auxiliary prediction validation on existing selected TRAINdecisions;not a new PPOmethod or driving result",
+  "protocol_sha256": "233c1947c615588e80b4ad7545c8189c0d2b1b3549835fab820d9c6532962d91",
+  "sources": [
+    {
+      "seed": 11,
+      "batch": "20261031T025409165666Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "sources": {
+        "H": {
+          "TRAIN_controls": 20563,
+          "decisions": 2080,
+          "raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f"
+        },
+        "H0": {
+          "TRAIN_controls": 20562,
+          "decisions": 2080,
+          "raw_audit_sha256": "e02948a388e140254d62068bff0844dcace6f282e63c255f27cd9ab7b4f66f63"
+        }
+      },
+      "dataset_sha256": "76ec6424268a78c54ea07e0e36021cfabdabf1d7465b0722146308901e70a130",
+      "relative_dataset": "seed11_H_H0/TRAIN_selected_executions.npz"
+    },
+    {
+      "seed": 22,
+      "batch": "20261031T025409042778Z_native_supervised_ppo",
+      "methods": [
+        "H"
+      ],
+      "sources": {
+        "H": {
+          "TRAIN_controls": 20539,
+          "decisions": 2080,
+          "raw_audit_sha256": "066b71cc36bf88b11d002fc98ca6727d19d492e5e2c3ebb10c88aa284f22378d"
+        }
+      },
+      "dataset_sha256": "e5009fa38d2c739d628ee705717689a7918573b680336e6db2ac3371a9fc4ba1",
+      "relative_dataset": "seed22_H/TRAIN_selected_executions.npz"
+    },
+    {
+      "seed": 22,
+      "batch": "20261031T093208454506Z_native_H0_canonical_budget_replica",
+      "methods": [
+        "H0"
+      ],
+      "sources": {
+        "H0": {
+          "TRAIN_controls": 20532,
+          "decisions": 2080,
+          "raw_audit_sha256": "2258c30ada4770cb297416aca767f3265474fc1038f0351b4b03e85b2226bb94"
+        }
+      },
+      "dataset_sha256": "a7dff478de7d8a5183e406466b6311a38f1df873916fb112566721b08c467d42",
+      "relative_dataset": "seed22_H0/TRAIN_selected_executions.npz"
+    },
+    {
+      "seed": 33,
+      "batch": "20261031T093156483162Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "sources": {
+        "H": {
+          "TRAIN_controls": 20561,
+          "decisions": 2080,
+          "raw_audit_sha256": "575b1ae6c801e8d0947949984cb7474f3b3d10787f6f833453ae2f18d0c0a226"
+        },
+        "H0": {
+          "TRAIN_controls": 20561,
+          "decisions": 2080,
+          "raw_audit_sha256": "d88e353eafd736b7b484f89ea9b34d79cf7677108b1aa4c7b52425fac18a9839"
+        }
+      },
+      "dataset_sha256": "427cb4fbec942854c832dc9fce61d2a695528620bca3f06fd2b888e24db1d32c",
+      "relative_dataset": "seed33_H_H0/TRAIN_selected_executions.npz"
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T093202647818Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "sources": {
+        "H": {
+          "TRAIN_controls": 20502,
+          "decisions": 2080,
+          "raw_audit_sha256": "733ae826652f0833e4a4a2446498f41e8beab61dfd29b815ac4354b1098597bb"
+        },
+        "H0": {
+          "TRAIN_controls": 20586,
+          "decisions": 2080,
+          "raw_audit_sha256": "f39a27725990ef6e8fa917fad6ae5cab26e79696645bdb87df1ddfe633164a27"
+        }
+      },
+      "dataset_sha256": "3a5bbe3f82a7102d91295954ca3b298ce0da41938f317320494e1b1d0e23018a",
+      "relative_dataset": "seed44_H_H0/TRAIN_selected_executions.npz"
+    },
+    {
+      "seed": 55,
+      "batch": "20261031T093206498809Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "sources": {
+        "H": {
+          "TRAIN_controls": 20523,
+          "decisions": 2080,
+          "raw_audit_sha256": "9e4422ff630d492fb58a3863265e93c77ddc5f07c513241067a2320efad39620"
+        },
+        "H0": {
+          "TRAIN_controls": 20517,
+          "decisions": 2080,
+          "raw_audit_sha256": "0a8dde0003253f3a531d6cd224e5dab3c856281229a4afff3d8250dbb740ed5c"
+        }
+      },
+      "dataset_sha256": "67894211cf4bd7a59c1deab968e47cd372810013f22f43dba9b06da6e3bb8e82",
+      "relative_dataset": "seed55_H_H0/TRAIN_selected_executions.npz"
+    }
+  ],
+  "all_TRAIN_decisions": 20800,
+  "all_TRAIN_controls": 205446,
+  "train_policy_seeds": [
+    11,
+    22,
+    33
+  ],
+  "validation_policy_seeds": [
+    44,
+    55
+  ],
+  "folds": [
+    {
+      "heldout_route": "260abab6fa479275416957324deea2bf4e0666a7eeafb62d8088a63bccbbc7cf",
+      "train_decisions": 8782,
+      "validation_decisions": 2426,
+      "geometry": {
+        "n": 2426,
+        "failures": 476,
+        "Brier": 0.17356705823655597,
+        "AUC": 0.7891413488472312,
+        "log_loss": 0.579661135662152
+      },
+      "geometry_and_previous_execution": {
+        "n": 2426,
+        "failures": 476,
+        "Brier": 0.10131065266344745,
+        "AUC": 0.936537384184443,
+        "log_loss": 0.29871121799571
+      },
+      "history_only": {
+        "n": 2426,
+        "failures": 476,
+        "Brier": 0.059105210935234145,
+        "AUC": 0.9019629390217625,
+        "log_loss": 0.22775936723595006
+      },
+      "action_switches": 960,
+      "switch_geometry": {
+        "n": 960,
+        "failures": 203,
+        "Brier": 0.16937007686125627,
+        "AUC": 0.7988690123705839,
+        "log_loss": 0.5335952829894571
+      },
+      "switch_geometry_and_previous_execution": {
+        "n": 960,
+        "failures": 203,
+        "Brier": 0.1135798959687806,
+        "AUC": 0.9098073156288434,
+        "log_loss": 0.3386365630712438
+      }
+    },
+    {
+      "heldout_route": "2fe33d12afe64e6bb2ee7faf1a924c79c5376ef57301ef36c89bb9db1c558360",
+      "train_decisions": 9339,
+      "validation_decisions": 2004,
+      "geometry": {
+        "n": 2004,
+        "failures": 17,
+        "Brier": 0.010126239018379977,
+        "AUC": 0.9704846206222801,
+        "log_loss": 0.04102315396923728
+      },
+      "geometry_and_previous_execution": {
+        "n": 2004,
+        "failures": 17,
+        "Brier": 0.008285650611465975,
+        "AUC": 0.9724384972912165,
+        "log_loss": 0.037113094849683004
+      },
+      "history_only": {
+        "n": 2004,
+        "failures": 17,
+        "Brier": 0.015017356906944047,
+        "AUC": 0.4957221942627076,
+        "log_loss": 0.07613732053139326
+      },
+      "action_switches": 527,
+      "switch_geometry": {
+        "n": 527,
+        "failures": 17,
+        "Brier": 0.03175550084772274,
+        "AUC": 0.948558246828143,
+        "log_loss": 0.1041310574369862
+      },
+      "switch_geometry_and_previous_execution": {
+        "n": 527,
+        "failures": 17,
+        "Brier": 0.029580950316678248,
+        "AUC": 0.9471741637831603,
+        "log_loss": 0.09974629367901405
+      }
+    },
+    {
+      "heldout_route": "ba4e7fd8603cdde79a63b900b8edb7dcdcc10164ae02ddc748a7880374fa4c3d",
+      "train_decisions": 9774,
+      "validation_decisions": 1848,
+      "geometry": {
+        "n": 1848,
+        "failures": 94,
+        "Brier": 0.013988303917215887,
+        "AUC": 0.9947415027050631,
+        "log_loss": 0.06183580398832718
+      },
+      "geometry_and_previous_execution": {
+        "n": 1848,
+        "failures": 94,
+        "Brier": 0.010791670392130321,
+        "AUC": 0.9957907760984012,
+        "log_loss": 0.05338124784331535
+      },
+      "history_only": {
+        "n": 1848,
+        "failures": 94,
+        "Brier": 0.014045236750899175,
+        "AUC": 0.9218260996142555,
+        "log_loss": 0.07592769456201526
+      },
+      "action_switches": 486,
+      "switch_geometry": {
+        "n": 486,
+        "failures": 18,
+        "Brier": 0.030243548166714686,
+        "AUC": 0.9675925925925927,
+        "log_loss": 0.1031985224929826
+      },
+      "switch_geometry_and_previous_execution": {
+        "n": 486,
+        "failures": 18,
+        "Brier": 0.027567934313806507,
+        "AUC": 0.9683048433048432,
+        "log_loss": 0.09584036082270797
+      }
+    },
+    {
+      "heldout_route": "f4d1dfa230d727c43e5a7918fd4041c84d8280a9ba25d89f8cfdc46b8005b63f",
+      "train_decisions": 9545,
+      "validation_decisions": 2042,
+      "geometry": {
+        "n": 2042,
+        "failures": 300,
+        "Brier": 0.09029251279723889,
+        "AUC": 0.9240317642556448,
+        "log_loss": 0.32390982571311555
+      },
+      "geometry_and_previous_execution": {
+        "n": 2042,
+        "failures": 300,
+        "Brier": 0.08675207842979339,
+        "AUC": 0.9307749712973593,
+        "log_loss": 0.30713292332407155
+      },
+      "history_only": {
+        "n": 2042,
+        "failures": 300,
+        "Brier": 0.09709334323939385,
+        "AUC": 0.7879085342518178,
+        "log_loss": 0.3795310486174181
+      },
+      "action_switches": 609,
+      "switch_geometry": {
+        "n": 609,
+        "failures": 130,
+        "Brier": 0.23799978549996442,
+        "AUC": 0.7294523847759756,
+        "log_loss": 0.8471928638626313
+      },
+      "switch_geometry_and_previous_execution": {
+        "n": 609,
+        "failures": 130,
+        "Brier": 0.24248594057276474,
+        "AUC": 0.7294523847759756,
+        "log_loss": 0.8475923261326876
+      }
+    }
+  ],
+  "mean_route_Brier": {
+    "geometry": 0.07199352849234768,
+    "geometry_and_previous_execution": 0.051785013024209285,
+    "history_only": 0.046315286958117804,
+    "switch_geometry": 0.11734222784391453,
+    "switch_geometry_and_previous_execution": 0.10330368029300752
+  },
+  "improved_route_folds": 4,
+  "predeclared_promising_rule_passed": false,
+  "applied_to_registered_policies": false,
+  "diagnostic_predictor_Adam_steps": 2400,
+  "new_controls": 0,
+  "registered_policy_updates": 0,
+  "wall_seconds": 241.4539999999106,
+  "research_acceptance": "UNMET",
+  "executed_protocol": {
+    "scope": "Exploratory auxiliary prediction validation on existing selected TRAINdecisions;not a new PPOmethod or driving result",
+    "train_policy_seeds": [
+      11,
+      22,
+      33
+    ],
+    "validation_policy_seeds": [
+      44,
+      55
+    ],
+    "group_split": "For each heldout route,fit only other routes from train seeds;test only that route from validation seeds. No validation seed enters fitting or input normalization.",
+    "capacity_matching": "Both MLPs have41inputs,identical seeded parameter initialization,32tanh16tanh1architecture,300full-batch BCE Adam1e-3updates. Geometry arm zeros the6history inputs.",
+    "strong_history_baseline": "TRAIN-fitted Beta(1,1)-smoothed P(next plan_failed|previous plan_failed)",
+    "predeclared_promising_rule": "Mean route Brier improves at least10percent against BOTH geometry-only MLP and history-only baseline;at least3of4route folds improve against geometry;action-switch subgroup Brier improves against geometry.",
+    "limits": "Four known route geometries and previously collected TRAINdata. No final conditions,unselected-action labels,policy updates,or closed-loop claims. Prior seed11pilot was exploratory and had unmatched input-layer parameter counts.",
+    "script_sha256": "08d96675fe4a936e5703b3267f719f5a35d78d88bcfc01496d8ee52a07a209c4",
+    "wall_budget_seconds": 600,
+    "CPU_threads": 1,
+    "new_controls": 0
+  },
+  "executed_script_sha256": "08d96675fe4a936e5703b3267f719f5a35d78d88bcfc01496d8ee52a07a209c4",
+  "pilot": {
+    "protocol": {
+      "scope": "Exploratory TRAIN-only executability prediction;no plant or registered-policy updates.",
+      "batch": "20261031T025409165666Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "training_data_only": true,
+      "target": "plan_failed during selected next macro decision",
+      "cross_validation": "leave one entire route geometry out;every state/episode from that route withheld",
+      "baseline": "35current state/goal/selected-target/geometric-witness/current-neighbor features",
+      "feedback_arm": "same35features plus6previous ACTUALLY measured execution outcomes;no current label or future actor script input",
+      "model": "32tanh16tanh1 MLP;300full-batch BCE Adam1e-3updates;train-fold-only feature normalization;fixed seed0",
+      "predeclared_promising_rule": "mean heldout Brier at least10percent lower than geometry-only and at least3of4heldout road folds improve;not a driving or formal causal criterion",
+      "limits": "One selected pilot training seed,two policies,four known road geometries. No final conditions,policy optimization,simulator controls or counterfactual labels.",
+      "script_sha256": "151beb5aa094b4e6024f93c0b2bcf5439823e61e104485f43ccfef2bb437d68b"
+    },
+    "result": {
+      "scope": "Exploratory TRAIN-only executability prediction;no plant or registered-policy updates.",
+      "protocol_sha256": "38dd5f43f187efd24000893e90bd1d6f366fc6d6c2a10fe9af1a2aadfdc91722",
+      "TRAIN_dataset_sha256": "76ec6424268a78c54ea07e0e36021cfabdabf1d7465b0722146308901e70a130",
+      "all_selected_TRAIN_decisions": 4160,
+      "plan_failures": 707,
+      "input_sources": {
+        "H": {
+          "TRAIN_controls": 20563,
+          "decisions": 2080,
+          "raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f"
+        },
+        "H0": {
+          "TRAIN_controls": 20562,
+          "decisions": 2080,
+          "raw_audit_sha256": "e02948a388e140254d62068bff0844dcace6f282e63c255f27cd9ab7b4f66f63"
+        }
+      },
+      "folds": [
+        {
+          "heldout_route": "260abab6fa479275416957324deea2bf4e0666a7eeafb62d8088a63bccbbc7cf",
+          "train_decisions": 2846,
+          "heldout_decisions": 1314,
+          "constant_train_prevalence": {
+            "n": 1314,
+            "failures": 472,
+            "Brier": 0.3067055092484656,
+            "AUC": 0.5,
+            "log_loss": 0.9511205111302317
+          },
+          "geometry_only": {
+            "n": 1314,
+            "failures": 472,
+            "Brier": 0.09483414218993233,
+            "AUC": 0.9620757679455695,
+            "log_loss": 0.29714434081405017
+          },
+          "geometry_and_previous_execution": {
+            "n": 1314,
+            "failures": 472,
+            "Brier": 0.04565744690618752,
+            "AUC": 0.9852827207214461,
+            "log_loss": 0.16039026036498505
+          }
+        },
+        {
+          "heldout_route": "2fe33d12afe64e6bb2ee7faf1a924c79c5376ef57301ef36c89bb9db1c558360",
+          "train_decisions": 3111,
+          "heldout_decisions": 1049,
+          "constant_train_prevalence": {
+            "n": 1049,
+            "failures": 98,
+            "Brier": 0.09516696714495806,
+            "AUC": 0.5,
+            "log_loss": 0.3498620875533945
+          },
+          "geometry_only": {
+            "n": 1049,
+            "failures": 98,
+            "Brier": 0.017964784678965017,
+            "AUC": 0.9912229876177601,
+            "log_loss": 0.06833207961065327
+          },
+          "geometry_and_previous_execution": {
+            "n": 1049,
+            "failures": 98,
+            "Brier": 0.017330964764221465,
+            "AUC": 0.9887658533444924,
+            "log_loss": 0.0683518831579954
+          }
+        },
+        {
+          "heldout_route": "ba4e7fd8603cdde79a63b900b8edb7dcdcc10164ae02ddc748a7880374fa4c3d",
+          "train_decisions": 3250,
+          "heldout_decisions": 910,
+          "constant_train_prevalence": {
+            "n": 910,
+            "failures": 92,
+            "Brier": 0.0986451394759087,
+            "AUC": 0.5,
+            "log_loss": 0.35687235255880717
+          },
+          "geometry_only": {
+            "n": 910,
+            "failures": 92,
+            "Brier": 0.026982781094028768,
+            "AUC": 0.9867784628468163,
+            "log_loss": 0.09662295049414611
+          },
+          "geometry_and_previous_execution": {
+            "n": 910,
+            "failures": 92,
+            "Brier": 0.024318128085547504,
+            "AUC": 0.987549165515042,
+            "log_loss": 0.08901998038802827
+          }
+        },
+        {
+          "heldout_route": "f4d1dfa230d727c43e5a7918fd4041c84d8280a9ba25d89f8cfdc46b8005b63f",
+          "train_decisions": 3273,
+          "heldout_decisions": 887,
+          "constant_train_prevalence": {
+            "n": 887,
+            "failures": 45,
+            "Brier": 0.0711197592699877,
+            "AUC": 0.5,
+            "log_loss": 0.2955904313649551
+          },
+          "geometry_only": {
+            "n": 887,
+            "failures": 45,
+            "Brier": 0.08208075780323837,
+            "AUC": 0.7843230403800474,
+            "log_loss": 0.29243403436561466
+          },
+          "geometry_and_previous_execution": {
+            "n": 887,
+            "failures": 45,
+            "Brier": 0.0740385953627587,
+            "AUC": 0.8343890208498285,
+            "log_loss": 0.25509340078711695
+          }
+        }
+      ],
+      "unweighted_route_mean_Brier_geometry": 0.05546561644154112,
+      "unweighted_route_mean_Brier_feedback": 0.040336283779678794,
+      "relative_Brier_reduction": 0.2727695756849313,
+      "improved_route_folds": 4,
+      "predeclared_promising_rule_passed": true,
+      "applied_to_registered_policies": false,
+      "new_controls": 0,
+      "registered_policy_updates": 0,
+      "diagnostic_predictor_Adam_steps": 2400,
+      "wall_seconds": 68.15599999995902,
+      "research_acceptance": "UNMET"
+    }
+  },
+  "adoption_decision": "REJECTED:the learned predictor does not beat the simple historical-failure baseline under the predeclared crossed seed/road validation. It is not integrated into PPO,the action mask,reward,planner,controller or any registered learning batch.",
+  "diagnostic_test_result": {
+    "passed": 6,
+    "seconds": 6.47
+  },
+  "limitations": "Auxiliary supervised prediction of selected actual TRAINactions only. No unselected/counterfactual action labels,closed-loop gain,PPOcontribution or formal feedback benefit is established. Source policies are independently trained,but this is not five independently trained new PPOmethods."
+}
