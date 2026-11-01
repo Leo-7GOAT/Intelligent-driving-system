@@ -1,3 +1,37 @@
+# Fixed-wrapper PPO basic gate PASSES; all12known-condition probe RUNNING — 2026-11-01 19:47
+
+Current goal ACTIVE/UNMET. Actual course20261101T112758733226Z_native_B1_shared_parking_PPO
+is COMPLETE/ownedserverstopped. New10240actualTRAINcontrols,318Adamsteps in all35
+saved parameter states,80PPOepochs (KLearly-stop removes2minibatch updates),actor
+and critic change,observationmean/var/countexact. TRAIN26success/3bounds plus
+truncated30thepisode;41parkingoverrides. Every10240trainingframe's common helper
+command/disclosure and engine acknowledgement is verified. Final4/4zero unsafe,
+1399controls(349/429/320/301),6parkingoverrides,nonintervened terminal frames.
+All1399policyactions reconstruct bit-exactly. Total11639rawcontrols verified.
+Model29efb9c3567c347a194717715570bbe4573699a8af72383e1bf349bd3692c753;
+normalizer20ea49708ad7e1333b57394b3d76736377ab771407965521659816fdbb5da6c8.
+Lineage40960,PPOAdam986. Rawdata local;new model capsule not published yet.
+Learning audit:reports/native_B1_shared_parking_PPO_20261101.json;
+whole-action report and endpointfigure also committed. Training wall856.10s.
+Only one warm-started known-road seed. Startingwrappermodel already4/4,so this
+is retention afteractualPPO,not addedPPOvalue or five independent healthy policies.
+DecisionP95 .085/.275/.067/.193s versus .05s period,overruns27%-74%;not realtime.
+Local14+1relatedtests pass;independent15PASS6.85s. PriorGitHubsource19649fe
+CI41302288721SUCCESS. Publicphysicalreplayreport reconstructs deep-exact indie.
+
+CURRENT ONLY ACTIVE NATIVEJOB:20261101T114634589144Z_native_B1_shared_parking_full_probe.
+Registeredpointer:runs/native_B1_shared_parking_full_probe_registration_20261101.json.
+FROZENfinal29efmodel,all12originalKNOWNcurve/static/walkerconditions,0newPPO/BC.
+Same source/low-level/config as successfulbasiccourse,only caseinventory changes.
+3600s max,0retries;launcher toolsession8908. No new final conditions or formal
+full-task training;does not waive the all-five trained-basic gates.
+After cleanup:per-methodrawaudit,frozen-source measuredstartinference,strict
+control-delivery audit;report all12failures by coreclass. Flat whole-sequence
+auditor currently rejects dynamic scenes,so do not claim full12actionreconstruction
+without an appropriately checked dynamic-history auditor.
+
+Older RUNNING labels below are superseded;their jobs are terminal.
+
 # Public shared-parking reproduction COMPLETE; fixed-wrapper PPO RUNNING — 2026-11-01 19:33
 
 Current authoritative state: goal ACTIVE/UNMET. Do not restart historical probes.

@@ -1,5 +1,15 @@
 # Executability-aware hierarchical driving research
 
+Latest actual CARLA PPO course with the shared parking wrapper fixed throughout:
+**10,240 new training controls, 318 verified Adam steps, 4/4 basic-road endpoint
+successes and zero endpoint collision/bounds**. All 11,639 training/evaluation
+controls are verified; all 1,399 endpoint actions reconstruct exactly. Training
+itself retains 26 successes, three bounds failures and its budget-truncated tail.
+This is one warm-started seed on four known TRAIN roads. The frozen initialization
+was already 4/4, so the result demonstrates retention during PPO, not added PPO
+value or the required five-seed qualification. Decision-cycle overruns remain.
+[Training, assistance costs and latency](docs/shared_parking.md#actual-ppo-with-the-wrapper-fixed).
+
 Shared parking engineering validation: frozen B1, H and strong-rule B3 each
 complete the same four known TRAIN roads (4/4, zero collision/bounds). The aid
 overrides 6/1,409 B1 controls and 8 controls in each H/B3 arm. Goal and success
@@ -14,7 +24,7 @@ succeeds in 356 controls with three disclosed parking overrides. Linux CI passes
 1,110 tests; local full CPU regression passes 1,127. These are engineering and
 reproduction checks; research acceptance remains unmet.
 
-Current development: local pose-response supervision improves B1's offline
+Earlier development: local pose-response supervision improves B1's offline
 feedback responses but its real deployment fails (2/4, two bounds failures).
 All 1,782 controls are audited. The separate basic-road PPO course completes
 10,240 actual training controls and 320 verified Adam updates on the fixed sync

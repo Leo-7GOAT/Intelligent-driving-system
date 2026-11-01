@@ -3,7 +3,8 @@
 The frozen B1, H and strong-rule B3 each complete all **four known TRAIN roads**
 with zero collision/bounds episodes when using the same explicit physical parking
 aid. This is a single-seed development transfer, not research acceptance or proof
-of a PPO advantage. The policies have not yet been trained under this wrapper.
+of a PPO advantage. Those three frozen transfer policies were not trained under
+this wrapper. The separate subsequent B1 course below uses it throughout PPO.
 
 | Method | Success | Controls | Parking overrides | Override fraction |
 |---|---:|---:|---:|---:|
@@ -109,3 +110,51 @@ its frozen capsule source is `2794b00236319aedbb2ed801f934b61524e2aae4`.
 Use subsequent source `ba7b3cf` or newer for CPU reproduction: it fixes the
 contiguous matrix layout of two rejected experimental policy classes so their
 strict numerical tests also pass on Linux. Released B1/H models use neither class.
+
+## Actual PPO with the wrapper fixed
+
+The subsequent seed22 course uses unchanged parking v2 and synchronous delivery
+throughout **10,240 actual CARLA training controls**. Saved Adam state proves
+**318 new updates in every one of 35 parameter states**; the existing KL stop
+accounts for two fewer updates than the unrestricted 320. Actor and critic both
+change. Observation mean, variance and count remain exact; no labels, auxiliary
+updates or exploration reset are added. The final predeclared endpoint passes
+the unchanged basic gate: **4/4 successes, zero collision/bounds**.
+
+| Known TRAIN case | Endpoint controls | Parking overrides | Outcome |
+|---|---:|---:|---|
+| 0 | 349 | 2 | Success |
+| 1 | 429 | 2 | Success |
+| 2 | 320 | 1 | Success |
+| 3 | 301 | 1 | Success |
+
+Every one of the **11,639** training/evaluation controls is joined to its measured
+CARLA frame and confirmed engine control. The exact frozen helper is reconstructed
+for all **10,240 training controls** (41 parking overrides) and all 1,399 endpoint
+controls (six overrides). All 1,399 endpoint policy actions reconstruct bit-exactly
+from measured history. Training retains **26 successes, three bounds failures and
+the budget-truncated 30th episode**. It takes 856.10 seconds before endpoint
+evaluation. Total inherited PPO lineage is 40,960 controls; this is not the total
+project development cost. The separately executed public replay costs 356 controls.
+
+The frozen starting model was already 4/4 with the same assistance. This course
+therefore establishes **basic capability retention under real PPO updates**,
+without demonstrating added PPO value. It is one warm-started policy, not five
+independent healthy baselines or a full-task result. Final model SHA256 is
+`29efb9c3567c347a194717715570bbe4573699a8af72383e1bf349bd3692c753`.
+[Full learning/frame/latency audit](../reports/native_B1_shared_parking_PPO_20261101.json),
+[whole-sequence action audit](../reports/native_B1_shared_parking_PPO_whole_sequence_20261101.json),
+[prospective registration](../reports/native_B1_shared_parking_PPO_registration_20261101.json).
+
+![All four audited final trajectories](../reports/figures/native_B1_shared_parking_PPO_20261101.png)
+
+Synchronous execution does not establish real-time operation. Per-case decision
+cycle P95 is 0.085/0.275/0.067/0.193 seconds against a 0.05-second period;
+over-period fractions are 33.8%/74.1%/26.9%/63.5%. The audit includes P99, maximum,
+control-cycle timing and success-conditioned travel time for every case.
+
+The registered next diagnostic evaluates this frozen endpoint on **all twelve
+original known curve/static-obstacle/crossing-walker conditions**, with zero new
+PPO updates. It does not waive the five-seed gates for formal full-task training
+or activate final confirmation conditions. Its output is pending until the new
+owned lifecycle and audits finish.

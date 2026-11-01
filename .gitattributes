@@ -55,3 +55,6 @@ reports/native_shared_parking_public_verification_20261101.json -text -whitespac
 reports/native_shared_parking_public_release_assets_20261101.json -text -whitespace
 reports/native_shared_parking_public_CARLA_replay_20261101.json -text -whitespace
 reports/native_B1_shared_parking_PPO_registration_20261101.json -text -whitespace
+reports/native_B1_shared_parking_PPO_20261101.json -text -whitespace
+reports/native_B1_shared_parking_PPO_whole_sequence_20261101.json -text -whitespace
+reports/figures/native_B1_shared_parking_PPO_20261101.json -text -whitespace
