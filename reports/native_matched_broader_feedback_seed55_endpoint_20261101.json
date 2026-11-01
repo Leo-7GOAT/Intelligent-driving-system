@@ -1,0 +1,34 @@
+{
+  "scope": "Matched H/H0PPO on36TRAIN/24known development-validation conditions;not final confirmation",
+  "seed": 55,
+  "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+  "methods": {
+    "H": {
+      "cases": 24,
+      "successes": 24,
+      "termination_counts": {
+        "success": 24
+      },
+      "training_controls": 20786,
+      "actual_Adam_steps": 660,
+      "raw_controls_verified": 28875,
+      "raw_audit_sha256": "4351e9566560bbd771d77617ae22ccb70983f027a268362aca817b2cb65f8446",
+      "model_sha256": "fbf448308869f85e1adf4925eb385d03f046ae2d2f9f550bb9a622febe3e0083",
+      "normalization_sha256": "11cf8a6560399660b001baf82169047c2115b836ff5398e5f37744feddd0f9d2"
+    },
+    "H0": {
+      "cases": 24,
+      "successes": 24,
+      "termination_counts": {
+        "success": 24
+      },
+      "training_controls": 20520,
+      "actual_Adam_steps": 650,
+      "raw_controls_verified": 28604,
+      "raw_audit_sha256": "908283c4c8b734ccae2b213810f9df1dc1f893b411b73e4b7f5e2147b65aaa87",
+      "model_sha256": "bcd9603ed33b0b2ce5e243e558c9882f45d503e694fd5a221d67f3a9715b201c",
+      "normalization_sha256": "cc7598d970834835aac0e51680c75754f7442039213688acd962b129a6e9925c"
+    }
+  },
+  "research_acceptance": "UNMET"
+}
