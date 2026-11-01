@@ -1,4 +1,4 @@
-# Shared parking v2 engineering screen COMPLETE; research UNMET — 2026-11-01 19:55
+# Shared parking v2 engineering screen COMPLETE; research UNMET — 2026-11-01
 
 All native lifecycles in this goal turn are TERMINAL,ownedemptyserverstopped.
 Goal ACTIVE/UNMET. Do not restart closed probes or the abandoned prepared Hv1.
@@ -26,8 +26,7 @@ B3 batch20261101T104917Z_native_rule:
 Same helper bytes,calibration,vehicle and goal criteria independently audited
 in reports/native_shared_parking_engineering_20261101.json;3982v2controls.
 All engine acknowledgements match;all raw physical frames verified. H/B1 starts
-reconstructed;B1 whole-sequence verification session42897 was running at last
-snapshot and needs collection. No new training/BC in these frozen transfers.
+reconstructed;B1 whole-sequence verification COMPLETE:all1409actions bit-exact. No new training/BC in these frozen transfers.
 B1model72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844;
 Hmodelc46da0e23773fad3856dbc77b7681fcb5e2b32ee02976041a67752dbe9213d36.
 B1lineage30720actualPPOcontrols/H20579;NOT budget-matched research evidence.

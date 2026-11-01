@@ -84,13 +84,13 @@ def audit_arm(batch,method):
         'configuration':{k:config.to_dict()[k] for k in ('goal_tolerance','goal_speed','goal_yaw_tolerance','parking','goal_parking_assist','control_dt','vehicle')}}
 
 
-def analyze():
+def analyze(restored_batches=None):
     paths=[('B1','20261101T104233573082Z_native_shared_parking_v2_B1'),('H','20261101T104236093121Z_native_shared_parking_v2_H'),('B3','20261101T104917Z_native_rule')]
-    arms=[audit_arm(ROOT/'runs'/name,method) for method,name in paths]
+    arms=[audit_arm(restored_batches[method] if restored_batches else ROOT/'runs'/name,method) for method,name in paths]
     for arm in arms[1:]:
         for key in ('helper_sha256','calibration_sha256','configuration'):
             if arm[key]!=arms[0][key]:raise ValueError('Shared parking capability differs by method:'+key)
-    defect=audit_arm(ROOT/'runs/20261101T103609019454Z_native_shared_parking_B1','B1')
+    defect=audit_arm(restored_batches['v1_defect'] if restored_batches else ROOT/'runs/20261101T103609019454Z_native_shared_parking_B1','B1')
     return {'scope':__doc__,'script_sha256':sha(Path(__file__)),'arms':arms,'same_physical_parking_capability':True,
         'v1_defect_retained':defect,'v1_reason':'Braking continued after already parked,so the unchanged nonintervened-terminal success gate stayed false. V2 releases at the existing goal_speed;the success gate is not changed.',
         'unassisted_reference':{'batch':'20261101T100704463570Z_native_reflection_feedback_probe','B1successes':3,'bounds':1},
