@@ -1,0 +1,65 @@
+{
+  "scope": "Numerically reconstruct a real first TRAIN rollout and compare bounded PPO rates offline.",
+  "batch": "20261031T232838093068Z_native_B1_basic_PPO_course",
+  "raw_audit_sha256": "673af5c566c0ce76e5852e01b4d2f1b6fbda07e46a97e3aa4f0531b009e916d0",
+  "script_sha256": "235197269cb8a6d7bed5d9dcb890f149575839c271d245f2f4bb87442044ca9f",
+  "TRAIN_controls_reconstructed": 1280,
+  "max_sampled_action_error": 1.1920928955078125e-07,
+  "action_absolute_tolerance": 1e-06,
+  "native_parameter_absolute_tolerance": 1e-07,
+  "rollout_dataset_sha256": "eb71aef4f0dd9930cc8c2cf8e609a9ce557842d2685fa2789b05395c69a67c6e",
+  "results": [
+    {
+      "learning_rate": 3e-05,
+      "offline_Adam_steps": 1,
+      "native_checkpoint_maximum_parameter_error": 5.21540641784668e-08,
+      "mean_KL_on_recorded_rollout": 0.013981036841869354,
+      "value_MSE_before_on_same_TRAIN_rollout": 0.8918753862380981,
+      "value_MSE_after_on_same_TRAIN_rollout": 0.8445327877998352,
+      "metrics": {
+        "train/learning_rate": 3e-05,
+        "train/entropy_loss": 5.1621222496032715,
+        "train/policy_gradient_loss": 0.006194360181694947,
+        "train/value_loss": 0.8774827420711517,
+        "train/approx_kl": 0.01239200122654438,
+        "train/clip_fraction": 0.15000000596046448,
+        "train/loss": 0.4370228350162506,
+        "train/explained_variance": -0.15747499465942383,
+        "train/std": 0.018315641209483147,
+        "train/n_updates": 1,
+        "train/clip_range": 0.2
+      }
+    },
+    {
+      "learning_rate": 3e-06,
+      "offline_Adam_steps": 40,
+      "native_checkpoint_maximum_parameter_error": 0.00011736899614334106,
+      "mean_KL_on_recorded_rollout": 0.003748590825125575,
+      "value_MSE_before_on_same_TRAIN_rollout": 0.8918753862380981,
+      "value_MSE_after_on_same_TRAIN_rollout": 0.7210981845855713,
+      "metrics": {
+        "train/learning_rate": 3e-06,
+        "train/entropy_loss": 5.162091386318207,
+        "train/policy_gradient_loss": -0.016006333875411373,
+        "train/value_loss": 0.8047051593661309,
+        "train/approx_kl": 0.0077416361309587955,
+        "train/clip_fraction": 0.0601562503434252,
+        "train/loss": 0.33272868394851685,
+        "train/explained_variance": -0.15747499465942383,
+        "train/std": 0.018316172063350677,
+        "train/n_updates": 10,
+        "train/clip_range": 0.2
+      }
+    }
+  ],
+  "new_controls": 0,
+  "offline_PPO_Adam_steps": 41,
+  "limits": "One training seed,one fixed measured TRAINrollout. Numerical reconstruction,not bitwise identity. Original unbounded actions are used. Same-data critic loss/KL and update counts are not driving improvement or heldout evidence. Offline models are diagnostic and never substitute for registered native policies.",
+  "wall_seconds": 112.42200000002049,
+  "research_acceptance": "UNMET",
+  "prototype_failures_retained": {
+    "strict_bitwise_action_probe": "failed at control34 with2.98e-8difference",
+    "first_full_numerical_probe": "completed reconstruction/update but failed JSONserialization;no trained model retained",
+    "not_used_to_claim_driving_improvement": true
+  }
+}

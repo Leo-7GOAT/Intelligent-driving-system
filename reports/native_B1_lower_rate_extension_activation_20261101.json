@@ -1,0 +1,65 @@
+{
+  "scope": "Evidence-based all-five lower-rate basic learning continuation queued;no new native child started yet",
+  "matched_replay_report": "reports/native_B1_first_rollout_rate_replay_20261101.json",
+  "same_measured_TRAIN_rollout_controls": 1280,
+  "original_rate": 3e-05,
+  "new_rate": 3e-06,
+  "offline_original_Adam_steps": 1,
+  "offline_lower_rate_Adam_steps": 40,
+  "native_parameter_reproduction_absolute_error": 5.21540641784668e-08,
+  "one_seed_and_one_rollout_only": true,
+  "no_driving_improvement_claim_from_replay": true,
+  "all_five_seeds_required": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "new_controls_each": 10240,
+  "inherited_controls_each": 10240,
+  "policy_lineage_after_basic_extension": 20480,
+  "policy_lineage_after_full_stage": 40960,
+  "trained_network_Adam_normalization_and_RNG_retained": true,
+  "new_supervised_updates": 0,
+  "actual_lower_rate_queue": {
+    "phase": "WAITING_FOR_ALL_FIVE_BASIC_RESULTS_FOR_RATE_EXTENSION",
+    "pid": 62332,
+    "epoch": 1793491750.8630393,
+    "created": [],
+    "completed": [],
+    "dependency_pid": 62176
+  },
+  "actual_full_task_queue": {
+    "phase": "WAITING_FOR_ALL_FIVE_TRAINED_BASIC_QUALIFICATIONS",
+    "pid": 20420,
+    "epoch": 1793491758.426875,
+    "created": [],
+    "completed": [],
+    "dependency_pid": 62332
+  },
+  "isolated_actual_trained_checkpoint_preflight": {
+    "seed": 11,
+    "actual_frozen_restore_succeeded": true,
+    "runtime_config_matches_saved": true,
+    "trained_PPO_and_Adam_state_retained": true,
+    "normalization_statistics_unchanged": true,
+    "policy_tensor_sha256": "b8ff923f9f159634681874971ad8afe3afc1c064e91e574d81c24af2ed7ec979",
+    "new_resets": 0,
+    "new_controls": 0,
+    "new_optimizer_updates": 0
+  },
+  "old_childless_full_queue_superseded": {
+    "epoch": 1793491655.7284522,
+    "phase_verified": "WAITING_FOR_ALL_FIVE_TRAINED_BASIC_QUALIFICATIONS",
+    "created": [],
+    "no_children": true,
+    "reason": "Original basic seed11failed permanently;original full-task queue cannot qualify. Replacement waits for all-five retained-state lower-rate extension qualification. Native workers not stopped."
+  },
+  "root_related_tests": {
+    "passed": 26,
+    "seconds": 5.95
+  },
+  "limits": "All original basic courses finish and all failures/costs remain recorded. Extension applies the same extra learning to every seed,not only failed or selected policies. Unchanged>=3of4basic success with zero unsafe episodes is checked AFTERextension,before full-task entry. Curriculum/lost-work costs are additional,not an equal-total-budget H/B1claim.",
+  "research_acceptance": "UNMET"
+}
