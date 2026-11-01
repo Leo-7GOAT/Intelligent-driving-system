@@ -1,6 +1,6 @@
 # Development model card
 
-## Current model inventory — 2026-11-01
+## Verified model inventory snapshot — 2026-11-01 12:30 UTC+8
 
 The current model evidence remains developmental. Models,normalizers,resolved
 configurations,frozen worker source and raw controls are bound by capsule

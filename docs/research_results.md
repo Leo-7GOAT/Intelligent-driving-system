@@ -1,6 +1,6 @@
 # Research results and claim boundaries
 
-## Verified development results — 2026-11-01
+## Verified development snapshot — 2026-11-01 12:30 UTC+8
 
 These cohorts retain different task inventories and execution versions. They
 are reported separately. All listed conditions are known development data;

@@ -49,23 +49,24 @@ all51,200training controls and58,758raw controls are preserved.
 A new all-five matched-harness H/H0replication is actually queued:36TRAIN and
 24known development-validation conditions,20,480requested controls per method
 and seed. All10pristine independently seeded actors restore unchanged;all5full
-source trees match. The first two complete pairs each score H24/24 and H024/24,
-without unsafe outcomes. They use20,522/20,529and20,579/20,539training controls
-respectively,650Adam steps per method and seed. In seed11,H uses470interventions
-versus390and6.95s more evaluation time. Neither pair shows a success-rate benefit;
-five-seed inference remains pending. Seed33is now training;final conditions remain unused.
+source trees match. The first three complete pairs each score H24/24 and H024/24,
+without unsafe outcomes. They use20,522/20,529,20,579/20,539and20,544/20,583training
+controls respectively,650Adam steps per method and seed. In seed11,H uses470interventions
+versus390and6.95s more evaluation time. No completed pair shows a success-rate benefit;
+five-seed inference remains pending. Seed44is now training;final conditions remain unused.
 [Audited first pair](reports/native_matched_broader_feedback_seed11_pair_20261101.json),
 [all-outcome and mutually successful-case costs](reports/native_matched_broader_feedback_seed11_costs_20261101.json).
 [Frozen inputs and live queue](reports/native_matched_broader_feedback_queue_activation_20261101.json).
 
-The first two complete matched pairs are now
+The first three complete matched pairs are now
 [publicly released](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback).
-Independent public downloads reconstruct1,867files,114,721training/evaluation
-controls,96measured-start actions and both exact all-case figures. These remain
-24unique known conditions repeated across two trained pairs. Both methods,
+Independent public downloads reconstruct2,785files,172,095training/evaluation
+controls,144measured-start actions and three exact all-case figures. These remain
+24unique known conditions repeated across three trained pairs. Both methods,
 all outcomes,models,normalizers and initial checkpoints are retained.
 [Seed11public verification](reports/native_matched_broader_seed11_public_verification_20261101.json),
-[seed22public verification](reports/native_matched_broader_seed22_public_verification_20261101.json).
+[seed22public verification](reports/native_matched_broader_seed22_public_verification_20261101.json),
+[seed33public verification](reports/native_matched_broader_seed33_public_verification_20261101.json).
 From source369db6939ee67e540aa6b63c155b3eb27964f2bc with the pinned CPU dependencies,
 use fresh output directories:
 

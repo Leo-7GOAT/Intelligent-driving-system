@@ -18,16 +18,16 @@ B1下一项开发诊断已完成拟合：每个基础条件取自身最早三个
 [第四个种子的完整失败轨迹与测量状态诊断](../reports/native_B1_seed44_lower_rate_failure_diagnosis_20261101.json)。
 [实际门槛与未解决停滞](../reports/native_B1_first_lower_rate_basic_gate_and_stall_20261101.json)。首阶段五种子3/4、2/4、2/4、0/4、2/4的全部失败和成本继续保留。
 
-新的五种子H/H0同桥接版本复验已运行：36个TRAIN条件、24个已知开发验证条件，各方法各种子请求20,480控制步。前两组H/H0分别完成20,522/20,529和20,579/20,539控制步、各650次Adam更新，均24/24成功且无碰撞/越界，尚无成功率提升。首组H干预470次、H0390次，H总通行时间多6.95秒。第三个种子正在训练，最终测试未启用，五种子统计尚待完成。
+新的五种子H/H0同桥接版本复验已运行：36个TRAIN条件、24个已知开发验证条件，各方法各种子请求20,480控制步。前三组H/H0分别完成20,522/20,529、20,579/20,539和20,544/20,583控制步、各650次Adam更新，均24/24成功且无碰撞/越界，尚无成功率提升。首组H干预470次、H0390次，H总通行时间多6.95秒。第四个种子正在训练，最终测试未启用，五种子统计尚待完成。
 [首组原始绑定配对结果](../reports/native_matched_broader_feedback_seed11_pair_20261101.json)、[完整代价比较](../reports/native_matched_broader_feedback_seed11_costs_20261101.json)。
 [冻结输入、实际队列与范围](../reports/native_matched_broader_feedback_queue_activation_20261101.json)。
 
-前两组完整模型和原始日志现已[公开预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback)，并从无需登录的公开地址独立重建通过：合计1,867个文件、114,721个训练/评测控制帧、96个测量初态动作、两幅完整图表逐字节一致。两种方法及全部结果均保留，仍是两个开发种子、24个已知条件，尚无反馈优势结论。
-[首组公开复现凭证](../reports/native_matched_broader_seed11_public_verification_20261101.json)、[第二组公开复现凭证](../reports/native_matched_broader_seed22_public_verification_20261101.json)，英文主README给出复现命令。
+前三组完整模型和原始日志现已[公开预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback)，并从无需登录的公开地址独立重建通过：合计2,785个文件、172,095个训练/评测控制帧、144个测量初态动作、三幅完整图表逐字节一致。两种方法及全部结果均保留，仍是三个开发种子、24个已知条件，尚无反馈优势结论。
+[首组公开复现凭证](../reports/native_matched_broader_seed11_public_verification_20261101.json)、[第二组公开复现凭证](../reports/native_matched_broader_seed22_public_verification_20261101.json)、[第三组公开复现凭证](../reports/native_matched_broader_seed33_public_verification_20261101.json)，英文主README给出复现命令。
 
 全五种子的配对统计及24条件图表已启动只读等待程序，要求全部五组、完整代码树一致及实际训练预算齐全后才生成；120个种子-场景评测不会被写成120个独立最终条件。旧12条件公开主图仍逐字节重建一致。
 [登记配对清单](../protocols/native_matched_broader_feedback_pairs_20261101.json)、[实际汇总队列](../reports/native_matched_broader_feedback_analysis_activation_20261101.json)。
-自动发布程序已实际处理第二组，随后等待剩余三组；全部结束后由公开下载重建完整统计、十份模型Adam/冻结归一化证明与主图。首次启动的Windows编码错误及其退出记录保留，UTF8修复已通过1022项全量回归，本地和独立目录各44项相关测试通过。
+自动发布程序已实际处理第二、三组，随后等待剩余两组；全部结束后由公开下载重建完整统计、十份模型Adam/冻结归一化证明与主图。首次启动的Windows编码错误及其退出记录保留，UTF8修复已通过1022项全量回归，本地和独立目录各44项相关测试通过。
 [已启动的完整发布与复现队列](../reports/native_matched_broader_full_publication_activation_20261101_v2_utf8.json)。
 
 额外执行预测网络被否决：策略种子和道路同时隔离后，Brier为0.0518，不如简单历史失败基线的0.0463；独立目录重放所有预测完全一致。它未接入PPO、动作掩码或控制器。

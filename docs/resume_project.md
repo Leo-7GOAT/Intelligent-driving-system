@@ -2,7 +2,7 @@
 
 These descriptions intentionally omit unproven superiority, final success-rate targets, production safety and real-vehicle claims.
 
-Latest verified development wording (2026-11-01):
+Verified development wording (2026-11-01,12:30UTC+8snapshot;later live progress is in the main README):
 
 - 中文：构建已知地图下的低速车辆PPO分层决策、Hybrid A*规划与MPC控制系统，接入CARLA真实PPO更新、车辆标定和逐帧执行审计。完成五种子H/H0及H/二维A*开发对照，公开模型、归一化、原始日志与可独立重建的统计图表，CPU回归1022项通过。H/H0在12个已知开发条件上合计58/60与57/60，尚未建立稳定反馈优势；健康非分层基线和独立最终验证仍待完成。
 - English: Built a known-map, low-speed driving system combining PPO decisions, Hybrid A* planning and MPC, with real CARLA PPO updates, vehicle calibration and frame-level execution audits. Completed five-seed H/H0 and H/2D-A* development studies with publicly reproducible models, normalizers, raw logs and figures; 1,022 CPU tests pass. Canonical H/H0 scores are 58/60 and 57/60 on 12 known development conditions. Stable feedback benefit, a healthy flat-PPO baseline and independent final confirmation remain unestablished.

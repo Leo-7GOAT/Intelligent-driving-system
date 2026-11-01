@@ -1,6 +1,6 @@
 # Research acceptance ledger
 
-## Current audit — 2026-11-01
+## Verified audit snapshot — 2026-11-01 12:30 UTC+8
 
 The original targets remain unchanged and overall acceptance is **UNMET**.
 The following is the current evidence ledger. Dated snapshots below preserve

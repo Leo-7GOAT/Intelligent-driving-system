@@ -1,4 +1,36 @@
-# Latest actual two-pair results / autonomous publication — 2026-11-01 12:25
+# Latest third complete public pair — 2026-11-01 13:03
+
+Previous turn PROGRESS:four factual delivery docs updated and137local links verified,
+commit8af80bf1f24fab93e1f4484724d79bf5a6a92be7. Their current-result sections are
+explicit12:30snapshots;update final ledgers after all five,not every heartbeat.
+This turn VERIFIED WAIT then PROGRESS:waited exact worker45988to normal exit0,
+owned-empty cleanup,all raw/inference checks and automatic public reconstruction.
+
+Seed33 `20261101T011949266084Z_native_matched_broader_feedback` COMPLETE:
+H24/24,H024/24,zero unsafe;20544/20583training controls,650Adam each,
+57374total raw controls. Worker45988 TERMINAL;do not restart/adopt/kill that PID.
+Source-only inspection found same-target witness caching already present and
+batch_sat_v1already active;no profiling experiment or new optimization adopted.
+
+Publisher54528 automatically packaged/uploaded/publicly downloaded/rebuilt33.
+918files/57374controls/48start actions/exact figure,zero transfer failures.
+Receipt `reports/native_matched_broader_seed33_public_verification_20261101.json`.
+First3public pairs total2785files/172095controls/144starts/3exact figures,
+still24unique known conditions. H/H0all3tie24/24;no five-seed interval yet.
+Incremental release notes updated to describe fixed protocol/per-pair receipts
+without stale claims about how many pairs are still running;tag stays369db69.
+At all-five completion update notes with actual complete metrics.
+
+Main observer40540advanced to seed44
+`20261101T011953260380Z_native_matched_broader_feedback`;actual worker68520,
+creation1793508925.433,basePython311,last6818Hcontrols at12:58. Read actual
+worker_process.json/CIM before management. Seed55remains queued. Existing
+teacher69732/B1probe68120/analysis37956still wait exact dependencies;publisher54528
+waits seed44. All frozen training inputs unchanged. No new B1edits/tests/rebuilds
+before queued99label driving result or a real failure requiring action.
+GoalACTIVE/UNMET. Healthy B1/PPOvalue/feedback/final120still missing.
+
+# Previous actual two-pair results / autonomous publication — 2026-11-01 12:25
 
 Previous turn PROGRESS:first pair actually publicly reconstructed. This turn
 PROGRESS:seed22native pair COMPLETE/raw+inference verified,both24/24zero unsafe,
