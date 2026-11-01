@@ -2,6 +2,7 @@ import pickle
 from types import SimpleNamespace
 
 import pytest
+from gymnasium import spaces
 
 from scripts import audit_native_ppo_configuration as auditor
 
@@ -11,7 +12,7 @@ def learner(**changes):
         gamma=.995,gae_lambda=.95,ent_coef=0.,vf_coef=.5,max_grad_norm=.5,
         normalize_advantage=True,target_kl=None,lr_schedule=lambda progress:3e-5,
         clip_range=lambda progress:.2,clip_range_vf=None,observation_space=SimpleNamespace(shape=(4705,)),
-        action_space=SimpleNamespace(n=31),policy=SimpleNamespace(optimizer=SimpleNamespace(
+        action_space=spaces.Discrete(31),policy=SimpleNamespace(optimizer=SimpleNamespace(
             state={},param_groups=[{'lr':3e-5}],defaults={'lr':3e-5,'eps':1e-5})))
     model.__dict__.update(changes);return model
 
@@ -30,6 +31,14 @@ def test_saved_optimizer_rate_cannot_hide_behind_matching_declared_schedule(tmp_
     candidate,reference=directories(tmp_path);wrong=learner();wrong.policy.optimizer.param_groups[0]['lr']=3e-4
     monkeypatch.setattr(auditor,'load_ppo',lambda path,**kw:wrong if path.parent==candidate else learner())
     with pytest.raises(ValueError,match='optimizer_group_rates'):auditor.verify(candidate,reference)
+
+
+def test_matching_pristine_profiles_accept_an_actual_supported_action_space(tmp_path,monkeypatch):
+    candidate,reference=directories(tmp_path)
+    monkeypatch.setattr(auditor,'load_ppo',lambda *args,**kw:learner())
+    result=auditor.verify(candidate,reference)
+    assert result['complete_saved_PPO_profile_matches_reference'] is True
+    assert result['profile']['action_count']==31
 
 
 def test_future_rollout_or_discount_mismatch_is_rejected(tmp_path,monkeypatch):
