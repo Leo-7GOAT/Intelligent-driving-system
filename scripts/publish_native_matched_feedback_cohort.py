@@ -31,6 +31,12 @@ def missing_objects(rows,assets):
     return missing
 
 
+def decode_command_output(stdout,stderr):
+    """Decode CLI UTF8 explicitly; Windows' locale may otherwise be GBK."""
+    stdout=stdout or b'';stderr=stderr or b''
+    return stdout.decode('utf-8'),stdout+b'\n'+stderr
+
+
 def run(execution):
     execution=Path(execution).resolve();root=execution.parent.parent;source=execution/'source'
     sys.path.insert(0,str(source))
@@ -45,7 +51,7 @@ def run(execution):
     artifact=Path(plan['artifact_directory']);artifact.mkdir();package_checkout=Path(plan['package_checkout'])
     reconstruction_checkout=Path(plan['reconstruction_checkout']);python=root/'runs/prerelease_20261022/clean_checkout/.venv/Scripts/python.exe'
     repo='Leo-7GOAT/Intelligent-driving-system';tag='v0.2.0-dev.20261101-feedback';gh='C:/Program Files/GitHub CLI/gh.exe'
-    env=dict(os.environ,HTTPS_PROXY='http://127.0.0.1:7890',HTTP_PROXY='http://127.0.0.1:7890',GODEBUG='http2client=0');env.pop('NAVSTACK_AUDIT_SOURCE_ROOT',None)
+    env=dict(os.environ,HTTPS_PROXY='http://127.0.0.1:7890',HTTP_PROXY='http://127.0.0.1:7890',GODEBUG='http2client=0',PYTHONIOENCODING='utf-8',PYTHONUTF8='1');env.pop('NAVSTACK_AUDIT_SOURCE_ROOT',None)
     completed=[];failures=[];owner=None;analysis_owner=None;deadline=time.monotonic()+43200
     def status(phase,**extra):atomic_json(execution/'status.json',{'phase':phase,'pid':os.getpid(),'epoch':time.time(),'completed':completed,'network_failures':failures,**extra})
     def verify():
@@ -58,10 +64,13 @@ def run(execution):
         remaining=min(cap,deadline-time.monotonic())
         if remaining<=0:raise TimeoutError('Finite twelve-hour publication deadline exhausted')
         try:
-            result=subprocess.run(list(map(str,command)),cwd=cwd or reconstruction_checkout,env=env,capture_output=True,text=True,timeout=remaining)
-            okay=result.returncode==0;output=result.stdout;log=output+'\n'+result.stderr
-        except subprocess.TimeoutExpired:okay=False;output='';log='Owned publication command timed out;no native worker affected'
-        with (execution/(label+'.log')).open('x',encoding='utf-8') as stream:stream.write(log)
+            result=subprocess.run(list(map(str,command)),cwd=cwd or reconstruction_checkout,env=env,capture_output=True,timeout=remaining)
+            okay=result.returncode==0;raw_stdout=result.stdout or b'';raw_stderr=result.stderr or b''
+        except subprocess.TimeoutExpired as error:
+            okay=False;raw_stdout=error.stdout or b'';raw_stderr=(error.stderr or b'')+b'\nOwned publication command timed out;no native worker affected'
+        # Keep the original bytes even if a future command violates UTF8.
+        with (execution/(label+'.log')).open('xb') as stream:stream.write(raw_stdout+b'\n'+raw_stderr)
+        output,_=decode_command_output(raw_stdout,raw_stderr)
         if required and not okay:raise RuntimeError('Publication command failed:'+label)
         return okay,output
     def remote(label):
@@ -99,7 +108,7 @@ def run(execution):
                 else:analysis_owner=handle
             call([gh,'run','watch',str(plan['pipeline_CI_run']),'--repo',repo,'--exit-status','--interval','15'],'publication_code_CI',900)
             _,ci=call([gh,'run','view',str(plan['pipeline_CI_run']),'--repo',repo,'--json','headSha,status,conclusion'],'publication_code_CI_identity',90)
-            if json.loads(ci)!={'headSha':plan['reconstruction_commit'],'status':'completed','conclusion':'success'}:
+            if json.loads(ci)!={'headSha':plan.get('publication_commit',plan['reconstruction_commit']),'status':'completed','conclusion':'success'}:
                 raise ValueError('Exact publication/reconstruction source CI did not pass')
             _,release=call([gh,'release','view',tag,'--repo',repo,'--json','isPrerelease,targetCommitish'],'release_identity',90)
             if json.loads(release)!={'isPrerelease':True,'targetCommitish':plan['package_commit']}:raise ValueError('Existing development release source differs')

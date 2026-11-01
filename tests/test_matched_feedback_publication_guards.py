@@ -1,6 +1,6 @@
 from copy import deepcopy
 import pytest
-from scripts.publish_native_matched_feedback_cohort import require_rows,missing_objects
+from scripts.publish_native_matched_feedback_cohort import require_rows,missing_objects,decode_command_output
 
 
 def rows():return [{'seed':s,'batch':'pair'+str(s),'protocol_sha256':'bound'} for s in [11,22,33,44,55]]
@@ -31,3 +31,12 @@ def test_foreign_or_partial_remote_object_is_never_treated_as_replaceable(change
     before=deepcopy(remote)
     with pytest.raises(ValueError):missing_objects([item],{'part001':remote})
     assert remote==before
+
+
+def test_windows_ci_checkmarks_use_utf8_without_losing_original_bytes():
+    stdout='✓ regression completed\n{"conclusion":"success"}\n'.encode('utf-8')
+    stderr='独立复现'.encode('utf-8')
+    decoded,original=decode_command_output(stdout,stderr)
+    assert decoded.startswith('✓ regression completed')
+    assert original==stdout+b'\n'+stderr
+    assert decode_command_output(None,None)==('',b'\n')
