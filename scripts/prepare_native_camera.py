@@ -75,7 +75,7 @@ def prepare(parent,method,case_ids):
     if signature(training_config(p,method,vehicle))!=read(origin/'config.json')['signature']:
         raise ValueError('Camera evaluation changes saved policy/task semantics')
     batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_native_PPO_camera')
-    batch.mkdir();(batch/'infrastructure').mkdir()
+    batch.mkdir(parents=True);(batch/'infrastructure').mkdir()
     shutil.copytree(parent/'source',batch/'source',ignore=shutil.ignore_patterns('__pycache__'))
     shutil.copytree(parent/'calibration',batch/'calibration')
     (batch/'resume').mkdir();shutil.copytree(origin,batch/'resume'/method)
