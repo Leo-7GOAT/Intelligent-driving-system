@@ -1,0 +1,163 @@
+{
+  "scope": "Combine the audited TRAIN mixture, fixed actor fit and pure-policy probe.",
+  "seed": 22,
+  "collection": {
+    "batch": "20261101T074146168864Z_native_original_TRAIN_recovery_collection",
+    "original_TRAIN_route_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "collection_controls": 1334,
+    "collection_world_ticks": 1457,
+    "teacher_controls": 664,
+    "learner_controls": 670,
+    "eligible_executed_teacher_labels": 664,
+    "dataset_sha256": "afae2ec17c142d3b5b901de987d42b665a9317b124a14e59b88208e78eb0eda2",
+    "trace_sha256": "7c68352c42ab3cd8d2588adc3e1fa6f784763640979c6ed5a97ea6af9b684f09",
+    "teacher_query_seconds": 21.42899999837391,
+    "wall_seconds": 128.43699999991804,
+    "successes": 4,
+    "unsafe_episodes": 0,
+    "case_outcomes": [
+      {
+        "case_id": 0,
+        "reason": "success",
+        "controls": 341
+      },
+      {
+        "case_id": 1,
+        "reason": "success",
+        "controls": 381
+      },
+      {
+        "case_id": 2,
+        "reason": "success",
+        "controls": 310
+      },
+      {
+        "case_id": 3,
+        "reason": "success",
+        "controls": 302
+      }
+    ],
+    "PPO_updates": 0,
+    "supervised_updates": 0,
+    "not_policy_evaluation": true,
+    "all_measured_observations_and_learner_actions_bit_exact": true,
+    "audit_sha256": "b2a0728b3ddf8e93b16a76b07012a0aa5610c7e501bb2e2c1727cf6e7ca9d84a"
+  },
+  "fit": {
+    "path": "runs/B1_seed22_original_TRAIN_recovery_fit_20261101",
+    "complete_sha256": "bb5c3934dee0a91eb228db66b1c63a8456749f6f0f31b51f80b0525148d4687d",
+    "original_executed_teacher_TRAIN_rows": 3467,
+    "new_executed_teacher_TRAIN_rows": 664,
+    "excluded_counterfactual_collection_rows": 670,
+    "new_supervised_Adam_proposals": 512,
+    "retention_gate": {
+      "basic_teacher_groups": [
+        {
+          "group": 0,
+          "rows": 272,
+          "MSE": 0.00014456712422153254,
+          "replay_MSE": 0.00017874268175099544,
+          "fixed_ceiling": 0.0002334283521887443,
+          "passed": true
+        },
+        {
+          "group": 1,
+          "rows": 278,
+          "MSE": 0.00022035098912386307,
+          "replay_MSE": 0.00016856768868822038,
+          "fixed_ceiling": 0.00022070961086027548,
+          "passed": true
+        },
+        {
+          "group": 2,
+          "rows": 249,
+          "MSE": 0.0002098887031150171,
+          "replay_MSE": 0.0002998678514691334,
+          "fixed_ceiling": 0.0003848348143364168,
+          "passed": true
+        },
+        {
+          "group": 3,
+          "rows": 241,
+          "MSE": 0.00020871439762427626,
+          "replay_MSE": 0.00019639331158271506,
+          "fixed_ceiling": 0.00025549163947839385,
+          "passed": true
+        }
+      ],
+      "query_constraint_applied": false,
+      "passed": true
+    },
+    "new_TRAIN_teacher_MSE_before": 0.0145920654758811,
+    "new_TRAIN_teacher_MSE_after": 0.011973812244832516,
+    "critic_PPO_optimizer_counters_RMS_retained": true,
+    "new_PPO_updates": 0,
+    "new_controls": 0
+  },
+  "pure_policy_probe": {
+    "batch": "20261101T074741852141Z_native_recovery_pure_policy_probe",
+    "model_sha256": "c5d11b4580b6df6a43d881c1aa6e335a11698754523d66712635ee3f9a82d24e",
+    "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+    "cases": 4,
+    "successes": 2,
+    "termination_counts": {
+      "success": 2,
+      "deadline": 1,
+      "out_of_bounds": 1
+    },
+    "case_results": [
+      {
+        "case_id": 0,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 340
+      },
+      {
+        "case_id": 1,
+        "success": false,
+        "termination_reason": "deadline",
+        "controls": 900
+      },
+      {
+        "case_id": 2,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 337
+      },
+      {
+        "case_id": 3,
+        "success": false,
+        "termination_reason": "out_of_bounds",
+        "controls": 92
+      }
+    ],
+    "unsafe_cases": 1,
+    "basic_gate_passed": false,
+    "raw_controls_verified": 1669,
+    "new_PPO_updates": 0,
+    "additional_supervised_updates_before_evaluation": 512,
+    "raw_audit_sha256": "bbcc3d8d314244e6086eb938ce48bd353254fefed4c166ffe7721c4d5c63e3f9",
+    "measured_initial_actions_verified": 4,
+    "teacher_used_at_runtime": false
+  },
+  "new_controls_total": 3003,
+  "new_supervised_Adam_proposals_total": 512,
+  "new_PPO_controls_total": 0,
+  "new_PPO_updates_total": 0,
+  "retained_PPO_lineage_controls": 20480,
+  "basic_gate": "At least3/4successesANDzero collision/bounds;unchanged.",
+  "selection": "All registered episodes,one fixed final fit endpoint,no retries,no outcome-based label exclusion.",
+  "new_final_conditions_used": 0,
+  "raw_assets_status": "Local audited evidence;not yet a publicly reconstructed capsule.",
+  "research_acceptance": "UNMET;one known development seed,not a healthy full-task five-seed baseline.",
+  "route_profile": "original_TRAIN4_v1",
+  "unchanged_retention_reference_model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+  "both_recovery_attempts_controls": 6272,
+  "both_recovery_attempts_auxiliary_Adam_proposals": 1024,
+  "cumulative_actor_intervention_steps": 1536
+}

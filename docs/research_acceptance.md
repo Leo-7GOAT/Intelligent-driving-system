@@ -1,5 +1,13 @@
 # Research acceptance ledger
 
+The subsequent original-TRAINcollection is mixed4/4,but its projected actor
+probe2/4and matched unprojected probe1/4both fail the unchanged actual driving
+gate. Total9,010recovery-profile controls are audited;no final conditions or
+new PPOwere used in those profiles. A separate actual10,240control PPOpilot
+has started;its activation is not a completed result. Acceptance remains UNMET.
+[Matched negative comparison](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
+[actual activation](../reports/native_B1_exploration_PPO_activation_20261101.json).
+
 Latest executed recovery attempt:1,612actual TRAIN mixture controls,850eligible
 executed-teacher labels,512new auxiliary Adam proposals and1,657pure-policy
 probe controls. B1scores2/4with one deadline and one bounds failure;the unchanged

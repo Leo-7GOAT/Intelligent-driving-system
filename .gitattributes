@@ -24,3 +24,5 @@ reports/figures/native_matched_broader_feedback_cohort_20261101.json -text -whit
 reports/native_broader_PPO_teacher_rule_attribution_20261101.json -text -whitespace
 reports/native_teacher_reference_context_20261101.json -text -whitespace
 reports/native_B1_executed_recovery_collection_and_probe_20261101.json -text -whitespace
+reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json -text -whitespace
+reports/native_B1_original_TRAIN_unprojected_probe_20261101.json -text -whitespace

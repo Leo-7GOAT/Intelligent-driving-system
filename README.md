@@ -1,5 +1,14 @@
 # Executability-aware hierarchical driving research
 
+Two further original-TRAINrecovery checks also fail:projected2/4with one bounds
+failure;the matched unprojected fit1/4with two. All9,010controls across the three
+recovery profiles are audited;no failed model is promoted. A separate retained
+PPO exploration pilot is now actually running toward10,240new controls,without
+teacher actions or auxiliary fitting. Its result is pending.
+[Original-TRAINresult](reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json),
+[matched projection ablation](reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
+[verified PPOactivation snapshot](reports/native_B1_exploration_PPO_activation_20261101.json).
+
 Native recovery collection and a separate pure-policy check are complete:
 1,612 TRAIN mixture controls (850 teacher,762 learner),all inputs/actions/frames
 reconstructed. A fixed512-proposal actor fit retains the critic,PPO state and

@@ -15,6 +15,8 @@ VERSION = 'native_executed_teacher_mixture_v1'
 
 def validate_collection(protocol, config, cases):
     spec = protocol.get('native_recovery_collection', {})
+    profile=spec.get('route_profile','new_TRAIN4_v1')
+    indices={'new_TRAIN4_v1':[4,5,6,7],'original_TRAIN4_v1':[0,1,2,3]}.get(profile)
     if (spec.get('version') != VERSION or protocol.get('methods') != ['B1']
             or protocol.get('evaluation_only') is not True
             or protocol.get('deterministic_training_route_evaluation') is not False
@@ -25,7 +27,7 @@ def validate_collection(protocol, config, cases):
             or spec.get('teacher_probability') != .5 or spec.get('block_controls') != 10
             or spec.get('max_controls') != 3600 or config.deadline != 45
             or len(cases) != 4 or len(spec.get('geometry_ids', [])) != 4
-            or spec.get('original_TRAIN_route_indices') != [4, 5, 6, 7]
+            or indices is None or spec.get('original_TRAIN_route_indices') != indices
             or [c['native_route']['geometry_id'] for c in cases] != spec['geometry_ids']
             or any(c.get('native_hazard') is not None for c in cases)):
         raise ValueError('Require the locked four-road TRAIN-only collection protocol')

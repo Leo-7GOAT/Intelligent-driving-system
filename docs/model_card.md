@@ -1,5 +1,15 @@
 # Development model card
 
+Further rejected B1models:c5d11b45...(projected original-TRAINfit)2/4with one
+bounds failure;394d36e7...(same data,parent,weights,seed and512updates,projection
+removed)1/4with two bounds failures. Neither is promoted. A new actual-PPO
+pilot starts from the fixed4f205708...replay reference,changing only the two
+initial Gaussian log_std scalars to std.10;mean network,critic,Adam state,
+counters and normalizer remain exact before the fresh rollout. This explicit
+intervention and pending pilot are not a learned-capability claim.
+[Comparison](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
+[activation and parameter proof](../reports/native_B1_exploration_PPO_activation_20261101.json).
+
 Latest B1recovery model `2f7287e9c84019b7222efc816754bc3b7944dd8eaedc5d6ddeea83d5e4d88793`
 is rejected:2/4on the four known basic TRAIN roads,one deadline and one bounds
 failure. It retains20,480actual PPOcontrols in its lineage plus disclosed

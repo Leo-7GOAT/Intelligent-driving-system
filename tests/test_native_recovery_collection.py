@@ -5,7 +5,7 @@ import pytest
 
 from scripts.collect_native_recovery import VERSION, tensor_digest, validate_collection
 from scripts.prepare_native_recovery_collection import patch_worker
-from scripts.fit_native_executed_recovery import executed_recovery_arrays,episode_balanced_weights
+from scripts.fit_native_executed_recovery import executed_recovery_arrays,episode_balanced_weights,actor_fit_lineage,require_probe_fit
 
 
 def inputs():
@@ -33,6 +33,16 @@ def test_collection_cannot_silently_become_evaluation_or_training(key,value):
 def test_collection_cadence_budget_and_route_selection_are_locked(key,value):
     protocol, config, cases = inputs(); protocol['native_recovery_collection'][key]=value
     with pytest.raises(ValueError): validate_collection(protocol,config,cases)
+
+
+def test_original_train_collection_requires_explicit_distinct_profile():
+    protocol,config,cases=inputs();spec=protocol['native_recovery_collection']
+    spec['original_TRAIN_route_indices']=[0,1,2,3]
+    with pytest.raises(ValueError):validate_collection(protocol,config,cases)
+    spec['route_profile']='original_TRAIN4_v1'
+    assert validate_collection(protocol,config,cases) is spec
+    spec['route_profile']='validation'
+    with pytest.raises(ValueError):validate_collection(protocol,config,cases)
 
 
 def test_stable_fingerprint_catches_parameter_optimizer_and_rms_changes():
@@ -76,3 +86,22 @@ def test_timeout_episode_length_does_not_increase_total_sampling_probability():
     weights=episode_balanced_weights(groups)
     np.testing.assert_allclose([weights[groups==g].sum() for g in np.unique(groups)],[1.,1.,1.])
     assert np.all(weights>0)
+
+
+def test_repeated_actor_interventions_retain_cumulative_cost_instead_of_last_segment_only():
+    legacy={'additional_actor_fit_steps':512}
+    first=actor_fit_lineage(legacy,512)
+    assert first['cumulative_actor_fit_steps']==1024
+    second=actor_fit_lineage(first,512)
+    assert second=={'inherited_actor_fit_steps':1024,'additional_actor_fit_steps':512,'cumulative_actor_fit_steps':1536}
+
+
+def test_rejected_old_fit_cannot_use_an_unregistered_flag_to_enter_native_probe():
+    result={'new_supervised_Adam_proposals':512,'retention_gate':{'passed':False},'TRAIN_retention_screen_applied':False}
+    with pytest.raises(ValueError):require_probe_fit(result)
+    result['fit_profile']='executed_original_TRAIN_no_projection_v1'
+    with pytest.raises(ValueError):require_probe_fit(result)
+    result.update(route_profile='original_TRAIN4_v1',retention_reference_model_sha256='4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0')
+    assert require_probe_fit(result) is True
+    result['new_supervised_Adam_proposals']=1024
+    with pytest.raises(ValueError):require_probe_fit(result)

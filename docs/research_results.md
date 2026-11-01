@@ -1,3 +1,22 @@
+# Original-TRAINrecovery and matched projection result — 2026-11-01
+
+Original-TRAINcollection:1334actual controls,664teacher/670learner,mixed4/4,
+zero unsafe. Every observation,learner action,mixture choice and frame verifies.
+Projected fit:512Adam proposals,unchanged replay-based TRAINceilings;pure B1
+2/4with1deadline/1bounds,1669controls. Final5callback blocks accept zero actor
+displacement. Matched unprojected fit:same actual data,parent,weights,seed,
+512steps and critic/PPOstate/RMSretention;pure B1drops to1/4with1deadline/2bounds,
+2738controls. Lower TRAINlabel MSE(.014592to.001600)does not imply driving benefit.
+All9010controls across3recovery profiles are audited;1536new auxiliary Adam,
+zero PPOin these3profiles,no final conditions. No model is promoted.
+
+[Original-TRAINreport](../reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json),
+[matched ablation](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
+[independent first-report reconstruction and hostedCI](../reports/native_recovery_collection_independent_verification_20261101.json).
+A separately registered actual-PPOstd.10pilot is now executing10240new controls,
+without teacher or BC. Its dated [activation](../reports/native_B1_exploration_PPO_activation_20261101.json)
+is not its eventual result. Overall research acceptance remains UNMET.
+
 # Executed native recovery attempt — 2026-11-01
 
 Four new TRAINroads,preselected indices4..7from the existing36TRAINinventory,

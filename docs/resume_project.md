@@ -1,5 +1,9 @@
 # Evidence-bounded project descriptions
 
+Later original-TRAINrecovery and its projection ablation also fail;all9,010
+recovery-profile controls are audited. The new real-PPOexploration pilot is
+pending,so it contributes no completed success rate or superiority claim.
+
 Latest B1recovery experiment remains negative:1,612TRAINmixture controls,
 512auxiliary Adam proposals,then1,657pure-policy controls;2/4with timeout and
 bounds. No healthy-baseline,added-PPOor final-confirmation claim is supported.

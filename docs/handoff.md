@@ -1,3 +1,41 @@
+# Actual PPO exploration pilot RUNNING — 2026-11-01 16:00
+
+GOAL ACTIVE/UNMET. Recovery-supervision path is now closed for this dataset.
+All3new profiles fail pure driving gates:2/4with1bounds(new TRAINroads),
+2/4with1bounds(original TRAINprojection),1/4with2bounds(unprojected matched
+ablation). All9010new physical controls audited;1536new auxiliary Adam proposals,
+zero PPOin those3profiles. Projected/unprojected input arrays,parent,weights,
+seed and512proposal budgets match exactly. The auxiliary TRAINMSEscreen differs,
+not the unchanged >=3/4ANDzero-unsafe driving gate. No failed model promoted.
+
+ACTUAL running job:20261101T075805697090Z_native_B1_exploration_PPO.
+Worker61460,creation1793519928.466;revalidate creation/executable before any
+process management. Lifecycle+post-audits execute in tool session48771.
+At16:00:28:1485actual new PPOcontrols,first1280rollout COMPLETE with40actual Adam
+updates,actorL2change.0091584. Target10240new controls,final lineage30720,
+wallcap7200s,no retries. One CARLAserver/RPC2100,reused isolated client/runtime.
+Only initial2Gaussian log_std values change from~.018to.10;fixed replay4f205708
+mean network/critic/PPOoptimizer/counters/RMS/RNG retained. Actual PPOuses same
+3e-6rate,1280rollout,10epochs,batch320,reward,physical hold1/20Hz interface.
+NOteacher or extra BCduring training/evaluation. All9010recovery controls charged.
+Initial deterministic replay NOT driven again. This pilot is not yet completed
+or a healthy baseline. Do not start another server or duplicate this job.
+
+After normal owned cleanup,the existing shell AUTOMATICALLY runs frozen raw
+endpoint audit,4measured-start inference and frozen prepare_native_exploration_ppo.py
+--analyze into reports/native_B1_exploration_PPO_pilot_20261101.json. Preserve its
+failure if any;no blind retry. Monitor B1/heartbeat.json,optimization.jsonl and
+checkpoints. Initial activation receipt is a dated snapshot,not perpetual status.
+All5independent basic courses must qualify before full-task entry remains allowed.
+Next action is observe this actual learning endpoint and audit;do not add more
+BCweight/epoch sweeps or regenerate any known public cohort.
+
+Previous source4e2e25f is PUSHED;hostedCI41285718700SUCCESS1074pass/18skip/
+4CARLAexclusions200.39s. Rootfull1091pass/1skip/4excluded156.11s at that source;
+independent21targeted and first recovery report byte-identical. Current new
+original-TRAIN/ablation/PPOpreparation sources and reports need the next commit.
+Raw new models/traces remain local;do not commit private inference roots.
+
 # Latest native recovery collection and pure-policy probe FAILED — 2026-11-01 15:38
 
 All work below is actually executed,not a pending collector plan.

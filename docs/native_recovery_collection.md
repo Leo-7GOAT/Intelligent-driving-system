@@ -1,5 +1,37 @@
 # Native TRAIN recovery collection and rejected model
 
+The subsequent all-four-original-TRAINcollection is complete and independently
+audited:1,334controls(664teacher/670learner),mixed4/4,zero unsafe. It starts from
+the rejected2f7287e9...model. Its fixed512-proposal projected fit keeps the
+**same original replay-based ceilings**,scores2/4with one bounds failure in
+1,669pure controls,and is rejected. Five final callback blocks accept zero
+actor displacement,so a matched ablation removes only this auxiliary TRAINMSE
+projection,using identical data,parent,weights,seed and512Adam updates.
+The actual driving gate remains≥3/4andzero unsafe;the old failed fits retain
+their original status. This distinct unprojected profile reports its failed
+TRAINMSEscreen diagnostically;it is never classified as driving-qualified.
+
+The unprojected model also fails:1/4,one timeout,two bounds,in2,738pure controls.
+The complete three-profile cost is9,010controls and1,536new auxiliary Adam
+proposals. The shared1,334control collection is counted once. The projected
+and unprojected sibling models each have1,536cumulative auxiliary actor updates
+in their own lineage,including the earlier512replay and512new-road fits;
+the sibling's updates are not falsely added to model lineage. Raw data remain
+local. No extra PPOor final conditions are used by these recovery profiles.
+[Projected result](../reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json),
+[matched unprojected result](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json).
+
+Further offline fits on this dataset are not queued. A different bounded pilot
+uses actual PPOwith initial Gaussian std.10instead of approximately.018,from
+the fixed replay reference. It preserves all other initial weights,Adam state,
+PPOcounters,RMS,saved RNG,physical action interface,learning rate and reward.
+It executes10,240fresh PPOcontrols on the original four TRAINroads,with no
+teacher or supervised updates,and then automatically audits the pure endpoint.
+The initial deterministic replay is reused rather than driven again.
+All9,010recovery controls enter its charged-cost lower bound. Full-task entry
+still requires all five independent basic courses to qualify.
+[Actual running snapshot](../reports/native_B1_exploration_PPO_activation_20261101.json).
+
 This is development evidence. Four new TRAIN roads are preselected from
 `experiments/native_development_train36_validation24_v1.json`,indices4..7.
 The24known validation conditions and future final conditions are excluded.
