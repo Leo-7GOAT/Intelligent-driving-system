@@ -1,4 +1,35 @@
-# Latest continuation — 2026-11-01 11:27
+# Latest verified pair / automatic analysis — 2026-11-01 11:38
+
+First matched broader pair COMPLETE and raw/inference verified. Seed11H24/24,
+H024/24,all three families8/8each,zero unsafe. Actual new training20522/20529
+controls,650Adam each,total57412raw controls. H470interventions vs H0390;
+all24mutually successful,412.500006s vs405.550006s. No feedback success/time/
+intervention advantage for this one seed. No five-seed inference from one pair.
+Reports `native_matched_broader_feedback_seed11_endpoint_20261101.json`,
+`native_matched_broader_feedback_seed11_pair_20261101.json`,
+`native_matched_broader_feedback_seed11_costs_20261101.json`.
+
+Observer40540 automatically advanced to seed22batch
+`20261101T011945179519Z_native_matched_broader_feedback`;worker identity must be
+read from its worker_process.json/CIM,not old68256(terminal firstpair worker).
+Teacher69732 and B1probe68120 remain waiting;their frozen inputs unchanged.
+
+NEW ACTUAL read-only analysis observer37956,execution
+`runs/native_matched_broader_feedback_analysis_execution_20261101`, waits exact
+40540beforeall5aggregate/figure. launch.json has exact creation/executable.
+No CARLAcalls,0training,12hwait/1200sanalysis,no retries. All5/all24/commonFULL
+source trees required. Protocol
+`protocols/native_matched_broader_feedback_pairs_20261101.json`.
+Fixes old plot's hardcoded12condition/canonical-cohort text ONLY for new
+explicit matched-broader kind;neutral exploratory title/dynamic effect axes.
+Old published figure rebuilt EXACT SHA
+cafca085ed2550173858f647a6de72c4dccbcedfa6ef03497325720c8c94eb87.
+27related tests PASS. New cohort result/figure are PENDING,not available yet.
+Activation report `native_matched_broader_feedback_analysis_activation_20261101.json`.
+Do not restart completed firstpair or duplicate either analysis observer.
+No further B1edits before the already queued99label actual driving result.
+
+# Previous continuation — 2026-11-01 11:27
 
 PUBLIC RGB RELEASE COMPLETE, source ba932787113168ad5781ee640c6f06d09bbee0e1,
 tag v0.2.0-dev.20261101. Source hosted CI passed. Both capsules downloaded without

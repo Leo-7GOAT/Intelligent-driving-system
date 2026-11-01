@@ -45,6 +45,11 @@ def run(manifest_path, output, inputs_root=None):
     manifest_path, output = Path(manifest_path).resolve(), Path(output).resolve()
     manifest = read(manifest_path)
     pairs = manifest['pairs']
+    matched_broader=manifest.get('cohort_kind')=='matched_broader_36train_24val_v1'
+    if manifest.get('cohort_kind') not in (None,'matched_broader_36train_24val_v1'):
+        raise ValueError('Unknown cohort interpretation')
+    if matched_broader and ([r['seed'] for r in pairs]!=[11,22,33,44,55] or manifest['requested_controls_each']!=20480):
+        raise ValueError('Require the complete registered broader cohort and budget')
     if (len(pairs) < 5 or len({r['seed'] for r in pairs}) != len(pairs)
             or any(type(r['seed']) is not int for r in pairs)):
         raise ValueError('Require at least five unique independently trained seed identifiers')
@@ -53,11 +58,20 @@ def run(manifest_path, output, inputs_root=None):
     output.mkdir(parents=True)
     results, initial_rng = [], {'H': [], 'H0': []}
     recipes = {'H': [], 'H0': []}
-    tasks, overshoot = [], []
+    tasks, overshoot = [], [];common_source=None
     for row in pairs:
         h, h0 = [resolve_batch(ROOT if inputs_root is None else inputs_root,row[k]) for k in ('h','h0')]
         for batch, method in ((h, 'H'), (h0, 'H0')):
             protocol, summary = read(batch/'protocol.json'), read(batch/method/'summary.json')
+            if matched_broader:
+                if (len(protocol['native_case_manifest']['cases'])!=36
+                        or len(protocol.get('native_validation',{}).get('manifest',{}).get('cases',[]))!=24
+                        or not protocol.get('broader_feedback_replication')):
+                    raise ValueError('Broader analysis requires the exact36TRAIN/24known validation task')
+                if common_source is None:common_source=protocol['source_hashes']
+                if protocol['source_hashes']!=common_source:raise ValueError('Broader cohort mixes execution source versions')
+                for name,digest in protocol['source_hashes'].items():
+                    if sha(batch/'source'/name)!=digest:raise ValueError('Frozen broader source changed:'+name)
             if (protocol['seed'] != row['seed'] or summary['physics_steps'] <= 0
                     or summary['optimizer_steps'] <= 0 or summary['stopped_reason'] is not None
                     or protocol.get('method_budgets', {}).get(method, protocol['controlled_budget_per_method']) != manifest['requested_controls_each']):
@@ -101,6 +115,9 @@ def run(manifest_path, output, inputs_root=None):
               'walker_initialization_mismatch_seeds': [r['seed'] for r in results if not r['walker_initialization_source_equal']],
               'limits': 'All five seeds retained;seed22uses fresh H0budget replica while its older interrupted/recovered branch remains charged separately. Bridge source equality/mismatches are explicitly recorded per pair. Conditions are reused development layouts,not fresh final confirmation. No B1/RL-vs-rule superiority claim.',
               'new_controls': 0, 'optimizer_updates': 0, 'research_acceptance': 'UNMET'}
+    if matched_broader:
+        result.update(cohort_kind=manifest['cohort_kind'],identical_complete_execution_source_across_all_pairs=True,
+            limits='All five newly PPO-trained matched-harness pairs retained;36TRAIN/24known development-validation conditions,not final confirmation. Earlier canonical/interrupted cohorts remain separate and charged. Repeated policy seeds do not create120unique final conditions. No healthy-B1 or PPO-vs-rule advantage established.')
     (output/'cohort.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
     print(json.dumps({k: v for k, v in result.items() if k not in ('results', 'initial_Torch_RNG_sha256')}))
     return result

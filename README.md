@@ -49,10 +49,22 @@ all51,200training controls and58,758raw controls are preserved.
 A new all-five matched-harness H/H0replication is actually queued:36TRAIN and
 24known development-validation conditions,20,480requested controls per method
 and seed. All10pristine independently seeded actors restore unchanged;all5full
-source trees match. The first H seed has completed 20,522 actual training
-controls/650 Adam steps and succeeds on all 24 known validation cases; its H0
-pair and remaining seeds are still running. Final conditions remain unused.
+source trees match. The first complete pair scores H24/24 and H024/24, both
+without unsafe outcomes, after20,522/20,529training controls and650Adam steps
+each. H uses470interventions versus390and6.95s more total evaluation time;
+this seed does not show a feedback benefit. Seed22is now training. Final
+conditions remain unused.
+[Audited first pair](reports/native_matched_broader_feedback_seed11_pair_20261101.json),
+[all-outcome and mutually successful-case costs](reports/native_matched_broader_feedback_seed11_costs_20261101.json).
 [Frozen inputs and live queue](reports/native_matched_broader_feedback_queue_activation_20261101.json).
+
+All-five statistics and the24condition figure are automatically queued behind
+the exact owned training process. They require all five seeds, matching complete
+source trees and actual20480control budgets; they do not count120seed-case
+evaluations as120unique final conditions. The previously published12condition
+figure still rebuilds byte-identically.
+[Pair list](protocols/native_matched_broader_feedback_pairs_20261101.json),
+[actual read-only analysis observer](reports/native_matched_broader_feedback_analysis_activation_20261101.json).
 
 An auxiliary execution predictor was rejected:crossed seed/road validation gives
 Brier.0518against.0463for the simpler historical-failure baseline. Independent

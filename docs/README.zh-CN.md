@@ -18,8 +18,12 @@ B1下一项开发诊断已完成拟合：每个基础条件取自身最早三个
 [第四个种子的完整失败轨迹与测量状态诊断](../reports/native_B1_seed44_lower_rate_failure_diagnosis_20261101.json)。
 [实际门槛与未解决停滞](../reports/native_B1_first_lower_rate_basic_gate_and_stall_20261101.json)。首阶段五种子3/4、2/4、2/4、0/4、2/4的全部失败和成本继续保留。
 
-新的五种子H/H0同桥接版本复验已运行：36个TRAIN条件、24个已知开发验证条件，各方法各种子请求20,480控制步。十份独立初始化模型恢复、五份完整代码树一致性核验均通过；首个H已完成20,522真实训练控制步、650次Adam更新，24个已知验证条件全部成功。对应H0及其余种子尚在运行；最终测试未启用。
+新的五种子H/H0同桥接版本复验已运行：36个TRAIN条件、24个已知开发验证条件，各方法各种子请求20,480控制步。首组H/H0分别完成20,522/20,529控制步、各650次Adam更新，均24/24成功且无碰撞/越界；H干预470次、H0390次，H总通行时间多6.95秒，因此首组不支持反馈带来成功率或效率优势。第二个种子正在训练，最终测试未启用。
+[首组原始绑定配对结果](../reports/native_matched_broader_feedback_seed11_pair_20261101.json)、[完整代价比较](../reports/native_matched_broader_feedback_seed11_costs_20261101.json)。
 [冻结输入、实际队列与范围](../reports/native_matched_broader_feedback_queue_activation_20261101.json)。
+
+全五种子的配对统计及24条件图表已启动只读等待程序，要求全部五组、完整代码树一致及实际训练预算齐全后才生成；120个种子-场景评测不会被写成120个独立最终条件。旧12条件公开主图仍逐字节重建一致。
+[登记配对清单](../protocols/native_matched_broader_feedback_pairs_20261101.json)、[实际汇总队列](../reports/native_matched_broader_feedback_analysis_activation_20261101.json)。
 
 额外执行预测网络被否决：策略种子和道路同时隔离后，Brier为0.0518，不如简单历史失败基线的0.0463；独立目录重放所有预测完全一致。它未接入PPO、动作掩码或控制器。
 [负结果](../reports/native_execution_prediction_cross_seed_probe_20261101.json)、[独立复验](../reports/native_execution_prediction_independent_verification_20261101.json)。
