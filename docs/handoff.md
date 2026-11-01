@@ -1,4 +1,38 @@
-# Latest third complete public pair — 2026-11-01 13:03
+# Latest fourth complete public pair / timeout reconstruction — 2026-11-01 13:37
+
+Seed44 `20261101T011953260380Z_native_matched_broader_feedback` COMPLETE:
+H24/24,H023/24;H0case15(static_vehicle)deadline,no collision/bounds.
+H20766controls/660actual Adam,H020540/650;do not round H's one-rollout
+budget overshoot down to650. Raw total58237. Old worker68520 TERMINAL.
+
+Public seed44 capsule COMPLETE:930files/58237controls/48measured starts,
+exact figureSHA62c9f57b70d2a6f3c878112f83caa9aa7638f59b8e808ceb1af035b3d7cd41a0,
+archiveSHA0465fd8620e20b5c3212d15ba143d857d2326eeeb6e8ed6e6fc84d5ff131eb23.
+Publisher54528 handled it automatically with zero network failures.
+First4 public totals3715files/230332controls/192starts;still24unique known
+conditions. Descriptive H96/96,H095/96;no five-seed interval yet.
+
+Existing full-decision reliance auditor ran ONCE per method against exact frozen
+seed44 source and all measured states,zero driving/fitting. H16/841greedy actions
+change when learned feedback is hidden;H0negative control0/881and zeroTV.
+Both complete in~35s. Reports `native_matched_broader_seed44_H_feedback_reliance_20261101.json`
+and `native_matched_broader_seed44_H0_feedback_reliance_20261101.json`.
+Descriptive timeout report `native_matched_broader_seed44_failure_diagnostics_20261101.json`:
+H0reference first12decisions,planner feasibility rejection at decision12,then
+78consecutive plan_failed decisions/780braking interventions until45s deadline.
+Planner rejection is NOT a physical collision. H succeeds331controls/16.55s.
+Different trained weights/states and initial actions prevent causal attribution;
+recorded-state feedback sensitivity is NOT closed-loop performance benefit.
+
+Main observer40540 NOW seed55 `20261101T011957251615Z_native_matched_broader_feedback`,
+actual worker66144,creation1793510816.265,basePython311;last11032Hcontrols at13:34.
+Revalidate actual handle/CIM before management. Analysis37956 waits exact40540;
+teacher69732 follows then B1probe68120. Publisher54528 waits seed55 and final
+joint public reconstruction. Do not duplicate packages or touch frozen workers/
+worktrees/expected references. No new B1fits before queued99label native result.
+GoalACTIVE/UNMET;healthy B1/PPOvalue/stable feedback/final120remain missing.
+
+# Previous third complete public pair — 2026-11-01 13:03
 
 Previous turn PROGRESS:four factual delivery docs updated and137local links verified,
 commit8af80bf1f24fab93e1f4484724d79bf5a6a92be7. Their current-result sections are
