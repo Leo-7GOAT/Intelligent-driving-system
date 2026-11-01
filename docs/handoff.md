@@ -1,3 +1,30 @@
+# Five-seedqueue:11FAILED/22PASSED/33RUNNING; validation14/24 independently VERIFIED — 2026-11-01
+
+GoalACTIVE/UNMET. Exact activequeue remains
+runs/B1_shared_parking_five_seed_execution_20261101;toolsession79437,observerPID72488
+atlaunch. Revalidate exacthandle/status. Source/audits frozen in execution/source.
+Completed seed11:10240newPPOcontrols,320Adam in35states,3/4withonebounds,
+basicgateFALSE. All11565rawcontrols and1325endpointactions bit-exact verified.
+Model13aa5eec688e9933c4494afcd0e1369c0e4b8313b870f91e221967dc16d63ca1.
+Completed seed22:10240newPPOcontrols,320Adam in35states,4/4zero unsafe,
+basicgateTRUE. Modelea2d12ab9345777a28ee31c44fc372949692fa935c760f387ef1ee4dd5235fee.
+Bothlearningaudits/whole-action reports copied to reports/native_B1_shared_parking_cohort_seed11/22_20261101.json
+and corresponding _whole_sequence files. Do not dropfailedseed11 or substitute
+theoldsuccessful29efpilot. Currentseed33 batch20261101T121900126016Z_native_B1_shared_parking_cohort_seed33;
+remaining44and55aredescribedbelow. Allfivefollowthefixedbudget,evenfailedgates.
+No nativequalification of allfive or formalH/B1comparison is claimed.
+
+Independentcheckout2a0ce32 reconstructs retainedfailed17-caseprefix andcomplete
+24-casevalidation recovery report FIELD-EXACT. Bothuseall10210physicalcontrols,
+14success/8bounds/2collision;startupversiondifferenceisexplicit. Independent
+relatedtests16PASS3.96s;GitHubsource9a5a409CI41306796845SUCCESS.
+Receipt:reports/native_B1_validation_independent_verification_20261101.json.
+No rerunofthatvalidation,publiccapsules,completedfits orseed11/22coursesneeded.
+
+The nativequeue continues locally;only these explicitly launched programs run
+outside the model turn. Inspectper-seed heartbeat/guard/status beforeanyrecovery.
+No newfinalconditions generated. Researchgoal unchangedandUNMET.
+
 # Existing24validation COMPLETE14/24; five independent actual-PPO courses RUNNING — 2026-11-01
 
 Authoritative currentstate:goalACTIVE/UNMET. The24-condition validation has

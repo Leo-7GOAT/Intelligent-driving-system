@@ -1,0 +1,232 @@
+{
+  "scope": "Audit actual PPO updates with the shared parking wrapper fixed throughout.",
+  "script_sha256": "630f6946cbbfefb7ac126acf34156370bc3bf30729a434368b6b13c37b757a7d",
+  "batch": "20261101T121859752667Z_native_B1_shared_parking_cohort_seed22",
+  "seed": 22,
+  "protocol_sha256": "4d4da6237af0683078258b6d6c8bddf67c2dbc111e81dae55bb3dd26be15b774",
+  "initial_model_sha256": "c4e8e3971c6357886ccd217f088fccaae0ccc8b8dcdeb9cf23507657523b848c",
+  "final_model_sha256": "ea2d12ab9345777a28ee31c44fc372949692fa935c760f387ef1ee4dd5235fee",
+  "final_normalization_sha256": "627f8c548bc7579f35d5ba27bad14b2bc9cbfc50d11d86380b6de274e2d41833",
+  "new_actual_PPO_controls": 10240,
+  "new_actual_Adam_steps": 320,
+  "saved_Adam_proof": {
+    "parameter_states": 35,
+    "step_increment_each": 320
+  },
+  "changed_network_tensors": {
+    "actor": 21,
+    "critic": 14
+  },
+  "new_PPO_epoch_updates": 80,
+  "initial_Gaussian_std": [
+    0.01831517554819584,
+    0.018323421478271484
+  ],
+  "final_Gaussian_std": [
+    0.01831282675266266,
+    0.01832069270312786
+  ],
+  "new_supervised_updates": 0,
+  "observation_RMS_mean_variance_count_exact": true,
+  "all_engine_controls_acknowledged": true,
+  "delivery_by_phase": {
+    "training_or_untraced_failure": {
+      "controls": 10240
+    },
+    "evaluation": {
+      "controls": 1388
+    }
+  },
+  "all_actual_raw_controls": 11628,
+  "parking": {
+    "helper_sha256": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+    "cases": [
+      {
+        "case_id": 0,
+        "termination": "success",
+        "controls": 334,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.0960301240623916
+      },
+      {
+        "case_id": 1,
+        "termination": "success",
+        "controls": 450,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": -8.501228521761822e-05
+      },
+      {
+        "case_id": 2,
+        "termination": "success",
+        "controls": 311,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": -9.50934643126661e-05
+      },
+      {
+        "case_id": 3,
+        "termination": "success",
+        "controls": 293,
+        "parking_overrides": 3,
+        "terminal_intervened": false,
+        "final_speed": 0.09807092988212832
+      }
+    ],
+    "all_assistance_commands_verified": true,
+    "successful_terminal_frames_satisfy_original_unassisted_goal_gate": true
+  },
+  "training_parking": {
+    "verified_controls": 10240,
+    "parking_overrides": 53,
+    "episodes_including_tail": 30,
+    "all_assistance_commands_and_disclosures_verified": true,
+    "steering_unchanged_by_helper": true
+  },
+  "training_terminal_outcomes": {
+    "success": 29
+  },
+  "lineage_controls": 30720,
+  "charged_training_controls_lower_bound": 72586,
+  "training_wall_seconds": 815.8112115859985,
+  "endpoint": {
+    "successes": 4,
+    "cases": 4,
+    "unsafe_cases": 0,
+    "basic_gate_passed": true
+  },
+  "endpoint_case_metrics": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 334,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 16.700000248849392,
+      "progress": 23.931579723357505,
+      "travel_time_success_only": 16.700000248849392,
+      "jerk_rms": 46.19455547601367,
+      "decision_cycle_times": {
+        "count": 334,
+        "median": 0.04155600012745708,
+        "p95": 0.12438254496082661,
+        "p99": 0.15067745703272528,
+        "max": 0.31514979992061853,
+        "over_period_fraction": 0.437125748502994,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 334,
+        "median": 0.006324699963442981,
+        "p95": 0.008324524934869258,
+        "p99": 0.009692540913820269,
+        "max": 0.30881160008721054,
+        "over_period_fraction": 0.0029940119760479044,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 1,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 450,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 22.500000335276127,
+      "progress": 23.589616411481277,
+      "travel_time_success_only": 22.500000335276127,
+      "jerk_rms": 64.34783668949156,
+      "decision_cycle_times": {
+        "count": 450,
+        "median": 0.15056960005313158,
+        "p95": 0.27018205501371995,
+        "p99": 0.34766657700529296,
+        "max": 0.46578960004262626,
+        "over_period_fraction": 0.8022222222222222,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 450,
+        "median": 0.01018984999973327,
+        "p95": 0.013778644963167606,
+        "p99": 0.01784952996065839,
+        "max": 0.31969649996608496,
+        "over_period_fraction": 0.0022222222222222222,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 311,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 15.550000231713057,
+      "progress": 22.060210429206766,
+      "travel_time_success_only": 15.550000231713057,
+      "jerk_rms": 47.358634088004116,
+      "decision_cycle_times": {
+        "count": 311,
+        "median": 0.03712180000729859,
+        "p95": 0.07357909996062517,
+        "p99": 0.09674251994583738,
+        "max": 0.3131652001757175,
+        "over_period_fraction": 0.3279742765273312,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 311,
+        "median": 0.006230399943888187,
+        "p95": 0.007918649935163558,
+        "p99": 0.008887850050814442,
+        "max": 0.3071367999073118,
+        "over_period_fraction": 0.003215434083601286,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 293,
+      "interventions": 3,
+      "goal_parking_controls": 3,
+      "simulation_seconds": 14.650000218302011,
+      "progress": 20.078027909014178,
+      "travel_time_success_only": 14.650000218302011,
+      "jerk_rms": 56.83738551081661,
+      "decision_cycle_times": {
+        "count": 293,
+        "median": 0.0868182999547571,
+        "p95": 0.19926181980408728,
+        "p99": 0.2298881120607255,
+        "max": 0.32616820000112057,
+        "over_period_fraction": 0.6177474402730375,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 293,
+        "median": 0.007872800109907985,
+        "p95": 0.00960450004786253,
+        "p99": 0.013427572064101676,
+        "max": 0.3201171001419425,
+        "over_period_fraction": 0.0034129692832764505,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    }
+  ],
+  "raw_audit_sha256": "57c4cbe4b021e56fb047327e2812427712c69df84675fc26554eba412adec191",
+  "limits": "Independent old20480-control parents plus common1024TRAIN-only actor Adam steps. This is a new learning course;offline diagnostic screens are retained and qualification is measured only after actual PPO. Not fromscratch,full-task,added-PPO or matched H/B1 evidence.",
+  "research_acceptance": "UNMET"
+}

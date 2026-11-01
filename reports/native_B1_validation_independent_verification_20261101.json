@@ -1,0 +1,35 @@
+{
+  "scope": "Independent checkout reconstruction of retained failed validation and seven-case recovery;no new driving or updates.",
+  "source_commit": "2a0ce32564b3bec21a29602c4bf93f1360fa2799",
+  "partial_audit_field_exact": true,
+  "complete_validation_audit_field_exact": true,
+  "actual_control_frames_verified": 10210,
+  "existing_validation_conditions": 24,
+  "successes": 14,
+  "out_of_bounds": 8,
+  "collisions": 2,
+  "mixed_startup_initialization_disclosed": true,
+  "raw_model_and_normalizer_inputs_unchanged": true,
+  "reports": [
+    {
+      "path": "reports/native_B1_validation_interrupted_prefix_20261101.json",
+      "sha256": "63074402fbad045409214a7d86259c1bda5332db426f0c89ae0e9bd252768937"
+    },
+    {
+      "path": "reports/native_B1_shared_parking_validation_complete_20261101.json",
+      "sha256": "013411db525fbfe610f46644b3dbc8b4e6bc77e5628b7a4f7a9667e7a4ee0a16"
+    }
+  ],
+  "related_CPU_regression": {
+    "passed": 16,
+    "seconds": 3.96
+  },
+  "source_CI": {
+    "commit": "9a5a409319bd55ef93d05d8f9c12e26081ad149d",
+    "run": 41306796845,
+    "conclusion": "success"
+  },
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

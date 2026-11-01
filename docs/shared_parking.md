@@ -243,6 +243,15 @@ delivery and walker initialization version. Qualification is checked after
 learning:at least3/4successes **and zero collision/bounds**,separately for every
 seed. The serial queue records checkpoints,raw controls,saved Adam increments,
 measured-start actions,whole endpoint actions and every failed gate. No best seed
-or checkpoint is selected. Outcomes remain pending;full-task training and final
-confirmation have not been activated.
+or checkpoint is selected. The first two courses have completed:seed11is3/4with
+one bounds failure and fails the basic gate;seed22is4/4with zero unsafe and passes.
+Each performs10,240new actual PPO controls and320saved Adam increments in all35
+parameter states. Both complete raw/action audits are retained. The queue is
+training seed33,next44and55. There is no five-seed qualification yet;full-task
+training and final confirmation have not been activated.
 [Locked recipe](../protocols/native_B1_shared_parking_five_seed_course_20261101.json).
+
+The retained17-case prefix and complete24-condition recovery record also
+reproduce field-for-field from an independent checkout. Its related16CPUtests
+pass;source9a5a409fullCIpasses.
+[Independent verification](../reports/native_B1_validation_independent_verification_20261101.json).
