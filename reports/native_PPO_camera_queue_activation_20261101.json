@@ -1,0 +1,125 @@
+{
+  "scope": "Actual queued frozen native PPOcamera evaluation;preparation and CPUrestore verified,not recorded camera evidence or research completion.",
+  "execution": "native_PPO_camera_execution_20261101",
+  "observer_identity": {
+    "pid": 42060,
+    "creation_epoch": 1793493728.174767,
+    "executable_name": "python.exe"
+  },
+  "observed_phase": "WAITING_FOR_OWNED_TRAINING_QUEUES_TO_EXIT",
+  "dependency_processes": [
+    {
+      "pid": 62332,
+      "creation_epoch": 1793491580.866843,
+      "executable_name": "python.exe"
+    },
+    {
+      "pid": 20420,
+      "creation_epoch": 1793491678.457975,
+      "executable_name": "python.exe"
+    }
+  ],
+  "plan_sha256": "787a33b54ce216097efd8192a55eb2376f03409c8441fc9e53b160415e3a3fb7",
+  "observer_source_manifest_sha256": "7b3e29f728de621903f18baa27ad4b97589d08aef7801234649133af16ba095c",
+  "recordings": [
+    {
+      "batch": "20261101T004032948606Z_native_PPO_camera",
+      "method": "H",
+      "protocol_sha256": "8bf0c4005db5eee309577879f68a460387539c445c1fbddcd30fd96961c2509c",
+      "native_camera_evaluation": {
+        "version": "frozen_native_RGB_v1",
+        "original_case_ids": [
+          0,
+          3
+        ],
+        "model_sha256": "dbde8619f1b25db2f37731343ec6d6204269cfd464023b63c1e5d0485a8ce537",
+        "normalization_sha256": "163aec1ecb8115f3a11a0066f9c87c79106e76f7954e6f8ae5412ecf21502d69",
+        "parent_batch": "20261031T025409165666Z_native_supervised_ppo",
+        "parent_raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f",
+        "selection": "Prespecified illustrative cases from known results;all new outcomes retained,no success/failure matching enforced",
+        "rendering": "Actual640x360RGB at20Hz;unchanged physical and policy code;rendering enabled with frame fences,not a no-camera timing benchmark"
+      },
+      "frozen_worker_sha256": "3fefffdf19a3172a7f256d226efdcee18decef144abb9cbb6950ecb58e5b7f0c",
+      "CPU_restore_preflight": {
+        "scope": "Actual frozen-runtime restoration using an inert environment that rejects reset/step;not a CARLA camera run",
+        "batch": "20261101T004032948606Z_native_PPO_camera",
+        "method": "H",
+        "model_num_timesteps": 2080,
+        "retained_Adam_steps": 650,
+        "normalizer_statistics_exact": true,
+        "camera_mode_registered": true,
+        "model_sha256": "dbde8619f1b25db2f37731343ec6d6204269cfd464023b63c1e5d0485a8ce537",
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "physical_resets": 0
+      },
+      "native_camera_started": false,
+      "real_RGB_frames_verified": 0
+    },
+    {
+      "batch": "20261101T004019372592Z_native_PPO_camera",
+      "method": "B1",
+      "protocol_sha256": "a890b61a8b67d4e149a98a9d1d162ee6e01f2cf7607198b8f7ae86bd6765374a",
+      "native_camera_evaluation": {
+        "version": "frozen_native_RGB_v1",
+        "original_case_ids": [
+          0,
+          3
+        ],
+        "model_sha256": "f12588a34698c2e270a2feb9a8263458adc93b664c68c20f93418fb65b3b8567",
+        "normalization_sha256": "04dc98613cff561abec793ec44fe17e89c1645404beb6c5db21933024fa8d5aa",
+        "parent_batch": "20261031T232838093068Z_native_B1_basic_PPO_course",
+        "parent_raw_audit_sha256": "673af5c566c0ce76e5852e01b4d2f1b6fbda07e46a97e3aa4f0531b009e916d0",
+        "selection": "Prespecified illustrative cases from known results;all new outcomes retained,no success/failure matching enforced",
+        "rendering": "Actual640x360RGB at20Hz;unchanged physical and policy code;rendering enabled with frame fences,not a no-camera timing benchmark"
+      },
+      "frozen_worker_sha256": "3fefffdf19a3172a7f256d226efdcee18decef144abb9cbb6950ecb58e5b7f0c",
+      "CPU_restore_preflight": {
+        "scope": "Actual frozen-runtime restoration using an inert environment that rejects reset/step;not a CARLA camera run",
+        "batch": "20261101T004019372592Z_native_PPO_camera",
+        "method": "B1",
+        "model_num_timesteps": 10240,
+        "retained_Adam_steps": 9,
+        "normalizer_statistics_exact": true,
+        "camera_mode_registered": true,
+        "model_sha256": "f12588a34698c2e270a2feb9a8263458adc93b664c68c20f93418fb65b3b8567",
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "physical_resets": 0
+      },
+      "native_camera_started": false,
+      "real_RGB_frames_verified": 0
+    }
+  ],
+  "prespecified_original_case_ids_each": [
+    0,
+    3
+  ],
+  "selection_limits": "Illustrations selected from known development results;not all-condition outcome evidence,not final conditions,not an equal-budget H/B1comparison. Actual new successes and failures remain unchanged,with no outcome-based retries.",
+  "process_barrier": "Both exact owned learning queue processes must exit. Every extension must finish and clean up normally. Full-task learning must either complete all five seeds or fail only its explicit childless unchanged qualification gate. Unknown/infrastructure failures block the camera queue.",
+  "verification": {
+    "root_targeted_tests_passed": 104,
+    "seconds": 23.83,
+    "registered_launcher_validate_only_each": true,
+    "server_probed_for_camera": false,
+    "actual_frozen_CPU_restores": 2,
+    "new_controls": 0,
+    "optimizer_updates": 0
+  },
+  "resource_limits": {
+    "single_CARLA_owner": true,
+    "recording_wall_seconds_each": 1800,
+    "wait_wall_seconds": 43200,
+    "disk_floor_GiB": 12,
+    "RAM_floor_GiB": 4,
+    "GPU_max_C": 85,
+    "automatic_retries": 0
+  },
+  "source_files": {
+    "scripts/native_road_learning.py": "3fefffdf19a3172a7f256d226efdcee18decef144abb9cbb6950ecb58e5b7f0c",
+    "scripts/prepare_native_camera.py": "5fef958cd95acdb0b2a583836ff180f41b80816767a48efde9273f0756c4db66",
+    "scripts/run_native_camera_after_training.py": "9acef71cb53dd1c38d55e149680ff8ad61f9e0b22b7922a6cb8fb81b87f970cd"
+  },
+  "next_after_real_recording": "Decode/hash/frame-fence verification,visual inspection,and a uniquely batch-qualified video catalog must precede publication/completion claims.",
+  "research_acceptance": "UNMET"
+}

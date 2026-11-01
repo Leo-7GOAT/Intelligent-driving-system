@@ -279,9 +279,34 @@ def configure_continuation_normalization(vec,protocol,recovery):
         vec.training=False
 
 
+def camera_evaluation_mode(protocol):
+    camera=protocol.get('native_camera_evaluation')
+    if camera is None:return False
+    methods=protocol.get('methods',[])
+    if (not isinstance(camera,dict) or camera.get('version')!='frozen_native_RGB_v1'
+            or len(methods)!=1 or protocol.get('evaluation_only') is not True
+            or protocol.get('controlled_budget_per_method')!=0
+            or protocol.get('method_budgets')!={methods[0]:0}
+            or protocol.get('deterministic_training_route_evaluation') is not True
+            or not protocol.get('recovery',{}).get(methods[0])):
+        raise ValueError('Native camera requires one frozen saved policy and zero learning budget')
+    for name in ('model_sha256','normalization_sha256'):
+        digest=camera.get(name)
+        if not isinstance(digest,str) or len(digest)!=64 or any(c not in '0123456789abcdef' for c in digest):
+            raise ValueError('Native camera requires explicit evaluated artifact hashes')
+    ids=camera.get('original_case_ids',[])
+    if (not isinstance(ids,list) or not 1<=len(ids)<=4 or len(set(ids))!=len(ids)
+            or any(type(i) is not int or i<0 for i in ids)
+            or len(protocol.get('native_case_manifest',{}).get('cases',[]))!=len(ids)
+            or protocol.get('native_validation')):
+        raise ValueError('Native camera requires one to four explicitly selected known development cases')
+    return True
+
+
 def run(batch):
     batch = Path(batch).resolve()
     protocol = json.loads((batch/"protocol.json").read_text(encoding="utf-8"))
+    record_camera=camera_evaluation_mode(protocol)
     jobs = registered_jobs(protocol)
     for relative, digest in protocol["source_hashes"].items():
         if hashlib.sha256((ROOT/relative).read_bytes()).hexdigest() != digest:
@@ -305,11 +330,15 @@ def run(batch):
             config=training_config(protocol,method,vehicle)
             output = batch/job_name
             output.mkdir()
-            write_json(output/"config.json", {"env": config.to_dict(), "signature": signature(config),
-                "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]})
+            output_config={"env": config.to_dict(), "signature": signature(config),
+                "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]}
+            if record_camera:
+                output_config.update(record_camera=True,policy='learned_PPO',
+                    model_sha256=protocol['native_camera_evaluation']['model_sha256'])
+            write_json(output/"config.json",output_config)
             cases = registered_native_cases(protocol)
             evaluation_cases = registered_native_cases(protocol,'evaluation') if protocol.get('native_validation') else cases
-            client = BridgeClient(batch)
+            client = BridgeClient(batch,record_dir=output/'camera') if record_camera else BridgeClient(batch)
             vec = None
             recorder = None
             try:
@@ -489,6 +518,10 @@ def run(batch):
                 else:
                     model.save(output/"model.zip"); vec.save(output/"normalization.pkl")
                 loaded = load_ppo(output/"model.zip", device="cpu")
+                if record_camera:
+                    for name,key in (('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')):
+                        if hashlib.sha256((output/name).read_bytes()).hexdigest()!=protocol['native_camera_evaluation'][key]:
+                            raise ValueError('Camera evaluation artifact differs from registered source')
                 if evaluation_only:
                     if any(not torch.equal(v,loaded.policy.state_dict()[k]) for k,v in model.policy.state_dict().items()):
                         raise ValueError('Frozen evaluation weights differ from the saved source')
@@ -528,6 +561,8 @@ def run(batch):
                         for case_id,case in enumerate(evaluation_cases):
                             guard(batch,protocol)
                             obs,_=evaluation.reset(seed=7301+case_id,options={"case":case})
+                            if record_camera:
+                                begin_frame=evaluation.plant.frame;camera_episode=client.episode_id
                             actions=0
                             while True:
                                 if actions%20==0:
@@ -537,7 +572,16 @@ def run(batch):
                                 obs,_,done,truncated,info=evaluation.step(action[0]);actions+=1
                                 stream.write(json.dumps({"case_id":case_id,"policy_action":action[0],"info":info},default=jsonable)+"\n")
                                 if done or truncated:
-                                    episodes.append({"case_id":case_id,**info["episode_metrics"]});break
+                                    episodes.append({"case_id":case_id,**info["episode_metrics"]})
+                                    if record_camera:
+                                        append_json(output/'episodes.jsonl',{'case_id':case_id,'case':case,
+                                            'original_parent_case_id':protocol['native_camera_evaluation']['original_case_ids'][case_id],
+                                            'status':'completed',**info['episode_metrics'],
+                                            'recording':{'episode_id':camera_episode,'begin_frame':begin_frame,
+                                                'terminal_frame':evaluation.plant.frame,
+                                                'manifest':'camera/'+camera_episode+'/frames.jsonl',
+                                                'kind':'actual_CARLA_RGB','sensor_tick':config.control_dt}})
+                                    break
                     evaluation.close()
                     np.testing.assert_array_equal(mean,vec.obs_rms.mean)
                     np.testing.assert_array_equal(var,vec.obs_rms.var)
@@ -545,6 +589,8 @@ def run(batch):
                         if protocol.get('native_case_manifest') else "Frozen deterministic probes on all four TRAINING roads, no extra policy updates or independent-condition claim")
                     if protocol.get('native_validation'):
                         evaluation_scope='Frozen deterministic probes on registered geometry-separated development validation roads; zero updates,not final confirmation'
+                    if record_camera:
+                        evaluation_scope='Illustrative real RGB evaluation of an unchanged trained PPOpolicy;selected known development cases,not independent confirmation or model selection'
                     write_json(output/"evaluation.json",{"scope":evaluation_scope,
                         "partition":'validation' if protocol.get('native_validation') else 'development',
                         "episodes":episodes,"world_ticks":client.total_ticks-evaluation_ticks,

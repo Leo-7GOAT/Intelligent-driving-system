@@ -1,5 +1,10 @@
 # Executability-aware hierarchical driving research
 
+Actual PPOcamera evaluation is now queued behind the owned native learning
+stages:H/B1each use two explicitly selected known roads and unchanged saved
+models. Frozen CPUrestores and104targeted checks pass;no new camera frames have
+been recorded yet. [Queue,artifact identities and limitations](reports/native_PPO_camera_queue_activation_20261101.json).
+
 Measured B1failure diagnosis now reconstructs40executed decisions across the
 first three completed basic-course seeds. Two failed trajectories enter the goal
 position at1.44/1.50m/s (parking limit.25m/s);their initial actors also provide
@@ -23,7 +28,7 @@ weights,Adam moments,normalizer and RNG,adds10,240controls per seed,and keeps th
 same zero-unsafe basic gate. Full-task training waits for all five qualifications;
 its eventual policy lineage would be40,960controls,with curriculum costs disclosed.
 [Actual queues and trained-checkpoint preflight](reports/native_B1_lower_rate_extension_activation_20261101.json).
-Current completed basic courses11/22/33score3/4,2/4,2/4with bounds violations;
+Current completed basic courses11/22/33/44score3/4,2/4,2/4,0/4with bounds violations;
 none qualifies. Their failures remain recorded. The complete failed-seed11capsule
 has also passed public download and independent raw/model/figure verification.
 
