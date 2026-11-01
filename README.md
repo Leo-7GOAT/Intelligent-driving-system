@@ -10,8 +10,8 @@ improvement. Both complete four-case CARLA probes are required before adoption.
 The first retained-state B1continuation now passes the unchanged basic gate:
 3/4successes,one timeout,zero collision/bounds after10,240additional controls and
 320actual Adam updates. The timeout ends stationary2.164m from goal;this is still
-not a healthy full-task baseline. Seed22also finishes but remains2/4with two
-bounds violations;seed33is learning. The all-five gate stays blocked,and all
+not a healthy full-task baseline. Seeds22and33each finish2/4with two
+bounds violations;seed44is learning. The all-five gate stays blocked,and all
 remaining seeds retain the registered recipe.
 [Seed11gate and remaining stall](reports/native_B1_first_lower_rate_basic_gate_and_stall_20261101.json),
 [seed22failed endpoint](reports/native_B1_basic_lr_extension_seed22_endpoint_20261101.json).

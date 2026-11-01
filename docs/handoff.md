@@ -1,8 +1,12 @@
-# Latest continuation — 2026-11-01 09:53
+# Latest continuation — 2026-11-01 09:56
 
-Seed33completed10240new real PPOcontrols/320Adam updates;its original4case
-evaluation is in progress. Driver62332and full-gate observer20420are unchanged.
-Do not treat the still-running evaluation as a completed or qualified endpoint.
+Seed33TERMINAL:10240new real PPOcontrols/320Adam updates,2/4success,two bounds,
+basicgateFALSE,11861rawcontrols,20480lineage. Full raw/inference audits complete;
+`reports/native_B1_basic_lr_extension_seed33_endpoint_20261101.json`retains it.
+Failures0/3,successes1/2. Actual seed44now runs in
+`20261101T015454924014Z_native_B1_basic_lr_extension`,worker32708(firstheartbeat
+09:56:11,141controls). Revalidate creation identities before management.
+Driver62332and full-gate observer20420remain unchanged;no failed seed omitted.
 
 NEW retained-state actor correction diagnostic actually fit both arms:seed22
 endpoint,512separate-Adam actor-only updates each,critic/retainedPPOAdam/counters/
@@ -19,7 +23,15 @@ is explicit and requires a fresh rollout before any subsequent PPO training.
 Both frozen four-case probes are PREPARED,not driven:
 replay `20261101T014911209543Z_native_trained_actor_replay`,
 correction `20261101T014911842823Z_native_trained_actor_trajectory_correction`.
-Both actual launcher input preflights passed;10targeted tests pass6.26s.
+Both actual launcher input preflights passed;18related tests pass6.69s.
+Both actual frozen-worker CPUrestores retain20480controls/PPO_n_updates92 and
+reproduce all25saved TRAIN-state predictions with maximumerror0.0.
+Independent checkout e2bc98aa4bff1158cb22af4eb09b5eba0e822b3apasses29related
+tests9.10s and COMPLETES both bounded auxiliary fits in52.406s. Every input
+array,loss history,all25predictions,full policy and retained optimizer tensor
+matches exactly. The1024extra reproduction actor updates are separately charged;
+this is not new driving or independently trained policies. Its verification is
+in`runs/prerelease_20261022/basic_course_code_checkout_20261101/runs/B1_seed22_matched_trained_trajectory_independent_fit_20261101/independent_verification.json`.
 Record `reports/native_B1_trained_trajectory_correction_preflight_20261101.json`.
 
 Old broader observer72028was verified live/childless/waiting then explicitly

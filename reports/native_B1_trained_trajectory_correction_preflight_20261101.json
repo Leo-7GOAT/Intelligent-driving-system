@@ -265,5 +265,32 @@
       "new_optimizer_updates": 0,
       "physical_resets": 0
     }
-  ]
+  ],
+  "independent_replay": {
+    "source_commit": "e2bc98aa4bff1158cb22af4eb09b5eba0e822b3a",
+    "scope": "Independent Git checkout repeats the same two offline fits,not independent policy seeds or new driving",
+    "input_arrays_exact": true,
+    "arms": [
+      {
+        "arm": "replay",
+        "policy_and_retained_optimizer_tensors_exact": true,
+        "all25predictions_exact": true,
+        "loss_history_exact": true
+      },
+      {
+        "arm": "trajectory_correction",
+        "policy_and_retained_optimizer_tensors_exact": true,
+        "all25predictions_exact": true,
+        "loss_history_exact": true
+      }
+    ],
+    "additional_reproduction_supervised_updates": 1024,
+    "PPO_updates": 0,
+    "new_controls": 0,
+    "tests_passed": 29,
+    "test_seconds": 9.1,
+    "fit_seconds": 52.40600000019185,
+    "original_result_sha256": "008da8a0c1f0cd0209d0cff532daddc8e895f79715f978fa0ce5b2d8ae8680e4",
+    "independent_result_sha256": "9748a2f2fe831224484c0d479da3bb6e2a02bff690b716177832331ccffa83bc"
+  }
 }
