@@ -1,4 +1,40 @@
-# Shared parking engineering checkpoint— 2026-11-01
+# Current acceptance audit — 2026-11-01
+
+**Overall acceptance: UNMET.** This table supersedes the historical snapshots
+below. Training/evaluation on known development conditions does not satisfy the
+independent final-confirmation requirement.
+
+| Original requirement | Current authoritative evidence | Status |
+|---|---|---|
+| Real PPO → goal/speed → Hybrid A* → trajectory → MPC → CARLA feedback | Five completed native H/H0 training pairs and per-frame raw audits; public reproduction of models, updates and controls | Engineering chain executed |
+| Five healthy, sufficiently trained flat baselines | New common basic course: seeds 11/22/33/44 each complete 10,240 actual PPO controls and 320 Adam steps; endpoints 3/4, 4/4, 4/4, 4/4. Seed 11 has a bounds failure; one result pending | Incomplete; not all qualified |
+| Full-task B1 and fair H/B1 comparison | Separate single B1 model: known conditions 12/12; different-road development validation 14/24, with eight bounds and two collisions. Mixed spawn initialization disclosed. New 36 TRAIN / 24 validation pilot registered but not completed | Not achieved |
+| H gain ≥10 percentage points over healthy B1, paired 95% lower bound >0, or prospectively locked efficiency alternative | No qualified full-task five-seed B1 comparison | Unproven |
+| Added PPO value against shared strong B3 | Teacher-only H 117/120 vs PPO H 120/120; +2.50 points, 95% interval [−2.13, +7.13]. Strong B3 24/24 | Unproven |
+| Interpretable collaboration improvement | H 120/120 vs H0 119/120; +0.83 points, 95% interval [−1.48, +3.15] | Stable gain unproven |
+| Lightweight ≥85% overall / ≥75% per core; CARLA ≥80% / ≥70%; unsafe episodes ≤5% | No new final confirmation. The separate B1 different-road development probe is 58.33% successful and 41.67% collision-or-bounds | Final targets unverified; B1 development result below targets |
+| ≥120 new unique paired final conditions, ≥30 per core and unseen conditions | Current H/H0 study reuses 24 known conditions across five seeds. New final set remains untouched | Not achieved |
+| B2, frequency, shared-safety and fixed-reference evidence | Existing H/B2 study retains a bridge-initialization confound; fixed-reference MPC and pursuit/PI each 4/4; complete fair cohorts remain missing | Partial |
+| Reproducible public delivery | Published frozen models/raw logs/figures independently rebuilt. Source a78d9fa hosted CPU CI: 1,110 passed, 18 skipped, four deselected | Development reproduction delivered; final withheld |
+
+Evidence: [basic seed 11](../reports/native_B1_shared_parking_cohort_seed11_20261101.json),
+[22](../reports/native_B1_shared_parking_cohort_seed22_20261101.json),
+[33](../reports/native_B1_shared_parking_cohort_seed33_20261101.json),
+[44](../reports/native_B1_shared_parking_cohort_seed44_20261101.json),
+[different-road validation](../reports/native_B1_shared_parking_validation_complete_20261101.json),
+[broader pilot registration](../reports/native_B1_broader_shared_parking_registration_20261101.json),
+[H/H0 statistics](../reports/native_matched_broader_feedback_cohort_20261101.json),
+[PPO attribution](../reports/native_broader_PPO_teacher_rule_attribution_20261101.json),
+[public reproduction](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json),
+[source-specific CPU CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41311458724).
+
+The shared terminal helper is engineering assistance, disclosed separately from
+learned decisions. Decision-cycle overruns remain; synchronous execution is not
+real-time validation. No final superiority or safety claim is supported.
+
+## Historical acceptance snapshots
+
+### Shared parking engineering checkpoint — 2026-11-01
 
 B1/H/B3 each4/4 on the same4known TRAINroads with the same explicit goal-parking
 aid;6/1409,8/1287,8/1286 physical overrides respectively. All goal/speed/heading

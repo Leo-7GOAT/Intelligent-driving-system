@@ -1,3 +1,30 @@
+# Four basic courses audited; seed55 RUNNING — 2026-11-01
+
+Exact queue72488 remains active with completed11/22/33/44, respective endpoint
+scores3/4,4/4,4/4,4/4. Seed11hasonebounds; three of four completed gates pass.
+Everycompletedcourse adds10240actualPPOcontrols and320Adamsteps, totals40960/1280.
+These are four repeated known TRAINconditions,not16unique final conditions.
+Seed44 model5af377bdca732f0e8b6b494496071dfac9c237fd1f349acff9be7e190114f119.
+Its11697rawcontrols and1457wholeendpointactions are verified; training retains
+24successes/fourbounds. Lifecycle exit0,normalownedcleanup. Both reports are
+copied to reports/native_B1_shared_parking_cohort_seed44[_whole_sequence]_20261101.json.
+Seed55batch20261101T121900945085Z_native_B1_shared_parking_cohort_seed55
+started automatically after the44whole-action audit. Never launch it manually.
+Broaderobserver4332 still waits on the exact queue72488handle; do not duplicate.
+
+# Delivery entry points consolidated; native queue unchanged — 2026-11-01
+
+English README is now 69 lines and Chinese guide 50 lines, with current evidence,
+the original acceptance targets and executable public-reproduction commands.
+Both former guides are preserved in docs/README.development-history.md and
+docs/README.zh-CN.development-history.md. Content preservation against a78d9fa
+was verified; only English archive relative link targets were relocated.
+All 54 local links/anchors in the new entry points were checked. The current
+acceptance table supersedes dated historical snapshots without removing them.
+Hosted CPU run 41311458724 for a78d9fa is SUCCESS: 1110 passed, 18 skipped,
+4 deselected in199.21s. This documentation-only change needs no repeated
+training or CPU regression. Existing native queue/observer frozen sources unchanged.
+
 # Five-seedqueue33PASSED/44RUNNING; broader36/24study observer WAITING — 2026-11-01
 
 GoalACTIVE/UNMET. Exact basicqueue remains executionB1_shared_parking_five_seed_execution_20261101,
