@@ -1,0 +1,75 @@
+{
+  "scope": "One fixed ten-coefficient steering fit with explicit hypothetical pose queries.",
+  "diagnostic_sha256": "9b1854b9ab1b60436588ec8954bde4fa6c927374468a5da46f7e9939232bf3a5",
+  "source_model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+  "source_normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "new_Adam_updates": 0,
+  "solver": "One weighted ridge solve;lambda=.001 on all10coefficients,no search/retries.",
+  "weights": "Half total weight on episode-balanced acknowledged teacher TRAINrows;half on fixed-reference pose differences.",
+  "real_teacher_rows": 3424,
+  "excluded_unconfirmed_or_previous_unconfirmed_rows": 43,
+  "hypothetical_pose_differences": 120,
+  "hypothetical_labels_are_executed": false,
+  "screen": "All4basic teacher steering RMS<=.01rad;both pose gain RMSerrors reduced>=50%. Actual basic gate remains>=3/4 AND no collision/bounds.",
+  "fixed_parameters": "All original actor/critic/log_std/PPOAdam/counters/RMS;only10new learned steering coefficients.",
+  "script_sha256": "5f76fe7367470aeed3a91d5a505df55b756500c98c6000207b63fc9824c3b17b",
+  "policy_source_sha256": "40ee5cae127f1a4d9805a1b95fc9c091420162a90a8a6e912d60acd22b65ef90",
+  "coefficients": [
+    0.0016412219879778857,
+    -0.0026898056398581257,
+    0.02164809422828839,
+    0.012068047329809182,
+    0.005468380228940461,
+    0.01233105509158008,
+    -0.009456995696574773,
+    -0.0017295893928989108,
+    0.008501466630956571,
+    -0.01089601957539727
+  ],
+  "model_sha256": "b517a23b3dd278cc145404716426b2bce89c207a624d848bcbcb6064d298f6bc",
+  "fit_inputs_sha256": "4bff1411b40f36dd2d4b4c294ac53976b11f8cb62bc88c3463a3421bcc42f65e",
+  "teacher_retention": [
+    {
+      "case_id": 0,
+      "rows": 268,
+      "steering_RMS_before_rad": 0.003640632377937436,
+      "steering_RMS_after_rad": 0.0034612509884060522
+    },
+    {
+      "case_id": 1,
+      "rows": 274,
+      "steering_RMS_before_rad": 0.004920303821563721,
+      "steering_RMS_after_rad": 0.004955057484598806
+    },
+    {
+      "case_id": 2,
+      "rows": 246,
+      "steering_RMS_before_rad": 0.0037141069769859314,
+      "steering_RMS_after_rad": 0.003912316071628722
+    },
+    {
+      "case_id": 3,
+      "rows": 237,
+      "steering_RMS_before_rad": 0.004526881035417318,
+      "steering_RMS_after_rad": 0.004584876053310537
+    }
+  ],
+  "pose_difference_fit": [
+    {
+      "axis": "lateral_metres",
+      "difference_RMS_error_before": 0.029060584560989727,
+      "difference_RMS_error_after": 0.02892625675761307
+    },
+    {
+      "axis": "yaw_radians",
+      "difference_RMS_error_before": 0.02628154239834448,
+      "difference_RMS_error_after": 0.026141558760868412
+    }
+  ],
+  "offline_screen_passed": false,
+  "native_driving_gate_passed": false,
+  "elapsed_seconds": 0.14000000013038516,
+  "limits": "Pose differences are counterfactual held-reference teacher queries;the baseline was trained under legacy delivery. Actual qualification must use an explicit new sync-delivery transfer. No health or PPOvalue claim."
+}

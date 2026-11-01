@@ -1,3 +1,54 @@
+# Pose response diagnosed; real PPO basic course RUNNING — 2026-11-01 17:50
+
+Goal ACTIVE/UNMET. Do not restart old closed jobs or package a failed fit as a
+healthy B1. Sync-delivery source928bdbdb554488b1d16bbf2a94e8d7714e8e4a59 is pushed;
+independent checkout1111PASS/1skip/4CARLAexcluded113.78s;hosted CI41293589581
+SUCCESS1094PASS/18skip/4excluded128.70s. Independent transfer report deep-exact.
+
+New measured TRAIN diagnosis: 1297 golden held-reference commands reproduce;
+30 fixed sampled states have policy/MPC median absolute lateral gain ratio.0747
+and yaw ratio.1397. Thirteen lateral/four yaw signs disagree. Poses are hypothetical,
+not executed labels. Dataset60triplets(base/minus/plus),all4known TRAINroads.
+Original states/history unchanged; no plant step exists in query reconstruction.
+
+Rejected ten-parameter geometry residual: one ridge solve,zero native controls;
+modelb517a23b...,source retained solely for reproduction,not adopted in next NN.
+Original-architecture contrastive actor fit512steps fails lateral response screen.
+Declared1024step extension passes: lateral error.058121→.026020;yaw.052566→.020301;
+all4teacher steering RMS<.01rad,acceleration anchor RMS.004609. Original critic,
+roadencoder,log_std,PPOAdam/counters/RMS exact. New auxiliary1536Adamupdates total.
+First auxiliaryAdam was not saved; extension restart explicitly disclosed. Saved
+extensionAdam states all1024steps. Original replay512auxiliarysteps are inherited.
+Model2e5925184e4f6eb560d96724526d51dec8cdf4f5c37314e15af3f7d53e46d53b.
+
+Pure fixed-sync deployment20261101T094244452999Z_native_feedback_contrast_probe
+COMPLETE/ownedemptyserverstopped;case0bounds489,case1bounds665,case2success320,
+case3success308=2/4;1782controls,zeroackmismatches,4measuredstartactionsverified.
+Gate UNMET. Case1closestgoal now.991m vs originalsync10.235m,but overshoots;
+case0closest.868m and also fails. Do not call local feedback a driving improvement.
+Full report reports/native_B1_feedback_contrast_probe_20261101.json. NewrawLOCAL.
+
+ACTIVE actualPPO batch20261101T094700825994Z_native_B1_feedback_PPO,
+lifecycle execsession65170,worker41328(identity+creation/exe in worker_process.json;
+never use PID without fresh identity checks). Started by owned foreground wrapper
+with current guard,7200swall,0retries,C>=12GiB,RAM>=4GiB,GPU<85C. Budget10240
+new physical TRAINcontrols,thresholds1280..10240,all4TRAINroads at final endpoint.
+Source mean2e592518...,Gaussian log_std retained(~.0183),zero extra BC/runtime
+teacher,freezeRMS,unchanged reward/goals/20Hz/gains,direct original architecture.
+Lowlevelbatch_sync_v1 fixed for entire new training. Charged prior controls86628,
+inherited PPOlineage20480/PPOAdam348. This is basic learning,not full-task promotion.
+DO NOT launch the registered batch again. Inspect heartbeat/guard/summary until
+terminal,then raw audit,measuredstartaudit,new delivery audit and
+scripts/analyze_native_feedback_ppo.py; no result has been claimed yet.
+
+Current newly added policy/control related tests26PASS14.47s;additional learning
+proof test needs execution. New source/report edits need commit/push and checks.
+Reports copied byte-exact; .gitattributes protects their bound hashes. New source
+scripts include prepare_native_feedback_ppo.py and analyze_native_feedback_ppo.py.
+No new final conditions generated. Five healthy B1seeds,actualPPOaddedvalue,
+strongB3benefit,explainable collaboration,fairremainingablations and120NEWfinal
+conditions remain unmet. Do not change the research goal or lower gates.
+
 # Sync delivery fix verified; B1still unqualified — 2026-11-01 17:20
 
 Previous goal turn PROGRESS:actualPPO/public reconstruction complete. Thisturn

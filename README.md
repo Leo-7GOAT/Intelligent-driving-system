@@ -1,5 +1,12 @@
 # Executability-aware hierarchical driving research
 
+Current development: local pose-response supervision improves B1's offline
+feedback responses but its real deployment fails (2/4, two bounds failures).
+All 1,782 controls are audited. A separate 10,240-control basic-road PPO course
+is running with the corrected synchronous interface fixed throughout training;
+its result is pending. The research goals remain unmet.
+[Diagnosis, rejected models and evidence](docs/native_flat_feedback.md).
+
 An additional engine-control audit detects51previous-request acknowledgements
 in the earlier12,219control PPOpilot. Versioned synchronous delivery now passes
 all1,271new frame checks with unchanged model/gains,but its frozen B1transfer
@@ -15,7 +22,7 @@ failure;the matched unprojected fit1/4with two. All9,010controls across the thre
 recovery profiles are audited;no failed model is promoted. A separate retained
 PPO exploration pilot completes10,240new controls and320actual Adam updates;
 its pure endpoint is2/4with one bounds failure and one timeout. All12,219pilot
-controls are audited;the model is rejected. No native training remains active.
+controls are audited;the model is rejected. That exploration pilot is terminal.
 [Original-TRAINresult](reports/native_B1_original_TRAIN_recovery_collection_and_probe_20261101.json),
 [matched projection ablation](reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
 [completed PPOresult](reports/native_B1_exploration_PPO_pilot_20261101.json),

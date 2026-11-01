@@ -1,0 +1,108 @@
+{
+  "scope": "Fixed actor fit of pose responses, preserving the prior measured-state means.",
+  "script_sha256": "1e0d39cf3ed56890f4cd22b3dfc2012dc5a7653ffaa8064d03ff536f1b12e51c",
+  "query_sha256": "91d2e92bfcbb68efc6422e55a0f05bc211e25d5f4b9515b63e422b208eaeb750",
+  "diagnostic_sha256": "8504fd60c6b4b7fec8848ccb4dc2e95c2c2c10311a22896d980c8a9533379ba3",
+  "source_model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+  "source_normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+  "anchor_rows": 3467,
+  "pose_triplets": 60,
+  "excluded_unconfirmed_triplets": 0,
+  "hypothetical_poses_are_executed": false,
+  "anchor_targets": "Previous policy means on original measured TRAINinputs;self-distillation,not newly executed teacher labels.",
+  "steps": 512,
+  "seed": 22,
+  "learning_rate": 0.0001,
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "loss": "Mean squared one-sided pose-response error divided by TRAINteacher response RMS peraxis,plus original mean retention error divided by[.05,.02].",
+  "screen": "All4basic teacher steering RMS<=.01rad;both pose-response RMSerrors reduced>=50%;anchor acceleration normalized RMS<=.05. Unchanged native>=3/4 AND no collision/bounds.",
+  "frozen": "Road encoder,critic,log_std,retained PPOAdam,counters,RMS;original direct network architecture.",
+  "previous_rejected_ridge_fit_sha256": "0b16849b3631484e9764b54a47aeb79fdb629b02aea153c6c54c557dac7236e4",
+  "model_sha256": "4dcdc52a69a4d79cc3e8256a6519b1e04e4a3e4af84b912544891386085fc3a5",
+  "fit_inputs_sha256": "81ab457d7b14bb1e1589cae5c00317ed31f4db400ff8799aeb0576277ee40d71",
+  "new_auxiliary_Adam_updates": 512,
+  "teacher_retention": [
+    {
+      "case_id": 0,
+      "steering_RMS_rad": 0.005582380574196577
+    },
+    {
+      "case_id": 1,
+      "steering_RMS_rad": 0.0071685295552015305
+    },
+    {
+      "case_id": 2,
+      "steering_RMS_rad": 0.006897510960698128
+    },
+    {
+      "case_id": 3,
+      "steering_RMS_rad": 0.0063621364533901215
+    }
+  ],
+  "pose_response": [
+    {
+      "axis": "yaw_radians",
+      "triplets": 30,
+      "RMS_difference_error_before": 0.052566077560186386,
+      "RMS_difference_error_after": 0.02571168728172779
+    },
+    {
+      "axis": "lateral_metres",
+      "triplets": 30,
+      "RMS_difference_error_before": 0.05812117084860802,
+      "RMS_difference_error_after": 0.032784249633550644
+    }
+  ],
+  "acceleration_anchor_RMS": 0.005681455601006746,
+  "offline_screen_passed": false,
+  "history": [
+    {
+      "steps": 1,
+      "anchor_loss": 0.0,
+      "pose_loss": 0.8997640609741211
+    },
+    {
+      "steps": 64,
+      "anchor_loss": 0.07721404731273651,
+      "pose_loss": 0.4893819987773895
+    },
+    {
+      "steps": 128,
+      "anchor_loss": 0.10397569090127945,
+      "pose_loss": 0.3899024426937103
+    },
+    {
+      "steps": 192,
+      "anchor_loss": 0.10565613955259323,
+      "pose_loss": 0.34324291348457336
+    },
+    {
+      "steps": 256,
+      "anchor_loss": 0.08213351666927338,
+      "pose_loss": 0.3111329674720764
+    },
+    {
+      "steps": 320,
+      "anchor_loss": 0.08654619753360748,
+      "pose_loss": 0.29306110739707947
+    },
+    {
+      "steps": 384,
+      "anchor_loss": 0.08100700378417969,
+      "pose_loss": 0.27922362089157104
+    },
+    {
+      "steps": 448,
+      "anchor_loss": 0.077389195561409,
+      "pose_loss": 0.2649671733379364
+    },
+    {
+      "steps": 512,
+      "anchor_loss": 0.09662991762161255,
+      "pose_loss": 0.25161272287368774
+    }
+  ],
+  "elapsed_seconds": 10.264999999897555,
+  "research_acceptance": "UNMET"
+}

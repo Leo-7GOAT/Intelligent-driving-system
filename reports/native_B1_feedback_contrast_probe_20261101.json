@@ -1,0 +1,105 @@
+{
+  "scope": "Audit the pose-response auxiliary fit and its complete native deployment probe.",
+  "script_sha256": "8e98c77be8b6b792006b9ca2f6d70e1c9adaeb8a76ac225946eb7fed285b5b90",
+  "batch": "20261101T094244452999Z_native_feedback_contrast_probe",
+  "diagnosis": "Small pointwise imitation error did not preserve local feedback. Held-reference pose queries are hypothetical,not executed teacher demonstrations.",
+  "auxiliary_fits": [
+    {
+      "model_sha256": "4dcdc52a69a4d79cc3e8256a6519b1e04e4a3e4af84b912544891386085fc3a5",
+      "auxiliary_steps": 512,
+      "changed_actor_tensors": 14,
+      "frozen_tensors_exact": 21,
+      "PPOAdam_counters_normalizer_exact": true,
+      "new_PPO_updates": 0
+    },
+    {
+      "model_sha256": "2e5925184e4f6eb560d96724526d51dec8cdf4f5c37314e15af3f7d53e46d53b",
+      "auxiliary_steps": 1024,
+      "changed_actor_tensors": 14,
+      "frozen_tensors_exact": 21,
+      "PPOAdam_counters_normalizer_exact": true,
+      "new_PPO_updates": 0
+    }
+  ],
+  "new_auxiliary_Adam_updates": 1536,
+  "saved_continuation_Adam_states": 14,
+  "saved_continuation_Adam_steps_each": 1024,
+  "first_auxiliary_optimizer_not_saved": true,
+  "continuation_optimizer_restart_explicit": true,
+  "discarded_ten_parameter_ridge_solves": 1,
+  "discarded_ridge_native_controls": 0,
+  "offline_screen": {
+    "teacher_retention": [
+      {
+        "case_id": 0,
+        "steering_RMS_rad": 0.005192606709897518
+      },
+      {
+        "case_id": 1,
+        "steering_RMS_rad": 0.006601425819098949
+      },
+      {
+        "case_id": 2,
+        "steering_RMS_rad": 0.006398345809429884
+      },
+      {
+        "case_id": 3,
+        "steering_RMS_rad": 0.00575938681140542
+      }
+    ],
+    "pose_response": [
+      {
+        "axis": "yaw_radians",
+        "triplets": 30,
+        "RMS_difference_error_before": 0.052566077560186386,
+        "RMS_difference_error_after": 0.020300691947340965
+      },
+      {
+        "axis": "lateral_metres",
+        "triplets": 30,
+        "RMS_difference_error_before": 0.05812117084860802,
+        "RMS_difference_error_after": 0.026020370423793793
+      }
+    ],
+    "acceleration_anchor_RMS": 0.004608549177646637,
+    "offline_screen_passed": true
+  },
+  "probe": {
+    "successes": 2,
+    "cases": 4,
+    "unsafe_cases": 2,
+    "basic_gate_passed": false,
+    "actual_controls": 1782,
+    "new_PPO_updates": 0,
+    "case_outcomes": [
+      {
+        "case_id": 0,
+        "termination": "out_of_bounds",
+        "controls": 489
+      },
+      {
+        "case_id": 1,
+        "termination": "out_of_bounds",
+        "controls": 665
+      },
+      {
+        "case_id": 2,
+        "termination": "success",
+        "controls": 320
+      },
+      {
+        "case_id": 3,
+        "termination": "success",
+        "controls": 308
+      }
+    ],
+    "all_engine_controls_acknowledged": true,
+    "start_actions_verified": 4,
+    "raw_audit_sha256": "57864354598ced92824ada470d478f5db1c76348098bd8cf1af9b817fa717988",
+    "protocol_sha256": "f820c547973a74ca314b735d9608af20a907c2bd0b96748c65416db244ddba96",
+    "evaluation_trace_sha256": "7a9b6694a0cab3613514bb6747a3d0841c9065bda9b7bfe97fdd8a8fccf5d2a5"
+  },
+  "fixed_conditions": "Same all4original TRAINroads,task,goal gates,vehicle,reward,normalizer,direct NNarchitecture,and validated batch_sync_v1 lowlevel. Only learned actor mean weights differ.",
+  "limits": "One known development seed with extra counterfactual pose supervision. Not five independent trained policies,new PPOvalue,final confirmation or full-task baseline qualification.",
+  "research_acceptance": "UNMET"
+}

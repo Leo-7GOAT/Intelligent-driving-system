@@ -32,3 +32,8 @@ protocols/public_native_B1_exploration_PPO_20261101.json -text -whitespace
 reports/native_PPO_legacy_control_delivery_20261101.json -text -whitespace
 reports/native_B1_witness_jump_diagnostic_20261101.json -text -whitespace
 reports/native_B1_clock_sensitivity_20261101.json -text -whitespace
+reports/native_B1_feedback_gain_queries_20261101.json -text -whitespace
+reports/native_B1_pose_residual_rejected_20261101.json -text -whitespace
+reports/native_B1_feedback_contrast_initial_20261101.json -text -whitespace
+reports/native_B1_feedback_contrast_extension_20261101.json -text -whitespace
+reports/native_B1_feedback_contrast_probe_20261101.json -text -whitespace
