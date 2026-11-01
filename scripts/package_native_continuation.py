@@ -302,6 +302,7 @@ def package(batch, output, completed_method=None, camera_media=False):
                     'That command loads the saved model and freezes normalization; it performs no plant integration or simulator ticks.\n'
                     'Raw states come from CARLA; no downloaded-asset replay should be called a new drive.\n').encode()}
         if camera_profile:
+            extras['requirements-video.txt']=(ROOT/'requirements-video.txt').read_bytes()
             extras['CAMERA_README.txt']=(
                 'FROZEN NATIVE PPO RGB EVALUATION; DEVELOPMENT ILLUSTRATIONS ONLY.\n'
                 'All registered success/failure videos and complete control traces are included.\n'
@@ -310,7 +311,7 @@ def package(batch, output, completed_method=None, camera_media=False):
                 'Recording-local case/route indices may differ from original parent indices;use native_camera_evaluation metadata.\n'
                 'The palm canopy partly occludes original case3;consult raw control trajectories as well as sensor footage.\n'
                 'CPU raw/model/figure reproduction:python scripts/reproduce_native_asset.py --archive ASSET.zip --sha256 DIGEST --output FRESH_DIR\n'
-                'Video verification:python scripts/verify_carla_videos.py --videos EXTRACTED_BATCH/videos (use a fresh copy if preserving original decode receipts).\n'
+                'Install requirements-video.txt before video verification:python scripts/verify_carla_videos.py --videos EXTRACTED_BATCH/videos (use a fresh copy if preserving original decode receipts).\n'
             ).encode()
         for name,payload in extras.items():
             scan_payload(name,payload)
