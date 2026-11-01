@@ -145,11 +145,19 @@
     "seconds": 112.76
   },
   "latest_completed_hosted_CPU_CI": {
-    "source_commit": "9e726d7cb54920a8ba0048979d652f766093d3e2",
-    "run_id": 41288185210,
+    "source_commit": "5ba24415285cad9413b0580903762f1adde18caf",
+    "run_id": 41289096637,
     "conclusion": "success",
     "passed": 1084,
     "skipped": 18,
     "CARLA_deselected": 4
-  }
+  },
+  "independent_full_CPU_regression": {
+    "source_commit": "5ba24415285cad9413b0580903762f1adde18caf",
+    "passed": 1101,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "seconds": 112.25
+  },
+  "committed_auditor_recheck_exact": true
 }

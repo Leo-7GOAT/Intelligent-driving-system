@@ -1,3 +1,17 @@
+# FINAL verification checkpoint — 2026-11-01 16:37
+
+Source5ba24415285cad9413b0580903762f1adde18caf isPUSHED and fullyverified:
+root1101pass112.76s;independent checkout1101pass112.25s;both1skip/4CARLAexcluded.
+HostedCI41289096637SUCCESS1084pass/18skip/4excluded. Committed verifier f46ae098...
+rebuilds the public initial+learning proof exactly;Git recipe SHAalso exact.
+All public download/raw/model/figure/Adam/RMS checks complete. No native,training,
+upload,reconstruction or CPUtest job remains active. No queued next training.
+Only this final metadata record changes after the tested source;no algorithm,
+model,raw control,scene,normalizer or figure changes. Overallgoal ACTIVE/UNMET:
+B1still2/4with bounds/timeout;five-seed healthy baseline,PPOvalue,stablefeedback,
+fair remaining ablations and120NEWfinalconditions unfulfilled. No gate relaxed.
+Do not repeat the published cohort,pilot,closed fits,downloads or tests.
+
 # Public PPOpilot reconstruction COMPLETE; research still UNMET — 2026-11-01 16:27
 
 Independent checkout9e726d7 downloaded public7parts+manifest unauthenticated:
