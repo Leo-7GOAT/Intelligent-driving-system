@@ -1,4 +1,45 @@
-# Latest attribution-control preparation — 2026-11-01 10:08
+# Latest native checkpoint — 2026-11-01 10:30
+
+Seed44TERMINAL:0/4success,four bounds,10240new training controls/320actual Adam,
+20480retained policylineage,11813rawcontrols (1573evaluation). BasicgateFALSE.
+Report`native_B1_basic_lr_extension_seed44_endpoint_20261101.json`. All four
+trajectories are plotted in`reports/figures/native_B1_seed44_lower_rate_failures_20261101.png`
+and visually inspected. Independent checkout3d4e992rebuilds byte-identical PNG,
+SHA b0ee44bb132d5ac07875974f94a02aa2d0152ea4cb62687538718a032e897d1f.
+All1573measured evaluation controls show no goal-position entry;nearest goal
+distances2.4412,22.4621,1.0013,16.9503m. Case3fails at3.65s. Ten exact measured
+decision reconstructions retain identical observation statistics;comparison is
+with the extension's already trained parent,not a zero-PPO counterfactual run.
+`native_B1_seed44_lower_rate_failure_diagnosis_20261101.json`binds all evidence.
+These failures cannot be explained solely by terminal braking.
+
+Actual fifth/last lower-rate learner:batch
+`20261101T022104544331Z_native_B1_basic_lr_extension`,worker45716,
+created2026-11-01T10:21:29.204364+08:00;guard22424is distinct. Last heartbeat
+10:30:37shows4250controls/3phases. Driver62332and failed-all-five full-gate
+observer20420unchanged. Revalidate exact creation identities before management.
+
+New bounded offline EARLY TRAINoracle queries COMPLETE for11/22/33/44:
+`runs/B1_lower_rate_seedSEED_early_training_oracle_20261101`.
+Existing --coverage profile:first completed TRAINepisode/condition,regardless
+outcome;fixed controls0/40/80/120/160/200 when present. 24/24/24/20queries,
+92total,90solved-reference MPCcommands,2wait-only rows (seed44condition1at
+160/200). 55.937s total query wall,zero new controls/PPO/supervised updates.
+Twelve seed22anchors overlap the earlier full-trajectory queries:observations
+and labels reproduce exactly. Repeat queries are explicitly counted. All source
+and measured-history hashes retained;no model fits or changes to the original
+queued17label/512step pair. These are candidate labels,not executed commands or
+proof of recovery;bounded oracle search failure is not geometric impossibility.
+`reports/native_B1_early_TRAIN_oracle_coverage_20261101.json`binds manifests.
+Seed55must finish and be raw-audited before any TRAINquery;no fifth-data claim.
+
+Other verified-live observers unchanged:camera42060 -> corrective probes and
+broader H/H0observer30268 -> pristine teacher-only observer73064. Rootcode
+3d4e992has980hosted passes/18skips/4CARLAexclusions,127.73s,independent34passes.
+No new final conditions. Goal ACTIVE/UNMET. Wait for registered native results;
+do not treat90offline labels,greenCI or new published figures as repaired B1.
+
+# Historical attribution-control preparation — 2026-11-01 10:08
 
 Previous goal turn was PROGRESS:matched B1actor fits and independent exact replay
 completed,new native pair queued,code pushed3c2893250195faf7f37bd33fa28c9eb8f84da596.

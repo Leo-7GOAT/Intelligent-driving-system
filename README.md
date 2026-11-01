@@ -17,10 +17,13 @@ The first retained-state B1continuation now passes the unchanged basic gate:
 3/4successes,one timeout,zero collision/bounds after10,240additional controls and
 320actual Adam updates. The timeout ends stationary2.164m from goal;this is still
 not a healthy full-task baseline. Seeds22and33each finish2/4with two
-bounds violations;seed44is learning. The all-five gate stays blocked,and all
+bounds violations. Seed44finishes0/4with four bounds failures;seed55is learning.
+The all-five gate stays blocked,and all
 remaining seeds retain the registered recipe.
 [Seed11gate and remaining stall](reports/native_B1_first_lower_rate_basic_gate_and_stall_20261101.json),
 [seed22failed endpoint](reports/native_B1_basic_lr_extension_seed22_endpoint_20261101.json).
+[All four seed44 failures and measured-state diagnosis](reports/native_B1_seed44_lower_rate_failure_diagnosis_20261101.json),
+[raw-bound trajectory panel](reports/figures/native_B1_seed44_lower_rate_failures_20261101.png).
 The initial all-five course remains3/4,2/4,2/4,0/4,2/4with every gate failed;
 all51,200training controls and58,758raw controls are preserved.
 
