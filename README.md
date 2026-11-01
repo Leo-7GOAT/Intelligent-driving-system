@@ -1,6 +1,16 @@
 # Executability-aware hierarchical driving research
 
-Latest actual CARLA PPO course with the shared parking wrapper fixed throughout:
+Development validation on different registered roads is **14/24 successful**:
+curve/parking5/8,static vehicles3/8,crossing walkers6/8,with eight bounds failures
+and two collisions. All10,210controls are verified. A walker-spawn failure after
+17completed cases is retained;only seven unfinished cases are resumed using the
+existing pre-control height-clearance fix. The mixed initialization versions are
+disclosed;this is descriptive development evidence. Generalization remains weak.
+[Complete validation record](reports/native_B1_shared_parking_validation_complete_20261101.json).
+Five independently initialized fixed-budget actual PPO courses are now running
+serially;their qualification results are pending.
+
+Latest completed CARLA PPO course with the shared parking wrapper fixed throughout:
 **10,240 new training controls, 318 verified Adam steps, 4/4 basic-road endpoint
 successes and zero endpoint collision/bounds**. All 11,639 training/evaluation
 controls are verified; all 1,399 endpoint actions reconstruct exactly. Training

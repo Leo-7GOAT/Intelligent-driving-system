@@ -1,0 +1,193 @@
+{
+  "scope": "Completed equal-budget TRAIN-only actor fits and preparation of five independent actual-PPO learning courses. No native qualification is inferred from these fits.",
+  "registered_plan_sha256": "4a6c0197d8fcc1c4962545645a9710e3a34cec7bb6bcc60b731755311fed4c33",
+  "new_auxiliary_Adam_steps": 5120,
+  "independent_before_and_after_actors": 5,
+  "offline_screens_passed": 0,
+  "fits": [
+    {
+      "seed": 11,
+      "parent_batch": "20261101T005612994446Z_native_B1_basic_lr_extension",
+      "source_model_sha256": "e7abb6ea1181b934c26053b95500b78d668a7561e682c3d50a53cd0adef8c5d0",
+      "fitted_model_sha256": "118de13a3ef12f7eee75fad91fa7427e0a0191ad7952dd36f23d99b1816ef10d",
+      "actor_before_sha256": "737bf910002546dbab0d1f22cb8a8929ad15cce831a22b3ad43c7321cdc3e904",
+      "actor_after_sha256": "b1d5c517c7629f6c1411b0c3ef67c0a5456a38f7850a201d6215e23403b0607f",
+      "new_auxiliary_Adam_steps": 1024,
+      "actual_auxiliary_Adam_step_each": [
+        1024
+      ],
+      "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+      "offline_screen_passed": false,
+      "pose_response": [
+        {
+          "axis": "yaw_radians",
+          "normalized_steering_response_RMS": 0.02803247794508934,
+          "ceiling": 0.025375864934176207
+        },
+        {
+          "axis": "lateral_metres",
+          "normalized_steering_response_RMS": 0.03414472937583923,
+          "ceiling": 0.03252546302974224
+        }
+      ],
+      "fit_report_sha256": "f95ecbd9f9129814fba755e3866d09dc1656f5ea7bfb5dfb2e3de8068af0ba03"
+    },
+    {
+      "seed": 22,
+      "parent_batch": "20261101T011350364179Z_native_B1_basic_lr_extension",
+      "source_model_sha256": "e4cbd3b436d54d6b9f2c59aba5e51c315902aa49aef06594227a741c2d6ccf06",
+      "fitted_model_sha256": "c4e8e3971c6357886ccd217f088fccaae0ccc8b8dcdeb9cf23507657523b848c",
+      "actor_before_sha256": "a9d3a4fe1db1b3868d47e566a7579f5519ed57f472f685a1fc4220cf9a3a5123",
+      "actor_after_sha256": "bd03585069f23b0c5ecd9729a4443addfb2956c607476e2b8404a2ffca8ed6f7",
+      "new_auxiliary_Adam_steps": 1024,
+      "actual_auxiliary_Adam_step_each": [
+        1024
+      ],
+      "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+      "offline_screen_passed": false,
+      "pose_response": [
+        {
+          "axis": "yaw_radians",
+          "normalized_steering_response_RMS": 0.03018500842154026,
+          "ceiling": 0.025375864934176207
+        },
+        {
+          "axis": "lateral_metres",
+          "normalized_steering_response_RMS": 0.035748764872550964,
+          "ceiling": 0.03252546302974224
+        }
+      ],
+      "fit_report_sha256": "0786065ca62523391e08275d84745237c89b5ee270f060200557a940cd5f699f"
+    },
+    {
+      "seed": 33,
+      "parent_batch": "20261101T013448773461Z_native_B1_basic_lr_extension",
+      "source_model_sha256": "b92aebcb73b712e03655a690ac6a31b1d2e45b74000a894d1be68c85357a0dea",
+      "fitted_model_sha256": "d59c15693835679959b8427adf2dbeb6b5c79d23270724bf467ac34afe9abd47",
+      "actor_before_sha256": "b8a76a732d57271dd939ab8a086eaf3c949150f73fdcd319339ed4551ca228c1",
+      "actor_after_sha256": "7a7c2164042e8a414bc66e49fcc581dbaf5fc30861062812f3ee6b8ce407a5bd",
+      "new_auxiliary_Adam_steps": 1024,
+      "actual_auxiliary_Adam_step_each": [
+        1024
+      ],
+      "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+      "offline_screen_passed": false,
+      "pose_response": [
+        {
+          "axis": "yaw_radians",
+          "normalized_steering_response_RMS": 0.028255393728613853,
+          "ceiling": 0.025375864934176207
+        },
+        {
+          "axis": "lateral_metres",
+          "normalized_steering_response_RMS": 0.03431529179215431,
+          "ceiling": 0.03252546302974224
+        }
+      ],
+      "fit_report_sha256": "5b489bbaeb12868f42453c358fe05836a8e381de858b3c0eb7daa98b2023a5e2"
+    },
+    {
+      "seed": 44,
+      "parent_batch": "20261101T015454924014Z_native_B1_basic_lr_extension",
+      "source_model_sha256": "2898fb14da3dcf7709cc36fc1d53c86db4b56c34e8517373a88906d63811dae1",
+      "fitted_model_sha256": "03ab5136a25151fe6a43d79ca7a4c0c8c80b39c38d71b11ed06279ccbf16dc64",
+      "actor_before_sha256": "ef337f0748aeaf92537c3a06887cc2437f67deaef3690445aa4dd2bb3c87998c",
+      "actor_after_sha256": "3e5eb94fd0ec9ed3e2dd7aca0ff89a6f61b154715bc9f6339789f26f1de5d37b",
+      "new_auxiliary_Adam_steps": 1024,
+      "actual_auxiliary_Adam_step_each": [
+        1024
+      ],
+      "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+      "offline_screen_passed": false,
+      "pose_response": [
+        {
+          "axis": "yaw_radians",
+          "normalized_steering_response_RMS": 0.029214926064014435,
+          "ceiling": 0.025375864934176207
+        },
+        {
+          "axis": "lateral_metres",
+          "normalized_steering_response_RMS": 0.03562996909022331,
+          "ceiling": 0.03252546302974224
+        }
+      ],
+      "fit_report_sha256": "b104cda620603c747f424797d6d4c04e9c99b3cede4096cfcf480d5f4b43f9af"
+    },
+    {
+      "seed": 55,
+      "parent_batch": "20261101T022104544331Z_native_B1_basic_lr_extension",
+      "source_model_sha256": "ca7e1ae511d645b03ea326a8cd94462e5c3bf051d82bb90d5fedf6f1600ff033",
+      "fitted_model_sha256": "eabc5cfc2b3e577409e1822913e740029f243279dee78ddb8e6c310bbe6c4dc9",
+      "actor_before_sha256": "de5e2557953105a93b50e2f60a44bedaa260e6aca59353e7b51ec3f7bf336d50",
+      "actor_after_sha256": "78c68d0287054a6b159ea2e696392dd85ac5812eceeb9bf9537bb41929b601cb",
+      "new_auxiliary_Adam_steps": 1024,
+      "actual_auxiliary_Adam_step_each": [
+        1024
+      ],
+      "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+      "offline_screen_passed": false,
+      "pose_response": [
+        {
+          "axis": "yaw_radians",
+          "normalized_steering_response_RMS": 0.027189604938030243,
+          "ceiling": 0.025375864934176207
+        },
+        {
+          "axis": "lateral_metres",
+          "normalized_steering_response_RMS": 0.0346013680100441,
+          "ceiling": 0.03252546302974224
+        }
+      ],
+      "fit_report_sha256": "587c546b7c5e597d89d3697e3a748d9868e6d72e86f116a4074cd27e8b93bc74"
+    }
+  ],
+  "prepared_courses": {
+    "phase": "ALL_FIVE_PREPARED_NOT_DRIVEN",
+    "batches": [
+      {
+        "seed": 11,
+        "batch": "20261101T121859369482Z_native_B1_shared_parking_cohort_seed11",
+        "protocol_sha256": "5cb1dd5a6ae6f08750638df3d2cee16c1289571cc185f83f3f3a99b4a9ff970e",
+        "initial_model_sha256": "118de13a3ef12f7eee75fad91fa7427e0a0191ad7952dd36f23d99b1816ef10d",
+        "offline_screen_passed": false
+      },
+      {
+        "seed": 22,
+        "batch": "20261101T121859752667Z_native_B1_shared_parking_cohort_seed22",
+        "protocol_sha256": "9901df387900037823d11092677acf73baa8f6ec9a0b1f06d13b0c8668c39814",
+        "initial_model_sha256": "c4e8e3971c6357886ccd217f088fccaae0ccc8b8dcdeb9cf23507657523b848c",
+        "offline_screen_passed": false
+      },
+      {
+        "seed": 33,
+        "batch": "20261101T121900126016Z_native_B1_shared_parking_cohort_seed33",
+        "protocol_sha256": "27f5fc32e5a62d1bbe16a8857d93b633ca70af1b2aed6881a909f9d456480b44",
+        "initial_model_sha256": "d59c15693835679959b8427adf2dbeb6b5c79d23270724bf467ac34afe9abd47",
+        "offline_screen_passed": false
+      },
+      {
+        "seed": 44,
+        "batch": "20261101T121900526013Z_native_B1_shared_parking_cohort_seed44",
+        "protocol_sha256": "2084a149066a17a13ed8fe56561d40159a373b1f11229df252625188410f8c77",
+        "initial_model_sha256": "03ab5136a25151fe6a43d79ca7a4c0c8c80b39c38d71b11ed06279ccbf16dc64",
+        "offline_screen_passed": false
+      },
+      {
+        "seed": 55,
+        "batch": "20261101T121900945085Z_native_B1_shared_parking_cohort_seed55",
+        "protocol_sha256": "48baa2054b9dfaf1d8c4ac851925cf9dfb3446388d8b220def9e2cdbbf51fe4d",
+        "initial_model_sha256": "eabc5cfc2b3e577409e1822913e740029f243279dee78ddb8e6c310bbe6c4dc9",
+        "offline_screen_passed": false
+      }
+    ],
+    "registered_plan_sha256": "4a6c0197d8fcc1c4962545645a9710e3a34cec7bb6bcc60b731755311fed4c33",
+    "independent_actors": 5,
+    "new_controls": 0
+  },
+  "actual_PPO_execution": "B1_shared_parking_five_seed_execution_20261101",
+  "requested_new_actual_PPO_controls": 51200,
+  "actual_PPO_phase_at_recording": "ACTUAL_PPO_BASIC_COURSE_RUNNING",
+  "new_native_controls_for_fitting": 0,
+  "limits": "Every pose-response screen remains failed at this fixed auxiliary endpoint. They are retained as diagnostics. The registered new learning stage uses every seed at the same budget;each must pass the unchanged actual basic gate after PPO before any full-task qualification. The older single pilot29ef is excluded.",
+  "research_acceptance": "UNMET"
+}

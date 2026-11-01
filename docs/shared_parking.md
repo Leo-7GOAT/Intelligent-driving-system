@@ -191,7 +191,58 @@ python scripts/analyze_native_shared_parking_full_probe.py --batch runs/my_full_
 ```
 
 The next registered evaluation is already running on all24existing development
-validation conditions, with the same frozen model, source and assistance and
-zero updates. Its outcome is pending. The frozen worker's actual parser verifies
-all24conditions before launch. This is a development generalization check, not
-the new120-condition final set. [Prospective registration](../reports/native_B1_shared_parking_validation_probe_registration_20261101.json).
+validation conditions, with the same frozen model and assistance and zero updates.
+The completed outcome and initialization recovery are recorded below. The frozen
+worker's actual parser verifies all24conditions before launch. This is a
+development generalization check,not the new120-condition final set.
+[Prospective registration](../reports/native_B1_shared_parking_validation_probe_registration_20261101.json).
+
+## Existing development validation and independent replication
+
+The frozen trained model succeeds on **14/24 existing development-validation
+conditions**. These roads differ from its four native basic-training roads.
+
+| Core class | Success | Bounds | Collision |
+|---|---:|---:|---:|
+| Curve/parking | 5/8 | 3 | 0 |
+| Static vehicles | 3/8 | 3 | 2 |
+| Crossing walkers | 6/8 | 2 | 0 |
+
+The first lifecycle closes17complete cases before a walker-spawn collision on the
+next reset stops it. Its17outcomes and6,529controls are authenticated without
+creating a synthetic completed endpoint. A new owned child evaluates only the
+seven unfinished original cases,retaining their reset seeds and charging all
+parent costs. It uses the already validated +0.2m walker spawn-height clearance
+before the unchanged30settlement ticks;XY,yaw,model,normalizer,vehicle control and
+goal gates remain unchanged. All3,681child controls and seven measured starts
+verify. Combined control count is10,210. Original case16 uses the legacy walker
+initialization;cases17–23 use the clearance version. This mixed initialization
+record supports descriptive failure diagnosis and does not establish a uniform
+formal comparison. All failures remain in the24-condition denominator.
+[Interrupted-prefix evidence](../reports/native_B1_validation_interrupted_prefix_20261101.json),
+[complete recovery record](../reports/native_B1_shared_parking_validation_complete_20261101.json).
+
+The known12-condition success does not establish generalization:validation
+completion is58.3% and collision/bounds41.7%,below the requested engineering
+targets. Both records are one trained policy,not independent training seeds.
+
+Five new courses are now prepared from the distinct actual20,480-control parents
+for seeds11/22/33/44/55. The earlier29efpilot is excluded. Every parent receives
+the same1,024TRAIN-only actor Adam steps using3,424acknowledged teacher rows,
+3,424virtual reflections and120virtual pose triplets;no validation labels are
+used. All five original/fitted actors are distinct. Critic,log_std,PPOoptimizer,
+PPOcounters and observation moments are retained. Actual auxiliary cost is5,120
+steps,with no new driving in the fitting phase. Every pose-response diagnostic
+still misses its fixed offline ceiling;these failed screens are retained.
+[Independent initialization audit](../reports/native_B1_shared_parking_cohort_initialization_20261101.json).
+
+The prospectively registered next phase is real learning,not qualification from
+those fits. Every seed receives exactly10,240new actual PPO controls on all four
+original basic roads,with the same frozen worker,shared parking v2,synchronous
+delivery and walker initialization version. Qualification is checked after
+learning:at least3/4successes **and zero collision/bounds**,separately for every
+seed. The serial queue records checkpoints,raw controls,saved Adam increments,
+measured-start actions,whole endpoint actions and every failed gate. No best seed
+or checkpoint is selected. Outcomes remain pending;full-task training and final
+confirmation have not been activated.
+[Locked recipe](../protocols/native_B1_shared_parking_five_seed_course_20261101.json).

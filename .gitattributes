@@ -65,3 +65,6 @@ protocols/public_native_B1_shared_parking_full_probe_20261101.json -text -whites
 reports/native_B1_shared_parking_full_probe_public_verification_20261101.json -text -whitespace
 reports/native_B1_shared_parking_validation_probe_registration_20261101.json -text -whitespace
 protocols/native_B1_shared_parking_five_seed_course_20261101.json -text -whitespace
+reports/native_B1_validation_interrupted_prefix_20261101.json -text -whitespace
+reports/native_B1_shared_parking_validation_complete_20261101.json -text -whitespace
+reports/native_B1_shared_parking_cohort_initialization_20261101.json -text -whitespace
