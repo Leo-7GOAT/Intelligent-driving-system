@@ -1,4 +1,25 @@
-# Latest native checkpoint — 2026-11-01 10:30
+# Latest native recording-index preparation — 2026-11-01 10:37
+
+Previous goal turn was PROGRESS:new teacher-only control queue,980full hosted
+passes,seed44failure/raw-bound figure and90early TRAINoracle references.
+Fifth B1worker45716(created10:21:29.204364+08:00)remains live in
+`20261101T022104544331Z_native_B1_basic_lr_extension`;last10:36:30heartbeat8139
+controls/6phases. Existing observers and every frozen input remain unchanged.
+
+New helper`scripts/catalog_native_ppo_videos.py`addresses an actual metadata
+ambiguity:the frozen renderer uses method folder names H/B1as legacy run_id.
+After the ENTIRE camera42060queue completes,run:
+`python scripts/catalog_native_ppo_videos.py --execution runs/native_PPO_camera_execution_20261101 --output runs/native_PPO_video_identity_catalog_20261101.json`.
+It verifies all planned batches/videos,raw/model/normalizer/episode bindings,
+actual contiguous RGBframe hashes/times,complete decode/fps receipts,then adds
+batch-qualified video IDs,original parent-case IDs and unique release names.
+Original videos/manifests remain unchanged. It rejects pending/partial queues;
+no catalog or new camera footage is claimed yet. Actual contact-sheet visual
+inspection and publication are still separate required actions.22related tests
+pass3.67s. Do not modify active camera or broader observers just to adopt this
+postprocessing helper. Goal remains ACTIVE/UNMET.
+
+# Historical native checkpoint — 2026-11-01 10:30
 
 Seed44TERMINAL:0/4success,four bounds,10240new training controls/320actual Adam,
 20480retained policylineage,11813rawcontrols (1573evaluation). BasicgateFALSE.
