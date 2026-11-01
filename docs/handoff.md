@@ -1,3 +1,25 @@
+# One trained B1 PASSES all12known conditions; both public capsules VERIFIED — 2026-11-01
+
+Authoritative final state of this engineering checkpoint:goalACTIVE/UNMET;all
+native lifecycles are TERMINAL/ownedserverstopped;no nativejobs or queues run.
+The12-condition capsule IS NOWPUBLISHED on existingparking-ppo prerelease:
+native_B1_shared_parking_full_probe_seed22_20261101.zip,17727551bytes,513files,
+SHA edf95fc46b776d958b0f08253853dcee8951bc9a89269d00941d9112dc740298.
+Threeparts+manifest added;alloriginal8PPOassets andtagb521af5 unchanged.
+Publicdownload and independenta79ff7f reconstruction COMPLETE:513files,4848raw
+controls,12starts,byte-exactfigure949b50658aaefef373350945b1d21fd20ddf2eb229a5826395227157608c4534.
+Complete12-condition/helper/three-classaudit field-exact. No newphysicalcontrols
+or updates during reconstruction. Bothcurrentreleasecapsules total1085files,
+16487actualrecordedcontrols,16starts,twofigures;not extrauniqueconditions.
+Proof:reports/native_B1_shared_parking_full_probe_public_verification_20261101.json.
+Recipe:protocols/public_native_B1_shared_parking_full_probe_20261101.json.
+Do not repeat any publicdownload,closedprobe or completedtrainingcourse.
+
+Next research checkpoint remains the24already-known developmentvalidation
+conditions for thisfrozenmodel,before five-independent-seed replication and fair
+full-task training. Mainresearchgates,addedPPOvalue and120NEWfinalconditions are
+stillUNMET. Nothing in thishandoff declares theglobalgoalcomplete.
+
 # One trained B1 PASSES all12known conditions; public PPO reproduction COMPLETE — 2026-11-01 19:55
 
 Goal ACTIVE/UNMET. Every native lifecycle is TERMINAL/ownedserverstopped.

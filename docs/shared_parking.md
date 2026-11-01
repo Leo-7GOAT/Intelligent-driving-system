@@ -175,3 +175,17 @@ python scripts/download_native_asset.py --manifest-url $recipe.manifest_url --sh
 python scripts/reproduce_native_asset.py --archive (Join-Path runs/my_parking_PPO_download $recipe.archive_name) --sha256 $recipe.archive_sha256 --output runs/my_parking_PPO_rebuild
 python scripts/analyze_native_shared_parking_ppo.py --batch runs/my_parking_PPO_rebuild/asset/20261101T112758733226Z_native_B1_shared_parking_PPO --output runs/my_parking_PPO_learning_audit.json
 ```
+
+The same release also includes the complete12-condition probe capsule:513files,
+4,848physicalcontrols,12measured starts and its endpoint figure all rebuild
+exactly from an unauthenticated public download. The complete three-class audit
+also reproduces field-for-field. Its three parts and manifest were added without
+changing the release tag or the eight existing PPO assets.
+[Full-probe public receipt](../reports/native_B1_shared_parking_full_probe_public_verification_20261101.json).
+
+```powershell
+$recipe = Get-Content protocols/public_native_B1_shared_parking_full_probe_20261101.json -Raw | ConvertFrom-Json
+python scripts/download_native_asset.py --manifest-url $recipe.manifest_url --sha256 $recipe.archive_sha256 --output runs/my_full_probe_download
+python scripts/reproduce_native_asset.py --archive (Join-Path runs/my_full_probe_download $recipe.archive_name) --sha256 $recipe.archive_sha256 --output runs/my_full_probe_rebuild
+python scripts/analyze_native_shared_parking_full_probe.py --batch runs/my_full_probe_rebuild/asset/20261101T114634589144Z_native_B1_shared_parking_full_probe --output runs/my_full_probe_audit.json
+```
