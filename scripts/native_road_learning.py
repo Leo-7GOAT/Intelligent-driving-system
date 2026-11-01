@@ -330,12 +330,13 @@ def run(batch):
             config=training_config(protocol,method,vehicle)
             output = batch/job_name
             output.mkdir()
-            output_config={"env": config.to_dict(), "signature": signature(config),
-                "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]}
+            write_json(output/"config.json", {"env": config.to_dict(), "signature": signature(config),
+                "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]})
             if record_camera:
+                output_config=json.loads((output/'config.json').read_text(encoding='utf-8'))
                 output_config.update(record_camera=True,policy='learned_PPO',
                     model_sha256=protocol['native_camera_evaluation']['model_sha256'])
-            write_json(output/"config.json",output_config)
+                write_json(output/"config.json",output_config)
             cases = registered_native_cases(protocol)
             evaluation_cases = registered_native_cases(protocol,'evaluation') if protocol.get('native_validation') else cases
             client = BridgeClient(batch,record_dir=output/'camera') if record_camera else BridgeClient(batch)
@@ -587,10 +588,10 @@ def run(batch):
                     np.testing.assert_array_equal(var,vec.obs_rms.var)
                     evaluation_scope=("Frozen deterministic probes on all registered development conditions, no extra policy updates or independent-condition claim"
                         if protocol.get('native_case_manifest') else "Frozen deterministic probes on all four TRAINING roads, no extra policy updates or independent-condition claim")
-                    if protocol.get('native_validation'):
-                        evaluation_scope='Frozen deterministic probes on registered geometry-separated development validation roads; zero updates,not final confirmation'
                     if record_camera:
                         evaluation_scope='Illustrative real RGB evaluation of an unchanged trained PPOpolicy;selected known development cases,not independent confirmation or model selection'
+                    if protocol.get('native_validation'):
+                        evaluation_scope='Frozen deterministic probes on registered geometry-separated development validation roads; zero updates,not final confirmation'
                     write_json(output/"evaluation.json",{"scope":evaluation_scope,
                         "partition":'validation' if protocol.get('native_validation') else 'development',
                         "episodes":episodes,"world_ticks":client.total_ticks-evaluation_ticks,
