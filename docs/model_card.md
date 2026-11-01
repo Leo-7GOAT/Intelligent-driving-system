@@ -1,5 +1,35 @@
 # Development model card
 
+## Current model inventory — 2026-11-01
+
+The current model evidence remains developmental. Models,normalizers,resolved
+configurations,frozen worker source and raw controls are bound by capsule
+manifests. The final model selection and new independent confirmation are pending.
+
+| Model family | Actual status and scope |
+|---|---|
+| Canonical H/H0 | Five actually PPO-trained policies per method,12known development conditions;H58/60,H057/60. Six public capsules reconstruct the full report,ten optimizer/normalizer proofs and main figure |
+| B2 | Five independently PPO-trained planner alternatives;44/60on the same12known conditions. Public H/B2reconstruction retains the bridge-initialization confound |
+| New common-harness H/H0 |36TRAIN/24known-validation conditions;first2of5pairs complete and publicly reconstructed,both24/24per pair. Their actual training controls are20522/20529and20579/20539,650Adam each. Remaining inputs/checkpoints are frozen |
+| B1basic PPO and lower-rate extensions | All five original courses and all five extensions completed. The extension cohort remains9/20,10bounds,1timeout,one qualifying basic seed. These models are not the qualified full-task baseline |
+| B1actor diagnostics | Earlier matched replay/17label fits both3/4unsafe once. New99label fit uses512separate actor-only updates,retaining critic/PPOoptimizer/counters/normalizer;native probe pending |
+| Teacher-only H | Five exact pristine initializers of the new paired cohort;zero added PPO/BC. Evaluations queued after training to separate teacher prior from PPOcontribution |
+| RGBillustrations | Previously PPO-trained H/B1seed11,frozen during recording;4videos/1832sensor frames/1828controls,H2/2and B11/2with one bounds failure. Known-case illustrations;recording adds zero PPOupdates |
+
+Evidence and exact artifacts: [canonical public feedback proof](../reports/native_public_feedback_five_seed_independent_verification_20261031.json),
+[H/B2 public proof](../reports/native_public_H_B2_five_seed_independent_verification_20261101.json),
+[new paired capsule](../reports/native_matched_broader_seed22_public_verification_20261101.json),
+[all-five B1extension](../reports/native_B1_all_five_lower_rate_extensions_20261101.json),
+[new actor-fit provenance](../reports/native_B1_three_episode_training_coverage_activation_20261101.json),
+[teacher-only protocol](../reports/native_PPO_teacher_only_attribution_queue_20261101.json),
+[RGBpublic verification](../reports/native_PPO_RGB_public_verification_20261101.json).
+Ongoing training inputs and source snapshots are immutable;new code or model
+selection requires an explicitly separate experiment version. No current model
+establishes the requested healthy-baseline advantage,RLnecessity or unseen-final
+performance targets.
+
+## Historical model and preparation snapshots
+
 B1basic-PPO-coursev1starts from all five original pristine supervised actors,
 not selected successful matured actors. Each gets10,240 actual native controls
 on the same four known unobstructed roads,3e-5 PPOlearning rate,1,280-action

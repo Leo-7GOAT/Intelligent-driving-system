@@ -2,7 +2,22 @@
 
 These descriptions intentionally omit unproven superiority, final success-rate targets, production safety and real-vehicle claims.
 
-Latest verified development wording (2026-10-27):
+Latest verified development wording (2026-11-01):
+
+- 中文：构建已知地图下的低速车辆PPO分层决策、Hybrid A*规划与MPC控制系统，接入CARLA真实PPO更新、车辆标定和逐帧执行审计。完成五种子H/H0及H/二维A*开发对照，公开模型、归一化、原始日志与可独立重建的统计图表，CPU回归1022项通过。H/H0在12个已知开发条件上合计58/60与57/60，尚未建立稳定反馈优势；健康非分层基线和独立最终验证仍待完成。
+- English: Built a known-map, low-speed driving system combining PPO decisions, Hybrid A* planning and MPC, with real CARLA PPO updates, vehicle calibration and frame-level execution audits. Completed five-seed H/H0 and H/2D-A* development studies with publicly reproducible models, normalizers, raw logs and figures; 1,022 CPU tests pass. Canonical H/H0 scores are 58/60 and 57/60 on 12 known development conditions. Stable feedback benefit, a healthy flat-PPO baseline and independent final confirmation remain unestablished.
+
+The [five-seed feedback report](../reports/native_feedback_five_seed_development_cohort_20261031.json)
+has a paired mean difference of +1.67 percentage points, 95% t interval
+[-11.82, +15.16] points. The [public H/B2 reconstruction](../reports/native_public_H_B2_five_seed_independent_verification_20261101.json)
+retains its bridge-initialization confound; this wording claims completed
+development studies and reproducibility, without assigning that gap solely to
+the planner. A new common-harness replication has two complete pairs, each
+H24/24 and H024/24, with three further pairs running or pending. Its first two
+public capsules independently reconstruct114,721controls and96start actions on
+24unique known conditions. [Current paired evidence](../reports/native_matched_broader_seed22_public_verification_20261101.json).
+
+Historical verified wording (2026-10-27):
 
 - 中文：实现 PPO→局部目标/速度→前向 Hybrid A*→时间轨迹→MPC→CARLA 实际反馈闭环；单种子真实 PPO 训练20,541控制步后，在四条已知道路组成的12组开发条件中完成11组，25,454训练及评估控制帧逐帧审计。公开发布并独立复现三组模型/规则证据包的18,591控制帧、36个起点策略动作和两张结果图；GitHub CPU回归511项通过。规则对照12/12，健康完整B1和独立研究优势尚未建立。
 - English: Built a PPO→local pose/speed→forward Hybrid A*→timed trajectory→MPC→measured CARLA feedback loop. A single-seed policy completes11/12known-road development conditions after20,541real PPO training controls, with25,454training/evaluation controls audited frame by frame. Published and independently reproduced18,591controls,36measured-start policy actions and two figures across three evidence capsules;511hosted CPU tests pass. The strong rule achieves12/12; a healthy full-task flat baseline and independent superiority remain unestablished.
