@@ -190,8 +190,8 @@ python scripts/reproduce_native_asset.py --archive (Join-Path runs/my_full_probe
 python scripts/analyze_native_shared_parking_full_probe.py --batch runs/my_full_probe_rebuild/asset/20261101T114634589144Z_native_B1_shared_parking_full_probe --output runs/my_full_probe_audit.json
 ```
 
-The next registered evaluation is already running on all24existing development
-validation conditions, with the same frozen model and assistance and zero updates.
+The registered evaluation on all24existing development-validation conditions has
+now completed with the same frozen model and assistance and zero updates.
 The completed outcome and initialization recovery are recorded below. The frozen
 worker's actual parser verifies all24conditions before launch. This is a
 development generalization check,not the new120-condition final set.

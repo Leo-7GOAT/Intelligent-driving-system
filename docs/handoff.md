@@ -1,3 +1,62 @@
+# Existing24validation COMPLETE14/24; five independent actual-PPO courses RUNNING — 2026-11-01
+
+Authoritative currentstate:goalACTIVE/UNMET. The24-condition validation has
+completed across a preserved infrastructurefailure and its seven-case child.
+20261101T120214468208Z_native_B1_shared_parking_validation_probe failed before
+case17initialization:walker spawn collision. All17complete cases and6529controls
+are authenticated;9success/6bounds/2collision. No evaluation.json was fabricated.
+Child20261101T121222965681Z_native_B1_validation_remainder is COMPLETE/ownedserverstopped:
+onlyoriginalcases17..23,3681controls,7starts;5success/2bounds. Existing+.2m
+pre-control walker-height clearance applied before unchanged30settlement ticks;
+sameXY/yaw/model/normalizer/control and originalresetseeds. No learning.
+Full descriptive24result14success/8bounds/2collision:curve5/8,static3/8,walker6/8.
+All10210actualcontrols and exactchildparkingcommands verify. Originalwalker
+case16retainslegacyinitialization;7remainingcasesuseclearanceversion. Report
+disclosesmixedinitialization and is not a uniform-harness formalcomparison.
+reports/native_B1_validation_interrupted_prefix_20261101.json and
+reports/native_B1_shared_parking_validation_complete_20261101.json are authoritative.
+Allother nativejobs above are terminal;never relaunch them or the original24.
+
+FIVE-SEED REPLICATION IS ACTUALLY RUNNING,NOT JUST A PLAN:
+Preparation:runs/B1_shared_parking_five_seed_preparation_20261101/status.json.
+Execution:runs/B1_shared_parking_five_seed_execution_20261101/status.json.
+Observer toolsession79437,PythonPID72488 atstart. Its audit tools/navstack/wrapper
+are frozen in execution/source with audit_source_manifest.json. Do not edit those.
+Currentseed11batch20261101T121859369482Z_native_B1_shared_parking_cohort_seed11;
+next22:20261101T121859752667Z_native_B1_shared_parking_cohort_seed22;
+33:20261101T121900126016Z_native_B1_shared_parking_cohort_seed33;
+44:20261101T121900526013Z_native_B1_shared_parking_cohort_seed44;
+55:20261101T121900945085Z_native_B1_shared_parking_cohort_seed55.
+Revalidate actual toolhandle/processidentity and inspect status before acting.
+No duplicate launch/restart. Queue serially trainsall5and independently audits
+rawframes,4measuredstarts,Adam/RMS changes,allendpointactions;failedbasicgates
+are retained and do not skip laterseeds. Infrastructurefailure stopswithoutretry.
+RequestedNEW51200PPOcontrols,10240each,not claimedcompleted. Finalfourknownbasic
+roads >=3/4 ANDzero unsafe gateafterlearning. No automaticfull-taskpromotion.
+
+All5auxiliaryfits completed1024Adamstepseach=5120newauxsteps,0physicalcontrols.
+Parents are their own distinct old20480control/seed checkpoints;the29efpilot is
+excluded. Original/fittedactorhashes5distinct;critic/logstd/PPOAdam/counters/RMS
+retained. CommonacknowledgedTRAIN/reflection/response data only,noVALlabels.
+ALL5pose-responseofflinescreensremainFAILED;they are retained as diagnostics.
+Theprospectiveprotocoldefinesnewactuallearning before physicalqualification;
+no failedfit is calledahealthy policy. Sourceandbudgets lockedbeforefits.
+reports/native_B1_shared_parking_cohort_initialization_20261101.json;
+protocols/native_B1_shared_parking_five_seed_course_20261101.json.
+Do not rerunfitoutputs or changealreadyfrozenbatchprotocols. All5sharebyte-exact
+worker,parkingv2,syncdelivery and+.2mwalkerinitialization. Oldlegacyhistories
+are disclosed;thisis warm-started adaptation,not fromscratchor mainH/B1 evidence.
+
+Relatedregression16PASS3.03s. Currentchangespushedat9a5a409;laterhandoffmetadata
+commitcontains thisstate. Usegitlog for exactHEAD. NewCItriggeredby sourcepush.
+Next:watchthisexactqueue,and independently reconstruct reports/retained24failure
+evidence fromfreshcheckout whilethe actualnativecoursesrun. Afterall5native
+gates,full36TRAIN/24developmentvalidation learning remainsnecessary because
+14/24generalization isweak. AddedPPOvalue,collaborationgain,fairH/H0/B1/B2/B3
+comparisonsand120NEWfinalconditions remainUNMET. Nevercountold12/24asfinal.
+
+AllolderRUNNING labels below are superseded by thefive-seedqueueabove.
+
 # Existing24development-validation probe RUNNING; known12/PPO/public proof COMPLETE — 2026-11-01
 
 GoalACTIVE/UNMET. One actual native job is NOWRUNNING:
