@@ -1,0 +1,106 @@
+{
+  "scope": "Development hypothesis: first3own TRAIN episodes per basic condition, stride40,99solved-reference labels;512actor-only steps,unchanged PPO/critic/norm. Compare all4known roads against exact already-evaluated replay policy. No new independent trained seed or final conditions.",
+  "oracle_queries": 121,
+  "solved_reference_rows": 99,
+  "excluded_wait_rows": 22,
+  "training_episodes": [
+    {
+      "condition": 0,
+      "episode": 1
+    },
+    {
+      "condition": 0,
+      "episode": 5
+    },
+    {
+      "condition": 0,
+      "episode": 9
+    },
+    {
+      "condition": 1,
+      "episode": 2
+    },
+    {
+      "condition": 1,
+      "episode": 6
+    },
+    {
+      "condition": 1,
+      "episode": 10
+    },
+    {
+      "condition": 2,
+      "episode": 3
+    },
+    {
+      "condition": 2,
+      "episode": 7
+    },
+    {
+      "condition": 2,
+      "episode": 11
+    },
+    {
+      "condition": 3,
+      "episode": 0
+    },
+    {
+      "condition": 3,
+      "episode": 4
+    },
+    {
+      "condition": 3,
+      "episode": 8
+    }
+  ],
+  "oracle_manifest_sha256": "b3f0eb50f99d626a8e14288860a93d27561e7c3a042b6f3244a3133503ec80f1",
+  "fit_result_sha256": "032a958f276dae8c1eedc619a0b0c5c0eb3dd5f72e298afeee861e110ae55f1c",
+  "fit_wall_seconds": 41.79600000008941,
+  "additional_actor_Adam_steps": 1024,
+  "steps_each": 512,
+  "learning_rate": 0.0001,
+  "new_training_controls": 0,
+  "new_PPO_updates": 0,
+  "fit_MSE_each_arm": [
+    {
+      "arm": "replay",
+      "before": [
+        0.08506979793310165,
+        0.003105832962319255
+      ],
+      "after": [
+        0.0816827267408371,
+        0.0027980220038443804
+      ]
+    },
+    {
+      "arm": "trajectory_correction",
+      "before": [
+        0.08506979793310165,
+        0.003105832962319255
+      ],
+      "after": [
+        0.000888348906300962,
+        0.00011649994848994538
+      ]
+    }
+  ],
+  "replay_reuse": {
+    "policy_and_PPO_optimizer_tensors_exact": true,
+    "normalization_bytes_exact": true,
+    "completed_batch": "20261101T014911209543Z_native_trained_actor_replay",
+    "new_replay_driving_controls": 0
+  },
+  "unstarted_equivalent_replay_batch": "20261101T032412251159Z_native_trained_actor_replay",
+  "native_queue": "B1_three_episode_corrective_probe_execution_20261101",
+  "actual_observer_identity": {
+    "pid": 68120,
+    "executable": "PROJECT_PYTHON_3_11",
+    "creation_epoch": 1793503546.106
+  },
+  "dependency_execution": "H_pristine_baseline_execution_20261101_v2_camera_subset_fix",
+  "actual_phase": "WAITING_FOR_EXACT_OWNED_TEACHER_CONTROL_QUEUE",
+  "new_native_probe_results_available": false,
+  "research_acceptance": "UNMET",
+  "limits": "TRAINfit only;prior17label probe did not improve driving. New99label closed-loop outcome pending. Existing trained replay is tensor-identical and reused rather than driven again. No full-task B1 qualification."
+}

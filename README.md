@@ -1,5 +1,21 @@
 # Executability-aware hierarchical driving research
 
+Actual PPO RGB videos and complete model/control-trace capsules are now
+[publicly released as development evidence](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101).
+An independent checkout downloaded both capsules and all four direct video
+links without authentication, verified 1,828 controls, restored both policies,
+rebuilt both figures byte-for-byte and decoded all 1,832 video frames.
+[Executed verification receipt and SHA256s](reports/native_PPO_RGB_public_verification_20261101.json).
+[Reproduce both public model/video capsules](docs/native_PPO_RGB_reproduction.md).
+This prerelease includes B1's failure and does not meet the final research targets.
+
+The next B1 development diagnostic uses the first three of its own completed
+TRAIN episodes per condition: 121 queries, 99 solved-reference labels and the
+same 512 actor-only updates. Its exact replay policy reuses the already audited
+closed-loop result. The correction endpoint is queued after the current native
+cohort and teacher controls; no new driving outcome is claimed.
+[Actual fit, retained PPO state and queue](reports/native_B1_three_episode_training_coverage_activation_20261101.json).
+
 Five teacher-only H controls are queued after the matched broader PPO cohort,
 using its exact pristine weights and all24known validation conditions. This
 separates teacher initialization from added PPO training; the source-matched
@@ -33,7 +49,9 @@ all51,200training controls and58,758raw controls are preserved.
 A new all-five matched-harness H/H0replication is actually queued:36TRAIN and
 24known development-validation conditions,20,480requested controls per method
 and seed. All10pristine independently seeded actors restore unchanged;all5full
-source trees match. No new training or final conditions are claimed yet.
+source trees match. The first H seed has completed 20,522 actual training
+controls/650 Adam steps and succeeds on all 24 known validation cases; its H0
+pair and remaining seeds are still running. Final conditions remain unused.
 [Frozen inputs and live queue](reports/native_matched_broader_feedback_queue_activation_20261101.json).
 
 An auxiliary execution predictor was rejected:crossed seed/road validation gives
@@ -68,10 +86,9 @@ and result field exactly;183related tests pass.
 [Measured replay](reports/native_B1_first_rollout_rate_replay_20261101.json),
 [independent verification](reports/native_B1_matched_rate_replay_independent_verification_20261101.json).
 This does not demonstrate improved driving. A common all-five lower-rate
-continuation is now running after all initial courses finished;it retains their trained
-weights,Adam moments,normalizer and RNG,adds10,240controls per seed,and keeps the
-same zero-unsafe basic gate. Full-task training waits for all five qualifications;
-its eventual policy lineage would be40,960controls,with curriculum costs disclosed.
+continuation completed for every seed, retaining their trained weights, Adam
+moments, normalizer and RNG and adding 10,240 controls per seed. It did not
+qualify the cohort; the full-task stage correctly remained unstarted.
 [Actual queues and trained-checkpoint preflight](reports/native_B1_lower_rate_extension_activation_20261101.json).
 Completed basic courses11/22/33/44/55score3/4,2/4,2/4,0/4,2/4with bounds violations;
 none qualifies. Their failures remain recorded. The complete failed-seed11capsule

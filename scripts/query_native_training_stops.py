@@ -24,14 +24,23 @@ spec=importlib.util.spec_from_file_location('exact_flat_history',Path(__file__).
 history=importlib.util.module_from_spec(spec);spec.loader.exec_module(history)
 
 
-def trajectory_indices(length):
+def trajectory_indices(length,stride=80):
     """Outcome-independent coverage, including late states missed by early probes."""
     if type(length) is not int or length<1:raise ValueError('Require a nonempty measured training episode')
-    return sorted(set(range(0,length,80))|{length-1})
+    if type(stride) is not int or stride not in (40,80):raise ValueError('Require a registered query stride')
+    return sorted(set(range(0,length,stride))|{length-1})
 
 
-def query(batch,oracle_config,output,approach=False,coverage=False,trajectory_coverage=False):
-    if sum(map(bool,(approach,coverage,trajectory_coverage)))>1:raise ValueError('Choose one explicit training-query profile')
+def reserve_training_episode(counts,condition,limit):
+    """Take the next chronological TRAIN episode without consulting its outcome."""
+    if type(limit) is not int or limit not in (1,3):raise ValueError('Require a registered episode limit')
+    if counts.get(condition,0)>=limit:return False
+    counts[condition]=counts.get(condition,0)+1
+    return True
+
+
+def query(batch,oracle_config,output,approach=False,coverage=False,trajectory_coverage=False,three_episode_coverage=False):
+    if sum(map(bool,(approach,coverage,trajectory_coverage,three_episode_coverage)))>1:raise ValueError('Choose one explicit training-query profile')
     batch,oracle_config,output=map(Path,(batch,oracle_config,output));folder=batch/'B1'
     output.mkdir(parents=True,exist_ok=False);started=time.monotonic();deadline=started+900
     protocol=read(batch/'protocol.json');raw=read(folder/'endpoint_raw_audit.json')
@@ -47,15 +56,20 @@ def query(batch,oracle_config,output,approach=False,coverage=False,trajectory_co
     offsets=(0,40,80,120,160,200) if coverage else (180,120,60,20,0) if approach else (60,20,0)
     from navstack.native_cases import registered_native_cases
     conditions=len(registered_native_cases(protocol))
-    maximum=conditions*(math.ceil(protocol['episode_seconds']/cfg.control_dt/80)+1 if trajectory_coverage else len(offsets))
+    stride=40 if three_episode_coverage else 80
+    episode_limit=3 if three_episode_coverage else 1
+    trajectory=trajectory_coverage or three_episode_coverage
+    maximum=conditions*episode_limit*(math.ceil(protocol['episode_seconds']/cfg.control_dt/stride)+1 if trajectory else len(offsets))
     registration={'scope':__doc__,'batch':batch.name,'raw_audit_sha256':sha(folder/'endpoint_raw_audit.json'),
         'oracle_config_sha256':sha(oracle_config),'script_sha256':sha(Path(__file__)),
         'history_source_sha256':sha(Path(history.__file__)),'selection':
+            'First three completed training episodes per condition,regardless of outcome;fixed stride40controls through last pre-control state. No evaluation states or outcome selection.' if three_episode_coverage else
             'First completed training episode per registered condition,regardless of outcome;fixed stride80controls from start through the last pre-control state. No evaluation states or outcome selection.' if trajectory_coverage else
             'First completed training episode per registered condition,regardless of outcome;fixed absolute controls0,40,80,120,160,200 when present. No evaluation states or outcome selection.' if coverage else
             'First training state per registered condition with time>=5s,abs(speed)<.05m/s and goal distance in(goal_tolerance,4m);fixed preceding offsets. No evaluation states or outcome-based selection.',
-        'offsets_controls':None if trajectory_coverage else list(offsets),'approach_profile':approach,
-        'coverage_profile':'first_episode_full_trajectory_stride80_v1' if trajectory_coverage else 'first_episode_early_controls_v1' if coverage else None,
+        'offsets_controls':None if trajectory else list(offsets),'approach_profile':approach,
+        'coverage_profile':'first_three_episodes_full_trajectory_stride40_v1' if three_episode_coverage else 'first_episode_full_trajectory_stride80_v1' if trajectory_coverage else 'first_episode_early_controls_v1' if coverage else None,
+        'completed_episodes_per_condition_limit':episode_limit,'trajectory_stride_controls':stride if trajectory else None,
         'maximum_queries':maximum,'wall_seconds':900,'new_controls':0,'PPO_updates':0,'supervised_updates':0}
     (output/'registration.json').write_text(json.dumps(registration,indent=2),encoding='utf-8')
     shutil.copy2(Path(__file__),output/'executed_query_script.py');shutil.copy2(Path(history.__file__),output/'executed_history_script.py')
@@ -77,22 +91,24 @@ def query(batch,oracle_config,output,approach=False,coverage=False,trajectory_co
         if sum(len(r['trace']) for rows in episodes.values() for r in rows)!=raw['training_control_frames_verified']:
             raise ValueError('Training frame inventory differs')
         completed={r['episode_id']:r for r in (json.loads(line) for line in (folder/'episodes.jsonl').read_text(encoding='utf-8').splitlines())}
-        selected={}
+        selected={};counts={}
         for episode,rows in sorted(episodes.items()):
             if episode not in completed:continue
             begin=begins[rows[0]['trace'][0]['backend_evidence']['episode_id']];condition=begin['scene']['condition']
-            if condition in selected:continue
-            if coverage or trajectory_coverage:
-                selected[condition]=(episode,trajectory_indices(len(rows)) if trajectory_coverage else [index for index in offsets if index<len(rows)])
+            if counts.get(condition,0)>=episode_limit:continue
+            if coverage or trajectory:
+                reserve_training_episode(counts,condition,episode_limit)
+                selected[condition,episode]=(episode,trajectory_indices(len(rows),stride) if trajectory else [index for index in offsets if index<len(rows)])
                 continue
             goal=begin['scene']['goal'];state=begin['state']
             for index,row in enumerate(rows):
                 distance=math.hypot(state['x']-goal[0],state['y']-goal[1])
                 if state['time']>=5 and abs(state['v'])<.05 and cfg.goal_tolerance<distance<4.:
-                    selected[condition]=(episode,sorted({max(0,index-offset) for offset in offsets}));break
+                    reserve_training_episode(counts,condition,episode_limit)
+                    selected[condition,episode]=(episode,sorted({max(0,index-offset) for offset in offsets}));break
                 state=row['trace'][-1]['state']
         torch.set_num_threads(1)
-        for condition,(episode,indices) in sorted(selected.items()):
+        for (condition,_),(episode,indices) in sorted(selected.items()):
             rows=episodes[episode];begin=begins[rows[0]['trace'][0]['backend_evidence']['episode_id']]
             env=measured_flat_env(cfg,begin['scene'],completed[episode]['initial_scenario'],begin=begin)
             try:
@@ -135,7 +151,8 @@ def query(batch,oracle_config,output,approach=False,coverage=False,trajectory_co
         if not records or len(records)>maximum:raise ValueError('Invalid bounded query inventory')
         dataset=output/'corrective_training_queries.npz'
         np.savez_compressed(dataset,observations=np.asarray(observations,dtype=np.float32),actions=np.asarray(actions,dtype=np.float32),groups=np.asarray(groups,dtype=np.int64))
-        manifest={**registration,'queries':len(records),'available_labels':len(actions),'selected_conditions':sorted(selected),
+        manifest={**registration,'queries':len(records),'available_labels':len(actions),'selected_conditions':sorted({k[0] for k in selected}),
+            'selected_training_episodes':[{'condition':k[0],'episode':k[1]} for k in sorted(selected)],
             'completed_training_episodes':len(completed),'unfinished_training_episodes_retained':len(episodes)-len(completed),
             'dataset_sha256':sha(dataset),'query_log_sha256':sha(output/'queries.jsonl'),'elapsed_seconds':time.monotonic()-started,
             'labels_are_executed_commands':False}
@@ -151,4 +168,5 @@ if __name__=='__main__':
     profiles.add_argument('--approach',action='store_true',help='Also query6/9seconds before the first stopping state;all original queries remain included')
     profiles.add_argument('--coverage',action='store_true',help='Query fixed early controls of the first completed training episode of every condition,regardless of outcome')
     profiles.add_argument('--trajectory-coverage',action='store_true',help='Query every80controls and last pre-control state of each first completed TRAINING episode;no outcome-based selection')
-    a=p.parse_args();query(a.batch,a.oracle_config,a.output,a.approach,a.coverage,a.trajectory_coverage)
+    profiles.add_argument('--three-episode-coverage',action='store_true',help='Query every40controls and last pre-control state of first3completed TRAINING episodes per condition;all outcomes')
+    a=p.parse_args();query(a.batch,a.oracle_config,a.output,a.approach,a.coverage,a.trajectory_coverage,a.three_episode_coverage)

@@ -38,7 +38,7 @@ def run(parent,oracle,output):
         if sha(path)!=raw[key]:raise ValueError('Parent raw audit binding changed')
     manifest=read(oracle/'manifest.json')
     if (manifest['raw_audit_sha256']!=sha(folder/'endpoint_raw_audit.json')
-            or manifest.get('coverage_profile')!='first_episode_full_trajectory_stride80_v1'
+            or manifest.get('coverage_profile') not in ('first_episode_full_trajectory_stride80_v1','first_three_episodes_full_trajectory_stride40_v1')
             or manifest['new_controls'] or manifest['PPO_updates'] or manifest['supervised_updates']
             or manifest['labels_are_executed_commands'] is not False):
         raise ValueError('Require registered, counterfactual, TRAIN-only trajectory coverage')
@@ -79,7 +79,8 @@ def run(parent,oracle,output):
         'parent_raw_audit_sha256':sha(folder/'endpoint_raw_audit.json'),'oracle_manifest_sha256':sha(oracle/'manifest.json'),
         'steps_each':512,'learning_rate':1e-4,'correction_row_weight':20.,'teacher_TRAIN_rows':len(weights),
         'solved_reference_rows':int(keep.sum()),'excluded_wait_or_failed_rows':int((~keep).sum()),
-        'selection':'All solved-reference labels from outcome-independent first completed TRAIN episode/condition. All wait/brake-only queries excluded; no evaluation data.',
+        'selection':'All solved-reference labels from the registered outcome-independent TRAIN episode profile. All wait/brake-only queries excluded; no evaluation data.',
+        'oracle_coverage_profile':manifest['coverage_profile'],'selected_training_episodes':manifest.get('selected_training_episodes'),
         'new_controls':0,'PPO_updates':0,'wall_seconds':600,'automatic_retries':0,
         'inputs_sha256':sha(output/'fit_inputs.npz'),'script_sha256':sha(Path(__file__)),'fit_source_sha256':sha(fit_path),
         'limits':'TRAIN loss is diagnostic only. Compare all four known basic cases in CARLA before adoption; no baseline qualification or generalization claim.'}

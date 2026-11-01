@@ -1,4 +1,43 @@
-# Latest actual native recordings / corrective results — 2026-11-01 11:10
+# Latest continuation — 2026-11-01 11:27
+
+PUBLIC RGB RELEASE COMPLETE, source ba932787113168ad5781ee640c6f06d09bbee0e1,
+tag v0.2.0-dev.20261101. Source hosted CI passed. Both capsules downloaded without
+authentication and independently reconstructed:1020files/1828controls/4start
+actions/2byte-identical figures;all1832video frames decoded. Four direct MP4links
+also downloaded and hash-verified.82assets,zero network failures. Receipt
+`reports/native_PPO_RGB_public_verification_20261101.json`; reproduction commands
+`docs/native_PPO_RGB_reproduction.md`. No further upload/rebuild required.
+
+New B1development hypothesis implemented and ACTUALLY FIT: own first3completed
+TRAIN episodes per condition, fixed stride40plus final pre-control,all outcomes;
+121queries/99solved references/22wait excluded,12episodes,30.875s query wall.
+Fit `runs/B1_seed22_three_episode_matched_trained_fit_20261101`:512steps each,
+1024additional actor Adam,41.796s,zero new PPO/driving. TRAIN MSE decreases;
+no driving benefit claimed. Do not conflate this with earlier17label negative pair.
+New prepared correction batch `20261101T032412886357Z_native_trained_actor_trajectory_correction`.
+New replay `20261101T032412251159Z_native_trained_actor_replay` is UNSTARTED:
+its full policy/retained PPO optimizer tensors/counters and normalizer exactly
+match already evaluated old replay `20261101T014911209543Z_native_trained_actor_replay`.
+Reuse old3/4+1bounds result; do not repeat replay driving. ZIP hashes differ due
+container metadata; exact tensor/normalizer proof is retained.
+
+ACTUAL observer68120(created epoch1793503546.106,base Python311), execution
+`runs/B1_three_episode_corrective_probe_execution_20261101`, waits exact teacher
+observer69732. Its launch.json has exact process identity; revalidate before any
+management. It checks all five teacher controls complete/cleanup,then drives
+ONLY new corrective model on all4known cases,raw/inference checks and unchanged
+zero-unsafe gate. Max3600new evalcontrols/1800s,0PPO,no retries. Auto report
+`native_B1_three_episode_training_coverage_probe_20261101.json` is NOT available yet.
+Activation evidence `reports/native_B1_three_episode_training_coverage_activation_20261101.json`.
+Driver source is frozen/hash-bound; current running native inputs untouched.
+
+Broader observer40540 remains LIVE. First seed11H finished20522controls,
+650actual Adam,24/24known validation success. H0 is actually training (last
+10828controls); remaining four pairs pending. Do not rerun first H or claim the
+whole five-seed cohort complete. Teacher observer69732 waits exact40540.
+GoalACTIVE/UNMET;healthy B1/strong-rule PPOvalue/feedback/final120still missing.
+
+# Historical native recordings / corrective results — 2026-11-01 11:10
 
 All5lower-rate B1extensions COMPLETE:3/2/2/0/2of4,9/20success,10bounds,1timeout,
 only seed11qualified. 51200new training controls/1595actual Adam steps,58991raw
@@ -52,7 +91,7 @@ Teacher-only observer69732,execution
 Their launch.json records contain exact creation epochs/executable identities;
 revalidate before managing. Old failed dependencies and supersession receipts
 remain. GoalACTIVE/UNMET;healthy B1/strong-rule PPOvalue/feedback/final120missing.
-Public media upload+independent archive verification are pending,not success yet.
+At this historical timestamp public media verification was pending;now COMPLETE above.
 
 # Historical recording-index preparation — 2026-11-01 10:37
 
