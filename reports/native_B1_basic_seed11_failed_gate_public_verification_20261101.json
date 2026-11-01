@@ -1,0 +1,32 @@
+{
+  "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+  "archive_sha256": "d13dcf3b07fe1574d8823e23f5c29abcc6e43bbdd1d68e1e5e9b506a5c0aa22a",
+  "asset_source_commit": "99479b54ddd1c36af9c4724f058cb22354b91856",
+  "reproduction_source_commit": "285cd308b78824d53347e25a3badd442bb5f4522",
+  "verified_files": 553,
+  "methods": [
+    {
+      "method": "B1",
+      "raw_audit_sha256": "673af5c566c0ce76e5852e01b4d2f1b6fbda07e46a97e3aa4f0531b009e916d0",
+      "verified_controls": 11966,
+      "measured_start_actions_reproduced": 4,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "e2d3dcc89e41f054a42d7eceb090078e250067fb583857d6894a40e07b36a6c5",
+  "figure_byte_identical": true,
+  "figure_baseline": "packaged_analysis",
+  "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_basic_seed11_failed_gate_20261101_repro.zip.parts.json",
+  "unauthenticated_download_verified": true,
+  "native_training_controls": 10240,
+  "native_Adam_updates": 9,
+  "basic_safety_gate_passed": false,
+  "basic_successes": 3,
+  "basic_cases": 4,
+  "bounds_episodes": 1,
+  "public_parts": 96,
+  "new_controls": 0,
+  "research_acceptance": "UNMET"
+}

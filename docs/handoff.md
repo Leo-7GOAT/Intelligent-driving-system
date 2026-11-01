@@ -1,3 +1,16 @@
+# Latest public failure evidence — 2026-11-01 08:27
+
+FAILED B1seed11capsulePUBLICCOMPLETE,all96partsandmanifestuploadedwithoutfailed
+networkattempts,actualunauthenticateddownloadandindependentreconstructionpassed.
+Receipt native_B1_basic_seed11_failed_gate_public_verification_20261101.json;
+553files,11966controls,4actions,exactfiguree2d3dcc89e41f054a42d7eceb090078e250067fb583857d6894a40e07b36a6c5.
+Archivehashd13dcf3b07fe1574d8823e23f5c29abcc6e43bbdd1d68e1e5e9b506a5c0aa22a.
+QualificationFALSE,3/4successand1boundsretained. Publisher916terminalsuccess;
+mainnative_road_checkout285cd30mayadvanceafterconfirmingnoliveuser.
+Actualtraining62176nowseed44;11/22/33allfailedbasic. Extension62332waitsall5;
+conditionalfull20420waitsall5extensionqualifications. No nativeextensionchildyet.
+No repeatedH/H0/B2publication or repeatedmatchedreplayneeded. GoalACTIVE/UNMET.
+
 # Authoritative core-learning progress — 2026-11-01 08:21
 
 CORE ROOT-CAUSE EVIDENCE:actual first1280TRAINrollout reconstructed using recorded

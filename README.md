@@ -1,5 +1,7 @@
 # Executability-aware hierarchical driving research
 
+The complete failed B1seed11course is now publicly downloaded and independently reconstructed:553files,11,966controls,4initial actions and the exact figure,including its bounds failure and all checkpoints. [Public receipt](reports/native_B1_basic_seed11_failed_gate_public_verification_20261101.json). It is explicitly NOTa qualified baseline.
+
 B1optimizer diagnosis now has a controlled measured-data replay:the same first
 1,280 real TRAIN controls reproduce the original-rate native checkpoint within
 5.22e-8parameter error (numerical,not bitwise). Reducing PPOlearning rate from
