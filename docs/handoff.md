@@ -1,3 +1,28 @@
+# Existing24development-validation probe RUNNING; known12/PPO/public proof COMPLETE — 2026-11-01
+
+GoalACTIVE/UNMET. One actual native job is NOWRUNNING:
+20261101T120214468208Z_native_B1_shared_parking_validation_probe.
+Launcher toolsession81684;pointer runs/native_B1_shared_parking_validation_probe_registration_20261101.json.
+Same frozen29ef...model/20ea...normalizer and unchanged worker/low-level from
+completed12-condition probe. All24EXISTINGdevelopmentvalidation cases;0PPO/BC,
+7200smax,0automaticretries. Not newfinalconditions. Geometrypartition proof from
+20261101T011945179519Z_native_matched_broader_feedback retained. All24cases are
+supplied directly as registered cases:the actual frozen older worker has NO
+native_validation branch. Its own native_cases parser was executed and requires
+exactly24cases before launch. No worker overlay or unsupported flag is used.
+Prospective receipt:reports/native_B1_shared_parking_validation_probe_registration_20261101.json.
+Do not relaunch the started lifecycle. Inspect evaluationheartbeat/guard first.
+After normal ownedcleanup:rawmethodaudit,frozen-source measuredstartinference,
+strictcontrol-delivery and parking_trace(batch,list(range(24)));all failures by
+curve/static/walkerclass. New24-case analysis must not reuse the hardcoded12-case
+full-probe validator without an explicit new report/version. Preserve12known,
+PPOcourse and publishedbytes. All other old jobs areterminal. No trainingqueue.
+
+Sourcea79ff7f full GitHubCI41304185120SUCCESS. Exact currentHEAD is in gitlog;
+the current added preparation script also passed the actual frozen-parser check.
+The completed published receipts below remain authoritative. Their old statements
+that no jobs run are superseded by the active24-case lifecycle above.
+
 # One trained B1 PASSES all12known conditions; both public capsules VERIFIED — 2026-11-01
 
 Authoritative final state of this engineering checkpoint:goalACTIVE/UNMET;all

@@ -189,3 +189,9 @@ python scripts/download_native_asset.py --manifest-url $recipe.manifest_url --sh
 python scripts/reproduce_native_asset.py --archive (Join-Path runs/my_full_probe_download $recipe.archive_name) --sha256 $recipe.archive_sha256 --output runs/my_full_probe_rebuild
 python scripts/analyze_native_shared_parking_full_probe.py --batch runs/my_full_probe_rebuild/asset/20261101T114634589144Z_native_B1_shared_parking_full_probe --output runs/my_full_probe_audit.json
 ```
+
+The next registered evaluation is already running on all24existing development
+validation conditions, with the same frozen model, source and assistance and
+zero updates. Its outcome is pending. The frozen worker's actual parser verifies
+all24conditions before launch. This is a development generalization check, not
+the new120-condition final set. [Prospective registration](../reports/native_B1_shared_parking_validation_probe_registration_20261101.json).

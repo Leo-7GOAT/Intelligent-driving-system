@@ -63,3 +63,4 @@ reports/native_B1_shared_parking_PPO_public_verification_20261101.json -text -wh
 reports/native_B1_shared_parking_full_probe_20261101.json -text -whitespace
 protocols/public_native_B1_shared_parking_full_probe_20261101.json -text -whitespace
 reports/native_B1_shared_parking_full_probe_public_verification_20261101.json -text -whitespace
+reports/native_B1_shared_parking_validation_probe_registration_20261101.json -text -whitespace

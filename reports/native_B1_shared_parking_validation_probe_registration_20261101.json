@@ -1,0 +1,48 @@
+{
+  "scope": "Prospective fixed-model evaluation of all24existingdevelopment-validation conditions;not a finalset or additional learning.",
+  "batch": "20261101T120214468208Z_native_B1_shared_parking_validation_probe",
+  "protocol_sha256": "cf55267dfacdb2087c0d1245a6a2937090cd1bb2a19afdda6ee95d16ae718195",
+  "registration": {
+    "version": "frozen_B1_existing24validation_v1",
+    "inventory_batch": "20261101T011945179519Z_native_matched_broader_feedback",
+    "inventory_protocol_sha256": "f9e467f77816cf8bd5fc5f182f396b2013f771ed4158bf8546a754adc18c41a4",
+    "partition": {
+      "version": "native_training_validation_v1",
+      "training_conditions": 36,
+      "validation_conditions": 24,
+      "minimum_sampled_route_separation_m": 13.25,
+      "scope": "Distinct development validation roads,not final confirmation or proof of unvisited historical roads"
+    },
+    "parent_report_sha256": "2e33ca517db1e27ab095540bd5792951a9434cfaa8767acdb5bb98d4fa512840",
+    "source_model_sha256": "29efb9c3567c347a194717715570bbe4573699a8af72383e1bf349bd3692c753",
+    "normalization_sha256": "20ea49708ad7e1333b57394b3d76736377ab771407965521659816fdbb5da6c8",
+    "new_PPO_updates": 0,
+    "new_final_conditions": 0,
+    "selection": "All24existingvalidation conditions and the same final trained model;no filtering or checkpoint selection.",
+    "limits": "One seed and historically known developmentvalidation,not five independent policies or a new finalset. The earlier12conditions and all failures remain retained."
+  },
+  "methods": [
+    "B1"
+  ],
+  "method_budgets": {
+    "B1": 0
+  },
+  "evaluation_only": true,
+  "resource_limits": {
+    "wall_seconds": 7200,
+    "disk_min_GiB": 12,
+    "ram_min_GiB": 4,
+    "gpu_stop_temperature_C": 85,
+    "automatic_retries": 0
+  },
+  "inherited_PPO_controls": 40960,
+  "retained_PPO_Adam_steps": 986,
+  "source_hashes": {
+    "scripts/prepare_native_shared_parking_validation_probe.py": "4201370999f2fb0baa35fa8dd1e495f7f6fdb8e0be8e182e6de7692b088eac23",
+    "scripts/native_road_learning.py": "8d2b23197aee5c89a139e59fe471bb1a832ab9a072d5053a89b10da19bb1b3ba",
+    "navstack/parking_assist.py": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+    "navstack/carla_bridge.py": "ae4e4ada65a9457d25a9083004d5a347a704e15323e22ee72bf8c85c04e9369a"
+  },
+  "status_at_registration": "STARTED_OUTCOME_PENDING",
+  "research_acceptance": "UNMET"
+}
