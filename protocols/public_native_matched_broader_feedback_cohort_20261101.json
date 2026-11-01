@@ -1,0 +1,71 @@
+{
+  "scope": "All five actually trained common-harness H/H0development pairs from public capsules;24known validation conditions,not120unique final cases.",
+  "cohort_kind": "matched_broader_36train_24val_v1",
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "pairs_manifest": "protocols/native_matched_broader_feedback_pairs_20261101.json",
+  "expected_report": "reports/native_matched_broader_feedback_cohort_20261101.json",
+  "expected_figure": "reports/figures/native_matched_broader_feedback_cohort_20261101.png",
+  "capsules": [
+    {
+      "slot": "seed11",
+      "seed": 11,
+      "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed11_20261101_repro.zip.parts.json",
+      "sha256": "536125ada8d3bf8b4a55d78505d9f53c3a257f79195646c379d4a94e2765e92f"
+    },
+    {
+      "slot": "seed22",
+      "seed": 22,
+      "batch": "20261101T011945179519Z_native_matched_broader_feedback",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed22_20261101_repro.zip.parts.json",
+      "sha256": "23c15a1a5360040fcc51dd8f57759e71c5cbd2b13100064afac166b326709f73"
+    },
+    {
+      "slot": "seed33",
+      "seed": 33,
+      "batch": "20261101T011949266084Z_native_matched_broader_feedback",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed33_20261101_repro.zip.parts.json",
+      "sha256": "be331d1fda31a922c7159da64756102148784e6398cf2ad4a93d5a74bd2d6c72"
+    },
+    {
+      "slot": "seed44",
+      "seed": 44,
+      "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed44_20261101_repro.zip.parts.json",
+      "sha256": "0465fd8620e20b5c3212d15ba143d857d2326eeeb6e8ed6e6fc84d5ff131eb23"
+    },
+    {
+      "slot": "seed55",
+      "seed": 55,
+      "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed55_20261101_repro.zip.parts.json",
+      "sha256": "ebf95400d4e668855f7e4327a8ba1af247ebd83211dbfa1707c6f76e6022d428"
+    }
+  ]
+}

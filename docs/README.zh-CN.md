@@ -4,10 +4,10 @@
 [实际公开下载与独立复现凭证、SHA256](../reports/native_PPO_RGB_public_verification_20261101.json)。
 [两个公开模型/录像包的复现命令](native_PPO_RGB_reproduction.md)。
 
-B1下一项开发诊断已完成拟合：每个基础条件取自身最早三个已完成TRAIN回合，121个查询中99个有效规划/MPC标签，各组仍为512次actor监督更新。仅重放策略与已评测模型的完整参数/优化器一致，直接复用原闭环结果；纠正模型在当前训练及教师对照后自动评测，驾驶改善尚待实测。
+B1下一项开发诊断已完成拟合：每个基础条件取自身最早三个已完成TRAIN回合，121个查询中99个有效规划/MPC标签，各组仍为512次actor监督更新。仅重放策略与已评测模型的完整参数/优化器一致，直接复用原闭环结果；纠正模型在教师对照完成后自动评测，驾驶改善尚待实测。
 [实际拟合、保留状态与已启动等待的队列](../reports/native_B1_three_episode_training_coverage_activation_20261101.json)。
 
-已追加五种子“仅教师初始化H”对照队列：与对应H的PPO训练起点权重、归一化、执行代码和24个已知开发验证条件完全一致，用于区分教师先验与后续PPO训练的贡献。复用同任务、46个相同执行模块的强B3结果，避免重跑；该对照尚未产生新驾驶结果。
+五种子“仅教师初始化H”对照队列已开始运行：与对应H的PPO训练起点权重、归一化、执行代码和24个已知开发验证条件完全一致，用于区分教师先验与后续PPO训练的贡献。复用同任务、46个相同执行模块的强B3结果，避免重跑；完整五种子归因尚未完成。
 [归因协议、实际模型恢复与队列](../reports/native_PPO_teacher_only_attribution_queue_20261101.json)。
 
 一组B1已训模型的配对闭环诊断已完成：两组各追加512次actor监督更新，仅一组加入自身训练轨迹上的17个有效规划/MPC标签。两组均3/4成功、一次越界；训练拟合误差下降未转化为相对重放对照的成功率或安全改善，均未通过健康基线门槛。
@@ -18,17 +18,21 @@ B1下一项开发诊断已完成拟合：每个基础条件取自身最早三个
 [第四个种子的完整失败轨迹与测量状态诊断](../reports/native_B1_seed44_lower_rate_failure_diagnosis_20261101.json)。
 [实际门槛与未解决停滞](../reports/native_B1_first_lower_rate_basic_gate_and_stall_20261101.json)。首阶段五种子3/4、2/4、2/4、0/4、2/4的全部失败和成本继续保留。
 
-新的五种子H/H0同桥接版本复验已运行：36个TRAIN条件、24个已知开发验证条件，各方法各种子请求20,480控制步。前三组H/H0分别完成20,522/20,529、20,579/20,539和20,544/20,583控制步、各650次Adam更新，均24/24成功且无碰撞/越界，尚无成功率提升。首组H干预470次、H0390次，H总通行时间多6.95秒。第四个种子正在训练，最终测试未启用，五种子统计尚待完成。
-[首组原始绑定配对结果](../reports/native_matched_broader_feedback_seed11_pair_20261101.json)、[完整代价比较](../reports/native_matched_broader_feedback_seed11_costs_20261101.json)。
-[冻结输入、实际队列与范围](../reports/native_matched_broader_feedback_queue_activation_20261101.json)。
+新的同执行版本H/H0五种子训练及完整公开复现已结束：36个TRAIN条件、24个已知开发验证条件，各方法各种子请求20,480控制步。H共120/120成功，H0为119/120；双方无碰撞/越界，H0第44种子的静态条件15超时。按独立训练种子配对，平均差值+0.83个百分点，95%t区间[-1.48,+3.15]，探索性符号翻转p=1.0，尚无稳定反馈优势。仍是24个已知条件，不能算120组新的最终条件。
+[完整配对统计](../reports/native_matched_broader_feedback_cohort_20261101.json)。
 
-前三组完整模型和原始日志现已[公开预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback)，并从无需登录的公开地址独立重建通过：合计2,785个文件、172,095个训练/评测控制帧、144个测量初态动作、三幅完整图表逐字节一致。两种方法及全部结果均保留，仍是三个开发种子、24个已知条件，尚无反馈优势结论。
-[首组公开复现凭证](../reports/native_matched_broader_seed11_public_verification_20261101.json)、[第二组公开复现凭证](../reports/native_matched_broader_seed22_public_verification_20261101.json)、[第三组公开复现凭证](../reports/native_matched_broader_seed33_public_verification_20261101.json)，英文主README给出复现命令。
+H/H0实际训练控制步为103,197/102,711，Adam更新为3,270/3,250；H第44、55种子各660次，其余端点各650次。评测干预总数2,020/2,730，主要差异来自一次H0超时；各个种子双方均成功的条件中，H都略慢。所有失败和成本保留，不以汇总成功率掩盖代价。
+[完整成本](../reports/native_matched_broader_feedback_cohort_costs_20261101.json)、[独立目录逐字节重建](../reports/native_matched_broader_feedback_costs_independent_verification_20261101.json)、[超时及反馈敏感性诊断](../reports/native_matched_broader_seed44_failure_diagnostics_20261101.json)。
 
-全五种子的配对统计及24条件图表已启动只读等待程序，要求全部五组、完整代码树一致及实际训练预算齐全后才生成；120个种子-场景评测不会被写成120个独立最终条件。旧12条件公开主图仍逐字节重建一致。
-[登记配对清单](../protocols/native_matched_broader_feedback_pairs_20261101.json)、[实际汇总队列](../reports/native_matched_broader_feedback_analysis_activation_20261101.json)。
-自动发布程序已实际处理第二、三组，随后等待剩余两组；全部结束后由公开下载重建完整统计、十份模型Adam/冻结归一化证明与主图。首次启动的Windows编码错误及其退出记录保留，UTF8修复已通过1022项全量回归，本地和独立目录各44项相关测试通过。
-[已启动的完整发布与复现队列](../reports/native_matched_broader_full_publication_activation_20261101_v2_utf8.json)。
+五个完整模型/日志包均已[公开预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback)。无需登录的公开下载共核验4,652个文件、287,811个训练/评测控制帧、240个测量初态动作及五幅完整条件图；完整五组统计字段、十份实际Adam/冻结归一化证明、每种方法五份不同策略和主图也已重建通过。
+[完整公开复现凭证](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json)、[完整配方](../protocols/public_native_matched_broader_feedback_cohort_20261101.json)。当前checkout可执行：
+
+```powershell
+.venv/Scripts/python.exe scripts/reproduce_public_feedback_cohort.py --recipe protocols/public_native_matched_broader_feedback_cohort_20261101.json --output runs/public_matched_broader_five_seed_rebuilt
+```
+
+被哈希引用的报告和清单在Git中保留原始字节，仓库配方与实际公开执行配方一致；修复前的导出仍保留。
+[实际配方导出核验](../reports/native_matched_broader_exact_metadata_export_verification_20261101.json)。最近已完成CPU CI为1036项通过，新增导出保护相关44项测试通过。当前仍未取得健康B1、PPO独立价值、稳定反馈优势及新最终确认，不能宣布研究完成。
 
 额外执行预测网络被否决：策略种子和道路同时隔离后，Brier为0.0518，不如简单历史失败基线的0.0463；独立目录重放所有预测完全一致。它未接入PPO、动作掩码或控制器。
 [负结果](../reports/native_execution_prediction_cross_seed_probe_20261101.json)、[独立复验](../reports/native_execution_prediction_independent_verification_20261101.json)。

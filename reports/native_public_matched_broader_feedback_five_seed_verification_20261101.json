@@ -1,0 +1,308 @@
+{
+  "scope": "All five matched-harness broader DEVELOPMENT feedback pairs from five complete public capsules;not final confirmation",
+  "recipe_sha256": "940b062fa628ef4d0b0f86061cbe899018a1f552922a132160d3b6c5cfea0a2d",
+  "source_commit": "2b8e6ce2c357ba342d2b03a6a5537806e723381b",
+  "public_capsules": [
+    {
+      "slot": "seed11",
+      "archive_sha256": "536125ada8d3bf8b4a55d78505d9f53c3a257f79195646c379d4a94e2765e92f",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed11_20261101_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "9529786aa3ce98ef0ee611cfa02b1fe19cf885ed0fbf6eb74b7791f738de701b",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "1cd20dc1b0e86e3e8f71de03b07dc4d189a534150507ac1a48b791e35491e249",
+          "verified_controls": 28772,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "06b315f9c617958ec55643a2783972bd0859c034a9e09fc74185225c8cdacf9d",
+          "verified_controls": 28640,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    },
+    {
+      "slot": "seed22",
+      "archive_sha256": "23c15a1a5360040fcc51dd8f57759e71c5cbd2b13100064afac166b326709f73",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed22_20261101_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "1747f81528210a39585db9146aba7abd1633badeac72aa5f61ace87b5568df9d",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "820182f58f0d37558a7f018333aa0c3e1f27def1ec0751b1e67cbc701df71213",
+          "verified_controls": 28681,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "06b5deee6281457283719cfaa32893274490c7a70710fb8f916d48ac33e45f4d",
+          "verified_controls": 28628,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    },
+    {
+      "slot": "seed33",
+      "archive_sha256": "be331d1fda31a922c7159da64756102148784e6398cf2ad4a93d5a74bd2d6c72",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed33_20261101_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "a9a0c4cbeec0290f3fec9eb576544240f16859251dd28c3336175e545633eba4",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "c5d5235aa9c8b8a3c3c4ebdce09f15869c9c0c3ebb16cc2287dfcbfa0611f735",
+          "verified_controls": 28669,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "0b63b1110564a84383813e69ec9fa6aa2149f560bcc8cc04653b9c93ac143ed3",
+          "verified_controls": 28705,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    },
+    {
+      "slot": "seed44",
+      "archive_sha256": "0465fd8620e20b5c3212d15ba143d857d2326eeeb6e8ed6e6fc84d5ff131eb23",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed44_20261101_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "ab03919cb5ea3824cfb3e39b8da41b6414d4ff9003b3d7038832722cf0839ade",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "403e5f32e96e49a220f8d4a56d7b5e5032a5c509f30679e9c391e006a77c5f9b",
+          "verified_controls": 29014,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "b938fa7d71e7df2ce619d4685042065118477f942ad64e470856265501860217",
+          "verified_controls": 29223,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    },
+    {
+      "slot": "seed55",
+      "archive_sha256": "ebf95400d4e668855f7e4327a8ba1af247ebd83211dbfa1707c6f76e6022d428",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed55_20261101_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "ef3526a65a57c23ca6d0a786e2b5031f1e8697eb1f61baae2fd7ad3391c7d75f",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "4351e9566560bbd771d77617ae22ccb70983f027a268362aca817b2cb65f8446",
+          "verified_controls": 28875,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "908283c4c8b734ccae2b213810f9df1dc1f893b411b73e4b7f5e2147b65aaa87",
+          "verified_controls": 28604,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    }
+  ],
+  "all_reference_cohort_fields_identical": true,
+  "independent_training_seeds": 5,
+  "unique_known_development_conditions": 24,
+  "H_successes": 120,
+  "H0_successes": 119,
+  "episodes_each_method": 120,
+  "statistics": {
+    "independent_training_seeds": 5,
+    "paired_mean_difference": 0.008333333333333335,
+    "paired_95pct_t_interval": [
+      -0.014803709209981614,
+      0.031470375876648284
+    ],
+    "exploratory_exact_sign_flip_p_two_sided": 1.0,
+    "assumptions": "tinterval assumes approximately normal seed differences;sign-flip null assumes symmetric exchangeable seed differences. Small N,known development conditions and retrospective analysis do not establish confirmatory significance."
+  },
+  "model_and_optimizer_proof": [
+    {
+      "seed": 11,
+      "method": "H",
+      "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+      "model_sha256": "1a2f23a9ed94ba0fd84673f56d436dfdc3c8336fddcadd8192e1a1e84a2d2767",
+      "policy_tensor_sha256": "749531551fce268fe91a5b24379dde9febbb55a8f6f5d878f30f76cd3cc169b2",
+      "training_controls": 20522,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 11,
+      "method": "H0",
+      "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+      "model_sha256": "345a9a238e77005b77e05f7514b37cc7724390be3c5789098b9b8687c729c781",
+      "policy_tensor_sha256": "a9388e6ffe592d7b6c3779c4ec90ed9a2c1c7482a0c5376fefe44fb7f58acbc1",
+      "training_controls": 20529,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 22,
+      "method": "H",
+      "batch": "20261101T011945179519Z_native_matched_broader_feedback",
+      "model_sha256": "c46da0e23773fad3856dbc77b7681fcb5e2b32ee02976041a67752dbe9213d36",
+      "policy_tensor_sha256": "4f0f63fb2a7473e91bd49b7030741203badfbcede9bb84d91649821c3e2081e9",
+      "training_controls": 20579,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 22,
+      "method": "H0",
+      "batch": "20261101T011945179519Z_native_matched_broader_feedback",
+      "model_sha256": "8eea43810f8e4eff520dc49352330d07dd96ff39c82732f3e298809e678441c0",
+      "policy_tensor_sha256": "8a4bfa41d65d9ca7433a2513c5832ce6caea03dee2a383f8c645512d3039e582",
+      "training_controls": 20539,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 33,
+      "method": "H",
+      "batch": "20261101T011949266084Z_native_matched_broader_feedback",
+      "model_sha256": "ace995c09be8cafbe6c3ab33ba04fcaad58fb5b4ac512df26d96cc99e33b738d",
+      "policy_tensor_sha256": "0918a8cfeb5ce4e20cdbc636888ad73cb877dbb012227b3f0ba767def44ce674",
+      "training_controls": 20544,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 33,
+      "method": "H0",
+      "batch": "20261101T011949266084Z_native_matched_broader_feedback",
+      "model_sha256": "0a2550a186fa6be55497f83fa096730a3dfcbc2d7e3cb48c9cad04ac4ef6c4f2",
+      "policy_tensor_sha256": "cd3dd6783eac9445237ee96caf9de12a35776c32d7c1652fda5b4d94949fc4bd",
+      "training_controls": 20583,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 44,
+      "method": "H",
+      "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+      "model_sha256": "ed8a750f1aae3fd7b25e40809b09d00e301b2ce41a91aab76e940c1e40d99396",
+      "policy_tensor_sha256": "5f934588d96d194c0ac77489a4298ede95518b8114dc56b51e6f49b53be5e948",
+      "training_controls": 20766,
+      "actual_Adam_steps": 660,
+      "nominal_SB3_updates": 660,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 44,
+      "method": "H0",
+      "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+      "model_sha256": "15b27034c6fd98656af35c0ecb2d3e29c57b71e87c06a5c69f161548119ec82d",
+      "policy_tensor_sha256": "8d5f0ac447c422305dc13a8a0f847ef2540d245b353783b1e2c6e1799d4cb909",
+      "training_controls": 20540,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 55,
+      "method": "H",
+      "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+      "model_sha256": "fbf448308869f85e1adf4925eb385d03f046ae2d2f9f550bb9a622febe3e0083",
+      "policy_tensor_sha256": "d51a45975f92eca9c5e47bb9721a9e63de5ea3a7b54e9b28cdb03f0501ae2450",
+      "training_controls": 20786,
+      "actual_Adam_steps": 660,
+      "nominal_SB3_updates": 660,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 55,
+      "method": "H0",
+      "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+      "model_sha256": "bcd9603ed33b0b2ce5e243e558c9882f45d503e694fd5a221d67f3a9715b201c",
+      "policy_tensor_sha256": "e43aa30f98aa3f37a8c9fd66ec29655343cf1bdb0abb7335f5ccdea3c14a8f84",
+      "training_controls": 20520,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    }
+  ],
+  "five_distinct_final_policy_tensors_each_method": true,
+  "figure_byte_identical": true,
+  "figure_sha256": "207b650e4ddaf29269fa16e2578c95eee961ac76627c21c3fa6ba5202d322982",
+  "wall_seconds": 297.1720000000205,
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "research_acceptance": "UNMET;known development cohort,no healthy B1or final confirmation claim",
+  "cohort_kind": "matched_broader_36train_24val_v1",
+  "reference_inputs_sha256": {
+    "protocols/native_matched_broader_feedback_pairs_20261101.json": "2cfb30443d6c7665e0d57dab0cd0683b4dadd7463caffc8d63ac46bcff52c0ef",
+    "reports/native_matched_broader_feedback_cohort_20261101.json": "4f05ccfeecb37ab5f9db01aa5123b6b2c6901334e4097ad40d40a341579ddb38",
+    "reports/figures/native_matched_broader_feedback_cohort_20261101.png": "207b650e4ddaf29269fa16e2578c95eee961ac76627c21c3fa6ba5202d322982"
+  },
+  "release": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback",
+  "public_metadata_urls": {
+    "native_matched_broader_feedback_cohort_20261101.json": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_feedback_cohort_20261101.json",
+    "native_matched_broader_feedback_cohort_20261101.png": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_feedback_cohort_20261101.png",
+    "native_matched_broader_feedback_pairs_20261101.json": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_feedback_pairs_20261101.json",
+    "public_native_matched_broader_feedback_cohort_20261101.json": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/public_native_matched_broader_feedback_cohort_20261101.json"
+  },
+  "network_failures": [],
+  "new_optimizer_updates": 0
+}

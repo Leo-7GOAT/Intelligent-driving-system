@@ -1,33 +1,36 @@
 # Research acceptance ledger
 
-## Verified audit snapshot — 2026-11-01 12:30 UTC+8
+## Verified audit snapshot — 2026-11-01, complete matched development cohort
 
 The original targets remain unchanged and overall acceptance is **UNMET**.
-The following is the current evidence ledger. Dated snapshots below preserve
-their original observations; their running/queued statements are historical.
+Dated snapshots below preserve their original observations.
 
 | Requirement | Verified current evidence | Status |
 |---|---|---|
-| PPO → local pose/speed → Hybrid A* → timed trajectory → MPC → actual CARLA feedback | Completed native PPO training, frozen model restoration and frame-bound control audits; canonical five-seed development cohorts and two complete new common-harness pairs | Executed; final capability unqualified |
-| Healthy, sufficiently trained flat PPO B1 | Latest five retained-state extensions score3/4,2/4,2/4,0/4,2/4, with10bounds failures and1timeout;only seed11passes the basic gate. Full-task continuation was correctly withheld | Not achieved |
-| B1 corrective hypothesis | Matched replay and17label fits each score3/4with one bounds failure. New99label/512step correction is fitted and queued;no new closed-loop result yet | Driving benefit unproven |
-| H versus healthy B1: ≥10pp paired mean gain and95% lower bound above zero, or a prospectively locked efficiency alternative | A qualified complete B1cohort is absent. Known development results cannot satisfy this hypothesis | Unproven |
-| PPO contribution versus strong B3 | Strong B3scores24/24on known validation conditions. New H/H0pairs11and22also each score24/24. Five pristine teacher-only Hcontrols are queued to isolate additional PPO | Unproven |
-| Explainable executability-feedback contribution | Canonical H58/60,H057/60:mean+1.67pp,95%t[-11.82,+15.16]pp;new common-harness first2pairs tie. Auxiliary learned predictor failed its baseline comparison and was not adopted | Not established |
-| ≥5independently trained policies supporting main conclusions | Canonical H/H0and B2five-seed development studies are complete. Current36TRAIN/24known-validation replication has2/5complete pairs;formal H/B1comparison remains pending | Development milestone executed; final requirement incomplete |
-| Final scenario isolation and ≥120NEWunique paired conditions, ≥30per core family plus unseen layouts/parameters | Original12and later24conditions are known development data. Repeated policy seeds do not increase their unique-condition count. New final confirmation is not evidenced | Not achieved |
-| Light ≥85%overall/≥75%core;CARLA ≥80%overall/≥70%core;collision/bounds ≤5% | High known-development Hscores and retained unsafe B1failures are reported separately. No new independent final result establishes these gates | Not achieved |
-| B2/frequency/shared-safety/fixed-reference controls | Five-seed H/B2development reconstruction complete:H58/60,B244/60,with bridge confound. Fair complete frequency/shared-safety cohorts remain missing. MPCand pursuit/PIeach4/4on fixed references;no MPCdominance demonstrated | Partial development evidence |
-| Reproducible public delivery | Canonical H/H0and H/B2public cohorts independently reconstructed. First2new paired capsules reconstruct1,867files/114,721controls/96starts/two exact figures. CPU1022pass;actual CARLAchecks are separate | Development prerelease delivered; final release withheld |
+| PPO → local pose/speed → Hybrid A* → timed trajectory → MPC → actual CARLA feedback | Actual native PPO training,restoration and frame audits;five complete common-harness H/H0pairs on36TRAIN/24known-validation conditions | Executed;final capability unqualified |
+| Healthy,sufficiently trained B1 | Five retained-state extensions score3/4,2/4,2/4,0/4,2/4;10bounds,1timeout,only1basic gate passes. Full-task continuation withheld | Not achieved |
+| B1corrective hypothesis | Matched replay/17label fits both3/4with one bounds failure. New99label/512step correction awaits its queued native probe | Driving benefit unproven |
+| H versus healthy B1:≥10pp paired mean gain and95% lower bound above zero,or prospectively locked efficiency alternative | Qualified complete B1cohort absent | Unproven |
+| Added PPO and strong-B3 comparison | B3scores24/24;new trained Hscores120/120across five policies. Exact pristine teacher-only controls now running;full attribution pending | Unproven |
+| Explainable executability-feedback contribution | New H120/120,H0119/120:mean+0.83pp,95%t[-1.48,+3.15]pp,p=1.0. Hslightly slower on mutually successful conditions in every seed | Not established |
+| ≥5independently trained policies | Canonical H/H0,B2and new common-harness five-pair development cohorts complete. Formal H/healthy-B1comparison pending | Development milestone executed;final incomplete |
+| ≥120NEWunique paired final conditions,≥30per core family plus unseen layouts/parameters | Original12and later24remain known development conditions;no new final set activated | Not achieved |
+| Light≥85%/75%core;CARLA≥80%/70%core;unsafe≤5% | Known-development Hscores cannot establish new independent final thresholds | Not achieved |
+| B2/frequency/shared-safety/fixed-reference controls | H/B2five-seed study retains bridge confound. Fair complete frequency/shared-safety cohorts missing. MPCand pursuit/PIeach4/4on fixed references | Partial development evidence |
+| Reproducible public delivery | All five new paired capsules:4,652files/287,811controls/240starts;full report,ten Adam/normalizer proofs and main figure independently rebuilt. CPU CI1036pass;new export safeguards44targeted pass | Development prerelease delivered;final withheld |
 
-Evidence: [canonical feedback and interval](../reports/native_feedback_five_seed_development_cohort_20261031.json),
-[all-five B1 extensions](../reports/native_B1_all_five_lower_rate_extensions_20261101.json),
-[matched corrective negative result](../reports/native_B1_matched_trained_actor_correction_20261101.json),
-[new corrective queue](../reports/native_B1_three_episode_training_coverage_activation_20261101.json),
-[H/B2 public proof and limits](../reports/native_public_H_B2_five_seed_independent_verification_20261101.json),
-[teacher-only attribution queue](../reports/native_PPO_teacher_only_attribution_queue_20261101.json),
-[new paired public proof](../reports/native_matched_broader_seed22_public_verification_20261101.json),
-[automatic all-five publication](../reports/native_matched_broader_full_publication_activation_20261101_v2_utf8.json).
+[Complete matched statistics](../reports/native_matched_broader_feedback_cohort_20261101.json),
+[all-outcome and paired costs](../reports/native_matched_broader_feedback_cohort_costs_20261101.json),
+[full public reconstruction](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json),
+[public recipe](../protocols/public_native_matched_broader_feedback_cohort_20261101.json),
+[all-five B1failures](../reports/native_B1_all_five_lower_rate_extensions_20261101.json),
+[queued new B1probe](../reports/native_B1_three_episode_training_coverage_activation_20261101.json),
+[teacher-only protocol](../reports/native_PPO_teacher_only_attribution_queue_20261101.json).
+
+H/H0evaluation interventions total2020/2730;the difference is dominated by one
+H0timeout. Requested budgets are equal;actual training controls103197/102711and
+Adam3270/3250retain their declared one-rollout overshoots. Costs of earlier
+experiments and teacher fitting remain separate and are not erased by this cohort.
 
 ## Historical execution snapshots
 

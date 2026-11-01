@@ -1,3 +1,57 @@
+# Latest complete matched cohort / public reproduction — 2026-11-01 14:15
+
+PROGRESS:all five newly trained common-harness pairs COMPLETE and publicly
+reconstructed. H120/120,H0119/120,zero unsafe;only seed44H0case15deadline.
+Mean+0.8333pp,95%t[-1.4804,+3.1470]pp,exact sign-flip p1.0. Still24unique
+known conditions,NOT120new final conditions. No stable feedback benefit.
+Training controlsH103197/H0102711,actual Adam3270/3250;H44and55each660,
+others650. All-outcome interventions2020/2730dominated by one H0timeout;
+Hslightly slower on mutually successful cases in EVERY seed. Whole-project
+costs/prior failures remain separate. Cost script and regression9tests added.
+Root and clean independent checkout30targeted PASS,cost output byte-identical
+SHA15a2a07ea1db8fac4dce23f9806ba3a76a9395e870818728438cc15f96b6fafd.
+
+Publication54528 TERMINAL SUCCESS;analysis37956 and main40540 TERMINAL.
+Do not restart them. Full public proof verifies5capsules/4652files/287811controls/
+240starts/5case figures,all cohort fields,10actual Adam/frozen normalizers,
+5distinct trained policies per method,and exact main figure SHA
+207b650e4ddaf29269fa16e2578c95eee961ac76627c21c3fa6ba5202d322982.
+Recipe `protocols/public_native_matched_broader_feedback_cohort_20261101.json`;
+proof `reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json`.
+Current source includes cost and metadata export fixes. Original public capsule
+packager369db69/full-cohort reconstruction2b8e6ce/frozen publishera8b491eremain
+accurately recorded. Prerelease tagv0.2.0-dev.20261101-feedback stays369db69.
+No repeated download or model/raw replay is needed.
+
+Found REAL Git/export line-ending binding bugs. Commit9ba95f5preserves4hash-bound
+reports. Sourceefe975dd22304e20830165308d47c480eaa2bfcaadds exact-byte recipe
+export (LF/CRLF,wrong digest,existing-file guards) and preserves paired manifest/
+plot metadata/public recipe bytes. Root44targetedPASS;hosted1036PASS/18skip/
+4CARLAdeselect/89.13s,run41279842561. Prior cost code3154e53hosted1031PASS.
+Current frozen publisher was NOT modified. Its public recipe was already correct
+SHA940b062fa628ef4d0b0f86061cbe899018a1f552922a132160d3b6c5cfea0a2d,
+but root export reencoded it as7d5b5f34... . After normal completion,ORIGINAL
+root recipe and receipt were archived under
+`runs/native_matched_broader_feedback_costs_execution_20261101/pre_exact_recipe_export`;
+new tested helper copied EXACT already-published recipe and left receipt bytes
+UNCHANGED. Original complete.json receipt binding still holds. No reupload.
+Report `native_matched_broader_exact_metadata_export_verification_20261101.json`.
+Do not regenerate/normalize hash-bound files. Only remaining Git-reference rebuild
+should reuse the already-public restored inputs and verify current Git refs;
+do not repeat all raw/model/network reconstruction for the same concern.
+
+Teacher69732 is LIVE,completed11/22/33,now44
+`20261101T020245721142Z_native_pristine_H_baseline` asof14:14.
+Read exact current worker_process.json/CIM before management;old66144terminal.
+First teacher11scores23/24versus its trainedH24/24,1100interventions;
+no five-seed PPOattribution yet. All5teacher controls must finish,then
+B1probe68120automatically evaluates the queued99label correction,not the exact
+already-completed replay policy. No new B1fits before that actual native result.
+Final outputs: `reports/native_broader_PPO_teacher_rule_attribution_20261101.json`
+and `reports/native_B1_three_episode_training_coverage_probe_20261101.json`.
+No new final120conditions activated. Healthy B1/PPOvalue/stable feedback/final
+confirmation remain UNMET. Goal ACTIVE;five public pairs do not complete it.
+
 # Latest fourth complete public pair / timeout reconstruction — 2026-11-01 13:37
 
 Seed44 `20261101T011953260380Z_native_matched_broader_feedback` COMPLETE:

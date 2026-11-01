@@ -1,0 +1,16 @@
+{
+  "scope": "Independent clean checkout,30targeted tests and full five-pair cost reconstruction;no new driving or learning",
+  "source_commit": "9ba95f52678c2d33b00bb6dcba09005e3569f4e1",
+  "targeted_tests_root": 30,
+  "targeted_tests_independent": 30,
+  "cost_report_sha256": "15a2a07ea1db8fac4dce23f9806ba3a76a9395e870818728438cc15f96b6fafd",
+  "cost_report_byte_identical": true,
+  "cohort_sha256": "4f05ccfeecb37ab5f9db01aa5123b6b2c6901334e4097ad40d40a341579ddb38",
+  "analysis_source_sha256": "ba6953cc1cc0db78796b0cb3fd53eabd0d52793c083f11a58a2a275656134614",
+  "git_preserves_four_hash_bound_report_files_byte_for_byte": true,
+  "cross_report_SHA_bindings_checked": 3,
+  "command": "python scripts/analyze_native_matched_feedback_costs.py --cohort reports/native_matched_broader_feedback_cohort_20261101.json --inputs-root RESTORED_INPUTS_ROOT --output runs/new_cost_reconstruction.json",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

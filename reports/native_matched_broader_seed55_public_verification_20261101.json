@@ -1,0 +1,36 @@
+{
+  "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+  "archive_sha256": "ebf95400d4e668855f7e4327a8ba1af247ebd83211dbfa1707c6f76e6022d428",
+  "asset_source_commit": "369db6939ee67e540aa6b63c155b3eb27964f2bc",
+  "reproduction_source_commit": "369db6939ee67e540aa6b63c155b3eb27964f2bc",
+  "verified_files": 937,
+  "methods": [
+    {
+      "method": "H",
+      "raw_audit_sha256": "4351e9566560bbd771d77617ae22ccb70983f027a268362aca817b2cb65f8446",
+      "verified_controls": 28875,
+      "measured_start_actions_reproduced": 24,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "method": "H0",
+      "raw_audit_sha256": "908283c4c8b734ccae2b213810f9df1dc1f893b411b73e4b7f5e2147b65aaa87",
+      "verified_controls": 28604,
+      "measured_start_actions_reproduced": 24,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "2d2387f21866a125049b25cc689e812f81184b0af52acec71b66857d1c64971d",
+  "figure_byte_identical": true,
+  "figure_baseline": "packaged_analysis",
+  "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed55_20261101_repro.zip.parts.json",
+  "unauthenticated_download_verified": true,
+  "seed": 55,
+  "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+  "known_unique_validation_conditions": 24,
+  "research_acceptance": "UNMET;development pair,not final confirmation"
+}

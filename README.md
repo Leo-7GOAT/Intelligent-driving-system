@@ -12,14 +12,14 @@ This prerelease includes B1's failure and does not meet the final research targe
 The next B1 development diagnostic uses the first three of its own completed
 TRAIN episodes per condition: 121 queries, 99 solved-reference labels and the
 same 512 actor-only updates. Its exact replay policy reuses the already audited
-closed-loop result. The correction endpoint is queued after the current native
-cohort and teacher controls; no new driving outcome is claimed.
+closed-loop result. The correction endpoint is queued after the teacher
+controls; no new driving outcome is claimed.
 [Actual fit, retained PPO state and queue](reports/native_B1_three_episode_training_coverage_activation_20261101.json).
 
-Five teacher-only H controls are queued after the matched broader PPO cohort,
+Five teacher-only H controls are now running after the completed broader cohort,
 using its exact pristine weights and all24known validation conditions. This
 separates teacher initialization from added PPO training; the source-matched
-strong B3 result is reused. No new baseline driving results are available yet.
+strong B3 result is reused. The complete five-seed attribution is pending.
 [Attribution protocol and actual frozen-model preflights](reports/native_PPO_teacher_only_attribution_queue_20261101.json).
 
 A matched trained-B1 actor diagnostic is complete:replay and17reference-label
@@ -46,28 +46,45 @@ remaining seeds retain the registered recipe.
 The initial all-five course remains3/4,2/4,2/4,0/4,2/4with every gate failed;
 all51,200training controls and58,758raw controls are preserved.
 
-A new all-five matched-harness H/H0replication is actually queued:36TRAIN and
-24known development-validation conditions,20,480requested controls per method
-and seed. All10pristine independently seeded actors restore unchanged;all5full
-source trees match. The first three complete pairs each score H24/24 and H024/24,
-without unsafe outcomes. They use20,522/20,529,20,579/20,539and20,544/20,583training
-controls respectively,650Adam steps per method and seed. In seed11,H uses470interventions
-versus390and6.95s more evaluation time. No completed pair shows a success-rate benefit;
-five-seed inference remains pending. Seed44is now training;final conditions remain unused.
-[Audited first pair](reports/native_matched_broader_feedback_seed11_pair_20261101.json),
-[all-outcome and mutually successful-case costs](reports/native_matched_broader_feedback_seed11_costs_20261101.json).
-[Frozen inputs and live queue](reports/native_matched_broader_feedback_queue_activation_20261101.json).
+The matched common-harness H/H0 cohort is complete: five independently trained
+pairs,36TRAIN/24known development-validation conditions,20,480requested controls
+per method/seed. H finishes120/120 and H0119/120,with zero collision/bounds;
+H0seed44 times out once. The paired mean is+0.83percentage points,95%tinterval
+[-1.48,+3.15]points,exploratory sign-flip p=1.0. Stable feedback benefit remains
+unestablished. These are24unique known conditions,not120new final conditions.
+[Complete paired statistics](reports/native_matched_broader_feedback_cohort_20261101.json).
 
-The first three complete matched pairs are now
+Actual H/H0training costs are103,197/102,711controls and3,270/3,250Adam updates.
+Hseeds44and55use660updates;the other endpoints use650. Evaluation interventions
+are2,020/2,730,but the difference is dominated by the single H0timeout. H is
+slightly slower on mutually successful conditions in every seed. All outcomes
+and prior failed experiments remain retained;this ledger covers this new cohort.
+[Full cost ledger](reports/native_matched_broader_feedback_cohort_costs_20261101.json),
+[byte-identical independent cost reconstruction](reports/native_matched_broader_feedback_costs_independent_verification_20261101.json),
+[timeout and recorded-state feedback sensitivity](reports/native_matched_broader_seed44_failure_diagnostics_20261101.json).
+
+All five complete capsules are
 [publicly released](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback).
-Independent public downloads reconstruct2,785files,172,095training/evaluation
-controls,144measured-start actions and three exact all-case figures. These remain
-24unique known conditions repeated across three trained pairs. Both methods,
-all outcomes,models,normalizers and initial checkpoints are retained.
-[Seed11public verification](reports/native_matched_broader_seed11_public_verification_20261101.json),
-[seed22public verification](reports/native_matched_broader_seed22_public_verification_20261101.json),
-[seed33public verification](reports/native_matched_broader_seed33_public_verification_20261101.json).
-From source369db6939ee67e540aa6b63c155b3eb27964f2bc with the pinned CPU dependencies,
+Independent public downloads verify4,652files,287,811training/evaluation controls,
+240measured-start actions and five exact case figures. The full public-input
+reconstruction also matches every cohort field,all ten actual Adam/normalizer
+proofs,five distinct trained policies per method and the main figure byte-for-byte.
+[Full public proof](reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json),
+[complete public recipe](protocols/public_native_matched_broader_feedback_cohort_20261101.json).
+Use the current checkout and fresh output directories;no CARLA is needed:
+
+```powershell
+.venv/Scripts/python.exe scripts/reproduce_public_feedback_cohort.py --recipe protocols/public_native_matched_broader_feedback_cohort_20261101.json --output runs/public_matched_broader_five_seed_rebuilt
+```
+
+Hash-bound reports/manifests retain their original Git bytes,and the tracked
+recipe is the exact already-published recipe used by reconstruction.
+[Executed metadata-export verification](reports/native_matched_broader_exact_metadata_export_verification_20261101.json).
+The latest completed CPU CI passes1,036tests;the new export safeguards pass44targeted tests.
+The release remains a development prerelease:healthy B1,PPOvalue,stable feedback
+benefit and new final confirmation remain unestablished.
+
+For the original single seed11 capsule,use source369db6939ee67e540aa6b63c155b3eb27964f2bc and the pinned CPU dependencies;
 use fresh output directories:
 
 ```powershell

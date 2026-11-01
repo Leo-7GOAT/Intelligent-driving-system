@@ -1,21 +1,17 @@
 # Evidence-bounded project descriptions
 
-These descriptions intentionally omit unproven superiority, final success-rate targets, production safety and real-vehicle claims.
+Verified development wording — 2026-11-01,complete matched cohort:
 
-Verified development wording (2026-11-01,12:30UTC+8snapshot;later live progress is in the main README):
+- 中文：构建已知地图下的低速车辆PPO分层决策、Hybrid A*规划与MPC控制系统，接入CARLA真实PPO更新、车辆标定及逐帧执行审计。完成同执行版本五种子H/H0开发消融，在24个已知开发条件上分别120/120与119/120；公开模型、归一化、原始日志及可独立重建的统计和主图，核验287,811控制帧。CPU CI1036项通过。反馈差值95%区间跨零，健康非分层基线及独立最终确认尚未完成。
+- English: Built a known-map,low-speed system combining PPO decisions,Hybrid A* planning and MPC,with real CARLA PPO updates,vehicle calibration and frame-level audits. Completed a common-harness five-seed H/H0development ablation:120/120versus119/120across24known conditions. Published models,normalizers,raw logs and independently reproducible statistics/figures,verifying287,811control frames;1,036CPU CItests pass. The feedback interval includes zero;a healthy flat-PPO baseline and independent final confirmation remain unestablished.
 
-- 中文：构建已知地图下的低速车辆PPO分层决策、Hybrid A*规划与MPC控制系统，接入CARLA真实PPO更新、车辆标定和逐帧执行审计。完成五种子H/H0及H/二维A*开发对照，公开模型、归一化、原始日志与可独立重建的统计图表，CPU回归1022项通过。H/H0在12个已知开发条件上合计58/60与57/60，尚未建立稳定反馈优势；健康非分层基线和独立最终验证仍待完成。
-- English: Built a known-map, low-speed driving system combining PPO decisions, Hybrid A* planning and MPC, with real CARLA PPO updates, vehicle calibration and frame-level execution audits. Completed five-seed H/H0 and H/2D-A* development studies with publicly reproducible models, normalizers, raw logs and figures; 1,022 CPU tests pass. Canonical H/H0 scores are 58/60 and 57/60 on 12 known development conditions. Stable feedback benefit, a healthy flat-PPO baseline and independent final confirmation remain unestablished.
-
-The [five-seed feedback report](../reports/native_feedback_five_seed_development_cohort_20261031.json)
-has a paired mean difference of +1.67 percentage points, 95% t interval
-[-11.82, +15.16] points. The [public H/B2 reconstruction](../reports/native_public_H_B2_five_seed_independent_verification_20261101.json)
-retains its bridge-initialization confound; this wording claims completed
-development studies and reproducibility, without assigning that gap solely to
-the planner. A new common-harness replication has two complete pairs, each
-H24/24 and H024/24, with three further pairs running or pending. Its first two
-public capsules independently reconstruct114,721controls and96start actions on
-24unique known conditions. [Current paired evidence](../reports/native_matched_broader_seed22_public_verification_20261101.json).
+The [matched report](../reports/native_matched_broader_feedback_cohort_20261101.json)
+has a paired mean+0.83pp,95%tinterval[-1.48,+3.15]pp. The
+[public reconstruction](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json)
+retains all five trained pairs and24unique known conditions;120policy-case
+results are not120new final conditions. The separate H/B2study retains its
+bridge-initialization confound. No superiority,safety certification or real-vehicle
+claim is made. Teacher-only attribution and new B1probe remain pending.
 
 Historical verified wording (2026-10-27):
 

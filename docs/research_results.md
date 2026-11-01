@@ -1,34 +1,38 @@
 # Research results and claim boundaries
 
-## Verified development snapshot — 2026-11-01 12:30 UTC+8
+## Verified development snapshot — 2026-11-01, complete matched cohort
 
-These cohorts retain different task inventories and execution versions. They
-are reported separately. All listed conditions are known development data;
-the original final-confirmation requirements remain unmet.
+All conditions below are known development data. Different task inventories and
+execution versions remain separate;original final-confirmation targets are unmet.
 
 | Comparison | Complete result | Interpretation |
 |---|---|---|
-| Canonical H/H0, five trained seeds,12known conditions | H58/60,H057/60;paired mean+1.67pp,95%t[-11.82,+15.16]pp,descriptive sign-flip p=1.0 | Stable feedback benefit not established |
-| Common-harness H/H0,36TRAIN/24known-validation conditions | Seeds11and22each H24/24,H024/24,zero unsafe;650actual Adam per method/seed. Seed33training;remaining pairs pending | Two completed development pairs;no five-seed inference yet |
-| H/B2, five trained seeds,12known conditions | H58/60,B244/60;paired mean+23.33pp,95%t[+3.43,+43.24]pp,descriptive sign-flip p=.125 | Bridge-initialization mismatch prevents isolated planner attribution |
-| Strong B3 on24known validation conditions | 24/24;matched active low-level modules and bridge | No PPOvalue established from equal completion scores |
-| B1lower-rate extension, five independently trained parents,4known basic roads | 9/20successes,10bounds failures,1timeout;51,200new training controls,1,595new actual Adam;only1/5basic gates passes | Healthy full-task flat baseline not obtained |
-| B1matched512step replay/17label actor fits | Both3/4with1bounds failure;0new PPOupdates | TRAINfit improvement did not improve driving over replay |
+| Common-harness H/H0,five trained seeds,36TRAIN/24known validation | H120/120,H0119/120;zero unsafe,one H0deadline;mean+0.83pp,95%t[-1.48,+3.15]pp,exploratory sign-flip p=1.0 | Stable feedback benefit not established |
+| Canonical H/H0,five seeds,12known conditions | H58/60,H057/60;mean+1.67pp,95%t[-11.82,+15.16]pp,p=1.0 | Separate earlier development cohort |
+| H/B2,five seeds,12known conditions | H58/60,B244/60;mean+23.33pp,95%t[+3.43,+43.24]pp,p=.125 | Bridge-initialization mismatch prevents isolated planner attribution |
+| Strong B3,24known validation conditions | 24/24with matched active execution modules/bridge | No PPOvalue established from equal completion |
+| B1lower-rate extensions,five trained parents,4known basic roads | 9/20successes,10bounds,1timeout;51200new controls/1595actual Adam,only1/5basic gates passes | Healthy full-task baseline absent |
+| B1matched512step replay/17label fits | Both3/4with1bounds,zero new PPO | Better TRAINfit did not improve driving over replay |
 
-The canonical [feedback cohort](../reports/native_feedback_five_seed_development_cohort_20261031.json)
-and [H/B2 cohort](../reports/native_public_H_B2_five_seed_independent_verification_20261101.json)
-have complete public-input reconstructions. The new common-harness
-[seed11](../reports/native_matched_broader_seed11_public_verification_20261101.json)
-and [seed22](../reports/native_matched_broader_seed22_public_verification_20261101.json)
-capsules independently reproduce114,721controls,96measured-start actions and
-both figures. Their96policy-case starts still represent24unique known conditions.
+The [new cohort](../reports/native_matched_broader_feedback_cohort_20261101.json)
+uses103197/102711H/H0training controls and3270/3250actual Adam steps. Its
+[cost ledger](../reports/native_matched_broader_feedback_cohort_costs_20261101.json)
+retains2020/2730interventions;the difference is dominated by seed44H0's timeout.
+H is slightly slower on mutually successful conditions in every seed. A
+[recorded-state sensitivity check](../reports/native_matched_broader_seed44_failure_diagnostics_20261101.json)
+verifies Huses feedback,without establishing closed-loop benefit or causal attribution.
 
-The [all-five B1extension ledger](../reports/native_B1_all_five_lower_rate_extensions_20261101.json)
-and [corrective comparison](../reports/native_B1_matched_trained_actor_correction_20261101.json)
-retain every failed outcome. A new99reference-label fit is complete but its
-closed-loop evaluation is queued. [Actual activation](../reports/native_B1_three_episode_training_coverage_activation_20261101.json).
-Teacher-only Hcontrols and all-five public cohort aggregation are also queued;
-their results must precede claims about added PPO or stable feedback value.
+[All five public capsules](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json)
+verify4652files,287811controls,240starts,five case figures and the full cohort's
+fields,ten Adam/normalizer proofs and main figure. The
+[complete recipe](../protocols/public_native_matched_broader_feedback_cohort_20261101.json)
+and [independent byte-identical cost rebuild](../reports/native_matched_broader_feedback_costs_independent_verification_20261101.json)
+are executable. These remain24unique known conditions.
+
+Teacher-only controls are running;the complete added-PPO attribution is pending.
+The new99reference-label B1model is fitted and its closed-loop probe is queued.
+[Actual B1activation](../reports/native_B1_three_episode_training_coverage_activation_20261101.json).
+No result above establishes healthy-B1superiority,PPOnecessity or final generalization.
 
 ## Historical results and execution snapshots
 
