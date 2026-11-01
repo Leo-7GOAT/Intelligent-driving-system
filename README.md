@@ -49,21 +49,23 @@ all51,200training controls and58,758raw controls are preserved.
 A new all-five matched-harness H/H0replication is actually queued:36TRAIN and
 24known development-validation conditions,20,480requested controls per method
 and seed. All10pristine independently seeded actors restore unchanged;all5full
-source trees match. The first complete pair scores H24/24 and H024/24, both
-without unsafe outcomes, after20,522/20,529training controls and650Adam steps
-each. H uses470interventions versus390and6.95s more total evaluation time;
-this seed does not show a feedback benefit. Seed22is now training. Final
-conditions remain unused.
+source trees match. The first two complete pairs each score H24/24 and H024/24,
+without unsafe outcomes. They use20,522/20,529and20,579/20,539training controls
+respectively,650Adam steps per method and seed. In seed11,H uses470interventions
+versus390and6.95s more evaluation time. Neither pair shows a success-rate benefit;
+five-seed inference remains pending. Seed33is now training;final conditions remain unused.
 [Audited first pair](reports/native_matched_broader_feedback_seed11_pair_20261101.json),
 [all-outcome and mutually successful-case costs](reports/native_matched_broader_feedback_seed11_costs_20261101.json).
 [Frozen inputs and live queue](reports/native_matched_broader_feedback_queue_activation_20261101.json).
 
-The first complete matched pair is now
+The first two complete matched pairs are now
 [publicly released](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback).
-Independent public download reconstructs936files,57,412training/evaluation
-controls,48measured-start actions and the exact all-case figure. Both methods,
+Independent public downloads reconstruct1,867files,114,721training/evaluation
+controls,96measured-start actions and both exact all-case figures. These remain
+24unique known conditions repeated across two trained pairs. Both methods,
 all outcomes,models,normalizers and initial checkpoints are retained.
-[Executed public verification](reports/native_matched_broader_seed11_public_verification_20261101.json).
+[Seed11public verification](reports/native_matched_broader_seed11_public_verification_20261101.json),
+[seed22public verification](reports/native_matched_broader_seed22_public_verification_20261101.json).
 From source369db6939ee67e540aa6b63c155b3eb27964f2bc with the pinned CPU dependencies,
 use fresh output directories:
 
@@ -79,6 +81,12 @@ evaluations as120unique final conditions. The previously published12condition
 figure still rebuilds byte-identically.
 [Pair list](protocols/native_matched_broader_feedback_pairs_20261101.json),
 [actual read-only analysis observer](reports/native_matched_broader_feedback_analysis_activation_20261101.json).
+The publication observer now waits for each remaining audited pair, publishes
+every seed and checks its public reconstruction. After all five it rebuilds the
+complete cohort statistics,ten actual Adam/frozen-normalizer proofs and main
+figure from checked public downloads. Fixed source checkouts isolate this work
+from later repository edits. [Actual publication queue and preserved Windows
+encoding failure](reports/native_matched_broader_full_publication_activation_20261101_v2_utf8.json).
 
 An auxiliary execution predictor was rejected:crossed seed/road validation gives
 Brier.0518against.0463for the simpler historical-failure baseline. Independent

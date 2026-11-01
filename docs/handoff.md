@@ -1,4 +1,64 @@
-# Latest complete public pair / owned resource probe — 2026-11-01 11:58
+# Latest actual two-pair results / autonomous publication — 2026-11-01 12:25
+
+Previous turn PROGRESS:first pair actually publicly reconstructed. This turn
+PROGRESS:seed22native pair COMPLETE/raw+inference verified,both24/24zero unsafe,
+new training20579/20539controls,650Adam each;worker50292 TERMINAL. Observer40540
+advanced to seed33 `20261101T011949266084Z_native_matched_broader_feedback`,
+worker45988(created1793506553.840,basePython311),currently Htraining.
+Two completed pairs do NOT show a success-rate feedback benefit;no five-seed CI yet.
+
+New source2b8e6ce2c357ba342d2b03a6a5537806e723381b adds guarded incremental
+all-five publication +public reconstruction support for FIVE complete paired
+capsules/24conditions. Existing canonical SIXcapsule/12condition path retained.
+Separate --reference-root supports immutable future all-five reference snapshots.
+Initial publisher32964 FAILED before any new package/upload/CARLAcall:Windows
+GBKreader thread could not decode GHUTF8checkmark,then stdoutNonecausedTypeError.
+Old execution `native_matched_broader_full_publication_execution_20261101` terminal,
+original source/driver/failure receipts retained. Do not restart it.
+
+FIXED publisher sourcea8b491e29b7d66fb4cb5479379babcd696c876cb captures raw stdout/
+stderr bytes,sets child UTF8,and preserves raw logs before decoding. Root and
+independent44targetedPASS;hosted1022PASS/18skip/4CARLAdeselect,job41272197243,
+197.57s. Actual pending-CIcheckmark log then passed through FIXED pipeline.
+
+NEW ACTUAL publisher54528(created1793506441.616,basePython311),execution
+`runs/native_matched_broader_full_publication_execution_20261101_v2_utf8`,
+already reused publicseed11,PACKAGED/UPLOADED/PUBLICLYDOWNLOADED/REBUILT seed22,
+and is now WAITING exact40540forseed33. No native calls/training source changes.
+Launch.json has exact identity. Artifact directory
+`runs/prerelease_20261022/native_matched_broader_full_publication_20261101_v2_utf8`.
+All models/normalizers/controlled logs unchanged;remote objects checked before
+upload,no overwrite/delete,manifestLAST,1MiBparts,2workers,max3transferattempts,
+12hglobal deadline. It handles remaining33/44/55automatically;do not package or
+publish these separately. At the end it waits analysis37956,uses copied immutable
+references,checks full public cohort/10distinct policies/actual Adam/frozen
+normalizers/main figure,and writes recipe+verification report+release metadata.
+First pair is not reuploaded or separately re-downloaded;the final joint cohort
+validation necessarily reconstructs all five from exact prior PUBLIC download
+caches. Current program's frozen source/plan must remain untouched.
+
+DO NOT CHECKOUT/EDIT the two dedicated publisher worktrees:
+`.../prerelease_20261022/matched_broader_packaging_checkout_20261101` pinned369db69,
+`.../prerelease_20261022/matched_broader_public_reconstruction_checkout_20261101`
+pinned2b8e6ce. Basic-course independent checkout is a8b491eand IDLE for later tests.
+Do not edit automatic all-five reference report/figure;extra cost analyses use
+separate outputs. After full5public success,scan+commit generated recipe/reports
+and update prerelease notes with actual complete metrics (notes initially describe
+firstpair). Public completion is NOT overall research acceptance.
+
+Seed22archivePUBLIC COMPLETE SHA
+23c15a1a5360040fcc51dd8f57759e71c5cbd2b13100064afac166b326709f73,
+931files/57309controls/48start actions/exact figureSHA
+c4f173e3974f6721f9846e6254cef538d8061ea6054420eaa906b2d1825ebe33.
+Receipt `reports/native_matched_broader_seed22_public_verification_20261101.json`.
+Together first two:1867files/114721controls/96starts,24unique known conditions.
+Activation/failure provenance reports `_activation_20261101.json`and
+`_activation_20261101_v2_utf8.json`(full prefixnative_matched_broader_full_publication).
+Teacher69732/B1probe68120/analysis37956still wait existing exact dependencies.
+GoalACTIVE/UNMET;no new B1edits before queued99label closed-loop outcome.
+Do not repeat failed NullRHIprobe or completed tests/reconstructions.
+
+# Previous complete public pair / owned resource probe — 2026-11-01 11:58
 
 Previous turn PROGRESS:first pair completed and automatic all-five analysis
 prepared;source369db6939ee67e540aa6b63c155b3eb27964f2bc hosted1007PASS,independent27PASS.

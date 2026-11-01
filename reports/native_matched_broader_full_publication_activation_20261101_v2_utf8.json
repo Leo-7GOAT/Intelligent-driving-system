@@ -1,0 +1,52 @@
+{
+  "scope": "Incremental publication of every registered completed pair. Reuse the first published leaf; after all five,perform a new joint cohort reconstruction from exact prior public-download caches. No new driving or learning.",
+  "execution": "native_matched_broader_full_publication_execution_20261101_v2_utf8",
+  "actual_observer_pid": 54528,
+  "state_at_activation": "STARTED_WITH_REQUIRED_EXACT_SOURCE_CI_BARRIER",
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "training_dependency_pid": 40540,
+  "analysis_dependency_pid": 37956,
+  "already_published_seed11_reused": true,
+  "package_source_commit": "369db6939ee67e540aa6b63c155b3eb27964f2bc",
+  "reconstruction_source_commit": "2b8e6ce2c357ba342d2b03a6a5537806e723381b",
+  "required_exact_source_CI_run": 41272197243,
+  "independent_targeted_tests_passed": 43,
+  "wait_wall_seconds": 43200,
+  "upload_workers": 2,
+  "max_transfer_attempts_each": 3,
+  "part_bytes": 1048576,
+  "source_trees_for_training_unchanged": true,
+  "registered_unique_known_validation_conditions": 24,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "full_five_seed_public_result_available": false,
+  "research_acceptance": "UNMET",
+  "outputs_after_success": [
+    "protocols/public_native_matched_broader_feedback_cohort_20261101.json",
+    "reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json"
+  ],
+  "completion_checks": "All5completed paired capsules publicly downloaded/reproduced,10distinct actually trained policy tensors with actual Adam/frozen-normalizer proof,all cohort fields and exact main figure reconstructed;no120unique final-condition claim.",
+  "publication_source_commit": "a8b491e29b7d66fb4cb5479379babcd696c876cb",
+  "source_CI": {
+    "id": 41272197243,
+    "conclusion": "success",
+    "passed": 1022,
+    "skipped": 18,
+    "CARLA_deselected": 4
+  },
+  "actual_verified_phase": "WAITING_FOR_EXACT_OWNED_COMPLETED_PAIR",
+  "verified_epoch": 1793507184.8040671,
+  "completed_public_seed_pairs": [
+    11,
+    22
+  ],
+  "UTF8actual_CI_output_preserved": true,
+  "old_failure_preserved": true,
+  "joint_public_reconstruction_rechecks_all_five": true
+}
