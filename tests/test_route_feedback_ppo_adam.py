@@ -26,6 +26,14 @@ def test_empty_new_group_adopts_the_existing_ppo_schedule_without_rewriting_old_
     assert verify_adam(before,after,4)['new_route_states']==5
 
 
+def test_existing_native_policy_continues_all_adam_states_without_adding_route_parameters():
+    _,after=trained_adam()
+    # Start from the genuinely populated optimizer for a second continuation.
+    before=deepcopy(after);after=deepcopy(after)
+    for value in after['state'].values():value['step']+=7
+    assert verify_adam(before,after,7,new_route_states=0)==dict(original_states=6,new_route_states=0,step_increment_each=7)
+
+
 @pytest.mark.parametrize('fault',['missing','wrong_step','wrong_group','unregistered_empty'])
 def test_dropped_or_undertrained_parameters_cannot_count_as_complete_ppo(fault):
     before,after=trained_adam()

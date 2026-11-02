@@ -14,7 +14,7 @@ from scripts.evaluate_native_rule import require_finished_parent
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
-def verify_adam(before,after,expected):
+def verify_adam(before,after,expected,new_route_states=5):
     original=[{k:v for k,v in g.items() if k!='lr'} for g in before['param_groups']]
     current=[{k:v for k,v in g.items() if k!='lr'} for g in after['param_groups']]
     # SB3 applies the retained learning-rate schedule to every group. The new
@@ -25,7 +25,8 @@ def verify_adam(before,after,expected):
     ids=[i for g in before['param_groups'] for i in g['params']]
     if len(ids)!=len(set(ids)) or set(after['state'])!=set(ids):raise ValueError('Missing or duplicate PPO states')
     empty=set(ids)-set(before['state'])
-    if empty!=set(before['param_groups'][-1]['params']) or len(empty)!=5:
+    expected_empty=set(before['param_groups'][-1]['params']) if new_route_states==5 else set()
+    if new_route_states not in (0,5) or empty!=expected_empty or len(empty)!=new_route_states:
         raise ValueError('Only the five registered route residual states may start empty')
     for i in ids:
         initial=float(before['state'][i]['step']) if i in before['state'] else 0.
@@ -41,10 +42,12 @@ def audit(batch):
     from navstack.native_cases import verify_registered_native_begin
     batch=Path(batch).resolve();require_finished_parent(batch);folder=batch/'B1'
     p=read(batch/'protocol.json');summary=read(folder/'summary.json')
-    if (p['route_feedback_PPO']['new_PPO_controls']!=5120 or p.get('evaluation_only')
+    spec=p.get('route_feedback_PPO',p.get('direct_PPO_course',{}));budget=spec.get('new_PPO_controls')
+    strong=p.get('strong_native_parent_PPO')
+    if ((budget!=5120 and not (budget==10240 and strong and strong['version']=='canonical22_native_parent_TRAIN48_v1')) or p.get('evaluation_only')
             or p.get('native_validation') or p['deterministic_training_route_evaluation']
             or len(p['native_case_manifest']['cases'])!=48 or not p['freeze_observation_statistics']
-            or summary['physics_steps']!=5120 or summary['stopped_reason'] is not None
+            or summary['physics_steps']!=budget or summary['stopped_reason'] is not None
             or (folder/'evaluation.json').exists()):raise ValueError('Require exactly the registered TRAIN-only course')
     for name,digest in p['source_hashes'].items():
         if sha(batch/'source'/name)!=digest:raise ValueError('Frozen source changed:'+name)
@@ -77,7 +80,7 @@ def audit(batch):
         for row in rows:
             count+=_verify_ticks(row['trace'],actual,ack,owners,used,previous,episodes,'ff_state_v1')
             if row.get('termination_reason'):outcomes[row['termination_reason']]+=1
-    if count!=5120 or used!=set(actual) or summary['world_ticks']!=count+sum(r['reset_ticks'] for r in begins.values()):
+    if count!=budget or used!=set(actual) or summary['world_ticks']!=count+sum(r['reset_ticks'] for r in begins.values()):
         raise ValueError('Actual control/reset inventory differs')
     for (episode,_),r in actual.items():
         if episode not in begins or [(x['actor_id'],x['actor_type']) for x in r.get('native_dynamic_actors',[])]!=[
@@ -88,12 +91,12 @@ def audit(batch):
         raise ValueError('Actual optimization records disagree')
     torch.set_num_threads(1)
     initial=load_ppo(batch/'resume/B1/model.zip',device='cpu');final=load_ppo(checkpoint/'model.zip',device='cpu')
-    if final.num_timesteps-initial.num_timesteps!=5120:raise ValueError('PPO control counter differs')
+    if final.num_timesteps-initial.num_timesteps!=budget:raise ValueError('PPO control counter differs')
     rate=p.get('PPO_rate_contrast',{}).get('new_learning_rate',3e-6)
     if (rate not in (3e-6,1e-4) or initial.policy.optimizer.param_groups[0]['lr']!=rate
             or any(row['metrics']['train/learning_rate']!=rate for row in optimization)):
         raise ValueError('Registered learning rate differs from actual PPO optimizer records')
-    adam=verify_adam(initial.policy.optimizer.state_dict(),final.policy.optimizer.state_dict(),summary['optimizer_steps'])
+    adam=verify_adam(initial.policy.optimizer.state_dict(),final.policy.optimizer.state_dict(),summary['optimizer_steps'],0 if strong else 5)
     changed=dict(actor=0,critic=0)
     for name,value in initial.policy.state_dict().items():
         if not torch.equal(value,final.policy.state_dict()[name]):changed['critic' if 'value_net' in name else 'actor']+=1

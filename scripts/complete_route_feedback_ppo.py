@@ -22,7 +22,8 @@ def prepare(parent,execution,phase,training_audit):
     require_finished_parent(parent);old=read(parent/'protocol.json')
     origin=parent/'B1'/read(parent/'B1/latest_checkpoint.json')['folder'];meta=verified_checkpoint_metadata(origin)
     proof=read(training_audit)
-    if (meta['model_sha256']!=proof['model_sha256'] or proof['new_actual_PPO_controls']!=5120
+    budget=proof['new_actual_PPO_controls']
+    if (meta['model_sha256']!=proof['model_sha256'] or budget not in (5120,10240)
             or not proof['observation_RMS_exact'] or not proof['all_actual_frames_verified']):
         raise ValueError('Require the fixed actually-trained and audited endpoint')
     if phase=='known_validation' and not basic_gate(read(parent/'B1/evaluation.json')):
@@ -43,7 +44,7 @@ def prepare(parent,execution,phase,training_audit):
         controlled_budget_per_method=0,method_budgets={'B1':0},checkpoint_thresholds=[],
         parent_batch=parent.name,created_epoch=now,deadline_epoch=now+wall,
         resource_limits={**old['resource_limits'],'wall_seconds':wall,'automatic_retries':0},
-        scope='Frozen canonical22 endpoint after exactly5120newCARLAPPOcontrols;'+phase+' development only. No new training,final conditions or model selection.',
+        scope='Frozen canonical22 endpoint after exactly'+str(budget)+'newCARLAPPOcontrols;'+phase+' development only. No new training,final conditions or model selection.',
         route_feedback_post_PPO_probe=dict(version='route_feedback_actual_PPO5120_v1',phase=phase,
             training_audit_sha256=sha(training_audit),model_sha256=meta['model_sha256'],new_PPO_updates=0,final_conditions=0))
     summary=read(parent/'B1/summary.json');extra=0
@@ -78,7 +79,7 @@ def run(execution=None,dependency=None):
     hashes={n:sha(ROOT/n) for n in ('scripts/complete_route_feedback_ppo.py','scripts/audit_route_feedback_ppo.py')}
     for name in hashes:shutil.copy2(ROOT/name,execution/Path(name).name)
     atomic_json(execution/'registration.json',dict(dependency=identity,source_hashes=hashes,automatic_retries=0,
-        selection='Fixed final5120-control endpoint only;actual raw/Adam/RMS audit,then original4roads,conditionalknown24VAL,no automatic additional training.'))
+        selection='Fixed predeclared final control-budget endpoint only;actual raw/Adam/RMS audit,then original4roads,conditionalknown24VAL,no automatic additional training.'))
     def status(phase,**extra):atomic_json(execution/'status.json',dict(phase=phase,pid=os.getpid(),epoch=time.time(),**extra))
     def call(args,label,timeout=900,env=None):
         for name,digest in hashes.items():

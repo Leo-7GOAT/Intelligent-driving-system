@@ -1,4 +1,4 @@
-# 当前接续状态（2026-11-02 20:25）
+# 当前接续状态（2026-11-02 20:40）
 
 继续当前仓库，分支 `feature/physical-hierarchical-ppo`。不重建项目、不初始化 Git、不恢复瞬移环境。完整研究验收仍未达成；不能把基础4/4、教师成绩、训练结束或已知开发集当成最终达标。
 
@@ -8,12 +8,11 @@
 
 ## 当前实际作业：只观察，禁止重复启动
 
-- 高率训练已完成/审计通过：5120新真实控制、11实际Adam更新、448.523秒。原target-KL提前停止保持启用，不能写160更新。模型84a892972d8d118b2c633bfecaf4359a139d80e4cb9b09e81b804c3adf46c2a1，RMS统计原样保留。训练协调器67268/session80592已终止0。
-- 高率训练后基础3/4，一场deadline、零碰撞/越界；1887动作逐位重建一致，原门槛允许进入24已知验证。batch `20261102T121738941723Z_native_route_feedback_PPO_basic`。
-- **唯一当前物理作业**：batch `20261102T122150154243Z_native_route_feedback_PPO_known_validation`，worker **61320**。20:24到case3，完整24场尚未完成。
-- 审计/端点协调器 **54584 / session73285**，execution `runs/B1_route_feedback_rate1e4_PPO5120_postprobe_20261102`，phase known_validation_native。它哈希绑定 `scripts/complete_route_feedback_ppo.py` 和 `scripts/audit_route_feedback_ppo.py`，运行期间不要修改。读取status/complete/failure，禁止重复启动。
-- 当前物理 source 仍为旧冻结版本；root的SAT窗口及候选目录复用优化均未混入这组学习率对照。前五场实测初始状态/动态状态完全一致，初次1280 rollout奖励统计亦一致；学习率是这组匹配初始化的唯一干预。
-- 低率训练和完整验证、离线模型验证、所有旧收集/数据重建/公开复现均已终止并正常清理，不能重启。
+- 所有路线误差离线拟合、低率及高率PPO和全24验证均已完成/正常清理。高率最终4/24（低率5/24），原10k无新增FN策略作为下一次训练起点；失败新观测分支不继续追加预算。
+- **唯一当前物理作业**：`runs/20261102T123912910706Z_native_canonical_parent_TRAIN48_PPO10240`，由 `scripts/run_strong_native_parent_course.py` 启动。训练协调器 **63804 / session71428**；execution `runs/B1_canonical_native_parent_PPO10240_execution_20261102`。固定10240新实际控制、3e-6学习率、原KL保护、TRAIN48，不新增监督。
+- 训练后审计/端点协调器 **60904 / session10083**，execution `runs/B1_canonical_native_parent_PPO10240_postprobe_20261102`。它哈希绑定 `scripts/complete_route_feedback_ppo.py` 和 `scripts/audit_route_feedback_ppo.py`，期间不要修改。等待确切63804退出0，审计全部10240帧/35个原Adam状态/RMS，然后原4基础道路，达门槛才测24已知验证。
+- 初始化为原生40960-PPO控制模型29efb9c…，来自 `runs/20261101T112758733226Z_native_B1_shared_parking_PPO/B1/checkpoint_000010240`。模型/RMS/优化器/RNG原样复制、观测4705维但关闭失败FN新增字段；与当前车辆标定和配置signature完全一致。历史14/24存在混合初始化，仅作为历史开发结果，不当作当前健康得分。原教师/位姿/反射增强监督历史保留并披露，当前零新增监督。
+- 当前物理源采用已验证逐位等价的root观测目录复用与SAT窗口优化；其余物理控制、碰撞、奖励、桥接与当前模板一致。没有恢复旧模拟环境。实际状态以status/complete/failure为准，不重启。
 
 ## 本轮已经完成
 
@@ -48,3 +47,5 @@ CARLA沿用 `D:/CARLA_0.9.15/WindowsNoEditor` 和原Python3.7客户端；不触�
 完整历史原文已逐字节校验归档：[历史 handoff](../reports/handoff_before_route_feedback_PPO_20261102.md)。不要把历史时态覆盖上述当前状态。
 
 当前源码f876eb0的GitHub CI41442770659已成功：1222通过/18按平台跳过/4排除。root候选目录复用新增18项检查通过，另24个已知验证实测起点的4705维输入和实际NN动作全部逐位一致；只读基准均值77.47→70.20ms，报告 native_observation_catalog_and_spatial_parity_20261102.json。不是实时性证明。
+
+高率完整结果见 reports/native_B1_route_feedback_rate_contrast_complete_20261102.json。10240课程的审计器已显式支持无新增参数的35状态延续；10项相关检查通过。新源码待提交；a55ab48的GitHub CI41444605514已成功。
