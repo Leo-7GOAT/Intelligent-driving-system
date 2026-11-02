@@ -47,5 +47,10 @@
     "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261102-broader-b1/native_B1_broader_seed44_saved_prefix_20261102.zip.parts.json",
     "batch": "20261102T044004788200Z_native_broader_B1_seed44"
   },
-  "limits": "All five failed DEVELOPMENT courses;24knownconditions,not120newfinalcases. Includes interrupted44prefix. No healthy-baseline,hierarchy-advantage or added-PPO claim."
+  "limits": "All five failed DEVELOPMENT courses;24knownconditions,not120newfinalcases. Includes interrupted44prefix. No healthy-baseline,hierarchy-advantage or added-PPO claim.",
+  "audit_sources": {
+    "archive": "native_B1_broader_audit_sources_20261102.zip",
+    "archive_sha256": "ad926dfc39a2e4c10c6f790b76313f80eb3828792fa6014f211c5ff41b0fb87b",
+    "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261102-broader-b1/native_B1_broader_audit_sources_20261102.zip.parts.json"
+  }
 }

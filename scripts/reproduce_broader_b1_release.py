@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
@@ -15,7 +16,6 @@ sys.path.insert(0, str(ROOT))
 from scripts.download_native_asset import download
 from scripts.reproduce_native_asset import reproduce
 from scripts.package_native_saved_prefix import audit_prefix
-from scripts.analyze_native_broader_b1_course import analyze
 from scripts.summarize_broader_b1_cohort import summarize
 
 
@@ -61,14 +61,47 @@ def restore_prefix(archive, expected, directory):
     return target, manifest
 
 
+def restore_auditors(archive, expected, directory):
+    """Use the actually executed code for each report's script-identity field."""
+    archive, directory = Path(archive), Path(directory)
+    if sha(archive) != expected or directory.exists():
+        raise ValueError('Audit-source archive changed or output already exists')
+    with zipfile.ZipFile(archive) as source:
+        names = source.namelist()
+        manifest = json.loads(source.read('manifest.json'))
+        if (manifest['schema'] != 'native_broader_audit_sources_v1'
+                or set(manifest['seed_sources']) != {'11', '22', '33', '44', '55'}
+                or len(names) != len(set(names)) or set(names) != set(manifest['files']) | {'manifest.json'}):
+            raise ValueError('Executed audit-source inventory differs')
+        for name in names:
+            p = PurePosixPath(name)
+            if (p.is_absolute() or p.as_posix() != name or '..' in p.parts or ':' in name or '\\' in name
+                    or name != 'manifest.json' and p.parts[0] != 'snapshots'
+                    or stat.S_ISLNK(source.getinfo(name).external_attr >> 16)):
+                raise ValueError('Unsafe audit-source path')
+        for name, row in manifest['files'].items():
+            payload = source.read(name)
+            if len(payload) != row['bytes'] or hashlib.sha256(payload).hexdigest() != row['sha256']:
+                raise ValueError('Executed audit-source bytes changed')
+        for seed, root in manifest['seed_sources'].items():
+            name = root + '/scripts/analyze_native_broader_b1_course.py'
+            if name not in manifest['files'] or manifest['files'][name]['sha256'] != manifest['seed_auditor_sha256'][seed]:
+                raise ValueError('Per-seed executed auditor identity differs')
+        directory.mkdir(parents=True)
+        source.extractall(directory)
+    return manifest
+
+
 def run(recipe, output, local_artifacts=None):
     recipe, output = Path(recipe).resolve(), Path(output).resolve()
     spec = read(recipe)
     if ([r['seed'] for r in spec['capsules']] != [11, 22, 33, 44, 55]
             or spec['scope'] != 'all_five_broader_B1_development_v1'):
         raise ValueError('Require every registered independent seed, not a successful subset')
-    for row in [*spec['capsules'], spec['saved_prefix44']]:
+    for row in [*spec['capsules'], spec['saved_prefix44'], spec['audit_sources']]:
         for key in ('batch', 'archive'):
+            if key == 'batch' and row is spec['audit_sources']:
+                continue
             value = row[key]
             if not re.fullmatch(r'[A-Za-z0-9_.-]+', value) or value in ('.', '..'):
                 raise ValueError('Capsule identities must be portable basenames')
@@ -92,6 +125,9 @@ def run(recipe, output, local_artifacts=None):
         downloaded = output / (label + '_download')
         proof = download(row['manifest_url'], downloaded, row['archive_sha256'], 600)
         return downloaded / row['archive'], dict(mode='UNAUTHENTICATED_PUBLIC_DOWNLOAD', receipt=proof)
+    auditor_archive, auditor_transfer = obtain(spec['audit_sources'], 'audit_sources')
+    auditor_directory = output / 'executed_audit_sources'
+    auditors = restore_auditors(auditor_archive, spec['audit_sources']['archive_sha256'], auditor_directory)
     for row in spec['capsules']:
         seed = row['seed']
         archive, transfer = obtain(row, 'seed' + str(seed))
@@ -126,10 +162,21 @@ def run(recipe, output, local_artifacts=None):
     for seed in (11, 22, 33, 44, 55):
         batch = batches[seed]
         audit_path = batch / 'analysis/broader_learning_audit.json'
-        rebuilt = analyze(batch)
+        snapshot = auditor_directory / auditors['seed_sources'][str(seed)]
+        script = snapshot / 'scripts/analyze_native_broader_b1_course.py'
+        if sha(script) != read(audit_path)['script_sha256']:
+            raise ValueError('Original executed analyzer differs from its recorded identity')
+        destination = output / f'seed{seed}_learning_rebuilt.json'
+        environment = dict(os.environ, PYTHONPATH=str(snapshot), PYTHONIOENCODING='utf-8',
+            NAVSTACK_AUDIT_SOURCE_ROOT=str(batch / 'source'))
+        result = subprocess.run([sys.executable, str(script), '--batch', str(batch), '--output', str(destination)],
+            cwd=snapshot, env=environment, capture_output=True, timeout=600)
+        (output / f'seed{seed}_executed_audit.log').write_bytes(result.stdout + b'\n' + result.stderr)
+        if result.returncode:
+            raise RuntimeError('Original executed learning auditor failed; inspect preserved log')
+        rebuilt = read(destination)
         if rebuilt != read(audit_path):
             raise ValueError('Learning/Adam/RMS/recovery audit differs for seed' + str(seed))
-        (output / f'seed{seed}_learning_rebuilt.json').write_text(json.dumps(rebuilt, indent=2), encoding='utf-8')
         if seed == 22:
             destination = workspace / 'reports/native_B1_broader_seed22_20261102.json'
         else:
@@ -149,6 +196,8 @@ def run(recipe, output, local_artifacts=None):
     proof = dict(scope=__doc__, recipe_sha256=sha(recipe),
         reproduction_source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         public_download_reproduction=local_artifacts is None, capsules=receipts,
+        executed_audit_sources=dict(transfer=auditor_transfer, archive_sha256=spec['audit_sources']['archive_sha256'],
+            verified_files=len(auditors['files']), original_script_identities_preserved=True),
         prefix44=dict(transfer=transfer, archive_sha256=prefix_spec['archive_sha256'],
             verified_files=len(prefix_manifest['files']), verified_controls=prefix_proof['verified_controls'],
             saved_Adam=prefix_proof['saved_Adam'], exact_rebuild=True),
