@@ -1,0 +1,50 @@
+{
+  "version": "route_feedback_actor_v5",
+  "source_commit": "0be715d79a1fd280086acc7083de72d8dd06c854",
+  "source_model_sha256": "5b4311f51d5941a2e02c26b4af0176c67064fe4375251ef9328c35251d1fc62c",
+  "model_sha256": "558f162fa342302c6b45b286e0fbd55efd2009b7bea0f8ccbbf9419065445c30",
+  "normalization_sha256": "39bb4df0c9f2ccb483d9afe95380460f948552d9c07225fb3939099fdb43df88",
+  "new_auxiliary_Adam_steps": 4096,
+  "new_parameters": 2758,
+  "original_actor_critic_PPO_RMS_retained": true,
+  "new_PPO_updates": 0,
+  "final_conditions": 0,
+  "basic": {
+    "batch": "20261102T113413981363Z_native_route_feedback_basic22",
+    "successes": 4,
+    "cases": 4,
+    "verified_controls": 1303,
+    "all_policy_actions_bit_exact": true,
+    "sequence_audit_sha256": "9fd3d9b0559fd9db76b0a8f26b7df334f2ee46b963d23f6b307bd2e3cc41271d"
+  },
+  "known_validation": {
+    "batch": "20261102T113746480499Z_native_measured_actor_validation22",
+    "successes": 1,
+    "cases": 24,
+    "terminations": {
+      "deadline": 10,
+      "out_of_bounds": 10,
+      "success": 1,
+      "collision": 3
+    },
+    "verified_controls": 11528,
+    "raw_audit_sha256": "6d35704076482796207209498e2ccf3a4d924d24525731767fc5a436f0996507",
+    "by_core": {
+      "curve": {
+        "cases": 8,
+        "successes": 0
+      },
+      "static_vehicle": {
+        "cases": 8,
+        "successes": 1
+      },
+      "crossing_walker": {
+        "cases": 8,
+        "successes": 0
+      }
+    }
+  },
+  "research_acceptance": "UNMET",
+  "conclusion": "Reject this offline endpoint as a healthy flat baseline. Four-road retention does not establish generalization;all24knownconditions and failures retained. Do not claim PPO or hierarchy benefit.",
+  "next_experiment": "One preregistered5120actualCARLAPPOcontrol course is active;TRAIN48only,no additional offline labels,no final conditions."
+}

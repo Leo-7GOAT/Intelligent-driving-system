@@ -20,6 +20,12 @@ def test_actual_adam_retains_old_history_and_initializes_exactly_the_five_new_po
     assert verify_adam(before,after,4)==dict(original_states=1,new_route_states=5,step_increment_each=4)
 
 
+def test_empty_new_group_adopts_the_existing_ppo_schedule_without_rewriting_old_adam():
+    before,after=trained_adam();before['param_groups'][0]['lr']=3e-6
+    for group in after['param_groups']:group['lr']=3e-6
+    assert verify_adam(before,after,4)['new_route_states']==5
+
+
 @pytest.mark.parametrize('fault',['missing','wrong_step','wrong_group','unregistered_empty'])
 def test_dropped_or_undertrained_parameters_cannot_count_as_complete_ppo(fault):
     before,after=trained_adam()

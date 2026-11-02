@@ -1,3 +1,15 @@
+# 最新实际状态（2026-11-02 19:52）：离线残差被否决，真实 PPO 正在训练
+
+离线残差模型 558f162f… 已完整完成全部验证和审计：基础4/4，1303动作全重建一致；24已知验证仅1/24，10超时/10越界/3碰撞，弯道0/8、静态1/8、行人0/8，11528实际控制帧全验证。完整负结果 reports/native_B1_route_feedback_failed_validation_20261102.json。原协调器62452/session67029终止0；不能继续称其运行或合格。
+
+真实 PPO 已启动：batch 20261102T114745271816Z_native_route_feedback_PPO5120，协调器67580/session60623，物理worker55028。只做一次5120新控制步；19:52已3795步，保存2560/80Adam，继承学习率3e-6、探索std约0.018315，不在本轮途中改率。TRAIN48按16道路/三类交错，不含验证；短预算并不保证遍历全部48条件。保留原物理、奖励、网络结构和RMS。禁止重启物理训练。
+
+已启动训练后串行审计/测试程序：PID13124/session13067，execution runs/B1_route_feedback_PPO5120_postprobe_v2_20261102，脚本 complete_route_feedback_ppo.py。等待确切67580进程退出0后：审计所有5120实际帧、原有及新增Adam状态和RMS；原4基础道路；达至少3/4且零碰撞/越界才测原已知24条件；不自动增加训练预算。root scripts/complete_route_feedback_ppo.py 与 audit_route_feedback_ppo.py 已被该程序哈希绑定，不要修改。
+
+原训练后只读等待器47232/session27681已验证身份后单独停止，记录在旧postprobe目录 readonly_waiter_cancelled.json，未触碰训练、CARLA或其他任务进程。原因是修正审计假设：SB3首次PPO更新会把新空Adam参数组的构造器默认lr同步到原有3e-6调度；应检查原参数组和实际统一调度，而不是要求新增空组默认lr字节不变。原源代码已留存；修正后8项Adam/清单检查通过。
+
+本地完整CPU1230通过；源码6534937的GitHub CI41439443730成功。新审计与负结果更新待提交。研究完整验收仍未达成，不可把基础4/4、教师31/36或训练完成当成健康基线/独立最终验证。
+
 # 本轮已完成与正在执行（2026-11-02 19:44）
 
 源码 0be715d 已推送，GitHub CI 41438162548 成功；本地完整 CPU 回归 1230 passed / 1 skipped / 4 deselected（155.22 秒），另新增 TRAIN48 清单检查 2 passed。

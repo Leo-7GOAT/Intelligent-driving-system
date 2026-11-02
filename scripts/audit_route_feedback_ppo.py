@@ -15,7 +15,12 @@ from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
 def verify_adam(before,after,expected):
-    if type(expected) is not int or expected<=0 or before['param_groups']!=after['param_groups']:
+    original=[{k:v for k,v in g.items() if k!='lr'} for g in before['param_groups']]
+    current=[{k:v for k,v in g.items() if k!='lr'} for g in after['param_groups']]
+    # SB3 applies the retained learning-rate schedule to every group. The new
+    # group's empty Adam state initially carries Adam's constructor default.
+    if (type(expected) is not int or expected<=0 or original!=current
+            or any(g['lr']!=before['param_groups'][0]['lr'] for g in after['param_groups'])):
         raise ValueError('PPO parameter groups or positive step budget differ')
     ids=[i for g in before['param_groups'] for i in g['params']]
     if len(ids)!=len(set(ids)) or set(after['state'])!=set(ids):raise ValueError('Missing or duplicate PPO states')
