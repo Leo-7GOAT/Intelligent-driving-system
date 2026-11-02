@@ -21,29 +21,36 @@ COHORT = ROOT / 'runs/B1_additional_broader_cohort_20261102'
 PILOT = ROOT / 'runs/20261101T131830295783Z_native_B1_broader_shared_parking_PPO'
 
 
-def prepare(output):
+def prepare(output, completed_teacher=False):
     output = Path(output).resolve()
     if output.exists():
         raise FileExistsError('Preserve the existing registered teaching observer')
     dependency = read(TEACHER_EXECUTION / 'status.json')
-    # Query Windows directly; do not add an optional process-monitor dependency.
-    query = (f"$p=Get-CimInstance Win32_Process -Filter 'ProcessId={int(dependency['pid'])}';"
+    if completed_teacher:
+        if ((TEACHER_EXECUTION / 'failure.json').exists()
+                or dependency['phase'] != 'ALL36_TRAIN_TEACHER_AND_DIRECT_VIEWS_COMPLETE'
+                or not (TEACHER_EXECUTION / 'direct_views/manifest.json').is_file()):
+            raise ValueError('Require the completed audited teacher and measured dataset')
+        identity = None
+    else:
+        # Query Windows directly; do not add an optional process-monitor dependency.
+        query = (f"$p=Get-CimInstance Win32_Process -Filter 'ProcessId={int(dependency['pid'])}';"
              "if (-not $p) { throw 'Dependency process missing' };"
              "[pscustomobject]@{pid=$p.ProcessId;executable=$p.ExecutablePath;"
              "creation_epoch=([DateTimeOffset]$p.CreationDate).ToUnixTimeMilliseconds()/1000.0;"
              "command=$p.CommandLine}|ConvertTo-Json -Compress")
-    identity = json.loads(subprocess.check_output([shutil.which('pwsh'), '-NoProfile', '-Command', query],
+        identity = json.loads(subprocess.check_output([shutil.which('pwsh'), '-NoProfile', '-Command', query],
                                                  text=True, encoding='utf-8'))
-    command = identity.pop('command')
-    if ('collect_broader_train_teacher.py' not in command or TEACHER_EXECUTION.name not in command
+        command = identity.pop('command')
+        if ('collect_broader_train_teacher.py' not in command or TEACHER_EXECUTION.name not in command
             or '--output' not in command or '--run' not in command):
-        raise ValueError('Dependency is not the registered TRAIN-only teacher observer')
-    owner = OwnedProcess(identity['pid'], identity['creation_epoch'], identity['executable'], allow_terminate=False)
-    try:
-        if owner.poll() is not None or dependency['phase'] != 'WAITING_FOR_EXACT_BROADER_B1_COHORT_EXIT':
-            raise ValueError('Register against the actual waiting TRAIN-only teacher observer')
-    finally:
-        owner.kernel.CloseHandle(owner.handle)
+            raise ValueError('Dependency is not the registered TRAIN-only teacher observer')
+        owner = OwnedProcess(identity['pid'], identity['creation_epoch'], identity['executable'], allow_terminate=False)
+        try:
+            if owner.poll() is not None or dependency['phase'] != 'WAITING_FOR_EXACT_BROADER_B1_COHORT_EXIT':
+                raise ValueError('Register against the actual waiting TRAIN-only teacher observer')
+        finally:
+            owner.kernel.CloseHandle(owner.handle)
     parents = read(COHORT / 'registration.json')['rows']
     parents = sorted([dict(seed=r['seed'], batch=str(ROOT / 'runs' / r['batch'])) for r in parents]
                      + [dict(seed=22, batch=str(PILOT))], key=lambda r: r['seed'])
@@ -57,6 +64,7 @@ def prepare(output):
     atomic_json(output / 'registration.json', dict(version='broader_measured_actor_v1',
         created_utc=datetime.now(timezone.utc).isoformat(), workspace=str(ROOT), parents=parents,
         teacher_execution=str(TEACHER_EXECUTION), dependency=identity,
+        completed_teacher_adoption=completed_teacher, teacher_status_sha256=sha(TEACHER_EXECUTION / 'status.json') if completed_teacher else None,
         teacher_batch=read(TEACHER_EXECUTION / 'registration.json')['batch'],
         script_sha256=sha(source / 'fit_broader_measured_actor.py'),
         steps=1024, learning_rate=1e-4, maximum_fit_wall_seconds_each=600,
@@ -76,8 +84,8 @@ def run(output):
     registration = read(output / 'registration.json')
     teacher_execution = Path(registration['teacher_execution'])
     identity = registration['dependency']
-    dependency = OwnedProcess(identity['pid'], identity['creation_epoch'], identity['executable'], allow_terminate=False)
-    if dependency.poll() is not None:
+    dependency = None if registration.get('completed_teacher_adoption') else OwnedProcess(identity['pid'], identity['creation_epoch'], identity['executable'], allow_terminate=False)
+    if dependency is not None and dependency.poll() is not None:
         dependency.kernel.CloseHandle(dependency.handle)
         raise ValueError('Teacher observer ended before adoption; inspect before continuing')
     atomic_json(output / 'started.json', dict(pid=os.getpid(), epoch=time.time(), dependency=identity))
@@ -86,11 +94,13 @@ def run(output):
         atomic_json(output / 'status.json', dict(phase=phase, pid=os.getpid(), epoch=time.time(), **extra))
     try:
         with ProcessLease(output / 'observer.lock'):
-            while dependency.poll() is None:
+            while dependency is not None and dependency.poll() is None:
                 if time.monotonic() > deadline:
                     raise TimeoutError('Finite teacher dependency wait exhausted')
                 status('WAITING_FOR_EXACT_TRAIN_TEACHER_EXIT')
                 time.sleep(10)
+            if (registration.get('completed_teacher_adoption') and sha(teacher_execution / 'status.json') != registration['teacher_status_sha256']):
+                raise ValueError('Completed teacher status changed after adoption')
             if ((teacher_execution / 'failure.json').exists()
                     or read(teacher_execution / 'status.json')['phase'] != 'ALL36_TRAIN_TEACHER_AND_DIRECT_VIEWS_COMPLETE'):
                 raise ValueError('Require fully audited TRAIN teacher and exact measured views')
@@ -133,7 +143,8 @@ def run(output):
         status('STOPPED_WITH_FAILURE_NO_RETRY')
         raise
     finally:
-        dependency.kernel.CloseHandle(dependency.handle)
+        if dependency is not None:
+            dependency.kernel.CloseHandle(dependency.handle)
 
 
 if __name__ == '__main__':
@@ -142,9 +153,10 @@ if __name__ == '__main__':
     parser.add_argument('--run', action='store_true')
     parser.add_argument('--teacher-execution', type=Path)
     parser.add_argument('--cohort-execution', type=Path)
+    parser.add_argument('--completed-teacher', action='store_true', help='Explicit adoption of the completed audited data;no waiting-process restart')
     args = parser.parse_args()
     if args.teacher_execution is not None:
         TEACHER_EXECUTION = args.teacher_execution.resolve()
     if args.cohort_execution is not None:
         COHORT = args.cohort_execution.resolve()
-    (run if args.run else prepare)(args.output)
+    run(args.output) if args.run else prepare(args.output, args.completed_teacher)

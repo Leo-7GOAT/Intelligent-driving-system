@@ -119,3 +119,32 @@ def test_teaching_observer_cannot_relaunch_started_execution(tmp_path):
     (tmp_path / 'started.json').write_text('{}')
     with pytest.raises(FileExistsError, match='repeat'):
         run(tmp_path)
+
+
+def test_actor_fit_does_not_import_a_different_experiment_script(monkeypatch):
+    import builtins
+    original_import = builtins.__import__
+    def isolated_import(name, *args, **kwargs):
+        if name == 'scripts.fit_flat_feedback_contrast':
+            raise ModuleNotFoundError('Unavailable in the frozen policy source')
+        return original_import(name, *args, **kwargs)
+    monkeypatch.setattr(builtins, '__import__', isolated_import)
+    model = SimpleNamespace(policy=Policy(), device='cpu', num_timesteps=51200, _n_updates=240)
+    result, _, _ = fit_actor(model, np.zeros((6, 3), np.float32), np.zeros((6, 2), np.float32),
+        np.zeros(6), np.array([False, True, True, True, True, False]),
+        np.array([True, False, False, False, False, True]), seed=11, steps=2)
+    assert result['actual_Adam_step_each'] == [2]
+
+
+def test_completed_teacher_adoption_rejects_unfinished_data_without_process_adoption(tmp_path, monkeypatch):
+    import json
+    import scripts.teach_broader_b1_cohort as module
+    teacher = tmp_path / 'teacher'
+    teacher.mkdir()
+    (teacher / 'status.json').write_text(json.dumps(dict(phase='BUILDING_EXECUTED_TRAIN_DIRECT_VIEWS')))
+    monkeypatch.setattr(module, 'TEACHER_EXECUTION', teacher)
+    monkeypatch.setattr(module, 'OwnedProcess', lambda *args, **kwargs: pytest.fail('Must not adopt a PID in completed-data mode'))
+    output = tmp_path / 'unstarted'
+    with pytest.raises(ValueError, match='completed audited'):
+        module.prepare(output, completed_teacher=True)
+    assert not output.exists()

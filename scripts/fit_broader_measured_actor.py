@@ -22,6 +22,18 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def exact_state(left, right):
+    """Compare retained Adam state without importing another experiment script."""
+    import torch
+    if isinstance(left, torch.Tensor):
+        return isinstance(right, torch.Tensor) and torch.equal(left, right)
+    if isinstance(left, dict):
+        return isinstance(right, dict) and left.keys() == right.keys() and all(exact_state(v, right[k]) for k, v in left.items())
+    if isinstance(left, (list, tuple)):
+        return type(left) is type(right) and len(left) == len(right) and all(exact_state(a, b) for a, b in zip(left, right))
+    return left == right
+
+
 def validated_arrays(dataset, manifest, families):
     """Keep every recorded case; use successful TRAIN episodes as labels."""
     import numpy as np
@@ -67,7 +79,6 @@ def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
     import numpy as np
     import torch
     from navstack.independent_clip_ppo import actor_critic_parameters
-    from scripts.fit_flat_feedback_contrast import exact
     if type(steps) is not int or not 1 <= steps <= 1024:
         raise ValueError('Actor teaching requires a bounded optimizer budget')
     inputs, labels = np.asarray(inputs), np.asarray(labels)
@@ -122,7 +133,7 @@ def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
                 history.append(row)
                 if callback:
                     callback(row)
-        if (not exact(ppo_adam, model.policy.optimizer.state_dict())
+        if (not exact_state(ppo_adam, model.policy.optimizer.state_dict())
                 or counters != (model.num_timesteps, model._n_updates)
                 or any(not torch.equal(value, model.policy.state_dict()[key]) for key, value in fixed.items())):
             raise ValueError('Actor teaching changed retained PPO/critic/exploration state')
