@@ -19,9 +19,9 @@
 | 同一冻结 B1 的原有完整条件复验 | 12/12，三类各 4/4；4,848 帧控制核验 | 已知开发条件，不是独立最终测试。[报告](../reports/native_B1_shared_parking_full_probe_20261101.json) |
 | 同一 B1 的不同道路开发验证 | 14/24：弯道停车 5/8、静态 3/8、行人 6/8；8 次越界、2 次碰撞 | 10,210 帧控制已审计。第 17 条后发生行人生成异常，仅补齐 7 条未完成条件，混合初始化版本明确保留；泛化不足。[完整记录](../reports/native_B1_shared_parking_validation_complete_20261101.json) |
 
-另一个统一配方的五种子 B1 基础训练队列正在运行。已完成的 11/22/33/44 各新增 10,240 个真实 PPO 控制步、320 次 Adam 更新，端点分别 3/4、4/4、4/4、4/4；11 有一次越界，未通过安全门槛。其余种子不得提前计为成功。[种子 11](../reports/native_B1_shared_parking_cohort_seed11_20261101.json)、[22](../reports/native_B1_shared_parking_cohort_seed22_20261101.json)、[33](../reports/native_B1_shared_parking_cohort_seed33_20261101.json)、[44](../reports/native_B1_shared_parking_cohort_seed44_20261101.json)。36 TRAIN / 24 开发验证的单种子扩展训练已登记并排队，不能算作完整五种子基线。[登记凭证](../reports/native_B1_broader_shared_parking_registration_20261101.json)。
+五个 B1 基础课程已全部完成：种子 11/22/33/44/55 分别为 **3/4、4/4、4/4、4/4、3/4**，两次失败均为越界，因此只有 **三个种子通过基础门槛**。保留的新增学习控制步共 51,200，Adam 更新共 1,599；这是重复使用四条已知训练道路，不能算作 20 个新条件或健康完整基线。[全部结果与成本](../reports/native_B1_shared_parking_complete_basic_cohort_20261102.json)。
 
-第五个种子因外部进程丢失停在 4,498 个已消耗控制步，目前从完整的 3,840 步检查点续训剩余 6,400 步；未保存的交互和未知尾段单独计费，原队列已退出。[恢复凭证](../reports/native_B1_seed55_recovery_registration_20261102.json)。扩展试验仍未启动，将由新恢复程序接续。
+第五个种子包含明确披露的中断恢复：3,840 个已保存控制步加 6,400 个续训步。报告的训练消耗至少 51,858 步，其中 51,837 步具有可读桥接回执，另 21 条仅有策略记录，未知尾段继续披露。新扩展试验已使用原登记 seed22 模型启动，覆盖 36 TRAIN / 24 已知开发验证条件；属于新增开发学习。[恢复凭证](../reports/native_B1_seed55_recovery_registration_20261102.json)、[扩展登记](../reports/native_B1_broader_shared_parking_registration_20261101.json)。
 
 真实测量输入诊断确认反馈进入 H：同时隐藏两类反馈会改变 446 个抽样动作中的 11 个；H0 的 448 个样本概率完全不变，全程保持原物理掩码。这不能证明反馈改善驾驶。[诊断与复现](native_feedback_use.md)。
 

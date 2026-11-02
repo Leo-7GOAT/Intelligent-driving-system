@@ -1,3 +1,30 @@
+# All five basic outcomes audited; broader actual PPO RUNNING — 2026-11-02
+
+All-five report:reports/native_B1_shared_parking_complete_basic_cohort_20261102.json.
+Seeds11/22/33/44/55:3/4,4/4,4/4,4/4,3/4. Two bounds failures;3of5basic gates pass.
+All-five qualification FAILED;do not drop11/55 or claim a healthy full-task cohort.
+Retained learning controls51200;actual saved Adam increments1599. Reported consumed
+training lower bound51858;51837bridge-acknowledged,21trace-onlytail,unknown tail
+retained. Four unique known TRAINroads,20policy-case evaluations,zero final cases.
+Seed55 resumed6400controls/199Adam;full course3840+6400,120+199. All7574recovery
+raw controls and1174endpointactions verify. Both reports copied to reports/
+native_B1_shared_parking_seed55_recovery[_whole_sequence]_20261102.json.
+All-five summary was rebuilt twice with exact equality and checks model/norm/raw/
+whole-action hashes;keeps every original result and recovery disclosure.
+
+LIVE SAME observerPID32384/toolsession43951 is now running BROADER pilot:
+20261101T131830295783Z_native_B1_broader_shared_parking_PPO,
+workerPID45800atlaunch,creation2026-11-02T12:37:10.225+08:00.
+Execution remains runs/B1_basic_seed55_recovery_execution_20261102;
+status phase BROADER_PILOT_ACTUAL_PPO_RUNNING, last_child broader_lifecycle.
+Original36TRAIN/24VALprotocol and canonical22modelea2d retained unchanged;
+20,480newactualPPOcontrols requested. Existing frozen audits run automatically.
+No retries or duplicate launches. This pilot is not a five-seed full-task result.
+
+Source5d5e8d6 hostedCI41388663898SUCCESS:1110pass/18skip/4deselected202.62s.
+This covers CPU code,not new CARLA performance or research acceptance.
+The earlier snapshots below are historical.
+
 # External process loss recovered; seed55 continuation RUNNING — 2026-11-02
 
 Original queue72488,observer4332,seed55worker65076 and original server/guard are

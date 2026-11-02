@@ -94,3 +94,6 @@ reports/native_feedback_use_seed55_H_20261101.json -text -whitespace
 reports/native_feedback_use_seed55_H0_20261101.json -text -whitespace
 reports/native_feedback_use_cohort_20261101.json -text -whitespace
 reports/native_B1_seed55_recovery_registration_20261102.json -text -whitespace
+reports/native_B1_shared_parking_seed55_recovery_20261102.json -text -whitespace
+reports/native_B1_shared_parking_seed55_recovery_whole_sequence_20261102.json -text -whitespace
+reports/native_B1_shared_parking_complete_basic_cohort_20261102.json -text -whitespace

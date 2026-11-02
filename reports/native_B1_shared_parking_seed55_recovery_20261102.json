@@ -1,0 +1,233 @@
+{
+  "scope": "Audit actual PPO updates with the shared parking wrapper fixed throughout.",
+  "script_sha256": "630f6946cbbfefb7ac126acf34156370bc3bf30729a434368b6b13c37b757a7d",
+  "batch": "20261102T042426664255Z_native_B1_basic_seed55_recovery",
+  "seed": 55,
+  "protocol_sha256": "d53363fbb64e34fe9a330ad5a90bd2d61c1edb6f0afa4cd51a71672adbc5c942",
+  "initial_model_sha256": "5890fec6cee6d17df0351dcfeedff04e6cd6d6852bb34a64f5e5c3cdb3eac5a9",
+  "final_model_sha256": "567e425bc71dbee04427d1117edf6077aabe4cba519e15f76b29fb1dfff62530",
+  "final_normalization_sha256": "4807080139e8a465e528de92aa004e13c21c6b8c7c04d9ce77fa339de2cac3cf",
+  "new_actual_PPO_controls": 6400,
+  "new_actual_Adam_steps": 199,
+  "saved_Adam_proof": {
+    "parameter_states": 35,
+    "step_increment_each": 199
+  },
+  "changed_network_tensors": {
+    "actor": 21,
+    "critic": 14
+  },
+  "new_PPO_epoch_updates": 50,
+  "initial_Gaussian_std": [
+    0.018315542489290237,
+    0.01831935904920101
+  ],
+  "final_Gaussian_std": [
+    0.018318358808755875,
+    0.018321700394153595
+  ],
+  "new_supervised_updates": 0,
+  "observation_RMS_mean_variance_count_exact": true,
+  "all_engine_controls_acknowledged": true,
+  "delivery_by_phase": {
+    "training_or_untraced_failure": {
+      "controls": 6400
+    },
+    "evaluation": {
+      "controls": 1174
+    }
+  },
+  "all_actual_raw_controls": 7574,
+  "parking": {
+    "helper_sha256": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+    "cases": [
+      {
+        "case_id": 0,
+        "termination": "success",
+        "controls": 339,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.09496305481596312
+      },
+      {
+        "case_id": 1,
+        "termination": "success",
+        "controls": 494,
+        "parking_overrides": 1,
+        "terminal_intervened": false,
+        "final_speed": 0.09917207140587556
+      },
+      {
+        "case_id": 2,
+        "termination": "success",
+        "controls": 297,
+        "parking_overrides": 1,
+        "terminal_intervened": false,
+        "final_speed": -0.00011057402640062919
+      },
+      {
+        "case_id": 3,
+        "termination": "out_of_bounds",
+        "controls": 44,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.7270543879893268
+      }
+    ],
+    "all_assistance_commands_verified": true,
+    "successful_terminal_frames_satisfy_original_unassisted_goal_gate": true
+  },
+  "training_parking": {
+    "verified_controls": 6400,
+    "parking_overrides": 20,
+    "episodes_including_tail": 23,
+    "all_assistance_commands_and_disclosures_verified": true,
+    "steering_unchanged_by_helper": true
+  },
+  "training_terminal_outcomes": {
+    "success": 16,
+    "out_of_bounds": 6
+  },
+  "lineage_controls": 30720,
+  "charged_training_controls_lower_bound": 73083,
+  "training_wall_seconds": 516.7068417072296,
+  "endpoint": {
+    "successes": 3,
+    "cases": 4,
+    "unsafe_cases": 1,
+    "basic_gate_passed": false
+  },
+  "endpoint_case_metrics": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 339,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 16.950000252574682,
+      "progress": 23.942946472434638,
+      "travel_time_success_only": 16.950000252574682,
+      "jerk_rms": 36.30549775713067,
+      "decision_cycle_times": {
+        "count": 339,
+        "median": 0.03794709988869727,
+        "p95": 0.08127714006695895,
+        "p99": 0.10055200207512827,
+        "max": 0.32360869995318353,
+        "over_period_fraction": 0.39233038348082594,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 339,
+        "median": 0.005672300001606345,
+        "p95": 0.006850269902497529,
+        "p99": 0.007759960130788387,
+        "max": 0.314271799987182,
+        "over_period_fraction": 0.0029498525073746312,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 1,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 494,
+      "interventions": 1,
+      "goal_parking_controls": 1,
+      "simulation_seconds": 24.70000036805868,
+      "progress": 23.586162657512823,
+      "travel_time_success_only": 24.70000036805868,
+      "jerk_rms": 52.11806432208474,
+      "decision_cycle_times": {
+        "count": 494,
+        "median": 0.1491343000670895,
+        "p95": 0.2419438150245696,
+        "p99": 0.28418713195249434,
+        "max": 0.3295471000019461,
+        "over_period_fraction": 0.7894736842105263,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 494,
+        "median": 0.010790299973450601,
+        "p95": 0.012728525022976101,
+        "p99": 0.013403009090106931,
+        "max": 0.31705019995570183,
+        "over_period_fraction": 0.0020242914979757085,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 297,
+      "interventions": 1,
+      "goal_parking_controls": 1,
+      "simulation_seconds": 14.850000221282244,
+      "progress": 22.02692467859709,
+      "travel_time_success_only": 14.850000221282244,
+      "jerk_rms": 44.63083096020454,
+      "decision_cycle_times": {
+        "count": 297,
+        "median": 0.039728299947455525,
+        "p95": 0.07768917996436357,
+        "p99": 0.08372770791873337,
+        "max": 0.326415800023824,
+        "over_period_fraction": 0.367003367003367,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 297,
+        "median": 0.006381000159308314,
+        "p95": 0.007590699987486005,
+        "p99": 0.008022524034604442,
+        "max": 0.3156161999795586,
+        "over_period_fraction": 0.003367003367003367,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 3,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 44,
+      "interventions": 0,
+      "goal_parking_controls": 0,
+      "simulation_seconds": 2.2000000327825546,
+      "progress": 2.416118172869286,
+      "travel_time_success_only": null,
+      "jerk_rms": 37.922840927973525,
+      "decision_cycle_times": {
+        "count": 44,
+        "median": 0.19755744992289692,
+        "p95": 0.25492303519276904,
+        "p99": 0.34600400799885395,
+        "max": 0.4136534999124706,
+        "over_period_fraction": 1.0,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 44,
+        "median": 0.008992600021883845,
+        "p95": 0.011024119926150888,
+        "p99": 0.18491285699419685,
+        "max": 0.3158607999794185,
+        "over_period_fraction": 0.022727272727272728,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    }
+  ],
+  "raw_audit_sha256": "e4e81247d2dfb7f8ffe9fe05180f4cc6bbfde2f07bdda9cf63fae2fcd06ee9fd",
+  "limits": "Recovery segment only:3840 saved original updates plus6400 resumed controls complete the original10240 budget. Discarded658+ controls and unknown tail charged separately. Not an uninterrupted replicate.",
+  "research_acceptance": "UNMET"
+}

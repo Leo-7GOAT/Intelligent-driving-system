@@ -7,8 +7,8 @@ independent final-confirmation requirement.
 | Original requirement | Current authoritative evidence | Status |
 |---|---|---|
 | Real PPO → goal/speed → Hybrid A* → trajectory → MPC → CARLA feedback | Five completed native H/H0 training pairs and per-frame raw audits; public reproduction of models, updates and controls | Engineering chain executed |
-| Five healthy, sufficiently trained flat baselines | New common basic course: seeds 11/22/33/44 each complete 10,240 actual PPO controls and 320 Adam steps; endpoints 3/4, 4/4, 4/4, 4/4. Seed 11 has a bounds failure; one result pending | Incomplete; not all qualified |
-| Full-task B1 and fair H/B1 comparison | Separate single B1 model: known conditions 12/12; different-road development validation 14/24, with eight bounds and two collisions. Mixed spawn initialization disclosed. New 36 TRAIN / 24 validation pilot registered but not completed | Not achieved |
+| Five healthy, sufficiently trained flat baselines | All five new basic courses complete: 3/4,4/4,4/4,4/4,3/4; two bounds failures, only three gates pass. 51,200 retained learning controls,1,599 Adam steps; fifth seed explicitly recovered | Not achieved |
+| Full-task B1 and fair H/B1 comparison | Separate single B1 model: known conditions 12/12; different-road development validation 14/24, with eight bounds and two collisions. Mixed spawn initialization disclosed. New 36 TRAIN / 24 validation pilot now running; not completed | Not achieved |
 | H gain ≥10 percentage points over healthy B1, paired 95% lower bound >0, or prospectively locked efficiency alternative | No qualified full-task five-seed B1 comparison | Unproven |
 | Added PPO value against shared strong B3 | Teacher-only H 117/120 vs PPO H 120/120; +2.50 points, 95% interval [−2.13, +7.13]. Strong B3 24/24 | Unproven |
 | Interpretable collaboration improvement | H 120/120 vs H0 119/120; +0.83 points, 95% interval [−1.48, +3.15] | Stable gain unproven |
