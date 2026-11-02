@@ -1,3 +1,30 @@
+# Broader22 RUNNING; four additional courses prospectively queued — 2026-11-02
+
+Current actual worker45800 and observer32384 remain live. Single22pilot unchanged.
+NEW observer22416(toolsession54063),creation2026-11-02T12:41:22.571481+08:00;
+recheck actualOSidentity. Execution:runs/B1_additional_broader_cohort_20261102.
+Phase WAITING_FOR_EXACT_ORIGINAL_PILOT_OBSERVER. It holds exact read-only handle
+to32384,creation1793593484.996,Python311executable;cannot terminate dependency.
+Waits for dependency phaseRECOVERY_AND_BROADER_PILOT_COMPLETE plus normal exit,
+then runs11/33/44/55 serially,each20480newactualcontrols on36TRAIN/24knownVAL.
+Four registrations fixed BEFORE22pilotvalidation. No seed/basic-gate selection.
+Original22pilot registration is NOT rewritten as an all-five preregistration.
+Public locked details:protocols/native_B1_broader_additional_four_20261102.json.
+Exact batches:
+11:20261102T044003693349Z_native_broader_B1_seed11
+33:20261102T044004346066Z_native_broader_B1_seed33
+44:20261102T044004788200Z_native_broader_B1_seed44
+55:20261102T044005159056Z_native_broader_B1_seed55
+Actual frozen imports/config signatures/36TRAIN/24VAL/PPOsemantics/dataset and
+391sourcehashes/launcherValidateOnly all4PASS. Duplicateprepare/run guards also
+verified against actual existing preparation,without mutation. 81920additional
+requestedcontrols;none startedyet. Allnewbatches use exactpilot source/calibration.
+No newlabels,RMS/stdreset;retain critic/Adam/RNG and55interruption. Native7200s,
+observer43200s,0retries,resourcescheckedbeforeeach. Failurestop withoutretry;
+performancefailures retained and do notskipotherseeds. No120finalsetactivated.
+Do notduplicate queue or manuallystart registeredbatches.
+See docs/broader_B1_cohort.md. All main research gaps remain unmet.
+
 # All five basic outcomes audited; broader actual PPO RUNNING — 2026-11-02
 
 All-five report:reports/native_B1_shared_parking_complete_basic_cohort_20261102.json.

@@ -25,6 +25,8 @@ Seed55 includes an explicit interruption recovery: 3,840 saved controls plus 6,4
 
 A measured-input diagnosis confirms that feedback reaches H: hiding both feedback groups changes 11/446 sampled greedy actions; H0 remains exactly invariant in all 448 samples. The physical mask stays fixed. This local sensitivity supplies no new driving-performance claim. [Diagnostic and reproduction](docs/native_feedback_use.md).
 
+Before seeing the running seed22 pilot's validation results, the other four seeds were registered for the same additional 20,480-control broader course. All frozen import/configuration/PPO/launcher preflights pass; a separate observer waits for the current pilot's complete audit, then runs them serially. [Prospective four-course registration and limits](docs/broader_B1_cohort.md). No broader cohort outcome is claimed yet.
+
 The parking aid requests physical braking only inside the unchanged goal pose gates while overspeed; it changes neither steering nor vehicle state. It releases before success can be accepted. H/H0/B1/B2/B3 can share the same version. Every override is recorded. [Implementation and experiments](docs/shared_parking.md).
 
 ## Install and run CPU checks
