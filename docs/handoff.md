@@ -1,3 +1,10 @@
+# Diversephysicalcollection COMPLETE;parallel/serialviews RUNNING — 2026-11-02 18:47 local
+
+Physicalbatch20261102T101413887816Z_native_diverse_TRAIN36_teacher finished/ownedcleaned normally:14479actualcontrols,1115reset/15594worldticks,1836.490s;31/36success=12curve/7static/12walker. Failedstatic14/17/19/23deadline900each,16bounds101;allretained. Complete36case/all14479frame/strictpedal/manualfirst/gear/handbrake/reverse/syncack verified. Report reports/native_B3_diverse_TRAIN_teacher_collection_20261102.json. B3TRAINextrasupervision only,zeroPPO/finalconditions;nothealthyB1evidence.
+Originalobserver70992/tool64110 now BUILDING_MEASURED_DIVERSE_TRAIN_DIRECT_VIEWS(serial,1800scap) under runs/B3_diverse_TRAIN36_teacher_execution_20261102. Keep as independentread-onlyreference,DO NOTrestart. NEWparallel57172/tool18702 actually running4caseworkers under runs/B3_diverse_TRAIN36_parallel_conversion_20261102,phasePARALLEL_MEASURED_DIVERSE_TRAIN_CONVERSION;allsource/raw/engine checks passed first. It will orderedmergeall36cases,serialverifycase0,thenatomicallywrite direct_views/manifest.json. Iforiginalserialfinishes,compare everyarray once againstparalleloutput for methodparity.
+NNcoordinator55724/tool8151 remains WAITING_FOR_EXACT_DIVERSE_TRAIN_TEACHER_OBSERVER(actualdependency57172),afterwhichfixed8192additionalactorupdates/16384retained thenoldbasic4/conditionalknown24VAL;zeroPPOautomatically. ROOTexistingPythonfiles/recipe are HASHBOUND;do noteditwhilealive. New files/docs/read-onlyworkallowed. Last51targetedtestsPASS;source098814bhostedCI41430324416SUCCESS;public151660control/five-modeldownloadrebuildDONE,do not repeat.
+Alloriginalresearchacceptancetargets remain UNMET;latestcompletedpureB1fullknownVAL2/24isnotreplacedbyteacher31/36.
+
 # Full next-stage chain ACTUALLY WAITING — 2026-11-02 18:37 local
 
 Three real programs active;DO NOTRELAUNCH:
