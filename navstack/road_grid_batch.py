@@ -69,12 +69,16 @@ class ExactRoadBatch:
             body=corners[indices]
             lo,hi=body.min(axis=1),body.max(axis=1)
             union_lo,union_hi=lo.min(axis=0),hi.max(axis=0)
-            rect=self.rectangles
+            # Select the same closed cells through the raster's spatial window
+            # before SAT. Scanning every occupied cell of a 256x256 map for
+            # each small path chunk dominates repeated candidate witnesses.
+            rect=self.grid.rectangles(np.asarray([union_lo,union_hi]),reach=contact_band)
             keep=((rect[:,0]<=union_hi[0]+contact_band)&(rect[:,2]>=union_lo[0]-contact_band)
                 &(rect[:,1]<=union_hi[1]+contact_band)&(rect[:,3]>=union_lo[1]-contact_band))
             rect=rect[keep]
             if not len(rect):continue
-            centers,radii=self.centers[keep],self.radii[keep]
+            centers=(rect[:,:2]+rect[:,2:])/2
+            radii=(rect[:,2:]-rect[:,:2])/2
             xleft=hi[:,0,None]-rect[None,:,0]+tolerance
             xright=rect[None,:,2]-lo[:,0,None]+tolerance
             ybottom=hi[:,1,None]-rect[None,:,1]+tolerance
