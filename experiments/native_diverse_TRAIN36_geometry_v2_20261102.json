@@ -1,0 +1,3763 @@
+{
+  "routes": [
+    {
+      "geometry_id": "902a02391b5a6478d1c8444a1f4c6d24964c1af59bd18836273103d06a630b6b",
+      "length_m": 25.38201714164355,
+      "heading_change_degrees": -15.086067199707031,
+      "max_abs_curvature_m_inv": 0.022390853116804086,
+      "points": [
+        {
+          "x": 109.92987823486328,
+          "y": -9.334196090698242,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.6092529296875,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 2.220446049250313e-15,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.93666076660156,
+          "y": -10.336318969726562,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.63265991210938,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 1.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.94214630126953,
+          "y": -11.346802711486816,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.74725341796875,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 1.9999999999999978,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.94557189941406,
+          "y": -12.35729694366455,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.86184692382812,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 2.9999999999999956,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.947021484375,
+          "y": -13.367796897888184,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.9764404296875,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 3.9999999999999933,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.94640350341797,
+          "y": -14.3782958984375,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.09103393554688,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 4.999999999999991,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.94380187988281,
+          "y": -15.38857650756836,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.2032699584961,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 5.999999999999989,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.94044494628906,
+          "y": -16.383445739746094,
+          "z": 0.0,
+          "yaw_degrees_carla": 269.8526306152344,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 6.999999999999988,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.93930053710938,
+          "y": -17.36873435974121,
+          "z": 0.0,
+          "yaw_degrees_carla": 270.01318359375,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 7.999999999999986,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.9408950805664,
+          "y": -18.354019165039062,
+          "z": 0.0,
+          "yaw_degrees_carla": 270.1737365722656,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 8.999999999999984,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.94525146484375,
+          "y": -19.339298248291016,
+          "z": 0.0,
+          "yaw_degrees_carla": 270.3343200683594,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 9.999999999999982,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.95237731933594,
+          "y": -20.324560165405273,
+          "z": 0.0,
+          "yaw_degrees_carla": 270.494873046875,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 10.99999999999998,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.96227264404297,
+          "y": -21.309799194335938,
+          "z": 0.0,
+          "yaw_degrees_carla": 270.6554260253906,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 11.999999999999979,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.97492980957031,
+          "y": -22.295005798339844,
+          "z": 0.0,
+          "yaw_degrees_carla": 270.81597900390625,
+          "road_id": 0,
+          "lane_id": -2,
+          "s": 12.999999999999977,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.9841079711914,
+          "y": -23.384191513061523,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.15786743164062,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 0.6897463064123959,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.96662139892578,
+          "y": -24.517230987548828,
+          "z": 0.0,
+          "yaw_degrees_carla": -91.61161041259766,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 1.6897463064123937,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.92037963867188,
+          "y": -25.649465560913086,
+          "z": 0.0,
+          "yaw_degrees_carla": -93.06535339355469,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 2.6897463064123914,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.8454360961914,
+          "y": -26.780160903930664,
+          "z": 0.0,
+          "yaw_degrees_carla": -94.51910400390625,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 3.689746306412389,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.7418212890625,
+          "y": -27.90859031677246,
+          "z": 0.0,
+          "yaw_degrees_carla": -95.97284698486328,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 4.6897463064123865,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.609619140625,
+          "y": -29.034027099609375,
+          "z": 0.0,
+          "yaw_degrees_carla": -97.42658996582031,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 5.689746306412385,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.44890594482422,
+          "y": -30.15574836730957,
+          "z": 0.0,
+          "yaw_degrees_carla": -98.88033294677734,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 6.689746306412383,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.25979614257812,
+          "y": -31.27303123474121,
+          "z": 0.0,
+          "yaw_degrees_carla": -100.3340835571289,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 7.689746306412381,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 109.04238891601562,
+          "y": -32.38515853881836,
+          "z": 0.0,
+          "yaw_degrees_carla": -101.78783416748047,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 8.68974630641238,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 108.79684448242188,
+          "y": -33.49140930175781,
+          "z": 0.0,
+          "yaw_degrees_carla": -103.2415771484375,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 9.689746306412378,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 108.52330017089844,
+          "y": -34.5910758972168,
+          "z": 0.0,
+          "yaw_degrees_carla": -104.69532012939453,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 10.689746306412376,
+          "lane_width": 3.5,
+          "is_junction": false
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": -15
+    },
+    {
+      "geometry_id": "db18a697faf49786ca6e9483af8d89b46e46849c28d4c4d6e7c83a85b93019e1",
+      "length_m": 23.53892169356107,
+      "heading_change_degrees": 15.090995788574219,
+      "max_abs_curvature_m_inv": 0.014327985350702342,
+      "points": [
+        {
+          "x": -105.38764190673828,
+          "y": 94.00056457519531,
+          "z": 0.0,
+          "yaw_degrees_carla": 255.55123901367188,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 56.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -105.62445068359375,
+          "y": 93.05420684814453,
+          "z": 0.0,
+          "yaw_degrees_carla": 256.3520812988281,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 57.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -105.8479995727539,
+          "y": 92.10462951660156,
+          "z": 0.0,
+          "yaw_degrees_carla": 257.1528625488281,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 58.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -106.05825805664062,
+          "y": 91.15203094482422,
+          "z": 0.0,
+          "yaw_degrees_carla": 257.9537048339844,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 59.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -106.25518035888672,
+          "y": 90.19657897949219,
+          "z": 0.0,
+          "yaw_degrees_carla": 258.7545166015625,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 60.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -106.43872833251953,
+          "y": 89.23846435546875,
+          "z": 0.0,
+          "yaw_degrees_carla": 259.5553283691406,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 61.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -106.60887145996094,
+          "y": 88.27788543701172,
+          "z": 0.0,
+          "yaw_degrees_carla": 260.35614013671875,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 62.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -106.76557159423828,
+          "y": 87.31501770019531,
+          "z": 0.0,
+          "yaw_degrees_carla": 261.1569519042969,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 63.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -106.90879821777344,
+          "y": 86.35006713867188,
+          "z": 0.0,
+          "yaw_degrees_carla": 261.957763671875,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 64.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.03852844238281,
+          "y": 85.38319396972656,
+          "z": 0.0,
+          "yaw_degrees_carla": 262.75860595703125,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 65.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.15472412109375,
+          "y": 84.41460418701172,
+          "z": 0.0,
+          "yaw_degrees_carla": 263.55938720703125,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 66.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.25736999511719,
+          "y": 83.44448852539062,
+          "z": 0.0,
+          "yaw_degrees_carla": 264.3602294921875,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 67.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.3464584350586,
+          "y": 82.47303009033203,
+          "z": 0.0,
+          "yaw_degrees_carla": 265.1610107421875,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 68.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.42195129394531,
+          "y": 81.50041961669922,
+          "z": 0.0,
+          "yaw_degrees_carla": 265.96185302734375,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 69.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.48384857177734,
+          "y": 80.52686309814453,
+          "z": 0.0,
+          "yaw_degrees_carla": 266.76263427734375,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 70.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.5321273803711,
+          "y": 79.55252075195312,
+          "z": 0.0,
+          "yaw_degrees_carla": 267.5634765625,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 71.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.56678771972656,
+          "y": 78.57760620117188,
+          "z": 0.0,
+          "yaw_degrees_carla": 268.3642883300781,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 72.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.58782196044922,
+          "y": 77.60230255126953,
+          "z": 0.0,
+          "yaw_degrees_carla": 269.16510009765625,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 73.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.59522247314453,
+          "y": 76.62680053710938,
+          "z": 0.0,
+          "yaw_degrees_carla": 269.9659118652344,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 74.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.58909606933594,
+          "y": 75.6474838256836,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 75.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.577880859375,
+          "y": 74.64754486083984,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 76.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.5666732788086,
+          "y": 73.6476058959961,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 77.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.55546569824219,
+          "y": 72.64766693115234,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 78.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.54425811767578,
+          "y": 71.64773559570312,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 79.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -107.53305053710938,
+          "y": 70.64779663085938,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -1,
+          "s": 80.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": 15
+    },
+    {
+      "geometry_id": "caa1179c15163d7c62a11590edc88954c7eddb1bafbd7b6544bef49c2dd33e8f",
+      "length_m": 24.92414046241805,
+      "heading_change_degrees": -30.30584716796875,
+      "max_abs_curvature_m_inv": 0.056624853563097315,
+      "points": [
+        {
+          "x": -80.65386962890625,
+          "y": 16.45989418029785,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 18,
+          "lane_id": 4,
+          "s": 8.000000000000002,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -81.65386962890625,
+          "y": 16.457115173339844,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 18,
+          "lane_id": 4,
+          "s": 7.0000000000000036,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -82.65386199951172,
+          "y": 16.454336166381836,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 18,
+          "lane_id": 4,
+          "s": 6.000000000000005,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -83.65386199951172,
+          "y": 16.45155906677246,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 18,
+          "lane_id": 4,
+          "s": 5.000000000000007,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -84.65385437011719,
+          "y": 16.448780059814453,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 18,
+          "lane_id": 4,
+          "s": 4.000000000000009,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -85.65385437011719,
+          "y": 16.446001052856445,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 18,
+          "lane_id": 4,
+          "s": 3.000000000000011,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -86.65384674072266,
+          "y": 16.443222045898438,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 18,
+          "lane_id": 4,
+          "s": 2.0000000000000133,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -87.65384674072266,
+          "y": 16.440444946289062,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 18,
+          "lane_id": 4,
+          "s": 1.0000000000000155,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -88.65383911132812,
+          "y": 16.437665939331055,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 18,
+          "lane_id": 4,
+          "s": 1.7763568394002505e-14,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -89.65383911132812,
+          "y": 16.434886932373047,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 41.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -90.6538314819336,
+          "y": 16.43210792541504,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 40.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -91.6538314819336,
+          "y": 16.42932891845703,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 39.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -92.65382385253906,
+          "y": 16.426549911499023,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 38.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -93.65382385253906,
+          "y": 16.42377281188965,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 37.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -94.65381622314453,
+          "y": 16.42099380493164,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 36.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -95.65381622314453,
+          "y": 16.418214797973633,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 35.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -96.69963836669922,
+          "y": 16.421375274658203,
+          "z": 0.0,
+          "yaw_degrees_carla": 178.6575927734375,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 34.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -97.80775451660156,
+          "y": 16.482215881347656,
+          "z": 0.0,
+          "yaw_degrees_carla": 175.05706787109375,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 33.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -98.90986633300781,
+          "y": 16.612525939941406,
+          "z": 0.0,
+          "yaw_degrees_carla": 171.45652770996094,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 32.431871940709996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -100.00162506103516,
+          "y": 16.811792373657227,
+          "z": 0.0,
+          "yaw_degrees_carla": 167.8560028076172,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 31.43187194071,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -101.07870483398438,
+          "y": 17.079227447509766,
+          "z": 0.0,
+          "yaw_degrees_carla": 164.25546264648438,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 30.431871940710003,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -102.1368637084961,
+          "y": 17.413776397705078,
+          "z": 0.0,
+          "yaw_degrees_carla": 160.65493774414062,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 29.431871940710007,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -103.17193603515625,
+          "y": 17.81411361694336,
+          "z": 0.0,
+          "yaw_degrees_carla": 157.05441284179688,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 28.43187194071001,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -104.1798095703125,
+          "y": 18.27866554260254,
+          "z": 0.0,
+          "yaw_degrees_carla": 153.45387268066406,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 27.431871940710014,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -105.15653228759766,
+          "y": 18.805593490600586,
+          "z": 0.0,
+          "yaw_degrees_carla": 149.8533477783203,
+          "road_id": 780,
+          "lane_id": 1,
+          "s": 26.431871940710018,
+          "lane_width": 3.5,
+          "is_junction": true
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": -30
+    },
+    {
+      "geometry_id": "182bc35ac20060af65fc53151eaa876e8180de5365a037a9a069aa74a0919c90",
+      "length_m": 23.0686171281473,
+      "heading_change_degrees": 30.47833251953125,
+      "max_abs_curvature_m_inv": 0.028957576253332326,
+      "points": [
+        {
+          "x": 100.01411437988281,
+          "y": 106.08541870117188,
+          "z": 0.0,
+          "yaw_degrees_carla": 107.7135009765625,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 96.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 99.71138763427734,
+          "y": 107.00068664550781,
+          "z": 0.0,
+          "yaw_degrees_carla": 108.8906021118164,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 95.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 99.38990783691406,
+          "y": 107.90953063964844,
+          "z": 0.0,
+          "yaw_degrees_carla": 110.06771087646484,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 94.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 99.04983520507812,
+          "y": 108.81159210205078,
+          "z": 0.0,
+          "yaw_degrees_carla": 111.24481201171875,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 93.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 98.6913070678711,
+          "y": 109.70647430419922,
+          "z": 0.0,
+          "yaw_degrees_carla": 112.42191314697266,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 92.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 98.31446838378906,
+          "y": 110.59379577636719,
+          "z": 0.0,
+          "yaw_degrees_carla": 113.5990219116211,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 91.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 97.91947937011719,
+          "y": 111.47319793701172,
+          "z": 0.0,
+          "yaw_degrees_carla": 114.776123046875,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 90.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 97.50651550292969,
+          "y": 112.34429168701172,
+          "z": 0.0,
+          "yaw_degrees_carla": 115.95323181152344,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 89.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 97.07573699951172,
+          "y": 113.20671844482422,
+          "z": 0.0,
+          "yaw_degrees_carla": 117.13033294677734,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 88.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 96.62733459472656,
+          "y": 114.06011962890625,
+          "z": 0.0,
+          "yaw_degrees_carla": 118.30744171142578,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 87.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 96.16149139404297,
+          "y": 114.90412902832031,
+          "z": 0.0,
+          "yaw_degrees_carla": 119.48454284667969,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 86.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 95.67840576171875,
+          "y": 115.73838806152344,
+          "z": 0.0,
+          "yaw_degrees_carla": 120.66163635253906,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 85.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 95.17829895019531,
+          "y": 116.56254577636719,
+          "z": 0.0,
+          "yaw_degrees_carla": 121.8387451171875,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 84.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 94.66136169433594,
+          "y": 117.37625885009766,
+          "z": 0.0,
+          "yaw_degrees_carla": 123.01585388183594,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 83.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 94.1278076171875,
+          "y": 118.1791763305664,
+          "z": 0.0,
+          "yaw_degrees_carla": 124.19296264648438,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 82.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 93.577880859375,
+          "y": 118.9709701538086,
+          "z": 0.0,
+          "yaw_degrees_carla": 125.37005615234375,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 81.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 93.01180267333984,
+          "y": 119.75129699707031,
+          "z": 0.0,
+          "yaw_degrees_carla": 126.54716491699219,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 80.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 92.4298095703125,
+          "y": 120.51982879638672,
+          "z": 0.0,
+          "yaw_degrees_carla": 127.72427368164062,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 79.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 91.83214569091797,
+          "y": 121.2762451171875,
+          "z": 0.0,
+          "yaw_degrees_carla": 128.9013671875,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 78.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 91.22258758544922,
+          "y": 122.01448059082031,
+          "z": 0.0,
+          "yaw_degrees_carla": 130.29649353027344,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 77.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 90.59710693359375,
+          "y": 122.73182678222656,
+          "z": 0.0,
+          "yaw_degrees_carla": 131.8755645751953,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 76.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 89.95211029052734,
+          "y": 123.43167114257812,
+          "z": 0.0,
+          "yaw_degrees_carla": 133.4546356201172,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 75.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 89.2880630493164,
+          "y": 124.11347198486328,
+          "z": 0.0,
+          "yaw_degrees_carla": 135.03370666503906,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 74.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 88.60548400878906,
+          "y": 124.7767105102539,
+          "z": 0.0,
+          "yaw_degrees_carla": 136.61276245117188,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 73.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 87.9048843383789,
+          "y": 125.42089080810547,
+          "z": 0.0,
+          "yaw_degrees_carla": 138.19183349609375,
+          "road_id": 1,
+          "lane_id": 1,
+          "s": 72.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": 30
+    },
+    {
+      "geometry_id": "5387b895f1833203d30f38f65e92e5bd38a849a37e589f95331c61889adee582",
+      "length_m": 25.341464240375238,
+      "heading_change_degrees": -43.99501037597656,
+      "max_abs_curvature_m_inv": 0.061520979887464994,
+      "points": [
+        {
+          "x": 101.51223754882812,
+          "y": 18.046016693115234,
+          "z": 0.0,
+          "yaw_degrees_carla": -135.84579467773438,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 24.0,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 100.68186950683594,
+          "y": 17.293840408325195,
+          "z": 0.0,
+          "yaw_degrees_carla": -139.79505920410156,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 24.999999999999996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 99.80238342285156,
+          "y": 16.60074234008789,
+          "z": 0.0,
+          "yaw_degrees_carla": -143.72341918945312,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 25.999999999999993,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 98.87747955322266,
+          "y": 15.969524383544922,
+          "z": 0.0,
+          "yaw_degrees_carla": -147.65176391601562,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 26.99999999999999,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 97.91151428222656,
+          "y": 15.403153419494629,
+          "z": 0.0,
+          "yaw_degrees_carla": -151.58009338378906,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 27.999999999999986,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 96.90901184082031,
+          "y": 14.904293060302734,
+          "z": 0.0,
+          "yaw_degrees_carla": -155.50845336914062,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 28.999999999999982,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 95.87468719482422,
+          "y": 14.475281715393066,
+          "z": 0.0,
+          "yaw_degrees_carla": -159.43679809570312,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 29.99999999999998,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 94.81340026855469,
+          "y": 14.118141174316406,
+          "z": 0.0,
+          "yaw_degrees_carla": -163.36514282226562,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 30.999999999999975,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 93.73014831542969,
+          "y": 13.834546089172363,
+          "z": 0.0,
+          "yaw_degrees_carla": -167.29348754882812,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 31.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 92.6300048828125,
+          "y": 13.62583065032959,
+          "z": 0.0,
+          "yaw_degrees_carla": -171.22183227539062,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 32.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 91.51814270019531,
+          "y": 13.492974281311035,
+          "z": 0.0,
+          "yaw_degrees_carla": -175.15017700195312,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 33.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 90.3998031616211,
+          "y": 13.436602592468262,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.0785369873047,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 34.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 89.37653350830078,
+          "y": 13.432313919067383,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 35.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 88.37653350830078,
+          "y": 13.429534912109375,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 36.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 87.37654113769531,
+          "y": 13.426756858825684,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 37.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 86.37654113769531,
+          "y": 13.423977851867676,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 38.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 85.37654876708984,
+          "y": 13.421199798583984,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 39.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 84.37641143798828,
+          "y": 13.418420791625977,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 40.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 83.37641906738281,
+          "y": 13.415641784667969,
+          "z": 0.0,
+          "yaw_degrees_carla": -179.84078979492188,
+          "road_id": 584,
+          "lane_id": -1,
+          "s": 41.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 82.37641906738281,
+          "y": 13.412862777709961,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 21,
+          "lane_id": 5,
+          "s": 24.931193364434616,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 81.37642669677734,
+          "y": 13.410085678100586,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 21,
+          "lane_id": 5,
+          "s": 23.93119336443462,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 80.37642669677734,
+          "y": 13.407306671142578,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 21,
+          "lane_id": 5,
+          "s": 22.931193364434623,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 79.37643432617188,
+          "y": 13.40452766418457,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 21,
+          "lane_id": 5,
+          "s": 21.931193364434627,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 78.37643432617188,
+          "y": 13.401748657226562,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 21,
+          "lane_id": 5,
+          "s": 20.93119336443463,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 77.3764419555664,
+          "y": 13.398971557617188,
+          "z": 0.0,
+          "yaw_degrees_carla": 180.15919494628906,
+          "road_id": 21,
+          "lane_id": 5,
+          "s": 19.931193364434634,
+          "lane_width": 3.5,
+          "is_junction": false
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": -45
+    },
+    {
+      "geometry_id": "17062c47ead6c5f4e8ef51e6b88f51f15ff3710708ed823d0259ecc137364514",
+      "length_m": 22.801167105232413,
+      "heading_change_degrees": 39.206275939941406,
+      "max_abs_curvature_m_inv": 0.07047834732145372,
+      "points": [
+        {
+          "x": -103.85392761230469,
+          "y": 54.68803405761719,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 96.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.84272003173828,
+          "y": 53.68809509277344,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 97.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.83151245117188,
+          "y": 52.68815612792969,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 98.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.82029724121094,
+          "y": 51.68821716308594,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 99.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.80908966064453,
+          "y": 50.68828201293945,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 100.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.79788208007812,
+          "y": 49.68834686279297,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 101.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.78667449951172,
+          "y": 48.68840789794922,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 102.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.77546691894531,
+          "y": 47.68846893310547,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 103.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.7642593383789,
+          "y": 46.688533782958984,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 104.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.75304412841797,
+          "y": 45.6885986328125,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 105.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.74183654785156,
+          "y": 44.68865966796875,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 5,
+          "lane_id": -2,
+          "s": 106.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -103.73063659667969,
+          "y": 43.688724517822266,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 0.25000000000002,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -103.71942138671875,
+          "y": 42.68852615356445,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 1.2500000000000178,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -103.70821380615234,
+          "y": 41.68859100341797,
+          "z": 0.0,
+          "yaw_degrees_carla": -89.3577651977539,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 2.2500000000000155,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -103.67510986328125,
+          "y": 40.78904342651367,
+          "z": 0.0,
+          "yaw_degrees_carla": -86.09359741210938,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 3.2500000000000133,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -103.58666229248047,
+          "y": 39.90337371826172,
+          "z": 0.0,
+          "yaw_degrees_carla": -82.49938201904297,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 4.250000000000011,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -103.4428482055664,
+          "y": 39.024993896484375,
+          "z": 0.0,
+          "yaw_degrees_carla": -78.9051742553711,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 5.250000000000009,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -103.2442626953125,
+          "y": 38.15735626220703,
+          "z": 0.0,
+          "yaw_degrees_carla": -75.31095886230469,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 6.250000000000007,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -102.9916763305664,
+          "y": 37.303871154785156,
+          "z": 0.0,
+          "yaw_degrees_carla": -71.71675109863281,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 7.250000000000005,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -102.68608093261719,
+          "y": 36.46790313720703,
+          "z": 0.0,
+          "yaw_degrees_carla": -68.12254333496094,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 8.250000000000004,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -102.32868194580078,
+          "y": 35.65273666381836,
+          "z": 0.0,
+          "yaw_degrees_carla": -64.52832794189453,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 9.250000000000002,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -101.9208755493164,
+          "y": 34.86157989501953,
+          "z": 0.0,
+          "yaw_degrees_carla": -60.93412399291992,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 10.25,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -101.46427917480469,
+          "y": 34.097537994384766,
+          "z": 0.0,
+          "yaw_degrees_carla": -57.33990478515625,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 11.249999999999998,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -100.96068572998047,
+          "y": 33.36362838745117,
+          "z": 0.0,
+          "yaw_degrees_carla": -53.74570083618164,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 12.249999999999996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -100.41207122802734,
+          "y": 32.6627311706543,
+          "z": 0.0,
+          "yaw_degrees_carla": -50.1514892578125,
+          "road_id": 763,
+          "lane_id": -1,
+          "s": 13.249999999999995,
+          "lane_width": 3.5,
+          "is_junction": true
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": 45
+    },
+    {
+      "geometry_id": "49d540047e034155514cd0220c597208c4ba1668d175ff5006cbbe24cf23406c",
+      "length_m": 27.196221701850032,
+      "heading_change_degrees": -34.889892578125,
+      "max_abs_curvature_m_inv": 0.02239093204778105,
+      "points": [
+        {
+          "x": 96.5286865234375,
+          "y": -55.21216583251953,
+          "z": 0.0,
+          "yaw_degrees_carla": -135.6750030517578,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 32.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 95.70805358886719,
+          "y": -55.99360275268555,
+          "z": 0.0,
+          "yaw_degrees_carla": -137.1287384033203,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 33.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 94.86785125732422,
+          "y": -56.753963470458984,
+          "z": 0.0,
+          "yaw_degrees_carla": -138.58248901367188,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 34.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 94.00862884521484,
+          "y": -57.49276351928711,
+          "z": 0.0,
+          "yaw_degrees_carla": -140.03623962402344,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 35.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 93.13094329833984,
+          "y": -58.20953369140625,
+          "z": 0.0,
+          "yaw_degrees_carla": -141.489990234375,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 36.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 92.2353515625,
+          "y": -58.9037971496582,
+          "z": 0.0,
+          "yaw_degrees_carla": -142.94374084472656,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 37.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 91.32244110107422,
+          "y": -59.57512283325195,
+          "z": 0.0,
+          "yaw_degrees_carla": -144.39747619628906,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 38.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 90.39278411865234,
+          "y": -60.22306823730469,
+          "z": 0.0,
+          "yaw_degrees_carla": -145.85122680664062,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 39.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 89.44699096679688,
+          "y": -60.84722137451172,
+          "z": 0.0,
+          "yaw_degrees_carla": -147.30496215820312,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 40.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 88.48567199707031,
+          "y": -61.44717788696289,
+          "z": 0.0,
+          "yaw_degrees_carla": -148.7587127685547,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 41.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 87.50944519042969,
+          "y": -62.022552490234375,
+          "z": 0.0,
+          "yaw_degrees_carla": -150.21246337890625,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 42.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 86.51892852783203,
+          "y": -62.57297897338867,
+          "z": 0.0,
+          "yaw_degrees_carla": -151.66619873046875,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 43.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 85.51476287841797,
+          "y": -63.09809875488281,
+          "z": 0.0,
+          "yaw_degrees_carla": -153.1199493408203,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 44.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 84.49760437011719,
+          "y": -63.597564697265625,
+          "z": 0.0,
+          "yaw_degrees_carla": -154.5736846923828,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 45.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 83.46810150146484,
+          "y": -64.07107543945312,
+          "z": 0.0,
+          "yaw_degrees_carla": -156.02743530273438,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 46.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 82.42691040039062,
+          "y": -64.518310546875,
+          "z": 0.0,
+          "yaw_degrees_carla": -157.48118591308594,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 47.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 81.37471008300781,
+          "y": -64.9389877319336,
+          "z": 0.0,
+          "yaw_degrees_carla": -158.93492126464844,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 48.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 80.31218719482422,
+          "y": -65.33283996582031,
+          "z": 0.0,
+          "yaw_degrees_carla": -160.388671875,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 49.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 79.24000549316406,
+          "y": -65.69960021972656,
+          "z": 0.0,
+          "yaw_degrees_carla": -161.84242248535156,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 50.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 78.15886688232422,
+          "y": -66.03904724121094,
+          "z": 0.0,
+          "yaw_degrees_carla": -163.29617309570312,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 51.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 77.0694580078125,
+          "y": -66.3509521484375,
+          "z": 0.0,
+          "yaw_degrees_carla": -164.7499237060547,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 52.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 75.97249603271484,
+          "y": -66.63512420654297,
+          "z": 0.0,
+          "yaw_degrees_carla": -166.2036590576172,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 53.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 74.86866760253906,
+          "y": -66.89136505126953,
+          "z": 0.0,
+          "yaw_degrees_carla": -167.65740966796875,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 54.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 73.75869750976562,
+          "y": -67.1195297241211,
+          "z": 0.0,
+          "yaw_degrees_carla": -169.11114501953125,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 55.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 72.64330291748047,
+          "y": -67.3194580078125,
+          "z": 0.0,
+          "yaw_degrees_carla": -170.5648956298828,
+          "road_id": 10,
+          "lane_id": -2,
+          "s": 56.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": -60
+    },
+    {
+      "geometry_id": "0161547974c0cc60f253b98400967862ebf09aa874c3615e6ddf607e6d128614",
+      "length_m": 22.106507788773214,
+      "heading_change_degrees": 61.90104414522648,
+      "max_abs_curvature_m_inv": 0.08859457699451771,
+      "points": [
+        {
+          "x": 19.273792266845703,
+          "y": 28.23758888244629,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 48.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 20.273788452148438,
+          "y": 28.240365982055664,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 49.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 21.273784637451172,
+          "y": 28.243144989013672,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 50.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 22.273780822753906,
+          "y": 28.24592399597168,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 51.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 23.27377700805664,
+          "y": 28.248703002929688,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 52.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 24.273773193359375,
+          "y": 28.251480102539062,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 53.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 25.27376937866211,
+          "y": 28.25425910949707,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 54.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 26.273765563964844,
+          "y": 28.257038116455078,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 55.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 27.27376365661621,
+          "y": 28.259815216064453,
+          "z": 0.0,
+          "yaw_degrees_carla": -359.8407897949219,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 0.8700000000000245,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 28.273759841918945,
+          "y": 28.262596130371094,
+          "z": 0.0,
+          "yaw_degrees_carla": -359.8407897949219,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 1.8700000000000223,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 29.150867462158203,
+          "y": 28.295454025268555,
+          "z": 0.0,
+          "yaw_degrees_carla": -355.8432922363281,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 2.87000000000002,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 30.022846221923828,
+          "y": 28.389663696289062,
+          "z": 0.0,
+          "yaw_degrees_carla": -351.8238525390625,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 3.870000000000018,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 30.88607406616211,
+          "y": 28.54476547241211,
+          "z": 0.0,
+          "yaw_degrees_carla": -347.8043518066406,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 4.870000000000015,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 31.736310958862305,
+          "y": 28.759990692138672,
+          "z": 0.0,
+          "yaw_degrees_carla": -343.784912109375,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 5.870000000000013,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 32.569366455078125,
+          "y": 29.034286499023438,
+          "z": 0.0,
+          "yaw_degrees_carla": -339.7654113769531,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 6.870000000000012,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 33.38114929199219,
+          "y": 29.366300582885742,
+          "z": 0.0,
+          "yaw_degrees_carla": -335.7459716796875,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 7.87000000000001,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 34.16765594482422,
+          "y": 29.7544002532959,
+          "z": 0.0,
+          "yaw_degrees_carla": -331.72650146484375,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 8.870000000000008,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 34.92502975463867,
+          "y": 30.196672439575195,
+          "z": 0.0,
+          "yaw_degrees_carla": -327.70703125,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 9.870000000000006,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 35.649539947509766,
+          "y": 30.690950393676758,
+          "z": 0.0,
+          "yaw_degrees_carla": -323.68756103515625,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 10.870000000000005,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 36.33761978149414,
+          "y": 31.23479461669922,
+          "z": 0.0,
+          "yaw_degrees_carla": -319.6680908203125,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 11.870000000000003,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 36.98268127441406,
+          "y": 31.82297706604004,
+          "z": 0.0,
+          "yaw_degrees_carla": -315.5149230957031,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 12.870000000000001,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 37.576515197753906,
+          "y": 32.45273971557617,
+          "z": 0.0,
+          "yaw_degrees_carla": -311.1211242675781,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 13.87,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 38.120357513427734,
+          "y": 33.12614822387695,
+          "z": 0.0,
+          "yaw_degrees_carla": -306.7273254394531,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 14.869999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 38.61100769042969,
+          "y": 33.839237213134766,
+          "z": 0.0,
+          "yaw_degrees_carla": -302.33355712890625,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 15.869999999999996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": 39.045589447021484,
+          "y": 34.587825775146484,
+          "z": 0.0,
+          "yaw_degrees_carla": -297.93975830078125,
+          "road_id": 848,
+          "lane_id": -1,
+          "s": 16.869999999999994,
+          "lane_width": 3.5,
+          "is_junction": true
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": 60
+    },
+    {
+      "geometry_id": "b9e9ce58bfef2e6c11a5bb0c277bf00c86bc710428abc72c7b484ff019dc55ae",
+      "length_m": 24.534874397654,
+      "heading_change_degrees": -17.539395585656166,
+      "max_abs_curvature_m_inv": 0.06882572457800853,
+      "points": [
+        {
+          "x": -37.19096755981445,
+          "y": 27.405048370361328,
+          "z": 0.0,
+          "yaw_degrees_carla": 17.698593139648438,
+          "road_id": 382,
+          "lane_id": 1,
+          "s": 8.000000000000002,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -36.09547424316406,
+          "y": 27.70798110961914,
+          "z": 0.0,
+          "yaw_degrees_carla": 13.21649169921875,
+          "road_id": 382,
+          "lane_id": 1,
+          "s": 7.0000000000000036,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -34.979652404785156,
+          "y": 27.924379348754883,
+          "z": 0.0,
+          "yaw_degrees_carla": 8.734375,
+          "road_id": 382,
+          "lane_id": 1,
+          "s": 6.000000000000005,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -33.85033416748047,
+          "y": 28.052913665771484,
+          "z": 0.0,
+          "yaw_degrees_carla": 4.2522430419921875,
+          "road_id": 382,
+          "lane_id": 1,
+          "s": 5.000000000000007,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -32.726314544677734,
+          "y": 28.09310531616211,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.159210205078125,
+          "road_id": 382,
+          "lane_id": 1,
+          "s": 4.000000000000009,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -31.726316452026367,
+          "y": 28.095884323120117,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.159210205078125,
+          "road_id": 382,
+          "lane_id": 1,
+          "s": 3.000000000000011,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -30.726320266723633,
+          "y": 28.098661422729492,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.159210205078125,
+          "road_id": 382,
+          "lane_id": 1,
+          "s": 2.0000000000000133,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -29.726016998291016,
+          "y": 28.1014404296875,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.159210205078125,
+          "road_id": 382,
+          "lane_id": 1,
+          "s": 1.0000000000000155,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -28.72602081298828,
+          "y": 28.104219436645508,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.159210205078125,
+          "road_id": 382,
+          "lane_id": 1,
+          "s": 1.7763568394002505e-14,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -27.726024627685547,
+          "y": 28.106998443603516,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 1.0000000000000022,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -26.726028442382812,
+          "y": 28.10977554321289,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 2.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -25.726032257080078,
+          "y": 28.1125545501709,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 2.999999999999998,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -24.726036071777344,
+          "y": 28.115333557128906,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 3.9999999999999956,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -23.72603988647461,
+          "y": 28.118112564086914,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 4.999999999999993,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -22.726043701171875,
+          "y": 28.12088966369629,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 5.999999999999991,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -21.72604751586914,
+          "y": 28.123668670654297,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 6.999999999999989,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -20.726051330566406,
+          "y": 28.126447677612305,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 7.999999999999988,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -19.726055145263672,
+          "y": 28.129226684570312,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 8.999999999999986,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -18.726058959960938,
+          "y": 28.132003784179688,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 9.999999999999984,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -17.726064682006836,
+          "y": 28.134782791137695,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 10.999999999999982,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -16.7260684967041,
+          "y": 28.137561798095703,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 11.99999999999998,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -15.72607135772705,
+          "y": 28.14034080505371,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 12.999999999999979,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -14.726075172424316,
+          "y": 28.143117904663086,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 13.999999999999977,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -13.726078987121582,
+          "y": 28.145896911621094,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 14.999999999999975,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -12.726082801818848,
+          "y": 28.1486759185791,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.15919755399227142,
+          "road_id": 20,
+          "lane_id": -2,
+          "s": 15.999999999999973,
+          "lane_width": 3.5,
+          "is_junction": false
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": -75
+    },
+    {
+      "geometry_id": "d9d19ec7d48e744b0a7100e9738fa1f583e9154925d14a499f0f1cdda0e7a3e6",
+      "length_m": 21.961776543382463,
+      "heading_change_degrees": 66.63605499267578,
+      "max_abs_curvature_m_inv": 0.10137339538828469,
+      "points": [
+        {
+          "x": -34.12340545654297,
+          "y": 64.82988739013672,
+          "z": 0.0,
+          "yaw_degrees_carla": 203.2027130126953,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 8.000000000000002,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -34.947357177734375,
+          "y": 64.45052337646484,
+          "z": 0.0,
+          "yaw_degrees_carla": 206.2412109375,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 9.0,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -35.75004196166992,
+          "y": 64.02803039550781,
+          "z": 0.0,
+          "yaw_degrees_carla": 209.2797088623047,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 9.999999999999998,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -36.529205322265625,
+          "y": 63.563568115234375,
+          "z": 0.0,
+          "yaw_degrees_carla": 212.31820678710938,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 10.999999999999996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -37.282649993896484,
+          "y": 63.0584716796875,
+          "z": 0.0,
+          "yaw_degrees_carla": 215.35671997070312,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 11.999999999999995,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -37.994293212890625,
+          "y": 62.52637481689453,
+          "z": 0.0,
+          "yaw_degrees_carla": 218.9996795654297,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 12.999999999999993,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -38.63057327270508,
+          "y": 61.96412658691406,
+          "z": 0.0,
+          "yaw_degrees_carla": 223.93148803710938,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 13.999999999999991,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -39.21615982055664,
+          "y": 61.34925079345703,
+          "z": 0.0,
+          "yaw_degrees_carla": 228.86328125,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 14.99999999999999,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -39.74671936035156,
+          "y": 60.686317443847656,
+          "z": 0.0,
+          "yaw_degrees_carla": 233.7950897216797,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 15.999999999999988,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -40.21832275390625,
+          "y": 59.980224609375,
+          "z": 0.0,
+          "yaw_degrees_carla": 238.72686767578125,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 16.999999999999982,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -40.627471923828125,
+          "y": 59.23619842529297,
+          "z": 0.0,
+          "yaw_degrees_carla": 243.65867614746094,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 17.99999999999998,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -40.97114562988281,
+          "y": 58.45975112915039,
+          "z": 0.0,
+          "yaw_degrees_carla": 248.59048461914062,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 18.999999999999975,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -41.24679946899414,
+          "y": 57.65663528442383,
+          "z": 0.0,
+          "yaw_degrees_carla": 253.5222930908203,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 19.99999999999997,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -41.45238494873047,
+          "y": 56.83279800415039,
+          "z": 0.0,
+          "yaw_degrees_carla": 258.4541015625,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 20.999999999999968,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -41.58638381958008,
+          "y": 55.99433135986328,
+          "z": 0.0,
+          "yaw_degrees_carla": 263.3858947753906,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 21.999999999999964,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -41.647804260253906,
+          "y": 55.1474494934082,
+          "z": 0.0,
+          "yaw_degrees_carla": 268.31768798828125,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 22.99999999999996,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -41.653968811035156,
+          "y": 54.193668365478516,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.1612319946289,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 23.999999999999957,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -41.65678405761719,
+          "y": 53.19367218017578,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.1612319946289,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 24.999999999999954,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -41.65959930419922,
+          "y": 52.19367599487305,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.1612319946289,
+          "road_id": 939,
+          "lane_id": -1,
+          "s": 25.99999999999995,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -41.662410736083984,
+          "y": 51.19367599487305,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.1612319946289,
+          "road_id": 14,
+          "lane_id": -2,
+          "s": 0.5118685399371601,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -41.66522216796875,
+          "y": 50.19367980957031,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.1612319946289,
+          "road_id": 14,
+          "lane_id": -2,
+          "s": 1.5118685399371579,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -41.66803741455078,
+          "y": 49.19368362426758,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.1612319946289,
+          "road_id": 14,
+          "lane_id": -2,
+          "s": 2.5118685399371556,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -41.67085266113281,
+          "y": 48.193687438964844,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.1612319946289,
+          "road_id": 14,
+          "lane_id": -2,
+          "s": 3.5118685399371534,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -41.67366409301758,
+          "y": 47.19369125366211,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.1612319946289,
+          "road_id": 14,
+          "lane_id": -2,
+          "s": 4.511868539937151,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -41.67647933959961,
+          "y": 46.19369888305664,
+          "z": 0.0,
+          "yaw_degrees_carla": -90.1612319946289,
+          "road_id": 14,
+          "lane_id": -2,
+          "s": 5.511868539937149,
+          "lane_width": 3.5,
+          "is_junction": false
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": 75
+    },
+    {
+      "geometry_id": "3f11ee238ab599acd9be133459479cf820a49f198c2f2a42adbcf9cbb0a4e846",
+      "length_m": 25.544818088803005,
+      "heading_change_degrees": -16.863499224185944,
+      "max_abs_curvature_m_inv": 0.024077234960141063,
+      "points": [
+        {
+          "x": 51.330135345458984,
+          "y": 141.13888549804688,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 32.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 52.33012008666992,
+          "y": 141.1444854736328,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 33.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 53.33010482788086,
+          "y": 141.1500701904297,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 34.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 54.3300895690918,
+          "y": 141.15567016601562,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 35.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 55.330074310302734,
+          "y": 141.1612548828125,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 36.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 56.33005905151367,
+          "y": 141.16685485839844,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 37.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 57.33004379272461,
+          "y": 141.1724395751953,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 38.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 58.33002853393555,
+          "y": 141.17803955078125,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 39.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 59.330013275146484,
+          "y": 141.18362426757812,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 40.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 60.32999801635742,
+          "y": 141.18922424316406,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 41.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 61.32998275756836,
+          "y": 141.19480895996094,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 42.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 62.3299674987793,
+          "y": 141.20040893554688,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 43.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 63.329952239990234,
+          "y": 141.20599365234375,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 44.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 64.3299331665039,
+          "y": 141.2115936279297,
+          "z": 0.0,
+          "yaw_degrees_carla": 0.32044845819473267,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 45.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 65.42821502685547,
+          "y": 141.21044921875,
+          "z": 0.0,
+          "yaw_degrees_carla": -0.7523547410964966,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 46.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 66.57244873046875,
+          "y": 141.17965698242188,
+          "z": 0.0,
+          "yaw_degrees_carla": -2.3314239978790283,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 47.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 67.71540832519531,
+          "y": 141.11734008789062,
+          "z": 0.0,
+          "yaw_degrees_carla": -3.9104936122894287,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 48.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 68.85620880126953,
+          "y": 141.02354431152344,
+          "z": 0.0,
+          "yaw_degrees_carla": -5.48956298828125,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 49.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 69.99400329589844,
+          "y": 140.8983612060547,
+          "z": 0.0,
+          "yaw_degrees_carla": -7.06863260269165,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 50.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 71.1279067993164,
+          "y": 140.7418670654297,
+          "z": 0.0,
+          "yaw_degrees_carla": -8.64770221710205,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 51.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 72.25706481933594,
+          "y": 140.55416870117188,
+          "z": 0.0,
+          "yaw_degrees_carla": -10.226771354675293,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 52.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 73.38062286376953,
+          "y": 140.33544921875,
+          "z": 0.0,
+          "yaw_degrees_carla": -11.805841445922852,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 53.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 74.49773406982422,
+          "y": 140.08583068847656,
+          "z": 0.0,
+          "yaw_degrees_carla": -13.384910583496094,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 54.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 75.60753631591797,
+          "y": 139.80552673339844,
+          "z": 0.0,
+          "yaw_degrees_carla": -14.963980674743652,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 55.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": 76.70919799804688,
+          "y": 139.49476623535156,
+          "z": 0.0,
+          "yaw_degrees_carla": -16.54305076599121,
+          "road_id": 1,
+          "lane_id": -2,
+          "s": 56.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": -20
+    },
+    {
+      "geometry_id": "6dd56bef5eaf87458127f26127d59fd823b2b63ad64bd0aec79ce0063ab7226f",
+      "length_m": 23.188953194383494,
+      "heading_change_degrees": 26.514801025390625,
+      "max_abs_curvature_m_inv": 0.08467486994830298,
+      "points": [
+        {
+          "x": -52.02799606323242,
+          "y": 98.97489929199219,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 16.0,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -52.02518081665039,
+          "y": 99.97489929199219,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 15.000000000000002,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -52.022369384765625,
+          "y": 100.97489166259766,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 14.000000000000004,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -52.019554138183594,
+          "y": 101.97489166259766,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 13.000000000000005,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -52.01673889160156,
+          "y": 102.97488403320312,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 12.000000000000007,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -52.0139274597168,
+          "y": 103.97488403320312,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 11.000000000000009,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -52.011112213134766,
+          "y": 104.9748764038086,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 10.00000000000001,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -52.008296966552734,
+          "y": 105.9748764038086,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 9.000000000000012,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -52.0054817199707,
+          "y": 106.97486877441406,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 8.000000000000014,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -52.00267028808594,
+          "y": 107.97486877441406,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 7.000000000000016,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -51.999855041503906,
+          "y": 108.97486114501953,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 6.000000000000018,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -51.997039794921875,
+          "y": 109.97486114501953,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 5.0000000000000195,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -51.99422836303711,
+          "y": 110.974853515625,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 4.000000000000021,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -51.99141311645508,
+          "y": 111.974853515625,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 3.0000000000000235,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -51.98859786987305,
+          "y": 112.97484588623047,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 2.0000000000000258,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -51.98578643798828,
+          "y": 113.97484588623047,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 1.000000000000028,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -51.98297119140625,
+          "y": 114.97483825683594,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 13,
+          "lane_id": 2,
+          "s": 3.019806626980426e-14,
+          "lane_width": 3.5,
+          "is_junction": false
+        },
+        {
+          "x": -51.98015213012695,
+          "y": 115.97483825683594,
+          "z": 0.0,
+          "yaw_degrees_carla": 89.8387680053711,
+          "road_id": 472,
+          "lane_id": 1,
+          "s": 29.336091672116094,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -51.97989273071289,
+          "y": 116.93914794921875,
+          "z": 0.0,
+          "yaw_degrees_carla": 91.00634002685547,
+          "road_id": 472,
+          "lane_id": 1,
+          "s": 28.336091672116098,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -52.02726745605469,
+          "y": 117.80863952636719,
+          "z": 0.0,
+          "yaw_degrees_carla": 95.23088073730469,
+          "road_id": 472,
+          "lane_id": 1,
+          "s": 27.3360916721161,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -52.1385612487793,
+          "y": 118.6722640991211,
+          "z": 0.0,
+          "yaw_degrees_carla": 99.45541381835938,
+          "road_id": 472,
+          "lane_id": 1,
+          "s": 26.336091672116105,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -52.31317138671875,
+          "y": 119.52535247802734,
+          "z": 0.0,
+          "yaw_degrees_carla": 103.6799545288086,
+          "road_id": 472,
+          "lane_id": 1,
+          "s": 25.33609167211611,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -52.55015182495117,
+          "y": 120.3632583618164,
+          "z": 0.0,
+          "yaw_degrees_carla": 107.90449523925781,
+          "road_id": 472,
+          "lane_id": 1,
+          "s": 24.336091672116112,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -52.848209381103516,
+          "y": 121.18142700195312,
+          "z": 0.0,
+          "yaw_degrees_carla": 112.12903594970703,
+          "road_id": 472,
+          "lane_id": 1,
+          "s": 23.336091672116115,
+          "lane_width": 3.5,
+          "is_junction": true
+        },
+        {
+          "x": -53.20573425292969,
+          "y": 121.97541809082031,
+          "z": 0.0,
+          "yaw_degrees_carla": 116.35356903076172,
+          "road_id": 472,
+          "lane_id": 1,
+          "s": 22.33609167211612,
+          "lane_width": 3.5,
+          "is_junction": true
+        }
+      ],
+      "map": "Carla/Maps/Town10HD_Opt",
+      "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+      "selection_target_degrees": 20
+    }
+  ],
+  "native_case_manifest": {
+    "version": "native_development_cases_v1",
+    "split": "development",
+    "cases": [
+      {
+        "route_index": 0,
+        "hazard": null
+      },
+      {
+        "route_index": 1,
+        "hazard": null
+      },
+      {
+        "route_index": 2,
+        "hazard": null
+      },
+      {
+        "route_index": 3,
+        "hazard": null
+      },
+      {
+        "route_index": 4,
+        "hazard": null
+      },
+      {
+        "route_index": 5,
+        "hazard": null
+      },
+      {
+        "route_index": 6,
+        "hazard": null
+      },
+      {
+        "route_index": 7,
+        "hazard": null
+      },
+      {
+        "route_index": 8,
+        "hazard": null
+      },
+      {
+        "route_index": 9,
+        "hazard": null
+      },
+      {
+        "route_index": 10,
+        "hazard": null
+      },
+      {
+        "route_index": 11,
+        "hazard": null
+      },
+      {
+        "route_index": 0,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 1,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 2,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 3,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 4,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 5,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 6,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 7,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 8,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 9,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 10,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 11,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "distance_m": 13.0,
+          "static_geometry": "projected_box_strips12_v1"
+        }
+      },
+      {
+        "route_index": 0,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 1,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 2,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 3,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 4,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 5,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 6,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 7,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 8,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 9,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 10,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      },
+      {
+        "route_index": 11,
+        "hazard": {
+          "version": "native_hazard_v1",
+          "kind": "crossing_walker",
+          "distance_m": 10.0,
+          "lateral_m": -2.5,
+          "speed_m_s": 1.0,
+          "start_delay_s": 2.0
+        }
+      }
+    ]
+  },
+  "data_role": "TRAIN_EXTRA_SUPERVISION",
+  "registration": {
+    "version": "diverse_native_TRAIN36_geometry_v2",
+    "survey_sha256": "0be11c63db07494f126f6e01912e2a53305077e09b089cb718c1dca328155ffe",
+    "excluded_inventory_sha256": "07d0724d87f4a3bb117265656e2a0d1296c02a749b1bd37186401d8229800961",
+    "minimum_sampled_centreline_distance_m": 13.25,
+    "selection_targets": [
+      -15,
+      15,
+      -30,
+      30,
+      -45,
+      45,
+      -60,
+      60,
+      -75,
+      75,
+      -20,
+      20,
+      -40,
+      40,
+      -65,
+      65
+    ],
+    "base_paths": 12,
+    "route_prefix_augmentation": false,
+    "core_conditions_each": 12,
+    "physical_controls": 0,
+    "teacher_labels": 0,
+    "optimizer_updates": 0,
+    "rationale": "Old12TRAINsegments are prefixes of four base paths. Select twelve separated base paths using geometry only.",
+    "scope": "Provisional TRAIN geometry,not driving evidence,feasibility guarantee,validation or final confirmation. No policy results used for selection."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "scope": "Fixed8192step actor convergence study restored basicTRAINbut failed all24knownVALconditions;noPPOgainorhealthybaselineclaim.",
+  "model_sha256": "16ecd9ac1711d60f5a1a89618faaad1cce90b462e63991861124fa1ec7084432",
+  "new_auxiliary_Adam_steps": 7168,
+  "inherited_recovery_Adam_steps": 1024,
+  "actual_Adam_step_each": [
+    8192
+  ],
+  "total_retained_nominal_plus_recovery_steps": 9216,
+  "fit_wall_seconds": 225.54699999978766,
+  "fit_result_sha256": "aa72daa279784c12e7520da0002960114462720d4abdfd2db2b08aa2ae0e4ae5",
+  "basic": {
+    "batch": "20261102T095459582129Z_native_recovery_actor_basic22",
+    "successes": 4,
+    "cases": 4,
+    "unsafe": 0,
+    "controls": 1297,
+    "all_sequence_actions": 1297,
+    "raw_audit_sha256": "1b9dfc0d90a2bed96c198ba681a126e635d0c1a84faabac81aca98e0a852537a"
+  },
+  "known_validation": {
+    "batch": "20261102T095904824559Z_native_measured_actor_validation22",
+    "successes": 2,
+    "cases": 24,
+    "terminations": {
+      "deadline": 14,
+      "out_of_bounds": 6,
+      "collision": 2,
+      "success": 2
+    },
+    "core_successes": {
+      "curve": 0,
+      "static": 2,
+      "walker": 0
+    },
+    "verified_controls": 14494,
+    "raw_audit_sha256": "a2bf53e8d5e800531dd71a7887d3699242315d30b1d93a917a4e8245b2e5149d",
+    "strict_delivery_gate_passed": true,
+    "measured_initial_actions": 24
+  },
+  "new_PPO_updates": 0,
+  "final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "decision": "Do not promote this policy or repeat same-data optimization. Existing12TRAINsegments are prefixes of only4basepaths;collect predeclared36TRAINconditions on12separated newbasepaths. Geometry-onlyselection excludes knownVALroads;noVALlabels.",
+  "limits": "One fixed development seed;adaptive repeated knownVALinspection,not final confirmation. Longer actor training lowered steering imitation error but produced14timeouts. Extra supervision is not PPO learning. Both earlier failed1024step profiles remain retained and charged."
+}
