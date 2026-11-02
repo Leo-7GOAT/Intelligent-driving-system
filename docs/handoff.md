@@ -1,3 +1,8 @@
+# Public reconstruction COMPLETE — 2026-11-02 17:32 local
+
+Public replayer32041TERMINAL0,source797ecf0578b65a69aeed0703a70b972f0102846a. Output D:/Codex_Thesis_Artifacts/intelligent-driving-system_20261028/broader_B1_release_20261102/public_download_rebuild_v2/public_verification.json,exactSHA b3f8b66866a35705eab3ed06bb5492c0c62a040d9f0d83043c39a1d38b5c3dad. Copied byteexact to reports/native_B1_broader_public_download_verification_20261102.json after privacy scan. All151660rawcontrols/120startactions/5figures/5learningaudits/prefix44/cohort exact;102400newPPOcontrols/3148Adamretained. Actualpublicdownload,not localpreflight. NO MORE downloads/rebuilds needed. Publicrelease remains faileddevelopment69assets/54of120success,not researchacceptance. First600sfailed transfer retained and11verifiedparts reused with matching public manifests/receipts;onlymissingpart redownloaded. Independentcheckout remains797ecf0and is now idle.
+Rootcorrectedaudit14246still RUNNING (singlebulkNPZload) as of this record. Pending continuation v2NOTLAUNCHED until it completes. Keep source audit bytes immutable while this auditor runs. Allotherfullgoals UNMET.
+
 # Superseding execution correction — 2026-11-02 17:26 local
 
 36TRAINmixture collection is COMPLETE/owned-cleaned:12697controls,6218teacher/6479learner,6179eligibleexecutedlabels,34success/1collision(case21)/1deadline(case24). These are mixture outcomes,not pure B1performance.
