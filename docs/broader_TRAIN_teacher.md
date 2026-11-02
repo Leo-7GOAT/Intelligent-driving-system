@@ -93,3 +93,13 @@ python scripts/teach_broader_b1_cohort.py --output <same-execution-directory> --
 
 These commands require the existing registered local cohort and teacher jobs;
 they are not a replacement for the public frozen-model reproduction workflow.
+
+After all five fits finish, `scripts/prepare_measured_actor_basic_probe.py`
+can stage the fixed canonical seed22 model on the original four TRAIN roads.
+It requires a research review bound to all five completed fit/checkpoint hashes;
+the decision is fixed to canonical22, with no best-seed selection. It preserves
+the frozen direct-policy runtime and low-level source, records the additional
+supervision, and sets native PPO updates to zero. Preparing or testing this
+entry point does not start a probe. Its review and evidence guards are covered
+by eight tests; the partition checks also pass (25 tests together). A subsequent
+actual driving result is still required before claiming basic qualification.

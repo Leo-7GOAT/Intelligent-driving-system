@@ -1,5 +1,16 @@
 # Broader44 audited15/24FAILED; seed55RUNNING — 2026-11-02
 
+Future post-fit entry implemented: scripts/prepare_measured_actor_basic_probe.py.
+Requires ALL5fit completions plus hash-bound internal research review.json with
+decision probe_canonical22_on_four_existing_TRAIN_roads;do not fabricate a review
+before seeing fits. No user approval is needed for this authorized research.
+Canonical22fixed before fit outcomes;no best-seed choice. It stages4original
+TRAINroads with unchanged frozen direct policy and physical source,0PPOupdates,
+additional supervision disclosed. Currently no fit or probe has started.
+Review/changed-evidence guards plus partitions25PASS3.04s. Source5832613
+hostedCI41403030388SUCCESS. This entry still requires actual future model/data
+preflight before driving;unit checks are not a native qualification result.
+
 Recovered44 is complete/owned-cleaned/audited:11520saved+8960resumed=20480
 actuallearning controls;360+280=640Adamsteps in all35states. Child raw19577
 plus original11520=31097controls verified. Endpoint15/24:curve6/8,static4/8,
