@@ -1,0 +1,49 @@
+{
+  "version": "broader_measured_actor_v1",
+  "created_utc": "2026-11-02T06:19:20.150913+00:00",
+  "workspace": ".",
+  "parents": [
+    {
+      "seed": 11,
+      "batch": "runs/20261102T044003693349Z_native_broader_B1_seed11"
+    },
+    {
+      "seed": 22,
+      "batch": "runs/20261101T131830295783Z_native_B1_broader_shared_parking_PPO"
+    },
+    {
+      "seed": 33,
+      "batch": "runs/20261102T044004346066Z_native_broader_B1_seed33"
+    },
+    {
+      "seed": 44,
+      "batch": "runs/20261102T044004788200Z_native_broader_B1_seed44"
+    },
+    {
+      "seed": 55,
+      "batch": "runs/20261102T044005159056Z_native_broader_B1_seed55"
+    }
+  ],
+  "teacher_execution": "runs/B3_broader_TRAIN_teacher_execution_v3_20261102",
+  "dependency": {
+    "pid": 62248,
+    "executable": "python.exe",
+    "creation_epoch": 1793598290.76
+  },
+  "teacher_batch": "20261102T053259603507Z_native_B3_broader_TRAIN_teacher",
+  "script_sha256": "e00753745c4fa849bbbe9ecd5cba7dd4d97c724f471d6bf9de22daaf9c64599e",
+  "steps": 1024,
+  "learning_rate": 0.0001,
+  "maximum_fit_wall_seconds_each": 600,
+  "maximum_total_wall_seconds": 43200,
+  "automatic_retries": 0,
+  "supervision": "Only successful TRAIN teacher episodes; all36case outcomes retained. No VAL/final labels or teacher value targets.",
+  "holdout": "Original every-fifth-frame correlated diagnostic; no gradient or checkpoint selection.",
+  "frozen": "Each fixed final independent51200-control model; retain critic/log_std/PPOAdam/counters/RMS/RNG. Actor-only extra supervision,not PPO.",
+  "native_rollouts_started": 0,
+  "model_fitting_started": false,
+  "followup": "No automatic native promotion. Review allfive fits before a separately registered learned-policy driving experiment.",
+  "research_acceptance": "UNMET",
+  "runtime_registration_sha256": "d7acc39d4feee2f6e35779fa16a297c401238423d314dee7514417eb568a3cc0",
+  "public_path_scope": "Host-specific workspace/interpreter paths removed;actual local identity remains in the hash-bound runtime registration. This public copy is evidence,not an executable bound fit plan."
+}

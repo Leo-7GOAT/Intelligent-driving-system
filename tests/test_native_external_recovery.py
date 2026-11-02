@@ -72,13 +72,15 @@ def test_external_absence_rejects_stale_live_or_changed_records(tmp_path,monkeyp
     with pytest.raises(ValueError):verified_interruption(tmp_path)
 
 
-@pytest.mark.parametrize('fault',[None,'wrong_error','exit_zero','live','wrong_worker','wrong_server','unclean'])
-def test_completed_training_disk_stop_requires_exact_failure_and_owned_absent_processes(tmp_path,monkeypatch,fault):
+@pytest.mark.parametrize('guard_reason',[None,'disk_below_12GiB'])
+@pytest.mark.parametrize('fault',[None,'wrong_error','wrong_reason','exit_zero','live','wrong_worker','wrong_server','unclean'])
+def test_completed_training_disk_stop_requires_exact_failure_and_owned_absent_processes(tmp_path,monkeypatch,fault,guard_reason):
     fixture(tmp_path,monkeypatch)
-    final={'reason':None,'exit_code':1,'worker_pid':12341}
+    final={'reason':guard_reason,'exit_code':1,'worker_pid':12341}
     stop={'status':'owned_empty_server_stopped','shipping_pid':12344,'post_stop_tcp':[],'post_stop_udp':[]}
     failure={'error':"RuntimeError('Disk below12GiB')"}
     if fault=='wrong_error':failure['error']="RuntimeError('arbitrary learner bug')"
+    elif fault=='wrong_reason':final['reason']='unrecognized_guard_failure'
     elif fault=='exit_zero':final['exit_code']=0
     elif fault=='live':monkeypatch.setattr('navstack.process_lease.pid_alive',lambda pid:True)
     elif fault=='wrong_worker':final['worker_pid']=12399

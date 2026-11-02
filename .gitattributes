@@ -106,3 +106,10 @@ protocols/native_B3_broader_TRAIN_teacher_20261102.json -text -whitespace
 reports/native_B1_broader_seed11_20261102.json -text -whitespace
 reports/native_B1_broader_seed33_20261102.json -text -whitespace
 reports/native_decision_timing_CPU_20261102.json -text -whitespace
+protocols/native_B1_broader_measured_actor_20261102.json -text -whitespace
+reports/native_B1_broader_measured_actor_preflight_20261102.json -text -whitespace
+protocols/native_B1_broader_measured_actor_v2_20261102.json -text -whitespace
+protocols/native_B1_broader_disk_recovery_20261102.json -text -whitespace
+reports/native_B1_broader_seed44_interruption_20261102.json -text -whitespace
+reports/verified_artifact_relocation_20261102.json -text -whitespace
+reports/native_broader_measured_actor_CPU_20261102.json -text -whitespace

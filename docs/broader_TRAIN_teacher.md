@@ -1,7 +1,7 @@
 # Broad TRAIN-only teacher preparation
 
-The new flat-PPO development courses remain below the target: seed22 is 7/24
-and seed11 11/24 on known validation conditions. Extra supervision is a separate
+The new flat-PPO development courses remain below the target: seed22 is 7/24,
+seed11 and seed33 each 11/24 on known validation conditions. Extra supervision is a separate
 development intervention to investigate, not an established fix or PPO gain.
 
 Existing H/H0 TRAIN trajectories were checked as a way to avoid new collection.
@@ -58,3 +58,38 @@ caught it and it is blocked as abandoned. A wait-only observer was replaced
 before dispatch while checking the parking-history hypothesis. No active CARLA
 worker was stopped, and the valid replacement physical protocol is unchanged.
 [Current process identities and execution paths](handoff.md).
+
+The separate actor-fit observer is now registered and waiting for this teacher
+and its direct views to finish successfully. It then uses every fixed final
+broader B1 endpoint (all five seeds, including the failed basic gates), with
+1,024 auxiliary Adam steps each at learning rate 0.0001. Successful TRAIN
+teacher episodes supply case-balanced action labels; failed teacher episodes
+remain in the source inventory and are excluded from fitting by the fixed rule.
+Every core family must have successful teacher coverage. The original
+every-fifth-frame split remains a correlated fit diagnostic, with no holdout
+gradients or checkpoint selection. Teacher returns are never value targets.
+
+Only actor weights change. Critic, exploration, PPO optimizer and counters,
+observation RMS and checkpoint RNG bytes are retained. No native driving or PPO
+updates are launched by this observer. All five fit results must be reviewed
+before a separately registered learned-policy experiment. The fit has a
+600-second CPU limit per seed, a 12-hour overall dependency/fit limit and no
+automatic retry. [Original fixed registration](../protocols/native_B1_broader_measured_actor_20261102.json).
+
+The original broader queue stopped when seed44 reached the disk protection
+threshold. Both wait-only downstream observers stopped before dispatch; no
+teacher controls or actor fits occurred. After verified artifact relocation,
+seed44 resumes its remaining 8,960 controls from the saved 11,520-control model.
+The untouched seed55 follows. Replacement teacher and fit observers wait on this
+explicit recovery queue; the teacher physical protocol and actor-fit budget are
+unchanged. The fit uses seed44's fixed recovered final endpoint and retains the
+interruption disclosure. [Current fit registration](../protocols/native_B1_broader_measured_actor_v2_20261102.json),
+[recovery registration](../protocols/native_B1_broader_disk_recovery_20261102.json).
+
+```powershell
+python scripts/teach_broader_b1_cohort.py --output <fresh-execution-directory>
+python scripts/teach_broader_b1_cohort.py --output <same-execution-directory> --run
+```
+
+These commands require the existing registered local cohort and teacher jobs;
+they are not a replacement for the public frozen-model reproduction workflow.

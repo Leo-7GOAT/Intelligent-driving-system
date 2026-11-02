@@ -1,4 +1,4 @@
-# Current acceptance audit — 2026-11-01
+# Current acceptance audit — 2026-11-02
 
 **Overall acceptance: UNMET.** This table supersedes the historical snapshots
 below. Training/evaluation on known development conditions does not satisfy the
@@ -8,14 +8,14 @@ independent final-confirmation requirement.
 |---|---|---|
 | Real PPO → goal/speed → Hybrid A* → trajectory → MPC → CARLA feedback | Five completed native H/H0 training pairs and per-frame raw audits; public reproduction of models, updates and controls | Engineering chain executed |
 | Five healthy, sufficiently trained flat baselines | All five new basic courses complete: 3/4,4/4,4/4,4/4,3/4; two bounds failures, only three gates pass. 51,200 retained learning controls,1,599 Adam steps; fifth seed explicitly recovered | Not achieved |
-| Full-task B1 and fair H/B1 comparison | Broader canonical22 course:20,480 new actual controls,630 Adam updates,7/24 known VAL successes (5/8,0/8,2/8),11 bounds/five collisions/one deadline. 31,480 controls audited; local independent source rebuild exact. Other four courses pending | Not achieved |
+| Full-task B1 and fair H/B1 comparison | Broader seeds22/11/33 finish at7/24,11/24,11/24 known VAL successes; each adds20,480 actual PPO controls. All three fail the development screen. Seeds44/55 remain pending. Uniform TRAIN teacher collection and separate actor-only fitting are queued; no improvement is established | Not achieved |
 | H gain ≥10 percentage points over healthy B1, paired 95% lower bound >0, or prospectively locked efficiency alternative | No qualified full-task five-seed B1 comparison | Unproven |
 | Added PPO value against shared strong B3 | Teacher-only H 117/120 vs PPO H 120/120; +2.50 points, 95% interval [−2.13, +7.13]. Strong B3 24/24 | Unproven |
 | Interpretable collaboration improvement | H 120/120 vs H0 119/120; +0.83 points, 95% interval [−1.48, +3.15] | Stable gain unproven |
 | Lightweight ≥85% overall / ≥75% per core; CARLA ≥80% / ≥70%; unsafe episodes ≤5% | No new final confirmation. The separate B1 different-road development probe is 58.33% successful and 41.67% collision-or-bounds | Final targets unverified; B1 development result below targets |
 | ≥120 new unique paired final conditions, ≥30 per core and unseen conditions | Current H/H0 study reuses 24 known conditions across five seeds. New final set remains untouched | Not achieved |
 | B2, frequency, shared-safety and fixed-reference evidence | Existing H/B2 study retains a bridge-initialization confound; fixed-reference MPC and pursuit/PI each 4/4; complete fair cohorts remain missing | Partial |
-| Reproducible public delivery | Published frozen models/raw logs/figures independently rebuilt. Source a78d9fa hosted CPU CI: 1,110 passed, 18 skipped, four deselected | Development reproduction delivered; final withheld |
+| Reproducible public delivery | Published frozen models/raw logs/figures independently rebuilt. Complete-decision timing source f938d1e passes hosted CI and local CPU regression (1,130 passed, one skipped, four CARLA tests excluded). Later actor-fit code has separate validation | Development reproduction delivered; final withheld |
 
 Evidence: [basic seed 11](../reports/native_B1_shared_parking_cohort_seed11_20261101.json),
 [22](../reports/native_B1_shared_parking_cohort_seed22_20261101.json),
@@ -26,7 +26,9 @@ Evidence: [basic seed 11](../reports/native_B1_shared_parking_cohort_seed11_2026
 [H/H0 statistics](../reports/native_matched_broader_feedback_cohort_20261101.json),
 [PPO attribution](../reports/native_broader_PPO_teacher_rule_attribution_20261101.json),
 [public reproduction](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json),
-[source-specific CPU CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41311458724).
+[source-specific CPU CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41398581059),
+[broader seed33](../reports/native_B1_broader_seed33_20261102.json),
+[TRAIN teacher and actor-fit scope](broader_TRAIN_teacher.md).
 
 The shared terminal helper is engineering assistance, disclosed separately from
 learned decisions. Decision-cycle overruns remain; synchronous execution is not

@@ -1,0 +1,54 @@
+{
+  "actual_frozen_policy_imports": [
+    {
+      "parent": "20261102T044003693349Z_native_broader_B1_seed11",
+      "actor_parameters": 21,
+      "critic_parameters": 14,
+      "RMS_count": 3467.0001,
+      "source_import_verified": true,
+      "new_optimizer_steps": 0,
+      "seed": 11
+    },
+    {
+      "parent": "20261101T131830295783Z_native_B1_broader_shared_parking_PPO",
+      "actor_parameters": 21,
+      "critic_parameters": 14,
+      "RMS_count": 3467.0001,
+      "source_import_verified": true,
+      "new_optimizer_steps": 0,
+      "seed": 22
+    },
+    {
+      "parent": "20261102T044004346066Z_native_broader_B1_seed33",
+      "actor_parameters": 21,
+      "critic_parameters": 14,
+      "RMS_count": 3467.0001,
+      "source_import_verified": true,
+      "new_optimizer_steps": 0,
+      "seed": 33
+    },
+    {
+      "parent": "20261102T044004788200Z_native_broader_B1_seed44",
+      "actor_parameters": 21,
+      "critic_parameters": 14,
+      "RMS_count": 3467.0001,
+      "source_import_verified": true,
+      "new_optimizer_steps": 0,
+      "seed": 44
+    },
+    {
+      "parent": "20261102T044005159056Z_native_broader_B1_seed55",
+      "actor_parameters": 21,
+      "critic_parameters": 14,
+      "RMS_count": 3467.0001,
+      "source_import_verified": true,
+      "new_optimizer_steps": 0,
+      "seed": 55
+    }
+  ],
+  "targeted_tests_passed": 31,
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "new_auxiliary_steps": 0,
+  "limits": "44/55 preflight uses saved independent basic parent architecture;fixed final broader endpoints rechecked before actual fitting."
+}

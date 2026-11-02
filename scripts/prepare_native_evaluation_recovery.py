@@ -72,7 +72,7 @@ def verified_interruption(parent):
     final=parent/'guard_final.json'
     if final.exists():
         guard=read(final)
-        disk_stop = (guard.get('reason') is None and type(guard.get('exit_code')) is int
+        disk_stop = (guard.get('reason') in (None, 'disk_below_12GiB') and type(guard.get('exit_code')) is int
                      and guard['exit_code'] == 1 and (parent/'failure.json').is_file()
                      and read(parent/'failure.json').get('error') == "RuntimeError('Disk below12GiB')")
         actor_stop=(guard.get('reason') is None and type(guard.get('exit_code')) is int

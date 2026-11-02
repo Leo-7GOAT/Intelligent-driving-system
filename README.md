@@ -30,6 +30,8 @@ A measured-input diagnosis confirms that feedback reaches H: hiding both feedbac
 
 Before seeing seed22's validation results, the other four seeds were registered for the same additional 20,480-control broader course. Seed11 and33 are now complete at11/24each;seed44 is running and55 follows serially. [Prospective four-course registration and limits](docs/broader_B1_cohort.md). The complete five-seed broader result remains pending. The seed22 audit also reconstructs field-for-field from an independent checkout using local data. [Verification receipt](reports/native_B1_broader_seed22_independent_verification_20261102.json).
 
+Seed44 hit disk protection after 11,520 saved controls; it now resumes only the remaining 8,960 from the exact model/Adam/RMS/RNG checkpoint. Completed old artifacts were hash-verified and relocated to D while retaining their original paths. The interruption and replacement downstream queues are explicit. [Recovery evidence](reports/native_B1_broader_seed44_interruption_20261102.json).
+
 The parking aid requests physical braking only inside the unchanged goal pose gates while overspeed; it changes neither steering nor vehicle state. It releases before success can be accepted. H/H0/B1/B2/B3 can share the same version. Every override is recorded. [Implementation and experiments](docs/shared_parking.md).
 
 A separate [TRAIN-only teacher collection](docs/broader_TRAIN_teacher.md) is queued after the locked cohort to investigate broader direct-control supervision. Old H/H0 training-data reuse fails the strict full-coverage preflight (31/36); no labels or models were produced. The queued collection uses the unchanged strong B3 configuration on all36TRAINconditions and introduces no validation/final data or automatic model fitting.

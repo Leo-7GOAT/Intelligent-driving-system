@@ -41,7 +41,9 @@
     "replacement_physical_preparation": "20261102T053259603507Z_native_B3_broader_TRAIN_teacher",
     "stopped_wait_only_observer": "execution_v2:stoppedbeforeanydispatchwhilechecking parking-history hypothesis;noCARLAprocesses touched",
     "parking_history_hypothesis": "Rejected by direct replay test;production view helper unchanged",
-    "active_observer_execution": "runs/B3_broader_TRAIN_teacher_execution_v3_20261102"
+    "active_observer_execution": "runs/B3_broader_TRAIN_teacher_execution_v4_20261102",
+    "v3_waiter_stopped": "Upstream broader seed44 disk guard;no teacher dispatch or labels.",
+    "dependency_execution": "runs/B1_broader_disk_recovery_execution_20261102"
   },
   "tests": {
     "targeted_passed": 34,

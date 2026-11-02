@@ -1,0 +1,50 @@
+{
+  "version": "broader_measured_actor_v1",
+  "created_utc": "2026-11-02T06:34:22.890745+00:00",
+  "workspace": ".",
+  "parents": [
+    {
+      "seed": 11,
+      "batch": "runs/20261102T044003693349Z_native_broader_B1_seed11"
+    },
+    {
+      "seed": 22,
+      "batch": "runs/20261101T131830295783Z_native_B1_broader_shared_parking_PPO"
+    },
+    {
+      "seed": 33,
+      "batch": "runs/20261102T044004346066Z_native_broader_B1_seed33"
+    },
+    {
+      "seed": 44,
+      "batch": "runs/20261102T063246381418Z_native_broader_B1_seed44_recovery"
+    },
+    {
+      "seed": 55,
+      "batch": "runs/20261102T044005159056Z_native_broader_B1_seed55"
+    }
+  ],
+  "teacher_execution": "runs/B3_broader_TRAIN_teacher_execution_v4_20261102",
+  "dependency": {
+    "pid": 57848,
+    "executable": "python.exe",
+    "creation_epoch": 1793601232.912
+  },
+  "teacher_batch": "20261102T053259603507Z_native_B3_broader_TRAIN_teacher",
+  "script_sha256": "e00753745c4fa849bbbe9ecd5cba7dd4d97c724f471d6bf9de22daaf9c64599e",
+  "steps": 1024,
+  "learning_rate": 0.0001,
+  "maximum_fit_wall_seconds_each": 600,
+  "maximum_total_wall_seconds": 43200,
+  "automatic_retries": 0,
+  "supervision": "Only successful TRAIN teacher episodes; all36case outcomes retained. No VAL/final labels or teacher value targets.",
+  "holdout": "Original every-fifth-frame correlated diagnostic; no gradient or checkpoint selection.",
+  "frozen": "Each fixed final independent51200-control model; retain critic/log_std/PPOAdam/counters/RMS/RNG. Actor-only extra supervision,not PPO.",
+  "native_rollouts_started": 0,
+  "model_fitting_started": false,
+  "followup": "No automatic native promotion. Review allfive fits before a separately registered learned-policy driving experiment.",
+  "research_acceptance": "UNMET",
+  "runtime_registration_sha256": "4bc7eb6e36ea699fafb0ca314bbd55f0d2cfbf69d1bda428ecc8b20c7d093c66",
+  "public_path_scope": "Host paths removed. Actual local identity stays in the hash-bound runtime registration. Evidence only,not an executable bound plan.",
+  "replacement_reason": "First wait-only actor observer stopped because the original broader queue and its teacher dependency stopped on disk protection;zero fitting/teacher controls. Same fit budget,now includes recovered44endpoint."
+}

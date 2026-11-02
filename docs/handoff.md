@@ -1,3 +1,51 @@
+# Seed44 disk recovery running; replacement downstream queues active — 2026-11-02
+
+Current original broader results: seed22 7/24, seed11 11/24, seed33 11/24;
+all fail the development screen. No full five-seed or final acceptance claim.
+The original seed44 stopped on worker AND guard disk_below_12GiB, after saving
+11520 controls/360 Adam updates in all35 states. All11520 actual frame/engine
+ack joins verified; original logs complete, unknown-unflushed-tail flag retained.
+Original observer22416 and waiters62248/41192 ended, with zero teacher/fitting
+controls. Do not restart those executions.
+
+Completed12old project artifact directories (19273 files,6.042GiB) were copied
+to the D-drive task archive, every SHA256 checked, then replaced at their original
+paths with junctions. C free recovered to22.35GiB. NEVER recursively delete/move
+these junctions or the existing prerelease_20261022 junction as ordinary folders.
+Receipt: reports/verified_artifact_relocation_20261102.json.
+
+ACTIVE recovery coordinator16540/toolsession92056:
+runs/B1_broader_disk_recovery_execution_20261102.
+Child44:20261102T063246381418Z_native_broader_B1_seed44_recovery,
+worker66672 creation1793601202.054; remaining8960controls ONLY, then untouched55.
+Model/RMS/RNG checkpoint bytes exact; source391files and physical modules unchanged.
+Actual resume_event confirms saved RNG, lineage42240, retainedAdam1008.
+New measured episode required, not an uninterrupted replicate.
+New analyzer reports the8960segment and its explicit11520prefix separately;
+never call8960newcontrols a full20480new-controls segment.
+
+ACTIVE teacher waiter57848/toolsession8237:
+runs/B3_broader_TRAIN_teacher_execution_v4_20261102.
+Same unstarted physical teacher batch20261102T053259603507Z_native_B3_broader_TRAIN_teacher;
+only observer dependency changed to the exact new recovery coordinator.
+ACTIVE actor-fit waiter63032/toolsession44078:
+runs/B1_broader_measured_actor_execution_v2_20261102.
+After successful teacher/views, all5fixed final51200lineage models receive1024
+separate actor Adam steps each,LR1e-4,balanced successful TRAINcases only.
+All36teacher outcomes retained;all3families require successful coverage.
+No teacher returns used. Critic/log_std/PPOAdam/counters/RMS/RNG retained.
+Correlated every-fifth-control holdout excluded from gradients. No automatic
+native promotion or added PPO claim; review all5fits before registering rollout.
+
+Full CPU before subsequent recovery orchestration edits:1141pass,1skip,4CARLA
+excluded,270.88s. Later targeted regression77pass7.66s; additional recovery
+budget integrity tests7pass6.02s. Original seed22 full audit rebuilt exactly
+apart from executed script identity. Reports/native_broader_measured_actor_CPU_20261102.json.
+Root recovery predicate now also accepts matching worker+guard disk stop only
+with exact failure and verified absent owned processes/empty server.49guardtests
+pass; unrelated reasons/live/unclean/mismatched failures remain rejected.
+F938d1e hostedCI41398581059 SUCCESS. Current recovery/fit additions have the separate targeted checks above; inspect hosted CI at the current branch head.
+
 # Broader33 audited11/24FAILED;44RUNNING; full CPU1130PASS — 2026-11-02
 
 Seed33completed20480newactualPPOcontrols,619Adamsteps inall35states;

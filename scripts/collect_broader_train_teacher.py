@@ -87,6 +87,7 @@ def run(output):
     if (output / 'started.json').exists():
         raise FileExistsError('Never relaunch a started teacher observer')
     registration = read(output / 'registration.json')
+    dependency = ROOT / 'runs' / registration['dependency_execution']
     if not read(output / 'validation.json')['frozen_import_and_launcher_verified']:
         raise ValueError('Actual frozen preflight is required')
     identity = read(output / 'dependency_identity.json')
@@ -123,8 +124,8 @@ def run(output):
                     raise TimeoutError('Dependency wait exhausted')
                 status('WAITING_FOR_EXACT_BROADER_B1_COHORT_EXIT')
                 time.sleep(10)
-            if ((DEPENDENCY / 'failure.json').exists()
-                    or read(DEPENDENCY / 'status.json')['phase'] != 'ALL_FOUR_ADDITIONAL_BROADER_COURSES_AUDITED'):
+            if ((dependency / 'failure.json').exists()
+                    or read(dependency / 'status.json')['phase'] != 'ALL_FOUR_ADDITIONAL_BROADER_COURSES_AUDITED'):
                 raise ValueError('Existing locked cohort must complete and be audited first')
             if sha(batch / 'protocol.json') != registration['protocol_sha256']:
                 raise ValueError('Unstarted teacher protocol changed')

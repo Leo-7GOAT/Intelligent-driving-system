@@ -1,0 +1,84 @@
+{
+  "scope": "Verified relocation of completed project artifacts to D drive; original paths retained as directory junctions. No evidence deleted.",
+  "directories": 12,
+  "files": 19273,
+  "bytes": 6487635714.0,
+  "all_file_SHA256_verified": true,
+  "original_paths_retained": true,
+  "local_receipt_sha256": "a92b6f94c488aef26c16161f0626b7fa6bc1145395003a2afb3043134da6ea9a",
+  "artifacts": [
+    {
+      "name": "20261022T060649Z_candidate_v12_development",
+      "files": 1264,
+      "bytes": 678538498.0,
+      "inventory_sha256": "dbb57f3a204828113e261b0bf5de4eb704d3bded3abf43731b9ee04d8fd5023f"
+    },
+    {
+      "name": "20261101T024615807894Z_native_PPO_camera",
+      "files": 1811,
+      "bytes": 668967753.0,
+      "inventory_sha256": "41dc7b68114fd9c51b24ccff63b6c0e0d7fb71502f77f95b1735e509630e48c0"
+    },
+    {
+      "name": "20261022T094729Z_carla_camera_evidence",
+      "files": 1482,
+      "bytes": 641643980.0,
+      "inventory_sha256": "a8ded180a58703b2b7abff8ffc13996bb7a5dfca65c88fe99ac3e8eab1f9aa64"
+    },
+    {
+      "name": "20261022T051509Z_hierarchy_v8_continuation",
+      "files": 1016,
+      "bytes": 599380474.0,
+      "inventory_sha256": "0f2b481838c12fbc1ff783e2197daca661b5af5804b272cc7e2af05f610bd36b"
+    },
+    {
+      "name": "20261022T095316Z_carla_camera_evidence",
+      "files": 1492,
+      "bytes": 578046039.0,
+      "inventory_sha256": "d9e39778723431a7a8960e8660ad815cc3abb67cb2085cfbbb8cae8b4eab5c1e"
+    },
+    {
+      "name": "20261024T075110Z_native_rollout_pair",
+      "files": 1614,
+      "bytes": 568360782.0,
+      "inventory_sha256": "307c969f4625b538c2ad0046a8dec1c74250a22f8f83463ec81268c7d3220c61"
+    },
+    {
+      "name": "20261022T042237Z_development_v6",
+      "files": 1304,
+      "bytes": 554931029.0,
+      "inventory_sha256": "7ea8e32ce596ac00f6e054109912e372aa84dd5850f0f87d97b57d9356caaa75"
+    },
+    {
+      "name": "20261022T051509Z_distance_v9_development",
+      "files": 1228,
+      "bytes": 513374801.0,
+      "inventory_sha256": "5508d0622d495b18cf9ff09bdc52a59720e4d5704c4b1123f0894b5b2a55e9ad"
+    },
+    {
+      "name": "prerelease_20261027",
+      "files": 4688,
+      "bytes": 511835003.0,
+      "inventory_sha256": "4a3870862ed61dc4d1f66f7ab5f0dd45be4533eb3cbf62bf4a99db6a6565c4d9"
+    },
+    {
+      "name": "20261022T110104Z_progress_v16_continuation",
+      "files": 1205,
+      "bytes": 455106111.0,
+      "inventory_sha256": "8dd6c2bc59060395c6a0b1ce64ee33d11e8841bad7728d3974bab0794a172275"
+    },
+    {
+      "name": "20261101T024611835234Z_native_PPO_camera",
+      "files": 1281,
+      "bytes": 365450201.0,
+      "inventory_sha256": "00ca26858f4dec427f407684d230c6e1403dd8bc7d0a1478492a75636c19ca8d"
+    },
+    {
+      "name": "20261023T012208Z_bounded_mean_pair",
+      "files": 888,
+      "bytes": 352001043.0,
+      "inventory_sha256": "51045d7d88c042be30ff7429a96a8bcb39f07002f8d528d66e509881302c7164"
+    }
+  ],
+  "limit": "Never recursively remove these junctions as ordinary directories. Original local receipt contains host paths and is not published."
+}

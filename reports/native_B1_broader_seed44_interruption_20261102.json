@@ -1,0 +1,73 @@
+{
+  "scope": "Original interrupted broader seed44;complete readable raw prefix and saved learning state only. No endpoint result fabricated.",
+  "protocol_sha256": "1b295cbf96eb97725c2b2b7ecddc116ef06d44837cd1492c5d42695d9bf50282",
+  "verified_controls": 11520,
+  "all_engine_controls_acknowledged": true,
+  "checkpoint_sha256": "0d43ab73f6c947fea6c74b8f6c22361fa9d4a905185a7dd4b5eb9cc9821dc835",
+  "bridge_streams": [
+    {
+      "name": "bridge_92134b2e_responses.jsonl.gz",
+      "sha256": "1b8eb801d981bd9124273954d5b8ac54bb942bd0875744efeda50b0f15ab23b2"
+    }
+  ],
+  "saved_Adam": {
+    "parameter_states": 35,
+    "step_increment_each": 360
+  },
+  "saved_controls": 11520,
+  "remaining_controls": 8960,
+  "unknown_unflushed_tail_retained": true,
+  "batch": "20261102T044004788200Z_native_broader_B1_seed44",
+  "guard_final": {
+    "epoch": 1793600754.9131572,
+    "worker_pid": 59908,
+    "exit_code": 1,
+    "reason": "disk_below_12GiB"
+  },
+  "worker_failure": {
+    "error": "RuntimeError('Disk below12GiB')",
+    "epoch": 1793600754.858159,
+    "completed_methods": []
+  },
+  "owned_cleanup_verified": true,
+  "interruption_audit_sha256": "55050b1695704324d1b1916c2a347f332ae4a61eaa614556d05d846c81e95441",
+  "prefix_receipt_sha256": "eb9cf32ff8c7f59a6cf0ef82bae41c3cdc94bcd443eb927159d5205408f759e8",
+  "recovery_batch": "20261102T063246381418Z_native_broader_B1_seed44_recovery",
+  "recovery_protocol_sha256": "f80994daea83b107ef4c0f6f4169a4fe8cbff647b3ba75e1af7d05814e623b32",
+  "recovery_status": "RUNNING_NOT_AUDITED",
+  "low_level_and_worker_source_bytes_unchanged": true,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "model_normalization_RNG_bytes_exact": true,
+  "strict_engine_pedals_gears_manual_handbrake_reverse_audit": {
+    "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+    "batch": "20261102T044004788200Z_native_broader_B1_seed44",
+    "protocol_sha256": "1b295cbf96eb97725c2b2b7ecddc116ef06d44837cd1492c5d42695d9bf50282",
+    "control_delivery": "batch_sync_v1",
+    "bridge_streams": [
+      {
+        "name": "bridge_92134b2e_responses.jsonl.gz",
+        "sha256": "1b8eb801d981bd9124273954d5b8ac54bb942bd0875744efeda50b0f15ab23b2"
+      }
+    ],
+    "tolerance": 1e-05,
+    "counts": {
+      "controls": 11520,
+      "gear_or_handbrake_mismatches": 0,
+      "missing_or_negative_sync_ack": 0
+    },
+    "mismatch_channels": {},
+    "by_phase": {
+      "training_or_untraced_failure": {
+        "controls": 11520
+      }
+    },
+    "mismatch_examples": [],
+    "all_engine_controls_match_requested": true,
+    "strict_delivery_gate_passed": true,
+    "new_controls": 0,
+    "new_optimizer_updates": 0,
+    "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+  },
+  "strict_delivery_audit_sha256": "93b4a8fcbdd5acfcbd21ca0fea1bfa57b330afb602abd6b1e9205c8340e32572"
+}

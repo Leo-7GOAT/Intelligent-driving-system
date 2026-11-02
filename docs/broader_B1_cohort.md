@@ -54,3 +54,12 @@ model from the earlier 14/24 probe, so no causal gain or regression is computed.
 
 [Separate TRAIN-only teacher preparation](broader_TRAIN_teacher.md) is queued
 after this locked cohort. It does not change these courses or their outcome rules.
+
+Seed44 subsequently stopped at the disk guard, saving11,520actualcontrols and
+360Adamsteps in all35states. All11,520frame/engine joins verify. Its explicit
+child resumes only8,960remainingcontrols with unchanged source and saved
+model/optimizer/RMS/RNG;55remains the original unstarted course. This is a
+recovered course,not an uninterrupted replicate. Completed old artifacts were
+relocated with complete SHA256 verification to restore disk headroom.
+[Interruption evidence](../reports/native_B1_broader_seed44_interruption_20261102.json),
+[recovery registration](../protocols/native_B1_broader_disk_recovery_20261102.json).

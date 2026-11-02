@@ -24,11 +24,26 @@ def analyze(batch):
     require_finished_parent(batch)
     p = read(batch / 'protocol.json')
     spec = p['broader_B1_PPO']
+    budget = spec['new_actual_PPO_controls']
+    recovery = p.get('broader_course_recovery')
+    if budget != 20480:
+        if (not recovery or type(budget) is not int or not 0 < budget < 20480
+                or recovery['saved_original_controls'] + budget != 20480
+                or recovery['resumed_controls'] != budget):
+            raise ValueError('A reduced segment requires an explicit original-budget recovery')
+        parent = batch.parent / p['parent_batch']
+        prefix = read(parent / 'verified_saved_prefix.json')
+        if (sha(parent / 'verified_saved_prefix.json') != recovery['saved_prefix_sha256']
+                or prefix['saved_controls'] != recovery['saved_original_controls']
+                or prefix['verified_controls'] < prefix['saved_controls']
+                or prefix['all_engine_controls_acknowledged'] is not True
+                or sha(parent / 'protocol.json') != recovery['original_protocol_sha256']):
+            raise ValueError('Original saved controls lack hash-bound physical evidence')
     folder = batch / 'B1'
     raw, summary, evaluation = (read(folder / n) for n in ('endpoint_raw_audit.json', 'summary.json', 'evaluation.json'))
     starts = read(folder / 'measured_start_inference.json')
-    if (summary['physics_steps'] != 20480 or summary['stopped_reason'] is not None
-            or raw['training_control_frames_verified'] != 20480 or raw['protocol_sha256'] != sha(batch / 'protocol.json')
+    if (summary['physics_steps'] != budget or summary['stopped_reason'] is not None
+            or raw['training_control_frames_verified'] != budget or raw['protocol_sha256'] != sha(batch / 'protocol.json')
             or len(p['native_case_manifest']['cases']) != 36 or len(p['native_validation']['manifest']['cases']) != 24
             or sorted(e['case_id'] for e in evaluation['episodes']) != list(range(24))
             or sorted(e['case_id'] for e in starts['results']) != list(range(24))
@@ -41,7 +56,7 @@ def analyze(batch):
         raise ValueError('Registered learned endpoints changed')
     initial = load_ppo(batch / 'resume/B1/model.zip', device='cpu')
     final = load_ppo(folder / 'model.zip', device='cpu')
-    if final.num_timesteps - initial.num_timesteps != 20480:
+    if final.num_timesteps - initial.num_timesteps != budget:
         raise ValueError('Actual PPO counter differs')
     adam = adam_step_increments(initial.policy.optimizer.state_dict()['state'], final.policy.optimizer.state_dict()['state'], summary['optimizer_steps'])
     changed = {'actor': 0, 'critic': 0}
@@ -65,17 +80,17 @@ def analyze(batch):
     return {'scope': __doc__, 'script_sha256': sha(Path(__file__)), 'batch': batch.name,
         'protocol_sha256': sha(batch / 'protocol.json'), 'initial_model_sha256': spec['source_model_sha256'],
         'final_model_sha256': evaluation['model_sha256'], 'normalization_sha256': evaluation['normalization_sha256'],
-        'new_actual_PPO_controls': 20480, 'new_actual_Adam_steps': summary['optimizer_steps'],
+        'new_actual_PPO_controls': budget, 'new_actual_Adam_steps': summary['optimizer_steps'],
         'saved_Adam_proof': adam, 'changed_network_tensors': changed, 'observation_RMS_exact': True,
         'all_actual_control_frames_verified': raw['total_applied_controls_verified'], 'all_engine_controls_acknowledged': True,
-        'training_parking': training_parking_trace(batch, 20480), 'validation_parking': parking_trace(batch, list(range(24))),
+        'training_parking': training_parking_trace(batch, budget), 'validation_parking': parking_trace(batch, list(range(24))),
         'training_outcomes': raw['training_termination_reasons'], 'validation_successes': sum(e['success'] for e in evaluation['episodes']),
         'validation_cases': 24, 'validation_termination_counts': dict(Counter(e['termination_reason'] for e in evaluation['episodes'])),
         'by_core': {k: {'cases': len(v), 'successes': sum(e['success'] for e in v),
             'termination_counts': dict(Counter(e['termination_reason'] for e in v))} for k, v in groups.items()},
         'lineage_PPO_controls': summary['lineage_control_steps'], 'training_wall_seconds': summary['wall_seconds'],
         'measured_start_actions_verified': 24, 'new_final_conditions': 0,
-        'limits': spec['limits'], 'research_acceptance': 'UNMET'}
+        'limits': spec['limits'], **({'explicit_recovery': recovery} if recovery else {}), 'research_acceptance': 'UNMET'}
 
 
 if __name__ == '__main__':
