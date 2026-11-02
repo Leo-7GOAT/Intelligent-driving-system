@@ -118,3 +118,4 @@ reports/native_B1_broader_partial_cohort_20261102.json -text -whitespace
 reports/native_B1_broader_seed55_20261102.json -text -whitespace
 reports/native_B1_broader_complete_cohort_20261102.json -text -whitespace
 reports/native_B3_broader_TRAIN_teacher_collection_20261102.json -text -whitespace
+protocols/public_native_B1_broader_cohort_20261102.json -text -whitespace
