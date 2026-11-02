@@ -104,3 +104,5 @@ reports/native_B1_broader_seed22_independent_verification_20261102.json -text -w
 reports/native_broader_teacher_reuse_preflight_20261102.json -text -whitespace
 protocols/native_B3_broader_TRAIN_teacher_20261102.json -text -whitespace
 reports/native_B1_broader_seed11_20261102.json -text -whitespace
+reports/native_B1_broader_seed33_20261102.json -text -whitespace
+reports/native_decision_timing_CPU_20261102.json -text -whitespace

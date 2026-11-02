@@ -1,0 +1,18 @@
+{
+  "scope": "Local full CPU regression for complete decision-timing logging;not CARLA integration or driving-performance evidence.",
+  "command": "python -m pytest -q -m not carla --junitxml=<fresh-output.xml>",
+  "passed": 1130,
+  "skipped": 1,
+  "deselected_CARLA_tests": 4,
+  "wall_seconds": 200.67,
+  "python": "3.11.9",
+  "junit_sha256": "0825709384b860677a5caa2e7bbbff3c9dce5952c65c251656d359baa96e4e5e",
+  "tested_files": {
+    "scripts/native_road_learning.py": "5a61fa91a24e7d895311dafc11c3311d9e38db8b3129546da4d2ae96b6664387",
+    "tests/test_native_decision_timing.py": "c41c84efbc0c4ff0c7fe8d8bd1a68e8a90fcc20a11536cedf0d7ffa586f83b77",
+    "tests/test_measured_demo.py": "ea7c0fa916f9b6d00fb99d76971504b7ab0a2575a44bbc31ec41b4dd7b8c0a80"
+  },
+  "behavior": "Only future evaluation timing/logging changes;actions/observations/rewards/physical transitions unchanged. Existing frozen jobs untouched.",
+  "historical_timing_limit": "PPOdecision_cycle_times excludes prediction;not directly comparable to B3full_decision_times. No historical prediction times invented.",
+  "research_acceptance": "UNMET"
+}

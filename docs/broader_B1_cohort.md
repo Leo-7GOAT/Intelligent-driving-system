@@ -41,7 +41,10 @@ from-scratch learning, a budget-matched H/B1 comparison, an added-PPO effect,
 or final confirmation. Seed11 is now complete at11/24:curve4/8,static4/8,
 walkers3/8,with five deadlines,five bounds failures and three collisions.
 It also fails the development screen. [Complete audit](../reports/native_B1_broader_seed11_20261102.json).
-Seed33 is running;44/55follow.
+Seed33 also completes at11/24:curve6/8,static0/8,walkers5/8,seven bounds and six
+collisions. All29,621controls verify;619actualAdamupdates and unchangedRMS.
+[Complete seed33 audit](../reports/native_B1_broader_seed33_20261102.json).
+It fails the development screen. Seed44 is running;55follows.
 The full five-seed outcome remains pending. An independent source checkout
 reconstructs seed22's complete audit field-for-field using existing local data;
 its raw/model capsule has not yet been published. This uses a different initial

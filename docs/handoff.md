@@ -1,3 +1,33 @@
+# Broader33 audited11/24FAILED;44RUNNING; full CPU1130PASS — 2026-11-02
+
+Seed33completed20480newactualPPOcontrols,619Adamsteps inall35states;
+VAL11/24:curve6/8,static0/8,walker5/8;7bounds/6collisions. RMSexact,
+29621rawcontrols and24starts verified. Finalmodel
+b898c40fbaa2b7a27cbbca0a9139c5bfb3974d888888cb0fd6743680d66fbb0b.
+Copied unchanged autoaudit to reports/native_B1_broader_seed33_20261102.json.
+Completed broaderseeds22/11/33 are7/24,11/24,11/24,allFAILED. Noall-fiveclaim.
+Livecohort22416/toolsession54063 now44batch
+20261102T044004788200Z_native_broader_B1_seed44,worker59908atlaunch,
+creation2026-11-02T14:05:53.677+08:00. Then55. Teacherwaiter62248unchanged.
+Existing frozen workers remain oldtimingschema;newloggingisfutureonly.
+Full localCPU:1130PASS,1skip,4CARLAexcluded,200.67s. Receipt
+reports/native_decision_timing_CPU_20261102.json binds tested source hashes and
+JUnit runs/native_decision_timing_CPU_20261102.xml. No liveCARLAtestclaim.
+
+# Future PPO decision timing completed; frozen jobs unchanged — 2026-11-02
+
+Root scripts/native_road_learning.py now logs normalization+deterministicpredict
+and fullprediction+envstep times per decision,plus percaseP95/P99/max/overrun.
+HistoricalPPOdecision_cycle_times is ENV-only;B3full_decision_times includes
+ruleselection+envstep. Do not directlycomparethoseoldfields as full latency or
+claimPPOcomputevalue. No oldpredictiontimes filled. No primarymetric changed.
+Existing frozenPPO/teacher/observer sources unchanged;thisloggingapplies onlyto
+newlyprepared futureversions. Exactaction/once-onlypredict+step tests for both
+discrete/direct policies and partition/cohort/rule regression27PASS3.38s.
+Oneinitialpartitionoverlaystringcheck failed becausemetadata interrupted its
+scope/partition fragment;metadata moved afterpartition, originaltestunchanged
+andpass. No low-level/control/model changes. See docs/native_feedback_use.md.
+
 # Broader11 audited11/24FAILED; broader33 RUNNING; TRAIN teacher queued — 2026-11-02
 
 LIVE existingcohortobserver22416/toolsession54063 now seed33:

@@ -56,6 +56,29 @@ the complete report rebuilds exactly. No additional learning or driving occurs.
 python scripts/analyze_feedback_planning_concentration.py --output <fresh-report.json>
 ```
 
+## Decision timing has distinct scopes
+
+Historical PPO `decision_cycle_times` starts inside the environment and excludes
+normalization and policy prediction. B3's `full_decision_times` includes rule
+selection plus the environment step. Those fields cannot be directly compared
+as complete decision latency; no PPO compute advantage is established by that
+comparison. Missing historical prediction times are not reconstructed or filled.
+
+Newly prepared PPO evaluations now record `policy_prediction_seconds` (including
+normalization) and `full_decision_seconds` (prediction plus the complete environment
+step) per decision. Per-case `policy_prediction_times` and `full_decision_times`
+summarize count, median, P95, P99, max and over-period fraction at the actual
+configured decision period. Setup and trace serialization remain outside that
+scope, as in the rule evaluator. The old environment-only timing remains intact.
+
+This logging change does not change actions, physics, rewards, termination,
+training, or already frozen batches. Unit checks cover both discrete and direct
+continuous actions, exact single prediction/step invocation, preprocessing and
+full-decision boundaries. The related partition/cohort/rule suite passes 27 tests.
+Future measured timing still needs normal source/hardware/load disclosure; a
+timing field or synchronous simulator execution alone is not real-time validation
+or evidence of added PPO value.
+
 To reconstruct a per-method diagnostic from restored public cohort data:
 
 ```powershell

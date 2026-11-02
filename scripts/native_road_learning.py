@@ -29,7 +29,22 @@ from navstack.research import ResearchRecorder, resources_ok
 from navstack.research import atomic_json
 from navstack.independent_clip_ppo import IndependentClipPPO, load_ppo, GLOBAL_CLIP, INDEPENDENT_CLIP, actor_critic_parameters
 from navstack.planner_memo import configure_planner_memo
+from navstack.metrics import timing_summary
 from scripts.carla_steering_audit import guard
+
+
+def timed_policy_step(model, normalizer, env, observation, clock=None):
+    """Time normalization/prediction and the complete synchronous decision separately."""
+    clock = time.perf_counter if clock is None else clock
+    started = clock()
+    action, _ = model.predict(normalizer.normalize_obs(observation[None]), deterministic=True)
+    predicted = clock()
+    result = env.step(action[0])
+    finished = clock()
+    if not started <= predicted <= finished:
+        raise ValueError('Decision timing requires a monotonic clock')
+    return action, result, {'policy_prediction_seconds': predicted-started,
+                            'full_decision_seconds': finished-started}
 
 
 def prepare(parent, road_geometry_version="carla_driving_64_v1", controlled_budget=640, wall_seconds=900, episode_seconds=20, evaluate=False, feedback_ablation=False, road_candidate_policy=False):
@@ -571,15 +586,21 @@ def run(batch):
                             if record_camera:
                                 begin_frame=evaluation.plant.frame;camera_episode=client.episode_id
                             actions=0
+                            prediction_times, full_decision_times = [], []
                             while True:
                                 if actions%20==0:
                                     guard(batch,protocol)
                                     atomic_json(output/'evaluation_heartbeat.json',{'pid':os.getpid(),'epoch':time.time(),'case_id':case_id,'actions':actions})
-                                action,_=loaded.predict(vec.normalize_obs(obs[None]),deterministic=True)
-                                obs,_,done,truncated,info=evaluation.step(action[0]);actions+=1
-                                stream.write(json.dumps({"case_id":case_id,"policy_action":action[0],"info":info},default=jsonable)+"\n")
+                                action, step_result, decision_timing = timed_policy_step(loaded, vec, evaluation, obs)
+                                obs,_,done,truncated,info=step_result;actions+=1
+                                prediction_times.append(decision_timing['policy_prediction_seconds'])
+                                full_decision_times.append(decision_timing['full_decision_seconds'])
+                                stream.write(json.dumps({"case_id":case_id,"policy_action":action[0],"info":info,
+                                    **decision_timing},default=jsonable)+"\n")
                                 if done or truncated:
-                                    episodes.append({"case_id":case_id,**info["episode_metrics"]})
+                                    episodes.append({"case_id":case_id,**info["episode_metrics"],
+                                        'policy_prediction_times':timing_summary(prediction_times,config.decision_dt),
+                                        'full_decision_times':timing_summary(full_decision_times,config.decision_dt)})
                                     if record_camera:
                                         append_json(output/'episodes.jsonl',{'case_id':case_id,'case':case,
                                             'original_parent_case_id':protocol['native_camera_evaluation']['original_case_ids'][case_id],
@@ -600,6 +621,7 @@ def run(batch):
                         evaluation_scope='Frozen deterministic probes on registered geometry-separated development validation roads; zero updates,not final confirmation'
                     write_json(output/"evaluation.json",{"scope":evaluation_scope,
                         "partition":'validation' if protocol.get('native_validation') else 'development',
+                        'decision_timing_scope':'policy_prediction_times includes normalization and deterministic prediction;full_decision_times includes that plus the complete environment step. Historical decision_cycle_times remains environment-only. Excludes trace serialization and job setup.',
                         "episodes":episodes,"world_ticks":client.total_ticks-evaluation_ticks,
                         "model_sha256":hashlib.sha256((output/"model.zip").read_bytes()).hexdigest(),
                         "normalization_sha256":hashlib.sha256((output/"normalization.pkl").read_bytes()).hexdigest()})
