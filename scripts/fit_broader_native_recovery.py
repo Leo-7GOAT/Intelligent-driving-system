@@ -47,15 +47,16 @@ def run(collection, views, reference_config, output, profile='original'):
     from scripts.prepare_native_recovery import verified_checkpoint_metadata
     from navstack.config import EnvConfig
     require_finished_parent(collection)
-    if profile not in ('original','steering_v2'): raise ValueError('Unknown fixed fit profile')
-    recipe_file = ('protocols/native_B1_broader_executed_recovery_20261102.json' if profile=='original'
-                   else 'protocols/native_B1_broader_executed_recovery_steering_20261102.json')
+    profiles = {'original':('broader_executed_recovery_actor_v1','',.02,1024,1024),
+        'steering_v2':('broader_executed_recovery_actor_steering_v2','_steering',.01,1024,1024),
+        'convergence_v3':('broader_executed_recovery_actor_convergence_v3','_convergence',.02,7168,8192)}
+    if profile not in profiles: raise ValueError('Unknown fixed fit profile')
+    expected_version, suffix, steering_scale, steps, retained_steps = profiles[profile]
+    recipe_file = 'protocols/native_B1_broader_executed_recovery'+suffix+'_20261102.json'
     recipe_path = ROOT / recipe_file
     recipe = read(recipe_path)
-    expected_version = 'broader_executed_recovery_actor_v1' if profile=='original' else 'broader_executed_recovery_actor_steering_v2'
-    steering_scale = .02 if profile=='original' else .01
     if (recipe['version'] != expected_version or recipe['seed'] != 22
-            or recipe['steps'] != 1024 or recipe['learning_rate'] != 1e-4
+            or recipe['steps'] != steps or recipe['learning_rate'] != 1e-4
             or recipe.get('steering_scale',.02) != steering_scale
             or recipe['collection_batch'] != collection.name
             or recipe['collection_protocol_sha256'] != sha(collection / 'protocol.json')
@@ -113,6 +114,25 @@ def run(collection, views, reference_config, output, profile='original'):
         groups = np.r_[groups, recovery_groups]
         train = np.r_[train, recovery_train]; holdout = np.r_[holdout, recovery_holdout]
     torch.set_num_threads(1)
+    resume_adam = resume_sampler = None
+    if profile=='convergence_v3':
+        prior_fit = ROOT / recipe['resume_fit']
+        prior_registration, prior_result = read(prior_fit/'registration.json'), read(prior_fit/'complete.json')
+        for name, digest in recipe['resume_hashes'].items():
+            if sha(prior_fit/name) != digest: raise ValueError('Actual Adam/sampler/checkpoint resume input changed')
+        if (prior_registration['steering_scale'] if 'steering_scale' in prior_registration else .02) != .02:
+            raise ValueError('Convergence test resumes the original objective only')
+        if (prior_result['actual_Adam_step_each'] != [1024]
+                or prior_registration['collection_audit_sha256'] != sha(collection/'B1/collection_raw_audit.json')
+                or prior_registration['nominal_manifest_sha256'] != sha(views/'manifest.json')
+                or prior_registration['recovery_dataset_sha256'] != audit['dataset_sha256']):
+            raise ValueError('Resume must use identical data and completed1024-step actor state')
+        origin = prior_fit/'checkpoint'
+        metadata = verified_checkpoint_metadata(origin)
+        if metadata['model_sha256'] != recipe['source_model_sha256']:
+            raise ValueError('Fixed convergence parent differs')
+        resume_adam = torch.load(prior_fit/'auxiliary_Adam.pt',map_location='cpu',weights_only=True)
+        resume_sampler = read(prior_fit/'sampler_state.json')
     model = load_ppo(origin / 'model.zip', device='cpu')
     with (origin / 'normalization.pkl').open('rb') as stream: norm = pickle.load(stream)
     rms = pickle.dumps(norm.obs_rms)
@@ -120,13 +140,13 @@ def run(collection, views, reference_config, output, profile='original'):
     shutil.copy2(__file__, output / 'executed_fit.py'); shutil.copy2(helper_path, output / 'executed_helper.py')
     atomic_json(output / 'registration.json', dict(version=expected_version,
         recipe_sha256=sha(recipe_path), recipe_file=recipe_file, steering_scale=steering_scale,
-        seed=22, steps=1024, learning_rate=1e-4, collection=collection.name,
+        seed=22, steps=steps, retained_recovery_actor_steps=retained_steps, learning_rate=1e-4, collection=collection.name,
         collection_audit_sha256=sha(collection / 'B1/collection_raw_audit.json'),
         nominal_manifest_sha256=sha(views / 'manifest.json'), recovery_dataset_sha256=audit['dataset_sha256'],
         source_model_sha256=metadata['model_sha256'], source_normalization_sha256=metadata['normalization_sha256'],
-        inherited_measured_actor_steps=1024, new_PPO_updates=0, new_controls=0,
+        inherited_measured_actor_steps=1024+(retained_steps-steps), new_PPO_updates=0, new_controls=0,
         sampling='Equal total probability per successful nominal episode and each executed recovery episode. All36recoveryoutcomes included. Every fifth eligible recovery label held out;correlated diagnostic only.',
-        selection='One final1024step canonical22endpoint;no model selection or automatic promotion.',
+        selection='One fixed final canonical22endpoint;no model selection or automatic promotion.',
         source_hashes={n: sha(output / n) for n in ('executed_fit.py', 'executed_helper.py')}))
     started = time.monotonic()
     def health(row):
@@ -135,16 +155,17 @@ def run(collection, views, reference_config, output, profile='original'):
             raise RuntimeError('Bounded actor fit stopped: ' + str(reason))
         atomic_json(output / 'heartbeat.json', row)
     fitted, optimizer, sampler = helper.fit_actor(model, norm.normalize_obs(x), y, groups, train, holdout,
-        seed=22, steps=1024, callback=health, steering_scale=steering_scale)
+        seed=22, steps=steps, callback=health, steering_scale=steering_scale,
+        resume_optimizer=resume_adam, resume_sampler=resume_sampler)
     if pickle.dumps(norm.obs_rms) != rms: raise ValueError('Frozen RMS changed')
     destination = output / 'checkpoint'; shutil.copytree(origin, destination); model.save(destination / 'model.zip')
-    metadata.update(model_sha256=sha(destination / 'model.zip'), inherited_measured_actor_steps=1024,
-        additional_recovery_actor_steps=1024, cumulative_measured_actor_steps=2048,
+    metadata.update(model_sha256=sha(destination / 'model.zip'), inherited_measured_actor_steps=1024+(retained_steps-steps),
+        additional_recovery_actor_steps=steps, retained_recovery_actor_steps=retained_steps, cumulative_measured_actor_steps=1024+retained_steps,
         recovery_fit_registration_sha256=sha(output / 'registration.json'))
     atomic_json(destination / 'metadata.json', metadata); verified_checkpoint_metadata(destination)
     torch.save(optimizer.state_dict(), output / 'auxiliary_Adam.pt'); atomic_json(output / 'sampler_state.json', sampler)
     fitted.update(model_sha256=metadata['model_sha256'], new_controls=0, new_PPO_updates=0,
-        new_auxiliary_Adam_steps=1024, cumulative_measured_actor_steps=2048,
+        new_auxiliary_Adam_steps=steps, retained_recovery_actor_steps=retained_steps, cumulative_measured_actor_steps=1024+retained_steps,
         elapsed_seconds=time.monotonic() - started, research_acceptance='UNMET')
     atomic_json(output / 'complete.json', fitted)
     print(json.dumps({k: fitted[k] for k in ('model_sha256', 'new_auxiliary_Adam_steps', 'elapsed_seconds')}), flush=True)
@@ -155,5 +176,5 @@ if __name__ == '__main__':
     parser.add_argument('--collection', required=True); parser.add_argument('--views', required=True)
     parser.add_argument('--reference-config', required=True)
     parser.add_argument('--output', required=True)
-    parser.add_argument('--profile', choices=['original','steering_v2'], default='original')
+    parser.add_argument('--profile', choices=['original','steering_v2','convergence_v3'], default='original')
     args = parser.parse_args(); run(args.collection, args.views, args.reference_config, args.output, args.profile)

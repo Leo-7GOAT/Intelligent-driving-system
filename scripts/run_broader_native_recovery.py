@@ -30,7 +30,7 @@ def run(execution, completed_collection=False):
         raise FileExistsError('Never restart a launched continuation or repeat physical controls')
     registration = read(execution / 'registration.json')
     profile = registration.get('fit_profile','original')
-    if profile not in ('original','steering_v2'): raise ValueError('Unknown registered fixed fit profile')
+    if profile not in ('original','steering_v2','convergence_v3'): raise ValueError('Unknown registered fixed fit profile')
     batch = ROOT / 'runs' / registration['batch']
     if sha(batch / 'protocol.json') != registration['protocol_sha256']:
         raise ValueError('Registered collection protocol changed')
@@ -49,6 +49,7 @@ def run(execution, completed_collection=False):
              if p.is_file() and p.suffix in ('.py', '.ps1') and '__pycache__' not in p.parts]
     files.append(ROOT / 'protocols/native_B1_broader_executed_recovery_20261102.json')
     if profile=='steering_v2': files.append(ROOT / 'protocols/native_B1_broader_executed_recovery_steering_20261102.json')
+    if profile=='convergence_v3': files.append(ROOT / 'protocols/native_B1_broader_executed_recovery_convergence_20261102.json')
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in files}
     atomic_json(execution / 'continuation_source_manifest.json', hashes)
     atomic_json(execution / 'continuation_started.json', dict(pid=os.getpid(), epoch=time.time(),

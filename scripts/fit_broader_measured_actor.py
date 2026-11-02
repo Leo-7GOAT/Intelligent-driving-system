@@ -74,12 +74,12 @@ def validated_arrays(dataset, manifest, families):
 
 
 def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
-              steps=1024, callback=None, steering_scale=.02):
+              steps=1024, callback=None, steering_scale=.02, resume_optimizer=None, resume_sampler=None):
     """Case-balanced actor gradients; correlated holdout never enters gradients."""
     import numpy as np
     import torch
     from navstack.independent_clip_ppo import actor_critic_parameters
-    if type(steps) is not int or not 1 <= steps <= 1024:
+    if type(steps) is not int or not 1 <= steps <= 8192:
         raise ValueError('Actor teaching requires a bounded optimizer budget')
     if steering_scale not in (.01, .02):
         raise ValueError('Require a separately registered original or steering-focused objective')
@@ -104,9 +104,6 @@ def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
     flags = [p.requires_grad for p in model.policy.parameters()]
     training = model.policy.training
     fitted_ids = set(map(id, fitted))
-    for p in model.policy.parameters():
-        p.requires_grad_(id(p) in fitted_ids)
-    model.policy.set_training_mode(False)
     x = torch.as_tensor(inputs, dtype=torch.float32, device=model.device)
     y = torch.as_tensor(labels, dtype=torch.float32, device=model.device)
     scales = x.new_tensor([.1, steering_scale])
@@ -118,7 +115,20 @@ def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
         weights[keep] = 1 / (len(unique) * keep.sum())
     rng = np.random.default_rng(seed)
     optimizer = torch.optim.Adam(fitted, lr=1e-4)
+    inherited_steps = 0
+    if (resume_optimizer is None) != (resume_sampler is None):
+        raise ValueError('Resume requires both actual Adam moments and sampler state')
+    if resume_optimizer is not None:
+        optimizer.load_state_dict(resume_optimizer)
+        previous = {int(v['step']) for v in optimizer.state.values()}
+        if len(optimizer.state) != len(fitted) or len(previous) != 1 or min(previous) <= 0:
+            raise ValueError('Require complete actual actor Adam state')
+        inherited_steps = previous.pop()
+        rng.bit_generator.state = resume_sampler
     history = []
+    for p in model.policy.parameters():
+        p.requires_grad_(id(p) in fitted_ids)
+    model.policy.set_training_mode(False)
     try:
         for step in range(1, steps + 1):
             selected = rng.choice(indices, 256, replace=True, p=weights)
@@ -131,7 +141,7 @@ def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
             torch.nn.utils.clip_grad_norm_(fitted, .5, error_if_nonfinite=True)
             optimizer.step()
             if step == 1 or step % 128 == 0 or step == steps:
-                row = dict(auxiliary_steps=step, teacher_scaled_MSE=float(loss.detach()))
+                row = dict(auxiliary_steps=inherited_steps+step, teacher_scaled_MSE=float(loss.detach()))
                 history.append(row)
                 if callback:
                     callback(row)
@@ -140,7 +150,7 @@ def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
                 or any(not torch.equal(value, model.policy.state_dict()[key]) for key, value in fixed.items())):
             raise ValueError('Actor teaching changed retained PPO/critic/exploration state')
         actual = sorted({int(value['step']) for value in optimizer.state.values()})
-        if actual != [steps]:
+        if actual != [inherited_steps+steps]:
             raise ValueError('Auxiliary Adam budget differs')
         with torch.no_grad():
             predicted = torch.cat([model.policy.get_distribution(x[i:i + 256]).distribution.mean
@@ -154,7 +164,8 @@ def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
                 row[name + '_action_RMS'] = np.sqrt(np.square(predicted[keep] - labels[keep]).mean(0)).tolist()
             metrics.append(row)
         return dict(history=history, case_metrics=metrics, actual_Adam_step_each=actual,
-                    auxiliary_parameter_states=len(optimizer.state)), optimizer, rng.bit_generator.state
+                    auxiliary_parameter_states=len(optimizer.state), inherited_actor_Adam_steps=inherited_steps,
+                    new_actor_Adam_steps=steps), optimizer, rng.bit_generator.state
     finally:
         for p, flag in zip(model.policy.parameters(), flags):
             p.requires_grad_(flag)

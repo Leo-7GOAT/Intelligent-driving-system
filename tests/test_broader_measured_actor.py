@@ -109,6 +109,22 @@ def test_actor_teaching_restores_flags_after_guard_failure():
     assert policy.training and all(p.requires_grad for p in policy.parameters())
 
 
+def test_actor_adam_and_sampler_resume_matches_uninterrupted_updates_exactly():
+    torch.manual_seed(31)
+    first=SimpleNamespace(policy=Policy(),device='cpu',num_timesteps=51200,_n_updates=240)
+    uninterrupted=deepcopy(first)
+    x=np.random.default_rng(2).normal(size=(24,3)).astype(np.float32)
+    y=np.zeros((24,2),np.float32);groups=np.repeat([0,1,2],8)
+    train=np.arange(24)%5!=0;holdout=~train
+    _,adam,sampler=fit_actor(first,x,y,groups,train,holdout,seed=22,steps=8)
+    result,_,_=fit_actor(first,x,y,groups,train,holdout,seed=22,steps=8,
+        resume_optimizer=deepcopy(adam.state_dict()),resume_sampler=deepcopy(sampler))
+    fit_actor(uninterrupted,x,y,groups,train,holdout,seed=22,steps=16)
+    assert all(torch.equal(v,uninterrupted.policy.state_dict()[k]) for k,v in first.policy.state_dict().items())
+    assert result['actual_Adam_step_each']==[16]
+    assert result['inherited_actor_Adam_steps']==8 and result['new_actor_Adam_steps']==8
+
+
 def test_teaching_observer_cannot_reprepare_existing_execution(tmp_path):
     from scripts.teach_broader_b1_cohort import prepare
     with pytest.raises(FileExistsError, match='existing'):

@@ -119,8 +119,9 @@ def prepare_probe(fit, output):
     require_finished_parent(parent)
     old = read(parent / 'protocol.json')
     metadata = verified_checkpoint_metadata(fit / 'checkpoint')
+    expected_steps=recipe['steps'];retained_steps=recipe.get('retained_actor_optimizer_steps',expected_steps)
     if (registration['recipe_sha256'] != sha(recipe_path) or registration['seed'] != 22
-            or registration['steps'] != 1024 or result['actual_Adam_step_each'] != [1024]
+            or registration['steps'] != expected_steps or result['actual_Adam_step_each'] != [retained_steps]
             or result['auxiliary_parameter_states'] != 20
             or result['new_controls'] != 0 or result['new_PPO_updates'] != 0
             or result['model_sha256'] != metadata['model_sha256']
@@ -147,10 +148,11 @@ def prepare_probe(fit, output):
     p['recovery']['B1'].update(parent_batch=parent.name, parent_checkpoint='reviewed_recovery_actor/seed22',
         consumed_controls_lower_bound=old['recovery']['B1']['consumed_controls_lower_bound'] + read(parent / 'B1/collection.json')['collection_controls'],
         model_sha256=metadata['model_sha256'], normalization_sha256=metadata['normalization_sha256'])
-    p['extra_supervision']['supervised_optimizer_steps'] += 1024
+    p['extra_supervision']['supervised_optimizer_steps'] += retained_steps
     p['measured_actor_basic_probe'] = dict(version='canonical22_executed_recovery_basic_v1',
         fit_complete_sha256=sha(fit / 'complete.json'), recipe_sha256=sha(recipe_path),
-        additional_actor_Adam_steps=1024, cumulative_measured_actor_steps=2048,
+        additional_actor_Adam_steps=retained_steps, newly_performed_actor_steps=expected_steps,
+        objective_version=registration['version'], cumulative_measured_actor_steps=1024+retained_steps,
         teacher_data_role='TRAIN_EXTRA_SUPERVISION', native_teacher_runtime=False,
         gate='At least3/4successANDzero collision/bounds. KnownVALonly after this gate;no automaticPPOpromotion.',
         new_PPO_updates=0, new_final_conditions=0)
