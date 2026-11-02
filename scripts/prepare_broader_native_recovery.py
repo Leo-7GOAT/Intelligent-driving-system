@@ -107,8 +107,83 @@ def prepare(parent, teacher, output):
     print(batch, flush=True)
 
 
+def prepare_probe(fit, output):
+    """Stage the single fixed recovery endpoint on the original basic TRAIN roads."""
+    fit, output = Path(fit).resolve(), Path(output).resolve()
+    if output.exists() or (fit / 'basic_probe_registration.json').exists():
+        raise FileExistsError('Preserve the fixed recovery probe')
+    result, registration = read(fit / 'complete.json'), read(fit / 'registration.json')
+    recipe_path = ROOT / 'protocols/native_B1_broader_executed_recovery_20261102.json'
+    recipe = read(recipe_path)
+    parent = ROOT / 'runs' / registration['collection']
+    require_finished_parent(parent)
+    old = read(parent / 'protocol.json')
+    metadata = verified_checkpoint_metadata(fit / 'checkpoint')
+    if (registration['recipe_sha256'] != sha(recipe_path) or registration['seed'] != 22
+            or registration['steps'] != 1024 or result['actual_Adam_step_each'] != [1024]
+            or result['auxiliary_parameter_states'] != 20
+            or result['new_controls'] != 0 or result['new_PPO_updates'] != 0
+            or result['model_sha256'] != metadata['model_sha256']
+            or registration['collection_audit_sha256'] != sha(parent / 'B1/collection_raw_audit.json')
+            or recipe['collection_batch'] != parent.name):
+        raise ValueError('Require the one completed predeclared endpoint and actual collection audit')
+    for name, digest in registration['source_hashes'].items():
+        if sha(fit / name) != digest: raise ValueError('Executed actor fit source changed')
+    for name, digest in old['source_hashes'].items():
+        if sha(parent / 'source' / name) != digest: raise ValueError('Frozen physical source changed')
+    okay, reason = resources_ok(ROOT)
+    if not okay or shutil.disk_usage(ROOT).free < 18 * 1024**3:
+        raise RuntimeError('Probe resource guard: ' + str(reason))
+    p = deepcopy(old)
+    p.pop('native_recovery_collection'); p.pop('data_role')
+    p.update(routes=deepcopy(old['routes'][:4]),
+        native_case_manifest=dict(version='native_development_cases_v1', split='development',
+            cases=[dict(route_index=i, hazard=None) for i in range(4)]),
+        deterministic_training_route_evaluation=True,
+        scope='Fixed canonical22after executed TRAINrecovery teaching;pure model.predict on original4basicTRAINroads. No teacher runtime,newPPOorfinalconditions.')
+    now = time.time()
+    p.update(created_epoch=now, deadline_epoch=now + 1800, parent_batch=parent.name,
+        resource_limits={**old['resource_limits'], 'wall_seconds': 1800, 'automatic_retries': 0})
+    p['recovery']['B1'].update(parent_batch=parent.name, parent_checkpoint='reviewed_recovery_actor/seed22',
+        consumed_controls_lower_bound=old['recovery']['B1']['consumed_controls_lower_bound'] + read(parent / 'B1/collection.json')['collection_controls'],
+        model_sha256=metadata['model_sha256'], normalization_sha256=metadata['normalization_sha256'])
+    p['extra_supervision']['supervised_optimizer_steps'] += 1024
+    p['measured_actor_basic_probe'] = dict(version='canonical22_executed_recovery_basic_v1',
+        fit_complete_sha256=sha(fit / 'complete.json'), recipe_sha256=sha(recipe_path),
+        additional_actor_Adam_steps=1024, cumulative_measured_actor_steps=2048,
+        teacher_data_role='TRAIN_EXTRA_SUPERVISION', native_teacher_runtime=False,
+        gate='At least3/4successANDzero collision/bounds. KnownVALonly after this gate;no automaticPPOpromotion.',
+        new_PPO_updates=0, new_final_conditions=0)
+    batch = ROOT / 'runs' / (datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ') + '_native_recovery_actor_basic22')
+    batch.mkdir(); (batch / 'infrastructure').mkdir()
+    for name in ('source', 'calibration'):
+        shutil.copytree(parent / name, batch / name, ignore=shutil.ignore_patterns('__pycache__'))
+    shutil.copytree(fit / 'checkpoint', batch / 'resume/B1')
+    shutil.copy2(parent / 'measured_demonstrations.npz', batch / 'measured_demonstrations.npz')
+    evidence = batch / 'measured_actor_evidence'; evidence.mkdir()
+    for name in ('registration.json', 'complete.json', 'executed_fit.py', 'executed_helper.py', 'auxiliary_Adam.pt', 'sampler_state.json'):
+        shutil.copy2(fit / name, evidence / name)
+    for name in ('collection_raw_audit.json', 'strict_delivery.json', 'collection.json'):
+        shutil.copy2(parent / 'B1' / name, evidence / name)
+    shutil.copy2(recipe_path, evidence / 'recipe.json')
+    atomic_json(batch / 'protocol.json', p)
+    atomic_json(batch / 'prepared.json', dict(status='PREPARED_NOT_STARTED', protocol_sha256=sha(batch / 'protocol.json')))
+    output.mkdir()
+    registered = dict(batch=batch.name, protocol_sha256=sha(batch / 'protocol.json'), fit=fit.relative_to(ROOT).as_posix(),
+        source_model_sha256=metadata['model_sha256'], new_controls_so_far=0, new_PPO_updates=0, final_conditions=0)
+    atomic_json(output / 'registration.json', registered); atomic_json(fit / 'basic_probe_registration.json', registered)
+    print(batch, flush=True)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--parent', required=True); parser.add_argument('--teacher', required=True)
+    parser.add_argument('--parent'); parser.add_argument('--teacher')
+    parser.add_argument('--probe-fit')
     parser.add_argument('--output', required=True)
-    args = parser.parse_args(); prepare(args.parent, args.teacher, args.output)
+    args = parser.parse_args()
+    if args.probe_fit:
+        if args.parent or args.teacher: parser.error('Probe and collection preparation are distinct')
+        prepare_probe(args.probe_fit, args.output)
+    else:
+        if not args.parent or not args.teacher: parser.error('Collection requires parent and teacher')
+        prepare(args.parent, args.teacher, args.output)

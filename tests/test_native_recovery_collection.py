@@ -138,6 +138,18 @@ def test_broader_recovery_fit_excludes_unexecuted_proposals_and_preserves_all_ep
     with pytest.raises(ValueError): recovery_masks(data,179)
 
 
+@pytest.mark.parametrize('reasons,passed', [(['success']*4,True),
+    (['success']*3+['deadline'],True), (['success']*2+['deadline']*2,False),
+    (['success']*3+['collision'],False), (['success']*3+['out_of_bounds'],False)])
+def test_recovery_continuation_never_promotes_a_failed_basic_gate(reasons,passed):
+    from scripts.run_broader_native_recovery import basic_gate
+    evaluation=dict(episodes=[dict(case_id=i,success=reason=='success',termination_reason=reason)
+        for i,reason in enumerate(reasons)])
+    assert basic_gate(evaluation) is passed
+    evaluation['episodes'][3]['case_id']=2
+    with pytest.raises(ValueError): basic_gate(evaluation)
+
+
 def test_repeated_actor_interventions_retain_cumulative_cost_instead_of_last_segment_only():
     legacy={'additional_actor_fit_steps':512}
     first=actor_fit_lineage(legacy,512)
