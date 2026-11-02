@@ -101,3 +101,6 @@ protocols/native_B1_broader_additional_four_20261102.json -text -whitespace
 reports/native_feedback_planning_concentration_20261102.json -text -whitespace
 reports/native_B1_broader_seed22_20261102.json -text -whitespace
 reports/native_B1_broader_seed22_independent_verification_20261102.json -text -whitespace
+reports/native_broader_teacher_reuse_preflight_20261102.json -text -whitespace
+protocols/native_B3_broader_TRAIN_teacher_20261102.json -text -whitespace
+reports/native_B1_broader_seed11_20261102.json -text -whitespace

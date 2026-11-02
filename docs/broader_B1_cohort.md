@@ -38,10 +38,16 @@ development conditions into new final conditions or waive the basic failures.
 This combined cohort completes the development coverage of five independently
 warm-started policies. It is not registration of all five before any training,
 from-scratch learning, a budget-matched H/B1 comparison, an added-PPO effect,
-or final confirmation. Seed11 has now started; the remaining three follow.
+or final confirmation. Seed11 is now complete at11/24:curve4/8,static4/8,
+walkers3/8,with five deadlines,five bounds failures and three collisions.
+It also fails the development screen. [Complete audit](../reports/native_B1_broader_seed11_20261102.json).
+Seed33 is running;44/55follow.
 The full five-seed outcome remains pending. An independent source checkout
 reconstructs seed22's complete audit field-for-field using existing local data;
 its raw/model capsule has not yet been published. This uses a different initial
 model from the earlier 14/24 probe, so no causal gain or regression is computed.
 [Local reconstruction receipt](../reports/native_B1_broader_seed22_independent_verification_20261102.json),
 [live execution handoff](handoff.md).
+
+[Separate TRAIN-only teacher preparation](broader_TRAIN_teacher.md) is queued
+after this locked cohort. It does not change these courses or their outcome rules.

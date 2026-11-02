@@ -19,6 +19,7 @@ The following studies have different training histories and declared interfaces.
 | Same frozen B1, twelve original known conditions | 12/12; 4,848 verified controls | [Three-class probe](reports/native_B1_shared_parking_full_probe_20261101.json). No new learning or final conditions. |
 | Same B1, 24 different registered development roads | 14/24: curve/parking 5/8, static 3/8, walkers 6/8; eight bounds and two collisions | [Complete record](reports/native_B1_shared_parking_validation_complete_20261101.json). 10,210 controls verified. A spawn failure and seven-case continuation use explicitly disclosed mixed initialization versions; descriptive development evidence only. |
 | Broader B1 course, canonical seed22 | 20,480 new actual controls; 630 Adam steps; 7/24 known VAL successes (5/8 curve, 0/8 static, 2/8 walker); 11 bounds, five collisions, one deadline | [Completed audit](reports/native_B1_broader_seed22_20261102.json). All 31,480 controls verified; RMS unchanged. Development screen fails. Different initialization from the older 14/24 model; no causal comparison is made. |
+| Same broader B1 recipe, seed11 | 20,480 new actual controls; 640 Adam steps; 11/24 successes (4/8,4/8,3/8); five deadlines,five bounds,three collisions | [Completed audit](reports/native_B1_broader_seed11_20261102.json). Development screen also fails;33/44/55pending. |
 
 All five registered B1 basic courses are complete: seeds 11/22/33/44/55 score **3/4, 4/4, 4/4, 4/4, 3/4**. The two failures are bounds violations, so only **three of five basic gates pass**. The courses retain 51,200 new actual learning controls and 1,599 Adam steps. These are four repeated known TRAIN roads, not 20 unique conditions or a healthy full-task baseline. [All five outcomes and costs](reports/native_B1_shared_parking_complete_basic_cohort_20261102.json).
 
@@ -29,6 +30,8 @@ A measured-input diagnosis confirms that feedback reaches H: hiding both feedbac
 Before seeing seed22's validation results, the other four seeds were registered for the same additional 20,480-control broader course. The audit is complete and seed11 has now started; seeds33/44/55 follow serially. [Prospective four-course registration and limits](docs/broader_B1_cohort.md). The complete five-seed broader result remains pending. The seed22 audit also reconstructs field-for-field from an independent checkout using local data. [Verification receipt](reports/native_B1_broader_seed22_independent_verification_20261102.json).
 
 The parking aid requests physical braking only inside the unchanged goal pose gates while overspeed; it changes neither steering nor vehicle state. It releases before success can be accepted. H/H0/B1/B2/B3 can share the same version. Every override is recorded. [Implementation and experiments](docs/shared_parking.md).
+
+A separate [TRAIN-only teacher collection](docs/broader_TRAIN_teacher.md) is queued after the locked cohort to investigate broader direct-control supervision. Old H/H0 training-data reuse fails the strict full-coverage preflight (31/36); no labels or models were produced. The queued collection uses the unchanged strong B3 configuration on all36TRAINconditions and introduces no validation/final data or automatic model fitting.
 
 ## Install and run CPU checks
 

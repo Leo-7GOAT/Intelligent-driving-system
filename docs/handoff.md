@@ -1,3 +1,42 @@
+# Broader11 audited11/24FAILED; broader33 RUNNING; TRAIN teacher queued — 2026-11-02
+
+LIVE existingcohortobserver22416/toolsession54063 now seed33:
+20261102T044004346066Z_native_broader_B1_seed33,worker69136atlaunch,
+creation2026-11-02T13:36:54.686+08:00. Then44/55. No source/config/queue changes.
+Completed11:20480actualPPOcontrols,640Adam,VAL11/24;curve4/8,static4/8,
+walker3/8;5deadlines,5bounds,3collisions. GateFAILED. Copied unchanged audit:
+reports/native_B1_broader_seed11_20261102.json. Seed22 remains7/24FAILED.
+Do not combine two pending-cohort outcomes into a full-five claim.
+
+NEW wait-only teacherobserver62248,creation2026-11-02T13:44:50.7607+08:00,
+toolsession19708;execution runs/B3_broader_TRAIN_teacher_execution_v3_20261102.
+It holds exact read-only handle to22416 and waits until all4broadercourses audited
+and exact owner exits. Then runs ONLYregisteredB3TRAINcollection:
+20261102T053259603507Z_native_B3_broader_TRAIN_teacher on ALL36TRAINconditions,
+unchanged frozen physicalsource/calibration and exact verifiedstrongB3config.
+Native3600s,conversion1800s,observer43200s,0retries. Strict all-frame engine/sync/
+manualgearacknowledgement required BEFOREdirectviews. NoVAL/finaldata or PPO/model
+fitting. Physical teacher protocol UNCHANGED;conversion uses exact frozen source,
+no overlays. Data-role differs from generic operational filename evaluation_trace.
+Protocol:protocols/native_B3_broader_TRAIN_teacher_20261102.json.
+Docs:docs/broader_TRAIN_teacher.md.
+
+OldH/H0TRAINreuse preflight inspected205908controls but whole-success/engine-ack
+filter covers31/36only. H-only25/36. No labels or fits emitted;guardnotrelaxed.
+reports/native_broader_teacher_reuse_preflight_20261102.json reconstructs field-exact
+with scripts/audit_broader_teacher_reuse.py. Older raw state/request joins are not
+all-frame engine-delivery equivalence. Original physical results preserved.
+
+Teacherpreparation20261102T053050576054Z_native_B3_broader_TRAIN_teacher is
+ABANDONED0controls (endpointfilter missing, caughtoffline). Do notrestart it.
+Validteacherbatch...053259603507Zwasneverstarted;execution_v2waitingobserver14044
+stopped by exactownedhandle BEFOREdispatch while checking helper-history proposal.
+Thatproposal wasREJECTEDbydirectreplaytest:executedbrake is nominaldirectaction,
+so copying teacher intervention woulddoublecount. navstack/measured_demo.py
+remains UNCHANGED. New regressionguard and existingtargetedchecks34PASS23.03s.
+Old v2 status is stale;active teacher observer is v3/62248. NoCARLAworker killed.
+Do not duplicate teacher/cohort launchers. All research acceptance remainsUNMET.
+
 # Broader22 audited7/24FAILED; broader11 RUNNING — 2026-11-02
 
 Original22batch20261101T131830295783Z_native_B1_broader_shared_parking_PPO

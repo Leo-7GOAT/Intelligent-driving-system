@@ -7,8 +7,11 @@ from navstack.measured_demo import measured_flat_env, measured_label, advance_me
 from test_route_catalog_environment import RouteFixture, config
 
 
-def fixture():
-    cfg = EnvConfig.from_dict({**config('B1').to_dict(), 'flat_hold': 1})
+def fixture(parking=False):
+    options = {'flat_hold': 1}
+    if parking:
+        options.update(goal_parking_assist=True, goal_tolerance=50., goal_yaw_tolerance=3.)
+    cfg = EnvConfig.from_dict({**config('B1').to_dict(), **options})
     live = RouteFixture(cfg)
     first, _ = live.reset(seed=11)
     scene = {'width': live.world.width, 'height': live.world.height, 'static': live.initial_scenario['static'],
@@ -16,6 +19,36 @@ def fixture():
              'native_layout': live.scene_evidence['native_layout']}
     view = measured_flat_env(cfg, scene, live.initial_scenario)
     return live, view, first
+
+
+def test_executed_teacher_brake_becomes_direct_policy_action_without_duplicate_intervention():
+    teacher, view, _ = fixture(parking=True)
+    replay = RouteFixture(teacher.config)
+    replay.reset(seed=11)
+    teacher_assisted = False
+    try:
+        for _ in range(40):
+            _, _, _, _, info = teacher.step(np.array([.8, 0.], dtype=np.float32))
+            tick = info['trace'][0]
+            label = measured_label(view, tick)
+            expected, _, _, _, replay_info = replay.step(label)
+            advance_measured_flat(view, tick, label)
+            np.testing.assert_array_equal(view._observation(), expected)
+            assert bool(view.execution_outcome[4]) == replay_info['trace'][0]['goal_parking_intervention']
+            teacher_assisted |= tick['goal_parking_intervention']
+            # Choosing the already executed full brake is nominal B1 control.
+            # The helper need not intervene again; do not copy H/B3's flag.
+            if tick['goal_parking_intervention']:
+                assert not bool(view.execution_outcome[4])
+            # Direct replay may accept the unchanged goal gate one frame sooner.
+            # These are teacher-state views, not a fabricated B1 episode.
+            if replay.done:
+                break
+        assert teacher_assisted
+    finally:
+        teacher.close()
+        replay.close()
+        view.close()
 
 
 def test_measured_views_reconstruct_direct_history_without_integrating_or_calling_planner(monkeypatch):

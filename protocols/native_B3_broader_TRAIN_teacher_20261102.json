@@ -1,0 +1,55 @@
+{
+  "batch": "20261102T053259603507Z_native_B3_broader_TRAIN_teacher",
+  "protocol_sha256": "8534a75a4ecbb30c2cc82cfcffad92310c271c8bc3f02b2a6f38cde95242c9ff",
+  "data_role": "TRAIN_EXTRA_SUPERVISION",
+  "cases": 36,
+  "validation_cases": 0,
+  "PPO_updates": 0,
+  "dependency_execution": "B1_additional_broader_cohort_20261102",
+  "source_config_sha256": "4f36cb9f1e8d88778305cc98cbdf901b109a6a84b3ff9a75aa33c6f51fbf4c38",
+  "maximum_native_wall_seconds": 3600,
+  "maximum_dataset_wall_seconds": 1800,
+  "automatic_retries": 0,
+  "new_controls_so_far": 0,
+  "model_fitting_started": false,
+  "version": "uniform_broader_TRAIN_teacher_v1",
+  "physical_protocol_sha256": "8534a75a4ecbb30c2cc82cfcffad92310c271c8bc3f02b2a6f38cde95242c9ff",
+  "script_sha256": "2bb6b981d7b28ec59931b18e07b6bae38adb6d43c8429c3f42476426f1b89276",
+  "old_reuse_preflight_sha256": "95aa0202f16e95f5df9ff56d6f1ed78edad06194f795204f1580d13c96c1d9c7",
+  "old_reuse_scope": "All205908TRAINcontrols of5H/5H0policies inspected;strict whole-successful-episode engine matching covers31/36. No labels/model fits emitted. These were older legacy-control sources;raw state/request joins do not mean every request was applied in the same frame.",
+  "missing_old_TRAIN_conditions": [
+    21,
+    24,
+    25,
+    27,
+    32
+  ],
+  "collection": "All36TRAINconditions,not only missingcases,with uniform currentbatch_sync_v1delivery and existingstrongB3config. NoVAL/finaldata.",
+  "actual_preflight": {
+    "frozen_import_and_launcher_verified": true,
+    "registered_TRAIN_cases": 36,
+    "validation_cases": 0,
+    "exact_verified_strong_B3_config": true,
+    "old_B3_protocol_sha256": "62e78780a0ea765bfc48d26683a940d2450972d126204eb0ce6b4d60c9fe91a6"
+  },
+  "dependency": "Exact read-only handle to additional-four-B1observer;collection only after all4completeandaudited.",
+  "strict_dataset_guard": "Every teacher control must have matching engine pedals,manualfirstgear,syncack before any direct-view reconstruction.",
+  "view_semantics": "Executed teacher braking becomes a nominal direct-policy brake action. Do not copy teacher intervention flags or returns as B1-policy interventions/value targets. Existing measured_demo implementation unchanged;new physical-replay unit test guards this.",
+  "conversion_source_overlays": {},
+  "operator_history": {
+    "abandoned_zero_control_preparation": "20261102T053050576054Z_native_B3_broader_TRAIN_teacher:missing endpointfilter caught offline;blockedbeforelaunch",
+    "replacement_physical_preparation": "20261102T053259603507Z_native_B3_broader_TRAIN_teacher",
+    "stopped_wait_only_observer": "execution_v2:stoppedbeforeanydispatchwhilechecking parking-history hypothesis;noCARLAprocesses touched",
+    "parking_history_hypothesis": "Rejected by direct replay test;production view helper unchanged",
+    "active_observer_execution": "runs/B3_broader_TRAIN_teacher_execution_v3_20261102"
+  },
+  "tests": {
+    "targeted_passed": 34,
+    "seconds": 23.03,
+    "CARLA_integration_claim": false
+  },
+  "no_model_fitting_started": true,
+  "no_PPO_updates_started": true,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET"
+}
