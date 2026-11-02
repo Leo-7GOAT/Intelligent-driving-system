@@ -89,6 +89,10 @@ def audit(batch):
     torch.set_num_threads(1)
     initial=load_ppo(batch/'resume/B1/model.zip',device='cpu');final=load_ppo(checkpoint/'model.zip',device='cpu')
     if final.num_timesteps-initial.num_timesteps!=5120:raise ValueError('PPO control counter differs')
+    rate=p.get('PPO_rate_contrast',{}).get('new_learning_rate',3e-6)
+    if (rate not in (3e-6,1e-4) or initial.policy.optimizer.param_groups[0]['lr']!=rate
+            or any(row['metrics']['train/learning_rate']!=rate for row in optimization)):
+        raise ValueError('Registered learning rate differs from actual PPO optimizer records')
     adam=verify_adam(initial.policy.optimizer.state_dict(),final.policy.optimizer.state_dict(),summary['optimizer_steps'])
     changed=dict(actor=0,critic=0)
     for name,value in initial.policy.state_dict().items():
@@ -101,7 +105,7 @@ def audit(batch):
     delivery=delivery_audit(batch)
     if not delivery['strict_delivery_gate_passed']:raise ValueError('Engine delivery gate failed')
     return dict(batch=batch.name,protocol_sha256=sha(batch/'protocol.json'),script_sha256=sha(Path(__file__)),
-        new_actual_PPO_controls=count,new_actual_Adam_steps=summary['optimizer_steps'],saved_Adam=adam,
+        new_actual_PPO_controls=count,new_actual_Adam_steps=summary['optimizer_steps'],saved_Adam=adam,actual_learning_rate=rate,
         all_actual_frames_verified=True,strict_engine_delivery=delivery,observation_RMS_exact=True,
         changed_network_tensors=changed,training_outcomes=dict(outcomes),new_auxiliary_steps=0,
         model_sha256=meta['model_sha256'],normalization_sha256=meta['normalization_sha256'],

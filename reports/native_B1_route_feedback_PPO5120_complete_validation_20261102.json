@@ -1,0 +1,51 @@
+{
+  "version": "route_feedback_actual_PPO5120_v1",
+  "model_sha256": "5085cfb491ebf1c07a14dcfc71f0c6cb5673476fd464ff28286fc20bcbb6e11d",
+  "new_actual_PPO_controls": 5120,
+  "new_actual_Adam_steps": 160,
+  "retained_learning_rate": 3e-06,
+  "basic": {
+    "batch": "20261102T115516528316Z_native_route_feedback_PPO_basic",
+    "successes": 4,
+    "cases": 4,
+    "actual_controls": 1320,
+    "all_policy_actions_bit_exact": true
+  },
+  "known_validation": {
+    "batch": "20261102T115819156229Z_native_route_feedback_PPO_known_validation",
+    "successes": 5,
+    "cases": 24,
+    "terminations": {
+      "success": 5,
+      "out_of_bounds": 8,
+      "deadline": 7,
+      "collision": 4
+    },
+    "actual_controls": 9641,
+    "by_core": {
+      "curve": {
+        "successes": 2,
+        "cases": 8
+      },
+      "static_vehicle": {
+        "successes": 3,
+        "cases": 8
+      },
+      "crossing_walker": {
+        "successes": 0,
+        "cases": 8
+      }
+    }
+  },
+  "raw_audit_sha256": "f3811432faa8d650c90eb135d526b526f8e6e474c018455cfdd27e26fc25b483",
+  "strict_delivery_sha256": "5ec2fe23b37cc0360425b4e30085fc5a77be10615964ca3d87046815eb5942a7",
+  "measured_start_inference_sha256": "52aaecf94e0ad4dcd6a204aca215f117bbe895e74c3ba7cfc03a074c217c3f19",
+  "prior_offline_endpoint": {
+    "model_sha256": "558f162fa342302c6b45b286e0fbd55efd2009b7bea0f8ccbbf9419065445c30",
+    "successes": 1,
+    "cases": 24
+  },
+  "limits": "Single canonical seed on repeatedly used known conditions. Before/after development improvement does not establish a healthy five-seed baseline,statistical PPO superiority,hierarchy advantage or independent final acceptance. All failures retained.",
+  "research_acceptance": "UNMET",
+  "next": "Rate-only matched5120actualPPO course1e-4 was registered before this full result and is now running;no new offline fit or altered final threshold."
+}

@@ -66,10 +66,10 @@ def prepare(parent,execution,phase,training_audit):
     return batch
 
 
-def run():
-    execution=ROOT/'runs/B1_route_feedback_PPO5120_postprobe_v2_20261102'
+def run(execution=None,dependency=None):
+    execution=(ROOT/'runs/B1_route_feedback_PPO5120_postprobe_v2_20261102' if execution is None else Path(execution).resolve())
     if execution.exists():raise FileExistsError('Never repeat the fixed post-training probe')
-    dependency=ROOT/'runs/B1_route_feedback_PPO5120_execution_20261102'
+    dependency=(ROOT/'runs/B1_route_feedback_PPO5120_execution_20261102' if dependency is None else Path(dependency).resolve())
     pid=int(read(dependency/'status.json')['pid'])
     command=(f"$taskProcess=Get-Process -Id {pid} -ErrorAction Stop; "
         "@{pid=$taskProcess.Id;creation_epoch=([DateTimeOffset]$taskProcess.StartTime).ToUnixTimeMilliseconds()/1000;executable=$taskProcess.Path} | ConvertTo-Json -Compress")
@@ -115,4 +115,9 @@ def run():
     finally:owner.kernel.CloseHandle(owner.handle)
 
 
-if __name__=='__main__':run()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--execution');parser.add_argument('--dependency')
+    args=parser.parse_args()
+    if bool(args.execution)!=bool(args.dependency):parser.error('Explicit execution and dependency must be supplied together')
+    run(args.execution,args.dependency)
