@@ -74,7 +74,8 @@ def validated_arrays(dataset, manifest, families):
 
 
 def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
-              steps=1024, callback=None, steering_scale=.02, resume_optimizer=None, resume_sampler=None):
+              steps=1024, callback=None, steering_scale=.02, resume_optimizer=None, resume_sampler=None,
+              group_masses=None):
     """Case-balanced actor gradients; correlated holdout never enters gradients."""
     import numpy as np
     import torch
@@ -109,10 +110,14 @@ def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
     scales = x.new_tensor([.1, steering_scale])
     indices = np.flatnonzero(train_mask)
     unique = np.unique(groups[indices])
+    if group_masses is not None and (set(group_masses) != set(unique.tolist())
+            or any(not np.isfinite(v) or v<=0 for v in group_masses.values())):
+        raise ValueError('Require positive predeclared sampling mass for every fitted episode')
     weights = np.empty(len(indices))
     for group in unique:
         keep = groups[indices] == group
-        weights[keep] = 1 / (len(unique) * keep.sum())
+        weights[keep] = (1 / (len(unique) * keep.sum()) if group_masses is None
+            else group_masses[int(group)] / (sum(group_masses.values())*keep.sum()))
     rng = np.random.default_rng(seed)
     optimizer = torch.optim.Adam(fitted, lr=1e-4)
     inherited_steps = 0

@@ -30,12 +30,13 @@ def run(execution, completed_collection=False):
         raise FileExistsError('Never restart a launched continuation or repeat physical controls')
     registration = read(execution / 'registration.json')
     profile = registration.get('fit_profile','original')
-    if profile not in ('original','steering_v2','convergence_v3'): raise ValueError('Unknown registered fixed fit profile')
+    if profile not in ('original','steering_v2','convergence_v3','diverse_geometry_v4'): raise ValueError('Unknown registered fixed fit profile')
     batch = ROOT / 'runs' / registration['batch']
     if sha(batch / 'protocol.json') != registration['protocol_sha256']:
         raise ValueError('Registered collection protocol changed')
     identity = read(batch / 'worker_process.json')
     owner = None
+    teacher_owner = None
     if completed_collection:
         require_finished_parent(batch)
         if not (batch / 'B1/collection.json').exists():
@@ -45,16 +46,25 @@ def run(execution, completed_collection=False):
         if owner.poll() is not None:
             owner.kernel.CloseHandle(owner.handle)
             raise ValueError('Worker already ended; inspect its final state before an explicit continuation')
+    if profile=='diverse_geometry_v4' and registration.get('teacher_dependency'):
+        dependency=registration['teacher_dependency']
+        teacher_owner=OwnedProcess(dependency['pid'],dependency['creation_epoch'],dependency['executable'],allow_terminate=False)
+        if teacher_owner.poll() is not None:
+            teacher_owner.kernel.CloseHandle(teacher_owner.handle)
+            raise ValueError('Diverse teacher observer already ended; inspect its completed data before adoption')
     files = [p for directory in ('scripts', 'navstack') for p in (ROOT / directory).rglob('*')
              if p.is_file() and p.suffix in ('.py', '.ps1') and '__pycache__' not in p.parts]
     files.append(ROOT / 'protocols/native_B1_broader_executed_recovery_20261102.json')
     if profile=='steering_v2': files.append(ROOT / 'protocols/native_B1_broader_executed_recovery_steering_20261102.json')
     if profile=='convergence_v3': files.append(ROOT / 'protocols/native_B1_broader_executed_recovery_convergence_20261102.json')
+    if profile=='diverse_geometry_v4': files.append(ROOT / 'protocols/native_B1_diverse_geometry_actor_20261102.json')
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in files}
     atomic_json(execution / 'continuation_source_manifest.json', hashes)
+    maximum_wall=18000 if profile=='diverse_geometry_v4' else 10800
     atomic_json(execution / 'continuation_started.json', dict(pid=os.getpid(), epoch=time.time(),
-        dependency=identity, completed_collection_adoption=completed_collection, automatic_retries=0, maximum_wall_seconds=10800))
-    deadline = time.monotonic() + 10800
+        dependency=identity,teacher_dependency=registration.get('teacher_dependency'),
+        completed_collection_adoption=completed_collection, automatic_retries=0, maximum_wall_seconds=maximum_wall))
+    deadline = time.monotonic() + maximum_wall
     def status(phase, **extra):
         atomic_json(execution / 'status.json', dict(phase=phase, pid=os.getpid(), epoch=time.time(), **extra))
     def call(args, label, timeout, env=None):
@@ -83,6 +93,12 @@ def run(execution, completed_collection=False):
             raise ValueError('Engine delivery gate failed')
     try:
         with ProcessLease(execution / 'continuation.lock'):
+            while teacher_owner is not None and teacher_owner.poll() is None:
+                if time.monotonic()>deadline:raise TimeoutError('Finite diverse teacher wait exhausted')
+                status('WAITING_FOR_EXACT_DIVERSE_TRAIN_TEACHER_OBSERVER')
+                time.sleep(10)
+            if teacher_owner is not None and teacher_owner.poll()!=0:
+                raise RuntimeError('Diverse teacher observer failed;do not retry or fit incomplete data')
             while owner is not None and owner.poll() is None:
                 if time.monotonic() > deadline: raise TimeoutError('Finite continuation wait exhausted')
                 status('WAITING_FOR_EXACT_LIVE_TRAIN_COLLECTION')
@@ -121,7 +137,8 @@ def run(execution, completed_collection=False):
                     '--output', delivery_path], 'collection_delivery', 900)
             fit = execution / 'canonical22_fit'
             status('FIXED_TRAIN_ONLY_RECOVERY_ACTOR_FIT')
-            call([sys.executable, ROOT / 'scripts/fit_broader_native_recovery.py', '--collection', batch,
+            fitter='fit_diverse_native_actor.py' if profile=='diverse_geometry_v4' else 'fit_broader_native_recovery.py'
+            call([sys.executable, ROOT / 'scripts' / fitter, '--collection', batch,
                 '--views', ROOT / 'runs/B3_broader_TRAIN_teacher_execution_v4_20261102/direct_views',
                 '--reference-config', ROOT / 'runs/20261101T131830295783Z_native_B1_broader_shared_parking_PPO/B1/config.json',
                 '--output', fit, '--profile', profile], 'canonical22_fit', 720)
@@ -154,6 +171,7 @@ def run(execution, completed_collection=False):
         raise
     finally:
         if owner is not None: owner.kernel.CloseHandle(owner.handle)
+        if teacher_owner is not None:teacher_owner.kernel.CloseHandle(teacher_owner.handle)
 
 
 if __name__ == '__main__':

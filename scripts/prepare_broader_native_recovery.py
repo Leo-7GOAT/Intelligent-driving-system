@@ -163,7 +163,8 @@ def prepare_probe(fit, output):
     shutil.copytree(fit / 'checkpoint', batch / 'resume/B1')
     shutil.copy2(parent / 'measured_demonstrations.npz', batch / 'measured_demonstrations.npz')
     evidence = batch / 'measured_actor_evidence'; evidence.mkdir()
-    for name in ('registration.json', 'complete.json', 'executed_fit.py', 'executed_helper.py', 'auxiliary_Adam.pt', 'sampler_state.json'):
+    for name in ('registration.json', 'complete.json', 'auxiliary_Adam.pt', 'sampler_state.json', *registration['source_hashes']):
+        if Path(name).name!=name:raise ValueError('Fit source evidence must be a local basename')
         shutil.copy2(fit / name, evidence / name)
     for name in ('collection_raw_audit.json', 'strict_delivery.json', 'collection.json'):
         shutil.copy2(parent / 'B1' / name, evidence / name)

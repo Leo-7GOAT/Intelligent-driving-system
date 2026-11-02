@@ -24,3 +24,12 @@ def test_geometry_selection_is_deterministic_separated_and_not_prefix_augmentati
 def test_insufficient_diversity_does_not_relax_distance_or_duplicate_a_road():
     p=pool();p['candidates']=p['candidates'][:4]
     with pytest.raises(ValueError):select(p,[])
+
+
+def test_sampling_balances_base_geometry_and_family_before_episode_count():
+    from scripts.fit_diverse_native_actor import balanced_masses
+    cells={0:(0,'curve'),1:(0,'curve'),2:(0,'walker'),3:(1,'curve')}
+    mass=balanced_masses(cells,[0,1,2,3])
+    assert sum(mass[g] for g in [0,1,2])==.5 and mass[3]==.5
+    assert mass[0]==mass[1]==.125 and mass[2]==.25
+    with pytest.raises(ValueError):balanced_masses(cells,[0,4])
