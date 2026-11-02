@@ -1,3 +1,16 @@
+# Planning-failure concentration verified; training queues unchanged — 2026-11-02
+
+Read-only full10endpoint trace recount complete: H8planningfailures all in
+seed11case14SUCCESS;H0all78inseed44case15DEADLINE. Every other episode0.
+All-outcome H/H0successes120/120vs119/120retained. On explicitly mutually
+successfulconditions planningfails8/0,not a stablecollaborationbenefit.
+Do notpromoteaggregate8vs78asplannerefficiencyproof. Complete hash-bound report:
+reports/native_feedback_planning_concentration_20261102.json;script
+scripts/analyze_feedback_planning_concentration.py;docs/native_feedback_use.md.
+Allactualdecisionmodes recounted and summaryvalidated;two complete rebuilds exact.
+Zero newcontrol/learning/finalconditions. Actualtraining45800 and waiting22416
+continue unchanged. Source97d502fCI41390049737SUCCESS;9f3aebdCI41389579393SUCCESS.
+
 # Broader22 RUNNING; four additional courses prospectively queued — 2026-11-02
 
 Current actual worker45800 and observer32384 remain live. Single22pilot unchanged.

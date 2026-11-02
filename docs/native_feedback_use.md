@@ -30,6 +30,32 @@ remains unestablished. This diagnosis supports no new superiority claim.
 [All five seeds, input hashes and individual results](../reports/native_feedback_use_cohort_20261101.json).
 The report retains all ten method/seed diagnostics; none is selected by outcome.
 
+## Planning failures are episode concentrated
+
+The earlier aggregate H/H0 planning-failure counts are 8/78. Recounting every
+actual recorded decision mode across all ten method/seed endpoints shows:
+
+| Seed / condition | Method | Outcome | Planning failures |
+|---|---|---|---:|
+| 11 / 14 | H | Success | 8 |
+| 44 / 15 | H0 | Deadline | 78 |
+| All other policy/seed/condition episodes | Both | Retained in the report | 0 |
+
+All 78 H0 failures occur in its single timeout. Across explicitly mutually
+successful paired conditions, H/H0 counts are 8/0. That conditional sensitivity
+analysis does not remove the timeout from completion statistics: H remains
+120/120 and H0 119/120. Neither the aggregate 8/78 count nor a selected successful
+subset establishes a stable planning-efficiency benefit. H is slightly slower
+in mutually successful conditions for every seed in the existing cost report.
+
+[All-outcome and conditional counts, trace hashes and failed episodes](../reports/native_feedback_planning_concentration_20261102.json).
+Every summary count is checked against actual `plan_failed` decision modes;
+the complete report rebuilds exactly. No additional learning or driving occurs.
+
+```powershell
+python scripts/analyze_feedback_planning_concentration.py --output <fresh-report.json>
+```
+
 To reconstruct a per-method diagnostic from restored public cohort data:
 
 ```powershell
