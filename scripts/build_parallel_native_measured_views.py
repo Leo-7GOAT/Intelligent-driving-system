@@ -63,7 +63,7 @@ def merge_arrays(folders,cases,expected_controls):
     return {key:np.concatenate(value) for key,value in members.items()}
 
 
-def run(batch,reference_config,execution,workers=4,wall_seconds=1800):
+def run(batch,reference_config,execution,workers=4,wall_seconds=1800,wait_worker=False):
     batch,reference_config,execution=map(lambda p:Path(p).resolve(),(batch,reference_config,execution))
     if workers not in (1,2,4) or wall_seconds!=1800:raise ValueError('Require the locked bounded conversion profile')
     if (execution/'started.json').exists():raise FileExistsError('Preserve previous conversion attempts')
@@ -78,6 +78,32 @@ def run(batch,reference_config,execution,workers=4,wall_seconds=1800):
     from scripts.audit_native_rule import audit
     from scripts.audit_native_control_delivery import control_errors
     from scripts.evaluate_native_rule import require_finished_parent
+    execution.mkdir(parents=True,exist_ok=True)
+    atomic_json(execution/'started.json',dict(pid=os.getpid(),epoch=time.time(),workers=workers,new_controls=0,wait_worker=wait_worker))
+    atomic_json(execution/'registration.json',dict(batch=batch.name,protocol_sha256=sha(batch/'protocol.json'),data_role='TRAIN_EXTRA_SUPERVISION'))
+    shutil.copy2(__file__,execution/'executed_parallel_converter.py')
+    if wait_worker:
+        from navstack.owned_process import OwnedProcess
+        identity=read(batch/'worker_process.json')
+        owner=OwnedProcess(identity['pid'],identity['creation_epoch'],identity['executable'],allow_terminate=False)
+        wait_deadline=time.monotonic()+7500
+        try:
+            if owner.poll() is not None:raise ValueError('Physical worker already ended;use explicit completed-data mode')
+            while owner.poll() is None:
+                if time.monotonic()>wait_deadline:raise TimeoutError('Finite physical dependency wait exhausted')
+                atomic_json(execution/'status.json',dict(phase='WAITING_FOR_EXACT_PHYSICAL_DIVERSE_TEACHER',pid=os.getpid(),epoch=time.time()))
+                time.sleep(10)
+            if owner.poll()!=0:raise RuntimeError('Physical teacher failed;no conversion of incomplete data')
+        finally:owner.kernel.CloseHandle(owner.handle)
+        cleanup_deadline=time.monotonic()+300
+        while True:
+            if time.monotonic()>cleanup_deadline:raise TimeoutError('Owned cleanup/raw audit did not finish')
+            try:
+                require_finished_parent(batch)
+                if (batch/'raw_audit.json').exists():
+                    read(batch/'raw_audit.json');break
+            except (FileNotFoundError,ValueError,json.JSONDecodeError):pass
+            time.sleep(2)
     require_finished_parent(batch);protocol=read(batch/'protocol.json')
     if protocol.get('data_role')!='TRAIN_EXTRA_SUPERVISION' or protocol.get('native_validation') is not None:
         raise ValueError('Only the completed TRAIN teacher may supply labels')
@@ -90,10 +116,7 @@ def run(batch,reference_config,execution,workers=4,wall_seconds=1800):
     if (signature(cfg)!=read(reference_config)['signature'] or cfg.vehicle!=donor.vehicle
             or cfg.reward!=donor.reward or cfg.control_dt!=donor.control_dt or cfg.actuator_observation!=donor.actuator_observation):
         raise ValueError('Physical interface differs')
-    execution.mkdir(parents=True,exist_ok=True);started=time.monotonic();deadline=started+wall_seconds
-    atomic_json(execution/'started.json',dict(pid=os.getpid(),epoch=time.time(),workers=workers,new_controls=0))
-    atomic_json(execution/'registration.json',dict(batch=batch.name,protocol_sha256=sha(batch/'protocol.json'),data_role='TRAIN_EXTRA_SUPERVISION'))
-    shutil.copy2(__file__,execution/'executed_parallel_converter.py')
+    started=time.monotonic();deadline=started+wall_seconds
     def status(phase,**extra):atomic_json(execution/'status.json',dict(phase=phase,pid=os.getpid(),epoch=time.time(),**extra))
     try:
         streams=list((batch/'infrastructure').glob('*_responses.jsonl.gz'))
@@ -157,4 +180,5 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ('batch','reference-config','output'):parser.add_argument('--'+name,required=True)
     parser.add_argument('--workers',type=int,default=4)
-    args=parser.parse_args();run(args.batch,args.reference_config,args.output,args.workers)
+    parser.add_argument('--wait-worker',action='store_true',help='Wait on exact live physical worker,then require owned cleanup and completed original raw audit')
+    args=parser.parse_args();run(args.batch,args.reference_config,args.output,args.workers,wait_worker=args.wait_worker)
