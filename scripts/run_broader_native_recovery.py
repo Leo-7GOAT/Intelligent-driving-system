@@ -29,6 +29,8 @@ def run(execution, completed_collection=False):
     if (execution / 'continuation_started.json').exists():
         raise FileExistsError('Never restart a launched continuation or repeat physical controls')
     registration = read(execution / 'registration.json')
+    profile = registration.get('fit_profile','original')
+    if profile not in ('original','steering_v2'): raise ValueError('Unknown registered fixed fit profile')
     batch = ROOT / 'runs' / registration['batch']
     if sha(batch / 'protocol.json') != registration['protocol_sha256']:
         raise ValueError('Registered collection protocol changed')
@@ -46,6 +48,7 @@ def run(execution, completed_collection=False):
     files = [p for directory in ('scripts', 'navstack') for p in (ROOT / directory).rglob('*')
              if p.is_file() and p.suffix in ('.py', '.ps1') and '__pycache__' not in p.parts]
     files.append(ROOT / 'protocols/native_B1_broader_executed_recovery_20261102.json')
+    if profile=='steering_v2': files.append(ROOT / 'protocols/native_B1_broader_executed_recovery_steering_20261102.json')
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in files}
     atomic_json(execution / 'continuation_source_manifest.json', hashes)
     atomic_json(execution / 'continuation_started.json', dict(pid=os.getpid(), epoch=time.time(),
@@ -103,14 +106,24 @@ def run(execution, completed_collection=False):
             else:
                 call([sys.executable, ROOT / 'scripts/audit_native_recovery_collection.py', '--batch', batch,
                     '--output', raw_path], 'collection_raw', 1200)
-            call([sys.executable, ROOT / 'scripts/audit_native_control_delivery.py', '--batch', batch,
-                '--output', batch / 'B1/strict_delivery.json'], 'collection_delivery', 900)
+            delivery_path = batch / 'B1/strict_delivery.json'
+            if completed_collection and delivery_path.exists():
+                proof = read(delivery_path)
+                if (not proof['strict_delivery_gate_passed']
+                        or proof['protocol_sha256'] != sha(batch / 'protocol.json')
+                        or any(sha(batch / 'infrastructure' / s['name']) != s['sha256'] for s in proof['bridge_streams'])
+                        or proof['counts']['controls'] != read(batch / 'B1/collection.json')['collection_controls']):
+                    raise ValueError('Existing collection delivery audit differs')
+                atomic_json(execution / 'adopted_delivery_audit.json', dict(sha256=sha(delivery_path), new_controls=0, new_updates=0))
+            else:
+                call([sys.executable, ROOT / 'scripts/audit_native_control_delivery.py', '--batch', batch,
+                    '--output', delivery_path], 'collection_delivery', 900)
             fit = execution / 'canonical22_fit'
             status('FIXED_TRAIN_ONLY_RECOVERY_ACTOR_FIT')
             call([sys.executable, ROOT / 'scripts/fit_broader_native_recovery.py', '--collection', batch,
                 '--views', ROOT / 'runs/B3_broader_TRAIN_teacher_execution_v4_20261102/direct_views',
                 '--reference-config', ROOT / 'runs/20261101T131830295783Z_native_B1_broader_shared_parking_PPO/B1/config.json',
-                '--output', fit], 'canonical22_fit', 720)
+                '--output', fit, '--profile', profile], 'canonical22_fit', 720)
             basic_output = execution / 'basic_probe'
             call([sys.executable, ROOT / 'scripts/prepare_broader_native_recovery.py', '--probe-fit', fit,
                 '--output', basic_output], 'prepare_basic', 180)

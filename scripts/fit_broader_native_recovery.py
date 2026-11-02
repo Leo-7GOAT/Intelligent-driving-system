@@ -29,7 +29,7 @@ def recovery_masks(arrays, expected):
     return mask & ~holdout, holdout
 
 
-def run(collection, views, reference_config, output):
+def run(collection, views, reference_config, output, profile='original'):
     collection, views, reference_config, output = map(lambda p: Path(p).resolve(), (collection, views, reference_config, output))
     if output.exists():
         raise FileExistsError('Never overwrite or repeat a recovery fit')
@@ -47,10 +47,16 @@ def run(collection, views, reference_config, output):
     from scripts.prepare_native_recovery import verified_checkpoint_metadata
     from navstack.config import EnvConfig
     require_finished_parent(collection)
-    recipe_path = ROOT / 'protocols/native_B1_broader_executed_recovery_20261102.json'
+    if profile not in ('original','steering_v2'): raise ValueError('Unknown fixed fit profile')
+    recipe_file = ('protocols/native_B1_broader_executed_recovery_20261102.json' if profile=='original'
+                   else 'protocols/native_B1_broader_executed_recovery_steering_20261102.json')
+    recipe_path = ROOT / recipe_file
     recipe = read(recipe_path)
-    if (recipe['version'] != 'broader_executed_recovery_actor_v1' or recipe['seed'] != 22
+    expected_version = 'broader_executed_recovery_actor_v1' if profile=='original' else 'broader_executed_recovery_actor_steering_v2'
+    steering_scale = .02 if profile=='original' else .01
+    if (recipe['version'] != expected_version or recipe['seed'] != 22
             or recipe['steps'] != 1024 or recipe['learning_rate'] != 1e-4
+            or recipe.get('steering_scale',.02) != steering_scale
             or recipe['collection_batch'] != collection.name
             or recipe['collection_protocol_sha256'] != sha(collection / 'protocol.json')
             or recipe['fit_script_sha256'] != sha(__file__)
@@ -62,6 +68,14 @@ def run(collection, views, reference_config, output):
     strict = read(collection / 'B1/strict_delivery.json')
     origin = collection / 'resume/B1'
     metadata = verified_checkpoint_metadata(origin)
+    if profile=='steering_v2':
+        prior = ROOT / 'runs' / recipe['prior_failed_basic_batch']
+        failed = read(prior / 'B1/evaluation.json')
+        if (sha(prior / 'B1/endpoint_raw_audit.json') != recipe['prior_failed_basic_audit_sha256']
+                or sum(e['success'] for e in failed['episodes']) != 3
+                or sum(e['termination_reason']=='out_of_bounds' for e in failed['episodes']) != 1
+                or metadata['model_sha256'] != recipe['source_model_sha256']):
+            raise ValueError('Require the actual failed original objective and same fixed starting model')
     config = read(origin / 'config.json')
     validate_collection(p, EnvConfig.from_dict(config['env']), registered_native_cases(p))
     if (p['native_recovery_collection']['route_profile'] != 'broader_TRAIN36_v1'
@@ -104,8 +118,8 @@ def run(collection, views, reference_config, output):
     rms = pickle.dumps(norm.obs_rms)
     output.mkdir()
     shutil.copy2(__file__, output / 'executed_fit.py'); shutil.copy2(helper_path, output / 'executed_helper.py')
-    atomic_json(output / 'registration.json', dict(version='broader_executed_recovery_actor_v1',
-        recipe_sha256=sha(recipe_path),
+    atomic_json(output / 'registration.json', dict(version=expected_version,
+        recipe_sha256=sha(recipe_path), recipe_file=recipe_file, steering_scale=steering_scale,
         seed=22, steps=1024, learning_rate=1e-4, collection=collection.name,
         collection_audit_sha256=sha(collection / 'B1/collection_raw_audit.json'),
         nominal_manifest_sha256=sha(views / 'manifest.json'), recovery_dataset_sha256=audit['dataset_sha256'],
@@ -121,7 +135,7 @@ def run(collection, views, reference_config, output):
             raise RuntimeError('Bounded actor fit stopped: ' + str(reason))
         atomic_json(output / 'heartbeat.json', row)
     fitted, optimizer, sampler = helper.fit_actor(model, norm.normalize_obs(x), y, groups, train, holdout,
-        seed=22, steps=1024, callback=health)
+        seed=22, steps=1024, callback=health, steering_scale=steering_scale)
     if pickle.dumps(norm.obs_rms) != rms: raise ValueError('Frozen RMS changed')
     destination = output / 'checkpoint'; shutil.copytree(origin, destination); model.save(destination / 'model.zip')
     metadata.update(model_sha256=sha(destination / 'model.zip'), inherited_measured_actor_steps=1024,
@@ -141,4 +155,5 @@ if __name__ == '__main__':
     parser.add_argument('--collection', required=True); parser.add_argument('--views', required=True)
     parser.add_argument('--reference-config', required=True)
     parser.add_argument('--output', required=True)
-    args = parser.parse_args(); run(args.collection, args.views, args.reference_config, args.output)
+    parser.add_argument('--profile', choices=['original','steering_v2'], default='original')
+    args = parser.parse_args(); run(args.collection, args.views, args.reference_config, args.output, args.profile)

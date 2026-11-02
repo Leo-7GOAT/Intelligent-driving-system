@@ -1,0 +1,45 @@
+{
+  "scope": "Failed fixed actor recovery fit after all36TRAINmixture collection;no validation or PPO promotion.",
+  "collection": {
+    "batch": "20261102T084415462162Z_native_broader_TRAIN_recovery",
+    "raw_audit_sha256": "b09ac2fde7e2863f5d81991b0afdb5ea6594dc174ddb853b0ccbf1258d756bb0",
+    "controls": 12697,
+    "teacher_controls": 6218,
+    "learner_controls": 6479,
+    "eligible_executed_labels": 6179,
+    "mixture_successes": 34,
+    "mixture_collision": 1,
+    "mixture_deadline": 1,
+    "not_pure_policy_performance": true
+  },
+  "fit": {
+    "model_sha256": "df94c0ddeb0be87d3982378804f8d963f9a1aa82295431117b57349b8a6bda7d",
+    "new_auxiliary_Adam_steps": 1024,
+    "actual_step_each": [
+      1024
+    ],
+    "parameter_states": 20,
+    "source_model_sha256": "5f42425596c4f1555f5f9870f2a18f3ccc4bda337e5fbe197e28a14e667456d3",
+    "case3_train_action_RMS": [
+      0.028114935383200645,
+      0.009026451967656612
+    ]
+  },
+  "basic": {
+    "batch": "20261102T093459912176Z_native_recovery_actor_basic22",
+    "successes": 3,
+    "cases": 4,
+    "unsafe": 1,
+    "failed_case": 3,
+    "termination": "out_of_bounds",
+    "controls": 1173,
+    "raw_audit_sha256": "eb607ffec0f19dd82046de7dc5b3d1b88482326d8fe214d87ebfecd0ea63dde9",
+    "whole_sequence_sha256": "1cc075e86f9dbe8f504cf34997681ba69396d992b2b2acf157f2de9e69d8b688",
+    "gate_passed": false
+  },
+  "new_validation_controls": 0,
+  "new_PPO_updates": 0,
+  "decision": "Reject promotion. Test one matched steering-objective change using SAMEdata,parent,seed and1024steps;quadruple steering weight. No new collection or validation labels.",
+  "limits": "Single fixed development seed. Lower acceleration error coincided with worse nominalcase3steeringRMS .006775to.009026 and closed-loopbounds;this motivates a controlled test,not a proven causal explanation.",
+  "research_acceptance": "UNMET"
+}

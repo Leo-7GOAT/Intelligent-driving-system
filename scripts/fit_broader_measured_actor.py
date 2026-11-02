@@ -74,13 +74,15 @@ def validated_arrays(dataset, manifest, families):
 
 
 def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
-              steps=1024, callback=None):
+              steps=1024, callback=None, steering_scale=.02):
     """Case-balanced actor gradients; correlated holdout never enters gradients."""
     import numpy as np
     import torch
     from navstack.independent_clip_ppo import actor_critic_parameters
     if type(steps) is not int or not 1 <= steps <= 1024:
         raise ValueError('Actor teaching requires a bounded optimizer budget')
+    if steering_scale not in (.01, .02):
+        raise ValueError('Require a separately registered original or steering-focused objective')
     inputs, labels = np.asarray(inputs), np.asarray(labels)
     groups, train_mask, holdout_mask = map(np.asarray, (groups, train_mask, holdout_mask))
     n = len(inputs)
@@ -107,7 +109,7 @@ def fit_actor(model, inputs, labels, groups, train_mask, holdout_mask, *, seed,
     model.policy.set_training_mode(False)
     x = torch.as_tensor(inputs, dtype=torch.float32, device=model.device)
     y = torch.as_tensor(labels, dtype=torch.float32, device=model.device)
-    scales = x.new_tensor([.1, .02])
+    scales = x.new_tensor([.1, steering_scale])
     indices = np.flatnonzero(train_mask)
     unique = np.unique(groups[indices])
     weights = np.empty(len(indices))

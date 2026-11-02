@@ -24,7 +24,8 @@ class Policy(torch.nn.Module):
         return SimpleNamespace(distribution=SimpleNamespace(mean=self.action_net(torch.tanh(self.policy_net(x)))))
 
 
-def test_actor_teaching_preserves_live_PPO_state_and_ignores_holdout_labels():
+@pytest.mark.parametrize('steering_scale',[.02,.01])
+def test_actor_teaching_preserves_live_PPO_state_and_ignores_holdout_labels(steering_scale):
     torch.manual_seed(4)
     policy = Policy()
     # Populate actual retained Adam moments, including critic and exploration.
@@ -42,7 +43,7 @@ def test_actor_teaching_preserves_live_PPO_state_and_ignores_holdout_labels():
     holdout = ~train
     altered = y.copy()
     altered[holdout] = .8
-    results = [fit_actor(m, x, targets, groups, train, holdout, seed=11, steps=8)
+    results = [fit_actor(m, x, targets, groups, train, holdout, seed=11, steps=8, steering_scale=steering_scale)
                for m, targets in zip(models, (y, altered))]
     from scripts.fit_flat_feedback_contrast import exact
     assert exact(before_adam, policy.optimizer.state_dict())

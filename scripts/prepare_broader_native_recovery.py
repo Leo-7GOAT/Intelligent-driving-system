@@ -113,7 +113,7 @@ def prepare_probe(fit, output):
     if output.exists() or (fit / 'basic_probe_registration.json').exists():
         raise FileExistsError('Preserve the fixed recovery probe')
     result, registration = read(fit / 'complete.json'), read(fit / 'registration.json')
-    recipe_path = ROOT / 'protocols/native_B1_broader_executed_recovery_20261102.json'
+    recipe_path = ROOT / registration.get('recipe_file', 'protocols/native_B1_broader_executed_recovery_20261102.json')
     recipe = read(recipe_path)
     parent = ROOT / 'runs' / registration['collection']
     require_finished_parent(parent)
