@@ -710,6 +710,7 @@
     "new_updates": 0,
     "selected_replacement": null,
     "current_training_or_evaluation_changes": 0,
-    "limitations": "A single bounded global query is not a feasibility oracle. Original case21has a recorded successful native B3episode despite this7200node global query timing out. Connected XY and shifted-body proposals do not certify executable paths. No failed or difficult original conditions were removed or replaced."
+    "limitations": "A single bounded global query is not a feasibility oracle. Original case21has a recorded successful native B3episode despite this7200node global query timing out. Connected XY and shifted-body proposals do not certify executable paths. No failed or difficult original conditions were removed or replaced.",
+    "published_exact_executed_source": "scripts/diagnose_native_static_initial_geometry_20261102.py"
   }
 }
