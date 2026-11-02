@@ -24,6 +24,29 @@ def sha(path: Path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def verified_decision_timing(rows,episode,config):
+    """Only remove separately verified external-clock summaries from env metrics."""
+    fields=('policy_prediction_times','full_decision_times')
+    clocks=('policy_prediction_seconds','full_decision_seconds')
+    present=any(key in episode for key in fields) or any(any(k in row for k in clocks) for row in rows)
+    if not present:return set()
+    import math
+    from navstack.config import EnvConfig
+    from navstack.metrics import timing_summary
+    cfg=EnvConfig.from_dict(config);period=cfg.control_dt*cfg.substeps
+    if any(k not in episode for k in fields) or any(any(k not in row for k in clocks) for row in rows):
+        raise ValueError('Decision timing lacks complete per-action clocks and summaries')
+    for row in rows:
+        prediction,full=(row[k] for k in clocks)
+        if (type(prediction) not in (int,float) or type(full) not in (int,float)
+                or not math.isfinite(prediction+full) or not 0<=prediction<=full):
+            raise ValueError('Decision timing clocks must be finite and nested')
+    for field,clock in zip(fields,clocks):
+        if episode[field]!=timing_summary([row[clock] for row in rows],period):
+            raise ValueError('Decision timing summary or physical period differs from recorded clocks')
+    return set(fields)
+
+
 def read_prefix(path: Path):
     rows, error = [], None
     try:
@@ -263,7 +286,9 @@ def audit(batch: Path, method: str) -> dict:
         raise ValueError("Evaluation trace cases differ from evaluation summary")
     for case_id, episode in expected_cases.items():
         case = evaluation_cases[case_id]
-        expected_terminal = {key: value for key, value in episode.items() if key != "case_id"}
+        timing_fields=verified_decision_timing([row for row in evaluation_rows if row['case_id']==case_id],
+            episode,read(folder/'config.json')['env'])
+        expected_terminal = {key: value for key, value in episode.items() if key != "case_id" and key not in timing_fields}
         if case["terminal"] != expected_terminal:
             raise ValueError("Evaluation terminal metrics differ from trace")
         if (case["frames"], case["actions"]) != (episode["physics_steps"], episode["actions"]):

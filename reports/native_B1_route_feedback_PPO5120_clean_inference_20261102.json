@@ -11,11 +11,12 @@
   "clean_checkout_commit": "1f0975be75eed4b522d134142335470ad9fd8409",
   "clean_checkout_status": "",
   "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
-  "independent_python": "C:\\Users\\Leo\\Desktop\\\u8bba\u6587\u6574\u6539\\runs\\prerelease_20261022\\clean_checkout\\.venv\\Scripts\\python.exe",
+  "independent_python": "existing-independent-clean-environment/Python3.11",
   "policy_class": "RouteFeedbackFlatPolicy",
   "normalizer_class": "RouteFeedbackNormalize",
   "measured_initial_actions_bit_exact": 4,
   "inference_batch_size": 1,
   "PPO_Adam_parameter_states": 40,
-  "batch_shape_diagnostic_retained": true
+  "batch_shape_diagnostic_retained": true,
+  "local_original_receipt_retained": true
 }

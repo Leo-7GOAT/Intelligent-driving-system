@@ -1,51 +1,35 @@
-# 当前接续状态（2026-11-02 20:46）
+# 当前接续状态（2026-11-02 22:24）
 
-继续当前仓库，分支 `feature/physical-hierarchical-ppo`。不重建项目、不初始化 Git、不恢复瞬移环境。完整研究验收仍未达成；不能把基础4/4、教师成绩、训练结束或已知开发集当成最终达标。
+沿用当前仓库和 feature/physical-hierarchical-ppo 分支；不重建、不恢复瞬移。用户要求自主完成研发、真实训练、验证和 GitHub 交付。完整研究目标仍未通过，禁止将训练完成、基础4/4或已知开发集当成最终达标。
 
-## 目标
+## 唯一当前物理作业：不要重复启动
 
-主方法保持 PPO 高层 → 局部目标/速度 → Hybrid A* → 时间轨迹 → MPC → 真实 CARLA 状态与奖励反馈。需要健康五种子 B1、H/H0/B1/B2/B3 公平配对、独立 PPO 与反馈贡献、至少120个未查看的新最终条件及完整公开复现。现有已知24场仅用于开发。用户授权自主修改、测试、真实本地训练、提交和推送，不逐项询问。
+- 协调器35188，工具session75294：`scripts/run_native_static_policy_contrast.py`。
+- execution：`runs/H_H0_teacher_static12_transfer_execution_20261102`；batch：`runs/20261102T135514838123Z_native_static_H_H0_teacher_transfer`；worker14044、guard64888。
+- 顺序运行 H_PPO、H0_PPO、H_teacher，全部12个先前注册的新增静态 TRAIN 条件，canonical seed22，零新增PPO/监督。22:23在H_PPO第8场，前7场只是未审计前缀，不能作完整成绩。工具无输出不代表停止；看 evaluation_heartbeat、guard 和确切进程身份。
+- 三者原权重/优化器/RMS/RNG字节不变，共同迁移到当前 batch_sync_v1 与停车辅助；其余配置/标定完全一致。原H/H0训练是legacy actor_async且没有辅助，因此本批只能称冻结部署迁移。
+- 全部结束后协调器自动做每个方法的原始帧、实测起点NN推理和严格发动机回执审计。已注册5400秒批次预算/6000秒执行超时，不自动重试；若耗尽，保留完整失败与前缀，不冒充全部完成。
+- 运行期间不要修改 scripts/native_road_learning.py、scripts/audit_native_method_endpoint.py、scripts/audit_native_policy_inference.py、scripts/run_native_static_policy_contrast.py。物理worker使用冻结source，后续审计仍调用根目录入口。
 
-## 当前实际作业：只观察，禁止重复启动
+## 本轮已完成并核验
 
-- 所有路线误差离线拟合、低率及高率PPO和全24验证均已完成/正常清理。高率最终4/24（低率5/24），原10k无新增FN策略作为下一次训练起点；失败新观测分支不继续追加预算。
-- **唯一当前物理作业**：`runs/20261102T123912910706Z_native_canonical_parent_TRAIN48_PPO10240`，由 `scripts/run_strong_native_parent_course.py` 启动。训练协调器 **63804 / session71428**，物理worker **42700**，20:46已3507/10240实际步；execution `runs/B1_canonical_native_parent_PPO10240_execution_20261102`。固定10240新实际控制、3e-6学习率、原KL保护、TRAIN48，不新增监督。
-- 训练后审计/端点协调器 **60904 / session10083**，execution `runs/B1_canonical_native_parent_PPO10240_postprobe_20261102`。它哈希绑定 `scripts/complete_route_feedback_ppo.py` 和 `scripts/audit_route_feedback_ppo.py`，期间不要修改。等待确切63804退出0，审计全部10240帧/35个原Adam状态/RMS，然后原4基础道路，达门槛才测24已知验证。
-- 初始化为原生40960-PPO控制模型29efb9c…，来自 `runs/20261101T112758733226Z_native_B1_shared_parking_PPO/B1/checkpoint_000010240`。模型/RMS/优化器/RNG原样复制、观测4705维但关闭失败FN新增字段；与当前车辆标定和配置signature完全一致。历史14/24存在混合初始化，仅作为历史开发结果，不当作当前健康得分。原教师/位姿/反射增强监督历史保留并披露，当前零新增监督。
-- 当前物理源采用已验证逐位等价的root观测目录复用与SAT窗口优化；其余物理控制、碰撞、奖励、桥接与当前模板一致。没有恢复旧模拟环境。实际状态以status/complete/failure为准，不重启。
+1. 原29efb9c…实际原生PPO父模型，固定10240新增控制，TRAIN48课程：291Adam、27闭合训练回合，未接触原4基础条件；基础3/4，一次越界。batch `20261102T123912910706Z_native_canonical_parent_TRAIN48_PPO10240`。未启动完整VAL。
+2. 同一父模型/Adam/RMS/RNG、同10240控制预算，唯一课程变化是每4回合复习一次原基础道路：64暴露/48独立条件，全部4基础在任意连续16暴露内出现。实际26重置、320Adam、10240控制均审计通过；不是全部48条件已遍历。batch `20261102T130625263733Z_native_canonical_parent_TRAIN48_PPO10240`，模型05896b45…。
+3. 复习模型基础4/4（1416控制）；完整已知VAL15/24，曲线6/8、静态3/8、行人6/8；7越界、2碰撞、0超时，共10233控制，全24起点NN/原始帧/发动机回执已验证。全部协调器37776/32060正常退出0。证据 `reports/native_B1_matched_rehearsal_complete_20261102.json`。
+4. 保守几何检查全部12新增静态条件：原teacher case14（合并TRAIN48 case19）在声明闭合道路/静态矩形模型下不连通，其余连通不代表车可执行。全部原失败保留，当前对照不剔除。复习课程没有访问case19，不能把与原课程差异完全归因遗忘。实际原planner为7200节点；私有离线诊断将1800误标original、7200误标higher，公开报告已纠正并保留原尝试。不是CARLA真实网格不可能性的证明。
+5. 新命名冻结作业接口严格限定评估和零学习；完整决策计时包含NN+env，周期使用control_dt*substeps；审计逐动作重建外部计时后才允许排除独立时钟汇总。历史无时钟日志不变。
+6. 完整CPU1260通过、1跳过、4CARLA排除，259.94秒；凭证 `runs/H_H0_teacher_static12_transfer_execution_20261102/cpu-regression.xml`。
 
-## 本轮已经完成
+## 不再重复已完成失败分支
 
-- 新增路线误差输入及2758参数直接控制网络残差，只有已知地图和实测自车输入，无运行时教师、规则跟踪器或状态投影。4096次 TRAIN 辅助拟合后基础4/4，但已知验证 **1/24**：10超时、10越界、3碰撞，11528实际帧全审计。模型558f162f…，作为健康基线明确否决。见 `reports/native_B1_route_feedback_failed_validation_20261102.json`。
-- 预先锁定的真实 PPO 短训练已结束：`runs/20261102T114745271816Z_native_route_feedback_PPO5120`，**5120新控制步、160 Adam、495重置/5615世界tick、418.624秒**。原35个及新增5个参数状态均实际增加160步，actor/critic均变化，原RMS统计一致，所有控制与发动机回执验证。TRAIN48交错16道路/三类，不保证短预算遍历全部条件。继承学习率3e-6、std约0.018315，没有中途调参。模型 **5085cfb491ebf1c07a14dcfc71f0c6cb5673476fd464ff28286fc20bcbb6e11d**，norm **d9c78f13a51ac235750264631f4138dc273b96fe78d864f169b0535dd1774d5f**。见 `reports/native_B1_route_feedback_PPO5120_training_20261102.json`。
-- 上述模型训练后基础 **4/4**，347/357/308/308=**1320**实际控制，全部NN动作重建一致；batch `20261102T115516528316Z_native_route_feedback_PPO_basic`。完整24已知验证也已完成：**5/24**，弯道2/8、静态3/8、行人0/8；8越界/7超时/4碰撞，9641帧及24个起点/发动机回执全部核验。相较离线1/24有开发集改善，仍不健康。见 `reports/native_B1_route_feedback_PPO5120_complete_validation_20261102.json`。
-- 同一模型已在原有独立 Git checkout、原有干净环境中载入，40个PPO Adam状态完整，4个实测起点按生产batch1推理逐位一致。证据 `runs/route_feedback_PPO5120_clean_inference_20261102/complete.json`。初次batch4对比有1.19e-7浮点差，诊断保留；没有放宽batch1标准。这不是公开下载复现。
-- 本地完整CPU1230通过/1跳过；之后新增Adam/清单8项通过，SAT/规划13项通过。源码 **1f0975be75eed4b522d134142335470ad9fd8409** 已推送，GitHub CI **41440795733 SUCCESS**。
-- SAT仅先取同样的局部闭合栅格再执行原判据，13项相关回归通过；8实测起点输入完全一致，观测平均94.5→82.3ms。只读微基准，不是实时性或驾驶性能证明。见 `reports/native_observation_spatial_window_benchmark_20261102.json`。
+路线误差残差离线1/24；5120实际PPO低率5/24、匹配高率4/24；新的几何平衡拟合3/24。全流程/原始失败保留，不继续盲目追加相同拟合。五种子更广B1为54/120（仅24重复已知条件）、58不安全、8超时；公开预发布及151660帧/120起点/5图无认证下载重建全部完成。H/H0旧执行版本120/120 vs119/120，PPO对零PPO教师120vs117，差值区间均跨0；强B3已知24/24且通行时间没有PPO优势。旧异步H与当前同步B1不能包装为公平完整对照。
 
-## 不能重跑或混淆的已完成结果
+## 后续执行边界与目标
 
-- 五种子更广B1：54/120，58不安全，8超时，只有24个已知条件；102400新增真实PPO控制/3148Adam。公开release `v0.2.0-dev.20261102-broader-b1`，69资产公开下载复现已完成151660帧、120起点、5图。不得再次下载或训练旧队列。
-- 原TRAIN教师35/36；恢复混合采集12697控制/6179合格实际教师标签；新增12真正不同基准道路的教师31/36/14479控制均完成。所有失败保留。串/并行数据重建全数组一致；并行225秒、串行1777秒，非政策性能提升。
-- 前一几何平衡拟合模型5b4311f…：基础4/4，已知验证3/24，12383帧，不能称健康。更早同数据长拟合16ecd9…为2/24；其他离线变体均失败，不再盲目重复同数据拟合。
-- 五个H/H0配对：120/120 vs119/120，差值区间跨0；PPO vs教师117/120的净收益区间也跨0。不能宣称反馈或PPO优势已证明。强B3已知24/24。
+先完成当前静态对照及自动审计，据实际失败定位高层选择/规划接口，避免继续把全部时间花在B1变体。B1要求基础学习、无明显实现缺陷和合理训练；允许完整任务较弱，不要求达到H的80%目标。单seed4/4尚不能代表健康五seed。正式H/H0/B1需相同当前物理与安全版本、透明且公平的完整交互/监督预算。现有5种子H和B1历史预算不同，必须披露。
 
-## 单变量学习率对照（不重复旧训练）
+完整目标：PPO→子目标/速度→HybridA*→时间轨迹→MPC→真实CARLA反馈；轻量85%/核心75%，CARLA80%/核心70%、碰撞或越界≤5%；五独立实际适配策略；至少120个NEW去重配对最终条件（三类各≥30，另有未见布局/车辆）；分层差≥10pp且95%下界>0或事前锁定合理效率假设；PPO对强B3贡献及反馈协作消融；代码/模型/原始失败/图表/公开复现/GitHub真实交付。最终新条件尚未生成和查看。
 
-`runs/B1_route_feedback_rate1e4_PPO5120_execution_20261102`，协调器 **67268 / session80592**，`python scripts/queue_route_feedback_ppo.py --rate-profile` 已在当前完整验证结果出来前注册并启动，等待确切13124退出0。
+CARLA沿用D:/CARLA_0.9.15/WindowsNoEditor和现有Python3.7桥接；root .venv为3.11。不干预Desktop/papper其他项目。C盘旧runs/prerelease等目录有junction到D盘，禁止递归删除/移动。只管理身份核验的本任务进程。C空余约18GiB，下一作业前复核资源。不要新增子代理。
 
-仅将学习率3e-6改为1e-4，预算同为5120新真实PPO控制；从同一个离线模型558f162f…重新开始，保留原35个Adam状态、新增5个空组、log_std、RMS、RNG和完全相同TRAIN48/低层/奖励。5120低率分支及后续评估成本全部计入消耗，不冒充权重保留。不是从低率训练后的5085继续；这是匹配起点的单变量诊断，不是多种子结论。初始化已逐张量验证权重/探索与Adam不变，仅调度率变化；前五个实际重置也一致。3项相关回归通过。
-
-不要重启高率协调器。固定训练已经完成，后续仍由54584完成 `audit_route_feedback_ppo.py` 及原4基础/条件性24验证。现有 `complete_route_feedback_ppo.py` 仍被13124哈希绑定；13124已结束；接口已增加明确execution/dependency参数，高率作业的新审计/端点评测协调器54584已启动。
-
-## 后续必须执行
-
-当前完整验证结束后先据真实结果更新报告、README及本文件，保留失败和实际成本。若仍失败，不把本轮离线监督或低学习率短训练包装成健康充分基线；用证据决定下一项必要修改或合理PPO调参。完整研究目标未达成，不标记goal complete，也不将算法失败当作外部阻塞。
-
-CARLA沿用 `D:/CARLA_0.9.15/WindowsNoEditor` 和原Python3.7客户端；不触碰其他项目进程。C盘旧runs/prerelease等有目录junction指向D盘，禁止递归删除/移动。只管理经PID/创建时间/可执行路径验证的本任务进程。旧只读等待器47232的单独取消与后续澄清已保留：本次源两组原率实际均3e-6，预防性审计兼容处理并非真实源错误；物理训练没有被打断。
-
-完整历史原文已逐字节校验归档：[历史 handoff](../reports/handoff_before_route_feedback_PPO_20261102.md)。不要把历史时态覆盖上述当前状态。
-
-当前源码f876eb0的GitHub CI41442770659已成功：1222通过/18按平台跳过/4排除。root候选目录复用新增18项检查通过，另24个已知验证实测起点的4705维输入和实际NN动作全部逐位一致；只读基准均值77.47→70.20ms，报告 native_observation_catalog_and_spatial_parity_20261102.json。不是实时性证明。
-
-高率完整结果见 reports/native_B1_route_feedback_rate_contrast_complete_20261102.json。10240课程的审计器已显式支持无新增参数的35状态延续；10项相关检查通过。源码ffbb4651db60857ee84e19c4655b5fd26944f21e已推送，GitHub CI41446722237成功。
+完整较早历史已逐字节归档 `reports/handoff_before_route_feedback_PPO_20261102.md`。最新源码推送前为ffbb465，GitHubCI41446722237成功；6ea0b19为后续文档提交。当前这批代码和报告需在回归通过后commit/push，不force push、不上传个人路径或巨型runs。

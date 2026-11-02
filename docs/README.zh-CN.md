@@ -7,7 +7,11 @@
 **目前是开发预发布，整体研究验收尚未通过。** 已有真实 CARLA 训练、逐帧控制审计和公开模型复现；尚不能宣称分层优越、稳定 PPO 增益、实时性或实际道路安全。
 
 
-最新状态：[五种子 B1 扩展预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1)已公开，69 项资产的远端哈希全部一致。独立环境无认证下载重建已通过：151,660 个控制帧、120 个初始动作、5 张逐字节一致的图表，以及 PPO/Adam/归一化和完整汇总均重建一致。[公开复现凭证](../reports/native_B1_broader_public_download_verification_20261102.json)。随后每种子追加 1,024 次 TRAIN 教师监督的 actor Adam 更新；固定 seed22 基础道路4/4，已知验证仅4/24，仍未达标。[监督与闭环验证完整记录](../reports/native_B1_broader_nominal_supervision_20261102.json)。正在原36个 TRAIN 条件采集纠偏数据；不使用验证标签训练。
+最新完成的 B1 复习课程从既有真实 CARLA 策略开始，模型、Adam、RMS 和 RNG 初始字节全部保持一致，新增 **10,240 个实际 PPO 控制步、320 次 Adam 更新**，没有新增监督。基础道路 **4/4**，24 个已知开发条件 **15/24**：弯道/静态/行人分别 6/3/6（各8场），7次越界、2次碰撞。同预算但没有复习原基础道路的课程在基础测试为3/4。复习改变的是 TRAIN 暴露顺序和重复次数，没有增加独立场景数量。这只是单种子开发证据。[完整训练与验证审计](../reports/native_B1_matched_rehearsal_complete_20261102.json)。
+
+当前运行 H、H0 和零 PPO 教师策略在全部12个新增静态 TRAIN 条件上的冻结对照。三者共同迁移到同步命令传送与停车辅助，明确属于部署迁移，不是重训或最终确认。地图模型中发现的一条不连通条件仍保留在对照和历史统计中。[几何诊断](../reports/native_diverse_TRAIN_static_geometry_diagnostic_20261102.json)、[当前交接状态](handoff.md)。本地 CPU 回归 **1260通过、1跳过、4项CARLA测试排除**。
+
+[五种子 B1 扩展预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1)的69项资产已公开下载重建：151,660个控制帧、120个初始动作及5张图表均核验一致。[公开复现凭证](../reports/native_B1_broader_public_download_verification_20261102.json)。教师、恢复采集和失败的离线观测修正均已结束，不要重复启动。
 
 ## 当前证据
 

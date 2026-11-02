@@ -253,6 +253,20 @@ def registered_jobs(protocol):
     jobs = protocol.get('jobs')
     if jobs is None:
         return [{'name': method, 'method': method} for method in protocol['methods']]
+    if protocol.get('frozen_policy_comparison'):
+        names=[job.get('name') for job in jobs]
+        if (protocol['frozen_policy_comparison'].get('version')!='named_frozen_native_v1'
+                or protocol.get('evaluation_only') is not True or not jobs
+                or names!=protocol['methods'] or len(set(names))!=len(names)
+                or protocol.get('controlled_budget_per_method')!=0
+                or protocol.get('method_budgets')!={name:0 for name in names}
+                or set(protocol.get('recovery',{}))!=set(names)
+                or any(not name or not name.replace('_','').isalnum() for name in names)
+                or any(set(job)!={'name','method'} or job['method'] not in ('H','H0','B1') for job in jobs)
+                or any(protocol.get(flag) for flag in ('gradient_clipping_experiment','rollout_length_experiment',
+                    'flat_distribution_experiment','actor_head_experiment'))):
+            raise ValueError('Named frozen comparison requires saved policies and strictly zero learning budgets')
+        return jobs
     clipping=bool(protocol.get('gradient_clipping_experiment'))
     rollout=bool(protocol.get('rollout_length_experiment'))
     distribution=bool(protocol.get('flat_distribution_experiment'))
@@ -600,8 +614,8 @@ def run(batch):
                                     **decision_timing},default=jsonable)+"\n")
                                 if done or truncated:
                                     episodes.append({"case_id":case_id,**info["episode_metrics"],
-                                        'policy_prediction_times':timing_summary(prediction_times,config.decision_dt),
-                                        'full_decision_times':timing_summary(full_decision_times,config.decision_dt)})
+                                        'policy_prediction_times':timing_summary(prediction_times,config.control_dt*config.substeps),
+                                        'full_decision_times':timing_summary(full_decision_times,config.control_dt*config.substeps)})
                                     if record_camera:
                                         append_json(output/'episodes.jsonl',{'case_id':case_id,'case':case,
                                             'original_parent_case_id':protocol['native_camera_evaluation']['original_case_ids'][case_id],

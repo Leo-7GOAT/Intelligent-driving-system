@@ -11,9 +11,11 @@ Latest: the [five-seed broader B1 prerelease](https://github.com/Leo-7GOAT/Intel
 
 Recent baseline repairs remain unsuccessful. Additional TRAIN geometry scored 3/24; a learned route-error residual scored 1/24 on the same known development inventory. Actual 5,120-control PPO courses then scored 5/24 at the retained learning rate and 4/24 in a matched rate-only contrast. All raw controls, actual Adam counts and failures are retained. [Low-rate result](reports/native_B1_route_feedback_PPO5120_complete_validation_20261102.json), [rate contrast](reports/native_B1_route_feedback_rate_contrast_complete_20261102.json). These are single-seed development results, not a healthy baseline or independent final confirmation.
 
-The failed observation branch is now rejected for the next experiment. A fixed earlier **actually CARLA-trained canonical seed22 policy** is adapting on TRAIN48 for 10,240 new controls, with current physical calibration/control semantics and no new supervised fitting. Its historical 14/24 used mixed initialization and is not presented as a current score. We preserve its original teacher/pose/reflection augmentation provenance. No old simulator environment is restored. [Current handoff](docs/handoff.md).
+The route-error branch was rejected. A matched TRAIN rehearsal course from the earlier CARLA-trained canonical seed22 policy retained all model/Adam/RMS/RNG initialization bytes and used 10,240 new actual controls with zero new supervision. It passed the basic roads **4/4** and scored **15/24** on known development conditions (curve/static/walker: 6/3/6 successes out of eight each; seven bounds and two collisions). The same-budget course without familiar-road rehearsal failed one basic road. This is one-seed development evidence, not five-seed health or final confirmation. [Training, schedule and raw-control evidence](reports/native_B1_matched_rehearsal_complete_20261102.json).
 
-Source-specific [hosted CPU verification](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41444605514) passed. Pure observation-computation changes match all 24 measured starts and actual NN actions exactly; that microbenchmark does not establish real-time control or driving success.
+A frozen H/H0/zero-PPO-teacher comparison is running on all twelve previously registered novel static TRAIN cases. It explicitly transfers all neural policies to common synchronous command delivery and the same parking aid; it is not retraining or final testing. A conservative map-model check identifies one disconnected case, which remains in the comparison and all historical results. [Geometry diagnostic](reports/native_diverse_TRAIN_static_geometry_diagnostic_20261102.json), [current handoff](docs/handoff.md).
+
+Local CPU regression passed **1,260 tests**, with one skip and four CARLA tests deselected. The previous source-specific [hosted CPU verification](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41446722237) passed. Pure observation-computation changes match all 24 measured starts and actual NN actions exactly; that microbenchmark does not establish real-time control or driving success.
 
 ## Verified development evidence
 
@@ -84,7 +86,7 @@ Each native batch freezes its source hashes, model, normalization, physical-inte
 
 The original requirements remain:
 
-- At least five independently trained policies and a healthy full-task flat baseline, with fair H/H0/B1/B2/B3, frequency, safety and fixed-reference comparisons.
+- At least five independently trained policies and a flat baseline with demonstrated basic learning, sound implementation and adequate training, with fair H/H0/B1/B2/B3, frequency, safety and fixed-reference comparisons.
 - At least 120 **new, unique, paired final conditions**, including at least 30 per core class and unseen layouts or vehicle parameters. Existing 12- and 24-condition development sets are not final confirmation.
 - Lightweight safe completion ≥85% overall / ≥75% per core; CARLA ≥80% / ≥70%, with collision-or-bounds episodes ≤5%.
 - H minus healthy B1 ≥10 percentage points with a paired 95% lower bound above zero, or a prospectively frozen efficiency alternative; separately demonstrated PPO value against strong B3 and interpretable collaboration benefit.
