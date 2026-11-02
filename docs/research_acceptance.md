@@ -2,20 +2,20 @@
 
 **Overall acceptance: UNMET.** This table supersedes the historical snapshots
 below. Training/evaluation on known development conditions does not satisfy the
-independent final-confirmation requirement.
+independent final-confirmation requirement. B1 must demonstrate basic learning, a sound implementation and reasonable tuning/training; it may remain weaker on the full task. The H capability targets below are not a requirement that B1 also reach 80%.
 
 | Original requirement | Current authoritative evidence | Status |
 |---|---|---|
 | Real PPO → goal/speed → Hybrid A* → trajectory → MPC → CARLA feedback | Five completed native H/H0 training pairs and per-frame raw audits; public reproduction of models, updates and controls | Engineering chain executed |
 | Five healthy, sufficiently trained flat baselines | All five new basic courses complete: 3/4,4/4,4/4,4/4,3/4; two bounds failures, only three gates pass. 51,200 retained learning controls,1,599 Adam steps; fifth seed explicitly recovered | Not achieved |
-| Full-task B1 and fair H/B1 comparison | Allfive broader seeds11/22/33/44/55finish at11/7/11/15/10outof24:54/120successes,58unsafe cases;allfive screensFAIL.102,400actuallearning controls/3,148Adamsteps retained;44explicitly recovered.24knownconditions only. Uniform TRAIN teacher collection is running and separate actor-only fitting is queued; no improvement is established | Not achieved |
-| H gain ≥10 percentage points over healthy B1, paired 95% lower bound >0, or prospectively locked efficiency alternative | No qualified full-task five-seed B1 comparison | Unproven |
+| Full-task B1 and fair H/B1 comparison | Allfive broader seeds11/22/33/44/55finish at11/7/11/15/10outof24:54/120successes,58unsafe cases;allfive screensFAIL.102,400actuallearning controls/3,148Adamsteps retained;44explicitly recovered.24knownconditions only. Teacher/recovery and rejected actor-only branches are complete. The subsequent matched rehearsal seed22 retains basic4/4 and scores15/24 on known VAL after10240newcontrols/320Adam;not five-seed health. A real H/H0diverse-TRAIN48adaptation is now running | Not achieved |
+| H gain ≥10 percentage points over healthy B1, paired 95% lower bound >0, or prospectively locked efficiency alternative | Five-seed basic/training adequacy and a common-current-harness,budget-matched complete-task comparison remain pending | Unproven |
 | Added PPO value against shared strong B3 | Teacher-only H 117/120 vs PPO H 120/120; +2.50 points, 95% interval [−2.13, +7.13]. Strong B3 24/24 | Unproven |
 | Interpretable collaboration improvement | H 120/120 vs H0 119/120; +0.83 points, 95% interval [−1.48, +3.15] | Stable gain unproven |
-| Lightweight ≥85% overall / ≥75% per core; CARLA ≥80% / ≥70%; unsafe episodes ≤5% | No new final confirmation. The separate B1 different-road development probe is 58.33% successful and 41.67% collision-or-bounds | Final targets unverified; B1 development result below targets |
+| Lightweight ≥85% overall / ≥75% per core; CARLA ≥80% / ≥70%; unsafe episodes ≤5% | No new final confirmation. Old Hknown24results cannot establish independent final thresholds. New B1rehearsal is descriptive comparator evidence,not an Hcapability test | Final Htargets unverified |
 | ≥120 new unique paired final conditions, ≥30 per core and unseen conditions | Current H/H0 study reuses 24 known conditions across five seeds. New final set remains untouched | Not achieved |
 | B2, frequency, shared-safety and fixed-reference evidence | Existing H/B2 study retains a bridge-initialization confound; fixed-reference MPC and pursuit/PI each 4/4; complete fair cohorts remain missing | Partial |
-| Reproducible public delivery | Published frozen models/raw logs/figures independently rebuilt. Complete-decision timing source f938d1e passes hosted CI and local CPU regression (1,130 passed, one skipped, four CARLA tests excluded). Later actor-fit code has separate validation | Development reproduction delivered; final withheld |
+| Reproducible public delivery | Published frozen models/raw logs/figures independently rebuilt. Source9ab91f3passes hosted CI41461752584and local CPU1260passed/1skipped/4CARLAexcluded;new paired-continuation source958c922passes CI41462502678. Five-seed B1public-download reproduction verified151660controls,120starts and five byte-identical figures | Development reproduction delivered; final withheld |
 
 Evidence: [basic seed 11](../reports/native_B1_shared_parking_cohort_seed11_20261101.json),
 [22](../reports/native_B1_shared_parking_cohort_seed22_20261101.json),
