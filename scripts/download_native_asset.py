@@ -46,14 +46,14 @@ def read_bounded(url, maximum, deadline):
     return b''.join(chunks)
 
 
-def download(manifest_url, directory, expected_sha256, wall_seconds=1200):
+def download(manifest_url, directory, expected_sha256, wall_seconds=1200, *, resume=False):
     if not isinstance(expected_sha256, str) or not re.fullmatch('[0-9a-f]{64}', expected_sha256):
         raise ValueError('Require the trusted archive SHA256 from the published verification report')
     if type(wall_seconds) not in (int, float) or not 1 <= wall_seconds <= 1200:
         raise ValueError('Download wall budget must be1..1200seconds')
     base, manifest_name = release_url(manifest_url)
     directory = Path(directory)
-    if directory.exists():
+    if directory.exists() and not resume:
         raise FileExistsError('Use a fresh output directory; interrupted evidence is preserved')
     started = time.monotonic()
     deadline = started+wall_seconds
@@ -74,18 +74,37 @@ def download(manifest_url, directory, expected_sha256, wall_seconds=1200):
             or any(part['name'] != archive_name+f'.part{index:03d}'
                    for index, part in enumerate(parts, 1))):
         raise ValueError('Archive and ordered part names differ from the transfer format')
+    if resume and directory.exists():
+        if (directory / archive_name).exists() or (directory / 'download_receipt.json').exists():
+            raise FileExistsError('Use the verified complete-download cache; do not overwrite its receipt')
+        if (directory / manifest_name).read_bytes() != payload:
+            raise ValueError('Partial download manifest differs from the fresh public manifest')
     ancestor = directory.resolve().parent
     while not ancestor.exists():
         ancestor = ancestor.parent
     if shutil.disk_usage(ancestor).free < 2*manifest['bytes']+64*1024**2:
         raise OSError('Insufficient free space for checked parts and assembled archive')
-    directory.mkdir(parents=True, exist_ok=False)
+    directory.mkdir(parents=True, exist_ok=resume)
     manifest_path = directory/manifest_name
-    with manifest_path.open('xb') as stream:
-        stream.write(payload)
+    if not manifest_path.exists():
+        with manifest_path.open('xb') as stream:
+            stream.write(payload)
+    retained = []
+    for part in parts:
+        path = directory / part['name']
+        if path.exists():
+            if path.stat().st_size != part['bytes'] or hashlib.sha256(path.read_bytes()).hexdigest() != part['sha256']:
+                raise ValueError('Retained download part changed: ' + part['name'])
+            retained.append(part['name'])
 
     def fetch(part):
-        for attempt in range(1, 4):
+        if part['name'] in retained:
+            return
+        prior = [int(match.group(1)) for path in directory.glob(part['name'] + '.attempt*')
+                 if (match := re.search(r'\.attempt(\d+)\.', path.name))]
+        offset = max(prior, default=0)
+        for number in range(1, 4):
+            attempt = offset + number
             try:
                 data = read_bounded(base+'/'+part['name'], part['bytes'], deadline)
                 temporary = directory/(part['name']+f'.attempt{attempt}.partial')
@@ -99,7 +118,7 @@ def download(manifest_url, directory, expected_sha256, wall_seconds=1200):
                 evidence = directory/(part['name']+f'.attempt{attempt}.failure.json')
                 evidence.write_text(json.dumps({'attempt': attempt, 'error': str(error),
                                                'new_controls': 0}), encoding='utf-8')
-                if attempt == 3 or time.monotonic() >= deadline:
+                if number == 3 or time.monotonic() >= deadline:
                     raise
 
     with ThreadPoolExecutor(max_workers=min(3, len(parts))) as workers:
@@ -115,6 +134,7 @@ def download(manifest_url, directory, expected_sha256, wall_seconds=1200):
     result.update(manifest_url=manifest_url, archive=archive_name,
                   wall_seconds=time.monotonic()-started, new_controls=0, optimizer_updates=0,
                   manifest_network_failures=manifest_failures,
+                  resumed_verified_parts=retained,
                   retained_part_failure_records=[p.name for p in sorted(directory.glob('*.failure.json'))])
     with (directory/'download_receipt.json').open('x', encoding='utf-8') as stream:
         json.dump(result, stream, indent=2)
@@ -127,5 +147,6 @@ if __name__ == '__main__':
     parser.add_argument('--output', required=True, help='Fresh directory for checked parts and assembled ZIP')
     parser.add_argument('--sha256', required=True)
     parser.add_argument('--wall-seconds', type=float, default=1200)
+    parser.add_argument('--resume', action='store_true', help='Explicit bounded continuation;recheck fresh manifest and every retained part,never overwrite failures or completed receipts')
     args = parser.parse_args()
-    print(json.dumps(download(args.manifest_url, args.output, args.sha256, args.wall_seconds)))
+    print(json.dumps(download(args.manifest_url, args.output, args.sha256, args.wall_seconds, resume=args.resume)))

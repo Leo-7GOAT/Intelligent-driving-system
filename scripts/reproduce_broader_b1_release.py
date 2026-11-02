@@ -17,6 +17,7 @@ from scripts.download_native_asset import download
 from scripts.reproduce_native_asset import reproduce
 from scripts.package_native_saved_prefix import audit_prefix
 from scripts.summarize_broader_b1_cohort import summarize
+from scripts.reproduce_public_feedback_cohort import cached_download
 
 
 def read(path):
@@ -92,7 +93,9 @@ def restore_auditors(archive, expected, directory):
     return manifest
 
 
-def run(recipe, output, local_artifacts=None):
+def run(recipe, output, local_artifacts=None, public_download_cache=None):
+    if local_artifacts is not None and public_download_cache is not None:
+        raise ValueError('Local preflight and prior public transfer evidence are distinct')
     recipe, output = Path(recipe).resolve(), Path(output).resolve()
     spec = read(recipe)
     if ([r['seed'] for r in spec['capsules']] != [11, 22, 33, 44, 55]
@@ -123,7 +126,15 @@ def run(recipe, output, local_artifacts=None):
                 raise ValueError('Local preflight archive changed')
             return archive, dict(mode='LOCAL_PREFLIGHT_NOT_PUBLIC_DOWNLOAD')
         downloaded = output / (label + '_download')
-        proof = download(row['manifest_url'], downloaded, row['archive_sha256'], 600)
+        if public_download_cache is not None:
+            cache = Path(public_download_cache) / (label + '_download')
+            if cache.exists():
+                if not (cache / 'download_receipt.json').exists():
+                    download(row['manifest_url'], cache, row['archive_sha256'], 1200, resume=True)
+                proof = cached_download(dict(manifest_url=row['manifest_url'], sha256=row['archive_sha256']), cache, downloaded)
+                if proof is None: raise ValueError('Prior public transfer belongs to another capsule')
+                return downloaded / row['archive'], dict(mode='VERIFIED_PRIOR_UNAUTHENTICATED_PUBLIC_DOWNLOAD', receipt=proof)
+        proof = download(row['manifest_url'], downloaded, row['archive_sha256'], 1200)
         return downloaded / row['archive'], dict(mode='UNAUTHENTICATED_PUBLIC_DOWNLOAD', receipt=proof)
     auditor_archive, auditor_transfer = obtain(spec['audit_sources'], 'audit_sources')
     auditor_directory = output / 'executed_audit_sources'
@@ -217,5 +228,6 @@ if __name__ == '__main__':
     parser.add_argument('--recipe', required=True)
     parser.add_argument('--output', required=True)
     parser.add_argument('--local-artifacts', help='Explicit local preflight;never counted as public-download reproduction')
+    parser.add_argument('--public-download-cache', help='Previous public transfer output;completed receipts and partial parts are rehashed,only missing parts downloaded')
     args = parser.parse_args()
-    run(args.recipe, args.output, args.local_artifacts)
+    run(args.recipe, args.output, args.local_artifacts, args.public_download_cache)

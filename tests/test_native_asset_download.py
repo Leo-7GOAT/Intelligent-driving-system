@@ -127,3 +127,40 @@ def test_disconnected_manifest_is_retried_with_failure_disclosed(tmp_path, monke
     receipt = module.download(BASE+manifest.name, tmp_path/'download', digest(source))
     assert calls == 2 and receipt['archive_byte_exact']
     assert receipt['manifest_network_failures'] == [{'attempt': 1, 'error': 'observed network failure'}]
+
+
+def test_explicit_resume_rechecks_and_reuses_only_verified_parts_preserving_failures(tmp_path, monkeypatch):
+    source, manifest, data, requests = remote(tmp_path, monkeypatch)
+    record = json.loads(data[BASE+manifest.name]); output = tmp_path/'download'; output.mkdir()
+    (output/manifest.name).write_bytes(data[BASE+manifest.name])
+    retained = record['parts'][0]
+    (output/retained['name']).write_bytes(data[BASE+retained['name']])
+    missing = record['parts'][1]
+    failure = output/(missing['name']+'.attempt1.failure.json'); failure.write_text('prior failure')
+    original = module.urlopen; failed = False
+    def flaky(request, timeout):
+        nonlocal failed
+        if request.full_url == BASE+missing['name'] and not failed:
+            failed = True
+            raise RemoteDisconnected('second interrupted transfer')
+        return original(request, timeout)
+    monkeypatch.setattr(module, 'urlopen', flaky)
+    receipt = module.download(BASE+manifest.name, output, digest(source), resume=True)
+    assert receipt['resumed_verified_parts'] == [retained['name']]
+    assert BASE+retained['name'] not in requests
+    assert (output/source.name).read_bytes() == source.read_bytes()
+    assert failure.read_text() == 'prior failure'
+    assert (output/(missing['name']+'.attempt2.failure.json')).is_file()
+    with pytest.raises(FileExistsError): module.download(BASE+manifest.name, output, digest(source), resume=True)
+
+
+@pytest.mark.parametrize('fault', ['manifest','part'])
+def test_resume_rejects_changed_retained_evidence(tmp_path, monkeypatch, fault):
+    source, manifest, data, _ = remote(tmp_path, monkeypatch)
+    output = tmp_path/'download'; output.mkdir()
+    (output/manifest.name).write_bytes(data[BASE+manifest.name])
+    part = json.loads(data[BASE+manifest.name])['parts'][0]
+    (output/part['name']).write_bytes(data[BASE+part['name']])
+    path = output/(manifest.name if fault=='manifest' else part['name']); path.write_bytes(b'changed')
+    with pytest.raises(ValueError): module.download(BASE+manifest.name, output, digest(source), resume=True)
+    assert path.read_bytes() == b'changed' and not (output/source.name).exists()
