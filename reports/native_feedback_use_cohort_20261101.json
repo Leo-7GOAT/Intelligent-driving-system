@@ -1,0 +1,414 @@
+{
+  "scope": "Combine all five H/H0 measured-input feedback diagnostics without selecting seeds.",
+  "script_sha256": "1c660742514d31cd6a46038a792460b1d60f270eb20e5d98d768ed3f98f85021",
+  "diagnostic_script_sha256": "90628b9044e367940e389cd805e1e35a0e405e92aca32fba47f03d020a652b75",
+  "pairs_manifest_sha256": "2cfb30443d6c7665e0d57dab0cd0683b4dadd7463caffc8d63ac46bcff52c0ef",
+  "independent_training_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "unique_known_development_conditions": 24,
+  "new_final_conditions": 0,
+  "sampling": "Every sixteenth decision plus each case first/last; sampled original actions exactly reconstructed. All measured frame histories accounted for.",
+  "physical_mask": "Original endpoint availability mask retained for every counterfactual; learned normalized candidate witnesses and/or previous execution features zeroed.",
+  "totals": {
+    "H": {
+      "sampled_measured_decisions": 446,
+      "accounted_measured_history_controls": 40814,
+      "available_actions": {
+        "min": 9,
+        "mean": 27.766816143497756,
+        "max": 31,
+        "single_available_action_states": 0
+      },
+      "hidden_inputs": {
+        "candidate_witnesses": {
+          "argmax_changes": 17,
+          "argmax_change_fraction": 0.03811659192825112,
+          "mean_total_variation": 0.041993553340414144,
+          "max_total_variation": 0.255391389131546
+        },
+        "previous_execution": {
+          "argmax_changes": 7,
+          "argmax_change_fraction": 0.01569506726457399,
+          "mean_total_variation": 0.014629787786333155,
+          "max_total_variation": 0.17875657975673676
+        },
+        "both": {
+          "argmax_changes": 11,
+          "argmax_change_fraction": 0.02466367713004484,
+          "mean_total_variation": 0.04006237651165596,
+          "max_total_variation": 0.24061310291290283
+        }
+      }
+    },
+    "H0": {
+      "sampled_measured_decisions": 448,
+      "accounted_measured_history_controls": 41089,
+      "available_actions": {
+        "min": 9,
+        "mean": 27.616071428571427,
+        "max": 31,
+        "single_available_action_states": 0
+      },
+      "hidden_inputs": {
+        "candidate_witnesses": {
+          "argmax_changes": 0,
+          "argmax_change_fraction": 0.0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "previous_execution": {
+          "argmax_changes": 0,
+          "argmax_change_fraction": 0.0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "both": {
+          "argmax_changes": 0,
+          "argmax_change_fraction": 0.0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        }
+      }
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 11,
+      "H": {
+        "candidate_witnesses": {
+          "sampled_decisions": 89,
+          "argmax_changes": 2,
+          "mean_total_variation": 0.02814606364732713,
+          "max_total_variation": 0.12919405102729797
+        },
+        "previous_execution": {
+          "sampled_decisions": 89,
+          "argmax_changes": 1,
+          "mean_total_variation": 0.013658081826822913,
+          "max_total_variation": 0.16369232535362244
+        },
+        "both": {
+          "sampled_decisions": 89,
+          "argmax_changes": 3,
+          "mean_total_variation": 0.028610793614676326,
+          "max_total_variation": 0.17328479886054993
+        }
+      },
+      "H0": {
+        "candidate_witnesses": {
+          "sampled_decisions": 90,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "previous_execution": {
+          "sampled_decisions": 90,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "both": {
+          "sampled_decisions": 90,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        }
+      }
+    },
+    {
+      "seed": 22,
+      "H": {
+        "candidate_witnesses": {
+          "sampled_decisions": 89,
+          "argmax_changes": 3,
+          "mean_total_variation": 0.034289444350700284,
+          "max_total_variation": 0.1672125607728958
+        },
+        "previous_execution": {
+          "sampled_decisions": 89,
+          "argmax_changes": 1,
+          "mean_total_variation": 0.005842332632761263,
+          "max_total_variation": 0.08369551599025726
+        },
+        "both": {
+          "sampled_decisions": 89,
+          "argmax_changes": 2,
+          "mean_total_variation": 0.032417068409006204,
+          "max_total_variation": 0.14606566727161407
+        }
+      },
+      "H0": {
+        "candidate_witnesses": {
+          "sampled_decisions": 88,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "previous_execution": {
+          "sampled_decisions": 88,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "both": {
+          "sampled_decisions": 88,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        }
+      }
+    },
+    {
+      "seed": 33,
+      "H": {
+        "candidate_witnesses": {
+          "sampled_decisions": 88,
+          "argmax_changes": 8,
+          "mean_total_variation": 0.05556643519428855,
+          "max_total_variation": 0.24921247363090515
+        },
+        "previous_execution": {
+          "sampled_decisions": 88,
+          "argmax_changes": 1,
+          "mean_total_variation": 0.029202165404223542,
+          "max_total_variation": 0.17875657975673676
+        },
+        "both": {
+          "sampled_decisions": 88,
+          "argmax_changes": 2,
+          "mean_total_variation": 0.049591879000548615,
+          "max_total_variation": 0.24061310291290283
+        }
+      },
+      "H0": {
+        "candidate_witnesses": {
+          "sampled_decisions": 89,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "previous_execution": {
+          "sampled_decisions": 89,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "both": {
+          "sampled_decisions": 89,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "H": {
+        "candidate_witnesses": {
+          "sampled_decisions": 91,
+          "argmax_changes": 1,
+          "mean_total_variation": 0.06886221621451634,
+          "max_total_variation": 0.255391389131546
+        },
+        "previous_execution": {
+          "sampled_decisions": 91,
+          "argmax_changes": 3,
+          "mean_total_variation": 0.011763673350227752,
+          "max_total_variation": 0.10512731969356537
+        },
+        "both": {
+          "sampled_decisions": 91,
+          "argmax_changes": 2,
+          "mean_total_variation": 0.0646194416241577,
+          "max_total_variation": 0.19358833134174347
+        }
+      },
+      "H0": {
+        "candidate_witnesses": {
+          "sampled_decisions": 93,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "previous_execution": {
+          "sampled_decisions": 93,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "both": {
+          "sampled_decisions": 93,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        }
+      }
+    },
+    {
+      "seed": 55,
+      "H": {
+        "candidate_witnesses": {
+          "sampled_decisions": 89,
+          "argmax_changes": 3,
+          "mean_total_variation": 0.022652321408785293,
+          "max_total_variation": 0.11070394515991211
+        },
+        "previous_execution": {
+          "sampled_decisions": 89,
+          "argmax_changes": 1,
+          "mean_total_variation": 0.012910827363586496,
+          "max_total_variation": 0.13655343651771545
+        },
+        "both": {
+          "sampled_decisions": 89,
+          "argmax_changes": 2,
+          "mean_total_variation": 0.024627928811732386,
+          "max_total_variation": 0.1250324696302414
+        }
+      },
+      "H0": {
+        "candidate_witnesses": {
+          "sampled_decisions": 88,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "previous_execution": {
+          "sampled_decisions": 88,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        },
+        "both": {
+          "sampled_decisions": 88,
+          "argmax_changes": 0,
+          "mean_total_variation": 0.0,
+          "max_total_variation": 0.0
+        }
+      }
+    }
+  ],
+  "input_receipts": [
+    {
+      "seed": 11,
+      "method": "H",
+      "file": "native_feedback_use_seed11_H_20261101.json",
+      "sha256": "1d0c5fd7739caea37a817f989246cfb1ae4d7a586771d65d64253743206010af",
+      "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+      "protocol_sha256": "ab5d312b079bb30dfcc705b2ff14244a01783b9d305a9a313d6919b4aeb62495",
+      "model_sha256": "1a2f23a9ed94ba0fd84673f56d436dfdc3c8336fddcadd8192e1a1e84a2d2767",
+      "normalization_sha256": "b228b2d709c56ffd83269cf6cdd9030f81cd423eefbfb116ff005dee689ed959",
+      "trace_sha256": "810f106e3db7b4dd35f28731c07e1d183779df6627aa756ebc3512237d4906cb"
+    },
+    {
+      "seed": 11,
+      "method": "H0",
+      "file": "native_feedback_use_seed11_H0_20261101.json",
+      "sha256": "267eb0e9a07185a8a32899c164b7d8d2499b47b771374adc0eec6881ecd4442e",
+      "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+      "protocol_sha256": "ab5d312b079bb30dfcc705b2ff14244a01783b9d305a9a313d6919b4aeb62495",
+      "model_sha256": "345a9a238e77005b77e05f7514b37cc7724390be3c5789098b9b8687c729c781",
+      "normalization_sha256": "607ad72cc4140a4dce014762b262280160813e360073b7c2c8705ccbbb3d4130",
+      "trace_sha256": "a2b856255430d2854fdc1bc99e3d8e42abe05001ea666d8bdd45e9392d3aa8ff"
+    },
+    {
+      "seed": 22,
+      "method": "H",
+      "file": "native_feedback_use_seed22_H_20261101.json",
+      "sha256": "68b8998d63ad9392943ba1e6d0da2d5bcf838da91c318d53d863d81a151a53d5",
+      "batch": "20261101T011945179519Z_native_matched_broader_feedback",
+      "protocol_sha256": "f9e467f77816cf8bd5fc5f182f396b2013f771ed4158bf8546a754adc18c41a4",
+      "model_sha256": "c46da0e23773fad3856dbc77b7681fcb5e2b32ee02976041a67752dbe9213d36",
+      "normalization_sha256": "964c377b33963d95fd27277068c5a99f302f553d7969d093f822f73f17a5c87b",
+      "trace_sha256": "c119de1d25d12835058573084a38b7f7dae5fb227ea34965a4954e42fdd56a0a"
+    },
+    {
+      "seed": 22,
+      "method": "H0",
+      "file": "native_feedback_use_seed22_H0_20261101.json",
+      "sha256": "0184627ab3835c7df7f302085f1f7fdba29e52cd1f9638b4d0a9dd191fb3d160",
+      "batch": "20261101T011945179519Z_native_matched_broader_feedback",
+      "protocol_sha256": "f9e467f77816cf8bd5fc5f182f396b2013f771ed4158bf8546a754adc18c41a4",
+      "model_sha256": "8eea43810f8e4eff520dc49352330d07dd96ff39c82732f3e298809e678441c0",
+      "normalization_sha256": "ec1002c73d81341a682a023cf15a8ba22960ab1a6c433c07993555da86ebdc7d",
+      "trace_sha256": "fa16c8a2cf61fdc2e64d4e394f68e788ada4c857c9ce3d9e038faf4fa64b9102"
+    },
+    {
+      "seed": 33,
+      "method": "H",
+      "file": "native_feedback_use_seed33_H_20261101.json",
+      "sha256": "7ae35a76ba970c7c01df796629f31aae026ff5203c033259474c0c6221aa26b8",
+      "batch": "20261101T011949266084Z_native_matched_broader_feedback",
+      "protocol_sha256": "9589831665ebc97e77d21e698cf777d40ac1bf032d37595778f952005d246a8f",
+      "model_sha256": "ace995c09be8cafbe6c3ab33ba04fcaad58fb5b4ac512df26d96cc99e33b738d",
+      "normalization_sha256": "2c954f5634f58351381934878f1b2995768bd5ee8b608608cb87c7d61d4e183f",
+      "trace_sha256": "b06f5d402994ba76b206603da0d1cbfb6540e8bf6e385f70835bbfb1900dbe92"
+    },
+    {
+      "seed": 33,
+      "method": "H0",
+      "file": "native_feedback_use_seed33_H0_20261101.json",
+      "sha256": "b8e6446cb62d7f8b6d9882c06f2a0b432a24b43a0aada25bbb0d267f719930b5",
+      "batch": "20261101T011949266084Z_native_matched_broader_feedback",
+      "protocol_sha256": "9589831665ebc97e77d21e698cf777d40ac1bf032d37595778f952005d246a8f",
+      "model_sha256": "0a2550a186fa6be55497f83fa096730a3dfcbc2d7e3cb48c9cad04ac4ef6c4f2",
+      "normalization_sha256": "f87736658887f8294d4a46e61ab537c842a0f6a9a960961b08ba36e12dffea2e",
+      "trace_sha256": "b39fdae4d9bcdf0cf3db1fb0155687e4400be4ccabd538362456c22321eb501b"
+    },
+    {
+      "seed": 44,
+      "method": "H",
+      "file": "native_feedback_use_seed44_H_20261101.json",
+      "sha256": "ff1566d1c624776c22af42e99b7ebdd108e49838b8f0ad9d8b04dd0d1d85f741",
+      "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+      "protocol_sha256": "a15fb8220f2c47ddf6e047204e198cca18de590357e5f58885ab43fda9dd0f50",
+      "model_sha256": "ed8a750f1aae3fd7b25e40809b09d00e301b2ce41a91aab76e940c1e40d99396",
+      "normalization_sha256": "25a1327be3e78c256e5fe8ca63ffc4b9274479d2850bc8a0a335ecffa3fb0ac4",
+      "trace_sha256": "62d4cf3c5ac49debacbcfac9e52bb45590bf218cc7572c3f6aa3f0167fe4dc69"
+    },
+    {
+      "seed": 44,
+      "method": "H0",
+      "file": "native_feedback_use_seed44_H0_20261101.json",
+      "sha256": "c4fd82f4d73e32944173b7244454b51582054dfb5a343c6597ca9c3c504bb6b1",
+      "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+      "protocol_sha256": "a15fb8220f2c47ddf6e047204e198cca18de590357e5f58885ab43fda9dd0f50",
+      "model_sha256": "15b27034c6fd98656af35c0ecb2d3e29c57b71e87c06a5c69f161548119ec82d",
+      "normalization_sha256": "d62c9c9724411a32695171651d24ea84cd30ff03781fc7abff3c1206ea541390",
+      "trace_sha256": "93da3305442386521ccd7e51fb31f51888f9fb956250cc8dab0ae753a0ff299e"
+    },
+    {
+      "seed": 55,
+      "method": "H",
+      "file": "native_feedback_use_seed55_H_20261101.json",
+      "sha256": "c9b90d3e7f9c4224fcc28be4322480c2cf0dec7f6935188217824a75f1d86e9b",
+      "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+      "protocol_sha256": "2b727bc36da421da14cb275155ff79d36eadb481d9be7a244b06e0c0386387bd",
+      "model_sha256": "fbf448308869f85e1adf4925eb385d03f046ae2d2f9f550bb9a622febe3e0083",
+      "normalization_sha256": "11cf8a6560399660b001baf82169047c2115b836ff5398e5f37744feddd0f9d2",
+      "trace_sha256": "c4e5e3e30a4b8daddc157aa5116dc202e15474f84caa7c230db490cc44d75692"
+    },
+    {
+      "seed": 55,
+      "method": "H0",
+      "file": "native_feedback_use_seed55_H0_20261101.json",
+      "sha256": "9d31aefbd05a07e65d736eecde3f5ef69824da3af422f38ec1b6bab4223841ad",
+      "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+      "protocol_sha256": "2b727bc36da421da14cb275155ff79d36eadb481d9be7a244b06e0c0386387bd",
+      "model_sha256": "bcd9603ed33b0b2ce5e243e558c9882f45d503e694fd5a221d67f3a9715b201c",
+      "normalization_sha256": "cc7598d970834835aac0e51680c75754f7442039213688acd962b129a6e9925c",
+      "trace_sha256": "3204d036b36db42c04fd7ccacb5ac26814f45e8fea7f9eaa97b87d88dbd00a7d"
+    }
+  ],
+  "H0_negative_control_exact": true,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "interpretation": "H uses learned feedback, while hiding it changes few sampled greedy actions. H0 is exactly invariant as designed. The mask does not force a single available action in these samples. This local sensitivity does not establish useful decisions or an improvement in physical performance.",
+  "limits": "Retrospective development diagnostic, not an actual counterfactual rollout, all-decision action audit, causal success-rate estimate or proof of PPO necessity. Keep the zero-crossing original H/H0 performance interval.",
+  "research_acceptance": "UNMET"
+}

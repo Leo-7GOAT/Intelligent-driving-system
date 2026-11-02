@@ -1,3 +1,42 @@
+# External process loss recovered; seed55 continuation RUNNING — 2026-11-02
+
+Original queue72488,observer4332,seed55worker65076 and original server/guard are
+absent. OS inspection also found all2100..2102TCP/UDPports and bridges empty.
+Old status files are historical,not live ownership. Original seed55 stopped at
+4498readable controls,with a complete3840-control/120Adam checkpoint and unknown
+unflushed tail. Do not restart the old queue or original broader observer.
+
+NEW live execution:runs/B1_basic_seed55_recovery_execution_20261102,
+toolsession43951,observerPID32384atlaunch. Childworker8056atlaunch,creation
+2026-11-02T12:25:09.386806+08:00. Actualheartbeat confirms resumed physical driving.
+Batch20261102T042426664255Z_native_B1_basic_seed55_recovery resumes6400controls,
+retaining saved3840for the original10240learning budget; discarded658+controls
+and unknown tail charged separately. All389sourcefiles and model/norm/RNGbytes
+unchanged. Actualresume_event confirms lineage24320,retainedAdam460and savedRNG.
+Original frozen-runtime prefix audit verifies4477actual state/command/sensor/frame
+joins and synchronous engine acknowledgements,covering all3840saved controls;
+35savedAdamstates each increased120. Last21readablepolicyrecords lack readable
+bridge acknowledgements and are disclosed,not claimed as verified actual frames.
+No new supervision/std/RMS reset. Not an uninterrupted replicate. Registration:
+reports/native_B1_seed55_recovery_registration_20261102.json.
+
+The new observer performs raw/start/Adam/RMS/whole-action audits,records the four
+already complete seeds plus recovered55,then launches the ORIGINAL unstarted
+broader batch20261101T131830295783Z_native_B1_broader_shared_parking_PPO.
+It uses the existing unchanged seed22model/protocol and audits all24VALconditions.
+No automatic retries. Do not duplicate either lifecycle. Native7200s per segment;
+observer child caps7800s plus finite audit caps. Source snapshot is execution/source.
+Recovery/ablation/partition/cohort regression:31PASS6.20s.
+
+Read-only feedback diagnosis completed for allfiveH/H0pairs:446Hsampledactions,
+448H0sampledactions exact. H changes17actions withoutcandidatewitnesses,7without
+previousoutcome,11withoutboth. H0probabilities exactlyinvariant. Physicalmask
+retained:9..31availableactions;noforcedsinglechoice. Not counterfactual driving,
+performance improvement or addedPPOevidence. reports/native_feedback_use_cohort_20261101.json;
+docs/native_feedback_use.md. Toolsession50687 completed0 before pause.
+
+The dated snapshots below retain their original observations.
+
 # Four basic courses audited; seed55 RUNNING — 2026-11-01
 
 Exact queue72488 remains active with completed11/22/33/44, respective endpoint

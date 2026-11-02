@@ -1,0 +1,66 @@
+{
+  "scope": "Actual seed55 recovery registration and restored-state proof; not completed training or five-seed qualification.",
+  "batch": "20261102T042426664255Z_native_B1_basic_seed55_recovery",
+  "parent": "20261101T121900945085Z_native_B1_shared_parking_cohort_seed55",
+  "protocol_sha256": "d53363fbb64e34fe9a330ad5a90bd2d61c1edb6f0afa4cd51a71672adbc5c942",
+  "registration": {
+    "batch": "20261102T042426664255Z_native_B1_basic_seed55_recovery",
+    "protocol_sha256": "527b47c459bd83b6236865f94471bf5c0faa3865a03531ed3da21aa48944ba1c",
+    "parent": "20261101T121900945085Z_native_B1_shared_parking_cohort_seed55",
+    "saved_controls": 3840,
+    "remaining_controls": 6400,
+    "automatic_retries": 0
+  },
+  "original_interruption_audit_sha256": "4a52e70f2847293181dde1bfcc38fbf9ea168e660b51b257b938a1092e233b11",
+  "verified_original_consumed_controls_lower_bound": 4498,
+  "saved_original_controls": 3840,
+  "remaining_controls": 6400,
+  "discarded_controls_lower_bound": 658,
+  "unknown_unflushed_tail": true,
+  "frozen_source_files_unchanged": 389,
+  "checkpoint_model_normalization_RNG_bytes_exact": true,
+  "actual_resume_event": {
+    "mode": "saved RNG; interrupted physical episode discarded, next route reset",
+    "checkpoint": "resume/B1",
+    "parent_batch": "20261101T121900945085Z_native_B1_shared_parking_cohort_seed55",
+    "parent_checkpoint": "B1/checkpoint_000003840",
+    "lineage_controls": 24320,
+    "consumed_controls_lower_bound": 66683,
+    "unknown_unflushed_parent_tail": true,
+    "retained_optimizer_steps": 460,
+    "model_sha256": "5890fec6cee6d17df0351dcfeedff04e6cd6d6852bb34a64f5e5c3cdb3eac5a9",
+    "normalization_sha256": "ce928e64d1fe047e8a268fd39296067cf0ecb71d2ec3f0ba49fce8f81bfb1ff1",
+    "recovery_chain": [
+      "20261101T121900945085Z_native_B1_shared_parking_cohort_seed55"
+    ],
+    "gradient_clip_mode": "global",
+    "rollout_actions": 1280,
+    "registered_rollout_intervention": true,
+    "registered_gradient_intervention": false
+  },
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "original_prefix_verification": {
+    "matched_actual_CARLA_state_command_frame_sensor_and_engine_ack_controls": 4477,
+    "trace_tail_controls_without_readable_bridge_ack": 21,
+    "saved_3840_control_training_fully_inside_verified_prefix": true,
+    "saved_Adam_increment_proof": {
+      "parameter_states": 35,
+      "step_increment_each": 120
+    },
+    "bridge_streams": [
+      {
+        "file": "bridge_f81698f8_responses.jsonl.gz",
+        "sha256": "05d47af89c24a76f2e4dc37dc102511f440108dfd17d4e82bcd843de6b3504cf",
+        "read_error": "EOFError: Compressed file ended before the end-of-stream marker was reached"
+      }
+    ],
+    "source_auditors": [
+      "scripts.audit_native_method_endpoint._verify_ticks",
+      "scripts.audit_native_control_delivery.control_errors",
+      "scripts.analyze_native_feedback_ppo.adam_step_increments"
+    ],
+    "runtime": "Original parent frozen source",
+    "limits": "Original truncated files unchanged. Last21 readable policy controls lack readable bridge acknowledgements. Charged4498 lower bound and unknown tail retained."
+  }
+}

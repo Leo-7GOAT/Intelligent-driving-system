@@ -1,0 +1,2226 @@
+{
+  "scope": "Sample measured H/H0 inputs and isolate learned feedback use with the physical mask fixed.",
+  "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+  "method": "H",
+  "script_sha256": "90628b9044e367940e389cd805e1e35a0e405e92aca32fba47f03d020a652b75",
+  "protocol_sha256": "a15fb8220f2c47ddf6e047204e198cca18de590357e5f58885ab43fda9dd0f50",
+  "raw_audit_sha256": "403e5f32e96e49a220f8d4a56d7b5e5032a5c509f30679e9c391e006a77c5f9b",
+  "model_sha256": "ed8a750f1aae3fd7b25e40809b09d00e301b2ce41a91aab76e940c1e40d99396",
+  "normalization_sha256": "25a1327be3e78c256e5fe8ca63ffc4b9274479d2850bc8a0a335ecffa3fb0ac4",
+  "trace_sha256": "62d4cf3c5ac49debacbcfac9e52bb45590bf218cc7572c3f6aa3f0167fe4dc69",
+  "sampling_stride": 16,
+  "cases": 24,
+  "measured_history_controls": 8248,
+  "sampled_actions_exact": 91,
+  "original_physical_mask_retained": true,
+  "totals": {
+    "candidate_witnesses": {
+      "sampled_decisions": 91,
+      "argmax_changes": 1,
+      "mean_total_variation": 0.06886221621451634,
+      "max_total_variation": 0.255391389131546
+    },
+    "previous_execution": {
+      "sampled_decisions": 91,
+      "argmax_changes": 3,
+      "mean_total_variation": 0.011763673350227752,
+      "max_total_variation": 0.10512731969356537
+    },
+    "both": {
+      "sampled_decisions": 91,
+      "argmax_changes": 2,
+      "mean_total_variation": 0.0646194416241577,
+      "max_total_variation": 0.19358833134174347
+    }
+  },
+  "records": [
+    {
+      "case_id": 0,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.033700328320264816,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.002046504057943821,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.030191754922270775,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 0,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.019979344680905342,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0001703447342151776,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.020302051678299904,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 0,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.013719436712563038,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0011264421045780182,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.014911146834492683,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 0,
+      "decision_index": 34,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.14009526371955872,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0239248126745224,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.11730559915304184,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 1,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 19,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.024998661130666733,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0017614146927371621,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.0231955423951149,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 1,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.19037504494190216,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.006100945174694061,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.1849028766155243,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 1,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.09967663139104843,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.006880312226712704,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.10990495979785919,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 1,
+      "decision_index": 34,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.16002251207828522,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.014452959410846233,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.16753393411636353,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 2,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 19,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.008669232949614525,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0016421538311988115,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.005077202804386616,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 2,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 27,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.01429008413106203,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0020223602186888456,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.011706392280757427,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 2,
+      "decision_index": 31,
+      "action": 0,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.09288960695266724,
+          "action": 0,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.059551965445280075,
+          "action": 0,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.12482641637325287,
+          "action": 0,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 3,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.03592146188020706,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.005204685032367706,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.04331374913454056,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 3,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.05942486599087715,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.015656404197216034,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.038971610367298126,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 3,
+      "decision_index": 30,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.14601486921310425,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.011935386806726456,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.12553079426288605,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 4,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.04906364157795906,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0023121486883610487,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.055423956364393234,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 4,
+      "decision_index": 16,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.021055107936263084,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0031792912632226944,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.026966331526637077,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 4,
+      "decision_index": 22,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.08889097720384598,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.016940224915742874,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.10321738570928574,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 5,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 23,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.03401241824030876,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.003483547829091549,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.03659134730696678,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 5,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.18377795815467834,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.00777667760848999,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.19358833134174347,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 5,
+      "decision_index": 23,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.1056780144572258,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.03425109386444092,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.12929578125476837,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 6,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 23,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.01227408368140459,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0007917708135209978,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.01113460585474968,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 6,
+      "decision_index": 16,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.09739352762699127,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.014594068750739098,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.12267273664474487,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 6,
+      "decision_index": 22,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.13705205917358398,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.054447825998067856,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.16017119586467743,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 7,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.057462677359580994,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.012884446419775486,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.08118633180856705,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 7,
+      "decision_index": 16,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.027795853093266487,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0048258644528687,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.03389601781964302,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 7,
+      "decision_index": 19,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.10786675661802292,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.02126036025583744,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.11760058999061584,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 8,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 15,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.031169161200523376,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.011801332235336304,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.015416094101965427,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 8,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.06206732615828514,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.003878169460222125,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.06938309222459793,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 8,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.017362233251333237,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0002630421950016171,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.017721252515912056,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 8,
+      "decision_index": 35,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.06864502280950546,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.010682353749871254,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.04996584728360176,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 9,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 9,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.005601828917860985,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.004135592840611935,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.00998427253216505,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 9,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.061427414417266846,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0012343714479357004,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.06238356977701187,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 9,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.06690661609172821,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.004123135469853878,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.069768525660038,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 9,
+      "decision_index": 38,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.17265133559703827,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.00947156734764576,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.18391898274421692,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 10,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 9,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.020696355029940605,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.02639884501695633,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.009940612129867077,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 10,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 27,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.00996291171759367,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.003099520690739155,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.005860890727490187,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 10,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.13158413767814636,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0004238567780703306,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.13185980916023254,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 10,
+      "decision_index": 33,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.255391389131546,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.07016266882419586,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.1594030261039734,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 11,
+      "decision_index": 0,
+      "action": 30,
+      "available_actions": 15,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.0673551931977272,
+          "action": 30,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.058152470737695694,
+          "action": 26,
+          "argmax_changed": true
+        },
+        "both": {
+          "total_variation": 0.022601474076509476,
+          "action": 30,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 11,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.030317390337586403,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0007924409583210945,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.029299065470695496,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 11,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.029235173016786575,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.00016436839359812438,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.029366685077548027,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 11,
+      "decision_index": 34,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.020488111302256584,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.002361829625442624,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.015991264954209328,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 12,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 21,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.0634092167019844,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.010860484093427658,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.0474204421043396,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 12,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 25,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.058375321328639984,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.002504622330889106,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.06155765429139137,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 12,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.013612632639706135,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0002768132253549993,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.013411522842943668,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 12,
+      "decision_index": 35,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.01804903708398342,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0007838113233447075,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.017153704538941383,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 13,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 13,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.01975579559803009,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.002976322080940008,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.021785037592053413,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 13,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 25,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.14578551054000854,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.008303887210786343,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.13724830746650696,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 13,
+      "decision_index": 32,
+      "action": 22,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.13087214529514313,
+          "action": 22,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.10512731969356537,
+          "action": 26,
+          "argmax_changed": true
+        },
+        "both": {
+          "total_variation": 0.07175572216510773,
+          "action": 26,
+          "argmax_changed": true
+        }
+      }
+    },
+    {
+      "case_id": 13,
+      "decision_index": 48,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.04749191924929619,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0003371488128323108,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.048646505922079086,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 13,
+      "decision_index": 51,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.1304338127374649,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.021249637007713318,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.09832452982664108,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 14,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 13,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.03533495217561722,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.021513670682907104,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.00928795151412487,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 14,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 21,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.00642972718924284,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 4.8676338337827474e-05,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.006551027297973633,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 14,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.03089209645986557,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0005963834119029343,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.0316205695271492,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 14,
+      "decision_index": 34,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.0986795499920845,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.03846287727355957,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.032154448330402374,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 15,
+      "decision_index": 0,
+      "action": 30,
+      "available_actions": 21,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.07325615733861923,
+          "action": 30,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.04329762980341911,
+          "action": 30,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.05096268281340599,
+          "action": 30,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 15,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 21,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.010982167907059193,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0003064863267354667,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.010537362657487392,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 15,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.019754013046622276,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0002301150670973584,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.019917497411370277,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 15,
+      "decision_index": 33,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.04639516398310661,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.021863903850317,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.012341257184743881,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 16,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.04675651714205742,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0036286793183535337,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.03695160150527954,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 16,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.01845749281346798,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0004348206566646695,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.019607994705438614,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 16,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.04362127184867859,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0013361145975068212,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.04621043801307678,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 16,
+      "decision_index": 39,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.2004128247499466,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.01844516396522522,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.18203921616077423,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 17,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 19,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.023205244913697243,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0021402996499091387,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.019575688987970352,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 17,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 27,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.13431808352470398,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0017685109050944448,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.13296477496623993,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 17,
+      "decision_index": 32,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.20181161165237427,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.016511335968971252,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.1921999752521515,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 17,
+      "decision_index": 43,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.15695247054100037,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.040239617228507996,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.1780397742986679,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 18,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 19,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.01140651199966669,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0029695758130401373,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.005701426416635513,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 18,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 19,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.005475909914821386,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.00029286061180755496,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.006015473511070013,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 18,
+      "decision_index": 32,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.07059594243764877,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.02271333895623684,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.06387848407030106,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 18,
+      "decision_index": 40,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.11611099541187286,
+          "action": 0,
+          "argmax_changed": true
+        },
+        "previous_execution": {
+          "total_variation": 0.014036227017641068,
+          "action": 0,
+          "argmax_changed": true
+        },
+        "both": {
+          "total_variation": 0.12381893396377563,
+          "action": 0,
+          "argmax_changed": true
+        }
+      }
+    },
+    {
+      "case_id": 19,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.03611253201961517,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0018366090953350067,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.03459838777780533,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 19,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.029277143999934196,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.00011144192103529349,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.030190370976924896,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 19,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.012642959132790565,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0016725643072277308,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.014621300622820854,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 19,
+      "decision_index": 38,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.11237872391939163,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.006877807900309563,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.09468267858028412,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 20,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.05008767545223236,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.003948405850678682,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.03929532319307327,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 20,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.019694970920681953,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.00022622040705755353,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.02034052647650242,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 20,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.01472758874297142,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0011641548480838537,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.01691622845828533,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 20,
+      "decision_index": 38,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.1477060765028,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.027697239071130753,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.11641465872526169,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 21,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 19,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.024299873039126396,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0019041154300794005,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.021111758425831795,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 21,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 27,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.12221700698137283,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0009421029244549572,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.12465040385723114,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 21,
+      "decision_index": 32,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.16789451241493225,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.01804669201374054,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.17268848419189453,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 21,
+      "decision_index": 40,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.16247870028018951,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.017267121002078056,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.1766349822282791,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 22,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 19,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.012134860269725323,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.003237013705074787,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.0059209223836660385,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 22,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 23,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.0058168694376945496,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 8.200510637834668e-05,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.006006288807839155,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 22,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.02557423897087574,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.004500884562730789,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.03094898909330368,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 22,
+      "decision_index": 36,
+      "action": 0,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.09885451942682266,
+          "action": 0,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.02110198885202408,
+          "action": 0,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.10882744938135147,
+          "action": 0,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 23,
+      "decision_index": 0,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.03671271353960037,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0013178234221413732,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.03397320955991745,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 23,
+      "decision_index": 16,
+      "action": 26,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.010373526252806187,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.00021736173948738724,
+          "action": 26,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.0101704690605402,
+          "action": 26,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 23,
+      "decision_index": 32,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.029252951964735985,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.0009686500998213887,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.030583374202251434,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    },
+    {
+      "case_id": 23,
+      "decision_index": 35,
+      "action": 2,
+      "available_actions": 31,
+      "nonzero_previous_execution_inputs": 4,
+      "counterfactuals": {
+        "candidate_witnesses": {
+          "total_variation": 0.15662811696529388,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "previous_execution": {
+          "total_variation": 0.017748162150382996,
+          "action": 2,
+          "argmax_changed": false
+        },
+        "both": {
+          "total_variation": 0.12183026969432831,
+          "action": 2,
+          "argmax_changed": false
+        }
+      }
+    }
+  ],
+  "parameters_and_RMS_unchanged": true,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "limits": "Zeros learned normalized feedback inputs only, retaining the original mask. Sampled measured-state inference is not a counterfactual physical rollout, a performance effect or final confirmation."
+}

@@ -21,6 +21,10 @@ The following studies have different training histories and declared interfaces.
 
 A separate, uniformly registered five-seed B1 basic course is in progress. Completed seeds 11/22/33/44 score **3/4, 4/4, 4/4, 4/4**, respectively, after **10,240 new actual PPO controls and 320 Adam steps each**. Seed 11 has one bounds failure and fails the basic safety gate. [Seed 11](reports/native_B1_shared_parking_cohort_seed11_20261101.json), [seed 22](reports/native_B1_shared_parking_cohort_seed22_20261101.json), [seed 33](reports/native_B1_shared_parking_cohort_seed33_20261101.json), [seed 44](reports/native_B1_shared_parking_cohort_seed44_20261101.json). Pending results are not counted as successes. The single-seed broader 36 TRAIN / 24 validation course is registered and queued, not a completed five-seed baseline. [Registration](reports/native_B1_broader_shared_parking_registration_20261101.json).
 
+Seed 55 was externally interrupted at 4,498 consumed controls; its 3,840-control checkpoint is now resumed for the remaining 6,400 controls, with discarded interactions and an unknown tail charged separately. The original queue is no longer live. [Recovery registration](reports/native_B1_seed55_recovery_registration_20261102.json). The broader pilot remains unstarted and follows this recovery automatically.
+
+A measured-input diagnosis confirms that feedback reaches H: hiding both feedback groups changes 11/446 sampled greedy actions; H0 remains exactly invariant in all 448 samples. The physical mask stays fixed. This local sensitivity supplies no new driving-performance claim. [Diagnostic and reproduction](docs/native_feedback_use.md).
+
 The parking aid requests physical braking only inside the unchanged goal pose gates while overspeed; it changes neither steering nor vehicle state. It releases before success can be accepted. H/H0/B1/B2/B3 can share the same version. Every override is recorded. [Implementation and experiments](docs/shared_parking.md).
 
 ## Install and run CPU checks

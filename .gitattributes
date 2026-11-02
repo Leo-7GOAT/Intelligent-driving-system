@@ -82,3 +82,15 @@ reports/native_B1_shared_parking_cohort_seed33_20261101.json -text -whitespace
 reports/native_B1_shared_parking_cohort_seed33_whole_sequence_20261101.json -text -whitespace
 reports/native_B1_shared_parking_cohort_seed44_20261101.json -text -whitespace
 reports/native_B1_shared_parking_cohort_seed44_whole_sequence_20261101.json -text -whitespace
+reports/native_feedback_use_seed11_H_20261101.json -text -whitespace
+reports/native_feedback_use_seed11_H0_20261101.json -text -whitespace
+reports/native_feedback_use_seed22_H_20261101.json -text -whitespace
+reports/native_feedback_use_seed22_H0_20261101.json -text -whitespace
+reports/native_feedback_use_seed33_H_20261101.json -text -whitespace
+reports/native_feedback_use_seed33_H0_20261101.json -text -whitespace
+reports/native_feedback_use_seed44_H_20261101.json -text -whitespace
+reports/native_feedback_use_seed44_H0_20261101.json -text -whitespace
+reports/native_feedback_use_seed55_H_20261101.json -text -whitespace
+reports/native_feedback_use_seed55_H0_20261101.json -text -whitespace
+reports/native_feedback_use_cohort_20261101.json -text -whitespace
+reports/native_B1_seed55_recovery_registration_20261102.json -text -whitespace

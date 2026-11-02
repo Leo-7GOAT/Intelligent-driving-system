@@ -21,6 +21,10 @@
 
 另一个统一配方的五种子 B1 基础训练队列正在运行。已完成的 11/22/33/44 各新增 10,240 个真实 PPO 控制步、320 次 Adam 更新，端点分别 3/4、4/4、4/4、4/4；11 有一次越界，未通过安全门槛。其余种子不得提前计为成功。[种子 11](../reports/native_B1_shared_parking_cohort_seed11_20261101.json)、[22](../reports/native_B1_shared_parking_cohort_seed22_20261101.json)、[33](../reports/native_B1_shared_parking_cohort_seed33_20261101.json)、[44](../reports/native_B1_shared_parking_cohort_seed44_20261101.json)。36 TRAIN / 24 开发验证的单种子扩展训练已登记并排队，不能算作完整五种子基线。[登记凭证](../reports/native_B1_broader_shared_parking_registration_20261101.json)。
 
+第五个种子因外部进程丢失停在 4,498 个已消耗控制步，目前从完整的 3,840 步检查点续训剩余 6,400 步；未保存的交互和未知尾段单独计费，原队列已退出。[恢复凭证](../reports/native_B1_seed55_recovery_registration_20261102.json)。扩展试验仍未启动，将由新恢复程序接续。
+
+真实测量输入诊断确认反馈进入 H：同时隐藏两类反馈会改变 446 个抽样动作中的 11 个；H0 的 448 个样本概率完全不变，全程保持原物理掩码。这不能证明反馈改善驾驶。[诊断与复现](native_feedback_use.md)。
+
 停车辅助仅在车辆已进入原目标位置/朝向范围、速度仍超限时请求真实制动；不改转向、车辆状态或成功阈值，解除接管后才能成功。各方法可共享同一版本。[实现、成本与实验](shared_parking.md)。
 
 ## 安装、测试与复现
