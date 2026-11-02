@@ -1,23 +1,22 @@
-# 当前接续状态（2026-11-02 22:31）
+# 当前接续状态（2026-11-02 22:34）
 
 沿用当前仓库和 feature/physical-hierarchical-ppo 分支；不重建、不恢复瞬移。用户要求自主完成研发、真实训练、验证和 GitHub 交付。完整研究目标仍未通过，禁止将训练完成、基础4/4或已知开发集当成最终达标。
 
-## 唯一当前物理作业：不要重复启动
+## 唯一当前物理作业：已进入真正H/H0训练
 
-- 协调器35188，工具session75294：`scripts/run_native_static_policy_contrast.py`。
-- execution：`runs/H_H0_teacher_static12_transfer_execution_20261102`；batch：`runs/20261102T135514838123Z_native_static_H_H0_teacher_transfer`；worker14044、guard64888。
-- 顺序运行 H_PPO、H0_PPO、H_teacher，全部12个先前注册的新增静态 TRAIN 条件，canonical seed22，零新增PPO/监督。22:23在H_PPO第8场，前7场只是未审计前缀，不能作完整成绩。工具无输出不代表停止；看 evaluation_heartbeat、guard 和确切进程身份。
-- 三者原权重/优化器/RMS/RNG字节不变，共同迁移到当前 batch_sync_v1 与停车辅助；其余配置/标定完全一致。原H/H0训练是legacy actor_async且没有辅助，因此本批只能称冻结部署迁移。
-- 全部结束后协调器自动做每个方法的原始帧、实测起点NN推理和严格发动机回执审计。已注册5400秒批次预算/6000秒执行超时，不自动重试；若耗尽，保留完整失败与前缀，不冒充全部完成。
-- 运行期间不要修改 scripts/native_road_learning.py、scripts/audit_native_method_endpoint.py、scripts/audit_native_policy_inference.py、scripts/run_native_static_policy_contrast.py。物理worker使用冻结source，后续审计仍调用根目录入口。
+协调器50820 / 工具session6148，execution `runs/H_H0_diverse_native_PPO10240_execution_20261102`，batch `runs/20261102T143204721793Z_native_diverse_H_H0_PPO10240`，worker42136，guard64188。22:33 H已有1555实际训练控制、4优化阶段，运行健康。入口为 `scripts/continue_native_hierarchical_pair.py --execution runs/H_H0_diverse_native_PPO10240_execution_20261102 --dependency runs/H_H0_teacher_static12_transfer_execution_20261102`；正在运行，不重复启动。
 
-## 已启动的后续训练队列：尚未开始训练
+从冻结迁移的原H/H0保存字节开始，在已采集TRAIN48上各请求10240新实际PPO控制；32高层动作一轮，允许实际超出最多319控制并报告实际数。同步命令传送和共同停车辅助在整个新训练中固定，保留各自Adam/RNG、冻结RMS，零新增监督。随后每方法完整24已知VAL，再自动执行原始帧/实测起点/Adam/RMS/严格传送审计。单seed探索，不能称五种子或与历史B1全预算公平。TRAIN48模型不连通case19依然保留。
 
-协调器50820 / 工具session6148运行 `scripts/continue_native_hierarchical_pair.py --execution runs/H_H0_diverse_native_PPO10240_execution_20261102 --dependency runs/H_H0_teacher_static12_transfer_execution_20261102`。它持有35188的创建时间/路径核验句柄，当前等待其确切退出，不占CARLA物理世界。不重复启动。
+整批预算14400秒，资源门槛16GiB空盘、运行保护12GiB、零自动重试。当前源码958c922已推送；原审计/课程9ab91f3的GitHubCI41461752584成功。新4项协议和原7项检查均通过。根目录 `scripts/continue_native_hierarchical_pair.py` 与三个审计入口已被queue哈希绑定，期间不要修改；batch/source全部冻结。
 
-之后从本次冻结迁移的原H/H0保存字节开始，在已采集TRAIN48上各请求10240新实际PPO控制；因32个高层动作一轮，实际超出最多319控制，必须报告实际值。当前共同同步/停车低层在整个新训练中固定，保留各自Adam、RNG及冻结RMS，零新增监督；随后每个方法完整24已知VAL以及原始帧/实测起点/Adam/RMS/严格传送审计。单seed探索，不能称五种子或与历史B1完整预算公平对比。TRAIN48中case19依然保留。
+## 已中止的冻结对照：保留不完整状态，不重启
 
-该队列等待最长7200秒、整批实际训练和验证最长14400秒，资源门槛16GiB空盘（运行保护12GiB），零自动重试；新失败明确保留。若上游耗尽预算，仍记录其不完整状态和可读控制成本，独立验证原checkpoint后执行已注册训练。不能把这叫上游对照完成。根目录新continuation脚本和四个注册审计入口已被哈希绑定，运行期间不要修改。其余工作可以继续。
+原协调器35188/session75294已退出1。原batch `runs/20261102T135514838123Z_native_static_H_H0_teacher_transfer` 的确切worker14044经创建时间/路径/命令核验后单独结束；guard64888完成空服务器清理，server_stop为owned_empty_server_stopped。未杀其他任务。当前新训练由队列在确切退出后自动顺序启动。
+
+中止原因是优先做旧策略从未接受过的新道路真实学习，减少继续回放的时间。H有9场终止记录（3成功、5超时、1越界），其余未完成，H0/教师尚未执行。不是完整12场成绩，不作方法排名。策略gzip和桥接gzip均有未封闭尾部；5974个保留策略帧可与桥接逐帧核验，6082个可读实际桥接控制均与发动机回执一致，另108桥接帧没有策略记录，未知尾部不能当0。公开证据 `reports/native_static_transfer_early_stop_20261102.json`。原协议与全部原始文件保持不变。
+
+新训练原protocol按策略可读前缀记5974控制；额外108个已知消耗由新batch的 `prior_transfer_cost_correction.json`补记。后续完整成本必须合并该sidecar，不能重写原protocol或把原下界当实际总消耗。此纠正不改权重/优化器/训练。
 
 ## 本轮已完成并核验
 
@@ -34,7 +33,7 @@
 
 ## 后续执行边界与目标
 
-先完成当前静态对照及自动审计，据实际失败定位高层选择/规划接口，避免继续把全部时间花在B1变体。B1要求基础学习、无明显实现缺陷和合理训练；允许完整任务较弱，不要求达到H的80%目标。单seed4/4尚不能代表健康五seed。正式H/H0/B1需相同当前物理与安全版本、透明且公平的完整交互/监督预算。现有5种子H和B1历史预算不同，必须披露。
+先完成当前实际H/H0适配及自动审计，据实际失败定位高层选择/规划接口，避免继续把全部时间花在B1变体。B1要求基础学习、无明显实现缺陷和合理训练；允许完整任务较弱，不要求达到H的80%目标。单seed4/4尚不能代表健康五seed。正式H/H0/B1需相同当前物理与安全版本、透明且公平的完整交互/监督预算。现有5种子H和B1历史预算不同，必须披露。
 
 完整目标：PPO→子目标/速度→HybridA*→时间轨迹→MPC→真实CARLA反馈；轻量85%/核心75%，CARLA80%/核心70%、碰撞或越界≤5%；五独立实际适配策略；至少120个NEW去重配对最终条件（三类各≥30，另有未见布局/车辆）；分层差≥10pp且95%下界>0或事前锁定合理效率假设；PPO对强B3贡献及反馈协作消融；代码/模型/原始失败/图表/公开复现/GitHub真实交付。最终新条件尚未生成和查看。
 
