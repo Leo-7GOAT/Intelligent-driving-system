@@ -1,4 +1,4 @@
-# 当前接续状态（2026-11-02 22:24）
+# 当前接续状态（2026-11-02 22:31）
 
 沿用当前仓库和 feature/physical-hierarchical-ppo 分支；不重建、不恢复瞬移。用户要求自主完成研发、真实训练、验证和 GitHub 交付。完整研究目标仍未通过，禁止将训练完成、基础4/4或已知开发集当成最终达标。
 
@@ -10,6 +10,14 @@
 - 三者原权重/优化器/RMS/RNG字节不变，共同迁移到当前 batch_sync_v1 与停车辅助；其余配置/标定完全一致。原H/H0训练是legacy actor_async且没有辅助，因此本批只能称冻结部署迁移。
 - 全部结束后协调器自动做每个方法的原始帧、实测起点NN推理和严格发动机回执审计。已注册5400秒批次预算/6000秒执行超时，不自动重试；若耗尽，保留完整失败与前缀，不冒充全部完成。
 - 运行期间不要修改 scripts/native_road_learning.py、scripts/audit_native_method_endpoint.py、scripts/audit_native_policy_inference.py、scripts/run_native_static_policy_contrast.py。物理worker使用冻结source，后续审计仍调用根目录入口。
+
+## 已启动的后续训练队列：尚未开始训练
+
+协调器50820 / 工具session6148运行 `scripts/continue_native_hierarchical_pair.py --execution runs/H_H0_diverse_native_PPO10240_execution_20261102 --dependency runs/H_H0_teacher_static12_transfer_execution_20261102`。它持有35188的创建时间/路径核验句柄，当前等待其确切退出，不占CARLA物理世界。不重复启动。
+
+之后从本次冻结迁移的原H/H0保存字节开始，在已采集TRAIN48上各请求10240新实际PPO控制；因32个高层动作一轮，实际超出最多319控制，必须报告实际值。当前共同同步/停车低层在整个新训练中固定，保留各自Adam、RNG及冻结RMS，零新增监督；随后每个方法完整24已知VAL以及原始帧/实测起点/Adam/RMS/严格传送审计。单seed探索，不能称五种子或与历史B1完整预算公平对比。TRAIN48中case19依然保留。
+
+该队列等待最长7200秒、整批实际训练和验证最长14400秒，资源门槛16GiB空盘（运行保护12GiB），零自动重试；新失败明确保留。若上游耗尽预算，仍记录其不完整状态和可读控制成本，独立验证原checkpoint后执行已注册训练。不能把这叫上游对照完成。根目录新continuation脚本和四个注册审计入口已被哈希绑定，运行期间不要修改。其余工作可以继续。
 
 ## 本轮已完成并核验
 
@@ -32,4 +40,4 @@
 
 CARLA沿用D:/CARLA_0.9.15/WindowsNoEditor和现有Python3.7桥接；root .venv为3.11。不干预Desktop/papper其他项目。C盘旧runs/prerelease等目录有junction到D盘，禁止递归删除/移动。只管理身份核验的本任务进程。C空余约18GiB，下一作业前复核资源。不要新增子代理。
 
-完整较早历史已逐字节归档 `reports/handoff_before_route_feedback_PPO_20261102.md`。最新源码推送前为ffbb465，GitHubCI41446722237成功；6ea0b19为后续文档提交。当前这批代码和报告需在回归通过后commit/push，不force push、不上传个人路径或巨型runs。
+完整较早历史已逐字节归档 `reports/handoff_before_route_feedback_PPO_20261102.md`。最新源码推送前为ffbb465，GitHubCI41446722237成功；6ea0b19为后续文档提交。课程/审计代码9ab91f3已推送，GitHubCI41461752584成功；后续训练队列代码958c922已推送，新增4项协议检查和原7项检查均通过。不要force push，不上传个人路径或巨型runs。
