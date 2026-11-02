@@ -1,0 +1,38 @@
+{
+  "scope": "Evidence-backed read-only audit performance correction;no repeated physical collection or learning.",
+  "cause": "NpzFile member access inside each control loop decompresses the full observations array repeatedly.",
+  "benchmark": {
+    "rows": 12697,
+    "array_bytes": 238957540,
+    "compressed_dataset_bytes": 7459083,
+    "first_read_seconds": 0.4096981999464333,
+    "repeated_read_seconds": 0.2847402999177575,
+    "repeated_reads_return_same_object": false
+  },
+  "correction": "Materialize each compressed member exactly once before the identical all-frame checks. No audit criterion is relaxed.",
+  "prior_attempt": {
+    "execution": "B1_broader_TRAIN_recovery_execution_20261102",
+    "phase": "READ_ONLY_AUDITOR_STOPPED_BY_VERIFIED_HANDLE",
+    "pid": 71540,
+    "exit_code": 1,
+    "new_controls": 0,
+    "new_updates": 0,
+    "reason": "Explicit implementation correction,not an automatic retry"
+  },
+  "physical_collection": {
+    "batch": "20261102T084415462162Z_native_broader_TRAIN_recovery",
+    "completed": true,
+    "controls": 12697,
+    "repeated_controls": 0,
+    "successful_mixture_episodes": 34,
+    "collision_episodes": 1,
+    "deadline_episodes": 1,
+    "pure_policy_performance": false
+  },
+  "new_execution": "B1_broader_TRAIN_recovery_execution_v2_20261102",
+  "new_audit_script_sha256": "28eed9e330a765565c7a42fe0f6e3a18b43ef6ad3cd4914f41276c380c98d175",
+  "tests": {
+    "passed": 53
+  },
+  "research_acceptance": "UNMET"
+}

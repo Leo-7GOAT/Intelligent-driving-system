@@ -7,6 +7,13 @@ import pickle
 import sys
 
 
+def materialize_dataset(path):
+    """Decompress each NPZ member once, before the per-control audit loop."""
+    import numpy as np
+    with np.load(path, allow_pickle=False) as archive:
+        return {name: archive[name] for name in archive.files}
+
+
 def audit(batch):
     batch = Path(batch).resolve(); folder = batch/'B1'; runtime = batch/'source'
     if any(key.startswith('navstack.') for key in sys.modules):
@@ -69,10 +76,10 @@ def audit(batch):
     rows, error = read_prefix(folder/'collection_trace.jsonl.gz')
     if error: raise ValueError(error)
     if not rows or len(rows) > spec['max_controls']: raise ValueError('Empty or over-budget collection')
-    dataset = np.load(folder/'collection.npz',allow_pickle=False)
-    if set(dataset.files) != {'observations','actions','groups','fit_train_mask','teacher_executed','learner_actions'}:
+    dataset = materialize_dataset(folder/'collection.npz')
+    if set(dataset) != {'observations','actions','groups','fit_train_mask','teacher_executed','learner_actions'}:
         raise ValueError('Ambiguous collection dataset')
-    if any(len(dataset[name]) != len(rows) for name in dataset.files): raise ValueError('Dataset drops recorded controls')
+    if any(len(dataset[name]) != len(rows) for name in dataset): raise ValueError('Dataset drops recorded controls')
     torch.set_num_threads(1)
     model = load_ppo(folder/'model.zip',device='cpu')
     with (folder/'normalization.pkl').open('rb') as stream: norm = pickle.load(stream)

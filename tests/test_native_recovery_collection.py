@@ -10,6 +10,23 @@ from scripts.prepare_native_recovery_collection import patch_worker
 from scripts.fit_native_executed_recovery import executed_recovery_arrays,episode_balanced_weights,actor_fit_lineage,require_probe_fit
 
 
+def test_full_control_audit_decompresses_each_npz_member_only_once(tmp_path,monkeypatch):
+    from scripts.audit_native_recovery_collection import materialize_dataset
+    source=tmp_path/'frames.npz';np.savez_compressed(source,observations=np.arange(120).reshape(12,10),actions=np.ones((12,2)))
+    original=np.load;reads=[];closed=[]
+    class TrackedArchive:
+        def __enter__(self):
+            self.archive=original(source,allow_pickle=False);self.files=self.archive.files;return self
+        def __getitem__(self,key):
+            reads.append(key);return self.archive[key]
+        def __exit__(self,*unused):self.archive.close();closed.append(True)
+    monkeypatch.setattr(np,'load',lambda *a,**kw:TrackedArchive())
+    data=materialize_dataset(source)
+    for _ in range(100):
+        np.testing.assert_array_equal(data['observations'][3],np.arange(30,40))
+    assert reads==['observations','actions'] and closed==[True]
+
+
 def inputs():
     ids = ['train'+str(i) for i in range(4)]
     cases = [{'native_route': {'geometry_id': i}} for i in ids]

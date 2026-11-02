@@ -1,3 +1,11 @@
+# Superseding execution correction — 2026-11-02 17:26 local
+
+36TRAINmixture collection is COMPLETE/owned-cleaned:12697controls,6218teacher/6479learner,6179eligibleexecutedlabels,34success/1collision(case21)/1deadline(case24). These are mixture outcomes,not pure B1performance.
+Old continuation62592/session22490TERMINAL1after its READ-ONLYauditor71540was deliberately stopped through verified creation-time/executable handle:confirmedNPZlazy access decompressed239MBarraytwiceperframe (~.28seach);physical data untouched. Failure/slowidentity/logs retained. Bulk materialization fix31collectiontests/53combinedtestsPASS. New actual corrected auditor tool session14246 RUNNING,output originalbatch/B1/collection_raw_audit.json,log originalexecution/collection_raw_bulk_v2.log. DO NOTrestart collection or this live auditor.
+New pending execution runs/B1_broader_TRAIN_recovery_execution_v2_20261102has only adoptedregistration,NOTlaunched. AFTERcorrectedauditfinish:python scripts/run_broader_native_recovery.py --execution runs/B1_broader_TRAIN_recovery_execution_v2_20261102 --completed-collection. This explicitly adopts terminalownedcollection and hash-bound completed audit,then delivery/fit/basic/conditionalknownVAL;no repeated collection/audit/automaticPPO.
+Public download replayer v1FAILED600swallcap on seed11part009;11verifiedparts retained. Fix797ecf0resume/caches passed36tests and hostedCI41416738055SUCCESS. Separatecleancheckout at797ecf0578b65a69aeed0703a70b972f0102846a,branchcodex/public-b1-download-resume,now RUNNINGtool session32041,output D:/Codex_Thesis_Artifacts/intelligent-driving-system_20261028/broader_B1_release_20261102/public_download_rebuild_v2. First4normalcapsules independentlyrebuilt;seed55/prefix44pending. DO NOTmodify this checkout while active. 797ecf0has been fast-forward merged into root feature branch,normalpushpendingwithcurrentauditfix.
+The originalfullscope/acceptancethresholds remain UNMET. Preserve all actual source/model/raw/failure bytes and avoid repeated work.
+
 # Current verified state — 2026-11-02 16:49 local
 
 Supersedes stale live/waiting/unpublished descriptions below. Full research target remains UNMET.

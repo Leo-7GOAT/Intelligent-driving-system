@@ -24,7 +24,7 @@ def basic_gate(evaluation):
         e['termination_reason'] in ('collision', 'out_of_bounds') for e in episodes)
 
 
-def run(execution):
+def run(execution, completed_collection=False):
     execution = Path(execution).resolve()
     if (execution / 'continuation_started.json').exists():
         raise FileExistsError('Never restart a launched continuation or repeat physical controls')
@@ -33,17 +33,23 @@ def run(execution):
     if sha(batch / 'protocol.json') != registration['protocol_sha256']:
         raise ValueError('Registered collection protocol changed')
     identity = read(batch / 'worker_process.json')
-    owner = OwnedProcess(identity['pid'], identity['creation_epoch'], identity['executable'], allow_terminate=False)
-    if owner.poll() is not None:
-        owner.kernel.CloseHandle(owner.handle)
-        raise ValueError('Worker already ended; inspect its final state before an explicit continuation')
+    owner = None
+    if completed_collection:
+        require_finished_parent(batch)
+        if not (batch / 'B1/collection.json').exists():
+            raise ValueError('Completed-collection adoption requires the actual saved dataset/result')
+    else:
+        owner = OwnedProcess(identity['pid'], identity['creation_epoch'], identity['executable'], allow_terminate=False)
+        if owner.poll() is not None:
+            owner.kernel.CloseHandle(owner.handle)
+            raise ValueError('Worker already ended; inspect its final state before an explicit continuation')
     files = [p for directory in ('scripts', 'navstack') for p in (ROOT / directory).rglob('*')
              if p.is_file() and p.suffix in ('.py', '.ps1') and '__pycache__' not in p.parts]
     files.append(ROOT / 'protocols/native_B1_broader_executed_recovery_20261102.json')
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in files}
     atomic_json(execution / 'continuation_source_manifest.json', hashes)
     atomic_json(execution / 'continuation_started.json', dict(pid=os.getpid(), epoch=time.time(),
-        dependency=identity, automatic_retries=0, maximum_wall_seconds=10800))
+        dependency=identity, completed_collection_adoption=completed_collection, automatic_retries=0, maximum_wall_seconds=10800))
     deadline = time.monotonic() + 10800
     def status(phase, **extra):
         atomic_json(execution / 'status.json', dict(phase=phase, pid=os.getpid(), epoch=time.time(), **extra))
@@ -73,11 +79,11 @@ def run(execution):
             raise ValueError('Engine delivery gate failed')
     try:
         with ProcessLease(execution / 'continuation.lock'):
-            while owner.poll() is None:
+            while owner is not None and owner.poll() is None:
                 if time.monotonic() > deadline: raise TimeoutError('Finite continuation wait exhausted')
                 status('WAITING_FOR_EXACT_LIVE_TRAIN_COLLECTION')
                 time.sleep(10)
-            if owner.poll() != 0: raise RuntimeError('Collection worker failed; do not retry')
+            if owner is not None and owner.poll() != 0: raise RuntimeError('Collection worker failed; do not retry')
             # The verified worker exits before its wrapper finishes owned cleanup.
             cleanup_deadline = time.monotonic() + 90
             while not (batch / 'guard_final.json').exists() or not (batch / 'infrastructure/server_stop.json').exists():
@@ -85,8 +91,18 @@ def run(execution):
                 time.sleep(2)
             require_finished_parent(batch)
             status('AUDITING_ALL_MEASURED_TRAIN_RECOVERY_CONTROLS')
-            call([sys.executable, ROOT / 'scripts/audit_native_recovery_collection.py', '--batch', batch,
-                '--output', batch / 'B1/collection_raw_audit.json'], 'collection_raw', 1200)
+            raw_path = batch / 'B1/collection_raw_audit.json'
+            if completed_collection and raw_path.exists():
+                proof = read(raw_path)
+                if (proof['protocol_sha256'] != sha(batch / 'protocol.json')
+                        or proof['collection_result_sha256'] != sha(batch / 'B1/collection.json')
+                        or proof['script_sha256'] != sha(ROOT / 'scripts/audit_native_recovery_collection.py')
+                        or not proof['all_measured_observations_bit_exact'] or not proof['all_learner_proposals_bit_exact']):
+                    raise ValueError('Existing completed collection audit differs')
+                atomic_json(execution / 'adopted_completed_audit.json', dict(sha256=sha(raw_path), new_controls=0, new_updates=0))
+            else:
+                call([sys.executable, ROOT / 'scripts/audit_native_recovery_collection.py', '--batch', batch,
+                    '--output', raw_path], 'collection_raw', 1200)
             call([sys.executable, ROOT / 'scripts/audit_native_control_delivery.py', '--batch', batch,
                 '--output', batch / 'B1/strict_delivery.json'], 'collection_delivery', 900)
             fit = execution / 'canonical22_fit'
@@ -123,9 +139,10 @@ def run(execution):
         status('CONTINUATION_STOPPED_WITH_FAILURE')
         raise
     finally:
-        owner.kernel.CloseHandle(owner.handle)
+        if owner is not None: owner.kernel.CloseHandle(owner.handle)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('--execution', required=True)
-    run(parser.parse_args().execution)
+    parser.add_argument('--completed-collection', action='store_true', help='Explicit adoption after verified owned cleanup;never starts the collection again')
+    args = parser.parse_args(); run(args.execution, args.completed_collection)
