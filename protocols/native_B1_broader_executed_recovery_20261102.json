@@ -1,0 +1,18 @@
+{
+  "version": "broader_executed_recovery_actor_v1",
+  "seed": 22,
+  "steps": 1024,
+  "learning_rate": 0.0001,
+  "collection_batch": "20261102T084415462162Z_native_broader_TRAIN_recovery",
+  "collection_protocol_sha256": "1d7ee689acc80aac0b7a8afd88b2163c0b1318565fd1ff25e7a964f1c168d550",
+  "fit_script_sha256": "ec6828d0931c57f750d36b97bffb86104b95df82712d9afe602f7787ccd25051",
+  "helper_script_sha256": "8c24a18a9935e3309325daff1399c1df237328c2e6c2f1e6dcd8040f05010105",
+  "status": "REGISTERED_NOT_FITTED",
+  "physical_collection_controls_maximum": 32400,
+  "nominal_teacher": "runs/B3_broader_TRAIN_teacher_execution_v4_20261102/direct_views",
+  "sampling": "Equal probability per nominal successful episode and all36recoveryepisodes. Only actual executed valid nonintervenedteacherlabels. Every fifth eligible recovery label diagnostic holdout.",
+  "new_PPO_updates": 0,
+  "model_selection": "Fixed final1024step canonical22endpoint. No automatic evaluation/PPOpromotion. Preserve every outcome.",
+  "frozen": "Physical interface,policy architecture,RMS,critic,log_std,PPOAdam,counters and RNGfile bytes.",
+  "final_conditions_used": 0
+}

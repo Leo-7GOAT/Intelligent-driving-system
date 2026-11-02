@@ -1,5 +1,7 @@
 from copy import deepcopy
 from types import SimpleNamespace
+import json
+from pathlib import Path
 import numpy as np
 import pytest
 
@@ -45,6 +47,38 @@ def test_original_train_collection_requires_explicit_distinct_profile():
     with pytest.raises(ValueError):validate_collection(protocol,config,cases)
 
 
+def broader_inputs():
+    from navstack.native_cases import registered_native_cases
+    p, config, _ = inputs()
+    layout = json.loads((Path(__file__).resolve().parents[1] / 'experiments/native_development_train36_validation24_v1.json').read_text(encoding='utf-8'))
+    p.update(routes=layout['routes'], native_case_manifest=layout['native_case_manifest'], data_role='TRAIN_EXTRA_SUPERVISION')
+    cases = registered_native_cases(p)
+    p['native_recovery_collection'].update(route_profile='broader_TRAIN36_v1', max_controls=32400,
+        original_TRAIN_case_indices=list(range(36)), TRAIN_case_manifest=deepcopy(p['native_case_manifest']),
+        geometry_ids=[c['native_route']['geometry_id'] for c in cases],
+        source_lineage_control_steps=51200, exclude_intervened_teacher_labels=True)
+    return p, config, cases
+
+
+def test_broader_collection_includes_all_three_train_families():
+    p, config, cases = broader_inputs()
+    assert len(cases) == 36
+    assert validate_collection(p, config, cases) is p['native_recovery_collection']
+
+
+@pytest.mark.parametrize('mutation', ['validation', 'partial', 'manifest', 'mask', 'budget', 'lineage', 'role'])
+def test_broader_collection_rejects_leakage_selection_and_unexecuted_labels(mutation):
+    p, config, cases = broader_inputs(); spec = p['native_recovery_collection']
+    if mutation == 'validation': p['native_validation'] = {}
+    elif mutation == 'partial': cases = cases[:-1]
+    elif mutation == 'manifest': spec['TRAIN_case_manifest']['cases'][4]['hazard'] = None
+    elif mutation == 'mask': spec['exclude_intervened_teacher_labels'] = False
+    elif mutation == 'budget': spec['max_controls'] = 64000
+    elif mutation == 'lineage': spec['source_lineage_control_steps'] = 20480
+    else: p['data_role'] = 'VAL'
+    with pytest.raises(ValueError): validate_collection(p, config, cases)
+
+
 def test_stable_fingerprint_catches_parameter_optimizer_and_rms_changes():
     original={'policy':np.zeros((2,3),dtype=np.float32),'optimizer':{'steps':7},'rms':{'count':42.,'mean':np.zeros(3)}}
     assert tensor_digest(original)==tensor_digest(deepcopy(original))
@@ -86,6 +120,22 @@ def test_timeout_episode_length_does_not_increase_total_sampling_probability():
     weights=episode_balanced_weights(groups)
     np.testing.assert_allclose([weights[groups==g].sum() for g in np.unique(groups)],[1.,1.,1.])
     assert np.all(weights>0)
+
+
+def test_broader_recovery_fit_excludes_unexecuted_proposals_and_preserves_all_episodes():
+    from scripts.fit_broader_native_recovery import recovery_masks
+    groups = np.repeat(np.arange(2048, 2084), 6)
+    data = dict(groups=groups, fit_train_mask=np.tile([True]*5+[False],36),
+        teacher_executed=np.tile([True]*5+[False],36))
+    train, holdout = recovery_masks(data, 180)
+    assert train.sum() == 144 and holdout.sum() == 36
+    assert not (train & holdout).any()
+    np.testing.assert_array_equal(train | holdout, data['fit_train_mask'])
+    bad = deepcopy(data); bad['teacher_executed'][0] = False
+    with pytest.raises(ValueError): recovery_masks(bad,180)
+    bad = deepcopy(data); bad['groups'][bad['groups']==2083] = 2082
+    with pytest.raises(ValueError): recovery_masks(bad,180)
+    with pytest.raises(ValueError): recovery_masks(data,179)
 
 
 def test_repeated_actor_interventions_retain_cumulative_cost_instead_of_last_segment_only():

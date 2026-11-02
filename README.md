@@ -6,6 +6,9 @@ A known-map, low-speed research system combining **PPO high-level decisions → 
 
 **Development prerelease; research acceptance remains unmet.** Real CARLA training, control-frame audits and public model reproduction have been executed. The current evidence does not establish hierarchical superiority, a stable added-PPO benefit, or road-safety certification.
 
+
+Latest: the [five-seed broader B1 prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1) is public (69 verified assets). Clean local reconstruction passed; unauthenticated download reconstruction is still running. Subsequent extra TRAIN supervision used 1,024 actor Adam steps per seed; the fixed seed22 passed basic4/4 but failed known validation4/24. [Completed supervision and probe evidence](reports/native_B1_broader_nominal_supervision_20261102.json). Research acceptance remains unmet.
+
 ## Verified development evidence
 
 The following studies have different training histories and declared interfaces. They are separate results, not a single budget-matched comparison.

@@ -16,7 +16,9 @@ def audit(batch):
     import torch
     from navstack.config import EnvConfig
     from navstack.independent_clip_ppo import load_ppo
-    from navstack.measured_demo import measured_flat_env, measured_label
+    from navstack.measured_demo import measured_flat_env, measured_label, _actor_snapshot
+    from navstack.world import MovingObstacle
+    from navstack.parking_assist import goal_parking_command
     from navstack.native_cases import registered_native_cases, verify_registered_native_begin
     from navstack.vehicle import VehicleState, Command
     from scripts.audit_native_method_endpoint import read, sha, read_prefix, _verify_ticks
@@ -26,6 +28,13 @@ def audit(batch):
     protocol = read(batch/'protocol.json'); result = read(folder/'collection.json'); summary = read(folder/'summary.json')
     config = EnvConfig.from_dict(read(folder/'config.json')['env'])
     cases = registered_native_cases(protocol); spec = validate_collection(protocol,config,cases)
+    inventory = batch / spec['TRAIN_inventory']
+    if sha(inventory) != spec['TRAIN_inventory_sha256']:
+        raise ValueError('Original TRAIN inventory changed')
+    if spec.get('route_profile') == 'broader_TRAIN36_v1':
+        original = read(inventory)
+        if original['routes'] != protocol['routes'] or original['native_case_manifest'] != protocol['native_case_manifest']:
+            raise ValueError('Collection omitted or changed an original TRAIN condition')
     for name, digest in protocol['source_hashes'].items():
         if sha(runtime/name) != digest: raise ValueError('Frozen source changed: '+name)
     for name, key in [('collection.npz','dataset_sha256'),('collection_trace.jsonl.gz','trace_sha256'),
@@ -35,7 +44,7 @@ def audit(batch):
         if sha(folder/name) != spec[key] or sha(folder/name) != sha(batch/'resume/B1'/name):
             raise ValueError('Collection changed learning checkpoint')
     if (any(summary[k] != 0 for k in ('physics_steps','actions','optimization_phases','optimizer_steps'))
-            or summary['lineage_control_steps'] != 20480 or (folder/'optimization.jsonl').read_bytes()
+            or summary['lineage_control_steps'] != spec.get('source_lineage_control_steps', 20480) or (folder/'optimization.jsonl').read_bytes()
             or any(result[k] != 0 for k in ('new_PPO_controls','new_PPO_updates','new_supervised_updates'))
             or (folder/'evaluation.json').exists()):
         raise ValueError('Collection contains optimization or is mislabeled as policy evaluation')
@@ -74,7 +83,7 @@ def audit(batch):
     rng = np.random.default_rng(spec['mixture_seed'])
     used, previous, episode_ids = set(), {}, set()
     completed = {}; indices = {}; teacher_counts = {}; case_episodes = {}
-    view = None; current = -1; selected = False; teacher_total = eligible_total = 0
+    view = None; current = -1; selected = False; teacher_total = eligible_total = 0; distance = 0.
     for position, row in enumerate(rows):
         case_id = row['case_id']; index = row['control_index']; info = row['info']
         ticks = info['trace']
@@ -84,6 +93,7 @@ def audit(batch):
             if case_id != current+1 or index != 0 or current >= 0 and current not in completed:
                 raise ValueError('Missing, reordered or unfinished collection episode')
             current = case_id
+            distance = 0.
             begin = begins.get(episode)
             if begin is None: raise ValueError('Missing measured collection reset')
             verify_registered_native_begin(begin,protocol,case_id)
@@ -95,7 +105,7 @@ def audit(batch):
             raise ValueError('Collection state/history or episode ordering differs')
         if index % spec['block_controls'] == 0: selected = bool(rng.random() < spec['teacher_probability'])
         valid = row['teacher_status'] == 'solved' or row['teacher_mode'] in ('wait','dynamic_brake','parking_brake')
-        eligible = selected and valid
+        eligible = selected and valid and not (spec.get('exclude_intervened_teacher_labels', False) and tick['intervention'])
         expected_source = 'teacher' if selected else 'learner'
         if row['source'] != expected_source or row['eligible_executed_teacher_label'] != eligible:
             raise ValueError('Mixture schedule or executed-label mask differs')
@@ -111,21 +121,29 @@ def audit(batch):
         vehicle = config.vehicle
         requested = {'acceleration':float(action[0]*(vehicle.max_accel if action[0]>=0 else vehicle.max_decel)),
                      'steering':float(action[1]*vehicle.max_steer)}
-        if requested != tick['requested_command']: raise ValueError('Selected action differs from actual bridge request')
+        assisted, intervened, _ = goal_parking_command(view.state, view.goal, Command(**requested), config, distance > .1)
+        if (asdict(assisted) != tick['requested_command']
+                or bool(tick.get('goal_parking_intervention', False)) != intervened):
+            raise ValueError('Selected action/shared parking helper differs from actual bridge request')
         # Independent production projection, measured frame and clock checks.
         measured_label(view,tick)
         _verify_ticks(ticks,actual,acknowledgements,owners,used,previous,episode_ids,config.actuator_observation)
-        old_speed = view.state.v
+        old_state = view.state; old_speed = old_state.v
         view.last_behavior = np.array([*action,0.,0.])
         view.plant.state = VehicleState(**tick['state']); view.plant.previous_command = Command(**tick['command'])
         view.plant.evidence = tick['backend_evidence']; view._measured_frame = tick['backend_frame']
-        view.execution_outcome = np.array([0.,0.,0.,0.,0.,(view.state.v-old_speed)/vehicle.max_speed],dtype=np.float32)
+        _, states = _actor_snapshot(view.plant.evidence.get('native_dynamic_actors', [] if not view._measured_actor_ids else None), view._measured_actor_ids)
+        view.world.dynamic = [MovingObstacle(**state) for state in states]
+        distance += float(np.hypot(view.state.x-old_state.x, view.state.y-old_state.y))
+        if config.execution_feedback != 'off':
+            view.execution_outcome = np.array([0.,0.,0.,float(tick['controller_status']=='failed'),
+                float(tick['intervention']),(view.state.v-old_speed)/vehicle.max_speed],dtype=np.float32)
         indices[case_id] = index+1; teacher_counts[case_id] = teacher_counts.get(case_id,0)+int(selected)
         teacher_total += int(selected); eligible_total += int(eligible)
         if info.get('termination_reason'): completed[case_id] = info['episode_metrics']
-    if set(completed) != set(range(4)) or set(actual) != used or set(begins) != episode_ids:
+    if set(completed) != set(range(len(cases))) or set(actual) != used or set(begins) != episode_ids:
         raise ValueError('Missing registered case or unaccounted physical controls/resets')
-    if len(result['episodes']) != 4: raise ValueError('Incomplete collection result')
+    if len(result['episodes']) != len(cases): raise ValueError('Incomplete collection result')
     for case_id, episode in enumerate(result['episodes']):
         wanted = {'case_id':case_id,'geometry_id':cases[case_id]['native_route']['geometry_id'],
             'teacher_controls':teacher_counts[case_id], 'learner_controls':indices[case_id]-teacher_counts[case_id], **completed[case_id]}
@@ -138,7 +156,7 @@ def audit(batch):
     if any(summary[key] != expected[key] for key in ('collection_controls','teacher_controls','learner_controls','collection_world_ticks')):
         raise ValueError('Worker summary omits collection cost')
     if frozen_state(model,norm) != before: raise ValueError('Audit changed frozen learning state')
-    return {'scope':__doc__,'batch':batch.name,'protocol_sha256':sha(batch/'protocol.json'),
+    return {'scope':__doc__,'batch':batch.name,'script_sha256':sha(Path(__file__)), 'protocol_sha256':sha(batch/'protocol.json'),
         'collection_result_sha256':sha(folder/'collection.json'),'trace_sha256':result['trace_sha256'],
         'dataset_sha256':result['dataset_sha256'],'bridge_response_stream':streams[0].name,
         'bridge_response_sha256':sha(streams[0]),'model_sha256':result['model_sha256'],

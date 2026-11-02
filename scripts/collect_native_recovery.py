@@ -16,6 +16,21 @@ VERSION = 'native_executed_teacher_mixture_v1'
 def validate_collection(protocol, config, cases):
     spec = protocol.get('native_recovery_collection', {})
     profile=spec.get('route_profile','new_TRAIN4_v1')
+    broader = profile == 'broader_TRAIN36_v1'
+    if broader:
+        from navstack.native_cases import registered_native_cases
+        inventory = spec.get('TRAIN_case_manifest')
+        if (protocol.get('native_validation') is not None
+                or protocol.get('data_role') != 'TRAIN_EXTRA_SUPERVISION'
+                or spec.get('original_TRAIN_case_indices') != list(range(36))
+                or inventory != protocol.get('native_case_manifest')
+                or cases != registered_native_cases(protocol)
+                or len(cases) != 36 or len(protocol.get('routes', [])) != 12
+                or any(sum((None if c.get('native_hazard') is None else c['native_hazard']['kind']) == kind
+                           for c in cases) != 12 for kind in (None, 'static_vehicle', 'crossing_walker'))
+                or spec.get('source_lineage_control_steps') != 51200
+                or spec.get('exclude_intervened_teacher_labels') is not True):
+            raise ValueError('Require every original TRAIN condition and no validation access')
     indices={'new_TRAIN4_v1':[4,5,6,7],'original_TRAIN4_v1':[0,1,2,3]}.get(profile)
     if (spec.get('version') != VERSION or protocol.get('methods') != ['B1']
             or protocol.get('evaluation_only') is not True
@@ -25,12 +40,12 @@ def validate_collection(protocol, config, cases):
             or config.method != 'B1' or config.flat_hold != 1
             or config.flat_longitudinal_mode != 'acceleration'
             or spec.get('teacher_probability') != .5 or spec.get('block_controls') != 10
-            or spec.get('max_controls') != 3600 or config.deadline != 45
-            or len(cases) != 4 or len(spec.get('geometry_ids', [])) != 4
-            or indices is None or spec.get('original_TRAIN_route_indices') != indices
+            or spec.get('max_controls') != (32400 if broader else 3600) or config.deadline != 45
+            or len(cases) != (36 if broader else 4) or len(spec.get('geometry_ids', [])) != len(cases)
+            or not broader and (indices is None or spec.get('original_TRAIN_route_indices') != indices)
             or [c['native_route']['geometry_id'] for c in cases] != spec['geometry_ids']
-            or any(c.get('native_hazard') is not None for c in cases)):
-        raise ValueError('Require the locked four-road TRAIN-only collection protocol')
+            or not broader and any(c.get('native_hazard') is not None for c in cases)):
+        raise ValueError('Require the locked TRAIN-only collection protocol')
     return spec
 
 
@@ -131,9 +146,11 @@ def collect(config, client, cases, model, vec, output, protocol, env_class, guar
                     next_obs, reward, done, truncated, info = environment.step(action)
                     if len(info['trace']) != 1:
                         raise ValueError('Exactly one measured physical control per mixture action is required')
+                    eligible_label = bool(use_teacher and available and not (
+                        spec.get('exclude_intervened_teacher_labels', False) and info['trace'][0]['intervention']))
                     record = {'case_id': case_id, 'control_index': index,
                         'source': 'teacher' if use_teacher else 'learner',
-                        'eligible_executed_teacher_label': bool(use_teacher and available),
+                        'eligible_executed_teacher_label': eligible_label,
                         'state_before': state, 'frame_before': frame, 'previous_command': previous,
                         'learner_action': learner, 'teacher_action': teacher_action, 'executed_action': action,
                         'teacher_requested_command': asdict(command), 'teacher_action_id': oracle.action,
@@ -144,9 +161,9 @@ def collect(config, client, cases, model, vec, output, protocol, env_class, guar
                     stream.write(json.dumps(record, default=jsonable) + '\n')
                     if index % 20 == 0: stream.flush()
                     observations.append(obs.copy()); labels.append(teacher_action.copy()); groups.append(2048 + case_id)
-                    eligible.append(bool(use_teacher and available)); learner_actions.append(learner.copy()); sources.append(use_teacher)
+                    eligible.append(eligible_label); learner_actions.append(learner.copy()); sources.append(use_teacher)
                     controls += 1; teacher_controls += int(use_teacher); local_teacher += int(use_teacher)
-                    valid_labels += int(use_teacher and available); index += 1; obs = next_obs
+                    valid_labels += int(eligible_label); index += 1; obs = next_obs
                     if done or truncated:
                         episodes.append({'case_id': case_id, 'geometry_id': case['native_route']['geometry_id'],
                             'teacher_controls': local_teacher, 'learner_controls': index-local_teacher,
