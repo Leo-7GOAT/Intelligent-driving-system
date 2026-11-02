@@ -1,3 +1,25 @@
+# All5broader B1 complete54/120FAILED; TRAINteacher actively collecting — 2026-11-02
+
+Coordinator16540/session92056 is TERMINAL0,phaseALL_FOUR_ADDITIONAL_BROADER_COURSES_AUDITED.
+Do not restart it or any completed seed. All5outcomes11/22/33/44/55=
+11/7/11/15/10outof24.54/120successes (45%),58collision-or-bounds,8deadlines;
+0/5development screensPASS.102400actuallearning controls/3148Adamsteps retained;
+44explicitly recovered.24unique knownVALconditions,not120newfinalcases.
+Reports/native_B1_broader_complete_cohort_20261102.json and seed55audit added;
+complete summary rebuilt byte-exact;7testsPASS0.57s.
+Seed55finalmodel271e2f72ef7d9b97e62f2017940fecc8cb93ab42becb058ae5e4ef1029e864fe;
+619newAdamsteps in35states,21actor/14critic changes,RMSexact,28841rawcontrols
+verified,10/24=(curve5/8,static2/8,walker3/8),7collisions/7bounds.
+
+ACTIVE teacherobserver57848/toolsession8237 now COLLECTING_ALL36_TRAIN_TEACHER.
+Physicalbatch20261102T053259603507Z_native_B3_broader_TRAIN_teacher,
+worker3684 creation1793603886.328 Python311,source scripts/evaluate_native_rule.py.
+Read actual heartbeat/case files for progress. This is TRAINextra-supervision,
+not held-out evaluation or PPO. Actorfitwaiter63032/session44078 still waits on
+its exact teacher handle;no fits have started. Review ALL5fits after completion
+before using prepare_measured_actor_basic_probe.py;fixedcanonical22 only.
+Current lastpushed14257a3CI41403682644SUCCESS.
+
 # Broader44 audited15/24FAILED; seed55RUNNING — 2026-11-02
 
 Future post-fit entry implemented: scripts/prepare_measured_actor_basic_probe.py.

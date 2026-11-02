@@ -76,3 +76,17 @@ The summary rebuilds with `python scripts/summarize_broader_b1_cohort.py
 seed is an error. Six integrity tests cover incomplete-cohort reporting,
 recovery costs and altered evidence. Do not count96policy/condition evaluations
 as96unique physical conditions or treat a partial mean as the fullcohort mean.
+
+## Complete five-seed outcome
+
+Allfive finish at11/7/11/15/10outof24:54/120successes (45%),58collision-or-bounds
+cases and8deadlines. Allfive fail the fixed development screen. Total retained
+learning is102400actualcontrols/3148Adamsteps;44includes the explicitly audited
+11520+8960recovery. There are24unique known VALconditions,not120new finalcases.
+[Complete cohort](../reports/native_B1_broader_complete_cohort_20261102.json),
+[seed55audit](../reports/native_B1_broader_seed55_20261102.json).
+The complete report rebuilds byte-for-byte;seven integrity tests pass.
+The original partial44/96report remains a historical snapshot.
+The existing observer has now started the registered uniform TRAINteacher
+collection. Teacher data/fits remain a separate intervention,not an established
+improvement or a reason to discard any of these failed policies.

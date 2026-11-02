@@ -11,7 +11,7 @@ def write(path, value):
     path.write_text(json.dumps(value), encoding='utf-8')
 
 
-def fixture(tmp_path):
+def fixture(tmp_path, include55=False):
     original = tmp_path / 'runs/B1_additional_broader_cohort_20261102'
     execution = tmp_path / 'runs/recovery_execution'
     pilot_name = '20261101T131830295783Z_native_B1_broader_shared_parking_PPO'
@@ -21,7 +21,7 @@ def fixture(tmp_path):
     cores = {name: dict(cases=8, successes=4, termination_counts=dict(success=4, out_of_bounds=4))
              for name in ('curve_parking', 'static_vehicle', 'crossing_walker')}
     completed, rows, batches, audits = [], [], {}, {}
-    for seed in (11, 22, 33, 44):
+    for seed in (11, 22, 33, 44) + ((55,) if include55 else ()):
         name = pilot_name if seed == 22 else 'seed' + str(seed)
         batch = tmp_path / 'runs' / name
         p = deepcopy(baseline); p['seed'] = seed
@@ -58,7 +58,8 @@ def fixture(tmp_path):
         if seed != 22:
             rows.append(dict(seed=seed, batch=name))
             completed.append(dict(seed=seed, batch=name, audit_sha256=sha(audit)))
-    rows.append(dict(seed=55, batch='pending55'))
+    if not include55:
+        rows.append(dict(seed=55, batch='pending55'))
     write(execution / 'registration.json', dict(rows=rows))
     write(execution / 'status.json', dict(completed=completed))
     return execution, batches, audits
@@ -79,6 +80,16 @@ def test_incomplete_cohort_cannot_be_reported_as_five_completed_seeds(tmp_path):
     execution, _, _ = fixture(tmp_path)
     with pytest.raises(ValueError, match='incomplete'):
         summarize(tmp_path, execution)
+
+
+def test_complete_five_seed_summary_retains_only24unique_conditions(tmp_path):
+    execution, _, _ = fixture(tmp_path, include55=True)
+    result = summarize(tmp_path, execution)
+    assert result['complete_five_seed_cohort'] and result['pending_seeds'] == []
+    assert [r['seed'] for r in result['seeds']] == [11, 22, 33, 44, 55]
+    assert result['policy_condition_evaluations'] == 120 and result['unique_known_validation_conditions'] == 24
+    assert result['effective_new_PPO_controls'] == 102400
+    assert result['qualified_development_seeds'] == 0 and result['research_acceptance'] == 'UNMET'
 
 
 @pytest.mark.parametrize('fault', ['model', 'prefix', 'audit', 'owned_cleanup'])
