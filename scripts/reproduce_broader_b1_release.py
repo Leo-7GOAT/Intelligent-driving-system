@@ -96,7 +96,10 @@ def run(recipe, output, local_artifacts=None):
         seed = row['seed']
         archive, transfer = obtain(row, 'seed' + str(seed))
         rebuilt = output / ('seed' + str(seed) + '_rebuild')
-        reproduce(archive, row['archive_sha256'], rebuilt)
+        # Existing capsules retain the figure's original exported name. The
+        # reference remains inside the SHA-bound archive; no comparison is skipped.
+        reference_figure = rebuilt / 'asset' / row['batch'] / 'analysis/native_endpoints.png'
+        reproduce(archive, row['archive_sha256'], rebuilt, reference_figure=reference_figure)
         original = rebuilt / 'asset' / row['batch']
         if not original.is_relative_to(rebuilt / 'asset') or original.name != row['batch']:
             raise ValueError('Restored course path differs')
