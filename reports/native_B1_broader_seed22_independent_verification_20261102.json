@@ -1,0 +1,34 @@
+{
+  "scope": "Independent source checkout reconstructs the completed single-seed broader B1 learning audit using existing local raw evidence. Not a public capsule download or new driving.",
+  "checkout_commit": "4c87b5d2fd1cf55836704598e145deddd10d3831",
+  "analysis_script_sha256": "30a6cfb7b737dfdf95bead8b548ebcad62311bc597d44dc38e6f6901ac34fdcd",
+  "expected_report_sha256": "82fd47fc0780f1e618878919f1bcb9ecb23803d57f17f36d326e5e39b71bf5f5",
+  "rebuilt_report_sha256": "82fd47fc0780f1e618878919f1bcb9ecb23803d57f17f36d326e5e39b71bf5f5",
+  "all_report_fields_exact": true,
+  "verified_actual_controls": 31480,
+  "new_actual_PPO_controls": 20480,
+  "Adam_increment_each_of35states": 630,
+  "original_RMS_exact": true,
+  "measured_validation_start_actions": 24,
+  "development_screen": {
+    "overall_success_fraction": 0.2916666666666667,
+    "unsafe_fraction": 0.6666666666666666,
+    "by_core_successes": {
+      "curve_parking": "5/8",
+      "static_vehicle": "0/8",
+      "crossing_walker": "2/8"
+    },
+    "passed": false,
+    "thresholds": {
+      "overall_min": 0.8,
+      "each_core_min": 0.7,
+      "unsafe_max": 0.05
+    }
+  },
+  "original_14of24_comparison_limit": "Different initial model;no causal gain/regression computed against that older result.",
+  "new_controls_during_rebuild": 0,
+  "new_optimizer_updates_during_rebuild": 0,
+  "new_final_conditions": 0,
+  "public_raw_model_capsule_for_this_batch": "Not yet published",
+  "research_acceptance": "UNMET"
+}

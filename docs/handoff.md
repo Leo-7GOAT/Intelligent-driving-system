@@ -1,3 +1,31 @@
+# Broader22 audited7/24FAILED; broader11 RUNNING — 2026-11-02
+
+Original22batch20261101T131830295783Z_native_B1_broader_shared_parking_PPO
+is COMPLETE,worker45800/observer32384terminal with normal owned cleanup.
+20480newactualTRAINcontrols,630Adam inall35states,21actor/14critic tensorschanged,
+RMSmean/variance/count exact. 31480rawcontrols and24VALstarts verified. All36TRAIN
+conditions were actually visited. TRAIN37success/4collision/5bounds/3deadline
+plus truncatedtail. VAL7/24:curve5/8,static0/8,walker2/8;11bounds,5collision,1deadline.
+Unsafe16/24;development screenFAILED. Finalmodel
+0016264136790224daf02204fba22e586c02ae756662751fc8781c7fb03f6b6b.
+reports/native_B1_broader_seed22_20261102.json copied byte-exact from autoaudit.
+Independent checkout at4c87b5d reconstructed entire learningaudit field-exact
+using existing local raw/model data. Receipt:
+reports/native_B1_broader_seed22_independent_verification_20261102.json.
+This is NOTpubliccapsuledownload;newraw/models notyetuploaded. No whole-dynamic
+action-reconstruction claim. Older14/24hasdifferentinitialmodel;no causal
+PPOgain/regressioncomputed. No finalconditions activated.
+
+LIVE observer22416/toolsession54063 continues in
+runs/B1_additional_broader_cohort_20261102/status.json,phase
+ADDITIONAL_BROADER_ACTUAL_PPO_RUNNING,seed11.
+Batch20261102T044003693349Z_native_broader_B1_seed11;
+worker58224atlaunch,creation2026-11-02T13:09:45.930+08:00.
+It started automatically after22audit and exact observerexit;then33/44/55,
+same20480newPPOcontrols/36TRAIN/24VAL each. Original registration timing and
+performance-failure continuation unchanged. Recheck liveidentity;no duplicate
+launcher/oldobserver32384restart. Overallresearchacceptance remainsUNMET.
+
 # Planning-failure concentration verified; training queues unchanged — 2026-11-02
 
 Read-only full10endpoint trace recount complete: H8planningfailures all in

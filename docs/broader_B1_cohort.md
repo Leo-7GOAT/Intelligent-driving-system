@@ -1,8 +1,11 @@
 # Completing the broader B1 development cohort
 
-Seed22's previously registered single pilot is running on 36 existing TRAIN
-conditions, with 24 known development validation conditions after 20,480 new
-actual PPO controls. Its original protocol and selection history remain unchanged.
+Seed22's previously registered single pilot completed 20,480 new actual PPO
+controls on 36 existing TRAIN conditions and 630 Adam steps. Validation is
+**7/24**: curve/parking 5/8, static 0/8, walkers 2/8, with 11 bounds failures,
+five collisions and one deadline. All 31,480 controls and 24 start actions verify;
+observation RMS is unchanged. It fails the development screen. Its original
+protocol and selection history remain unchanged. [Completed audit](../reports/native_B1_broader_seed22_20261102.json).
 
 Before observing that pilot's validation outcomes, four further fixed courses
 were registered for **all remaining seeds 11/33/44/55**, including the two seeds
@@ -35,4 +38,10 @@ development conditions into new final conditions or waive the basic failures.
 This combined cohort completes the development coverage of five independently
 warm-started policies. It is not registration of all five before any training,
 from-scratch learning, a budget-matched H/B1 comparison, an added-PPO effect,
-or final confirmation. Outcomes remain pending. [Live execution handoff](handoff.md).
+or final confirmation. Seed11 has now started; the remaining three follow.
+The full five-seed outcome remains pending. An independent source checkout
+reconstructs seed22's complete audit field-for-field using existing local data;
+its raw/model capsule has not yet been published. This uses a different initial
+model from the earlier 14/24 probe, so no causal gain or regression is computed.
+[Local reconstruction receipt](../reports/native_B1_broader_seed22_independent_verification_20261102.json),
+[live execution handoff](handoff.md).
