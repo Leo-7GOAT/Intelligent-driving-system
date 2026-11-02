@@ -7,7 +7,9 @@ A known-map, low-speed research system combining **PPO high-level decisions → 
 **Development prerelease; research acceptance remains unmet.** Real CARLA training, control-frame audits and public model reproduction have been executed. The current evidence does not establish hierarchical superiority, a stable added-PPO benefit, or road-safety certification.
 
 
-Latest: the [five-seed broader B1 prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1) is public (69 verified assets). Unauthenticated public-download reconstruction passed:151,660controls,120initialactions,five byte-identical figures and all PPO/Adam/RMS/cohort audits. [Public receipt](reports/native_B1_broader_public_download_verification_20261102.json). Subsequent extra TRAIN supervision used 1,024 actor Adam steps per seed; the fixed seed22 passed basic4/4 but failed known validation4/24. [Completed supervision and probe evidence](reports/native_B1_broader_nominal_supervision_20261102.json). Research acceptance remains unmet.
+Latest: the [five-seed broader B1 prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1) is public. Its 69 assets were downloaded without authentication and reconstructed: 151,660 controls, 120 initial actions and five byte-identical figures. [Public receipt](reports/native_B1_broader_public_download_verification_20261102.json).
+
+Additional TRAIN geometry and supervision remain insufficient: the latest completed direct-policy validation is 3/24, with all 12,383 control frames audited and all failures retained. [Negative result](reports/native_B1_diverse_geometry_failed_validation_20261102.json). A versioned learned route-error residual completed 4,096 auxiliary updates and passed the original four-road CARLA screen (4/4, 1,303 exact reconstructed NN actions). Its full known-condition probe is running. One 5,120-control real PPO continuation is registered behind that exact process; it has not yet executed. Neither step is final confirmation. Local CPU regression: 1,230 passed, one skipped; [source-specific hosted check](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41438162548) passed.
 
 ## Verified development evidence
 
@@ -41,7 +43,7 @@ Seed44 hit disk protection after 11,520 saved controls; it completed the remaini
 
 The parking aid requests physical braking only inside the unchanged goal pose gates while overspeed; it changes neither steering nor vehicle state. It releases before success can be accepted. H/H0/B1/B2/B3 can share the same version. Every override is recorded. [Implementation and experiments](docs/shared_parking.md).
 
-A separate [TRAIN-only teacher collection](docs/broader_TRAIN_teacher.md) is queued after the locked cohort to investigate broader direct-control supervision. Old H/H0 training-data reuse fails the strict full-coverage preflight (31/36); no labels or models were produced. The queued collection uses the unchanged strong B3 configuration on all36TRAINconditions and introduces no validation/final data or automatic model fitting.
+The original [TRAIN-only teacher collection](docs/broader_TRAIN_teacher.md) and subsequent recovery/diverse-road collections are complete. Their extra supervision and unsuccessful policy probes are recorded separately from PPO learning. The newest 36-case teacher collection achieved 31/36; that teacher result is not flat-policy performance. [Collection evidence](reports/native_B3_diverse_TRAIN_teacher_collection_20261102.json).
 
 ## Install and run CPU checks
 
