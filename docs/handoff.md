@@ -1,5 +1,36 @@
 # All5broader B1 complete54/120FAILED; TRAINteacher actively collecting — 2026-11-02
 
+NEW: teacher collection is COMPLETE/owned-cleaned/raw-audited:35/36success,
+curve12/12,static11/12,walker12/12. Staticcase21deadline retained.12556controls,
+1115reset ticks;allengineacks match. Report
+reports/native_B3_broader_TRAIN_teacher_collection_20261102.json.
+Teacherobserver57848/session8237 now BUILDING_EXECUTED_TRAIN_DIRECT_VIEWS,
+execution runs/B3_broader_TRAIN_teacher_execution_v4_20261102.
+Read direct_views.log;converter has a fixed1800sbudget. Actorfit63032/session44078
+still WAITING;no model fits until complete dataset. Failedcase21 will remain
+in dataset inventory but excluded from fitting by the predeclared success rule.
+
+Public-model work is in progress, NOT uploaded yet. Five normal capsules built
+using clean independent checkout53049ea at
+runs/prerelease_20261022/basic_course_code_checkout_20261101 and its clean venv.
+Builder68800/session81478 TERMINAL0;plan/status/source script under
+runs/B1_broader_capsule_build_20261102 and runs/build_broader_capsules_20261102.py.
+Archives live in D:/Codex_Thesis_Artifacts/intelligent-driving-system_20261028/broader_B1_release_20261102.
+All5ZIPs are manifest/hash/privacy checked and include all normal source,
+models/checkpoints/raw TRAIN/VAL/scenes/plots plus analysis/broader_learning_audit.json.
+Normal files cover140140rawcontrols. Original44prefix11520needs its own capsule
+to reproduce the full151660control inventory and the retained360Adamupdates.
+New scripts/package_native_saved_prefix.py audit-only ran on actual original44;
+all reference fields exact,raw11520,35Adamstates/360steps,RMSexact,strictgear/pedal
+ack gatesPASS.6export/privacy/no-endpoint testsPASS2.30s. It never fabricates an
+endpoint or repairs torn logs. Execute packaging from a clean updated checkout.
+No new release/tag/asset uploads have happened. Need build prefixZIP,then
+public recipe/reproducer for all5+prefix and actual unauthenticated reconstruction.
+For recovered44analyzer the restored original prefix directory must be a sibling
+of the recovered44batch;complete cohort summary expects a common staged workspace
+with runs/registeredbatch paths plus original/coordinator audit JSON and canonical22
+report. All are available locally;preserve original status hashes and all failures.
+
 Coordinator16540/session92056 is TERMINAL0,phaseALL_FOUR_ADDITIONAL_BROADER_COURSES_AUDITED.
 Do not restart it or any completed seed. All5outcomes11/22/33/44/55=
 11/7/11/15/10outof24.54/120successes (45%),58collision-or-bounds,8deadlines;

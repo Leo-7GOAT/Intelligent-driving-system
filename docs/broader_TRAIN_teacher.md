@@ -1,5 +1,13 @@
 # Broad TRAIN-only teacher preparation
 
+Collection is now complete and audited: **35/36 TRAIN successes**, with one
+static-vehicle deadline at condition21 retained. Curves and walkers each12/12,
+static11/12. All12,556actualcontrols have matching synchronous engine controls;
+1,115reset ticks are charged separately. No held-out validation or final labels
+were used. [Collection evidence](../reports/native_B3_broader_TRAIN_teacher_collection_20261102.json).
+Direct-view reconstruction is a separate read-only stage; collection success
+does not establish a trained direct-policy result.
+
 The new flat-PPO development courses remain below the target: seed22 is 7/24,
 seed11 and seed33 each 11/24,and recovered44 15/24 on known validation conditions. Extra supervision is a separate
 development intervention to investigate, not an established fix or PPO gain.
