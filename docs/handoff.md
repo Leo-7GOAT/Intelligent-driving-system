@@ -1,3 +1,17 @@
+# 当前接续状态：路线误差学习网络正在原生测试（2026-11-02 19:36）
+
+研究目标、主链路和验收门槛不变，完整研究验收仍未达成。不要重启已完成的采集、下载复现或旧训练。
+
+新增道路数据的上一版本已经全部完成：基础道路 4/4，已知验证 3/24（8 越界、11 超时、2 碰撞），12,383 个实际控制帧已审计。模型 5b4311f… 未通过健康基线要求。完整负结果见 reports/native_B1_diverse_geometry_failed_validation_20261102.json。新增 TRAIN 教师数据的串行与四进程重建已全数组一致；只读处理从 1777 秒降至 225 秒，不是驾驶性能提升。
+
+新版本仅增加已知地图路线相对于实测自车的横向误差、航向误差及曲率输入，通过 2,758 参数的直接控制神经网络残差学习。没有运行时教师、路线跟踪规则或状态投影；原 actor/critic 张量、PPO 原优化器状态与 RMS 统计保持一致。仅使用此前审计的 TRAIN 数据，4,096 次新增辅助 Adam 已真实完成，模型 558f162fa342302c6b45b286e0fbd55efd2009b7bea0f8ccbbf9419065445c30。新的归一化类显式保留这四个物理缩放特征，原统计值不重新拟合。额外监督及信息编码必须披露，不能归为 PPO 效果或主方法反馈贡献。
+
+正在执行 scripts/run_route_feedback_probe.py --execution runs/B1_route_feedback_actor_execution_20261102，协调器 PID 62452，工具 session 67029。基础物理 batch 为 20261102T113413981363Z_native_route_feedback_basic22。禁止重复启动。先四条原始道路，至少 3/4 且零碰撞/越界才进入原有 24 个已知验证条件；不自动开始 PPO，不接触最终测试集。读取 execution/status.json、complete.json 或 failure.json 获取最新状态，本文时间之后的状态以实际文件为准。
+
+本轮 23 项新网络/执行器/道路策略检查及 10 项反馈接口回归已通过。完整 CPU 回归 session 40018 正在运行。实际源码、配方、模型和原始控制均已冻结到此次运行目录；最终结论必须等待原生测试及逐帧审计。
+
+公开五种子 B1 失败基线 release v0.2.0-dev.20261102-broader-b1 的 69 个资产及公开下载重建已经完成：151,660 控制帧、120 个初始推理、5 图一致。不要重复下载或复现。五种子 54/120 仍属 24 个已知条件的重复开发评估，不是 120 个独立最终条件。
+
 # Diversephysicalcollection COMPLETE;parallel/serialviews RUNNING — 2026-11-02 18:47 local
 
 Physicalbatch20261102T101413887816Z_native_diverse_TRAIN36_teacher finished/ownedcleaned normally:14479actualcontrols,1115reset/15594worldticks,1836.490s;31/36success=12curve/7static/12walker. Failedstatic14/17/19/23deadline900each,16bounds101;allretained. Complete36case/all14479frame/strictpedal/manualfirst/gear/handbrake/reverse/syncack verified. Report reports/native_B3_diverse_TRAIN_teacher_collection_20261102.json. B3TRAINextrasupervision only,zeroPPO/finalconditions;nothealthyB1evidence.

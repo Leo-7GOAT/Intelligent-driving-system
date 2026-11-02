@@ -109,6 +109,7 @@ def training_config(protocol, method, vehicle):
             raise ValueError('Shared mask requires the complete endpoint feedback comparison')
         feedback='continuation'
     config = EnvConfig(method="H" if method == "H0" else method, vehicle=vehicle, road_observation=True,
+        flat_route_observation=protocol.get('flat_route_observation',False),
         goal_parking_assist=protocol.get('goal_parking_assist',False),
         execution_feedback=feedback,candidate_observation=protocol.get('road_candidate_policy',False),
         road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),

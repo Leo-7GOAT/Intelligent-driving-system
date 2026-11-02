@@ -149,6 +149,10 @@ def signature(config):
     }
     if config.shared_shield:
         result["shared_shield"] = "execution_brake_v1_no_path_prediction"
+    if config.flat_route_observation:
+        result['flat_route_observation']={'version':'known_route_frenet4_v1','slots':[599,600,601,602],
+            'features':'signed lateral/3m,sin/cos tangent heading error,curvature*minimum_turn_radius',
+            'source':'Existing shared known map route and measured ego state;no reference trajectory or action override'}
     if config.goal_parking_assist:
         result['goal_parking_assist']={'version':'inside_goal_pose_overspeed_brake_v2',
             'position_tolerance':config.goal_tolerance,'heading_tolerance':config.goal_yaw_tolerance,

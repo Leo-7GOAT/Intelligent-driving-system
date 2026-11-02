@@ -112,6 +112,7 @@ class EnvConfig:
     flat_hold: int = 1
     flat_longitudinal_mode: str = 'acceleration'
     flat_action_catalog: str = 'continuous'
+    flat_route_observation: bool = False
     deadline: float = 30.0
     scenario: str = "mixed"
     split: str = "train"
@@ -150,6 +151,12 @@ class EnvConfig:
     reward: RewardConfig = field(default_factory=RewardConfig)
 
     def __post_init__(self):
+        if (type(self.flat_route_observation) is not bool or self.flat_route_observation and
+                (self.method!='B1' or self.flat_hold!=1 or self.flat_longitudinal_mode!='acceleration'
+                 or self.flat_action_catalog!='continuous' or not self.road_observation
+                 or not self.candidate_observation or self.execution_feedback!='continuation'
+                 or self.subgoal_mode!='route_frame_terminal' or self.actuator_observation!='ff_state_v1')):
+            raise ValueError('Versioned route errors require the direct known-map hold1 B1 interface')
         if type(self.goal_parking_assist) is not bool or (self.goal_parking_assist and not self.parking):
             raise ValueError('Goal parking assist requires explicit boolean enablement and a parking task')
         if (type(self.endpoint_candidate_filter) is not bool or
@@ -264,6 +271,7 @@ class EnvConfig:
 
     def to_dict(self):
         result = asdict(self)
+        if not self.flat_route_observation:result.pop('flat_route_observation')
         if not self.goal_parking_assist:result.pop('goal_parking_assist')
         if not self.endpoint_candidate_filter:result.pop('endpoint_candidate_filter')
         # Preserve the serialized configuration of historical, disabled runs.

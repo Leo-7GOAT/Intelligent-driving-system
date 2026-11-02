@@ -1,0 +1,20 @@
+{
+  "version": "diverse_geometry_actor_v4_failed_known_VAL",
+  "batch": "20261102T105643912157Z_native_measured_actor_validation22",
+  "successes": 3,
+  "cases": 24,
+  "terminations": {
+    "success": 3,
+    "out_of_bounds": 8,
+    "deadline": 11,
+    "collision": 2
+  },
+  "verified_controls": 12383,
+  "model_sha256": "5b4311f51d5941a2e02c26b4af0176c67064fe4375251ef9328c35251d1fc62c",
+  "new_auxiliary_Adam_steps": 8192,
+  "retained_actor_Adam_steps": 16384,
+  "new_PPO_updates": 0,
+  "final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "conclusion": "Additional TRAIN geometry and lower offline fitting error did not produce a healthy flat baseline; all failed cases retained."
+}

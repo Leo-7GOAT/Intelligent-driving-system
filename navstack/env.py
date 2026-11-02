@@ -324,6 +324,11 @@ class NavigationEnv(gym.Env):
             observation = np.r_[observation, (~self.world.road.drivable).ravel()].astype(np.float32)
         if self.config.actuator_observation != "off":
             observation = np.r_[observation, self._actuator_observation()].astype(np.float32)
+        if self.config.flat_route_observation:
+            from .route_error import route_error_features
+            # These four mode/failure flags are identically zero for direct B1.
+            # Keep intervention and measured delta-speed slots untouched.
+            observation[599:603]=route_error_features(self.state,self.navigation_route,self.config.vehicle)
         return observation
 
     def _actuator_observation(self):

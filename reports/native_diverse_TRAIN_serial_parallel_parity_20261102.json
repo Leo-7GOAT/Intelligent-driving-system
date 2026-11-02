@@ -1,0 +1,53 @@
+{
+  "scope": "Full independent serial/parallel measured-view numeric comparison on the SAME14479actualteachercontrols.",
+  "members": [
+    {
+      "member": "observations",
+      "shape": [
+        14479,
+        4705
+      ],
+      "dtype": "float32"
+    },
+    {
+      "member": "actions",
+      "shape": [
+        14479,
+        2
+      ],
+      "dtype": "float32"
+    },
+    {
+      "member": "returns",
+      "shape": [
+        14479
+      ],
+      "dtype": "float32"
+    },
+    {
+      "member": "train_mask",
+      "shape": [
+        14479
+      ],
+      "dtype": "bool"
+    },
+    {
+      "member": "groups",
+      "shape": [
+        14479
+      ],
+      "dtype": "int64"
+    }
+  ],
+  "all_arrays_exact": true,
+  "all_case_metadata_exact": true,
+  "all_source_metadata_exact": true,
+  "serial_wall_seconds": 1777.2970000000205,
+  "parallel_wall_seconds": 224.96899999980815,
+  "parallel_workers": 4,
+  "serial_manifest_sha256": "93a41d51d47467a58613c70ec8c3b98fc21276c6b3343a7de51af630355300a9",
+  "parallel_manifest_sha256": "12be24d5af13d4920f4db71adefb03a7b1b77819a6837e9a31f49353fd086a05",
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "limits": "Read-only reconstruction speedup,not driving/planning/real-time policy performance or PPOgain."
+}
