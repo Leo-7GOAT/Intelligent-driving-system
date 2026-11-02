@@ -1,3 +1,28 @@
+# Broader44 audited15/24FAILED; seed55RUNNING — 2026-11-02
+
+Recovered44 is complete/owned-cleaned/audited:11520saved+8960resumed=20480
+actuallearning controls;360+280=640Adamsteps in all35states. Child raw19577
+plus original11520=31097controls verified. Endpoint15/24:curve6/8,static4/8,
+walker5/8;four collisions,three bounds,two deadlines. ScreenFAIL.21actor and
+14critic tensors changed;RMSexact. Finalmodel
+ e71ce437eb4ab6edce9d7ed39598858c40966cde57c1ba18566f76895626731d.
+Explicit recovery and unknown-tail flag remain. Segment report:
+reports/native_B1_broader_seed44_recovered_20261102.json.
+
+Current coordinator16540/session92056 now runs untouched original55batch
+20261102T044005159056Z_native_broader_B1_seed55. Worker66840,
+creation1793602261.744/executablePython311. Do not relaunch any completed seed.
+Teacher57848/session8237 and actor-fit63032/session44078 still wait on exact
+handles. Their active executions are v4teacher/v2actor as documented below.
+
+New summary scripts/summarize_broader_b1_cohort.py preserves all5registered
+seeds and recovered44costs. Four complete:11/22/33/44=11/7/11/15outof24.
+Partial44/96successes across24unique known VALconditions,not96unique cases.
+All four screensFAIL;55pending,not zero success. Full mode rejects missing55.
+reports/native_B1_broader_partial_cohort_20261102.json;6integrity testsPASS0.83s.
+CI41401458037 for5f03f7e SUCCESS. Current summary/report changes pending push.
+No final conditions,new teacher controls or new actor fits started yet.
+
 # Seed44 disk recovery running; replacement downstream queues active — 2026-11-02
 
 Current original broader results: seed22 7/24, seed11 11/24, seed33 11/24;

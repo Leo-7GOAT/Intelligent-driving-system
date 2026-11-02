@@ -113,3 +113,5 @@ protocols/native_B1_broader_disk_recovery_20261102.json -text -whitespace
 reports/native_B1_broader_seed44_interruption_20261102.json -text -whitespace
 reports/verified_artifact_relocation_20261102.json -text -whitespace
 reports/native_broader_measured_actor_CPU_20261102.json -text -whitespace
+reports/native_B1_broader_seed44_recovered_20261102.json -text -whitespace
+reports/native_B1_broader_partial_cohort_20261102.json -text -whitespace

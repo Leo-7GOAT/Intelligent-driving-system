@@ -44,7 +44,7 @@ It also fails the development screen. [Complete audit](../reports/native_B1_broa
 Seed33 also completes at11/24:curve6/8,static0/8,walkers5/8,seven bounds and six
 collisions. All29,621controls verify;619actualAdamupdates and unchangedRMS.
 [Complete seed33 audit](../reports/native_B1_broader_seed33_20261102.json).
-It fails the development screen. Seed44 is running;55follows.
+It fails the development screen. Recovered44now completes15/24;55is running.
 The full five-seed outcome remains pending. An independent source checkout
 reconstructs seed22's complete audit field-for-field using existing local data;
 its raw/model capsule has not yet been published. This uses a different initial
@@ -63,3 +63,16 @@ recovered course,not an uninterrupted replicate. Completed old artifacts were
 relocated with complete SHA256 verification to restore disk headroom.
 [Interruption evidence](../reports/native_B1_broader_seed44_interruption_20261102.json),
 [recovery registration](../protocols/native_B1_broader_disk_recovery_20261102.json).
+
+The recovered44course is now audited:15/24successes (curve6/8,static4/8,
+walker5/8),four collisions,three bounds and two deadlines. It fails the same
+screen. Saved11520/360Adam plus8960/280Adam retain the original20480/640
+learning budget;all31097original+child TRAIN/VALcontrols verify. Unknown tail
+uncertainty is retained. Seed55 has started,so the fullfive outcome is pending.
+[Recovered segment](../reports/native_B1_broader_seed44_recovered_20261102.json),
+[all four completed outcomes and costs](../reports/native_B1_broader_partial_cohort_20261102.json).
+The summary rebuilds with `python scripts/summarize_broader_b1_cohort.py
+--allow-partial --output <fresh-output.json>`;without `--allow-partial`,a missing
+seed is an error. Six integrity tests cover incomplete-cohort reporting,
+recovery costs and altered evidence. Do not count96policy/condition evaluations
+as96unique physical conditions or treat a partial mean as the fullcohort mean.

@@ -1,7 +1,7 @@
 # Broad TRAIN-only teacher preparation
 
 The new flat-PPO development courses remain below the target: seed22 is 7/24,
-seed11 and seed33 each 11/24 on known validation conditions. Extra supervision is a separate
+seed11 and seed33 each 11/24,and recovered44 15/24 on known validation conditions. Extra supervision is a separate
 development intervention to investigate, not an established fix or PPO gain.
 
 Existing H/H0 TRAIN trajectories were checked as a way to avoid new collection.
@@ -79,8 +79,8 @@ automatic retry. [Original fixed registration](../protocols/native_B1_broader_me
 The original broader queue stopped when seed44 reached the disk protection
 threshold. Both wait-only downstream observers stopped before dispatch; no
 teacher controls or actor fits occurred. After verified artifact relocation,
-seed44 resumes its remaining 8,960 controls from the saved 11,520-control model.
-The untouched seed55 follows. Replacement teacher and fit observers wait on this
+seed44 completed its remaining 8,960 controls from the saved 11,520-control model,
+ending at15/24 on known VAL. The untouched seed55 is now running. Replacement teacher and fit observers wait on this
 explicit recovery queue; the teacher physical protocol and actor-fit budget are
 unchanged. The fit uses seed44's fixed recovered final endpoint and retains the
 interruption disclosure. [Current fit registration](../protocols/native_B1_broader_measured_actor_v2_20261102.json),
