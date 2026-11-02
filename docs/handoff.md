@@ -1,4 +1,4 @@
-# 当前接续状态（2026-11-02 20:12）
+# 当前接续状态（2026-11-02 20:25）
 
 继续当前仓库，分支 `feature/physical-hierarchical-ppo`。不重建项目、不初始化 Git、不恢复瞬移环境。完整研究验收仍未达成；不能把基础4/4、教师成绩、训练结束或已知开发集当成最终达标。
 
@@ -8,11 +8,12 @@
 
 ## 当前实际作业：只观察，禁止重复启动
 
-- 学习率1e-4对照训练协调器 **67268 / session80592**，execution `runs/B1_route_feedback_rate1e4_PPO5120_execution_20261102`；物理 batch `20261102T120921347255Z_native_route_feedback_PPO5120`，worker **53616**，5120新真实控制预算。已实际开跑。
-- 训练后审计/端点协调器 **54584 / session73285**，execution `runs/B1_route_feedback_rate1e4_PPO5120_postprobe_20261102`。命令：`python scripts/complete_route_feedback_ppo.py --execution runs/B1_route_feedback_rate1e4_PPO5120_postprobe_20261102 --dependency runs/B1_route_feedback_rate1e4_PPO5120_execution_20261102`。
-- 54584哈希绑定 `scripts/complete_route_feedback_ppo.py` 和 `scripts/audit_route_feedback_ppo.py`，运行期间不要修改。等待确切67268退出0，再审计5120帧/Adam/RMS/实际学习率，然后原4基础道路、达门槛才测24已知验证。读取两个execution的status/complete/failure，不重启。
-- 低率训练与其完整验证均已终止0并正常清理，13124/session13067、67580/session60623不再活跃。
-- 当前物理 source 仍为旧冻结执行版本，root的SAT空间窗口优化没有混入这组学习率对照。
+- 高率训练已完成/审计通过：5120新真实控制、11实际Adam更新、448.523秒。原target-KL提前停止保持启用，不能写160更新。模型84a892972d8d118b2c633bfecaf4359a139d80e4cb9b09e81b804c3adf46c2a1，RMS统计原样保留。训练协调器67268/session80592已终止0。
+- 高率训练后基础3/4，一场deadline、零碰撞/越界；1887动作逐位重建一致，原门槛允许进入24已知验证。batch `20261102T121738941723Z_native_route_feedback_PPO_basic`。
+- **唯一当前物理作业**：batch `20261102T122150154243Z_native_route_feedback_PPO_known_validation`，worker **61320**。20:24到case3，完整24场尚未完成。
+- 审计/端点协调器 **54584 / session73285**，execution `runs/B1_route_feedback_rate1e4_PPO5120_postprobe_20261102`，phase known_validation_native。它哈希绑定 `scripts/complete_route_feedback_ppo.py` 和 `scripts/audit_route_feedback_ppo.py`，运行期间不要修改。读取status/complete/failure，禁止重复启动。
+- 当前物理 source 仍为旧冻结版本；root的SAT窗口及候选目录复用优化均未混入这组学习率对照。前五场实测初始状态/动态状态完全一致，初次1280 rollout奖励统计亦一致；学习率是这组匹配初始化的唯一干预。
+- 低率训练和完整验证、离线模型验证、所有旧收集/数据重建/公开复现均已终止并正常清理，不能重启。
 
 ## 本轮已经完成
 
@@ -30,13 +31,13 @@
 - 前一几何平衡拟合模型5b4311f…：基础4/4，已知验证3/24，12383帧，不能称健康。更早同数据长拟合16ecd9…为2/24；其他离线变体均失败，不再盲目重复同数据拟合。
 - 五个H/H0配对：120/120 vs119/120，差值区间跨0；PPO vs教师117/120的净收益区间也跨0。不能宣称反馈或PPO优势已证明。强B3已知24/24。
 
-## 已启动的单变量学习率对照（不重复旧训练）
+## 单变量学习率对照（不重复旧训练）
 
 `runs/B1_route_feedback_rate1e4_PPO5120_execution_20261102`，协调器 **67268 / session80592**，`python scripts/queue_route_feedback_ppo.py --rate-profile` 已在当前完整验证结果出来前注册并启动，等待确切13124退出0。
 
-仅将学习率3e-6改为1e-4，预算同为5120新真实PPO控制；从同一个离线模型558f162f…重新开始，保留原35个Adam状态、新增5个空组、log_std、RMS、RNG和完全相同TRAIN48/低层/奖励。5120低率分支及后续评估成本全部计入消耗，不冒充权重保留。不是从低率训练后的5085继续；这是匹配起点的单变量诊断，不是多种子结论。初始化时会逐张量验证权重/探索与Adam不变，仅调度率变化。3项相关回归通过。
+仅将学习率3e-6改为1e-4，预算同为5120新真实PPO控制；从同一个离线模型558f162f…重新开始，保留原35个Adam状态、新增5个空组、log_std、RMS、RNG和完全相同TRAIN48/低层/奖励。5120低率分支及后续评估成本全部计入消耗，不冒充权重保留。不是从低率训练后的5085继续；这是匹配起点的单变量诊断，不是多种子结论。初始化已逐张量验证权重/探索与Adam不变，仅调度率变化；前五个实际重置也一致。3项相关回归通过。
 
-不要重启高率协调器。它当前只负责固定训练，结束后仍需 `audit_route_feedback_ppo.py` 及原4基础/条件性24验证。现有 `complete_route_feedback_ppo.py` 仍被13124哈希绑定；13124已结束；接口已增加明确execution/dependency参数，高率作业的新审计/端点评测协调器54584已启动。
+不要重启高率协调器。固定训练已经完成，后续仍由54584完成 `audit_route_feedback_ppo.py` 及原4基础/条件性24验证。现有 `complete_route_feedback_ppo.py` 仍被13124哈希绑定；13124已结束；接口已增加明确execution/dependency参数，高率作业的新审计/端点评测协调器54584已启动。
 
 ## 后续必须执行
 
@@ -45,3 +46,5 @@
 CARLA沿用 `D:/CARLA_0.9.15/WindowsNoEditor` 和原Python3.7客户端；不触碰其他项目进程。C盘旧runs/prerelease等有目录junction指向D盘，禁止递归删除/移动。只管理经PID/创建时间/可执行路径验证的本任务进程。旧只读等待器47232的单独取消与后续澄清已保留：本次源两组原率实际均3e-6，预防性审计兼容处理并非真实源错误；物理训练没有被打断。
 
 完整历史原文已逐字节校验归档：[历史 handoff](../reports/handoff_before_route_feedback_PPO_20261102.md)。不要把历史时态覆盖上述当前状态。
+
+当前源码f876eb0的GitHub CI41442770659已成功：1222通过/18按平台跳过/4排除。root候选目录复用新增18项检查通过，另24个已知验证实测起点的4705维输入和实际NN动作全部逐位一致；只读基准均值77.47→70.20ms，报告 native_observation_catalog_and_spatial_parity_20261102.json。不是实时性证明。

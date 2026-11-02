@@ -300,13 +300,15 @@ class NavigationEnv(gym.Env):
         )
         if self.config.execution_feedback != "off":
             started = time.perf_counter()
-            extra = self._execution_feedback() if self.config.execution_feedback in ("enabled", "continuation") else np.zeros(99)
+            catalog=(self._route_candidates() if self.config.candidate_observation
+                     and self.config.subgoal_mode=='route_frame_terminal' else None)
+            extra = self._execution_feedback(catalog) if self.config.execution_feedback in ("enabled", "continuation") else np.zeros(99)
             if self.config.candidate_observation:
                 # Candidate geometry is policy input, never an action selector.
                 # Fixed scales preserve the same meaning across candidate slots.
                 geometry = [[0., 0., 0., 1., 0.]]
                 for action in range(1, 31):
-                    target, speed = self.decode_action(action)
+                    target, speed = catalog[action] if catalog is not None else self.decode_action(action)
                     tx, ty = local(target[0] - s.x, target[1] - s.y)
                     heading = wrap(target[2] - s.yaw)
                     geometry.append([tx / 15., ty / 15., math.sin(heading), math.cos(heading), speed / 3.])
@@ -335,7 +337,7 @@ class NavigationEnv(gym.Env):
         from .carla_actuation import actuator_state_values
         return actuator_state_values(self.plant.evidence)
 
-    def _execution_feedback(self):
+    def _execution_feedback(self,catalog=None):
         """Common geometric witness features plus last measured execution outcome.
 
         No action is replaced or removed. Connector rejection is unknown, not a
@@ -347,7 +349,7 @@ class NavigationEnv(gym.Env):
         features = [1.0, 1.0, 0.0]  # intentional wait, no progress claim
         cache = {}
         for action in range(1,31):
-            target, speed = self.decode_action(action)
+            target, speed = catalog[action] if catalog is not None else self.decode_action(action)
             if target not in cache:
                 clear = self.world.free(target,vehicle)
                 path = analytic_connection((s.x,s.y,s.yaw),target,self.world,vehicle) if clear else None

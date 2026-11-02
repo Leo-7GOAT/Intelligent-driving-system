@@ -8,7 +8,7 @@ from navstack.env import NavigationEnv, rule_action
 from navstack.experiments import signature
 from navstack.native_route import sample_road_grid
 from navstack.road_grid import RoadGrid
-from navstack.vehicle import VehiclePlant, VehicleState
+from navstack.vehicle import Command, VehiclePlant, VehicleState
 from navstack.world import World
 
 
@@ -97,6 +97,27 @@ def test_route_feedback_ablation_keeps_geometry_and_rejects_wrong_goal():
 def test_route_catalog_requires_shared_information():
     with pytest.raises(ValueError,match='shared candidate'):
         EnvConfig(subgoal_mode='route_frame_terminal')
+
+
+@pytest.mark.parametrize('feedback',['enabled','continuation','ablated'])
+def test_observation_builds_one_current_catalog_and_keeps_feedback_exact(feedback,monkeypatch):
+    env=RouteFixture(config(feedback=feedback))
+    try:
+        env.reset(seed=11);catalog=env._route_candidates();before=asdict(env.state)
+        expected=env._execution_feedback() if feedback!='ablated' else np.zeros(99)
+        calls=[];original=env._route_candidates
+        def counted():
+            calls.append(asdict(env.state));return original()
+        monkeypatch.setattr(env,'_route_candidates',counted)
+        observation=env._observation()
+        assert len(calls)==1 and asdict(env.state)==before
+        candidates=observation[351:599].reshape(31,8)
+        np.testing.assert_array_equal(candidates[:,5:],expected[:93].astype(np.float32).reshape(31,3))
+        np.testing.assert_array_equal(env._execution_feedback(catalog),env._execution_feedback())
+        env.plant.step(Command(.5,0.),env.config.control_dt)
+        after=asdict(env.state);calls.clear();env._observation()
+        assert len(calls)==1 and calls[0]==after and after['time']>before['time']
+    finally:env.close()
 
 
 def test_continuation_feedback_is_shared_and_terminal_target_is_a_witness():

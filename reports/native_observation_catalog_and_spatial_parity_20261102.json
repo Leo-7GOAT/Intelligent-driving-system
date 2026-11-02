@@ -1,0 +1,158 @@
+{
+  "scope": "Read-only measured reset comparison;same24previously evaluated conditions. No model fitting,physical control or realtime claim.",
+  "cases": [
+    {
+      "case_id": 0,
+      "old_seconds": 0.07307959999889135,
+      "new_seconds": 0.07535346667282283,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 1,
+      "old_seconds": 0.06248516667013367,
+      "new_seconds": 0.07677866665956874,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 2,
+      "old_seconds": 0.0782180333820482,
+      "new_seconds": 0.06824719998985529,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 3,
+      "old_seconds": 0.10619090000788371,
+      "new_seconds": 0.10777916673881312,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 4,
+      "old_seconds": 0.04950656664247314,
+      "new_seconds": 0.05011079995892942,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 5,
+      "old_seconds": 0.06521756667643785,
+      "new_seconds": 0.06509969996598859,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 6,
+      "old_seconds": 0.060103933326900005,
+      "new_seconds": 0.049973899964243174,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 7,
+      "old_seconds": 0.042465933288137116,
+      "new_seconds": 0.04056650004349649,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 8,
+      "old_seconds": 0.06353329999061923,
+      "new_seconds": 0.0665765000352015,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 9,
+      "old_seconds": 0.04177689994685352,
+      "new_seconds": 0.041743333373839654,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 10,
+      "old_seconds": 0.080259933291624,
+      "new_seconds": 0.06114443337234358,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 11,
+      "old_seconds": 0.057391733319188155,
+      "new_seconds": 0.04589606666316589,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 12,
+      "old_seconds": 0.11511266666154067,
+      "new_seconds": 0.11474770004861057,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 13,
+      "old_seconds": 0.07593580001654725,
+      "new_seconds": 0.06185730003441373,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 14,
+      "old_seconds": 0.1117078666575253,
+      "new_seconds": 0.09448526667741437,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 15,
+      "old_seconds": 0.0855539666954428,
+      "new_seconds": 0.07043360002959768,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 16,
+      "old_seconds": 0.0778469666838646,
+      "new_seconds": 0.07723949997064967,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 17,
+      "old_seconds": 0.06168780002432565,
+      "new_seconds": 0.05564790001759926,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 18,
+      "old_seconds": 0.08388476663579543,
+      "new_seconds": 0.06788383338910838,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 19,
+      "old_seconds": 0.12468039997232457,
+      "new_seconds": 0.09310209999481837,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 20,
+      "old_seconds": 0.07860069993572931,
+      "new_seconds": 0.08255149998391668,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 21,
+      "old_seconds": 0.07582823334572215,
+      "new_seconds": 0.06451393330159287,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 22,
+      "old_seconds": 0.08542526668558519,
+      "new_seconds": 0.0640178332881381,
+      "observation_and_actual_NN_action_bit_exact": true
+    },
+    {
+      "case_id": 23,
+      "old_seconds": 0.10271029996996124,
+      "new_seconds": 0.08912243329298992,
+      "observation_and_actual_NN_action_bit_exact": true
+    }
+  ],
+  "old_mean_seconds": 0.07746684582606476,
+  "new_mean_seconds": 0.07020302639446324,
+  "original_env_sha256": "20311652c41b43db53388a5bb6398c8cd19b17c35e1c1f000b5adbdc1dd7bb57",
+  "current_env_sha256": "f86eb2324e6eeac5a273355dc49c16ea05148b26bb6cc56ed59d4e7e3c3efd35",
+  "original_road_batch_sha256": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e",
+  "current_road_batch_sha256": "78cdb5f2dccf93d397289126f360aac950694780b53bf439e3c083fe8031c780",
+  "new_controls": 0,
+  "new_updates": 0,
+  "live_native_source_unchanged": true
+}
