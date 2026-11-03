@@ -245,7 +245,7 @@ def save_training_checkpoint(output, threshold, model, vec, raw, metadata):
     metadata['note']='Learning state retained; recovery starts a new CARLA episode and counts all reset/lost interactions'
     if getattr(model.policy,'reference_context_version',None) is not None:
         metadata['observation_encoding']=model.policy.reference_context_version
-        metadata['reference_gain_scale']=model.policy.reference_gain_scale
+        metadata['reference_gain_scale']=getattr(model.policy,'reference_gain_scale',1.0)
     write_json(temporary/'metadata.json',metadata)
     publish_checkpoint_directory(temporary,checkpoint)
     atomic_json(output/'latest_checkpoint.json',{'folder':checkpoint.name,**metadata})
@@ -435,7 +435,7 @@ def run(batch):
                 if context is not None:
                     if (getattr(model.policy,'reference_context_version',None)!=VERSION
                             or model.policy.reference_ablated!=(method=='H0')
-                            or model.policy.reference_gain_scale!=protocol.get('reference_learning_registration',{}).get('gain_scale',1.0)
+                            or getattr(model.policy,'reference_gain_scale',1.0)!=protocol.get('reference_learning_registration',{}).get('gain_scale',1.0)
                             or not isinstance(vec,ReferenceContextVecNormalize)):
                         raise ValueError('Saved policy/normalizer lacks the registered reference schema or ablation')
                 configure_continuation_normalization(vec,protocol,recovery)
@@ -454,7 +454,7 @@ def run(batch):
                     'normalizer':type(vec).__name__,'parameters':sum(p.numel() for p in model.policy.parameters()),
                     'observation_shape':list(model.observation_space.shape),
                     'action_shape':list(model.action_space.shape),'road_candidate_policy':protocol.get('road_candidate_policy',False),
-                    **({'reference_gain_scale':model.policy.reference_gain_scale} if context is not None else {})})
+                    **({'reference_gain_scale':getattr(model.policy,'reference_gain_scale',1.0)} if context is not None else {})})
                 inherited_lineage=0 if recovery is None else recovery['lineage_controls']
                 inherited_cost=0 if recovery is None else recovery['consumed_controls_lower_bound']
                 budget=protocol.get('method_budgets',{}).get(job_name,protocol['controlled_budget_per_method'])

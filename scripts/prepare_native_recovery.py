@@ -78,11 +78,22 @@ def recovery_targets(protocol, additional_budget=False):
     return targets
 
 
-def prepare(parent, wall_seconds, rpc_port=None, selected_methods=None, additional_budget=False):
+def recovery_destination(output=None):
+    """Check the artifact drive, keeping source/runtime paths in the workspace."""
+    batch=(ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_recovery')
+           if output is None else Path(output).resolve())
+    if batch.exists():raise FileExistsError('Preserve existing recovery artifacts')
+    batch.parent.mkdir(parents=True,exist_ok=True)
+    healthy,reason=resources_ok(batch.parent)
+    if not healthy or shutil.disk_usage(batch.parent).free<12*1024**3:
+        raise RuntimeError(str(reason or 'Recovery artifact drive below12GiB'))
+    return batch
+
+
+def prepare(parent, wall_seconds, rpc_port=None, selected_methods=None, additional_budget=False, output=None):
     parent=Path(parent).resolve()
     if not 900<=wall_seconds<=7200:raise ValueError('Recovery wall budget outside bounds')
-    healthy,reason=resources_ok(ROOT)
-    if not healthy or shutil.disk_usage(ROOT).free<12*1024**3:raise RuntimeError(str(reason))
+    batch=recovery_destination(output)
     old=json.loads((parent/'protocol.json').read_text(encoding='utf-8'))
     if selected_methods is not None:
         if not selected_methods or len(set(selected_methods))!=len(selected_methods) or set(selected_methods)-set(old['methods']):
@@ -104,7 +115,6 @@ def prepare(parent, wall_seconds, rpc_port=None, selected_methods=None, addition
         if hashlib.sha256((parent/'source'/relative).read_bytes()).hexdigest()!=digest:raise ValueError('Parent source changed')
     if (parent/'recovery_registration.json').exists():
         raise FileExistsError('Parent already has a registered recovery; continue that child instead')
-    batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_native_recovery')
     batch.mkdir();(batch/'infrastructure').mkdir()
     shutil.copytree(parent/'calibration',batch/'calibration')
     shutil.copytree(parent/'source',batch/'source',ignore=shutil.ignore_patterns('__pycache__'))
@@ -183,7 +193,9 @@ def prepare(parent, wall_seconds, rpc_port=None, selected_methods=None, addition
         source_hashes=hashes,recovery=recovery,parent_batch=parent.name,
         recovery_source_dependencies_added=added_dependencies,
         scope='Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison.',
-        disk_free_bytes=shutil.disk_usage(ROOT).free)
+        disk_free_bytes=shutil.disk_usage(batch).free)
+    old['recovery_storage']={'explicit_output':output is not None,'artifact_directory':str(batch),
+        'scope':'Storage destination only;source/runtime remain in their original workspace'}
     old['lineage_targets']={method:targets[method] for method in methods}
     old['recovery_budget_interpretation']='explicit additional controls' if additional_budget else 'legacy absolute lineage or explicit lineage_targets'
     if selected_methods is not None:old['explicit_recovery_method_selection']=list(selected_methods)
@@ -211,4 +223,5 @@ if __name__=='__main__':
     p.add_argument('--rpc-port',type=int)
     p.add_argument('--methods',nargs='+',help='Explicit subset; preserves other parent methods without rerunning them')
     p.add_argument('--additional-budget',action='store_true',help='Parent budgets are new controls beyond its saved initial lineage')
-    a=p.parse_args();prepare(a.parent,a.wall_seconds,a.rpc_port,a.methods,a.additional_budget)
+    p.add_argument('--output',help='Explicit new artifact directory, e.g. on a drive with sufficient free space')
+    a=p.parse_args();prepare(a.parent,a.wall_seconds,a.rpc_port,a.methods,a.additional_budget,a.output)

@@ -34,6 +34,14 @@ scale10 v3只是候选准备，启动时因v2占用端口而拒绝，没有serve
 
 此前真实适配H10467控制/330Adam、H0恢复后保留10453/330，均已知VAL24/24且0不安全，原始帧/24起点NN/严格传送已验证。H0已知真实消耗至少12096，含1643未保存控制/50未保存Adam及未知尾部。公开 `reports/native_H_H0_diverse_recovered_complete_20261103.json`。同一seed已知24条件不能证明新增反馈或PPO对强规则的优势。
 
+## 续跑入口的存储与旧模型兼容（14:29）
+
+`prepare_native_recovery.py` 新增可选 `--output D:/ThesisNativeArchive_20261103/<唯一新子批次>`，空间与内存预检针对实际工件盘，默认路径仍为workspace/runs。既有输出拒绝覆盖，12GiB运行存储底线保留，原权重、Adam、RNG、课程游标及绝对lineage目标口径不变。当前物理训练没有调用此恢复入口，也没有改变其冻结源。
+
+若未来实际中断，必须先核实worker/guard/server已终态与owned_empty清理，再生成原始interruption审计并使用唯一恢复登记；有checkpoint就续原学习状态，不能再次用checkpoint-free restart。早期scale1冻结policy没有reference_gain_scale属性；新worker按其原语义缺省1.0，防止恢复后checkpoint保存/注册校验AttributeError。带显式scale10的模型继续精确使用其10，不能降成1。
+
+恢复/存储/检查点/PPO回归20项通过；真实合成PPO模型的H/H0、scale1/10迁移与保存/加载4项通过，其中两项显式去掉早期模型不存在的属性和kwarg，再保存检查点并重新加载核对所有权重。这是恢复兼容证据，不是新增CARLA性能。新增完整开发评估准备5项也已通过；包含固定预算不足、选错保存端点、训练提前停止的拒绝，以及全部12静态/24已知条件保留。
+
 ## 已登记的旧静态缺项队列（14:12）
 
 `runs/static_remainder_after_reference_v4_execution_20261103`，协调器38744/工具session33086，入口 `scripts/run_native_static_remainder.py`，持有当前reference协调器47524的确切进程句柄，只读等待，当前没有第二个物理worker。最长8小时等待，之后依次原H0缺证据case4..11共8场、未开始的零PPO教师12场，均零学习、D盘、7200秒有限墙钟、零自动重试。每阶段raw/全部起点NN/发动机传送审计，原始case映射保留，已完成H和H0case0..3不重跑。

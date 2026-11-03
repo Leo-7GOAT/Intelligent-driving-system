@@ -66,4 +66,20 @@ def test_migration_retains_original_probabilities_values_adam_rms_and_survives_t
     assert loaded._n_updates>before
     loaded.save(tmp_path/'learned.zip');roundtrip=PPO.load(tmp_path/'learned.zip',device='cpu')
     assert all(torch.equal(value,roundtrip.policy.state_dict()[name]) for name,value in loaded.policy.state_dict().items())
+    if gain_scale==1.:
+        # The first frozen native implementation predates the explicit scale
+        # attribute/kwarg. Its next checkpoint must remain writable and loadable.
+        from navstack.experiments import write_json,signature
+        from scripts.native_road_learning import save_training_checkpoint
+        del loaded.policy.reference_gain_scale
+        loaded.policy_kwargs.pop('reference_gain_scale',None)
+        wrapped.envs[0].case_index=3
+        write_json(tmp_path/'config.json',{'env':cfg.to_dict(),'signature':signature(cfg)})
+        save_training_checkpoint(tmp_path,320,loaded,restored,wrapped,{'physics_steps':320})
+        checkpoint=tmp_path/'checkpoint_000000320'
+        import json
+        assert json.loads((checkpoint/'metadata.json').read_text())['reference_gain_scale']==1.
+        compatible=PPO.load(checkpoint/'model.zip',device='cpu')
+        assert compatible.policy.reference_gain_scale==1.
+        assert all(torch.equal(value,compatible.policy.state_dict()[name]) for name,value in loaded.policy.state_dict().items())
     restored.close();norm.close()
