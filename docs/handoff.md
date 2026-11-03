@@ -1,4 +1,4 @@
-# 当前接续状态（2026-11-03 17:34）
+# 当前接续状态（2026-11-03 18:27）
 
 目标不变，研究验收UNMET。继续当前分支，不重建、不恢复瞬移、不新增子代理。以下是实际已启动状态；继续前须复核OS进程身份，不能仅凭状态文件重启任务。不要触碰Desktop/papper其他项目进程。
 
@@ -22,9 +22,9 @@
 
 ## 唯一当前物理作业：修复后的reference静态评估
 
-协调器40108，工具session38578，execution `runs/reference_context_schema_fixed_endpoints_wall_execution_20261103`；旧队列正常完成后已于17:31自动进入static_native。batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_v4_static_schema_fixed`，worker11232（17:31:24，creation_epoch1793698284.079）、guard27340、owned server61932（17:31:06），bridge13960。4736维ReferenceContextPolicy真实运行，17:42心跳H case5/actions20，guard healthy。再次核对OS身份后继续观察，禁止启动重复作业。
+协调器40108，工具session38578，execution `runs/reference_context_schema_fixed_endpoints_wall_execution_20261103`；旧队列正常完成后已于17:31自动进入static_native。batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_v4_static_schema_fixed`，worker11232（17:31:24，creation_epoch1793698284.079）、guard27340、owned server61932（17:31:06），bridge13960。4736维ReferenceContextPolicy真实运行，H完整12场已于18:19结束，3success/8deadline/1bounds，8304实际控制逐帧核验通过，单独early_endpoint_raw_audit.json未占用协调器稍后要写的正式raw路径。H0已接续，18:24心跳case2/actions60，guard healthy。再次核对OS身份后继续观察，禁止启动重复作业。
 
-随后自动执行 `...v4_known_validation_schema_fixed`。静态每方法12场、已知验证每方法24场，阶段墙钟14400/3600秒，零学习、零自动重试、零新最终条件；raw/全部起点NN/所有静态序列NN/严格发动机回执自动核验。不要中途改变模型、规划、几何或评分。完整新版成绩PENDING。
+随后自动执行 `...v4_known_validation_schema_fixed`。静态每方法12场、已知验证每方法24场，阶段墙钟14400/3600秒，零学习、零自动重试、零新最终条件；raw/全部起点NN/所有静态序列NN/严格发动机回执自动核验。不要中途改变模型、规划、几何或评分。H完整静态见 reports/native_reference_context_H_static_complete_20261103.json；H0、known24及整个静态阶段engine/全部NN审计PENDING。成功3/12与旧H相同，没有观察到静态改进。
 
 原等待器42296/session86576已在确切父38744与物理worker66632均确认存活、目标评估batch尚不存在时，仅通过保留句柄停止；不停止任何车辆进程。原execution的superseded_before_dispatch/exit receipt保留，当前40108才是唯一schema修复评估等待器，不能恢复旧等待器。
 
@@ -34,15 +34,23 @@
 
 公开 `reports/native_reference_context_case0_switch_diagnostic_20261103.json`。完整90决策及CARLA begin不可变输入快照位于D:/ThesisNativeArchive_20261103/reference_case0_switch_bound_20261103.inputs.json，报告保存其SHA。当前物理批次仍未完成，gzip尾部EOF是正在写入的前缀状态，不冒充完整raw端点审计。首次在root源码下的诊断因reference policy的scale兼容代码与冻结源不同而正确拒绝；通过NAVSTACK_AUDIT_SOURCE_ROOT选择真实冻结实现后通过，未绕过源码检查、未改当前执行源。新增代码只读、零控制/零训练。
 
-## 单独H的scale100后续准备，尚未启动
+## 单独H的scale100初始化已准备，原生训练尚未启动
 
 已补齐initializer/training/evaluation/course入口的H或H0子集支持，默认仍双方法；明确方法清单、预算及recovery必须相符，H单独评估仍保留完整12/24条件。course现在自动逐帧核验training-only raw并检查完整场景数。新training准备默认每320控制保存，避免再次在2560首次保存前损失学习。当前执行的旧源码与批次完全不动。
 
 `D:/ThesisNativeArchive_20261103/reference_scale100_H_initializer_20261103`已完成，仅H、scale100、gain仍初始化0。与当前v4 H的初始模型核对：32个参数张量、30个原Adam状态及超参数完全一致，RMS mean/var/count和RNG字节相同；24真实起点策略概率及价值一致。物理控制/新PPO/新监督/最终条件均0。已有H0学习不用重跑；可将当前已完成的scale1 H与这个候选做相同起点/请求预算的开发比较，历史损失和调参成本另计，不宣称匹配总开发消耗。
 
-真实D盘H-only准备与launcher -ValidateOnly通过459源。两个training_validation_only夹具均已写abandoned_before_launch，不能误启动。只保留可复用initializer；需当前完整端点结果后再决定创建新时限的真实训练batch并运行，当前没有排队或启动scale100训练。它是对decision19仅需额外0.02563logit但实际系数0.001125的最小学习尺度假设，不是硬选轨迹，不保证修复decision23或任何成功率。
+真实D盘H-only准备与launcher -ValidateOnly通过459源。两个training_validation_only夹具均已写abandoned_before_launch，不能误启动。只保留可复用initializer；基于已完成H静态3/12及切换margin，已注册下述唯一串行等待器；须整个前序静态/known24正常完成及审计通过后，才创建新时限真实训练batch。目前原生scale100训练未启动。它是对decision19仅需额外0.02563logit但实际系数0.001125的最小学习尺度假设，不是硬选轨迹，不保证修复decision23或任何成功率。
 
 目标专项31通过（53.95秒），包括新增H-only全清单、拒绝空/重复/非法方法、scale100实际合成PPO训练保存加载；XML `D:/ThesisNativeArchive_20261103/selected_reference_cpu_20261103.xml`。公开证据 `reports/native_reference_scale100_selected_preparation_20261103.json`。新训练还没执行，不能写成新增原生学习证明。
+
+## 已启动的唯一后续等待器：只运行H的scale100真实PPO
+
+协调器48660（18:25:46.148，实际Python311；venv父61344），execution `runs/reference_scale100_after_scale1_endpoints_execution_20261103`，入口 `scripts/queue_native_reference_scale.py`。只读OwnedProcess句柄绑定前序40108创建时间1793694326.681/实际exe，当前WAITING_FOR_EXACT_REFERENCE_ENDPOINT_COORDINATOR。目标D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_H尚不存在，0新控制/0更新；不是第二个物理作业。身份文件与日志均保留，勿重复启动。
+
+最长8小时等前序确切退出0，要求static12/known24双方法完整、固定模型/raw绑定、全部NN重建与engine通过；注册的460个源码与全部初始化文件字节须不变，变化或前序失败即保留失败并停止，零自动重试。满足后才新建新截止时限的单H10240请求控制course，每320控制保存，继而完整12/24开发评估及自动raw/NN/engine审计；不新增监督、不改最终条件、不重跑H0训练。前序完整结果另存predecessor_complete.json。不要修改已注册navstack/scripts源，避免源冻结门槛拒绝后续；文档、报告可照常完善。
+
+条件队列专项20通过4.79秒，XML D:/ThesisNativeArchive_20261103/reference_scale_queue_cpu_v2_20261103.xml；含前序仍活不得准备/发车、缺清单/错模型/raw、NN或engine失败、等待期间源码变化拒绝。公开 `reports/native_reference_scale100_followup_queued_20261103.json`。0118623的GitHub CPU完整回归41614412744成功，实际1299通过/18跳过/4CARLA排除，161.54秒；不等同CARLA结果。
 
 ## 新reference-context真实训练已经全部完成
 

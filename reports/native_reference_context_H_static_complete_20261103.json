@@ -1,0 +1,165 @@
+{
+  "scope": "Completed new reference-context H only on all12known static TRAINconditions;the enclosing H0 and validation phases remain live/pending",
+  "research_acceptance": "UNMET",
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_v4_static_schema_fixed",
+  "method": "H",
+  "cases": 12,
+  "successes": 3,
+  "termination_counts": {
+    "deadline": 8,
+    "out_of_bounds": 1,
+    "success": 3
+  },
+  "actual_evaluation_controls": 8304,
+  "actual_evaluation_world_ticks": 8675,
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 67,
+      "mpc_failures": 0,
+      "interventions": 670
+    },
+    {
+      "case_id": 1,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 332,
+      "actions": 34,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "interventions": 2
+    },
+    {
+      "case_id": 2,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 331,
+      "actions": 34,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "interventions": 2
+    },
+    {
+      "case_id": 4,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 101,
+      "actions": 11,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "interventions": 0
+    },
+    {
+      "case_id": 5,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    },
+    {
+      "case_id": 6,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 64,
+      "mpc_failures": 0,
+      "interventions": 640
+    },
+    {
+      "case_id": 7,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    },
+    {
+      "case_id": 8,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 340,
+      "actions": 34,
+      "plan_failures": 0,
+      "mpc_failures": 0,
+      "interventions": 2
+    },
+    {
+      "case_id": 9,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 82,
+      "mpc_failures": 0,
+      "interventions": 820
+    },
+    {
+      "case_id": 10,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 67,
+      "mpc_failures": 0,
+      "interventions": 670
+    },
+    {
+      "case_id": 11,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 90,
+      "plan_failures": 90,
+      "mpc_failures": 0,
+      "interventions": 900
+    }
+  ],
+  "model_sha256": "f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff",
+  "normalization_sha256": "28c7e16ccf6fee44f67db784f34c441caab9e497cc67a8f1a205381f46e66367",
+  "protocol_sha256": "dc59e35a5668f2e59497e34048ca6fa69dd02e278e21908b3a406277e58fee85",
+  "raw_audit_sha256": "de318fd20059353035c7f790abdefef780340c5a481520e8dbe05df5afb6cafa",
+  "evaluation_sha256": "f23a3f4e366276b51ff0fe47056ea3740ae6917ab12d9d610069508f99aa3123",
+  "trace_sha256": "400d74e61c65f8297934566911cc8001307c78c892dd0519b39903ae657fb9a3",
+  "raw_frame_verification": "PASS8304controls",
+  "whole_batch_engine_delivery": "PENDING",
+  "whole_static_action_NN_replay": "PENDING",
+  "H0_static": "RUNNING",
+  "known_validation": "NOT_STARTED",
+  "prior_H_static_successes": 3,
+  "prior_H_static_cases": 12,
+  "interpretation": "No observed static success-count improvement from this scale1 reference-context course. The feedback coefficient is nonzero but does not establish a collaboration benefit.",
+  "CPU_CI": {
+    "run": 41614412744,
+    "commit": "01186238a262b1ffcda37e0828aea4d1e589a3fd",
+    "passed": 1299,
+    "skipped": 18,
+    "deselected": 4,
+    "seconds": 161.54,
+    "status": "success",
+    "scope": "CPUonly;CARLAchecksseparate"
+  },
+  "new_training_controls": 0,
+  "new_updates": 0,
+  "new_final_conditions": 0,
+  "limits": "One known development seed,not independent final confirmation or five-seed evidence. Preserve all deadlines and v4 bounds failure. The early audit uses its own filename so the already-running coordinator can later perform its registered audits without a file collision. Stage-level engine/NN auditing remains pending;no claim of whole-batch completion."
+}
