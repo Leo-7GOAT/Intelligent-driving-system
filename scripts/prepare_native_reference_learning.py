@@ -16,10 +16,10 @@ from scripts.native_road_learning import training_config
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
-def prepare(output):
+def prepare(output,initializers=None):
     output=Path(output).resolve()
     if output.exists():raise FileExistsError('Preserve registered training budgets')
-    initial=ROOT/'runs/native_reference_context_initializers_20261103'
+    initial=ROOT/'runs/native_reference_context_initializers_20261103' if initializers is None else Path(initializers).resolve()
     proof=read(initial/'complete.json')
     if proof['status']!='INITIALIZERS_PREPARED_NOT_NATIVE_TRAINED' or set(proof['results'])!={'H','H0'}:
         raise ValueError('Require both fully verified initializers')
@@ -61,6 +61,7 @@ def prepare(output):
     now=time.time();p.update(created_epoch=now,deadline_epoch=now+14400,
         resource_limits={**p['resource_limits'],'wall_seconds':14400,'automatic_retries':0},
         reference_learning_registration=dict(version=VERSION,requested_controls_each=10240,
+            gain_scale=proof.get('gain_scale',1.0),
             maximum_rollout_overshoot_each=319,new_auxiliary_updates=0,new_final_conditions=0,
             initializer_proof_sha256=sha(initial/'complete.json'),
             lowlevel_and_actions_unchanged=True,selection='Final fixed requested budget endpoint only',
@@ -72,4 +73,4 @@ def prepare(output):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True)
-    prepare(p.parse_args().output)
+    p.add_argument('--initializers');a=p.parse_args();prepare(a.output,a.initializers)

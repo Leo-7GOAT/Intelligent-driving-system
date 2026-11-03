@@ -1,0 +1,97 @@
+{
+  "scope": "Development status, no final acceptance claim",
+  "research_acceptance": "UNMET",
+  "failed_parent": "20261103_reference_context_TRAIN48_PPO10240_v2",
+  "failure": {
+    "error": "InfrastructureFailure('bridge exited')",
+    "epoch": 1793685152.725315,
+    "completed_methods": []
+  },
+  "interruption": {
+    "epoch": 1793685532.3450437,
+    "scope": "Readable-prefix audit only; absent footer/tail is not fabricated or silently repaired. OS liveness must be separately checked before recovery.",
+    "batch": "20261103_reference_context_TRAIN48_PPO10240_v2",
+    "methods": {
+      "H": {
+        "state": "interrupted",
+        "readable_trace_controls": 2412,
+        "trace_errors": [],
+        "optimization_error": null,
+        "last_optimization": {
+          "physics_steps": 2222,
+          "optimization_phases": 7,
+          "optimizer_steps": 70
+        },
+        "consumed_controls_lower_bound": 2412,
+        "checkpoints": [],
+        "unknown_unflushed_tail": true
+      },
+      "H0": {
+        "state": "not_started",
+        "consumed_controls_lower_bound": 0
+      }
+    },
+    "bridge_streams": {
+      "bridge_f299ab2b_responses.jsonl.gz": {
+        "sha256": "b133bdf5271099d72e35f38e1ee04060cda1f3a87efa63f6d6a6dd8aa17a9506",
+        "complete_rows": 2421,
+        "read_error": null,
+        "applied_controls": 2412
+      }
+    }
+  },
+  "checkpoint_restart": {
+    "parent": "20261103_reference_context_TRAIN48_PPO10240_v2",
+    "reason": "bridge_exit_before_first_checkpoint",
+    "source_protocol_sha256": "e61d13353238f332cde70af57a6a271df21cfd32a9055b16588f591535fba3dc",
+    "interruption_audit_sha256": "af55a103b34108986e5877269915683ee8f0772468f0635ae99e3af629f2eb36",
+    "discarded_controls_lower_bound": 2412,
+    "discarded_optimizer_steps": 70,
+    "unknown_unflushed_tail": true,
+    "retained_learning_from_failed_course": 0,
+    "semantics": "Same frozen scale1 policy and physical source; fresh course from verified original initializer. All failed cost retained; not a matched consumed-budget comparison."
+  },
+  "active_batch": "20261103_reference_context_TRAIN48_PPO10240_v4",
+  "protocol_sha256": "573df8882af1414918c5c1cac4c171fca5f297b9ddca94c24cb3fe9bc7f5b467",
+  "gain_scale": 1.0,
+  "checkpoint_controls": 320,
+  "endpoint_status": "PENDING",
+  "candidate_scale10": "FAILED_BEFORE_NATIVE_WORKER_START; zero native controls",
+  "cpu": {
+    "tests": 1273,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "xml_sha256": "8e82d08c1d8d52ad7ea65238570c98f6c1c60f87f4f12447cdd00c37166ac2a2"
+  },
+  "migration_audits": {
+    "H_static": {
+      "sha256": "cf1752a09bdfb2b308e706c12c81ff5a4e0ee48a1bff68aa36306b763fcfd428",
+      "cases": 16,
+      "decisions": 500,
+      "all_recorded_actions_match": true,
+      "scope": "MIGRATION_EQUIVALENCE_ON_RECORDED_LEGACY_STATES"
+    },
+    "H_starts": {
+      "sha256": "062d7549da36ac156f8704a5b4875a0670f0d0e8a582d7f76b9fbe90dd9520a1",
+      "cases": 24,
+      "decisions": 24,
+      "all_recorded_actions_match": true,
+      "scope": "MIGRATION_EQUIVALENCE_ON_RECORDED_LEGACY_STATES"
+    },
+    "H0_static": {
+      "sha256": "6282b06f606b0175d66bc3c7448b5718f0575ffcfbddbde4de219926a4926e73",
+      "cases": 16,
+      "decisions": 496,
+      "all_recorded_actions_match": true,
+      "scope": "MIGRATION_EQUIVALENCE_ON_RECORDED_LEGACY_STATES"
+    },
+    "H0_starts": {
+      "sha256": "a8ace405d13ef95e8138359671d89d51073383fe95be15d1f935da54e7dc2b1d",
+      "cases": 24,
+      "decisions": 24,
+      "all_recorded_actions_match": true,
+      "scope": "MIGRATION_EQUIVALENCE_ON_RECORDED_LEGACY_STATES"
+    }
+  }
+}

@@ -243,6 +243,9 @@ def save_training_checkpoint(output, threshold, model, vec, raw, metadata):
     for name,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256'),('resume_state.pkl','resume_state_sha256')]:
         metadata[key]=hashlib.sha256((temporary/name).read_bytes()).hexdigest()
     metadata['note']='Learning state retained; recovery starts a new CARLA episode and counts all reset/lost interactions'
+    if getattr(model.policy,'reference_context_version',None) is not None:
+        metadata['observation_encoding']=model.policy.reference_context_version
+        metadata['reference_gain_scale']=model.policy.reference_gain_scale
     write_json(temporary/'metadata.json',metadata)
     publish_checkpoint_directory(temporary,checkpoint)
     atomic_json(output/'latest_checkpoint.json',{'folder':checkpoint.name,**metadata})
@@ -373,7 +376,8 @@ def run(batch):
             output.mkdir()
             write_json(output/"config.json", {"env": config.to_dict(), "signature": signature(config),
                 "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"],
-                **({'observation_encoding':context} if context is not None else {})})
+                **({'observation_encoding':context,
+                    'reference_gain_scale':protocol.get('reference_learning_registration',{}).get('gain_scale',1.0)} if context is not None else {})})
             if record_camera:
                 output_config=json.loads((output/'config.json').read_text(encoding='utf-8'))
                 output_config.update(record_camera=True,policy='learned_PPO',
@@ -431,6 +435,7 @@ def run(batch):
                 if context is not None:
                     if (getattr(model.policy,'reference_context_version',None)!=VERSION
                             or model.policy.reference_ablated!=(method=='H0')
+                            or model.policy.reference_gain_scale!=protocol.get('reference_learning_registration',{}).get('gain_scale',1.0)
                             or not isinstance(vec,ReferenceContextVecNormalize)):
                         raise ValueError('Saved policy/normalizer lacks the registered reference schema or ablation')
                 configure_continuation_normalization(vec,protocol,recovery)
@@ -448,7 +453,8 @@ def run(batch):
                     'algorithm':type(model).__name__,'gradient_clip_mode':getattr(model,'gradient_clip_mode',GLOBAL_CLIP),
                     'normalizer':type(vec).__name__,'parameters':sum(p.numel() for p in model.policy.parameters()),
                     'observation_shape':list(model.observation_space.shape),
-                    'action_shape':list(model.action_space.shape),'road_candidate_policy':protocol.get('road_candidate_policy',False)})
+                    'action_shape':list(model.action_space.shape),'road_candidate_policy':protocol.get('road_candidate_policy',False),
+                    **({'reference_gain_scale':model.policy.reference_gain_scale} if context is not None else {})})
                 inherited_lineage=0 if recovery is None else recovery['lineage_controls']
                 inherited_cost=0 if recovery is None else recovery['consumed_controls_lower_bound']
                 budget=protocol.get('method_budgets',{}).get(job_name,protocol['controlled_budget_per_method'])

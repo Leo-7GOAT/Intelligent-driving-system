@@ -4,6 +4,7 @@ This module does not select, mask or replace an action. Existing environments
 and published policies do not call it; integration requires a new experiment.
 """
 import numpy as np
+import math
 import torch
 from torch import nn
 
@@ -22,8 +23,10 @@ def reference_candidate_context(env,catalog=None):
 
 class LearnedReferenceBias(nn.Module):
     """Zero-initialized trainable logit term; no forced commitment or fallback."""
-    def __init__(self):
+    def __init__(self,scale=1.0):
         super().__init__()
+        if not math.isfinite(scale) or not 0<scale<=100:raise ValueError('Finite positive reference coefficient scale required')
+        self.scale=float(scale)
         self.gain=nn.Parameter(torch.zeros(()))
 
     def forward(self,logits,context,*,ablated=False):
@@ -32,4 +35,4 @@ class LearnedReferenceBias(nn.Module):
         if not torch.isfinite(context).all() or torch.any((context!=0)&(context!=1)) or torch.any(context[...,0]!=0):
             raise ValueError('Require binary measured context;wait has no reference')
         visible=torch.zeros_like(context) if ablated else context
-        return logits+self.gain*visible
+        return logits+self.scale*self.gain*visible

@@ -1,0 +1,14 @@
+{
+  "observed_epoch": 1793684993.5329785,
+  "correction": "The earlier superseded_before_training statement was inaccurate:the observer had already launched native training before it was terminated. Only the observer was stopped;the owned worker,guard and server continued. Retain original statement and this correction;do not discard or repeat actual training.",
+  "original_statement_sha256": "f71a70adba4a523209c23692f9d995dc2f1caa2a71f8de58d2c1566aad33f6e7",
+  "native_batch": "20261103_reference_context_TRAIN48_PPO10240_v2",
+  "server_start_sha256": "8c5b3d8943126372e5b3054c0c21018e1b00d963e3eaf9e97c5bb2b4040ee044",
+  "worker_process_sha256": "52cf63459ad18a052434f12bd37864bf6943205e5bf457710121877aaf9d772d",
+  "guard_sha256": "aec0255fe83cb614f9e92e71fc74236fb61338ba0eaba6a02077ebaab1f2e0ba",
+  "actual_control_prefix": 2342,
+  "gain_scale": 1.0,
+  "v3_gain_scale10_started_native_controls": 0,
+  "v3_launcher_failure": "Existing owned V2server/port;no new V3server or worker started",
+  "research_acceptance": "UNMET"
+}

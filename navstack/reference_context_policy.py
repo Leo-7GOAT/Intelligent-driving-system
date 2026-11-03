@@ -50,8 +50,8 @@ class ReferenceExtractor(nn.Module):
 
 
 class ReferenceActionHead(nn.Module):
-    def __init__(self,backbone):
-        super().__init__();self.backbone=backbone;self.reference_bias=LearnedReferenceBias()
+    def __init__(self,backbone,scale=1.):
+        super().__init__();self.backbone=backbone;self.reference_bias=LearnedReferenceBias(scale)
 
     def forward(self,latent):
         logits=self.backbone(latent[:,:-31]);result=self.reference_bias(logits,latent[:,-31:])
@@ -72,6 +72,14 @@ class ReferencePolicyBuild:
     reference_context_version=VERSION
     reference_ablated=False
 
+    def __init__(self,*args,reference_gain_scale=1.0,**kwargs):
+        self.reference_gain_scale=float(reference_gain_scale)
+        super().__init__(*args,**kwargs)
+
+    def _get_constructor_parameters(self):
+        result=super()._get_constructor_parameters();result['reference_gain_scale']=self.reference_gain_scale
+        return result
+
     def _build(self,lr_schedule):
         full=self.observation_space
         if full.shape not in ((4732,),(4736,)):raise ValueError('Require31appended reference bits')
@@ -79,7 +87,7 @@ class ReferencePolicyBuild:
         try:super()._build(lr_schedule)
         finally:self.observation_space=full
         self.mlp_extractor=ReferenceExtractor(self.mlp_extractor,self.reference_ablated)
-        self.action_net=ReferenceActionHead(self.action_net)
+        self.action_net=ReferenceActionHead(self.action_net,self.reference_gain_scale)
         self.value_net=ReferenceValueHead(self.value_net)
         self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)
 
@@ -97,7 +105,7 @@ def original_name(name):
     return None
 
 
-def migrate_learner(model,normalizer,*,ablated=False):
+def migrate_learner(model,normalizer,*,ablated=False,gain_scale=1.0):
     """Preserve all original tensors/Adam;create two zero-initialized states.
 
     The returned learner must be saved/reloaded before native training so SB3
@@ -110,8 +118,9 @@ def migrate_learner(model,normalizer,*,ablated=False):
     new=copy(model);new.env=None;new._last_obs=None
     new.observation_space=spaces.Box(-np.inf,np.inf,(model.observation_space.shape[0]+31,),dtype=np.float32)
     new.policy_class=AblatedReferenceContextPolicy if ablated else ReferenceContextPolicy
+    new.policy_kwargs={**model.policy_kwargs,'reference_gain_scale':gain_scale}
     with torch.random.fork_rng(devices=[]):
-        new.policy=new.policy_class(new.observation_space,model.action_space,model.lr_schedule,**model.policy_kwargs)
+        new.policy=new.policy_class(new.observation_space,model.action_space,model.lr_schedule,**new.policy_kwargs)
     before=model.policy.state_dict();values=new.policy.state_dict()
     for name in values:
         old=original_name(name)

@@ -17,7 +17,8 @@ class ContextFixture(ReferenceContextObservationMixin,RouteFixture):pass
 
 
 @pytest.mark.parametrize('ablated',[False,True])
-def test_migration_retains_original_probabilities_values_adam_rms_and_survives_training_reload(tmp_path,ablated):
+@pytest.mark.parametrize('gain_scale',[1.,10.])
+def test_migration_retains_original_probabilities_values_adam_rms_and_survives_training_reload(tmp_path,ablated,gain_scale):
     torch.set_num_threads(1)
     cfg=EnvConfig.from_dict({**config(feedback='continuation').to_dict(),'route_goal_candidate':True,'reference_reuse':True})
     raw=DummyVecEnv([lambda:RouteFixture(cfg)])
@@ -29,7 +30,7 @@ def test_migration_retains_original_probabilities_values_adam_rms_and_survives_t
     obs=raw.reset();normalized=norm.normalize_obs(obs)
     detached=pickle.loads(pickle.dumps(norm))
     rng=torch.get_rng_state().clone()
-    new,newnorm=migrate_learner(model,detached,ablated=ablated)
+    new,newnorm=migrate_learner(model,detached,ablated=ablated,gain_scale=gain_scale)
     assert torch.equal(rng,torch.get_rng_state())
     context=np.zeros((1,31),dtype=np.float32);context[:,26]=1
     extended=np.concatenate((obs,context),axis=1)
@@ -57,6 +58,8 @@ def test_migration_retains_original_probabilities_values_adam_rms_and_survives_t
     restored=ReferenceContextVecNormalize.load(tmp_path/'normalization.pkl',wrapped)
     restored.training=False
     loaded=PPO.load(tmp_path/'model.zip',env=restored,device='cpu')
+    assert loaded.policy.reference_gain_scale==gain_scale
+    assert loaded.policy.action_net.reference_bias.scale==gain_scale
     action=loaded.predict(n,deterministic=True)[0]
     np.testing.assert_array_equal(new.predict(n,deterministic=True)[0],action)
     before=loaded._n_updates;loaded.learn(2,reset_num_timesteps=False)

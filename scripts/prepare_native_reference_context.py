@@ -10,7 +10,7 @@ from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
-def prepare(output):
+def prepare(output,gain_scale=1.0):
     import numpy as np
     import torch
     from navstack.config import EnvConfig
@@ -24,7 +24,7 @@ def prepare(output):
              'H0':ROOT/'runs/20261103T043242Z_native_recovery'}
     atomic_json(output/'registration.json',dict(version=VERSION,methods=list(sources),
         initial_effect='Two additional zero-initialized parameter tensors;all old learned tensors and Adam states retained',
-        new_controls=0,new_PPO_updates=0,new_auxiliary_updates=0,source_sha256=sha(Path(__file__))))
+        gain_scale=gain_scale,new_controls=0,new_PPO_updates=0,new_auxiliary_updates=0,source_sha256=sha(Path(__file__))))
     for method,parent in sources.items():
         folder=parent/method;source=folder/read(folder/'latest_checkpoint.json')['folder']
         metadata=verified_checkpoint_metadata(source);raw=read(folder/'endpoint_raw_audit.json')
@@ -32,7 +32,7 @@ def prepare(output):
         model=load_ppo(source/'model.zip',device='cpu')
         with (source/'normalization.pkl').open('rb') as stream:norm=pickle.load(stream)
         norm.training=False
-        migrated,newnorm=migrate_learner(model,norm,ablated=method=='H0')
+        migrated,newnorm=migrate_learner(model,norm,ablated=method=='H0',gain_scale=gain_scale)
         bridge,error=read_prefix(parent/'infrastructure'/raw['bridge_response_stream'])
         if error:raise ValueError('Bound measured stream is incomplete')
         begins={w['response']['episode_id']:w['response'] for w in bridge if 'scene' in w.get('response',{})}
@@ -61,9 +61,11 @@ def prepare(output):
         shutil.copy2(source/'resume_state.pkl',destination/'resume_state.pkl')
         config=read(source/'config.json');config['observation_encoding']={'version':VERSION}
         config['observation_shape']=list(migrated.observation_space.shape)
+        config['reference_gain_scale']=gain_scale
         atomic_json(destination/'config.json',config)
         metadata.update(model_sha256=sha(destination/'model.zip'),normalization_sha256=sha(destination/'normalization.pkl'),
             resume_state_sha256=sha(destination/'resume_state.pkl'),observation_encoding=VERSION,
+            reference_gain_scale=gain_scale,
             transformation_new_controls=0,transformation_new_updates=0)
         atomic_json(destination/'metadata.json',metadata);verified_checkpoint_metadata(destination)
         reloaded=load_ppo(destination/'model.zip',device='cpu')
@@ -75,11 +77,12 @@ def prepare(output):
             all24measured_start_probabilities_values_exact=True,measured_starts=inputs,
             observation_shape=list(migrated.observation_space.shape),new_controls=0,new_updates=0)
         atomic_json(output/'status.json',dict(completed=results))
-    atomic_json(output/'complete.json',dict(version=VERSION,results=results,
+    atomic_json(output/'complete.json',dict(version=VERSION,gain_scale=gain_scale,results=results,
         status='INITIALIZERS_PREPARED_NOT_NATIVE_TRAINED',new_controls=0,new_updates=0,research_acceptance='UNMET'))
     print({m:r['observation_shape'] for m,r in results.items()})
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True)
-    prepare(p.parse_args().output)
+    p.add_argument('--gain-scale',type=float,default=1.0)
+    a=p.parse_args();prepare(a.output,a.gain_scale)
