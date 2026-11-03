@@ -34,6 +34,12 @@ scale10 v3只是候选准备，启动时因v2占用端口而拒绝，没有serve
 
 此前真实适配H10467控制/330Adam、H0恢复后保留10453/330，均已知VAL24/24且0不安全，原始帧/24起点NN/严格传送已验证。H0已知真实消耗至少12096，含1643未保存控制/50未保存Adam及未知尾部。公开 `reports/native_H_H0_diverse_recovered_complete_20261103.json`。同一seed已知24条件不能证明新增反馈或PPO对强规则的优势。
 
+## 纯训练原始帧审计（14:39）
+
+新增独立只读 `scripts/audit_native_training_only.py`，不改历史绑定审计入口。逐训练tick调用既有严格state/command/传感器证据校验，另核对所有applied控制完整覆盖、首帧与begin关系、注册TRAIN条件、累计reward_components、控制/动作计数、末次optimizer/最终checkpoint计数及reset+control世界步总账。已有两批B1实际训练各10240控制全通过（重置867/805步），源与各流哈希绑定，公开 `reports/native_training_only_raw_verification_20261103.json`。这些是已发生训练的核验，不是新增训练或评估。
+
+当前v4额外只读观察器PID61720/工具session45413，持有worker63072确切身份，入口带 `--wait-identity .../worker_process.json`，等待终态和owned_empty清理后自动写v4 `training_only_raw_audit.json`。注册文件 `training_only_raw_audit.waiting.json` 已保存，有限等待、零重试、没有车辆控制。不要重复启动，当前审计PENDING不能当作通过。6个合成物理证据测试通过，包括state篡改、reward不符、未入账控制、累计计数错误和丢失首帧的拒绝。
+
 ## 续跑入口的存储与旧模型兼容（14:29）
 
 `prepare_native_recovery.py` 新增可选 `--output D:/ThesisNativeArchive_20261103/<唯一新子批次>`，空间与内存预检针对实际工件盘，默认路径仍为workspace/runs。既有输出拒绝覆盖，12GiB运行存储底线保留，原权重、Adam、RNG、课程游标及绝对lineage目标口径不变。当前物理训练没有调用此恢复入口，也没有改变其冻结源。

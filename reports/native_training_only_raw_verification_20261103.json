@@ -1,0 +1,69 @@
+{
+  "scope": "Read-only complete recorded training frame audit;no new learning or driving",
+  "script_sha256": "581de8d671dc0f6eb227357aefec6e1d34d5d3722369c7cb25e5d7d7e0f09d77",
+  "completed": [
+    {
+      "batch": "20261102T123912910706Z_native_canonical_parent_TRAIN48_PPO10240",
+      "audit_sha256": "f7cbc037ae187bc2de3498dfd6482dd36d5a29582d9535cc2d19b1b000547dec",
+      "training_control_frames_verified": 10240,
+      "reset_ticks_verified": 867,
+      "methods": {
+        "B1": {
+          "controls": 10240,
+          "actions": 10240,
+          "optimizer_steps": 291,
+          "episodes_with_controls": 28,
+          "bridge_response_stream": "bridge_d21ee175_responses.jsonl.gz",
+          "transition_hashes": {
+            "transitions_000000000_1793623180285476200.jsonl.gz": "444e1c393bce0645c53b7e02799fbf335cdd3ef3c2fed7187f70a07e6c7c0ca2"
+          },
+          "reward_components": {
+            "event": -1330.0,
+            "time": -51.20000000000774,
+            "risk": -106.92354132790688,
+            "comfort": -8.382818208278168,
+            "potential": 17.649338212860435,
+            "task_progress": 218.07482432982016
+          },
+          "model_sha256": "8014fbc1d850bf287e5aa2406708d38f514da60082fc457a493f191150f0ce96",
+          "normalization_sha256": "062c42c569b388b1869d502686e40fc7f09eca3a490d442408ef22ebe0519c4f",
+          "checkpoint_metadata_sha256": "30df77e18f1722be19577220a36a3fbfb8a75976dc0ebe637a75b91c9dd07c33"
+        }
+      }
+    },
+    {
+      "batch": "20261102T130625263733Z_native_canonical_parent_TRAIN48_PPO10240",
+      "audit_sha256": "4acb943e8a6b345d93683339aeebe38689a1959624babea27f20d9cd218ceafc",
+      "training_control_frames_verified": 10240,
+      "reset_ticks_verified": 805,
+      "methods": {
+        "B1": {
+          "controls": 10240,
+          "actions": 10240,
+          "optimizer_steps": 320,
+          "episodes_with_controls": 26,
+          "bridge_response_stream": "bridge_381cdb8e_responses.jsonl.gz",
+          "transition_hashes": {
+            "transitions_000000000_1793624812112563600.jsonl.gz": "337201a87810044db463ed4b871ae7e193872408c66d6a7f6544ac15f32c4000"
+          },
+          "reward_components": {
+            "event": -490.0,
+            "time": -51.20000000000774,
+            "risk": -90.47504007759362,
+            "comfort": -8.334332275793312,
+            "potential": 16.418738544800263,
+            "task_progress": 253.7112545121211
+          },
+          "model_sha256": "05896b452cb68a8d65b1ddb84d7b8a5246c6e12b0d11e1515905879153048282",
+          "normalization_sha256": "27350a3fc612834625b2592d52b8d69d967b480d77b6df562e3d62a6d33e4e50",
+          "checkpoint_metadata_sha256": "e029750649000b487674861ec8ed68d98f865793a904320a2966a92f80d2c44b"
+        }
+      }
+    }
+  ],
+  "total_training_controls_verified": 20480,
+  "current_reference_course": "PENDING;exact existing worker is being observed",
+  "new_controls": 0,
+  "new_updates": 0,
+  "research_acceptance": "UNMET"
+}
