@@ -1,0 +1,49 @@
+{
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_scale100_H_static",
+  "method": "H",
+  "case_id": 2,
+  "source_sha256": "a7924221ba7850f272c3dfe9e73bead3e14c85b2ed7139948910c01e3e15533e",
+  "immutable_input_snapshot_sha256": "0f6b69eb68d24ba4383ef455fb1c3d6008ba8e30779f2ffc2a086e4e2c2fc8ca",
+  "enclosing_live_trace_prefix_error": "EOFError: Compressed file ended before the end-of-stream marker was reached",
+  "reconstruction_actions": 1,
+  "events": [
+    {
+      "decision": 0,
+      "action": 26,
+      "previous_selection": null,
+      "new_selection": [
+        [
+          30.49605061857832,
+          8.413772826275382,
+          0.5289368156872536
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": false,
+      "switched_selection": false,
+      "recorded_mode": "plan_failed",
+      "reconstructed_prepare_mode": "plan_failed",
+      "recorded_plan_status": "no_path",
+      "measured_time": 0.0,
+      "selected_probability": 0.9877469539642334,
+      "entropy_nats": 0.0913717970252037,
+      "context_actions": [],
+      "selected_context": false,
+      "minimum_additional_context_logit_for_tie": null
+    }
+  ],
+  "switches_away_from_reusable_reference": 0,
+  "observed_terminal": "deadline",
+  "policy_inference": {
+    "model_sha256": "15ba2e1b17a99086d07eb031babe0ce5f008afb0516c208928f5035992969753",
+    "normalization_sha256": "680faf1c43af1f83391d0fcaddd4f6d0aae44e8007ae075ad0a3c6bf02e3d2e3",
+    "learned_gain": 0.0007921545184217393,
+    "gain_scale": 100.0,
+    "effective_reference_logit": 0.07921545207500458,
+    "reference_ablated": false,
+    "all_reconstructed_NN_actions_exact": true
+  },
+  "new_controls": 0,
+  "new_updates": 0,
+  "limits": "Recorded static-state reconstruction only;no plant stepping or physical counterfactual. A reusable old reference is not proof that retaining it would complete the task. Logit ties do not predict driving success or the result of further training. Not a full-batch score or a causal policy comparison."
+}

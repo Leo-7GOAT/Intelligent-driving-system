@@ -1,0 +1,825 @@
+{
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_scale100_H_static",
+  "protocol_sha256": "3f013f6519173b0cea125d03e277f788c31a343da35b53def5ae936d14bbca7f",
+  "node_budget": 7200,
+  "results": [
+    {
+      "case_id": 2,
+      "input_sha256": "0f6b69eb68d24ba4383ef455fb1c3d6008ba8e30779f2ffc2a086e4e2c2fc8ca",
+      "recorded_selected_action": 26,
+      "unique_targets": 15,
+      "bounded_path_success_actions": [
+        3,
+        4,
+        5,
+        6,
+        11,
+        12
+      ],
+      "rows": [
+        {
+          "action": 1,
+          "target": [
+            11.999999999998323,
+            3.000001299297897,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "no_path",
+          "nodes": 3261,
+          "reason": "open_set_exhausted",
+          "path_samples": 0
+        },
+        {
+          "action": 2,
+          "target": [
+            11.999999999998323,
+            3.000001299297897,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "no_path",
+          "nodes": 3261,
+          "reason": "open_set_exhausted",
+          "path_samples": 0
+        },
+        {
+          "action": 3,
+          "target": [
+            11.999999999998323,
+            4.500001299297897,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "success",
+          "nodes": 26,
+          "reason": null,
+          "path_samples": 57
+        },
+        {
+          "action": 4,
+          "target": [
+            11.999999999998323,
+            4.500001299297897,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "success",
+          "nodes": 26,
+          "reason": null,
+          "path_samples": 57
+        },
+        {
+          "action": 5,
+          "target": [
+            11.999999999998323,
+            6.000001299297897,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 402
+        },
+        {
+          "action": 6,
+          "target": [
+            11.999999999998323,
+            6.000001299297897,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 402
+        },
+        {
+          "action": 7,
+          "target": [
+            11.999999999998323,
+            7.500001299297897,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 8,
+          "target": [
+            11.999999999998323,
+            7.500001299297897,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 9,
+          "target": [
+            11.999999999998323,
+            9.000001299297896,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 10,
+          "target": [
+            11.999999999998323,
+            9.000001299297896,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 11,
+          "target": [
+            14.999999201052129,
+            3.0000016139208596,
+            -2.663149835843572e-07
+          ],
+          "speed": 0.75,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 634
+        },
+        {
+          "action": 12,
+          "target": [
+            14.999999201052129,
+            3.0000016139208596,
+            -2.663149835843572e-07
+          ],
+          "speed": 1.5,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 634
+        },
+        {
+          "action": 13,
+          "target": [
+            14.999999600524605,
+            4.500001613920807,
+            -2.663149835843572e-07
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 14,
+          "target": [
+            14.999999600524605,
+            4.500001613920807,
+            -2.663149835843572e-07
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 15,
+          "target": [
+            14.99999999999708,
+            6.0000016139207535,
+            -2.663149835843572e-07
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 16,
+          "target": [
+            14.99999999999708,
+            6.0000016139207535,
+            -2.663149835843572e-07
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 17,
+          "target": [
+            15.000000399469554,
+            7.5000016139207,
+            -2.663149835843572e-07
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 18,
+          "target": [
+            15.000000399469554,
+            7.5000016139207,
+            -2.663149835843572e-07
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 19,
+          "target": [
+            15.00000079894203,
+            9.000001613920647,
+            -2.663149835843572e-07
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 20,
+          "target": [
+            15.00000079894203,
+            9.000001613920647,
+            -2.663149835843572e-07
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 21,
+          "target": [
+            17.999999201048322,
+            3.0000000000004063,
+            -2.663161087212984e-07
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 22,
+          "target": [
+            17.999999201048322,
+            3.0000000000004063,
+            -2.663161087212984e-07
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 23,
+          "target": [
+            17.999999600522482,
+            4.5000000000003535,
+            -2.663161087212984e-07
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 24,
+          "target": [
+            17.999999600522482,
+            4.5000000000003535,
+            -2.663161087212984e-07
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 25,
+          "target": [
+            30.49605061857832,
+            8.413772826275382,
+            0.5289368156872536
+          ],
+          "speed": 0.75,
+          "status": "no_path",
+          "nodes": 2141,
+          "reason": "open_set_exhausted",
+          "path_samples": 0
+        },
+        {
+          "action": 26,
+          "target": [
+            30.49605061857832,
+            8.413772826275382,
+            0.5289368156872536
+          ],
+          "speed": 1.5,
+          "status": "no_path",
+          "nodes": 2141,
+          "reason": "open_set_exhausted",
+          "path_samples": 0
+        },
+        {
+          "action": 27,
+          "target": [
+            18.00000039947081,
+            7.500000000000247,
+            -2.663161087212984e-07
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 28,
+          "target": [
+            18.00000039947081,
+            7.500000000000247,
+            -2.663161087212984e-07
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 29,
+          "target": [
+            18.00000079894497,
+            9.000000000000194,
+            -2.663161087212984e-07
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 30,
+          "target": [
+            18.00000079894497,
+            9.000000000000194,
+            -2.663161087212984e-07
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        }
+      ]
+    },
+    {
+      "case_id": 5,
+      "input_sha256": "0fb4c5ef1e0b8044e8f39c3fa028f26fa81553934c4d5d2a71e03e47c2c1a54f",
+      "recorded_selected_action": 26,
+      "unique_targets": 15,
+      "bounded_path_success_actions": [
+        5,
+        6,
+        7,
+        8,
+        19,
+        20,
+        29,
+        30
+      ],
+      "rows": [
+        {
+          "action": 1,
+          "target": [
+            12.000002580874666,
+            6.194761432457231,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 2,
+          "target": [
+            12.000002580874666,
+            6.194761432457231,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 3,
+          "target": [
+            12.000002580874666,
+            7.694761432457231,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 4,
+          "target": [
+            12.000002580874666,
+            7.694761432457231,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 5,
+          "target": [
+            12.000002580874666,
+            9.19476143245723,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 401
+        },
+        {
+          "action": 6,
+          "target": [
+            12.000002580874666,
+            9.19476143245723,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 401
+        },
+        {
+          "action": 7,
+          "target": [
+            12.000002580874666,
+            10.69476143245723,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "success",
+          "nodes": 25,
+          "reason": null,
+          "path_samples": 57
+        },
+        {
+          "action": 8,
+          "target": [
+            12.000002580874666,
+            10.69476143245723,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "success",
+          "nodes": 25,
+          "reason": null,
+          "path_samples": 57
+        },
+        {
+          "action": 9,
+          "target": [
+            12.000002580874666,
+            12.19476143245723,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "no_path",
+          "nodes": 6783,
+          "reason": "open_set_exhausted",
+          "path_samples": 0
+        },
+        {
+          "action": 10,
+          "target": [
+            12.000002580874666,
+            12.19476143245723,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "no_path",
+          "nodes": 6783,
+          "reason": "open_set_exhausted",
+          "path_samples": 0
+        },
+        {
+          "action": 11,
+          "target": [
+            15.000002580852795,
+            6.194757667585801,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 12,
+          "target": [
+            15.000002580852795,
+            6.194757667585801,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 13,
+          "target": [
+            15.000002580852795,
+            7.694757667585801,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 14,
+          "target": [
+            15.000002580852795,
+            7.694757667585801,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 15,
+          "target": [
+            15.000002580852795,
+            9.194757667585801,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 16,
+          "target": [
+            15.000002580852795,
+            9.194757667585801,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 17,
+          "target": [
+            15.000002580852795,
+            10.694757667585801,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 18,
+          "target": [
+            15.000002580852795,
+            10.694757667585801,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 19,
+          "target": [
+            15.000002580852795,
+            12.194757667585801,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 634
+        },
+        {
+          "action": 20,
+          "target": [
+            15.000002580852795,
+            12.194757667585801,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 634
+        },
+        {
+          "action": 21,
+          "target": [
+            18.000002580806505,
+            6.194764482841212,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 22,
+          "target": [
+            18.000002580806505,
+            6.194764482841212,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 23,
+          "target": [
+            18.000002580806505,
+            7.694764482841212,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 24,
+          "target": [
+            18.000002580806505,
+            7.694764482841212,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 25,
+          "target": [
+            28.062498571153842,
+            6.0,
+            -0.6842786025974119
+          ],
+          "speed": 0.75,
+          "status": "no_path",
+          "nodes": 6694,
+          "reason": "open_set_exhausted",
+          "path_samples": 0
+        },
+        {
+          "action": 26,
+          "target": [
+            28.062498571153842,
+            6.0,
+            -0.6842786025974119
+          ],
+          "speed": 1.5,
+          "status": "no_path",
+          "nodes": 6694,
+          "reason": "open_set_exhausted",
+          "path_samples": 0
+        },
+        {
+          "action": 27,
+          "target": [
+            18.000002580806505,
+            10.694764482841212,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 28,
+          "target": [
+            18.000002580806505,
+            10.694764482841212,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "invalid",
+          "nodes": 0,
+          "reason": "start_or_goal_body_collision_or_bounds",
+          "path_samples": 0
+        },
+        {
+          "action": 29,
+          "target": [
+            18.000002580806505,
+            12.194764482841212,
+            0.0
+          ],
+          "speed": 0.75,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 826
+        },
+        {
+          "action": 30,
+          "target": [
+            18.000002580806505,
+            12.194764482841212,
+            0.0
+          ],
+          "speed": 1.5,
+          "status": "success",
+          "nodes": 1,
+          "reason": null,
+          "path_samples": 826
+        }
+      ]
+    }
+  ],
+  "new_controls": 0,
+  "new_updates": 0,
+  "new_final_conditions": 0,
+  "limits": "Frozen-source bounded planner coverage at recorded initial states only. A successful geometric path is not proof of a valid timed trajectory,executed progress or task success. Failed bounded searches do not prove infeasibility. No action replacement or policy modification."
+}

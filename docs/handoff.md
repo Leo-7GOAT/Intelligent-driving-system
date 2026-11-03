@@ -42,6 +42,8 @@ v0.3.0-dev.20261103-reference-context，source commit f0fcba1e82ab0545989da00408
 
 公开 `reports/native_reference_scale100_case0_switch_diagnostic_20261103.json`；不可变完整case0输入在D:/ThesisNativeArchive_20261103/reference_scale100_case0_switch_diagnostic_20261103.inputs.json。真实评估和诊断都零新学习、零新最终条件，原v4地图/越界口径保持。
 
+本次新增只读诊断 `reports/native_reference_scale100_failure_diagnosis_20261103.json`，绑定最先完成6场中的全部4场失败（case0/2/4/5）。case2与5各90次都选26、90次都plan_failed；起点context全零，故参考保留偏置不能直接区分这些初始候选。按同一冻结实现、7200节点预算独立检查15个端点，case2有6个动作、case5有8个动作得到几何路径；不等于可执行时间轨迹或任务成功。最终模型learning_rate=3e-5、ent_coef=0、rollout32、10epochs已从实际model.zip核对；探索不足只是待检验假设，尚未改动或重训。case4的11次NN与参考重建均一致、无规划失败，原越界结论保留。新增诊断不替代完整12/24清单结果。
+
 ## scale1双方法全部学习与评估已结束
 
 原评估协调器40108已结束，OS查询无此原进程，execution `runs/reference_context_schema_fixed_endpoints_wall_execution_20261103/complete.json`完整，后续等待器确切句柄已确认退出0才启动新course。静态旧worker11232/guard27340/server61932、known24旧worker59512/guard52272/server33644均正常结束并owned_empty_server_stopped、TCP/UDP清空。19:21观察时只读监控器遇到已结束进程的QueryFullProcessImageName失败，随后已用OS消失/complete及后续读取的退出0状态确认；没有因此重启任务。

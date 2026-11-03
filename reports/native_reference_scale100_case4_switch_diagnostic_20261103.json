@@ -1,0 +1,379 @@
+{
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_scale100_H_static",
+  "method": "H",
+  "case_id": 4,
+  "source_sha256": "a7924221ba7850f272c3dfe9e73bead3e14c85b2ed7139948910c01e3e15533e",
+  "immutable_input_snapshot_sha256": "2513b89a4618236ea5dc269b56891638963289bdc9f7c7a6a14418dcdfefcae8",
+  "enclosing_live_trace_prefix_error": "EOFError: Compressed file ended before the end-of-stream marker was reached",
+  "reconstruction_actions": 11,
+  "events": [
+    {
+      "decision": 0,
+      "action": 26,
+      "previous_selection": null,
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": false,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 0.0,
+      "selected_probability": 0.9572190046310425,
+      "entropy_nats": 0.27042970061302185,
+      "context_actions": [],
+      "selected_context": false,
+      "minimum_additional_context_logit_for_tie": null
+    },
+    {
+      "decision": 1,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 0.5000000074505806,
+      "selected_probability": 0.9567059278488159,
+      "entropy_nats": 0.2742576599121094,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 2,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 1.0000000149011612,
+      "selected_probability": 0.984565794467926,
+      "entropy_nats": 0.10712766647338867,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 3,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 1.5000000223517418,
+      "selected_probability": 0.9920404553413391,
+      "entropy_nats": 0.059824179857969284,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 4,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 2.0000000298023224,
+      "selected_probability": 0.9930905699729919,
+      "entropy_nats": 0.052751630544662476,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 5,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 2.500000037252903,
+      "selected_probability": 0.9885433912277222,
+      "entropy_nats": 0.08291323482990265,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 6,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 3.0000000447034836,
+      "selected_probability": 0.9607483744621277,
+      "entropy_nats": 0.23267458379268646,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 7,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 3.500000052154064,
+      "selected_probability": 0.9908537864685059,
+      "entropy_nats": 0.06671255081892014,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 8,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 4.000000059604645,
+      "selected_probability": 0.9864513874053955,
+      "entropy_nats": 0.09770333766937256,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 9,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 4.500000067055225,
+      "selected_probability": 0.9818467497825623,
+      "entropy_nats": 0.12425412982702255,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 10,
+      "action": 26,
+      "previous_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          26.553745236963167,
+          19.478694823501336,
+          0.7678577855098592
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 5.000000074505806,
+      "selected_probability": 0.9817226529121399,
+      "entropy_nats": 0.12694399058818817,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    }
+  ],
+  "switches_away_from_reusable_reference": 0,
+  "observed_terminal": "out_of_bounds",
+  "policy_inference": {
+    "model_sha256": "15ba2e1b17a99086d07eb031babe0ce5f008afb0516c208928f5035992969753",
+    "normalization_sha256": "680faf1c43af1f83391d0fcaddd4f6d0aae44e8007ae075ad0a3c6bf02e3d2e3",
+    "learned_gain": 0.0007921545184217393,
+    "gain_scale": 100.0,
+    "effective_reference_logit": 0.07921545207500458,
+    "reference_ablated": false,
+    "all_reconstructed_NN_actions_exact": true
+  },
+  "new_controls": 0,
+  "new_updates": 0,
+  "limits": "Recorded static-state reconstruction only;no plant stepping or physical counterfactual. A reusable old reference is not proof that retaining it would complete the task. Logit ties do not predict driving success or the result of further training. Not a full-batch score or a causal policy comparison."
+}
