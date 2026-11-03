@@ -68,7 +68,17 @@ def copy_missing_case_dependencies(destination):
     return added
 
 
-def prepare(parent, wall_seconds, rpc_port=None, selected_methods=None):
+def recovery_targets(protocol, additional_budget=False):
+    targets=dict(protocol.get('lineage_targets',{}))
+    for method in protocol['methods']:
+        if method not in targets:
+            budget=protocol.get('method_budgets',{}).get(method,protocol['controlled_budget_per_method'])
+            targets[method]=(protocol.get('recovery',{}).get(method,{}).get('lineage_controls',0)+budget
+                             if additional_budget else protocol['controlled_budget_per_method'])
+    return targets
+
+
+def prepare(parent, wall_seconds, rpc_port=None, selected_methods=None, additional_budget=False):
     parent=Path(parent).resolve()
     if not 900<=wall_seconds<=7200:raise ValueError('Recovery wall budget outside bounds')
     healthy,reason=resources_ok(ROOT)
@@ -115,10 +125,11 @@ def prepare(parent, wall_seconds, rpc_port=None, selected_methods=None):
     for name in ['start_carla.ps1','diagnose_carla_start.ps1','run_carla_owned_foreground.ps1','stop_owned_carla.ps1']:
         shutil.copy2(ROOT/'scripts'/name,batch/'source/scripts'/name)
     shutil.copy2(parent/'interruption_audit.json',batch/'parent_interruption_audit.json')
+    targets=recovery_targets(old,additional_budget)
     recovery,methods,budgets={},{},{}
     for method in old['methods']:
         if selected_methods is not None and method not in selected_methods:continue
-        target=old.get('lineage_targets',{}).get(method,old['controlled_budget_per_method'])
+        target=targets[method]
         status=audit['methods'][method]
         if status['state']=='complete':continue
         methods[method]=status['state']
@@ -173,6 +184,8 @@ def prepare(parent, wall_seconds, rpc_port=None, selected_methods=None):
         recovery_source_dependencies_added=added_dependencies,
         scope='Interrupted development recovery; retained policy lineage and all consumed interactions are separate. Not a budget-matched superiority comparison.',
         disk_free_bytes=shutil.disk_usage(ROOT).free)
+    old['lineage_targets']={method:targets[method] for method in methods}
+    old['recovery_budget_interpretation']='explicit additional controls' if additional_budget else 'legacy absolute lineage or explicit lineage_targets'
     if selected_methods is not None:old['explicit_recovery_method_selection']=list(selected_methods)
     old['resource_limits']['wall_seconds']=wall_seconds
     if 'jobs' in old:
@@ -197,4 +210,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--parent',required=True);p.add_argument('--wall-seconds',type=int,default=7200)
     p.add_argument('--rpc-port',type=int)
     p.add_argument('--methods',nargs='+',help='Explicit subset; preserves other parent methods without rerunning them')
-    a=p.parse_args();prepare(a.parent,a.wall_seconds,a.rpc_port,a.methods)
+    p.add_argument('--additional-budget',action='store_true',help='Parent budgets are new controls beyond its saved initial lineage')
+    a=p.parse_args();prepare(a.parent,a.wall_seconds,a.rpc_port,a.methods,a.additional_budget)

@@ -1,0 +1,33 @@
+{
+  "parent": "20261102T143204721793Z_native_diverse_H_H0_PPO10240",
+  "recovery": "20261103T043242Z_native_recovery",
+  "scope": "Interrupted canonical H/H0diverse TRAINadaptation;Hcompleted and preserved,H0only resumed",
+  "external_process_loss_cause": "unknown;recorded lifecycle processes absent and2100..2102ports empty",
+  "parent_interruption_audit_sha256": "598faa880d7ebc111901223febf1c9798258834964056d6891b6249746d884bd",
+  "absence_receipt_sha256": "173e2fa13f35adb05e79b7a768ec519468098b004ba5de03ef6a7741f3096b65",
+  "H": {
+    "actual_training_controls": 10467,
+    "actual_Adam_steps": 330,
+    "known_validation_successes": 24,
+    "known_validation_cases": 24,
+    "raw_audit_sha256": "d54184e40da4fc1d997b7440fe8289f073d983e5a60cc2db53e50b73f2cb75a6",
+    "training_frames_verified": 10467,
+    "evaluation_frames_verified": 7994
+  },
+  "H0": {
+    "saved_course_controls": 7913,
+    "saved_Adam_steps": 250,
+    "readable_consumed_course_controls_lower_bound": 9556,
+    "known_unsaved_course_controls": 1643,
+    "unknown_unflushed_tail": true,
+    "requested_remaining_controls": 2327,
+    "absolute_lineage_target": 30779,
+    "source_model_sha256": "d49bc39f8c6f5181d12938a6e238926af1958e1341e9e52512fc28cac9275e80",
+    "recovery_protocol_sha256": "e8eefb75d6b490504e0a5430bcb641deef977f34a8cbd0b16514cccf444b7b81",
+    "weights_Adam_RMS_RNG_checkpoint_bytes_verified": true
+  },
+  "recovery_fix": "Explicit additional-budget mode converts prior20539plus requested10240to lineage30779;recover only2327remaining from saved28452. Legacy absolute targets unchanged.",
+  "regression": "9related tests passed",
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET"
+}

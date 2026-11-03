@@ -18,7 +18,7 @@ from scripts.native_road_learning import training_config
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
-def prepare(execution,pair=None,wall_seconds=5400):
+def prepare(execution,pair=None,wall_seconds=5400,h_parent=None):
     if type(wall_seconds) is not int or not 1800<=wall_seconds<=10800:
         raise ValueError('Frozen diagnostic requires a finite1800..10800second budget')
     teacher=ROOT/'runs/20261102T101413887816Z_native_diverse_TRAIN36_teacher'
@@ -31,7 +31,14 @@ def prepare(execution,pair=None,wall_seconds=5400):
     already_common=calibration==oldcal
     if not already_common and (delivery!='batch_sync_v1' or comparison!=oldcal):
         raise ValueError('Only the declared command-delivery transfer is allowed')
-    sources=[('H_PPO','H',pair),('H0_PPO','H0',pair),('H_teacher','H',initial)]
+    h_parent=pair if h_parent is None else Path(h_parent).resolve()
+    if h_parent!=pair:
+        # A completed method can survive loss of another method's process.
+        # Verify its full raw endpoint rather than inventing batch completion.
+        from scripts.audit_native_method_endpoint import audit
+        if audit(h_parent,'H')!=read(h_parent/'H/endpoint_raw_audit.json'):
+            raise ValueError('Preserved Hendpoint differs from its full raw audit')
+    sources=[('H_PPO','H',h_parent),('H0_PPO','H0',pair),('H_teacher','H',initial)]
     p.update(methods=[name for name,_,_ in sources],jobs=[dict(name=name,method=method) for name,method,_ in sources],
         evaluation_only=True,controlled_budget_per_method=0,method_budgets={name:0 for name,_,_ in sources},
         deterministic_training_route_evaluation=True,checkpoint_thresholds=[],goal_parking_assist=True,
@@ -47,7 +54,7 @@ def prepare(execution,pair=None,wall_seconds=5400):
         p.pop(name,None)
     vehicle=VehicleConfig(**calibration['vehicle']);common=EnvConfig.from_dict(read(teacher/'source_config.json')['env'])
     okay,reason=resources_ok(ROOT)
-    if not okay or shutil.disk_usage(ROOT).free<16*1024**3:raise RuntimeError(str(reason))
+    if not okay or shutil.disk_usage(ROOT).free<13*1024**3:raise RuntimeError(str(reason))
     batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_native_static_H_H0_teacher_transfer')
     batch.mkdir();(batch/'infrastructure').mkdir();(batch/'calibration').mkdir();(batch/'transfer_evidence').mkdir()
     shutil.copy2(teacher/'calibration/calibration.json',batch/'calibration/calibration.json')
@@ -94,10 +101,10 @@ def prepare(execution,pair=None,wall_seconds=5400):
     return batch
 
 
-def run(execution=None,pair=None,wall_seconds=5400):
+def run(execution=None,pair=None,wall_seconds=5400,h_parent=None):
     execution=(ROOT/'runs/H_H0_teacher_static12_transfer_execution_20261102' if execution is None else Path(execution).resolve())
     if execution.exists():raise FileExistsError('Preserve every frozen comparison')
-    execution.mkdir();batch=prepare(execution,pair,wall_seconds)
+    execution.mkdir();batch=prepare(execution,pair,wall_seconds,h_parent)
     def call(args,label,timeout=900,env=None):
         atomic_json(execution/'status.json',dict(phase=label,pid=os.getpid(),batch=batch.name,epoch=time.time()))
         with (execution/(label+'.log')).open('xb') as stream:
@@ -125,4 +132,5 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--execution');parser.add_argument('--pair')
     parser.add_argument('--wall-seconds',type=int,default=5400)
-    args=parser.parse_args();run(args.execution,args.pair,args.wall_seconds)
+    parser.add_argument('--h-parent',help='Separately completed and fully raw-audited Hendpoint')
+    args=parser.parse_args();run(args.execution,args.pair,args.wall_seconds,args.h_parent)

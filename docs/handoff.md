@@ -1,22 +1,16 @@
-# 当前接续状态（2026-11-02 22:34）
+# 当前接续状态（2026-11-03 12:36）
 
-沿用当前仓库和 feature/physical-hierarchical-ppo 分支；不重建、不恢复瞬移。用户要求自主完成研发、真实训练、验证和 GitHub 交付。完整研究目标仍未通过，禁止将训练完成、基础4/4或已知开发集当成最终达标。
+完整目标与验收标准不变，研究尚未通过；真实执行和证据保留优先。不重建项目，不恢复瞬移环境，不启动新代理。
 
-## 唯一当前物理作业：已进入真正H/H0训练
+## 当前实际运行：只续H0，不重跑H
 
-协调器50820 / 工具session6148，execution `runs/H_H0_diverse_native_PPO10240_execution_20261102`，batch `runs/20261102T143204721793Z_native_diverse_H_H0_PPO10240`，worker42136，guard64188。22:33 H已有1555实际训练控制、4优化阶段，运行健康。入口为 `scripts/continue_native_hierarchical_pair.py --execution runs/H_H0_diverse_native_PPO10240_execution_20261102 --dependency runs/H_H0_teacher_static12_transfer_execution_20261102`；正在运行，不重复启动。
+原pair `runs/20261102T143204721793Z_native_diverse_H_H0_PPO10240` 外部进程丢失，原因未知。原worker42136、guard64188、server及所有旧队列50820/1732均已由当前系统进程检查确认不存在，2100..2102无监听。原H完整结束：10467训练控制/330Adam、已知VAL24/24、零不安全；H原始审计已通过10467训练+7994评测帧。原H0仅保存7913控制/250Adam，心跳和可读记录到9556控制/300Adam；至少1643未保留控制和50次未保留Adam，未知尾段保留，不能算权重已更新。
 
-从冻结迁移的原H/H0保存字节开始，在已采集TRAIN48上各请求10240新实际PPO控制；32高层动作一轮，允许实际超出最多319控制并报告实际数。同步命令传送和共同停车辅助在整个新训练中固定，保留各自Adam/RNG、冻结RMS，零新增监督。随后每方法完整24已知VAL，再自动执行原始帧/实测起点/Adam/RMS/严格传送审计。单seed探索，不能称五种子或与历史B1全预算公平。TRAIN48模型不连通case19依然保留。
+现恢复batch `runs/20261103T043242Z_native_recovery`，工具session25797，实际worker59172/guard42916；原checkpoint模型/Adam/RMS/RNG哈希核验，H0剩余请求2327控制，完整24已知VAL自动跟随。累计目标lineage30779（20539+10240），恢复原预算、不从头训练。恢复器新增显式--additional-budget避免误把10240新增预算当累计上限；9项相关检查通过。之前失败准备043157目录保留为未注册/未执行，原父batch已唯一注册到043242，不要重复恢复。
 
-整批预算14400秒，资源门槛16GiB空盘、运行保护12GiB、零自动重试。当前源码958c922已推送；原审计/课程9ab91f3的GitHubCI41461752584成功。新4项协议和原7项检查均通过。根目录 `scripts/continue_native_hierarchical_pair.py` 与三个审计入口已被queue哈希绑定，期间不要修改；batch/source全部冻结。
+后续队列 `runs/H_H0_recovered_postlearning_v2_execution_20261103`，PID68268/工具session80599，入口私有 `runs/finish_H0_recovery_and_static_v2_20261103.py`。持有确切H0进程句柄等待结束，随后H0逐帧/24起点/严格传送审计，再调用复用的static评测入口跑全部12static条件：H来自原已完整审计方法，H0来自恢复batch，教师来自原零PPO初始化。static执行目录 `runs/H_H0_recovered_static12_execution_20261103`，7200秒固定预算，零重试、零新学习、零最终条件。运行期间别修改root static评测入口或三个审计入口，均已绑定哈希。原observer55320仅等待阶段被替换，记录observer_replaced_before_evaluation；没有中断实际训练。
 
-## 已中止的冻结对照：保留不完整状态，不重启
-
-原协调器35188/session75294已退出1。原batch `runs/20261102T135514838123Z_native_static_H_H0_teacher_transfer` 的确切worker14044经创建时间/路径/命令核验后单独结束；guard64888完成空服务器清理，server_stop为owned_empty_server_stopped。未杀其他任务。当前新训练由队列在确切退出后自动顺序启动。
-
-中止原因是优先做旧策略从未接受过的新道路真实学习，减少继续回放的时间。H有9场终止记录（3成功、5超时、1越界），其余未完成，H0/教师尚未执行。不是完整12场成绩，不作方法排名。策略gzip和桥接gzip均有未封闭尾部；5974个保留策略帧可与桥接逐帧核验，6082个可读实际桥接控制均与发动机回执一致，另108桥接帧没有策略记录，未知尾部不能当0。公开证据 `reports/native_static_transfer_early_stop_20261102.json`。原协议与全部原始文件保持不变。
-
-新训练原protocol按策略可读前缀记5974控制；额外108个已知消耗由新batch的 `prior_transfer_cost_correction.json`补记。后续完整成本必须合并该sidecar，不能重写原protocol或把原下界当实际总消耗。此纠正不改权重/优化器/训练。
+C盘当前约13GiB空余，static准备门槛13GiB，运行保护12GiB，不动旧junction。完整预算和恢复证据见 `reports/native_H_H0_diverse_recovery_registration_20261103.json`。H与H0历史控制总数/监督/硬件版本必须披露，不包装为全部预算公平或五seed结论。
 
 ## 本轮已完成并核验
 
