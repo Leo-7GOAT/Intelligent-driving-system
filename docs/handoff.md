@@ -1,4 +1,4 @@
-# 当前接续状态（2026-11-03 20:06）
+# 当前接续状态（2026-11-03 21:08）
 
 目标不变，研究验收UNMET。继续当前分支，不重建、不恢复瞬移、不新增子代理。以下是实际已启动状态；继续前须复核OS进程身份，不能仅凭状态文件重启任务。不要触碰Desktop/papper其他项目进程。
 
@@ -30,11 +30,17 @@ v0.3.0-dev.20261103-reference-context，source commit f0fcba1e82ab0545989da00408
 
 可复核证据 `reports/native_static_shared_road_disagreement_20261103.json`，便携输入 `protocols/native_static_case4_road_disagreement_input_20261103.json`，脚本 `scripts/diagnose_native_road_boundary37.py`（只加载本地Map无Client）、`scripts/probe_native_ground_surface37.py`（保留只读owned句柄，仅语义射线）。完整原始探针与密集采样在D:/ThesisNativeArchive_20261103/road_boundary_probe_20261103，未改CARLA安装资源、环境或当前物理actor。
 
-## 唯一当前物理作业：scale100的单独H真实PPO
+## 唯一当前物理作业：scale100单H冻结静态评估
 
-执行协调器48660（18:25:46.148，venv父61344），execution `runs/reference_scale100_after_scale1_endpoints_execution_20261103`，现SELECTED_H_COURSE / course/native_training。batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_H`，worker18496（19:22:21.706，creation_epoch1793704941.706）、guard29560、owned shipping73216（19:22:04.806，launcher33060）。已实际保存首个320控制/10Adam；最新已保存阈值3520的实际累计3817控制/120Adam，guard healthy。必须复核OS身份再观察，不能重复启动。
+协调器48660（18:25:46.148，venv父61344），execution `runs/reference_scale100_after_scale1_endpoints_execution_20261103/course`，现static_native。batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_H_static`，worker4864（20:46:34.198，creation_epoch1793709994.198）、guard73036、owned shipping17316（20:46:16.432，launcher20032）。21:04心跳case5/actions40，guard healthy。不得重跑或修改当前模型/物理/评分；下一阶段自动known24及raw/NN/engine核验。
 
-`reports/native_reference_scale100_first_saved_learning_20261103.json`验证固定checkpoint_000000320：32个Adam状态相对注册初始化各前进10，RMS mean/var/count完全一致，实际learned gain0.0002250900、scale100、有效logit0.0225090。它是已保存学习证明，不是完整原始训练帧审计、固定预算端点或性能成绩；不得挑该检查点做最终结果。请求10240控制/最大319overshoot/每320阈值保存/零新监督/零新最终条件，H0不重训。完整训练后自动raw/engine、再静态12和known24及NN审计，入口已经运行，不重跑。
+原training batch `...scale100_H` 的worker18496/guard29560/server73216均正常结束，guard_final exit0、owned_empty_server_stopped。最终10501控制、1056决策、33rollouts、330Adam、18已完成回合；实际世界11089步=10501控制+588reset。请求10240，overshoot261<=319。不是遍历全部48个训练条件。全部10501原始训练帧/回报/计数/末checkpoint/发动机回执均核验通过，32个参数Adam状态相对初始化各推进330，RMS mean/var/count完全一致。
+
+最终模型15ba2e1b17a99086d07eb031babe0ce5f008afb0516c208928f5035992969753，norm680faf1c43af1f83391d0fcaddd4f6d0aae44e8007ae075ad0a3c6bf02e3d2e3。gain0.0007921545、scale100、有效logit0.07921545。保存并选择的始终是固定预算最终端点，不挑checkpoint。公开 `reports/native_reference_scale100_learning_complete_20261103.json`，自动proof/raw/strict均在trainingbatch；不要再对原18496训练进程等待或重复训练。
+
+首场静态case0已完整deadline900controls。`diagnose_native_reference_switch.py --inspect-policy`在实际冻结源下重建至首次失败，共24决策NN/plan完全匹配；相对scale1旧case0，放弃仍可复用参考次数5降至1，但decision23仍选action2而失败，旧global reference仍可用，需要额外约1.012303logit才与最佳保留参考动作打平。有效系数0.0792仍未解决这个失败。两策略状态历史与权重不同，这个对比不是固定状态因果收益，也不证明保留旧参考能完成任务。完整12/24评估仍待收齐，不因为第一场失败中止或换模型。
+
+公开 `reports/native_reference_scale100_case0_switch_diagnostic_20261103.json`；不可变完整case0输入在D:/ThesisNativeArchive_20261103/reference_scale100_case0_switch_diagnostic_20261103.inputs.json。真实评估和诊断都零新学习、零新最终条件，原v4地图/越界口径保持。
 
 ## scale1双方法全部学习与评估已结束
 

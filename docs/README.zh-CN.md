@@ -15,7 +15,7 @@ H/H0真实适配已完成，24个已知开发条件均为 **24/24，零不安全
 
 [参考上下文研发预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.3.0-dev.20261103-reference-context)已公开两个关闭端点的数据包、图表和校验值。8项资产均无需登录下载成功，并从新checkout完整重建：1254文件、32060控制帧、72起点、2611静态NN决策及2张逐字节一致图表。[公开下载与复现凭证](../reports/native_reference_context_public_download_verification_20261103.json)。
 
-仅H的scale100后续现已在 **真实CARLA中训练**，初始参数、Adam、RMS与RNG保持一致。首个保存点已有320控制、10次Adam，32个优化器状态均推进，RMS不变；完整请求预算10240控制及性能评估尚未完成，不重训H0。[首次保存的学习状态](../reports/native_reference_scale100_first_saved_learning_20261103.json)、[当前执行状态与边界](handoff.md)。
+仅H的scale100课程已完成 **10501 个真实训练控制、330次Adam更新**，32个优化器状态均推进，RMS不变，全部训练帧及控制指令回执核验通过。超出请求261控制，低于注册上限319；实际完成TRAIN48池中的18回合，并非已遍历48条件。冻结评估正在运行，首个静态条件仍超时，尚不宣称性能改进。[完整学习证明](../reports/native_reference_scale100_learning_complete_20261103.json)、[首场失败重建](../reports/native_reference_scale100_case0_switch_diagnostic_20261103.json)、[当前执行状态](handoff.md)。
 
 本次修复完整本地CPU回归1310通过、1跳过、4项CARLA排除；后续恢复和逐帧审计专项检查另行记录。[对应源版本的GitHub CPU验证](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41590243732)通过。新增只读审计已核对两批B1合计20480个既有训练控制、重置世界步及奖励累计，不构成新增训练。[凭证](../reports/native_training_only_raw_verification_20261103.json)。
 
