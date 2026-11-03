@@ -1,0 +1,36 @@
+{
+  "scope": "Recorded old static case4 road-predicate mismatch",
+  "case_id": 4,
+  "map_name": "Carla/Maps/Town10HD_Opt",
+  "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+  "lane_projection_sha256": "930dcb793f6e16e0066c557e31e823348e2b7a496ef0ea56b886d5db48cad8c0",
+  "layout": {
+    "angle": -135.84579467773438,
+    "origin": [
+      109.99659441012047,
+      17.920762350908383
+    ],
+    "spawn_z": 0.6
+  },
+  "recorded_offroad_point_world": [
+    91.297119140625,
+    15.235952377319336,
+    0.0018806075677275658
+  ],
+  "offroad_point_local": [
+    15.28648446610818,
+    11.099638400244807
+  ],
+  "raster_cell_bounds": [
+    15.259568079826485,
+    11.047402833627531,
+    15.386731147158372,
+    11.146928985281834
+  ],
+  "raster_point_drivable": true,
+  "model_road_clearance_m": 1.1944847494364477,
+  "distance_to_model_footprint_corner_m": 3.1415855272806007e-06,
+  "road_grid_sha256": "89f5326962adfcffe4dc0b1e31e2cab1b2be685c4f9b9cc19d4a8dcac6b89e22",
+  "raw_audit_sha256": "3cf85f800528a09e9c87eed29196f088eecce5353f9deda61c6086e67601b564",
+  "trace_sha256": "bebf82f48e196ac5413e01d764858c19ead3e432cc5e3d05d0fbbed701014166"
+}

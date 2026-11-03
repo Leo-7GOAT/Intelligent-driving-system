@@ -1,0 +1,468 @@
+{
+  "scope": "Recorded shared-boundary failure:road raster versus exact-point lane predicate and engine semantic surface disagreement",
+  "research_acceptance": "UNMET",
+  "source_input": "protocols/native_static_case4_road_disagreement_input_20261103.json",
+  "input_sha256": "e11193b924dbfa92ca241de9bb583d9210609e434a646747f5e50d37650f21bc",
+  "case_id": 4,
+  "raw_hierarchy_pair_report_sha256": "062542862e3719e654ff3dc651c46deca6124a62822e3ca7a85bed4de3c8b044",
+  "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+  "recorded_input": {
+    "scope": "Recorded old static case4 road-predicate mismatch",
+    "case_id": 4,
+    "map_name": "Carla/Maps/Town10HD_Opt",
+    "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+    "lane_projection_sha256": "930dcb793f6e16e0066c557e31e823348e2b7a496ef0ea56b886d5db48cad8c0",
+    "layout": {
+      "angle": -135.84579467773438,
+      "origin": [
+        109.99659441012047,
+        17.920762350908383
+      ],
+      "spawn_z": 0.6
+    },
+    "recorded_offroad_point_world": [
+      91.297119140625,
+      15.235952377319336,
+      0.0018806075677275658
+    ],
+    "offroad_point_local": [
+      15.28648446610818,
+      11.099638400244807
+    ],
+    "raster_cell_bounds": [
+      15.259568079826485,
+      11.047402833627531,
+      15.386731147158372,
+      11.146928985281834
+    ],
+    "raster_point_drivable": true,
+    "model_road_clearance_m": 1.1944847494364477,
+    "distance_to_model_footprint_corner_m": 3.1415855272806007e-06,
+    "road_grid_sha256": "89f5326962adfcffe4dc0b1e31e2cab1b2be685c4f9b9cc19d4a8dcac6b89e22",
+    "raw_audit_sha256": "3cf85f800528a09e9c87eed29196f088eecce5353f9deda61c6086e67601b564",
+    "trace_sha256": "bebf82f48e196ac5413e01d764858c19ead3e432cc5e3d05d0fbbed701014166"
+  },
+  "offline_script_sha256": "be97104e2f2b5d604ffcdd1c0567a2ad53ab0e9d9653e69d173eaf778454b0ce",
+  "offline_result_sha256": "147c170b859e196f8243c975197175688a4a5f31437d740fe75a8aa2bd0756a1",
+  "point_lane_query": {
+    "world": [
+      91.297119140625,
+      15.235952377319336,
+      0.0018806075677275658
+    ],
+    "raw_inside": false,
+    "indexed_inside": false,
+    "refined_inside": false,
+    "candidates": [
+      {
+        "road_id": 584,
+        "lane_id": -1,
+        "section_id": 0,
+        "s": 34.072757720947266,
+        "center": [
+          91.43693542480469,
+          13.486288070678711,
+          0.0
+        ],
+        "distance": 1.755241800793849,
+        "half_width": 1.75,
+        "inside": false,
+        "height_error": 0.0018806075677275658,
+        "queries": 51
+      },
+      {
+        "road_id": 655,
+        "lane_id": 1,
+        "section_id": 0,
+        "s": 7.934739112854004,
+        "center": [
+          90.28384399414062,
+          12.432144165039062,
+          0.0
+        ],
+        "distance": 2.981286134159758,
+        "half_width": 1.75,
+        "inside": false,
+        "height_error": 0.0018806075677275658,
+        "queries": 51
+      },
+      {
+        "road_id": 597,
+        "lane_id": -1,
+        "section_id": 0,
+        "s": 30.24755859375,
+        "center": [
+          91.1591796875,
+          16.9808406829834,
+          0.0
+        ],
+        "distance": 1.7503321090500588,
+        "half_width": 1.75,
+        "inside": false,
+        "height_error": 0.0018806075677275658,
+        "queries": 51
+      }
+    ]
+  },
+  "same_xy_at_grid_height_query": {
+    "world": [
+      91.297119140625,
+      15.235952377319336,
+      0.0
+    ],
+    "raw_inside": false,
+    "indexed_inside": false,
+    "refined_inside": false,
+    "candidates": [
+      {
+        "road_id": 584,
+        "lane_id": -1,
+        "section_id": 0,
+        "s": 34.072757720947266,
+        "center": [
+          91.43693542480469,
+          13.486288070678711,
+          0.0
+        ],
+        "distance": 1.755241800793849,
+        "half_width": 1.75,
+        "inside": false,
+        "height_error": 0.0,
+        "queries": 51
+      },
+      {
+        "road_id": 655,
+        "lane_id": 1,
+        "section_id": 0,
+        "s": 7.934739112854004,
+        "center": [
+          90.28384399414062,
+          12.432144165039062,
+          0.0
+        ],
+        "distance": 2.981286134159758,
+        "half_width": 1.75,
+        "inside": false,
+        "height_error": 0.0,
+        "queries": 51
+      },
+      {
+        "road_id": 597,
+        "lane_id": -1,
+        "section_id": 0,
+        "s": 30.24755859375,
+        "center": [
+          91.1591796875,
+          16.9808406829834,
+          0.0
+        ],
+        "distance": 1.7503321090500588,
+        "half_width": 1.75,
+        "inside": false,
+        "height_error": 0.0,
+        "queries": 51
+      }
+    ]
+  },
+  "raster_five_sample_inside": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "dense_samples": 289,
+  "dense_non_driving_samples": 15,
+  "dense_non_driving_world_points": [
+    [
+      91.33548736572266,
+      15.235076904296875,
+      0.0
+    ],
+    [
+      91.32544708251953,
+      15.234003067016602,
+      0.0
+    ],
+    [
+      91.31541442871094,
+      15.232930183410645,
+      0.0
+    ],
+    [
+      91.31108093261719,
+      15.23739242553711,
+      0.0
+    ],
+    [
+      91.30538177490234,
+      15.231856346130371,
+      0.0
+    ],
+    [
+      91.3010482788086,
+      15.236319541931152,
+      0.0
+    ],
+    [
+      91.29534149169922,
+      15.230783462524414,
+      0.0
+    ],
+    [
+      91.29100799560547,
+      15.235245704650879,
+      0.0
+    ],
+    [
+      91.28097534179688,
+      15.234172821044922,
+      0.0
+    ],
+    [
+      91.27094268798828,
+      15.233098983764648,
+      0.0
+    ],
+    [
+      91.26090240478516,
+      15.232026100158691,
+      0.0
+    ],
+    [
+      91.25086975097656,
+      15.230952262878418,
+      0.0
+    ],
+    [
+      91.24083709716797,
+      15.229879379272461,
+      0.0
+    ],
+    [
+      91.23079681396484,
+      15.228805541992188,
+      0.0
+    ],
+    [
+      91.22076416015625,
+      15.22773265838623,
+      0.0
+    ]
+  ],
+  "engine_probe": {
+    "scope": "Read-only semantic ground rays on the recorded owned CARLA server; never tick or control.",
+    "script_sha256": "f5e9636980259093e156e1e8b7f0487afaf9d62a0a193891d16973c8c7a70417",
+    "input_sha256": "e11193b924dbfa92ca241de9bb583d9210609e434a646747f5e50d37650f21bc",
+    "server_record_sha256": "d5ebf1ac5144e849b2b2baee94a94209a39862b13d5f1d9864f5c5cb346a4ce5",
+    "owned_identity_source_sha256": "fed625bb2fe102c5aeee72b1a2136e7fbec53989b0f297176701d67214a5253d",
+    "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+    "client_version": "0.9.15",
+    "server_version": "0.9.15",
+    "owned_server_pid": 33076,
+    "frame_before": 0,
+    "frame_after": 0,
+    "queries": [
+      {
+        "xy": [
+          91.297119140625,
+          15.235952377319336
+        ],
+        "hits": [
+          {
+            "label": "Roads",
+            "location": [
+              91.297119140625,
+              15.23595142364502,
+              0.00020034790213685483
+            ]
+          }
+        ]
+      },
+      {
+        "xy": [
+          91.317119140625,
+          15.235952377319336
+        ],
+        "hits": [
+          {
+            "label": "Roads",
+            "location": [
+              91.3171157836914,
+              15.23595142364502,
+              0.00020034790213685483
+            ]
+          }
+        ]
+      },
+      {
+        "xy": [
+          91.277119140625,
+          15.235952377319336
+        ],
+        "hits": [
+          {
+            "label": "Roads",
+            "location": [
+              91.27711486816406,
+              15.23595142364502,
+              0.00020034790213685483
+            ]
+          }
+        ]
+      },
+      {
+        "xy": [
+          91.297119140625,
+          15.255952377319336
+        ],
+        "hits": [
+          {
+            "label": "Roads",
+            "location": [
+              91.297119140625,
+              15.255952835083008,
+              0.00020034790213685483
+            ]
+          }
+        ]
+      },
+      {
+        "xy": [
+          91.297119140625,
+          15.215952377319336
+        ],
+        "hits": [
+          {
+            "label": "Roads",
+            "location": [
+              91.297119140625,
+              15.215951919555664,
+              0.00020034790213685483
+            ]
+          }
+        ]
+      }
+    ],
+    "issued_tick_requests": 0,
+    "issued_control_requests": 0,
+    "limits": "Concurrent owned evaluation may advance frames. Engine surface labels do not alone prove lane legality or swept-body safety. Original failures and termination rules are unchanged."
+  },
+  "engine_probe_result_sha256": "60b8787f00f323880a77eb061381cd5800c646c3341b387db4dac1cc5bb3d9ab",
+  "additional_local_search": {
+    "scope": "Offline SDK same-lane arc search at1mm spacing within4m of recorded projection;no client or world",
+    "opendrive_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+    "project_to_road_true": {
+      "road_id": 584,
+      "lane_id": -1,
+      "s": 34.13299711048597,
+      "center": [
+        91.36967468261719,
+        13.481058120727539,
+        0.0
+      ]
+    },
+    "results": [
+      {
+        "road_id": 584,
+        "lane_id": -1,
+        "original": {
+          "road_id": 584,
+          "lane_id": -1,
+          "section_id": 0,
+          "s": 34.072757720947266,
+          "center": [
+            91.43693542480469,
+            13.486288070678711,
+            0.0
+          ],
+          "distance": 1.755241800793849,
+          "half_width": 1.75,
+          "inside": false,
+          "height_error": 0.0018806075677275658,
+          "queries": 51
+        },
+        "dense_nearby_minimum": {
+          "s": 34.072757720947266,
+          "center": [
+            91.43693542480469,
+            13.486288070678711,
+            0.0
+          ],
+          "distance": 1.755241800793849,
+          "half_width": 1.75,
+          "inside": false
+        }
+      },
+      {
+        "road_id": 655,
+        "lane_id": 1,
+        "original": {
+          "road_id": 655,
+          "lane_id": 1,
+          "section_id": 0,
+          "s": 7.934739112854004,
+          "center": [
+            90.28384399414062,
+            12.432144165039062,
+            0.0
+          ],
+          "distance": 2.981286134159758,
+          "half_width": 1.75,
+          "inside": false,
+          "height_error": 0.0018806075677275658,
+          "queries": 51
+        },
+        "dense_nearby_minimum": {
+          "s": 7.933739185333252,
+          "center": [
+            90.28299713134766,
+            12.432451248168945,
+            0.0
+          ],
+          "distance": 2.981285298465786,
+          "half_width": 1.75,
+          "inside": false
+        }
+      },
+      {
+        "road_id": 597,
+        "lane_id": -1,
+        "original": {
+          "road_id": 597,
+          "lane_id": -1,
+          "section_id": 0,
+          "s": 30.24755859375,
+          "center": [
+            91.1591796875,
+            16.9808406829834,
+            0.0
+          ],
+          "distance": 1.7503321090500588,
+          "half_width": 1.75,
+          "inside": false,
+          "height_error": 0.0018806075677275658,
+          "queries": 51
+        },
+        "dense_nearby_minimum": {
+          "s": 30.24755859375,
+          "center": [
+            91.1591796875,
+            16.9808406829834,
+            0.0
+          ],
+          "distance": 1.7503321090500588,
+          "half_width": 1.75,
+          "inside": false
+        }
+      }
+    ],
+    "new_controls": 0,
+    "new_world_ticks": 0
+  },
+  "interpretation": "The saved256raster missed an interior narrow lane-predicate gap;its five samples are all inside while the retained actual footprint corner is outside the indexed union. Read-only engine rays label the same ground Roads. This is a measurement/model disagreement,not proof of a repaired controller or legal drivable swept body.",
+  "original_v4_result": "OUT_OF_BOUNDS_RETAINED; no rescoring or threshold changes",
+  "new_policy_controls": 0,
+  "new_optimizer_updates": 0,
+  "limits": "Offline map queries and separately owned-server read-only semantic rays only. Current frozen evaluations remain on originalv4geometry. Any future geometry change requires a new declared common environment version and independent validation;do not attribute it to PPO."
+}

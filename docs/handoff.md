@@ -4,9 +4,19 @@
 
 ## 唯一当前物理作业：补齐旧静态对照
 
-协调器38744，工具session33086，execution `runs/static_remainder_after_reference_v4_execution_20261103`；当前batch `D:/ThesisNativeArchive_20261103/20261103_static_H0_remaining_remainder`，worker66632（创建15:55:41）、guard18204。16:17心跳case5/actions40，正在第6/8场，不是已完成6场。入口 `scripts/run_native_static_remainder.py` 已启动，勿重跑。完成H0缺证据的原case4..11后，自动执行未开始的H_teacher全部12场；零学习、固定模型及原物理版本，逐方法raw/起点NN/严格发动机回执核验，有限墙钟、零自动重试。
+协调器38744，工具session33086，execution `runs/static_remainder_after_reference_v4_execution_20261103`；H0缺项8场已完整结束并通过raw/全部起点NN/严格发动机回执，原worker66632/guard18204已结束。当前batch `D:/ThesisNativeArchive_20261103/20261103_static_H_teacher_remainder`，worker52508（16:32:47）、guard64696，owned server33076；17:24心跳case11/actions40，正在最后一场。入口 `scripts/run_native_static_remainder.py` 已启动，勿重跑。已接续执行H_teacher全部12场；零学习、固定模型及原物理版本，逐方法raw/起点NN/严格发动机回执核验，有限墙钟、零自动重试。
 
 旧H完整12场为3成功、8超时、1越界、8306控制，raw及12起点NN审计均通过，不重跑。旧H0虽心跳曾到case5，损坏gzip仅保留case0..3完整证据：2成功、2超时、2462控制。case4终止丢失，故必须补case4..11共8场；所有损坏文件保留，没有合成evaluation.json。公开 `reports/native_static_interrupted_prefix_20261103.json`，审计 `scripts/audit_native_torn_static_prefix.py`。独立D盘准备夹具通过launcher -ValidateOnly，已标abandoned防止误启动，见 `reports/native_static_remainder_preparation_validation_20261103.json`。
+
+## 旧H/H0静态全12结果与独立失败解剖（17:25）
+
+`reports/native_static_H_H0_recovered_complete_20261103.json` 及 `scripts/analyze_native_static_recovered_pair.py` 已实际完成。H3/12（8deadline/1bounds），H04/12（7deadline/1bounds），完整case控制8306/7761。H0仅组合原已核验case0..3与新case4..11，模型/归一化字节、校准、所有冻结源、route/hazard一致；原4起点独立NN重建也通过。H0已知消耗至少7850控制（含未完整保留的尾段），未知尾部仍披露。当前是旧4705输入模型，不是新context模型，不证明反馈收益。
+
+共同case4中，两方法101帧state及command逐位相同，11次action均26，首次plan成功后10次reference_reused，MPC全部solved，无planner/MPC失败或干预，但v4Driving足迹探测一角点miss。不能将全部失败归为NN切换参考。进一步离线复核：模型道路余量约1.194m，该实际角点与模型车身角点仅3.14微米差，却被栅格标可行驶；同哈希本地OpenDRIVE和同一冻结lane_projection算法复现该点非Driving、五个栅格采样均Driving，单格17x17采样中15点非Driving。扩大同lane局部s搜索未找回该点，不能归因于小范围投影搜索。
+
+只读引擎射线在同点和四周±2cm共5点均返回Roads；已核验当前owned server33076创建时间/进程、端口及Map哈希，未调用tick/control/spawn。它说明lane近似与road mesh存在分歧，不证明车道合法性或连续扫掠安全。原v4 out_of_bounds统计和所有失败均不改。不得通过增大容差或重算旧分数达标。若后续修复geometry，须新环境版本、全方法共享、另行实际验证，并区分工程收益与PPO收益。当前新context评估仍按v4原几何冻结运行。
+
+可复核证据 `reports/native_static_shared_road_disagreement_20261103.json`，便携输入 `protocols/native_static_case4_road_disagreement_input_20261103.json`，脚本 `scripts/diagnose_native_road_boundary37.py`（只加载本地Map无Client）、`scripts/probe_native_ground_surface37.py`（保留只读owned句柄，仅语义射线）。完整原始探针与密集采样在D:/ThesisNativeArchive_20261103/road_boundary_probe_20261103，未改CARLA安装资源、环境或当前物理actor。
 
 ## 修复后的reference评估已排队，尚未执行
 
