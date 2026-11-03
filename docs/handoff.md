@@ -30,6 +30,18 @@ C盘约13GiB空余，static准备13GiB/运行保护12GiB。四份已完成旧H/H
 
 `navstack/reference_context.py`新增独立原型：31个候选是否对应当前仍有效参考的bit，以及零初始化可学习logit系数。没有动作替换、强制保持或新mask。10项合成生命周期/梯度测试通过。**尚未接入环境、策略或原生训练**，不当作已修复模型；当前frozen worker和模型均未变。若完整对照继续显示这种问题，下一项有依据的修改是明确版本化参考上下文观测与匹配H/H0策略，验证初始权重迁移、归一化及新实际PPO；不要偷偷改现有4705维权重语义或把该原型包装为已训练方法。
 
+## 参考上下文新版本（13:19）：已接入，未开始原生训练
+
+`navstack/reference_context_policy.py`追加31位，总4736输入；actor系数及critic新增项均为零初始化。真实H/H0各24起点的概率/价值逐位一致，30个旧Adam状态和原RNG字节保留，新两个参数状态为空。合成PPO保存/加载/继续更新通过。初始化文件位于 `runs/native_reference_context_initializers_20261103`。
+
+新批次 `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_v2`（repo同名runs路径是junction）。447冻结源文件，输入校验通过。每方法请求10240真实控制，最大319超出；TRAIN48、零新监督、固定低层；阶段训练后端点评估PENDING。代码只有显式reference_context版本字段才启用，不改变当前static冻结代码。
+
+队列 `runs/reference_context_native_v2_execution_20261103`，PID72736/session86511，入口 `runs/queue_reference_context_native_v2_20261103.py`，正在持有31384确切句柄等待当前static结束。随后检查owned_empty清理、完整CPU零失败、源哈希，自动启动新训练。执行结束自动核验发动机回执及32个Adam状态推进、RMS及学习系数；不宣称未执行的端点评估。
+
+完整CPU首次1269通过/1失败（cadence overlay文本锚点不兼容新元数据）；修复后第二轮1270通过/1跳过/4CARLA排除，214.35s，XML `D:/ThesisNativeArchive_20261103/reference_context_cpu_v2.xml`。旧v1批次及observer49812未训练，被明确替换，原失败XML和superseded_before_training.json保留。
+
+下一项必须补齐context-aware冻结推理审计，待当前static结束才可修改绑定审计入口。初始参考为空可以追加31零，完整序列则须重建实际参考；旧4705审计不可直接用于4736策略。H0同时隐藏旧反馈及新context，不隔离新项本身的训练贡献。准备证据：`reports/native_reference_context_preparation_20261103.json`。当前尚无新版本CARLA性能结果。
+
 ## 后续仍须推进
 
 先完成当前12静态对照和审计，判定新TRAIN上的泛化、PPO及反馈是否有实际改善；H/H0在旧24同为24/24本身没有新增反馈效益。不要重复失败B1观测残差/同数据拟合。五种子基础学习/训练充分与完整预算公平对照、PPO对强B3贡献、可解释协作消融以及120NEW去重最终条件仍缺，目标和门槛不降低。旧H异步训练与当前同步训练历史必须区分。B1可完整任务较弱，要求基本运动、实现正确、充分合理训练，不能要求达到H的80%门槛。

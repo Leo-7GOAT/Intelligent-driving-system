@@ -337,6 +337,16 @@ def camera_evaluation_mode(protocol):
 def run(batch):
     batch = Path(batch).resolve()
     protocol = json.loads((batch/"protocol.json").read_text(encoding="utf-8"))
+    context=protocol.get('reference_context')
+    if context is not None:
+        from navstack.reference_context_policy import VERSION,ReferenceContextObservationMixin,ReferenceContextVecNormalize
+        if (context!={'version':VERSION} or not set(protocol['methods'])<=set(('H','H0'))
+                or not protocol.get('shared_endpoint_mask_v1') or not protocol.get('reference_reuse')
+                or set(protocol.get('recovery',{}))!=set(protocol['methods'])):
+            raise ValueError('Reference context requires a versioned matched saved H/H0pair')
+        class ContextRecordedRoadEnv(ReferenceContextObservationMixin,RecordedRoadEnv):pass
+        environment_class=ContextRecordedRoadEnv
+    else:environment_class=RecordedRoadEnv
     record_camera=camera_evaluation_mode(protocol)
     jobs = registered_jobs(protocol)
     for relative, digest in protocol["source_hashes"].items():
@@ -362,7 +372,8 @@ def run(batch):
             output = batch/job_name
             output.mkdir()
             write_json(output/"config.json", {"env": config.to_dict(), "signature": signature(config),
-                "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]})
+                "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"],
+                **({'observation_encoding':context} if context is not None else {})})
             if record_camera:
                 output_config=json.loads((output/'config.json').read_text(encoding='utf-8'))
                 output_config.update(record_camera=True,policy='learned_PPO',
@@ -374,7 +385,7 @@ def run(batch):
             vec = None
             recorder = None
             try:
-                raw = DummyVecEnv([lambda: configure_planner_memo(RecordedRoadEnv(config, client, cases, output), protocol)])
+                raw = DummyVecEnv([lambda: configure_planner_memo(environment_class(config, client, cases, output), protocol)])
                 raw.seed(protocol["seed"])
                 recovery=protocol.get('recovery',{}).get(job_name)
                 if recovery:
@@ -417,6 +428,11 @@ def run(batch):
                 if (model.n_steps != rollout_actions or model.n_epochs != protocol['ppo_epochs'] or
                         model.batch_size!=protocol.get('ppo_batch_size',32)):
                     raise ValueError('Restored learner differs from registered rollout/epoch schedule')
+                if context is not None:
+                    if (getattr(model.policy,'reference_context_version',None)!=VERSION
+                            or model.policy.reference_ablated!=(method=='H0')
+                            or not isinstance(vec,ReferenceContextVecNormalize)):
+                        raise ValueError('Saved policy/normalizer lacks the registered reference schema or ablation')
                 configure_continuation_normalization(vec,protocol,recovery)
                 if protocol.get('fresh_cadence_experiment') and recovery is not None:
                     raise ValueError('Cadence diagnostic must use fresh weights')

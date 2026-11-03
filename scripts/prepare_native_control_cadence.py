@@ -59,8 +59,10 @@ def worker_overlay(original):
         '    from navstack.control_cadence import configure_cadence\n'
         '    configure_cadence(config,protocol,method)\n    return config')
     changed=''.join(lines[:function.lineno-1])+body+''.join(lines[function.end_lineno:])
-    before='"seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]})'
-    after='"seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"], "deployment_control_cadence": protocol["deployment_control_cadence"]})'
+    # Match the metadata entries,not the closing delimiter:versioned workers
+    # may append other declared metadata without changing this cadence hook.
+    before='"seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"]'
+    after=before+', "deployment_control_cadence": protocol["deployment_control_cadence"]'
     if changed.count(before)!=1:raise ValueError('Unknown native resolved-config record')
     changed=changed.replace(before,after)
     def without_profile(text):

@@ -1,0 +1,252 @@
+{
+  "version": "appended_reference_context_v1",
+  "status": "MIGRATED_AND_QUEUED_NOT_NATIVE_TRAINED",
+  "methods": {
+    "H": {
+      "parent": "20261102T143204721793Z_native_diverse_H_H0_PPO10240",
+      "parent_checkpoint": "checkpoint_000010240",
+      "old_model_sha256": "5898c136b82b86d10f94fdc3a51418d9950bc4299563dbfcdf911da5455b7649",
+      "new_model_sha256": "bfc075d8dd8afaeacd33cd9f170abbbea894d620c3f24939f5fb30e14ee0a87c",
+      "normalization_sha256": "3b5162dbd17833c4d52fca23abc32f6bf886e1badc1c67cd1f97a5a9f7991c5d",
+      "RNG_bytes_exact": true,
+      "original_Adam_states_retained": 30,
+      "new_empty_parameter_states": 2,
+      "all24measured_start_probabilities_values_exact": true,
+      "measured_starts": [
+        {
+          "case_id": 0,
+          "action": 26
+        },
+        {
+          "case_id": 1,
+          "action": 26
+        },
+        {
+          "case_id": 2,
+          "action": 26
+        },
+        {
+          "case_id": 3,
+          "action": 26
+        },
+        {
+          "case_id": 4,
+          "action": 26
+        },
+        {
+          "case_id": 5,
+          "action": 26
+        },
+        {
+          "case_id": 6,
+          "action": 26
+        },
+        {
+          "case_id": 7,
+          "action": 26
+        },
+        {
+          "case_id": 8,
+          "action": 26
+        },
+        {
+          "case_id": 9,
+          "action": 26
+        },
+        {
+          "case_id": 10,
+          "action": 26
+        },
+        {
+          "case_id": 11,
+          "action": 30
+        },
+        {
+          "case_id": 12,
+          "action": 26
+        },
+        {
+          "case_id": 13,
+          "action": 26
+        },
+        {
+          "case_id": 14,
+          "action": 26
+        },
+        {
+          "case_id": 15,
+          "action": 30
+        },
+        {
+          "case_id": 16,
+          "action": 26
+        },
+        {
+          "case_id": 17,
+          "action": 26
+        },
+        {
+          "case_id": 18,
+          "action": 26
+        },
+        {
+          "case_id": 19,
+          "action": 26
+        },
+        {
+          "case_id": 20,
+          "action": 26
+        },
+        {
+          "case_id": 21,
+          "action": 26
+        },
+        {
+          "case_id": 22,
+          "action": 26
+        },
+        {
+          "case_id": 23,
+          "action": 26
+        }
+      ],
+      "observation_shape": [
+        4736
+      ],
+      "new_controls": 0,
+      "new_updates": 0
+    },
+    "H0": {
+      "parent": "20261103T043242Z_native_recovery",
+      "parent_checkpoint": "checkpoint_000002327",
+      "old_model_sha256": "1529a3d5e3b0dcdbc597434097c05790ba612eab2929088c9320ee4a1c005f23",
+      "new_model_sha256": "3472b71a988bc9166e2938c284a56e183b1d02803243375040d47bb023e33a4c",
+      "normalization_sha256": "b9cdd85724a1c949e62f143f01ca0e577d98573e680a1dfa7b019344ee2234a7",
+      "RNG_bytes_exact": true,
+      "original_Adam_states_retained": 30,
+      "new_empty_parameter_states": 2,
+      "all24measured_start_probabilities_values_exact": true,
+      "measured_starts": [
+        {
+          "case_id": 0,
+          "action": 26
+        },
+        {
+          "case_id": 1,
+          "action": 26
+        },
+        {
+          "case_id": 2,
+          "action": 26
+        },
+        {
+          "case_id": 3,
+          "action": 26
+        },
+        {
+          "case_id": 4,
+          "action": 26
+        },
+        {
+          "case_id": 5,
+          "action": 26
+        },
+        {
+          "case_id": 6,
+          "action": 26
+        },
+        {
+          "case_id": 7,
+          "action": 26
+        },
+        {
+          "case_id": 8,
+          "action": 26
+        },
+        {
+          "case_id": 9,
+          "action": 26
+        },
+        {
+          "case_id": 10,
+          "action": 26
+        },
+        {
+          "case_id": 11,
+          "action": 26
+        },
+        {
+          "case_id": 12,
+          "action": 26
+        },
+        {
+          "case_id": 13,
+          "action": 26
+        },
+        {
+          "case_id": 14,
+          "action": 26
+        },
+        {
+          "case_id": 15,
+          "action": 26
+        },
+        {
+          "case_id": 16,
+          "action": 26
+        },
+        {
+          "case_id": 17,
+          "action": 26
+        },
+        {
+          "case_id": 18,
+          "action": 26
+        },
+        {
+          "case_id": 19,
+          "action": 26
+        },
+        {
+          "case_id": 20,
+          "action": 26
+        },
+        {
+          "case_id": 21,
+          "action": 26
+        },
+        {
+          "case_id": 22,
+          "action": 26
+        },
+        {
+          "case_id": 23,
+          "action": 26
+        }
+      ],
+      "observation_shape": [
+        4736
+      ],
+      "new_controls": 0,
+      "new_updates": 0
+    }
+  },
+  "CPU": {
+    "tests": 1271,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "junit_sha256": "917610e2e6304bf298e50664c3cf9b64f29fcd6e31b3749e15fa92fa8d7c27e7"
+  },
+  "registered_batch": "20261103_reference_context_TRAIN48_PPO10240_v2",
+  "protocol_sha256": "e61d13353238f332cde70af57a6a271df21cfd32a9055b16588f591535fba3dc",
+  "requested_native_controls_each": 10240,
+  "source_snapshot_files": 447,
+  "new_native_controls_so_far": 0,
+  "new_supervised_updates": 0,
+  "new_final_conditions": 0,
+  "scope": "4705original inputs plus31reference bits. Zero-initialized actor/critic additions retain24measured-start distributions and values each,30Adamstates and RNG bytes. Two new parameter states start empty. H0hides all feedback;not a context-only training ablation.",
+  "earlier_failed_CPU_receipt_retained": true,
+  "unstarted_v1_observer_superseded": true,
+  "research_acceptance": "UNMET"
+}
