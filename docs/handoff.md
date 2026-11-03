@@ -1,16 +1,32 @@
-# 当前接续状态（2026-11-03 12:36）
+# 当前接续状态（2026-11-03 12:49）
 
-完整目标与验收标准不变，研究尚未通过；真实执行和证据保留优先。不重建项目，不恢复瞬移环境，不启动新代理。
+目标不变，整体研究验收UNMET。继续当前分支，不重建项目、不恢复瞬移、不新增子代理。
 
-## 当前实际运行：只续H0，不重跑H
+## 唯一当前物理作业：训练后全部12静态对照
 
-原pair `runs/20261102T143204721793Z_native_diverse_H_H0_PPO10240` 外部进程丢失，原因未知。原worker42136、guard64188、server及所有旧队列50820/1732均已由当前系统进程检查确认不存在，2100..2102无监听。原H完整结束：10467训练控制/330Adam、已知VAL24/24、零不安全；H原始审计已通过10467训练+7994评测帧。原H0仅保存7913控制/250Adam，心跳和可读记录到9556控制/300Adam；至少1643未保留控制和50次未保留Adam，未知尾段保留，不能算权重已更新。
+execution `runs/H_H0_recovered_static12_disk_ready_execution_20261103`，协调器31384/工具session94616，batch `runs/20261103T044757476793Z_native_static_H_H0_teacher_transfer`，phase frozen_native，正在真实CARLA执行。不要重复启动。顺序H_PPO、H0_PPO、零PPO教师H_teacher；全12新static TRAIN条件均保留，包括地图模型不连通case14。固定7200秒、零重试、零学习、零新最终条件；结束后自动逐方法原始帧/12起点NN/严格传送审计。
 
-现恢复batch `runs/20261103T043242Z_native_recovery`，工具session25797，实际worker59172/guard42916；原checkpoint模型/Adam/RMS/RNG哈希核验，H0剩余请求2327控制，完整24已知VAL自动跟随。累计目标lineage30779（20539+10240），恢复原预算、不从头训练。恢复器新增显式--additional-budget避免误把10240新增预算当累计上限；9项相关检查通过。之前失败准备043157目录保留为未注册/未执行，原父batch已唯一注册到043242，不要重复恢复。
+入口 `python scripts/run_native_static_policy_contrast.py --execution runs/H_H0_recovered_static12_disk_ready_execution_20261103 --pair runs/20261103T043242Z_native_recovery --h-parent runs/20261102T143204721793Z_native_diverse_H_H0_PPO10240 --wall-seconds 7200`。这是已经启动的入口，勿重跑。两个训练后神经策略保持其当前同步/停车训练低层，零PPO教师明确是冻结迁移。不是五seed正式结论。期间不修改static评测入口及三个审计入口；worker/source与模型都已冻结。
 
-后续队列 `runs/H_H0_recovered_postlearning_v2_execution_20261103`，PID68268/工具session80599，入口私有 `runs/finish_H0_recovery_and_static_v2_20261103.py`。持有确切H0进程句柄等待结束，随后H0逐帧/24起点/严格传送审计，再调用复用的static评测入口跑全部12static条件：H来自原已完整审计方法，H0来自恢复batch，教师来自原零PPO初始化。static执行目录 `runs/H_H0_recovered_static12_execution_20261103`，7200秒固定预算，零重试、零新学习、零最终条件。运行期间别修改root static评测入口或三个审计入口，均已绑定哈希。原observer55320仅等待阶段被替换，记录observer_replaced_before_evaluation；没有中断实际训练。
+## H/H0真实适配与24场验证：已经完成
 
-C盘当前约13GiB空余，static准备门槛13GiB，运行保护12GiB，不动旧junction。完整预算和恢复证据见 `reports/native_H_H0_diverse_recovery_registration_20261103.json`。H与H0历史控制总数/监督/硬件版本必须披露，不包装为全部预算公平或五seed结论。
+H原batch `20261102T143204721793Z_native_diverse_H_H0_PPO10240` 的方法H完整保留：10467新增训练控制、330Adam、24/24成功且零不安全，10467训练帧+7994评测帧核验。
+
+H0原进程外部丢失，原因未知。持久化7913控制/250Adam，末次可读9556控制/300Adam；9556-7913=1643未保留控制，50次Adam未保留，未知尾部保留。原H没有重跑。
+
+H0恢复batch `20261103T043242Z_native_recovery` 已退出0并完成owned_empty_server_stopped：新增2540控制、80Adam、完整24/24且零不安全，7966评测控制，原始帧/24起点/严格发动机传送全通过。合计保留课程10453控制/330Adam，已知消耗至少12096控制。两个方法的30Adam参数状态均从原初始各推进330，actor16/critic14张量变化，RMS均完全相同。完整执行分析脚本与报告：`scripts/analyze_native_diverse_recovered_pair.py`、`reports/native_H_H0_diverse_recovered_complete_20261103.json`。
+
+恢复器的--additional-budget将原20539+10240映射到累计30779，从28452只补请求2327；实际一轮超出213步，仍在注册319最大超出内。16项回归通过，修复已推送d0c9fb1。原prepared失败043157目录标为未注册未执行，原pair唯一恢复登记指向043242，不要再恢复原pair。旧observer68268/session80599已经在static准备时受13GiB门槛拦下，未开始那一批物理世界；失败执行目录 `H_H0_recovered_static12_execution_20261103`保留。当前另名disk_ready才是实际新启动作业。
+
+## 存储与已结束观察器
+
+C盘约13GiB空余，static准备13GiB/运行保护12GiB。四份已完成旧H/H0cohort共1,069,061,697字节、3989文件逐文件Move-Item到D:/ThesisNativeArchive_20261103，移动前后SHA256一致；只移除验证为空的原目录，不递归删除。原路径现在是junction，禁止递归删除/移动这些路径或旧prerelease junction。公开receipt `reports/native_completed_artifact_relocation_20261103.json`。此前递归删除提案被自动审核拒绝，实际改用了上述逐文件移动安全方式。
+
+不要触碰Desktop/papper其他项目。原协调器50820、1732、旧worker42136/guard64188等均已确认不存在；恢复59172/42916已正常结束。观察器55320仅等待时被替换，记录保留，未中断物理训练。工具session25797、80599终态可核验但勿重新启动。
+
+## 后续仍须推进
+
+先完成当前12静态对照和审计，判定新TRAIN上的泛化、PPO及反馈是否有实际改善；H/H0在旧24同为24/24本身没有新增反馈效益。不要重复失败B1观测残差/同数据拟合。五种子基础学习/训练充分与完整预算公平对照、PPO对强B3贡献、可解释协作消融以及120NEW去重最终条件仍缺，目标和门槛不降低。旧H异步训练与当前同步训练历史必须区分。B1可完整任务较弱，要求基本运动、实现正确、充分合理训练，不能要求达到H的80%门槛。
 
 ## 本轮已完成并核验
 
