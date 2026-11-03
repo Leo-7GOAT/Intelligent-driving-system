@@ -96,11 +96,36 @@ def audit(batch):
             for filename,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')]:
                 assert hashlib.sha256((path.parent/filename).read_bytes()).hexdigest() == saved[key]
             checkpoints.append({'folder': path.parent.name, 'physics_steps': saved['physics_steps']})
-        methods[method] = {'state': 'complete' if (folder/'summary.json').exists() and (folder/'evaluation.json').exists() else 'interrupted',
+        training_only_complete = False
+        if (protocol.get('deterministic_training_route_evaluation') is False
+                and not protocol.get('evaluation_only') and (folder/'summary.json').exists()
+                and (folder/'latest_checkpoint.json').exists() and not errors and not opt_error and optimizations):
+            summary = json.loads((folder/'summary.json').read_text(encoding='utf-8'))
+            latest = json.loads((folder/'latest_checkpoint.json').read_text(encoding='utf-8'))['folder']
+            budget = protocol.get('method_budgets', {}).get(method, protocol.get('controlled_budget_per_method'))
+            if Path(latest).name != latest:
+                raise ValueError('Invalid saved training endpoint path')
+            saved = next((c for c in checkpoints if c['folder'] == latest), None)
+            if saved is not None:
+                metadata = json.loads((folder/latest/'metadata.json').read_text(encoding='utf-8'))
+                previous_controls = optimizations[-2].get('physics_steps') if len(optimizations) > 1 else 0
+                training_only_complete = (type(budget) is int and budget > 0
+                    and summary.get('reload_exact') is True and summary.get('stopped_reason') is None
+                    and type(previous_controls) is int and 0 <= previous_controls < budget
+                    and budget <= count == summary.get('physics_steps')
+                    and all(metadata.get(key) == summary.get(key)
+                            for key in ('physics_steps', 'actions', 'optimizer_steps'))
+                    and all(optimizations[-1].get(key) == summary.get(key)
+                            for key in ('physics_steps', 'optimization_phases', 'optimizer_steps')))
+        complete = training_only_complete or ((folder/'summary.json').exists() and (folder/'evaluation.json').exists())
+        methods[method] = {'state': 'complete' if complete else 'interrupted',
             'readable_trace_controls': count, 'trace_errors': errors, 'optimization_error': opt_error,
             'last_optimization': {k:optimizations[-1][k] for k in ('physics_steps','optimization_phases','optimizer_steps')} if optimizations else None,
             'consumed_controls_lower_bound': max(count, heartbeat['physics_steps'], max((r['physics_steps'] for r in optimizations), default=0)),
             'checkpoints': checkpoints, 'unknown_unflushed_tail': not (folder/'summary.json').exists()}
+        if training_only_complete:
+            methods[method]['training_only_endpoint_retained'] = True
+            methods[method]['endpoint_evaluation'] = 'NOT_EXECUTED'
     result = {'epoch': time.time(), 'scope': 'Readable-prefix audit only; absent footer/tail is not fabricated or silently repaired. OS liveness must be separately checked before recovery.',
         'batch': batch.name, 'methods': methods, 'bridge_streams': evidence}
     target = batch/'interruption_audit.json'

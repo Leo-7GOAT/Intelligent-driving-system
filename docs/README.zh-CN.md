@@ -9,7 +9,11 @@
 
 最新完成的 B1 复习课程从既有真实 CARLA 策略开始，模型、Adam、RMS 和 RNG 初始字节全部保持一致，新增 **10,240 个实际 PPO 控制步、320 次 Adam 更新**，没有新增监督。基础道路 **4/4**，24 个已知开发条件 **15/24**：弯道/静态/行人分别 6/3/6（各8场），7次越界、2次碰撞。同预算但没有复习原基础道路的课程在基础测试为3/4。复习改变的是 TRAIN 暴露顺序和重复次数，没有增加独立场景数量。这只是单种子开发证据。[完整训练与验证审计](../reports/native_B1_matched_rehearsal_complete_20261102.json)。
 
-冻结 H/H0/教师迁移对照已提前中止，保留9场已有终止记录、6,082个可读实际控制和未知尾段，不宣称完整比较。[中止记录与逐帧核验](../reports/native_static_transfer_early_stop_20261102.json)。H/H0真实适配已完成，24个已知开发条件均为 **24/24，零不安全回合**；各保留330次新增Adam更新，新增保留控制分别10467/10453。H0恢复时至少1643个已消耗控制和50次Adam未保留，未知尾段继续披露。相同成绩尚不能证明反馈收益。[完整逐帧与学习状态核验](../reports/native_H_H0_diverse_recovered_complete_20261103.json)。已启动训练后全部12个静态TRAIN条件对照，属于单种子开发诊断。地图模型中一条不连通条件继续保留在训练与旧统计中。[几何诊断](../reports/native_diverse_TRAIN_static_geometry_diagnostic_20261102.json)、[当前状态](handoff.md)。完整CPU回归1260通过/1跳过，后续4项新协议检查也已通过。
+H/H0真实适配已完成，24个已知开发条件均为 **24/24，零不安全回合**；各保留330次新增Adam更新，新增保留控制分别10467/10453。H0恢复时至少1643个已消耗控制和50次Adam未保留，未知尾段继续披露。相同成绩尚不能证明反馈收益。[完整核验](../reports/native_H_H0_diverse_recovered_complete_20261103.json)。
+
+之后的12场静态TRAIN对照因磁盘保护终止。H完整保留 **3成功、8超时、1越界**；H0只有前4场保留完整可核验证据（2成功、2超时），剩余8场及未开始的教师12场已另行排队。损坏gzip与未知尾部保留，不推断缺失成绩，也不重跑已核验回合。[部分证据](../reports/native_static_interrupted_prefix_20261103.json)。零初始化的可学习参考上下文版本正在真实PPO训练，尚无新增性能成绩。[版本与失败成本](../reports/native_reference_context_restart_20261103.json)、[当前执行状态](handoff.md)。
+
+最近完整本地CPU回归1272通过、1跳过、4项CARLA排除；后续恢复和逐帧审计专项检查另行记录。[对应源版本的GitHub CPU验证](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41590243732)通过。新增只读审计已核对两批B1合计20480个既有训练控制、重置世界步及奖励累计，不构成新增训练。[凭证](../reports/native_training_only_raw_verification_20261103.json)。
 
 [五种子 B1 扩展预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1)的69项资产已公开下载重建：151,660个控制帧、120个初始动作及5张图表均核验一致。[公开复现凭证](../reports/native_B1_broader_public_download_verification_20261102.json)。教师、恢复采集和失败的离线观测修正均已结束，不要重复启动。
 
@@ -64,4 +68,4 @@ python -m venv .venv
 
 决策周期仍有超时，同步仿真能运行不代表实时控制。无高速、量产或实车能力结论。[历史开发快照](README.zh-CN.development-history.md)、[MIT 许可](../LICENSE)、[第三方说明](THIRD_PARTY_NOTICES.md)。
 
-另已登记独立的 [36 条 TRAIN 教师采集](broader_TRAIN_teacher.md)，待当前队列结束后使用同步执行接口和完整强 B3 配置采集，再重建直接控制样本。旧 H/H0 TRAIN 日志按完整成功回合及执行回执严格筛选仅覆盖 31/36，未生成标签或拟合模型。新采集不含开发验证或最终条件，额外监督与物理成本单列。
+独立的36条TRAIN教师采集已结束，完整成功、失败和额外监督成本均保留；教师结果不等于PPO成绩，也不包含最终条件。[实际采集证据](../reports/native_B3_diverse_TRAIN_teacher_collection_20261102.json)。

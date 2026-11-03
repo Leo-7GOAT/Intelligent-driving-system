@@ -34,6 +34,10 @@ scale10 v3只是候选准备，启动时因v2占用端口而拒绝，没有serve
 
 此前真实适配H10467控制/330Adam、H0恢复后保留10453/330，均已知VAL24/24且0不安全，原始帧/24起点NN/严格传送已验证。H0已知真实消耗至少12096，含1643未保存控制/50未保存Adam及未知尾部。公开 `reports/native_H_H0_diverse_recovered_complete_20261103.json`。同一seed已知24条件不能证明新增反馈或PPO对强规则的优势。
 
+## 纯训练完成状态识别（14:45）
+
+`audit_interrupted_native.py` 现对没有evaluation.json的纯训练端点核对完整可读控制数、预注册预算、reload_exact、最终已核验checkpoint及末次optimizer计数；只在最后一轮首次跨过预算时标complete。不同方法可有不同rollout长度，不硬套H的319超出上限。它只表示学习状态已保留，明确endpoint_evaluation=NOT_EXECUTED。避免某方法已完成而另一方法中断时重复训练前者。两批已完成B1均已实际识别complete；相关中断/原始帧/外部进程恢复70项检查通过，新增含长rollout和多做一轮的6项检查通过。
+
 ## 纯训练原始帧审计（14:39）
 
 新增独立只读 `scripts/audit_native_training_only.py`，不改历史绑定审计入口。逐训练tick调用既有严格state/command/传感器证据校验，另核对所有applied控制完整覆盖、首帧与begin关系、注册TRAIN条件、累计reward_components、控制/动作计数、末次optimizer/最终checkpoint计数及reset+control世界步总账。已有两批B1实际训练各10240控制全通过（重置867/805步），源与各流哈希绑定，公开 `reports/native_training_only_raw_verification_20261103.json`。这些是已发生训练的核验，不是新增训练或评估。
