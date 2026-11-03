@@ -34,6 +34,12 @@ scale10 v3只是候选准备，启动时因v2占用端口而拒绝，没有serve
 
 此前真实适配H10467控制/330Adam、H0恢复后保留10453/330，均已知VAL24/24且0不安全，原始帧/24起点NN/严格传送已验证。H0已知真实消耗至少12096，含1643未保存控制/50未保存Adam及未知尾部。公开 `reports/native_H_H0_diverse_recovered_complete_20261103.json`。同一seed已知24条件不能证明新增反馈或PPO对强规则的优势。
 
+## v4 H学习端点已完成，H0正在训练（15:03）
+
+同一batch/worker63072没有重启，H已完成10511实际控制、1056决策、330Adam，超出请求10240共271步，低于预注册319最大值。模型f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff。独立加载原始初始化与最终模型，全部32Adam参数状态分别推进330，17actor/15critic张量均变化，RMS mean/var/count完全一致；新增actor参考系数从0变为0.0011252184631302953，scale1。公开 `reports/native_reference_context_H_learning_complete_20261103.json`。这是保存学习状态证明，完整训练帧审计/端点评估仍PENDING，不宣称性能增益。
+
+H0已在同一进程自动开始（15:03看到10控制/1决策），仍请求10240固定预算。当前不要重新训练H、不要重新启动batch，不触碰冻结源或执行中的模型。H0完成后原协调器会核验两模型学习状态与发动机回执，再启动已登记的static12/known24；只读训练帧审计观察器也在等待该worker整体正常结束。
+
 ## 纯训练完成状态识别（14:45）
 
 `audit_interrupted_native.py` 现对没有evaluation.json的纯训练端点核对完整可读控制数、预注册预算、reload_exact、最终已核验checkpoint及末次optimizer计数；只在最后一轮首次跨过预算时标complete。不同方法可有不同rollout长度，不硬套H的319超出上限。它只表示学习状态已保留，明确endpoint_evaluation=NOT_EXECUTED。避免某方法已完成而另一方法中断时重复训练前者。两批已完成B1均已实际识别complete；相关中断/原始帧/外部进程恢复70项检查通过，新增含长rollout和多做一轮的6项检查通过。
