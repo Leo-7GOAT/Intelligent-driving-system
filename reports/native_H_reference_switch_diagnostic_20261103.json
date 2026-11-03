@@ -1,0 +1,640 @@
+{
+  "batch": "20261103T044757476793Z_native_static_H_H0_teacher_transfer",
+  "method": "H_PPO",
+  "case_id": 0,
+  "source_sha256": "db5a034d2dab79424181630bd54e90e223b1abb3d4343e959d6ead0f72350a08",
+  "immutable_input_snapshot_sha256": "265b8e2422f8e5261ccdb4e66a501d503b97b9a88a9216132f2fdecbd30bb0d0",
+  "enclosing_live_trace_prefix_error": "EOFError: Compressed file ended before the end-of-stream marker was reached",
+  "reconstruction_actions": 24,
+  "events": [
+    {
+      "decision": 0,
+      "action": 26,
+      "previous_selection": null,
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": false,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 0.0
+    },
+    {
+      "decision": 1,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 0.5000000074505806
+    },
+    {
+      "decision": 2,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 1.0000000149011612
+    },
+    {
+      "decision": 3,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 1.5000000223517418
+    },
+    {
+      "decision": 4,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 2.0000000298023224
+    },
+    {
+      "decision": 5,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 2.500000037252903
+    },
+    {
+      "decision": 6,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 3.0000000447034836
+    },
+    {
+      "decision": 7,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 3.500000052154064
+    },
+    {
+      "decision": 8,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 4.000000059604645
+    },
+    {
+      "decision": 9,
+      "action": 30,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          23.7451361973571,
+          8.51902042478039,
+          0.09742513981581125
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 4.500000067055225
+    },
+    {
+      "decision": 10,
+      "action": 26,
+      "previous_selection": [
+        [
+          23.7451361973571,
+          8.51902042478039,
+          0.09742513981581125
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 5.000000074505806
+    },
+    {
+      "decision": 11,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 5.500000081956387
+    },
+    {
+      "decision": 12,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 6.000000089406967
+    },
+    {
+      "decision": 13,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 6.500000096857548
+    },
+    {
+      "decision": 14,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 7.000000104308128
+    },
+    {
+      "decision": 15,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 7.500000111758709
+    },
+    {
+      "decision": 16,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 8.00000011920929
+    },
+    {
+      "decision": 17,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 8.50000012665987
+    },
+    {
+      "decision": 18,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 9.00000013411045
+    },
+    {
+      "decision": 19,
+      "action": 22,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          30.88352477944938,
+          7.480279049817062,
+          0.25487631091775786
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 9.500000141561031
+    },
+    {
+      "decision": 20,
+      "action": 22,
+      "previous_selection": [
+        [
+          30.88352477944938,
+          7.480279049817062,
+          0.25487631091775786
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 10.000000149011612
+    },
+    {
+      "decision": 21,
+      "action": 22,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 10.500000156462193
+    },
+    {
+      "decision": 22,
+      "action": 22,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 11.000000163912773
+    },
+    {
+      "decision": 23,
+      "action": 2,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          28.11647155092429,
+          6.430797321049784,
+          0.18956087881167752
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "plan_failed",
+      "reconstructed_prepare_mode": "plan_failed",
+      "recorded_plan_status": "no_path",
+      "measured_time": 11.500000171363354
+    }
+  ],
+  "switches_away_from_reusable_reference": 5,
+  "observed_terminal": "deadline",
+  "new_controls": 0,
+  "new_updates": 0,
+  "limits": "Recorded static-state reconstruction only;no plant stepping or physical counterfactual. A reusable old reference is not proof that retaining it would complete the task. Not a full-batch score or a causal policy comparison.",
+  "prototype": {
+    "source": "navstack/reference_context.py",
+    "sha256": "9375b830a91f767044bad8fbd4b8c111344624d54adba27145fb144a28c8cc44",
+    "status": "UNIT_TESTED_NOT_INTEGRATED_OR_NATIVE_TRAINED",
+    "new_policy_shape_or_checkpoint_changes": 0,
+    "regression": "10reference-context/lifecycle tests passed"
+  }
+}
