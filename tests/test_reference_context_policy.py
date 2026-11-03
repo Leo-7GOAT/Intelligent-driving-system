@@ -17,7 +17,7 @@ class ContextFixture(ReferenceContextObservationMixin,RouteFixture):pass
 
 
 @pytest.mark.parametrize('ablated',[False,True])
-@pytest.mark.parametrize('gain_scale',[1.,10.])
+@pytest.mark.parametrize('gain_scale',[1.,10.,100.])
 def test_migration_retains_original_probabilities_values_adam_rms_and_survives_training_reload(tmp_path,ablated,gain_scale):
     torch.set_num_threads(1)
     cfg=EnvConfig.from_dict({**config(feedback='continuation').to_dict(),'route_goal_candidate':True,'reference_reuse':True})

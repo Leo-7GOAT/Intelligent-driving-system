@@ -34,6 +34,16 @@
 
 公开 `reports/native_reference_context_case0_switch_diagnostic_20261103.json`。完整90决策及CARLA begin不可变输入快照位于D:/ThesisNativeArchive_20261103/reference_case0_switch_bound_20261103.inputs.json，报告保存其SHA。当前物理批次仍未完成，gzip尾部EOF是正在写入的前缀状态，不冒充完整raw端点审计。首次在root源码下的诊断因reference policy的scale兼容代码与冻结源不同而正确拒绝；通过NAVSTACK_AUDIT_SOURCE_ROOT选择真实冻结实现后通过，未绕过源码检查、未改当前执行源。新增代码只读、零控制/零训练。
 
+## 单独H的scale100后续准备，尚未启动
+
+已补齐initializer/training/evaluation/course入口的H或H0子集支持，默认仍双方法；明确方法清单、预算及recovery必须相符，H单独评估仍保留完整12/24条件。course现在自动逐帧核验training-only raw并检查完整场景数。新training准备默认每320控制保存，避免再次在2560首次保存前损失学习。当前执行的旧源码与批次完全不动。
+
+`D:/ThesisNativeArchive_20261103/reference_scale100_H_initializer_20261103`已完成，仅H、scale100、gain仍初始化0。与当前v4 H的初始模型核对：32个参数张量、30个原Adam状态及超参数完全一致，RMS mean/var/count和RNG字节相同；24真实起点策略概率及价值一致。物理控制/新PPO/新监督/最终条件均0。已有H0学习不用重跑；可将当前已完成的scale1 H与这个候选做相同起点/请求预算的开发比较，历史损失和调参成本另计，不宣称匹配总开发消耗。
+
+真实D盘H-only准备与launcher -ValidateOnly通过459源。两个training_validation_only夹具均已写abandoned_before_launch，不能误启动。只保留可复用initializer；需当前完整端点结果后再决定创建新时限的真实训练batch并运行，当前没有排队或启动scale100训练。它是对decision19仅需额外0.02563logit但实际系数0.001125的最小学习尺度假设，不是硬选轨迹，不保证修复decision23或任何成功率。
+
+目标专项31通过（53.95秒），包括新增H-only全清单、拒绝空/重复/非法方法、scale100实际合成PPO训练保存加载；XML `D:/ThesisNativeArchive_20261103/selected_reference_cpu_20261103.xml`。公开证据 `reports/native_reference_scale100_selected_preparation_20261103.json`。新训练还没执行，不能写成新增原生学习证明。
+
 ## 新reference-context真实训练已经全部完成
 
 训练batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_v4` 已正常退出0、owned_empty_server_stopped、端口清空。原worker63072/guard40168已结束，不能重新训练这个父批次。H10511控制/1056决策/330Adam；H010513/1056/330，共21024实际训练控制。两方法32个Adam状态各从初始化推进330，RMS mean/var/count均完全一致。H模型f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff；H0模型4a7a222cb5ca0bef3903ab631e562166f63056ac8665b571931f3161d31b4cd3。

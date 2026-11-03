@@ -1,0 +1,39 @@
+{
+  "scope": "Prepared-only prospective reference-scale intervention;not native learning or driving performance",
+  "research_acceptance": "UNMET",
+  "initializer": "reference_scale100_H_initializer_20261103",
+  "initializer_proof_sha256": "adb13816834052e067f8555cf60035519a9e17509ea31905342e8eb8042f5714",
+  "baseline_initialization_model_sha256": "bfc075d8dd8afaeacd33cd9f170abbbea894d620c3f24939f5fb30e14ee0a87c",
+  "new_initialization_model_sha256": "244c078cd3a0dfe5b7e3637ed816ecc7463cb1130989d2b760d1512d5cd25b97",
+  "selected_methods": [
+    "H"
+  ],
+  "trained_methods": [],
+  "gain_scale_before": 1.0,
+  "gain_scale_after": 100.0,
+  "all_initial_policy_tensors_exact": 32,
+  "all_retained_Adam_states_exact": 30,
+  "optimizer_group_hyperparameters_exact": true,
+  "RMS_exact": true,
+  "RNG_bytes_exact": true,
+  "measured_start_probabilities_values_exact": 24,
+  "intended_requested_controls": 10240,
+  "checkpoint_every_controls": 320,
+  "comparison": "Original scale1 H versus scale100 H from identical tensors/Adam/RMS/RNG under the same TRAIN48 and fixed budget;existing H0 can be retained as an external ablation without repeating its completed training.",
+  "preflight": {
+    "source_files": 459,
+    "status": "INPUTS_VALIDATED_NOT_SERVER_PROBED",
+    "fixtures_abandoned_before_launch": true
+  },
+  "regression": {
+    "passed": 31,
+    "xml": "selected_reference_cpu_20261103.xml"
+  },
+  "new_controls": 0,
+  "new_updates": 0,
+  "new_auxiliary_updates": 0,
+  "new_final_conditions": 0,
+  "automatic_retries": 0,
+  "evidence": "Case0 decision19 required0.02563additional context logit;decision23required2.36494. Current effective learned coefficient0.00112522. Scaling the parameterization is a prospective PPO learning experiment,not a forced action or a demonstrated solution.",
+  "limits": "No new training queued. Start only after reviewing complete current endpoints. Historical failures and search costs remain charged;matched requested retained budgets do not erase infrastructure loss or tuning costs. No five-seed or final confirmation claim."
+}

@@ -10,18 +10,22 @@ from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
-def prepare(output,gain_scale=1.0):
+def prepare(output,gain_scale=1.0,methods=('H','H0')):
     import numpy as np
     import torch
     from navstack.config import EnvConfig
     from navstack.independent_clip_ppo import load_ppo
     from navstack.reference_context_policy import migrate_learner,VERSION
     from scripts.audit_native_policy_sequence import observation_env
+    methods=list(methods)
+    if not methods or len(set(methods))!=len(methods) or not set(methods)<=set(('H','H0')):
+        raise ValueError('Require unique selected H/H0 initializers')
     output=Path(output).resolve()
     if output.exists():raise FileExistsError('Preserve every explicit model migration')
     output.mkdir(parents=True);torch.set_num_threads(1);results={}
     sources={'H':ROOT/'runs/20261102T143204721793Z_native_diverse_H_H0_PPO10240',
              'H0':ROOT/'runs/20261103T043242Z_native_recovery'}
+    sources={method:sources[method] for method in methods}
     atomic_json(output/'registration.json',dict(version=VERSION,methods=list(sources),
         initial_effect='Two additional zero-initialized parameter tensors;all old learned tensors and Adam states retained',
         gain_scale=gain_scale,new_controls=0,new_PPO_updates=0,new_auxiliary_updates=0,source_sha256=sha(Path(__file__))))
@@ -85,4 +89,5 @@ def prepare(output,gain_scale=1.0):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True)
     p.add_argument('--gain-scale',type=float,default=1.0)
-    a=p.parse_args();prepare(a.output,a.gain_scale)
+    p.add_argument('--methods',choices=('H','H0'),nargs='+',default=['H','H0'])
+    a=p.parse_args();prepare(a.output,a.gain_scale,a.methods)

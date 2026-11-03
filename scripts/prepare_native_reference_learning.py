@@ -21,16 +21,17 @@ def prepare(output,initializers=None):
     if output.exists():raise FileExistsError('Preserve registered training budgets')
     initial=ROOT/'runs/native_reference_context_initializers_20261103' if initializers is None else Path(initializers).resolve()
     proof=read(initial/'complete.json')
-    if proof['status']!='INITIALIZERS_PREPARED_NOT_NATIVE_TRAINED' or set(proof['results'])!={'H','H0'}:
-        raise ValueError('Require both fully verified initializers')
+    methods=list(proof['results'])
+    if proof['status']!='INITIALIZERS_PREPARED_NOT_NATIVE_TRAINED' or not methods or not set(methods)<=set(('H','H0')):
+        raise ValueError('Require fully verified selected H/H0 initializers')
     parent=ROOT/'runs/20261103T043242Z_native_recovery';old=read(parent/'protocol.json');p=deepcopy(old)
     for name in ('native_validation','explicit_recovery_method_selection','recovery_budget_interpretation'):
         p.pop(name,None)
-    p.update(methods=['H','H0'],method_budgets={'H':10240,'H0':10240},controlled_budget_per_method=10240,
+    p.update(methods=methods,method_budgets={m:10240 for m in methods},controlled_budget_per_method=10240,
         evaluation_only=False,deterministic_training_route_evaluation=False,freeze_observation_statistics=True,
         record_initial_parameters=True,reference_context={'version':VERSION},
-        checkpoint_thresholds=[2560,5120,7680,10240],
-        scope='One canonical seed versioned4736-input H/H0actual TRAIN48course. New learned reference context,H0hides old feedback and reference context. Fixed current lowlevel,reward and categorical actions;zero new supervision. Not isolated context-only training ablation or final confirmation.')
+        checkpoint_thresholds=list(range(320,10241,320)),
+        scope='One canonical seed versioned4736-input selected '+','.join(methods)+' actual TRAIN48course. New learned reference context,H0when selected hides old feedback and reference context. Fixed current lowlevel,reward and categorical actions;zero new supervision. Not isolated context-only training ablation or final confirmation.')
     output.parent.mkdir(parents=True,exist_ok=True)
     if shutil.disk_usage(output.parent).free<16*1024**3:raise RuntimeError('Staging drive requires16GiBheadroom')
     output.mkdir();(output/'infrastructure').mkdir()

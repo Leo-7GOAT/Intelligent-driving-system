@@ -36,8 +36,11 @@ def prepare(parent,output,phase):
     require_finished_parent(parent)
     if output.exists():raise FileExistsError('Preserve each frozen endpoint evaluation')
     old=read(parent/'protocol.json')
-    if old.get('reference_context')!={'version':VERSION} or old['methods']!=['H','H0']:
-        raise ValueError('Require the registered learned reference-context pair')
+    methods=old['methods']
+    if (old.get('reference_context')!={'version':VERSION} or not methods
+            or len(set(methods))!=len(methods) or not set(methods)<=set(('H','H0'))
+            or set(old['method_budgets'])!=set(methods) or set(old['recovery'])!=set(methods)):
+        raise ValueError('Require registered selected learned reference-context methods')
     if phase not in ('static','known_validation'):raise ValueError('Unknown development partition')
     p=deepcopy(old);p.pop('freeze_observation_statistics',None)
     p.pop('lineage_targets',None);p.pop('native_validation',None)
@@ -60,7 +63,7 @@ def prepare(parent,output,phase):
     p['source_hashes'][worker]=sha(output/'source'/worker)
     name='scripts/audit_native_reference_inference.py'
     shutil.copy2(ROOT/name,output/'source'/name);p['source_hashes'][name]=sha(output/'source'/name)
-    for method in ('H','H0'):
+    for method in methods:
         folder=parent/method;summary=read(folder/'summary.json')
         budget=old['method_budgets'][method]
         if (summary['stopped_reason'] is not None or not budget<=summary['physics_steps']<budget+320
@@ -77,11 +80,11 @@ def prepare(parent,output,phase):
             unknown_unflushed_parent_tail=prior.get('unknown_unflushed_parent_tail',False),
             model_sha256=metadata['model_sha256'],normalization_sha256=metadata['normalization_sha256'])
     now=time.time();wall=14400 if phase=='static' else 3600
-    p.update(evaluation_only=True,controlled_budget_per_method=0,method_budgets={'H':0,'H0':0},
+    p.update(evaluation_only=True,controlled_budget_per_method=0,method_budgets={m:0 for m in methods},
         deterministic_training_route_evaluation=True,record_initial_parameters=False,checkpoint_thresholds=[],
         created_epoch=now,deadline_epoch=now+wall,
         resource_limits={**p['resource_limits'],'wall_seconds':wall,'automatic_retries':0},
-        scope='Frozen learned reference-context pair;complete '+phase+' development inventory only. No new learning,no final conditions.',
+        scope='Frozen learned reference-context '+','.join(methods)+';complete '+phase+' development inventory only. No new learning,no final conditions.',
         reference_context_endpoint=dict(phase=phase,original_teacher_static_case_ids=list(range(12,24)) if phase=='static' else None,
             new_PPO_updates=0,new_final_conditions=0,source_model_selection='Final predeclared training budget only'))
     atomic_json(output/'protocol.json',p)

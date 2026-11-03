@@ -76,6 +76,27 @@ def test_validation_keeps_all_separate_known_conditions(finished_course):
     assert p['reference_context_endpoint']['new_final_conditions'] == 0
 
 
+def test_selected_H_endpoint_preserves_full_inventory_without_repeating_H0(finished_course):
+    parent,output,_=finished_course
+    p=preparation.read(parent/'protocol.json')
+    p.update(methods=['H'],method_budgets={'H':10240},recovery={'H':p['recovery']['H']})
+    write(parent/'protocol.json',p)
+    preparation.prepare(parent,output,'static')
+    p=preparation.read(output/'protocol.json')
+    assert p['methods']==['H'] and p['method_budgets']=={'H':0}
+    assert set(p['recovery'])=={'H'} and not (output/'resume/H0').exists()
+    assert len(p['native_case_manifest']['cases'])==12
+
+
+@pytest.mark.parametrize('methods',[[],['H','H'],['B1']])
+def test_refuses_empty_duplicate_or_non_reference_method_selection(finished_course,methods):
+    parent,output,_=finished_course
+    p=preparation.read(parent/'protocol.json');p['methods']=methods;write(parent/'protocol.json',p)
+    with pytest.raises(ValueError,match='selected'):
+        preparation.prepare(parent,output,'static')
+    assert not output.exists()
+
+
 @pytest.mark.parametrize('fault', ['short_budget', 'wrong_saved_endpoint', 'stopped_training'])
 def test_refuses_an_endpoint_that_is_not_the_declared_finished_budget(finished_course, fault):
     parent, output, _ = finished_course

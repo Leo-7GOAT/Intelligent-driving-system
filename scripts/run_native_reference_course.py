@@ -46,10 +46,13 @@ def run(batch, execution):
         if sha(batch / 'protocol.json') != digest:
             raise ValueError('Registered protocol changed')
         delivery(batch, 'training_delivery')
+        env = dict(os.environ, NAVSTACK_AUDIT_SOURCE_ROOT=str(batch / 'source'), PYTHONIOENCODING='utf-8')
+        call([sys.executable, ROOT / 'scripts/audit_native_training_only.py', '--batch', batch,
+              '--output', batch / 'training_only_raw_audit.json'], 'training_raw', env=env)
         import numpy as np
         from navstack.independent_clip_ppo import load_ppo
         proofs = {}
-        for method in ('H', 'H0'):
+        for method in protocol['methods']:
             folder = batch / method
             summary = read(folder / 'summary.json')
             budget = protocol['method_budgets'][method]
@@ -94,7 +97,7 @@ def run(batch, execution):
             native(target, phase + '_native')
             env = dict(os.environ, NAVSTACK_AUDIT_SOURCE_ROOT=str(target / 'source'), PYTHONIOENCODING='utf-8')
             phase_results = {}
-            for method in ('H', 'H0'):
+            for method in protocol['methods']:
                 call([sys.executable, ROOT / 'scripts/audit_native_method_endpoint.py', '--batch', target,
                       '--method', method], phase + '_' + method + '_raw', env=env)
                 call([sys.executable, ROOT / 'scripts/audit_native_reference_inference.py', '--batch', target,
@@ -104,12 +107,14 @@ def run(batch, execution):
                       '--method', method, '--all-static-actions', '--output', target / method / 'static_action_inference.json'],
                      phase + '_' + method + '_static_actions', env=env)
                 episodes = read(target / method / 'evaluation.json')['episodes']
+                if len(episodes) != (12 if phase == 'static' else 24):
+                    raise ValueError('Incomplete registered development inventory')
                 phase_results[method] = dict(cases=len(episodes), successes=sum(e['success'] for e in episodes))
             delivery(target, phase + '_delivery')
             results[phase] = phase_results
             atomic_json(execution / (phase + '_complete.json'), dict(batch=str(target), results=phase_results))
-        atomic_json(execution / 'complete.json', dict(results=results, research_acceptance='UNMET',
-            scope='One seed known development only; H0 removes both old feedback and reference context'))
+        atomic_json(execution / 'complete.json', dict(results=results, methods=protocol['methods'],research_acceptance='UNMET',
+            scope='Selected one-seed known development only; no score inferred for unselected methods. H0 when selected removes both old feedback and reference context.'))
     except BaseException as error:
         atomic_json(execution / 'failure.json', dict(error=repr(error), epoch=time.time()))
         raise
