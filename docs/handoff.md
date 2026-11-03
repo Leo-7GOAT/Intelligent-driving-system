@@ -1,4 +1,4 @@
-# 当前接续状态（2026-11-03 19:24）
+# 当前接续状态（2026-11-03 20:06）
 
 目标不变，研究验收UNMET。继续当前分支，不重建、不恢复瞬移、不新增子代理。以下是实际已启动状态；继续前须复核OS进程身份，不能仅凭状态文件重启任务。不要触碰Desktop/papper其他项目进程。
 
@@ -9,6 +9,16 @@
 教师是896步行为克隆监督初始化、零PPO的神经网络策略，不是直接规则B3。与旧H/H0共享冻结源码、校准、环境、全部12物理条件；教师模型/归一化与原注册哈希完全一致，零新增学习。没有证据支持PPO收益，不得把该单seed开发对照包装为正式主结果。只读真实分析执行通过；篡改raw绑定、出现PPO更新、缺严格发动机回执三种负检查均被拒绝，无新驾驶。
 
 原损坏H0仅case0..3有完整证据，剩余case4..11已补齐。损坏文件及未知成本继续保留，没有合成evaluation.json，没有重跑已验证成功回合。公开 `reports/native_static_interrupted_prefix_20261103.json`。
+
+## 新版关闭端点的公开预发布与完整公开复现已完成
+
+v0.3.0-dev.20261103-reference-context，source commit f0fcba1e82ab0545989da00408a08644c5f77ad5，URL https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.3.0-dev.20261103-reference-context 。isPrerelease=true/isDraft=false，8资产均上传并经匿名HTTPS下载逐字节SHA核对，总52081782字节。模型/norm/raw原字节不变，辅助JSON路径转换7/6项有台账；没有CARLA安装/完整地图/SDK/环境。
+
+两个capsule分别616/638文件、21691425/28814284字节，SHA static=87a766612046fc5f6a3f72918eb32fff7cd4a46c722eacceae2fb183826129c2，known=cc47c7d24320e1428467b3982447a59b7cbe7c386870c687fdd029b59091618f。本地预发布重建通过后，从新的GitHub clone f0fcba1及匿名下载件再完整重建：32060控制/72起点/2611静态NN/strict engine/两PNG逐字节一致，复现receipt本身也与已发布receipt逐字节一致。不是新驾驶或新增训练seed。完整新本地环境重装未重复执行；依赖安装由clean GitHub CPU CI另验，当前使用既有locked3.11runtime。
+
+源码修复了旧复现器固定走4705审计器的缺口：按声明的context版本显式选reference审计；未知版本拒绝，额外重建全部静态动作、RMS不变及发动机回执。旧schema分支仍用原审计器。专项43通过7.39秒，CI41628896576成功1311通过/18跳过/4CARLA排除179.71秒。完整实例复现已完成，不要重复旧broader B1或这些端点全量重建。
+
+本地资产 D:/ThesisNativeArchive_20261103/reference_context_closed_endpoints_20261103；匿名下载 reference_context_public_download_20261103；新clone reference_context_public_checkout_20261103；完整公开重建 reference_context_public_static12_rebuild_20261103及reference_context_public_known24_rebuild_20261103，两个工具session6879/74600已退出0。公开凭证 `reports/native_reference_context_public_download_verification_20261103.json`。这些端点capsule不重复上游training-only raw/失败祖先，祖先成本仍在learning报告；当前scale100新H未包含或评分，研究验收仍UNMET。
 
 ## 旧H/H0静态全12结果与独立失败解剖（17:25）
 
@@ -22,7 +32,7 @@
 
 ## 唯一当前物理作业：scale100的单独H真实PPO
 
-执行协调器48660（18:25:46.148，venv父61344），execution `runs/reference_scale100_after_scale1_endpoints_execution_20261103`，现SELECTED_H_COURSE / course/native_training。batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_H`，worker18496（19:22:21.706，creation_epoch1793704941.706）、guard29560、owned shipping73216（19:22:04.806，launcher33060）。已实际保存首个320控制/10Adam；19:24 latest_checkpoint阈值1280的实际累计1578控制/50Adam，guard healthy。必须复核OS身份再观察，不能重复启动。
+执行协调器48660（18:25:46.148，venv父61344），execution `runs/reference_scale100_after_scale1_endpoints_execution_20261103`，现SELECTED_H_COURSE / course/native_training。batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_H`，worker18496（19:22:21.706，creation_epoch1793704941.706）、guard29560、owned shipping73216（19:22:04.806，launcher33060）。已实际保存首个320控制/10Adam；最新已保存阈值3520的实际累计3817控制/120Adam，guard healthy。必须复核OS身份再观察，不能重复启动。
 
 `reports/native_reference_scale100_first_saved_learning_20261103.json`验证固定checkpoint_000000320：32个Adam状态相对注册初始化各前进10，RMS mean/var/count完全一致，实际learned gain0.0002250900、scale100、有效logit0.0225090。它是已保存学习证明，不是完整原始训练帧审计、固定预算端点或性能成绩；不得挑该检查点做最终结果。请求10240控制/最大319overshoot/每320阈值保存/零新监督/零新最终条件，H0不重训。完整训练后自动raw/engine、再静态12和known24及NN审计，入口已经运行，不重跑。
 
@@ -56,7 +66,7 @@
 
 协调器48660（18:25:46.148，实际Python311；venv父61344），execution `runs/reference_scale100_after_scale1_endpoints_execution_20261103`，入口 `scripts/queue_native_reference_scale.py`。只读OwnedProcess句柄绑定前序40108创建时间1793694326.681/实际exe，前序完整结束及全部审计后已自动进入SELECTED_H_COURSE，目标D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_H已启动；当前只存在这个物理作业。身份文件与日志均保留，勿重复启动。
 
-最长8小时等前序确切退出0，要求static12/known24双方法完整、固定模型/raw绑定、全部NN重建与engine通过；注册的460个源码与全部初始化文件字节须不变，变化或前序失败即保留失败并停止，零自动重试。满足后才新建新截止时限的单H10240请求控制course，每320控制保存，继而完整12/24开发评估及自动raw/NN/engine审计；不新增监督、不改最终条件、不重跑H0训练。前序完整结果另存predecessor_complete.json。不要修改已注册navstack/scripts源，避免源冻结门槛拒绝后续；文档、报告可照常完善。
+最长8小时等前序确切退出0，要求static12/known24双方法完整、固定模型/raw绑定、全部NN重建与engine通过；注册的460个源码与全部初始化文件字节须不变，变化或前序失败即保留失败并停止，零自动重试。满足后才新建新截止时限的单H10240请求控制course，每320控制保存，继而完整12/24开发评估及自动raw/NN/engine审计；不新增监督、不改最终条件、不重跑H0训练。前序完整结果另存predecessor_complete.json。该源码逐字节门槛已在19:22发车前通过。发车后核验batch/source对应protocol.source_hashes，不能再把Root与旧等待注册快照比较后误判运行失败。在线worker仍使用原冻结460源。f0fcba1仅更新离线打包/复现/推理RMS核验，未改navstack或nativeworker；后续评估准备器会显式更新离线auditor的SHA，不改物理或策略。
 
 条件队列专项20通过4.79秒，XML D:/ThesisNativeArchive_20261103/reference_scale_queue_cpu_v2_20261103.xml；含前序仍活不得准备/发车、缺清单/错模型/raw、NN或engine失败、等待期间源码变化拒绝。公开 `reports/native_reference_scale100_followup_queued_20261103.json`。0118623的GitHub CPU完整回归41614412744成功，实际1299通过/18跳过/4CARLA排除，161.54秒；不等同CARLA结果。
 

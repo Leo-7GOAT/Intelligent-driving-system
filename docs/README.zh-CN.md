@@ -13,6 +13,8 @@ H/H0真实适配已完成，24个已知开发条件均为 **24/24，零不安全
 
 旧12场静态TRAIN对照现已补齐H/H0：H为 **3/12**（8超时、1越界），H0为 **4/12**（7超时、1越界）。H0只组合无重叠的已核验完整回合，模型、归一化及物理配置一致，损坏文件与未知消耗继续保留，不重跑已核验回合；零PPO、行为克隆初始化的教师迁移策略也已完成：**5/12**（6超时、1越界、7339控制）。该教师是神经网络模仿策略，与直接规则B3不同。[三策略完整核验证据](../reports/native_static_H_H0_teacher_complete_20261103.json)。单种子结果不证明反馈收益。[完整恢复证据](../reports/native_static_H_H0_recovered_complete_20261103.json)。共同越界案例的高层目标保持稳定、实际状态与命令逐位一致；离线地图和只读引擎射线进一步发现栅格、车道谓词与地面语义存在分歧。原失败、评分与当前判定标准均未更改。[几何证据及局限](../reports/native_static_shared_road_disagreement_20261103.json)。参考上下文 H/H0 已完成 **21024 个真实训练控制、各330次Adam更新**，RMS保持一致。完整评估及审计已结束：困难静态TRAIN12为 **H 3/12、H0 4/12**，另外的已知验证24条件两者均 **24/24**。全部32060个评估控制帧、各实测起点、静态NN动作及发动机回执均核验通过；静态成功数没有改进，单seed开发结果不证明反馈收益或最终验收。[完整学习及历史失败成本](../reports/native_reference_context_learning_complete_20261103.json)、[完整端点证据](../reports/native_reference_context_endpoints_complete_20261103.json)。
 
+[参考上下文研发预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.3.0-dev.20261103-reference-context)已公开两个关闭端点的数据包、图表和校验值。8项资产均无需登录下载成功，并从新checkout完整重建：1254文件、32060控制帧、72起点、2611静态NN决策及2张逐字节一致图表。[公开下载与复现凭证](../reports/native_reference_context_public_download_verification_20261103.json)。
+
 仅H的scale100后续现已在 **真实CARLA中训练**，初始参数、Adam、RMS与RNG保持一致。首个保存点已有320控制、10次Adam，32个优化器状态均推进，RMS不变；完整请求预算10240控制及性能评估尚未完成，不重训H0。[首次保存的学习状态](../reports/native_reference_scale100_first_saved_learning_20261103.json)、[当前执行状态与边界](handoff.md)。
 
 本次修复完整本地CPU回归1310通过、1跳过、4项CARLA排除；后续恢复和逐帧审计专项检查另行记录。[对应源版本的GitHub CPU验证](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41590243732)通过。新增只读审计已核对两批B1合计20480个既有训练控制、重置世界步及奖励累计，不构成新增训练。[凭证](../reports/native_training_only_raw_verification_20261103.json)。
