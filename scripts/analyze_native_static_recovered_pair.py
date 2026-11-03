@@ -113,8 +113,63 @@ def analyze(parent,remainder):
         limits='One canonical seed old4705-input policies on knownTRAIN12. Combined only disjoint authenticated completed cases;original failures/torn tails retained. No five-seed feedback or PPO benefit claim,no final confirmation.')
 
 
+def include_teacher(result,parent,teacher):
+    """Bind the completed zero-PPO, BC-initialized policy without relabeling it B3."""
+    parent,teacher=Path(parent).resolve(),Path(teacher).resolve()
+    require_finished_parent(teacher)
+    old,p=read(parent/'protocol.json'),read(teacher/'protocol.json')
+    registration=p['static_remainder_registration']
+    if (registration['parent']!=parent.name or registration['original_parent_case_ids']!=list(range(12))
+            or p['method_budgets']!={'H_teacher':0} or old['source_hashes']!=p['source_hashes']
+            or sha(parent/'calibration/calibration.json')!=sha(teacher/'calibration/calibration.json')):
+        raise ValueError('Teacher changes frozen physical comparison or inventory')
+    if registered_native_cases(old)!=registered_native_cases(p):
+        raise ValueError('Teacher routes or hazards differ')
+    folder=teacher/'H_teacher';raw=read(folder/'endpoint_raw_audit.json')
+    for relative,key in (('protocol.json','protocol_sha256'),('H_teacher/evaluation.json','evaluation_sha256'),
+                         ('H_teacher/evaluation_trace.jsonl.gz','evaluation_trace_sha256'),
+                         ('H_teacher/config.json','config_sha256'),('H_teacher/summary.json','summary_sha256'),
+                         ('H_teacher/optimization.jsonl','optimization_sha256')):
+        if sha(teacher/relative)!=raw[key]:raise ValueError('Teacher raw evidence changed')
+    stream=teacher/'infrastructure'/raw['bridge_response_stream']
+    if sha(stream)!=raw['bridge_response_sha256']:raise ValueError('Teacher bridge evidence changed')
+    delivery=read(teacher/'strict_delivery.json')
+    if not delivery['strict_delivery_gate_passed'] or delivery['protocol_sha256']!=sha(teacher/'protocol.json'):
+        raise ValueError('Teacher engine acknowledgement missing')
+    starts=read(folder/'measured_start_inference.json')
+    if (starts['model_sha256']!=sha(folder/'model.zip') or starts['trace_sha256']!=sha(folder/'evaluation_trace.jsonl.gz')
+            or starts['batch_protocol_sha256']!=sha(teacher/'protocol.json')
+            or sorted(r['case_id'] for r in starts['results'])!=list(range(12))
+            or any(r['action']!=r['recorded_action'] for r in starts['results'])):
+        raise ValueError('Teacher measured-start NN inference differs')
+    for name,key in (('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')):
+        if sha(folder/name)!=old['recovery']['H_teacher'][key]:raise ValueError('Teacher frozen learning bytes changed')
+    if read(folder/'config.json')['env']!=read(parent/'H_PPO/config.json')['env']:
+        raise ValueError('Teacher observation or controller configuration differs')
+    if raw['training_control_frames_verified']!=0 or raw['segment_optimizer_steps']!=0 or raw['lineage_controls']!=0:
+        raise ValueError('Teacher contains unexpected PPO training')
+    episodes=read(folder/'evaluation.json')['episodes']
+    if sorted(e['case_id'] for e in episodes)!=list(range(12)) or sum(e['physics_steps'] for e in episodes)!=raw['evaluation_control_frames_verified']:
+        raise ValueError('Teacher complete-case controls differ')
+    result['results']['H_teacher']=dict(cases=12,successes=sum(e['success'] for e in episodes),
+        termination_counts=dict(Counter(e['termination_reason'] for e in episodes)),
+        completed_case_controls=raw['evaluation_control_frames_verified'])
+    by_id={e['case_id']:e for e in episodes}
+    for row in result['paired_cases']:
+        e=by_id[row['case_id']];row.update(H_teacher_success=e['success'],H_teacher_termination=e['termination_reason'])
+    result['teacher_comparison']=dict(status='COMPLETE',model_sha256=sha(folder/'model.zip'),
+        raw_audit_sha256=sha(folder/'endpoint_raw_audit.json'),delivery_sha256=sha(teacher/'strict_delivery.json'),
+        source='BC-initialized neural high-level policy with zero PPO updates;not the direct B3 rule controller',
+        lineage_supervised_updates=p['extra_supervision']['supervised_optimizer_steps_per_method'],
+        shared_teacher_demonstration_controls=p['extra_supervision']['teacher_controls'],
+        interpretation='Observed old H and H0 success counts are below this teacher transfer;no PPO advantage established.')
+    return result
+
+
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--parent',required=True)
-    p.add_argument('--remainder',required=True);p.add_argument('--output',required=True);a=p.parse_args();output=Path(a.output)
+    p.add_argument('--remainder',required=True);p.add_argument('--teacher');p.add_argument('--output',required=True);a=p.parse_args();output=Path(a.output)
     if output.exists():raise FileExistsError('Preserve previous recovered comparison')
-    result=analyze(a.parent,a.remainder);atomic_json(output,result);print(result['results'])
+    result=analyze(a.parent,a.remainder)
+    if a.teacher:include_teacher(result,a.parent,a.teacher)
+    atomic_json(output,result);print(result['results'])
