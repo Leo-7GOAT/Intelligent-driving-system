@@ -1,0 +1,21 @@
+{
+  "scope": "First retained entropy0.02H native learning state;not complete training or performance evidence",
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H",
+  "source_commit": "ac04d2015ad76d98e47503e43af2094ac19cc211",
+  "protocol_sha256": "03c6c36003bcf6221e864174f05339a0bd17ef2b6d8515018cf7f9b305419a04",
+  "checkpoint": "checkpoint_000000320",
+  "metadata_sha256": "bf4f86c79a7d0c664b345f768659b8765b42a5bfe4e10bcd1568d845a7a8bcb8",
+  "model_sha256": "718bb8f8509fa5fe53cbfcbb33a6e93105c1e803962a092639294a0bc94383ab",
+  "normalization_sha256": "f5b45626f02475c7b49c6448edb8989fd2626fb6b3ad93e139335b95274a638f",
+  "actual_saved_controls": 320,
+  "actual_saved_Adam_updates": 10,
+  "all32Adamstates_advance": 10,
+  "RMS_exact": true,
+  "saved_entropy_coefficient": 0.02,
+  "planner_failure_memo": "exact_static_failure_v1",
+  "learned_reference_gain": 0.00019979372154921293,
+  "requested_controls": 10240,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "limits": "Saved actual learner state before the fixed-budget endpoint. Full training-frame and engine audits run after completion. No checkpoint performance selection or improvement claim."
+}
