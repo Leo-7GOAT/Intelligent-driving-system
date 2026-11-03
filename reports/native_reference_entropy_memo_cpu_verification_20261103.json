@@ -20,5 +20,15 @@
   "final_metadata_registration_validation_passed": 10,
   "metadata_only_change_after_full_run": "Clarified that physical models/actions are unchanged while the computational planner wrapper changes;no model,optimizer or environment logic changed",
   "new_CARLA_controls": 0,
-  "research_acceptance": "UNMET"
+  "research_acceptance": "UNMET",
+  "hosted_ci": {
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41651263807",
+    "source_commit": "ac04d2015ad76d98e47503e43af2094ac19cc211",
+    "status": "completed",
+    "conclusion": "success",
+    "passed": 1327,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "seconds": 337.84
+  }
 }

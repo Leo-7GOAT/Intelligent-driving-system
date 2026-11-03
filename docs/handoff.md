@@ -1,14 +1,22 @@
-# 当前接续状态（2026-11-03 22:09）
+# 当前接续状态（2026-11-03 22:18）
 
 目标不变，研究验收UNMET。继续当前分支，不重建、不恢复瞬移、不新增子代理。以下是实际已启动状态；继续前须复核OS进程身份，不能仅凭状态文件重启任务。不要触碰Desktop/papper其他项目进程。
 
-## 当前：熵0.02加精确失败缓存的单H课程已准备，尚未启动
+## 唯一当前物理作业：熵0.02加精确失败缓存的单H真实PPO
 
-新batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H`，initializers `D:/ThesisNativeArchive_20261103/reference_scale100_entropy002_H_initializer_20261103`。只改训练损失ent_coef0→0.02，仍gain-scale100、32步rollout/10epochs/3e-5；相对原scale100起点32参数、30已有Adam状态、优化器组、norm文件和RNG文件逐字节一致，24实测起点prob/value完全一致。新初始化模型a8db11c644639135332e221e62f33a5d2cbb7b151daa9424c79818244f467617。不是从已训练scale100末点继续，旧末点独立保留。
+batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H`，execution `runs/reference_entropy002_memo_execution_20261103`，当前native_training。协调器72044（creation_epoch1793715140.203，venv父71536）、worker30936（1793715154.44）、guard46004、owned shipping8932（2026-11-03T14:12:25.8978653+00:00，launcher13116）。source commit ac04d2015ad76d98e47503e43af2094ac19cc211，460冻结源码均与提交源核对。继续前复核OS身份，禁止重复启动或使用旧48660/18496/4864/57848观察新任务。
 
-明确注册existing exact_static_failure_v1缓存，仅精确静态确定性失败复用，动态/墙钟限时旁路；改变计算次数与耗时，不选择/屏蔽动作。物理模型、动作、奖励、几何与控制器不改。正式方法比较须共享同计算包装，不把缓存收益归给PPO。单H已知开发实验，不重复H0，不接触新最终条件。固定请求10240、overshoot<=319、每320保存、最终预算端点、完整static12+known24及raw/NN/engine，零自动重试。
+首个实际保存点320控制/10Adam：32状态均推进10、RMS不变、保存模型ent_coef确为0.02，见 `reports/native_reference_entropy002_first_saved_learning_20261103.json`。2026-11-03 22:18观察的最新保存点实际3178控制/100Adam，guard healthy。训练流正在写入，gzip尾EOF不等于失败；已读262个完整宏步前缀中78次cache_hit，证明缓存实际使用，但不是完整训练raw审计或成绩。
 
-60专项通过58.76秒；完整本地CPU1344通过/1跳过/4CARLA排除236.25秒；随后仅澄清注册字段名，10验证通过4秒。凭证 `reports/native_reference_entropy_memo_cpu_verification_20261103.json`、`reports/native_reference_entropy002_preparation_20261103.json`。训练尚未启动，先核对当前OS/端口及prepared哈希；单条入口 `.venv/Scripts/python.exe -u scripts/run_native_reference_course.py --batch D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H --execution runs/reference_entropy002_memo_execution_20261103`。执行目录若已存在，先看实际process/status/complete，不得重复调用。
+相对原scale100起点，只改训练损失ent_coef0→0.02，gain-scale仍100、32步rollout/10epochs/3e-5。32参数、30已有Adam状态、优化器组、norm文件及RNG文件逐字节一致，24实测起点prob/value完全一致。初始化在D:/ThesisNativeArchive_20261103/reference_scale100_entropy002_H_initializer_20261103，模型a8db11c644639135332e221e62f33a5d2cbb7b151daa9424c79818244f467617；不是从已训练scale100末点继续，原末点及全部失败独立保留。
+
+明确注册existing exact_static_failure_v1缓存，精确静态确定性失败复用，动态/墙钟限时旁路；改变计算次数与耗时，不选择/屏蔽动作。物理模型、动作、奖励、几何与控制器不改。正式方法比较须共享同计算包装，不能把缓存收益归给PPO。单H已知开发探索，不重复H0，不接触新最终条件。
+
+固定请求10240、overshoot<=319、每320阈值保存、最终预算端点、完整static12+known24及raw/NN/engine，零自动重试，由当前协调器自动接续。启动时C7.389GiB、D431.780GiB、可用RAM35.667GiB；工件全部D盘，单批资源限额4h/最低D12GiB/RAM4GiB/GPU85C。旧scale100所有阶段正常结束、端口清空才启动本批。
+
+60专项通过58.76秒；完整CPU1344通过/1跳过/4CARLA排除236.25秒；随后仅澄清注册字段，10验证通过4秒。凭证 `reports/native_reference_entropy_memo_cpu_verification_20261103.json`、`reports/native_reference_entropy002_preparation_20261103.json`。GitHub CI41651263807对应ac04d20已实际成功，1327通过/18跳过/4CARLA排除337.84秒；并非CARLA物理成绩。
+
+入口已运行，不要再次调用：`.venv/Scripts/python.exe -u scripts/run_native_reference_course.py --batch D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H --execution runs/reference_entropy002_memo_execution_20261103`。先看status/complete/failure、worker_process/coordinator_process及实际OS。执行目录已存在，重复命令会被拒绝。当前课程不是最终达标交付。
 
 ## 旧静态对照已全部结束，禁止重跑
 
