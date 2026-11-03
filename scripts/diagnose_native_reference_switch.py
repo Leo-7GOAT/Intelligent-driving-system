@@ -1,15 +1,16 @@
 """Read-only reference reconstruction on recorded static native states."""
 import argparse
+import os
 from pathlib import Path
 import sys
-ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
+ROOT=Path(os.environ.get('NAVSTACK_AUDIT_SOURCE_ROOT',Path(__file__).resolve().parents[1])).resolve();sys.path.insert(0,str(ROOT))
 from navstack.config import EnvConfig
 from navstack.research import atomic_json
 from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.audit_native_policy_sequence import observation_env,advance_observation
 
 
-def diagnose(batch,method,case_id,output,limit=16):
+def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False):
     batch,output=Path(batch).resolve(),Path(output)
     if output.exists():raise FileExistsError('Preserve the diagnostic attempt')
     folder=batch/method;protocol=read(batch/'protocol.json')
@@ -37,12 +38,44 @@ def diagnose(batch,method,case_id,output,limit=16):
     env.world.road_collision_backend=env.config.road_collision_backend
     env.reference=None;env._reference_selection=None;env._rule_plan_cache=None
     env.episode=dict(plan_times=[],plan_failures=0)
-    events=[]
+    events=[];policy_proof=None
+    if inspect_policy:
+        import pickle
+        import numpy as np
+        import torch
+        from navstack.independent_clip_ppo import load_ppo
+        from navstack.reference_context import reference_candidate_context
+        for name,key in (('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')):
+            if sha(folder/name)!=protocol['recovery'][method][key]:
+                raise ValueError('Frozen policy or normalization changed')
+        model=load_ppo(folder/'model.zip',device='cpu');model.policy.set_training_mode(False)
+        with (folder/'normalization.pkl').open('rb') as stream:norm=pickle.load(stream)
+        norm.training=False
+        rms=(norm.obs_rms.mean.copy(),norm.obs_rms.var.copy(),float(norm.obs_rms.count))
+        if model.observation_space.shape!=(4736,):raise ValueError('Margin probe requires reference-context policy')
+        bias=model.policy.action_net.reference_bias
+        gain_scale=float(getattr(bias,'scale',1.0))
+        policy_proof=dict(model_sha256=sha(folder/'model.zip'),normalization_sha256=sha(folder/'normalization.pkl'),
+            learned_gain=float(bias.gain.detach()),gain_scale=gain_scale,
+            effective_reference_logit=float((bias.gain*gain_scale).detach()),
+            reference_ablated=bool(model.policy.reference_ablated))
     try:
         for index,row in enumerate(rows[:limit]):
             action=int(row['policy_action']);old=env._reference_selection
             selected=None if action==0 else env.decode_action(action)
             reusable=old is not None and env.reusable_reference(*old)
+            inference={}
+            if inspect_policy:
+                context=reference_candidate_context(env)
+                obs=np.r_[env._observation(),context].astype(np.float32)
+                with torch.no_grad():distribution=model.policy.get_distribution(torch.as_tensor(norm.normalize_obs(obs[None]))).distribution
+                probabilities=distribution.probs[0].numpy();logits=distribution.logits[0].numpy()
+                if int(probabilities.argmax())!=action:raise ValueError('Recorded NN action differs at decision'+str(index))
+                active=np.flatnonzero(context).tolist()
+                margin=max(0.,float(logits[action]-max(logits[i] for i in active))) if active else None
+                inference=dict(selected_probability=float(probabilities[action]),entropy_nats=float(distribution.entropy()[0]),
+                    context_actions=active,selected_context=bool(context[action]),
+                    minimum_additional_context_logit_for_tie=margin)
             mode,detail=env._prepare_reference(action)
             recorded=row['info']['plan']
             if detail is not None and (detail['status']!=recorded['status']
@@ -52,21 +85,27 @@ def diagnose(batch,method,case_id,output,limit=16):
                 previous_reference_still_reusable=bool(reusable),switched_selection=old is not None and selected!=old,
                 recorded_mode=row['info']['mode'],reconstructed_prepare_mode=mode,
                 recorded_plan_status=None if recorded is None else recorded['status'],
-                measured_time=env.state.time))
+                measured_time=env.state.time,**inference))
             advance_observation(env,row)
             if mode=='plan_failed':break
+        if inspect_policy:
+            np.testing.assert_array_equal(rms[0],norm.obs_rms.mean);np.testing.assert_array_equal(rms[1],norm.obs_rms.var)
+            if rms[2]!=norm.obs_rms.count:raise ValueError('Frozen RMS count changed')
+            policy_proof['all_reconstructed_NN_actions_exact']=True
     finally:env.close()
     return dict(batch=batch.name,method=method,case_id=case_id,source_sha256=sha(Path(__file__)),
         immutable_input_snapshot_sha256=sha(snapshot),enclosing_live_trace_prefix_error=error,
         reconstruction_actions=len(events),events=events,
         switches_away_from_reusable_reference=sum(e['previous_reference_still_reusable'] and e['switched_selection'] for e in events),
         observed_terminal=rows[-1]['info']['episode_metrics']['termination_reason'],
+        policy_inference=policy_proof,
         new_controls=0,new_updates=0,
-        limits='Recorded static-state reconstruction only;no plant stepping or physical counterfactual. A reusable old reference is not proof that retaining it would complete the task. Not a full-batch score or a causal policy comparison.')
+        limits='Recorded static-state reconstruction only;no plant stepping or physical counterfactual. A reusable old reference is not proof that retaining it would complete the task. Logit ties do not predict driving success or the result of further training. Not a full-batch score or a causal policy comparison.')
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--batch',required=True);p.add_argument('--method',required=True)
     p.add_argument('--case',type=int,default=0);p.add_argument('--output',required=True);p.add_argument('--limit',type=int,default=16)
-    a=p.parse_args();r=diagnose(a.batch,a.method,a.case,a.output,a.limit);atomic_json(a.output,r)
+    p.add_argument('--inspect-policy',action='store_true')
+    a=p.parse_args();r=diagnose(a.batch,a.method,a.case,a.output,a.limit,a.inspect_policy);atomic_json(a.output,r)
     print({k:r[k] for k in ('reconstruction_actions','switches_away_from_reusable_reference','observed_terminal')})

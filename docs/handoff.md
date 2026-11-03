@@ -22,11 +22,17 @@
 
 ## 唯一当前物理作业：修复后的reference静态评估
 
-协调器40108，工具session38578，execution `runs/reference_context_schema_fixed_endpoints_wall_execution_20261103`；旧队列正常完成后已于17:31自动进入static_native。batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_v4_static_schema_fixed`，worker11232（17:31:24，creation_epoch1793698284.079）、guard27340、owned server61932（17:31:06），bridge13960。4736维ReferenceContextPolicy真实运行，17:33心跳H case0/actions80，guard healthy。再次核对OS身份后继续观察，禁止启动重复作业。
+协调器40108，工具session38578，execution `runs/reference_context_schema_fixed_endpoints_wall_execution_20261103`；旧队列正常完成后已于17:31自动进入static_native。batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_v4_static_schema_fixed`，worker11232（17:31:24，creation_epoch1793698284.079）、guard27340、owned server61932（17:31:06），bridge13960。4736维ReferenceContextPolicy真实运行，17:42心跳H case5/actions20，guard healthy。再次核对OS身份后继续观察，禁止启动重复作业。
 
 随后自动执行 `...v4_known_validation_schema_fixed`。静态每方法12场、已知验证每方法24场，阶段墙钟14400/3600秒，零学习、零自动重试、零新最终条件；raw/全部起点NN/所有静态序列NN/严格发动机回执自动核验。不要中途改变模型、规划、几何或评分。完整新版成绩PENDING。
 
 原等待器42296/session86576已在确切父38744与物理worker66632均确认存活、目标评估batch尚不存在时，仅通过保留句柄停止；不停止任何车辆进程。原execution的superseded_before_dispatch/exit receipt保留，当前40108才是唯一schema修复评估等待器，不能恢复旧等待器。
+
+## 真实首场失败的参考切换诊断（17:43）
+
+`diagnose_native_reference_switch.py --inspect-policy`已在实际冻结source根下执行：H case0前24个决策全部逐个NN重建相同，重新规划的status及节点数与记录相同，5次放弃仍可复用参考。decision23实测11.5秒，选择action2（概率0.68458）后no_path，原参考仍可复用，对应22/24/26/28/30的context位为1。额外context logit达到约2.36494才会与当时最大概率动作打平；实际训练出的有效系数仅0.00112522。它证明当前小系数没有消除这个可观察切换，不证明保留原参考必定成功，也不说明增大系数训练必定有益。后续若调整该新增参数的学习尺度，必须新版本、真实PPO及同预算对照；不得硬选动作或改当前评估权重。
+
+公开 `reports/native_reference_context_case0_switch_diagnostic_20261103.json`。完整90决策及CARLA begin不可变输入快照位于D:/ThesisNativeArchive_20261103/reference_case0_switch_bound_20261103.inputs.json，报告保存其SHA。当前物理批次仍未完成，gzip尾部EOF是正在写入的前缀状态，不冒充完整raw端点审计。首次在root源码下的诊断因reference policy的scale兼容代码与冻结源不同而正确拒绝；通过NAVSTACK_AUDIT_SOURCE_ROOT选择真实冻结实现后通过，未绕过源码检查、未改当前执行源。新增代码只读、零控制/零训练。
 
 ## 新reference-context真实训练已经全部完成
 
