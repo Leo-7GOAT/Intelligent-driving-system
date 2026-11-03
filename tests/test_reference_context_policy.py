@@ -11,6 +11,7 @@ from navstack.reference_context_policy import (migrate_learner,original_name,Ref
     ReferenceContextVecNormalize)
 from navstack.independent_clip_ppo import actor_critic_parameters
 from test_route_catalog_environment import RouteFixture,config
+from scripts.prepare_native_reference_context import set_training_entropy
 
 
 class ContextFixture(ReferenceContextObservationMixin,RouteFixture):pass
@@ -18,7 +19,8 @@ class ContextFixture(ReferenceContextObservationMixin,RouteFixture):pass
 
 @pytest.mark.parametrize('ablated',[False,True])
 @pytest.mark.parametrize('gain_scale',[1.,10.,100.])
-def test_migration_retains_original_probabilities_values_adam_rms_and_survives_training_reload(tmp_path,ablated,gain_scale):
+@pytest.mark.parametrize('entropy_coef',[None,.02])
+def test_migration_retains_original_probabilities_values_adam_rms_and_survives_training_reload(tmp_path,ablated,gain_scale,entropy_coef):
     torch.set_num_threads(1)
     cfg=EnvConfig.from_dict({**config(feedback='continuation').to_dict(),'route_goal_candidate':True,'reference_reuse':True})
     raw=DummyVecEnv([lambda:RouteFixture(cfg)])
@@ -31,6 +33,7 @@ def test_migration_retains_original_probabilities_values_adam_rms_and_survives_t
     detached=pickle.loads(pickle.dumps(norm))
     rng=torch.get_rng_state().clone()
     new,newnorm=migrate_learner(model,detached,ablated=ablated,gain_scale=gain_scale)
+    set_training_entropy(new,entropy_coef)
     assert torch.equal(rng,torch.get_rng_state())
     context=np.zeros((1,31),dtype=np.float32);context[:,26]=1
     extended=np.concatenate((obs,context),axis=1)
@@ -58,6 +61,7 @@ def test_migration_retains_original_probabilities_values_adam_rms_and_survives_t
     restored=ReferenceContextVecNormalize.load(tmp_path/'normalization.pkl',wrapped)
     restored.training=False
     loaded=PPO.load(tmp_path/'model.zip',env=restored,device='cpu')
+    assert loaded.ent_coef==(model.ent_coef if entropy_coef is None else entropy_coef)
     assert loaded.policy.reference_gain_scale==gain_scale
     assert loaded.policy.action_net.reference_bias.scale==gain_scale
     action=loaded.predict(n,deterministic=True)[0]
@@ -65,6 +69,7 @@ def test_migration_retains_original_probabilities_values_adam_rms_and_survives_t
     before=loaded._n_updates;loaded.learn(2,reset_num_timesteps=False)
     assert loaded._n_updates>before
     loaded.save(tmp_path/'learned.zip');roundtrip=PPO.load(tmp_path/'learned.zip',device='cpu')
+    assert roundtrip.ent_coef==loaded.ent_coef
     assert all(torch.equal(value,roundtrip.policy.state_dict()[name]) for name,value in loaded.policy.state_dict().items())
     if gain_scale==1.:
         # The first frozen native implementation predates the explicit scale

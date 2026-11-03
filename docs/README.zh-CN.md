@@ -15,9 +15,9 @@ H/H0真实适配已完成，24个已知开发条件均为 **24/24，零不安全
 
 [参考上下文研发预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.3.0-dev.20261103-reference-context)已公开两个关闭端点的数据包、图表和校验值。8项资产均无需登录下载成功，并从新checkout完整重建：1254文件、32060控制帧、72起点、2611静态NN决策及2张逐字节一致图表。[公开下载与复现凭证](../reports/native_reference_context_public_download_verification_20261103.json)。
 
-仅H的scale100课程已完成 **10501 个真实训练控制、330次Adam更新**，32个优化器状态均推进，RMS不变，全部训练帧及控制指令回执核验通过。超出请求261控制，低于注册上限319；实际完成TRAIN48池中的18回合，并非已遍历48条件。冻结评估正在运行，首个静态条件仍超时，尚不宣称性能改进。[完整学习证明](../reports/native_reference_scale100_learning_complete_20261103.json)、[首场失败重建](../reports/native_reference_scale100_case0_switch_diagnostic_20261103.json)、[当前执行状态](handoff.md)。
+仅H的scale100已全部结束：**10501真实训练控制/330次Adam，静态3/12、已知验证24/24**。16293个评估控制帧、36起点和1330个静态NN决策均通过原始帧/推断/控制回执核验，静态成功数没有改善。[完整端点](../reports/native_reference_scale100_endpoints_complete_20261103.json)。已准备单一熵系数0.02探索实验，初始参数、Adam、RMS及RNG一致，尚未训练；明确启用精确静态失败缓存节省重复计算，缓存不选择动作。[初始化证明](../reports/native_reference_entropy002_preparation_20261103.json)、[执行状态](handoff.md)。
 
-本次修复完整本地CPU回归1310通过、1跳过、4项CARLA排除；后续恢复和逐帧审计专项检查另行记录。[对应源版本的GitHub CPU验证](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41590243732)通过。新增只读审计已核对两批B1合计20480个既有训练控制、重置世界步及奖励累计，不构成新增训练。[凭证](../reports/native_training_only_raw_verification_20261103.json)。
+最新完整本地CPU回归 **1344通过、1跳过、4项CARLA排除**，专项60通过；随后仅澄清注册字段，10项验证通过。[CPU凭证](../reports/native_reference_entropy_memo_cpu_verification_20261103.json)。旧源版本的托管验证保留在各研发预发布中。
 
 [五种子 B1 扩展预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1)的69项资产已公开下载重建：151,660个控制帧、120个初始动作及5张图表均核验一致。[公开复现凭证](../reports/native_B1_broader_public_download_verification_20261102.json)。教师、恢复采集和失败的离线观测修正均已结束，不要重复启动。
 

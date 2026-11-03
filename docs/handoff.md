@@ -1,6 +1,14 @@
-# 当前接续状态（2026-11-03 21:08）
+# 当前接续状态（2026-11-03 22:09）
 
 目标不变，研究验收UNMET。继续当前分支，不重建、不恢复瞬移、不新增子代理。以下是实际已启动状态；继续前须复核OS进程身份，不能仅凭状态文件重启任务。不要触碰Desktop/papper其他项目进程。
+
+## 当前：熵0.02加精确失败缓存的单H课程已准备，尚未启动
+
+新batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H`，initializers `D:/ThesisNativeArchive_20261103/reference_scale100_entropy002_H_initializer_20261103`。只改训练损失ent_coef0→0.02，仍gain-scale100、32步rollout/10epochs/3e-5；相对原scale100起点32参数、30已有Adam状态、优化器组、norm文件和RNG文件逐字节一致，24实测起点prob/value完全一致。新初始化模型a8db11c644639135332e221e62f33a5d2cbb7b151daa9424c79818244f467617。不是从已训练scale100末点继续，旧末点独立保留。
+
+明确注册existing exact_static_failure_v1缓存，仅精确静态确定性失败复用，动态/墙钟限时旁路；改变计算次数与耗时，不选择/屏蔽动作。物理模型、动作、奖励、几何与控制器不改。正式方法比较须共享同计算包装，不把缓存收益归给PPO。单H已知开发实验，不重复H0，不接触新最终条件。固定请求10240、overshoot<=319、每320保存、最终预算端点、完整static12+known24及raw/NN/engine，零自动重试。
+
+60专项通过58.76秒；完整本地CPU1344通过/1跳过/4CARLA排除236.25秒；随后仅澄清注册字段名，10验证通过4秒。凭证 `reports/native_reference_entropy_memo_cpu_verification_20261103.json`、`reports/native_reference_entropy002_preparation_20261103.json`。训练尚未启动，先核对当前OS/端口及prepared哈希；单条入口 `.venv/Scripts/python.exe -u scripts/run_native_reference_course.py --batch D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H --execution runs/reference_entropy002_memo_execution_20261103`。执行目录若已存在，先看实际process/status/complete，不得重复调用。
 
 ## 旧静态对照已全部结束，禁止重跑
 
@@ -18,7 +26,7 @@ v0.3.0-dev.20261103-reference-context，source commit f0fcba1e82ab0545989da00408
 
 源码修复了旧复现器固定走4705审计器的缺口：按声明的context版本显式选reference审计；未知版本拒绝，额外重建全部静态动作、RMS不变及发动机回执。旧schema分支仍用原审计器。专项43通过7.39秒，CI41628896576成功1311通过/18跳过/4CARLA排除179.71秒。完整实例复现已完成，不要重复旧broader B1或这些端点全量重建。
 
-本地资产 D:/ThesisNativeArchive_20261103/reference_context_closed_endpoints_20261103；匿名下载 reference_context_public_download_20261103；新clone reference_context_public_checkout_20261103；完整公开重建 reference_context_public_static12_rebuild_20261103及reference_context_public_known24_rebuild_20261103，两个工具session6879/74600已退出0。公开凭证 `reports/native_reference_context_public_download_verification_20261103.json`。这些端点capsule不重复上游training-only raw/失败祖先，祖先成本仍在learning报告；当前scale100新H未包含或评分，研究验收仍UNMET。
+本地资产 D:/ThesisNativeArchive_20261103/reference_context_closed_endpoints_20261103；匿名下载 reference_context_public_download_20261103；新clone reference_context_public_checkout_20261103；完整公开重建 reference_context_public_static12_rebuild_20261103及reference_context_public_known24_rebuild_20261103，两个工具session6879/74600已退出0。公开凭证 `reports/native_reference_context_public_download_verification_20261103.json`。这些端点capsule不重复上游training-only raw/失败祖先，祖先成本仍在learning报告；scale100新H不包含在该预发布内，其关闭结果见下，研究验收仍UNMET。
 
 ## 旧H/H0静态全12结果与独立失败解剖（17:25）
 
@@ -26,23 +34,21 @@ v0.3.0-dev.20261103-reference-context，source commit f0fcba1e82ab0545989da00408
 
 共同case4中，两方法101帧state及command逐位相同，11次action均26，首次plan成功后10次reference_reused，MPC全部solved，无planner/MPC失败或干预，但v4Driving足迹探测一角点miss。不能将全部失败归为NN切换参考。进一步离线复核：模型道路余量约1.194m，该实际角点与模型车身角点仅3.14微米差，却被栅格标可行驶；同哈希本地OpenDRIVE和同一冻结lane_projection算法复现该点非Driving、五个栅格采样均Driving，单格17x17采样中15点非Driving。扩大同lane局部s搜索未找回该点，不能归因于小范围投影搜索。
 
-只读引擎射线在同点和四周±2cm共5点均返回Roads；已核验当前owned server33076创建时间/进程、端口及Map哈希，未调用tick/control/spawn。它说明lane近似与road mesh存在分歧，不证明车道合法性或连续扫掠安全。原v4 out_of_bounds统计和所有失败均不改。不得通过增大容差或重算旧分数达标。若后续修复geometry，须新环境版本、全方法共享、另行实际验证，并区分工程收益与PPO收益。当前新context评估仍按v4原几何冻结运行。
+只读引擎射线在同点和四周±2cm共5点均返回Roads；已核验当前owned server33076创建时间/进程、端口及Map哈希，未调用tick/control/spawn。它说明lane近似与road mesh存在分歧，不证明车道合法性或连续扫掠安全。原v4 out_of_bounds统计和所有失败均不改。不得通过增大容差或重算旧分数达标。若后续修复geometry，须新环境版本、全方法共享、另行实际验证，并区分工程收益与PPO收益。上述context评估均按v4原几何冻结执行，关闭结果见下。
 
 可复核证据 `reports/native_static_shared_road_disagreement_20261103.json`，便携输入 `protocols/native_static_case4_road_disagreement_input_20261103.json`，脚本 `scripts/diagnose_native_road_boundary37.py`（只加载本地Map无Client）、`scripts/probe_native_ground_surface37.py`（保留只读owned句柄，仅语义射线）。完整原始探针与密集采样在D:/ThesisNativeArchive_20261103/road_boundary_probe_20261103，未改CARLA安装资源、环境或当前物理actor。
 
-## 唯一当前物理作业：scale100单H冻结静态评估
+## scale100单H训练与全部端点评估已结束，禁止重跑
 
-协调器48660（18:25:46.148，venv父61344），execution `runs/reference_scale100_after_scale1_endpoints_execution_20261103/course`，现static_native。batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_H_static`，worker4864（20:46:34.198，creation_epoch1793709994.198）、guard73036、owned shipping17316（20:46:16.432，launcher20032）。21:04心跳case5/actions40，guard healthy。不得重跑或修改当前模型/物理/评分；下一阶段自动known24及raw/NN/engine核验。
+协调器48660、训练worker18496、静态worker4864、known worker57848均正常结束，无当前物理作业。execution `runs/reference_scale100_after_scale1_endpoints_execution_20261103/course/complete.json`存在；三批均guard_final exit0、owned_empty_server_stopped，2100..2102无监听。旧PID不可用于新任务观察或清理。
 
-原training batch `...scale100_H` 的worker18496/guard29560/server73216均正常结束，guard_final exit0、owned_empty_server_stopped。最终10501控制、1056决策、33rollouts、330Adam、18已完成回合；实际世界11089步=10501控制+588reset。请求10240，overshoot261<=319。不是遍历全部48个训练条件。全部10501原始训练帧/回报/计数/末checkpoint/发动机回执均核验通过，32个参数Adam状态相对初始化各推进330，RMS mean/var/count完全一致。
+实际训练10501控制/1056决策/330Adam/18完整回合，世界11089=10501控制+588reset；请求10240，overshoot261<=319，未遍历全部48条件。32个Adam状态各推进330、RMS不变，全部训练raw及engine通过。模型15ba2e1b17a99086d07eb031babe0ce5f008afb0516c208928f5035992969753，norm680faf1c43af1f83391d0fcaddd4f6d0aae44e8007ae075ad0a3c6bf02e3d2e3。
 
-最终模型15ba2e1b17a99086d07eb031babe0ce5f008afb0516c208928f5035992969753，norm680faf1c43af1f83391d0fcaddd4f6d0aae44e8007ae075ad0a3c6bf02e3d2e3。gain0.0007921545、scale100、有效logit0.07921545。保存并选择的始终是固定预算最终端点，不挑checkpoint。公开 `reports/native_reference_scale100_learning_complete_20261103.json`，自动proof/raw/strict均在trainingbatch；不要再对原18496训练进程等待或重复训练。
+完整静态12场为3成功/8deadline/1bounds，8303控制/832NN；known24为24成功、7990控制/498静态NN。合计16293控制/36起点/1330静态NN全部raw、RMS不变及严格engine核验通过。报告 `native_reference_scale100_static_complete_20261103.json`、`native_reference_scale100_endpoints_complete_20261103.json`。scale1 H同为3/12、H04/12、零PPO BC教师5/12；这不是新增H0scale100实验，不能归因或宣称优势，不继续盲扫参考系数。
 
-首场静态case0已完整deadline900controls。`diagnose_native_reference_switch.py --inspect-policy`在实际冻结源下重建至首次失败，共24决策NN/plan完全匹配；相对scale1旧case0，放弃仍可复用参考次数5降至1，但decision23仍选action2而失败，旧global reference仍可用，需要额外约1.012303logit才与最佳保留参考动作打平。有效系数0.0792仍未解决这个失败。两策略状态历史与权重不同，这个对比不是固定状态因果收益，也不证明保留旧参考能完成任务。完整12/24评估仍待收齐，不因为第一场失败中止或换模型。
+首场完整90决策中，重建至首个失败共24次NN/规划完全匹配；仍可复用参考被放弃次数由旧5次变1次，但decision23还是action2/no_path、有效logit0.0792低于该状态额外所需约1.0123。不同权重和状态历史不构成固定状态因果比较。case2/5各90次均选26且全部plan_failed，初始参考context为空；7200节点预算下其他6/8个动作能返回几何路径，不代表可执行或任务成功。case4仍按原v4口径越界，11次NN/参考重建匹配，无planner/MPC失败。
 
-公开 `reports/native_reference_scale100_case0_switch_diagnostic_20261103.json`；不可变完整case0输入在D:/ThesisNativeArchive_20261103/reference_scale100_case0_switch_diagnostic_20261103.inputs.json。真实评估和诊断都零新学习、零新最终条件，原v4地图/越界口径保持。
-
-本次新增只读诊断 `reports/native_reference_scale100_failure_diagnosis_20261103.json`，绑定最先完成6场中的全部4场失败（case0/2/4/5）。case2与5各90次都选26、90次都plan_failed；起点context全零，故参考保留偏置不能直接区分这些初始候选。按同一冻结实现、7200节点预算独立检查15个端点，case2有6个动作、case5有8个动作得到几何路径；不等于可执行时间轨迹或任务成功。最终模型learning_rate=3e-5、ent_coef=0、rollout32、10epochs已从实际model.zip核对；探索不足只是待检验假设，尚未改动或重训。case4的11次NN与参考重建均一致、无规划失败，原越界结论保留。新增诊断不替代完整12/24清单结果。
+`native_reference_scale100_failure_diagnosis_20261103.json`绑定原始前6场全部4场失败。不可变.inputs.json保留在D:/ThesisNativeArchive_20261103/reference_scale100_case{0,2,4,5}_switch_diagnostic_20261103.inputs.json。既有精确失败缓存的离线180次搜索重放：178命中、2实际搜索，状态/原因/cost/空路径及原节点数全匹配；报告 `native_reference_scale100_exact_failure_memo_replay_20261103.json`。这仅支持节省重复计算，不提高成绩。原训练5005.225秒、桥接等待98.800秒，离线单起点观测profile在D盘，不将它当原生性能基准。
 
 ## scale1双方法全部学习与评估已结束
 
@@ -106,7 +112,7 @@ C盘约8GB十进制空余，小于8GiB；D盘约465GB空余。后续pytest必须
 
 v2 scale1实际已在13:35启动；终止旧observer72736时物理worker仍运行，“v2未启动”曾判断错误，原记录与 `reports/native_reference_context_execution_correction_20261103.json`均保留。v2在2412控制/70Adam之后、首个2560检查点之前崩溃，没有可恢复新权重。Windows事件1000的Python3.7 PID23612与tick锁一致，ucrtbase.dll/0xc0000409，C++根因仍未知；request2422未确认，没有重tick。证据 `reports/native_reference_context_bridge_crash_20261103.json`。v4从原已核验初始化显式开始，并保留至少2412失败消耗/70丢失Adam及未知尾部成本；父唯一恢复登记指向v4，禁止重放v2。scale10 v3只曾准备，因端口占用在worker启动前拒绝，0原生控制，不混用。
 
-旧适配H/H0在已知24场各24/24是不同模型、不同阶段，不可写成当前context版本成绩。五seed旧H120/120 vsH0119/120、PPO对零PPO教师120vs117差值区间都跨0；强B3已知24/24，尚无稳定新增反馈或PPO收益。旧静态三策略、context双方法静态及known24全部收齐；scale100新H课程仍在运行。保持目标：至少5独立真实适配策略、健康充分训练B1、公平H/H0/B1/B2/B3及消融；至少120NEW去重最终条件、各核心30、未见布局/车辆；轻量85%/核心75%，CARLA80%/核心70%/不安全≤5%，H对B1预定差值与CI、PPO对强B3及协作贡献、原始数据/模型/失败成本/视频/公开复现。目标不降低，最终集未触碰，不能把当前单seed开发研究当最终完成。
+旧适配H/H0在已知24场各24/24是不同模型、不同阶段，不可写成当前context版本成绩。五seed旧H120/120 vsH0119/120、PPO对零PPO教师120vs117差值区间都跨0；强B3已知24/24，尚无稳定新增反馈或PPO收益。旧静态三策略、context双方法静态及known24全部收齐；scale100新H课程已关闭，新探索课程状态见最上方。保持目标：至少5独立真实适配策略、健康充分训练B1、公平H/H0/B1/B2/B3及消融；至少120NEW去重最终条件、各核心30、未见布局/车辆；轻量85%/核心75%，CARLA80%/核心70%/不安全≤5%，H对B1预定差值与CI、PPO对强B3及协作贡献、原始数据/模型/失败成本/视频/公开复现。目标不降低，最终集未触碰，不能把当前单seed开发研究当最终完成。
 
 ## 本轮已完成并核验
 

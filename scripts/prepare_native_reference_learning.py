@@ -1,11 +1,13 @@
 """Register a bounded native course for the explicit reference-context schema."""
 import argparse
+import json
 from copy import deepcopy
 from datetime import datetime,timezone
 from pathlib import Path
 import shutil
 import sys
 import time
+import zipfile
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from navstack.config import VehicleConfig
 from navstack.experiments import signature
@@ -14,19 +16,25 @@ from navstack.reference_context_policy import VERSION
 from scripts.audit_native_method_endpoint import read,sha
 from scripts.native_road_learning import training_config
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
+from scripts.prepare_native_reference_context import validate_entropy
+from navstack.planner_memo import VERSION as MEMO_VERSION
 
 
-def prepare(output,initializers=None):
+def prepare(output,initializers=None,exact_failure_memo=False):
+    if type(exact_failure_memo) is not bool:raise ValueError('Explicit boolean memo opt-in required')
     output=Path(output).resolve()
     if output.exists():raise FileExistsError('Preserve registered training budgets')
     initial=ROOT/'runs/native_reference_context_initializers_20261103' if initializers is None else Path(initializers).resolve()
     proof=read(initial/'complete.json')
+    entropy=validate_entropy(proof.get('entropy_coefficient'))
     methods=list(proof['results'])
     if proof['status']!='INITIALIZERS_PREPARED_NOT_NATIVE_TRAINED' or not methods or not set(methods)<=set(('H','H0')):
         raise ValueError('Require fully verified selected H/H0 initializers')
     parent=ROOT/'runs/20261103T043242Z_native_recovery';old=read(parent/'protocol.json');p=deepcopy(old)
     for name in ('native_validation','explicit_recovery_method_selection','recovery_budget_interpretation'):
         p.pop(name,None)
+    p.pop('planner_failure_memo',None)
+    if exact_failure_memo:p['planner_failure_memo']=MEMO_VERSION
     p.update(methods=methods,method_budgets={m:10240 for m in methods},controlled_budget_per_method=10240,
         evaluation_only=False,deterministic_training_route_evaluation=False,freeze_observation_statistics=True,
         record_initial_parameters=True,reference_context={'version':VERSION},
@@ -40,6 +48,13 @@ def prepare(output,initializers=None):
     p['recovery']={};p['lineage_targets']={};vehicle=VehicleConfig(**read(output/'calibration/calibration.json')['vehicle'])
     for method in p['methods']:
         source=initial/method;metadata=verified_checkpoint_metadata(source)
+        if entropy is not None:
+            change=proof['results'][method].get('entropy_regularization')
+            if not isinstance(change,dict) or change.get('version')!='fixed_entropy_v1' or change.get('coefficient')!=entropy:
+                raise ValueError('Initializer entropy registration differs')
+            with zipfile.ZipFile(source/'model.zip') as archive:
+                if json.loads(archive.read('data')).get('ent_coef')!=entropy:
+                    raise ValueError('Initializer saved PPO entropy differs')
         if signature(training_config(p,method,vehicle))!=read(source/'config.json')['signature']:
             raise ValueError('Reference context must retain the fixed base physical configuration')
         shutil.copytree(source,output/'resume'/method)
@@ -63,9 +78,12 @@ def prepare(output,initializers=None):
         resource_limits={**p['resource_limits'],'wall_seconds':14400,'automatic_retries':0},
         reference_learning_registration=dict(version=VERSION,requested_controls_each=10240,
             gain_scale=proof.get('gain_scale',1.0),
+            entropy_coefficient=entropy,planner_failure_memo=p.get('planner_failure_memo'),
             maximum_rollout_overshoot_each=319,new_auxiliary_updates=0,new_final_conditions=0,
             initializer_proof_sha256=sha(initial/'complete.json'),
-            lowlevel_and_actions_unchanged=True,selection='Final fixed requested budget endpoint only',
+            physical_models_and_actions_unchanged=True,
+            planner_computation_wrapper_changed=exact_failure_memo,
+            selection='Final fixed requested budget endpoint only',
             limits='H0ablates all executable feedback,so this pair does not isolate the incremental reference term alone. All prior failed/consumed costs remain separately retained.'))
     atomic_json(output/'protocol.json',p)
     atomic_json(output/'prepared.json',dict(status='PREPARED_NOT_STARTED',protocol_sha256=sha(output/'protocol.json')))
@@ -74,4 +92,5 @@ def prepare(output,initializers=None):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True)
-    p.add_argument('--initializers');a=p.parse_args();prepare(a.output,a.initializers)
+    p.add_argument('--initializers');p.add_argument('--exact-failure-memo',action='store_true')
+    a=p.parse_args();prepare(a.output,a.initializers,a.exact_failure_memo)

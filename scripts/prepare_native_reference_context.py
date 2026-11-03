@@ -1,5 +1,6 @@
 """Prepare explicitly incompatible reference-context checkpoints;zero new learning."""
 import argparse
+import math
 from pathlib import Path
 import pickle
 import shutil
@@ -10,7 +11,24 @@ from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
-def prepare(output,gain_scale=1.0,methods=('H','H0')):
+def validate_entropy(coefficient):
+    if coefficient is not None and (type(coefficient) not in (int,float)
+            or not math.isfinite(coefficient) or not 0<=coefficient<=1):
+        raise ValueError('Entropy coefficient must be a finite number in[0,1]')
+    return None if coefficient is None else float(coefficient)
+
+
+def set_training_entropy(model,coefficient):
+    """Change only the declared PPO loss coefficient;no policy/RMS/Adam edits."""
+    coefficient=validate_entropy(coefficient)
+    if coefficient is None:return None
+    before=float(model.ent_coef)
+    model.ent_coef=coefficient
+    return dict(version='fixed_entropy_v1',original_coefficient=before,coefficient=coefficient)
+
+
+def prepare(output,gain_scale=1.0,methods=('H','H0'),entropy_coef=None):
+    entropy_coef=validate_entropy(entropy_coef)
     import numpy as np
     import torch
     from navstack.config import EnvConfig
@@ -28,7 +46,8 @@ def prepare(output,gain_scale=1.0,methods=('H','H0')):
     sources={method:sources[method] for method in methods}
     atomic_json(output/'registration.json',dict(version=VERSION,methods=list(sources),
         initial_effect='Two additional zero-initialized parameter tensors;all old learned tensors and Adam states retained',
-        gain_scale=gain_scale,new_controls=0,new_PPO_updates=0,new_auxiliary_updates=0,source_sha256=sha(Path(__file__))))
+        gain_scale=gain_scale,entropy_coefficient=entropy_coef,
+        new_controls=0,new_PPO_updates=0,new_auxiliary_updates=0,source_sha256=sha(Path(__file__))))
     for method,parent in sources.items():
         folder=parent/method;source=folder/read(folder/'latest_checkpoint.json')['folder']
         metadata=verified_checkpoint_metadata(source);raw=read(folder/'endpoint_raw_audit.json')
@@ -37,6 +56,7 @@ def prepare(output,gain_scale=1.0,methods=('H','H0')):
         with (source/'normalization.pkl').open('rb') as stream:norm=pickle.load(stream)
         norm.training=False
         migrated,newnorm=migrate_learner(model,norm,ablated=method=='H0',gain_scale=gain_scale)
+        entropy_change=set_training_entropy(migrated,entropy_coef)
         bridge,error=read_prefix(parent/'infrastructure'/raw['bridge_response_stream'])
         if error:raise ValueError('Bound measured stream is incomplete')
         begins={w['response']['episode_id']:w['response'] for w in bridge if 'scene' in w.get('response',{})}
@@ -66,6 +86,7 @@ def prepare(output,gain_scale=1.0,methods=('H','H0')):
         config=read(source/'config.json');config['observation_encoding']={'version':VERSION}
         config['observation_shape']=list(migrated.observation_space.shape)
         config['reference_gain_scale']=gain_scale
+        if entropy_change is not None:config['entropy_regularization']=entropy_change
         atomic_json(destination/'config.json',config)
         metadata.update(model_sha256=sha(destination/'model.zip'),normalization_sha256=sha(destination/'normalization.pkl'),
             resume_state_sha256=sha(destination/'resume_state.pkl'),observation_encoding=VERSION,
@@ -73,15 +94,18 @@ def prepare(output,gain_scale=1.0,methods=('H','H0')):
             transformation_new_controls=0,transformation_new_updates=0)
         atomic_json(destination/'metadata.json',metadata);verified_checkpoint_metadata(destination)
         reloaded=load_ppo(destination/'model.zip',device='cpu')
+        if reloaded.ent_coef!=migrated.ent_coef:raise ValueError('Saved entropy coefficient differs')
         if any(not torch.equal(v,reloaded.policy.state_dict()[name]) for name,v in migrated.policy.state_dict().items()):raise ValueError('Saved transformed model changed')
         results[method]=dict(parent=parent.name,parent_checkpoint=source.name,
             old_model_sha256=sha(source/'model.zip'),new_model_sha256=metadata['model_sha256'],
             normalization_sha256=metadata['normalization_sha256'],RNG_bytes_exact=sha(source/'resume_state.pkl')==metadata['resume_state_sha256'],
             original_Adam_states_retained=len(model.policy.optimizer.state),new_empty_parameter_states=2,
             all24measured_start_probabilities_values_exact=True,measured_starts=inputs,
-            observation_shape=list(migrated.observation_space.shape),new_controls=0,new_updates=0)
+            observation_shape=list(migrated.observation_space.shape),entropy_regularization=entropy_change,
+            new_controls=0,new_updates=0)
         atomic_json(output/'status.json',dict(completed=results))
-    atomic_json(output/'complete.json',dict(version=VERSION,gain_scale=gain_scale,results=results,
+    atomic_json(output/'complete.json',dict(version=VERSION,gain_scale=gain_scale,
+        entropy_coefficient=entropy_coef,results=results,
         status='INITIALIZERS_PREPARED_NOT_NATIVE_TRAINED',new_controls=0,new_updates=0,research_acceptance='UNMET'))
     print({m:r['observation_shape'] for m,r in results.items()})
 
@@ -90,4 +114,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True)
     p.add_argument('--gain-scale',type=float,default=1.0)
     p.add_argument('--methods',choices=('H','H0'),nargs='+',default=['H','H0'])
-    a=p.parse_args();prepare(a.output,a.gain_scale,a.methods)
+    p.add_argument('--entropy-coef',type=float,default=None)
+    a=p.parse_args();prepare(a.output,a.gain_scale,a.methods,a.entropy_coef)

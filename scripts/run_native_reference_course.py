@@ -60,6 +60,9 @@ def run(batch, execution):
                 raise ValueError('Registered training budget incomplete')
             before = load_ppo(batch / 'resume' / method / 'model.zip', device='cpu')
             after = load_ppo(folder / 'model.zip', device='cpu')
+            entropy = protocol['reference_learning_registration'].get('entropy_coefficient')
+            if entropy is not None and (before.ent_coef != entropy or after.ent_coef != entropy):
+                raise ValueError('Registered entropy coefficient changed or was not applied')
             if after.num_timesteps - before.num_timesteps != summary['actions']:
                 raise ValueError('Saved decision count differs')
             old, new = dict(before.policy.named_parameters()), dict(after.policy.named_parameters())
@@ -86,6 +89,8 @@ def run(batch, execution):
             proofs[method] = dict(summary=summary, model_sha256=sha(folder / 'model.zip'),
                 all32Adamstates_advance=summary['optimizer_steps'], RMS_exact=True,
                 learned_reference_gain=float(after.policy.action_net.reference_bias.gain.detach()),
+                entropy_coefficient=float(after.ent_coef),
+                planner_failure_memo=protocol.get('planner_failure_memo'),
                 reference_gain_scale=protocol['reference_learning_registration'].get('gain_scale', 1.0))
             atomic_json(folder / 'saved_learning_proof.json', proofs[method])
         atomic_json(execution / 'training_complete.json', proofs)

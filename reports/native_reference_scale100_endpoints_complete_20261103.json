@@ -1,0 +1,72 @@
+{
+  "scope": "Completed H-only scale100 fixed-budget training and both complete known-development evaluation inventories",
+  "recorded_at_utc": "2026-11-03T14:00:40.338971+00:00",
+  "research_acceptance": "UNMET",
+  "coordinator_complete_sha256": "f0f23d1e960ec3a5b45ccd4ba7854c33e86d51a621135fac4b16aa81218cde25",
+  "learning_report_sha256": "657c9076444b639b4986dfca9443c657fe5a18734bdc713faf30218833a404ea",
+  "static_report_sha256": "60e0745affc1715765f67496dd1e57e903f77ffab1503e3ab240621769cb5def",
+  "actual_training_controls": 10501,
+  "Adam_updates": 330,
+  "actual_evaluation_controls": 16293,
+  "measured_evaluation_starts": 36,
+  "static_NN_decisions_reproduced": 1330,
+  "results": {
+    "static": {
+      "batch": "20261103_reference_context_TRAIN48_PPO10240_scale100_H_static",
+      "cases": 12,
+      "successes": 3,
+      "termination_counts": {
+        "deadline": 8,
+        "success": 3,
+        "out_of_bounds": 1
+      },
+      "unsafe_episodes": 1,
+      "actual_controls": 8303,
+      "actual_world_ticks": 8674,
+      "measured_starts": 12,
+      "static_NN_decisions": 832,
+      "static_NN_cases": 12,
+      "strict_engine_delivery": "PASS",
+      "protocol_sha256": "3f013f6519173b0cea125d03e277f788c31a343da35b53def5ae936d14bbca7f",
+      "model_sha256": "15ba2e1b17a99086d07eb031babe0ce5f008afb0516c208928f5035992969753",
+      "normalization_sha256": "680faf1c43af1f83391d0fcaddd4f6d0aae44e8007ae075ad0a3c6bf02e3d2e3",
+      "raw_audit_sha256": "c893d95fb29c983278905353bfac34ed28eb45f9df907b8bde1b9eef9523af00",
+      "start_NN_audit_sha256": "2e5aca6cbed025eb6c5365ca605f04fac28fc237ff0ecd90f084074f0b9ea29d",
+      "static_NN_audit_sha256": "0a4b79392a43e061121e43b7c7f6618439759caa8a5d91c3cd613198e7ad512c",
+      "engine_audit_sha256": "080610aa118b5fc45eb1a8fc2f280f18454956e05bd2afddde90cdddb878c767"
+    },
+    "known_validation": {
+      "batch": "20261103_reference_context_TRAIN48_PPO10240_scale100_H_known_validation",
+      "cases": 24,
+      "successes": 24,
+      "termination_counts": {
+        "success": 24
+      },
+      "unsafe_episodes": 0,
+      "actual_controls": 7990,
+      "actual_world_ticks": 8733,
+      "measured_starts": 24,
+      "static_NN_decisions": 498,
+      "static_NN_cases": 16,
+      "strict_engine_delivery": "PASS",
+      "protocol_sha256": "5e0cc6f0441a072720d0f00db2c0e2111af0d8509cf21ecfa730578d383c0a09",
+      "model_sha256": "15ba2e1b17a99086d07eb031babe0ce5f008afb0516c208928f5035992969753",
+      "normalization_sha256": "680faf1c43af1f83391d0fcaddd4f6d0aae44e8007ae075ad0a3c6bf02e3d2e3",
+      "raw_audit_sha256": "04e1738984568ec22ed24d5b44ca7f82c2e9118f02bad98e2a8bc9d84d39b78e",
+      "start_NN_audit_sha256": "4001edccc22f1763236d530b786b61d0092d7ab14c6759dcee084b234db61e54",
+      "static_NN_audit_sha256": "416bf22b4d5774d2a7bcc3724cdb1443f00df06ba53ab7526c66aaeccb16fe29",
+      "engine_audit_sha256": "4628b3681a7689e65d9a0141f4869cd8110c63aaf84c357339fecacac1071dbf"
+    }
+  },
+  "historical_scale1_reference": {
+    "H_static_successes": 3,
+    "H0_static_successes": 4,
+    "H_known_successes": 24,
+    "H0_known_successes": 24
+  },
+  "interpretation": "No static success-count gain:scale100H3/12vs scale1H3/12. Known validation remains24/24. Larger learned reference bias alone has not solved the static bottleneck or established feedback/PPO advantage. No further blind reference-scale sweep is justified by this result.",
+  "new_final_conditions": 0,
+  "new_auxiliary_updates": 0,
+  "H0_retrained": false,
+  "limits": "One canonical trained seed,known development only.36measured episode starts are not36independent policies or necessarily36unique conditions. Static NN reconstruction covers all static decisions and every measured start;it does not claim replay of every dynamic decision. Preserve all failures and original v4 bounds semantics. No final test,formal confidence interval or research acceptance."
+}

@@ -1,0 +1,19 @@
+{
+  "scope": "Preparation only:original scale100 H initializer vs entropy0.02initializer;not trained",
+  "old_model_sha256": "244c078cd3a0dfe5b7e3637ed816ecc7463cb1130989d2b760d1512d5cd25b97",
+  "new_model_sha256": "a8db11c644639135332e221e62f33a5d2cbb7b151daa9424c79818244f467617",
+  "initializer_complete_sha256": "5d89b30e04d68408473ac910cacf9990447118bf01f4ae189a24eb1d80458972",
+  "same32initial_parameter_tensors": true,
+  "same30retained_Adam_states": true,
+  "same_optimizer_parameter_groups": true,
+  "same_saved_RNG_bytes": true,
+  "RMS_exact": true,
+  "normalization_file_bytes_equal": true,
+  "all24measured_start_probabilities_values_exact": true,
+  "entropy_before": 0.0,
+  "entropy_after": 0.02,
+  "gain_scale": 100.0,
+  "new_controls": 0,
+  "new_updates": 0,
+  "research_acceptance": "UNMET"
+}
