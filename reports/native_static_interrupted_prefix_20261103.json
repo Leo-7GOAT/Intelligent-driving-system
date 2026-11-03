@@ -1,0 +1,44 @@
+{
+  "scope": "Partial one-seed known static development evidence; original disk failure retained",
+  "research_acceptance": "UNMET",
+  "batch": "20261103T044757476793Z_native_static_H_H0_teacher_transfer",
+  "H": {
+    "cases": 12,
+    "successes": 3,
+    "deadline": 8,
+    "bounds": 1,
+    "controls": 8306,
+    "raw_audit_sha256": "3cf85f800528a09e9c87eed29196f088eecce5353f9deda61c6086e67601b564",
+    "measured_starts": 12,
+    "starts_audit_sha256": "3a5728ff33b9f04a30a5a49ea80b34c8fb4093755c405816118bc767ce18484e"
+  },
+  "H0": {
+    "completed_case_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "remaining_case_ids": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "termination_counts": {
+      "deadline": 2,
+      "success": 2
+    },
+    "verified_completed_controls": 2462,
+    "trace_torn": true,
+    "partial_audit_sha256": "7fe913ab745df0ec0a97cc6a515cb8b109b21138e9758505221c075604b2c3dc"
+  },
+  "H_teacher": "NOT_STARTED",
+  "new_controls": 0,
+  "new_updates": 0,
+  "limits": "H0 heartbeat had advanced farther than the retained complete evidence. Count only cases0..3; case4 terminal was not retained. Do not infer missing outcomes or create a complete evaluation summary."
+}

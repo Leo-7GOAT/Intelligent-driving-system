@@ -14,7 +14,7 @@
 
 v2 `20261103_reference_context_TRAIN48_PPO10240_v2` 实际于13:35启动，之后旧observer72736被终止，但物理worker/guard/server继续；“v2未启动”的先前说法不正确。原错误记录及纠正均保留，公开 `reports/native_reference_context_execution_correction_20261103.json`。
 
-13:52:32 v2因 `InfrastructureFailure('bridge exited')` 终止，原生桥接退出原因未知。完整可读2412控制、末次70Adam，尚未达到首个2560检查点，因此没有可恢复的新权重。不是成功的短训练或可保留更新。owned_empty_server_stopped、端口空、记录进程终态已核实。接管observer72220也已因worker失败终止。
+13:52:32 v2因 `InfrastructureFailure('bridge exited')` 终止，已通过Windows Application事件1000定位为本任务Python3.7桥接PID23612原生崩溃，模块ucrtbase.dll、异常0xc0000409；PID与tick锁完全一致，C++根因尚未知。末次确认request2421/frame5065，request2422未确认且未重tick。证据 `reports/native_reference_context_bridge_crash_20261103.json`。完整可读2412控制、末次70Adam，尚未达到首个2560检查点，因此没有可恢复的新权重。不是成功的短训练或可保留更新。owned_empty_server_stopped、端口空、记录进程终态已核实。接管observer72220也已因worker失败终止。
 
 v4从原已核验scale1初始化显式重新开始，并将v2至少2412消耗、70次丢失Adam及未知尾部记入失败成本。唯一恢复登记已经写入v2，禁止重复父任务。该课程不是相同消耗预算的正式优势比较。公开 `reports/native_reference_context_restart_20261103.json`，准备器 `scripts/prepare_native_reference_restart.py` 拒绝已有检查点、已启动H0、活进程、未清空端口或重复登记。
 
@@ -30,9 +30,15 @@ scale10 v3只是候选准备，启动时因v2占用端口而拒绝，没有serve
 
 ## 已结束的旧静态对照与已完成适配
 
-`20261103T044757476793Z_native_static_H_H0_teacher_transfer` 在13:35因C盘低于12GiB被保护终止。原H_PPO完整12场：3成功、8超时、1越界，8306控制，raw审计已通过；不要重跑已完整H。H0完成5场后中断，没有完整evaluation.json；必须先审计部分case帧证据，才可组合剩余原case5..11。H_teacher未开始，后续仍缺。原server3840正常清理；该旧失败与v2桥接退出是两个独立事件。
+`20261103T044757476793Z_native_static_H_H0_teacher_transfer` 在13:35因C盘低于12GiB被保护终止。原H_PPO完整12场：3成功、8超时、1越界，8306控制，raw及12起点NN审计均已通过；不要重跑已完整H。H0心跳曾进入case5，但损坏gzip只保留case0..3完整终止证据：2成功、2超时、2462控制，原始帧/起始条件/逐帧发动机回执已独立核验。case4终止未保留，不能计入完成；须补原case4..11共8场，没有完整evaluation.json。H_teacher未开始，后续仍缺。原server3840正常清理；该旧失败与v2桥接退出是两个独立事件。
 
 此前真实适配H10467控制/330Adam、H0恢复后保留10453/330，均已知VAL24/24且0不安全，原始帧/24起点NN/严格传送已验证。H0已知真实消耗至少12096，含1643未保存控制/50未保存Adam及未知尾部。公开 `reports/native_H_H0_diverse_recovered_complete_20261103.json`。同一seed已知24条件不能证明新增反馈或PPO对强规则的优势。
+
+## 已登记的旧静态缺项队列（14:12）
+
+`runs/static_remainder_after_reference_v4_execution_20261103`，协调器38744/工具session33086，入口 `scripts/run_native_static_remainder.py`，持有当前reference协调器47524的确切进程句柄，只读等待，当前没有第二个物理worker。最长8小时等待，之后依次原H0缺证据case4..11共8场、未开始的零PPO教师12场，均零学习、D盘、7200秒有限墙钟、零自动重试。每阶段raw/全部起点NN/发动机传送审计，原始case映射保留，已完成H和H0case0..3不重跑。
+
+两种准备已在独立D盘夹具上通过真实launcher -ValidateOnly：原路段及静态hazard逐项一致，模型/校准/442个源哈希/监督来源均通过。夹具显式abandoned_before_launch，零物理控制，不冒充真实补评。公开 `reports/native_static_remainder_preparation_validation_20261103.json`。实际批次将在队列唤醒后才准备，防止等待导致过期deadline。完整旧结果仍PENDING，公开 `reports/native_static_interrupted_prefix_20261103.json` 只报告可核验部分。
 
 ## 尚未完成的最终目标
 
