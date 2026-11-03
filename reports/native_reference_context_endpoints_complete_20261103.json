@@ -1,0 +1,106 @@
+{
+  "scope": "Complete fixed scale1 reference-context one-seed development endpoints;static TRAIN12 and separate known-validation24 retained separately",
+  "research_acceptance": "UNMET",
+  "endpoint_coordinator_complete_sha256": "d5022d1cca72a0b262aa25e8d9c43d2c4f7cc71a189f541e4edb959984208a32",
+  "phases": {
+    "static": {
+      "batch": "20261103_reference_context_TRAIN48_PPO10240_v4_static_schema_fixed",
+      "protocol_sha256": "dc59e35a5668f2e59497e34048ca6fa69dd02e278e21908b3a406277e58fee85",
+      "delivery_sha256": "53bf96254df7bb702bc9baa2f6a0af52b18c752ce4b2a274c495d1042d40d606",
+      "strict_delivery_gate_passed": true,
+      "engine_controls": 16065,
+      "results": {
+        "H": {
+          "cases": 12,
+          "successes": 3,
+          "termination_counts": {
+            "deadline": 8,
+            "success": 3,
+            "out_of_bounds": 1
+          },
+          "model_sha256": "f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff",
+          "raw_audit_sha256": "de318fd20059353035c7f790abdefef780340c5a481520e8dbe05df5afb6cafa",
+          "controls": 8304,
+          "world_ticks": 8675,
+          "measured_starts_reproduced": 12,
+          "static_cases_with_all_actions_reproduced": 12,
+          "static_actions_reproduced": 833,
+          "all_static_actions_match": true,
+          "engine_delivery": "PASS",
+          "normalization_sha256": "28c7e16ccf6fee44f67db784f34c441caab9e497cc67a8f1a205381f46e66367"
+        },
+        "H0": {
+          "cases": 12,
+          "successes": 4,
+          "termination_counts": {
+            "deadline": 7,
+            "success": 4,
+            "out_of_bounds": 1
+          },
+          "model_sha256": "4a7a222cb5ca0bef3903ab631e562166f63056ac8665b571931f3161d31b4cd3",
+          "raw_audit_sha256": "de0093be7d1cc4175e7c793a038e7549ec504de556af97c1be255f2143e59eef",
+          "controls": 7761,
+          "world_ticks": 8132,
+          "measured_starts_reproduced": 12,
+          "static_cases_with_all_actions_reproduced": 12,
+          "static_actions_reproduced": 778,
+          "all_static_actions_match": true,
+          "engine_delivery": "PASS",
+          "normalization_sha256": "2ad0efbe2fc7439bb5914f02b4d66e5d8da33ff37bda3a9a91fea3587e7d30ac"
+        }
+      }
+    },
+    "known_validation": {
+      "batch": "20261103_reference_context_TRAIN48_PPO10240_v4_known_validation_schema_fixed",
+      "protocol_sha256": "56309095812fa14c3168a72dea77f005f54554b11a38c3fc325eb38d98e5ecb3",
+      "delivery_sha256": "06ee1296aa7d5237e0020ec0ac22f39e96ce2272c17b65a415cba3a85dbdd01f",
+      "strict_delivery_gate_passed": true,
+      "engine_controls": 15995,
+      "results": {
+        "H": {
+          "cases": 24,
+          "successes": 24,
+          "termination_counts": {
+            "success": 24
+          },
+          "model_sha256": "f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff",
+          "raw_audit_sha256": "bce37136a9d472a3e3a711a30a8e471c32295e0d7026a809b346488f20073850",
+          "controls": 8002,
+          "world_ticks": 8745,
+          "measured_starts_reproduced": 24,
+          "static_cases_with_all_actions_reproduced": 16,
+          "static_actions_reproduced": 501,
+          "all_static_actions_match": true,
+          "engine_delivery": "PASS",
+          "normalization_sha256": "28c7e16ccf6fee44f67db784f34c441caab9e497cc67a8f1a205381f46e66367"
+        },
+        "H0": {
+          "cases": 24,
+          "successes": 24,
+          "termination_counts": {
+            "success": 24
+          },
+          "model_sha256": "4a7a222cb5ca0bef3903ab631e562166f63056ac8665b571931f3161d31b4cd3",
+          "raw_audit_sha256": "ee3e463f0e0745309c04ba37754754edf88778d36dc9a86ddc38b0bc902f6694",
+          "controls": 7993,
+          "world_ticks": 8736,
+          "measured_starts_reproduced": 24,
+          "static_cases_with_all_actions_reproduced": 16,
+          "static_actions_reproduced": 499,
+          "all_static_actions_match": true,
+          "engine_delivery": "PASS",
+          "normalization_sha256": "2ad0efbe2fc7439bb5914f02b4d66e5d8da33ff37bda3a9a91fea3587e7d30ac"
+        }
+      }
+    }
+  },
+  "total_actual_evaluation_controls": 32060,
+  "new_training_controls_in_these_endpoints": 0,
+  "new_updates": 0,
+  "new_final_conditions": 0,
+  "training_provenance": "reports/native_reference_context_learning_complete_20261103.json",
+  "training_provenance_sha256": "cd205212f56dee94f651d3eb020b2403d747c271cd5e8cd43381f149271504ff",
+  "interpretation": "H3/12vsH04/12static and24/24eachonknownvalidation. No static gain over the old policies and no new feedback/PPO advantage established. H0 hides both old feedback and appended context. Easy known validation does not replace difficult static capability or unseen final confirmation.",
+  "prospective_followup": "H-only scale100 actual PPO has started from the registered identical initial tensors/Adam/RMS/RNG;no followup performance result yet",
+  "limits": "One trained canonical seed,all conditions already known development. Static unsafe episodes remain1/12perpolicy. No five independent native adaptations,120new final conditions,formal comparative success or full research acceptance is established by these endpoints. Prior failed courses/infrastructure costs remain in the linked learning report;these frame counts do not erase them."
+}
