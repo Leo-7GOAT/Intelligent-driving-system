@@ -175,6 +175,15 @@ class RecordedRoadEnv(CarlaNavigationEnv):
         return result
 
 
+def native_environment_class(reference_context=False, recorded=True):
+    """Use the same declared observation schema in learning and evaluation."""
+    parent=RecordedRoadEnv if recorded else CarlaNavigationEnv
+    if not reference_context:return parent
+    from navstack.reference_context_policy import ReferenceContextObservationMixin
+    class ContextRoadEnv(ReferenceContextObservationMixin,parent):pass
+    return ContextRoadEnv
+
+
 def restore_training(checkpoint, raw, config, seed, gradient_clip_mode=None, allow_intervention=False,
                      rollout_actions=None, allow_rollout_intervention=False):
     """Restore learning state, deliberately begin a new measured CARLA episode."""
@@ -347,9 +356,7 @@ def run(batch):
                 or not protocol.get('shared_endpoint_mask_v1') or not protocol.get('reference_reuse')
                 or set(protocol.get('recovery',{}))!=set(protocol['methods'])):
             raise ValueError('Reference context requires a versioned matched saved H/H0pair')
-        class ContextRecordedRoadEnv(ReferenceContextObservationMixin,RecordedRoadEnv):pass
-        environment_class=ContextRecordedRoadEnv
-    else:environment_class=RecordedRoadEnv
+    environment_class=native_environment_class(context is not None)
     record_camera=camera_evaluation_mode(protocol)
     jobs = registered_jobs(protocol)
     for relative, digest in protocol["source_hashes"].items():
@@ -613,7 +620,8 @@ def run(batch):
                     vec.training=False
                     mean,var=vec.obs_rms.mean.copy(),vec.obs_rms.var.copy()
                     evaluation_ticks=client.total_ticks
-                    evaluation=RecordedRoadEnv(config,client,evaluation_cases,output) if evaluation_only else CarlaNavigationEnv(config,client,evaluation_cases)
+                    evaluation_class=native_environment_class(context is not None,recorded=evaluation_only)
+                    evaluation=evaluation_class(config,client,evaluation_cases,output) if evaluation_only else evaluation_class(config,client,evaluation_cases)
                     configure_planner_memo(evaluation, protocol)
                     episodes=[]
                     with gzip.open(output/"evaluation_trace.jsonl.gz","wt",encoding="utf-8") as stream:

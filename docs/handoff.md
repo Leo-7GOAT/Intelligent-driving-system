@@ -1,72 +1,48 @@
-# 当前接续状态（2026-11-03 14:02）
+# 当前接续状态（2026-11-03 16:18）
 
-目标不变，整体研究验收 UNMET。继续当前分支，不重建项目，不恢复瞬移，不新增子代理。所有新增大体积物理数据写 D 盘；不要触碰 Desktop/papper 的进程。runs 中多个旧目录是 junction，禁止递归删除或移动。
+目标不变，研究验收UNMET。继续当前分支，不重建、不恢复瞬移、不新增子代理。以下是实际已启动状态；继续前须复核OS进程身份，不能仅凭状态文件重启任务。不要触碰Desktop/papper其他项目进程。
 
-## 唯一当前物理作业：参考上下文 scale1 的显式重启
+## 唯一当前物理作业：补齐旧静态对照
 
-实际 batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_v4`。协调器 `runs/reference_context_native_v4_execution_20261103`，PID47524，工具session43917；真实worker63072。启动时间14:00，已看到真实80控制/8决策。必须查最新 heartbeat、guard 和状态，不能仅凭本文判断仍在运行，也不要重复启动。
+协调器38744，工具session33086，execution `runs/static_remainder_after_reference_v4_execution_20261103`；当前batch `D:/ThesisNativeArchive_20261103/20261103_static_H0_remaining_remainder`，worker66632（创建15:55:41）、guard18204。16:17心跳case5/actions40，正在第6/8场，不是已完成6场。入口 `scripts/run_native_static_remainder.py` 已启动，勿重跑。完成H0缺证据的原case4..11后，自动执行未开始的H_teacher全部12场；零学习、固定模型及原物理版本，逐方法raw/起点NN/严格发动机回执核验，有限墙钟、零自动重试。
 
-入口 `scripts/run_native_reference_course.py`。每方法 H、H0 请求10240真实控制，最多319步rollout超出；TRAIN48、固定物理低层、零新监督、冻结RMS。使用原v2冻结源和scale1初始化，4736输入、31种原动作，新增actor系数及critic项初始为0；原30个Adam状态保留。H0隐藏旧反馈和新增context，因此不是仅新增context的独立消融。
+旧H完整12场为3成功、8超时、1越界、8306控制，raw及12起点NN审计均通过，不重跑。旧H0虽心跳曾到case5，损坏gzip仅保留case0..3完整证据：2成功、2超时、2462控制。case4终止丢失，故必须补case4..11共8场；所有损坏文件保留，没有合成evaluation.json。公开 `reports/native_static_interrupted_prefix_20261103.json`，审计 `scripts/audit_native_torn_static_prefix.py`。独立D盘准备夹具通过launcher -ValidateOnly，已标abandoned防止误启动，见 `reports/native_static_remainder_preparation_validation_20261103.json`。
 
-新增检查点每320控制一次，取代前次2560间隔，降低基础设施中断损失。协调器先核验严格发动机控制传送、32个Adam状态推进和RMS完全不变，再自动准备D盘的static12及known_validation24，逐批真实评估并完成raw/全部起点NN/静态完整序列NN/发动机审计。尚无新模型性能结果；尚未执行的检查不能当成通过。每个阶段独立有限墙钟、零自动重试。训练后任何失败均保留，不能重复父批次。
+## 修复后的reference评估已排队，尚未执行
 
-## v2中断与先前错误的纠正
+协调器40108，工具session38578，execution `runs/reference_context_schema_fixed_endpoints_wall_execution_20261103`；入口 `scripts/run_native_reference_endpoints.py`，持有38744确切进程身份，只读等待上述整个旧对照队列正常结束。最长8小时等待，随后在D盘依次新建并执行 `...v4_static_schema_fixed`（完整12场）与 `...v4_known_validation_schema_fixed`（完整24场）。阶段墙钟预算14400/3600秒、零学习、零自动重试、零新最终条件；raw/全部起点NN/所有静态序列NN/严格发动机回执均自动核验。禁止另开CARLA或重复队列。若前序失败，队列保留失败并停止，需要根据实际日志继续处理，不能盲重试。
 
-v2 `20261103_reference_context_TRAIN48_PPO10240_v2` 实际于13:35启动，之后旧observer72736被终止，但物理worker/guard/server继续；“v2未启动”的先前说法不正确。原错误记录及纠正均保留，公开 `reports/native_reference_context_execution_correction_20261103.json`。
+原等待器42296/session86576已在确切父38744与物理worker66632均确认存活、目标评估batch尚不存在时，仅通过保留句柄停止；不停止任何车辆进程。原execution的superseded_before_dispatch/exit receipt保留，当前40108才是唯一schema修复评估等待器，不能恢复旧等待器。
 
-13:52:32 v2因 `InfrastructureFailure('bridge exited')` 终止，已通过Windows Application事件1000定位为本任务Python3.7桥接PID23612原生崩溃，模块ucrtbase.dll、异常0xc0000409；PID与tick锁完全一致，C++根因尚未知。末次确认request2421/frame5065，request2422未确认且未重tick。证据 `reports/native_reference_context_bridge_crash_20261103.json`。完整可读2412控制、末次70Adam，尚未达到首个2560检查点，因此没有可恢复的新权重。不是成功的短训练或可保留更新。owned_empty_server_stopped、端口空、记录进程终态已核实。接管observer72220也已因worker失败终止。
+## 新reference-context真实训练已经全部完成
 
-v4从原已核验scale1初始化显式重新开始，并将v2至少2412消耗、70次丢失Adam及未知尾部记入失败成本。唯一恢复登记已经写入v2，禁止重复父任务。该课程不是相同消耗预算的正式优势比较。公开 `reports/native_reference_context_restart_20261103.json`，准备器 `scripts/prepare_native_reference_restart.py` 拒绝已有检查点、已启动H0、活进程、未清空端口或重复登记。
+训练batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_v4` 已正常退出0、owned_empty_server_stopped、端口清空。原worker63072/guard40168已结束，不能重新训练这个父批次。H10511控制/1056决策/330Adam；H010513/1056/330，共21024实际训练控制。两方法32个Adam状态各从初始化推进330，RMS mean/var/count均完全一致。H模型f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff；H0模型4a7a222cb5ca0bef3903ab631e562166f63056ac8665b571931f3161d31b4cd3。
 
-scale10 v3只是候选准备，启动时因v2占用端口而拒绝，没有server_start.json或worker，零原生控制。不要重启它或混用其统计。目前实际物理学习唯一为scale1 v4。
+实际使用scale1、4736输入、原31动作。H新增参考系数0.0011252184631302953，H0为0。H0同时隐藏旧反馈与新context，不是单独新增项的消融。每方法请求10240，实际超出271/273，均低于注册319上限。零新监督、固定同步/停车低层、冻结RMS。新增参数零初始化，原30个Adam状态保留。每320控制保存检查点，最终选择固定预算端点，没有挑最优epoch。
 
-## 已验证代码与推理迁移
+独立只读训练帧观察器61720/session45413已正常完成：21024训练控制全部逐帧核对CARLA state/command/传感器证据，reward累计、全部实际控制、末次optimizer/最终checkpoint计数、1176重置步核对一致，22200世界步；严格发动机传送通过。主报告 `reports/native_reference_context_learning_complete_20261103.json`。单H先期状态证明 `reports/native_reference_context_H_learning_complete_20261103.json`。所有这些都不是新性能成绩。
 
-默认scale1向后兼容；可选scale10只改变新增零初始化系数的单位，并在policy_kwargs保存，没有强制保持参考或规则替换动作。不得宣称scale10训练收益。
+## 首次reference静态评估失败与窄修复
 
-`audit_native_reference_inference.py` 独立新增，不改三个历史绑定审计入口。旧模型到新维度模型在实际记录上的H500、H0 496个静态/曲线决策及各24起点完全一致，0新物理控制、0学习。完整序列恢复成功参考并检查status/expanded_nodes；失败搜索只消费原失败记录，不将其当成不可行证明。范围为迁移等价，不能解释成新模型性能。
+原训练协调器47524/session43917因随后评估失败而退出1，不能把它的失败误当训练失败。失败batch `...v4_static` 的worker73148在首个控制前报 `Reference context observation schema differs`：旧eval-only构造器用了4705维RecordedRoadEnv，遗漏训练时31位context，模型需要4736。仅执行30个reset世界步，0策略控制、0新学习，数据/源码/失败均保留，server60112已owned_empty正常清理。
 
-完整CPU1272通过、1跳过、4CARLA排除，293.36秒，XML `D:/ThesisNativeArchive_20261103/reference_context_cpu_v3.xml`。此后新增的恢复安全边界5项测试通过；新协调器及审计入口编译通过。无需无变化反复跑完整CPU。
+`native_road_learning.native_environment_class`统一学习与评估的版本化观测；为已冻结旧worker，`prepare_native_reference_evaluation.py`仅把eval-only表达式中的RecordedRoadEnv替换为其已定义的environment_class，逐字节保留其余源及换行。planner/轨迹/MPC/actuation/策略/奖励均未换。协议记录before/after SHA和修复范围；新root源的训练后普通评估也使用相同schema。分区安装器兼容新旧构造器，保留原teacher索引，不注入新的物理控制。
 
-## 已结束的旧静态对照与已完成适配
+已在独立D盘夹具 `20261103_reference_context_static_schema_validation_only` 验证448源文件/校准/模型等launcher输入；夹具已abandoned，不能当真实评估。`probe_native_reference_evaluation_schema.py`在冻结源下执行实际评估构造表达式，客户端只回放失败尝试保留的真实CARLA begin，禁止step/finalize/tick；实际H/H0模型均得到4736观测并正常predict，全部权重及optimizer张量与训练最终模型逐位一致。0新世界步、0新控制。公开 `reports/native_reference_context_evaluation_schema_validation_20261103.json`。实际修复后物理评估仍PENDING。
 
-`20261103T044757476793Z_native_static_H_H0_teacher_transfer` 在13:35因C盘低于12GiB被保护终止。原H_PPO完整12场：3成功、8超时、1越界，8306控制，raw及12起点NN审计均已通过；不要重跑已完整H。H0心跳曾进入case5，但损坏gzip只保留case0..3完整终止证据：2成功、2超时、2462控制，原始帧/起始条件/逐帧发动机回执已独立核验。case4终止未保留，不能计入完成；须补原case4..11共8场，没有完整evaluation.json。H_teacher未开始，后续仍缺。原server3840正常清理；该旧失败与v2桥接退出是两个独立事件。
+## 回归与资源
 
-此前真实适配H10467控制/330Adam、H0恢复后保留10453/330，均已知VAL24/24且0不安全，原始帧/24起点NN/严格传送已验证。H0已知真实消耗至少12096，含1643未保存控制/50未保存Adam及未知尾部。公开 `reports/native_H_H0_diverse_recovered_complete_20261103.json`。同一seed已知24条件不能证明新增反馈或PPO对强规则的优势。
+前一完整本地CPU1272通过/1跳过/4CARLA排除；后续root源074927a的GitHub CI41592067959通过。本次schema修复：专项34项（分区/评估）及11项（实际PPO保存续训）通过，真实模型离线预检通过。完整CPU第一轮XML `D:/ThesisNativeArchive_20261103/reference_context_evaluation_schema_cpu_v1.xml`：1302通过、7失败、1跳过；6个失败明确由C盘不足8GiB触发训练保护提前停止，1个为分区源码锚点不兼容。原失败保留，不降低磁盘底线；分区已修复。完整CPU第二轮session79806已退出0，临时目录显式D盘，1310通过/1跳过/4CARLA排除，360.28s，XML `.../reference_context_evaluation_schema_cpu_v2.xml`。其后仅延长static双方法墙钟到14400秒（场景、模型、每场deadline不变），专项8项再通过。
 
-## v4 H学习端点已完成，H0正在训练（15:03）
+C盘约8GB十进制空余，小于8GiB；D盘约465GB空余。后续pytest必须用新且专用的D盘 --basetemp，训练/评估大文件均D盘。多个runs旧路径是junction，禁止递归删除/移动。新增恢复器支持 --output D:/...，检查实际工件盘，默认仍workspace/runs；既有目录拒绝覆盖。早期scale1模型无reference_gain_scale属性，新worker缺省1保持原语义；带显式scale10仍用10。实际合成PPO保存/加载兼容已测。
 
-同一batch/worker63072没有重启，H已完成10511实际控制、1056决策、330Adam，超出请求10240共271步，低于预注册319最大值。模型f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff。独立加载原始初始化与最终模型，全部32Adam参数状态分别推进330，17actor/15critic张量均变化，RMS mean/var/count完全一致；新增actor参考系数从0变为0.0011252184631302953，scale1。公开 `reports/native_reference_context_H_learning_complete_20261103.json`。这是保存学习状态证明，完整训练帧审计/端点评估仍PENDING，不宣称性能增益。
+`audit_interrupted_native.py`能按完整可读计数、预注册预算、reload_exact、最终checkpoint和optimizer辨别没有evaluation.json的已完成纯训练方法，防止另一方法失败后重复训练前者。只有最后一轮首次跨预算才算完成；不同rollout长度按实际记录判断，不硬套319。它不制造端点评估成绩。所有恢复前都要单独确认worker/guard/server终态及owned_empty清理。
 
-H0已在同一进程自动开始（15:03看到10控制/1决策），仍请求10240固定预算。当前不要重新训练H、不要重新启动batch，不触碰冻结源或执行中的模型。H0完成后原协调器会核验两模型学习状态与发动机回执，再启动已登记的static12/known24；只读训练帧审计观察器也在等待该worker整体正常结束。
+## 前次失败、历史与剩余目标
 
-## 纯训练完成状态识别（14:45）
+v2 scale1实际已在13:35启动；终止旧observer72736时物理worker仍运行，“v2未启动”曾判断错误，原记录与 `reports/native_reference_context_execution_correction_20261103.json`均保留。v2在2412控制/70Adam之后、首个2560检查点之前崩溃，没有可恢复新权重。Windows事件1000的Python3.7 PID23612与tick锁一致，ucrtbase.dll/0xc0000409，C++根因仍未知；request2422未确认，没有重tick。证据 `reports/native_reference_context_bridge_crash_20261103.json`。v4从原已核验初始化显式开始，并保留至少2412失败消耗/70丢失Adam及未知尾部成本；父唯一恢复登记指向v4，禁止重放v2。scale10 v3只曾准备，因端口占用在worker启动前拒绝，0原生控制，不混用。
 
-`audit_interrupted_native.py` 现对没有evaluation.json的纯训练端点核对完整可读控制数、预注册预算、reload_exact、最终已核验checkpoint及末次optimizer计数；只在最后一轮首次跨过预算时标complete。不同方法可有不同rollout长度，不硬套H的319超出上限。它只表示学习状态已保留，明确endpoint_evaluation=NOT_EXECUTED。避免某方法已完成而另一方法中断时重复训练前者。两批已完成B1均已实际识别complete；相关中断/原始帧/外部进程恢复70项检查通过，新增含长rollout和多做一轮的6项检查通过。
-
-## 纯训练原始帧审计（14:39）
-
-新增独立只读 `scripts/audit_native_training_only.py`，不改历史绑定审计入口。逐训练tick调用既有严格state/command/传感器证据校验，另核对所有applied控制完整覆盖、首帧与begin关系、注册TRAIN条件、累计reward_components、控制/动作计数、末次optimizer/最终checkpoint计数及reset+control世界步总账。已有两批B1实际训练各10240控制全通过（重置867/805步），源与各流哈希绑定，公开 `reports/native_training_only_raw_verification_20261103.json`。这些是已发生训练的核验，不是新增训练或评估。
-
-当前v4额外只读观察器PID61720/工具session45413，持有worker63072确切身份，入口带 `--wait-identity .../worker_process.json`，等待终态和owned_empty清理后自动写v4 `training_only_raw_audit.json`。注册文件 `training_only_raw_audit.waiting.json` 已保存，有限等待、零重试、没有车辆控制。不要重复启动，当前审计PENDING不能当作通过。6个合成物理证据测试通过，包括state篡改、reward不符、未入账控制、累计计数错误和丢失首帧的拒绝。
-
-## 续跑入口的存储与旧模型兼容（14:29）
-
-`prepare_native_recovery.py` 新增可选 `--output D:/ThesisNativeArchive_20261103/<唯一新子批次>`，空间与内存预检针对实际工件盘，默认路径仍为workspace/runs。既有输出拒绝覆盖，12GiB运行存储底线保留，原权重、Adam、RNG、课程游标及绝对lineage目标口径不变。当前物理训练没有调用此恢复入口，也没有改变其冻结源。
-
-若未来实际中断，必须先核实worker/guard/server已终态与owned_empty清理，再生成原始interruption审计并使用唯一恢复登记；有checkpoint就续原学习状态，不能再次用checkpoint-free restart。早期scale1冻结policy没有reference_gain_scale属性；新worker按其原语义缺省1.0，防止恢复后checkpoint保存/注册校验AttributeError。带显式scale10的模型继续精确使用其10，不能降成1。
-
-恢复/存储/检查点/PPO回归20项通过；真实合成PPO模型的H/H0、scale1/10迁移与保存/加载4项通过，其中两项显式去掉早期模型不存在的属性和kwarg，再保存检查点并重新加载核对所有权重。这是恢复兼容证据，不是新增CARLA性能。新增完整开发评估准备5项也已通过；包含固定预算不足、选错保存端点、训练提前停止的拒绝，以及全部12静态/24已知条件保留。
-
-## 已登记的旧静态缺项队列（14:12）
-
-`runs/static_remainder_after_reference_v4_execution_20261103`，协调器38744/工具session33086，入口 `scripts/run_native_static_remainder.py`，持有当前reference协调器47524的确切进程句柄，只读等待，当前没有第二个物理worker。最长8小时等待，之后依次原H0缺证据case4..11共8场、未开始的零PPO教师12场，均零学习、D盘、7200秒有限墙钟、零自动重试。每阶段raw/全部起点NN/发动机传送审计，原始case映射保留，已完成H和H0case0..3不重跑。
-
-两种准备已在独立D盘夹具上通过真实launcher -ValidateOnly：原路段及静态hazard逐项一致，模型/校准/442个源哈希/监督来源均通过。夹具显式abandoned_before_launch，零物理控制，不冒充真实补评。公开 `reports/native_static_remainder_preparation_validation_20261103.json`。实际批次将在队列唤醒后才准备，防止等待导致过期deadline。完整旧结果仍PENDING，公开 `reports/native_static_interrupted_prefix_20261103.json` 只报告可核验部分。
-
-## 尚未完成的最终目标
-
-新context训练及上述开发验证、旧静态完整H0/teacher0、五独立实际训练策略、健康且充分训练B1的公平对照、B2/频率/共享安全/固定参考消融仍需推进。最终至少120NEW去重条件、各核心场景至少30、未见布局/车辆、五seed配对统计和最终公开复现尚未完成。保持既定轻量85%/核心75%、CARLA80%/核心70%/不安全≤5%和H对B1差值目标，不降低验收线，不把已知条件或迁移等价当成未见最终成绩。
+旧适配H/H0在已知24场各24/24是不同模型、不同阶段，不可写成当前context版本成绩。五seed旧H120/120 vsH0119/120、PPO对零PPO教师120vs117差值区间都跨0；强B3已知24/24，尚无稳定新增反馈或PPO收益。新的旧静态完整对照与context静态/known24均还需收齐。保持目标：至少5独立真实适配策略、健康充分训练B1、公平H/H0/B1/B2/B3及消融；至少120NEW去重最终条件、各核心30、未见布局/车辆；轻量85%/核心75%，CARLA80%/核心70%/不安全≤5%，H对B1预定差值与CI、PPO对强B3及协作贡献、原始数据/模型/失败成本/视频/公开复现。目标不降低，最终集未触碰，不能把当前单seed开发研究当最终完成。
 
 ## 本轮已完成并核验
 

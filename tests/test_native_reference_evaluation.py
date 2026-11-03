@@ -21,6 +21,7 @@ def finished_course(tmp_path, monkeypatch):
              recovery={m: {'retained_optimizer_steps': 10} for m in ('H', 'H0')})
     write(parent / 'protocol.json', p)
     (parent / 'source/scripts').mkdir(parents=True)
+    (parent / 'source/scripts/native_road_learning.py').write_text(preparation.LEGACY_EVALUATION)
     (parent / 'source/physics.txt').write_text('frozen physics bytes')
     (parent / 'calibration').mkdir()
     auditor = root / 'scripts/audit_native_reference_inference.py'
@@ -56,8 +57,11 @@ def test_static_keeps_every_original_case_including_known_failure(finished_cours
     assert 14 in [c['original_id'] for c in p['native_case_manifest']['cases']]
     assert p['method_budgets'] == {'H': 0, 'H0': 0}
     assert p['evaluation_only'] and not p['checkpoint_thresholds']
+    assert p['resource_limits']['wall_seconds']==14400
     assert 'freeze_observation_statistics' not in p and 'lineage_targets' not in p
     assert (output / 'source/physics.txt').read_bytes() == (parent / 'source/physics.txt').read_bytes()
+    assert (output / 'source/scripts/native_road_learning.py').read_text()==preparation.FIXED_EVALUATION
+    assert (parent / 'source/scripts/native_road_learning.py').read_text()==preparation.LEGACY_EVALUATION
     for method in ('H', 'H0'):
         assert (output / 'resume' / method / 'model.zip').read_bytes() == (parent / method / 'checkpoint_final/model.zip').read_bytes()
 
@@ -68,6 +72,7 @@ def test_validation_keeps_all_separate_known_conditions(finished_course):
     p = preparation.read(output / 'protocol.json')
     assert p['native_validation'] == validation
     assert len(p['native_validation']['cases']) == 24
+    assert p['resource_limits']['wall_seconds']==3600
     assert p['reference_context_endpoint']['new_final_conditions'] == 0
 
 
@@ -90,3 +95,25 @@ def test_refuses_an_endpoint_that_is_not_the_declared_finished_budget(finished_c
         preparation.prepare(parent, output, 'static')
     assert not (output / 'prepared.json').exists()
     assert not (output / 'protocol.json').exists()
+
+
+def test_unknown_frozen_worker_is_not_silently_replaced(tmp_path):
+    worker=tmp_path/'worker.py';worker.write_text('unknown preserved source')
+    with pytest.raises(ValueError,match='Unrecognized'):
+        preparation.bind_evaluation_observation_source(worker)
+    assert worker.read_text()=='unknown preserved source'
+
+
+def test_already_fixed_worker_is_byte_preserved(tmp_path):
+    worker=tmp_path/'worker.py';worker.write_text(preparation.FIXED_EVALUATION)
+    before=worker.read_bytes();proof=preparation.bind_evaluation_observation_source(worker)
+    assert worker.read_bytes()==before
+    assert proof['worker_sha256_before']==proof['worker_sha256_after']
+
+
+def test_historical_fix_changes_only_the_constructor_bytes_including_mixed_newlines(tmp_path):
+    worker=tmp_path/'worker.py'
+    before=b'# original CRLF\r\n'+preparation.LEGACY_EVALUATION.encode()+b'\n# frozen LF\n'
+    worker.write_bytes(before)
+    preparation.bind_evaluation_observation_source(worker)
+    assert worker.read_bytes()==before.replace(preparation.LEGACY_EVALUATION.encode(),preparation.FIXED_EVALUATION.encode())

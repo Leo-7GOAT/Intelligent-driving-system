@@ -11,9 +11,9 @@
 
 H/H0真实适配已完成，24个已知开发条件均为 **24/24，零不安全回合**；各保留330次新增Adam更新，新增保留控制分别10467/10453。H0恢复时至少1643个已消耗控制和50次Adam未保留，未知尾段继续披露。相同成绩尚不能证明反馈收益。[完整核验](../reports/native_H_H0_diverse_recovered_complete_20261103.json)。
 
-之后的12场静态TRAIN对照因磁盘保护终止。H完整保留 **3成功、8超时、1越界**；H0只有前4场保留完整可核验证据（2成功、2超时），剩余8场及未开始的教师12场已另行排队。损坏gzip与未知尾部保留，不推断缺失成绩，也不重跑已核验回合。[部分证据](../reports/native_static_interrupted_prefix_20261103.json)。零初始化的可学习参考上下文版本正在真实PPO训练，尚无新增性能成绩。[版本与失败成本](../reports/native_reference_context_restart_20261103.json)、[当前执行状态](handoff.md)。
+之后的12场静态TRAIN对照因磁盘保护终止。H完整保留 **3成功、8超时、1越界**；H0只有前4场保留完整可核验证据（2成功、2超时），剩余8场及未开始的教师12场已另行排队。损坏gzip与未知尾部保留，不推断缺失成绩，也不重跑已核验回合。[部分证据](../reports/native_static_interrupted_prefix_20261103.json)。参考上下文H/H0已完成合计 **21024个真实训练控制、各330次Adam更新**，RMS保持一致，全部训练帧及发动机回执核验通过。首次评估因容器遗漏31位context在首个策略控制前停止，训练权重完整保留。修复已用真实保存模型及CARLA历史初始帧通过推理预检，并通过1310项CPU检查；修复后物理评估已排队，尚无新性能成绩。[完整学习与失败成本](../reports/native_reference_context_learning_complete_20261103.json)、[观测容器验证](../reports/native_reference_context_evaluation_schema_validation_20261103.json)、[当前执行状态](handoff.md)。
 
-最近完整本地CPU回归1272通过、1跳过、4项CARLA排除；后续恢复和逐帧审计专项检查另行记录。[对应源版本的GitHub CPU验证](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41590243732)通过。新增只读审计已核对两批B1合计20480个既有训练控制、重置世界步及奖励累计，不构成新增训练。[凭证](../reports/native_training_only_raw_verification_20261103.json)。
+本次修复完整本地CPU回归1310通过、1跳过、4项CARLA排除；后续恢复和逐帧审计专项检查另行记录。[对应源版本的GitHub CPU验证](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41590243732)通过。新增只读审计已核对两批B1合计20480个既有训练控制、重置世界步及奖励累计，不构成新增训练。[凭证](../reports/native_training_only_raw_verification_20261103.json)。
 
 [五种子 B1 扩展预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1)的69项资产已公开下载重建：151,660个控制帧、120个初始动作及5张图表均核验一致。[公开复现凭证](../reports/native_B1_broader_public_download_verification_20261102.json)。教师、恢复采集和失败的离线观测修正均已结束，不要重复启动。
 

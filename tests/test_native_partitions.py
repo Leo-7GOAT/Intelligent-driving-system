@@ -69,12 +69,15 @@ def test_raw_frame_audit_binds_training_and_validation_resets_separately(tmp_pat
     else:assert audit(batch,'B1')['total_applied_controls_verified']==2
 
 
-def test_partition_overlay_changes_only_explicit_worker_case_handling_and_preserves_teacher_indices(tmp_path):
+@pytest.mark.parametrize('legacy_constructor',[False,True])
+def test_partition_overlay_changes_only_explicit_worker_case_handling_and_preserves_teacher_indices(tmp_path,legacy_constructor):
     from pathlib import Path
-    from scripts.native_partition_initialization import install_inventory,REPLACEMENTS
+    from scripts.native_partition_initialization import install_inventory,REPLACEMENTS,LEGACY_EVALUATION,SCHEMA_EVALUATION
     root=Path(__file__).resolve().parents[1];current=(root/'scripts/native_road_learning.py').read_text(encoding='utf-8')
+    if legacy_constructor:current=current.replace(SCHEMA_EVALUATION[1],LEGACY_EVALUATION[1])
     original=current
     for old,new in reversed(REPLACEMENTS):
+        if legacy_constructor and (old,new)==SCHEMA_EVALUATION:old,new=LEGACY_EVALUATION
         assert original.count(new)==1
         original=original.replace(new,old)
     source=tmp_path/'source';(source/'scripts').mkdir(parents=True);(source/'navstack').mkdir()

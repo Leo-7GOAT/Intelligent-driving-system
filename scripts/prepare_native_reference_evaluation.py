@@ -13,6 +13,24 @@ from scripts.evaluate_native_rule import require_finished_parent
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
+LEGACY_EVALUATION='evaluation=RecordedRoadEnv(config,client,evaluation_cases,output) if evaluation_only else CarlaNavigationEnv(config,client,evaluation_cases)'
+FIXED_EVALUATION=LEGACY_EVALUATION.replace('evaluation=RecordedRoadEnv(', 'evaluation=environment_class(')
+
+
+def bind_evaluation_observation_source(worker):
+    """Correct only the historical eval-only container; preserve physical code."""
+    before=sha(worker);payload=worker.read_bytes();source=payload.decode('utf-8')
+    if source.count(LEGACY_EVALUATION)==1:
+        worker.write_bytes(payload.replace(LEGACY_EVALUATION.encode(),FIXED_EVALUATION.encode()))
+        change='Historical eval-only RecordedRoadEnv replaced by the already-declared training environment_class'
+    elif (source.count(FIXED_EVALUATION)==1 or
+          'evaluation_class=native_environment_class(context is not None,recorded=evaluation_only)' in source):
+        change='Already schema-aware; source unchanged'
+    else:raise ValueError('Unrecognized frozen evaluation container; do not start an ambiguous schema')
+    return dict(version=1,worker_sha256_before=before,worker_sha256_after=sha(worker),change=change,
+        scope='Observation container only;retain trained4736-input schema,policy and all planner/trajectory/MPC/actuation source. No controls from the failed4705-input attempt.')
+
+
 def prepare(parent,output,phase):
     parent,output=Path(parent).resolve(),Path(output).resolve()
     require_finished_parent(parent)
@@ -35,8 +53,11 @@ def prepare(parent,output,phase):
     output.mkdir();(output/'infrastructure').mkdir()
     for name in ('source','calibration'):
         shutil.copytree(parent/name,output/name,ignore=shutil.ignore_patterns('__pycache__'))
-    # Add only the read-only auditor;retain executed policy/observation/physical
-    # source bytes from training without a deployment-time implementation swap.
+    # Preserve the physical and learned components. The historical eval-only
+    # constructor omitted the declared context mixin; bind that narrow repair.
+    worker='scripts/native_road_learning.py'
+    p['evaluation_observation_container']=bind_evaluation_observation_source(output/'source'/worker)
+    p['source_hashes'][worker]=sha(output/'source'/worker)
     name='scripts/audit_native_reference_inference.py'
     shutil.copy2(ROOT/name,output/'source'/name);p['source_hashes'][name]=sha(output/'source'/name)
     for method in ('H','H0'):
@@ -55,7 +76,7 @@ def prepare(parent,output,phase):
             retained_optimizer_steps=prior['retained_optimizer_steps']+summary['optimizer_steps'],
             unknown_unflushed_parent_tail=prior.get('unknown_unflushed_parent_tail',False),
             model_sha256=metadata['model_sha256'],normalization_sha256=metadata['normalization_sha256'])
-    now=time.time();wall=7200 if phase=='static' else 3600
+    now=time.time();wall=14400 if phase=='static' else 3600
     p.update(evaluation_only=True,controlled_budget_per_method=0,method_budgets={'H':0,'H0':0},
         deterministic_training_route_evaluation=True,record_initial_parameters=False,checkpoint_thresholds=[],
         created_epoch=now,deadline_epoch=now+wall,

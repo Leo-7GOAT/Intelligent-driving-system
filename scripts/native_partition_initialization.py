@@ -5,10 +5,16 @@ from pathlib import Path
 from navstack.native_cases import registered_native_cases
 from navstack.native_partitions import validate_native_partitions
 
+LEGACY_EVALUATION=(
+ 'evaluation=RecordedRoadEnv(config,client,cases,output) if evaluation_only else CarlaNavigationEnv(config,client,cases)',
+ 'evaluation=RecordedRoadEnv(config,client,evaluation_cases,output) if evaluation_only else CarlaNavigationEnv(config,client,evaluation_cases)')
+SCHEMA_EVALUATION=(
+ 'evaluation=evaluation_class(config,client,cases,output) if evaluation_only else evaluation_class(config,client,cases)',
+ 'evaluation=evaluation_class(config,client,evaluation_cases,output) if evaluation_only else evaluation_class(config,client,evaluation_cases)')
+
 REPLACEMENTS=[
  ('            cases = registered_native_cases(protocol)\n','            cases = registered_native_cases(protocol)\n            evaluation_cases = registered_native_cases(protocol,\'evaluation\') if protocol.get(\'native_validation\') else cases\n'),
- ('evaluation=RecordedRoadEnv(config,client,cases,output) if evaluation_only else CarlaNavigationEnv(config,client,cases)',
-  'evaluation=RecordedRoadEnv(config,client,evaluation_cases,output) if evaluation_only else CarlaNavigationEnv(config,client,evaluation_cases)'),
+ SCHEMA_EVALUATION,
  ('for case_id,case in enumerate(cases):','for case_id,case in enumerate(evaluation_cases):'),
  ('                    write_json(output/"evaluation.json",{"scope":evaluation_scope,',
   '                    if protocol.get(\'native_validation\'):\n                        evaluation_scope=\'Frozen deterministic probes on registered geometry-separated development validation roads; zero updates,not final confirmation\'\n                    write_json(output/"evaluation.json",{"scope":evaluation_scope,\n                        "partition":\'validation\' if protocol.get(\'native_validation\') else \'development\','),
@@ -16,6 +22,10 @@ REPLACEMENTS=[
 
 def worker_with_partitions(original):
     for old,new in REPLACEMENTS:
+        if (old,new)==SCHEMA_EVALUATION:
+            matches=[pair for pair in (SCHEMA_EVALUATION,LEGACY_EVALUATION) if original.count(pair[0])==1]
+            if len(matches)!=1:raise ValueError('Frozen evaluation constructor differs; partition overlay rejected')
+            old,new=matches[0]
         if original.count(old)!=1:raise ValueError('Frozen worker structure differs; partition overlay rejected')
         original=original.replace(old,new)
     return original
