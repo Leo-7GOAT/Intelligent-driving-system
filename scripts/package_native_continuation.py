@@ -180,6 +180,8 @@ def package(batch, output, completed_method=None, camera_media=False):
     if output.exists() or temporary.exists():
         raise FileExistsError('Preserve existing complete or partial asset')
     protocol=read(batch/'protocol.json')
+    from scripts.reproduce_native_asset import inference_auditor
+    inference_script=inference_auditor(protocol)
     camera_profile=None
     if camera_media:
         from scripts.native_road_learning import camera_evaluation_mode
@@ -298,7 +300,7 @@ def package(batch, output, completed_method=None, camera_media=False):
                     'Use the repository source commit recorded below with scripts/audit_native_method_endpoint.py for each METHOD.\n'
                     'Raw audit: python scripts/audit_native_method_endpoint.py --batch EXTRACTED_BATCH --method METHOD --output NEW_AUDIT.json\n'
                     'For measured-start inference set NAVSTACK_AUDIT_SOURCE_ROOT to the absolute EXTRACTED_BATCH/source path.\n'
-                    'Then: python scripts/audit_native_policy_inference.py --batch EXTRACTED_BATCH --method METHOD --output NEW_INFERENCE.json\n'
+                    f'Then: python scripts/{inference_script} --batch EXTRACTED_BATCH --method METHOD --output NEW_INFERENCE.json\n'
                     'That command loads the saved model and freezes normalization; it performs no plant integration or simulator ticks.\n'
                     'Raw states come from CARLA; no downloaded-asset replay should be called a new drive.\n').encode()}
         if camera_profile:

@@ -50,6 +50,7 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
             raise ValueError('A migration equivalence check requires zero new parameters')
     with (checkpoint/'normalization.pkl').open('rb') as f:norm=pickle.load(f)
     norm.training=False
+    rms=(norm.obs_rms.mean.copy(),norm.obs_rms.var.copy(),float(norm.obs_rms.count))
     if migration_proof is not None:
         with (folder/'normalization.pkl').open('rb') as f:original_norm=pickle.load(f)
         np.testing.assert_array_equal(norm.obs_rms.mean[:-31],original_norm.obs_rms.mean)
@@ -96,10 +97,13 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
         results.append(dict(case_id=case,decisions=counts))
     if not results:raise ValueError('No measured inference cases selected')
     if not all_static and len(results)!=len(evaluation['episodes']):raise ValueError('Missing measured start')
+    np.testing.assert_array_equal(rms[0],norm.obs_rms.mean);np.testing.assert_array_equal(rms[1],norm.obs_rms.var)
+    if rms[2]!=norm.obs_rms.count:raise ValueError('Frozen inference RMS count changed')
     return dict(scope=scope,method=method,batch=batch.name,all_static_actions=all_static,
         model_sha256=sha(checkpoint/'model.zip'),normalization_sha256=sha(checkpoint/'normalization.pkl'),
         raw_audit_sha256=sha(folder/'endpoint_raw_audit.json'),script_sha256=sha(Path(__file__)),
-        results=results,all_recorded_actions_match=True,new_controls=0,new_updates=0,
+        results=results,all_recorded_actions_match=True,inference_normalization_frozen=not norm.training,
+        RMS_unchanged=True,new_controls=0,new_updates=0,
         limits='Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible.')
 
 
