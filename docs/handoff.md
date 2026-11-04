@@ -1,3 +1,13 @@
+# 当前：2026-11-04 20:19 完整对照资产已公开，所有匿名下载哈希核验完成
+
+真实GitHub预发布v0.4.0-dev.20261104-outcome-shared-control已公开，target582f8f4839b087dd09d6522a6968a59a11b769cb。5个ZIP/8个附件，56688评估controls，5个ZIP未登录下载全部成功，3868files逐字节SHA核验；不再下载老发布。公开reports/native_outcome_shared_public_release_20261104.json含每包hash/公开URL/全部范围。保留H/H0/B3各54/54，无PPO完成率优势；1continuedseed/0final新条件。包是端点/原始执行/模型/配置/冻结源，不冒充全部祖先训练来源重建。中英文README已更新。
+
+新碰撞源ac41666首次完整CI有2个离线RectangleRoadBatch子类兼容失败，1413PASS，其custom refresh缺新windowcache；582f8f4显式返回merged rect/center/radius修复，生产碰撞内核SHA完全不变。12本地回归PASS7.47s；582完整hostedCI41827384332 SUCCESS，1415PASS/25skip/4CARLAexclude166.51s，旧失败保留。禁止继续假称ac完整CI通过。docs/report后续用[skip ci]。
+
+独立干净worktree D:/ThesisNativeArchive_20261104/outcome_shared_release_fresh_ac41666，真实HEAD ac41666，所有本次auditor脚本与582字节相同。H30+H24完整raw/54starts/1605staticNN/engine/两图bitexact已重建，B3两库存raw/engine也完成。H0额外完整重建仍按原单进程顺序进行，不能重跑：工具session15229，driver7388 creation20:07:44.845383/basePython，当前H0placements30 driver6748、static auditor27972 creation20:16:22.701655。全部输出 D:/ThesisNativeArchive_20261104/outcome_shared_comparison_release_v04/fresh_reproduction，每role终态reproduction.json；H0两份完成后只更新公开receipt/README即可，不需再跑已有H/B3或下载5包。当前public报告明确H0补充复验pending，原H0完整raw审计已在打包时重新通过。
+
+现有H原生cohort17884/29968/9164与B1只读waiter6828不变，最新实测约19296controls/1946actions/60rollouts，guardhealthy；B1仍等待H全部25作业闭合，没有新B1native。冻结source全部未动，不将root缓存注入在训版本。不重启/重复训练，不碰外部2100。最终120未生成/查看，整体研究目标仍UNMET。下面为历史状态。
+
 # 当前：2026-11-04 20:04 碰撞内核优化已验证，现有原生训练继续
 
 root的ExactRoadBatch新增精确整数栅格窗口LRU，只缓存rect/center/radius，最多256窗口/65536cell rows；不缓存碰撞结果，不改完整车身、1e-12容差和接触scalar回退，raster公开修改仍失效。9项碰撞回归PASS5.45s，35项关联road/planning/trajectory回归PASS7.78s。实际已关闭seed11 zeroPPO known24的8道路、186测量起点派生37200模型primitive poses，old/new/scalar所有mask一致；5次交替顺序微基准cold1.106×/warm1.214×。两张实际static/curve地图的离线1800node HybridA*，status/nodes/cost/pathbits完全一致。不是完整native refinement/驾驶复测，不是全训练或实时提速证据，不归因PPO。公开reports/road_window_cache_development_20261104.json、docs/road_window_cache.md、可复现入口scripts/benchmark_road_windows.py。原测量/执行脚本留D，原SHA不覆盖，仅修正fixed24为up to24的文字，未择优重测。

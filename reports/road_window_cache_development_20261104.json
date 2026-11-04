@@ -186,5 +186,28 @@
     "public_raster_edits_invalidate": true,
     "contact_tolerance_changed": false,
     "scalar_fallback_retained": true
+  },
+  "source_CI": {
+    "commit": "582f8f4839b087dd09d6522a6968a59a11b769cb",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41827384332",
+    "status": "SUCCESS",
+    "passed": 1415,
+    "skipped": 25,
+    "carla_excluded": 4,
+    "seconds": 166.51
+  },
+  "initial_CI_failure_preserved": {
+    "commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41826135659",
+    "failed": 2,
+    "passed": 1413,
+    "cause": "Offline RectangleRoadBatch subclass overrode refresh and lacked production integer-window cache;explicit merged-rectangle window override fixes it without changing the production kernel or endpoint auditors"
+  },
+  "subclass_compatibility_regression": {
+    "receipt": "road_window_subclass_compat_tests.xml",
+    "sha256": "597c93631b8a3d5f3d6eafce9114d4d3350d2e8b97e4038fe1086fc2ebacf800",
+    "passed": 12,
+    "failures": 0,
+    "seconds": 7.471
   }
 }

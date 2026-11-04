@@ -35,6 +35,13 @@ using them. Original measurements and their script hash remain retained; the
 current script corrects only the report wording from "fixed24" to "up to24".
 No timing trial was rerun for selection.
 
+The complete hosted CPU regression passes at source `582f8f4`: 1,415 passed,
+25 skipped and four CARLA tests excluded. The initial `ac41666` run retained
+two failures in the offline merged-rectangle experiment,whose custom refresh
+did not initialize the production cache. Its explicit merged-window override
+fixes that compatibility issue;12 local regressions pass. The measured production
+kernel remains byte-identical. Both CI receipts are retained in the report.
+
 The active H/H0 cohort and waiting B1 cohort retain their previously frozen
 sources. This change adds no native controls or optimizer updates and supplies
 no new evidence of PPO, feedback or final research acceptance.
