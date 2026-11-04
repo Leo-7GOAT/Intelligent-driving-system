@@ -17,6 +17,8 @@ H/H0真实适配已完成，24个已知开发条件均为 **24/24，零不安全
 
 仅H的scale100已全部结束：**10501真实训练控制/330次Adam，静态3/12、已知验证24/24**。16293个评估控制帧、36起点和1330个静态NN决策均通过原始帧/推断/控制回执核验，静态成功数没有改善。[完整端点](../reports/native_reference_scale100_endpoints_complete_20261103.json)。熵0.02课程也已关闭：**10485真实训练控制/330次Adam、静态4/12、已知验证24/24**。15745评估控制帧、36起点、1276静态NN决策全部核验通过；单seed已知开发集多成功1场，尚不构成普遍或因果优势，静态目标仍未达成。[完整结果](../reports/native_reference_entropy002_endpoints_complete_20261104.json)。
 
+另一个独立注册的模型可行摆放开发清单中，同一冻结PPO为 **23/30，越界2/30**，12402控制和1252NN均核验通过；这是场景条件变化后的迁移，原4/12不改，不归因于学习。[完整清单](../reports/native_model_supported_placements_complete_20261104.json)。
+
 最新完整本地CPU回归 **1344通过、1跳过、4项CARLA排除**，专项60通过；随后仅澄清注册字段，10项验证通过。[CPU凭证](../reports/native_reference_entropy_memo_cpu_verification_20261103.json)。[对应源码GitHub CPU验证](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41651263807)也已成功：1327通过、18跳过、4项CARLA排除。
 
 [五种子 B1 扩展预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1)的69项资产已公开下载重建：151,660个控制帧、120个初始动作及5张图表均核验一致。[公开复现凭证](../reports/native_B1_broader_public_download_verification_20261102.json)。教师、恢复采集和失败的离线观测修正均已结束，不要重复启动。

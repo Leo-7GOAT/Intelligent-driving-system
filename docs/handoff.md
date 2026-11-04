@@ -1,4 +1,4 @@
-# 当前接续状态（2026-11-04 09:48）
+# 当前接续状态（2026-11-04 10:05）
 
 目标不变，研究验收UNMET。继续当前分支，不重建、不恢复瞬移、不新增子代理。以下是实际已启动状态；继续前须复核OS进程身份，不能仅凭状态文件重启任务。不要触碰Desktop/papper其他项目进程。
 
@@ -14,7 +14,15 @@ case5原局部可达的4个子目标均不能两段接到终点；半分辨率/8
 
 新增真实迁移pilot已关闭：D:/ThesisNativeArchive_20261104/20261104_case7_placement10_frozen_H_transfer_pilot。取case7首个模型可行提案(distance10m,lateral0)，原是13m；冻结同一bf6ef925模型，不新学习。327控制/33NN/357世界ticks、success、0planner failures、2interventions，raw/startNN/allNN/engine均通过，owned server正常清空退出。公开 `reports/native_case7_placement_transfer_pilot_20261104.json`。这是不同物理条件的工程可执行性复验，不是原case7重算或RL收益，原4/12仍保留。当前无本任务CARLA或预检作业需等待，不得重启旧PID。
 
-后续应在新版本任务构造中，按对所有方法相同且独立于策略成绩的预注册可执行性条件，验证完整模型路径与实际native Driving足迹，再实际闭环验证；不能因模型可行就删除旧失败或宣称独立最终验收。case4此前有栅格与native边界分歧，仍需严格保留原评分。最终集仍未开启；不继续盲扫熵或参考系数。
+新30清单迁移验证已全部关闭：新增batch `D:/ThesisNativeArchive_20261104/20261104_model_supported_placements29_frozen_H`，旧pilot复用1场。29场22成功/5deadline/2bounds，加pilot为23/30、2/30bounds；合计12402控制/1252NN/30起点全部raw、NN、engine通过，原4/12不改。报告 `reports/native_model_supported_placements_complete_20261104.json`。新29中的索引2/7/15/19/22/23/27与旧静态12条件重复，已明确标为重复测量并计费，不能当新增独立条件；整批均已知开发、零新最终条件、零PPO更新。无活跃本任务CARLA进程需等待。
+
+原生SDK只读参考检查：`scripts/probe_reference_road37.py`使用冻结MapSHA/lane_projection，校准旧case4非Driving点；无Client/tick。30参考共6226pose/74712足迹，名义均Driving；横向±.05m、heading±.05rad九组合共672408点，9参考出现非Driving，包括case4两摆放各8点。报告 `reports/native_placement_reference_road_probe_20261104.json`。输出记录实际CARLA float32查询点与请求double点，原始输入/精确重查输出均D盘。有限采样不证明连续安全；不能在观察失败后过滤这30场或重算评分。
+
+完成已注册case4模型诊断：D:/ThesisNativeArchive_20261104/case4_robust_planning_model_prototype。仅将原v4判定为非Driving的点对应的规划栅格约束加入模型，得到新路径，其九组合SDK重查0miss；仅增碰撞包络(.06m纵向/.25m横向)仍1miss；点约束加包络0miss；全cell约束加包络无路径。四种结果全保留，见 `reports/native_case4_planning_constraint_prototype_20261104.json`。未部署、未新物理执行，不宣称修复或RL收益。
+
+下一工程验证应将已验证非Driving点作为新版本的规划约束并有限次重规划，实际任务v4边界/评分保留原语义；规划视图与实际bounds必须分离，不能因模型约束而伪造传感器或改旧成绩。各方法须共享该能力、披露额外计算，冻结PPO替换低层仅列迁移，再按需版本化重训。先验证原case4实际闭环，而不是再盲扫熵/参考系数或过滤失败。最终集仍未开启。
+
+新增注册/映射/nominal足迹专项21通过3.01秒，XML D:/ThesisNativeArchive_20261104/placement_inventory_final_cpu.xml。新增脚本 `scripts/prepare_native_placement_inventory.py`只取所有独立模型可行提案；复用完整pilot不要求成功；源码与样本/模型/回执全部绑定。当前全部新任务已关闭，不要重复启动65264/66668等旧PID。
 
 ## 旧静态对照已全部结束，禁止重跑
 
