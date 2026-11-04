@@ -31,6 +31,11 @@ def sha(path):
 def compare(batch,output):
     batch,output=Path(batch).resolve(),Path(output).resolve()
     if output.exists():raise FileExistsError('Preserve every benchmark attempt')
+    candidate=ROOT/'navstack/planning.py';candidate_bytes=candidate.read_bytes()
+    candidate_digest=hashlib.sha256(candidate_bytes).hexdigest()
+    script_digest=sha(Path(__file__))
+    commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    dirty=bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip())
     protocol=read(batch/'protocol.json');source=batch/'source'
     for name,digest in protocol['source_hashes'].items():
         if sha(source/name)!=digest:raise ValueError('Frozen source changed: '+name)
@@ -61,11 +66,10 @@ def compare(batch,output):
     # The only source overlay is the explicit B2 node cap. All other planner
     # functions and imports must be the original executed version.
     allowed={'grid_search','_grid_search','GridAStarPlanner'}
-    def unchanged(path):
-        return [ast.dump(n,include_attributes=False) for n in ast.parse(path.read_text(encoding='utf-8')).body
+    def unchanged(payload):
+        return [ast.dump(n,include_attributes=False) for n in ast.parse(payload).body
                 if getattr(n,'name',None) not in allowed]
-    candidate=ROOT/'navstack/planning.py'
-    if unchanged(candidate)!=unchanged(source/'navstack/planning.py'):
+    if unchanged(candidate_bytes)!=unchanged((source/'navstack/planning.py').read_bytes()):
         raise ValueError('Overlay changes more than the registered grid search/budget adapter')
     sys.path.insert(0,str(source))
     import numpy as np
@@ -74,7 +78,8 @@ def compare(batch,output):
     from navstack.road_grid import RoadGrid
     from navstack.world import World
     spec=importlib.util.spec_from_file_location('navstack._bounded_grid_component',candidate)
-    overlay=importlib.util.module_from_spec(spec);sys.modules[spec.name]=overlay;spec.loader.exec_module(overlay)
+    overlay=importlib.util.module_from_spec(spec);sys.modules[spec.name]=overlay
+    exec(compile(candidate_bytes,str(candidate),'exec'),overlay.__dict__)
     cfg=EnvConfig.from_dict(read(batch/'H/config.json')['env'])
     for module in ('navstack.planning','navstack.road_grid','navstack.world'):
         if not Path(sys.modules[module].__file__).resolve().is_relative_to(source):
@@ -125,8 +130,8 @@ def compare(batch,output):
         raise ValueError('Retain all original eight static and eight curve fixtures')
     result=dict(scope=__doc__,research_acceptance='UNMET',batch=batch.name,source_protocol_sha256=sha(batch/'protocol.json'),
         source_trace_sha256=sha(batch/'H/evaluation_trace.jsonl.gz'),source_bridge_sha256=sha(bridge),
-        frozen_planning_sha256=sha(source/'navstack/planning.py'),bounded_grid_overlay_sha256=sha(candidate),
-        benchmark_script_sha256=sha(Path(__file__)),repository_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+        frozen_planning_sha256=sha(source/'navstack/planning.py'),bounded_grid_overlay_sha256=candidate_digest,
+        benchmark_script_sha256=script_digest,repository_commit=commit,repository_has_local_changes=dirty,
         vehicle_config=asdict(cfg.vehicle),fixed_max_nodes_per_search=32000,max_seconds=None,
         pose_only_search=True,initial_speed_and_steering_not_used_for_search=True,
         all_cases=rows,status_counts={name:dict(Counter(r['planners'][name]['status'] for r in rows)) for name,_ in arms},

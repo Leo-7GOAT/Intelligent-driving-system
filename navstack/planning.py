@@ -361,7 +361,7 @@ class GridAStarPlanner:
             max_nodes=c.max_nodes,
         )
         if reason=='node_budget':
-            return result('budget',n=n,reason=reason)
+            return result('timeout',n=n,reason='search_budget')
         if len(raw) < 2:
             return result("no_path", n=n, reason="grid_search_empty")
         xy = np.array(raw, dtype=float) * r

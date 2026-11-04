@@ -32,5 +32,5 @@ def test_grid_planner_reports_budget_before_spline_work(monkeypatch):
         grid_postprocess='body_spline_v1'))
     for _ in range(2):
         result=planner.plan((4.,10.,0.),(25.,10.,0.),World(32,24))
-        assert result.status=='budget' and result.failure_reason=='node_budget'
+        assert result.status=='timeout' and result.failure_reason=='search_budget'
         assert result.expanded_nodes==2 and result.path.shape==(0,3)
