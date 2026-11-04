@@ -1,0 +1,1295 @@
+{
+  "scope": "Closed one-seed known3-condition before/after fixed-option native PPOadaptation;no success-count improvement",
+  "training_batch": "20261104_option_native_PPO5120_H",
+  "endpoint_batch": "20261104_option_native_PPO5120_H_same3_endpoint_normalization_fixed",
+  "endpoint_protocol_sha256": "cdb1ba7db744849a3d663741fd5dbbf8c166c61a116443b94270b00dc337f365",
+  "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+  "before_successes": 2,
+  "after_successes": 2,
+  "cases": 3,
+  "endpoint_controls": 1583,
+  "endpoint_world_ticks": 1675,
+  "endpoint_reset_ticks": 92,
+  "endpoint_NN_decisions": 159,
+  "new_endpoint_updates": 0,
+  "paired_results": [
+    {
+      "original_case_id": 0,
+      "before": {
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "plan_failures": 66,
+        "interventions": 660
+      },
+      "after": {
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "plan_failures": 66,
+        "interventions": 660
+      }
+    },
+    {
+      "original_case_id": 1,
+      "before": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 336,
+        "plan_failures": 0,
+        "interventions": 1
+      },
+      "after": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 334,
+        "plan_failures": 0,
+        "interventions": 0
+      }
+    },
+    {
+      "original_case_id": 4,
+      "before": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 350,
+        "plan_failures": 0,
+        "interventions": 1
+      },
+      "after": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 349,
+        "plan_failures": 0,
+        "interventions": 2
+      }
+    }
+  ],
+  "verification": {
+    "endpoint_raw_audit.json": {
+      "sha256": "00002f2a88be3f2853fa91aef40ee6542b92d55b18642b30a76956f26505e44d",
+      "receipt": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261104_option_native_PPO5120_H_same3_endpoint_normalization_fixed",
+        "method": "H",
+        "protocol_sha256": "cdb1ba7db744849a3d663741fd5dbbf8c166c61a116443b94270b00dc337f365",
+        "config_sha256": "bebe34727b8ce6352398cd58983b742dfad890fa7b25cebd469644b2384c1932",
+        "summary_sha256": "c0bb624983ed1943d1608a32430c7af8dd00f007ea2170489aecc0492c017e73",
+        "evaluation_sha256": "1f5b37e7c286bd9fa59517b5cd29844050915d19d32bbdbfd61580e4503091b2",
+        "evaluation_trace_sha256": "b63aff7a7eb8fdcf494d7e1c9c5f998a75af17c90aeb88f3ce07e1f71f5dbfd0",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793763952551098000.jsonl.gz": "aca3ed3f4af554b9c28224a3cfd8490dbf9d347879308b71b9b8afdbbfb13c7d"
+        },
+        "bridge_response_stream": "bridge_43b817c7_responses.jsonl.gz",
+        "bridge_response_sha256": "1c8f0e80a587330463c88ad058bcee2e0dbfaa7acc23a5e9c496f06be6a70003",
+        "bridge_complete_rows": 1601,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 1583,
+        "total_applied_controls_verified": 1583,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 1675,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "fd44e4613681e06f34af4d8567402338446911a018b30b1962c943f3b4d2f9b8",
+        "lineage_controls": 46927,
+        "charged_controls_lower_bound": 97113,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 1480,
+        "unknown_unflushed_ancestor_tail": false
+      }
+    },
+    "measured_start_inference.json": {
+      "sha256": "92a534754a162a51848f144595bcac7f0b70a195f81e54f4ddf017ab0f1f4dd4",
+      "receipt": {
+        "scope": "MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE",
+        "method": "H",
+        "batch": "20261104_option_native_PPO5120_H_same3_endpoint_normalization_fixed",
+        "all_static_actions": false,
+        "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+        "normalization_sha256": "7fc77a99014427de305b8493c36d25e9fe65b3f9c15749c816740cdc9e52ea06",
+        "raw_audit_sha256": "00002f2a88be3f2853fa91aef40ee6542b92d55b18642b30a76956f26505e44d",
+        "script_sha256": "9a66438439293a99874bf9ccb854b2b2b457135a958e9926712442e1cfdd6033",
+        "results": [
+          {
+            "case_id": 0,
+            "decisions": 1
+          },
+          {
+            "case_id": 1,
+            "decisions": 1
+          },
+          {
+            "case_id": 2,
+            "decisions": 1
+          }
+        ],
+        "all_recorded_actions_match": true,
+        "inference_normalization_frozen": true,
+        "RMS_unchanged": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "limits": "Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible."
+      }
+    },
+    "static_action_inference.json": {
+      "sha256": "e67af8b8200bd3af13d5481604571da5f889ac30e68fef311366dcc8b1b9193e",
+      "receipt": {
+        "scope": "MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE",
+        "method": "H",
+        "batch": "20261104_option_native_PPO5120_H_same3_endpoint_normalization_fixed",
+        "all_static_actions": true,
+        "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+        "normalization_sha256": "7fc77a99014427de305b8493c36d25e9fe65b3f9c15749c816740cdc9e52ea06",
+        "raw_audit_sha256": "00002f2a88be3f2853fa91aef40ee6542b92d55b18642b30a76956f26505e44d",
+        "script_sha256": "9a66438439293a99874bf9ccb854b2b2b457135a958e9926712442e1cfdd6033",
+        "results": [
+          {
+            "case_id": 0,
+            "decisions": 90
+          },
+          {
+            "case_id": 1,
+            "decisions": 34
+          },
+          {
+            "case_id": 2,
+            "decisions": 35
+          }
+        ],
+        "all_recorded_actions_match": true,
+        "inference_normalization_frozen": true,
+        "RMS_unchanged": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "limits": "Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible."
+      }
+    }
+  },
+  "engine": {
+    "sha256": "0a0b2c2e2246282693d2d834c8efbace0e730145badaf9547d17b05f48caba82",
+    "receipt": {
+      "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+      "batch": "20261104_option_native_PPO5120_H_same3_endpoint_normalization_fixed",
+      "protocol_sha256": "cdb1ba7db744849a3d663741fd5dbbf8c166c61a116443b94270b00dc337f365",
+      "control_delivery": "batch_sync_v1",
+      "bridge_streams": [
+        {
+          "name": "bridge_43b817c7_responses.jsonl.gz",
+          "sha256": "1c8f0e80a587330463c88ad058bcee2e0dbfaa7acc23a5e9c496f06be6a70003"
+        }
+      ],
+      "tolerance": 1e-05,
+      "counts": {
+        "controls": 1583,
+        "gear_or_handbrake_mismatches": 0,
+        "missing_or_negative_sync_ack": 0
+      },
+      "mismatch_channels": {},
+      "by_phase": {
+        "evaluation": {
+          "controls": 1583
+        }
+      },
+      "mismatch_examples": [],
+      "all_engine_controls_match_requested": true,
+      "strict_delivery_gate_passed": true,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+    }
+  },
+  "initial_failed_endpoint_recovery": {
+    "failed_batch": "20261104_option_native_PPO5120_H_same3_endpoint",
+    "target": "20261104_option_native_PPO5120_H_same3_endpoint_normalization_fixed",
+    "reason": "Remove training-only freeze_observation_statistics flag for zero-update evaluation",
+    "failed_new_controls": 0,
+    "failed_new_reset_ticks": 0,
+    "same_frozen_source": true,
+    "same_model_and_normalizer": true,
+    "training_not_repeated": true,
+    "protocol_sha256": "cdb1ba7db744849a3d663741fd5dbbf8c166c61a116443b94270b00dc337f365"
+  },
+  "read_only_witness_counterfactual": {
+    "sha256": "f7c3ef95dda4f6be9b5380d7160331b637962dbc91023ae653e06f9a427e8c74",
+    "receipt": {
+      "batch": "20261104_option_native_PPO5120_H_same3_endpoint_normalization_fixed",
+      "method": "H",
+      "case_id": 0,
+      "source_sha256": "e5293dea0aaa147f3726771a8a34b853bdcda8c558f6aebc4dfd24cb62440e69",
+      "immutable_input_snapshot_sha256": "118d531ffbf95fbf6991b4afad45023805dd03ecac5e41fbc9ec809650dc5bea",
+      "enclosing_live_trace_prefix_error": null,
+      "reconstruction_actions": 24,
+      "events": [
+        {
+          "decision": 0,
+          "action": 26,
+          "previous_selection": null,
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": false,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "success",
+          "measured_time": 0.0,
+          "selected_probability": 0.6163109540939331,
+          "entropy_nats": 1.2698365449905396,
+          "context_actions": [],
+          "selected_context": false,
+          "minimum_additional_context_logit_for_tie": null
+        },
+        {
+          "decision": 1,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 0.5000000074505806,
+          "selected_probability": 0.6670376658439636,
+          "entropy_nats": 1.2468225955963135,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.6670376658439636,
+            "context_probability_after": 0.6681606769561768,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 2,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 1.0000000149011612,
+          "selected_probability": 0.743690550327301,
+          "entropy_nats": 1.0538263320922852,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.743690550327301,
+            "context_probability_after": 0.7443774938583374,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 3,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 1.5000000223517418,
+          "selected_probability": 0.7630215883255005,
+          "entropy_nats": 0.892972469329834,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.7630215883255005,
+            "context_probability_after": 0.7638835906982422,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 4,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 2.0000000298023224,
+          "selected_probability": 0.7602147459983826,
+          "entropy_nats": 0.9092581272125244,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.7602147459983826,
+            "context_probability_after": 0.7610966563224792,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 5,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 2.500000037252903,
+          "selected_probability": 0.7715707421302795,
+          "entropy_nats": 0.8823035955429077,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.7715707421302795,
+            "context_probability_after": 0.7723994851112366,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 6,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 3.0000000447034836,
+          "selected_probability": 0.6771251559257507,
+          "entropy_nats": 1.1290946006774902,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.6771251559257507,
+            "context_probability_after": 0.67768794298172,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 7,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 3.500000052154064,
+          "selected_probability": 0.582249104976654,
+          "entropy_nats": 1.3070765733718872,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.582249104976654,
+            "context_probability_after": 0.581571638584137,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 8,
+          "action": 30,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              22.995015739117093,
+              8.998715126775982,
+              0.08069575320897421
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": true,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "success",
+          "measured_time": 4.000000059604645,
+          "selected_probability": 0.5643658638000488,
+          "entropy_nats": 1.393599033355713,
+          "context_actions": [
+            26
+          ],
+          "selected_context": false,
+          "minimum_additional_context_logit_for_tie": 0.9862387180328369,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 30,
+            "counterfactual_selected_action": 30,
+            "context_probability_before": 0.21049544215202332,
+            "context_probability_after": 0.21130333840847015,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 9,
+          "action": 30,
+          "previous_selection": [
+            [
+              22.995015739117093,
+              8.998715126775982,
+              0.08069575320897421
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              22.995015739117093,
+              8.998715126775982,
+              0.08069575320897421
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 4.500000067055225,
+          "selected_probability": 0.742246687412262,
+          "entropy_nats": 1.0503966808319092,
+          "context_actions": [
+            30
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              30
+            ],
+            "original_selected_action": 30,
+            "counterfactual_selected_action": 30,
+            "context_probability_before": 0.742246687412262,
+            "context_probability_after": 0.7433547377586365,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 10,
+          "action": 26,
+          "previous_selection": [
+            [
+              22.995015739117093,
+              8.998715126775982,
+              0.08069575320897421
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": true,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "success",
+          "measured_time": 5.000000074505806,
+          "selected_probability": 0.48056069016456604,
+          "entropy_nats": 1.3881255388259888,
+          "context_actions": [
+            30
+          ],
+          "selected_context": false,
+          "minimum_additional_context_logit_for_tie": 0.3353908061981201,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              30
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.34362903237342834,
+            "context_probability_after": 0.3434075713157654,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 11,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 5.500000081956387,
+          "selected_probability": 0.8608691096305847,
+          "entropy_nats": 0.625758171081543,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.8608691096305847,
+            "context_probability_after": 0.8607927560806274,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 12,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 6.000000089406967,
+          "selected_probability": 0.9114701747894287,
+          "entropy_nats": 0.4727102518081665,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.9114701747894287,
+            "context_probability_after": 0.9118363261222839,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 13,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 6.500000096857548,
+          "selected_probability": 0.9501140117645264,
+          "entropy_nats": 0.29424697160720825,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.9501140117645264,
+            "context_probability_after": 0.9503581523895264,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 14,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 7.000000104308128,
+          "selected_probability": 0.9607520699501038,
+          "entropy_nats": 0.24166692793369293,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.9607520699501038,
+            "context_probability_after": 0.9608765840530396,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 15,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 7.500000111758709,
+          "selected_probability": 0.9483570456504822,
+          "entropy_nats": 0.319657564163208,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.9483570456504822,
+            "context_probability_after": 0.9484003782272339,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 16,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 8.00000011920929,
+          "selected_probability": 0.9210399389266968,
+          "entropy_nats": 0.4786740839481354,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.9210399389266968,
+            "context_probability_after": 0.9211695194244385,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 17,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 8.50000012665987,
+          "selected_probability": 0.8757994174957275,
+          "entropy_nats": 0.690778374671936,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.8757994174957275,
+            "context_probability_after": 0.8760421276092529,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 18,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 9.00000013411045,
+          "selected_probability": 0.75452721118927,
+          "entropy_nats": 1.1722173690795898,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.75452721118927,
+            "context_probability_after": 0.7545387148857117,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 19,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 9.500000141561031,
+          "selected_probability": 0.437175452709198,
+          "entropy_nats": 2.103978395462036,
+          "context_actions": [
+            26
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              26
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.437175452709198,
+            "context_probability_after": 0.43702930212020874,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 20,
+          "action": 26,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 10.000000149011612,
+          "selected_probability": 0.3229547441005707,
+          "entropy_nats": 2.161128282546997,
+          "context_actions": [
+            22,
+            24,
+            26,
+            28,
+            30
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              22,
+              24,
+              26,
+              28,
+              30
+            ],
+            "original_selected_action": 26,
+            "counterfactual_selected_action": 26,
+            "context_probability_before": 0.624051570892334,
+            "context_probability_after": 0.6168661117553711,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 21,
+          "action": 22,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 10.500000156462193,
+          "selected_probability": 0.39875996112823486,
+          "entropy_nats": 2.326317071914673,
+          "context_actions": [
+            22,
+            24,
+            26,
+            28,
+            30
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              22,
+              24,
+              26,
+              28,
+              30
+            ],
+            "original_selected_action": 22,
+            "counterfactual_selected_action": 22,
+            "context_probability_before": 0.600666880607605,
+            "context_probability_after": 0.604168713092804,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 22,
+          "action": 22,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": false,
+          "recorded_mode": "reference",
+          "reconstructed_prepare_mode": "reference",
+          "recorded_plan_status": "reference_reused",
+          "measured_time": 11.000000163912773,
+          "selected_probability": 0.3295169770717621,
+          "entropy_nats": 2.507063150405884,
+          "context_actions": [
+            22,
+            24,
+            26,
+            28,
+            30
+          ],
+          "selected_context": true,
+          "minimum_additional_context_logit_for_tie": 0.0,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              22,
+              24,
+              26,
+              28,
+              30
+            ],
+            "original_selected_action": 22,
+            "counterfactual_selected_action": 22,
+            "context_probability_before": 0.616401195526123,
+            "context_probability_after": 0.6176446080207825,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        },
+        {
+          "decision": 23,
+          "action": 2,
+          "previous_selection": [
+            [
+              31.24669992128881,
+              7.578791466707203,
+              0.26330154381200854
+            ],
+            1.5
+          ],
+          "new_selection": [
+            [
+              28.148441997776107,
+              6.446154331390786,
+              0.1903217675875735
+            ],
+            1.5
+          ],
+          "previous_reference_still_reusable": true,
+          "switched_selection": true,
+          "recorded_mode": "plan_failed",
+          "reconstructed_prepare_mode": "plan_failed",
+          "recorded_plan_status": "no_path",
+          "measured_time": 11.500000171363354,
+          "selected_probability": 0.2689976692199707,
+          "entropy_nats": 2.680366277694702,
+          "context_actions": [
+            22,
+            24,
+            26,
+            28,
+            30
+          ],
+          "selected_context": false,
+          "minimum_additional_context_logit_for_tie": 0.8884283304214478,
+          "retained_reference_witness_counterfactual": {
+            "reusable_actions_reported_without_connector_witness": [
+              22,
+              24,
+              26,
+              28,
+              30
+            ],
+            "original_selected_action": 2,
+            "counterfactual_selected_action": 2,
+            "context_probability_before": 0.2843286395072937,
+            "context_probability_after": 0.2786635160446167,
+            "scope": "Read-only feature intervention,not physical driving or a policy performance score"
+          }
+        }
+      ],
+      "switches_away_from_reusable_reference": 3,
+      "observed_terminal": "deadline",
+      "policy_inference": {
+        "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+        "normalization_sha256": "7fc77a99014427de305b8493c36d25e9fe65b3f9c15749c816740cdc9e52ea06",
+        "learned_gain": -0.000599594262894243,
+        "gain_scale": 100.0,
+        "effective_reference_logit": -0.059959426522254944,
+        "reference_ablated": false,
+        "all_reconstructed_NN_actions_exact": true
+      },
+      "new_controls": 0,
+      "new_updates": 0,
+      "limits": "Recorded static-state reconstruction only;no plant stepping or physical counterfactual. A reusable old reference is not proof that retaining it would complete the task. Logit ties do not predict driving success or the result of further training. Not a full-batch score or a causal policy comparison."
+    }
+  },
+  "limits": [
+    "Frozen successes remain2/3;5396 real PPOcontrols and170Adamupdates do not establish a performance or reference-feedback gain.",
+    "11/12completed stochastic training successes exclude the unfinished final episode and are not a deterministic endpoint score.",
+    "Case0bounded searches fail after selecting a new goal;this is not a proof of physical unreachability.",
+    "The retained-reference witness feature intervention does not change the failed MAPaction;no such runtime patch was adopted.",
+    "All conditions were previously known development conditions,not independent final confirmation. Original full static4/12 is not rescored."
+  ],
+  "research_acceptance": "UNMET"
+}

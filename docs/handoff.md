@@ -1,3 +1,13 @@
+# 最新接续：2026-11-04 12:00 学习端点无提升；完整54开发评估启动
+
+5396控制/170Adam课程已关闭，修复后的same3端点也关闭并全部审计：1583控制/1675ticks/159NN/3起点、engine无mismatch，case0deadline900、case1success334、case4success349。与冻结接口前2/3相同，无学习成功数提升。原端点因normalizationflag失败保留，execution/normalization_endpoint_recovery_complete.json汇总新子批闭合，原failure.json不覆盖。公开 reports/native_reference_option_adaptation_endpoint_complete_20261104.json。训练worker正常结束，原协调器12704因原端点编排错误退出（不是成功complete），手工修复端点结果已关闭。
+
+只读witness反事实检查未改变失败MAPaction，未采用新runtime补丁。现仅新增diagnose可选检查和评估队列/准备脚本，无控制或学习代码变动。
+
+当前唯一原生队列：D:/ThesisNativeArchive_20261104/20261104_option_adapted_full_development_execution；新venv launcher32308 creation1793764732.427，实际协调器PID待CIM确认。先20261104_option_adapted_all30_placements_H，再20261104_option_adapted_known24_H，全部source_hashes与13e5fa1e模型/normalizer一致，471源，与训练固定源码一致。30完整旧模型可行摆放全部重跑，不复用任何旧模型pilot；24为原已知验证，54均非最终确认。准备工具核对calibration和world/vehicle/road_grid/batch/native_hazards/native_route/lane_projection字节一致；旧7200节点witness不保证新32k搜索可达，不删除新失败。登记counts30/24、-ActivateQueued按阶段更新时限，4h/批、无重试，结束后自动raw/start/staticNN/engine审计。不得重复启动。
+
+本段后旧“当前运行/尚未准备”已过期。当前root两个新评估脚本和诊断扩展待提交；sourcefc38cd3全量1378通过，endpoint编排fix专测3通过；无需重复全量测试或训练。目标仍UNMET，不开放最终120清单。
+
 # 最新：2026-11-04 11:46 真实学习已闭合，冻结复测修复子批次运行
 
 原生5120请求课程已正常完成5396控制(overshoot276)/544决策/17rollout/170Adam。32个Adam均真实推进170，初始化全部权重/完整Adam/RNG相等、RMS精确冻结，训练raw/engine通过，模型13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23。学习系数从+.00030845变为-.000599594，负值保留，不预设反馈获益。公开 reports/native_reference_option_adaptation_learning_complete_20261104.json。训练worker5832/watch6060/协调器12704已正常关闭，不能重跑训练。

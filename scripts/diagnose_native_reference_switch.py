@@ -10,7 +10,7 @@ from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.audit_native_policy_sequence import observation_env,advance_observation
 
 
-def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False):
+def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False,inspect_reference_witness=False):
     batch,output=Path(batch).resolve(),Path(output)
     if output.exists():raise FileExistsError('Preserve the diagnostic attempt')
     folder=batch/method;protocol=read(batch/'protocol.json')
@@ -79,6 +79,26 @@ def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False):
                 inference=dict(selected_probability=float(probabilities[action]),entropy_nats=float(distribution.entropy()[0]),
                     context_actions=active,selected_context=bool(context[action]),
                     minimum_additional_context_logit_for_tie=margin)
+                if inspect_reference_witness and active:
+                    feedback=env._execution_feedback
+                    features=feedback()
+                    missing=[i for i in active if features[i*3+1]==0]
+                    if missing:
+                        def retained_witness(catalog=None):
+                            value=feedback(catalog).copy()
+                            for i in active:value[i*3+1]=1.
+                            return value
+                        env._execution_feedback=retained_witness
+                        try:
+                            alternate=np.r_[env._observation(),context].astype(np.float32)
+                            with torch.no_grad():counterfactual=model.policy.get_distribution(torch.as_tensor(norm.normalize_obs(alternate[None]))).distribution
+                            changed=counterfactual.probs[0].numpy()
+                            inference['retained_reference_witness_counterfactual']=dict(
+                                reusable_actions_reported_without_connector_witness=missing,
+                                original_selected_action=action,counterfactual_selected_action=int(changed.argmax()),
+                                context_probability_before=float(probabilities[active].sum()),context_probability_after=float(changed[active].sum()),
+                                scope='Read-only feature intervention,not physical driving or a policy performance score')
+                        finally:env._execution_feedback=feedback
             recorded=row['info']['plan']
             owner=env.world
             if protocol.get('reference_road_refinement') and recorded and recorded['status']=='success':
@@ -119,5 +139,6 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--batch',required=True);p.add_argument('--method',required=True)
     p.add_argument('--case',type=int,default=0);p.add_argument('--output',required=True);p.add_argument('--limit',type=int,default=16)
     p.add_argument('--inspect-policy',action='store_true')
-    a=p.parse_args();r=diagnose(a.batch,a.method,a.case,a.output,a.limit,a.inspect_policy);atomic_json(a.output,r)
+    p.add_argument('--inspect-reference-witness',action='store_true')
+    a=p.parse_args();r=diagnose(a.batch,a.method,a.case,a.output,a.limit,a.inspect_policy,a.inspect_reference_witness);atomic_json(a.output,r)
     print({k:r[k] for k in ('reconstruction_actions','switches_away_from_reusable_reference','observed_terminal')})
