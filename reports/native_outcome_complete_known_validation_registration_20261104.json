@@ -1,0 +1,53 @@
+{
+  "source_hashes": {
+    "scripts/run_outcome_development_validation.py": "e11d9cef56d364272a34b769e9a2fa8fce11516fddbfddf8fe4428464ee1fc63",
+    "scripts/run_fixed_lowlevel_adaptation.py": "e67931ffb4eb6bf65fe533281a53f116e2773a47a39b08c890711e1231286651"
+  },
+  "template_protocol_hashes": {
+    "placements30": "1610eb038fa9179f08272d50a344a2fc3a2f7a02671da8a18cabd966b8e87339",
+    "known24": "7fabeccfd38544fc9fc3b594941a8826241bba2a1cdefda076b670beff947d35"
+  },
+  "jobs": [
+    {
+      "method": "H",
+      "phase": "placements30",
+      "parent": "20261104_outcome_context_PPO10240_H",
+      "output": "20261104_outcome_frozen_H_placements30",
+      "execution": "20261104_outcome_frozen_H_placements30_execution"
+    },
+    {
+      "method": "H0",
+      "phase": "placements30",
+      "parent": "20261104_outcome_context_PPO10240_H0",
+      "output": "20261104_outcome_frozen_H0_placements30",
+      "execution": "20261104_outcome_frozen_H0_placements30_execution"
+    },
+    {
+      "method": "H",
+      "phase": "known24",
+      "parent": "20261104_outcome_context_PPO10240_H",
+      "output": "20261104_outcome_frozen_H_known24",
+      "execution": "20261104_outcome_frozen_H_known24_execution"
+    },
+    {
+      "method": "H0",
+      "phase": "known24",
+      "parent": "20261104_outcome_context_PPO10240_H0",
+      "output": "20261104_outcome_frozen_H0_known24",
+      "execution": "20261104_outcome_frozen_H0_known24_execution"
+    }
+  ],
+  "selection": "Final fixed-budget H/H0 models only;all complete known inventories regardless paired pilot scores",
+  "new_PPO_updates": 0,
+  "new_final_conditions": 0,
+  "maximum_native_jobs": 4,
+  "maximum_evaluation_controls": 97200,
+  "per_job_wall_seconds": 14400,
+  "maximum_dependency_wait_seconds": 32400,
+  "automatic_retries": 0,
+  "independent_seeds": 1,
+  "queue_script_sha256": "6c328004c443085ac20e5766ec2837e81a047d999b5629605e40cbb1b8240927",
+  "status": "ACTUAL_QUEUE_WAITING_FOR_PAIR_REBUILD",
+  "research_acceptance": "UNMET",
+  "limits": "Already-running local queue;broader driving has not started.All four complete known inventories are registered regardless pilot scores;not new final conditions.Each native job is bounded,with no automatic retries."
+}

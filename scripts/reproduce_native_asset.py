@@ -25,7 +25,9 @@ def inference_auditor(protocol):
     context=protocol.get('reference_context')
     if context is None:return 'audit_native_policy_inference.py'
     from navstack.reference_context_policy import VERSION
-    if context!={'version':VERSION}:raise ValueError('Unsupported registered reference-context schema')
+    from navstack.outcome_context_policy import VERSION as OUTCOME_VERSION
+    if context not in ({'version':VERSION}, {'version':OUTCOME_VERSION}):
+        raise ValueError('Unsupported registered reference-context schema')
     return 'audit_native_reference_inference.py'
 
 
