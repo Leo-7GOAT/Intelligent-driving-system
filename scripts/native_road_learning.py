@@ -398,10 +398,10 @@ def run(batch):
                     model_sha256=protocol['native_camera_evaluation']['model_sha256'])
                 write_json(output/"config.json",output_config)
             cases = registered_native_cases(protocol)
+            evaluation_cases = registered_native_cases(protocol,'evaluation') if protocol.get('native_validation') else cases
             if protocol.get('training_case_schedule') and not protocol.get('evaluation_only'):
                 from navstack.native_case_schedule import scheduled_native_cases
                 cases = scheduled_native_cases(cases,protocol['training_case_schedule'])
-            evaluation_cases = registered_native_cases(protocol,'evaluation') if protocol.get('native_validation') else cases
             client = BridgeClient(batch,record_dir=output/'camera') if record_camera else BridgeClient(batch)
             vec = None
             recorder = None

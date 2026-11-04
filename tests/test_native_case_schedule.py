@@ -36,6 +36,32 @@ def test_training_overlay_never_expands_frozen_evaluation_cases():
     with pytest.raises(ValueError):install_schedule_dispatch(changed)
 
 
+def test_worker_rehearsal_preserves_unique_evaluation_inventory():
+    import ast
+    from pathlib import Path
+    # Exercise the actual dispatch statements without starting a CARLA client.
+    tree=ast.parse((Path(__file__).resolve().parents[1]/'scripts/native_road_learning.py').read_text(encoding='utf-8'))
+    statements=[]
+    for node in ast.walk(tree):
+        if isinstance(node,ast.Assign) and any(isinstance(t,ast.Name) and t.id in ('cases','evaluation_cases') for t in node.targets):
+            if isinstance(node.value,(ast.Call,ast.IfExp)):statements.append(node)
+        elif isinstance(node,ast.If) and "protocol.get('training_case_schedule')" in ast.unparse(node.test):
+            statements.append(node)
+    statements.sort(key=lambda n:n.lineno)
+    # Keep only this worker's initial dispatch,not later case assignments.
+    first=next(i for i,n in enumerate(statements) if isinstance(n,ast.Assign)
+        and isinstance(n.value,ast.Call) and ast.unparse(n.value)=='registered_native_cases(protocol)')
+    dispatch=ast.Module(body=statements[first:first+3],type_ignores=[])
+    source=cases();p=dict(training_case_schedule=rehearsal_schedule(source),evaluation_only=False)
+    namespace=dict(protocol=p,registered_native_cases=lambda protocol:source)
+    exec(compile(dispatch,'native_case_dispatch','exec'),namespace)
+    assert len(namespace['cases'])==64 and len(namespace['evaluation_cases'])==48
+    assert namespace['evaluation_cases']==source
+    p['evaluation_only']=True
+    exec(compile(dispatch,'native_case_dispatch','exec'),namespace)
+    assert len(namespace['cases'])==len(namespace['evaluation_cases'])==48
+
+
 def test_measured_reset_order_audit_uses_the_saved_cursor_and_rejects_valid_but_reordered_cases():
     from scripts.audit_native_training_schedule import verify_order
     order=rehearsal_schedule(cases())['indices'];cursor=179
