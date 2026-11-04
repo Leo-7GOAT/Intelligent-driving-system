@@ -1,3 +1,15 @@
+# 最新接续：2026-11-04 15:53 H闭合2/2，H0仍真实训练，完整54已知开发复测入口已接通
+
+上一目标回合属于实际进展：H课程及全部两场端点审计完整关闭并公开report，中英README和全验收表已更新；不是只等待。H训练10482controls/330Adam/34states、17完整训练success；冻结same2为449/462controls、0/1interventions、2/2success/0unsafe，model ca2f4bff...。不要重复H训练或两场复测。完整数据reports/native_outcome_context_H_learning_complete_20261104.json，源码b94c1ae，发布记录67ac3bb。
+
+当前OS已核实H0worker33520(creation15:43:08.007，basePy311)、coordinator12544(creation15:06:56.219948)仍活跃；最后1466真实controls/147决策/4rollout，以新heartbeat为准。H0目录20261104_outcome_context_PPO10240_H0，执行20261104_outcome_context_PPO10240_execution_H0。自动pair重建器2184仍等待；入口20261104_outcome_pair_rebuild/complete.json或failure.json，别手动重开H0/队列/重建器，别修改已载入的summarize_outcome_context_pair.py和summarize_fixed_lowlevel_adaptation.py。
+
+新增scripts/run_outcome_development_validation.py已实际准备并校验两组H只读preflight：20261104_outcome_known_development_preflight_H_placements30和_H_known24(实际后者路径为20261104_outcome_known_development_preflight_H_known24)。两者全部54个已知任务与旧template完全一致、全部491个frozen source hash同H训练、最终模型/normalizer字节一致、策略4736维可加载、各ValidateOnly成功。unknown phase/template在创建目录前拒绝。凭证reports/native_outcome_development_validation_preflight_20261104.json；0nativecontrol/0update，没有启动54场复测，不能称已跑或有新成绩。新script只做冻结模型的任务切换及完整审计，不改任何物理低层；不要重跑全CPU或冒称1411覆盖此新入口。
+
+H0配对两场闭合、自动pair报告成功后，下一具体操作是冻结H/H0最终checkpoint，在同完整原30placements及原24known-validation上逐批复测，不增加PPO或最终条件，使用新script --parent <H或H0完整训练batch> --template <20261104_option_adapted_all30_placements_H或20261104_option_adapted_known24_H_exact_compute> --phase placements30或known24 --output <fresh D:batch> --execution <fresh D:execution>。该命令prepare后实际run_registered_native，自动raw/startNN/all-staticNN/engine与完整count/model检查。每批4h、0retry、D16GiB；严格顺序CARLA。preflight目录不启动也不冒充新评估；正式新output在实际启动时才准备，避免deadline提前过期。先看H0终态/pair报告，再开始这4个完整已知清单；所有条件保留，不按有利结果筛选。
+
+仍只有一个continued seed22。两个H成功端点都无plan_failure，失败context未直接触发，不能称直接纠正失败动作；实际新增反馈对训练轨迹/最终策略的作用须等H0与完整known清单。最终120未生成/查看，所有原最终研究门槛不变且UNMET。
+
 # 当前唯一训练：2026-11-04 15:46 H已完整关闭2/2，H0正在同预算真实训练
 
 H不得重启：20261104_outcome_context_PPO10240_execution_H/complete.json已存在，训练worker29016/coordinator20928已退出。最终10482实际controls(请求10240+242overshoot)/1056决策/33rollouts/330Adam/11039worldticks(557reset)，17个完整训练回合全success，未完整尾段不计成功。34Adam状态全部推进330，真实初始化权重/完整Adam/RNG一致，RMSmean/var/count精确冻结。model ca2f4bffb178c0bbde5695306a1f82d80ba527b5ce6e3e932bdda74b86469f76，failure_gain .0014071838231757283，reuse_gain -.00030437199166044593。低层/评分均固定、0新增监督。
