@@ -76,7 +76,7 @@
     "targeted_tests": 49,
     "seconds": 6.18,
     "xml": "joint_speed_signed_tests.xml",
-    "full_CPU": "RUNNING_NOT_YET_COMPLETE"
+    "full_CPU": "1392PASS_1SKIP_4DESELECT_321.32SECONDS"
   },
   "followup": {
     "batch": "20261104_joint_speed_retiming_H_four_condition_transfer",
@@ -86,10 +86,11 @@
       21,
       27
     ],
-    "status": "RUNNING",
+    "status": "COMPLETE_1_SUCCESS_3_DEADLINES",
     "selection": "Three previously failed conditions and one formerly successful condition,prespecified before these transfer outcomes",
     "max_new_controls": 3600,
-    "automatic_retries": 0
+    "automatic_retries": 0,
+    "report": "native_joint_speed_four_condition_complete_20261104.json"
   },
   "limits": "One known condition,one continued PPO policy. Whole30andknown24scores remain21/30and22/24for the earlier source. New lower-level capability changes reference timing and must be shared by rule comparators and fixed during subsequent learning. Neither transfer episode is a new independent training seed. Real-time performance is not established."
 }

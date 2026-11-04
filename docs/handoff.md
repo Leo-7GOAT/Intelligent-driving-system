@@ -1,4 +1,14 @@
-# 当前接续：2026-11-04 13:30 joint-speed单场首次成功，四条件迁移与全CPU运行
+# 当前接续：2026-11-04 13:42 四场与全CPU均闭合；局部精确拒绝点是下一必要验证
+
+所有原生作业/审计/CPU/离线probe已结束，无活动任务需等待，不要重启旧队列。当前源2f3fb5d已推且GitHub CI41779692919成功；全CPU exec4192 DONE0，1392PASS/1SKIP/4CARLA DESELECT/321.32s，XML D:/ThesisNativeArchive_20261104/joint_speed_full_CPU.xml。四条件execution/complete.json已存在，31428/33496已退出；[0,4,21,27]为deadline900/success410/deadline900/deadline900，3110controls，raw/全部311NN/engine均PASS。与单case1success558合计同core源5个known条件2/5，v2实际3668controls；加v1失败900，共4568新控制，零PPO，不是独立seed。公开reports/native_joint_speed_four_condition_complete_20261104.json，英文/中文README已同步真实弱结果。
+
+失败定位更具体：case0先执行约250控制，再选择新目标后出现retiming cap不相容/一次native拒绝/62次open_set_exhausted。case21/27的.25空间路径分别7989/486节点成功，但native九offset各拒绝1点，粗栅格cell本来occupied所以反复无效；不是未找到空间路径。按实际query request逐pose+offset匹配XY，case21坏点是最后pose227/228(lat=-.05,turn=-.05)，case27是pose221/228同offset；匹配XY精确，Z有原生车辆高度差.0016368，不能称完整3D逐位重建。D盘native_goal_region_terminal_crop_precheck.json：既有inner goal带.52m最早进入226/224，截到首次内目标带只可能去掉case21最后坏点，对case27无效；尚未改runtime，不可声称修复。
+
+脚本scripts/probe_native_reference_tube_planning.py在case21初态对每搜索primitive使用同9offset栅格车身检验，32000节点timeout、57.6m footprint checks、218.7275秒，exec56002 DONE0；D盘native_case21_reference_tube_planner_probe.json，公开reports/native_reference_tube_model_probe_20261104.json。过度保守且昂贵，未采用运行时，不增加预算继续盲搜，不重复该负试验。
+
+下一最小假设：精确native拒绝点(转为局部XY)作为同九offset车身的额外点约束，代替目前无效的栅格量化增量；只验证已有两条失败轨迹对应实测状态，保留所有原物理评分和全轨迹native查询。需把点约束完整加入空间缓存key并版本化，不能只给world monkeypatch导致旧memo假命中；动态/墙钟旁路仍须保留。先离线有限node验证，通过完整native道路查询后再pilot，不追加训练、不扩大整54场。终点内目标带截断也是有效待验证的语义假设，但不能据此跳过case27中途的badpoint。
+
+# 历史接续：2026-11-04 13:30 joint-speed单场与四条件（现均闭合）
 
 新增opt-in navstack/steering_retiming.py profile measured_steering_rate_retiming_v2。只在normal slew搜索失败后按.25m/s规划空间路径，再按曲率时间插值的最大转向导数/实际初速/加减速重新计时；保持PPO目标及请求速度、几何路径、MPC/原生控制/评分，动态检查和native道路查询使用新timing。原normal与fallback各<=32000节点，逐attempt成本另记录，不宣称总预算只有32000。默认行为不变，当前仅允许冻结评估，不能用旧training注册直接训练新低层。
 
