@@ -803,12 +803,16 @@ class NavigationEnv(gym.Env):
         return summary
 
 
-def rule_action(env):
+def rule_action(env,*,failed_action_penalty=0.,require_goal_heading=False):
     """B3 only: goal-directed candidate scoring, no learned-policy claims."""
+    if isinstance(failed_action_penalty,bool) or not math.isfinite(failed_action_penalty) or not 0<=failed_action_penalty<=5:
+        raise ValueError('Explicit bounded failed-action preference required')
+    if type(require_goal_heading) is not bool:raise ValueError('Explicit rule terminal-heading boolean required')
     s = env.state
     if (
         math.hypot(s.x - env.goal[0], s.y - env.goal[1])
         < env.config.goal_tolerance * 0.8
+        and (not require_goal_heading or abs(wrap(s.yaw-env.goal[2]))<=env.config.goal_yaw_tolerance)
     ):
         return 0
     best = (math.inf, 0)
@@ -834,6 +838,8 @@ def rule_action(env):
             # Finite preference, not a feasibility mask: if every witness is
             # absent the original ordering and fallback search remain available.
             penalty = 0. if continuation[target] else 5.
+            if i in getattr(env,'_outcome_failed_actions',()):
+                penalty += failed_action_penalty
             candidates.append((math.dist(target[:2],env.goal[:2])-.1*speed+penalty,i,target,speed))
             if env.config.reference_reuse and env.reusable_reference(target,speed):
                 reference=env.reference;keep=reference.start_time+reference.t>=s.time

@@ -15,9 +15,13 @@ def settings(protocol):
     value=protocol.get('reference_road_refinement')
     if value is None:return None
     from .fixed_lowlevel_training import registered
+    allowed=protocol.get('methods') in (['H'],['H0'])
+    if not allowed:
+        from .shared_rule_registration import registered as rule_registered
+        allowed=rule_registered(protocol)
     if (not isinstance(value,dict) or type(value.get('max_attempts')) is not int
             or value!={'version':VERSION,'max_attempts':3} or not (protocol.get('evaluation_only') is True or registered(protocol))
-            or protocol.get('methods') not in (['H'],['H0'])):
+            or not allowed):
         raise ValueError('Refinement prototype requires explicit frozen H/H0 evaluation registration')
     from .reference_compute import enabled
     result=dict(value,stop_repeated_references=True) if enabled(protocol) else value

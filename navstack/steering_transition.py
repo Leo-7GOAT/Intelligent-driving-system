@@ -12,8 +12,12 @@ def settings(protocol):
     valid=(value=={'version':VERSION} or isinstance(value,dict) and type(value.get('max_nodes')) is int
            and value=={'version':VERSION_BUDGET,'max_nodes':32000})
     from .fixed_lowlevel_training import registered
+    allowed=protocol.get('methods') in (['H'],['H0'])
+    if not allowed:
+        from .shared_rule_registration import registered as rule_registered
+        allowed=rule_registered(protocol)
     if (not valid or not (protocol.get('evaluation_only') is True or registered(protocol))
-            or protocol.get('methods') not in (['H'],['H0'])):
+            or not allowed):
         raise ValueError('Steering transition prototype requires frozen H/H0 evaluation')
     from .reference_compute import enabled
     result=dict(value,cache_success=True) if enabled(protocol) else value

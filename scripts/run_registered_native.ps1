@@ -45,6 +45,7 @@ $taskRoot=Split-Path -Parent $PSScriptRoot
 $taskBatch=(Resolve-Path -LiteralPath $Batch).Path
 $taskProtocolPath=Join-Path $taskBatch 'protocol.json'
 $taskProtocol=Get-Content -LiteralPath $taskProtocolPath -Raw | ConvertFrom-Json
+if($taskProtocol.PSObject.Properties.Name -contains 'allow_disjoint_carla' -and $taskProtocol.allow_disjoint_carla -isnot [bool]){throw 'Disjoint CARLA admission must be an explicit boolean'}
 $taskSource=(Resolve-Path -LiteralPath (Join-Path $taskBatch 'source')).Path
 if (-not $Python) { $Python=Join-Path $taskRoot '.venv/Scripts/python.exe' }
 if (-not $CarlaPython) { $CarlaPython=$env:NAVSTACK_CARLA_PYTHON }
@@ -120,7 +121,9 @@ try {
     }
     @{wrapper_sha256=(Get-FileHash -LiteralPath $PSCommandPath -Algorithm SHA256).Hash.ToLowerInvariant();wrapper='scripts/run_registered_native.ps1';protocol_sha256=(Get-FileHash -LiteralPath $taskProtocolPath -Algorithm SHA256).Hash.ToLowerInvariant();epoch=[DateTimeOffset]::UtcNow.ToUnixTimeSeconds();guard_current_override=[bool]$UseCurrentGuard;guard_source_relative=[IO.Path]::GetRelativePath($taskBatch,$taskGuardScript).Replace('\','/');guard_source_sha256=(Get-FileHash -LiteralPath $taskGuardScript -Algorithm SHA256).Hash.ToLowerInvariant();guard_manifest_sha256=$taskGuardManifest} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $taskBatch 'launcher_execution.json') -Encoding utf8
     $taskServerScript=Join-Path $taskSource 'scripts/run_carla_owned_foreground.ps1'
-    $taskServerHost=Start-Process -FilePath $taskPwsh -ArgumentList @('-NoProfile','-File',('"'+$taskServerScript+'"'),'-RpcPort',[string]$taskProtocol.carla_rpc_port,'-RenderOffScreen','-OutputDirectory',('"'+$taskInfrastructure+'"')) -PassThru -WindowStyle Hidden -RedirectStandardOutput (Join-Path $taskInfrastructure 'server_host_stdout.log') -RedirectStandardError (Join-Path $taskInfrastructure 'server_host_stderr.log')
+    $taskServerArgs=@('-NoProfile','-File',('"'+$taskServerScript+'"'),'-RpcPort',[string]$taskProtocol.carla_rpc_port,'-RenderOffScreen','-OutputDirectory',('"'+$taskInfrastructure+'"'))
+    if($taskProtocol.allow_disjoint_carla -eq $true){$taskServerArgs+='-AllowDisjointCarla'}
+    $taskServerHost=Start-Process -FilePath $taskPwsh -ArgumentList $taskServerArgs -PassThru -WindowStyle Hidden -RedirectStandardOutput (Join-Path $taskInfrastructure 'server_host_stdout.log') -RedirectStandardError (Join-Path $taskInfrastructure 'server_host_stderr.log')
     $taskReady=$false
     for($taskAttempt=0;$taskAttempt -lt 20;$taskAttempt++) {
         if($taskServerHost.HasExited){throw 'Owned server launcher ended before readiness'}

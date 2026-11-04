@@ -6,8 +6,12 @@ def settings(protocol):
     value=protocol.get('reference_option_commitment')
     if value is None:return None
     from .fixed_lowlevel_training import registered
+    allowed=protocol.get('methods') in (['H'],['H0'])
+    if not allowed:
+        from .shared_rule_registration import registered as rule_registered
+        allowed=rule_registered(protocol)
     if (value!={'version':VERSION} or not (protocol.get('evaluation_only') is True or registered(protocol))
-            or protocol.get('methods') not in (['H'],['H0'])):
+            or not allowed):
         raise ValueError('Reference option prototype requires registered frozen H/H0 evaluation')
     return value
 

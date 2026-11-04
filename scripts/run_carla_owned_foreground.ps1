@@ -2,6 +2,7 @@ param(
     [string]$Install = 'D:\CARLA_0.9.15\WindowsNoEditor',
     [int]$RpcPort = 2000,
     [switch]$RenderOffScreen,
+    [switch]$AllowDisjointCarla,
     [Parameter(Mandatory=$true)][string]$OutputDirectory
 )
 $ErrorActionPreference = 'Stop'
@@ -13,6 +14,21 @@ function Write-AtomicJson([string]$Path,[object]$Value) {
     $temporary = "$Path.tmp-$PID-$([Guid]::NewGuid().ToString('N'))"
     $Value | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $temporary -Encoding utf8
     Move-Item -LiteralPath $temporary -Destination $Path
+}
+
+function Get-DisjointCarlaPeers([object[]]$Processes,[int[]]$RequestedPorts) {
+    $peers=@()
+    foreach($peer in $Processes) {
+        $peerMatches=[regex]::Matches([string]$peer.CommandLine,'(?i)(?:^|\s)"?-carla-rpc-port=(\d+)"?(?=\s|$)')
+        if($peerMatches.Count -ne 1){throw 'Existing CARLA has no unambiguous explicit RPC span'}
+        $peerBase=[int]$peerMatches[0].Groups[1].Value
+        if($peerBase -lt 1024 -or $peerBase -gt 65533){throw 'Existing CARLA RPC span is invalid'}
+        $peerSpan=@($peerBase..($peerBase+2))
+        if(@($peerSpan | Where-Object {$_ -in $RequestedPorts}).Count){throw 'Existing CARLA RPC spans overlap'}
+        $peers+=@{pid=$peer.ProcessId;rpc_port=$peerBase;rpc_port_span=$peerSpan}
+    }
+    if(@($peers.rpc_port | Sort-Object -Unique).Count -gt 1){throw 'Only one disjoint peer fits the registered two-server resource budget'}
+    return $peers
 }
 
 $resolvedOutput = [System.IO.Path]::GetFullPath($OutputDirectory)
@@ -39,7 +55,12 @@ if (-not (Test-Path -LiteralPath $wrapper -PathType Leaf) -or -not (Test-Path -L
 $existing = @(Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^CarlaUE4' })
 $tcpOwners = @($rpcPorts | ForEach-Object { Get-NetTCPConnection -LocalPort $_ -ErrorAction SilentlyContinue } | Where-Object { $_.OwningProcess -ne 0 })
 $udpOwners = @($rpcPorts | ForEach-Object { Get-NetUDPEndpoint -LocalPort $_ -ErrorAction SilentlyContinue })
-if ($existing.Count -or $tcpOwners.Count -or $udpOwners.Count) { throw 'Existing CARLA process or TCP/UDP port owner detected' }
+$disjointPeers=@()
+if($existing.Count) {
+    if(-not $AllowDisjointCarla){throw 'Existing CARLA process detected;disjoint-server admission was not requested'}
+    $disjointPeers=@(Get-DisjointCarlaPeers -Processes $existing -RequestedPorts $rpcPorts)
+}
+if ($tcpOwners.Count -or $udpOwners.Count) { throw 'Requested TCP/UDP port span is already owned' }
 $stdout = Join-Path $resolvedOutput 'server_stdout.log'
 $stderr = Join-Path $resolvedOutput 'server_stderr.log'
 $serverArgs = @('CarlaUE4','-quality-level=Low','-windowed','-ResX=640','-ResY=360',"-carla-rpc-port=$RpcPort",'-nosplash','-unattended','-stdout','-FullStdOutLogOutput')
@@ -79,6 +100,7 @@ try {
         shipping_pid=$process.Id;shipping_parent_pid=$shippingIdentity.ParentProcessId
         shipping_creation_utc=$shippingStarted.ToString('o');shipping_command_line=$shippingIdentity.CommandLine
         arguments=$serverArgs;rpc_host='127.0.0.1';rpc_port=$RpcPort;rpc_port_span=$rpcPorts
+        disjoint_peer_admission=[bool]$AllowDisjointCarla;observed_disjoint_peers=$disjointPeers
         client_python=$env:NAVSTACK_CARLA_PYTHON
         stdout=$stdout;stderr=$stderr;owned_by_task=$true;foreground_host=$true
     }

@@ -1,3 +1,17 @@
+# 最新：2026-11-04 17:30 全部H/H0已知54均闭合；B3新共享低层已实现测试，尚未原生启动
+
+目标回合实际进展：四批完成H30/30、H030/30、H24/24、H024/24，全部native/raw/startNN/allstaticNN/engine通过，队列14560已退出，禁止重跑。四批合计37874controls，H18972/H018902(差+70)、干预561/567(差-6)、planfails18/18，均0unsafe。known24各类8/8。主张无成功率收益且无一致成本优势，不能只报两场或static有利差异。公开reports/native_outcome_full_known_development_complete_20261104.json由scripts/summarize_outcome_development.py实际重建，0新PPO/0final，一个continuedseed22，54是原已知清单条目，不冒充新独立最终条件。
+
+机制脚本scripts/diagnose_outcome_feedback_actions.py已在H30全部1086决策实际重建、权重/完整Adam/RNG/counters精确不变：13个负context，2个同权重隐藏新失败项会改变argmax(case7/11,actual14,hidden2)。D:/ThesisNativeArchive_20261104/outcome_H30_failure_term_action_influence.json及公开同名机制report保留。不是实际训练H0，没执行替代动作，不推断驾驶收益；已经完成，不重跑1086NN。
+
+新B3源码当前已实现：navstack/env.rule_action新增默认0有限失败偏好、默认False终点朝向检查，旧默认行为不变；新shared_rule_registration只允许B3/eval/严格0controls0Adam，4个原低层门限仅注册扩展。fixed_shared_native_rule.prepare对H冻结source除rule_action/4注册函数外做完整AST相同证明，配置只改method=B3，同31动作、转向/point/joint/MPC/奖励/安全/停车辅助。B3使用同失败历史、固定5m软偏好(不mask)、31connector+至多3nominalsearch，最终生产steering wrapper清previewcache，与H相同低层。evaluate_native_rule新增可选selector和新profile dispatch，旧路径保留。最新CPU1420PASS/1skip/4CARLAexclude421.21s(覆盖初始共享core)，最后44testsPASS20.54s覆盖终点朝向/phase分类/端口隔离扩展；fixture被冻结状态两次构造错误已修正，最终44通过，XML shared_B3_registered_final_tests.xml。
+
+发现另一个未归属本任务的CARLA2100进程：shipping33440 creation17:13:10.6、wrapper28072，旧已登记H0known24实际shipping11280/2110已在17:22清空退出，不匹配，绝不能kill33440。为不碰其他任务，run_carla_owned_foreground新增显式-AllowDisjointCarla，默认仍拒绝任何peer；开启仅承认唯一明确非重叠RPCspan(peer2100..2102，任务2110..2112)，未知/重叠/多peer均拒绝，现有TCP/UDP端口检测仍在，owned-only清理未改。run_registered按严格bool协议字段传flag。6个纯PS分类+metadata等最终44测试通过。新B3准备将固定2110、GPUfree≥6144MiB、最多2server/4h/0retry，其他2100世界不改不停止；GPU当前约9664/16311MiB占用，6GiB余量检查运行前实时复核。
+
+B3尚未实际准备/启动正式native。两个旧preflight目录shared_rule_B3_preflight_placements30/known24只验证过中间源码，不能作为最终评分或直接启动；最后版本增加朝向守卫/端口隔离后，须提交当前全部源码，再新建正式B3两批。入口scripts/fixed_shared_native_rule.py --parent <完整10482H训练batch> --template <原all30模板或known24模板> --output <fresh D:正式B3batch> --phase placements30/known24；随后run_registered_native.ps1 -Kind rule -Batch ... -UseCurrentGuard，自动或手动依次audit_native_rule.py --output batch/raw_audit.json和audit_native_control_delivery.py，验证control总数及源/完整清单。evaluate_native_rule新dispatch在D档案允许同目录parent，绕过旧runs路径/C盘12GB限制。没有授权stop其他CARLA，也没这样做。新fullCPU已经结束，不重复全套；正式B3本次还需要真实入口与actor闭环验证。
+
+公开B3准备说明reports/native_shared_lowlevel_B3_preparation_20261104.json严格NOT_NATIVE_STARTED。所有新脚本/报告敏感信息扫描通过，无凭据/本机私有路径导出。最终120仍未生成/查看，正式5种子/健康B1公平对比/强B3增益与研究验收仍UNMET，不能因54/54宣称完成。
+
 # 最新活动：2026-11-04 16:56 H30完整30/30且全部审计通过，H0同30实际运行到case13
 
 上一回合是实际进展：闭合H0训练/same2/pair并扩展真实成本重建；新H模型619file/911frames/92NN/figure从干净5afworktree重建，兼容32tests及旧新冻结source2+2真实起点通过；H完整30静态车辆摆放也已闭合，不是只报状态。

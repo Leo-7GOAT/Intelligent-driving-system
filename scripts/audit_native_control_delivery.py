@@ -17,6 +17,22 @@ def control_errors(desired,applied,tolerance=1e-5):
     return {k:abs(desired[k]-applied[k]) for k in keys if abs(desired[k]-applied[k])>tolerance}
 
 
+def evaluation_episodes(batch,protocol):
+    batch=Path(batch)
+    paths=[batch/method/'evaluation_trace.jsonl.gz' for method in protocol['methods']]
+    summary=batch/'summary.json'
+    rule=(protocol.get('policy_kind')=='rule_only_B3' or
+          summary.is_file() and read(summary).get('policy_kind')=='rule_only_B3')
+    if rule:paths.append(batch/'evaluation_trace.jsonl.gz')
+    result=set()
+    for path in paths:
+        if path.exists():
+            rows,error=read_prefix(path)
+            if error:raise ValueError(error)
+            result.update(t['backend_evidence']['episode_id'] for r in rows for t in r['info']['trace'])
+    return result
+
+
 def analyze(batch):
     batch=Path(batch);p=read(batch/'protocol.json');cal=read(batch/'calibration/calibration.json')
     mode=cal['recommended_adapter'].get('control_delivery','actor_async_legacy')
@@ -24,13 +40,7 @@ def analyze(batch):
         raise ValueError('Inspect only a terminal,cleaned-up native lifecycle')
     if read(batch/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped':
         raise ValueError('Owned server cleanup not verified')
-    evaluations=set()
-    for method in p['methods']:
-        path=batch/method/'evaluation_trace.jsonl.gz'
-        if path.exists():
-            rows,error=read_prefix(path)
-            if error:raise ValueError(error)
-            evaluations.update(t['backend_evidence']['episode_id'] for r in rows for t in r['info']['trace'])
+    evaluations=evaluation_episodes(batch,p)
     counts=Counter();channels=Counter();examples=[];streams=[];last={};seen=set();by_phase={}
     for path in sorted((batch/'infrastructure').glob('*_responses.jsonl.gz')):
         rows,error=read_prefix(path)

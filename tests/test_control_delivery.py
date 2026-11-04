@@ -14,6 +14,16 @@ def control(**changes):
         manual_gear_shift=True,hand_brake=False,reverse=False),**changes))
 
 
+def test_rule_root_trace_is_classified_as_evaluation_not_training(tmp_path):
+    import gzip,json
+    from scripts.audit_native_control_delivery import evaluation_episodes
+    row={'info':{'trace':[{'backend_evidence':{'episode_id':'rule_episode'}}]}}
+    with gzip.open(tmp_path/'evaluation_trace.jsonl.gz','wt',encoding='utf-8') as stream:
+        stream.write(json.dumps(row)+'\n')
+    assert evaluation_episodes(tmp_path,{'methods':['B3'],'policy_kind':'rule_only_B3'})=={'rule_episode'}
+    assert evaluation_episodes(tmp_path,{'methods':['H']})==set()
+
+
 def test_sync_submission_uses_explicit_no_tick_barrier_and_no_async_actor_call():
     calls=[]
     actor=SimpleNamespace(id=42,apply_control=lambda value:calls.append(('async',value)))

@@ -238,7 +238,7 @@ def selected_speed_action(env, proposal, speed_policy):
     return action
 
 
-def evaluate_cases(env, cases, output, health, speed_policy='native_score'):
+def evaluate_cases(env, cases, output, health, speed_policy='native_score',action_selector=None):
     """One unchanged rule call and one production environment step per decision."""
     results, controls = [], 0
     with gzip.open(output/'evaluation_trace.jsonl.gz', 'wt', encoding='utf-8') as stream:
@@ -249,7 +249,7 @@ def evaluate_cases(env, cases, output, health, speed_policy='native_score'):
             selection_times, complete_cycle_times = [], []
             while not env.done:
                 started = time.perf_counter()
-                proposal = rule_action(env)
+                proposal = rule_action(env) if action_selector is None else action_selector(env)
                 action = selected_speed_action(env, proposal, speed_policy)
                 selection_seconds = time.perf_counter()-started
                 _, _, _, _, info = env.step(action)
@@ -277,6 +277,9 @@ def evaluate_cases(env, cases, output, health, speed_policy='native_score'):
 def run(batch):
     batch = Path(batch).resolve()
     protocol = read(batch/'protocol.json')
+    if protocol.get('fixed_shared_rule'):
+        from scripts.fixed_shared_native_rule import run as run_shared_rule
+        return run_shared_rule(batch)
     # Recorded parent path is a workspace-relative source reference, not a command.
     workspace = batch.parent.parent
     parent = (workspace/protocol['parent_root_relative']).resolve()

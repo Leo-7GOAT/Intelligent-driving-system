@@ -105,13 +105,14 @@ def test_launcher_metadata_gate_is_read_only_and_does_not_claim_server_readiness
     assert before=={p.relative_to(batch):p.read_bytes() for p in batch.rglob('*') if p.is_file()}
 
 
-@pytest.mark.parametrize('fault',['missing_calibration','changed_source','started','escaping_source','prepared_changed'])
+@pytest.mark.parametrize('fault',['missing_calibration','changed_source','started','escaping_source','prepared_changed','disjoint_flag_type'])
 def test_launcher_rejects_bad_inputs_before_any_lifecycle(tmp_path,fault):
     batch,p=fixture(tmp_path)
     if fault=='missing_calibration':p.pop('calibration_sha256')
     elif fault=='changed_source':(batch/'source/scripts/native_road_learning.py').write_text('changed')
     elif fault=='started':(batch/'started.json').write_text('{}')
     elif fault=='prepared_changed':(batch/'prepared.json').write_text(json.dumps({'protocol_sha256':'a'*64}))
+    elif fault=='disjoint_flag_type':p['allow_disjoint_carla']='true'
     else:p['source_hashes']={'../../outside.py':'a'*64}
     (batch/'protocol.json').write_text(json.dumps(p))
     result=validate(batch)
