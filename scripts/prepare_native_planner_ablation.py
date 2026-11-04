@@ -49,6 +49,8 @@ def prepare(parent,wall_seconds=1800,grid_postprocess='legacy'):
     parent=Path(parent).resolve();require_finished_parent(parent)
     if type(wall_seconds) is not int or not 900<=wall_seconds<=3600:raise ValueError('Invalid bounded ablation window')
     protocol=read(parent/'protocol.json');method='H'
+    if protocol.get('reference_steering_transition') is not None:
+        raise ValueError('Use prepare_shared_native_grid.py for the measured-steering lowlevel; a method-label switch is insufficient')
     if method not in protocol.get('methods',[]) or protocol.get('evaluation_only'):
         raise ValueError('Require an actually trained H parent')
     verified=audit(parent,method)

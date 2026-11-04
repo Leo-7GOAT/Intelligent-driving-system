@@ -7,6 +7,8 @@ VERSION_BUDGET='measured_steering_slew_32000_memo_v2'
 
 
 def settings(protocol):
+    from .spatial_planner_transfer import settings as spatial_settings
+    spatial=spatial_settings(protocol)
     value=protocol.get('reference_steering_transition')
     if value is None:return None
     valid=(value=={'version':VERSION} or isinstance(value,dict) and type(value.get('max_nodes')) is int
@@ -23,7 +25,8 @@ def settings(protocol):
     result=dict(value,cache_success=True) if enabled(protocol) else value
     from .steering_retiming import settings as joint_settings
     joint=joint_settings(protocol)
-    return dict(result,joint_speed=joint) if joint else result
+    result=dict(result,joint_speed=joint) if joint else result
+    return dict(result,spatial_planner=spatial) if spatial else result
 
 
 def prepare_reference(env,action,prepare,options):
@@ -33,8 +36,16 @@ def prepare_reference(env,action,prepare,options):
     ceiling=max(.1,env.state.v,speed)
     initial=env.state.steering
     budget=options.get('max_nodes',env.config.planner.max_nodes)
-    backend=HybridAStar(env.config.vehicle,replace(env.config.planner,max_nodes=budget))
-    memo=options['version']==VERSION_BUDGET
+    spatial=options.get('spatial_planner')
+    if spatial:
+        from .planning import GridAStarPlanner
+        from .spatial_planner_transfer import PROFILE
+        if spatial!=PROFILE:raise ValueError('Unknown spatial planner transfer')
+        backend=GridAStarPlanner(env.config.vehicle,replace(env.config.planner,
+            max_nodes=spatial['max_nodes'],grid_postprocess=spatial['grid_postprocess']))
+    else:
+        backend=HybridAStar(env.config.vehicle,replace(env.config.planner,max_nodes=budget))
+    memo=options['version']==VERSION_BUDGET and not spatial
     cache_success=options.get('cache_success',False)
     if memo:
         from .planner_memo import ExactSteeringFailureMemo
@@ -46,10 +57,11 @@ def prepare_reference(env,action,prepare,options):
     joint=options.get('joint_speed');attempts=[]
     class Adapter:
         def plan(self,start,goal,world):
-            result=backend.plan(start,goal,world,initial_steering=initial,reference_speed=ceiling)
+            result=(backend.plan(start,goal,world) if spatial else
+                backend.plan(start,goal,world,initial_steering=initial,reference_speed=ceiling))
             attempts.append(dict(speed_ceiling=ceiling,status=result.status,expanded_nodes=result.expanded_nodes,
                 planning_time=result.planning_time,cache_hit=getattr(result,'cache_hit',False)))
-            if joint and result.status in ('no_path','timeout') and ceiling>joint['spatial_speed_ceiling']:
+            if joint and not spatial and result.status in ('no_path','timeout') and ceiling>joint['spatial_speed_ceiling']:
                 result=backend.plan(start,goal,world,initial_steering=initial,reference_speed=joint['spatial_speed_ceiling'])
                 attempts.append(dict(speed_ceiling=joint['spatial_speed_ceiling'],status=result.status,
                     expanded_nodes=result.expanded_nodes,planning_time=result.planning_time,
@@ -72,6 +84,10 @@ def prepare_reference(env,action,prepare,options):
         detail['steering_transition']=dict(version=options['version'],initial_steering=initial,speed_ceiling=ceiling,
             analytic_connections=False,exact_failure_memo=memo,max_nodes=budget)
         if cache_success:detail['steering_transition']['exact_success_cache']=True
+        if spatial:
+            detail['steering_transition'].update(spatial_planner=spatial,
+                exact_success_cache=False,measured_steering_in_spatial_search=False,
+                measured_steering_in_shared_retimer=bool(joint))
         if joint:
             detail['steering_transition']['joint_speed']=joint
             detail['joint_speed_search']=dict(attempts=attempts,
