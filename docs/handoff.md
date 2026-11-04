@@ -1,16 +1,18 @@
-# 当前：2026-11-04 18:08 共享低层 B3 已真实执行，新 R2 全清单顺序验证中
+# 当前：2026-11-04 18:26 强共享低层B3全54已完成；没有PPO完成率优势
 
-H/H0 四批全部闭合，分别为 30/30 静态摆放和 24/24 已知验证，合计 37,874 controls；禁止重跑。两者均为单个 continued seed22，无反馈成功率优势，完整结果和机制边界见 reports/native_outcome_full_known_development_complete_20261104.json 与 native_outcome_failure_term_action_influence_20261104.json。最终120条件尚未生成或查看，原研究目标不变且 UNMET。
+本轮实际闭合了两批B3：20261104_shared_lowlevel_B3_r2_placements30=30/30、10720controls；20261104_shared_lowlevel_B3_r2_known24=24/24、8094controls。各批native/raw/engine全部通过，总18814真实controls，0unsafe、384interventions、0planfail。执行目录 D:/ThesisNativeArchive_20261104/20261104_shared_lowlevel_B3_execution_r2/complete.json 完整，两台owned2110server均空世界清理退出；coordinator30060/wrapper30368和worker26264/8116已退出，其他任务2100shipping33440仍保留。禁止重跑任何已完成H/H0/B3清单。
 
-B3 首次正式批次 20261104_shared_lowlevel_B3_placements30 在 reference-context 构造器只允许 H 的位置失败，0 bridge response / 0 实际车辆控制；失败目录和 owned_empty_server_stopped 凭证完整保留，未冒充任务失败分数。248bd7e 仅扩展构造器类型准入、AST 比较例外和回归；20 项测试全部通过（31.023s）。相同 H/B3 环境观测逐项相等，包括失败动作历史。248bd7e 已正常 push；首次 GitHub500 后重试成功。
+当前完整比较：H/H0/B3均54/54；H18972controls/561干预/18planfail，H018902/567/18，B318814/384/0。全部是原30static+24known条目，known24三类各8/8，一个continued学习seed22，0新final。scripts/summarize_shared_rule_comparison.py已在完整实际证据上成功执行，公开 reports/native_shared_lowlevel_H_H0_B3_complete_20261104.json；严格验证18个共同任务/物理profile、环境仅method不同、全部navstack源相同或6个明确注册AST例外、全条件/raw/engine绑定。加入每场完整周期、网络规模、选择/完整周期总墙钟、B3额外nominalsearch节点，所有失败保留。H/H0/B3完整决策累计979.43/1059.40/1090.85s；策略选择3.76/4.37/200.19s。B3额外搜索在trace里记账，不能忽略。共享工作站不同时间运行，不能据这些墙钟宣布隔离实时优势，更不能只拿环境周期对比含策略周期。
 
-当前实际程序：D:/ThesisNativeArchive_20261104/run_shared_lowlevel_B3_r2.py；执行目录 20261104_shared_lowlevel_B3_execution_r2，wrapper30368/base30060（必须再查创建时间/OS），当前 placements30 batch 为 20261104_shared_lowlevel_B3_r2_placements30；实际 worker26264、shipping21844。已越过构造/reset，首场成功349 controls，并继续后续场景。只读取最新 heartbeat.json、guard.json、case_NNNN.json 与执行 status/complete/failure；不要因终端 session 丢失而重启。
+结论：没有PPO/反馈完成率收益；B3反而更少干预/规划失败。学习策略选择便宜，不等于已证明整体性能更好或PPO增益。机制只读探针13个负context、2个同权重argmax改变/1086静态决策，不执行counterfactual，不能当驾驶收益。H/H0训练及全部54审计先前已闭合，禁止重新训练same2或重复NN审计。
 
-程序顺序跑完整 placements30，再新准备并跑完整 known24；每批4h、0自动重试、至多48,600评估 controls、0PPO。每批结束自动 require_finished_parent、audit_native_rule、audit_native_control_delivery，保留所有任务失败。新 protocol 使用2110..2112，显式允许唯一明确非重叠 peer2100..2102；只管理本任务 server/actor，绝不能动外部33440/28072。资源最低4GiB freeGPU+16GiB freeRAM，最多两server；该运行准入在任何B3控制前已锁定，不更改评分/学习预算。新准备报告与当前启动报告分开，后者 reports/native_shared_lowlevel_B3_execution_20261104.json 不声称已闭合。
+B3首个正式batch(没有r2的20261104_shared_lowlevel_B3_placements30)在只允许H的reference-context构造器失败，0bridge response/0实际车辆控制，失败及清理均保留。248bd7e修复类型准入、AST例外与回归，20项PASS31.023s；CPU CI41811661036SUCCESS。全共享核心1420PASS/1skip/4exclude为此前版本，不能冒称本轮重跑全套。44项最终rule/launcher测试亦已关闭。报告 native_shared_lowlevel_B3_execution_20261104.json含失败、修复、完整两批和SHA，旧preflight/preparation仅历史不启动。4544e89已push；本轮结束的最终commit见git真实HEAD/remote。
 
-下一实际工作：继续观察当前两批直到完整原始/engine审计闭合；scripts/summarize_shared_rule_comparison.py 将严格匹配同任务、配置仅method不同、全navstack源码一致/明确注册AST例外，生成H/H0/B3全部54条描述性配对比较；只有一个独立策略，不输出伪种子置信区间。H与B3都比较含策略选择的 full_decision_times，旧 environment-only decision_cycle_times 不拿来冒充完整周期。该新汇总脚本尚待两批完成后实际运行。当前运行source被固定，不改其核心文件或重跑已完成H/H0。
+全目标仍UNMET：新5独立策略、健康B1公平对照、最终至少120新唯一条件、B2/频率/安全/控制层公平消融、正式贡献及最终复现发布均尚缺。最终120没有生成或查看，不能因全部已知54/54而宣称完成。不要继续无依据追加只针对旧21/27的seed22短课程。下一研发应直接解决当前证据缺口：完整分布的独立训练/充分B1及预先锁定的对照；若新反馈无收益应保留负结论，不能调整最终门槛或把低层修复归因PPO。
 
-下方均为历史记录；以上状态优先。后续仍须依据强B3完整比较决定必要开发，而不是继续无依据扩大同一短课程或声称已证明PPO价值。当前5独立新策略、健康B1公平对比、正式120条件、贡献消融及最终发布验收都未完成。
+已完成B1基础五seed报告重新核对：11/55为3/4且各unsafe1，22/33/44为4/4；broader后全部完整验证低且未复核基础保持。之后仅seed22的季度基础复习TRAIN48课程基本4/4、known15/24。不能把五个broader screen失败等同实现全坏，也不能称五个当前B1均健康。现有完整原始证据在reports/native_B1_shared_parking_complete_basic_cohort_20261102.json和native_B1_broader_complete_cohort_20261102.json，不重跑已关闭原课程。当前没有本任务native训练/评估在后台；未来工作未启动，不假装会话外自主推进。
+
+下方为历史接续记录，以上终态优先。
 
 # 最新活动：2026-11-04 16:56 H30完整30/30且全部审计通过，H0同30实际运行到case13
 

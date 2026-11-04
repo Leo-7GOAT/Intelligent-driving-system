@@ -1,6 +1,9 @@
 """Compare complete known H/H0 inventories with the shared-lowlevel B3 rule."""
 import argparse
 from collections import Counter
+import gzip
+import json
+import math
 from pathlib import Path
 import sys
 
@@ -12,12 +15,33 @@ from scripts.evaluate_native_rule import require_finished_parent
 from scripts.fixed_shared_native_rule import without_functions
 from scripts.summarize_outcome_development import summarize as summarize_pair
 from navstack.shared_rule_registration import registered
+from navstack.metrics import timing_summary
 
 SHARED_PROTOCOL_KEYS = ('routes', 'native_case_manifest', 'native_validation', 'calibration_sha256',
     'reference_road_refinement', 'reference_steering_transition', 'reference_option_commitment',
     'reference_compute_profile', 'reference_joint_speed', 'reference_point_constraints',
     'mpc_reference_effort', 'goal_parking_assist', 'reference_context', 'shared_endpoint_mask_v1',
     'shared_mask_ablation', 'initialization_gate_profile', 'unsafe_event_penalty', 'reward_intervention')
+
+
+def recorded_costs(trace, digest, period, selection_key):
+    if sha(trace) != digest:
+        raise ValueError('Timing trace differs from its completed raw audit')
+    selection, full = [], []
+    search = dict(search_calls=0, search_nodes=0, search_seconds=0.)
+    with gzip.open(trace, 'rt', encoding='utf-8') as stream:
+        for line in stream:
+            row = json.loads(line)
+            a, b = row[selection_key], row['full_decision_seconds']
+            if not math.isfinite(a) or not math.isfinite(b) or not 0 <= a <= b:
+                raise ValueError('Invalid recorded full-cycle timing')
+            selection.append(a); full.append(b)
+            for key, value in row['info'].get('rule_candidate_compute', {}).items():
+                search[key] += value
+    return dict(decisions=len(full), selection_seconds=sum(selection),
+        full_decision_seconds=sum(full), selection_times=timing_summary(selection, period),
+        full_decision_times=timing_summary(full, period), rule_extra_nominal_search=search,
+        scope='Measured policy selection plus environment step;excludes reset,serialization and process setup')
 
 
 def paired_cases(left, right):
@@ -83,6 +107,10 @@ def summarize(h_execution, rule_execution):
             interventions=sum(e['interventions'] for e in eps),
             plan_failures=sum(e['plan_failures'] for e in eps),
             shared_parking_controls=sum(e['goal_parking_controls'] for e in eps),
+            world_ticks=result['world_ticks'], reset_ticks=result['reset_ticks'],
+            recorded_evaluation_wall_seconds=result['wall_seconds'], neural_parameters=0,
+            recorded_costs=recorded_costs(batch/'evaluation_trace.jsonl.gz', raw['trace_sha256'],
+                p['config']['decision_dt'], 'selection_seconds'),
             raw_audit_sha256=sha(batch/'raw_audit.json'), all_cases=eps)
         paired[phase] = {}
         for method in ('H', 'H0'):
@@ -107,6 +135,11 @@ def summarize(h_execution, rule_execution):
             learned['results'][method+'_'+phase]['policy_including_case_timings'] = [
                 dict(case_id=e['case_id'], full_decision_times=e['full_decision_times'],
                      policy_prediction_times=e['policy_prediction_times']) for e in hev['episodes']]
+            hraw = read(hbatch/'H/endpoint_raw_audit.json')
+            learned['results'][method+'_'+phase]['recorded_costs'] = recorded_costs(
+                hbatch/'H/evaluation_trace.jsonl.gz', hraw['evaluation_trace_sha256'],
+                p['config']['decision_dt'], 'policy_prediction_seconds')
+            learned['results'][method+'_'+phase]['neural_parameters'] = read(hbatch/'H/policy_architecture.json')['parameters']
     return dict(scope=__doc__, research_acceptance='UNMET', independent_learned_training_seeds=1,
         registered_known_entries_per_method=54, new_final_conditions=0, new_PPO_updates=0,
         learned=learned, rule=rule, descriptive_pairs=paired,
