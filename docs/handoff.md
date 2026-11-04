@@ -1,3 +1,9 @@
+# 当前：2026-11-04 20:26 H0补充复验全部完成，完整发布凭证已公开
+
+此前离线driver7388/session15229已正常退出0，H0两份reproduction.json均完整存在。全部四套H/H0端点fresh复验：108starts/3207staticNN/四张bitexact图；B3两库存raw/engine也PASS，总3868files/56688引擎controls。不要再跑这5包/四套NN/旧release下载。公开reports/native_outcome_shared_public_release_20261104.json已更新全部COMPLETE；额外fresh_reproduction_complete.json已上传同v0.4.0预发布并匿名下载验证，当前9assets所有服务器SHA均核验。原ZIP/校验和/原publication-time说明资产保持原字节，发布正文追加20:24完成更新，没有覆写失败或训练数据。sourceCI仍582f8f4/41827384332的1415PASS；fresh source为干净ac41666，所有auditor与582字节相同。
+
+现有native H coordinator17884/worker29968/bridge9164仍运行，20:25 heartbeat19716controls/1988actions/62rollouts；原cohort frozen62d和B1 frozen60a完全未动。B1 waiter6828继续只读等待，未启动新B1native。当前TRAIN已闭合41episodes=37success+4deadline，仅探索训练前缀，不是验证成绩，不删失败、不按中途成绩选checkpoint。完成前保留同一进程，4h上限若先到则审计实际状态/末checkpoint/全部费用后走显式恢复；不能把未满30720当完成。现在主要物理工作就是等待这个已确认live的训练推进，不能为了制造进展再重复下载/审计/开新native。最终120未生成/查看，仍UNMET。
+
 # 当前：2026-11-04 20:19 完整对照资产已公开，所有匿名下载哈希核验完成
 
 真实GitHub预发布v0.4.0-dev.20261104-outcome-shared-control已公开，target582f8f4839b087dd09d6522a6968a59a11b769cb。5个ZIP/8个附件，56688评估controls，5个ZIP未登录下载全部成功，3868files逐字节SHA核验；不再下载老发布。公开reports/native_outcome_shared_public_release_20261104.json含每包hash/公开URL/全部范围。保留H/H0/B3各54/54，无PPO完成率优势；1continuedseed/0final新条件。包是端点/原始执行/模型/配置/冻结源，不冒充全部祖先训练来源重建。中英文README已更新。

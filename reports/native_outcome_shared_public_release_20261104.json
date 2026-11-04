@@ -76,7 +76,7 @@
   "new_final_conditions": 0,
   "new_controls_during_packaging": 0,
   "new_optimizer_updates_during_packaging": 0,
-  "limits": "Endpoint/raw/model reproduction,not full ancestor training reconstruction. H/H0/B3 all54/54;no PPO or feedback completion-rate advantage established. Additional active five-seed training is excluded. Public anonymous downloads verify every ZIP/file byte. Fresh H and rule reconstructions are complete;unfinished H0 supplemental reconstructions are explicitly marked. No new physical execution or full ancestor training reproduction.",
+  "limits": "Complete known-development endpoint and raw/model/figure reproduction for one continued learned seed,not full ancestor training reconstruction. H/H0/B3 all54/54;no PPO or feedback completion-rate advantage established. All four H/H0 fresh reconstructions and both B3 raw/engine inventories completed;all original failures and costs retained. No new physical execution,rule-action replay or final conditions.",
   "release": {
     "tag": "v0.4.0-dev.20261104-outcome-shared-control",
     "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.4.0-dev.20261104-outcome-shared-control",
@@ -138,6 +138,11 @@
       "name": "assets.json",
       "bytes": 3020,
       "sha256": "9305cf3ee6b1f9a80b2b99c7df10d51924c789c9ae52a92187922476815101a2"
+    },
+    {
+      "name": "fresh_reproduction_complete.json",
+      "bytes": 7116,
+      "sha256": "151825a328aaa268c5b40a0a1d668b0fa01bdf91942043ebc9af4a1b17aa1cb3"
     },
     {
       "name": "outcome_H0_known24.zip",
@@ -237,10 +242,64 @@
       }
     },
     "H0_placements30": {
-      "status": "RUNNING_OR_QUEUED_NOT_CLAIMED_COMPLETE"
+      "status": "COMPLETE",
+      "receipt_sha256": "05d34d8c369520afde2c31ac0001ea95fb18af7607e5e52d36f9c65046d3a16e",
+      "receipt": {
+        "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+        "archive_sha256": "aeff7cb3ab8550ac9975f1936868af8bc44c875ed634387b057ae5d89b1897bd",
+        "asset_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "reproduction_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "verified_files": 645,
+        "methods": [
+          {
+            "method": "H",
+            "raw_audit_sha256": "8363ed5097bb25bd6fe8c01d9c00aec60b36427ea6c334a30ea58aa5ecd8a321",
+            "verified_controls": 10751,
+            "measured_start_actions_reproduced": 30,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0,
+            "static_cases_reproduced": 30,
+            "static_actions_reproduced": 1091
+          }
+        ],
+        "figure_sha256": "637b0feaaa34d255500389ff4d1e9156c51f5e694780050a776be299c10618b8",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis",
+        "reference_context_reproduced": true,
+        "strict_engine_delivery_reproduced": true,
+        "engine_controls_verified": 10751
+      }
     },
     "H0_known24": {
-      "status": "RUNNING_OR_QUEUED_NOT_CLAIMED_COMPLETE"
+      "status": "COMPLETE",
+      "receipt_sha256": "fd91c57cb81eb3b74fadc49cb36ebe82541129ad4d9349cfacd5d2d43f75e868",
+      "receipt": {
+        "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+        "archive_sha256": "4f36b85959bb01e555eb6f4a851ae4080f83b22fc0ced62657c64c7e1ea97339",
+        "asset_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "reproduction_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "verified_files": 639,
+        "methods": [
+          {
+            "method": "H",
+            "raw_audit_sha256": "2e6a4ad2f92ae947908a3d3f3848b58cfbdf90cce96b0e8d8d0cf5449e5d5fca",
+            "verified_controls": 8151,
+            "measured_start_actions_reproduced": 24,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0,
+            "static_cases_reproduced": 16,
+            "static_actions_reproduced": 511
+          }
+        ],
+        "figure_sha256": "af199f62b7c3100ddc2f608748250054ba96ae35b8d4b6f5cbeef3cdeb320b9b",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis",
+        "reference_context_reproduced": true,
+        "strict_engine_delivery_reproduced": true,
+        "engine_controls_verified": 8151
+      }
     },
     "B3": {
       "status": "COMPLETE",
@@ -288,5 +347,20 @@
     "failed": 2,
     "passed": 1413,
     "cause": "Offline RectangleRoadBatch subclass overrode refresh and lacked production integer-window cache;explicit merged-rectangle window override fixes it without changing the production kernel or endpoint auditors"
+  },
+  "complete_reconstruction_totals": {
+    "verified_files": 3868,
+    "engine_controls": 56688,
+    "measured_start_actions": 108,
+    "static_NN_actions": 3207,
+    "byte_identical_figures": 4,
+    "new_controls": 0,
+    "new_updates": 0
+  },
+  "complete_reconstruction_asset_sha256": "151825a328aaa268c5b40a0a1d668b0fa01bdf91942043ebc9af4a1b17aa1cb3",
+  "complete_reconstruction_asset": {
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.4.0-dev.20261104-outcome-shared-control/fresh_reproduction_complete.json",
+    "sha256": "151825a328aaa268c5b40a0a1d668b0fa01bdf91942043ebc9af4a1b17aa1cb3",
+    "anonymous_download_verified": true
   }
 }
