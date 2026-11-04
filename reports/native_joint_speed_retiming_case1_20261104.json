@@ -1,0 +1,95 @@
+{
+  "scope": "Closed single-known-condition frozen-policy engineering transfer;not learning or independent confirmation",
+  "research_acceptance": "UNMET",
+  "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+  "original_baseline": {
+    "batch": "20261104_option_adapted_all30_placements_H",
+    "case_id": 1,
+    "result": "deadline900,stationary,open_set_exhausted72nodes"
+  },
+  "experiments": [
+    {
+      "batch": "20261104_joint_speed_retiming_H_case1_pilot",
+      "profile": {
+        "version": "measured_steering_rate_retiming_v1",
+        "spatial_speed_ceiling": 0.25
+      },
+      "raw_audit_sha256": "9cf8017bc7f74f29187f2b5256468a4e286a6872011c42a27d6765554b4493e2",
+      "verified_NN_decisions": 90,
+      "result": {
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "distance": 14.593455649509746,
+        "interventions": 640,
+        "plan_failures": 64,
+        "mpc_failures": 0,
+        "simulation_seconds": 45.000000670552254
+      },
+      "actual_controls_verified": 900,
+      "world_ticks_verified": 930
+    },
+    {
+      "batch": "20261104_joint_speed_retiming_H_case1_signed_measurements_fixed",
+      "profile": {
+        "version": "measured_steering_rate_retiming_v2",
+        "spatial_speed_ceiling": 0.25
+      },
+      "raw_audit_sha256": "30bb8cb5cdb589865278739a0ef4d5179da1f86816677f13e620bfc8a4974788",
+      "verified_NN_decisions": 56,
+      "result": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 558,
+        "distance": 26.66560532659352,
+        "interventions": 42,
+        "plan_failures": 4,
+        "mpc_failures": 0,
+        "simulation_seconds": 27.900000415742397
+      },
+      "actual_controls_verified": 558,
+      "world_ticks_verified": 588
+    }
+  ],
+  "new_native_controls": 1458,
+  "new_PPO_updates": 0,
+  "new_independent_training_seeds": 0,
+  "new_final_conditions": 0,
+  "offline_retiming": {
+    "evidence": "native_case1_joint_slew_retiming_signed_source_bound_20261104.json",
+    "sha256": "5ead3a6122c9e591e99e4f4f89b19717137296185dac08ed81cb7e6dc9de377c",
+    "slow_uniform_seconds": 106.5556561085977,
+    "joint_retimed_seconds": 24.71399697464533,
+    "steering_rate_bound_rad_s": 0.6,
+    "acceleration_bound_m_s2": 1.5,
+    "deceleration_bound_m_s2": 2.5,
+    "geometry_unchanged": true
+  },
+  "offline_native_road": {
+    "evidence": "native_case1_joint_slew_road_probe.json",
+    "sha256": "e3d554d97eae86ed1b47eaebd81a508f87482e168bab4c57f5caf2ad8d7d1285",
+    "nine_offset_non_driving_points_at_spatial_speed025": 0,
+    "spatial_speed05_rejected_points": 3,
+    "does_not_prove_continuous_tracking_safety": true
+  },
+  "validation": {
+    "targeted_tests": 49,
+    "seconds": 6.18,
+    "xml": "joint_speed_signed_tests.xml",
+    "full_CPU": "RUNNING_NOT_YET_COMPLETE"
+  },
+  "followup": {
+    "batch": "20261104_joint_speed_retiming_H_four_condition_transfer",
+    "original_case_ids": [
+      0,
+      4,
+      21,
+      27
+    ],
+    "status": "RUNNING",
+    "selection": "Three previously failed conditions and one formerly successful condition,prespecified before these transfer outcomes",
+    "max_new_controls": 3600,
+    "automatic_retries": 0
+  },
+  "limits": "One known condition,one continued PPO policy. Whole30andknown24scores remain21/30and22/24for the earlier source. New lower-level capability changes reference timing and must be shared by rule comparators and fixed during subsequent learning. Neither transfer episode is a new independent training seed. Real-time performance is not established."
+}

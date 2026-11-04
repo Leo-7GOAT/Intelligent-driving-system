@@ -16,7 +16,10 @@ def settings(protocol):
             or protocol.get('methods') not in (['H'],['H0'])):
         raise ValueError('Steering transition prototype requires frozen H/H0 evaluation')
     from .reference_compute import enabled
-    return dict(value,cache_success=True) if enabled(protocol) else value
+    result=dict(value,cache_success=True) if enabled(protocol) else value
+    from .steering_retiming import settings as joint_settings
+    joint=joint_settings(protocol)
+    return dict(result,joint_speed=joint) if joint else result
 
 
 def prepare_reference(env,action,prepare,options):
@@ -36,17 +39,37 @@ def prepare_reference(env,action,prepare,options):
             env._steering_failure_memo=ExactSteeringFailureMemo(backend,cache_success=cache_success)
         env._steering_failure_memo.planner=backend
         backend=env._steering_failure_memo
+    joint=options.get('joint_speed');attempts=[]
     class Adapter:
         def plan(self,start,goal,world):
-            return backend.plan(start,goal,world,initial_steering=initial,reference_speed=ceiling)
+            result=backend.plan(start,goal,world,initial_steering=initial,reference_speed=ceiling)
+            attempts.append(dict(speed_ceiling=ceiling,status=result.status,expanded_nodes=result.expanded_nodes,
+                planning_time=result.planning_time,cache_hit=getattr(result,'cache_hit',False)))
+            if joint and result.status in ('no_path','timeout') and ceiling>joint['spatial_speed_ceiling']:
+                result=backend.plan(start,goal,world,initial_steering=initial,reference_speed=joint['spatial_speed_ceiling'])
+                attempts.append(dict(speed_ceiling=joint['spatial_speed_ceiling'],status=result.status,
+                    expanded_nodes=result.expanded_nodes,planning_time=result.planning_time,
+                    cache_hit=getattr(result,'cache_hit',False)))
+                result=replace(result,planning_time=sum(a['planning_time'] for a in attempts))
+            return result
     env.planner=Adapter()
+    previous_retimer=getattr(env,'_reference_retimer',None)
+    if joint:
+        from .steering_retiming import retime
+        env._reference_retimer=lambda reference:retime(reference,env.config.vehicle,initial)
     # A pose-only precomputed plan cannot certify a measured steering transition.
     env._rule_plan_cache=None
     try:mode,detail=prepare(action)
-    finally:env.planner=owner
+    finally:
+        env.planner=owner
+        if joint:env._reference_retimer=previous_retimer
     if detail is not None:
         detail=dict(detail)
         detail['steering_transition']=dict(version=options['version'],initial_steering=initial,speed_ceiling=ceiling,
             analytic_connections=False,exact_failure_memo=memo,max_nodes=budget)
         if cache_success:detail['steering_transition']['exact_success_cache']=True
+        if joint:
+            detail['steering_transition']['joint_speed']=joint
+            detail['joint_speed_search']=dict(attempts=attempts,
+                total_expanded_nodes=sum(a['expanded_nodes'] for a in attempts))
     return mode,detail

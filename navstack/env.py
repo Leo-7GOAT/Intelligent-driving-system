@@ -474,6 +474,8 @@ class NavigationEnv(gym.Env):
             reference = parameterize(
                 path, speed, s.v, self.config.vehicle, s.time, stop
             )
+            retimer=getattr(self,'_reference_retimer',None)
+            if retimer is not None:reference=retimer(reference)
             if not all(
                 self.world.free((x, y, yaw), self.config.vehicle)
                 for x, y, yaw in zip(reference.x, reference.y, reference.yaw)

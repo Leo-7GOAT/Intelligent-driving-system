@@ -1,4 +1,14 @@
-# 当前接续：2026-11-04 13:20 三个失败起点已定位速度/转向过渡耦合
+# 当前接续：2026-11-04 13:30 joint-speed单场首次成功，四条件迁移与全CPU运行
+
+新增opt-in navstack/steering_retiming.py profile measured_steering_rate_retiming_v2。只在normal slew搜索失败后按.25m/s规划空间路径，再按曲率时间插值的最大转向导数/实际初速/加减速重新计时；保持PPO目标及请求速度、几何路径、MPC/原生控制/评分，动态检查和native道路查询使用新timing。原normal与fallback各<=32000节点，逐attempt成本另记录，不宣称总预算只有32000。默认行为不变，当前仅允许冻结评估，不能用旧training注册直接训练新低层。
+
+离线case1低速路径全程.25需106.56秒，联合retime24.714秒，最高1.5m/s，采样模型转向<=.6rad/s、a<=1.5/decel<=2.5，原SDK九offset道路查询0badpoints(另.5空间路径3bad已拒绝)。第一v1真实pilot900deadline，推进14.59m但错误拒绝实测轮角轻微超命令上限/微负速度；raw/90NN/engine全通过，保留。v2修复保留实际signed初速和实测轮角，不钳制实际状态，原case1真实success558controls/27.9simseconds/42interventions/4planfails/0MPCfails，raw/56NN/reference/engine全通过。两个transfer共1458真实控制，零PPO、一个known条件、不是学习收益。公开reports/native_joint_speed_retiming_case1_20261104.json。
+
+当前唯一原生队列 D:/ThesisNativeArchive_20261104/20261104_joint_speed_four_condition_execution，实际协调器31428(启动13:29:31.538，basePy311)，venv33560，worker33496；batch 20261104_joint_speed_retiming_H_four_condition_transfer。预登记原all30 IDs[0,4,21,27](3旧失败+1旧成功)，不重跑已成功的case1；count4，最多3600control/单批4h guard，零retry/零PPO，四场后自动raw/startNN/allstaticNN/engine。检查OS/status/complete后跟进，禁止重复启动。
+
+当前新源全CPU命令正在tool exec session4192运行：pytest -q -m 'not carla'，basetemp D:/ThesisNativeArchive_20261104/pytest_joint_speed_full_CPU，XML joint_speed_full_CPU.xml；39/40/49针对性组均PASS(最新49项6.18秒)，不得把未结束全CPU称通过。不要重复启动全套。四条件结果出来后先审计对照再决定扩大验证/固定低层训练，不凭单case558直接推广30或最终集。
+
+# 历史定位：2026-11-04 13:20 三个失败起点速度/转向过渡耦合
 
 完整30+24已闭合，全部raw/NN/engine通过；无活动原生作业。新只读脚本scripts/probe_native_planner_reachability.py比较同一实测初态/实际目标：case1旧analytic416节点成功，关analytic恒转角998成功，现有1.5m/s slew模型72节点open_set_exhausted；case21为1824/2952成功vs60失败；case27为480/769成功vs74失败。所以这些起点不能归因于只关闭analytic，更不能泛称PPO选错目标。counterfactual case1降低slew模型速度上限到.5/.25后，在16707/13736节点找到几何路径。公开reports/native_slew_reachability_root_cause_20261104.json及D盘对应native_case*_planner*.json；无新控制/PPO/方法评分，源码未改控制逻辑。
 
