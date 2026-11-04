@@ -1,4 +1,14 @@
-# 当前接续：2026-11-04 13:03 精确计算优化补跑2+24，原28场已核验保留
+# 当前接续：2026-11-04 13:15 完整30+24已闭合，当前方案有退化，不得重复跑已完成队列
+
+所有原生训练/评估均已结束，当前无活动CARLA批次。恢复execution D:/ThesisNativeArchive_20261104/20261104_exact_compute_development_recovery_execution_closed_owner_fix/complete.json存在，协调器9060/31764与worker31316/31000均已退出，owned server停止。原28场1394NN、尾2场126NN、known24起点与全部staticNN、每个raw/engine均通过。完整摆放30场21success/9deadline(70%)，已完成15106控制，另保留中止旧case28的200控制，known24为22success/2deadline、9090控制；实际评估总控制24396。合并30采用两种公开compute实现，零PPO，不是新独立测试。
+
+旧模型/低层的同批结果是23/30、24/24，本版21/30、22/24，没有优势，不保留为最终候选。9静态超时中8个主要open_set_exhausted/1个native_reference_road_refinement_exhausted；已知验证case15(曲线)先3次success/6reuse，随后81次search_budget；case17先1success/1reuse/4constant_velocity_spacetime_conflict，随后84次open_set_exhausted。持续制动不是安全任务完成。所有负结果必须保留。
+
+公开完整报告reports/native_option_full_development_complete_20261104.json；脚本scripts/summarize_exact_compute_recovery.py只接受closed/raw-bound证据，可由D盘原始数据重建。compute优化源82bd22d已推且GitHub CI41776901661成功，50专项测试通过；下一提交仅闭合报告/汇总脚本/handoff。无需再跑5396训练、30/24评估、旧release或全量CPU。新compute profile默认关闭，90决策/900实测控制等价证据保留，不视为学习收益或实时性。
+
+下一必要研发动作：针对已完整日志做一个有边界的离线根因验证，区分32k有限转向速率搜索禁用analytic后导致的可达性损失与策略选目标失败；先用同一失败实测状态/目标比较低层，不能直接盲目加训练或新规则接管。若提出新低层，需版本化及冻结训练，并给予B3等公平对照。当前仅一个continued seed22，未获得最终研究优势；验收UNMET，最终120清单仍未生成/查看。
+
+# 历史接续：2026-11-04 13:03 精确计算优化补跑2+24（已闭合）
 
 旧all30队列已主动STOP安全关闭，owned server停止且端口空，协调器26172/worker32608均已退出。前28完整场20success/8deadline，全部14055实际控制(含未完成尾部)及engine均通过；raw receipt在原batch/H/exact_compute_recovery_prefix_raw_audit.json。原case28未完整结束，须补28/29，不重复前28场，不重复5396已完成训练。原known24未启动并已abandoned，禁止误启动。
 

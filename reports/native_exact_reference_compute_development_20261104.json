@@ -1,5 +1,6 @@
 {
-  "status": "RECORDED_EQUIVALENCE_VERIFIED_NATIVE_RECOVERY_RUNNING",
+  "status": "RECORDED_EQUIVALENCE_VERIFIED_NATIVE_RECOVERY_COMPLETE",
+  "closed_result_report": "native_option_full_development_complete_20261104.json",
   "research_acceptance": "UNMET",
   "profile": "exact_static_reference_compute_v3",
   "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
@@ -41,7 +42,8 @@
     "seconds": 5.25,
     "junit": "compute_recovery_tests.xml",
     "full_CPU_for_this_profile": "NOT_RUN",
-    "native_children": "RUNNING_NOT_YET_COMPLETE"
+    "native_children": "COMPLETE_RAW_NN_REFERENCE_ENGINE_VERIFIED",
+    "github_CI": {"commit": "82bd22d206c44005aee5cbe26f63dc18e945e913", "run": 41776901661, "conclusion": "success"}
   },
   "mechanism": "Cache exact static spatial searches with copied paths; parameterize and validate each new timed reference afresh. Stop same-frame deterministic refinement when rejected reference repeats or rejection changes no effective grid cell. Dynamic and wall-time-limited searches bypass shortcuts. Default behavior remains unchanged.",
   "limitations": "No independent final conditions or new independent training seeds. Existing same3 learning comparison remains 2/3 before and after. This computation optimization is not evidence of PPO learning benefit, real-time execution, or research acceptance."
