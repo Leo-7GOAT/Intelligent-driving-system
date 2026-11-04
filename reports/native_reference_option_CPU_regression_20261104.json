@@ -1,0 +1,13 @@
+{
+  "scope": "Full CPU regression of the fixed-option adaptation source",
+  "source_git_commit": "fc38cd3",
+  "passed": 1378,
+  "skipped": 1,
+  "CARLA_deselected": 4,
+  "seconds": 361.97,
+  "failures": 0,
+  "errors": 0,
+  "xml_sha256": "f22580f31f511a92b5e1ad1d54b51eeae6253c6249442e47d02372121ba1e350",
+  "command": "python -m pytest -q -m \"not carla\" --basetemp <D-drive-temporary-directory> --junitxml <receipt.xml>",
+  "limits": "CPU tests only;native controls and learning updates require separate raw/engine/checkpoint verification. Full suite ran concurrently with the native course;not a timing benchmark."
+}

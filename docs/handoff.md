@@ -1,3 +1,11 @@
+# 当前运行：2026-11-04 11:31 真实5120-control option适配已启动
+
+当前唯一原生作业 D:/ThesisNativeArchive_20261104/20261104_option_native_PPO5120_H，固定source fc38cd3，471文件。协调器实际12704（身份D:/ThesisNativeArchive_20261104/option_native_coordinator_identity.json，venv外壳7496），worker5832 creation_epoch1793762826.276，watch6060；先复核OS身份/status，勿重复启动。协调执行 D:/ThesisNativeArchive_20261104/20261104_option_native_PPO5120_execution。脚本 `run_fixed_lowlevel_adaptation.py`在训练正常结束后自动逐帧审计、32Adam/RMS/初始RNG证明，再用训练冻结源码和同3条件生成_same3_endpoint并核验raw、全部NN、engine。无自动重试。
+
+已实测初始化权重、完整Adam hash、Torch RNG与指定checkpoint完全相同；32个Adam状态初始步数分别330/1310（新增两参数/原骨干），H/initial_restore_verification.json留证。最新训练日志已真实执行>=472控制、首次320控制rollout后10Adam更新，第一完整训练回合case0 success412控制/21interventions。只是随机训练回合成功，非冻结策略提升；最终预算端点才作比较。源初始bf6ef925，低层和option语义固定，方法H seed22单条继续链、5120请求控制+最多319overshoot、零辅助监督/RMS冻结；非独立seed或最终测试。
+
+全量CPU已关闭：1378通过、1skip、4 CARLA deselect、361.97秒（session1284 DONE0），XML D:/ThesisNativeArchive_20261104/option_training_full_cpu.xml。公开reports/native_reference_option_CPU_regression_20261104.json。76项恢复/门限等专项8.93秒；35项option专项5.85秒；43项含训练门限5.79秒；Py3.7编译通过。HEAD fc38cd3已实际推送。本段后的旧“未启动”状态已被覆盖，不可据旧文档重建/重跑。
+
 # 最新关闭及准备：2026-11-04 11:26 显式option接口与5120原生适配
 
 option_commitment_frozen_H_pilot worker18076/launcher10056已正常结束，原case0deadline900、case1success336、case4success350，1586控制/1678ticks/159NN/3起点raw、策略/参考重建、engine均通过。报告 `reports/native_reference_option_frozen_pilot_20261104.json`。新接口仅在PPO重复选择相同action标签、旧参考仍有效时保留原世界坐标目标；换标签/失效/新回合均重新规划，不自动替PPO作决定。旧策略仍失败，是后续真实学习前对照，不能宣称接口已修复任务。
