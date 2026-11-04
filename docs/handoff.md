@@ -1,3 +1,13 @@
+# 当前：2026-11-04 22:45 首个seed11独立配对闭合，seed22 H真实训练，准备默认main开发交付
+
+当前本轮实际进展：B2节点预算bug已修复/公开ad261ef，完整CI8bec1417PASS；首seed11 H/H0训练与known24两组也已全部正常闭合，新的reports/native_independent_outcome_seed11_pair_complete_20261104.json保留所有数据与成本。H30773controls/970Adam/65完整TRAIN=58success+7deadline/66reset/2045resetTicks/7866.8849s，H030752/970Adam/67完整=62success+5deadline/68reset/2107resetTicks/4063.2701s。两组48条件都实际有control，末未完段不算success；H/H0实际初始fp整个dict、初始norm bytes及完整保存RNG语义digest都相同，移除分支仅新的负failure actor/critic，旧ref正反馈/几何反馈保留。完整saved-state proof34Adam各+970/RMS冻结/实际torch RNG与初始化精确；H0failure两坐标0由原cohort关闭代码核验。
+
+验证H/H0各24/24、0unsafe；H8165control/408interv/7planfail/516staticNN，H08096/364/3/506；24starts各完整、raw/engine全PASS。共同zeroPPO24/24、8101/394/5。H比H0+69controls/+44interv/+4planfail，无新增失败反馈收益；H0比zero只-5control/-30interv/-2fail，不能宣称PPO完成率增益。第一seed5个nativejobs新执行85887controls，继承9243/learner与共享teacher/初始eval不得再当新数据或双算。仍仅1/5配对，没有seed-CI或final120。
+
+原driver17884（18:42:19.160207）已正常自动进入seed22：zeroPPO baseline已完成，当前20261104_independent_outcome_seed22_H_TRAIN48_PPO30720，worker33408 creation约22:34:25.482（精度以worker_process.json和CIM确认），22:45 heartbeat4519controls/457actions/14rollouts。先查OS/guard/当前identity，不能再等已退出seed11H0 13440/34060/NN19536。当前H/H0 source仍冻结62d，B1 source60a；B1wait6828仍等全25jobs，只读无新native。不得重复已闭合seed11阶段、改冻结source/重启队列或动外部2100，最终120仍未开。
+
+GitHub实际default main仍是旧4x4demo；API确认feature领先440commits/behind0，暂无openPR，下一发布动作是完成可审阅PR并通过普通PR流程更新main为诚实标注UNMET的开发版本，不能发正式research完成声明。全tracked1527文件发布前扫描：0credential-like、0>5MiB文件、0被跟踪模型ZIP/PKL/NPZ/MP4/EGG/DLL/PYD；仅tests/test_saved_prefix_export.py两个C:/Users/Example为已人工确认的合成隐私回归样例，不是私人路径。LICENSE/OMPL LICENSE/THIRD_PARTY_NOTICES存在。不要为本次再扫全树造成重复耗时，新公共JSON另扫描即可。PR准备后勿反复修改head触发CI取消；不要admin bypass或forcepush。默认main更新是开发交付，不改变研究门槛/未完成状态。
+
 # 当前：2026-11-04 21:54 B2节点预算修复及空间组件对照完成，H0真实训练继续
 
 新增真实代码修复：navstack/planning.py的GridAStarPlanner之前忽略max_nodes，现在_grid_search按精确expanded_nodes上限停，保持public grid_search三元返回/默认无上限兼容，Grid结果与Hybrid接口一致为timeout/search_budget，预算耗尽不进样条优化。57关联回归PASS16.25s；23timeout/memo/curve关联PASS10.42s（含重复覆盖不能合计80唯一测试）。fdc8825首次实现hostedCI41838752970 SUCCESS1417PASS/25skip/4CARLAexclude170.89s；最终8bec09b标准化状态/源字节快照后CI41840699470也SUCCESS1417PASS/25skip/4exclude366.09s。活动cohort/B1冻结源码完全未改，Grid改动不注入H0。

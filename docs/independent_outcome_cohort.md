@@ -71,3 +71,13 @@ and516static NN actions reconstruct;H0now trains from equal actual initial
 weights/full Adam/Torch RNG,with its first320-control saved update checked.
 See `reports/native_independent_outcome_seed11_H_complete_20261104.json`.
 This status does not change the remaining fixed-budget jobs or final protocol.
+
+The first complete pair is now closed:H0executes30,752controls and970Adam
+updates with all34states advancing970,the new failure coordinates zero and
+frozen RMS. Its67complete TRAIN episodes retain62successes and five deadlines;
+the final partial segment is not credited as a success. H0known24is24/24with
+8,096controls,364interventions and three planning failures;24starts and506static
+NN actions reconstruct. H/H0both share the zero-PPO24/24baseline. One matched
+seed does not establish added-PPO or failure-feedback superiority. The original
+queue has advanced to seed22without checkpoint or seed selection. Complete
+paired evidence:`reports/native_independent_outcome_seed11_pair_complete_20261104.json`.
