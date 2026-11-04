@@ -29,8 +29,11 @@ def audit(batch,live=False):
     spec=importlib.util.spec_from_file_location('_executed_schedule',source);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     cases=registered_native_cases(p);expanded=module.scheduled_native_cases(cases,p['training_case_schedule'])
     order=[c['condition'] for c in expanded]
-    with (batch/'resume/B1/resume_state.pkl').open('rb') as stream:cursor=pickle.load(stream)['next_case_index']
-    scenes=[read(path) for path in sorted((batch/'B1').glob('scene_*.json'))]
+    if len(p['methods'])!=1 or p['methods'][0] not in ('B1','H'):
+        raise ValueError('Require one explicitly named B1 or H training worker')
+    method=p['methods'][0]
+    with (batch/'resume'/method/'resume_state.pkl').open('rb') as stream:cursor=pickle.load(stream)['next_case_index']
+    scenes=[read(path) for path in sorted((batch/method).glob('scene_*.json'))]
     if not scenes:raise ValueError('No actual native reset recorded')
     observed=[s['scene']['condition'] for s in scenes];verify_order(order,cursor,observed)
     controls=Counter();begins={}
@@ -50,7 +53,7 @@ def audit(batch,live=False):
         if begin['scene']['condition']!=scene['scene']['condition']:raise ValueError('Measured reset condition differs')
         n=controls[begin['episode_id']]
         if n:counts[scene['scene']['condition']]+=1;actual_controls+=n
-    if not live and actual_controls!=read(batch/'B1/summary.json')['physics_steps']:raise ValueError('Scheduled controls differ from actual budget')
+    if not live and actual_controls!=read(batch/method/'summary.json')['physics_steps']:raise ValueError('Scheduled controls differ from actual budget')
     return dict(batch=batch.name,script_sha256=sha(Path(__file__)),protocol_sha256=sha(batch/'protocol.json'),
         scope='LIVE_PREFIX_DIAGNOSTIC' if live else 'COMPLETE_TRAIN_RESET_AND_EXPOSURE_AUDIT',saved_next_case_index=cursor,
         recorded_resets=len(scenes),all_actual_reset_conditions_match=True,unique_inventory_conditions=len(cases),
