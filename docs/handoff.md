@@ -1,3 +1,21 @@
+# 当前：2026-11-04 18:55 五独立种子新队列真实运行，seed11 H已产生PPO更新
+
+本轮是实际进展：新增并测试五seed H/H0新训练入口/配对初始化，全部原始独立actor已从各自canonical零PPO检查点30→34参数迁移；旧30参数和优化器超参数逐项核验，旧Adam为空，新34状态零缓冲语义等价，首次原参数Adam更新等价有单测。H/H0每对权重/完整Adam/RMS/RNG相同，仅H0新负失败分支关闭；五actor哈希不同。源62d03aa已push。额外监督0；继承teacher4329controls、各896监督更新，seed11额外旧初始化消耗总9243，其余4329，全部披露。不是从头无监督、不是五个已经训完的策略。
+
+真实活跃队列：D:/ThesisNativeArchive_20261104/20261104_independent_outcome_TRAIN48，driver为其 source/scripts/run_independent_outcome_cohort.py。工具前台session53342；wrapper6900/base17884 creation18:42:19.160207，身份文件 independent_outcome_cohort_process_identities.json。后台Start-Process命令曾被自动执行策略拒绝(blocked by policy，没给原因)，先核实0新进程后改用受控前台工具会话，已成功。绝不能因session观察丢失而重启；先用OS身份/当前status/workerheartbeat确认。
+
+seed11零PPO基线batch20261104_independent_outcome_seed11_zero_PPO_known24已完整24/24、8101controls、raw/engine/24starts/509staticNN全通过，0新PPO。该分数属于教师初始化＋当前低层，不证明PPO完成率价值。已自动衔接当前训练batch20261104_independent_outcome_seed11_H_TRAIN48_PPO30720，worker29968 creation18:50:03.176，最少已2636真实controls，首checkpoint_000000320为320controls/32NN/10Adam，34状态全部+10，初始weights/Adam精确，RMS冻结，权重真实改变。first_update_proof及initializer_tensor_proof在cohort目录保存；训练整体raw/engine尚未闭合，不冒称完整课程。live_training_schedule_initial.json验证实际前6个条件0/1/2/4/3/5，2636bridgecontrols；不是48个条件已全暴露。
+
+队列固定25个nativejobs：每seed先共享零PPO known24基线一次，再H30720训练→known24，再H030720训练→known24，五seed11/22/33/44/55全保留，不看成绩选seed/checkpoint。TRAIN48/64重复暴露，与known24采样道路间隔13.25m，通过分区检查；没有生成/查看新final120。低层同已关闭强B3，仅新固定budget注册门与worker训练dispatch不同。每job4h/0retry/每臂≤319overshoot；每次入场4GiB GPU+16GiB RAM+16GiB D盘，顺序2110server，最多2个CARLA含外部2100；只清理owned，不碰外部33440。启动时D约428GiB，C约4GiB，全部大工件D。禁止另开native队列并发占2110，禁止修改其冻结source/registration，禁止重复任何已完成H/H0/B354或本基线。
+
+root额外兼容修复67939eb已push：62d hostedCI有2个legacy partition-overlay字符串契约失败（1407pass/25skip/4exclude）。将evaluation_cases独立清单捕获移到训练重复暴露展开之前，保持唯一评估清单，实际调度测试+旧分区29PASS9.81s；先前cohort/continuation32PASS22.34s。新的CI需查实际状态，不能冒称62d全套通过。活跃cohort仍source62d不动：它训练阶段禁用自动eval、eval阶段不装schedule，因此这个旧源插入位置对登记作业行为没有影响。所有auditor/worker来自cohort冻结copy，launcher也用冻结copy且显式Python/CarlaPython，root后续兼容修复不影响运行。
+
+公开运行报告 reports/native_independent_outcome_cohort_started_20261104.json，流程 docs/independent_outcome_cohort.md；报告将首保存rollout与完整验证分开。rootREADME/中文/acceptance已同步“初始化5个但尚无5个闭合新训练策略”。全目标仍UNMET，不宣称PPO/反馈优势或正式验收。
+
+后续本会话继续：跟踪同一17884/29968直到训练/endpoint/后续H0自动衔接，不重新stage已存在批次；普通失败先保留，再独立恢复，不自动重试。可在现有唯一native运行时推进B1公平软件准备或汇总，但不要修改冻结source或另启CARLA。B1五个零PPO原始入口已确认存在，位于protocols/native_B1_all_five_actor_maturation_20261031.json的5parents对应runs/<batch>/resume/B1；每个physics/lineage/optimizer=0，但各继承39189controls，不能忽略这项教师/旧开发消耗。尚未检查它们最新基本驾驶与迁移兼容，也未创建/启动新的B1课；先读实际checkpoint/config/recipe，不能把零PPO、旧basic3/4或旧broader低分当作健康新baseline。新H已固定30720预算，未来比较要说明共同PPO窗口与全部额外先验/成本，不能混报总预算等同。
+
+下面为此前已完成B3等历史记录，以上状态优先。
+
 # 当前：2026-11-04 18:26 强共享低层B3全54已完成；没有PPO完成率优势
 
 本轮实际闭合了两批B3：20261104_shared_lowlevel_B3_r2_placements30=30/30、10720controls；20261104_shared_lowlevel_B3_r2_known24=24/24、8094controls。各批native/raw/engine全部通过，总18814真实controls，0unsafe、384interventions、0planfail。执行目录 D:/ThesisNativeArchive_20261104/20261104_shared_lowlevel_B3_execution_r2/complete.json 完整，两台owned2110server均空世界清理退出；coordinator30060/wrapper30368和worker26264/8116已退出，其他任务2100shipping33440仍保留。禁止重跑任何已完成H/H0/B3清单。
