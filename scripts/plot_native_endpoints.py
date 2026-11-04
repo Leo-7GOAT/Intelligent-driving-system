@@ -25,7 +25,7 @@ def read(path): return json.loads(path.read_text(encoding='utf-8-sig'))
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def render(batch,output,methods=None):
+def render(batch,output,methods=None,wrap_title=False):
     batch,output=Path(batch),Path(output)
     manifest_path=output.with_suffix('.json')
     if output.exists() or manifest_path.exists():
@@ -101,7 +101,8 @@ def render(batch,output,methods=None):
         roads=len({case['route_index'] for case in case_inventory})
         arm_scope=f"PARTIAL: {len(methods)}/{len(registered)} arms" if partial else 'all outcomes retained'
         road_scope='geometry-separated validation roads' if protocol.get('native_validation') else 'known roads'
-        fig.suptitle(f"Seed {protocol['seed']} | frozen probes on {columns} DEVELOPMENT conditions / {roads} {road_scope} | {arm_scope}",fontsize=13)
+        separator='\n' if wrap_title else ' / '
+        fig.suptitle(f"Seed {protocol['seed']} | frozen probes on {columns} DEVELOPMENT conditions{separator}{roads} {road_scope} | {arm_scope}",fontsize=13)
     elif partial:
         fig.suptitle(f"Seed {protocol['seed']} | all {columns} TRAINING roads | PARTIAL: {len(methods)}/{len(registered)} registered arms\nAll outcomes retained within each displayed arm",fontsize=13)
     else:
@@ -118,6 +119,8 @@ def render(batch,output,methods=None):
         'omitted_registered_arms':[m for m in registered if m not in methods]}
     if protocol.get('native_validation'):
         manifest['scope']='Audited measured trajectories on geometry-separated DEVELOPMENT validation roads,not final research confirmation;all outcomes retained.'
+    if wrap_title:
+        manifest['title_layout']='wrapped_v1'
     with manifest_path.open('x',encoding='utf-8') as stream: json.dump(manifest,stream,indent=2)
     print(json.dumps({'figure':str(output),'methods':methods,'cases_per_method':columns,'new_controls':0}))
 
@@ -127,5 +130,6 @@ if __name__=='__main__':
     parser.add_argument('--batch',required=True)
     parser.add_argument('--output',required=True)
     parser.add_argument('--method',action='append',help='Explicit partial arm selection; every case in each arm is retained')
+    parser.add_argument('--wrap-title',action='store_true',help='Wrap narrow development-figure titles;legacy rendering remains the default')
     args=parser.parse_args()
-    render(args.batch,args.output,args.method)
+    render(args.batch,args.output,args.method,args.wrap_title)

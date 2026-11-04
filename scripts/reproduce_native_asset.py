@@ -109,6 +109,11 @@ def reproduce(archive_path, expected_sha256, output, reference_figure=None):
             raise ValueError('Reference-context engine-delivery verification failed')
     figure = evidence/'frozen_endpoints.png'
     selection=[argument for method in manifest['methods'] for argument in ('--method',method)] if partial else []
+    figure_metadata=batch/'analysis/frozen_endpoints.json'
+    layout=json.loads(figure_metadata.read_text(encoding='utf-8')).get('title_layout') if figure_metadata.is_file() else None
+    if layout not in (None,'wrapped_v1'):
+        raise ValueError('Unsupported registered figure title layout')
+    if layout=='wrapped_v1':selection.append('--wrap-title')
     run('plot_native_endpoints.py', '--batch', batch, '--output', figure,*selection)
     expected_figure = Path(reference_figure).resolve() if reference_figure is not None else batch/'analysis/frozen_endpoints.png'
     if not expected_figure.is_file():
