@@ -47,7 +47,8 @@
   "automatic_retries": 0,
   "independent_seeds": 1,
   "queue_script_sha256": "6c328004c443085ac20e5766ec2837e81a047d999b5629605e40cbb1b8240927",
-  "status": "ACTUAL_QUEUE_WAITING_FOR_PAIR_REBUILD",
+  "status": "PAIR_AUDITED_COMPLETE_FIRST_FULL_KNOWN_BATCH_RUNNING",
   "research_acceptance": "UNMET",
-  "limits": "Already-running local queue;broader driving has not started.All four complete known inventories are registered regardless pilot scores;not new final conditions.Each native job is bounded,with no automatic retries."
+  "limits": "Four complete known inventories are registered regardless equal2/2pilot scores.First H30placement batch is actually running.Each job is bounded,no automatic retries.No new final conditions or new PPO updates.",
+  "paired_result": "native_outcome_context_pair_complete_20261104.json"
 }

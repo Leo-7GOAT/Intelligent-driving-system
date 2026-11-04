@@ -33,8 +33,8 @@
       "sha256": "1b85645d4251d4e8acdf68694dbc5c2dfad58294005f423cd3caeb4c2d2df31b"
     }
   },
-  "native_learning": "H_COMPLETE_H0_RUNNING",
-  "limits": "H closes10482 real controls/330Adam and2/2 known endpoints.H0 is running from matched initialization;no failure-feedback benefit established.One continued seed;final120 untouched.",
+  "native_learning": "H_AND_H0_COMPLETE_FULL_KNOWN_VALIDATION_RUNNING",
+  "limits": "H/H0 close10482/10489 controls,330Adam each and2/2 known endpoints each.No success-rate gain established.H/H0interventions1/34 are exploratory;H failure history empty during these endpoints.One continued seed;complete known validation is running;final120 untouched.",
   "paired_initialization": {
     "parameters_exact": true,
     "full_Adam_exact": true,
@@ -122,5 +122,6 @@
     "failure_retries": 0,
     "starts_H0_only_after_H_training_and_endpoint_fully_audited": true
   },
-  "H_closed_result": "native_outcome_context_H_learning_complete_20261104.json"
+  "H_closed_result": "native_outcome_context_H_learning_complete_20261104.json",
+  "complete_pair_report": "native_outcome_context_pair_complete_20261104.json"
 }

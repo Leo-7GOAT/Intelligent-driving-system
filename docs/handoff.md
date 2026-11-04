@@ -1,3 +1,13 @@
+# 最新：2026-11-04 16:36 两组训练与same2均闭合2/2，完整H30已运行到case14
+
+H0训练/两场端点/全部raw/startNN/allstaticNN/engine以及pair重建均真实完成。旧coordinator12544、worker33520、重建器2184均已OS确认退出，禁止重跑任何两组课程或same2。H10482/H010489实际controls，1056decisions/330Adam各，34states全推进，所有initialweights/fullAdam/RNG一致及RMS冻结。Htrain17success；H0train17success+1deadline，未完整尾段不计成功。modelHca2f4bff...，H0efe3e54a0f3d0ea4471c248c44b69f122150241808f98fd0b1947dc8c0143e64；H0新增failure参数仍0。原D:/.../20261104_outcome_pair_rebuild/complete.json已完整成功，保留。
+
+最终same2 H和H0都是2/2/0unsafe：H449+462=911controls、1intervention/0planfails；H0530+484=1014controls、34interventions/3planfails。无完成率收益，不能宣称feedback成功率优势；H失败历史在92决策中始终空，所以新增失败项不直接参与端点logit/value，可能的训练路径作用不能冒充直接纠错。Pair同初始化和H0新增参数0已验证。新实际重建公开reports/native_outcome_context_pair_complete_20261104.json加入网络238848参数、各真实trainingwall2191.386/2663.722s、worldticks11039/11077、overshoot242/249、逐场完整周期P95/P99/max/超周期比例与干预/规划失败/实测simulationtime；不把两场作独立seed统计。新控制总22896，历史baseline1461不重复计入新消耗。
+
+H0完整通过后完整验证队列14560已自动实际接续，目前batch D:/ThesisNativeArchive_20261104/20261104_outcome_frozen_H_placements30，execution同名_execution；worker22476 creation16:31:16.753(basePy311)，guard15220。已到case14(0-based，30场中的第15)，healthy/55℃。以H/evaluation_heartbeat.json的case_id/actions及guard/OS为准，不能把未写最终evaluation.json当任务死掉或重启。当前状态20261104_outcome_full_known_validation_queue/status.json，原计划之后H0placements30、Hknown24、H0known24自动连续，4批固定模型/源/全条件/0PPO/0新final。不要手动另启，也不要改被14560固定hash的scripts/run_outcome_development_validation.py与run_fixed_lowlevel_adaptation.py。原两个preflight目录不运行。
+
+summarize_outcome_context_pair.py在2184已完成并退出后才扩展成本/上下文统计，已在真实闭合两组数据实际重建成功，旧D自动report保留；不需重跑训练/全CPU。H0当前审计使用新懒导入只读auditor，其冻结低层source仍b94且与H完全相同。e4a6cf6的CI41798380867 SUCCESS，5afCI也SUCCESS；新资产/兼容32tests与fresh619files/911frames/92NN/figureproof已在前段完整记录，不要重复下载或重建。所有目标门槛不改，最终120未生成/查看，仍UNMET。
+
 # 最新接续：2026-11-04 16:17 H0约8235步，完整54队列已在等；新模型本地fresh重建完成
 
 H0 worker33520/coordinator12544、pair重建器2184、完整开发队列14560均需先查OS与status，当前H0约8235controls/829decisions/25rollout，未终态。H原10482/330已关闭2/2，禁止重启。完整54queue位于20261104_outcome_full_known_validation_queue，已实际启动且source固定run_outcome_development_validation.py/run_fixed_lowlevel_adaptation.py，四批(H/H0×placements30/known24)会在pair重建成功后自动连续执行，禁止手动另启。两个summary模块也须等2184退出再改。
