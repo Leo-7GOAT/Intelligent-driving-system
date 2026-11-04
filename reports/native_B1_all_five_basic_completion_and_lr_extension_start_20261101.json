@@ -1,0 +1,76 @@
+{
+  "scope": "Actual completion of every registered basic PPOcourse followed by retained-state lower-rate native learning;not a qualified baseline or research acceptance.",
+  "completed_basic_cohort_report": "reports/native_B1_all_five_basic_PPO_course_20261101.json",
+  "completed_basic_cohort_sha256": "342f31c4b5a5c79a5352973b56822e9a7b2ee2271e5435f6fff5dc911d5c02f3",
+  "complete_five_seed_success_counts": [
+    3,
+    2,
+    2,
+    0,
+    2
+  ],
+  "basic_qualified_seeds": 0,
+  "completed_new_training_controls": 51200,
+  "completed_actual_Adam_steps": 103,
+  "completed_raw_controls_verified": 58758,
+  "active_extension_execution": "B1_basic_lower_rate_extension_execution_20261101",
+  "active_extension_batch": "20261101T005612994446Z_native_B1_basic_lr_extension",
+  "active_protocol_sha256": "c81ee5d6d7d7db37804eba4b65b4e32d3a01bb606c0e1302c139d54d32c4f1f2",
+  "native_worker_identity": {
+    "pid": 53620,
+    "executable_name": "python.exe"
+  },
+  "observed_native_progress": {
+    "epoch": 1793494672.9178672,
+    "pid": 53620,
+    "physics_steps": 1245,
+    "actions": 1245,
+    "optimization_phases": 0
+  },
+  "actual_resume_event": {
+    "mode": "saved RNG; interrupted physical episode discarded, next route reset",
+    "checkpoint": "resume/B1",
+    "parent_batch": "20261031T232838093068Z_native_B1_basic_PPO_course",
+    "parent_checkpoint": "B1/checkpoint_000010240",
+    "lineage_controls": 10240,
+    "consumed_controls_lower_bound": 58505,
+    "retained_optimizer_steps": 9,
+    "unknown_unflushed_parent_tail": true,
+    "gradient_clip_mode": "global",
+    "rollout_actions": 1280,
+    "registered_rollout_intervention": true,
+    "registered_gradient_intervention": false
+  },
+  "registered_rate_extension": {
+    "version": "all_five_retained_basic_PPO_lr3e6_extra10240_v1",
+    "parent": "20261031T232838093068Z_native_B1_basic_PPO_course",
+    "inherited_policy_controls": 10240,
+    "additional_training_controls": 10240,
+    "network_and_optimizer_retained": true,
+    "additional_supervised_updates": 0,
+    "qualification": "Unchanged AFTER-learning basic gate;this extension does not qualify a failed model for full-task entry",
+    "rate_change": {
+      "learning_rate": 3e-06,
+      "trained_network_and_Adam_moments_exact": true,
+      "new_optimizer_updates": 0
+    }
+  },
+  "learning_rate": 3e-06,
+  "all_five_common_new_control_budget_each": 10240,
+  "observed_created_seeds": [
+    11
+  ],
+  "full_task_stage": "WAITING_FOR_ALL_FIVE_TRAINED_BASIC_QUALIFICATIONS;no full-task child started",
+  "camera_stage": "WAITING_FOR_OWNED_TRAINING_QUEUES_TO_EXIT;zero recorded RGBframes so far",
+  "independent_full_CPU_regression": {
+    "source_commit": "8755337542d749e4310ff9813691f9de620d9d36",
+    "passed": 976,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "seconds": 193.65,
+    "junit_sha256": "ec209c3004a97a453543f9658d6d2eb0902832c6a585887a51e309760e5c6925"
+  },
+  "prior_regression_failures": "Prior fixtures used an unsupported stand-in action space,and initial camera metadata edits broke two frozen textual overlay anchors. Strict auditing was retained,the fixture and backward-compatible worker anchors were corrected,and the complete independent Windows suite then passed. Earlier failed test runs remain logged;no native learning process was stopped.",
+  "limits": "Only four known TRAINING roads repeated across five policies;20episode outcomes are not20unique final conditions. Lower-rate driving benefit remains unproven. Earlier interruption loss,unknown unflushed tail,and all inherited teacher/tuning/evaluation costs remain charged in actual lineage metadata.",
+  "research_acceptance": "UNMET"
+}

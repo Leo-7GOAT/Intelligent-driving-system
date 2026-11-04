@@ -1,0 +1,27 @@
+{
+  "scope": "Full CPU regression completed before the subsequent disk-recovery orchestration edits. No CARLA integration claim.",
+  "passed": 1141,
+  "skipped": 1,
+  "CARLA_tests_deselected": 4,
+  "wall_seconds": 270.88,
+  "junit_sha256": "886271206fd9aa1e96f5cdf2ee77d62566d81475e0155b756bcd72ad4c269ef8",
+  "actor_fit_sha256": "e00753745c4fa849bbbe9ecd5cba7dd4d97c724f471d6bf9de22daaf9c64599e",
+  "actor_fit_tests_sha256": "cb421d39caeb2bfd89a425623012bb0f19d1d0ea67051df07fd4ba88129b41b5",
+  "tested_pre_recovery_observer_sha256": "a729e4da37fafd8949fb4c82984ea8b2ea2c4ca406d5ac3dccd7e346911ec62b",
+  "subsequent_recovery_guard_tests": {
+    "passed": 49,
+    "seconds": 5.01
+  },
+  "original_broader22_audit_rebuilt_exact_except_script_identity": true,
+  "model_fitting_started": false,
+  "research_acceptance": "UNMET",
+  "latest_targeted_regression": {
+    "passed": 77,
+    "seconds": 7.66,
+    "scope": "Recovery guards,actor-only fitting and native partition checks after orchestration edits"
+  },
+  "additional_recovered_budget_integrity_tests": {
+    "passed": 7,
+    "seconds": 6.02
+  }
+}

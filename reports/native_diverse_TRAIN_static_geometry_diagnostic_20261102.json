@@ -1,0 +1,716 @@
+{
+  "batch": "20261102T101413887816Z_native_diverse_TRAIN36_teacher",
+  "results": [
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07743100528954829,
+      "conservative_possible_cells": 29732,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 314,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 12,
+      "recorded_teacher_termination": "success"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07522763471153826,
+      "conservative_possible_cells": 39702,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 288,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 13,
+      "recorded_teacher_termination": "success"
+    },
+    {
+      "necessary_connected": false,
+      "model_infeasibility_certificate": true,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07663915560879633,
+      "conservative_possible_cells": 25315,
+      "components": 2,
+      "start_component": 1,
+      "goal_region_cells": 302,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 14,
+      "recorded_teacher_termination": "deadline"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07500153294594206,
+      "conservative_possible_cells": 36663,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 262,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 15,
+      "recorded_teacher_termination": "success"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.08074017054163507,
+      "conservative_possible_cells": 23108,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 193,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 16,
+      "recorded_teacher_termination": "out_of_bounds"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07284749852634372,
+      "conservative_possible_cells": 22137,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 301,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 17,
+      "recorded_teacher_termination": "deadline"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.08311453370192137,
+      "conservative_possible_cells": 30085,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 216,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 18,
+      "recorded_teacher_termination": "success"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07163685835766619,
+      "conservative_possible_cells": 18637,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 270,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 19,
+      "recorded_teacher_termination": "deadline"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07845085477295685,
+      "conservative_possible_cells": 20638,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 242,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 20,
+      "recorded_teacher_termination": "success"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07242007924916757,
+      "conservative_possible_cells": 22277,
+      "components": 2,
+      "start_component": 1,
+      "goal_region_cells": 229,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 21,
+      "recorded_teacher_termination": "success"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07779550322181635,
+      "conservative_possible_cells": 30379,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 311,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 22,
+      "recorded_teacher_termination": "success"
+    },
+    {
+      "necessary_connected": true,
+      "model_infeasibility_certificate": false,
+      "body_inscribed_radius_m": 0.9803177517755859,
+      "query_half_diagonal_m": 0.07308344214173447,
+      "conservative_possible_cells": 22325,
+      "components": 1,
+      "start_component": 1,
+      "goal_region_cells": 332,
+      "goal_position_tolerance_m": 0.8,
+      "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate.",
+      "case_id": 23,
+      "recorded_teacher_termination": "deadline"
+    }
+  ],
+  "trace_sha256": "3163bbcb5bb5d0acb5f25382c2327914a649be3f00c8a495825ca38b5bfe3528",
+  "new_controls": 0,
+  "new_updates": 0,
+  "algorithm": "Conservative XY connectivity over-approximation using occupied-point EDT and inscribed-body disk;each removed cell is wholly colliding. Disconnection excludes a path under the declared road/static model;connection does not certify a kinematic path.",
+  "code_sha256": "1c1f9be5c90fbce3e3b9dc1ac6613c3ea76a636e07c84d1c74132fe026f9b208",
+  "model_disconnected_cases": [
+    14
+  ],
+  "corresponding_combined_TRAIN48_case_ids": [
+    19
+  ],
+  "scope": "Known TRAIN diagnostic only. Existing impossible-model case and every prior failure are retained. Not a claim that CARLAmeshes are physically impassable.",
+  "original_grid_search": {
+    "case_id": 14,
+    "results": [
+      {
+        "profile": "original_grid",
+        "status": "no_path",
+        "nodes": 2141,
+        "seconds": 3.955282300012186,
+        "path_poses": 0
+      },
+      {
+        "profile": "fine_grid",
+        "status": "timeout",
+        "nodes": 20000,
+        "seconds": 31.453075899975374,
+        "path_poses": 0
+      }
+    ],
+    "new_controls": 0,
+    "scope": "Read-only initial-state planning;not proof of infeasibility on failure"
+  },
+  "stopped_state_search": {
+    "case_id": 14,
+    "measured_stuck_pose": [
+      10.930241912804535,
+      4.758209833623585,
+      -0.4763702768268345
+    ],
+    "goal": [
+      30.49605061857832,
+      8.413772826275382,
+      0.5289368156872536
+    ],
+    "wall_seconds": 5.655999999959022,
+    "new_physical_controls": 0,
+    "new_updates": 0,
+    "limits": "Offline full-body bounded HybridA* certificate only;does not establish physical executability or prove infeasibility when rejected.",
+    "reduced_budget_1800_results": [
+      {
+        "actions": [
+          25,
+          26
+        ],
+        "target": [
+          30.49605061857832,
+          8.413772826275382,
+          0.5289368156872536
+        ],
+        "status": "no_path",
+        "nodes": 1515,
+        "seconds": 2.830900700064376,
+        "path_poses": 0
+      }
+    ],
+    "configured_budget_7200_global_goal": {
+      "status": "no_path",
+      "nodes": 1515,
+      "seconds": 2.810577299911529,
+      "path_poses": 0
+    },
+    "budget_provenance_correction": "The private diagnostic originally mislabeled1800nodes as original and7200as higher. Actual frozen teacher and Hsource configs both set7200nodes. Original attempts are retained unchanged;labels corrected here. Both exhausted the same1515nodes,so neither exhausted its configured cap."
+  },
+  "source_planner_max_nodes": 7200,
+  "bounded_initial_planning_preflight": {
+    "source_registration_sha256": "b8eb7dca67c29eb0e362167bf7fefd2463a9e4c7389fb7e766c7bbdb5ad96418",
+    "source_script_sha256": "23e378908995a56d216669e9b20bc22f320a5ed42c81207627ad9c3d8d85eb9e",
+    "results": [
+      {
+        "case_id": 12,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07743100528954829,
+          "conservative_possible_cells": 29732,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 314,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "success",
+        "nodes": 288,
+        "seconds": 0.2356812001671642,
+        "path_poses": 661
+      },
+      {
+        "case_id": 13,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07522763471153826,
+          "conservative_possible_cells": 39702,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 288,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "success",
+        "nodes": 64,
+        "seconds": 0.04873779998160899,
+        "path_poses": 446
+      },
+      {
+        "case_id": 14,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": false,
+          "model_infeasibility_certificate": true,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07663915560879633,
+          "conservative_possible_cells": 25315,
+          "components": 2,
+          "start_component": 1,
+          "goal_region_cells": 302,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 2141,
+        "seconds": 3.8076460999436677,
+        "path_poses": 0
+      },
+      {
+        "case_id": 15,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07500153294594206,
+          "conservative_possible_cells": 36663,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 262,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "success",
+        "nodes": 32,
+        "seconds": 0.02716950001195073,
+        "path_poses": 436
+      },
+      {
+        "case_id": 16,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.08074017054163507,
+          "conservative_possible_cells": 23108,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 193,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "success",
+        "nodes": 416,
+        "seconds": 0.48980800015851855,
+        "path_poses": 509
+      },
+      {
+        "case_id": 17,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07284749852634372,
+          "conservative_possible_cells": 22137,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 301,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 6694,
+        "seconds": 6.270191099960357,
+        "path_poses": 0
+      },
+      {
+        "case_id": 18,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.08311453370192137,
+          "conservative_possible_cells": 30085,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 216,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "success",
+        "nodes": 1408,
+        "seconds": 1.1338901999406517,
+        "path_poses": 661
+      },
+      {
+        "case_id": 19,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07163685835766619,
+          "conservative_possible_cells": 18637,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 270,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "timeout",
+        "nodes": 7200,
+        "seconds": 5.3367202000226825,
+        "path_poses": 0
+      },
+      {
+        "case_id": 20,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07845085477295685,
+          "conservative_possible_cells": 20638,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 242,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "success",
+        "nodes": 202,
+        "seconds": 0.21777609991841018,
+        "path_poses": 218
+      },
+      {
+        "case_id": 21,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07242007924916757,
+          "conservative_possible_cells": 22277,
+          "components": 2,
+          "start_component": 1,
+          "goal_region_cells": 229,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "timeout",
+        "nodes": 7200,
+        "seconds": 4.5588785000145435,
+        "path_poses": 0
+      },
+      {
+        "case_id": 22,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07779550322181635,
+          "conservative_possible_cells": 30379,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 311,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "success",
+        "nodes": 288,
+        "seconds": 0.24073680001311004,
+        "path_poses": 708
+      },
+      {
+        "case_id": 23,
+        "label": "original",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07308344214173447,
+          "conservative_possible_cells": 22325,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 332,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 5915,
+        "seconds": 5.822820799890906,
+        "path_poses": 0
+      },
+      {
+        "case_id": 14,
+        "label": "repair0",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07663915560879633,
+          "conservative_possible_cells": 26057,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 302,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 2918,
+        "seconds": 5.0001443000510335,
+        "path_poses": 0,
+        "proposed_hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "static_geometry": "projected_box_strips12_v1",
+          "distance_m": 13.0,
+          "lateral_m": 1.5
+        }
+      },
+      {
+        "case_id": 14,
+        "label": "repair1",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07663915560879633,
+          "conservative_possible_cells": 24868,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 302,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 692,
+        "seconds": 1.0073544001206756,
+        "path_poses": 0,
+        "proposed_hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "static_geometry": "projected_box_strips12_v1",
+          "distance_m": 13.0,
+          "lateral_m": -1.5
+        }
+      },
+      {
+        "case_id": 14,
+        "label": "repair2",
+        "connectivity": {
+          "necessary_connected": false,
+          "model_infeasibility_certificate": true,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07663915560879633,
+          "conservative_possible_cells": 24916,
+          "components": 2,
+          "start_component": 1,
+          "goal_region_cells": 302,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 1875,
+        "seconds": 2.8765116001013666,
+        "path_poses": 0,
+        "proposed_hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "static_geometry": "projected_box_strips12_v1",
+          "distance_m": 10.0,
+          "lateral_m": 0.0
+        }
+      },
+      {
+        "case_id": 14,
+        "label": "repair3",
+        "connectivity": {
+          "necessary_connected": false,
+          "model_infeasibility_certificate": true,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07663915560879633,
+          "conservative_possible_cells": 25195,
+          "components": 2,
+          "start_component": 1,
+          "goal_region_cells": 302,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 1812,
+        "seconds": 2.9402848000172526,
+        "path_poses": 0,
+        "proposed_hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "static_geometry": "projected_box_strips12_v1",
+          "distance_m": 12.0,
+          "lateral_m": 0.0
+        }
+      },
+      {
+        "case_id": 14,
+        "label": "repair4",
+        "connectivity": {
+          "necessary_connected": false,
+          "model_infeasibility_certificate": true,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07663915560879633,
+          "conservative_possible_cells": 25415,
+          "components": 2,
+          "start_component": 1,
+          "goal_region_cells": 302,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 2487,
+        "seconds": 3.819914599880576,
+        "path_poses": 0,
+        "proposed_hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "static_geometry": "projected_box_strips12_v1",
+          "distance_m": 14.0,
+          "lateral_m": 0.0
+        }
+      },
+      {
+        "case_id": 14,
+        "label": "repair5",
+        "connectivity": {
+          "necessary_connected": false,
+          "model_infeasibility_certificate": true,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07663915560879633,
+          "conservative_possible_cells": 25486,
+          "components": 2,
+          "start_component": 1,
+          "goal_region_cells": 302,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 3390,
+        "seconds": 3.979394899914041,
+        "path_poses": 0,
+        "proposed_hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "static_geometry": "projected_box_strips12_v1",
+          "distance_m": 16.0,
+          "lateral_m": 0.0
+        }
+      },
+      {
+        "case_id": 14,
+        "label": "repair6",
+        "connectivity": {
+          "necessary_connected": false,
+          "model_infeasibility_certificate": true,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07663915560879633,
+          "conservative_possible_cells": 25243,
+          "components": 2,
+          "start_component": 1,
+          "goal_region_cells": 302,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 3646,
+        "seconds": 3.487688000081107,
+        "path_poses": 0,
+        "proposed_hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "static_geometry": "projected_box_strips12_v1",
+          "distance_m": 18.0,
+          "lateral_m": 0.0
+        }
+      },
+      {
+        "case_id": 14,
+        "label": "repair7",
+        "connectivity": {
+          "necessary_connected": true,
+          "model_infeasibility_certificate": false,
+          "body_inscribed_radius_m": 0.9803177517755859,
+          "query_half_diagonal_m": 0.07663915560879633,
+          "conservative_possible_cells": 24880,
+          "components": 1,
+          "start_component": 1,
+          "goal_region_cells": 302,
+          "goal_position_tolerance_m": 0.8,
+          "scope": "Necessary XY over-approximation under declared closed road cells/static rectangles only;connected is not a feasibility certificate."
+        },
+        "status": "no_path",
+        "nodes": 13,
+        "seconds": 0.032474700128659606,
+        "path_poses": 0,
+        "proposed_hazard": {
+          "version": "native_hazard_v1",
+          "kind": "static_vehicle",
+          "static_geometry": "projected_box_strips12_v1",
+          "distance_m": 8.0,
+          "lateral_m": 0.0
+        }
+      }
+    ],
+    "new_controls": 0,
+    "new_updates": 0,
+    "selected_replacement": null,
+    "current_training_or_evaluation_changes": 0,
+    "limitations": "A single bounded global query is not a feasibility oracle. Original case21has a recorded successful native B3episode despite this7200node global query timing out. Connected XY and shifted-body proposals do not certify executable paths. No failed or difficult original conditions were removed or replaced.",
+    "published_exact_executed_source": "scripts/diagnose_native_static_initial_geometry_20261102.py"
+  }
+}

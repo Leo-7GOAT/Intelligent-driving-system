@@ -1,0 +1,77 @@
+{
+  "scope": "Prospectively registered real PPO retention course with shared parking fixed throughout; endpoint pending at registration.",
+  "batch": "20261101T112758733226Z_native_B1_shared_parking_PPO",
+  "protocol_sha256": "6a34efe9ba3ee405dc241cdbdb5ffd3bc4442b0a3c8e73f4dd36cb7eebb2d888",
+  "specification": {
+    "version": "fixed_shared_parking_PPO10240_v1",
+    "source_model_sha256": "72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844",
+    "normalization_sha256": "b8a464e6ba54fb5745d0b4c128ece3a90581e8a082227b05c9d1fb38c7ff79b0",
+    "new_PPO_controls": 10240,
+    "new_supervised_updates": 0,
+    "prior_transfer": {
+      "version": "inside_goal_pose_overspeed_brake_v2",
+      "method": "B1",
+      "same_capability_for": [
+        "H",
+        "H0",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "source_model_sha256": "72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844",
+      "normalization_sha256": "b8a464e6ba54fb5745d0b4c128ece3a90581e8a082227b05c9d1fb38c7ff79b0",
+      "new_PPO_updates": 0,
+      "new_supervised_updates": 0,
+      "steering_override": false,
+      "limits": "Deploy-time common aid,not trained under this wrapper. Must retrain related methods before a shared-wrapper training comparison. Original unassisted failures retained.",
+      "source_delivery": "batch_sync_v1",
+      "target_delivery": "batch_sync_v1",
+      "checkpoint_config_before_sha256": "0fcf0800d95690560a63ab87eb1684869af0ae8439e97e672cfa4ac2e6035448",
+      "checkpoint_config_after_sha256": "267428af71b365c369aa39ae8ef597aa490df870c08f73936717be38d5afe9bc",
+      "declared_source_overlays": [
+        "navstack/env.py",
+        "navstack/config.py",
+        "navstack/experiments.py",
+        "navstack/parking_assist.py",
+        "scripts/native_road_learning.py",
+        "scripts/prepare_native_shared_parking.py"
+      ]
+    },
+    "low_level_fixed": "batch_sync_v1 and inside_goal_pose_overspeed_brake_v2; no runtime source, gain, goal or reward changes",
+    "initialization": "Retain every trained weight, log_std, PPO Adam state, observation moment and RNG byte. No additional labels or auxiliary fitting.",
+    "selection": "Only the final 10240-control endpoint; all four original TRAIN roads, no best-checkpoint selection.",
+    "basic_gate": "At least 3/4 successes AND zero collision/bounds; no automatic full-task promotion.",
+    "failure_rule": "Retain all failures; no automatic retry or unregistered additional budget.",
+    "limits": "Single seed22, supervised warm start plus inherited 30720 PPO controls. Does not establish independent five-seed learning, added PPO value or hierarchy advantage."
+  },
+  "seed": 22,
+  "requested_actual_training_controls": 10240,
+  "maximum_wall_seconds": 7200,
+  "automatic_retries": 0,
+  "resource_limits": {
+    "wall_seconds": 7200,
+    "disk_min_GiB": 12,
+    "ram_min_GiB": 4,
+    "gpu_stop_temperature_C": 85,
+    "automatic_retries": 0
+  },
+  "source_hashes": {
+    "scripts/prepare_native_shared_parking_ppo.py": "5b764716f37bc4f2882fc124baa585553d10232575f739ae764419407b51a2d4",
+    "scripts/native_road_learning.py": "8d2b23197aee5c89a139e59fe471bb1a832ab9a072d5053a89b10da19bb1b3ba",
+    "navstack/parking_assist.py": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+    "navstack/env.py": "6a32105e65eb453537a5956f665a87140f1ba447044fcbdc1aaaacc287073418",
+    "navstack/carla_actuation.py": "87554a90247e96a4221d8dc1634c6d53ec81ad0975e4f96b8e637a37af1244da"
+  },
+  "inherited_actual_PPO_controls": 30720,
+  "retained_PPO_Adam_steps": 668,
+  "cost_note": "Lineage is not total project R&D cost. Additional 356-control public physical replay is charged separately. Existing failed fits, probes and courses remain retained.",
+  "resources_observed_after_start": {
+    "C_free_bytes": 24871649280,
+    "D_free_bytes": 511102246912,
+    "GPU": "RTX 5060 Ti",
+    "GPU_temperature_C": 37,
+    "GPU_used_MiB": 8060,
+    "GPU_total_MiB": 16311
+  },
+  "research_acceptance": "UNMET"
+}

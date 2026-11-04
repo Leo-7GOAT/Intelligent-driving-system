@@ -1,0 +1,70 @@
+{
+  "scope": "Unauthenticated independent reconstruction of all12known-condition trained-B1 probe;zero new controls or learning.",
+  "recipe_sha256": "3868a0f7201832f31d29cebe331755dd43420665a430d1ea376e57b6675e785a",
+  "upload": {
+    "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-parking-ppo",
+    "verified_new_assets": [
+      {
+        "name": "native_B1_shared_parking_full_probe_seed22_20261101.zip.part001",
+        "bytes": 8388608,
+        "sha256": "4f4bd4a19a0c73ae9b53241a60d8d813d0e4e56a77c35ac128954559c527e1f1"
+      },
+      {
+        "name": "native_B1_shared_parking_full_probe_seed22_20261101.zip.part002",
+        "bytes": 8388608,
+        "sha256": "f116013e93fce5152c9619b143c98063a09f6d90d98e247d108dfee717e0979e"
+      },
+      {
+        "name": "native_B1_shared_parking_full_probe_seed22_20261101.zip.part003",
+        "bytes": 950335,
+        "sha256": "4fd49ade5954cc6080a47f3c8bc520cb40185b31fa127d2cb289f7ae6f81d066"
+      },
+      {
+        "name": "native_B1_shared_parking_full_probe_seed22_20261101.zip.parts.json",
+        "bytes": 854,
+        "sha256": "80e9a941097797649f4c4249544a1551a64ba7cd79c43ce96cf0fce7905588d0"
+      }
+    ],
+    "all_eight_existing_assets_unchanged": true,
+    "immutable_tag_target": "b521af521a42c068a819f25f3dee6796866e9c52"
+  },
+  "download": {
+    "bytes": 17727551,
+    "sha256": "edf95fc46b776d958b0f08253853dcee8951bc9a89269d00941d9112dc740298",
+    "parts": 3,
+    "archive_byte_exact": true,
+    "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-parking-ppo/native_B1_shared_parking_full_probe_seed22_20261101.zip.parts.json",
+    "archive": "native_B1_shared_parking_full_probe_seed22_20261101.zip",
+    "wall_seconds": 14.672000000020489,
+    "new_controls": 0,
+    "optimizer_updates": 0,
+    "manifest_network_failures": [],
+    "retained_part_failure_records": []
+  },
+  "reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "edf95fc46b776d958b0f08253853dcee8951bc9a89269d00941d9112dc740298",
+    "asset_source_commit": "a79ff7fab2fcdab419303b2c7a9cb5fb2ff91801",
+    "reproduction_source_commit": "a79ff7fab2fcdab419303b2c7a9cb5fb2ff91801",
+    "verified_files": 513,
+    "methods": [
+      {
+        "method": "B1",
+        "raw_audit_sha256": "08e20fcca17da639d0e274324a002951f1831fc561ffe5af03f30e123bc6a28a",
+        "verified_controls": 4848,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "949b50658aaefef373350945b1d21fd20ddf2eb229a5826395227157608c4534",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  },
+  "complete_three_class_audit_field_exact": true,
+  "three_class_report_sha256": "2e33ca517db1e27ab095540bd5792951a9434cfaa8767acdb5bb98d4fa512840",
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,64 @@
+{
+  "old_batch": "20261102T114745271816Z_native_route_feedback_PPO5120",
+  "new_batch": "20261102T120921347255Z_native_route_feedback_PPO5120",
+  "scope": "First five actual matched reset states before first PPO updates;not a claim that later learned trajectories are identical.",
+  "pairs": [
+    {
+      "scene": "scene_0001.json",
+      "old_condition": 42,
+      "new_condition": 42,
+      "road_equal": true,
+      "measured_initial_state_exact": true,
+      "measured_dynamic_states_exact": true
+    },
+    {
+      "scene": "scene_0002.json",
+      "old_condition": 43,
+      "new_condition": 43,
+      "road_equal": true,
+      "measured_initial_state_exact": true,
+      "measured_dynamic_states_exact": true
+    },
+    {
+      "scene": "scene_0003.json",
+      "old_condition": 44,
+      "new_condition": 44,
+      "road_equal": true,
+      "measured_initial_state_exact": true,
+      "measured_dynamic_states_exact": true
+    },
+    {
+      "scene": "scene_0004.json",
+      "old_condition": 45,
+      "new_condition": 45,
+      "road_equal": true,
+      "measured_initial_state_exact": true,
+      "measured_dynamic_states_exact": true
+    },
+    {
+      "scene": "scene_0005.json",
+      "old_condition": 46,
+      "new_condition": 46,
+      "road_equal": true,
+      "measured_initial_state_exact": true,
+      "measured_dynamic_states_exact": true
+    }
+  ],
+  "source_normalization_bytes_exact": true,
+  "source_RNG_bytes_exact": true,
+  "schedule_intervention": {
+    "old_group_rates": [
+      3e-06,
+      3e-06
+    ],
+    "new_group_rates": [
+      0.0001,
+      0.0001
+    ],
+    "weights_and_log_std_exact": true,
+    "all_existing_Adam_states_exact": true,
+    "new_actual_controls": 0
+  },
+  "new_controls_for_this_readonly_audit": 0,
+  "new_updates_for_this_readonly_audit": 0
+}

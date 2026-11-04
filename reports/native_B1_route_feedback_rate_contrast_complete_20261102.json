@@ -1,0 +1,60 @@
+{
+  "version": "retained_Adam_rate_only_v1",
+  "model_sha256": "84a892972d8d118b2c633bfecaf4359a139d80e4cb9b09e81b804c3adf46c2a1",
+  "new_actual_PPO_controls": 5120,
+  "new_actual_Adam_steps": 11,
+  "actual_learning_rate": 0.0001,
+  "target_KL_early_stopping_unchanged": true,
+  "basic": {
+    "batch": "20261102T121738941723Z_native_route_feedback_PPO_basic",
+    "successes": 3,
+    "cases": 4,
+    "termination_counts": {
+      "success": 3,
+      "deadline": 1
+    },
+    "actual_controls": 1887,
+    "all_actions_bit_exact": true
+  },
+  "known_validation": {
+    "batch": "20261102T122150154243Z_native_route_feedback_PPO_known_validation",
+    "successes": 4,
+    "cases": 24,
+    "termination_counts": {
+      "out_of_bounds": 10,
+      "deadline": 7,
+      "success": 4,
+      "collision": 3
+    },
+    "actual_controls": 9879,
+    "by_core": {
+      "curve": {
+        "successes": 1,
+        "cases": 8
+      },
+      "static_vehicle": {
+        "successes": 3,
+        "cases": 8
+      },
+      "crossing_walker": {
+        "successes": 0,
+        "cases": 8
+      }
+    }
+  },
+  "raw_audit_sha256": "2c1a452fe970439eae4087ba2a239f8685c84dfbc22316f6222e97fa9753424a",
+  "strict_delivery_sha256": "95ce4c0771e3fa2d42c488a9ab6b161e81b5873908076d394f1ef40cdba60f3b",
+  "measured_start_inference_sha256": "8e3733b244269be4d43f09eed06ca4510cbfa5b3ce2da4a0a4eca7a9a1cf7eda",
+  "low_rate_reference": {
+    "report": "reports/native_B1_route_feedback_PPO5120_complete_validation_20261102.json",
+    "successes": 5,
+    "cases": 24,
+    "new_actual_PPO_controls": 5120,
+    "actual_Adam_steps": 160,
+    "learning_rate": 3e-06
+  },
+  "initial_matching": "Same weights/log_std/Adam moments/RMS/RNG,TRAIN48,physics and reward;first five measured reset states and first1280rollout reward counts exact. Actual updates differ due retained KLearlystop.",
+  "decision": "Reject increased-rate route-residual endpoint;4/24 does not improve the5/24 low-rate reference. Neither is healthy. Preserve all branches and costs.",
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET"
+}

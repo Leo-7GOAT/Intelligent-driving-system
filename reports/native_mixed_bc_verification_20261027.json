@@ -1,0 +1,397 @@
+{
+  "scope": "CPU and sampled archived-frame verification; not new driving, complete dataset replay or research acceptance.",
+  "source_commit": "3cd21327bb9eb7ff1ce39aa4d24a7bd2cc4b6f72",
+  "hosted_ci": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40463482340",
+  "hosted_cpu": "464 passed, 15 skipped, 4 CARLA deselected in 186.23s",
+  "hosted_log_sha256": "bb49c85969818cc796cf5eb3a94f59fa89671f144fca465b0fd023619f28f05e",
+  "independent_windows": "48 passed in 42.18s",
+  "independent_log_sha256": "a882b91a3dfd72225a2dd55f559e2a9d1c299e7943fab102a19e28dfce80f24a",
+  "independent_samples": {
+    "scope": "Independent sampled reconstruction from real archived state/commands, not complete raw replay, new driving or model evaluation.",
+    "checkout_commit": "3cd21327bb9eb7ff1ce39aa4d24a7bd2cc4b6f72",
+    "dataset_sha256": "db93a121045427b0bc78a5d8388f8875bb0812feb9fd999406b5a4725bdfaaa2",
+    "samples_verified": 57,
+    "cases_verified": 8,
+    "brake_projection_samples_verified": 12,
+    "samples": [
+      {
+        "group": 0,
+        "control_index": 0
+      },
+      {
+        "group": 0,
+        "control_index": 1
+      },
+      {
+        "group": 0,
+        "control_index": 90
+      },
+      {
+        "group": 0,
+        "control_index": 180
+      },
+      {
+        "group": 0,
+        "control_index": 270
+      },
+      {
+        "group": 0,
+        "control_index": 360
+      },
+      {
+        "group": 1,
+        "control_index": 0
+      },
+      {
+        "group": 1,
+        "control_index": 1
+      },
+      {
+        "group": 1,
+        "control_index": 225
+      },
+      {
+        "group": 1,
+        "control_index": 450
+      },
+      {
+        "group": 1,
+        "control_index": 675
+      },
+      {
+        "group": 1,
+        "control_index": 899
+      },
+      {
+        "group": 2,
+        "control_index": 0
+      },
+      {
+        "group": 2,
+        "control_index": 1
+      },
+      {
+        "group": 2,
+        "control_index": 79
+      },
+      {
+        "group": 2,
+        "control_index": 158
+      },
+      {
+        "group": 2,
+        "control_index": 237
+      },
+      {
+        "group": 2,
+        "control_index": 316
+      },
+      {
+        "group": 3,
+        "control_index": 0
+      },
+      {
+        "group": 3,
+        "control_index": 1
+      },
+      {
+        "group": 3,
+        "control_index": 87
+      },
+      {
+        "group": 3,
+        "control_index": 174
+      },
+      {
+        "group": 3,
+        "control_index": 261
+      },
+      {
+        "group": 3,
+        "control_index": 347
+      },
+      {
+        "group": 4,
+        "control_index": 0
+      },
+      {
+        "group": 4,
+        "control_index": 1
+      },
+      {
+        "group": 4,
+        "control_index": 101
+      },
+      {
+        "group": 4,
+        "control_index": 110
+      },
+      {
+        "group": 4,
+        "control_index": 125
+      },
+      {
+        "group": 4,
+        "control_index": 149
+      },
+      {
+        "group": 4,
+        "control_index": 220
+      },
+      {
+        "group": 4,
+        "control_index": 330
+      },
+      {
+        "group": 4,
+        "control_index": 440
+      },
+      {
+        "group": 5,
+        "control_index": 0
+      },
+      {
+        "group": 5,
+        "control_index": 1
+      },
+      {
+        "group": 5,
+        "control_index": 90
+      },
+      {
+        "group": 5,
+        "control_index": 114
+      },
+      {
+        "group": 5,
+        "control_index": 125
+      },
+      {
+        "group": 5,
+        "control_index": 159
+      },
+      {
+        "group": 5,
+        "control_index": 229
+      },
+      {
+        "group": 5,
+        "control_index": 344
+      },
+      {
+        "group": 5,
+        "control_index": 458
+      },
+      {
+        "group": 6,
+        "control_index": 0
+      },
+      {
+        "group": 6,
+        "control_index": 1
+      },
+      {
+        "group": 6,
+        "control_index": 97
+      },
+      {
+        "group": 6,
+        "control_index": 195
+      },
+      {
+        "group": 6,
+        "control_index": 293
+      },
+      {
+        "group": 6,
+        "control_index": 390
+      },
+      {
+        "group": 7,
+        "control_index": 0
+      },
+      {
+        "group": 7,
+        "control_index": 1
+      },
+      {
+        "group": 7,
+        "control_index": 96
+      },
+      {
+        "group": 7,
+        "control_index": 100
+      },
+      {
+        "group": 7,
+        "control_index": 118
+      },
+      {
+        "group": 7,
+        "control_index": 139
+      },
+      {
+        "group": 7,
+        "control_index": 200
+      },
+      {
+        "group": 7,
+        "control_index": 300
+      },
+      {
+        "group": 7,
+        "control_index": 399
+      }
+    ],
+    "observation_and_label_arrays_exact": true,
+    "wall_seconds": 22.593999999924563,
+    "prior_full_attempt": "Preserved 600-second guard failure after six completed cases; full dataset reproduction is NOT claimed."
+  },
+  "full_reconstruction_failure": {
+    "error": "RuntimeError('View reconstruction guard: None')",
+    "complete_cases": 6,
+    "scope": "600-second guard failure retained; no completed independent dataset or full replay claimed."
+  },
+  "mixed_fit_decomposition": {
+    "scope": "Read-only fit decomposition, no CARLA execution/updates; correlated holdout is not generalization.",
+    "batch": "20261027T064630Z_native_measured_bc",
+    "model_sha256": "0eea7ea27cc50e9d31f7ae005f4a4b5f18c21d32ac5964b2eb86cd2c36486137",
+    "training_mse": 9.099706949200481e-05,
+    "holdout_mse": 0.027757631614804268,
+    "holdout_first_frame_mse": 0.1676463931798935,
+    "holdout_nonfirst_mse": 0.026201149448752403,
+    "fraction_holdout_squared_error_on_first_frames": 0.06646107882261276,
+    "first_frame_labels_and_unclipped_means": [
+      {
+        "group": 0,
+        "label": [
+          0.8746573328971863,
+          8.895822967147637e-11
+        ],
+        "mean": [
+          0.16194482147693634,
+          -0.008833392523229122
+        ]
+      },
+      {
+        "group": 1,
+        "label": [
+          -1.0,
+          -0.0
+        ],
+        "mean": [
+          -0.7631648182868958,
+          -0.03823655843734741
+        ]
+      },
+      {
+        "group": 2,
+        "label": [
+          0.8746545314788818,
+          -6.821266288170591e-05
+        ],
+        "mean": [
+          0.356229692697525,
+          0.033525560051202774
+        ]
+      },
+      {
+        "group": 3,
+        "label": [
+          0.8746272921562195,
+          0.0001554502232465893
+        ],
+        "mean": [
+          0.4936424791812897,
+          0.06934293359518051
+        ]
+      },
+      {
+        "group": 4,
+        "label": [
+          0.881000280380249,
+          0.011453746818006039
+        ],
+        "mean": [
+          0.24747028946876526,
+          -0.079212486743927
+        ]
+      },
+      {
+        "group": 5,
+        "label": [
+          0.8814740777015686,
+          0.011949049308896065
+        ],
+        "mean": [
+          0.1558695137500763,
+          -0.03486397862434387
+        ]
+      },
+      {
+        "group": 6,
+        "label": [
+          0.8794901371002197,
+          -0.009888882748782635
+        ],
+        "mean": [
+          0.4544341564178467,
+          0.09910807013511658
+        ]
+      },
+      {
+        "group": 7,
+        "label": [
+          0.8751195669174194,
+          -0.002990934532135725
+        ],
+        "mean": [
+          0.12389540672302246,
+          0.03893911838531494
+        ]
+      }
+    ],
+    "cases": [
+      {
+        "group": 0,
+        "training_mse": 0.0001150380921899341,
+        "holdout_mse": 0.006198757328093052
+      },
+      {
+        "group": 1,
+        "training_mse": 1.314491100856685e-06,
+        "holdout_mse": 0.00016118123312480748
+      },
+      {
+        "group": 2,
+        "training_mse": 0.00014822072989773005,
+        "holdout_mse": 0.0027393815107643604
+      },
+      {
+        "group": 3,
+        "training_mse": 0.00012683084059972316,
+        "holdout_mse": 0.001470957649871707
+      },
+      {
+        "group": 4,
+        "training_mse": 0.00010231458873022348,
+        "holdout_mse": 0.0451747290790081
+      },
+      {
+        "group": 5,
+        "training_mse": 0.0001335305569227785,
+        "holdout_mse": 0.023754986003041267
+      },
+      {
+        "group": 6,
+        "training_mse": 0.00010395386925665662,
+        "holdout_mse": 0.1408093422651291
+      },
+      {
+        "group": 7,
+        "training_mse": 0.0001209102338179946,
+        "holdout_mse": 0.026125526055693626
+      }
+    ]
+  }
+}

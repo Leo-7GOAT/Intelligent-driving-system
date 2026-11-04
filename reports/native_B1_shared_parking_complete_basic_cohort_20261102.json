@@ -1,0 +1,146 @@
+{
+  "scope": "Retain all five basic-course outcomes, including the fifth seed's interrupted recovery.",
+  "script_sha256": "a5358bcb1fc74630ed1e7e39c18a0f849d1a7abe9d46a634116ca9f52161831d",
+  "seeds": [
+    {
+      "seed": 11,
+      "original_batch": "20261101T121859369482Z_native_B1_shared_parking_cohort_seed11",
+      "endpoint_batch": "20261101T121859369482Z_native_B1_shared_parking_cohort_seed11",
+      "interrupted_and_recovered": false,
+      "effective_new_PPO_controls": 10240,
+      "consumed_new_training_controls_lower_bound": 10240,
+      "effective_new_Adam_steps": 320,
+      "endpoint": {
+        "successes": 3,
+        "cases": 4,
+        "unsafe_cases": 1,
+        "basic_gate_passed": false
+      },
+      "model_sha256": "13aa5eec688e9933c4494afcd0e1369c0e4b8313b870f91e221967dc16d63ca1",
+      "whole_endpoint_actions_exact": 1325,
+      "full_training_lineage_controls": 30720,
+      "charged_lineage_controls_lower_bound": 81012
+    },
+    {
+      "seed": 22,
+      "original_batch": "20261101T121859752667Z_native_B1_shared_parking_cohort_seed22",
+      "endpoint_batch": "20261101T121859752667Z_native_B1_shared_parking_cohort_seed22",
+      "interrupted_and_recovered": false,
+      "effective_new_PPO_controls": 10240,
+      "consumed_new_training_controls_lower_bound": 10240,
+      "effective_new_Adam_steps": 320,
+      "endpoint": {
+        "successes": 4,
+        "cases": 4,
+        "unsafe_cases": 0,
+        "basic_gate_passed": true
+      },
+      "model_sha256": "ea2d12ab9345777a28ee31c44fc372949692fa935c760f387ef1ee4dd5235fee",
+      "whole_endpoint_actions_exact": 1388,
+      "full_training_lineage_controls": 30720,
+      "charged_lineage_controls_lower_bound": 72586
+    },
+    {
+      "seed": 33,
+      "original_batch": "20261101T121900126016Z_native_B1_shared_parking_cohort_seed33",
+      "endpoint_batch": "20261101T121900126016Z_native_B1_shared_parking_cohort_seed33",
+      "interrupted_and_recovered": false,
+      "effective_new_PPO_controls": 10240,
+      "consumed_new_training_controls_lower_bound": 10240,
+      "effective_new_Adam_steps": 320,
+      "endpoint": {
+        "successes": 4,
+        "cases": 4,
+        "unsafe_cases": 0,
+        "basic_gate_passed": true
+      },
+      "model_sha256": "05283feeceb51cf9e4c6c3f11c70b3e4b64e4538f6862d0acd5a70bd37fd2802",
+      "whole_endpoint_actions_exact": 1424,
+      "full_training_lineage_controls": 30720,
+      "charged_lineage_controls_lower_bound": 73027
+    },
+    {
+      "seed": 44,
+      "original_batch": "20261101T121900526013Z_native_B1_shared_parking_cohort_seed44",
+      "endpoint_batch": "20261101T121900526013Z_native_B1_shared_parking_cohort_seed44",
+      "interrupted_and_recovered": false,
+      "effective_new_PPO_controls": 10240,
+      "consumed_new_training_controls_lower_bound": 10240,
+      "effective_new_Adam_steps": 320,
+      "endpoint": {
+        "successes": 4,
+        "cases": 4,
+        "unsafe_cases": 0,
+        "basic_gate_passed": true
+      },
+      "model_sha256": "5af377bdca732f0e8b6b494496071dfac9c237fd1f349acff9be7e190114f119",
+      "whole_endpoint_actions_exact": 1457,
+      "full_training_lineage_controls": 30720,
+      "charged_lineage_controls_lower_bound": 73194
+    },
+    {
+      "seed": 55,
+      "original_batch": "20261101T121900945085Z_native_B1_shared_parking_cohort_seed55",
+      "endpoint_batch": "20261102T042426664255Z_native_B1_basic_seed55_recovery",
+      "interrupted_and_recovered": true,
+      "effective_new_PPO_controls": 10240,
+      "consumed_new_training_controls_lower_bound": 10898,
+      "effective_new_Adam_steps": 319,
+      "endpoint": {
+        "successes": 3,
+        "cases": 4,
+        "unsafe_cases": 1,
+        "basic_gate_passed": false
+      },
+      "model_sha256": "567e425bc71dbee04427d1117edf6077aabe4cba519e15f76b29fb1dfff62530",
+      "whole_endpoint_actions_exact": 1174,
+      "full_training_lineage_controls": 30720,
+      "charged_lineage_controls_lower_bound": 73083
+    }
+  ],
+  "input_audits": [
+    {
+      "seed": 11,
+      "learning_audit_sha256": "5fa29f33996374bba5311848b1952efb8e95fd850270a333407b9eac82da4a3d",
+      "whole_action_audit_sha256": "3e9567d9a5a454c60725fb2b5a7dcf4d0025abd5991af23c94abf72be23a0096"
+    },
+    {
+      "seed": 22,
+      "learning_audit_sha256": "1a7fe6b307da2b5a321d3395e02016b58cad63fe247d788349c207a151111501",
+      "whole_action_audit_sha256": "fed001b61af4b12ed06586767cebee1efb483541c9ca0e4f9f540ee52723a137"
+    },
+    {
+      "seed": 33,
+      "learning_audit_sha256": "054cf9d5db996bed746058e1cff46aba46d108bbaa5aa1a4d31ddf51675ae893",
+      "whole_action_audit_sha256": "4957602082bf6e78e6aa56b33b7430ee13b29412e57da3e399759751f4e31fb3"
+    },
+    {
+      "seed": 44,
+      "learning_audit_sha256": "3601365c8f6c5f9ee495a6d84a5cb11b5b447fb65f4fc737326f523f221194c0",
+      "whole_action_audit_sha256": "df8298e6aec710f6a4b018f86c351231eb2c648b32d91df5a66f288cec8ee2b7"
+    },
+    {
+      "seed": 55,
+      "learning_audit_sha256": "158086eda246d2da5a1b559f7f9f2269a53457cd55cea11db259b55d2e3a7dfe",
+      "whole_action_audit_sha256": "da676b045dbe6daa06f75ed864fe5d186636428e66941c9e905c0a3d28949f00"
+    }
+  ],
+  "recovery_registration_proof_sha256": "aba6ada7968748658c448825636cbd0257d08b78862fb384717aa99a2ae2b2cf",
+  "independent_warm_started_seeds": 5,
+  "unique_known_basic_conditions": 4,
+  "policy_case_evaluations": 20,
+  "endpoint_successes": 18,
+  "unsafe_endpoint_cases": 2,
+  "qualified_basic_seeds": 3,
+  "all_five_basic_gates_passed": false,
+  "mean_seed_success_fraction": 0.9,
+  "effective_new_PPO_controls": 51200,
+  "consumed_new_training_controls_lower_bound": 51858,
+  "bridge_verified_new_training_controls_lower_bound": 51837,
+  "reported_trace_tail_without_readable_bridge_ack": 21,
+  "effective_new_Adam_steps": 1599,
+  "new_final_conditions": 0,
+  "unknown_unflushed_seed55_tail": true,
+  "limits": "Four repeated known TRAIN roads, not20unique conditions or a full-task healthy baseline. Fifth seed restarts a physical episode from its saved RNG/checkpoint and is not an uninterrupted replicate. Discarded work retained. No budget-matched H/B1 superiority or added PPO claim.",
+  "research_acceptance": "UNMET"
+}

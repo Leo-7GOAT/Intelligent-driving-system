@@ -1,0 +1,7 @@
+{
+  "first": "runs\\20261016T011915Z_eval_H_learned_validation_seed7_a6078d1d",
+  "second": "runs\\20261016T011920Z_eval_H_learned_validation_seed7_56767328",
+  "model": "runs\\20261016T011813Z_train_H_smoke_seed7_d23ae36e",
+  "actions_states_rewards_equal": true,
+  "scope": "same-host deterministic prediction and node-budget environment; not independent seeds"
+}

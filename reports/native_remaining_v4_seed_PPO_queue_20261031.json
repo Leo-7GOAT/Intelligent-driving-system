@@ -1,0 +1,36 @@
+{
+  "scope": "Actual bounded local phase-transition program launched;not three prepared or completed PPO pairs",
+  "fixed_seeds": [
+    33,
+    44,
+    55
+  ],
+  "gate_batches": [
+    {
+      "seed": 33,
+      "parent": "20261031T040926397622Z_native_initialization_v4"
+    },
+    {
+      "seed": 44,
+      "parent": "20261031T041003482907Z_native_initialization_v4"
+    },
+    {
+      "seed": 55,
+      "parent": "20261031T041003481908Z_native_initialization_v4"
+    }
+  ],
+  "wait_for": "All six registered H/H0initialization endpoints must complete normal owned cleanup and raw audits;all three seeds must pass original75percent representation gates before any PPO",
+  "planned_training_controls_each_method": 20480,
+  "native_wall_seconds_each_pair": 7200,
+  "wait_cap_seconds": 21600,
+  "frozen_preparation_source_files": 289,
+  "frozen_source_manifest_sha256": "6bd69e32e23d558f2b271cd6cae081b8d5c519753c9d728627af645c3ea36928",
+  "execution_driver_sha256": "85d2359dd8ee3cf928c1bf67714af4c61ced816f359cc3efedac0db065d47f12",
+  "source_commit": "ace81388ad20d52e6f537064d45eaf5ba7a22243",
+  "launch_epoch": 1793420486.4571316,
+  "verified_live_pid": 30576,
+  "state_when_recorded": "WAITING_FOR_ALL_THREE_COMPLETE_SEED_GATES",
+  "created_PPO_batches_when_recorded": [],
+  "safety": "Fixed order33/44/55,no seed omissions/retries;exact seed11environment comparison after preparation;frozen native lifecycle launcher;existing resource guards and per-batch watchdogs. Worker observation timeout retains original process for guarded cleanup.",
+  "research_acceptance": "UNMET"
+}

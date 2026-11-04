@@ -1,0 +1,35 @@
+{
+  "scope": "Actual offline reconstruction of all measured TRAIN controls and fixed-stride labels;no new driving or fitting",
+  "archive_sha256": "46ecf67e4cbfc3d7a55cb534c66d0820189133a3b8810df73ebbd2092a77ecd8",
+  "asset_source_commit": "b83f6fd8c436de9281df553be30e6699a87678ce",
+  "verified_files": 965,
+  "verified_training_controls": 20521,
+  "training_conditions": 36,
+  "training_episodes_including_unfinished": 51,
+  "sampled_rows": 4156,
+  "dataset_sha256": "98943a7ae5e71ec89e7cabb076ebd931c3dd6e1c3828557882635d166bb78e88",
+  "dataset_byte_identical": true,
+  "all_training_provenance_fields_exact": true,
+  "interrupted_validation_not_scored": true,
+  "wall_seconds": 496.0629999998491,
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "research_acceptance": "UNMET",
+  "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_training36_measured_views_20261031_repro.zip.parts.json",
+  "public_archive_bytes": 37549119,
+  "public_parts": 18,
+  "unauthenticated_download_verified": true,
+  "download_wall_seconds": 21.094000000040978,
+  "reproduction_source_commit": "bcf1e39f2128602ab5ce91cba53b1eeb515a6525",
+  "independent_targeted_tests": {
+    "passed": 18,
+    "seconds": 4.33,
+    "source_commit": "b83f6fd8c436de9281df553be30e6699a87678ce"
+  },
+  "hosted_source_workflow": {
+    "commit": "bcf1e39f2128602ab5ce91cba53b1eeb515a6525",
+    "conclusion": "success",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41192679399"
+  }
+}

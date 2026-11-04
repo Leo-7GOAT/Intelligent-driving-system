@@ -1,0 +1,36 @@
+{
+  "scope": "Actual public upload,unauthenticated download and independent raw/model/figure reconstruction;all registered development outcomes retained;not final confirmation",
+  "archive_sha256": "d8971e84b3e753441ba6d3c28f8ad236565e0a69fdf5fab869c2247e9215dffb",
+  "asset_source_commit": "666fa72b1cb2fe71178acc98a5ac8ca9334d30ae",
+  "reproduction_source_commit": "666fa72b1cb2fe71178acc98a5ac8ca9334d30ae",
+  "verified_files": 667,
+  "methods": [
+    {
+      "method": "H",
+      "raw_audit_sha256": "733ae826652f0833e4a4a2446498f41e8beab61dfd29b815ac4354b1098597bb",
+      "verified_controls": 24846,
+      "measured_start_actions_reproduced": 12,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "method": "H0",
+      "raw_audit_sha256": "f39a27725990ef6e8fa917fad6ae5cab26e79696645bdb87df1ddfe633164a27",
+      "verified_controls": 25462,
+      "measured_start_actions_reproduced": 12,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "7607ed340588bd84ce4b4dd1c6dfa720a5d07278659bb370505c2ab50972f404",
+  "figure_byte_identical": true,
+  "figure_baseline": "explicit_reference",
+  "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed44_canonical_feedback_pair_20261031_repro.zip.parts.json",
+  "public_archive_bytes": 66864585,
+  "public_parts": 32,
+  "unauthenticated_download_verified": true,
+  "versioned_reference_figure": "reports/figures/native_seed44_canonical_endpoints_20261031.png",
+  "research_acceptance": "UNMET"
+}

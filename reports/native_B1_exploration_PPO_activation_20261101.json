@@ -1,0 +1,41 @@
+{
+  "scope": "Actual bounded PPO activation snapshot,not a completed learning result. Later terminal evidence takes precedence.",
+  "batch": "20261101T075805697090Z_native_B1_exploration_PPO",
+  "snapshot_epoch": 1793519995.7014701,
+  "protocol_sha256": "902eb710e8a16ed5c75926c491fcc5c790638bfce05baba880a3a620e7e04a83",
+  "verified_owned_worker_pid": 61460,
+  "verified_worker_creation_epoch": 1793519928.466,
+  "actual_PPO_controls_at_snapshot": 1270,
+  "optimization_phases_at_snapshot": 0,
+  "registered_new_PPO_controls": 10240,
+  "wall_cap_seconds": 7200,
+  "automatic_retries": 0,
+  "CARLA_version": "0.9.15",
+  "initial_mean_network_and_critic_unchanged": true,
+  "initial_std_change": {
+    "version": "initial_Gaussian_std_010_v1",
+    "old_std": [
+      0.01831517554819584,
+      0.018323421478271484
+    ],
+    "new_std": [
+      0.09999999403953552,
+      0.09999999403953552
+    ],
+    "changed_parameter": "log_std",
+    "changed_scalar_parameters": 2,
+    "other_actor_and_critic_weights_exact": true,
+    "PPO_optimizer_moments_exact": true,
+    "PPO_counters_exact": true,
+    "optimizer_updates": 0,
+    "deterministic_mean_network_unchanged": true,
+    "scope": "Explicit initial stochastic exploration intervention before a fresh actual PPOrollout,not a PPOupdate or deterministic-policy performance improvement."
+  },
+  "new_supervised_updates": 0,
+  "teacher_in_training": false,
+  "teacher_in_evaluation": false,
+  "prior_failed_recovery_controls_charged": 9010,
+  "endpoint_and_raw_audits": "Automatically run after normal lifecycle completion;pending at snapshot.",
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET"
+}

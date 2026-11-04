@@ -1,0 +1,81 @@
+{
+  "scope": "Reconstruct the first completed flat native PPO rollout and discard LR probes.\n\nNo simulator is connected and no alternative policy is saved or deployed.\n",
+  "batch": "20261031T042301092506Z_native_supervised_ppo",
+  "raw_audit_sha256": "eb4fb4023c5b95298937b3314383b48b9ff7a6f18c8247caa46f3488a96965e2",
+  "script_sha256": "3f822cb32bce9318128221f7897af2421b5b603f62486bef5362f7ab9d633475",
+  "sampled_actions_exact": 1280,
+  "first_checkpoint_parameters_exact": true,
+  "initializer_model_sha256": "7c11c8ed67de2917ac71d24d5b3daa0a01b5394f9baf9c0fcf669fb5144fc60e",
+  "learner_reward_units": {
+    "version": "fixed_physical_reward_units_v1",
+    "scale": 0.05,
+    "scope": "Fixed learner reward units only; every environment reward/component and raw physical trace remains in original task units."
+  },
+  "initializer_rng_sha256": "074978791df7d39e66dc118799e675f8af030897890100e1a20cb1dda54eee78",
+  "branches": [
+    {
+      "learning_rate": 3e-05,
+      "optimizer_steps": 2,
+      "baseline_parameters_exact": true,
+      "exact_full_rollout_kl_mean": 0.04283902662142561,
+      "exact_full_rollout_kl_max": 0.7777096209482532,
+      "metrics": {
+        "train/learning_rate": 3e-05,
+        "train/entropy_loss": 5.162067890167236,
+        "train/policy_gradient_loss": 0.00601030060400376,
+        "train/value_loss": 1.4817183017730713,
+        "train/approx_kl": 0.020228831097483635,
+        "train/clip_fraction": 0.2239583283662796,
+        "train/loss": 0.7581658959388733,
+        "train/explained_variance": 0.4226369261741638,
+        "train/std": 0.018316600471735,
+        "train/n_updates": 1.0,
+        "train/clip_range": 0.2
+      }
+    },
+    {
+      "learning_rate": 1e-05,
+      "optimizer_steps": 3,
+      "baseline_parameters_exact": null,
+      "exact_full_rollout_kl_mean": 0.018321761885126738,
+      "exact_full_rollout_kl_max": 0.2581896122076627,
+      "metrics": {
+        "train/learning_rate": 1e-05,
+        "train/entropy_loss": 5.16210150718689,
+        "train/policy_gradient_loss": -0.0014695615478572677,
+        "train/value_loss": 1.4832285046577454,
+        "train/approx_kl": 0.006634420715272427,
+        "train/clip_fraction": 0.08515624777646735,
+        "train/loss": 0.7198551297187805,
+        "train/explained_variance": 0.4226369261741638,
+        "train/std": 0.01831592619419098,
+        "train/n_updates": 1.0,
+        "train/clip_range": 0.2
+      }
+    },
+    {
+      "learning_rate": 3e-06,
+      "optimizer_steps": 40,
+      "baseline_parameters_exact": null,
+      "exact_full_rollout_kl_mean": 0.008217698090003814,
+      "exact_full_rollout_kl_max": 0.2847466727389995,
+      "metrics": {
+        "train/learning_rate": 3e-06,
+        "train/entropy_loss": 5.162063610553742,
+        "train/policy_gradient_loss": -0.01614415640484381,
+        "train/value_loss": 1.4384725570678711,
+        "train/approx_kl": 0.008156174793839455,
+        "train/clip_fraction": 0.07015625031781383,
+        "train/loss": 0.6610056757926941,
+        "train/explained_variance": 0.4226369261741638,
+        "train/std": 0.01831671968102455,
+        "train/n_updates": 10.0,
+        "train/clip_range": 0.2
+      }
+    }
+  ],
+  "limits": "Fixed recorded rollout only. Alternative optimizer branches are discarded; no on-policy performance or native success claim.",
+  "new_physical_controls": 0,
+  "new_deployed_updates": 0,
+  "wall_seconds": 98.39000000013039
+}

@@ -1,0 +1,39 @@
+{
+  "scope": "Executed source checks; separate from CARLA outcomes and research acceptance.",
+  "source_commit": "4859dee7283a22e11d0155ad2af16f3b52019dfe",
+  "local_full": {"passed": 657, "skipped": 1, "CARLA_deselected": 4, "seconds": 172.19},
+  "independent_checkout": {"passed": 73, "seconds": 15.17, "scope": "Ownership recovery, partitions, cleanup, raw controller binding, alternative controller and reference validation."},
+  "hosted": {
+    "run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41150127716",
+    "conclusion": "success", "passed": 642, "skipped": 16, "CARLA_deselected": 4, "seconds": 191.69
+  },
+  "later_confirmed_source": {
+    "commit": "8afab8af7fd7a787fe6eedebb4a31bff59e6f4f1",
+    "hosted_run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41151249917",
+    "passed": 649, "skipped": 16, "CARLA_deselected": 4, "seconds": 194.18,
+    "independent_targeted": {"passed": 68, "seconds": 15.95},
+    "independent_factorial_training_views_exactly_reproduced": 496,
+    "prior_failed_run": "41150831314:unit staging fixtures depended on host having12GiBfree. Added explicit disk fixtures for those tests and a low-disk refusal regression;production guards unchanged."
+  },
+  "subsequent_guard_and_cleanup_selection_checks": {"passed": 38, "seconds": 6.10},
+  "latest_confirmed_source": {
+    "commit": "b099b3812815abed9ee90e77bac6dd0a0a1c77c4",
+    "hosted_run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41152850977",
+    "conclusion": "success", "passed": 652, "skipped": 16, "CARLA_deselected": 4, "seconds": 86.26,
+    "independent_targeted": {"passed": 38, "seconds": 7.11},
+    "independent_public_raw_controls": {"B1": 27897, "native_controller_paired": 3811, "native_controller_failed_supervision": 1905},
+    "both_public_figures_byte_identical": true
+  },
+  "latest_exact_geometry_source": {
+    "commit": "7dfbb3d471eb1597478ccdb2dc81e25a1dad1080",
+    "local_full": {"passed": 668, "skipped": 1, "CARLA_deselected": 4, "seconds": 164.55},
+    "hosted_run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41155398942",
+    "hosted": {"conclusion": "success", "passed": 653, "skipped": 16, "CARLA_deselected": 4, "seconds": 158.15},
+    "independent_geometry_tests": {"passed": 7, "seconds": 4.41},
+    "independent_exact_hard_query_poses": 549151,
+    "independent_H_public_raw_controls": 6569,
+    "independent_H_measured_start_actions": 12,
+    "H_figure_byte_identical": true
+  },
+  "research_acceptance": "UNMET"
+}

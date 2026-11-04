@@ -1,0 +1,206 @@
+{
+  "scope": "Completed seed11 faster-critic development diagnostic.4/12with7unsafe,not healthy. Frozen initial network/norm/RNG/config/physical runtime matched KL control140111; critic rate only changed.",
+  "batch": "20261028T013034Z_native_supervised_ppo",
+  "successes": 4,
+  "cases": 12,
+  "families": {
+    "curve_parking": {
+      "successes": 2,
+      "cases": 4,
+      "unsafe": 2
+    },
+    "static_obstacle": {
+      "successes": 1,
+      "cases": 4,
+      "unsafe": 3
+    },
+    "dynamic_interaction": {
+      "successes": 1,
+      "cases": 4,
+      "unsafe": 2
+    }
+  },
+  "termination_counts": {
+    "success": 4,
+    "out_of_bounds": 6,
+    "collision": 1,
+    "deadline": 1
+  },
+  "actual_training_controls": 20480,
+  "actual_optimizer_steps": 281,
+  "recorded_optimizer_post_hook_calls": 562,
+  "optimizer_count_correction": "Nested optimizer wrappers dispatch two external post-hooks per one actual Adam update. Frozen model/source/counters preserved.",
+  "raw_audit_counter_semantics": "The embedded original raw auditor retains segment_optimizer_steps562from callback receipts. Saved Adam states independently establish281actual updates; do not treat562as actual optimization.",
+  "evaluation_controls": 4128,
+  "total_current_raw_controls": 24608,
+  "critic_absolute_output_bound": 14.482521057128906,
+  "raw_unsafe_terminal_reward": -90,
+  "comparison": "KL control140111also4/12but only3unsafe; faster critic has7unsafe. No driving improvement; retain negative endpoint and reject this profile as healthy.",
+  "next_registered_profile": "Separate fixed learner reward units.05,standard Adam/critic rate3e-5,same original12conditions. Not combined with fast critic or new36/24partition.",
+  "raw_audit": {
+    "schema_version": 1,
+    "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+    "batch": "20261028T013034Z_native_supervised_ppo",
+    "method": "B1",
+    "protocol_sha256": "633d6c39d42a8c1e27e7e715586e91eec2cef736ac418ac2afeb61344f5688e7",
+    "config_sha256": "51073fdd96710580b83ced7f87f5661fe0811d1bba7742be601c6304e25b55bd",
+    "summary_sha256": "5aa943e0a671655f721c8ed3f2d11db2b1b045766d0eb8aee235469e3d16619a",
+    "evaluation_sha256": "294c4b3e53140ea66a6522779c5f55d90cc61b03d01568b6681f4e8e0f4b5e82",
+    "evaluation_trace_sha256": "329cec0bc79c9c3c6f4ec7477e9548c87c89ff118e0cf3a90fcd6a7222ead0b3",
+    "optimization_sha256": "85110869a2a44573323f2422c2cc1eb77244ec1ffef75c09e013fa1fb666974d",
+    "transition_hashes": {
+      "transitions_000000000_1793151263541589700.jsonl.gz": "619ddca1bc6b6159502f411a7b123ec9715ce6cc847439e9247fc4fd55bbfaf2"
+    },
+    "bridge_response_stream": "bridge_98b66cfc_responses.jsonl.gz",
+    "bridge_response_sha256": "714f2224a37cb20114cd00845decf705042c75d3ff2ea6075cb1308113590f0d",
+    "bridge_complete_rows": 24725,
+    "training_control_frames_verified": 20480,
+    "evaluation_control_frames_verified": 4128,
+    "total_applied_controls_verified": 24608,
+    "training_world_ticks_verified": 21936,
+    "evaluation_world_ticks_verified": 4500,
+    "training_termination_reasons": {
+      "success": 21,
+      "deadline": 6,
+      "collision": 3,
+      "out_of_bounds": 16
+    },
+    "checkpoint": "checkpoint_000020480",
+    "checkpoint_metadata_sha256": "77ac24f1dbcc2daf02f609e0de473b5f6842b2d356dca52221a46ecbd6e3a6ef",
+    "lineage_controls": 20480,
+    "charged_controls_lower_bound": 31932,
+    "segment_optimizer_steps": 562,
+    "optimizer_steps_total_lower_bound": 562,
+    "unknown_unflushed_ancestor_tail": false
+  },
+  "saved_Adam_state_verification": {
+    "scope": "Completed real CARLA training checkpoint; frozen evaluation still pending. No new controls for this read-only audit.",
+    "batch": "20261028T013034Z_native_supervised_ppo",
+    "checkpoint": "checkpoint_000020480",
+    "actual_training_controls": 20480,
+    "actual_Adam_steps": 281,
+    "recorded_post_hook_calls": 562,
+    "all_per_parameter_Adam_steps_identical": true,
+    "critic_absolute_output_bound": 14.482521057128906,
+    "unsafe_terminal_reward": -90,
+    "model_sha256": "ed27078947950d8a90b380cf15e4259777ec556cdc2a091c20c4153b218acf02",
+    "count_correction": "Nested optimizer wrappers dispatch two external post-hooks per one actual Adam update. Frozen model/source/counters preserved."
+  },
+  "guard": {
+    "epoch": 1793153241.7085462,
+    "worker_pid": 46252,
+    "exit_code": 0,
+    "reason": null
+  },
+  "owned_cleanup_status": "owned_empty_server_stopped",
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 387,
+      "actions": 387,
+      "progress": 24.39636597304544,
+      "interventions": 0
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 218,
+      "actions": 218,
+      "progress": 15.94023687923398,
+      "interventions": 0
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 475,
+      "actions": 475,
+      "progress": 22.236281929515297,
+      "interventions": 0
+    },
+    {
+      "case_id": 3,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 43,
+      "actions": 43,
+      "progress": 1.9392570915550422,
+      "interventions": 0
+    },
+    {
+      "case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 381,
+      "actions": 381,
+      "progress": 24.144431769168243,
+      "interventions": 0
+    },
+    {
+      "case_id": 5,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 266,
+      "actions": 266,
+      "progress": 17.400828280747415,
+      "interventions": 0
+    },
+    {
+      "case_id": 6,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 591,
+      "actions": 591,
+      "progress": 19.91971316631763,
+      "interventions": 0
+    },
+    {
+      "case_id": 7,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 264,
+      "actions": 264,
+      "progress": 15.542785717362232,
+      "interventions": 0
+    },
+    {
+      "case_id": 8,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 443,
+      "actions": 443,
+      "progress": 23.89541310511542,
+      "interventions": 0
+    },
+    {
+      "case_id": 9,
+      "success": false,
+      "termination_reason": "collision",
+      "physics_steps": 120,
+      "actions": 120,
+      "progress": 4.927293932874971,
+      "interventions": 0
+    },
+    {
+      "case_id": 10,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "actions": 900,
+      "progress": 21.373081777905885,
+      "interventions": 0
+    },
+    {
+      "case_id": 11,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 40,
+      "actions": 40,
+      "progress": 1.5592288998653672,
+      "interventions": 0
+    }
+  ]
+}

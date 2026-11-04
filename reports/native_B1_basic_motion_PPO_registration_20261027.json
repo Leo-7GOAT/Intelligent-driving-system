@@ -1,0 +1,33 @@
+{
+  "scope": "Actually launched real-CARLA PPO development,not a final healthy baseline. Initialization passes unobstructed motion sanity3/4withzero basic unsafe;full-task parent6/12remainsunqualified. Strict older full-inventory initialization rejections retained; final research acceptance unchanged.",
+  "batch": "20261027T130748Z_native_supervised_ppo",
+  "parent": "20261027T112446Z_native_measured_bc",
+  "nominal_training_controls": 20480,
+  "wall_seconds": 7200,
+  "initialization_gate_profile": "basic_motion_training_v1",
+  "entry_evidence": {
+    "B1": {
+      "profile": "basic_motion_training_v1",
+      "basic_successes": 3,
+      "basic_cases": 4,
+      "required_basic_successes": 3,
+      "minimum_basic_fraction": 0.75,
+      "full_task_successes": 6,
+      "full_task_cases": 12,
+      "full_task_qualification_claimed": false,
+      "scope": "PPO learning-entry sanity only. Full-task initialization may remain unqualified; no relaxation of final research acceptance or healthy-final-baseline claim."
+    }
+  },
+  "cleanup_harness_override": {
+    "parent_sha256": "cb8d63ec12ff2ea0aebb8c9252534f192d06b76367a80cfa3528acce1a8440e5",
+    "initialized_sha256": "9cfbde79c30d8b8d4d6400e536eb58d9d2562eb62bceacdeacd42b20021d3e41",
+    "scope": "Bridge.clear only; actuation, sensing, scenario generation and policy semantics unchanged by AST comparison"
+  },
+  "learning_rate": 3e-05,
+  "initial_log_std": -4,
+  "extra_actor_supervised_steps": 0,
+  "physical_teacher_controls": 4329,
+  "validation_cases": 12,
+  "source_files": 368,
+  "status": "ACTUALLY_STARTED_TRAINING_NO_FROZEN_RESULT_YET"
+}

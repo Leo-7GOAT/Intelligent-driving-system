@@ -1,0 +1,558 @@
+{
+  "scope": "Completed known-road single-seed development; all failures retained, no formal hierarchy or safety finding.",
+  "long_collection": {
+    "summary": {
+      "physics_steps": 20480,
+      "actions": 20480,
+      "episodes": 35,
+      "optimization_phases": 16,
+      "optimizer_steps": 640,
+      "reward_components": {
+        "event": -660.0,
+        "time": -102.39999999997936,
+        "risk": -250.38253191589638,
+        "comfort": -16.97733751575153,
+        "potential": 24.507366532454157,
+        "task_progress": 258.5160786090463
+      },
+      "modes": {
+        "flat": 20480
+      },
+      "action_histogram": {},
+      "method": "B1",
+      "job_name": "B1",
+      "rollout_actions": 1280,
+      "ppo_epochs": 10,
+      "batch_size": 320,
+      "gradient_clip_mode": "global",
+      "backend": "CARLA_0.9.15",
+      "world_ticks": 21595,
+      "reset_ticks": 1115,
+      "actor_l2_change": 0.1475324183702469,
+      "reload_exact": true,
+      "wall_seconds": 2036.1442368030548,
+      "stopped_reason": null,
+      "lineage_control_steps": 20480,
+      "charged_control_steps_lower_bound": 22406,
+      "inherited_controls_not_in_checkpoint": 1926,
+      "scope": "Real native PPO after disclosed shared teacher supervision; frozen train-only statistics and explicit exploration initialization; not ordinary from-scratch PPO or formal hierarchy superiority"
+    },
+    "raw_audit": {
+      "schema_version": 1,
+      "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+      "batch": "20261027T052446Z_native_supervised_ppo",
+      "method": "B1",
+      "protocol_sha256": "6e4643f4a99051ba81f8b213f84cfbe6ee7223ba29ade1a1e871e5ae24ee7953",
+      "config_sha256": "88a536332d6415d8d63c2132c3d7aab85d9eba6de1bb403f168ecd77de1adb48",
+      "summary_sha256": "43ed0030f3b7d58092efd9c65c2e944e2bfd897001abb29075636626e85c3acf",
+      "evaluation_sha256": "e1d0dcdf162a7bcaebeea33ca70d44af433a296291151121bd7aaea22f39213a",
+      "evaluation_trace_sha256": "db305964a23be404a85701bf674258e380b48d3398d2248882ff43c0dfbc303a",
+      "optimization_sha256": "f0058acb9ebc78172c98b4de8c71768d11667ceceafebf76c65c2545dbe6ae40",
+      "transition_hashes": {
+        "transitions_000000000_1793078993395164900.jsonl.gz": "c59ad6ff312f25f981fda5045f7071ba6e5b54c49c746c0862fbce037b10070c"
+      },
+      "bridge_response_stream": "bridge_380d0ed3_responses.jsonl.gz",
+      "bridge_response_sha256": "4b3562ffce836b61ef943ed1a50adba63ef73a3c128c10cd082e6a0ecc06470e",
+      "bridge_complete_rows": 22960,
+      "training_control_frames_verified": 20480,
+      "evaluation_control_frames_verified": 2401,
+      "total_applied_controls_verified": 22881,
+      "training_world_ticks_verified": 21595,
+      "evaluation_world_ticks_verified": 2525,
+      "training_termination_reasons": {
+        "deadline": 16,
+        "success": 11,
+        "out_of_bounds": 7,
+        "collision": 1
+      },
+      "checkpoint": "checkpoint_000020480",
+      "checkpoint_metadata_sha256": "799540ff2958850bbd4cbe2bceb1a0eefafebac1aba49d674cec510ad38f9828",
+      "lineage_controls": 20480,
+      "charged_controls_lower_bound": 22406,
+      "segment_optimizer_steps": 640,
+      "optimizer_steps_total_lower_bound": 640,
+      "unknown_unflushed_ancestor_tail": false
+    },
+    "model_sha256": "20307fde30b58e6824354978dde86c42663d761dfe73c8d7a66b53fc972e32b8",
+    "normalization_sha256": "bb19a9ab171e24aea07e2a34b80a1addae804fcada1d3a5181b931bbaa350860",
+    "episodes": [
+      {
+        "case_id": 0,
+        "success": false,
+        "termination_reason": "out_of_bounds",
+        "physics_steps": 367,
+        "progress": 22.510913431965115,
+        "interventions": 0
+      },
+      {
+        "case_id": 1,
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "progress": 0.0,
+        "interventions": 0
+      },
+      {
+        "case_id": 2,
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "progress": 21.05305005988646,
+        "interventions": 0
+      },
+      {
+        "case_id": 3,
+        "success": false,
+        "termination_reason": "out_of_bounds",
+        "physics_steps": 234,
+        "progress": 16.325469368917876,
+        "interventions": 0
+      }
+    ],
+    "batch": "20261027T052446Z_native_supervised_ppo",
+    "successes": 0,
+    "cases": 4,
+    "comparison": "Same 20480 controls/640 Adam steps as320-action collection, but16rather than64collection phases; longer1280-action collection still ends0/4.",
+    "conclusion": "11 training successes do not establish frozen competence. Two bounds and two deadlines remain."
+  },
+  "crossing_transfer": {
+    "summary": {
+      "physics_steps": 0,
+      "actions": 0,
+      "episodes": 0,
+      "optimization_phases": 0,
+      "optimizer_steps": 0,
+      "reward_components": {},
+      "modes": {},
+      "action_histogram": {},
+      "method": "B1",
+      "job_name": "B1",
+      "rollout_actions": 320,
+      "ppo_epochs": 10,
+      "batch_size": 320,
+      "gradient_clip_mode": "global",
+      "backend": "CARLA_0.9.15",
+      "world_ticks": 0,
+      "reset_ticks": 0,
+      "actor_l2_change": 0.0,
+      "reload_exact": true,
+      "wall_seconds": 0.12550020217895508,
+      "stopped_reason": null,
+      "lineage_control_steps": 20480,
+      "charged_control_steps_lower_bound": 22406,
+      "inherited_controls_not_in_checkpoint": 1926,
+      "scope": "Frozen native-PPO scene-family transfer on four known development roads; zero new training or auxiliary updates, not independent confirmation"
+    },
+    "raw_audit": {
+      "schema_version": 1,
+      "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+      "batch": "20261027T062101Z_native_evaluation_preflight_repair",
+      "method": "B1",
+      "protocol_sha256": "a18b9c31f877f9b25c05ccb90053d42f0da4cfb4f13cf06d95615ddd16fbb7ea",
+      "config_sha256": "97f09668f0de89efcda4914141b63a57b849d417ec5d47b4675f4746b5c7bc21",
+      "summary_sha256": "38a92d265fda425e674a322acbeffc5891c7448519054cf0e33d8bd1bc87b39b",
+      "evaluation_sha256": "13917df28fadc3d3db80e286853219c3f2c286dfeaacff12767482173f214734",
+      "evaluation_trace_sha256": "cb7a747256df22f611623b0c7c49fd0d84fd979c6834622529f26e2d83d7a9be",
+      "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transition_hashes": {
+        "transitions_000000000_1793082167554945600.jsonl.gz": "8ffab955affc011671f6d0fb7a67ec7c78a1f91dba228dbdd62a6dd0d6855ffd"
+      },
+      "bridge_response_stream": "bridge_38d9ac76_responses.jsonl.gz",
+      "bridge_response_sha256": "f4d8302fcb8fa1a07b3b067b6f903e58c12dbb296f802d56dbb1be72f394798e",
+      "bridge_complete_rows": 415,
+      "training_control_frames_verified": 0,
+      "evaluation_control_frames_verified": 407,
+      "total_applied_controls_verified": 407,
+      "training_world_ticks_verified": 0,
+      "evaluation_world_ticks_verified": 530,
+      "training_termination_reasons": {},
+      "checkpoint": "checkpoint_000000000",
+      "checkpoint_metadata_sha256": "9b2574f3a2ef54de682ca2563c35d9eefcd8916e9632f84197193f4d9712f67e",
+      "lineage_controls": 20480,
+      "charged_controls_lower_bound": 22406,
+      "segment_optimizer_steps": 0,
+      "optimizer_steps_total_lower_bound": 640,
+      "unknown_unflushed_ancestor_tail": false
+    },
+    "model_sha256": "dd73e209b73ec055217cd35d9c1ef8efbe95014f35158361f3a2364f8d92787f",
+    "normalization_sha256": "645a3512aef3b67305c3b3025dade663424274c45ecf0170666834c5424c41de",
+    "episodes": [
+      {
+        "case_id": 0,
+        "success": false,
+        "termination_reason": "collision",
+        "physics_steps": 75,
+        "progress": 5.87644302207886,
+        "interventions": 0
+      },
+      {
+        "case_id": 1,
+        "success": false,
+        "termination_reason": "out_of_bounds",
+        "physics_steps": 93,
+        "progress": 3.801128796984223,
+        "interventions": 0
+      },
+      {
+        "case_id": 2,
+        "success": false,
+        "termination_reason": "collision",
+        "physics_steps": 73,
+        "progress": 6.082501617450909,
+        "interventions": 0
+      },
+      {
+        "case_id": 3,
+        "success": false,
+        "termination_reason": "out_of_bounds",
+        "physics_steps": 166,
+        "progress": 13.148662030753965,
+        "interventions": 0
+      }
+    ],
+    "batch": "20261027T062101Z_native_evaluation_preflight_repair",
+    "successes": 0,
+    "cases": 4,
+    "conclusion": "Frozen guarded B1 has2collisions/2bounds in407actual controls on known crossing development scenes. Zero new training or optimizer updates; not dynamic capability or independent training.",
+    "startup_attempts": [
+      "20261027T043046Z_native_scene_transfer",
+      "20261027T053256Z_native_startup_retry"
+    ],
+    "metadata_repair": "Removed only the inherited training-only observation-freeze flag in a fresh child after verifying empty bridge streams. Original failed attempts unchanged."
+  },
+  "memo_compute_probe": {
+    "H": {
+      "summary": {
+        "physics_steps": 0,
+        "actions": 0,
+        "episodes": 0,
+        "optimization_phases": 0,
+        "optimizer_steps": 0,
+        "reward_components": {},
+        "modes": {},
+        "action_histogram": {},
+        "method": "H",
+        "job_name": "H",
+        "rollout_actions": 32,
+        "ppo_epochs": 10,
+        "batch_size": 32,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 0,
+        "reset_ticks": 0,
+        "actor_l2_change": 0.0,
+        "reload_exact": true,
+        "wall_seconds": 0.13855957984924316,
+        "stopped_reason": null,
+        "lineage_control_steps": 20480,
+        "charged_control_steps_lower_bound": 20480,
+        "inherited_controls_not_in_checkpoint": 0,
+        "scope": "Frozen native-PPO compute probe on the original known development scenes; zero new training"
+      },
+      "raw_audit": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261027T045435Z_native_scene_transfer",
+        "method": "H",
+        "protocol_sha256": "8d80736123f0db3f6ba19f1efe41dc12ec3c345dd62cd3582254473c4d5f8687",
+        "config_sha256": "b244e5f944e0a2501c7612c0867bfe6791c7e901b8f1cdb457089f9bd0b13d1e",
+        "summary_sha256": "a077b64b009b1979e93f8553933cf546617b2551b1c7df7d4b1e1c523cf836a3",
+        "evaluation_sha256": "2786429d1214e6560691be56c71f938874f6fa2b46325e4e59b8840d1581ad97",
+        "evaluation_trace_sha256": "b285d5f6a29827a567fd1197332973e8ec7a1ce7b67ffbacc5271f2fbd3b28cb",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793081920794503700.jsonl.gz": "0c536a3aa5aaf253afd567fb16e2f19f4e8808b547b031ce557ea00ae87f115e"
+        },
+        "bridge_response_stream": "bridge_5ba0f6d5_responses.jsonl.gz",
+        "bridge_response_sha256": "6cca65f5cd5a034d05d6842a18399fe99e3bc8ad320be964082e6a4e91b8e6bd",
+        "bridge_complete_rows": 3608,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 3600,
+        "total_applied_controls_verified": 3600,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 3723,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "75c8a8d2199cbdbe6ca39118ffef6530588521fc1f01cb5d3ca80a394eb1d5aa",
+        "lineage_controls": 20480,
+        "charged_controls_lower_bound": 20480,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 640,
+        "unknown_unflushed_ancestor_tail": false
+      },
+      "model_sha256": "87659673de9cb29b08c7f50adf9f04ca3880cfb398f11432e5cc6f5a4d13fdc7",
+      "normalization_sha256": "e4c9b628485416f4a1976d0905402b6a32ed70ab2180db8493b86adaccd9bd44",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 19.36598631227031,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 19.33576605385203,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900
+        }
+      ],
+      "cache_hits": 178,
+      "modes": {
+        "reference": 78,
+        "wait": 102,
+        "plan_failed": 180
+      },
+      "observed_decision_wall_seconds": 79.96703599928878,
+      "task_outcomes_match_original": true
+    },
+    "H0": {
+      "summary": {
+        "physics_steps": 0,
+        "actions": 0,
+        "episodes": 0,
+        "optimization_phases": 0,
+        "optimizer_steps": 0,
+        "reward_components": {},
+        "modes": {},
+        "action_histogram": {},
+        "method": "H0",
+        "job_name": "H0",
+        "rollout_actions": 32,
+        "ppo_epochs": 10,
+        "batch_size": 32,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 0,
+        "reset_ticks": 0,
+        "actor_l2_change": 0.0,
+        "reload_exact": true,
+        "wall_seconds": 0.13299894332885742,
+        "stopped_reason": null,
+        "lineage_control_steps": 20480,
+        "charged_control_steps_lower_bound": 20480,
+        "inherited_controls_not_in_checkpoint": 0,
+        "scope": "Frozen native-PPO compute probe on the original known development scenes; zero new training"
+      },
+      "raw_audit": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261027T045435Z_native_scene_transfer",
+        "method": "H0",
+        "protocol_sha256": "8d80736123f0db3f6ba19f1efe41dc12ec3c345dd62cd3582254473c4d5f8687",
+        "config_sha256": "228139c1e26fca238a6720382870364169f1d4fcba30266629c4559854a49dbe",
+        "summary_sha256": "ddb73f9da74938930ece65baf15db284d58b566cc97545f10b82a13b7c163d64",
+        "evaluation_sha256": "c7c9b5b5879908b086557f83cd9f951e123e0def0496e5b84d54ac5eb19c9571",
+        "evaluation_trace_sha256": "8ff8f2cd75f4a53b9dfd1be1893be12b11567b4103b08894cbfec1e28d2f9248",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793082007098000500.jsonl.gz": "a14eb3d087f469561e3adabe272dc532e74b225e57c38511ceb4f3d2aa3f8879"
+        },
+        "bridge_response_stream": "bridge_55a8fa60_responses.jsonl.gz",
+        "bridge_response_sha256": "e0c41829d242307600149ed61d2469cd9c1e159c233ecc30cd6a483d989a5ec5",
+        "bridge_complete_rows": 3608,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 3600,
+        "total_applied_controls_verified": 3600,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 3723,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "3d67a71cba1fa43494ad8dbc730aac69f3c78310f0021da1d153d2f440ee2d20",
+        "lineage_controls": 20480,
+        "charged_controls_lower_bound": 20480,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 640,
+        "unknown_unflushed_ancestor_tail": false
+      },
+      "model_sha256": "46a97c3c00b374649e7872116473c0172afc9d6e0934b661a0e42ddad0c54415",
+      "normalization_sha256": "c40542bc1ec8ad263d240c2c32b33890db6f06b088e6efdf2a0d3b57b78cb7b5",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 1.4003061358127091,
+          "interventions": 870
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.5162891289438427,
+          "interventions": 880
+        }
+      ],
+      "cache_hits": 0,
+      "modes": {
+        "reference": 5,
+        "plan_failed": 355
+      },
+      "observed_decision_wall_seconds": 30.79559440095909,
+      "task_outcomes_match_original": true
+    },
+    "B1": {
+      "summary": {
+        "physics_steps": 0,
+        "actions": 0,
+        "episodes": 0,
+        "optimization_phases": 0,
+        "optimizer_steps": 0,
+        "reward_components": {},
+        "modes": {},
+        "action_histogram": {},
+        "method": "B1",
+        "job_name": "B1",
+        "rollout_actions": 32,
+        "ppo_epochs": 10,
+        "batch_size": 32,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 0,
+        "reset_ticks": 0,
+        "actor_l2_change": 0.0,
+        "reload_exact": true,
+        "wall_seconds": 0.1278998851776123,
+        "stopped_reason": null,
+        "lineage_control_steps": 20680,
+        "charged_control_steps_lower_bound": 20680,
+        "inherited_controls_not_in_checkpoint": 0,
+        "scope": "Frozen native-PPO compute probe on the original known development scenes; zero new training"
+      },
+      "raw_audit": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261027T045435Z_native_scene_transfer",
+        "method": "B1",
+        "protocol_sha256": "8d80736123f0db3f6ba19f1efe41dc12ec3c345dd62cd3582254473c4d5f8687",
+        "config_sha256": "fd34efad641c78014d1273d492c5659493b171e3de76986a32fa064edc8bc735",
+        "summary_sha256": "1b91af1f8e4129e254b2be75e7f47e3197b4a80ae46c9412039d6dc7d9b193aa",
+        "evaluation_sha256": "b51b78732b19f2d89ddf4ac658acc922a3dc093b1f81ee54828e4a7647da758b",
+        "evaluation_trace_sha256": "ed34c75984e80d7685ecb767f1d41ea216425960fc387f33ddfe2f1a90fdfdda",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793082047857806400.jsonl.gz": "1859584da4251074717327f99aee25dd6c6ad166e11b9d1c9482d53c6cfbc214"
+        },
+        "bridge_response_stream": "bridge_ab9815a0_responses.jsonl.gz",
+        "bridge_response_sha256": "2513a53eebcdddadde47d8ccf4facdbf5fa2b6e54550ffb06e3724cc97f36818",
+        "bridge_complete_rows": 674,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 666,
+        "total_applied_controls_verified": 666,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 789,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "a2fc89e757cec45f5369fc40bec69a9547c8f06cc1cebe20f138ebd71efe77ca",
+        "lineage_controls": 20680,
+        "charged_controls_lower_bound": 20680,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 660,
+        "unknown_unflushed_ancestor_tail": false
+      },
+      "model_sha256": "507a8d1bea64e52e5ce53448f4a761eb1c4c1af7da9c81ccfb0763485b1d6d62",
+      "normalization_sha256": "0302408b2d8b18cad56f5d56aee79596de1c7c58ccf20d25e10cc636de38c168",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 250,
+          "progress": 13.570488002787922,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 54,
+          "progress": 1.2068936743600176,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 179,
+          "progress": 7.952702415404714,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 183,
+          "progress": 3.3604279876353083,
+          "interventions": 0
+        }
+      ],
+      "cache_hits": 0,
+      "modes": {
+        "flat": 68
+      },
+      "observed_decision_wall_seconds": 12.090041600749828,
+      "task_outcomes_match_original": true
+    }
+  },
+  "memo_compute_scope": "H has178actual cache hits; H0/B1zero. All12task outcomes match the original rejected0/4policies, with7866raw evaluation controls audited and zero new optimization. Single-run wall times are not a controlled aggregate speedup or realtime guarantee; this does not improve driving performance.",
+  "small_exploration_initialization": {
+    "scope": "Only initial Gaussian log_std changes relative to the completed long-rollout diagnostic; no teacher/data/reward/architecture change.",
+    "previous_batch": "20261027T052446Z_native_supervised_ppo",
+    "new_batch": "20261027T062725Z_native_supervised_ppo",
+    "changed_policy_tensors": [
+      "log_std"
+    ],
+    "previous_log_std": [
+      -2.299999952316284,
+      -2.299999952316284
+    ],
+    "new_log_std": [
+      -4.0,
+      -4.0
+    ],
+    "normalization_and_rng_identical": true,
+    "rollout_actions": 1280,
+    "minibatch": 320,
+    "learning_rate": 3e-05,
+    "physical_budget": 20480,
+    "planned_adam_steps": 640
+  },
+  "small_exploration_status": "062725 is actually training; only initial log_std changes versus052446, all other initial tensors/normalizer/RNG unchanged. Final endpoint pending."
+}

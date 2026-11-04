@@ -1,0 +1,21 @@
+{
+  "scope": "First actual native PPO phase of the registered lower-learning-rate B1 probe; training is incomplete, no final score claimed.",
+  "batch": "20261031T055729299388Z_native_supervised_ppo",
+  "protocol_sha256": "795940d4b3094c11b5a58842a02bc4bfaa59b5792ee02f3f0ed622187b6bc54c",
+  "checkpoint": "checkpoint_000001280",
+  "checkpoint_model_sha256": "a6d3db46a17d9221f6d2d5faf005c8c7ed7e33f24fb356fd6a74fb81030f13d0",
+  "checkpoint_normalization_sha256": "56ac3ff52083e6a4853eecd1f2ba402099d2866dc85c5a33ef7528d4236e7c51",
+  "first_optimization_line_sha256": "eacb8a247e7da09173d98f274e143aacff012d8e465753b8788f4c1c2e2bd498",
+  "new_native_training_controls": 1280,
+  "new_actual_Adam_steps": 40,
+  "learning_rate": 3e-06,
+  "target_kl": 0.01,
+  "normalization_RMS_value_exact": true,
+  "normalization_count": 3467.0001,
+  "actor_l2_change": 0.014262140728533268,
+  "logged_minibatch_approx_KL": 0.007936639711260796,
+  "PPO_epochs_completed": 10,
+  "final_evaluation_available": false,
+  "limits": "Fresh CARLA observations differ slightly from the original 3e-5run; this is not a same-data closed-loop causal comparison. First-phase optimizer evidence is not completed-training performance.",
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,55 @@
+{
+  "scope": "Actual public release download and independent-checkout offline reproduction; zero new driving or optimizer steps, not research acceptance",
+  "assets": [
+    {
+      "asset": "native_self_replay_3m_seed11_20261026.zip",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_self_replay_3m_seed11_20261026.zip",
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "ebd6be337dbd439b5fea38f3fac7d8de7fe9d4d3e1ccf3d4c10bc717df3d5f05",
+      "asset_source_commit": "5a300e9e9deac24e5e619b190e56c3c364e3c257",
+      "reproduction_source_commit": "5a300e9e9deac24e5e619b190e56c3c364e3c257",
+      "verified_files": 413,
+      "methods": [
+        {
+          "method": "B1",
+          "raw_audit_sha256": "3e408dde2594e05e65f015f658ff87f4b39713bb01b27ee77c1510689e703e43",
+          "verified_controls": 5060,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "f77e91b4bb259775f734c6ee3b7f5715336a8225b0b69e1d5e4fd7da2c509418",
+      "figure_byte_identical": true
+    },
+    {
+      "asset": "native_self_replay_6m_transfer_seed11_20261026.zip",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_self_replay_6m_transfer_seed11_20261026.zip",
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "c2cf7c0725e139d5ab66cc0dd4e24d2565aebb6a89499b043975a6649a4b9feb",
+      "asset_source_commit": "5a300e9e9deac24e5e619b190e56c3c364e3c257",
+      "reproduction_source_commit": "5a300e9e9deac24e5e619b190e56c3c364e3c257",
+      "verified_files": 381,
+      "methods": [
+        {
+          "method": "B1",
+          "raw_audit_sha256": "186f05881f414486e44dfe78aec3e444ac82c3a0fc574b98b4c06d6f6be0e795",
+          "verified_controls": 834,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "2ca7d5fe0b352385ea5fbaac18024b65452f4805e261c6c64f1ad0b5d041508c",
+      "figure_byte_identical": true
+    }
+  ],
+  "verified_files": 794,
+  "verified_controls": 5894,
+  "measured_start_actions": 8,
+  "byte_identical_figures": 2,
+  "new_controls": 0,
+  "optimizer_updates": 0
+}

@@ -1,0 +1,176 @@
+# Failure analysis
+
+The [fresh-route update replay](../reports/native_route_optimizer_replay_20261025.md)
+now reproduces64actual sampled actions/639controls across a terminal transition,
+including final policy/value tensors, Adam state and observation/return moments
+bit-for-bit. In these two rollouts critic gradients dominate shared clipping;
+almost all encoder gradient components are below Adam epsilon afterward, which
+is a scale observation rather than a zero-gradient cutoff. Lowering epsilon in
+a discarded fixed-data branch moves parameters17times farther but changes
+categorical KL only about2times. No branch has been deployed or shown to improve
+driving; live H/B1 training stays unchanged.
+
+The fresh H0 final endpoint confirms the previously diagnosed road1 failure:
+90invalid plans,900intervened controls,zero progress and a45s deadline. The other
+three roads succeed with no recorded interventions or MPC failures. All190
+deterministic actions reconstruct from the final saved policy and audited
+feedback; this is not a rule-selected result. H0 still has no reliable road1
+decision and its near-uniform policy cannot be called converged. The all-four
+evaluation and22,589verified controls are retained in the
+[endpoint report](../reports/native_route_checkpoint_20261025.md).
+
+2026-10-25 intermediate [fresh-route checkpoint diagnosis](../reports/native_route_checkpoint_20261025.md)
+reconstructs seed11 initialization and matches the checkpoint's logged actor
+change. At10,186 actual training controls, H0 probabilities remain near uniform;
+three of four initial argmax selections change, but road1's selected action
+still fails the production full-body/reference gate. These recorded-scene
+offline queries have no new execution and precede the required endpoint audit.
+The live training version is unchanged; no convergence or PPO-value claim follows.
+
+The completed native rollout study leaves every learned arm at0/4. B1 long
+improves mean progress to6.637067m (short2.203275m) but records23 training bounds
+violations in134 completed episodes, versus18/128 for short. Its initial steering
+means are within bounds while longitudinal means still saturate; saturation alone
+does not explain all failures. Whole-rollout collection gives long2,230 additional
+controls, explicitly included in the comparison.
+
+Actual rule-only B3 on the same H interface and exact measured tasks succeeds on
+roads0/1/2 without planning/MPC failures or interventions. Therefore those learned
+failures cannot be explained solely by an incapable low level or action catalog.
+On road3, B3 executes35 reference decisions then55 waits. At the first wait it is
+1.946988m from the goal; all30 moving actions fail production reference generation.
+The final pose is1.968249m away with0.022486rad yaw error. This distinguishes
+selection/learning failure from loss of candidate coverage along an approach.
+It does not prove the original task globally infeasible, nor that route-frame
+candidates or a continuation filter will repair it. Any changed candidate or
+feedback interface must be versioned, retrained and compared against a rule
+selector sharing those capabilities. Full evidence and reproduction:
+[native rule diagnostic](../reports/native_rule_protocol_20261024.md).
+
+The following short-arm diagnosis is retained as its historical endpoint.
+
+The native B1 short-rollout endpoint completes 102,633 new controls at 0/4 frozen
+training-road successes, with mean progress 2.203275 m. Training records 110
+deadlines and 18 bounds violations, no successes. All four frozen cases end
+nearly stationary outside the goal region, with zero interventions; case 1 has
+zero progress and starts with maximum normalized braking. Initial Gaussian means
+exceed both action bounds in every case, and the clipped saved-policy actions
+reproduce. All 106,233 controls, 128 returns, four initial actions and endpoint
+analysis reproduce independently. This is saturation/immobility evidence, not
+proof of a causal defect or a healthy baseline. Earlier bounded-mean lightweight
+trials remain relevant negative/limited evidence, not native validation. The
+B1 long rollout is running; do not claim the complete B1 pair yet.
+
+Complete recorded-decision reconstruction now separates the onset of reference
+loss from terminal-only observations. H32 first has no moving reference at
+zero-based decisions 42/37/37/22; H256 at 40/37/never/22. In cases 0, 2 and 3,
+both policies already select a reference-producing action at decision zero
+whose proposed target lacks a bounded analytic connector to the final goal,
+despite other locally valid targets having such connectors. This motivates
+investigating earlier choices and continuation information. It does not prove
+the alternate references would track and finish, or that absent connectors mean
+unreachable states. Case 1 has no measured-state goal connector at all 90
+decisions in either arm and no such candidate connector initially: a simple
+connector-based hard mask is unsupported. H256 case 2 retains local references
+throughout yet selects failed plans 55 times, so action ranking remains a
+separate problem. See the [full sequence diagnostic](../reports/native_rollout_horizon_20261024.md#where-reference-availability-disappears).
+
+The completed native H rollout pair adds 102,713 / 102,400 controls from the same
+parent checkpoint. Both frozen evaluations score 0/4. Increasing rollout length
+from 32 to 256 changes mean progress from 14.987119 to 14.939079 m and increases
+mean intervention rate from 0% to 48.3333%. All 212,313 training/evaluation
+controls across both arms pass raw-frame audit. H256 has no moving reference
+at three final decision states; at the fourth, two references remain available
+but the policy repeatedly selects a failed plan. All 360 H256 decisions reproduce.
+This does not support adopting longer rollouts for H, and it leaves both early
+choices entering catalog dead ends and weak action ranking unresolved. It is a
+same-parent, seed-11 development comparison, not independent-seed evidence.
+B1 is still running. See the [paired report](../reports/native_rollout_horizon_20261024.md).
+
+The newest completed H short-rollout endpoint uses102,713additional native
+controls:5training successes on one road (all with1–10failed plans),110training
+deadlines, then0/4frozen evaluation. All106,313training/evaluation controls match
+CARLA frames. Its frozen cases wait with zero interventions, but all30moving
+actions fail production reference generation at every final state. The current
+footprints remain free; three cases have no free candidate endpoints and the
+fourth has two clear endpoints with exhausted searches. Unlike H0 below, these
+states have no available moving reference under the current catalog/planner.
+The distinction favors investigating earlier choices and continuation feasibility,
+not simply adding a wait penalty. It is not proof of global geometric
+impossibility or an established solution. All360decisions and six diagnostic
+files reproduce independently; the completed H256 comparison is above and B1
+remains incomplete.
+See the [endpoint report](../reports/native_rollout_horizon_20261024.md).
+
+Current native development evidence (2026-10-24) is in the
+[rollout comparison report](../reports/native_rollout_horizon_20261024.md).
+Both H0 rollout lengths complete 102,400 additional CARLA controls at 0/4 frozen
+training-road successes. All 720 deterministic evaluation decisions reconstructed
+from measured feedback reproduce exactly in a separate checkout. At all
+eight final decisions the selected plan fails, while 6–26 alternative actions can
+generate production timed references. The failed action's probability is only
+3.87–6.81%; reference alternatives collectively retain 21.3–85.0%. This narrows
+these particular failures to local action ranking, without establishing why the
+learner acquired it or whether alternatives would track and finish safely.
+Both arms' 113 completed stochastic training episodes also time out: probability
+mass is not evidence that stochastic deployment solves the task. The H pair is
+reported above; B1 remains pending, and evaluation rules/low level remain frozen.
+
+Physical reward reconstruction across 226 completed episodes verifies the
+terminal-zero distance-PBRS identity to 1.19e-14. Same-road/equal-time failures
+have identical discounted event/time and shaping contributions; risk and comfort
+explain their remaining return differences. This is expected shaping behavior,
+not a newly discovered reward implementation error. Historical curriculum and
+reward interventions below remain relevant counterevidence to simple remedies.
+
+The following dated findings preserve earlier development versions and do not
+override the current native integration or live-run status.
+
+Latest completed [normalization/retention contrast](../reports/recovery_aggregation_20261023.md):
+after 102,400 PPO controls, reduced noise with updating observation statistics
+scores 0/10 (six collisions), while the matched frozen-statistics branch scores
+4/10 (six deadlines) and parking 8/8. Both contain inherited supervision and one
+correlated policy lineage. All static, narrow and unseen cases still fail.
+At its 25k endpoint all nine deadline cases brake while stationary in the last
+five seconds; at 100k the remaining failures end 8.68–19.04 m from the goal.
+Freezing statistics helps this final retention comparison but does not establish
+general competence, safety or a causal effect across independent seeds.
+Native-road PPO has also been implemented and actually trained; its latest
+H/B1 recovery probes remain 0/4. The dated paragraphs below preserve historical
+diagnoses and are superseded by their linked later reports where indicated.
+
+The [acceleration/curriculum report](../reports/actuation_curriculum_20261022.md) preserves PI overshoot, residual feedforward braking spikes, v17 final3M failure and v18 stochastic/deterministic parking discrepancy. High recent training success is not validation success.
+
+Latest measured failures: [native control and terminal pose](../reports/native_pose_20261022.md). v16six near-goal stops fail yaw; v13full1M remains0/10. Mild coasting and manual-first-gear CARLA trials do not fix large brake spikes, despite4/4route completion. Default actuation remains unchanged; native-road PPO boundaries are still unimplemented.
+
+This file records development findings, including negative results. Historical inspected final sets are no longer unseen confirmation sets.
+
+The [latest flat-policy diagnosis](../reports/flat_diagnosis_20261022.md) records a completed1M hold10 baseline with0/10 and zero progress, feature/actual-control audits, and38verified physical-return reconstructions. Stationary deadline behavior slightly out-rewards partial-progress deadline behavior under the existing objective, although normal success remains better. Candidate-set encoding and the separate signed-progress reward trial have also completed1M at0/10. Physical-frame audits show the latter stops2.67–2.77m before the empty goals and never enters the goal region in any development case. An unchanged cumulative2M/3M continuation is running to test training span; existing failures remain. The reward trial is not policy-invariant shaping and requires matched retraining before any architecture claim.
+
+Latest completed experiments are in [the camera/curriculum report](../reports/camera_staged_20261022.md): v11 B1 has zero successful training episodes in 1,505 episodes/1M physical steps; v12 H remains unsuccessful on both unseen layouts; CARLA H regresses from 5/6 at 25k to 4/6 at 100k. v13 now tests a common full-length basic-task pretraining stage, with no reward or control changes and no extra uncounted budget. Its H also regresses from 10/10 at 100k to 8/10 at 300k; do not hide this by selecting the earlier score. Camera infrastructure failures are recorded separately from policy deadlines.
+
+| Observation | Evidence | Interpretation and action |
+|---|---|---|
+| Historical B1 gives0/40 while H and B3 both give30/40 | Oct16 archived paired evaluations | Cannot attribute the gap to learned high-level decision making; rebuild a healthy flat baseline and compare against strongB3 |
+| B1 learns6m parking at1M but fails23m/45s | v6 model,8/8 short and0/8 full-route inference | Training-distance specialization; fresh fixed23m versus uniform6–23m development is running |
+| Fresh fixed23m B1 passes23m at300k but fails6/12/18m | v9 two conditions per distance | Basic long-route motion/parking can be learned; distance generalization remains inadequate |
+| H200k8/10 versusH0 6/10; both300k8/10 | v8 matched450-input development | One checkpoint difference is unstable; do not claim feedback contribution before sufficient independent runs |
+| H300k fails unseen, H0 fails static | v8 raw per-family results | Same total completion can conceal different failure mechanisms; retain per-family reports |
+| Frozen learned CARLA H/H0 both2/6 | v8 real-frame transfer, no infrastructure failures | Low collision counts coexist with four deadlines; no successful transfer or safety claim |
+| Failed CARLA cases repeat candidate actions | `action_failure_audit.json` and raw traces | Search-budget exhaustion or endpoint body collision/bounds, rather than a sensor-disconnect explanation; matched real CARLA adaptation is running |
+| Terminal target offsets could leave an unachievable final lateral correction | Geometric tests and B3 physical diagnostics | Added an explicit terminal return envelope; old experiments retained, new versions retrained |
+| Legacy PID-only owner locks survive process death | Fault-injection and live reconnect tests | OS-held process leases now release on death; still no automatic recovery from a crash with live residual actors |
+
+Calibration remains limited: steering was calibrated over a partial normalized range, native curved-road tracking is not yet established, and large measured CARLA braking deceleration spikes remain visible. Current curve cases are obstacle-defined curved routes on a straight roadbed. Controller and policy improvements must be evaluated with progress, time, intervention, failure and comfort together.
+
+Current development is not a new final-test protocol. A future confirmation must freeze method/configuration, sufficient independently trained seeds, model-selection rules, budget, case generator, endpoints and multiplicity handling before inspecting its results.
+
+## Recorded-state spatial audit
+
+At all eight failed H/H0 frozen-CARLA terminal states, the shared offline planner can find paths to3–12distinct available candidate targets (speed duplicates excluded). The policy repeatedly chose different, unplannable targets. This narrows the issue to policy selection/learning or the quality of the feedback representation rather than universal absence of spatially feasible actions. It does not prove those alternate trajectories would track safely, and dynamic safety was deliberately outside the spatial audit. Source snapshots and all16initial/final state results are retained under `spatial_candidate_audit/` in the transfer batch.
+
+## Completed follow-up evidence
+
+The v9 fixed-distance and uniform-distance B1 jobs both finish1,000,960 physical steps with the same poor cross-distance results; they are no longer running. The v8 lightweight continuation ends H8/10 versus H0 9/10. Real CARLA adaptation of the original200k pair ends3/6 each at approximately100k world ticks, still with static/curve deadlines. Strong B3 on the identical v8 lightweight development cases achieves10/10, including both unseen layouts. These are counterexamples to a current feedback/PPO-superiority claim, not excluded outliers.
+
+v12 now tests a shared candidate scorer with explicit geometry and unchanged reward/low level. H0 gets the same geometry and network but zero candidate witnesses/previous outcomes. All actions remain available; no teacher or auxiliary labels are introduced. Initial25k results (H0/10, H0 4/10) are retained. The new architecture has not earned an improvement claim. A separate mixed-task B1 is still training with its own frozen450-input version; it is not silently reused as a605-input formal comparator.

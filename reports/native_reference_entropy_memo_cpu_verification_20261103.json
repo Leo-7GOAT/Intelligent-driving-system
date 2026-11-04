@@ -1,0 +1,34 @@
+{
+  "scope": "CPU checks for optional fixed entropy coefficient,unchanged initializer outputs and explicit exact failure memo",
+  "checks": [
+    {
+      "receipt": "entropy_memo_targeted_20261103.xml",
+      "sha256": "43e87c75d469cb598aef9dfa78ea20b5468db7e8edf16f4c3fa34f5cbb3c8c38",
+      "passed": 60,
+      "skipped": 0,
+      "seconds": 58.761
+    },
+    {
+      "receipt": "entropy_memo_full_cpu_20261103.xml",
+      "sha256": "6626b06ab5e4f65c17cf49a513d982d21ebf12c7ff1fbd53e791db1c5eb1b176",
+      "passed": 1344,
+      "skipped": 1,
+      "seconds": 236.216
+    }
+  ],
+  "full_cpu_CARLA_deselected": 4,
+  "final_metadata_registration_validation_passed": 10,
+  "metadata_only_change_after_full_run": "Clarified that physical models/actions are unchanged while the computational planner wrapper changes;no model,optimizer or environment logic changed",
+  "new_CARLA_controls": 0,
+  "research_acceptance": "UNMET",
+  "hosted_ci": {
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41651263807",
+    "source_commit": "ac04d2015ad76d98e47503e43af2094ac19cc211",
+    "status": "completed",
+    "conclusion": "success",
+    "passed": 1327,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "seconds": 337.84
+  }
+}

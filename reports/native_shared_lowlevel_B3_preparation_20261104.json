@@ -1,0 +1,55 @@
+{
+  "scope": "Strong deterministic catalog comparator with identical physical planning/control/safety;not yet native evaluated",
+  "research_acceptance": "UNMET",
+  "status": "IMPLEMENTED_CPU_AND_METADATA_PREFLIGHTED_NOT_NATIVE_STARTED",
+  "policy": "Existing goal/path/speed/continuation ranking,31candidate connector checks,up to3nominal searches;finite5m failed-label preference and heading-aware terminal wait",
+  "information": "Same measured failed-action history and candidate/world observations;no future actor truth",
+  "shared_lowlevel": "Only rule_action and admission settings differ;full remaining AST and all other native modules are copied from the audited H source",
+  "new_PPO_updates": 0,
+  "new_final_conditions": 0,
+  "tests": {
+    "shared_core_full_CPU": {
+      "passed": 1420,
+      "skipped": 1,
+      "carla_deselected": 4,
+      "seconds": 421.21,
+      "evidence": "shared_rule_full_CPU.xml"
+    },
+    "final_rule_and_isolated_launcher": {
+      "passed": 44,
+      "seconds": 20.54,
+      "evidence": "shared_B3_registered_final_tests.xml"
+    }
+  },
+  "runtime": {
+    "RPC_port": 2110,
+    "RPC_span": [
+      2110,
+      2111,
+      2112
+    ],
+    "allow_only_one_explicit_nonoverlapping_peer": true,
+    "minimum_free_GPU_MiB": 4096,
+    "per_batch_wall_seconds": 14400,
+    "automatic_retries": 0,
+    "never_stop_unowned_server": true,
+    "minimum_free_RAM_GiB": 16,
+    "resource_revision": "Before any B3driving:4GiBGPU+16GiBRAM admission,based on completed H0/peer coexistence;wall/scoring/learning budgets unchanged."
+  },
+  "source_hashes": {
+    "navstack/env.py": "72bb566462368903180443cf1171a33ebef927c3749b0a844774513551efe1fd",
+    "navstack/shared_rule_registration.py": "3c4b38e3f197c4340c327259a0f5de354a50b17d869839f02f8de43f2e989354",
+    "navstack/reference_compute.py": "24dd4e092d6e78092135d14e2243bc1aba762a521a35b7e379dbc74ee0059115",
+    "navstack/reference_option_commitment.py": "3cd55980dc8cf0c478b133738e8ff1f5a94d5a1cabfab8e6af06b7c8d9b503da",
+    "navstack/reference_road_refinement.py": "213e97c5f8eeab28ff43c311c7eae1616dddba9375b05dc26988f48229a7703a",
+    "navstack/steering_transition.py": "d023628f6d382bc9b23655f91093835f4730cb6fe306f018da9f4e9f29282a6c",
+    "scripts/fixed_shared_native_rule.py": "746af15143ebdfb96e01e38144bd12e56b3e5d583bc34b971486d5cd94eafe94",
+    "scripts/evaluate_native_rule.py": "29b685ca83336a5fc50b98d3479bcdd3992f3011096db1983a7716651d65085c",
+    "scripts/run_carla_owned_foreground.ps1": "cd3f32b8e4c4c103cb980dd160568acd5034ef52b051e50ea6573d7a4c42b0b5",
+    "scripts/run_registered_native.ps1": "45946237cfbe128aee495100758991d59711e081a6e930591e2f57257c886e3e",
+    "scripts/audit_native_control_delivery.py": "826830be82a333915e69172c2d04f0fa1903cdaf17a32143954487f8d2c4b212",
+    "scripts/diagnose_outcome_feedback_actions.py": "7710fbb7f7ad93d7ea9499120d4d9d0b01e6ecfed9d5bf50c2348d00a594086f",
+    "scripts/summarize_outcome_development.py": "c1b8179a6582dff7316b9084a309311c5f196f82e7192793fd43c9b27a594df0"
+  },
+  "limits": "Full CPU covers shared-core gates before final small heading/phase/isolation extensions;44targeted tests cover those final extensions.Native B3has not started;final fresh source/config/launcher checks precede launch.Existing unrelated2100CARLAinstance remains untouched."
+}

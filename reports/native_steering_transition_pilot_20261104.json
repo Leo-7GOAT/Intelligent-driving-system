@@ -1,0 +1,195 @@
+{
+  "scope": "Two known development conditions;frozen PPO engineering transfer after changing the planning model",
+  "batch": "20261104_steering_transition_refinement_H_pilot",
+  "protocol_sha256": "a73a0936646ce30d4d2660cb300284430602034399719ee831f399fa58342e7a",
+  "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+  "normalization_sha256": "c1d31978ba2e34c2fbb8270f99685b8734967e235d6afed414e3e65380bf5dd3",
+  "new_PPO_updates": 0,
+  "original_case_ids": [
+    1,
+    4
+  ],
+  "reference_road_refinement": "sampled_native_reference_refinement_v1",
+  "steering_transition": "measured_steering_slew_primitives_v1",
+  "changes": [
+    "Use measured steering as search root and rate-bounded variable-curvature primitives at max(measured_speed,selected_speed,0.1).",
+    "Analytic connectors disabled for this prototype because they do not constrain steering continuity. Exact pose-only failure memo bypassed.",
+    "PPO still selects the same local target and speed;no policy action replacement. Actual CARLA dynamics,task geometry and original scoring unchanged."
+  ],
+  "outcomes": [
+    {
+      "original_case_id": 1,
+      "success": true,
+      "termination_reason": "success",
+      "controls": 333,
+      "decisions": 34,
+      "interventions": 2,
+      "plan_failures": 0,
+      "planning_seconds": {
+        "p95": 0.24229333000002323,
+        "p99": 0.4438889110000128,
+        "max": 0.4539912999999842
+      }
+    },
+    {
+      "original_case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "controls": 340,
+      "decisions": 34,
+      "interventions": 1,
+      "plan_failures": 0,
+      "planning_seconds": {
+        "p95": 0.6602127200000034,
+        "p99": 1.2624603090000197,
+        "max": 1.465965600000004
+      }
+    }
+  ],
+  "controls": 673,
+  "world_ticks": 734,
+  "reset_ticks": 61,
+  "NN_decisions": 68,
+  "measured_starts": 2,
+  "verification": {
+    "endpoint_raw_audit.json": {
+      "sha256": "82e59065caf705c579dbba669385d9b4093788dc53158315deed327f65e7fc1c",
+      "receipt": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261104_steering_transition_refinement_H_pilot",
+        "method": "H",
+        "protocol_sha256": "a73a0936646ce30d4d2660cb300284430602034399719ee831f399fa58342e7a",
+        "config_sha256": "6f2c91660741a46be9710b257a110438a2a92186fb6f79ac3ccb52dfcfacc160",
+        "summary_sha256": "f4a2e97d5b25932243ffca9007e6d2b72ab69829d3683031cd56cbe71489382f",
+        "evaluation_sha256": "91e0d236d50c6f33da398af74f8b974d06f87e09d85b0f81a7d9280d3a1a7f8b",
+        "evaluation_trace_sha256": "3ab563d2e421fb7f56c172fe4ac3698de864f3383354a5a82dc234886daddc75",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793760154646714400.jsonl.gz": "c6348020c3cd4abf7f907205ffd8a6c61a66822308a1ff6ae49db17b9b9d049e"
+        },
+        "bridge_response_stream": "bridge_da6fa7d6_responses.jsonl.gz",
+        "bridge_response_sha256": "0d3e902caf1af593f919b630bd5481de54465a76a80e295c4c1b97baab8ea0c6",
+        "bridge_complete_rows": 689,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 673,
+        "total_applied_controls_verified": 673,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 734,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "6c31cb3e3afb8bec3dbc6b0aed96e91319ddd8cf3d25850955aff910151a54bc",
+        "lineage_controls": 41531,
+        "charged_controls_lower_bound": 90131,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 1310,
+        "unknown_unflushed_ancestor_tail": false
+      }
+    },
+    "measured_start_inference.json": {
+      "sha256": "0e589828f8fce721769f7bae84ccd18810c9f6c0b1c9f613e5ccb33aa3c3459a",
+      "receipt": {
+        "scope": "MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE",
+        "method": "H",
+        "batch": "20261104_steering_transition_refinement_H_pilot",
+        "all_static_actions": false,
+        "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+        "normalization_sha256": "c1d31978ba2e34c2fbb8270f99685b8734967e235d6afed414e3e65380bf5dd3",
+        "raw_audit_sha256": "82e59065caf705c579dbba669385d9b4093788dc53158315deed327f65e7fc1c",
+        "script_sha256": "72b02037fe050f55470b7a9e2174134a6fa7d52b3edeaa2f525b1e4dd3719b55",
+        "results": [
+          {
+            "case_id": 0,
+            "decisions": 1
+          },
+          {
+            "case_id": 1,
+            "decisions": 1
+          }
+        ],
+        "all_recorded_actions_match": true,
+        "inference_normalization_frozen": true,
+        "RMS_unchanged": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "limits": "Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible."
+      }
+    },
+    "static_action_inference.json": {
+      "sha256": "488b8432d508089f8769c60ff9f14009da1a5480be379419cf2cd53494c4e36d",
+      "receipt": {
+        "scope": "MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE",
+        "method": "H",
+        "batch": "20261104_steering_transition_refinement_H_pilot",
+        "all_static_actions": true,
+        "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+        "normalization_sha256": "c1d31978ba2e34c2fbb8270f99685b8734967e235d6afed414e3e65380bf5dd3",
+        "raw_audit_sha256": "82e59065caf705c579dbba669385d9b4093788dc53158315deed327f65e7fc1c",
+        "script_sha256": "72b02037fe050f55470b7a9e2174134a6fa7d52b3edeaa2f525b1e4dd3719b55",
+        "results": [
+          {
+            "case_id": 0,
+            "decisions": 34
+          },
+          {
+            "case_id": 1,
+            "decisions": 34
+          }
+        ],
+        "all_recorded_actions_match": true,
+        "inference_normalization_frozen": true,
+        "RMS_unchanged": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "limits": "Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible."
+      }
+    }
+  },
+  "strict_engine_delivery": {
+    "sha256": "a154b97f36856d06bcd0286ba77c5d15d2b0953b41fa411a8d41e448e09c7a03",
+    "receipt": {
+      "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+      "batch": "20261104_steering_transition_refinement_H_pilot",
+      "protocol_sha256": "a73a0936646ce30d4d2660cb300284430602034399719ee831f399fa58342e7a",
+      "control_delivery": "batch_sync_v1",
+      "bridge_streams": [
+        {
+          "name": "bridge_da6fa7d6_responses.jsonl.gz",
+          "sha256": "0d3e902caf1af593f919b630bd5481de54465a76a80e295c4c1b97baab8ea0c6"
+        }
+      ],
+      "tolerance": 1e-05,
+      "counts": {
+        "controls": 673,
+        "gear_or_handbrake_mismatches": 0,
+        "missing_or_negative_sync_ack": 0
+      },
+      "mismatch_channels": {},
+      "by_phase": {
+        "evaluation": {
+          "controls": 673
+        }
+      },
+      "mismatch_examples": [],
+      "all_engine_controls_match_requested": true,
+      "strict_delivery_gate_passed": true,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+    }
+  },
+  "limits": [
+    "Two cases with one frozen model are engineering development evidence,not generalization,an RL gain,an isolated causal attribution or final acceptance.",
+    "Sampled footprints and integration do not certify continuous safety or eliminate physical model mismatch.",
+    "Synchronous execution is not proof of real-time operation;full decision wall times include blocking physical execution.",
+    "Original static 4/12 score is retained;the whole inventory has not yet been evaluated with this planner.",
+    "Raw archive is retained locally,not yet uploaded as a public capsule."
+  ],
+  "regression": {
+    "passed": 1361,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "seconds": 261.06,
+    "xml_sha256": "c858050070be804fb2d40edbfb94b40d8e7257df997a18ce264601a2cdc4c5dc"
+  }
+}

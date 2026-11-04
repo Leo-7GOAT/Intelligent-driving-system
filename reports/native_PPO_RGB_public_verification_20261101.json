@@ -1,0 +1,127 @@
+{
+  "scope": "Executed prerelease upload,unauthenticated archive/video downloads and independent raw/model/figure/all-frame video decoding;no new driving or learning",
+  "source_commit": "ba932787113168ad5781ee640c6f06d09bbee0e1",
+  "release": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101",
+  "is_prerelease": true,
+  "source_CI": {
+    "conclusion": "success",
+    "headSha": "ba932787113168ad5781ee640c6f06d09bbee0e1",
+    "status": "completed"
+  },
+  "capsules": [
+    {
+      "method": "H",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_PPO_RGB_H_seed11_20261101_repro.zip.parts.json",
+      "archive": {
+        "archive": "native_PPO_RGB_H_seed11_20261101_repro.zip",
+        "bytes": 14156143,
+        "sha256": "f0c545bc3763baa40925a97cb20951a1690ed005af11ec00ce7be05e65be4724",
+        "verified_controls": {
+          "H": 645
+        },
+        "files": 514,
+        "sensor_frames": 647,
+        "parts": 28,
+        "parts_manifest": "native_PPO_RGB_H_seed11_20261101_repro.zip.parts.json"
+      },
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "f0c545bc3763baa40925a97cb20951a1690ed005af11ec00ce7be05e65be4724",
+        "asset_source_commit": "ba932787113168ad5781ee640c6f06d09bbee0e1",
+        "reproduction_source_commit": "ba932787113168ad5781ee640c6f06d09bbee0e1",
+        "verified_files": 514,
+        "methods": [
+          {
+            "method": "H",
+            "raw_audit_sha256": "0498ebb7e27679de07a34244b070bfdb4d2774281e0fa8aefb5db2a9baffd88d",
+            "verified_controls": 645,
+            "measured_start_actions_reproduced": 2,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "3df51a262268c966c096739490a35c2beb3adebdbfb3c446ab253b04086e8389",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis"
+      },
+      "independent_decoded_frames": 647,
+      "decode_receipt_sha256": "61ab0dfbf88435703e71c4e5ed83bf425915ff5fc82ab030381cf89ee8c51e86"
+    },
+    {
+      "method": "B1",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_PPO_RGB_B1_seed11_20261101_repro.zip.parts.json",
+      "archive": {
+        "archive": "native_PPO_RGB_B1_seed11_20261101_repro.zip",
+        "bytes": 24341269,
+        "sha256": "aeb35651f2ef989edf6bedacdf0fbf319a55b21132d6da8b2a07da53f8589792",
+        "verified_controls": {
+          "B1": 1183
+        },
+        "files": 506,
+        "sensor_frames": 1185,
+        "parts": 47,
+        "parts_manifest": "native_PPO_RGB_B1_seed11_20261101_repro.zip.parts.json"
+      },
+      "reproduction": {
+        "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+        "archive_sha256": "aeb35651f2ef989edf6bedacdf0fbf319a55b21132d6da8b2a07da53f8589792",
+        "asset_source_commit": "ba932787113168ad5781ee640c6f06d09bbee0e1",
+        "reproduction_source_commit": "ba932787113168ad5781ee640c6f06d09bbee0e1",
+        "verified_files": 506,
+        "methods": [
+          {
+            "method": "B1",
+            "raw_audit_sha256": "bcdf9facf21671d5d627540a7ab7930e79afce06b5ccb35ad3884b2c21a86c84",
+            "verified_controls": 1183,
+            "measured_start_actions_reproduced": 2,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0
+          }
+        ],
+        "figure_sha256": "105af19ed0bb7e34dcf62a88df67115696064eb8efda645455403ffc31a158b4",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis"
+      },
+      "independent_decoded_frames": 1185,
+      "decode_receipt_sha256": "def10e22f2ea413f14b5ffe6b566504b7803c14e38d9024a7524c37a656481f0"
+    }
+  ],
+  "videos": [
+    {
+      "name": "20261101T024611835234Z_native_PPO_camera__H__seed11__parentcase0__case_00_native_curve_success.mp4",
+      "bytes": 326857,
+      "sha256": "9ff2ffc60aed387c5493e3b1b96e45e1135effcf17dad95da2e104949bdf924c",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/20261101T024611835234Z_native_PPO_camera__H__seed11__parentcase0__case_00_native_curve_success.mp4",
+      "unauthenticated_download_verified": true
+    },
+    {
+      "name": "20261101T024611835234Z_native_PPO_camera__H__seed11__parentcase3__case_01_native_curve_success.mp4",
+      "bytes": 3740648,
+      "sha256": "993a7843edac5e20da1f96d529b77c76229831bfacf81479f5d7af2246d57838",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/20261101T024611835234Z_native_PPO_camera__H__seed11__parentcase3__case_01_native_curve_success.mp4",
+      "unauthenticated_download_verified": true
+    },
+    {
+      "name": "20261101T024615807894Z_native_PPO_camera__B1__seed11__parentcase0__case_00_native_curve_success.mp4",
+      "bytes": 333521,
+      "sha256": "89d60395b250d928049fef7f37e2eb30975793f35c8f62058f0da0f209438d06",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/20261101T024615807894Z_native_PPO_camera__B1__seed11__parentcase0__case_00_native_curve_success.mp4",
+      "unauthenticated_download_verified": true
+    },
+    {
+      "name": "20261101T024615807894Z_native_PPO_camera__B1__seed11__parentcase3__case_01_native_curve_out_of_bounds.mp4",
+      "bytes": 9954688,
+      "sha256": "bfb0942ba465662d0eedc0e19292eb9266607aa6e358336715e71320ceb7ffce",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/20261101T024615807894Z_native_PPO_camera__B1__seed11__parentcase3__case_01_native_curve_out_of_bounds.mp4",
+      "unauthenticated_download_verified": true
+    }
+  ],
+  "total_public_decoded_frames": 1832,
+  "uploaded_assets": 82,
+  "network_failures": [],
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "research_acceptance": "UNMET;known two-road single-seed illustrations,weak B1baseline,no final confirmation"
+}

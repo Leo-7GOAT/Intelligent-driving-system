@@ -1,0 +1,5 @@
+{
+  "method": "H",
+  "deadline": 30.0,
+  "planner": {"max_seconds": null, "max_nodes": 1800}
+}

@@ -1,0 +1,18 @@
+{
+  "scope": "Actual root/independent CPU verification of source-bound native control-cadence and trace-schema correction;no deployment-result claim",
+  "verified_code_commit": "b0f11bc842095aa7baba03217dc1c6bb917b25f8",
+  "root_related_tests": 85,
+  "root_test_wall_seconds": 8.14,
+  "independent_related_tests": 85,
+  "independent_test_wall_seconds": 14.06,
+  "hosted_workflow": {
+    "id": 41208046981,
+    "conclusion": "success",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41208046981"
+  },
+  "actual_schema_verified_on_H_controls": 4337,
+  "actual_schema_verified_on_B1_controls": 5019,
+  "actual_cadence_frozen_restores": 2,
+  "native_cadence_controls": 0,
+  "research_acceptance": "UNMET"
+}

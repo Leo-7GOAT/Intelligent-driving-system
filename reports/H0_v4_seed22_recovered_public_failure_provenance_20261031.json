@@ -1,0 +1,44 @@
+{
+  "scope": "Downloaded recovered H0 capsule preserves the original missing-probe operational snapshot and failure identity, including explicitly redacted private metadata.",
+  "archive_sha256": "25b5f696697bdba5b9056193ca517cebb2ad223d7d506b797dccfd5b0753dee7",
+  "operational_files_verified": 55,
+  "original_missing_probe_preserved": true,
+  "original_launcher_failure_preserved": true,
+  "reconciliation_source_identities": [
+    {
+      "file": "guard_final.json",
+      "source_identity_verified": true,
+      "auxiliary_metadata_redacted": false
+    },
+    {
+      "file": "summary.json",
+      "source_identity_verified": true,
+      "auxiliary_metadata_redacted": false
+    },
+    {
+      "file": "launcher_failure.json",
+      "source_identity_verified": true,
+      "auxiliary_metadata_redacted": true
+    },
+    {
+      "file": "server_cleanup.json",
+      "source_identity_verified": true,
+      "auxiliary_metadata_redacted": true
+    },
+    {
+      "file": "infrastructure/server_start.json",
+      "source_identity_verified": true,
+      "auxiliary_metadata_redacted": true
+    },
+    {
+      "file": "infrastructure/server_stop.json",
+      "source_identity_verified": true,
+      "auxiliary_metadata_redacted": true
+    }
+  ],
+  "original_launcher_failure_sha256": "2a2ef867c0e4ab70ccc5b730e4080277935158b81b4f0ccdd21c1aa7096e6fef",
+  "probe_dependency_was_fixed_only_for_later_launches": true,
+  "raw_model_and_control_evidence_unchanged": true,
+  "new_controls": 0,
+  "optimizer_updates": 0
+}

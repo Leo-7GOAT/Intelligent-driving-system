@@ -1,0 +1,86 @@
+{
+  "scope": "Compare fixed TRAIN teacher/pose-response errors before and after one actual PPO course.",
+  "script_sha256": "331d8e4f9706a91b177c1eaa95a63a290f99d5e38da3e616e69649920c6c9de1",
+  "batch": "20261101T121859752667Z_native_B1_shared_parking_cohort_seed22",
+  "seed": 22,
+  "dataset_sha256": "a35a2391e3f4cdaea4ea3d3eb865c55bc531bd7529c26c97bd84a66837d9c8fe",
+  "model_and_observation_statistics_verified": true,
+  "arms": [
+    {
+      "phase": "before_PPO",
+      "model_sha256": "c4e8e3971c6357886ccd217f088fccaae0ccc8b8dcdeb9cf23507657523b848c",
+      "teacher_metrics": [
+        {
+          "case_id": 0,
+          "teacher_acceleration_RMS": 0.021693792194128036,
+          "teacher_steering_RMS_rad": 0.005751575343310833
+        },
+        {
+          "case_id": 1,
+          "teacher_acceleration_RMS": 0.025290723890066147,
+          "teacher_steering_RMS_rad": 0.0067604659125208855
+        },
+        {
+          "case_id": 2,
+          "teacher_acceleration_RMS": 0.02490009367465973,
+          "teacher_steering_RMS_rad": 0.006158806383609772
+        },
+        {
+          "case_id": 3,
+          "teacher_acceleration_RMS": 0.028211291879415512,
+          "teacher_steering_RMS_rad": 0.0062470026314258575
+        }
+      ],
+      "pose_responses": [
+        {
+          "axis": "yaw_radians",
+          "normalized_response_RMS_error": 0.03018500842154026
+        },
+        {
+          "axis": "lateral_metres",
+          "normalized_response_RMS_error": 0.035748764872550964
+        }
+      ]
+    },
+    {
+      "phase": "after_PPO",
+      "model_sha256": "ea2d12ab9345777a28ee31c44fc372949692fa935c760f387ef1ee4dd5235fee",
+      "teacher_metrics": [
+        {
+          "case_id": 0,
+          "teacher_acceleration_RMS": 0.022169388830661774,
+          "teacher_steering_RMS_rad": 0.0067221675999462605
+        },
+        {
+          "case_id": 1,
+          "teacher_acceleration_RMS": 0.02481856569647789,
+          "teacher_steering_RMS_rad": 0.0068268440663814545
+        },
+        {
+          "case_id": 2,
+          "teacher_acceleration_RMS": 0.025164350867271423,
+          "teacher_steering_RMS_rad": 0.0062985667027533054
+        },
+        {
+          "case_id": 3,
+          "teacher_acceleration_RMS": 0.028690164908766747,
+          "teacher_steering_RMS_rad": 0.007490197662264109
+        }
+      ],
+      "pose_responses": [
+        {
+          "axis": "yaw_radians",
+          "normalized_response_RMS_error": 0.030236244201660156
+        },
+        {
+          "axis": "lateral_metres",
+          "normalized_response_RMS_error": 0.03579211235046387
+        }
+      ]
+    }
+  ],
+  "failed_native_cases": [],
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "limits": "Fixed TRAIN-only measured teacher rows and virtual pose perturbations. Error changes diagnose retention;they do not alone establish the cause of physical failures or new driving capability."
+}

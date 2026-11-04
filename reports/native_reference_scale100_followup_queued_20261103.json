@@ -1,0 +1,27 @@
+{
+  "scope": "Actually started read-only serial waiter;new H-only PPOcourse has not started",
+  "research_acceptance": "UNMET",
+  "waiter_pid": 48660,
+  "predecessor_pid": 40108,
+  "predecessor_identity_bound": true,
+  "phase": "WAITING_FOR_EXACT_REFERENCE_ENDPOINT_COORDINATOR",
+  "registration_sha256": "43bd0e55cec371069d4603e43e8c213ed5dd99799b8994f3d53e422e9638026b",
+  "source_files_bound": 460,
+  "initializer_files_bound": 8,
+  "requested_future_training_controls": 10240,
+  "new_training_methods": [
+    "H"
+  ],
+  "current_new_controls": 0,
+  "current_new_updates": 0,
+  "new_final_conditions": 0,
+  "automatic_retries": 0,
+  "prerequisites": "Exact predecessor exits0;static12andknown24complete for H/H0 with raw/model bindings,NNreconstruction and engine-delivery verification;all registered source and initializer bytes unchanged",
+  "next": "Create a fresh deadline-bound D course,checkpoint every320controls,train H once,then audit full12static and24known development conditions",
+  "regression": {
+    "passed": 20,
+    "seconds": 4.79,
+    "xml": "reference_scale_queue_cpu_v2_20261103.xml"
+  },
+  "limits": "Queue registration is not evidence of training or improved driving. Current CARLAworker11232continues unchanged;one physical lifecycle at a time. H0 is not retrained."
+}

@@ -1,0 +1,433 @@
+# Current acceptance audit — 2026-11-04
+
+**Overall acceptance: UNMET.** The original thresholds and research questions
+remain unchanged. The following results belong to different, explicitly
+versioned development systems; they cannot be pooled into a final success rate.
+No new final-confirmation conditions have been generated or inspected.
+
+| Original requirement | Current evidence and remaining work | Status |
+|---|---|---|
+| PPO → goal/speed → Hybrid A* → timed trajectory → MPC → actual CARLA feedback | Native PPO updates, measured-state/raw-frame audits, saved optimizer/RNG state and engine-control delivery have executed. The earlier closed H/H0pair contains10,482/10,489controls and330Adam updates each.The new independently initialized seed11 H closes30,773native controls and970Adam updates;its exact actual initialization,frozen RMS and all48TRAIN exposures are audited.This proves execution,not final capability or superiority | Engineering chain executed |
+| Lightweight ≥85% overall and ≥75% per core; CARLA ≥80% overall and ≥70% per core; unsafe episodes ≤5% | One earlier continued policy scores 21/30 on known obstacle placements and 22/24 on known validation conditions. Later point-constrained PPO scores 1/2 on two known failures, including one bounds violation. Reference-centered MPC retains 1/2 and changes that bounds failure to a deadline. New H/H0 courses reach2/2 each on those same known conditions after10,482/10,489 controls;H/H0each close30/30known static placements and24/24known validation conditions,with zero unsafe episodes and complete raw/NN/engine verification. The new seed11 H also closes24/24known entries;its zero-PPO baseline is already24/24and post-PPO costs increase.None is independent final confirmation | Not achieved |
+| At least five independently trained, current-method native policies | The earlier continued pair is seed22.The new independently fitted actors11/22/33/44/55start as paired H/H0learners.Seed11 H/H0now close30,773/30,752native controls,970Adam updates each,all48TRAIN conditions and raw/NN/engine-audited24/24known endpoints.Only one paired seed is complete;four further paired closures remain pending | Not achieved for current method |
+| At least120 unique paired final conditions, ≥30 per core, with unseen conditions | Final inventory remains unopened. Repeated known development conditions do not count toward this requirement | Not achieved |
+| Healthy, sufficiently trained B1 and fair H/B1 comparison | The previous five broader B1 policies score54/120 across24 repeated known conditions, with58 unsafe episodes. A later single-seed rehearsal retains basic4/4 and reaches15/24 known validation. These are separate development versions.The new five-seed uniform B1initializers and matched30720-control courses are prepared and waiting for H/H0to close;zero new B1native controls yet.Health and the current-method comparison remain unverified | Incomplete |
+| H gain ≥10 percentage points with paired95% lower bound >0, or prospectively locked sample-efficiency alternative | No qualifying current-method H/B1 comparison. The primary hypothesis has not been changed after observing final data | Unproven |
+| Added PPO value against shared strong B3 | Historical teacher-only117/120 versus PPO120/120 has an interval crossing zero; strong B3 scores24/24 known conditions. The current H/H0/B3shared-lowlevel comparison closes54/54known entries each.B3has384interventions/0planner failures versusH561/18 andH0567/18.No PPOcompletion advantage is established;full timing and selection costs are retained | Unproven |
+| Interpretable executability-feedback contribution | Historical H/H0 difference also has an interval crossing zero. New H/H0 initial weights, full Adam, normalization and RNG are equal; each migration preserves probabilities and values on147 recorded native decisions. Both final policies complete all54known entries;there is no success-rate difference.H uses70more controls and six fewer interventions,with equal planner failures.No consistent cost advantage is established.A same-weight probe changes2of1,086static decisions when hiding the new actor term;no alternate driving is executed.Only the new failed-action actor/critic branches are hidden in trainedH0.The new independent seed11pair also scores24/24each;H uses69more controls,44more interventions and4more planner failures.No new failure-feedback gain is established | One paired seed closed; learned contribution unproven |
+| B2, frequency, shared safety and fixed-reference evidence | Historical cohorts remain retained.A new pose-only component check fixes the ignored grid node cap and retains all16static/curve queries at32,000nodes:Hybrid returns16paths,B2certifies14,two fail spline certification.The same complete public-input inventory reproduces;these are repeated conditions and different certifiers,not native driving or isolated Hybrid contribution.Current native B2,frequency,shared safety and fixed-reference confirmation remain incomplete | Partial development evidence |
+| Reproducible public delivery | Development prerelease v0.4.0 publishes five complete H/H0/B3 endpoint capsules retaining56,688evaluation controls.All five ZIPs were anonymously downloaded and every one of3,868files verified.A clean separate worktree reconstructs all four H/H0inventories:108starts,3,207static NN actions,four byte-identical figures,and every raw/engine control.Both B3 raw/engine inventories also reconstruct.The complete proof is public and anonymously downloaded.The release source582f8f4passes hosted CPU regression:1,415passed,25skipped,four CARLA tests excluded.These are known-development endpoints,not full ancestor training or final accepted-system reproduction | Development delivery verified; final incomplete |
+
+Current evidence: [first independent H/H0pair completely closed](../reports/native_independent_outcome_seed11_pair_complete_20261104.json),
+[current public release and anonymous byte verification](../reports/native_outcome_shared_public_release_20261104.json),
+[matched B1cohort preparation](../reports/native_matched_flat_cohort_ready_20261104.json),
+[new independent-cohort execution](../reports/native_independent_outcome_cohort_started_20261104.json),
+[complete known-condition transfer](../reports/native_option_full_development_complete_20261104.json),
+[closed point-constrained learning course](../reports/native_exact_point_PPO5120_complete_20261104.json),
+[frozen MPC engineering transfer](../reports/native_mpc_reference_effort_transfer_20261104.json),
+[matched feedback initialization and execution status](../reports/native_outcome_context_initialization_20261104.json),
+[closed feedback-enabled course](../reports/native_outcome_context_H_learning_complete_20261104.json),
+[complete matched pair and costs](../reports/native_outcome_context_pair_complete_20261104.json),
+[complete H/H0known inventories](../reports/native_outcome_full_known_development_complete_20261104.json),
+[complete shared H/H0/B3comparison](../reports/native_shared_lowlevel_H_H0_B3_complete_20261104.json),
+[shared B3execution record](../reports/native_shared_lowlevel_B3_execution_20261104.json),
+[actual public-download reproduction](../reports/native_reference_context_public_download_verification_20261103.json).
+The earlier B1 and statistical evidence is linked in the dated audit below.
+
+The current pair requests10,240 physical controls per arm, with at most319
+rollout overshoot, a fixed lowlevel and frozen observation statistics. Training
+successes are separate from the final fixed-budget frozen-policy endpoints.
+The larger failure-feedback learning coordinate is disclosed; its free-signed
+coefficient starts at zero. Neither initialization equivalence, passing CPU
+tests nor a running training job establishes a learned benefit, real-time
+operation, independent generalization or completed research acceptance.
+
+# Historical acceptance audit — 2026-11-02
+
+**Overall acceptance: UNMET.** This table supersedes the historical snapshots
+below. Training/evaluation on known development conditions does not satisfy the
+independent final-confirmation requirement. B1 must demonstrate basic learning, a sound implementation and reasonable tuning/training; it may remain weaker on the full task. The H capability targets below are not a requirement that B1 also reach 80%.
+
+| Original requirement | Current authoritative evidence | Status |
+|---|---|---|
+| Real PPO → goal/speed → Hybrid A* → trajectory → MPC → CARLA feedback | Five completed native H/H0 training pairs and per-frame raw audits; public reproduction of models, updates and controls | Engineering chain executed |
+| Five healthy, sufficiently trained flat baselines | All five new basic courses complete: 3/4,4/4,4/4,4/4,3/4; two bounds failures, only three gates pass. 51,200 retained learning controls,1,599 Adam steps; fifth seed explicitly recovered | Not achieved |
+| Full-task B1 and fair H/B1 comparison | Allfive broader seeds11/22/33/44/55finish at11/7/11/15/10outof24:54/120successes,58unsafe cases;allfive screensFAIL.102,400actuallearning controls/3,148Adamsteps retained;44explicitly recovered.24knownconditions only. Teacher/recovery and rejected actor-only branches are complete. The subsequent matched rehearsal seed22 retains basic4/4 and scores15/24 on known VAL after10240newcontrols/320Adam;not five-seed health. A real H/H0diverse-TRAIN48adaptation is now running | Not achieved |
+| H gain ≥10 percentage points over healthy B1, paired 95% lower bound >0, or prospectively locked efficiency alternative | Five-seed basic/training adequacy and a common-current-harness,budget-matched complete-task comparison remain pending | Unproven |
+| Added PPO value against shared strong B3 | Teacher-only H 117/120 vs PPO H 120/120; +2.50 points, 95% interval [−2.13, +7.13]. Strong B3 24/24 | Unproven |
+| Interpretable collaboration improvement | H 120/120 vs H0 119/120; +0.83 points, 95% interval [−1.48, +3.15] | Stable gain unproven |
+| Lightweight ≥85% overall / ≥75% per core; CARLA ≥80% / ≥70%; unsafe episodes ≤5% | No new final confirmation. Old Hknown24results cannot establish independent final thresholds. New B1rehearsal is descriptive comparator evidence,not an Hcapability test | Final Htargets unverified |
+| ≥120 new unique paired final conditions, ≥30 per core and unseen conditions | Current H/H0 study reuses 24 known conditions across five seeds. New final set remains untouched | Not achieved |
+| B2, frequency, shared-safety and fixed-reference evidence | Existing H/B2 study retains a bridge-initialization confound; fixed-reference MPC and pursuit/PI each 4/4; complete fair cohorts remain missing | Partial |
+| Reproducible public delivery | Published frozen models/raw logs/figures independently rebuilt. Source9ab91f3passes hosted CI41461752584and local CPU1260passed/1skipped/4CARLAexcluded;new paired-continuation source958c922passes CI41462502678. Five-seed B1public-download reproduction verified151660controls,120starts and five byte-identical figures | Development reproduction delivered; final withheld |
+
+Evidence: [basic seed 11](../reports/native_B1_shared_parking_cohort_seed11_20261101.json),
+[22](../reports/native_B1_shared_parking_cohort_seed22_20261101.json),
+[33](../reports/native_B1_shared_parking_cohort_seed33_20261101.json),
+[44](../reports/native_B1_shared_parking_cohort_seed44_20261101.json),
+[different-road validation](../reports/native_B1_shared_parking_validation_complete_20261101.json),
+[broader pilot registration](../reports/native_B1_broader_shared_parking_registration_20261101.json),
+[H/H0 statistics](../reports/native_matched_broader_feedback_cohort_20261101.json),
+[PPO attribution](../reports/native_broader_PPO_teacher_rule_attribution_20261101.json),
+[public reproduction](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json),
+[source-specific CPU CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41398581059),
+[broader seed33](../reports/native_B1_broader_seed33_20261102.json),
+[TRAIN teacher and actor-fit scope](broader_TRAIN_teacher.md).
+
+The shared terminal helper is engineering assistance, disclosed separately from
+learned decisions. Decision-cycle overruns remain; synchronous execution is not
+real-time validation. No final superiority or safety claim is supported.
+
+## Historical acceptance snapshots
+
+### Shared parking engineering checkpoint — 2026-11-01
+
+B1/H/B3 each4/4 on the same4known TRAINroads with the same explicit goal-parking
+aid;6/1409,8/1287,8/1286 physical overrides respectively. All goal/speed/heading
+criteria and the nonintervened-terminal guard are unchanged and audited. This is
+a frozen deployment transfer,not policies trained under the wrapper,5independent
+healthy baselines or added PPOvalue. V1's1/4and3deadlines are retained as a code
+integration defect. Overall acceptance remains UNMET. See docs/shared_parking.md.
+
+# Research acceptance ledger
+
+Control-correspondence disclosure:earlier audits bound requests and measured
+states,but51/12,219returned engine controls match the previous request. The
+versioned synchronous transfer verifies0/1,271mismatches,with unchanged model,
+normalizer and gains. B1remains3/4with bounds;no driving gate is waived and no
+PPOcontribution is inferred. [Evidence](../reports/native_sync_control_delivery_transfer_20261101.json).
+
+This pilot's public reconstruction is complete:563files/12,219controls/4starts,byte-identical figure,exact initial intervention and320added Adam steps in all35PPOparameter states;observation RMS unchanged. Full local CPU:1,101pass;latest completed hostedCI:1,084pass. Overall research acceptance remains UNMET. [Public verification receipt](../reports/native_B1_exploration_PPO_public_verification_20261101.json).
+
+Completed actual-PPOpilot:10,240new controls,320actual Adam updates,2/4pure endpoint with1bounds/1deadline. All12,219frames audited;model rejected,owned lifecycle terminal. The preceding activation is a historical snapshot. [Complete result](../reports/native_B1_exploration_PPO_pilot_20261101.json),[public reproduction](native_B1_exploration_reproduction.md). Overall acceptance remains UNMET.
+
+The subsequent original-TRAINcollection is mixed4/4,but its projected actor
+probe2/4and matched unprojected probe1/4both fail the unchanged actual driving
+gate. Total9,010recovery-profile controls are audited;no final conditions or
+new PPOwere used in those profiles. The separate10,240control PPOpilot subsequently completes and fails2/4;its
+activation remains a historical snapshot. Acceptance remains UNMET.
+[Matched negative comparison](../reports/native_B1_original_TRAIN_unprojected_probe_20261101.json),
+[actual activation](../reports/native_B1_exploration_PPO_activation_20261101.json).
+
+Latest executed recovery attempt:1,612actual TRAIN mixture controls,850eligible
+executed-teacher labels,512new auxiliary Adam proposals and1,657pure-policy
+probe controls. B1scores2/4with one deadline and one bounds failure;the unchanged
+basic gate fails. No new PPO or final conditions. Local full CPU regression
+passes1,091tests(1skip,4CARLAexclusions). Overall acceptance remains **UNMET**.
+[Raw-bound negative result](../reports/native_B1_executed_recovery_collection_and_probe_20261101.json).
+
+## Verified audit snapshot — 2026-11-01, complete matched development cohort
+
+The original targets remain unchanged and overall acceptance is **UNMET**.
+Dated snapshots below preserve their original observations.
+
+| Requirement | Verified current evidence | Status |
+|---|---|---|
+| PPO → local pose/speed → Hybrid A* → timed trajectory → MPC → actual CARLA feedback | Actual native PPO training,restoration and frame audits;five complete common-harness H/H0pairs on36TRAIN/24known-validation conditions | Executed;final capability unqualified |
+| Healthy,sufficiently trained B1 | Five retained-state extensions score3/4,2/4,2/4,0/4,2/4;10bounds,1timeout,only1basic gate passes. Full-task continuation withheld | Not achieved |
+| B1corrective hypothesis | Matched17label fits both3/4with bounds;new99label fit2/4with2bounds versus replay3/4with1bounds. Three subsequent TRAINscreens fail before driving | Driving benefit unproven |
+| H versus healthy B1:≥10pp paired mean gain and95% lower bound above zero,or prospectively locked efficiency alternative | Qualified complete B1cohort absent | Unproven |
+| Added PPO and strong-B3 comparison | Teacher-only117/120versus trainedH120/120:mean+2.50pp,95%t[-2.13,+7.13]pp,p=.5. Strong B3remains24/24 | Unproven |
+| Explainable executability-feedback contribution | New H120/120,H0119/120:mean+0.83pp,95%t[-1.48,+3.15]pp,p=1.0. Hslightly slower on mutually successful conditions in every seed | Not established |
+| ≥5independently trained policies | Canonical H/H0,B2and new common-harness five-pair development cohorts complete. Formal H/healthy-B1comparison pending | Development milestone executed;final incomplete |
+| ≥120NEWunique paired final conditions,≥30per core family plus unseen layouts/parameters | Original12and later24remain known development conditions;no new final set activated | Not achieved |
+| Light≥85%/75%core;CARLA≥80%/70%core;unsafe≤5% | Known-development Hscores cannot establish new independent final thresholds | Not achieved |
+| B2/frequency/shared-safety/fixed-reference controls | H/B2five-seed study retains bridge confound. Fair complete frequency/shared-safety cohorts missing. MPCand pursuit/PIeach4/4on fixed references | Partial development evidence |
+| Reproducible public delivery | All five new paired capsules:4,652files/287,811controls/240starts;full report,ten Adam/normalizer proofs and main figure independently rebuilt. CPU CI1036pass;new export safeguards44targeted pass | Development prerelease delivered;final withheld |
+
+[Complete matched statistics](../reports/native_matched_broader_feedback_cohort_20261101.json),
+[all-outcome and paired costs](../reports/native_matched_broader_feedback_cohort_costs_20261101.json),
+[full public reconstruction](../reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json),
+[public recipe](../protocols/public_native_matched_broader_feedback_cohort_20261101.json),
+[all-five B1failures](../reports/native_B1_all_five_lower_rate_extensions_20261101.json),
+[completed failed B1probe](../reports/native_B1_three_episode_training_coverage_probe_20261101.json),
+[complete teacher attribution](../reports/native_broader_PPO_teacher_rule_attribution_20261101.json).
+
+H/H0evaluation interventions total2020/2730;the difference is dominated by one
+H0timeout. Requested budgets are equal;actual training controls103197/102711and
+Adam3270/3250retain their declared one-rollout overshoots. Costs of earlier
+experiments and teacher fitting remain separate and are not erased by this cohort.
+
+The executed-teacher-only B1repair also fails the basic gate:3/4with one
+bounds violation,1182raw controls verified. [Actual repair outcome](../reports/native_B1_executed_teacher_only_repair_probe_20261101.json).
+
+## Historical execution snapshots
+
+Latest21:18execution update: original seed22B1initializer6/12fails basic motion
+with unsafe episodes; its PPOwas never activated and no gate is waived. All four
+original pending B1PPOseeds remain unstarted. B2has actually started independent
+planner-specific PPOusing the original five fixed initializers. New B1version
+gives all five seeds an equal1,024additional TRAIN-only actor fits at5e-5;
+the5,120extra supervised updates are disclosed. Critic/statistics/RNG remain fixed;
+all five actual frozen restores/input validations pass,zero new native controls
+or PPOupdates. All five gates must be audited and pass before any new PPOseed.
+[Preparation](../reports/native_B1_all_five_actor_maturation_preparation_20261031.json),
+[actual queues and retained failure](../reports/native_B2_independent_and_B1_maturation_activation_20261031.json).
+These are development changes,not healthy-baseline or final-confirmation evidence.
+
+Current 31October update supersedes older status snapshots: **five canonical
+H/H0 trained pairs are complete**, H58/60,H057/60,zero unsafe,12unique known
+development conditions. Paired seed mean+1.67pp,95% t interval[-11.82,+15.16]pp,
+exploratory sign-flip p=1.0: stable feedback benefit is **not established**.
+[All-five evidence](../reports/native_feedback_five_seed_development_cohort_20261031.json).
+Fresh equal-budget seed22H0is11/12; the older interrupted/recovered branch and
+its excess costs remain preserved, excluded from this matched endpoint.
+B3also completes24/24on the separate development validation set, matching H.
+Healthy B1, trained B2, frequency/common-brake results, PPO's advantage over
+strong rules, light independent thresholds and120new paired final conditions
+remain outstanding. The original acceptance targets remain **UNMET**.
+Current B1/B2/common-brake execution identities supersede failed predecessor
+queues; see [actual recovery snapshot](../reports/native_evaluation_recovery_queue_activation_20261031.json).
+
+Latest operational update:seed22H also completes12/12development cases with
+zero unsafe after20539training controls/650Adam. All24858Hcontrols verify.
+Its later H0was interrupted by a guard telemetry CLI timeout and now completes
+10/12,zero unsafe,after checkpoint recovery. At least6698nonretained controls
+remain charged;retained lineage20537controls/650Adam differs from gross
+consumption. The original first-cleanup error remains alongside verified
+fallback cleanup. This is not a matched consumed-budget feedback result.
+[Completion/recovery evidence](../reports/native_seed22_recovery_completion_and_probe_fix_20261031.json).
+Five completed seeds and independent final confirmation remain unmet.
+
+Current 31 October update: trained-v4 H completes **12/12 development cases**,
+zero unsafe, after 20,563 real training controls/650 Adam steps. All 24,900 raw
+controls and twelve measured-start actions verify. H0 also completes11/12,
+zero unsafe, after20,562controls/650Adam. The pair has50,348verified controls,
+24exact start actions and normal owned cleanup. One discordant static case
+gives exact p=1.0;this does not establish feedback benefit. This is one seed on
+known conditions,not the five-seed/new-final-condition acceptance result.
+[Complete pair](../reports/native_v4_trained_seed11_feedback_pair_20261031.json).
+
+The separately completed frozen-v4 migration is H9/12 versus H0 10/12,
+zero unsafe, difference -8.33 percentage points, exact discordance p=1.0.
+Its reversal of the earlier v3 gap precludes a robust feedback-benefit claim.
+The trained-v4 B1 is 7/12, zero unsafe/five deadlines. Its complete public
+capsule has now been downloaded and independently reproduced: 27,737 controls,
+twelve actions and identical figure. Its full-task competence is still below
+target. Training-only approach/replay actor fits complete10/12with2bounds versus
+8/12with3bounds/1deadline. Their10,193rawcontrols/24actions/public figures
+independently reproduce. This is zero-PPO supervision improvement and still
+fails the original safety target;matched real PPO is queued,not measured.
+[Frozen pair](../reports/native_v4_frozen_feedback_pair_20261031.json),
+[B1 public receipt](../reports/B1_v4_PPO_public_verification_20261031.json),
+[baseline diagnosis](../reports/native_B1_v4_stop_diagnosis_20261031.md).
+**The full original research acceptance remains UNMET.** Earlier snapshots below
+retain their original outcomes and do not override this update.
+
+The latest [runtime and learned-input audit](../reports/native_v4_runtime_and_feedback_20261031.md)
+reproduces all439H/494H0decisions. H changes10actions when only learned feedback
+is hidden; H0 negative control changes none. This is sensitivity,not successful
+counterfactual execution or benefit. H's environment-step P95/max are348ms/4.22s;
+B1feedback alone has220msP95at a50msperiod. Policy/runner time is missing,so no
+hard realtime claim is supported. All failure,terminal and braking frames remain.
+
+Latest 31 October: the audited common-mask seed11 pair is H9/12 versus H0 7/12,
+both with zero unsafe episodes. H-only successes are4/5/6;H0-only success is1.
+The conditional exact discordance p-value is.625;one training seed cannot
+support a seed-level benefit claim. B1rollout1280finishes6/12with4bounds.
+The separately versioned v4frozen migration finishes7/12with1bounds/4deadlines;
+basic motion is3/4withzero unsafe,but the full task remains below target.
+This is zero-update deployment migration. Matched real PPO on v4has started.
+All12conditions are development. Five trained seeds,120NEWfinal conditions,
+healthy full-task B1,PPO-versus-rule value and formal benefit statistics remain
+unmet. [Geometry and execution evidence](../reports/native_geometry_resolution_20261031.md).
+
+## 31October execution update
+
+The fixed-reference lightweight probe completes80episodes/38962steps;MPC and
+Pursuit/PIeach40/40,with a tracking/comfort/compute tradeoff. The actual native
+pair now also completes4/4each,with3811RPC-bound controls and lower native
+tracking error/jerk for Pursuit. The earlier1905-control guard-failed native run
+and10190-control lightweight prefix remain separately charged. These are control
+diagnostics,not trained PPO seeds or final confirmation.
+
+B1fixed reward units completes2/12with six unsafe episodes after20480training
+controls/208Adam;it is rejected as healthy. All27897rawcontrols and12initial
+actions independently reproduce from the public capsule. Htraining20674controls
+is retained;fresh frozen reevaluation completes9/12with three deadlines,no unsafe and3/4in each core family after the original ownership guard failure. New B1rollout1280is actually training;H0-only,seed22and separated train/validation phases follow through strict owned-empty lifecycle queues.
+[Completed evidence](../reports/completed_native_diagnostics_20261031.md) and
+[public independent reconstructions](../reports/completed_native_public_reproduction_20261031.json).
+The full original acceptance remains **UNMET**.
+
+## Historical audit — 2026-10-31
+
+The original objective and thresholds remain unchanged. Overall research
+acceptance is **UNMET**. This section supersedes earlier dated snapshots below.
+
+| Requirement | Latest actual evidence | Status |
+|---|---|---|
+| Real PPO/planning/MPC/CARLA loop | v4 seed11 H12/12,H011/12 with20563/20562training controls and650Adam each;broader-development H24/24,H021/24 independently reproduced | Executed; final capability unqualified |
+| Healthy sufficiently trained B1 | Low-rate known12 B110/12 with2bounds;broader36train/24validation B19/24 with9bounds/3collisions. Matched training-view actor probes and four additional PPOseeds queued | Not achieved |
+| H superiority versus healthy B1 | Healthy comparator absent; current12conditions were used for development | Unproven |
+| PPO value versus strong B3 | Strong B312/12known12;broader24validation B3queued. No independent PPObenefit established | Unproven |
+| Learned feedback contribution | v4 seed11 H12/H011,p=1;canonical seed33 H10/H012,p=.5;broader H24/H021,p=.25. Seed33Hstatic failures involve repeated planning failure/braking;input hiding does not change their visited-state argmax | Inconsistent development effects;not established |
+| Five independently trained seeds | All5Hpolicies trained/audited,102688training controls/3250actual Adam;five distinct initial Torch RNGstreams and final parameter tensors. H0fresh22still running;four B1policies pending. High-rate33not an extra independent seed | Hmilestone achieved;full paired requirement not achieved |
+| Train/validation/final isolation | Completed36training/24geometry-separated development validation for H/H0/B1;all original12conditions remain development. All4156new supervision labels use TRAINcontrols only | Development separation executed; final confirmation pending |
+| At least120NEWpaired final conditions,30per core family | No new final confirmation set activated or inspected in this version | Not achieved |
+| Light85%/75%core,CARLA80%/70%core,unsafe<=5% | Known-road development scores do not qualify as independent final results;B1unsafe clearly exceeds target | Not achieved |
+| Required B2/other ablations | Five matched pristine B2PPOinitializers queued,zero B2updates yet. Native-preserving common brake OFF/ONdeployment20probe queue live behind B2;no driving outcomes yet. Fixed-reference MPCand pursuit/PIeach4/4,no MPCdominance;frequency missing | Incomplete |
+| Reproducible GitHub delivery | Broader H/H0/B1and feedback/training diagnostics publicly downloaded and independently reproduced. Hosted193a5deworkflow successful;independentb83f6fdtargeted18tests pass | Development delivery executed; final release withheld |
+
+See [development endpoints](../reports/native_development_execution_20261028.md),
+[faster critic negative result](../reports/native_B1_critic_rate_endpoint_20261028.json),
+[new partitions](../reports/native_training_validation_partition_20261028.md),
+[fixed reward-unit profile](../reports/native_fixed_reward_units_20261028.md),and
+[executed source verification](../reports/native_source_verification_20261028.json).
+Those dated28October preparation references are historical;the later completed
+outcomes and public receipts are linked in the main README. No formal superiority
+interval or causal performance claim is supplied from these development runs.
+
+## Historical audit — 2026-10-26
+
+Latest terminal-margin development: matched own-success selection gives3/4
+versus4/4on known4.5m goals, without changing evaluation thresholds. Frozen6m
+transfer and fixed/online/speed-smoothed real-PPO adaptations remain3/4; the
+smoothed failed curve exits bounds. No full-task health or safety target is met.
+Current local CPU324/1skip/4CARLA exclusions. See
+[measured evidence](../reports/native_terminal_margin_20261026.md).
+
+Evening addendum: [retention/curriculum experiments](../reports/native_retention_20261026.md)
+achieve B1 three-metre known-road4/4with real PPO plus counted self-success actor
+replay. Frozen six-metre transfer and4.5m continuation are3/4; full-task B1 health
+and every formal acceptance gate remain open. Current CPU317/1skip/4exclusions;
+hosted5cf9297is313/3/4. The older table below describes prior published evidence.
+
+Later verification: source5a300e9passes local/independent320/1skip/4exclusions and
+actual hosted318/3/4. The3m4/4and same-model6m3/4capsules are now public and
+download-reproduced:794files,5,894controls,8initial actions,2identical figures.
+The full original research requirements remain unmet; publication is not acceptance.
+
+Full objective unchanged and not achieved. The completed matched head study is
+shared1/4 versus unshared3/4 on four reused full training roads/seed11, with
+13,259rawcontrols and500frozen decisions verified. Five B1 segments add37,637
+verified controls but every frozen endpoint is0/4. These are development data.
+
+| Requirement | Current authoritative evidence | Status |
+|---|---|---|
+| Actual PPO/planning/MPC/CARLA execution | Original67,289 plus new50,896audited controls; retained source/models/frames | Executed; capability gates still open |
+| Healthy sufficiently trained B1 | Original full-road0/4; all new short-task endpoints0/4 | Not achieved |
+| Five independent training seeds for main conclusions | Latest head version only seed11; variants/continuations are not independent seeds | Not achieved |
+| At least120fresh paired CARLA conditions, each core category at least30 | Latest head evaluated only four reused training roads | Not achieved |
+| Independent lightweight85%/75% and CARLA80%/70% targets | New head has no qualifying independent-confirmation result | Unverified |
+| Collision/bounds target plus progress/latency/comfort | Full failures and timing retained; failed-road P95about8s | No safety/realtime acceptance claim |
+| H advantage over healthy B1 with seed-paired interval | Healthy comparator and required seed count missing | Not achieved |
+| PPO value versus strong B3 and feedback contribution | Strong rule4/4 on known roads; no formal new-head H0/RL-value confirmation | Not established |
+| Current B2/frequency/safety/control formal ablations | Historical implementations/results retained, current formal comparison incomplete | Not achieved |
+| GitHub and independent reproduction | Five new complete assets publicly downloaded;2,074hashes/7audits/28initial actions/5figures reproduce | Development delivery verified |
+| Current CPU checks | Independent Windows304/1skip/4deselections; actual hosted302/3/4 at e0f9099 | Passed within CPU scope |
+
+See [head report](../reports/native_actor_head_20261026.md), [B1 summary](../reports/B1_sanity_summary_20261026.json)
+and [model card](model_card.md). Historical snapshots below keep their original
+version scope and do not supersede this audit. No formal completion is claimed.
+
+Updated 2026-10-25. This is an implementation and evidence ledger, not a claim that the research goal has been met. The user's latest objective supersedes the earlier six-hour-only and no-push instructions. Each execution window remains bounded and checkpointed. The complete project goal remains active across windows.
+
+Latest development: audited rule-only B3 now completes4/4 known training roads;
+fresh seed11 H0/H/B1 CARLA learning retains its original frozen source.
+H's completed20,665-control endpoint scores2/4known training roads; H0's
+20,702-control endpoint scores3/4. All23,135H/22,589H0training/evaluation
+controls are frame-verified, with independent byte-exact raw audits and the
+all-eight-case partial H0/H figure. All248H/190H0deterministic decisions are
+reconstructed. H has policy-selected waiting failures and one training bounds
+episode; H0's failed road is fully stationary/intervened. B1 now completes
+20,621training controls and0/4successes (all four bounds failures) in evaluation, with21,565total
+controls audited and all96decisions reconstructed. All3registered arms are
+complete, total67,289audited controls/534reconstructed decisions; original
+owned-server cleanup verified. See the [complete report](../reports/native_route_complete_20261025.md).
+This comparison does not support a feedback/PPO-value improvement.
+This partial development result does not close any independent-confirmation gate.
+No new independent-seed, unseen-confirmation or learned-advantage result exists.
+The [initial/trained weight contrast](native_weight_contrast.md) evaluator and
+whole-frame/inference auditor are now implemented:295CPU passes/1skip/4CARLA
+deselections locally, with actual H0 seeded initialization and parameter-exact
+save/reload verified. The actual paired CARLA evaluation started but is incomplete: initial arm0/4,
+trained arm partial, whole lifecycle proof absent; no learned-weight benefit
+is established. Current publication, reproduction and follow-up scope are in
+[current status](current_status_20261026.md).
+Optional exact road-SAT batching has independent CPU reproduction and a
+[published development evidence asset](../reports/road_collision_batch_20261025.md);
+it remains disabled in the current training batch. These low-level engineering
+and publication advances do not close the capability or research gates below.
+
+## Evidence isolation
+
+Hosted CPU CI is now actually executed at sourcec77314f:Ubuntu24.04/CPython3.11.17
+installs the lock and passes276tests,3platform/opt-in skips,4CARLA deselections.
+The corresponding local Windows selection passes278/1skip/4deselections. See
+[actual CI run and scope](cpu_ci.md). This closes a CPU CI delivery gap, not a
+CARLA, policy performance, five-seed or final-confirmation gate.
+
+`runs/20261016T015226Z_research_batch_3377580f` and its frozen source/model/config/result files are retained. All previously inspected primary, generalization and CARLA test manifests are now **historical evaluation sets**. They cannot be reused as unseen confirmation after development. Formal v4 and earlier additionally retain their documented RNG defect. No historical failure or infrastructure exception is removed.
+
+New development batches live in separate directories. Architecture or reward changes require separate versions and compatible checkpoints. A new confirmation protocol must freeze code, model selection, budgets, scene generation, statistical endpoints and multiplicity treatment before any confirmation results are inspected.
+
+## Required gates and current evidence
+
+| Gate | Required evidence | Current status |
+|---|---|---|
+| Real learned hierarchy | PPO-selected behavior → Hybrid A* → timed reference → MPC → executed state/reward; no execution teleport/autopilot/set-speed | Real learned CARLA transfer/adaptation and frame-linked camera replays exist; full capability gates remain unmet |
+| Lightweight capability | ≥85% overall, ≥75% each core class, independent test | Not met: historical H 75%, generalization 4/12 |
+| CARLA capability | ≥80% overall, ≥70% static/curve-parking/dynamic; collision or bounds ≤5% | Not met: historical H 9/30 and 10/30, all successes dynamic |
+| Productive safety | Progress, time, stops, interventions, collision, bounds, planning/control failures jointly reported | Historical data available; intervention dependence unresolved |
+| Hierarchy main hypothesis | ≥10 percentage point mean paired gain over healthy trained flat PPO, 95% interval lower >0, ≥5 independent seeds | Unproven; short-route B1 sanity passed but full-route health unresolved; only 3 complete historical pairs |
+| PPO high-level value | Predefined interaction task and endpoint vs strong B3 sharing low level/safety | Unproven: historical B3 matches H's 30/40 exactly |
+| Executability feedback | Necessary measured improvement and H/H0 ablation | Equal-network ablations complete: v8 at1M gives8/10vs9/10, v12/v13 give8/10vs6/10; no stable independent gain established |
+| Baseline health | Empty/short corridor learning, justified tuning and sufficient comparable budget | Short6m sanity8/8; old fixed23m model2/2 at23m but0/6 shorter. Matched mixed baseline/frequency/pooled actor/reward trials finish1M at0/10; unchanged reward trial now continues to cumulative2M/3M |
+| Required comparisons | H, H0, B1, B2, B3, frequency, common safety, fixed-reference controller | Algorithms partly exist; complete independently trained evidence missing |
+| CARLA independent training | ≥5 independently trained/adapted policies and real PPO updates | Historical2paired seeds; new v12 seed11H/H0 each receives approximately100kactual world ticks with real updates; five independent current-version policies still missing |
+| CARLA final conditions | ≥120 unique paired conditions, ≥30 each core family, unseen layouts/vehicle parameters | Missing; old 30 conditions are historical |
+| Feasible task design | Feasibility diagnostics independent of policy performance; retain all failures | Historical witnesses prove 5 failed layouts traversable; remaining cases unresolved |
+| Fairness/accounting | Common task/information/rewards/budget/limits/termination; physical/decision/world/reset steps, wall/sim time, networks, updates, takeover | Existing log fields; new comparisons still require audit |
+| Timing | P95/P99/max full decision/control cycle and overrun fractions; offline deterministic node budget separate | Historical component timing exists; complete deployment timing not established |
+| CARLA lifecycle | Exclusive ownership, exceptions, crash cleanup, checkpoint recovery; only owned actors/processes | Kernel lease and empty-world crash recovery verified; crash with live actors not yet recovered automatically |
+| CARLA calibration | Geometry, steering/actuation, coordinates, frames, sensor truth; transfer vs retraining separate | Geometry/frames measured;22phase±1normalized-steer sweep now completed3,520control frames. Native curve geometry surveyed, actual native-road tracking remains unverified |
+| Videos | Real success and failure clips tied to case/model/seed/run | Published H25k success/deadline videos with exact model/seed/scene/world-camera manifests, full decoding and fresh-checkout replay; illustrative only |
+| Statistics | All seeds, paired intervals, variance, censoring, layered sampling if justified; no pseudoreplication | Historical partial analyses retained; fresh confirmation pending |
+| Reproducibility | Clean checkout install/tests/model load/representative evaluation/raw figure rebuild; CARLA replay when available | Fresh clone/newvenv, downloaded models/all20CPUreplays, actual CARLA/control-camera replay verified; updated independent checkout92passed5skipped at e0b2a0a. Final research archive still incomplete |
+| GitHub | Correct repository with preserved visibility/history, real commit/push, remote SHA verification and tag/release | Existing public Leo-7GOAT/Intelligent-driving-system verified via matching source/license blob hashes; origin fetched; development pre-release v0.2.0-dev.20261022 published at9bcaa79; remote/tag/asset-download hash verified; research acceptance remains incomplete |
+| Release hygiene | Secrets/private path/data scan, third-party licensing/citations, bounded assets and SHA manifest | Development publication scans pass; three prerelease assets have download-verified hashes; final archive pending |
+| Documentation | English README, Chinese guide, method/protocol/results/ablations/failures/model card/licenses, bilingual factual CV | Development publication set exists and discloses limits; final formal-results documentation remains incomplete |
+
+No single upload, completed batch, smoke test, subset metric or passing unit suite satisfies the complete objective. If a new confirmation fails, retain it, open a new development version, and use new unseen conditions for any later confirmation.
+
+## Development decisions so far
+
+1. PID-only lock files can persist after forced exit. Use a held operating-system lease that is released by process death; preserve stale PID text as evidence. Respect live legacy owners and reject unknown metadata. Still require an empty CARLA world before controlling it.
+2. First matched sanity trial: original beta=1 versus beta=40, same B1 configuration, seed 11, fixed 6m empty task with real parking requirement, development seeds 7301–7308. Both 0/8 after 102,400 physical steps. These nearly identical straight conditions are a learning sanity check, not diverse independent tasks.
+3. At failed fixed-horizon termination the terminal-zero potential telescopes away the distance-progress difference. A second explicit task-progress reward trial is separate from PBRS. Both variants receive a from-scratch 1M physical-step budget, with 100k/300k/1M development assessments. If retained, the changed task reward must be shared by H and relevant controls. No rule acts on B1's behalf.
+4. Goal-frame candidates are being checked against the existing planner as a separate geometry diagnostic. They are not integrated into PPO or claimed to improve it without evidence.
+5. The target diagnostic completed 180 checks. The proposed goal-frame candidates had lower valid-reference counts on these probes, so they remain experimental and are not integrated. Near-goal candidates contain repeated poses; these counts are action availability, not independent scene successes.
+6. At 302,080 training steps both reward variants again scored 0/8 in deterministic evaluation. For the same progress-reward checkpoint, a paired inference audit produced deterministic 0/8 versus stochastic gSDE 5/8, identically in train and validation splits (frozen normalization). This is a development clue about inference, not a reason to relabel historical deterministic results or select favorable stochastic replays. Any future inference-mode choice must be frozen before new confirmation.
+7. The old generic checkpoint selector ranked any reduction in collision rate before completion, potentially preferring permanent waiting to a productive policy within a declared safety tolerance. The new development-only selector applies an explicit empirical safety constraint, then maximizes completion and progress before minimizing intervention/time. A regression covers the permanent-waiting counterexample. Existing frozen experiments and current running diagnostic jobs are unchanged.
+
+## Update at 2026-10-22 13:13 local
+
+- v6 batch `20261022T042237Z_development_v6`: both fresh B1 reward variants completed 1,000,960 physical steps and deterministic 8/8 on the 6m parking sanity task. The PBRS40 model scored 0/8 at 23m/45s. The short-route task does not establish full-task baseline health. PBRS40 retained; no evidence that explicit task-progress reward is necessary. Rebuilt eight milestone rows with 117 frozen source hashes and model hashes checked.
+- New goal-frame candidates, terminal return envelope, analytic Hybrid A* connection and vectorized full-body collision checking are opt-in, versioned implementations. Earlier candidate-count diagnostic was inconclusive; subsequent physical B3 tests justified testing the revised interface, not claiming learned superiority.
+- v7 H/H0 runs stopped gracefully after 12,790 / 10,225 physical steps to version the terminal-envelope and vectorization changes. Both exited zero; partial evidence and supersession reason retained. No statistical inference from the censored pair.
+- v8 batch `20261022T050532Z_hierarchy_v8_development`: H and H0 use 450-input networks and the same low level. H gets candidate geometric witnesses plus previous execution outcomes; H0 receives zeros in these 99 slots. No action masking or rule replacement. At 100k milestone both score 6/10: H succeeds on static, H0 on narrow, both fail unseen. One seed and development cases only. Run final status must be inspected.
+- Actual CARLA B3 diagnostics: v7 3/6, terminal-envelope variant 4/6, with one degraded static condition retained. These are NOT PPO results and do not satisfy a CARLA acceptance gate. All raw frames/RPC and frozen sources retained under v7 batch. Owned empty CARLA server stopped with verified identity, receipt `infrastructure/server_stop.json`.
+- Full current CPU regression: 65 passed, 5 conditional skips (`reports/v9_regression_20261022.xml`). Raw XML remains local because it contains personal paths.
+- Distance-development protocol compares from-scratch B1 on fixed23m versus uniformly sampled6–23m, common45s deadline/PBRS40/PPO settings and1M budget. Validation distance overrides are explicit; ordinary validation/test remain full length. This is single-seed diagnosis, not an architecture comparison.
+
+## Completed200k pair and launched continuation (13:18 local)
+
+Original v8 pair finished with both exits0: H8/10, H0 6/10. H succeeds on static/narrow/empty/dynamic, both fail unseen. H has higher dynamic intervention fraction (~0.145 versus~0.025), retained as a tradeoff. This is one-seed development only. Both policies now continue unchanged to cumulative1M in a separate provenance-linked batch; inherited interactions are included. Fresh B1 fixed23m versus uniform6–23m training is also live. New learned-policy CARLA transfer is running, distinct from earlier B3 diagnostics. CARLA transfer configuration now preserves learned observation/action semantics and planner flags; a focused regression passed. No new formal acceptance gate is declared passed.
+
+## Learned CARLA transfer completed (13:22 local)
+
+Batch `20261022T051716Z_carla_v8_transfer`: both H/H0 frozen200k policies complete2/6 (curve7302 anddynamic7302), four deadlines each, no observed collision/bounds and no infrastructure faults. H4793 world ticks including resets, H0 4861; these are EVALUATION interactions, not PPO training. Both normalization states frozen. Failed conditions repeatedly select unplannable candidates; action/failure audits retained. No executability-feedback advantage transfers in this small diagnostic. Owned server confirmed empty and stopped. Current300k lightweight development is8/10 for both H/H0, so the200k difference is not stable evidence of feedback superiority.
+
+Latest full regression after transfer configuration changes:66passed,5conditional skips (`reports/v9_transfer_regression_20261022.xml`). Detailed case-level report is `reports/development_20261022.md`. All research and publication gates remain incomplete.
+
+## Publication progress
+
+Development commitbbaf303 was actually pushed to the correct existing public repository; remote SHA verified. A fresh GitHub clone/new isolated environment installed pinned dependencies, passed66tests (5conditional skips), and hash-verified/replayed all20 packaged development episodes. The bounded asset is a pre-release and is not complete final experimental evidence. Original12 archived file hashes are retained byte-for-byte. No hosted CI claim.
+
+## Additional failure evidence and next paired baseline
+
+Offline spatial counterfactuals at every failed frozen-CARLA state found3–12plannable distinct candidate targets at the final stalled states. These are geometry checks only, not actual tracking/dynamic-safety success. Thus absent candidates alone do not explain the repeatedly selected unplannable targets. Raw16state audits are preserved in the transfer batch.
+
+B1 fixed23m and uniform6–23m jobs completed1,000,960physical steps each. Fixed23m succeeds2/2 at23m and0/6 at shorter distances; uniform0/8. A new from-scratch common mixed-task B1 with the same450observations and candidate feedback asH is running in `20261022T054701Z_matched_flat_v11_development`. Its commands remain direct flat control; no planning/MPC control replacement. Candidate feature compute cost and native action frequency are disclosed.
+
+CARLA H actual adaptation reached100,890world ticks,38optimization phases, and3/6development completion; static remains0/2. H0 matched100k adaptation is still running. The improvement from2/6 is not a superiority or convergence claim.

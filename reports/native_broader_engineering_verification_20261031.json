@@ -1,0 +1,41 @@
+{
+  "scope": "Executed engineering verification;no final research acceptance claim",
+  "hosted_regression": {
+    "source_commit": "0643fa2e41055d7a46a5bdbbc027551d742352aa",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41182791896",
+    "status": "success",
+    "passed": 723,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "warnings": 3,
+    "seconds": 198.61,
+    "downloaded_log_sha256": "5242f140d6123689c194fb347539af8ffb01f0e4abd32e63a23c86254de457f8"
+  },
+  "known12_feedback_report_exactly_unchanged": true,
+  "known12_figure_byte_identical": true,
+  "targeted_tests": {
+    "measured_scenes_and_initialization": {
+      "passed": 51,
+      "seconds": 5.94
+    },
+    "trajectory_queries": {
+      "passed": 9,
+      "seconds": 2.69
+    },
+    "pristine_B1_geometry": {
+      "passed": 7,
+      "seconds": 2.76
+    },
+    "independent_pristine_B1_geometry": {
+      "passed": 7,
+      "seconds": 3.4
+    },
+    "training_ancestry": {
+      "passed": 3,
+      "seconds": 1.12
+    }
+  },
+  "actual_H_B1_common_physical_task_source_files_equal": 9,
+  "cross_inventory_H24_vs_B1known12_rejected": true,
+  "research_acceptance": "UNMET"
+}

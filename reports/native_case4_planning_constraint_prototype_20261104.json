@@ -1,0 +1,199 @@
+{
+  "scope": "Bounded offline planning-constraint prototype on recorded case4;not deployed or rescored",
+  "initial_registration": {
+    "scope": "Offline planning-only counterexample-cell constraints and collision envelope;no physical vehicle/scoring change",
+    "source_protocol_sha256": "3f013f6519173b0cea125d03e277f788c31a343da35b53def5ae936d14bbca7f",
+    "point_query_sha256": "fe7565064d0e4c82d9b2b11391da67b4eddc304ab03e4abf4324c4ec87d16622",
+    "verified_nonDriving_cells": [
+      [
+        107,
+        115
+      ],
+      [
+        112,
+        121
+      ],
+      [
+        113,
+        121
+      ],
+      [
+        113,
+        122
+      ],
+      [
+        114,
+        123
+      ],
+      [
+        115,
+        123
+      ],
+      [
+        116,
+        124
+      ]
+    ],
+    "previously_free_cells": [
+      [
+        115,
+        123
+      ],
+      [
+        113,
+        122
+      ],
+      [
+        114,
+        123
+      ],
+      [
+        113,
+        121
+      ],
+      [
+        107,
+        115
+      ],
+      [
+        116,
+        124
+      ],
+      [
+        112,
+        121
+      ]
+    ],
+    "collision_envelope": {
+      "longitudinal_margin_m": 0.06,
+      "lateral_margin_m": 0.25
+    },
+    "max_nodes": 7200,
+    "new_controls": 0,
+    "new_updates": 0
+  },
+  "initial_combined_model_result": {
+    "status": "no_path",
+    "nodes": 372,
+    "reason": "open_set_exhausted",
+    "newly_constrained_cells": 7
+  },
+  "variant_registration": {
+    "variants": [
+      "cells_only",
+      "margin_only",
+      "point_constraints_with_margin"
+    ],
+    "maximum_searches": 3,
+    "nodes_each": 7200,
+    "point_box_half_size_m": 1e-06,
+    "scope": "Offline disambiguation only;no native outcomes changed"
+  },
+  "variant_results": {
+    "results": [
+      {
+        "variant": "cells_only",
+        "status": "success",
+        "nodes": 384,
+        "reason": null
+      },
+      {
+        "variant": "margin_only",
+        "status": "success",
+        "nodes": 2113,
+        "reason": null
+      },
+      {
+        "variant": "point_constraints_with_margin",
+        "status": "success",
+        "nodes": 3252,
+        "reason": null
+      }
+    ],
+    "new_controls": 0,
+    "new_updates": 0,
+    "limits": "Planning-only constraints,not measured new obstacles or a native repair. No trained/evaluated result rescored."
+  },
+  "SDK_checks": {
+    "cells_only": {
+      "scope": "Nominal reference footprint vs frozen native lane predicate; no Client or ticks.",
+      "input_sha256": "cfe47c38deb474cb7fccba520ba244e7e96b64a4502810b7acec1bba08d30188",
+      "script_sha256": "3ca68c48bb9e3b71897694367d98554ad2bcdd71525d9320908b5b9659c006d3",
+      "results": [
+        {
+          "key": [
+            4,
+            4
+          ],
+          "points_checked": 22788,
+          "non_driving_points": 0,
+          "examples": []
+        }
+      ],
+      "new_controls": 0,
+      "new_world_ticks": 0,
+      "new_updates": 0,
+      "limits": "Nominal sampled model poses at grid height,not actual roll/pitch/tracking or continuous safety. Does not alter road predicates,scenarios,models or recorded outcomes."
+    },
+    "margin_only": {
+      "scope": "Nominal reference footprint vs frozen native lane predicate; no Client or ticks.",
+      "input_sha256": "84ccd892b765bd65b81983955b5182edbf703762e780450be5dd9ee80b547cfc",
+      "script_sha256": "3ca68c48bb9e3b71897694367d98554ad2bcdd71525d9320908b5b9659c006d3",
+      "results": [
+        {
+          "key": [
+            4,
+            4
+          ],
+          "points_checked": 22464,
+          "non_driving_points": 1,
+          "examples": [
+            {
+              "pose_index": 540,
+              "world": [
+                90.94886779785156,
+                15.211779594421387,
+                0.0
+              ],
+              "requested_world": [
+                90.94886873278638,
+                15.211779430131612,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "new_controls": 0,
+      "new_world_ticks": 0,
+      "new_updates": 0,
+      "limits": "Nominal sampled model poses at grid height,not actual roll/pitch/tracking or continuous safety. Does not alter road predicates,scenarios,models or recorded outcomes."
+    },
+    "point_constraints_with_margin": {
+      "scope": "Nominal reference footprint vs frozen native lane predicate; no Client or ticks.",
+      "input_sha256": "a85e14d36a84972db8a0483f127636f08ecda2e70ad81c0aaac0acdeb968446f",
+      "script_sha256": "3ca68c48bb9e3b71897694367d98554ad2bcdd71525d9320908b5b9659c006d3",
+      "results": [
+        {
+          "key": [
+            4,
+            4
+          ],
+          "points_checked": 22464,
+          "non_driving_points": 0,
+          "examples": []
+        }
+      ],
+      "new_controls": 0,
+      "new_world_ticks": 0,
+      "new_updates": 0,
+      "limits": "Nominal sampled model poses at grid height,not actual roll/pitch/tracking or continuous safety. Does not alter road predicates,scenarios,models or recorded outcomes."
+    }
+  },
+  "new_controls": 0,
+  "new_updates": 0,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "interpretation": "Cell constraints alone find a new path whose sampled error offsets have0native nonDriving points;collision margin alone retains1miss;verified point constraints plus margin have0misses. Combining full-cell constraints and margin exhausts the search. These are engineering model counterfactuals,not actual tracking or learning improvements. Next integration must keep actual v4 bounds/scoring separate from planning-only constraints and preserve all rejected references/costs.",
+  "predicate_scope": "Uses the project frozen v4 DrivingSurfaceIndex over installed OpenDRIVE,the same road predicate used by these runs;not independent rendered-road-mesh or legal-drivability ground truth."
+}

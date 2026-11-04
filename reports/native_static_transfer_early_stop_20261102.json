@@ -1,0 +1,122 @@
+{
+  "batch": "20261102T135514838123Z_native_static_H_H0_teacher_transfer",
+  "scope": "EARLY_STOPPED_INCOMPLETE_KNOWN_TRAIN_TRANSFER_DIAGNOSTIC",
+  "protocol_sha256": "acd6e050ddcdd690f9b0a837c31280852b6b9191e5b5ed6416e1f2b698c140eb",
+  "early_stop_registration_sha256": "9497c8c5a1a62267ea3cba325c02e41507e97b5c989b9d901bd570f3c10f5e6c",
+  "evaluation_trace_sha256": "41f11b44af0e3a4d97aa9bb57313d2ceaa99677c1ed0a3bd8e11b7d44f8129b6",
+  "evaluation_trace_error": "EOFError: Compressed file ended before the end-of-stream marker was reached",
+  "bridge_streams": [
+    {
+      "name": "bridge_5a6b7b2f_responses.jsonl.gz",
+      "sha256": "78b6f20b2b5f0f7c8c866ebc9dae481a6fc658fe7a6cba065a8d0e3da15fdf16",
+      "prefix_error": "EOFError: Compressed file ended before the end-of-stream marker was reached"
+    }
+  ],
+  "verified_retained_policy_frames": 5974,
+  "readable_bridge_control_lower_bound": 6082,
+  "retained_policy_frames_without_bridge_evidence": 0,
+  "readable_bridge_controls_without_retained_policy_trace": 108,
+  "all_readable_bridge_engine_commands_match": true,
+  "unknown_unflushed_tail": true,
+  "completed_recorded_cases": [
+    {
+      "case_id": 0,
+      "original_teacher_case_id": 12,
+      "success": false,
+      "termination": "deadline",
+      "recorded_controls": 900,
+      "verified_controls": 900,
+      "all_case_frames_verified": true
+    },
+    {
+      "case_id": 1,
+      "original_teacher_case_id": 13,
+      "success": true,
+      "termination": "success",
+      "recorded_controls": 332,
+      "verified_controls": 332,
+      "all_case_frames_verified": true
+    },
+    {
+      "case_id": 2,
+      "original_teacher_case_id": 14,
+      "success": false,
+      "termination": "deadline",
+      "recorded_controls": 900,
+      "verified_controls": 900,
+      "all_case_frames_verified": true
+    },
+    {
+      "case_id": 3,
+      "original_teacher_case_id": 15,
+      "success": true,
+      "termination": "success",
+      "recorded_controls": 331,
+      "verified_controls": 331,
+      "all_case_frames_verified": true
+    },
+    {
+      "case_id": 4,
+      "original_teacher_case_id": 16,
+      "success": false,
+      "termination": "out_of_bounds",
+      "recorded_controls": 101,
+      "verified_controls": 101,
+      "all_case_frames_verified": true
+    },
+    {
+      "case_id": 5,
+      "original_teacher_case_id": 17,
+      "success": false,
+      "termination": "deadline",
+      "recorded_controls": 900,
+      "verified_controls": 900,
+      "all_case_frames_verified": true
+    },
+    {
+      "case_id": 6,
+      "original_teacher_case_id": 18,
+      "success": false,
+      "termination": "deadline",
+      "recorded_controls": 900,
+      "verified_controls": 900,
+      "all_case_frames_verified": true
+    },
+    {
+      "case_id": 7,
+      "original_teacher_case_id": 19,
+      "success": false,
+      "termination": "deadline",
+      "recorded_controls": 900,
+      "verified_controls": 900,
+      "all_case_frames_verified": true
+    },
+    {
+      "case_id": 8,
+      "original_teacher_case_id": 20,
+      "success": true,
+      "termination": "success",
+      "recorded_controls": 340,
+      "verified_controls": 340,
+      "all_case_frames_verified": true
+    }
+  ],
+  "completed_recorded_termination_counts": {
+    "deadline": 5,
+    "success": 3,
+    "out_of_bounds": 1
+  },
+  "registered_cases_per_method": 12,
+  "registered_methods": [
+    "H_PPO",
+    "H0_PPO",
+    "H_teacher"
+  ],
+  "full_comparison_complete": false,
+  "excluded_cases": [],
+  "new_PPO_updates": 0,
+  "new_final_conditions": 0,
+  "cleanup": "owned_empty_server_stopped",
+  "conclusion": "Stopped exploration to prioritize actual H/H0adaptation on diverse TRAINroads. Torn policy/bridge gzip streams and unknown tails retained. Counts are readable lower bounds. No completed12case score,method ranking or PPO/feedback claim.",
+  "research_acceptance": "UNMET"
+}

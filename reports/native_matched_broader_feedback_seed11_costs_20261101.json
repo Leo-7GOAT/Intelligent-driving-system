@@ -1,0 +1,57 @@
+{
+  "scope": "First matched common-harness H/H0development seed;all24known conditions and all outcomes. Not an independent five-seed conclusion or final confirmation.",
+  "seed": 11,
+  "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+  "paired_execution_costs": {
+    "left_successes": 24,
+    "right_successes": 24,
+    "safe_completion_difference": 0.0,
+    "left_unsafe_episodes": 0,
+    "right_unsafe_episodes": 0,
+    "left_termination_counts": {
+      "success": 24
+    },
+    "right_termination_counts": {
+      "success": 24
+    },
+    "left_all_outcome_simulation_seconds": 412.500006146729,
+    "right_all_outcome_simulation_seconds": 405.5500060431659,
+    "left_interventions": 470,
+    "right_interventions": 390,
+    "mutually_successful_case_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "mutually_successful_mean_time_difference_seconds": 0.2895833376484613,
+    "duration_limit": "All-outcome duration is a cost ledger,not speed superiority;early failures may be short. Travel-time difference uses only explicitly listed mutually successful cases."
+  },
+  "raw_audits": {
+    "H": "1cd20dc1b0e86e3e8f71de03b07dc4d189a534150507ac1a48b791e35491e249",
+    "H0": "06b315f9c617958ec55643a2783972bd0859c034a9e09fc74185225c8cdacf9d"
+  },
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

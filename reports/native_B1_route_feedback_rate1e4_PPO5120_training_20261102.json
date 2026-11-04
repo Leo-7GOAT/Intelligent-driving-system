@@ -1,0 +1,92 @@
+{
+  "batch": "20261102T120921347255Z_native_route_feedback_PPO5120",
+  "protocol_sha256": "2d844985fbdf2344de0cdb85cd03570c10bf1f2244ff7d9e8e962798ea3f1ae2",
+  "script_sha256": "d14b181d088a28fb956d56e0d1dd65578ec2b855a39be1a85b2f75c4f6af595b",
+  "new_actual_PPO_controls": 5120,
+  "new_actual_Adam_steps": 11,
+  "saved_Adam": {
+    "original_states": 35,
+    "new_route_states": 5,
+    "step_increment_each": 11
+  },
+  "actual_learning_rate": 0.0001,
+  "all_actual_frames_verified": true,
+  "strict_engine_delivery": {
+    "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+    "batch": "20261102T120921347255Z_native_route_feedback_PPO5120",
+    "protocol_sha256": "2d844985fbdf2344de0cdb85cd03570c10bf1f2244ff7d9e8e962798ea3f1ae2",
+    "control_delivery": "batch_sync_v1",
+    "bridge_streams": [
+      {
+        "name": "bridge_2c7c730e_responses.jsonl.gz",
+        "sha256": "a78ece259240e2eb615326495bfab045c17055e9169298f80200ef65a42d86e8"
+      }
+    ],
+    "tolerance": 1e-05,
+    "counts": {
+      "controls": 5120,
+      "gear_or_handbrake_mismatches": 0,
+      "missing_or_negative_sync_ack": 0
+    },
+    "mismatch_channels": {},
+    "by_phase": {
+      "training_or_untraced_failure": {
+        "controls": 5120
+      }
+    },
+    "mismatch_examples": [],
+    "all_engine_controls_match_requested": true,
+    "strict_delivery_gate_passed": true,
+    "new_controls": 0,
+    "new_optimizer_updates": 0,
+    "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+  },
+  "observation_RMS_exact": true,
+  "changed_network_tensors": {
+    "actor": 26,
+    "critic": 14
+  },
+  "training_outcomes": {
+    "out_of_bounds": 4,
+    "success": 7,
+    "collision": 7,
+    "deadline": 1
+  },
+  "new_auxiliary_steps": 0,
+  "model_sha256": "84a892972d8d118b2c633bfecaf4359a139d80e4cb9b09e81b804c3adf46c2a1",
+  "normalization_sha256": "77c4eefc11e523f517389e5aabd26dbcb3bb3739334afa134c8b3dc7c0a01b31",
+  "transition_hashes": {
+    "transitions_000000000_1793621388964568300.jsonl.gz": "14bedd7e75a787c6b871b9f0e8d7d2176fc5e1e4580ebbe05bcd825156dedcbf"
+  },
+  "bridge_streams": [
+    {
+      "name": "bridge_2c7c730e_responses.jsonl.gz",
+      "sha256": "a78ece259240e2eb615326495bfab045c17055e9169298f80200ef65a42d86e8"
+    }
+  ],
+  "world_ticks": 5739,
+  "endpoint_validation": "PENDING;training outcomes are stochastic training,not frozen-policy evaluation",
+  "research_acceptance": "UNMET",
+  "training_wall_seconds": 448.52284693717957,
+  "actor_l2_change": 0.05630810931324959,
+  "lineage_PPO_controls": 56320,
+  "charged_controls_lower_bound": 176654,
+  "source_comparison": "Matched source558f162f learned tensors,Adam moments,RMS,RNG and TRAIN48;only retained learning rate3e-6to1e-4. Original target-KL early stopping remains enabled;11actualAdamsteps is not160.",
+  "basic": {
+    "batch": "20261102T121738941723Z_native_route_feedback_PPO_basic",
+    "successes": 3,
+    "cases": 4,
+    "terminations": [
+      "deadline",
+      "success",
+      "success",
+      "success"
+    ],
+    "actual_controls": 1887,
+    "all_policy_actions_bit_exact": true,
+    "sequence_audit_sha256": "3ed09f775b897410788d204fe57d57a2d45bbdfcc96c001ed55322016391e789"
+  },
+  "known_validation": "RUNNING:20261102T122150154243Z_native_route_feedback_PPO_known_validation;not final confirmation",
+  "training_audit_sha256": "22afaf83f063df152e3d80ac1b3b6cd9c913fc44238def9e543960dcda26aacc",
+  "new_final_conditions": 0
+}

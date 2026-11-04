@@ -1,0 +1,46 @@
+{
+  "scope": "Complete first matched-broader H/H0native PPO development capsule and independent LOCAL archive reconstruction;recorded before public upload. All36TRAIN/24known validation conditions retained.",
+  "seed": 11,
+  "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+  "archive": "native_matched_broader_H_H0_seed11_20261101_repro.zip",
+  "bytes": 141286566,
+  "sha256": "536125ada8d3bf8b4a55d78505d9f53c3a257f79195646c379d4a94e2765e92f",
+  "reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "536125ada8d3bf8b4a55d78505d9f53c3a257f79195646c379d4a94e2765e92f",
+    "asset_source_commit": "369db6939ee67e540aa6b63c155b3eb27964f2bc",
+    "reproduction_source_commit": "369db6939ee67e540aa6b63c155b3eb27964f2bc",
+    "verified_files": 936,
+    "methods": [
+      {
+        "method": "H",
+        "raw_audit_sha256": "1cd20dc1b0e86e3e8f71de03b07dc4d189a534150507ac1a48b791e35491e249",
+        "verified_controls": 28772,
+        "measured_start_actions_reproduced": 24,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      },
+      {
+        "method": "H0",
+        "raw_audit_sha256": "06b315f9c617958ec55643a2783972bd0859c034a9e09fc74185225c8cdacf9d",
+        "verified_controls": 28640,
+        "measured_start_actions_reproduced": 24,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "dd4854412258bbf0f74483e1413557149b1f411cdc79f9f1161e1a11b1fc4b1f",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  },
+  "unique_known_evaluation_conditions": 24,
+  "independent_model_start_actions_each": 24,
+  "raw_training_and_evaluation_controls": 57412,
+  "new_controls_for_packaging_and_reconstruction": 0,
+  "new_optimizer_updates": 0,
+  "research_acceptance": "UNMET;one development pair,no feedback benefit or healthy B1demonstrated",
+  "public_upload_at_local_preflight": false,
+  "completed_public_verification_report": "reports/native_matched_broader_seed11_public_verification_20261101.json"
+}

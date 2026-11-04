@@ -1,0 +1,121 @@
+{
+  "rows": [
+    {
+      "seed": 11,
+      "batch": "20261102T044003693349Z_native_broader_B1_seed11",
+      "protocol_sha256": "bf3e8f92387e050481db7f3a24c5d3f6b7bdbd1dcff265d92f6aefafc21b5936",
+      "initial_model_sha256": "13aa5eec688e9933c4494afcd0e1369c0e4b8313b870f91e221967dc16d63ca1"
+    },
+    {
+      "seed": 33,
+      "batch": "20261102T044004346066Z_native_broader_B1_seed33",
+      "protocol_sha256": "5a5d8a5492c5c0891f5323df16d9f45ac4b450f6746c9c23fbcca881e3b8fbeb",
+      "initial_model_sha256": "05283feeceb51cf9e4c6c3f11c70b3e4b64e4538f6862d0acd5a70bd37fd2802"
+    },
+    {
+      "seed": 44,
+      "batch": "20261102T044004788200Z_native_broader_B1_seed44",
+      "protocol_sha256": "570aa0ae1bf059be3f8ed7b165a4d58a0b42e81becc71c4c796fbf96fc5979b1",
+      "initial_model_sha256": "5af377bdca732f0e8b6b494496071dfac9c237fd1f349acff9be7e190114f119"
+    },
+    {
+      "seed": 55,
+      "batch": "20261102T044005159056Z_native_broader_B1_seed55",
+      "protocol_sha256": "d904299f23a5a5cf8a8be44b0f5e5160916b81444bb1315f79c48af7a4e40af2",
+      "initial_model_sha256": "567e425bc71dbee04427d1117edf6077aabe4cba519e15f76b29fb1dfff62530"
+    }
+  ],
+  "original_pilot": "20261101T131830295783Z_native_B1_broader_shared_parking_PPO",
+  "original_pilot_source_model_sha256": "ea2d12ab9345777a28ee31c44fc372949692fa935c760f387ef1ee4dd5235fee",
+  "all_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "requested_additional_controls": 81920,
+  "controls_each": 20480,
+  "training_conditions": 36,
+  "known_validation_conditions": 24,
+  "original_basic_cohort_sha256": "158958e44a7cc50893851e2ab9ac9a52aad38077a406eaa4c8a93b7005fe8b37",
+  "purpose": "Complete five development policies using unchanged common training after independent basic courses;retain basic failures.",
+  "limits": "Prepared before22pilot validation;not a fromscratch or matched H/B1 comparison. No final conditions.",
+  "new_controls_so_far": 0,
+  "automatic_retries": 0,
+  "version": "additional_four_broader_B1_development_v1",
+  "registration_sha256": "a967713432300ac167a99d704424330e6c9a9ad1132fe9287782f22daa75137d",
+  "validation_sha256": "8345ce4e37478fe1f924e7fc9b879e6dd56cd535090787ca713575c30f5f55ac",
+  "script_sha256": "ff6df72ca87c52b773e297bedb8e5c3961a21ac6c3056c417f424bca77ff60bc",
+  "original_pilot_activated_protocol_sha256": "b895e0ed6dd206294568d83ffb6c6e612c0ebbfb16cf43507fd4168fbbf1b94e",
+  "original_pilot_prior_registration_sha256": "66434fcfac2addbb3b68dbb7ef653bad92eb0deed359bd098363c08c67c0de37",
+  "registration_timing": "Four additional seeds fixed while original22pilot is training and before its24VALoutcomes. Original single-pilot registration is unchanged. This is a combined development cohort, not a claim of all-five preregistration before any training.",
+  "validation_checks": [
+    {
+      "seed": 11,
+      "frozen_import_and_config_signature": true,
+      "TRAIN": 36,
+      "VAL": 24,
+      "saved_PPO_hyperparameters_match_original22": true,
+      "all_source_hashes_verified": 391,
+      "launcher_inputs_validated_not_server_probed": true
+    },
+    {
+      "seed": 33,
+      "frozen_import_and_config_signature": true,
+      "TRAIN": 36,
+      "VAL": 24,
+      "saved_PPO_hyperparameters_match_original22": true,
+      "all_source_hashes_verified": 391,
+      "launcher_inputs_validated_not_server_probed": true
+    },
+    {
+      "seed": 44,
+      "frozen_import_and_config_signature": true,
+      "TRAIN": 36,
+      "VAL": 24,
+      "saved_PPO_hyperparameters_match_original22": true,
+      "all_source_hashes_verified": 391,
+      "launcher_inputs_validated_not_server_probed": true
+    },
+    {
+      "seed": 55,
+      "frozen_import_and_config_signature": true,
+      "TRAIN": 36,
+      "VAL": 24,
+      "saved_PPO_hyperparameters_match_original22": true,
+      "all_source_hashes_verified": 391,
+      "launcher_inputs_validated_not_server_probed": true
+    }
+  ],
+  "training_limits": {
+    "native_wall_seconds_each": 7200,
+    "observer_maximum_seconds": 43200,
+    "automatic_retries": 0,
+    "disk_min_GiB": 12,
+    "RAM_min_GiB": 4,
+    "GPU_stop_temperature_C": 85,
+    "serial_existing_RPC_ports": [
+      2100,
+      2101,
+      2102
+    ]
+  },
+  "reporting_rules": {
+    "all_seeds_and_failures_retained": true,
+    "fixed_final_checkpoint_only": true,
+    "no_validation_labels_used_for_training": true,
+    "performance_failures_do_not_skip_later_seeds": true,
+    "infrastructure_failures_stop_without_retry": true,
+    "existing_basic_gate_failures_remain_failures": true,
+    "mixed_training_histories_and55recovery_disclosed": true
+  },
+  "prospective_development_screen": {
+    "overall_success_fraction_min": 0.8,
+    "per_core_success_fraction_min": 0.7,
+    "collision_or_bounds_fraction_max": 0.05,
+    "scope": "Known24VALscreen only;not originalfinalacceptance or proof that basic4TRAINroads are now healthy."
+  },
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET"
+}

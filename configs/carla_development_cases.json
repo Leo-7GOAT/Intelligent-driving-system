@@ -1,0 +1,8 @@
+[
+  {"scenario":"static","condition":11},
+  {"scenario":"curve","condition":11},
+  {"scenario":"dynamic","condition":11},
+  {"scenario":"static","condition":22},
+  {"scenario":"curve","condition":22},
+  {"scenario":"dynamic","condition":22}
+]

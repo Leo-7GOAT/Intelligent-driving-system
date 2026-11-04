@@ -1,0 +1,2030 @@
+{
+  "scope": "New development scenario construction preflight;original scored inventories retained",
+  "registration": {
+    "batch": "20261103_reference_context_TRAIN48_PPO10240_scale100_H_static",
+    "protocol_sha256": "3f013f6519173b0cea125d03e277f788c31a343da35b53def5ae936d14bbca7f",
+    "script_sha256": "43d3aba90b4512b01f490fa9fd5476ba2821c1aa43cb52bb0667fe908d4ba66d",
+    "proposals": [
+      {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      },
+      {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      },
+      {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      },
+      {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      },
+      {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      },
+      {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      },
+      {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      },
+      {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      },
+      {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    ],
+    "cases": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "planner_node_budget": 7200,
+    "maximum_searches": 108,
+    "selection": "Retain all proposals;eligibility independent of policy actions or scores",
+    "scope": "Known TRAIN geometry proposals only;new version requires fresh native measurements"
+  },
+  "registration_sha256": "45c9c6f386cba157b187d0d642438a7ed75832707a3ba3da981e8eb0277df370",
+  "complete_sha256": "e8acdb931d75576bfc88c11115e15ccb755a35465e50942ab4a8d774b1131631",
+  "proposals_checked": 108,
+  "eligible_model_proposals": 30,
+  "eligible_by_case": {
+    "0": 3,
+    "1": 8,
+    "3": 8,
+    "4": 2,
+    "6": 2,
+    "7": 1,
+    "8": 2,
+    "10": 3,
+    "11": 1
+  },
+  "results": [
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 0,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 224,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 0,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "c33d6584f98672ecb2bc719b4b01943ba2676a76c55f57d65daf3dc6260ed5c3"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 416,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 0,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      },
+      "path_sha256": "77a70b7317c8a0a127a12c6d73d5fc97c75a753c678f19585d0179463a813225"
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 0,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 288,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 0,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "f8c2ec9a2fbb02e42b680908e4b39878554db1dedae48ba04b828352cd0ac1e8"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 0,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 0,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 0,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 0,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 46,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 1,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      },
+      "path_sha256": "e5f0ad415eeb8e80b11595d161e3ac8a7a123317ed2c2b623344e544cea718de"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 59,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 1,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "1d0314cce46be88253f93c76bbfb0c541a70844e04cac13fd7c0a3d348d0914f"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 32,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 1,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      },
+      "path_sha256": "2ca217fe272377cd54692c17f55422a8882c0cc3cb15d1e62fe12c3e295d1000"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 32,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 1,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      },
+      "path_sha256": "30c152d067ec628024618c3a8e54a65f5ab7e765e3cb055686a4fa4a91d795e2"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 64,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 1,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "b1dcec4dba8227b61a8acfbcce82810ba44ee7a97533673ddc78ec19506a44db"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 32,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 1,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      },
+      "path_sha256": "b2f2653ae3850c25622620590371ec0ef70a553a8325437544170298f9ff7271"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 49,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 1,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      },
+      "path_sha256": "bce041ea1f730aef9ac60ec6ac0b7772d6fdcd6251f0048ce474f8602c4bf64f"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 1,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 56,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 1,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      },
+      "path_sha256": "322e56c6a30436187e347f6858d28d9bfa5dd87028f5e7156620d43c15b85261"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 73,
+      "reason": "open_set_exhausted",
+      "case_id": 2,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 1875,
+      "reason": "open_set_exhausted",
+      "case_id": 2,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 2,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 2,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 2141,
+      "reason": "open_set_exhausted",
+      "case_id": 2,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 2,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 2,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 3390,
+      "reason": "open_set_exhausted",
+      "case_id": 2,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 2,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 33,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 3,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      },
+      "path_sha256": "23545e90b3325a0994ef35f329fd3922ecc6794cc46bef76e8534d725705764a"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 62,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 3,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "c2a6edb26d1a4022f5a71b903dd1b556c139f3dba41d3b622dfd463b0a77678e"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 74,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 3,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      },
+      "path_sha256": "86af8b59440c89095c207ca7a1fbdb50b3c83ee67cac10fc9c839b22db094355"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 32,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 3,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      },
+      "path_sha256": "99da216f3d69cd47eb3687e67f4ea7ab17f74468fa79984f640a3e881184a282"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 32,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 3,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "c72cfe977b7740a143ef1b5d873a3a3fa245c9dfc817c1ad639cb86d79e7e785"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 90,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 3,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      },
+      "path_sha256": "9323932edac17f464cfe13b7982fa1187d0c8dcdaf0bad7555ab4a8baa291457"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 32,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 3,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      },
+      "path_sha256": "aa73f55d4415acaf918e8c1196cc395206fcb30dd5217bb314047d9311cb0d5d"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 3,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 34,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 3,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      },
+      "path_sha256": "0e2e6897bcb160a04cca00ea3ea639a2537663ad20a4d6125581db2d4af74a64"
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 4,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 82,
+      "reason": "open_set_exhausted",
+      "case_id": 4,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 73,
+      "reason": "open_set_exhausted",
+      "case_id": 4,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 4,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 416,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 4,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "e0c266f9caae7a7f67bb92be4fb1f2b3e6393bc04bcc46c2ce58f149264c880f"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 682,
+      "reason": "open_set_exhausted",
+      "case_id": 4,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 4,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 6778,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 4,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "b5292bcdaaeadeb6c42dfdd21bb898f87e5981715622f0e7206ef8fbeef00640"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 3345,
+      "reason": "open_set_exhausted",
+      "case_id": 4,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 5,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 5009,
+      "reason": "open_set_exhausted",
+      "case_id": 5,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 112,
+      "reason": "open_set_exhausted",
+      "case_id": 5,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 5,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 6694,
+      "reason": "open_set_exhausted",
+      "case_id": 5,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 5,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 5,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 5,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 5,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 6,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 1824,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 6,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "71858ec846a499f893538b4441b2c60b3c37505f119fec2c81adbf716e87a032"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 65,
+      "reason": "open_set_exhausted",
+      "case_id": 6,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 6,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 1408,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 6,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "a231db7582fa7b2204cd52ea36f0931d4b1f89b9c7d1984f841964619c7e74bd"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 6,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 6,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 6,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 6,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 7,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 2400,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 7,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "95dc1047c17e0d19a6b25ccf11f6d8e22bf28eb07295d87128edc70e27ee40ac"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 87,
+      "reason": "open_set_exhausted",
+      "case_id": 7,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 7,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 7,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 854,
+      "reason": "open_set_exhausted",
+      "case_id": 7,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 7,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 7,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 7,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 8,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 53,
+      "reason": "open_set_exhausted",
+      "case_id": 8,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 55,
+      "reason": "open_set_exhausted",
+      "case_id": 8,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 8,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 202,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 8,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "f2d9b896aa0830dd1bf03ebd62b3ceeefa830b9640857959be06fa54c2f9abfc"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 549,
+      "reason": "open_set_exhausted",
+      "case_id": 8,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 8,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 5866,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 8,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "4efcaf35b991c10cd3bf05eb7f94d90b4134a6be61ad81d2e387470bb876c528"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 2240,
+      "reason": "open_set_exhausted",
+      "case_id": 8,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 9,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 25,
+      "reason": "open_set_exhausted",
+      "case_id": 9,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 43,
+      "reason": "open_set_exhausted",
+      "case_id": 9,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 9,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 9,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 9,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "rejection": "Hazard requires start/goal clearance on a longer route",
+      "eligible_model_proposal": false,
+      "case_id": 9,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "rejection": "Hazard requires start/goal clearance on a longer route",
+      "eligible_model_proposal": false,
+      "case_id": 9,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "rejection": "Hazard requires start/goal clearance on a longer route",
+      "eligible_model_proposal": false,
+      "case_id": 9,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 10,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 224,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 10,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "3c316cad4bc0f7f0f7ad9762c875986521763cb7ddb2516a08c6b1a388fc09a0"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 480,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 10,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      },
+      "path_sha256": "32a1de33fc8379e20d1393e8a4aa1a8d54ec3bfe286a22e188d7316f7a780678"
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 10,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 288,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 10,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "684aab85fde521a70916384e0154271553d7d5da750805647e456249373dd2f4"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 10,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 10,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 10,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 10,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 11,
+      "proposal_index": 0,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": true,
+      "status": "success",
+      "nodes": 1199,
+      "reason": null,
+      "path_samples_free": true,
+      "timed_samples_free": true,
+      "case_id": 11,
+      "proposal_index": 1,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 0.0
+      },
+      "path_sha256": "28cf5eac78fd7dcbc054b44182638382b65854c787260fdec77967e180760aeb"
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 105,
+      "reason": "open_set_exhausted",
+      "case_id": 11,
+      "proposal_index": 2,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 10.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 11,
+      "proposal_index": 3,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 5915,
+      "reason": "open_set_exhausted",
+      "case_id": 11,
+      "proposal_index": 4,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 2279,
+      "reason": "open_set_exhausted",
+      "case_id": 11,
+      "proposal_index": 5,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 13.0,
+        "lateral_m": 1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": false,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "case_id": 11,
+      "proposal_index": 6,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": -1.5
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "timeout",
+      "nodes": 7200,
+      "reason": "search_budget",
+      "case_id": 11,
+      "proposal_index": 7,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 0.0
+      }
+    },
+    {
+      "hazard_fully_road_supported": true,
+      "start_free": true,
+      "goal_free": true,
+      "eligible_model_proposal": false,
+      "status": "no_path",
+      "nodes": 4319,
+      "reason": "open_set_exhausted",
+      "case_id": 11,
+      "proposal_index": 8,
+      "spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "static_geometry": "projected_box_strips12_v1",
+        "distance_m": 16.0,
+        "lateral_m": 1.5
+      }
+    }
+  ],
+  "new_controls": 0,
+  "new_updates": 0,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "limits": "Transformed old measured boxes are proposals,not new native measurements. Model eligibility does not prove tracking or continuous safety. Original inventories and scores unchanged;do not retrospectively filter them or claim PPO benefit."
+}

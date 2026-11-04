@@ -1,0 +1,53 @@
+{
+  "scope": "One canonical seed reference-context learning completed; endpoint performance not yet verified",
+  "research_acceptance": "UNMET",
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_v4",
+  "protocol_sha256": "573df8882af1414918c5c1cac4c171fca5f297b9ddca94c24cb3fe9bc7f5b467",
+  "methods": {
+    "H": {
+      "actual_controls": 10511,
+      "decisions": 1056,
+      "Adam_steps": 330,
+      "all32Adamstates_advance": 330,
+      "RMS_exact": true,
+      "learned_reference_gain": 0.0011252184631302953,
+      "gain_scale": 1.0,
+      "model_sha256": "f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff"
+    },
+    "H0": {
+      "actual_controls": 10513,
+      "decisions": 1056,
+      "Adam_steps": 330,
+      "all32Adamstates_advance": 330,
+      "RMS_exact": true,
+      "learned_reference_gain": 0.0,
+      "gain_scale": 1.0,
+      "model_sha256": "4a7a222cb5ca0bef3903ab631e562166f63056ac8665b571931f3161d31b4cd3"
+    }
+  },
+  "retained_reference_course_controls": 21024,
+  "reset_ticks": 1176,
+  "training_world_ticks": 22200,
+  "training_raw_audit_sha256": "bf0d3fe849d7af8d340c43f0b3b80015a97b278635126a2b071fe7d48610f31f",
+  "strict_delivery_gate_passed": true,
+  "strict_delivery_sha256": "37513d9c5a30bfe3fdbc321a0c2bb6e286e2be7342e31f72f50aaa7b59bcebcf",
+  "failed_v2_course_controls_lower_bound": 2412,
+  "failed_v2_unknown_tail": true,
+  "failed_endpoint_attempt": {
+    "batch": "20261103_reference_context_TRAIN48_PPO10240_v4_static",
+    "protocol_sha256": "d72b06e348b32cd450bebe01bcb5996bff262d2675248ee2f6cde470dc319cde",
+    "error": "ValueError('Reference context observation schema differs')",
+    "policy_controls": 0,
+    "reset_ticks": 30,
+    "bridge_streams": [
+      {
+        "name": "bridge_55257e1a_responses.jsonl.gz",
+        "sha256": "80146eb9374c895a46699df48fa93a273a3b286aba8149ec59064fa10c27d76a",
+        "rows": 1
+      }
+    ],
+    "owned_server_stopped": "owned_empty_server_stopped"
+  },
+  "fixed_endpoint_evaluation": "QUEUED_AFTER_EXACT_EXISTING_STATIC_REMAINDER_COORDINATOR",
+  "limits": "No endpoint score or feedback/PPO gain claim. H0 hides both old feedback and new context. Failed and prior costs remain separate; this is not five independent seeds or final confirmation."
+}

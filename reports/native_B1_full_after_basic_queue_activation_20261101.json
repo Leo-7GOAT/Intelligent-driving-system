@@ -1,0 +1,44 @@
+{
+  "scope": "Conditional next-stage queue is live;no full-task child prepared or trained yet",
+  "plan": {
+    "scope": "Conditional full-task continuation;all5basic courses must qualify before any child is prepared",
+    "dependency_execution": "B1_basic_PPO_execution_20261101_v2_external_interruption",
+    "dependency_process": {
+      "pid": 62176,
+      "creation_epoch": 1793489351.677842,
+      "executable_name": "python.exe"
+    },
+    "workspace_bindings": {
+      "scripts/prepare_native_supervised_ppo.py": "11a83d595e83982339b50c7d92aba28689cf01833d604a5622a65fe330879b10",
+      "scripts/prepare_native_hazard_learning.py": "b5eb5fd8d6a96fe93efac1cc7164d522c66cb5efc48a715243ac37bd6cfad36d",
+      "scripts/carla_bridge37.py": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a",
+      "navstack/fixed_reward_units.py": "dee81d8411ca21851c6eaef0c9dd5215bb7de1daa241d42b7151b7afa01f47f2"
+    },
+    "new_controls_each": 20480,
+    "basic_controls_each": 10240,
+    "total_policy_lineage_each": 30720,
+    "automatic_retries": 0
+  },
+  "actual_status": {
+    "phase": "WAITING_FOR_ALL_FIVE_TRAINED_BASIC_QUALIFICATIONS",
+    "pid": 66252,
+    "epoch": 1793489778.4085648,
+    "created": [],
+    "completed": [],
+    "dependency_pid": 62176
+  },
+  "trained_checkpoint_actual_CPU_restore": {
+    "seed": 11,
+    "actual_frozen_restore_succeeded": true,
+    "runtime_config_matches_saved": true,
+    "trained_PPO_and_Adam_state_retained": true,
+    "normalization_statistics_unchanged": true,
+    "policy_tensor_sha256": "6d0fcd84784964ce3672460ccbc4877e874f2c59a48fc1473081d5dab9be71a0",
+    "new_resets": 0,
+    "new_controls": 0,
+    "new_optimizer_updates": 0
+  },
+  "root_related_tests_passed": 21,
+  "root_test_seconds": 3.92,
+  "research_acceptance": "UNMET"
+}

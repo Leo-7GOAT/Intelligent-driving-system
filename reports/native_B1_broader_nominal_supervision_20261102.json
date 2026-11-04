@@ -1,0 +1,108 @@
+{
+  "scope": "Completed five TRAIN-only nominal actor fits and fixed canonical22development probes;failed qualification retained.",
+  "fits": [
+    {
+      "seed": 11,
+      "model_sha256": "6eb442465c6957fe26bf7c5f995a4b7c41feadae1bb70924dbb274a1a8a0e7a9",
+      "actual_Adam_step_each": [
+        1024
+      ],
+      "auxiliary_parameter_states": 20,
+      "result_sha256": "a9d1a17fc5489017322c6139614c1772af0bce72994b2208e3fbd97a976b4f6a",
+      "new_PPO_updates": 0,
+      "new_controls": 0
+    },
+    {
+      "seed": 22,
+      "model_sha256": "5f42425596c4f1555f5f9870f2a18f3ccc4bda337e5fbe197e28a14e667456d3",
+      "actual_Adam_step_each": [
+        1024
+      ],
+      "auxiliary_parameter_states": 20,
+      "result_sha256": "73bd2db2b7eff744c29047d40396ee9407954152d57e705fcb5797f0536cbcdf",
+      "new_PPO_updates": 0,
+      "new_controls": 0
+    },
+    {
+      "seed": 33,
+      "model_sha256": "c4e74b196671d013e535e63772c2d11dcd1cd97175989d212442231574624857",
+      "actual_Adam_step_each": [
+        1024
+      ],
+      "auxiliary_parameter_states": 20,
+      "result_sha256": "0d20ec489ad35548992f97dad8d37b38385ffc309ab56509203b5719251cb8eb",
+      "new_PPO_updates": 0,
+      "new_controls": 0
+    },
+    {
+      "seed": 44,
+      "model_sha256": "a898af3f407c94403da60f395c3dad4346f51132e44abdc40380962eee844d80",
+      "actual_Adam_step_each": [
+        1024
+      ],
+      "auxiliary_parameter_states": 20,
+      "result_sha256": "d4459e6b18ebf749d5fba48d07d10447c3c95baa27d8aa02f32fd57929c971f5",
+      "new_PPO_updates": 0,
+      "new_controls": 0
+    },
+    {
+      "seed": 55,
+      "model_sha256": "bc6da7a0167401858c282b72f54fa7da3d3556a6dbd971af8d8b120ffa4d7c6a",
+      "actual_Adam_step_each": [
+        1024
+      ],
+      "auxiliary_parameter_states": 20,
+      "result_sha256": "e7432a73fff250116d535288cc985e5d54d8c797b4bf685673dbab1a65adc54e",
+      "new_PPO_updates": 0,
+      "new_controls": 0
+    }
+  ],
+  "total_new_auxiliary_Adam_steps": 5120,
+  "total_new_PPO_updates": 0,
+  "teacher": {
+    "batch": "20261102T053259603507Z_native_B3_broader_TRAIN_teacher",
+    "controls": 12556,
+    "recorded_cases": 36,
+    "successful_cases_fitted": 35,
+    "failed_case21_retained": true
+  },
+  "basic": {
+    "batch": "20261102T075531454659Z_native_measured_actor_basic22",
+    "model_sha256": "5f42425596c4f1555f5f9870f2a18f3ccc4bda337e5fbe197e28a14e667456d3",
+    "episodes": 4,
+    "successes": 4,
+    "terminations": {
+      "success": 4
+    },
+    "verified_controls": 1298,
+    "protocol_sha256": "d61cc8b03a38a8a2c0360304e8282b1cb4f7d2aa8d8994fa592762d8629edd88",
+    "raw_audit_sha256": "25859708d357e68574e7f839f7b431c0373191e18f017ec34135290a8864b841",
+    "new_PPO_updates": 0,
+    "final_conditions": 0
+  },
+  "known_validation": {
+    "batch": "20261102T080252358758Z_native_measured_actor_validation22",
+    "model_sha256": "5f42425596c4f1555f5f9870f2a18f3ccc4bda337e5fbe197e28a14e667456d3",
+    "episodes": 24,
+    "successes": 4,
+    "terminations": {
+      "success": 4,
+      "out_of_bounds": 13,
+      "deadline": 3,
+      "collision": 4
+    },
+    "verified_controls": 9489,
+    "protocol_sha256": "3cba048d79ae6e3efda86f20b572dc78a2f526778197414e8a5871a27c27787e",
+    "raw_audit_sha256": "47e820c6b95adaf39958fd4a4e860a09cd152e3b13667c1580ea8c0b7c4caf8e",
+    "new_PPO_updates": 0,
+    "final_conditions": 0
+  },
+  "normalization_diagnostic": {
+    "report_sha256": "88555a395885b85b182373a6a5b8637e030a1f359089f1ee0b99a167c9383655",
+    "initial_clip_fraction": 0.0,
+    "scope": "Initial states only;does not support clipping as the failure cause. No RMS or training changes."
+  },
+  "research_acceptance": "UNMET",
+  "decision": "Do not promote the failed policy to full five-seed evaluation or more PPO. One bounded all36TRAINteacher/learner collection tests recovery-state coverage;no VALlabels used.",
+  "limits": "Extra supervision,not PPO benefit. Canonical22was fixed before fitting;other four supervised policies have no new native qualification. Correlated holdouts are not independent tests."
+}

@@ -1,0 +1,116 @@
+{
+  "scope": "Actual isolated CARLA0.9.15 surface and walker-spawn probe after a verified empty owned shutdown;no ego controls or policy updates.",
+  "parent": "20261031T025445532080Z_native_supervised_ppo",
+  "failed_case_id": 17,
+  "world_pose": [
+    -57.25456581766225,
+    26.27490151309133,
+    0.6
+  ],
+  "surface_hits": [
+    {
+      "location": {
+        "x": -57.25456237792969,
+        "y": 26.27490234375,
+        "z": 0.00020019531075377017
+      },
+      "label": "Roads"
+    },
+    {
+      "location": {
+        "x": -57.25456237792969,
+        "y": 26.27490234375,
+        "z": -1.9905223846435547
+      },
+      "label": "Water"
+    }
+  ],
+  "spawn_attempts": [
+    {
+      "offset_z": 0.0,
+      "requested": {
+        "x": -57.25456581766225,
+        "y": 26.27490151309133,
+        "z": 0.6
+      },
+      "spawned": false,
+      "error": "Spawn failed because of collision at spawn position"
+    },
+    {
+      "offset_z": 0.2,
+      "requested": {
+        "x": -57.25456581766225,
+        "y": 26.27490151309133,
+        "z": 0.8
+      },
+      "spawned": true,
+      "actor_id": 24,
+      "settled_location": {
+        "x": -57.25456237792969,
+        "y": 26.27490234375,
+        "z": 0.95169997215271
+      },
+      "bounding_box_extent": {
+        "x": 0.18767888844013214,
+        "y": 0.18767888844013214,
+        "z": 0.9300000071525574
+      },
+      "destroy_requested": true,
+      "actor_absent_after_destroy": false
+    },
+    {
+      "offset_z": 0.4,
+      "requested": {
+        "x": -57.25456581766225,
+        "y": 26.27490151309133,
+        "z": 1.0
+      },
+      "spawned": true,
+      "actor_id": 25,
+      "settled_location": {
+        "x": -57.25456237792969,
+        "y": 26.27490234375,
+        "z": 0.95169997215271
+      },
+      "bounding_box_extent": {
+        "x": 0.18767888844013214,
+        "y": 0.18767888844013214,
+        "z": 0.9300000071525574
+      },
+      "destroy_requested": true,
+      "actor_absent_after_destroy": false
+    },
+    {
+      "offset_z": 0.6,
+      "requested": {
+        "x": -57.25456581766225,
+        "y": 26.27490151309133,
+        "z": 1.2
+      },
+      "spawned": true,
+      "actor_id": 26,
+      "settled_location": {
+        "x": -57.25456237792969,
+        "y": 26.27490234375,
+        "z": 0.9516999125480652
+      },
+      "bounding_box_extent": {
+        "x": 0.18767888844013214,
+        "y": 0.18767888844013214,
+        "z": 0.9300000071525574
+      },
+      "destroy_requested": true,
+      "actor_absent_after_destroy": false
+    }
+  ],
+  "remaining_relevant_actors": [],
+  "owned_server_stop_status": "owned_empty_server_stopped",
+  "post_stop_tcp": [],
+  "post_stop_udp": [],
+  "original_probe_sha256": "e2133d771a589fee3f383d1c32fd09391b1d355fa2e7f4748a395d102b83169f",
+  "probe_script_sha256": "2fbd7d7c37090e8537b221f04df8e8f1005e201d9e42542f80763f99507793ca",
+  "new_ego_controls": 0,
+  "PPO_updates": 0,
+  "scope_limit": "Walkers were created/destroyed and settlement frames advanced;this is not a read-only actor probe or new policy driving. Retired actor proxies can remain retrievable after destroy;final active inventory and stop probe are empty.",
+  "targeted_recovery_tests_passed": 72
+}

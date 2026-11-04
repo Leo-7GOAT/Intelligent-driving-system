@@ -1,0 +1,105 @@
+{
+  "scope": "Actual public unauthenticated-download independent-checkout model/raw/figure reproduction. No new CARLA controls or policy updates. Teacher initialization and failed PPO version remain separate.",
+  "release_tag": "v0.2.0-dev.20261022",
+  "tag_target_unchanged": true,
+  "source_commit": "fcc89b38916c5961aec2da73fba2aa10dcfc58fc",
+  "downloads": [
+    {
+      "name": "native_direct_teacher_seed11_20261027_full_repro.zip",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_direct_teacher_seed11_20261027_full_repro.zip",
+      "bytes": 5219831,
+      "sha256": "ea6013bd78c516f7c060246d46d83f02082f70fb263611eec91df0e50ba97e18",
+      "authorization_header_used": false
+    },
+    {
+      "name": "native_arc_ppo_seed11_20261027_repro.zip",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_arc_ppo_seed11_20261027_repro.zip",
+      "bytes": 72873519,
+      "sha256": "1b5480f25b737b568dc623b9cc19d557bed95dfb474b6f9d56009ecf5d7456ea",
+      "authorization_header_used": false
+    }
+  ],
+  "reproduction": [
+    {
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "ea6013bd78c516f7c060246d46d83f02082f70fb263611eec91df0e50ba97e18",
+      "asset_source_commit": "fcc89b38916c5961aec2da73fba2aa10dcfc58fc",
+      "reproduction_source_commit": "fcc89b38916c5961aec2da73fba2aa10dcfc58fc",
+      "verified_files": 405,
+      "methods": [
+        {
+          "method": "B1",
+          "raw_audit_sha256": "ead284ffaae3174c6b82ea831feece609d3d251dd75e3d2630a6aaea307c3125",
+          "verified_controls": 1976,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "2107f9bb00abd60606185dde88ad7937f1e0c858b6f2e7de57565b49ed379895",
+      "figure_byte_identical": true
+    },
+    {
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "1b5480f25b737b568dc623b9cc19d557bed95dfb474b6f9d56009ecf5d7456ea",
+      "asset_source_commit": "716ef7d209cab630cfd0146bae0aab34a739b49c",
+      "reproduction_source_commit": "fcc89b38916c5961aec2da73fba2aa10dcfc58fc",
+      "verified_files": 633,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "fe47bec718757cc140645b2ddee914d1327b65cfaab6a5f943d7ac25ceea8af9",
+          "verified_controls": 24080,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "264aecffbac7a50f90ed596e65070d92a5ef97f89832dbc7a78b477ddb78b35c",
+          "verified_controls": 24080,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "B1",
+          "raw_audit_sha256": "9d99369785c35606e86bd73a17097583c2cc82369280d690ec69c729e67d4cea",
+          "verified_controls": 21354,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "c348c15391d9c0d520bafc3cd3083fc75fc73e7e8ca7ef5e548d6dda52ab745a",
+      "figure_byte_identical": true
+    }
+  ],
+  "totals": {
+    "files_verified": 1038,
+    "raw_controls_verified": 71490,
+    "measured_start_actions_reproduced": 16,
+    "byte_identical_figures": 2,
+    "new_controls": 0,
+    "optimizer_updates": 0
+  },
+  "ci": {
+    "run_id": 40441212842,
+    "status": "success",
+    "passed": 405,
+    "skipped": 3,
+    "carla_deselected": 4,
+    "seconds": 167.73,
+    "log_sha256": "6d104491d7501b80944e445ca855da651047e2c39ff0ce5e51d80be72a263913"
+  },
+  "independent_targeted_tests": {
+    "passed": 14,
+    "seconds": 10.43,
+    "log_sha256": "6e8a7f94669cd33ef0336c843e466f9e1595ed4eb3a5f6bb0fd870f2b8fc99e5"
+  },
+  "not_released": "024727real-PPO continuation is active; no final result or released weights are claimed for that phase."
+}

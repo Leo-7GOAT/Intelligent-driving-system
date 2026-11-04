@@ -1,0 +1,31 @@
+{
+  "scope": "Independent CPU verification of the conditional all-five full-task continuation;actual full-task native execution has not begun",
+  "source_commit": "3bfeb77b93dade0f4146edb7abcf916d9d71eb1a",
+  "independent_related_tests_passed": 171,
+  "independent_test_seconds": 9.22,
+  "actual_trained_checkpoint_CPU_restore": {
+    "seed": 11,
+    "actual_frozen_restore_succeeded": true,
+    "runtime_config_matches_saved": true,
+    "trained_PPO_and_Adam_state_retained": true,
+    "normalization_statistics_unchanged": true,
+    "policy_tensor_sha256": "6d0fcd84784964ce3672460ccbc4877e874f2c59a48fc1473081d5dab9be71a0",
+    "new_resets": 0,
+    "new_controls": 0,
+    "new_optimizer_updates": 0
+  },
+  "actual_conditional_queue": {
+    "phase": "WAITING_FOR_ALL_FIVE_TRAINED_BASIC_QUALIFICATIONS",
+    "pid": 66252,
+    "epoch": 1793489898.4273198,
+    "created": [],
+    "completed": [],
+    "dependency_pid": 62176
+  },
+  "all_five_basic_qualifications_required": true,
+  "extra_full_task_controls_each": 20480,
+  "total_basic_plus_full_policy_controls_each": 30720,
+  "new_controls_in_verification": 0,
+  "PPO_updates_in_verification": 0,
+  "research_acceptance": "UNMET"
+}

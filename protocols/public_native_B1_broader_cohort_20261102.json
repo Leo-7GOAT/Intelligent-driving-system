@@ -1,0 +1,56 @@
+{
+  "scope": "all_five_broader_B1_development_v1",
+  "release": "v0.2.0-dev.20261102-broader-b1",
+  "repository": "Leo-7GOAT/Intelligent-driving-system",
+  "cohort_report": "reports/native_B1_broader_complete_cohort_20261102.json",
+  "cohort_report_sha256": "7dc0f07577b7cd7fd9ef48af55dee0cfc23b4fad35dedac3d2a4d88fecc326c1",
+  "capsules": [
+    {
+      "archive": "native_B1_broader_seed11_20261102.zip",
+      "archive_sha256": "221260bd40f17297dd80e8ed53dc74bbc1496564ab20ce48e149842b54d77b8a",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261102-broader-b1/native_B1_broader_seed11_20261102.zip.parts.json",
+      "seed": 11,
+      "batch": "20261102T044003693349Z_native_broader_B1_seed11"
+    },
+    {
+      "archive": "native_B1_broader_seed22_20261102.zip",
+      "archive_sha256": "e4f7fb8cd017b00dd1e723d1ac8be9a7e42737b39b2fcb31e5ad81db54f588c7",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261102-broader-b1/native_B1_broader_seed22_20261102.zip.parts.json",
+      "seed": 22,
+      "batch": "20261101T131830295783Z_native_B1_broader_shared_parking_PPO"
+    },
+    {
+      "archive": "native_B1_broader_seed33_20261102.zip",
+      "archive_sha256": "244ebaea56a2a21b85b0e176fc29ecc7943bb9c0c571b5b1b3872aad8b0e0a25",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261102-broader-b1/native_B1_broader_seed33_20261102.zip.parts.json",
+      "seed": 33,
+      "batch": "20261102T044004346066Z_native_broader_B1_seed33"
+    },
+    {
+      "archive": "native_B1_broader_seed44_20261102.zip",
+      "archive_sha256": "abd83091490c1877f9ee526f56e4c077645d9b6fa30c6da682c3b02643f434ec",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261102-broader-b1/native_B1_broader_seed44_20261102.zip.parts.json",
+      "seed": 44,
+      "batch": "20261102T063246381418Z_native_broader_B1_seed44_recovery"
+    },
+    {
+      "archive": "native_B1_broader_seed55_20261102.zip",
+      "archive_sha256": "95be19a607baba5576daf2a64505bc180f8e7f91d99433d273b2a18a33a8b30c",
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261102-broader-b1/native_B1_broader_seed55_20261102.zip.parts.json",
+      "seed": 55,
+      "batch": "20261102T044005159056Z_native_broader_B1_seed55"
+    }
+  ],
+  "saved_prefix44": {
+    "archive": "native_B1_broader_seed44_saved_prefix_20261102.zip",
+    "archive_sha256": "4dd7ad1f947aaa6f23317b6346e0547f8bfac799fabdd6172da7ac4994b73e16",
+    "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261102-broader-b1/native_B1_broader_seed44_saved_prefix_20261102.zip.parts.json",
+    "batch": "20261102T044004788200Z_native_broader_B1_seed44"
+  },
+  "limits": "All five failed DEVELOPMENT courses;24knownconditions,not120newfinalcases. Includes interrupted44prefix. No healthy-baseline,hierarchy-advantage or added-PPO claim.",
+  "audit_sources": {
+    "archive": "native_B1_broader_audit_sources_20261102.zip",
+    "archive_sha256": "ad926dfc39a2e4c10c6f790b76313f80eb3828792fa6014f211c5ff41b0fb87b",
+    "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261102-broader-b1/native_B1_broader_audit_sources_20261102.zip.parts.json"
+  }
+}

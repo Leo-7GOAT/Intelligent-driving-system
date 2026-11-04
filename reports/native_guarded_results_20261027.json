@@ -1,0 +1,274 @@
+{
+  "scope": "Single-seed four-known-road development endpoints across interrupted native CARLA segments. B1 is not a healthy baseline; not a budget-matched, independent-confirmation or hierarchy-superiority result. All failed and consumed segments retained.",
+  "seed": 11,
+  "methods": {
+    "H": {
+      "training_endpoint_batch": "20261027T004817Z_native_hazard_learning",
+      "frozen_evaluation_batch": "20261027T004817Z_native_hazard_learning",
+      "training_segment_controls": 20761,
+      "lineage_controls": 20761,
+      "charged_training_controls_lower_bound": 20761,
+      "inherited_controls_not_in_checkpoint": 0,
+      "retained_optimizer_steps": 650,
+      "model_sha256": "6e1bd2d31f026e06ac860228de40facd03bee4e4477fd99eed332126521743b5",
+      "normalization_sha256": "71c5adb4b3b5cafbf2d533916333b7c8bc73f250baac612cac6c03d927a83e25",
+      "successes": 2,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 348,
+          "progress": 24.257416421684848,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900,
+          "plan_failures": 90
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 364,
+          "progress": 20.08376789622687,
+          "interventions": 10,
+          "plan_failures": 1
+        }
+      ],
+      "endpoint_raw_audit_sha256": "e342aeb2539a9437b845e1a73d01256aeabc69b6d8cceeabe3bb62af96d81c50",
+      "frozen_controls_verified": 2512,
+      "unknown_ancestor_tail_preserved_in_combined_ledger": false
+    },
+    "H0": {
+      "training_endpoint_batch": "20261027T014402Z_native_recovery",
+      "frozen_evaluation_batch": "20261027T014402Z_native_recovery",
+      "training_segment_controls": 10240,
+      "lineage_controls": 20480,
+      "charged_training_controls_lower_bound": 20480,
+      "inherited_controls_not_in_checkpoint": 0,
+      "retained_optimizer_steps": 640,
+      "model_sha256": "637c32c4fe2ae6e5d0bf8c07a39c35b3f62134490296c11501bb92fbd5f40238",
+      "normalization_sha256": "2841821b004d79cf6abebd6d717147f3eab6ce3181634bda35c1e16cd341b6e6",
+      "successes": 0,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900,
+          "plan_failures": 90
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900,
+          "plan_failures": 90
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.29008556094822424,
+          "interventions": 870,
+          "plan_failures": 87
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900,
+          "plan_failures": 90
+        }
+      ],
+      "endpoint_raw_audit_sha256": "80e62c98a4efe22413cb62efaec067b3d3d009391a6b74ab1c2667fdcd807272",
+      "frozen_controls_verified": 3600,
+      "unknown_ancestor_tail_preserved_in_combined_ledger": true
+    },
+    "B1": {
+      "training_endpoint_batch": "20261027T015515Z_native_recovery",
+      "frozen_evaluation_batch": "20261027T020349Z_native_evaluation_recovery",
+      "training_segment_controls": 10679,
+      "lineage_controls": 20710,
+      "charged_training_controls_lower_bound": 21640,
+      "inherited_controls_not_in_checkpoint": 930,
+      "retained_optimizer_steps": 660,
+      "model_sha256": "8a4a65880ff4acd27c092974c6f01b8af59f5e02d1d1507cf5418e3176d173c7",
+      "normalization_sha256": "53899ec611216ce417f84d4644371544240a1e6d11ed76decc3123c2efaae988",
+      "successes": 0,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.7617402241316853,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 140,
+          "progress": 3.1191832739286802,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 253,
+          "progress": 12.90574434481647,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 244,
+          "progress": 7.027193331976802,
+          "interventions": 0,
+          "plan_failures": 0
+        }
+      ],
+      "endpoint_raw_audit_sha256": "a7c6eb33025601218b85871b521d63a9073db0253c73991155a37d83d10e1265",
+      "frozen_controls_verified": 1537,
+      "unknown_ancestor_tail_preserved_in_combined_ledger": true
+    }
+  },
+  "additional_closed_training_frame_verification": {
+    "scope": "Closed training streams bound frame-by-frame to measured CARLA state, command, IMU, actuator and native-hazard reset evidence. Extra evaluation controls are excluded, not silently charged as verified training. No new driving or updates.",
+    "audit_helper_sha256": "0f729c37bd4df0f59a498c7c93d0578a4f2cb8c8bc4853753f0fd053f95c92c7",
+    "results": [
+      {
+        "batch": "20261027T014402Z_native_recovery",
+        "method": "B1",
+        "verified_training_controls": 10961,
+        "episodes_with_verified_frames": 51,
+        "training_termination_counts": {
+          "out_of_bounds": 19,
+          "collision": 32
+        },
+        "optimization_phases": 35,
+        "optimizer_steps": 350,
+        "protocol_sha256": "f06a50d87108a7cf1dbf14f85fbca909dbcec1b1ae9b7a98743358b52c3fb182",
+        "config_sha256": "8bd55215d02b719d9ef7e39427ce01f4ab4d25311bd68276d3d76b4e58636f22",
+        "transition_sha256": {
+          "transitions_000000000_1793065798995116100.jsonl.gz": "194785d05fdbd4cc62bfe5bb7a67f33c7542542515ad8ea1ddea4d4ab28bcb24"
+        },
+        "bridge_response_stream": "bridge_d5d49356_responses.jsonl.gz",
+        "bridge_response_sha256": "7d862d799f1420cb8f99592c386c930f545fda23135ab10e3a8fd9cec2232ee5",
+        "bridge_controls_outside_training_not_claimed": 0,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      },
+      {
+        "batch": "20261027T015515Z_native_recovery",
+        "method": "B1",
+        "verified_training_controls": 10679,
+        "episodes_with_verified_frames": 50,
+        "training_termination_counts": {
+          "collision": 34,
+          "out_of_bounds": 15
+        },
+        "optimization_phases": 34,
+        "optimizer_steps": 340,
+        "protocol_sha256": "3c832271d9b233d86dea14bac414a44583ead4f449934cb0999f7a475ffd0956",
+        "config_sha256": "8bd55215d02b719d9ef7e39427ce01f4ab4d25311bd68276d3d76b4e58636f22",
+        "transition_sha256": {
+          "transitions_000000000_1793066148457527700.jsonl.gz": "4c89f8332f16e97531216657c235d8f95ee7f2fddfc45c657aa49f464fd91338"
+        },
+        "bridge_response_stream": "bridge_66d4e1a6_responses.jsonl.gz",
+        "bridge_response_sha256": "86b3145621091263abc26499bd1b208b289e25d93251b2a45344b3e395b5e5c4",
+        "bridge_controls_outside_training_not_claimed": 1040,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      },
+      {
+        "batch": "20261027T004817Z_native_hazard_learning",
+        "method": "H0",
+        "verified_training_controls": 10240,
+        "episodes_with_verified_frames": 12,
+        "training_termination_counts": {
+          "deadline": 11
+        },
+        "optimization_phases": 32,
+        "optimizer_steps": 320,
+        "protocol_sha256": "0b98bd28a21f54099ca1ae4791a9b9cec3280baeb2adf9da8e7168bd73123637",
+        "config_sha256": "f86ad5a9b952aa31de9620f9dd81764061070c43435feb8ca5247770cfe8067f",
+        "transition_sha256": {
+          "transitions_000000000_1793064022373329200.jsonl.gz": "0e69c7afb4f0271abe79d341037ab1c9d3394c35a438cb254f2774491805dbf7"
+        },
+        "bridge_response_stream": "bridge_31a2977d_responses.jsonl.gz",
+        "bridge_response_sha256": "ef5ecb0bdb68cea36ef8025cc04b84c5690efd6f1a15d0cfb8768e358d4e7833",
+        "bridge_controls_outside_training_not_claimed": 0,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ]
+  },
+  "evaluation_metadata_addendum": "B1 evaluation-only recovery omitted the inherited unknown-tail key, so its original phase-local audit reports false. The immutable parent recovery flags and this combined ledger retain true. Future preparers now propagate uncertainty and recovery chain; the old batch is not rewritten.",
+  "storage": {
+    "bytes_archived": 9246000578.0,
+    "files_sha256_verified": 20358,
+    "original_paths_preserved": true,
+    "batch_ids": [
+      "20261016T015226Z_research_batch_3377580f",
+      "20261022T134149Z_route_rehearsal_v19_development",
+      "20261022T123453Z_route_stages_v18_development",
+      "20261022T093852Z_staged_v13_development",
+      "20261022T113700Z_pose_potential_v17_development"
+    ],
+    "archive_receipt_sha256": "f20e55c867244e52ec110a01c993c2446f2e32601a5c1217a52f66a60c0405bb",
+    "all_failures_preserved": true
+  },
+  "cpu": {
+    "source_commit": "4cd64d5b45879d515c7a1df38d93f89e8789c745",
+    "independent_windows": {
+      "passed": 389,
+      "skipped": 1,
+      "carla_deselected": 4,
+      "seconds": 143.84,
+      "log_sha256": "8fc3d22912e8e915a3aa1cde25969c4de08af96de93a52a5cb32f21b903d4ffa"
+    },
+    "hosted_ci": {
+      "run_id": 40435015535,
+      "passed": 387,
+      "skipped": 3,
+      "carla_deselected": 4,
+      "seconds": 160.69,
+      "status": "success",
+      "log_sha256": "a65468f3b6c8332dfb48e94372afc6103ec6ad93771df052d970ed0e988e7d90"
+    },
+    "subsequent_resource_and_lineage_targeted_tests": {
+      "passed": 20,
+      "log_sha256": "f0396e34d1d65b74d6675e3e4ebe8f5c19814a24f6bed047a4305eb2fabaa505"
+    }
+  }
+}

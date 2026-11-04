@@ -1,0 +1,3429 @@
+{
+  "scope": "Single-seed known-road development; all original research goals unchanged and unachieved; not plain PPO or independent confirmation",
+  "fits": [
+    {
+      "artifact": "20261026T113731Z_own_success_actor_fit",
+      "metadata_sha256": "322db0a716874012f832a95a9cb872517ad8442cdbf00479e87a6cc04f1d5f5e",
+      "actor_optimizer_steps": 1000,
+      "ppo_updates_added": 0,
+      "critic_unchanged": true,
+      "critic_adam_unchanged": true,
+      "first_loss": 0.26274073123931885,
+      "last_loss": 0.29422664642333984,
+      "status": "complete",
+      "scope": "Auxiliary reward-selected replay of own PPO successes; no external teacher, new driving or PPO updates; not a competence claim",
+      "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+      "source_method": "B1",
+      "source_model_sha256": "fb70a16e4ec5f5e6548e92940ec96fda15d528fc74e143fd3d4bf60c1cd1e206",
+      "source_policy_ppo_n_updates": 1340,
+      "source_raw_audit_sha256": "cce493d6c0baaf4774b6a3b2f0b4fbad1196bf1206cee1c56cb689628425771b",
+      "new_physics_steps": 0,
+      "samples": 2765,
+      "source_records": [
+        {
+          "batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "raw_audit_sha256": "8063ca1622cc8ba815ac036d8d9f683d95f083519deb65e6b4e2f06488eca6ba",
+          "all_training_episodes": 19,
+          "available_success_episodes": 3,
+          "success_episodes_used": 3,
+          "failures_retained_at_source": 16
+        },
+        {
+          "batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "fa6643618e99427c178ceb550c8f818a870f56368ec1752e3f9f4d776abd6466",
+          "all_training_episodes": 76,
+          "available_success_episodes": 14,
+          "success_episodes_used": 14,
+          "failures_retained_at_source": 62
+        },
+        {
+          "batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "d4a2d97a0b72cc7d24e95e4271bbb21f87ea4b6623e7a459829b802582021940",
+          "all_training_episodes": 21,
+          "available_success_episodes": 12,
+          "success_episodes_used": 12,
+          "failures_retained_at_source": 9
+        },
+        {
+          "batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "a181a3bd3120f7ecc3c439e7540bbc879ed6f11543e2145a4f833e70dc9aa1d7",
+          "all_training_episodes": 18,
+          "available_success_episodes": 6,
+          "success_episodes_used": 6,
+          "failures_retained_at_source": 12
+        },
+        {
+          "batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "357e8079f9554cbaa79ed2a690321b1e8d06e23a45fa82a2880c064bd8186030",
+          "all_training_episodes": 24,
+          "available_success_episodes": 14,
+          "success_episodes_used": 14,
+          "failures_retained_at_source": 10
+        },
+        {
+          "batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "3e408dde2594e05e65f015f658ff87f4b39713bb01b27ee77c1510689e703e43",
+          "all_training_episodes": 25,
+          "available_success_episodes": 20,
+          "success_episodes_used": 20,
+          "failures_retained_at_source": 5
+        },
+        {
+          "batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "db51067e18fab1228c6c81f2d3df4225db1a4b4886aaacde443157a3f3b819a7",
+          "all_training_episodes": 22,
+          "available_success_episodes": 17,
+          "success_episodes_used": 17,
+          "failures_retained_at_source": 5
+        },
+        {
+          "batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "92e83dd8101298bd96c9e34965f10bb68fc0b72fe4852dd8846156fa55ddfe89",
+          "all_training_episodes": 21,
+          "available_success_episodes": 15,
+          "success_episodes_used": 15,
+          "failures_retained_at_source": 6
+        },
+        {
+          "batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "c0a2fb5a7986daaea36e1765149e5524d5c7a65d4b6598324be6a5e0baa15894",
+          "all_training_episodes": 19,
+          "available_success_episodes": 11,
+          "success_episodes_used": 11,
+          "failures_retained_at_source": 8
+        },
+        {
+          "batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "cce493d6c0baaf4774b6a3b2f0b4fbad1196bf1206cee1c56cb689628425771b",
+          "all_training_episodes": 42,
+          "available_success_episodes": 35,
+          "success_episodes_used": 35,
+          "failures_retained_at_source": 7
+        }
+      ],
+      "episodes_used": [
+        {
+          "source_batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "episode_id": 12,
+          "condition": 0,
+          "actions": 22,
+          "distance": 0.6011615246551044,
+          "speed": 0.0003419304089257967,
+          "yaw_error": 0.0926058342692162
+        },
+        {
+          "source_batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 2,
+          "actions": 16,
+          "distance": 0.24772221631038802,
+          "speed": 0.00020437557892378632,
+          "yaw_error": 0.1518784790705645
+        },
+        {
+          "source_batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 2,
+          "actions": 23,
+          "distance": 0.3431851537307452,
+          "speed": 0.0006109527639697396,
+          "yaw_error": 0.30366747592850274
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 0,
+          "actions": 23,
+          "distance": 0.47385908990679165,
+          "speed": 0.15080436169449385,
+          "yaw_error": 0.11920894934634507
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 2,
+          "actions": 16,
+          "distance": 0.6830684395965343,
+          "speed": 0.17041477618517312,
+          "yaw_error": 0.02928678250760175
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 2,
+          "actions": 24,
+          "distance": 0.5572574855536551,
+          "speed": 0.0001712515775437731,
+          "yaw_error": 0.2531832627244164
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 8,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.29047509180446396,
+          "speed": 0.00021175961885669089,
+          "yaw_error": 0.04188659709892972
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 2,
+          "actions": 23,
+          "distance": 0.2289942671530652,
+          "speed": 0.22360441747838447,
+          "yaw_error": 0.036892237948649154
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 31,
+          "condition": 3,
+          "actions": 22,
+          "distance": 0.6660278965877743,
+          "speed": 0.00496711519096113,
+          "yaw_error": 0.22964025289784296
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 42,
+          "condition": 2,
+          "actions": 20,
+          "distance": 0.7672136003833498,
+          "speed": 0.005756996143386905,
+          "yaw_error": 0.23013466875421607
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 48,
+          "condition": 0,
+          "actions": 23,
+          "distance": 0.4188728994136922,
+          "speed": 0.001929891724595175,
+          "yaw_error": 0.12455817471187824
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 50,
+          "condition": 2,
+          "actions": 24,
+          "distance": 0.45143889868098985,
+          "speed": 0.00043868498172881364,
+          "yaw_error": 0.25170174621000463
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 52,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.6494632886023833,
+          "speed": 0.006081743290768438,
+          "yaw_error": 0.12542237048560878
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 56,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.721068569259331,
+          "speed": 0.00023189828784625586,
+          "yaw_error": 0.14474360419413346
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 63,
+          "condition": 3,
+          "actions": 22,
+          "distance": 0.7393517335054223,
+          "speed": 0.00044581829990743976,
+          "yaw_error": 0.2774748871334105
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 68,
+          "condition": 0,
+          "actions": 23,
+          "distance": 0.671207003532361,
+          "speed": 0.00045394116889202127,
+          "yaw_error": 0.10033246353986325
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 72,
+          "condition": 0,
+          "actions": 18,
+          "distance": 0.3977500036834629,
+          "speed": 0.00024134874585515255,
+          "yaw_error": 0.1715937274623669
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 3,
+          "actions": 20,
+          "distance": 0.625745990495117,
+          "speed": 0.006057564738560672,
+          "yaw_error": 0.2860882824680262
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 0,
+          "actions": 15,
+          "distance": 0.5241509908406933,
+          "speed": 0.1446079318233775,
+          "yaw_error": 0.007501192684371549
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.3246913176010564,
+          "speed": 0.0005344748182790696,
+          "yaw_error": 0.0755986212318609
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 3,
+          "actions": 24,
+          "distance": 0.672490390922676,
+          "speed": 0.005753520867116585,
+          "yaw_error": 0.21728331859792993
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 3,
+          "actions": 17,
+          "distance": 0.24056318825102593,
+          "speed": 0.0064939482664321535,
+          "yaw_error": 0.18187246400563684
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 0,
+          "actions": 23,
+          "distance": 0.6381875331591316,
+          "speed": 0.0053052222945331046,
+          "yaw_error": 0.046862979911852065
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 13,
+          "condition": 2,
+          "actions": 21,
+          "distance": 0.5643754223692953,
+          "speed": 0.00015982903456385547,
+          "yaw_error": 0.07605269019771921
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 3,
+          "actions": 20,
+          "distance": 0.5688433901708894,
+          "speed": 0.0005372422919528927,
+          "yaw_error": 0.1996430721694633
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 0,
+          "actions": 18,
+          "distance": 0.4944786570537321,
+          "speed": 0.17341071676198272,
+          "yaw_error": 0.027061045626567637
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 17,
+          "condition": 2,
+          "actions": 18,
+          "distance": 0.2800272266883836,
+          "speed": 0.05280089204616911,
+          "yaw_error": 0.2145525132161623
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 3,
+          "actions": 22,
+          "distance": 0.6847308410933997,
+          "speed": 0.0005221406635550346,
+          "yaw_error": 0.2849292747616241
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 19,
+          "condition": 0,
+          "actions": 16,
+          "distance": 0.7623849503986445,
+          "speed": 0.0001508209976502778,
+          "yaw_error": 0.02461826111669252
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 0,
+          "actions": 24,
+          "distance": 0.7330852156510836,
+          "speed": 0.0001402791968812718,
+          "yaw_error": 0.0596846358219838
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 2,
+          "actions": 17,
+          "distance": 0.4374858493912579,
+          "speed": 0.006610802701361905,
+          "yaw_error": 0.006744189144516355
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 3,
+          "actions": 19,
+          "distance": 0.56654422161179,
+          "speed": 0.005054689032855025,
+          "yaw_error": 0.27065573000420784
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 0,
+          "actions": 15,
+          "distance": 0.18908760455777424,
+          "speed": 0.0005636121399623063,
+          "yaw_error": 0.01439172253078791
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 13,
+          "condition": 2,
+          "actions": 19,
+          "distance": 0.7633427264317064,
+          "speed": 0.004533662782745202,
+          "yaw_error": 0.02132499611269978
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.735367688388435,
+          "speed": 0.0003963440307009295,
+          "yaw_error": 0.12432461548427787
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 3,
+          "actions": 14,
+          "distance": 0.5337771375037261,
+          "speed": 0.0005043190847492766,
+          "yaw_error": 0.1257211771599156
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 0,
+          "actions": 15,
+          "distance": 0.11907792939725413,
+          "speed": 0.0002506762060301448,
+          "yaw_error": 0.08569746124349642
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 4,
+          "condition": 1,
+          "actions": 17,
+          "distance": 0.7960791345686687,
+          "speed": 0.1717127642200289,
+          "yaw_error": 0.051146208472053534
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 3,
+          "actions": 14,
+          "distance": 0.7337067035083018,
+          "speed": 0.005781530628580389,
+          "yaw_error": 0.1117822585934678
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 0,
+          "actions": 15,
+          "distance": 0.39233049730192765,
+          "speed": 0.005599770558418982,
+          "yaw_error": 0.02931301464433833
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 2,
+          "actions": 19,
+          "distance": 0.6334562076090924,
+          "speed": 0.0002144596383810902,
+          "yaw_error": 0.07005471879064373
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 3,
+          "actions": 20,
+          "distance": 0.420961610958426,
+          "speed": 0.0004250714286709867,
+          "yaw_error": 0.21590832852712216
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 0,
+          "actions": 17,
+          "distance": 0.4295086833142757,
+          "speed": 0.046420775442072904,
+          "yaw_error": 0.22089017082027906
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 3,
+          "actions": 12,
+          "distance": 0.7786057326726079,
+          "speed": 0.006423750429121727,
+          "yaw_error": 0.3158883226967131
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 0,
+          "actions": 12,
+          "distance": 0.7642250213418583,
+          "speed": 0.0002694935956671918,
+          "yaw_error": 0.003200986472220446
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 3,
+          "actions": 13,
+          "distance": 0.4797540248652158,
+          "speed": 0.00022383841669776144,
+          "yaw_error": 0.07742621552992812
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 19,
+          "condition": 0,
+          "actions": 12,
+          "distance": 0.12494739112337833,
+          "speed": 0.22515349577043708,
+          "yaw_error": 0.08999966482646515
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 21,
+          "condition": 2,
+          "actions": 18,
+          "distance": 0.4710443753587384,
+          "speed": 0.005606751006726772,
+          "yaw_error": 0.2562906390843196
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 22,
+          "condition": 3,
+          "actions": 14,
+          "distance": 0.6867214223504302,
+          "speed": 0.0024082290355166153,
+          "yaw_error": 0.1705092882664867
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 2,
+          "actions": 20,
+          "distance": 0.5182656978804211,
+          "speed": 0.002126568203719625,
+          "yaw_error": 0.25165833668423687
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 1,
+          "condition": 3,
+          "actions": 15,
+          "distance": 0.6669124557692682,
+          "speed": 0.0005301244103634159,
+          "yaw_error": 0.08215419199217289
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 0,
+          "actions": 10,
+          "distance": 0.5122573080953328,
+          "speed": 0.18839249912276568,
+          "yaw_error": 0.05952418036630647
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 4,
+          "condition": 2,
+          "actions": 20,
+          "distance": 0.7484697544112457,
+          "speed": 0.0002578286185358605,
+          "yaw_error": 0.07648412229431223
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 3,
+          "actions": 20,
+          "distance": 0.4053323196584872,
+          "speed": 0.0018792247299353748,
+          "yaw_error": 0.16826197978062352
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 0,
+          "actions": 17,
+          "distance": 0.566971831028164,
+          "speed": 0.00017025599364654288,
+          "yaw_error": 0.06822539343786804
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 1,
+          "actions": 21,
+          "distance": 0.6065546689411058,
+          "speed": 0.00016364930742775868,
+          "yaw_error": 0.06403783893982729
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 3,
+          "actions": 18,
+          "distance": 0.4937165612691054,
+          "speed": 0.00046183204560681923,
+          "yaw_error": 0.2098437115137659
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 0,
+          "actions": 13,
+          "distance": 0.42110134259574966,
+          "speed": 0.0002827179482287653,
+          "yaw_error": 0.010448113588598762
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 12,
+          "condition": 2,
+          "actions": 17,
+          "distance": 0.6432057283443016,
+          "speed": 0.0004622276760573324,
+          "yaw_error": 0.07306009608079833
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 13,
+          "condition": 3,
+          "actions": 13,
+          "distance": 0.6056590787385077,
+          "speed": 0.0004267285923882369,
+          "yaw_error": 0.18784340432764912
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 0,
+          "actions": 12,
+          "distance": 0.7973262043691821,
+          "speed": 0.0914086621635617,
+          "yaw_error": 0.024741831791271984
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 1,
+          "actions": 18,
+          "distance": 0.7956963297138839,
+          "speed": 0.14020948442689107,
+          "yaw_error": 0.05639576503379029
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 17,
+          "condition": 3,
+          "actions": 14,
+          "distance": 0.6036420938193202,
+          "speed": 0.0005087372490208287,
+          "yaw_error": 0.12509746483261885
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 0,
+          "actions": 11,
+          "distance": 0.7841539658685093,
+          "speed": 0.00692605911814953,
+          "yaw_error": 0.03111930365368476
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 20,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.5276059017813042,
+          "speed": 0.0001627975086030012,
+          "yaw_error": 0.10079558725342785
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 21,
+          "condition": 3,
+          "actions": 12,
+          "distance": 0.6516987491704151,
+          "speed": 0.0005717948573084643,
+          "yaw_error": 0.06425521946380508
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 22,
+          "condition": 0,
+          "actions": 12,
+          "distance": 0.6211538386122022,
+          "speed": 0.24951483049695966,
+          "yaw_error": 0.012714197360147672
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 23,
+          "condition": 1,
+          "actions": 18,
+          "distance": 0.7913756724926626,
+          "speed": 0.20898435643782598,
+          "yaw_error": 0.057054098455258107
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 24,
+          "condition": 2,
+          "actions": 15,
+          "distance": 0.3492547755512425,
+          "speed": 0.00016793772573171425,
+          "yaw_error": 0.16272793103543748
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.5474522874475054,
+          "speed": 0.0003964333779878093,
+          "yaw_error": 0.0958345176167743
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 2,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.703343654010811,
+          "speed": 0.0057200280189519115,
+          "yaw_error": 0.27767209421212957
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 3,
+          "actions": 20,
+          "distance": 0.6924069637756561,
+          "speed": 0.00046272277070122207,
+          "yaw_error": 0.15808364441044942
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 4,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.18272376479284647,
+          "speed": 0.19899780870814165,
+          "yaw_error": 0.008753011554763379
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 2,
+          "actions": 23,
+          "distance": 0.2575602535878707,
+          "speed": 0.006825512853985677,
+          "yaw_error": 0.0594825018952454
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.6670053754566919,
+          "speed": 0.005661847812280463,
+          "yaw_error": 0.14814852222682706
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 8,
+          "condition": 0,
+          "actions": 18,
+          "distance": 0.3419135887882428,
+          "speed": 9.312339388641358e-05,
+          "yaw_error": 0.17876069342993395
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 2,
+          "actions": 17,
+          "distance": 0.39489207391722514,
+          "speed": 0.0003489742968048634,
+          "yaw_error": 0.0476900245883769
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 3,
+          "actions": 19,
+          "distance": 0.5050869549508924,
+          "speed": 0.1526486674655234,
+          "yaw_error": 0.14529234853674433
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 12,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.15923329320195678,
+          "speed": 0.00016485333280631675,
+          "yaw_error": 0.14398247275458909
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 2,
+          "actions": 21,
+          "distance": 0.15043174027524744,
+          "speed": 0.00016127227384715205,
+          "yaw_error": 0.12587617313535748
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.44448837122247314,
+          "speed": 0.0004801875865706219,
+          "yaw_error": 0.17701186212110587
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 16,
+          "condition": 0,
+          "actions": 17,
+          "distance": 0.2772690164841118,
+          "speed": 0.0049981161661734885,
+          "yaw_error": 0.1775297803740994
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.15687589040790242,
+          "speed": 0.00014397226511899351,
+          "yaw_error": 0.09777236678397028
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 19,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.7806643402334028,
+          "speed": 0.005456825887685771,
+          "yaw_error": 0.21392121087975902
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 20,
+          "condition": 0,
+          "actions": 17,
+          "distance": 0.39505135861600305,
+          "speed": 0.0004192908439485457,
+          "yaw_error": 0.11813955701062362
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 21,
+          "condition": 1,
+          "actions": 20,
+          "distance": 0.35283407212998547,
+          "speed": 0.24321953487477543,
+          "yaw_error": 0.012255800757517754
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.3329411045279505,
+          "speed": 0.00046991469273395536,
+          "yaw_error": 0.10632038151382428
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 1,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.12838507745163805,
+          "speed": 0.00018388483170237368,
+          "yaw_error": 0.0318374250416249
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 0,
+          "actions": 22,
+          "distance": 0.30418538927885314,
+          "speed": 0.0005456267771783083,
+          "yaw_error": 0.14757347916845198
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 2,
+          "actions": 24,
+          "distance": 0.24676791041565194,
+          "speed": 0.0003191859179100913,
+          "yaw_error": 0.01888607318640556
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 8,
+          "condition": 3,
+          "actions": 14,
+          "distance": 0.5302290289530973,
+          "speed": 0.00046187306519753293,
+          "yaw_error": 0.14730583147889886
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 0,
+          "actions": 24,
+          "distance": 0.63416365747998,
+          "speed": 0.22524766431955623,
+          "yaw_error": 0.13272116292713454
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 1,
+          "actions": 18,
+          "distance": 0.10957323449796753,
+          "speed": 0.14526374345521376,
+          "yaw_error": 0.03852309122118669
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.5725094269182711,
+          "speed": 0.17192014529438188,
+          "yaw_error": 0.13818690159035985
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 12,
+          "condition": 3,
+          "actions": 20,
+          "distance": 0.7938532866830446,
+          "speed": 0.0004662945884815993,
+          "yaw_error": 0.18995888633955316
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 13,
+          "condition": 0,
+          "actions": 18,
+          "distance": 0.48516949786802593,
+          "speed": 0.00038712743741246836,
+          "yaw_error": 0.12840471143233412
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 1,
+          "actions": 19,
+          "distance": 0.7114947144408726,
+          "speed": 0.00021700927256362444,
+          "yaw_error": 0.0625940061548409
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 2,
+          "actions": 17,
+          "distance": 0.5105411280250974,
+          "speed": 0.1647974747684433,
+          "yaw_error": 0.32961305653248996
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 16,
+          "condition": 3,
+          "actions": 17,
+          "distance": 0.559686448575518,
+          "speed": 0.005103241591817742,
+          "yaw_error": 0.22791239398259933
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 17,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.5210983023137653,
+          "speed": 0.00045472126291696245,
+          "yaw_error": 0.10337286139835244
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 19,
+          "condition": 2,
+          "actions": 21,
+          "distance": 0.37561906423381186,
+          "speed": 0.00019872604824291984,
+          "yaw_error": 0.15079430619079215
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.7980065222281782,
+          "speed": 0.04716471750573192,
+          "yaw_error": 0.12135033059985023
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 1,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.2925322898515423,
+          "speed": 0.0005637963497244578,
+          "yaw_error": 0.05335470138502929
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 0,
+          "actions": 22,
+          "distance": 0.2728028119472177,
+          "speed": 0.00015471458803459175,
+          "yaw_error": 0.010793392423927628
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.0956085704662131,
+          "speed": 0.00045946978020503263,
+          "yaw_error": 0.004642688728336175
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 8,
+          "condition": 3,
+          "actions": 21,
+          "distance": 0.6316780157335562,
+          "speed": 0.00480820785288974,
+          "yaw_error": 0.1403336757450715
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 0,
+          "actions": 19,
+          "distance": 0.5233389220374394,
+          "speed": 0.16378830607262418,
+          "yaw_error": 0.20944310550679113
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 1,
+          "actions": 18,
+          "distance": 0.10490520687887188,
+          "speed": 0.006452424852139593,
+          "yaw_error": 0.029867018730102224
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 1,
+          "actions": 18,
+          "distance": 0.5529658188531048,
+          "speed": 0.0001745942944413356,
+          "yaw_error": 0.0012656673080604364
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.7998505737652941,
+          "speed": 0.01950644243892721,
+          "yaw_error": 0.0528733350179964
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 16,
+          "condition": 3,
+          "actions": 17,
+          "distance": 0.5476335908484208,
+          "speed": 0.0057464497957092076,
+          "yaw_error": 0.19579606939581629
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 17,
+          "condition": 0,
+          "actions": 22,
+          "distance": 0.209568393701582,
+          "speed": 0.00031945889193131256,
+          "yaw_error": 0.03382893690478639
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.7980065222281782,
+          "speed": 0.04716471750573192,
+          "yaw_error": 0.12135033059985023
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 1,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.128692667356378,
+          "speed": 0.000183662176482123,
+          "yaw_error": 0.031120235760066617
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 2,
+          "actions": 24,
+          "distance": 0.5206341967174998,
+          "speed": 0.00025263183746328016,
+          "yaw_error": 0.2383864733918264
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.4791694484814565,
+          "speed": 0.006288895968952407,
+          "yaw_error": 0.03909413953792651
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 8,
+          "condition": 3,
+          "actions": 15,
+          "distance": 0.5021291701458305,
+          "speed": 0.0049794728106747205,
+          "yaw_error": 0.25006809661832285
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.21731784431721296,
+          "speed": 0.16314876480540508,
+          "yaw_error": 0.0032959281650817296
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 1,
+          "actions": 24,
+          "distance": 0.7996848076912704,
+          "speed": 0.15486962503606128,
+          "yaw_error": 0.10850643729461629
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.23111763579108893,
+          "speed": 0.19805728739073655,
+          "yaw_error": 0.13558153109593274
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 12,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.5251715472775615,
+          "speed": 0.0004851021940326522,
+          "yaw_error": 0.18763221565320531
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 13,
+          "condition": 0,
+          "actions": 22,
+          "distance": 0.4960883769788879,
+          "speed": 0.2344177717000282,
+          "yaw_error": 0.11613033512621351
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 2,
+          "actions": 20,
+          "distance": 0.6192465892165305,
+          "speed": 0.00016227159908154248,
+          "yaw_error": 0.15177115367863347
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 16,
+          "condition": 3,
+          "actions": 17,
+          "distance": 0.24074402447751098,
+          "speed": 0.0004737600324252293,
+          "yaw_error": 0.05165567118858583
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 17,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.3454298027693205,
+          "speed": 0.005968278734298893,
+          "yaw_error": 0.10997790037591226
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 1,
+          "actions": 21,
+          "distance": 0.34576942787386766,
+          "speed": 0.0001478825210288583,
+          "yaw_error": 0.08142967901761722
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 19,
+          "condition": 2,
+          "actions": 19,
+          "distance": 0.18559210782234317,
+          "speed": 0.20645478703948483,
+          "yaw_error": 0.101633950364584
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 20,
+          "condition": 3,
+          "actions": 19,
+          "distance": 0.6266480938686264,
+          "speed": 0.0005140533501164449,
+          "yaw_error": 0.19818698884346198
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 21,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.7543910487493718,
+          "speed": 0.00018723752418784746,
+          "yaw_error": 0.27645436380369226
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 23,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.7468746364852424,
+          "speed": 0.000521488007987012,
+          "yaw_error": 0.10612377364634806
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 24,
+          "condition": 3,
+          "actions": 20,
+          "distance": 0.35972834881159327,
+          "speed": 0.1995601919959693,
+          "yaw_error": 0.2273705738588232
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 25,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.4315390302141536,
+          "speed": 0.0004818324507568014,
+          "yaw_error": 0.14826257210050997
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 26,
+          "condition": 1,
+          "actions": 19,
+          "distance": 0.1643916180668038,
+          "speed": 0.00014842903831124117,
+          "yaw_error": 0.045378667078296075
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 27,
+          "condition": 2,
+          "actions": 19,
+          "distance": 0.6874172260512269,
+          "speed": 0.0002714449359020807,
+          "yaw_error": 0.19446588701034795
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 28,
+          "condition": 3,
+          "actions": 15,
+          "distance": 0.5416272377493315,
+          "speed": 0.005162979944249982,
+          "yaw_error": 0.17268901903968903
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 29,
+          "condition": 0,
+          "actions": 19,
+          "distance": 0.3940873451709286,
+          "speed": 0.0059532521759770585,
+          "yaw_error": 0.13659912494845328
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 30,
+          "condition": 1,
+          "actions": 19,
+          "distance": 0.24399307090609965,
+          "speed": 0.23671013653941486,
+          "yaw_error": 0.0015044862788133884
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 31,
+          "condition": 2,
+          "actions": 23,
+          "distance": 0.36031443343148295,
+          "speed": 0.0002381076893300119,
+          "yaw_error": 0.039257923944966855
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 32,
+          "condition": 3,
+          "actions": 17,
+          "distance": 0.774794166524135,
+          "speed": 0.0061648320470263085,
+          "yaw_error": 0.19584447234862834
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 33,
+          "condition": 0,
+          "actions": 18,
+          "distance": 0.38536767739961975,
+          "speed": 0.0001467689048615696,
+          "yaw_error": 0.12994934486457987
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 35,
+          "condition": 2,
+          "actions": 24,
+          "distance": 0.14710870630160416,
+          "speed": 0.00016920897743653808,
+          "yaw_error": 0.00489036270971166
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 36,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.7542999637145803,
+          "speed": 0.00017982404350267637,
+          "yaw_error": 0.2058496356689199
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 37,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.4187189803609741,
+          "speed": 0.17326225847073218,
+          "yaw_error": 0.08685633579184415
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 38,
+          "condition": 1,
+          "actions": 24,
+          "distance": 0.4010164068724168,
+          "speed": 0.23248940929029516,
+          "yaw_error": 0.13543658855360663
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 39,
+          "condition": 2,
+          "actions": 16,
+          "distance": 0.28806469454898315,
+          "speed": 0.00020408666873163173,
+          "yaw_error": 0.036397688934221684
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 40,
+          "condition": 3,
+          "actions": 18,
+          "distance": 0.5582751230544444,
+          "speed": 0.0005072061599452338,
+          "yaw_error": 0.188554202022591
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 41,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.6151012010547048,
+          "speed": 0.00599690167975328,
+          "yaw_error": 0.11562140504189955
+        }
+      ],
+      "condition_counts": {
+        "0": 951,
+        "2": 818,
+        "3": 722,
+        "1": 274
+      },
+      "excluded_intervened_decisions": 0,
+      "success_selection": {
+        "version": "all_success_v1"
+      },
+      "unselected_successes_retained_at_source": [],
+      "script_sha256": "9922ec5740f40cb3b1ed7162dbd4ca8b497787fc2d663357c46cf269c23471b7",
+      "dataset_sha256": "65e11d4036491a05847175e0ca7d1eded629162d0731078b4f48335cbc48531d",
+      "model_sha256": "0b2a8cc72476e92086763e04d9b6f42007d85238d6e047e18ec44c55ef3d3b23",
+      "normalization_sha256": "7b8909747d7f609c209c7603d0b1f190e190850678249601544b3a3b5992dc2e",
+      "resume_state_sha256": "a4cd1d2ad54487da698cd251c096258c3fec831b2f8153e36e4a3fdab4da6055"
+    },
+    {
+      "artifact": "20261026T113800Z_own_success_actor_fit",
+      "metadata_sha256": "87c3f62aae0c87de4a71cbc2de0e125c0b93564dd4cf3c026b6a8607d262e218",
+      "actor_optimizer_steps": 1000,
+      "ppo_updates_added": 0,
+      "critic_unchanged": true,
+      "critic_adam_unchanged": true,
+      "first_loss": 0.4498496651649475,
+      "last_loss": 0.1210075244307518,
+      "status": "complete",
+      "scope": "Auxiliary reward-selected replay of own PPO successes; no external teacher, new driving or PPO updates; not a competence claim",
+      "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+      "source_method": "B1",
+      "source_model_sha256": "fb70a16e4ec5f5e6548e92940ec96fda15d528fc74e143fd3d4bf60c1cd1e206",
+      "source_policy_ppo_n_updates": 1340,
+      "source_raw_audit_sha256": "cce493d6c0baaf4774b6a3b2f0b4fbad1196bf1206cee1c56cb689628425771b",
+      "new_physics_steps": 0,
+      "samples": 895,
+      "source_records": [
+        {
+          "batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "raw_audit_sha256": "8063ca1622cc8ba815ac036d8d9f683d95f083519deb65e6b4e2f06488eca6ba",
+          "all_training_episodes": 19,
+          "available_success_episodes": 3,
+          "success_episodes_used": 1,
+          "failures_retained_at_source": 16
+        },
+        {
+          "batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "fa6643618e99427c178ceb550c8f818a870f56368ec1752e3f9f4d776abd6466",
+          "all_training_episodes": 76,
+          "available_success_episodes": 14,
+          "success_episodes_used": 3,
+          "failures_retained_at_source": 62
+        },
+        {
+          "batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "d4a2d97a0b72cc7d24e95e4271bbb21f87ea4b6623e7a459829b802582021940",
+          "all_training_episodes": 21,
+          "available_success_episodes": 12,
+          "success_episodes_used": 2,
+          "failures_retained_at_source": 9
+        },
+        {
+          "batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "a181a3bd3120f7ecc3c439e7540bbc879ed6f11543e2145a4f833e70dc9aa1d7",
+          "all_training_episodes": 18,
+          "available_success_episodes": 6,
+          "success_episodes_used": 2,
+          "failures_retained_at_source": 12
+        },
+        {
+          "batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "357e8079f9554cbaa79ed2a690321b1e8d06e23a45fa82a2880c064bd8186030",
+          "all_training_episodes": 24,
+          "available_success_episodes": 14,
+          "success_episodes_used": 3,
+          "failures_retained_at_source": 10
+        },
+        {
+          "batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "3e408dde2594e05e65f015f658ff87f4b39713bb01b27ee77c1510689e703e43",
+          "all_training_episodes": 25,
+          "available_success_episodes": 20,
+          "success_episodes_used": 3,
+          "failures_retained_at_source": 5
+        },
+        {
+          "batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "db51067e18fab1228c6c81f2d3df4225db1a4b4886aaacde443157a3f3b819a7",
+          "all_training_episodes": 22,
+          "available_success_episodes": 17,
+          "success_episodes_used": 9,
+          "failures_retained_at_source": 5
+        },
+        {
+          "batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "92e83dd8101298bd96c9e34965f10bb68fc0b72fe4852dd8846156fa55ddfe89",
+          "all_training_episodes": 21,
+          "available_success_episodes": 15,
+          "success_episodes_used": 7,
+          "failures_retained_at_source": 6
+        },
+        {
+          "batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "c0a2fb5a7986daaea36e1765149e5524d5c7a65d4b6598324be6a5e0baa15894",
+          "all_training_episodes": 19,
+          "available_success_episodes": 11,
+          "success_episodes_used": 5,
+          "failures_retained_at_source": 8
+        },
+        {
+          "batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "raw_audit_sha256": "cce493d6c0baaf4774b6a3b2f0b4fbad1196bf1206cee1c56cb689628425771b",
+          "all_training_episodes": 42,
+          "available_success_episodes": 35,
+          "success_episodes_used": 12,
+          "failures_retained_at_source": 7
+        }
+      ],
+      "episodes_used": [
+        {
+          "source_batch": "20261026T083627Z_native_discrete_sanity",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 2,
+          "actions": 16,
+          "distance": 0.24772221631038802,
+          "speed": 0.00020437557892378632,
+          "yaw_error": 0.1518784790705645
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 8,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.29047509180446396,
+          "speed": 0.00021175961885669089,
+          "yaw_error": 0.04188659709892972
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 48,
+          "condition": 0,
+          "actions": 23,
+          "distance": 0.4188728994136922,
+          "speed": 0.001929891724595175,
+          "yaw_error": 0.12455817471187824
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "method": "B1",
+          "episode_id": 72,
+          "condition": 0,
+          "actions": 18,
+          "distance": 0.3977500036834629,
+          "speed": 0.00024134874585515255,
+          "yaw_error": 0.1715937274623669
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.3246913176010564,
+          "speed": 0.0005344748182790696,
+          "yaw_error": 0.0755986212318609
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 3,
+          "actions": 17,
+          "distance": 0.24056318825102593,
+          "speed": 0.0064939482664321535,
+          "yaw_error": 0.18187246400563684
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 9,
+          "condition": 2,
+          "actions": 17,
+          "distance": 0.4374858493912579,
+          "speed": 0.006610802701361905,
+          "yaw_error": 0.006744189144516355
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 11,
+          "condition": 0,
+          "actions": 15,
+          "distance": 0.18908760455777424,
+          "speed": 0.0005636121399623063,
+          "yaw_error": 0.01439172253078791
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 3,
+          "condition": 0,
+          "actions": 15,
+          "distance": 0.11907792939725413,
+          "speed": 0.0002506762060301448,
+          "yaw_error": 0.08569746124349642
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 0,
+          "actions": 15,
+          "distance": 0.39233049730192765,
+          "speed": 0.005599770558418982,
+          "yaw_error": 0.02931301464433833
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 3,
+          "actions": 13,
+          "distance": 0.4797540248652158,
+          "speed": 0.00022383841669776144,
+          "yaw_error": 0.07742621552992812
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 3,
+          "actions": 20,
+          "distance": 0.4053323196584872,
+          "speed": 0.0018792247299353748,
+          "yaw_error": 0.16826197978062352
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 0,
+          "actions": 13,
+          "distance": 0.42110134259574966,
+          "speed": 0.0002827179482287653,
+          "yaw_error": 0.010448113588598762
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 24,
+          "condition": 2,
+          "actions": 15,
+          "distance": 0.3492547755512425,
+          "speed": 0.00016793772573171425,
+          "yaw_error": 0.16272793103543748
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 6,
+          "condition": 2,
+          "actions": 23,
+          "distance": 0.2575602535878707,
+          "speed": 0.006825512853985677,
+          "yaw_error": 0.0594825018952454
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 8,
+          "condition": 0,
+          "actions": 18,
+          "distance": 0.3419135887882428,
+          "speed": 9.312339388641358e-05,
+          "yaw_error": 0.17876069342993395
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 2,
+          "actions": 17,
+          "distance": 0.39489207391722514,
+          "speed": 0.0003489742968048634,
+          "yaw_error": 0.0476900245883769
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 12,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.15923329320195678,
+          "speed": 0.00016485333280631675,
+          "yaw_error": 0.14398247275458909
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 14,
+          "condition": 2,
+          "actions": 21,
+          "distance": 0.15043174027524744,
+          "speed": 0.00016127227384715205,
+          "yaw_error": 0.12587617313535748
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 15,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.44448837122247314,
+          "speed": 0.0004801875865706219,
+          "yaw_error": 0.17701186212110587
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 16,
+          "condition": 0,
+          "actions": 17,
+          "distance": 0.2772690164841118,
+          "speed": 0.0049981161661734885,
+          "yaw_error": 0.1775297803740994
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.15687589040790242,
+          "speed": 0.00014397226511899351,
+          "yaw_error": 0.09777236678397028
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "method": "B1",
+          "episode_id": 20,
+          "condition": 0,
+          "actions": 17,
+          "distance": 0.39505135861600305,
+          "speed": 0.0004192908439485457,
+          "yaw_error": 0.11813955701062362
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 0,
+          "condition": 3,
+          "actions": 16,
+          "distance": 0.3329411045279505,
+          "speed": 0.00046991469273395536,
+          "yaw_error": 0.10632038151382428
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 1,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.12838507745163805,
+          "speed": 0.00018388483170237368,
+          "yaw_error": 0.0318374250416249
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 0,
+          "actions": 22,
+          "distance": 0.30418538927885314,
+          "speed": 0.0005456267771783083,
+          "yaw_error": 0.14757347916845198
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 2,
+          "actions": 24,
+          "distance": 0.24676791041565194,
+          "speed": 0.0003191859179100913,
+          "yaw_error": 0.01888607318640556
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 1,
+          "actions": 18,
+          "distance": 0.10957323449796753,
+          "speed": 0.14526374345521376,
+          "yaw_error": 0.03852309122118669
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 13,
+          "condition": 0,
+          "actions": 18,
+          "distance": 0.48516949786802593,
+          "speed": 0.00038712743741246836,
+          "yaw_error": 0.12840471143233412
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 19,
+          "condition": 2,
+          "actions": 21,
+          "distance": 0.37561906423381186,
+          "speed": 0.00019872604824291984,
+          "yaw_error": 0.15079430619079215
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 1,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.2925322898515423,
+          "speed": 0.0005637963497244578,
+          "yaw_error": 0.05335470138502929
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 5,
+          "condition": 0,
+          "actions": 22,
+          "distance": 0.2728028119472177,
+          "speed": 0.00015471458803459175,
+          "yaw_error": 0.010793392423927628
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.0956085704662131,
+          "speed": 0.00045946978020503263,
+          "yaw_error": 0.004642688728336175
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 10,
+          "condition": 1,
+          "actions": 18,
+          "distance": 0.10490520687887188,
+          "speed": 0.006452424852139593,
+          "yaw_error": 0.029867018730102224
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 17,
+          "condition": 0,
+          "actions": 22,
+          "distance": 0.209568393701582,
+          "speed": 0.00031945889193131256,
+          "yaw_error": 0.03382893690478639
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 1,
+          "condition": 0,
+          "actions": 20,
+          "distance": 0.128692667356378,
+          "speed": 0.000183662176482123,
+          "yaw_error": 0.031120235760066617
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 7,
+          "condition": 2,
+          "actions": 22,
+          "distance": 0.4791694484814565,
+          "speed": 0.006288895968952407,
+          "yaw_error": 0.03909413953792651
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 16,
+          "condition": 3,
+          "actions": 17,
+          "distance": 0.24074402447751098,
+          "speed": 0.0004737600324252293,
+          "yaw_error": 0.05165567118858583
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 17,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.3454298027693205,
+          "speed": 0.005968278734298893,
+          "yaw_error": 0.10997790037591226
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 18,
+          "condition": 1,
+          "actions": 21,
+          "distance": 0.34576942787386766,
+          "speed": 0.0001478825210288583,
+          "yaw_error": 0.08142967901761722
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 25,
+          "condition": 0,
+          "actions": 21,
+          "distance": 0.4315390302141536,
+          "speed": 0.0004818324507568014,
+          "yaw_error": 0.14826257210050997
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 26,
+          "condition": 1,
+          "actions": 19,
+          "distance": 0.1643916180668038,
+          "speed": 0.00014842903831124117,
+          "yaw_error": 0.045378667078296075
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 29,
+          "condition": 0,
+          "actions": 19,
+          "distance": 0.3940873451709286,
+          "speed": 0.0059532521759770585,
+          "yaw_error": 0.13659912494845328
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 31,
+          "condition": 2,
+          "actions": 23,
+          "distance": 0.36031443343148295,
+          "speed": 0.0002381076893300119,
+          "yaw_error": 0.039257923944966855
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 33,
+          "condition": 0,
+          "actions": 18,
+          "distance": 0.38536767739961975,
+          "speed": 0.0001467689048615696,
+          "yaw_error": 0.12994934486457987
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 35,
+          "condition": 2,
+          "actions": 24,
+          "distance": 0.14710870630160416,
+          "speed": 0.00016920897743653808,
+          "yaw_error": 0.00489036270971166
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "method": "B1",
+          "episode_id": 39,
+          "condition": 2,
+          "actions": 16,
+          "distance": 0.28806469454898315,
+          "speed": 0.00020408666873163173,
+          "yaw_error": 0.036397688934221684
+        }
+      ],
+      "condition_counts": {
+        "2": 305,
+        "0": 415,
+        "3": 99,
+        "1": 76
+      },
+      "excluded_intervened_decisions": 0,
+      "success_selection": {
+        "version": "terminal_margin_v1",
+        "distance_max_m": 0.5,
+        "speed_max_m_s": 0.15,
+        "yaw_max_rad": 0.2
+      },
+      "unselected_successes_retained_at_source": [
+        {
+          "source_batch": "20261026T083627Z_native_discrete_sanity",
+          "episode_id": 12,
+          "condition": 0,
+          "distance": 0.6011615246551044,
+          "speed": 0.0003419304089257967,
+          "yaw_error": 0.0926058342692162
+        },
+        {
+          "source_batch": "20261026T083627Z_native_discrete_sanity",
+          "episode_id": 18,
+          "condition": 2,
+          "distance": 0.3431851537307452,
+          "speed": 0.0006109527639697396,
+          "yaw_error": 0.30366747592850274
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 0,
+          "condition": 0,
+          "distance": 0.47385908990679165,
+          "speed": 0.15080436169449385,
+          "yaw_error": 0.11920894934634507
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 2,
+          "condition": 2,
+          "distance": 0.6830684395965343,
+          "speed": 0.17041477618517312,
+          "yaw_error": 0.02928678250760175
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 6,
+          "condition": 2,
+          "distance": 0.5572574855536551,
+          "speed": 0.0001712515775437731,
+          "yaw_error": 0.2531832627244164
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 10,
+          "condition": 2,
+          "distance": 0.2289942671530652,
+          "speed": 0.22360441747838447,
+          "yaw_error": 0.036892237948649154
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 31,
+          "condition": 3,
+          "distance": 0.6660278965877743,
+          "speed": 0.00496711519096113,
+          "yaw_error": 0.22964025289784296
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 42,
+          "condition": 2,
+          "distance": 0.7672136003833498,
+          "speed": 0.005756996143386905,
+          "yaw_error": 0.23013466875421607
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 50,
+          "condition": 2,
+          "distance": 0.45143889868098985,
+          "speed": 0.00043868498172881364,
+          "yaw_error": 0.25170174621000463
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 52,
+          "condition": 0,
+          "distance": 0.6494632886023833,
+          "speed": 0.006081743290768438,
+          "yaw_error": 0.12542237048560878
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 56,
+          "condition": 0,
+          "distance": 0.721068569259331,
+          "speed": 0.00023189828784625586,
+          "yaw_error": 0.14474360419413346
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 63,
+          "condition": 3,
+          "distance": 0.7393517335054223,
+          "speed": 0.00044581829990743976,
+          "yaw_error": 0.2774748871334105
+        },
+        {
+          "source_batch": "20261026T085757Z_native_continuation",
+          "episode_id": 68,
+          "condition": 0,
+          "distance": 0.671207003532361,
+          "speed": 0.00045394116889202127,
+          "yaw_error": 0.10033246353986325
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 2,
+          "condition": 3,
+          "distance": 0.625745990495117,
+          "speed": 0.006057564738560672,
+          "yaw_error": 0.2860882824680262
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 3,
+          "condition": 0,
+          "distance": 0.5241509908406933,
+          "speed": 0.1446079318233775,
+          "yaw_error": 0.007501192684371549
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 6,
+          "condition": 3,
+          "distance": 0.672490390922676,
+          "speed": 0.005753520867116585,
+          "yaw_error": 0.21728331859792993
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 11,
+          "condition": 0,
+          "distance": 0.6381875331591316,
+          "speed": 0.0053052222945331046,
+          "yaw_error": 0.046862979911852065
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 13,
+          "condition": 2,
+          "distance": 0.5643754223692953,
+          "speed": 0.00015982903456385547,
+          "yaw_error": 0.07605269019771921
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 14,
+          "condition": 3,
+          "distance": 0.5688433901708894,
+          "speed": 0.0005372422919528927,
+          "yaw_error": 0.1996430721694633
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 15,
+          "condition": 0,
+          "distance": 0.4944786570537321,
+          "speed": 0.17341071676198272,
+          "yaw_error": 0.027061045626567637
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 17,
+          "condition": 2,
+          "distance": 0.2800272266883836,
+          "speed": 0.05280089204616911,
+          "yaw_error": 0.2145525132161623
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 18,
+          "condition": 3,
+          "distance": 0.6847308410933997,
+          "speed": 0.0005221406635550346,
+          "yaw_error": 0.2849292747616241
+        },
+        {
+          "source_batch": "20261026T095235Z_own_success_ppo_continuation",
+          "episode_id": 19,
+          "condition": 0,
+          "distance": 0.7623849503986445,
+          "speed": 0.0001508209976502778,
+          "yaw_error": 0.02461826111669252
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "episode_id": 3,
+          "condition": 0,
+          "distance": 0.7330852156510836,
+          "speed": 0.0001402791968812718,
+          "yaw_error": 0.0596846358219838
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "episode_id": 10,
+          "condition": 3,
+          "distance": 0.56654422161179,
+          "speed": 0.005054689032855025,
+          "yaw_error": 0.27065573000420784
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "episode_id": 13,
+          "condition": 2,
+          "distance": 0.7633427264317064,
+          "speed": 0.004533662782745202,
+          "yaw_error": 0.02132499611269978
+        },
+        {
+          "source_batch": "20261026T095634Z_own_success_ppo_continuation",
+          "episode_id": 15,
+          "condition": 0,
+          "distance": 0.735367688388435,
+          "speed": 0.0003963440307009295,
+          "yaw_error": 0.12432461548427787
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 2,
+          "condition": 3,
+          "distance": 0.5337771375037261,
+          "speed": 0.0005043190847492766,
+          "yaw_error": 0.1257211771599156
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 4,
+          "condition": 1,
+          "distance": 0.7960791345686687,
+          "speed": 0.1717127642200289,
+          "yaw_error": 0.051146208472053534
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 6,
+          "condition": 3,
+          "distance": 0.7337067035083018,
+          "speed": 0.005781530628580389,
+          "yaw_error": 0.1117822585934678
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 9,
+          "condition": 2,
+          "distance": 0.6334562076090924,
+          "speed": 0.0002144596383810902,
+          "yaw_error": 0.07005471879064373
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 10,
+          "condition": 3,
+          "distance": 0.420961610958426,
+          "speed": 0.0004250714286709867,
+          "yaw_error": 0.21590832852712216
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 11,
+          "condition": 0,
+          "distance": 0.4295086833142757,
+          "speed": 0.046420775442072904,
+          "yaw_error": 0.22089017082027906
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 14,
+          "condition": 3,
+          "distance": 0.7786057326726079,
+          "speed": 0.006423750429121727,
+          "yaw_error": 0.3158883226967131
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 15,
+          "condition": 0,
+          "distance": 0.7642250213418583,
+          "speed": 0.0002694935956671918,
+          "yaw_error": 0.003200986472220446
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 19,
+          "condition": 0,
+          "distance": 0.12494739112337833,
+          "speed": 0.22515349577043708,
+          "yaw_error": 0.08999966482646515
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 21,
+          "condition": 2,
+          "distance": 0.4710443753587384,
+          "speed": 0.005606751006726772,
+          "yaw_error": 0.2562906390843196
+        },
+        {
+          "source_batch": "20261026T100045Z_own_success_ppo_continuation",
+          "episode_id": 22,
+          "condition": 3,
+          "distance": 0.6867214223504302,
+          "speed": 0.0024082290355166153,
+          "yaw_error": 0.1705092882664867
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 0,
+          "condition": 2,
+          "distance": 0.5182656978804211,
+          "speed": 0.002126568203719625,
+          "yaw_error": 0.25165833668423687
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 1,
+          "condition": 3,
+          "distance": 0.6669124557692682,
+          "speed": 0.0005301244103634159,
+          "yaw_error": 0.08215419199217289
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 2,
+          "condition": 0,
+          "distance": 0.5122573080953328,
+          "speed": 0.18839249912276568,
+          "yaw_error": 0.05952418036630647
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 4,
+          "condition": 2,
+          "distance": 0.7484697544112457,
+          "speed": 0.0002578286185358605,
+          "yaw_error": 0.07648412229431223
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 6,
+          "condition": 0,
+          "distance": 0.566971831028164,
+          "speed": 0.00017025599364654288,
+          "yaw_error": 0.06822539343786804
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 7,
+          "condition": 1,
+          "distance": 0.6065546689411058,
+          "speed": 0.00016364930742775868,
+          "yaw_error": 0.06403783893982729
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 9,
+          "condition": 3,
+          "distance": 0.4937165612691054,
+          "speed": 0.00046183204560681923,
+          "yaw_error": 0.2098437115137659
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 12,
+          "condition": 2,
+          "distance": 0.6432057283443016,
+          "speed": 0.0004622276760573324,
+          "yaw_error": 0.07306009608079833
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 13,
+          "condition": 3,
+          "distance": 0.6056590787385077,
+          "speed": 0.0004267285923882369,
+          "yaw_error": 0.18784340432764912
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 14,
+          "condition": 0,
+          "distance": 0.7973262043691821,
+          "speed": 0.0914086621635617,
+          "yaw_error": 0.024741831791271984
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 15,
+          "condition": 1,
+          "distance": 0.7956963297138839,
+          "speed": 0.14020948442689107,
+          "yaw_error": 0.05639576503379029
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 17,
+          "condition": 3,
+          "distance": 0.6036420938193202,
+          "speed": 0.0005087372490208287,
+          "yaw_error": 0.12509746483261885
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 18,
+          "condition": 0,
+          "distance": 0.7841539658685093,
+          "speed": 0.00692605911814953,
+          "yaw_error": 0.03111930365368476
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 20,
+          "condition": 2,
+          "distance": 0.5276059017813042,
+          "speed": 0.0001627975086030012,
+          "yaw_error": 0.10079558725342785
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 21,
+          "condition": 3,
+          "distance": 0.6516987491704151,
+          "speed": 0.0005717948573084643,
+          "yaw_error": 0.06425521946380508
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 22,
+          "condition": 0,
+          "distance": 0.6211538386122022,
+          "speed": 0.24951483049695966,
+          "yaw_error": 0.012714197360147672
+        },
+        {
+          "source_batch": "20261026T101632Z_own_success_ppo_continuation",
+          "episode_id": 23,
+          "condition": 1,
+          "distance": 0.7913756724926626,
+          "speed": 0.20898435643782598,
+          "yaw_error": 0.057054098455258107
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "episode_id": 0,
+          "condition": 0,
+          "distance": 0.5474522874475054,
+          "speed": 0.0003964333779878093,
+          "yaw_error": 0.0958345176167743
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "episode_id": 2,
+          "condition": 2,
+          "distance": 0.703343654010811,
+          "speed": 0.0057200280189519115,
+          "yaw_error": 0.27767209421212957
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "episode_id": 3,
+          "condition": 3,
+          "distance": 0.6924069637756561,
+          "speed": 0.00046272277070122207,
+          "yaw_error": 0.15808364441044942
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "episode_id": 4,
+          "condition": 0,
+          "distance": 0.18272376479284647,
+          "speed": 0.19899780870814165,
+          "yaw_error": 0.008753011554763379
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "episode_id": 7,
+          "condition": 3,
+          "distance": 0.6670053754566919,
+          "speed": 0.005661847812280463,
+          "yaw_error": 0.14814852222682706
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "episode_id": 11,
+          "condition": 3,
+          "distance": 0.5050869549508924,
+          "speed": 0.1526486674655234,
+          "yaw_error": 0.14529234853674433
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "episode_id": 19,
+          "condition": 3,
+          "distance": 0.7806643402334028,
+          "speed": 0.005456825887685771,
+          "yaw_error": 0.21392121087975902
+        },
+        {
+          "source_batch": "20261026T102314Z_native_continuation",
+          "episode_id": 21,
+          "condition": 1,
+          "distance": 0.35283407212998547,
+          "speed": 0.24321953487477543,
+          "yaw_error": 0.012255800757517754
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "episode_id": 8,
+          "condition": 3,
+          "distance": 0.5302290289530973,
+          "speed": 0.00046187306519753293,
+          "yaw_error": 0.14730583147889886
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "episode_id": 9,
+          "condition": 0,
+          "distance": 0.63416365747998,
+          "speed": 0.22524766431955623,
+          "yaw_error": 0.13272116292713454
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "episode_id": 11,
+          "condition": 2,
+          "distance": 0.5725094269182711,
+          "speed": 0.17192014529438188,
+          "yaw_error": 0.13818690159035985
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "episode_id": 12,
+          "condition": 3,
+          "distance": 0.7938532866830446,
+          "speed": 0.0004662945884815993,
+          "yaw_error": 0.18995888633955316
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "episode_id": 14,
+          "condition": 1,
+          "distance": 0.7114947144408726,
+          "speed": 0.00021700927256362444,
+          "yaw_error": 0.0625940061548409
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "episode_id": 15,
+          "condition": 2,
+          "distance": 0.5105411280250974,
+          "speed": 0.1647974747684433,
+          "yaw_error": 0.32961305653248996
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "episode_id": 16,
+          "condition": 3,
+          "distance": 0.559686448575518,
+          "speed": 0.005103241591817742,
+          "yaw_error": 0.22791239398259933
+        },
+        {
+          "source_batch": "20261026T103025Z_own_success_ppo_continuation",
+          "episode_id": 17,
+          "condition": 0,
+          "distance": 0.5210983023137653,
+          "speed": 0.00045472126291696245,
+          "yaw_error": 0.10337286139835244
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "episode_id": 0,
+          "condition": 3,
+          "distance": 0.7980065222281782,
+          "speed": 0.04716471750573192,
+          "yaw_error": 0.12135033059985023
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "episode_id": 8,
+          "condition": 3,
+          "distance": 0.6316780157335562,
+          "speed": 0.00480820785288974,
+          "yaw_error": 0.1403336757450715
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "episode_id": 9,
+          "condition": 0,
+          "distance": 0.5233389220374394,
+          "speed": 0.16378830607262418,
+          "yaw_error": 0.20944310550679113
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "episode_id": 14,
+          "condition": 1,
+          "distance": 0.5529658188531048,
+          "speed": 0.0001745942944413356,
+          "yaw_error": 0.0012656673080604364
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "episode_id": 15,
+          "condition": 2,
+          "distance": 0.7998505737652941,
+          "speed": 0.01950644243892721,
+          "yaw_error": 0.0528733350179964
+        },
+        {
+          "source_batch": "20261026T103350Z_own_success_ppo_continuation",
+          "episode_id": 16,
+          "condition": 3,
+          "distance": 0.5476335908484208,
+          "speed": 0.0057464497957092076,
+          "yaw_error": 0.19579606939581629
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 0,
+          "condition": 3,
+          "distance": 0.7980065222281782,
+          "speed": 0.04716471750573192,
+          "yaw_error": 0.12135033059985023
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 3,
+          "condition": 2,
+          "distance": 0.5206341967174998,
+          "speed": 0.00025263183746328016,
+          "yaw_error": 0.2383864733918264
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 8,
+          "condition": 3,
+          "distance": 0.5021291701458305,
+          "speed": 0.0049794728106747205,
+          "yaw_error": 0.25006809661832285
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 9,
+          "condition": 0,
+          "distance": 0.21731784431721296,
+          "speed": 0.16314876480540508,
+          "yaw_error": 0.0032959281650817296
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 10,
+          "condition": 1,
+          "distance": 0.7996848076912704,
+          "speed": 0.15486962503606128,
+          "yaw_error": 0.10850643729461629
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 11,
+          "condition": 2,
+          "distance": 0.23111763579108893,
+          "speed": 0.19805728739073655,
+          "yaw_error": 0.13558153109593274
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 12,
+          "condition": 3,
+          "distance": 0.5251715472775615,
+          "speed": 0.0004851021940326522,
+          "yaw_error": 0.18763221565320531
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 13,
+          "condition": 0,
+          "distance": 0.4960883769788879,
+          "speed": 0.2344177717000282,
+          "yaw_error": 0.11613033512621351
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 15,
+          "condition": 2,
+          "distance": 0.6192465892165305,
+          "speed": 0.00016227159908154248,
+          "yaw_error": 0.15177115367863347
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 19,
+          "condition": 2,
+          "distance": 0.18559210782234317,
+          "speed": 0.20645478703948483,
+          "yaw_error": 0.101633950364584
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 20,
+          "condition": 3,
+          "distance": 0.6266480938686264,
+          "speed": 0.0005140533501164449,
+          "yaw_error": 0.19818698884346198
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 21,
+          "condition": 0,
+          "distance": 0.7543910487493718,
+          "speed": 0.00018723752418784746,
+          "yaw_error": 0.27645436380369226
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 23,
+          "condition": 2,
+          "distance": 0.7468746364852424,
+          "speed": 0.000521488007987012,
+          "yaw_error": 0.10612377364634806
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 24,
+          "condition": 3,
+          "distance": 0.35972834881159327,
+          "speed": 0.1995601919959693,
+          "yaw_error": 0.2273705738588232
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 27,
+          "condition": 2,
+          "distance": 0.6874172260512269,
+          "speed": 0.0002714449359020807,
+          "yaw_error": 0.19446588701034795
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 28,
+          "condition": 3,
+          "distance": 0.5416272377493315,
+          "speed": 0.005162979944249982,
+          "yaw_error": 0.17268901903968903
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 30,
+          "condition": 1,
+          "distance": 0.24399307090609965,
+          "speed": 0.23671013653941486,
+          "yaw_error": 0.0015044862788133884
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 32,
+          "condition": 3,
+          "distance": 0.774794166524135,
+          "speed": 0.0061648320470263085,
+          "yaw_error": 0.19584447234862834
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 36,
+          "condition": 3,
+          "distance": 0.7542999637145803,
+          "speed": 0.00017982404350267637,
+          "yaw_error": 0.2058496356689199
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 37,
+          "condition": 0,
+          "distance": 0.4187189803609741,
+          "speed": 0.17326225847073218,
+          "yaw_error": 0.08685633579184415
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 38,
+          "condition": 1,
+          "distance": 0.4010164068724168,
+          "speed": 0.23248940929029516,
+          "yaw_error": 0.13543658855360663
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 40,
+          "condition": 3,
+          "distance": 0.5582751230544444,
+          "speed": 0.0005072061599452338,
+          "yaw_error": 0.188554202022591
+        },
+        {
+          "source_batch": "20261026T103954Z_own_success_ppo_continuation",
+          "episode_id": 41,
+          "condition": 0,
+          "distance": 0.6151012010547048,
+          "speed": 0.00599690167975328,
+          "yaw_error": 0.11562140504189955
+        }
+      ],
+      "script_sha256": "9922ec5740f40cb3b1ed7162dbd4ca8b497787fc2d663357c46cf269c23471b7",
+      "dataset_sha256": "20d60c9b1ce96b0335abcd5663e0629523b85d598610ddb1e3fd0b1077790601",
+      "model_sha256": "12792ec2b9290074e5eb9c21f4a5c8d6a7ca84f4eaaa006165d46585b643bcab",
+      "normalization_sha256": "7b8909747d7f609c209c7603d0b1f190e190850678249601544b3a3b5992dc2e",
+      "resume_state_sha256": "64f379204a9db3acb69ccc479456e106a29cff8886c1f1d6507ace78ee621a21"
+    }
+  ],
+  "rows": [
+    {
+      "label": "all_success_frozen",
+      "batch": "20261026T113813Z_own_success_evaluation",
+      "scope": "Auxiliary own-success actor fit, frozen development-road evaluation; no new driving training or PPO updates; not independent conditions",
+      "protocol_sha256": "24c017b2ad92bf3be59d454a322306b0679fc1458d3caadf1c99d12259816fbd",
+      "endpoint_raw_audit_sha256": "d60d80840c6821bffadc583c35111069a183001fe87bf3f3064cc6df80564253",
+      "model_sha256": "0b2a8cc72476e92086763e04d9b6f42007d85238d6e047e18ec44c55ef3d3b23",
+      "normalization_sha256": "7b8909747d7f609c209c7603d0b1f190e190850678249601544b3a3b5992dc2e",
+      "training_controls": 0,
+      "evaluation_controls": 801,
+      "segment_optimizer_steps": 0,
+      "ppo_optimizer_steps": 0,
+      "auxiliary_actor_optimizer_steps": 0,
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 204,
+          "progress": 4.564614908657543,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 187,
+          "progress": 4.415269344044364,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 240,
+          "progress": 4.590930014034368,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 170,
+          "progress": 4.76922246746713,
+          "interventions": 0
+        }
+      ],
+      "guard": {
+        "epoch": 1793014796.8503587,
+        "worker_pid": 2192,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_server_stopped": true,
+      "online_success_memory": null
+    },
+    {
+      "label": "margin_frozen",
+      "batch": "20261026T113902Z_own_success_evaluation",
+      "scope": "Auxiliary own-success actor fit, frozen development-road evaluation; no new driving training or PPO updates; not independent conditions",
+      "protocol_sha256": "9f67e58ca3b1dfbda50aac7eea7328f5c77b7e8e917a089417bb4125fb772539",
+      "endpoint_raw_audit_sha256": "74a7158e0bfa646df6598998ba6fb198df5d292a7f8589bfc7800ac0b86c328d",
+      "model_sha256": "12792ec2b9290074e5eb9c21f4a5c8d6a7ca84f4eaaa006165d46585b643bcab",
+      "normalization_sha256": "7b8909747d7f609c209c7603d0b1f190e190850678249601544b3a3b5992dc2e",
+      "training_controls": 0,
+      "evaluation_controls": 798,
+      "segment_optimizer_steps": 0,
+      "ppo_optimizer_steps": 0,
+      "auxiliary_actor_optimizer_steps": 0,
+      "successes": 4,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 213,
+          "progress": 4.800948927938529,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 172,
+          "progress": 4.335501366931368,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 222,
+          "progress": 4.3257853068028735,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 191,
+          "progress": 4.8749915079804005,
+          "interventions": 0
+        }
+      ],
+      "guard": {
+        "epoch": 1793014923.0234735,
+        "worker_pid": 23480,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_server_stopped": true,
+      "online_success_memory": null
+    },
+    {
+      "label": "margin_frozen_six_metre",
+      "batch": "20261026T114401Z_own_success_evaluation",
+      "scope": "Frozen transfer back to original known six-metre goals after three-metre curriculum and counted own-success actor replay; zero new training, not unseen conditions",
+      "protocol_sha256": "661b623ab947e56a0cec556e5111937df1e36ee2bbccf84227dbcc81010af3b8",
+      "endpoint_raw_audit_sha256": "2d40b3d440e28ad1efb6458fc9497d0907cc80d4ce5f7180787c9891f3a46718",
+      "model_sha256": "12792ec2b9290074e5eb9c21f4a5c8d6a7ca84f4eaaa006165d46585b643bcab",
+      "normalization_sha256": "7b8909747d7f609c209c7603d0b1f190e190850678249601544b3a3b5992dc2e",
+      "training_controls": 0,
+      "evaluation_controls": 745,
+      "segment_optimizer_steps": 0,
+      "ppo_optimizer_steps": 0,
+      "auxiliary_actor_optimizer_steps": 0,
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 166,
+          "progress": 5.64708298175925,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 240,
+          "progress": 3.5495576742688595,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 155,
+          "progress": 6.40011217583287,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 184,
+          "progress": 5.621391570044776,
+          "interventions": 0
+        }
+      ],
+      "guard": {
+        "epoch": 1793015229.9757283,
+        "worker_pid": 44852,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_server_stopped": true,
+      "online_success_memory": null
+    },
+    {
+      "label": "margin_static_six_training",
+      "batch": "20261026T114835Z_own_success_ppo_continuation",
+      "scope": "Real PPO plus counted robust-own-success replay on original known six-metre goals after all-four passing4.5m gate; not independent training or plain PPO",
+      "protocol_sha256": "e0f7bebe6f736f863ca3ec862f44af778aae4ab5864c3712ac1c5bb843ddfc43",
+      "endpoint_raw_audit_sha256": "64488048f61a3f675572c6f7a3e875b3da78f7cf0c2436939c7608b616f91e33",
+      "model_sha256": "d34084f45e40044ffe6ae7f985931a3de0ff42672686ad16c3ec00417b982028",
+      "normalization_sha256": "1659d9238c8e92dbe4d271c487543894137273f8d0fd4cfa18a1330d4c574dae",
+      "training_controls": 8463,
+      "evaluation_controls": 779,
+      "segment_optimizer_steps": 2970,
+      "ppo_optimizer_steps": 270,
+      "auxiliary_actor_optimizer_steps": 2700,
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 192,
+          "progress": 5.795238665133569,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 240,
+          "progress": 5.046749936919173,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 186,
+          "progress": 6.186682752911223,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 161,
+          "progress": 5.995313181438607,
+          "interventions": 0
+        }
+      ],
+      "guard": {
+        "epoch": 1793015565.2959292,
+        "worker_pid": 70104,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_server_stopped": true,
+      "online_success_memory": null
+    },
+    {
+      "label": "margin_online_six_training",
+      "batch": "20261026T115519Z_own_success_ppo_continuation",
+      "scope": "Real PPO plus counted robust-own-success replay on original known six-metre goals after all-four passing4.5m gate; not independent training or plain PPO",
+      "protocol_sha256": "fec4c4a36c0f7a8fdada667c0ef8e49d6d80d0d3248d2e6d75c46cf655e25174",
+      "endpoint_raw_audit_sha256": "a325454100ceaaf7a31e494f0859da22009c9cbe04c87c44996e67036290ebac",
+      "model_sha256": "8d25d2daba58fe663af992ae157d9c8af772e01a441b7c49f078d606ce91ef14",
+      "normalization_sha256": "9553e8d359d1ca4ed85e2282e2b03ef10bf28d96ee04f94e11497ccdbf982356",
+      "training_controls": 8413,
+      "evaluation_controls": 804,
+      "segment_optimizer_steps": 2970,
+      "ppo_optimizer_steps": 270,
+      "auxiliary_actor_optimizer_steps": 2700,
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 221,
+          "progress": 5.809348468509812,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 240,
+          "progress": 4.763781868252707,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 172,
+          "progress": 6.670854413347267,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 171,
+          "progress": 5.991207492676787,
+          "interventions": 0
+        }
+      ],
+      "guard": {
+        "epoch": 1793016059.4801252,
+        "worker_pid": 67516,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_server_stopped": true,
+      "online_success_memory": {
+        "samples": 1017,
+        "new_own_success_decisions": 122,
+        "new_own_success_episodes": 7,
+        "successful_episodes_rejected_by_quality": 23,
+        "scope": "Actual frozen-normalizer policy inputs; failed episodes remain in raw logs; no teacher or new simulator execution",
+        "sha256": "6c9113e05ae16739105ab54938ec78e9980daa041343f640d27ba7341f99cac0"
+      }
+    },
+    {
+      "label": "margin_speed_smoothed_six_training",
+      "batch": "20261026T120452Z_own_success_ppo_continuation",
+      "scope": "Real PPO plus counted robust-own-success replay on original known six-metre goals after all-four passing4.5m gate; not independent training or plain PPO",
+      "protocol_sha256": "18c79fc040ec1cbb506984ac536332646333b299fa22b0b9d76996899671c1b8",
+      "endpoint_raw_audit_sha256": "0903d7d3642ae91365f7348150f961f867efe4aabe47528ca8344a225bf07b37",
+      "model_sha256": "525e36d1e5b6755c1ca3943d2b76c5266e839ff0cfa6108b1e26a512e31252e7",
+      "normalization_sha256": "be1970568662a346163ba8660a2d1847a826918c82970655ff4d7fc618bf5e0d",
+      "training_controls": 8451,
+      "evaluation_controls": 784,
+      "segment_optimizer_steps": 2970,
+      "ppo_optimizer_steps": 270,
+      "auxiliary_actor_optimizer_steps": 2700,
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 224,
+          "progress": 5.941323008511638,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 214,
+          "progress": 5.810269936620401,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 201,
+          "progress": 6.1485456335499915,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 145,
+          "progress": 5.845283566885887,
+          "interventions": 0
+        }
+      ],
+      "guard": {
+        "epoch": 1793016693.5553925,
+        "worker_pid": 68144,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_server_stopped": true,
+      "speed_label_smoothing": 0.3
+    }
+  ],
+  "all4initial_states_exactly_matched": true,
+  "new_raw_controls": 30038,
+  "protocol_deviation": "Initial exploratory pair registration limited matched4.5m evaluations to2; after all4margin goals succeeded, a separately announced conditional frozen6m transfer and two separately registered8192control adaptation phases were added. They are not independent confirmation.",
+  "exploration_probes": {
+    "hard_labels": {
+      "inference_sha256": "14375ea465cc334b0fc8e4de0240b3d9c8e47f2cb8b13b88ee4e66e1215bbe3d",
+      "model_sha256": "d34084f45e40044ffe6ae7f985931a3de0ff42672686ad16c3ec00417b982028",
+      "speed_probabilities_by_case": {
+        "0": [
+          0.4653073847293854,
+          0.007364990189671516,
+          0.5273275971412659
+        ],
+        "1": [
+          2.750348903646227e-05,
+          0.9999724626541138,
+          3.1281080503653413e-10
+        ],
+        "2": [
+          0.6897233724594116,
+          0.014109228737652302,
+          0.29616743326187134
+        ],
+        "3": [
+          4.238670226186514e-05,
+          0.0012470181100070477,
+          0.9987106323242188
+        ]
+      },
+      "new_controls": 0,
+      "optimizer_updates": 0
+    },
+    "speed_smoothed": {
+      "inference_sha256": "3cdfd158a2b3afd484915aa3927c2d40534544f6ada923f6c0d9c55755487159",
+      "model_sha256": "525e36d1e5b6755c1ca3943d2b76c5266e839ff0cfa6108b1e26a512e31252e7",
+      "speed_probabilities_by_case": {
+        "0": [
+          0.3677327036857605,
+          0.14544011652469635,
+          0.48682713508605957
+        ],
+        "1": [
+          0.029273323714733124,
+          0.8334475755691528,
+          0.13727910816669464
+        ],
+        "2": [
+          0.5295552015304565,
+          0.10285584628582001,
+          0.36758896708488464
+        ],
+        "3": [
+          0.09050685167312622,
+          0.08836192637681961,
+          0.8211312890052795
+        ]
+      },
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  },
+  "cpu": {
+    "passed": 324,
+    "skipped": 1,
+    "carla_deselected": 4,
+    "seconds": 168.19,
+    "log_sha256": "fbb6e13c3f7208c9d01df6b6845a5ca5f12d730980402e16f4256b421cfba511",
+    "xml_sha256": "c43d0584d28ce464158b45bcd0b04b0aadb088b5ca3d47ec3b1199eb5d98022b"
+  },
+  "source_preregistration_sha256": "6a3c6d1405d5970c89457d882a51806828b839fddfaa8d6657d479ebc9b727e3",
+  "matched_initial_scenarios_sha256": "9642844e75847bbbc0c6b961d2311cb16541f0c6c189d7c3abff2b2616a15e07"
+}

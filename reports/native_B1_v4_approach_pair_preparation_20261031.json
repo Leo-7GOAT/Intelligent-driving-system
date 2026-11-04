@@ -1,0 +1,25 @@
+{
+  "scope": "Matched offline actor fits;native evaluations pending,not PPO performance or trained seeds",
+  "pair": "20261031T034614808334Z_native_approach_pair",
+  "arms": [
+    {
+      "role": "replay",
+      "batch": "20261031T034614809334Z_native_replay_bc",
+      "model_sha256": "efca18d4c22f9cbe425313de360299a8cbb3a4cfaaab485da2fb2529b0fd13bd"
+    },
+    {
+      "role": "approach",
+      "batch": "20261031T034641272228Z_native_approach_bc",
+      "model_sha256": "eef3fb9dd9b32fe33fe38cf79a031cde1c2b3f7c89868cea51dd07bffe288dae"
+    }
+  ],
+  "steps_each": 512,
+  "initial_PPO_optimizer_empty": true,
+  "zero_PPO_controls_and_updates_each": true,
+  "normalizer_RNG_config_bytes_equal": true,
+  "log_std_exactly_equal": true,
+  "source_data": "Only original teacher TRAIN rows plus optional29solved-reference labels at native TRAINING states;heldout rows excluded,no evaluation states fit",
+  "extra_teacher_labels_are_executed_commands": false,
+  "selection": "Same fixed12known-condition gate for both;no automatic retry or checkpoint picking",
+  "research_acceptance": "UNMET"
+}

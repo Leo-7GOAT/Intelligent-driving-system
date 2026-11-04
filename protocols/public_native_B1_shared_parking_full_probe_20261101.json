@@ -1,0 +1,42 @@
+{
+  "version": "public_native_frozen_full_condition_probe_v1",
+  "scope": "Same actual-trained B1 policy,all12known development conditions,zero new learning;not five seeds or final confirmation.",
+  "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-parking-ppo",
+  "release_tag": "v0.2.0-dev.20261101-parking-ppo",
+  "tag_target_unchanged": "b521af521a42c068a819f25f3dee6796866e9c52",
+  "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-parking-ppo/native_B1_shared_parking_full_probe_seed22_20261101.zip.parts.json",
+  "archive_name": "native_B1_shared_parking_full_probe_seed22_20261101.zip",
+  "archive_sha256": "edf95fc46b776d958b0f08253853dcee8951bc9a89269d00941d9112dc740298",
+  "archive_bytes": 17727551,
+  "packager_repository_commit": "a79ff7fab2fcdab419303b2c7a9cb5fb2ff91801",
+  "parts": [
+    {
+      "name": "native_B1_shared_parking_full_probe_seed22_20261101.zip.part001",
+      "bytes": 8388608,
+      "sha256": "4f4bd4a19a0c73ae9b53241a60d8d813d0e4e56a77c35ac128954559c527e1f1"
+    },
+    {
+      "name": "native_B1_shared_parking_full_probe_seed22_20261101.zip.part002",
+      "bytes": 8388608,
+      "sha256": "f116013e93fce5152c9619b143c98063a09f6d90d98e247d108dfee717e0979e"
+    },
+    {
+      "name": "native_B1_shared_parking_full_probe_seed22_20261101.zip.part003",
+      "bytes": 950335,
+      "sha256": "4fd49ade5954cc6080a47f3c8bc520cb40185b31fa127d2cb289f7ae6f81d066"
+    }
+  ],
+  "expected": {
+    "files": 513,
+    "controls": 4848,
+    "measured_start_actions": 12,
+    "successes": 12,
+    "core_class_successes": {
+      "curve_parking": 4,
+      "static_vehicle": 4,
+      "crossing_walker": 4
+    },
+    "new_PPO_updates": 0
+  },
+  "documentation": "docs/shared_parking.md"
+}

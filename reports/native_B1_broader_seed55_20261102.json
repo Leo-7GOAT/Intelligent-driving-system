@@ -1,0 +1,274 @@
+{
+  "scope": "Verify actual broader-distribution B1 PPO and every existing validation condition.",
+  "script_sha256": "d42e854c29e44af4517c27863be4510c7d962547f74adfae7c513df48b3ba5dc",
+  "batch": "20261102T044005159056Z_native_broader_B1_seed55",
+  "protocol_sha256": "91252e808aa61e997506d0bb56bfd32076c74e64d3d88875b03115ffe23c9b91",
+  "initial_model_sha256": "567e425bc71dbee04427d1117edf6077aabe4cba519e15f76b29fb1dfff62530",
+  "final_model_sha256": "271e2f72ef7d9b97e62f2017940fecc8cb93ab42becb058ae5e4ef1029e864fe",
+  "normalization_sha256": "e65a04015fe192f65bf984dd84633552000edeabf0355831a5ceeca478b07594",
+  "new_actual_PPO_controls": 20480,
+  "new_actual_Adam_steps": 619,
+  "saved_Adam_proof": {
+    "parameter_states": 35,
+    "step_increment_each": 619
+  },
+  "changed_network_tensors": {
+    "actor": 21,
+    "critic": 14
+  },
+  "observation_RMS_exact": true,
+  "all_actual_control_frames_verified": 28841,
+  "all_engine_controls_acknowledged": true,
+  "training_parking": {
+    "verified_controls": 20480,
+    "parking_overrides": 75,
+    "episodes_including_tail": 60,
+    "all_assistance_commands_and_disclosures_verified": true,
+    "steering_unchanged_by_helper": true
+  },
+  "validation_parking": {
+    "helper_sha256": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+    "cases": [
+      {
+        "case_id": 0,
+        "termination": "success",
+        "controls": 346,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.09368710747614073
+      },
+      {
+        "case_id": 1,
+        "termination": "out_of_bounds",
+        "controls": 444,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.1224560681932587
+      },
+      {
+        "case_id": 2,
+        "termination": "out_of_bounds",
+        "controls": 394,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 0.8583907049468014
+      },
+      {
+        "case_id": 3,
+        "termination": "success",
+        "controls": 245,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": -0.0001215767276196584
+      },
+      {
+        "case_id": 4,
+        "termination": "success",
+        "controls": 306,
+        "parking_overrides": 1,
+        "terminal_intervened": false,
+        "final_speed": 0.09838459444647807
+      },
+      {
+        "case_id": 5,
+        "termination": "success",
+        "controls": 283,
+        "parking_overrides": 1,
+        "terminal_intervened": false,
+        "final_speed": 0.10042174384135416
+      },
+      {
+        "case_id": 6,
+        "termination": "out_of_bounds",
+        "controls": 383,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 0.4258686331879929
+      },
+      {
+        "case_id": 7,
+        "termination": "success",
+        "controls": 207,
+        "parking_overrides": 3,
+        "terminal_intervened": false,
+        "final_speed": -5.069247420749792e-05
+      },
+      {
+        "case_id": 8,
+        "termination": "success",
+        "controls": 384,
+        "parking_overrides": 1,
+        "terminal_intervened": false,
+        "final_speed": 0.10289547312991498
+      },
+      {
+        "case_id": 9,
+        "termination": "collision",
+        "controls": 102,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.247311558937178
+      },
+      {
+        "case_id": 10,
+        "termination": "collision",
+        "controls": 242,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.341336891234274
+      },
+      {
+        "case_id": 11,
+        "termination": "collision",
+        "controls": 187,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.558393859330895
+      },
+      {
+        "case_id": 12,
+        "termination": "success",
+        "controls": 328,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.09550431958792105
+      },
+      {
+        "case_id": 13,
+        "termination": "collision",
+        "controls": 112,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 0.42785509975467517
+      },
+      {
+        "case_id": 14,
+        "termination": "collision",
+        "controls": 224,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.1700834160698959
+      },
+      {
+        "case_id": 15,
+        "termination": "collision",
+        "controls": 187,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 0.6676228987236721
+      },
+      {
+        "case_id": 16,
+        "termination": "success",
+        "controls": 461,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.09673329294156385
+      },
+      {
+        "case_id": 17,
+        "termination": "out_of_bounds",
+        "controls": 352,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.634587172865258
+      },
+      {
+        "case_id": 18,
+        "termination": "out_of_bounds",
+        "controls": 728,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.5449731371878759
+      },
+      {
+        "case_id": 19,
+        "termination": "collision",
+        "controls": 104,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.6733478926490477
+      },
+      {
+        "case_id": 20,
+        "termination": "success",
+        "controls": 518,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.0981714698296281
+      },
+      {
+        "case_id": 21,
+        "termination": "out_of_bounds",
+        "controls": 738,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.1188577130246387
+      },
+      {
+        "case_id": 22,
+        "termination": "out_of_bounds",
+        "controls": 632,
+        "parking_overrides": 0,
+        "terminal_intervened": false,
+        "final_speed": 1.5042864458226006
+      },
+      {
+        "case_id": 23,
+        "termination": "success",
+        "controls": 454,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 7.060923583364505e-05
+      }
+    ],
+    "all_assistance_commands_verified": true,
+    "successful_terminal_frames_satisfy_original_unassisted_goal_gate": true
+  },
+  "training_outcomes": {
+    "out_of_bounds": 10,
+    "collision": 5,
+    "success": 42,
+    "deadline": 2
+  },
+  "validation_successes": 10,
+  "validation_cases": 24,
+  "validation_termination_counts": {
+    "success": 10,
+    "out_of_bounds": 7,
+    "collision": 7
+  },
+  "by_core": {
+    "curve_parking": {
+      "cases": 8,
+      "successes": 5,
+      "termination_counts": {
+        "success": 5,
+        "out_of_bounds": 3
+      }
+    },
+    "static_vehicle": {
+      "cases": 8,
+      "successes": 2,
+      "termination_counts": {
+        "success": 2,
+        "collision": 6
+      }
+    },
+    "crossing_walker": {
+      "cases": 8,
+      "successes": 3,
+      "termination_counts": {
+        "success": 3,
+        "out_of_bounds": 4,
+        "collision": 1
+      }
+    }
+  },
+  "lineage_PPO_controls": 51200,
+  "training_wall_seconds": 1192.4291806221008,
+  "measured_start_actions_verified": 24,
+  "new_final_conditions": 0,
+  "limits": "Additional development course. Original22pilot remains separately registered and unmodified;four other seeds committed before its validation. Independent warm starts and55interruption retained. No matched H/B1 budget or final confirmation claim.",
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,361 @@
+{
+  "scope": "Locate planning failures in all five existing H/H0 development pairs, retaining every outcome.",
+  "script_sha256": "5995c8a47adb714404570009a32f6405fd404f79d45d7205912f89403c527358",
+  "pairs_manifest_sha256": "2cfb30443d6c7665e0d57dab0cd0683b4dadd7463caffc8d63ac46bcff52c0ef",
+  "totals": {
+    "H": {
+      "successes": 120,
+      "cases": 120,
+      "all_plan_failures": 8,
+      "mutually_successful_plan_failures": 8,
+      "other_plan_failures": 0
+    },
+    "H0": {
+      "successes": 119,
+      "cases": 120,
+      "all_plan_failures": 78,
+      "mutually_successful_plan_failures": 0,
+      "other_plan_failures": 78
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 11,
+      "mutually_successful_case_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "H": {
+        "successes": 24,
+        "cases": 24,
+        "all_plan_failures": 8,
+        "mutually_successful_plan_failures": 8,
+        "other_plan_failures": 0
+      },
+      "H0": {
+        "successes": 24,
+        "cases": 24,
+        "all_plan_failures": 0,
+        "mutually_successful_plan_failures": 0,
+        "other_plan_failures": 0
+      }
+    },
+    {
+      "seed": 22,
+      "mutually_successful_case_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "H": {
+        "successes": 24,
+        "cases": 24,
+        "all_plan_failures": 0,
+        "mutually_successful_plan_failures": 0,
+        "other_plan_failures": 0
+      },
+      "H0": {
+        "successes": 24,
+        "cases": 24,
+        "all_plan_failures": 0,
+        "mutually_successful_plan_failures": 0,
+        "other_plan_failures": 0
+      }
+    },
+    {
+      "seed": 33,
+      "mutually_successful_case_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "H": {
+        "successes": 24,
+        "cases": 24,
+        "all_plan_failures": 0,
+        "mutually_successful_plan_failures": 0,
+        "other_plan_failures": 0
+      },
+      "H0": {
+        "successes": 24,
+        "cases": 24,
+        "all_plan_failures": 0,
+        "mutually_successful_plan_failures": 0,
+        "other_plan_failures": 0
+      }
+    },
+    {
+      "seed": 44,
+      "mutually_successful_case_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "H": {
+        "successes": 24,
+        "cases": 24,
+        "all_plan_failures": 0,
+        "mutually_successful_plan_failures": 0,
+        "other_plan_failures": 0
+      },
+      "H0": {
+        "successes": 23,
+        "cases": 24,
+        "all_plan_failures": 78,
+        "mutually_successful_plan_failures": 0,
+        "other_plan_failures": 78
+      }
+    },
+    {
+      "seed": 55,
+      "mutually_successful_case_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "H": {
+        "successes": 24,
+        "cases": 24,
+        "all_plan_failures": 0,
+        "mutually_successful_plan_failures": 0,
+        "other_plan_failures": 0
+      },
+      "H0": {
+        "successes": 24,
+        "cases": 24,
+        "all_plan_failures": 0,
+        "mutually_successful_plan_failures": 0,
+        "other_plan_failures": 0
+      }
+    }
+  ],
+  "episodes_with_planning_failures": [
+    {
+      "seed": 11,
+      "method": "H",
+      "case_id": 14,
+      "termination": "success",
+      "plan_failures": 8,
+      "actions": 49,
+      "controls": 488,
+      "interventions": 80,
+      "mutually_successful": true
+    },
+    {
+      "seed": 44,
+      "method": "H0",
+      "case_id": 15,
+      "termination": "deadline",
+      "plan_failures": 78,
+      "actions": 90,
+      "controls": 900,
+      "interventions": 780,
+      "mutually_successful": false
+    }
+  ],
+  "input_hashes": [
+    {
+      "seed": 11,
+      "method": "H",
+      "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+      "evaluation_sha256": "ead1bfb8033a284cea6eed1dacb3285fef75e4bf3c3187c9c4137e1d83ad6b0b",
+      "trace_sha256": "810f106e3db7b4dd35f28731c07e1d183779df6627aa756ebc3512237d4906cb",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "1cd20dc1b0e86e3e8f71de03b07dc4d189a534150507ac1a48b791e35491e249"
+    },
+    {
+      "seed": 11,
+      "method": "H0",
+      "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+      "evaluation_sha256": "2bd6a4214e900ab5df747149e73b05cea46dc5a7e33ea2a250e1591900f90db3",
+      "trace_sha256": "a2b856255430d2854fdc1bc99e3d8e42abe05001ea666d8bdd45e9392d3aa8ff",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "06b315f9c617958ec55643a2783972bd0859c034a9e09fc74185225c8cdacf9d"
+    },
+    {
+      "seed": 22,
+      "method": "H",
+      "batch": "20261101T011945179519Z_native_matched_broader_feedback",
+      "evaluation_sha256": "e736e96c58c83a32986c7c307a7c516e9e80b9f3104c4956adff4e1d17ce59e3",
+      "trace_sha256": "c119de1d25d12835058573084a38b7f7dae5fb227ea34965a4954e42fdd56a0a",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "820182f58f0d37558a7f018333aa0c3e1f27def1ec0751b1e67cbc701df71213"
+    },
+    {
+      "seed": 22,
+      "method": "H0",
+      "batch": "20261101T011945179519Z_native_matched_broader_feedback",
+      "evaluation_sha256": "b9faacdb5305e719c86352c401c78c1e5ed2dbaae38153e8d44f9a763f024a50",
+      "trace_sha256": "fa16c8a2cf61fdc2e64d4e394f68e788ada4c857c9ce3d9e038faf4fa64b9102",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "06b5deee6281457283719cfaa32893274490c7a70710fb8f916d48ac33e45f4d"
+    },
+    {
+      "seed": 33,
+      "method": "H",
+      "batch": "20261101T011949266084Z_native_matched_broader_feedback",
+      "evaluation_sha256": "fd64d733b972a14599aa68e6a4001d34fe3b45c33e994db3f491bce13a0bcad4",
+      "trace_sha256": "b06f5d402994ba76b206603da0d1cbfb6540e8bf6e385f70835bbfb1900dbe92",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "c5d5235aa9c8b8a3c3c4ebdce09f15869c9c0c3ebb16cc2287dfcbfa0611f735"
+    },
+    {
+      "seed": 33,
+      "method": "H0",
+      "batch": "20261101T011949266084Z_native_matched_broader_feedback",
+      "evaluation_sha256": "2c3ebd61025c6a12814d1a58a3f6abcc7161b4c242179c482062fa2c3a5afea2",
+      "trace_sha256": "b39fdae4d9bcdf0cf3db1fb0155687e4400be4ccabd538362456c22321eb501b",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "0b63b1110564a84383813e69ec9fa6aa2149f560bcc8cc04653b9c93ac143ed3"
+    },
+    {
+      "seed": 44,
+      "method": "H",
+      "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+      "evaluation_sha256": "aa9b94d3e4ebd60cab82ba83297c30ce1dbc69cb204e9817fe0cc109a47f8845",
+      "trace_sha256": "62d4cf3c5ac49debacbcfac9e52bb45590bf218cc7572c3f6aa3f0167fe4dc69",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "403e5f32e96e49a220f8d4a56d7b5e5032a5c509f30679e9c391e006a77c5f9b"
+    },
+    {
+      "seed": 44,
+      "method": "H0",
+      "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+      "evaluation_sha256": "a8f8b8fc8e17a1ab9c550cc7c3d7e5593f8f78448d858a4780b8cd116a614ae7",
+      "trace_sha256": "93da3305442386521ccd7e51fb31f51888f9fb956250cc8dab0ae753a0ff299e",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "b938fa7d71e7df2ce619d4685042065118477f942ad64e470856265501860217"
+    },
+    {
+      "seed": 55,
+      "method": "H",
+      "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+      "evaluation_sha256": "534f1c8058f48ba318bc6e2753bf75c8e4f6fa6f4e7b6d7ad753f4b3f0967a4a",
+      "trace_sha256": "c4e5e3e30a4b8daddc157aa5116dc202e15474f84caa7c230db490cc44d75692",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "4351e9566560bbd771d77617ae22ccb70983f027a268362aca817b2cb65f8446"
+    },
+    {
+      "seed": 55,
+      "method": "H0",
+      "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+      "evaluation_sha256": "3c4437e3a03e3e569615aad0f1a4d351af1b9015020b117272846641ba0fcae2",
+      "trace_sha256": "3204d036b36db42c04fd7ccacb5ac26814f45e8fea7f9eaa97b87d88dbd00a7d",
+      "planning_failures_recounted_from_actual_trace": true,
+      "raw_audit_sha256": "908283c4c8b734ccae2b213810f9df1dc1f893b411b73e4b7f5e2147b65aaa87"
+    }
+  ],
+  "unique_known_development_conditions": 24,
+  "independent_training_pairs": 5,
+  "interpretation": "Planning failures are concentrated in 2 policy/seed/condition episodes. Inspect all-outcome and conditional per-seed counts together;aggregate counts alone do not establish stable planning efficiency or collaboration benefit.",
+  "limits": "Retrospective concentration analysis. Mutually successful cases are an explicitly conditional sensitivity analysis,not replacement completion statistics;the failed case remains in all-outcome counts. No new comparison or selected subgroup is promoted to a main result.",
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET"
+}

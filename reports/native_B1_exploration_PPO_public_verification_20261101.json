@@ -1,0 +1,163 @@
+{
+  "scope": "Independent unauthenticated public-download reconstruction of the complete actual PPOpilot,including its failure and initial/learned states.",
+  "publication": {
+    "tag": "v0.2.0-dev.20261101",
+    "target_commitish": "ba932787113168ad5781ee640c6f06d09bbee0e1",
+    "prerelease": true,
+    "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101",
+    "archive_sha256": "438778411ba8cba4faf2708c3e07daa39b70c8597927f6db18fc55a1118bdbcf",
+    "assets": [
+      {
+        "name": "native_B1_exploration_PPO_seed22_20261101_repro.zip.part001",
+        "bytes": 8388608,
+        "sha256": "45bce92335f74123bdeb79047b4c21d7db5c4272b9ae091a7814ffcbe575aa1a",
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.part001",
+        "state": "uploaded"
+      },
+      {
+        "name": "native_B1_exploration_PPO_seed22_20261101_repro.zip.part002",
+        "bytes": 8388608,
+        "sha256": "3a88df80f74ef2603783e27c65e2a0e8162566163a0189da8d993561bba79450",
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.part002",
+        "state": "uploaded"
+      },
+      {
+        "name": "native_B1_exploration_PPO_seed22_20261101_repro.zip.part003",
+        "bytes": 8388608,
+        "sha256": "543cbde9291400407c7b3de689bae31faaaef9dfb5f6886ebc819ec69157e2eb",
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.part003",
+        "state": "uploaded"
+      },
+      {
+        "name": "native_B1_exploration_PPO_seed22_20261101_repro.zip.part004",
+        "bytes": 8388608,
+        "sha256": "2d92c45348b00dca923e570d48b4a2175945fd51f3a24c8d25adb6d6c272641e",
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.part004",
+        "state": "uploaded"
+      },
+      {
+        "name": "native_B1_exploration_PPO_seed22_20261101_repro.zip.part005",
+        "bytes": 8388608,
+        "sha256": "29102bc9af2b6025d030b7e623a7ad65c131fb7a9785192ee0daac6933e81a31",
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.part005",
+        "state": "uploaded"
+      },
+      {
+        "name": "native_B1_exploration_PPO_seed22_20261101_repro.zip.part006",
+        "bytes": 8388608,
+        "sha256": "08cdb2068061300b096fd00e072b629e43135e9dd9d4f685db8ffde42b62ae89",
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.part006",
+        "state": "uploaded"
+      },
+      {
+        "name": "native_B1_exploration_PPO_seed22_20261101_repro.zip.part007",
+        "bytes": 6090887,
+        "sha256": "fcc7337ac69d287e8761495998cc07ef246dc2958557079d50b55b77bad27172",
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.part007",
+        "state": "uploaded"
+      },
+      {
+        "name": "native_B1_exploration_PPO_seed22_20261101_repro.zip.parts.json",
+        "bytes": 1647,
+        "sha256": "6552661c6d602b8b9bd33ffb2afdb0948e44788c45fc05524e1b1bac3068134a",
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.parts.json",
+        "state": "uploaded"
+      }
+    ],
+    "GitHub_server_digests_all_exact": true
+  },
+  "release_notes_verification": {
+    "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101",
+    "target_unchanged": true,
+    "prerelease": true,
+    "old_notes_sha256": "040e381b1e706cf063a210102c48b75f95299738a1bd528039e78779b663ad61",
+    "new_notes_sha256": "5ed318825239dd2b5088b3931e93ed7eea175e2436d333a275964a8f1adc0e87",
+    "readback_exact": true
+  },
+  "download": {
+    "bytes": 56422535,
+    "sha256": "438778411ba8cba4faf2708c3e07daa39b70c8597927f6db18fc55a1118bdbcf",
+    "parts": 7,
+    "archive_byte_exact": true,
+    "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.parts.json",
+    "archive": "native_B1_exploration_PPO_seed22_20261101_repro.zip",
+    "wall_seconds": 8.061999999918044,
+    "new_controls": 0,
+    "optimizer_updates": 0,
+    "manifest_network_failures": [],
+    "retained_part_failure_records": []
+  },
+  "raw_model_and_figure_reconstruction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "438778411ba8cba4faf2708c3e07daa39b70c8597927f6db18fc55a1118bdbcf",
+    "asset_source_commit": "286e72f8661075d399f0c14b6cc848d2261a1f30",
+    "reproduction_source_commit": "9e726d7cb54920a8ba0048979d652f766093d3e2",
+    "verified_files": 563,
+    "methods": [
+      {
+        "method": "B1",
+        "raw_audit_sha256": "da1df6523c37991b622df149282e292cd2373764f8d31c48cfbe0101978dae0e",
+        "verified_controls": 12219,
+        "measured_start_actions_reproduced": 4,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "08f30f30e4e7b52dd9fc9b2087b2a6ef480b8e06df154e8bcef6f434006ebe4a",
+    "figure_byte_identical": true,
+    "figure_baseline": "explicit_reference"
+  },
+  "initial_and_learning_state_verification": {
+    "scope": "Rebuild the std intervention and verify the completed pilot's learning state.",
+    "batch": "20261101T075805697090Z_native_B1_exploration_PPO",
+    "protocol_sha256": "902eb710e8a16ed5c75926c491fcc5c790638bfce05baba880a3a620e7e04a83",
+    "source_model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+    "intervened_model_sha256": "cfde4844e11e6d24ecd0de0b5f5991206db5673353f3107b3ec502030430d7b7",
+    "all_intervened_policy_tensors_exact": true,
+    "PPO_optimizer_and_counters_exact": true,
+    "normalization_RNG_and_config_bytes_exact": true,
+    "new_controls": 0,
+    "new_optimizer_updates": 0,
+    "in_memory_manual_parameter_change_only": "Reapply the registered std.10intervention to the retained original checkpoint,then compare;no file/model overwrite.",
+    "completed_learning_state": {
+      "all_PPO_Adam_parameter_steps_added": 320,
+      "PPO_Adam_parameter_states_verified": 35,
+      "PPO_action_timesteps_added": 10240,
+      "PPO_epochs_added": 80,
+      "all_observation_RMS_arrays_and_count_exact": true,
+      "policy_tensors_changed_beyond_initial_log_std": true
+    },
+    "auditor_source_sha256": "f46ae098e10b71bc1786734b8b75046ca4e87bd45d9f813f234fb252f2c1497d"
+  },
+  "recipe": "protocols/public_native_B1_exploration_PPO_20261101.json",
+  "recipe_sha256": "d3aabb79266b19c6d979b0db7c4eaaae1c2bfbaf051d0c8925cae48309e8d2b6",
+  "official_pilot_result": "reports/native_B1_exploration_PPO_pilot_20261101.json",
+  "official_pilot_result_sha256": "cec5733c7a24842af2131b578d07b2c438087a620339fee88b04e69a71ed8219",
+  "new_controls_during_public_verification": 0,
+  "new_optimizer_updates_during_public_verification": 0,
+  "privacy": "Eight auxiliary metadata files made portable;all model,normalization,source and raw control bytes remain protected.",
+  "research_acceptance": "UNMET;known4TRAINroads,one seed,2/4with one bounds failure and one deadline. Not promoted.",
+  "root_full_CPU_regression": {
+    "passed": 1101,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "seconds": 112.76
+  },
+  "latest_completed_hosted_CPU_CI": {
+    "source_commit": "5ba24415285cad9413b0580903762f1adde18caf",
+    "run_id": 41289096637,
+    "conclusion": "success",
+    "passed": 1084,
+    "skipped": 18,
+    "CARLA_deselected": 4
+  },
+  "independent_full_CPU_regression": {
+    "source_commit": "5ba24415285cad9413b0580903762f1adde18caf",
+    "passed": 1101,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "seconds": 112.25
+  },
+  "committed_auditor_recheck_exact": true
+}

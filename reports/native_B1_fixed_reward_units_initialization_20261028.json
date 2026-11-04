@@ -1,0 +1,20 @@
+{
+  "scope": "Fresh seed11 fixed learner-reward-unit initialization,zero driving/updates. Matched to standard-Adam KL control140111,not combined with faster critic or new scene partition.",
+  "batch": "20261028T020728Z_native_supervised_ppo",
+  "control_batch": "20261027T140111Z_native_supervised_ppo",
+  "PPO_reward_scale": 0.05,
+  "unsafe_event_PPO_units": -4.5,
+  "network_tensors_and_optimizer_class_identical": true,
+  "normalizer_statistics_and_normalized_observations_identical": true,
+  "config_and_RNG_bytes_identical": true,
+  "same_physical_runtime_source_hashes": true,
+  "same_standard_Adam_rate": 3e-05,
+  "same_rollout_epochs_KL_physical_budget": true,
+  "raw_rewards_and_raw_metrics_unchanged": true,
+  "registered_protocol_sha256_before_activation": "f9fc4b8407e079a781d694d9a6daa9ee722f809ab7994dd4f6368e9aff319e86",
+  "hypothesis": "Constant positive reward-unit scaling preserves the task objective while bringing unsafe terminal value targets inside the initial critic output range. Performance benefit must be measured.",
+  "earlier_failed_preparation": {
+    "batch": "20261028T020529Z_native_supervised_ppo",
+    "reason": "Detached SB3normalizer lacked transient class_attributes during pickle serialization. Partial child retained; no prepared/started marker,zero physical controls. New serializer excludes transient fields in attached/detached states."
+  }
+}

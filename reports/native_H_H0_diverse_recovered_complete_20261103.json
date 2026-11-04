@@ -1,0 +1,57 @@
+{
+  "scope": "One canonical seed actual diverse-TRAIN adaptation and known24development endpoints",
+  "analysis_source_sha256": "b3a719fb8beb7eb0051107361b3f831e8e33533a4faf1bc13a9658600e8e55ad",
+  "results": {
+    "H": {
+      "batch": "20261102T143204721793Z_native_diverse_H_H0_PPO10240",
+      "model_sha256": "5898c136b82b86d10f94fdc3a51418d9950bc4299563dbfcdf911da5455b7649",
+      "retained_new_course_controls": 10467,
+      "consumed_new_course_controls_lower_bound": 10467,
+      "unknown_unflushed_tail": false,
+      "retained_new_course_Adam_steps": 330,
+      "actual_saved_Adam_proof": {
+        "parameter_states": 30,
+        "step_increment_each": 330
+      },
+      "changed_network_tensors": {
+        "actor": 16,
+        "critic": 14
+      },
+      "frozen_RMS_exact": true,
+      "successes": 24,
+      "cases": 24,
+      "unsafe_cases": 0,
+      "evaluation_controls": 7994,
+      "raw_audit_sha256": "d54184e40da4fc1d997b7440fe8289f073d983e5a60cc2db53e50b73f2cb75a6"
+    },
+    "H0": {
+      "batch": "20261103T043242Z_native_recovery",
+      "model_sha256": "1529a3d5e3b0dcdbc597434097c05790ba612eab2929088c9320ee4a1c005f23",
+      "retained_new_course_controls": 10453,
+      "consumed_new_course_controls_lower_bound": 12096,
+      "unknown_unflushed_tail": true,
+      "retained_new_course_Adam_steps": 330,
+      "actual_saved_Adam_proof": {
+        "parameter_states": 30,
+        "step_increment_each": 330
+      },
+      "changed_network_tensors": {
+        "actor": 16,
+        "critic": 14
+      },
+      "frozen_RMS_exact": true,
+      "successes": 24,
+      "cases": 24,
+      "unsafe_cases": 0,
+      "evaluation_controls": 7966,
+      "raw_audit_sha256": "ecaaa35fa5312d33da97e39e587bab2ddae16ae2829da85cd7ca897f369f7716"
+    }
+  },
+  "known_unsaved_H0_controls": 1643,
+  "original_H0_consumed_Adam_steps": 300,
+  "original_H0_retained_Adam_steps": 250,
+  "original_interruption_audit_sha256": "598faa880d7ebc111901223febf1c9798258834964056d6891b6249746d884bd",
+  "limits": "Warm-started canonical22only. All costs and unknown lost tails retained. Not five independent seeds,120new conditions,isolated added-PPO superiority or a whole-budget matched H/B1comparison.",
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET"
+}

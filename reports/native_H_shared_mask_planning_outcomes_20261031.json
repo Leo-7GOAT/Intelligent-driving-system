@@ -1,0 +1,463 @@
+{
+  "scope": "Selected-action planning diagnostics on already audited development frames;no counterfactual feasibility or causal learning claim.",
+  "batch": "20261031T001732Z_native_evaluation_recovery",
+  "method": "H",
+  "macro_decisions": 661,
+  "controls_accounted": 6569,
+  "recorded_planning_seconds": 1117.954331699293,
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "decisions": 43,
+      "controls": 427,
+      "recorded_planning_seconds": 0.05986669997218996,
+      "selected_outcomes": [
+        {
+          "action": 1,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 8
+        },
+        {
+          "action": 13,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 6
+        },
+        {
+          "action": 26,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 15
+        },
+        {
+          "action": 27,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 3
+        },
+        {
+          "action": 30,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 11
+        }
+      ]
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "deadline",
+      "decisions": 90,
+      "controls": 900,
+      "recorded_planning_seconds": 377.8689546000678,
+      "selected_outcomes": [
+        {
+          "action": 26,
+          "mode": "plan_failed",
+          "failure_reason": "search_budget",
+          "count": 42
+        },
+        {
+          "action": 9,
+          "mode": "plan_failed",
+          "failure_reason": "search_budget",
+          "count": 48
+        }
+      ]
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "decisions": 39,
+      "controls": 389,
+      "recorded_planning_seconds": 0.03294669964816421,
+      "selected_outcomes": [
+        {
+          "action": 1,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 8
+        },
+        {
+          "action": 13,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 6
+        },
+        {
+          "action": 26,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 20
+        },
+        {
+          "action": 27,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 1
+        },
+        {
+          "action": 30,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 4
+        }
+      ]
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "decisions": 32,
+      "controls": 317,
+      "recorded_planning_seconds": 1.2751749000744894,
+      "selected_outcomes": [
+        {
+          "action": 13,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 1
+        },
+        {
+          "action": 26,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 28
+        },
+        {
+          "action": 27,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 1
+        },
+        {
+          "action": 28,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 1
+        },
+        {
+          "action": 30,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "decisions": 50,
+      "controls": 500,
+      "recorded_planning_seconds": 0.14442260027863085,
+      "selected_outcomes": [
+        {
+          "action": 1,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 10
+        },
+        {
+          "action": 13,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 7
+        },
+        {
+          "action": 26,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 17
+        },
+        {
+          "action": 27,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 9
+        },
+        {
+          "action": 30,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 7
+        }
+      ]
+    },
+    {
+      "case_id": 5,
+      "success": true,
+      "termination_reason": "success",
+      "decisions": 43,
+      "controls": 426,
+      "recorded_planning_seconds": 1.9778485000133514,
+      "selected_outcomes": [
+        {
+          "action": 1,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 9
+        },
+        {
+          "action": 13,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 5
+        },
+        {
+          "action": 26,
+          "mode": "plan_failed",
+          "failure_reason": "open_set_exhausted",
+          "count": 1
+        },
+        {
+          "action": 26,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 18
+        },
+        {
+          "action": 30,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 8
+        },
+        {
+          "action": 6,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 2
+        }
+      ]
+    },
+    {
+      "case_id": 6,
+      "success": true,
+      "termination_reason": "success",
+      "decisions": 43,
+      "controls": 425,
+      "recorded_planning_seconds": 0.108281199936755,
+      "selected_outcomes": [
+        {
+          "action": 1,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 11
+        },
+        {
+          "action": 13,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 6
+        },
+        {
+          "action": 26,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 18
+        },
+        {
+          "action": 30,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 8
+        }
+      ]
+    },
+    {
+      "case_id": 7,
+      "success": false,
+      "termination_reason": "deadline",
+      "decisions": 90,
+      "controls": 900,
+      "recorded_planning_seconds": 367.72185069986153,
+      "selected_outcomes": [
+        {
+          "action": 26,
+          "mode": "plan_failed",
+          "failure_reason": "search_budget",
+          "count": 90
+        }
+      ]
+    },
+    {
+      "case_id": 8,
+      "success": true,
+      "termination_reason": "success",
+      "decisions": 51,
+      "controls": 503,
+      "recorded_planning_seconds": 0.10838050011079758,
+      "selected_outcomes": [
+        {
+          "action": 1,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 7
+        },
+        {
+          "action": 13,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 7
+        },
+        {
+          "action": 26,
+          "mode": "dynamic_brake",
+          "failure_reason": "constant_velocity_spacetime_conflict",
+          "count": 7
+        },
+        {
+          "action": 26,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 17
+        },
+        {
+          "action": 27,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 3
+        },
+        {
+          "action": 30,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 10
+        }
+      ]
+    },
+    {
+      "case_id": 9,
+      "success": false,
+      "termination_reason": "deadline",
+      "decisions": 90,
+      "controls": 900,
+      "recorded_planning_seconds": 365.8921778994845,
+      "selected_outcomes": [
+        {
+          "action": 26,
+          "mode": "plan_failed",
+          "failure_reason": "search_budget",
+          "count": 42
+        },
+        {
+          "action": 9,
+          "mode": "plan_failed",
+          "failure_reason": "search_budget",
+          "count": 48
+        }
+      ]
+    },
+    {
+      "case_id": 10,
+      "success": true,
+      "termination_reason": "success",
+      "decisions": 48,
+      "controls": 471,
+      "recorded_planning_seconds": 0.09029639977961779,
+      "selected_outcomes": [
+        {
+          "action": 1,
+          "mode": "parking_brake",
+          "failure_reason": null,
+          "count": 1
+        },
+        {
+          "action": 1,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 8
+        },
+        {
+          "action": 13,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 7
+        },
+        {
+          "action": 26,
+          "mode": "dynamic_brake",
+          "failure_reason": "constant_velocity_spacetime_conflict",
+          "count": 6
+        },
+        {
+          "action": 26,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 20
+        },
+        {
+          "action": 27,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 2
+        },
+        {
+          "action": 30,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 4
+        }
+      ]
+    },
+    {
+      "case_id": 11,
+      "success": true,
+      "termination_reason": "success",
+      "decisions": 42,
+      "controls": 411,
+      "recorded_planning_seconds": 2.6741310000652447,
+      "selected_outcomes": [
+        {
+          "action": 13,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 2
+        },
+        {
+          "action": 26,
+          "mode": "dynamic_brake",
+          "failure_reason": "constant_velocity_spacetime_conflict",
+          "count": 8
+        },
+        {
+          "action": 26,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 26
+        },
+        {
+          "action": 27,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 2
+        },
+        {
+          "action": 28,
+          "mode": "parking_brake",
+          "failure_reason": null,
+          "count": 1
+        },
+        {
+          "action": 28,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 1
+        },
+        {
+          "action": 30,
+          "mode": "reference",
+          "failure_reason": null,
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "new_physical_controls": 0,
+  "optimizer_updates": 0,
+  "new_planner_queries": 0
+}

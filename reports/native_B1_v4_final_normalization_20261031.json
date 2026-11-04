@@ -1,0 +1,97 @@
+{
+  "scope": "Same fixed teacher-training observations; counterfactual inference, not closed-loop outcomes or causal training effects.",
+  "batch": "20261031T022652Z_native_supervised_ppo",
+  "dataset_sha256": "49948feda5eb112e32f175bcd65a81a3bfb699555eafb48946a2042cf118cdfe",
+  "selected_training_views": 496,
+  "selected_index_sha256": "493fe4b379e09ae4b5d5aea490ba3aa7931b793df49d3fd2467618a72cc4757b",
+  "action_components": [
+    "normalized_acceleration",
+    "normalized_steering"
+  ],
+  "inputs": [
+    {
+      "physics_steps": 0,
+      "model_sha256": "66e8a914b92e83085a3fda568bde7db35ca5c479b286e82c170427694501ebc3",
+      "normalization_sha256": "e718b900d5355f8b73669bae47d9e4c7d7d64892f98e029294f48045a372b133",
+      "RMS_count": 3467.0001
+    },
+    {
+      "physics_steps": 20480,
+      "model_sha256": "c4cc9c098ccbe208cbff990e6f15252bf0c5ebbba97a7e79eb512d56735d7b56",
+      "normalization_sha256": "49b9e7de7cdf5a98c445bed6986f11f4fc7a9d76631821293b22cfcd1ea209d8",
+      "RMS_count": 3467.0001
+    }
+  ],
+  "combinations": [
+    {
+      "weights": 0,
+      "statistics": 0,
+      "per_component_teacher_MSE": [
+        0.0005629949737340212,
+        0.0003108818782493472
+      ]
+    },
+    {
+      "weights": 0,
+      "statistics": 1,
+      "per_component_teacher_MSE": [
+        0.0005629949737340212,
+        0.0003108818782493472
+      ]
+    },
+    {
+      "weights": 1,
+      "statistics": 0,
+      "per_component_teacher_MSE": [
+        0.0005810128641314805,
+        0.0004957439959980547
+      ]
+    },
+    {
+      "weights": 1,
+      "statistics": 1,
+      "per_component_teacher_MSE": [
+        0.0005810128641314805,
+        0.0004957439959980547
+      ]
+    }
+  ],
+  "contrasts": [
+    {
+      "contrast": "statistics_only",
+      "median_abs_action_change": [
+        0.0,
+        0.0
+      ],
+      "p95_abs_action_change": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "contrast": "weights_with_initial_statistics",
+      "median_abs_action_change": [
+        0.004939630627632141,
+        0.004447072744369507
+      ],
+      "p95_abs_action_change": [
+        0.022394007071852684,
+        0.019303346052765846
+      ]
+    },
+    {
+      "contrast": "weights_with_updated_statistics",
+      "median_abs_action_change": [
+        0.004939630627632141,
+        0.004447072744369507
+      ],
+      "p95_abs_action_change": [
+        0.022394007071852684,
+        0.019303346052765846
+      ]
+    }
+  ],
+  "new_physical_controls": 0,
+  "optimizer_updates": 0,
+  "teacher_queries": 0
+}

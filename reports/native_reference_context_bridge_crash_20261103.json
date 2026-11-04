@@ -1,0 +1,21 @@
+{
+  "scope": "Windows application-crash evidence correlated with the recorded owned bridge PID",
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_v2",
+  "bridge_pid": 23612,
+  "tick_lock_sha256": "4fddf9a9561d565f53f2e465724e7d9c63afea05677f568dd6ebad878fcdca4d",
+  "event_record_id": 54051,
+  "event_utc": "2026-11-03T05:52:29.5726249Z",
+  "raw_windows_events_sha256": "c160a4a6f6deabfb54cfdc0fbfc55663e137ec931a8c0450b196e66baa60336a",
+  "application": ".carla-python37/runtime/python.exe",
+  "version": "3.7.9150.1013",
+  "fault_module": "ucrtbase.dll",
+  "exception_code": "0xc0000409",
+  "last_ack_request_id": 2421,
+  "last_ack_frame": 5065,
+  "unacknowledged_request_id": 2422,
+  "unacknowledged_operation": "step",
+  "requests_sha256": "ab76ab2c844ee9b2aedf14b8a2fe286e0ac2d6f214abb9723138e2ef82608afb",
+  "responses_sha256": "b133bdf5271099d72e35f38e1ee04060cda1f3a87efa63f6d6a6dd8aa17a9506",
+  "automatic_retick": false,
+  "limits": "Confirms a native client-process crash, not its C++ root cause. The final unacknowledged tick is not counted as successful measured execution. No claim that restarting repairs the native cause."
+}

@@ -1,0 +1,223 @@
+{
+  "scope": "Fit only177new acceleration parameters; preserve every original steering weight.",
+  "script_sha256": "9fa297d79437c18b245bf20411803ac986ee5ab67b5622283fd8d8aeb39bb132",
+  "policy_source_sha256": "d173967a43e20586919dfe39c98d16b147cae2733d73397bc2a618d62e73763a",
+  "source_model_sha256": "72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844",
+  "source_normalization_sha256": "b8a464e6ba54fb5745d0b4c128ece3a90581e8a082227b05c9d1fb38c7ff79b0",
+  "terminal_query_manifest_sha256": "cda7d085a05745818c192edb3225127d397b9a792d3b860ec6423669659aa834",
+  "old_teacher_fit_inputs_sha256": "a35a2391e3f4cdaea4ea3d3eb865c55bc531bd7529c26c97bd84a66837d9c8fe",
+  "physical_teacher_rows": 3424,
+  "virtual_reflected_teacher_rows": 3424,
+  "hypothetical_terminal_rows": 216,
+  "hypothetical_rows_are_executed": false,
+  "steps": 512,
+  "learning_rate": 0.003,
+  "seed": 22,
+  "loss": "Acceleration MSE;half total weight on24teacher/reflection groups,half on8terminal-velocity query/reflection groups.",
+  "frozen": "Every original actor and critic tensor,log_std,old PPOAdam groups/states/counters,RMS. Only177new NNacceleration parameters fit;no runtime distance/braking rule.",
+  "screen": "Terminal query MSE reduced>=75%;all24teacher groups acceleration RMS<=max(.1,2*previousRMS);>=90%correct braking sign on teacher-negative overspeed queries within1m. All steering means exact. Native gate unchanged.",
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "intervention": {
+    "version": "learned_terminal_acceleration_residual_v1",
+    "new_parameters": 177,
+    "initial_outputs_exact": true,
+    "inputs": "Existing normalized speed,local goalx/goaly/distance,previous acceleration and4actuator states.",
+    "runtime": "Learned NNacceleration only;no goal-distance rule,teacher or trajectory controller. Original steering function unchanged."
+  },
+  "model_sha256": "8fd941dee7c39ed319241e4d8a7ffb27a9860bd96100d1dae08a75e4e41d7c0f",
+  "fit_inputs_sha256": "4c928515f697d9d6456230702a952ce9c83bba69b360a1c51078b673b4a2bbb1",
+  "auxiliary_Adam_sha256": "be2d20d9bf82a9f72896bfa732acc00bb5b17df019e7464bbfafdd32071a6197",
+  "teacher_retention": [
+    {
+      "group": 0,
+      "RMS_before": 0.030002661049365997,
+      "RMS_after": 0.07159348577260971,
+      "ceiling": 0.1
+    },
+    {
+      "group": 1,
+      "RMS_before": 0.03310774639248848,
+      "RMS_after": 0.056081075221300125,
+      "ceiling": 0.1
+    },
+    {
+      "group": 2,
+      "RMS_before": 0.02289305254817009,
+      "RMS_after": 0.0742914155125618,
+      "ceiling": 0.1
+    },
+    {
+      "group": 3,
+      "RMS_before": 0.034191448241472244,
+      "RMS_after": 0.07542592287063599,
+      "ceiling": 0.1
+    },
+    {
+      "group": 4,
+      "RMS_before": 0.03252599388360977,
+      "RMS_after": 0.06308276951313019,
+      "ceiling": 0.1
+    },
+    {
+      "group": 5,
+      "RMS_before": 0.07519854605197906,
+      "RMS_after": 0.08656025677919388,
+      "ceiling": 0.15039709210395813
+    },
+    {
+      "group": 6,
+      "RMS_before": 0.041786227375268936,
+      "RMS_after": 0.07911985367536545,
+      "ceiling": 0.1
+    },
+    {
+      "group": 7,
+      "RMS_before": 0.031208617612719536,
+      "RMS_after": 0.06771653890609741,
+      "ceiling": 0.1
+    },
+    {
+      "group": 8,
+      "RMS_before": 0.08764471858739853,
+      "RMS_after": 0.1082974523305893,
+      "ceiling": 0.17528943717479706
+    },
+    {
+      "group": 9,
+      "RMS_before": 0.085358627140522,
+      "RMS_after": 0.10524352639913559,
+      "ceiling": 0.170717254281044
+    },
+    {
+      "group": 10,
+      "RMS_before": 0.0946899950504303,
+      "RMS_after": 0.11011508852243423,
+      "ceiling": 0.1893799901008606
+    },
+    {
+      "group": 11,
+      "RMS_before": 0.08901556581258774,
+      "RMS_after": 0.11363524198532104,
+      "ceiling": 0.17803113162517548
+    },
+    {
+      "group": 12,
+      "RMS_before": 0.06706744432449341,
+      "RMS_after": 0.0730423778295517,
+      "ceiling": 0.13413488864898682
+    },
+    {
+      "group": 13,
+      "RMS_before": 0.06295662373304367,
+      "RMS_after": 0.06551164388656616,
+      "ceiling": 0.12591324746608734
+    },
+    {
+      "group": 14,
+      "RMS_before": 0.036687251180410385,
+      "RMS_after": 0.07907329499721527,
+      "ceiling": 0.1
+    },
+    {
+      "group": 15,
+      "RMS_before": 0.09596104174852371,
+      "RMS_after": 0.10383828729391098,
+      "ceiling": 0.19192208349704742
+    },
+    {
+      "group": 16,
+      "RMS_before": 0.04982862249016762,
+      "RMS_after": 0.062171462923288345,
+      "ceiling": 0.1
+    },
+    {
+      "group": 17,
+      "RMS_before": 0.11827418208122253,
+      "RMS_after": 0.12960009276866913,
+      "ceiling": 0.23654836416244507
+    },
+    {
+      "group": 18,
+      "RMS_before": 0.05658544600009918,
+      "RMS_after": 0.07512203603982925,
+      "ceiling": 0.11317089200019836
+    },
+    {
+      "group": 19,
+      "RMS_before": 0.066305011510849,
+      "RMS_after": 0.08122929185628891,
+      "ceiling": 0.132610023021698
+    },
+    {
+      "group": 20,
+      "RMS_before": 0.1107700765132904,
+      "RMS_after": 0.12458416074514389,
+      "ceiling": 0.2215401530265808
+    },
+    {
+      "group": 21,
+      "RMS_before": 0.10899008065462112,
+      "RMS_after": 0.13473479449748993,
+      "ceiling": 0.21798016130924225
+    },
+    {
+      "group": 22,
+      "RMS_before": 0.1215701475739479,
+      "RMS_after": 0.1417253315448761,
+      "ceiling": 0.2431402951478958
+    },
+    {
+      "group": 23,
+      "RMS_before": 0.11642267554998398,
+      "RMS_after": 0.13264138996601105,
+      "ceiling": 0.23284535109996796
+    }
+  ],
+  "terminal_query_MSE_before": 0.5723846554756165,
+  "terminal_query_MSE_after": 0.0092840027064085,
+  "critical_queries": 18,
+  "critical_braking_sign_fraction": 0.8888888955116272,
+  "steering_means_bit_exact": 7064,
+  "offline_screen_passed": false,
+  "history": [
+    {
+      "steps": 1,
+      "acceleration_MSE": 0.25297021865844727
+    },
+    {
+      "steps": 64,
+      "acceleration_MSE": 0.049598779529333115
+    },
+    {
+      "steps": 128,
+      "acceleration_MSE": 0.04361660033464432
+    },
+    {
+      "steps": 192,
+      "acceleration_MSE": 0.02661857381463051
+    },
+    {
+      "steps": 256,
+      "acceleration_MSE": 0.0175828468054533
+    },
+    {
+      "steps": 320,
+      "acceleration_MSE": 0.020424479618668556
+    },
+    {
+      "steps": 384,
+      "acceleration_MSE": 0.012706372886896133
+    },
+    {
+      "steps": 448,
+      "acceleration_MSE": 0.011584416963160038
+    },
+    {
+      "steps": 512,
+      "acceleration_MSE": 0.01275724358856678
+    }
+  ],
+  "elapsed_seconds": 0.9529999999795109,
+  "research_acceptance": "UNMET"
+}

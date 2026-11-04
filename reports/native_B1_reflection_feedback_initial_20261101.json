@@ -1,0 +1,137 @@
+{
+  "scope": "One fixed reflection-augmented actor fit after the failed real PPO course.",
+  "script_sha256": "46c361bbe5e086668a7e28b449c4e11e18dde2062de8face766fd7ebd5fd5104",
+  "reflection_source_sha256": "6e4c8e57bc4525d56f2d5fb21ecf9f2251a3658527d979e0c4ed10e81b9d021e",
+  "source_model_sha256": "eb2c9daa5b6ccf025429bdb1a1f69c55c7d8a8eecec65dd39cff580546f235ec",
+  "source_normalization_sha256": "b8a464e6ba54fb5745d0b4c128ece3a90581e8a082227b05c9d1fb38c7ff79b0",
+  "source_PPO_report_sha256": "490a4c31d1367906c52a20d98d8a54a47e6c9245d139c7c52f7b3cede268030f",
+  "acknowledged_teacher_TRAINrows": 3424,
+  "virtual_reflected_rows": 3424,
+  "virtual_pose_triplets": 120,
+  "hypothetical_rows_are_executed": false,
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "steps": 512,
+  "learning_rate": 0.0001,
+  "seed": 22,
+  "loss": "Episode-and-reflection balanced teacher MSE divided by[.1,.02],plus original and reflected pose-response MSE divided by TRAINtarget response RMS.",
+  "screen": "All4basic original steering RMS<=.01rad and reflected<=.02rad;original basic acceleration normalized RMS<=.1;all pose-response RMS errors<=1.25times the preceding accepted offline pose-fit values. Native gate unchanged.",
+  "fixed": "Direct architecture,critic,log_std,PPOAdam,counters,RMS;actor road encoder now trainable with the augmented images.",
+  "limits": "Nominal reflection symmetry is a virtual augmentation assumption,not new measured CARLA demonstrations or final conditions.",
+  "model_sha256": "5d8437458d4015ea0fe852cb53fe791f577d929afc498d48c33c806c2327094c",
+  "fit_inputs_sha256": "a35a2391e3f4cdaea4ea3d3eb865c55bc531bd7529c26c97bd84a66837d9c8fe",
+  "new_auxiliary_Adam_updates": 512,
+  "auxiliary_Adam_sha256": "4ddfc4122a91e93ccc4e04c4f095f7d4f3e781a8a84c7e505e3116a127dee21e",
+  "teacher_metrics": [
+    {
+      "case_id": 0,
+      "reflected": false,
+      "acceleration_RMS": 0.028398308902978897,
+      "steering_RMS_rad": 0.004703334532678127
+    },
+    {
+      "case_id": 1,
+      "reflected": false,
+      "acceleration_RMS": 0.029473071917891502,
+      "steering_RMS_rad": 0.00671923765912652
+    },
+    {
+      "case_id": 2,
+      "reflected": false,
+      "acceleration_RMS": 0.03457197546958923,
+      "steering_RMS_rad": 0.0066292849369347095
+    },
+    {
+      "case_id": 3,
+      "reflected": false,
+      "acceleration_RMS": 0.038005560636520386,
+      "steering_RMS_rad": 0.005903241690248251
+    },
+    {
+      "case_id": 0,
+      "reflected": true,
+      "acceleration_RMS": 0.07066660374403,
+      "steering_RMS_rad": 0.008897809311747551
+    },
+    {
+      "case_id": 1,
+      "reflected": true,
+      "acceleration_RMS": 0.07884327322244644,
+      "steering_RMS_rad": 0.01199543010443449
+    },
+    {
+      "case_id": 2,
+      "reflected": true,
+      "acceleration_RMS": 0.05098015069961548,
+      "steering_RMS_rad": 0.007951796054840088
+    },
+    {
+      "case_id": 3,
+      "reflected": true,
+      "acceleration_RMS": 0.1353563368320465,
+      "steering_RMS_rad": 0.014153511263430119
+    }
+  ],
+  "pose_response": [
+    {
+      "axis": "yaw_radians",
+      "normalized_steering_response_RMS": 0.02756085991859436,
+      "ceiling": 0.025375864934176207
+    },
+    {
+      "axis": "lateral_metres",
+      "normalized_steering_response_RMS": 0.03257928416132927,
+      "ceiling": 0.03252546302974224
+    }
+  ],
+  "offline_screen_passed": false,
+  "history": [
+    {
+      "steps": 1,
+      "teacher_loss": 19.984325408935547,
+      "response_loss": 0.8556529879570007
+    },
+    {
+      "steps": 64,
+      "teacher_loss": 6.098883628845215,
+      "response_loss": 0.5769123435020447
+    },
+    {
+      "steps": 128,
+      "teacher_loss": 3.4613704681396484,
+      "response_loss": 0.4595470130443573
+    },
+    {
+      "steps": 192,
+      "teacher_loss": 2.210667371749878,
+      "response_loss": 0.39159145951271057
+    },
+    {
+      "steps": 256,
+      "teacher_loss": 1.4703936576843262,
+      "response_loss": 0.34786590933799744
+    },
+    {
+      "steps": 320,
+      "teacher_loss": 1.4309989213943481,
+      "response_loss": 0.32448387145996094
+    },
+    {
+      "steps": 384,
+      "teacher_loss": 1.7487329244613647,
+      "response_loss": 0.3044937252998352
+    },
+    {
+      "steps": 448,
+      "teacher_loss": 0.7947476506233215,
+      "response_loss": 0.28069940209388733
+    },
+    {
+      "steps": 512,
+      "teacher_loss": 0.7460668683052063,
+      "response_loss": 0.26660168170928955
+    }
+  ],
+  "elapsed_seconds": 38.375,
+  "research_acceptance": "UNMET"
+}

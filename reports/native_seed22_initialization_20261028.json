@@ -1,0 +1,44 @@
+{
+  "scope": "Actual independently initialized/fitted seed22models on shared measured teacher inputs. No seed22CARLA evaluation or PPO training yet; not a completed independent-policy replication.",
+  "checks": [
+    {
+      "method": "H",
+      "batch": "20261027T144307Z_native_hierarchical_bc",
+      "training_seed": 22,
+      "same_measured_arrays_and_task": true,
+      "same_normalizer_statistics": true,
+      "policy_tensors_differ_from_seed11": true,
+      "PPO_controls": 0,
+      "PPO_optimizer_steps": 0,
+      "actor_supervised_steps": 896,
+      "model_sha256": "9465d77d79cc375d0ae09fc9f4a6c34ad43b4c21b0232e96e7e85be8d49889f0",
+      "normalizer_sha256": "db5ceed4dddb57d9f27b19967d49cef8927287e736c2c3f8a6a4ece7149006fc"
+    },
+    {
+      "method": "H0",
+      "batch": "20261027T144307Z_native_hierarchical_bc",
+      "training_seed": 22,
+      "same_measured_arrays_and_task": true,
+      "same_normalizer_statistics": true,
+      "policy_tensors_differ_from_seed11": true,
+      "PPO_controls": 0,
+      "PPO_optimizer_steps": 0,
+      "actor_supervised_steps": 896,
+      "model_sha256": "96d90b7f030b7abccfc0cce3411fec03c3c955ad215cb856cfc72457c3fb0c0b",
+      "normalizer_sha256": "cdb032efb16241e3281f84515b3b5effa80be03705f15d5d09d90356cf5b9ce1"
+    },
+    {
+      "method": "B1",
+      "batch": "20261027T144319Z_native_measured_bc",
+      "training_seed": 22,
+      "same_measured_arrays_and_task": true,
+      "same_normalizer_statistics": true,
+      "policy_tensors_differ_from_seed11": true,
+      "PPO_controls": 0,
+      "PPO_optimizer_steps": 0,
+      "actor_supervised_steps": 1792,
+      "model_sha256": "697073dc5727813b62e6e59f09e67ec1799b73c83f364163c6af803c1f2e0eb1",
+      "normalizer_sha256": "aa0b871714b2e176491020ca0c1f74a2c3f354a7ff7d2e8d841b1e387a18aa35"
+    }
+  ]
+}

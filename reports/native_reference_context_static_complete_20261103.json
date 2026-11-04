@@ -1,0 +1,314 @@
+{
+  "scope": "Complete scale1 reference-context H/H0 pair on all12known static TRAIN conditions;raw,all-start NN,all static actions and engine delivery verified",
+  "research_acceptance": "UNMET",
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_v4_static_schema_fixed",
+  "protocol_sha256": "dc59e35a5668f2e59497e34048ca6fa69dd02e278e21908b3a406277e58fee85",
+  "coordinator_static_result_sha256": "6a8646712f445be6156619ae751327ed9d6a6f64f94017238810e34ccbb8aaa7",
+  "engine_delivery_sha256": "53bf96254df7bb702bc9baa2f6a0af52b18c752ce4b2a274c495d1042d40d606",
+  "strict_engine_delivery": "PASS",
+  "actual_evaluation_controls_total": 16065,
+  "new_training_controls": 0,
+  "new_PPO_updates": 0,
+  "new_final_conditions": 0,
+  "results": {
+    "H": {
+      "cases": 12,
+      "successes": 3,
+      "safe_completion_fraction": 0.25,
+      "unsafe_episodes": 1,
+      "unsafe_fraction": 0.08333333333333333,
+      "termination_counts": {
+        "deadline": 8,
+        "success": 3,
+        "out_of_bounds": 1
+      },
+      "actual_controls": 8304,
+      "actual_world_ticks": 8675,
+      "all_NN_actions_reproduced": 833,
+      "model_sha256": "f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff",
+      "normalization_sha256": "28c7e16ccf6fee44f67db784f34c441caab9e497cc67a8f1a205381f46e66367",
+      "raw_audit_sha256": "de318fd20059353035c7f790abdefef780340c5a481520e8dbe05df5afb6cafa",
+      "all_static_NN_audit_sha256": "a434ae070f23569c6846fdfb02ee32c0cd4815c13cf7dca08c021a7f9913c19a",
+      "static_development_target_70_percent_met": false,
+      "development_unsafe_goal_5_percent_met": false,
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 67,
+          "mpc_failures": 0,
+          "interventions": 670
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 331,
+          "actions": 34,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 4,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 101,
+          "actions": 11,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900
+        },
+        {
+          "case_id": 6,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 64,
+          "mpc_failures": 0,
+          "interventions": 640
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "actions": 34,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 9,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 82,
+          "mpc_failures": 0,
+          "interventions": 820
+        },
+        {
+          "case_id": 10,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 67,
+          "mpc_failures": 0,
+          "interventions": 670
+        },
+        {
+          "case_id": 11,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900
+        }
+      ]
+    },
+    "H0": {
+      "cases": 12,
+      "successes": 4,
+      "safe_completion_fraction": 0.3333333333333333,
+      "unsafe_episodes": 1,
+      "unsafe_fraction": 0.08333333333333333,
+      "termination_counts": {
+        "deadline": 7,
+        "success": 4,
+        "out_of_bounds": 1
+      },
+      "actual_controls": 7761,
+      "actual_world_ticks": 8132,
+      "all_NN_actions_reproduced": 778,
+      "model_sha256": "4a7a222cb5ca0bef3903ab631e562166f63056ac8665b571931f3161d31b4cd3",
+      "normalization_sha256": "2ad0efbe2fc7439bb5914f02b4d66e5d8da33ff37bda3a9a91fea3587e7d30ac",
+      "raw_audit_sha256": "de0093be7d1cc4175e7c793a038e7549ec504de556af97c1be255f2143e59eef",
+      "all_static_NN_audit_sha256": "e9065f3faaeb3d79fcde74e7fdd8c9445bf8afb8577de4bd43229fcab71c2096",
+      "static_development_target_70_percent_met": false,
+      "development_unsafe_goal_5_percent_met": false,
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 64,
+          "mpc_failures": 0,
+          "interventions": 640
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 330,
+          "actions": 33,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 4,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 101,
+          "actions": 11,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900
+        },
+        {
+          "case_id": 6,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 64,
+          "mpc_failures": 0,
+          "interventions": 640
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 348,
+          "actions": 35,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1
+        },
+        {
+          "case_id": 9,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 350,
+          "actions": 35,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 11,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900
+        }
+      ]
+    }
+  },
+  "prior4705_policy_static_successes": {
+    "H": 3,
+    "H0": 4
+  },
+  "new4736_policy_static_successes": {
+    "H": 3,
+    "H0": 4
+  },
+  "interpretation": "No static success-count improvement over the retained legacy policies. H is one case below H0 in this one-seed development pair;no stable feedback or PPO advantage established.",
+  "ablation": "H0 removes both legacy executable feedback and new reference context;does not isolate only the appended term.",
+  "known_validation": "RUNNING",
+  "prospective_scale100_H_course": "REGISTERED_WAITING_NOT_TRAINED",
+  "limits": "One independently trained canonical seed on known development conditions. Do not count12scenes as12training seeds or call this unseen/final confirmation. Preserve all deadlines and the original v4 road-boundary failure;no changed tolerance,rescoring,successful-case selection or unsafe-case deletion. General final targets remain unmet."
+}

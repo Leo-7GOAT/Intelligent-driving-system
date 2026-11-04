@@ -1,0 +1,175 @@
+{
+  "scope": "Clock-only fixed-state actor sensitivity on unobstructed recorded TRAINroads.",
+  "batch": "20261101T074146168864Z_native_original_TRAIN_recovery_collection",
+  "dataset_sha256": "afae2ec17c142d3b5b901de987d42b665a9317b124a14e59b88208e78eb0eda2",
+  "trace_sha256": "7c68352c42ab3cd8d2588adc3e1fa6f784763640979c6ed5a97ea6af9b684f09",
+  "model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+  "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+  "script_sha256": "fe32faa8412fed4fcd8fd8e5d4f07b6acd008974803b2004db34bc7da7ce6d2e",
+  "clock_indices": {
+    "remaining": 21,
+    "elapsed": 22
+  },
+  "unmodified_observation_indices": "All except21,22;deadline sum45preserved;both clocks have>=20remaining seconds.",
+  "results": [
+    {
+      "clock_shift_seconds": -5.0,
+      "valid_nonurgent_rows": 934,
+      "RMS_action_difference": [
+        0.037168022245168686,
+        0.007711792830377817
+      ],
+      "max_abs_action_difference": [
+        0.2562731206417084,
+        0.031095147132873535
+      ],
+      "cases": [
+        {
+          "case_id": 0,
+          "rows": 241,
+          "mean_action_difference": [
+            -0.014029175974428654,
+            0.0013418885646387935
+          ],
+          "RMS_action_difference": [
+            0.022748148068785667,
+            0.004553383681923151
+          ],
+          "max_abs_action_difference": [
+            0.10404796898365021,
+            0.018779486417770386
+          ]
+        },
+        {
+          "case_id": 1,
+          "rows": 281,
+          "mean_action_difference": [
+            -0.042199328541755676,
+            -0.003432010766118765
+          ],
+          "RMS_action_difference": [
+            0.05351444333791733,
+            0.009735111147165298
+          ],
+          "max_abs_action_difference": [
+            0.250718355178833,
+            0.023759998381137848
+          ]
+        },
+        {
+          "case_id": 2,
+          "rows": 210,
+          "mean_action_difference": [
+            -0.011449006386101246,
+            0.0033202883787453175
+          ],
+          "RMS_action_difference": [
+            0.023458775132894516,
+            0.006457195151597261
+          ],
+          "max_abs_action_difference": [
+            0.19814562797546387,
+            0.020488381385803223
+          ]
+        },
+        {
+          "case_id": 3,
+          "rows": 202,
+          "mean_action_difference": [
+            -0.027856307104229927,
+            -0.0017266515642404556
+          ],
+          "RMS_action_difference": [
+            0.034846238791942596,
+            0.008663914166390896
+          ],
+          "max_abs_action_difference": [
+            0.2562731206417084,
+            0.031095147132873535
+          ]
+        }
+      ]
+    },
+    {
+      "clock_shift_seconds": 5.0,
+      "valid_nonurgent_rows": 1334,
+      "RMS_action_difference": [
+        0.02832651510834694,
+        0.009160803630948067
+      ],
+      "max_abs_action_difference": [
+        0.2689390182495117,
+        0.03848624229431152
+      ],
+      "cases": [
+        {
+          "case_id": 0,
+          "rows": 341,
+          "mean_action_difference": [
+            0.00968207884579897,
+            0.00016804099141154438
+          ],
+          "RMS_action_difference": [
+            0.015235641971230507,
+            0.004125751089304686
+          ],
+          "max_abs_action_difference": [
+            0.0678144097328186,
+            0.019234105944633484
+          ]
+        },
+        {
+          "case_id": 1,
+          "rows": 381,
+          "mean_action_difference": [
+            0.031471505761146545,
+            0.00064542779000476
+          ],
+          "RMS_action_difference": [
+            0.043339282274246216,
+            0.012220054864883423
+          ],
+          "max_abs_action_difference": [
+            0.2689390182495117,
+            0.03522835671901703
+          ]
+        },
+        {
+          "case_id": 2,
+          "rows": 310,
+          "mean_action_difference": [
+            0.00666195061057806,
+            -0.0018948304932564497
+          ],
+          "RMS_action_difference": [
+            0.015730543062090874,
+            0.004704442340880632
+          ],
+          "max_abs_action_difference": [
+            0.1431853175163269,
+            0.016717612743377686
+          ]
+        },
+        {
+          "case_id": 3,
+          "rows": 302,
+          "mean_action_difference": [
+            0.019627248868346214,
+            0.005982337985187769
+          ],
+          "RMS_action_difference": [
+            0.025663139298558235,
+            0.011847512796521187
+          ],
+          "max_abs_action_difference": [
+            0.22276060283184052,
+            0.03848624229431152
+          ]
+        }
+      ]
+    }
+  ],
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "limits": "Offline counterfactual sensitivity only,not driving benefit. Stored original TRAINstates only;no validation/final data or fitting."
+}

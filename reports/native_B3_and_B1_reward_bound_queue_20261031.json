@@ -1,0 +1,58 @@
+{
+  "scope": "Actual running waiting-only replacement queue with explicit learner reward units;not completed native studies",
+  "execution": "B3_and_B1_independent_cohort_execution_20261031_v2",
+  "driver_script_sha256": "7f06440dcb8efdd5cdf4c950e84c9a000fac87973c58b1ce60a0289344d834ed",
+  "source_manifest_sha256": "8c0c7ee90295a96b2d48c4b0efa0645e07a86d46d619de3b8ff6683871065672",
+  "plan": {
+    "dependency_execution": "remaining_v4_seed_PPO_execution_20261031_v4",
+    "wait_seconds": 28800,
+    "B3": {
+      "batch": "20261031T082841Z_native_rule",
+      "protocol_sha256": "1e2e03b8e11b3502401006b7f8d72636b76ce4676e4f1e6376d8bbef6446ce68"
+    },
+    "B1_seeds": [
+      {
+        "seed": 22,
+        "initializer": "20261031T081944045029Z_native_approach_bc",
+        "initializer_protocol_sha256": "93328728f756e3de72c43c40475a26d466534030c77823df7e5de8ee95d1560e"
+      },
+      {
+        "seed": 33,
+        "initializer": "20261031T082156390592Z_native_approach_bc",
+        "initializer_protocol_sha256": "01291391233ba8cce77a2ab5cd8404ac49c4cc2ff93e3a981792ae04b4ef89ef"
+      },
+      {
+        "seed": 44,
+        "initializer": "20261031T082223755520Z_native_approach_bc",
+        "initializer_protocol_sha256": "ca365478ca710a4f6b0fbb858f29f97dda6b5d02e4d352fc2e379a2bc6e34bc2"
+      },
+      {
+        "seed": 55,
+        "initializer": "20261031T082250535153Z_native_approach_bc",
+        "initializer_protocol_sha256": "9cfaec40c6e9b03ec82b42ea0d78192763655e48196784769b8268d7fa4d4a06"
+      }
+    ],
+    "B1_controls_each": 20480,
+    "B1_training_distribution": "Same known12inventory as the existing five-seed H/H0cohort and completed seed11B1low-rate arm;the broader36/24branch is separate development evidence",
+    "B1_rollout": 1280,
+    "B1_learning_rate": 3e-06,
+    "B1_target_kl": 0.01,
+    "B1_log_std": -4,
+    "no_retries": true,
+    "no_seed_omissions": true,
+    "B1_PPO_reward_units_scale": 0.05
+  },
+  "observed_status": {
+    "phase": "WAITING_FOR_REMAINING_THREE_H_H0_PPO_PAIRS",
+    "epoch": 1793436863.2910588,
+    "pid": 36820,
+    "created": []
+  },
+  "launch": {
+    "script": "runs/run_B3_and_independent_B1_cohort_reward_bound_20261031.py",
+    "creation_epoch": 1793436609.859,
+    "scope": "Same finite queue,explicit B1PPOreward scale .05",
+    "pid": 26900
+  },
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,111 @@
+{
+  "scope": "Outcome-independent early TRAIN-state oracle coverage from all4completed B1lower-rate seeds;offline candidate labels,not new driving or learning",
+  "seeds": [
+    {
+      "seed": 11,
+      "manifest": "runs/B1_lower_rate_seed11_early_training_oracle_20261101/manifest.json",
+      "manifest_sha256": "95b8f84d36c5fc392f57e028d2b875c61594cba852b861f60e106467b02c5cd7",
+      "batch": "20261101T005612994446Z_native_B1_basic_lr_extension",
+      "raw_audit_sha256": "9a769b1e7155428f80b15ab0be081d5e3e5bb56fc9180cb80e49b0f5ae8cf000",
+      "queries": 24,
+      "solved_references": 24,
+      "modes": {
+        "reference": 24
+      },
+      "elapsed_seconds": 13.593000000109896,
+      "dataset_sha256": "21fda0d667dc692d3e90a47ee7a9c8ca5bbc1fc0590205d8af4700f9aa172132",
+      "query_log_sha256": "f3f182c652a236d131dd56f20fa5b6ead7344afebad50a00233e6eb8219a7606",
+      "selected_conditions": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "seed": 22,
+      "manifest": "runs/B1_lower_rate_seed22_early_training_oracle_20261101/manifest.json",
+      "manifest_sha256": "28ba566da8a0f99e58798ade4e4af1b93fb20dfab0bdc66c58a2aca114b2d5ba",
+      "batch": "20261101T011350364179Z_native_B1_basic_lr_extension",
+      "raw_audit_sha256": "c511716176fe37a6c9a934c15b23032dfb3dacf0875d7aaabcca927a0562d158",
+      "queries": 24,
+      "solved_references": 24,
+      "modes": {
+        "reference": 24
+      },
+      "elapsed_seconds": 14.797000000020489,
+      "dataset_sha256": "98d47868f680ebc8fe816ac4adf0b794c51c002406ec668aa5db3bde2f9f107b",
+      "query_log_sha256": "0549e61ff8b868fbe5bc28c1337ce8cf49e81b682f2d6a91e3a7d20edf3db24c",
+      "selected_conditions": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "seed": 33,
+      "manifest": "runs/B1_lower_rate_seed33_early_training_oracle_20261101/manifest.json",
+      "manifest_sha256": "103d6b51c0b264f565d3d28b2e961b1f1e1c2b5972c0a86c0454fd7534556ff6",
+      "batch": "20261101T013448773461Z_native_B1_basic_lr_extension",
+      "raw_audit_sha256": "c5adb8e349572913b2cf82c6838be5143468af5bf8088702e80219c8bb6e6501",
+      "queries": 24,
+      "solved_references": 24,
+      "modes": {
+        "reference": 24
+      },
+      "elapsed_seconds": 13.906000000191852,
+      "dataset_sha256": "7499317498fdc3fc06839ba8868145060db506d4d3a7a36a9b60e6ecc2b095a4",
+      "query_log_sha256": "80604d34a9b66801c94bb6f7b5edc7a2724ab41596cc659de57c28d1edd2ee2b",
+      "selected_conditions": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "seed": 44,
+      "manifest": "runs/B1_lower_rate_seed44_early_training_oracle_20261101/manifest.json",
+      "manifest_sha256": "d3fe0557d81347f907ef3c6cf15edbab244888fc8882d6178b0ce6135196846f",
+      "batch": "20261101T015454924014Z_native_B1_basic_lr_extension",
+      "raw_audit_sha256": "e72ca2ca714ad74e1461537ada3d56b495af3d96063c15874b1cee75e40e05a1",
+      "queries": 20,
+      "solved_references": 18,
+      "modes": {
+        "reference": 18,
+        "wait": 2
+      },
+      "elapsed_seconds": 13.641000000061467,
+      "dataset_sha256": "f7f9dcb555c9cb476c12e452f1a5604d62d9de46c2e095708a75272e31b34fb6",
+      "query_log_sha256": "88d104e440c2858c6194eb0af6ac45a640662456f2726f5824148510255ae77d",
+      "selected_conditions": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "unique_known_conditions": 4,
+  "queries": 92,
+  "solved_references": 90,
+  "selection": "First completed TRAIN episode of each condition,irrespective of outcome;fixed controls0,40,80,120,160,200 when present;the existing coverage profile. No evaluation states.",
+  "existing_seed22_trajectory_anchors_requeried": 12,
+  "overlap_observations_exact": true,
+  "overlap_maximum_label_error": 0.0,
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "fit_performed": false,
+  "elapsed_query_seconds_sum": 55.937000000383705,
+  "wall_limit_each_seconds": 900,
+  "maximum_queries_each": 24,
+  "automatic_native_retries": 0,
+  "all_wait_rows_retained": "Wait-only labels are preserved in the raw datasets. They must not be silently fit as successful progress references.",
+  "labels_are_executed_commands": false,
+  "interpretation": "Solved MPC references exist at90of92queried early training states. This supports testing on-policy corrective supervision;it does not prove execution success or the causal source of failure. Two wait-only queries occur in seed44condition1at controls160/200;bounded search failure is not proof of geometric impossibility.",
+  "current_fitted_pair_unchanged": "The already queued512step matched actor pair still uses its original17solved trajectory labels. These new early query datasets are not fit or substituted before that prespecified closed-loop probe.",
+  "pending_seed55": "Still training;not queried without completed raw-audited TRAIN inputs. No five-seed corrective-data claim.",
+  "research_acceptance": "UNMET"
+}

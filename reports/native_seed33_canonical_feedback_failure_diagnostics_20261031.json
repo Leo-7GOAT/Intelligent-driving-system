@@ -1,0 +1,84 @@
+{
+  "scope": "Complete canonical seed33development pair and full measured-state feedback input intervention;not final confirmation or counterfactual driving",
+  "batch": "20261031T093156483162Z_native_supervised_ppo",
+  "H_successes": 10,
+  "H0_successes": 12,
+  "cases_each": 12,
+  "training_controls_each": 20561,
+  "optimizer_steps_each": 650,
+  "raw_training_evaluation_controls_verified": 50843,
+  "all_measured_start_actions_reproduced": 24,
+  "paired_difference_percentage_points": -16.666666666666668,
+  "exact_discordance_p_two_sided": 0.5,
+  "methods": [
+    {
+      "method": "H",
+      "full_diagnostic_sha256": "10ea26d6108bf574c0ef3e6ad7f6916e050a7516301ca9c08d2f2133f2fa716d",
+      "model_sha256": "bc6f67841183333b86fb64f8871b895c591ab19bc8895b644b77a2618edd2f6d",
+      "raw_audit_sha256": "575b1ae6c801e8d0947949984cb7474f3b3d10787f6f833453ae2f18d0c0a226",
+      "decisions_reproduced": 547,
+      "verified_evaluation_controls": 5426,
+      "hidden_feedback_argmax_changes": 19,
+      "mean_probability_total_variation": 0.03894916395228986,
+      "failed_H_cases_comparison": [
+        {
+          "case_id": 5,
+          "success": false,
+          "progress": 5.341075111955149,
+          "plan_failures": 81,
+          "interventions": 810,
+          "physics_steps": 900,
+          "decisions_reproduced": 90,
+          "hidden_feedback_argmax_changes": 0
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "progress": 11.73478166016526,
+          "plan_failures": 68,
+          "interventions": 680,
+          "physics_steps": 900,
+          "decisions_reproduced": 90,
+          "hidden_feedback_argmax_changes": 0
+        }
+      ]
+    },
+    {
+      "method": "H0",
+      "full_diagnostic_sha256": "69dc3d3b1c12bd184e677ddeae72763d991b1f92d88063f441e43758e37b45c5",
+      "model_sha256": "3203cd8fd2917a4d279bcb242223a676caa73d3a05c9603e33529d5eff2a4c8b",
+      "raw_audit_sha256": "d88e353eafd736b7b484f89ea9b34d79cf7677108b1aa4c7b52425fac18a9839",
+      "decisions_reproduced": 435,
+      "verified_evaluation_controls": 4295,
+      "hidden_feedback_argmax_changes": 0,
+      "mean_probability_total_variation": 0.0,
+      "failed_H_cases_comparison": [
+        {
+          "case_id": 5,
+          "success": true,
+          "progress": 23.99667646886366,
+          "plan_failures": 0,
+          "interventions": 0,
+          "physics_steps": 345,
+          "decisions_reproduced": 35,
+          "hidden_feedback_argmax_changes": 0
+        },
+        {
+          "case_id": 7,
+          "success": true,
+          "progress": 20.38065239394273,
+          "plan_failures": 0,
+          "interventions": 0,
+          "physics_steps": 341,
+          "decisions_reproduced": 35,
+          "hidden_feedback_argmax_changes": 0
+        }
+      ]
+    }
+  ],
+  "immediate_failure_mechanism": "Hcase5/7 repeat81/68planning failures and810/680brake-control interventions;H0succeeds on both with0planning failures/interventions. Both Hvisited failure trajectories retain the same argmax when current learned feedback is hidden with weights/mask fixed.",
+  "limits": "Training trajectories and learned weights differ;the H0comparison does not isolate an instantaneous feedback cause. Input sensitivity on recorded states does not give counterfactual success rates. Prior high-rate seed33results remain retained and excluded from the canonical rate cohort.",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

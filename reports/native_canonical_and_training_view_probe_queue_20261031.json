@@ -1,0 +1,79 @@
+{
+  "scope": "Actual finite queue revisions and prepared matched actor probes;not completed driving results",
+  "canonical_execution": "remaining_v4_seed_PPO_execution_20261031_v5_lr_bound",
+  "canonical_status": {
+    "phase": "WAITING_FOR_CURRENT_HIGH_LR_SEED33_OWNED_CLEANUP",
+    "pid": 47784,
+    "epoch": 1793440704.8729851,
+    "created_batches": []
+  },
+  "canonical_manifest_sha256": "cf21d35a5c73297947e0c646aa605e89d7b14fa4068684d20abd7c06c50c0ba6",
+  "canonical_plan_sha256": "3c8d6270d2ce4919cdc71f8595b2a6b7615ea045d80575146b75e7b3fb6d0aa5",
+  "dependent_execution": "B3_and_B1_independent_cohort_execution_20261031_v4_training_view_probes",
+  "dependent_status": {
+    "phase": "WAITING_FOR_REMAINING_THREE_H_H0_PPO_PAIRS",
+    "epoch": 1793440705.6896422,
+    "pid": 68480,
+    "created": []
+  },
+  "dependent_manifest_sha256": "8c0c7ee90295a96b2d48c4b0efa0645e07a86d46d619de3b8ff6683871065672",
+  "dependent_plan": {
+    "dependency_execution": "remaining_v4_seed_PPO_execution_20261031_v5_lr_bound",
+    "wait_seconds": 28800,
+    "B3": {
+      "batch": "20261031T082841Z_native_rule",
+      "protocol_sha256": "1e2e03b8e11b3502401006b7f8d72636b76ce4676e4f1e6376d8bbef6446ce68"
+    },
+    "B1_seeds": [
+      {
+        "seed": 22,
+        "initializer": "20261031T081944045029Z_native_approach_bc",
+        "initializer_protocol_sha256": "93328728f756e3de72c43c40475a26d466534030c77823df7e5de8ee95d1560e"
+      },
+      {
+        "seed": 33,
+        "initializer": "20261031T082156390592Z_native_approach_bc",
+        "initializer_protocol_sha256": "01291391233ba8cce77a2ab5cd8404ac49c4cc2ff93e3a981792ae04b4ef89ef"
+      },
+      {
+        "seed": 44,
+        "initializer": "20261031T082223755520Z_native_approach_bc",
+        "initializer_protocol_sha256": "ca365478ca710a4f6b0fbb858f29f97dda6b5d02e4d352fc2e379a2bc6e34bc2"
+      },
+      {
+        "seed": 55,
+        "initializer": "20261031T082250535153Z_native_approach_bc",
+        "initializer_protocol_sha256": "9cfaec40c6e9b03ec82b42ea0d78192763655e48196784769b8268d7fa4d4a06"
+      }
+    ],
+    "B1_controls_each": 20480,
+    "B1_training_distribution": "Same known12inventory as the existing five-seed H/H0cohort and completed seed11B1low-rate arm;the broader36/24branch is separate development evidence",
+    "B1_rollout": 1280,
+    "B1_learning_rate": 3e-06,
+    "B1_target_kl": 0.01,
+    "B1_log_std": -4,
+    "no_retries": true,
+    "no_seed_omissions": true,
+    "B1_PPO_reward_units_scale": 0.05,
+    "training_view_actor_probes": [
+      {
+        "arm": "replay",
+        "batch": "20261031T093757339917Z_native_replay_training_view_bc",
+        "protocol_sha256": "3262ef4a05ca2dece71e771e33ebf17294768fc737017c652efb45623b6c6d25"
+      },
+      {
+        "arm": "measured36",
+        "batch": "20261031T094314260006Z_native_measured36_training_view_bc",
+        "protocol_sha256": "11159ea6e8cd45bf3b8082504457336517502226a000f7935e002d70c1b83fc5"
+      }
+    ]
+  },
+  "launch": {
+    "creation_epoch": 1793440101.863,
+    "scope": "Actual finite waiting serial queue;B3then both24case actor probes then unchanged four B1PPOseeds",
+    "pid": 66212,
+    "script": "runs/run_B3_B1_and_training_view_probes_20261031.py"
+  },
+  "existing_native_profile_unchanged": true,
+  "research_acceptance": "UNMET"
+}

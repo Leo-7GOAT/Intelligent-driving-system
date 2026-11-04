@@ -1,0 +1,22 @@
+{
+  "batch": "20261102T115516528316Z_native_route_feedback_PPO_basic",
+  "trace_sha256": "9b7d2c2a31d985db391f97f93d7117f3194313aa8bb42aa7c0ce7142908fef4f",
+  "bridge_sha256": "e629e9670b0e0599c8fde888efdd8f2aedd88ac5967daa9da4ec42a845a9200e",
+  "inputs_sha256": "b95b160892cd97cf7ccb530432dec2867c65b1d3d7c3be5d9d166a678f9ac44e",
+  "model_sha256": "5085cfb491ebf1c07a14dcfc71f0c6cb5673476fd464ff28286fc20bcbb6e11d",
+  "normalization_sha256": "d9c78f13a51ac235750264631f4138dc273b96fe78d864f169b0535dd1774d5f",
+  "source": "Existing independent Git checkout,existing clean environment;no server,plant step,training or public-download claim",
+  "new_controls": 0,
+  "new_updates": 0,
+  "clean_checkout_commit": "1f0975be75eed4b522d134142335470ad9fd8409",
+  "clean_checkout_status": "",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "independent_python": "existing-independent-clean-environment/Python3.11",
+  "policy_class": "RouteFeedbackFlatPolicy",
+  "normalizer_class": "RouteFeedbackNormalize",
+  "measured_initial_actions_bit_exact": 4,
+  "inference_batch_size": 1,
+  "PPO_Adam_parameter_states": 40,
+  "batch_shape_diagnostic_retained": true,
+  "local_original_receipt_retained": true
+}

@@ -1,0 +1,26 @@
+{
+  "scope": "Rebuild all four measured trajectories of the rejected feedback-fit probe.",
+  "sources": [
+    {
+      "batch": "20261101T084713744547Z_native_sync_delivery_transfer",
+      "trace_sha256": "435e53d07af6900f9265d28edb7cc47a7d1cf58e2d41c272955f0860f0924b43",
+      "raw_audit_sha256": "2814672a49a4a424baaa05a84494331ea6a0683034536e47a5a01e908c5cf681"
+    },
+    {
+      "batch": "20261101T094244452999Z_native_feedback_contrast_probe",
+      "trace_sha256": "7a9b6694a0cab3613514bb6747a3d0841c9065bda9b7bfe97fdd8a8fccf5d2a5",
+      "raw_audit_sha256": "57864354598ced92824ada470d478f5db1c76348098bd8cf1af9b817fa717988"
+    }
+  ],
+  "script_sha256": "39b6a75f4092240a80dc408166287ccde6ec059282fb676434f56c1aa1919867",
+  "figure_sha256": "ad62ab3b9f8b3df8f92c6712864748d21b88b18a1f0a55180b7b40d1a31733ea",
+  "successes": [
+    3,
+    2
+  ],
+  "bounds": [
+    1,
+    2
+  ],
+  "limits": "Known TRAINconditions,single seed,extra counterfactual supervision. Neither arm passes the zero-unsafe basic gate. Native measurements,not simulated rollout predictions."
+}

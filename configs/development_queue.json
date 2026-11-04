@@ -1,0 +1,8 @@
+[
+  {"name":"H_seed11","method":"H","seed":11,"budget":100000},
+  {"name":"B1_seed11","method":"B1","seed":11,"budget":100000},
+  {"name":"H_seed22","method":"H","seed":22,"budget":100000},
+  {"name":"B1_seed22","method":"B1","seed":22,"budget":100000},
+  {"name":"H_seed33","method":"H","seed":33,"budget":100000},
+  {"name":"B1_seed33","method":"B1","seed":33,"budget":100000}
+]

@@ -1,0 +1,185 @@
+{
+  "scope": "Complete frozen scale100 H evaluation on all12known static conditions;not an independent final test",
+  "recorded_at_utc": "2026-11-03T13:56:45.292944+00:00",
+  "research_acceptance": "UNMET",
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_scale100_H_static",
+  "protocol_sha256": "3f013f6519173b0cea125d03e277f788c31a343da35b53def5ae936d14bbca7f",
+  "coordinator_static_result_sha256": "656eab34ec6c8e032d379751b0c155dcc9ae87627302d36a4f51c1a9bd4fe4c7",
+  "engine_delivery_sha256": "080610aa118b5fc45eb1a8fc2f280f18454956e05bd2afddde90cdddb878c767",
+  "strict_engine_delivery": "PASS",
+  "actual_evaluation_controls_total": 8303,
+  "new_training_controls": 0,
+  "new_PPO_updates": 0,
+  "new_final_conditions": 0,
+  "results": {
+    "H": {
+      "cases": 12,
+      "successes": 3,
+      "safe_completion_fraction": 0.25,
+      "unsafe_episodes": 1,
+      "unsafe_fraction": 0.08333333333333333,
+      "termination_counts": {
+        "deadline": 8,
+        "success": 3,
+        "out_of_bounds": 1
+      },
+      "actual_controls": 8303,
+      "actual_world_ticks": 8674,
+      "all_NN_actions_reproduced": 832,
+      "measured_starts_reproduced": 12,
+      "model_sha256": "15ba2e1b17a99086d07eb031babe0ce5f008afb0516c208928f5035992969753",
+      "normalization_sha256": "680faf1c43af1f83391d0fcaddd4f6d0aae44e8007ae075ad0a3c6bf02e3d2e3",
+      "raw_audit_sha256": "c893d95fb29c983278905353bfac34ed28eb45f9df907b8bde1b9eef9523af00",
+      "measured_start_audit_sha256": "2e5aca6cbed025eb6c5365ca605f04fac28fc237ff0ecd90f084074f0b9ea29d",
+      "all_static_NN_audit_sha256": "0a4b79392a43e061121e43b7c7f6618439759caa8a5d91c3cd613198e7ad512c",
+      "static_development_target_70_percent_met": false,
+      "development_unsafe_goal_5_percent_met": false,
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 67,
+          "mpc_failures": 0,
+          "interventions": 670,
+          "progress": 16.159726820173148
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "progress": 22.748420172336903
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900,
+          "progress": 0.0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 330,
+          "actions": 33,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "progress": 22.120455671966337
+        },
+        {
+          "case_id": 4,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 101,
+          "actions": 11,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "progress": 6.610951279237401
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900,
+          "progress": 0.0
+        },
+        {
+          "case_id": 6,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 59,
+          "mpc_failures": 0,
+          "interventions": 590,
+          "progress": 18.33757186622864
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900,
+          "progress": 0.0
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "actions": 34,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "progress": 23.78082434270138
+        },
+        {
+          "case_id": 9,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900,
+          "progress": 0.0
+        },
+        {
+          "case_id": 10,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 67,
+          "mpc_failures": 0,
+          "interventions": 670,
+          "progress": 16.161526475825212
+        },
+        {
+          "case_id": 11,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900,
+          "progress": 0.0
+        }
+      ]
+    }
+  },
+  "historical_known_static_references": {
+    "scale1_context_H": 3,
+    "scale1_context_H0": 4,
+    "legacy4705_H": 3,
+    "legacy4705_H0": 4,
+    "zero_PPO_BC_initialized_neural_teacher": 5
+  },
+  "reference_report_sha256": "ea40349e437bc8324f94beb6c89b09b05f58d536f678fd59c82d3b02487f0f57",
+  "training_report_sha256": "657c9076444b639b4986dfca9443c657fe5a18734bdc713faf30218833a404ea",
+  "interpretation": "Increasing the reference coefficient scale from1to100 did not improve static success count:3/12in both trials. Failures remain8deadlines and1bounds case. Different learned weights and state histories prevent attributing individual trajectory changes to the scalar alone. Do not continue a blind scalar sweep or claim feedback/RL superiority.",
+  "known_validation_at_snapshot": "RUNNING",
+  "limits": "One trained canonical seed,known development only. No new H0scale100training or result is inferred;the H0/teacher numbers are historical development references,not a new paired ablation. All original v4 failures remain. No seed confidence interval,unseen test,unsafe rescore or final acceptance is claimed."
+}

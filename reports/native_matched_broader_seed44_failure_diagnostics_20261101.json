@@ -1,0 +1,282 @@
+{
+  "scope": "Descriptive reconstruction of seed44 known-development case15 timeout; no new controls, fitting or counterfactual driving",
+  "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+  "case_id": 15,
+  "family": "static_vehicle",
+  "methods": {
+    "H": {
+      "episode": {
+        "case_id": 15,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 331,
+        "actions": 34,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0,
+        "simulation_seconds": 16.550000246614218,
+        "distance": 23.60584916726452,
+        "progress": 20.496337483396374
+      },
+      "trace_sha256": "62d4cf3c5ac49debacbcfac9e52bb45590bf218cc7572c3f6aa3f0167fe4dc69",
+      "mode_counts": {
+        "reference": 33,
+        "parking_brake": 1
+      },
+      "selected_decisions": [
+        {
+          "decision": 0,
+          "action": 30,
+          "mode": "reference",
+          "plan": {
+            "status": "success",
+            "expanded_nodes": 1,
+            "cost": 13.573175338796208,
+            "planning_time": 0.003318500006571412,
+            "failure_reason": null,
+            "terminal_goal_prefix": false
+          },
+          "first_state": {
+            "x": 5.999999993105907,
+            "y": 20.677408993300922,
+            "yaw": -7.656588127957775e-07,
+            "v": 1.4483671341494869e-08,
+            "steering": -0.001867855949223242,
+            "acceleration": 2.896734343140984e-07,
+            "time": 0.05000000074505806
+          },
+          "last_state": {
+            "x": 6.0933545570407714,
+            "y": 20.67658186360631,
+            "yaw": -0.0005713479223627971,
+            "v": 0.5577148518408706,
+            "steering": -0.04312956410767997,
+            "acceleration": 2.0035572371978105,
+            "time": 0.5000000074505806
+          },
+          "first_frame": 31193,
+          "last_frame": 31202
+        },
+        {
+          "decision": 33,
+          "action": 2,
+          "mode": "parking_brake",
+          "plan": {
+            "status": "terminal_brake",
+            "planning_time": 0.0,
+            "terminal_goal_prefix": true
+          },
+          "first_state": {
+            "x": 20.724940627141184,
+            "y": 6.407617491301776,
+            "yaw": -1.1066901731039867,
+            "v": 1.9878535769417467e-05,
+            "steering": 0.28895968307341613,
+            "acceleration": -6.500888552086188,
+            "time": 16.550000246614218
+          },
+          "last_state": {
+            "x": 20.724940627141184,
+            "y": 6.407617491301776,
+            "yaw": -1.1066901731039867,
+            "v": 1.9878535769417467e-05,
+            "steering": 0.28895968307341613,
+            "acceleration": -6.500888552086188,
+            "time": 16.550000246614218
+          },
+          "first_frame": 31523,
+          "last_frame": 31523
+        }
+      ],
+      "first_plan_failure_decision": null,
+      "all_later_decisions_plan_failed": false,
+      "reliance_report": "reports/native_matched_broader_seed44_H_feedback_reliance_20261101.json",
+      "reliance_report_sha256": "a0647181f92386a81fad848624e3a6cf5ef014ba603ce88cf37ae5c58b67e7b8",
+      "all_cases_decisions_reproduced": 841,
+      "all_cases_greedy_action_changes_when_feedback_hidden": 16,
+      "case15_feedback_action_changes": [
+        {
+          "case_id": 15,
+          "decision": 1,
+          "measured_before_frame": 31202,
+          "actual_action": 26,
+          "hidden_feedback_action": 30,
+          "action_changed": true,
+          "probability_total_variation": 0.18901123106479645,
+          "recorded_mode": "reference"
+        }
+      ]
+    },
+    "H0": {
+      "episode": {
+        "case_id": 15,
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "actions": 90,
+        "interventions": 780,
+        "plan_failures": 78,
+        "mpc_failures": 0,
+        "simulation_seconds": 45.000000670552254,
+        "distance": 8.350514199155402,
+        "progress": 7.030546853513799
+      },
+      "trace_sha256": "93da3305442386521ccd7e51fb31f51888f9fb956250cc8dab0ae753a0ff299e",
+      "mode_counts": {
+        "reference": 12,
+        "plan_failed": 78
+      },
+      "selected_decisions": [
+        {
+          "decision": 0,
+          "action": 20,
+          "mode": "reference",
+          "plan": {
+            "status": "success",
+            "expanded_nodes": 103,
+            "cost": 11.615000000000004,
+            "planning_time": 0.03895749989897013,
+            "failure_reason": null,
+            "terminal_goal_prefix": false
+          },
+          "first_state": {
+            "x": 5.999999993105907,
+            "y": 20.677408993300922,
+            "yaw": -7.656588127957775e-07,
+            "v": 1.4488351276962747e-08,
+            "steering": 3.8656257045411375e-05,
+            "acceleration": 2.897670194990744e-07,
+            "time": 0.05000000074505806
+          },
+          "last_state": {
+            "x": 6.096013430460432,
+            "y": 20.678931472048077,
+            "yaw": -0.00011651329769080121,
+            "v": 0.5685635968434433,
+            "steering": 0.03987132843065412,
+            "acceleration": 1.2854105893185874,
+            "time": 0.5000000074505806
+          },
+          "first_frame": 62080,
+          "last_frame": 62089
+        },
+        {
+          "decision": 12,
+          "action": 26,
+          "mode": "plan_failed",
+          "plan": {
+            "status": "invalid",
+            "expanded_nodes": 0,
+            "cost": null,
+            "planning_time": 7.219985127449036e-05,
+            "failure_reason": "start_or_goal_body_collision_or_bounds",
+            "terminal_goal_prefix": true
+          },
+          "first_state": {
+            "x": 13.562934507172251,
+            "y": 17.84425056884954,
+            "yaw": -0.3360469874100138,
+            "v": 1.3444852085163213,
+            "steering": 0.43761413307083913,
+            "acceleration": -4.678438553938378,
+            "time": 6.050000090152025
+          },
+          "last_state": {
+            "x": 13.5945742059083,
+            "y": 17.83153639890864,
+            "yaw": -0.3301205218782055,
+            "v": -4.378750446980045e-05,
+            "steering": 0.4879489216267999,
+            "acceleration": 0.00030176244462865216,
+            "time": 6.500000096857548
+          },
+          "first_frame": 62200,
+          "last_frame": 62209
+        },
+        {
+          "decision": 13,
+          "action": 26,
+          "mode": "plan_failed",
+          "plan": {
+            "status": "no_path",
+            "expanded_nodes": 1,
+            "cost": null,
+            "planning_time": 0.0031479999888688326,
+            "failure_reason": "open_set_exhausted",
+            "terminal_goal_prefix": true
+          },
+          "first_state": {
+            "x": 13.594587147183034,
+            "y": 17.831544347680545,
+            "yaw": -0.33012045529917877,
+            "v": -1.836107718974824e-05,
+            "steering": 0.49231398215581157,
+            "acceleration": 0.0005085286940659933,
+            "time": 6.550000097602606
+          },
+          "last_state": {
+            "x": 13.594665587590995,
+            "y": 17.831560431449986,
+            "yaw": -0.3301193900347421,
+            "v": -2.3374333754842092e-06,
+            "steering": 0.503636452156827,
+            "acceleration": -1.4680155719454897e-05,
+            "time": 7.000000104308128
+          },
+          "first_frame": 62210,
+          "last_frame": 62219
+        },
+        {
+          "decision": 89,
+          "action": 26,
+          "mode": "plan_failed",
+          "plan": {
+            "status": "no_path",
+            "expanded_nodes": 1,
+            "cost": null,
+            "planning_time": 0.0021836000960320234,
+            "failure_reason": "open_set_exhausted",
+            "terminal_goal_prefix": true
+          },
+          "first_state": {
+            "x": 13.594678558786086,
+            "y": 17.831568467539935,
+            "yaw": -0.3301193900347421,
+            "v": 7.353458977772238e-09,
+            "steering": 0.503636452156827,
+            "acceleration": 3.604740675484041e-07,
+            "time": 44.55000066384673
+          },
+          "last_state": {
+            "x": 13.594678558786086,
+            "y": 17.831568467539935,
+            "yaw": -0.3301193900347421,
+            "v": -1.0586072652273639e-08,
+            "steering": 0.503636452156827,
+            "acceleration": -3.188068065536213e-07,
+            "time": 45.000000670552254
+          },
+          "first_frame": 62970,
+          "last_frame": 62979
+        }
+      ],
+      "first_plan_failure_decision": 12,
+      "all_later_decisions_plan_failed": true,
+      "reliance_report": "reports/native_matched_broader_seed44_H0_feedback_reliance_20261101.json",
+      "reliance_report_sha256": "e7a5f18f39968fb41bfa62bd2c7ae56845609bbd667d6dea03468f2de6d2e102",
+      "all_cases_decisions_reproduced": 881,
+      "all_cases_greedy_action_changes_when_feedback_hidden": 0,
+      "case15_feedback_action_changes": []
+    }
+  },
+  "findings": [
+    "H0 follows references for12decisions,then the planner rejects start_or_goal_body_collision_or_bounds at decision12. This is a planner feasibility rejection,not a recorded physical collision or boundary termination.",
+    "All remaining78decisions fail planning. Emergency braking leaves the vehicle stationary and900controls end with deadline;780interventions are recorded. No MPC failure is recorded.",
+    "H succeeds after331controls with no intervention. H and H0 have separately trained weights and different visited states; their first actions already differ.",
+    "H feedback hiding changes16/841recorded decisions overall and1/34on case15. H0 negative control changes0/881with zero probability TV. Physical masks,model weights and normalization remain fixed.",
+    "This verifies observable feedback sensitivity and a timeout mechanism. It does not establish feedback performance benefit,causal attribution of this pair difference,or PPO benefit over the teacher."
+  ],
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

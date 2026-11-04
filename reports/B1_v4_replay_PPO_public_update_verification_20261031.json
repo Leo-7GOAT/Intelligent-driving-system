@@ -1,0 +1,18 @@
+{
+  "scope": "Executed independent first-update reconstruction from the unauthenticated downloaded complete failed B1 capsule; no new driving or deployed updates.",
+  "public_manifest": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_v4_replay_PPO_20261031_repro.zip.parts.json",
+  "archive_sha256": "34b86773b541171b99b68b1d58fc8fbd1b8d05bb10bb155232d77a7a0ffbaec6",
+  "reproduction_source_commit": "a8898c8",
+  "original_report_sha256": "66c593f1c8cb5249810c76187c56a94ce4ef13b5d2d9f0a9a252e7999e54a5d6",
+  "independent_report_sha256": "3bee1b253a3e5a1a6022b3ad0a43d45d16bae618d4206e87a46b8a8dd037fdf6",
+  "script_sha256": "3f822cb32bce9318128221f7897af2421b5b603f62486bef5362f7ab9d633475",
+  "all_nontiming_fields_value_exact": true,
+  "sampled_actions_exact": 1280,
+  "first_checkpoint_all_parameters_exact": true,
+  "all_three_optimizer_branches_value_exact": true,
+  "independent_guard_package_tests_passed": 18,
+  "independent_guard_package_test_log_sha256": "7eca2e61a6a9c0a24d2f755f9f501f3b438bed1e8a4fcfddf0aac655bd46f9da",
+  "new_controls": 0,
+  "deployed_updates": 0,
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,35 @@
+{
+  "batch": "20261104_joint_speed_retiming_H_four_condition_transfer",
+  "case_id": 2,
+  "action": 26,
+  "status": "timeout",
+  "failure_reason": "search_budget",
+  "nodes": 32000,
+  "seconds": 218.72753829999965,
+  "model_footprint_checks": 57600000,
+  "trace_sha256": "08fc68c2ff73c7c43ece9c77721f10a9f3fb1df3ddaf5f3cf36fc8847a33a1f6",
+  "script_sha256": "46b6c5b4e7bb8f524fe29f897bf54da473ad7a8b273605c81b14a0244fc00c41",
+  "new_native_controls": 0,
+  "limits": "Conservative raster model with nine-offset body checks;actual native road acceptance and tracking not established. Initial/goal nominal validity and task acceptance tolerances unchanged.",
+  "scope": "Closed offline conservative nine-offset search prototype;not adopted into runtime",
+  "evidence": "native_case21_reference_tube_planner_probe.json",
+  "evidence_sha256": "fa512509818e0223fefe2f9c84728f90b580ac93f44f6d891b5c8f7b963fb629",
+  "research_acceptance": "UNMET",
+  "adopted": false,
+  "reason": "No path found within32000nodes;57.6million model footprint checks and218.73seconds. Does not prove physical infeasibility.",
+  "terminal_diagnostics": [
+    {
+      "original_case_id": 21,
+      "bad_pose": 227,
+      "reference_poses": 228,
+      "first_inner_goal_entry": 226
+    },
+    {
+      "original_case_id": 27,
+      "bad_pose": 221,
+      "reference_poses": 228,
+      "first_inner_goal_entry": 224
+    }
+  ],
+  "next_bounded_hypothesis": "Represent exact native-rejected local points as planning constraints for the same nine body offsets,then re-query the entire timed reference. Existing grid-cell quantization adds no effective constraint for these counterexamples. No point-constraint runtime or terminal cropping has been implemented."
+}

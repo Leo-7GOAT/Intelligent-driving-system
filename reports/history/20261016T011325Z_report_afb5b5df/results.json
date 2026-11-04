@@ -1,0 +1,308 @@
+{
+  "training": [
+    {
+      "source": "runs\\20261016T005729Z_train_H_smoke_seed7_90e101ed\\training_summary.json",
+      "run_id": "20261016T005729Z_train_H_smoke_seed7_90e101ed",
+      "method": "H",
+      "seed": 7,
+      "requested_physics_budget": 640,
+      "physics_steps": 640,
+      "budget_overshoot": 0,
+      "actions": 64,
+      "simulation_seconds": 32.0,
+      "training_wall_seconds": 4.859062399999857,
+      "physics_steps_per_wall_second": 131.71265304187466,
+      "optimization_phases": 2,
+      "ppo_epoch_updates": 4,
+      "actor_l2_change": 0.038644738495349884,
+      "reload_exact": true,
+      "wall_budget_exceeded": false,
+      "episodes": 4,
+      "reward_components": {
+        "event": -40.0,
+        "time": -3.199999999999954,
+        "risk": -0.8031029269792305,
+        "comfort": -0.09082765414599896,
+        "potential": 2.478110249645002
+      },
+      "network_parameters": 55456,
+      "gamma_low": 0.9994976094477416,
+      "gamma_policy": 0.9949874371066204,
+      "policy_frequency_hz": 2.0,
+      "training_pass": true,
+      "conclusion": "engineering smoke only; no architecture advantage established",
+      "plan_timing": {
+        "count": 63,
+        "median": 0.09747049999987212,
+        "p95": 0.10062631000018882,
+        "p99": 0.10081985600007101,
+        "max": 0.10082680000050459,
+        "over_period_fraction": 0.0,
+        "period": 0.5,
+        "unit": "seconds"
+      },
+      "control_timing": {
+        "count": 220,
+        "median": 0.001029000000016822,
+        "p95": 0.0018712649999088153,
+        "p99": 0.0027206609998756902,
+        "max": 0.0036601000001610373,
+        "over_period_fraction": 0.0,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "qp_timing": {
+        "count": 220,
+        "median": 0.00015055000039865263,
+        "p95": 0.00031813499963391213,
+        "p99": 0.0013186970003880563,
+        "max": 0.001884299999801442,
+        "over_period_fraction": 0.0,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "task_deadline_seconds": 8.0
+    },
+    {
+      "source": "runs\\20261016T005929Z_train_B1_smoke_seed7_8caeb4cc\\training_summary.json",
+      "run_id": "20261016T005929Z_train_B1_smoke_seed7_8caeb4cc",
+      "method": "B1",
+      "seed": 7,
+      "requested_physics_budget": 640,
+      "physics_steps": 640,
+      "budget_overshoot": 0,
+      "actions": 640,
+      "simulation_seconds": 32.0,
+      "training_wall_seconds": 0.6920861999997214,
+      "physics_steps_per_wall_second": 924.7402996913645,
+      "optimization_phases": 2,
+      "ppo_epoch_updates": 4,
+      "actor_l2_change": 0.1255747675895691,
+      "reload_exact": true,
+      "wall_budget_exceeded": false,
+      "episodes": 4,
+      "reward_components": {
+        "event": -40.0,
+        "time": -3.199999999999954,
+        "risk": -0.6896191119157791,
+        "comfort": -0.5173548621846964,
+        "potential": 2.478994284740322
+      },
+      "network_parameters": 53573,
+      "gamma_low": 0.9994976094477416,
+      "gamma_policy": 0.9994976094477416,
+      "policy_frequency_hz": 20.0,
+      "training_pass": true,
+      "conclusion": "engineering smoke only; no architecture advantage established",
+      "plan_timing": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "over_period_fraction": null
+      },
+      "control_timing": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "over_period_fraction": null
+      },
+      "qp_timing": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "over_period_fraction": null
+      },
+      "task_deadline_seconds": 8.0
+    }
+  ],
+  "evaluation": [
+    {
+      "source": "runs\\20261016T010110Z_eval_H_learned_validation_seed7_53a53141\\evaluation_summary.json",
+      "run_id": "20261016T010110Z_eval_H_learned_validation_seed7_53a53141",
+      "method": "H",
+      "policy": "learned",
+      "split": "validation",
+      "episodes": 4,
+      "success_rate": 0.0,
+      "failure_counts": {
+        "collision": 0,
+        "out_of_bounds": 0,
+        "deadline": 4
+      },
+      "mean_progress_m": 2.9337788106734157,
+      "wall_seconds": 4.1172516000006,
+      "physics_steps": 640,
+      "normalization_frozen": true,
+      "whole_episode_timing": {
+        "count": 4,
+        "median": 1.0122065499999735,
+        "p95": 1.6234312949997274,
+        "p99": 1.6411280189996704,
+        "max": 1.6455521999996563,
+        "over_period_fraction": 0.0,
+        "period": 8.0,
+        "unit": "seconds"
+      },
+      "conclusion": "smoke data; failed episodes retained; not evidence of hierarchical superiority",
+      "task_deadline_seconds": 8.0
+    },
+    {
+      "source": "runs\\20261016T010135Z_eval_B3_rule_validation_seed7_f7bd8b7e\\evaluation_summary.json",
+      "run_id": "20261016T010135Z_eval_B3_rule_validation_seed7_f7bd8b7e",
+      "method": "B3",
+      "policy": "rule",
+      "split": "validation",
+      "episodes": 1,
+      "success_rate": 0.0,
+      "failure_counts": {
+        "collision": 0,
+        "out_of_bounds": 0,
+        "deadline": 1
+      },
+      "mean_progress_m": 0.0,
+      "wall_seconds": 6.760495400000764,
+      "physics_steps": 600,
+      "normalization_frozen": null,
+      "whole_episode_timing": {
+        "count": 1,
+        "median": 6.75913219999984,
+        "p95": 6.75913219999984,
+        "p99": 6.75913219999984,
+        "max": 6.75913219999984,
+        "over_period_fraction": 0.0,
+        "period": 30.0,
+        "unit": "seconds"
+      },
+      "conclusion": "smoke data; failed episodes retained; not evidence of hierarchical superiority",
+      "task_deadline_seconds": 30.0
+    },
+    {
+      "source": "runs\\20261016T010145Z_eval_B1_learned_validation_seed7_bc3b4b48\\evaluation_summary.json",
+      "run_id": "20261016T010145Z_eval_B1_learned_validation_seed7_bc3b4b48",
+      "method": "B1",
+      "policy": "learned",
+      "split": "validation",
+      "episodes": 4,
+      "success_rate": 0.0,
+      "failure_counts": {
+        "collision": 0,
+        "out_of_bounds": 0,
+        "deadline": 4
+      },
+      "mean_progress_m": 1.3013949316073532,
+      "wall_seconds": 0.6926100999999107,
+      "physics_steps": 640,
+      "normalization_frozen": true,
+      "whole_episode_timing": {
+        "count": 4,
+        "median": 0.17717894999941564,
+        "p95": 0.21362513000049146,
+        "p99": 0.21638246600063213,
+        "max": 0.21707180000066728,
+        "over_period_fraction": 0.0,
+        "period": 8.0,
+        "unit": "seconds"
+      },
+      "conclusion": "smoke data; failed episodes retained; not evidence of hierarchical superiority",
+      "task_deadline_seconds": 8.0
+    },
+    {
+      "source": "runs\\20261016T010150Z_eval_B2_cycle_validation_seed7_da8066dd\\evaluation_summary.json",
+      "run_id": "20261016T010150Z_eval_B2_cycle_validation_seed7_da8066dd",
+      "method": "B2",
+      "policy": "cycle",
+      "split": "validation",
+      "episodes": 4,
+      "success_rate": 0.0,
+      "failure_counts": {
+        "collision": 0,
+        "out_of_bounds": 0,
+        "deadline": 4
+      },
+      "mean_progress_m": 8.98598065570212,
+      "wall_seconds": 1.129234600000018,
+      "physics_steps": 640,
+      "normalization_frozen": null,
+      "whole_episode_timing": {
+        "count": 4,
+        "median": 0.295340749999923,
+        "p95": 0.3240589550002369,
+        "p99": 0.3266869910002606,
+        "max": 0.32734400000026653,
+        "over_period_fraction": 0.0,
+        "period": 8.0,
+        "unit": "seconds"
+      },
+      "conclusion": "smoke data; failed episodes retained; not evidence of hierarchical superiority",
+      "task_deadline_seconds": 8.0
+    },
+    {
+      "source": "runs\\20261016T010238Z_eval_B3_rule_validation_seed7_70d100ba\\evaluation_summary.json",
+      "run_id": "20261016T010238Z_eval_B3_rule_validation_seed7_70d100ba",
+      "method": "B3",
+      "policy": "rule",
+      "split": "validation",
+      "episodes": 1,
+      "success_rate": 1.0,
+      "failure_counts": {
+        "collision": 0,
+        "out_of_bounds": 0,
+        "deadline": 0
+      },
+      "mean_progress_m": 22.775111406263207,
+      "wall_seconds": 1.0138746000002357,
+      "physics_steps": 319,
+      "normalization_frozen": null,
+      "whole_episode_timing": {
+        "count": 1,
+        "median": 1.0126342000003206,
+        "p95": 1.0126342000003206,
+        "p99": 1.0126342000003206,
+        "max": 1.0126342000003206,
+        "over_period_fraction": 0.0,
+        "period": 30.0,
+        "unit": "seconds"
+      },
+      "conclusion": "smoke data; failed episodes retained; not evidence of hierarchical superiority",
+      "task_deadline_seconds": 30.0
+    },
+    {
+      "source": "runs\\20261016T010447Z_eval_B3_rule_validation_seed7_be141820\\evaluation_summary.json",
+      "run_id": "20261016T010447Z_eval_B3_rule_validation_seed7_be141820",
+      "method": "B3",
+      "policy": "rule",
+      "split": "validation",
+      "episodes": 4,
+      "success_rate": 0.75,
+      "failure_counts": {
+        "collision": 0,
+        "out_of_bounds": 0,
+        "deadline": 1
+      },
+      "mean_progress_m": 19.00497145180698,
+      "wall_seconds": 4.288364699999875,
+      "physics_steps": 1594,
+      "normalization_frozen": null,
+      "whole_episode_timing": {
+        "count": 4,
+        "median": 1.0195526999996218,
+        "p95": 1.2720778849995895,
+        "p99": 1.3033134169996174,
+        "max": 1.3111222999996244,
+        "over_period_fraction": 0.0,
+        "period": 30.0,
+        "unit": "seconds"
+      },
+      "conclusion": "smoke data; failed episodes retained; not evidence of hierarchical superiority",
+      "task_deadline_seconds": 30.0
+    }
+  ],
+  "formal_independent_seed_intervals": null,
+  "interval_missing_reason": "formal multi-seed experiment not performed; smoke seeds are not evidence"
+}

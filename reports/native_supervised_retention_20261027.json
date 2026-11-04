@@ -1,0 +1,127 @@
+{
+  "scope": "Correlated single-seed real PPO continuation after teacher supervision; all4known full static roads retained. Not ordinary from-scratch PPO or hierarchy superiority.",
+  "batch": "20261027T024727Z_native_supervised_ppo",
+  "teacher_initial_frozen_successes": 3,
+  "ppo_final_frozen_successes": 0,
+  "new_training_controls": 20480,
+  "teacher_controls_charged": 1926,
+  "charged_control_lower_bound": 22406,
+  "ppo_optimizer_steps": 640,
+  "training_termination_reasons": {
+    "deadline": 20,
+    "collision": 12,
+    "out_of_bounds": 8
+  },
+  "cases": [
+    {
+      "case_id": 0,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 2.295931426904879,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 0.0,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 2,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 9.223794142924982,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    {
+      "case_id": 3,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 247,
+      "progress": 2.3650641976029867,
+      "interventions": 0,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    }
+  ],
+  "all_training_and_eval_controls_verified": 23427,
+  "raw_audit_sha256": "859864bc0c7379a3b6c6aabec8ecebae13a36e420cd8aed37061961e9e8430d9",
+  "model_sha256": "9940779cc22bb92f4dc2ea9cb1f2c027f4c405d485ce8adf571f1bb76a9e687b",
+  "normalization_sha256": "f8b349834566b2e08e374a099411ac5746e0a13e478d530577fc4cc433f98b8d",
+  "retention_probe": {
+    "scope": "Offline retention on the same disclosed teacher examples; not a new driving or task-success test. Zero new physical controls or updates.",
+    "results": [
+      {
+        "stage": "supervised_initial",
+        "model_sha256": "bc854fe15c641af0f5f63733c296f33c1819e1d0dfff89d6b01e8576f3b076fd",
+        "train_action_mse": 5.971348946332e-05,
+        "correlated_holdout_action_mse": 0.001272226101718843,
+        "obs_statistics_exactly_unchanged": true,
+        "log_std": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "stage": "ppo_2560",
+        "model_sha256": "de7fa07c4ca2ec1be2356bfb2b70c4aae12b1a06c5fe0fdd3a8691705017223c",
+        "train_action_mse": 0.0017347304383292794,
+        "correlated_holdout_action_mse": 0.0029981101397424936,
+        "obs_statistics_exactly_unchanged": true,
+        "log_std": [
+          -2.3004791736602783,
+          -2.3031868934631348
+        ]
+      },
+      {
+        "stage": "ppo_final",
+        "model_sha256": "9940779cc22bb92f4dc2ea9cb1f2c027f4c405d485ce8adf571f1bb76a9e687b",
+        "train_action_mse": 0.012988395057618618,
+        "correlated_holdout_action_mse": 0.014168721623718739,
+        "obs_statistics_exactly_unchanged": true,
+        "log_std": [
+          -2.332247734069824,
+          -2.304262161254883
+        ]
+      }
+    ]
+  },
+  "next_reward_version_initialization_parity": {
+    "scope": "Same supervised policy, untouched PPO optimizer, normalization and RNG initialization. New explicit reward profile; one correlated seed, not independent confirmation.",
+    "batches": [
+      "20261027T024727Z_native_supervised_ppo",
+      "20261027T031740Z_native_supervised_ppo"
+    ],
+    "all_policy_state_tensors_exactly_equal": true,
+    "tensor_count": 33,
+    "normalization_file_sha256": "ba629b37e56cd9cde6f76aee369debf64b24982d85c927577dc817e002da5042",
+    "rng_payload_sha256": "bc968fe9eb03b594e3c4bbe9b13f164403944ddcc3bd8f8d4f42f36d30657eb4",
+    "reward_changes": {
+      "collision": [
+        -30.0,
+        -90.0
+      ],
+      "out_of_bounds": [
+        -20.0,
+        -90.0
+      ],
+      "progress_weight": [
+        0.0,
+        0.5
+      ]
+    },
+    "new_controls": 0,
+    "optimizer_updates": 0
+  },
+  "interpretation": "Observed policy forgetting on teacher examples while observation statistics remain exactly fixed. This rules out normalization-statistic drift in this phase, not all possible causes. A matched initialized reward-profile diagnostic is running; the three changed reward fields are disclosed together."
+}

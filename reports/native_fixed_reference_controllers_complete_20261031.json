@@ -1,0 +1,57 @@
+{
+  "scope": "Actual paired CARLA fixed-reference development probe;four known roads,one execution each,no neural training or final confirmation.",
+  "aggregate": [
+    {
+      "controller": "mpc20",
+      "batch": "20261031T004553035320Z_native_curve_control",
+      "cases": 4,
+      "successes": 4,
+      "raw_frames_bound": 1904,
+      "mean_route_lateral_RMSE_m": 0.039560213861575676,
+      "mean_route_speed_RMSE_m_s": 0.19444228563007293,
+      "mean_route_jerk_RMS_m_s3": 93.87861225817244,
+      "mean_route_cycle_P95_seconds": 0.005752504988049622,
+      "minimum_measured_longitudinal_acceleration_m_s2": -22.660545942557363,
+      "unsafe_cases": 0,
+      "protocol_sha256": "9d38927e2c638067bde52d035a1174a794b45c2ca7a7be2aaa42ce4b43cd588b",
+      "raw_streams": {
+        "bridge_d458086c_requests.jsonl.gz": "e47606a2aab7f1bb96d78832a5aad103acd8a67ff8bf3493129a158468b8f1ca",
+        "bridge_d458086c_responses.jsonl.gz": "9b5d5c78efc972e3c8e81e764e3dd2a352a2a32f02cb4cf9c88f4c78e7e6829f"
+      }
+    },
+    {
+      "controller": "pursuit_pi",
+      "batch": "20261031T004553454599Z_native_curve_control",
+      "cases": 4,
+      "successes": 4,
+      "raw_frames_bound": 1907,
+      "mean_route_lateral_RMSE_m": 0.011724269741227809,
+      "mean_route_speed_RMSE_m_s": 0.06071650158656043,
+      "mean_route_jerk_RMS_m_s3": 27.57058746345426,
+      "mean_route_cycle_P95_seconds": 0.003599868730816524,
+      "minimum_measured_longitudinal_acceleration_m_s2": -20.120066346919216,
+      "unsafe_cases": 0,
+      "protocol_sha256": "d3e478fa6c670e47eb6c24eb659bd089fe9b5caf928786235fa66b250a71148c",
+      "raw_streams": {
+        "bridge_f6537067_requests.jsonl.gz": "3739b18af2a1fa2bd0154569027498f36eb7a480ccd44bac1ddb8cf3bd7084cd",
+        "bridge_f6537067_responses.jsonl.gz": "29b4598b656baf74bea1eb9b0a4d19d3bc567bf46e1155869c25d0a6ae84a61c"
+      }
+    }
+  ],
+  "paired_conditions": 4,
+  "total_raw_frames_bound": 3811,
+  "shared_source_hash_matrix_identical": true,
+  "shared_frozen_source_files": 398,
+  "fixed_reference_manifest_sha256": "ef90c3031e9697b932a2f538abcc3ce1d2aa849b9596a157d50547cdf87901d0",
+  "reference_pairing": "All8arrays exactly equal,rest-to-stop reference and same start clock;verified by compare_native_control.py.",
+  "prior_guard_failure": {
+    "batch": "20261028T024600457573Z_native_curve_control",
+    "actual_controls": 1905,
+    "physical_cases": 4,
+    "status": "Worker completed4/4but guard rejected missing worker allowlist. All raw data audited and retained;not a normal supervised completion;not pooled with repaired pair."
+  },
+  "total_controls_including_guard_failure": 5716,
+  "conclusion": "Both controllers4/4. Pursuit/PI has lower speed error and measured acceleration jerk on all4roads. The lightweight MPC smoothness result does not transfer. No uniform MPC superiority or real-time claim.",
+  "limitation": "Measured native braking spikes exceed nominal command deceleration limits;adapter/vehicle mismatch remains. No spikes,terminal samples or failed lifecycle costs removed.",
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,247 @@
+{
+  "scope": "Complete matched fresh shared/unshared head development pair, one seed and four known full training routes; no independent-confirmation or hierarchy advantage claim",
+  "batch": "20261026T064621Z_native_actor_head",
+  "rows": [
+    {
+      "method": "H_shared",
+      "raw_audit_sha256": "44d98c2584b8e23c4525226787bd7c870a74178ff759b241f0901072d549e2be",
+      "protocol_sha256": "d0e5e4a67208a0f731e5524cc2a10348c3c2e7e08297ccb123f6d0fd6a1813df",
+      "model_sha256": "922b68c84f2cd63e8c34230b14ff0be58b75919fc2738068f8ecdd8273faf4e9",
+      "normalization_sha256": "8e6d39e40c16e761ac969deeffa1e31aba4f83d4cfb69933e609f6b6b492a8e8",
+      "training_controls": 4145,
+      "evaluation_controls": 3017,
+      "total_verified_controls": 7162,
+      "world_ticks": 7471,
+      "optimizer_steps": 130,
+      "training_seconds": 237.0613157749176,
+      "network_parameters": 208034,
+      "successes": 1,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 23.389353076087353,
+          "physics_steps": 900,
+          "plan_failures": 30,
+          "mpc_failures": 0,
+          "interventions": 300,
+          "decision_cycle_times": {
+            "count": 90,
+            "median": 0.2614427499938756,
+            "p95": 3.99578460502089,
+            "p99": 4.571612808931386,
+            "max": 4.665838800021447,
+            "over_period_fraction": 0.35555555555555557,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0761245732471778,
+          "physics_steps": 900,
+          "plan_failures": 89,
+          "mpc_failures": 0,
+          "interventions": 890,
+          "decision_cycle_times": {
+            "count": 90,
+            "median": 0.3878361000097357,
+            "p95": 0.5039286899613216,
+            "p99": 0.6636189739929977,
+            "max": 0.7065466999774799,
+            "over_period_fraction": 0.05555555555555555,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "progress": 22.489796682804148,
+          "physics_steps": 317,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "decision_cycle_times": {
+            "count": 32,
+            "median": 0.14153339999029413,
+            "p95": 0.27047620004741474,
+            "p99": 0.32947025701752874,
+            "max": 0.35475860000588,
+            "over_period_fraction": 0.0,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 900,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900,
+          "decision_cycle_times": {
+            "count": 90,
+            "median": 0.24557124997954816,
+            "p95": 0.37587005506502463,
+            "p99": 0.4529213830200023,
+            "max": 0.6521437000483274,
+            "over_period_fraction": 0.011111111111111112,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        }
+      ]
+    },
+    {
+      "method": "H_unshared_v1",
+      "raw_audit_sha256": "4219b4591b5ca236716ddd4eb76ec0eb110f293defe759a45ff22517d9452ef2",
+      "protocol_sha256": "d0e5e4a67208a0f731e5524cc2a10348c3c2e7e08297ccb123f6d0fd6a1813df",
+      "model_sha256": "ac54ba9065279efe4b9000cf302cf888a0da615ed46867267735dace43853c36",
+      "normalization_sha256": "cfc426d1db8d01a3dad4ac47fa5636d246e2305b57b2a3d96bb7a364c4e10e2d",
+      "training_controls": 4128,
+      "evaluation_controls": 1969,
+      "total_verified_controls": 6097,
+      "world_ticks": 6437,
+      "optimizer_steps": 130,
+      "training_seconds": 301.3228154182434,
+      "network_parameters": 238784,
+      "successes": 3,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "progress": 24.133246448840207,
+          "physics_steps": 408,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "decision_cycle_times": {
+            "count": 41,
+            "median": 0.2098005999578163,
+            "p95": 0.3631073998985812,
+            "p99": 0.4188328200252728,
+            "max": 0.4490365000674501,
+            "over_period_fraction": 0.0,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 900,
+          "plan_failures": 90,
+          "mpc_failures": 0,
+          "interventions": 900,
+          "decision_cycle_times": {
+            "count": 90,
+            "median": 6.825210499984678,
+            "p95": 7.997952709993115,
+            "p99": 8.588843227031175,
+            "max": 8.950633300002664,
+            "over_period_fraction": 1.0,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "progress": 22.252649166434047,
+          "physics_steps": 343,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "decision_cycle_times": {
+            "count": 35,
+            "median": 0.19996889994945377,
+            "p95": 0.3854365900158882,
+            "p99": 0.39629069402813905,
+            "max": 0.40174290002323687,
+            "over_period_fraction": 0.0,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "progress": 20.25177540931277,
+          "physics_steps": 318,
+          "plan_failures": 1,
+          "mpc_failures": 0,
+          "interventions": 10,
+          "decision_cycle_times": {
+            "count": 32,
+            "median": 0.3566403500153683,
+            "p95": 0.8268070749822073,
+            "p99": 0.8511950159911067,
+            "max": 0.8555401000194252,
+            "over_period_fraction": 0.1875,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        }
+      ]
+    }
+  ],
+  "measured_initial_deltas": [
+    {
+      "case_id": 0,
+      "unshared_minus_shared": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw": 0.0,
+        "v": 0.0,
+        "steering": 0.0,
+        "acceleration": 0.0
+      }
+    },
+    {
+      "case_id": 1,
+      "unshared_minus_shared": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw": 0.0,
+        "v": 0.0,
+        "steering": 0.0,
+        "acceleration": 0.0
+      }
+    },
+    {
+      "case_id": 2,
+      "unshared_minus_shared": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw": 0.0,
+        "v": 0.0,
+        "steering": 0.0,
+        "acceleration": 0.0
+      }
+    },
+    {
+      "case_id": 3,
+      "unshared_minus_shared": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw": 0.0,
+        "v": 0.0,
+        "steering": 0.0,
+        "acceleration": 0.0
+      }
+    }
+  ],
+  "total_verified_controls": 13259
+}

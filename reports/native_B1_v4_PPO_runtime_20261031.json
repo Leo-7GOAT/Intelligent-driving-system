@@ -1,0 +1,254 @@
+{
+  "scope": "Aggregate every audited evaluation frame,including failures and interventions.",
+  "batch": "20261031T022652Z_native_supervised_ppo",
+  "method": "B1",
+  "raw_audit_sha256": "901ec62efce6e7731cab3585ad0191e771bcae2d9283c8964ac2ce22a84e4ecc",
+  "analyzer_sha256": "be5b7ac8b669394e7592177efc801ef2b393a1eaafe672141c4845c02e456e5e",
+  "results": {
+    "counts": {
+      "cases": 12,
+      "successes": 7,
+      "unsafe_episodes": 0,
+      "decisions": 7257,
+      "controls": 7257
+    },
+    "termination_counts": {
+      "success": 7,
+      "deadline": 5
+    },
+    "latencies": {
+      "environment_decision": {
+        "count": 7257,
+        "median": 0.026760400040075183,
+        "p95": 0.23293603998608886,
+        "p99": 0.3080725040426477,
+        "max": 0.4295743000693619,
+        "over_period_fraction": 0.38294060906710764,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle": {
+        "count": 7257,
+        "median": 0.008390099974349141,
+        "p95": 0.01282270005904138,
+        "p99": 0.015315976003184892,
+        "max": 0.3252303999615833,
+        "over_period_fraction": 0.0019291718340912222,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "planner_search": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "p99": null,
+        "max": null,
+        "over_period_fraction": null
+      },
+      "execution_feedback": {
+        "count": 7257,
+        "median": 0.01656429993454367,
+        "p95": 0.2203192999586463,
+        "p99": 0.29433139606378966,
+        "max": 0.42085329990368336,
+        "over_period_fraction": 0.3556566074135318,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    "mode_decisions": {
+      "flat": 7257
+    },
+    "mode_controls": {
+      "flat": 7257
+    },
+    "categorical_action_decisions": {},
+    "controller_status_controls": {
+      "direct": 7257
+    },
+    "planner_status_queries": {},
+    "expanded_nodes": 0,
+    "intervention_controls": 0,
+    "shared_shield_controls": 0,
+    "stationary_controls_abs_v_below_0_05": 2630,
+    "negative_acceleration_request_controls": 4330,
+    "actual_brake_controls_above_1e_6": 2607,
+    "vehicle_control_coverage_controls": 7257,
+    "vehicle_control_missing_controls": 0,
+    "vehicle_controls_recovered_from_raw_same_frame": 12,
+    "success_only_travel_seconds": [
+      17.650000263005495,
+      17.55000026151538,
+      24.600000366568565,
+      16.600000247359276,
+      16.50000024586916,
+      22.000000327825546,
+      22.95000034198165
+    ],
+    "all_episode_durations_seconds": [
+      17.650000263005495,
+      17.55000026151538,
+      24.600000366568565,
+      45.000000670552254,
+      16.600000247359276,
+      45.000000670552254,
+      16.50000024586916,
+      45.000000670552254,
+      22.000000327825546,
+      22.95000034198165,
+      45.000000670552254,
+      45.000000670552254
+    ],
+    "per_case": [
+      {
+        "case_id": 0,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 353,
+        "decisions": 353,
+        "simulation_seconds": 17.650000263005495,
+        "progress_metres": 23.882123431509733,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 1,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 351,
+        "decisions": 351,
+        "simulation_seconds": 17.55000026151538,
+        "progress_metres": 23.937770634523705,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 2,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 492,
+        "decisions": 492,
+        "simulation_seconds": 24.600000366568565,
+        "progress_metres": 21.985508787345104,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 3,
+        "success": false,
+        "termination_reason": "deadline",
+        "controls": 900,
+        "decisions": 900,
+        "simulation_seconds": 45.000000670552254,
+        "progress_metres": 18.7481180181679,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 4,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 332,
+        "decisions": 332,
+        "simulation_seconds": 16.600000247359276,
+        "progress_metres": 23.891735951358218,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 5,
+        "success": false,
+        "termination_reason": "deadline",
+        "controls": 900,
+        "decisions": 900,
+        "simulation_seconds": 45.000000670552254,
+        "progress_metres": 22.81519673929151,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 6,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 330,
+        "decisions": 330,
+        "simulation_seconds": 16.50000024586916,
+        "progress_metres": 22.13846492385367,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 7,
+        "success": false,
+        "termination_reason": "deadline",
+        "controls": 900,
+        "decisions": 900,
+        "simulation_seconds": 45.000000670552254,
+        "progress_metres": 17.276900586594312,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 8,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 440,
+        "decisions": 440,
+        "simulation_seconds": 22.000000327825546,
+        "progress_metres": 24.29987858348579,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 9,
+        "success": true,
+        "termination_reason": "success",
+        "controls": 459,
+        "decisions": 459,
+        "simulation_seconds": 22.95000034198165,
+        "progress_metres": 23.75468314622595,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 10,
+        "success": false,
+        "termination_reason": "deadline",
+        "controls": 900,
+        "decisions": 900,
+        "simulation_seconds": 45.000000670552254,
+        "progress_metres": 21.331657294961392,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      {
+        "case_id": 11,
+        "success": false,
+        "termination_reason": "deadline",
+        "controls": 900,
+        "decisions": 900,
+        "simulation_seconds": 45.000000670552254,
+        "progress_metres": 18.349455912379327,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      }
+    ]
+  },
+  "timing_limits": "Environment decision timer excludes policy prediction/normalization and runner serialization. Control cycle excludes planning and the later candidate-feedback observation. These synchronized execution timings are not full-runner latency or a hard realtime certificate.",
+  "mechanism_limits": "Parking brake,policy-selected waiting,dynamic braking,planner-failure fallback and shared shield are reported separately. Stationary time alone does not classify stagnation. No controller superiority or learned-feedback benefit inferred.",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

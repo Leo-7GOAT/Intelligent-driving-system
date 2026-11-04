@@ -1,0 +1,78 @@
+{
+  "scope": "Closed known-condition learning comparison with fixed lowlevel;single continued policy",
+  "research_acceptance": "UNMET",
+  "training_batch": "20261104_outcome_context_PPO10240_H",
+  "endpoint_batch": "20261104_outcome_context_PPO10240_H_same2_endpoint",
+  "baseline_batch": "20261104_mpc_reference_effort_H_same2_transfer",
+  "source_git_commit": "b94c1ae63782dccb0fa3fdb46e15b2cfb78b0065",
+  "training": {
+    "actual_controls": 10482,
+    "reset_ticks": 557,
+    "decisions": 1056,
+    "Adam_updates_each": 330,
+    "parameter_states": 34,
+    "learned_failure_gain": 0.0014071838231757283,
+    "actual_initial_weights_Adam_RNG_equal": true,
+    "RMS_exact": true,
+    "completed_episode_termination_counts": {
+      "success": 17
+    },
+    "unfinished_episode_not_counted_as_success": true,
+    "new_supervision": 0,
+    "learned_reference_gain": -0.00030437199166044593
+  },
+  "before_successes": 1,
+  "after_successes": 2,
+  "before_unsafe_episodes": 0,
+  "after_unsafe_episodes": 0,
+  "unique_known_conditions": 2,
+  "paired_cases": [
+    {
+      "original_case_id": 21,
+      "before": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 561,
+        "interventions": 43,
+        "distance": 26.89365808814793
+      },
+      "after": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 449,
+        "interventions": 0,
+        "distance": 26.66259806562283
+      }
+    },
+    {
+      "original_case_id": 27,
+      "before": {
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "interventions": 560,
+        "distance": 18.403269271609837
+      },
+      "after": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 462,
+        "interventions": 1,
+        "distance": 26.626175883955572
+      }
+    }
+  ],
+  "before_model_sha256": "6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e",
+  "after_model_sha256": "ca2f4bffb178c0bbde5695306a1f82d80ba527b5ce6e3e932bdda74b86469f76",
+  "initializer_model_sha256": "85740d818a0517b9d35c62554f2aa5665a2d43323c59d1da0c9f82001c0208c4",
+  "zero_effect_schema_migration": true,
+  "raw_audit_sha256": {
+    "training": "01597df96b4937af86b1c4deee0768c3936330cb22e7f0c5f1b7b9bdf79f7f81",
+    "before": "3cc57f96cc9b41dd6a89a2a93a324772572a1e1c85a090e527e4ff6dba941188",
+    "after": "9225329b2e912e3733c9ac458c20e1583c1d63212d18133535af0cdc6cab8dfd"
+  },
+  "saved_learning_proof_sha256": "11fd214c3574b7d7a7505761314d2af0619ca3b59fff92fe59c669bd965df42a",
+  "actual_controls_in_comparison": 12854,
+  "script_sha256": "1e3e912f16f5bd046f2cd06a9930b945f7ca0c2d0ee203c71795326ceba8d05c",
+  "limits": "Repeated known conditions and one continued seed,not independent-seed statistical evidence or final confirmation. Stochastic training success is separate from frozen-policy performance. Formal five-seed,120unique-condition,baseline and ablation requirements remain unmet."
+}

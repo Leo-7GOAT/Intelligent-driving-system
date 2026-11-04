@@ -1,0 +1,312 @@
+{
+  "scope": "Compare the initial and trained B1 actions at audited measured decision states.",
+  "batch": "20261101T015454924014Z_native_B1_basic_lr_extension",
+  "raw_audit_sha256": "e72ca2ca714ad74e1461537ada3d56b495af3d96063c15874b1cee75e40e05a1",
+  "model_sha256": "2898fb14da3dcf7709cc36fc1d53c86db4b56c34e8517373a88906d63811dae1",
+  "initial_model_sha256": "27fad73964e4a2357b8cd5986be2911c19b1c3f2060f9c616dc74505ee173ef8",
+  "initial_metadata_sha256": "c2649e8f15ecb6bb8756741547157e81733aaf39a125131bee3fecae77e719f3",
+  "normalization_sha256": "b24fde6b1aca6c3ebcd7239eefa08bd9aca15cbc4a5c84f01adf3d4cda8fb98e",
+  "script_sha256": "dfef8fe6aca6790c45fb7712d28f36e8696937eccb6de897645d22c83cb0f8b2",
+  "frozen_observation_statistics_identical": true,
+  "cases": 4,
+  "reconstructed_decisions": 10,
+  "results": [
+    {
+      "case_id": 0,
+      "landmarks": [
+        "initial"
+      ],
+      "decision_index": 0,
+      "simulation_seconds": 0.0,
+      "goal_distance_m": 24.63177920846838,
+      "absolute_speed_mps": 0.0,
+      "yaw_error_rad": 0.5222659966307686,
+      "initial_policy_action": [
+        0.9428560733795166,
+        -0.02212870493531227
+      ],
+      "trained_policy_action": [
+        0.9446324706077576,
+        -0.024343863129615784
+      ],
+      "executed_policy_action_error": 0.0,
+      "trained_minus_initial_action": [
+        0.0017763972282409668,
+        -0.0022151581943035126
+      ]
+    },
+    {
+      "case_id": 0,
+      "landmarks": [
+        "closest_observed_decision"
+      ],
+      "decision_index": 374,
+      "simulation_seconds": 18.700000278651714,
+      "goal_distance_m": 2.441219100377237,
+      "absolute_speed_mps": 0.9941550936492507,
+      "yaw_error_rad": 0.23172191276390341,
+      "initial_policy_action": [
+        -0.14105139672756195,
+        0.2966129779815674
+      ],
+      "trained_policy_action": [
+        -0.13692037761211395,
+        0.2927747368812561
+      ],
+      "executed_policy_action_error": 0.0,
+      "trained_minus_initial_action": [
+        0.004131019115447998,
+        -0.0038382411003112793
+      ]
+    },
+    {
+      "case_id": 0,
+      "landmarks": [
+        "last_observed_decision"
+      ],
+      "decision_index": 406,
+      "simulation_seconds": 20.300000302493572,
+      "goal_distance_m": 2.7954999015355497,
+      "absolute_speed_mps": 0.7644252704897494,
+      "yaw_error_rad": 0.2002073960044508,
+      "initial_policy_action": [
+        -0.061032794415950775,
+        0.18981140851974487
+      ],
+      "trained_policy_action": [
+        -0.06157228723168373,
+        0.18619434535503387
+      ],
+      "executed_policy_action_error": 0.0,
+      "trained_minus_initial_action": [
+        -0.0005394928157329559,
+        -0.0036170631647109985
+      ]
+    },
+    {
+      "case_id": 1,
+      "landmarks": [
+        "initial"
+      ],
+      "decision_index": 0,
+      "simulation_seconds": 0.0,
+      "goal_distance_m": 24.347595354860264,
+      "absolute_speed_mps": 0.0,
+      "yaw_error_rad": 1.0470275749400235,
+      "initial_policy_action": [
+        0.8910636901855469,
+        -0.16182681918144226
+      ],
+      "trained_policy_action": [
+        0.8908267617225647,
+        -0.15697987377643585
+      ],
+      "executed_policy_action_error": 0.0,
+      "trained_minus_initial_action": [
+        -0.00023692846298217773,
+        0.004846945405006409
+      ]
+    },
+    {
+      "case_id": 1,
+      "landmarks": [
+        "closest_observed_decision",
+        "last_observed_decision"
+      ],
+      "decision_index": 702,
+      "simulation_seconds": 35.10000052303076,
+      "goal_distance_m": 22.46780423362479,
+      "absolute_speed_mps": 0.40753241657089945,
+      "yaw_error_rad": 1.3785236861002828,
+      "initial_policy_action": [
+        0.02047426626086235,
+        -0.8503733277320862
+      ],
+      "trained_policy_action": [
+        0.021935932338237762,
+        -0.843040406703949
+      ],
+      "executed_policy_action_error": 0.0,
+      "trained_minus_initial_action": [
+        0.001461666077375412,
+        0.007332921028137207
+      ]
+    },
+    {
+      "case_id": 2,
+      "landmarks": [
+        "initial"
+      ],
+      "decision_index": 0,
+      "simulation_seconds": 0.0,
+      "goal_distance_m": 22.78235834793003,
+      "absolute_speed_mps": 0.0,
+      "yaw_error_rad": 0.5232530972888059,
+      "initial_policy_action": [
+        0.8704077005386353,
+        -0.0013933973386883736
+      ],
+      "trained_policy_action": [
+        0.8668981790542603,
+        0.0002784682437777519
+      ],
+      "executed_policy_action_error": 0.0,
+      "trained_minus_initial_action": [
+        -0.003509521484375,
+        0.0016718655824661255
+      ]
+    },
+    {
+      "case_id": 2,
+      "landmarks": [
+        "closest_observed_decision"
+      ],
+      "decision_index": 318,
+      "simulation_seconds": 15.900000236928463,
+      "goal_distance_m": 1.0012961148485395,
+      "absolute_speed_mps": 1.1282592211132894,
+      "yaw_error_rad": 0.11330791700294807,
+      "initial_policy_action": [
+        -0.14388687908649445,
+        -0.05355990678071976
+      ],
+      "trained_policy_action": [
+        -0.14405325055122375,
+        -0.05469333752989769
+      ],
+      "executed_policy_action_error": 7.450580596923828e-09,
+      "trained_minus_initial_action": [
+        -0.00016637146472930908,
+        -0.0011334307491779327
+      ]
+    },
+    {
+      "case_id": 2,
+      "landmarks": [
+        "last_observed_decision"
+      ],
+      "decision_index": 389,
+      "simulation_seconds": 19.450000289827585,
+      "goal_distance_m": 2.8461693234898378,
+      "absolute_speed_mps": 0.6860886590844046,
+      "yaw_error_rad": 0.2927314712282021,
+      "initial_policy_action": [
+        0.004676667042076588,
+        -0.7740931510925293
+      ],
+      "trained_policy_action": [
+        -0.009285415522754192,
+        -0.7704026103019714
+      ],
+      "executed_policy_action_error": 0.0,
+      "trained_minus_initial_action": [
+        -0.01396208256483078,
+        0.0036905407905578613
+      ]
+    },
+    {
+      "case_id": 3,
+      "landmarks": [
+        "initial"
+      ],
+      "decision_index": 0,
+      "simulation_seconds": 0.0,
+      "goal_distance_m": 20.723819531487553,
+      "absolute_speed_mps": 0.0,
+      "yaw_error_rad": 1.0476728297438251,
+      "initial_policy_action": [
+        0.9609494805335999,
+        -0.03535089269280434
+      ],
+      "trained_policy_action": [
+        0.9632072448730469,
+        -0.027852140367031097
+      ],
+      "executed_policy_action_error": 0.0,
+      "trained_minus_initial_action": [
+        0.0022577643394470215,
+        0.007498752325773239
+      ]
+    },
+    {
+      "case_id": 3,
+      "landmarks": [
+        "closest_observed_decision",
+        "last_observed_decision"
+      ],
+      "decision_index": 72,
+      "simulation_seconds": 3.6000000536441803,
+      "goal_distance_m": 17.023356322331026,
+      "absolute_speed_mps": 1.6468485673289024,
+      "yaw_error_rad": 0.6467138207661662,
+      "initial_policy_action": [
+        -0.04617342725396156,
+        -0.2999974489212036
+      ],
+      "trained_policy_action": [
+        -0.044025857001543045,
+        -0.3002582788467407
+      ],
+      "executed_policy_action_error": 0.0,
+      "trained_minus_initial_action": [
+        0.002147570252418518,
+        -0.0002608299255371094
+      ]
+    }
+  ],
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "limits": "Same measured states from the trained policy,not executed initial-policy counterfactuals. Post-terminal states are not queried. Action differences do not establish a causal source of failure or driving improvement.",
+  "research_acceptance": "UNMET",
+  "all_measured_control_goal_proximity": [
+    {
+      "case_id": 0,
+      "controls": 407,
+      "closest_measured_goal_distance_m": 2.441219100377237,
+      "goal_position_ever_entered": false,
+      "terminal_goal_distance_m": 2.8138094666681237,
+      "terminal_speed_mps": 0.7158496541627879,
+      "terminal_yaw_error_rad": 0.19881882381208316
+    },
+    {
+      "case_id": 1,
+      "controls": 703,
+      "closest_measured_goal_distance_m": 22.462083169798195,
+      "goal_position_ever_entered": false,
+      "terminal_goal_distance_m": 22.462083169798195,
+      "terminal_speed_mps": 0.3941812466184172,
+      "terminal_yaw_error_rad": 1.381417343782708
+    },
+    {
+      "case_id": 2,
+      "controls": 390,
+      "closest_measured_goal_distance_m": 1.0012961148485395,
+      "goal_position_ever_entered": false,
+      "terminal_goal_distance_m": 2.877999100771241,
+      "terminal_speed_mps": 0.6284763653090604,
+      "terminal_yaw_error_rad": 0.2969648320969922
+    },
+    {
+      "case_id": 3,
+      "controls": 73,
+      "closest_measured_goal_distance_m": 16.950286846569558,
+      "goal_position_ever_entered": false,
+      "terminal_goal_distance_m": 16.950286846569558,
+      "terminal_speed_mps": 1.5855458751781697,
+      "terminal_yaw_error_rad": 0.6423979684826109
+    }
+  ],
+  "goal_position_tolerance_m": 0.8,
+  "figure": "figures/native_B1_seed44_lower_rate_failures_20261101.png",
+  "figure_sha256": "b0ee44bb132d5ac07875974f94a02aa2d0152ea4cb62687538718a032e897d1f",
+  "figure_manifest_sha256": "edc6f3c15104ed2a8653401c38af1714ec9207aefa3fa7af4e454e054e9c6dfc",
+  "finding": "All4episodes fail bounds without ever entering goal position tolerance;case3terminates after3.65s,so terminal stopping alone cannot explain these failures.",
+  "landmark_limits": "Initial means are the retained trained parent of the lower-rate extension,not a zero-PPO model. Counterfactual parent actions are not executed. Ten decision states do not identify a causal failure mechanism.",
+  "independent_figure_verification": {
+    "source_commit": "3d4e992f91fb5a0f613120dbee4433ec1d2c78a5",
+    "figure_bytes_exact": true,
+    "figure_sha256": "b0ee44bb132d5ac07875974f94a02aa2d0152ea4cb62687538718a032e897d1f",
+    "new_controls": 0,
+    "new_optimizer_updates": 0
+  }
+}

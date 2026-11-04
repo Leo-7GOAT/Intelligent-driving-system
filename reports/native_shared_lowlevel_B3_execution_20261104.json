@@ -1,0 +1,80 @@
+{
+  "status": "COMPLETE_BOTH_INVENTORIES_RAW_AND_ENGINE_VERIFIED",
+  "research_acceptance": "UNMET",
+  "recorded_utc": "2026-11-04T10:06:46.089922+00:00",
+  "source_commit": "248bd7e111a04bd86cbba5afb38141cc0ed542d7",
+  "current_execution": "20261104_shared_lowlevel_B3_execution_r2",
+  "batch": "20261104_shared_lowlevel_B3_r2_placements30",
+  "protocol_sha256": "55ea019839fa6dd7c57698d443db2aef71f5ef51ff8355a3ee64dc471fa9135f",
+  "registered_cases": {
+    "placements30": 30,
+    "known24": 24
+  },
+  "new_PPO_updates": 0,
+  "new_final_conditions": 0,
+  "first_attempt": {
+    "batch": "20261104_shared_lowlevel_B3_placements30",
+    "status": "INFRASTRUCTURE_FAILURE_BEFORE_CONTROL",
+    "error": "ValueError('Reference context requires the explicit hierarchical reference-reuse interface')",
+    "response_records": 0,
+    "actual_vehicle_controls": 0,
+    "owned_cleanup": "owned_empty_server_stopped",
+    "bridge_sha256": "88371f35de941a24b3faf5bba4d9a1958bfce039792933e816cdbc43e89c4150"
+  },
+  "fix": "Allow B3 in the existing reference-context observation constructor;all observation arithmetic unchanged.H/B3exact observation equality covered by regression.",
+  "tests": {
+    "passed": 20,
+    "failures": 0,
+    "seconds": 31.023,
+    "evidence": "shared_B3_context_constructor_tests.xml"
+  },
+  "runtime": {
+    "worker_pid": 26264,
+    "owned_server_shipping_pid": 21844,
+    "RPC_span": [
+      2110,
+      2111,
+      2112
+    ],
+    "unowned_2100_untouched": true,
+    "automatic_retries": 0,
+    "all_owned_jobs_exited": true,
+    "all_owned_servers_stopped": true,
+    "external_2100_still_running_after_own_cleanup": true
+  },
+  "limits": "All54registered known development entries completed;one continued learned seed;no new final conditions or PPO updates in B3. All methods score54/54;B3has384interventions and0planner failures versus H561/18 and H0567/18.No PPO or feedback completion-rate advantage established.Full-cycle timings from a shared workstation do not establish isolated real-time performance.",
+  "completed_utc": "2026-11-04T10:26:11.894134+00:00",
+  "results": [
+    {
+      "phase": "placements30",
+      "batch": "20261104_shared_lowlevel_B3_r2_placements30",
+      "cases": 30,
+      "successes": 30,
+      "actual_controls": 10720,
+      "raw_audit_sha256": "4eab84442262bfdf1bac99a9cab269c5894fd0732e64b665adbdf040ae3c2871",
+      "engine_sha256": "fb1f55effd48cbad67396d4fba0d9522930a1d5c838d79992f79814e2e66220b",
+      "new_PPO_updates": 0,
+      "new_final_conditions": 0
+    },
+    {
+      "phase": "known24",
+      "batch": "20261104_shared_lowlevel_B3_r2_known24",
+      "cases": 24,
+      "successes": 24,
+      "actual_controls": 8094,
+      "raw_audit_sha256": "65668c5b59da53d6e7604e47fdcbe21c38e67728de63c9e9587e5ca0d065438d",
+      "engine_sha256": "d508571c7b4fc3445c535547f292c7de4b2d0eae43846b08584ebe208077ccd1",
+      "new_PPO_updates": 0,
+      "new_final_conditions": 0
+    }
+  ],
+  "actual_evaluation_controls": 18814,
+  "complete_evidence_sha256": "195d2dc9be3ac006f30eba9a206ef844857734aed952b1af6ce3c0f513e9d68e",
+  "comparison_report": "native_shared_lowlevel_H_H0_B3_complete_20261104.json",
+  "comparison_report_sha256": "90494558e18c95ec9d1948d9e0a48f861931cdc177ccab80775ad491e742d270",
+  "CPU_CI": {
+    "commit": "248bd7e111a04bd86cbba5afb38141cc0ed542d7",
+    "status": "SUCCESS",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41811661036"
+  }
+}

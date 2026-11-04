@@ -1,0 +1,1049 @@
+{
+  "scope": "Completed fixed512-step continuation of all five failed TRAIN-only actor fits;zero native controls or PPOupdates.",
+  "executed_plan_sha256": "799388a76a6bedecaaf38fab2385a5a4ad0d77ed050213d0cf0430cf724431c7",
+  "canonical_plan_sha256": "799388a76a6bedecaaf38fab2385a5a4ad0d77ed050213d0cf0430cf724431c7",
+  "result": {
+    "phase": "ALL_FIVE_CPU_CONTINUATIONS_COMPLETE",
+    "completed": [
+      {
+        "seed": 11,
+        "source_model_sha256": "118de13a3ef12f7eee75fad91fa7427e0a0191ad7952dd36f23d99b1816ef10d",
+        "model_sha256": "5c0fffc4178884180c4c164427389e7173ea2793f5ec1e89d22af11706bf8ad3",
+        "new_auxiliary_Adam_steps": 512,
+        "actual_auxiliary_Adam_step_each": [
+          1536
+        ],
+        "auxiliary_optimizer_and_sampler_resumed": true,
+        "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+        "teacher_metrics": [
+          {
+            "case_id": 0,
+            "reflected": false,
+            "acceleration_RMS": 0.03113633021712303,
+            "steering_RMS_rad": 0.005382276140153408
+          },
+          {
+            "case_id": 1,
+            "reflected": false,
+            "acceleration_RMS": 0.02174275927245617,
+            "steering_RMS_rad": 0.006697074510157108
+          },
+          {
+            "case_id": 2,
+            "reflected": false,
+            "acceleration_RMS": 0.023740362375974655,
+            "steering_RMS_rad": 0.005982558708637953
+          },
+          {
+            "case_id": 3,
+            "reflected": false,
+            "acceleration_RMS": 0.027350109070539474,
+            "steering_RMS_rad": 0.006043991539627314
+          },
+          {
+            "case_id": 4,
+            "reflected": false,
+            "acceleration_RMS": 0.026594849303364754,
+            "steering_RMS_rad": 0.0062296586111187935
+          },
+          {
+            "case_id": 5,
+            "reflected": false,
+            "acceleration_RMS": 0.06125598028302193,
+            "steering_RMS_rad": 0.006357348524034023
+          },
+          {
+            "case_id": 6,
+            "reflected": false,
+            "acceleration_RMS": 0.029079677537083626,
+            "steering_RMS_rad": 0.005306729581207037
+          },
+          {
+            "case_id": 7,
+            "reflected": false,
+            "acceleration_RMS": 0.03179920092225075,
+            "steering_RMS_rad": 0.00770663982257247
+          },
+          {
+            "case_id": 8,
+            "reflected": false,
+            "acceleration_RMS": 0.0856376588344574,
+            "steering_RMS_rad": 0.0047370269894599915
+          },
+          {
+            "case_id": 9,
+            "reflected": false,
+            "acceleration_RMS": 0.08256836235523224,
+            "steering_RMS_rad": 0.005809248890727758
+          },
+          {
+            "case_id": 10,
+            "reflected": false,
+            "acceleration_RMS": 0.09207181632518768,
+            "steering_RMS_rad": 0.004585293121635914
+          },
+          {
+            "case_id": 11,
+            "reflected": false,
+            "acceleration_RMS": 0.08746547996997833,
+            "steering_RMS_rad": 0.0057396069169044495
+          },
+          {
+            "case_id": 0,
+            "reflected": true,
+            "acceleration_RMS": 0.05242631584405899,
+            "steering_RMS_rad": 0.005791070871055126
+          },
+          {
+            "case_id": 1,
+            "reflected": true,
+            "acceleration_RMS": 0.03700832650065422,
+            "steering_RMS_rad": 0.007699122652411461
+          },
+          {
+            "case_id": 2,
+            "reflected": true,
+            "acceleration_RMS": 0.03210541233420372,
+            "steering_RMS_rad": 0.00639242073521018
+          },
+          {
+            "case_id": 3,
+            "reflected": true,
+            "acceleration_RMS": 0.09576073288917542,
+            "steering_RMS_rad": 0.006993850693106651
+          },
+          {
+            "case_id": 4,
+            "reflected": true,
+            "acceleration_RMS": 0.05119386687874794,
+            "steering_RMS_rad": 0.006138811819255352
+          },
+          {
+            "case_id": 5,
+            "reflected": true,
+            "acceleration_RMS": 0.11329195648431778,
+            "steering_RMS_rad": 0.008451254107058048
+          },
+          {
+            "case_id": 6,
+            "reflected": true,
+            "acceleration_RMS": 0.04386543855071068,
+            "steering_RMS_rad": 0.007539140991866589
+          },
+          {
+            "case_id": 7,
+            "reflected": true,
+            "acceleration_RMS": 0.05610892176628113,
+            "steering_RMS_rad": 0.007468784227967262
+          },
+          {
+            "case_id": 8,
+            "reflected": true,
+            "acceleration_RMS": 0.10749220103025436,
+            "steering_RMS_rad": 0.005292639601975679
+          },
+          {
+            "case_id": 9,
+            "reflected": true,
+            "acceleration_RMS": 0.10307503491640091,
+            "steering_RMS_rad": 0.00738435797393322
+          },
+          {
+            "case_id": 10,
+            "reflected": true,
+            "acceleration_RMS": 0.10961711406707764,
+            "steering_RMS_rad": 0.0050932918675243855
+          },
+          {
+            "case_id": 11,
+            "reflected": true,
+            "acceleration_RMS": 0.11200136691331863,
+            "steering_RMS_rad": 0.007618675474077463
+          }
+        ],
+        "pose_response": [
+          {
+            "axis": "yaw_radians",
+            "normalized_steering_response_RMS": 0.025047702714800835,
+            "ceiling": 0.025375864934176207
+          },
+          {
+            "axis": "lateral_metres",
+            "normalized_steering_response_RMS": 0.0306647140532732,
+            "ceiling": 0.03252546302974224
+          }
+        ],
+        "offline_screen_passed": true,
+        "history": [
+          {
+            "seed": 11,
+            "additional_auxiliary_steps": 1,
+            "teacher_loss": 0.3295937776565552,
+            "response_loss": 0.2842114269733429
+          },
+          {
+            "seed": 11,
+            "additional_auxiliary_steps": 128,
+            "teacher_loss": 0.500672459602356,
+            "response_loss": 0.2689801752567291
+          },
+          {
+            "seed": 11,
+            "additional_auxiliary_steps": 256,
+            "teacher_loss": 0.7226539254188538,
+            "response_loss": 0.2542637586593628
+          },
+          {
+            "seed": 11,
+            "additional_auxiliary_steps": 384,
+            "teacher_loss": 0.8595739603042603,
+            "response_loss": 0.23944981396198273
+          },
+          {
+            "seed": 11,
+            "additional_auxiliary_steps": 512,
+            "teacher_loss": 0.2224089652299881,
+            "response_loss": 0.22877883911132812
+          }
+        ],
+        "elapsed_seconds": 57.28100000019185,
+        "new_controls": 0,
+        "new_PPO_updates": 0
+      },
+      {
+        "seed": 22,
+        "source_model_sha256": "c4e8e3971c6357886ccd217f088fccaae0ccc8b8dcdeb9cf23507657523b848c",
+        "model_sha256": "637c75fff32749b646f8320193d8e4f70c6b175c591650967f5692bf4b0e8c03",
+        "new_auxiliary_Adam_steps": 512,
+        "actual_auxiliary_Adam_step_each": [
+          1536
+        ],
+        "auxiliary_optimizer_and_sampler_resumed": true,
+        "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+        "teacher_metrics": [
+          {
+            "case_id": 0,
+            "reflected": false,
+            "acceleration_RMS": 0.02059469372034073,
+            "steering_RMS_rad": 0.00516125513240695
+          },
+          {
+            "case_id": 1,
+            "reflected": false,
+            "acceleration_RMS": 0.021532250568270683,
+            "steering_RMS_rad": 0.006746063008904457
+          },
+          {
+            "case_id": 2,
+            "reflected": false,
+            "acceleration_RMS": 0.019313689321279526,
+            "steering_RMS_rad": 0.006534860469400883
+          },
+          {
+            "case_id": 3,
+            "reflected": false,
+            "acceleration_RMS": 0.02542915940284729,
+            "steering_RMS_rad": 0.0054648034274578094
+          },
+          {
+            "case_id": 4,
+            "reflected": false,
+            "acceleration_RMS": 0.02790725789964199,
+            "steering_RMS_rad": 0.005490369163453579
+          },
+          {
+            "case_id": 5,
+            "reflected": false,
+            "acceleration_RMS": 0.0688844695687294,
+            "steering_RMS_rad": 0.007306104991585016
+          },
+          {
+            "case_id": 6,
+            "reflected": false,
+            "acceleration_RMS": 0.03213007003068924,
+            "steering_RMS_rad": 0.005456245969980955
+          },
+          {
+            "case_id": 7,
+            "reflected": false,
+            "acceleration_RMS": 0.027734367176890373,
+            "steering_RMS_rad": 0.005621619988232851
+          },
+          {
+            "case_id": 8,
+            "reflected": false,
+            "acceleration_RMS": 0.08538717776536942,
+            "steering_RMS_rad": 0.0047896807081997395
+          },
+          {
+            "case_id": 9,
+            "reflected": false,
+            "acceleration_RMS": 0.08379685133695602,
+            "steering_RMS_rad": 0.006766654085367918
+          },
+          {
+            "case_id": 10,
+            "reflected": false,
+            "acceleration_RMS": 0.09288472682237625,
+            "steering_RMS_rad": 0.005872280802577734
+          },
+          {
+            "case_id": 11,
+            "reflected": false,
+            "acceleration_RMS": 0.08820832520723343,
+            "steering_RMS_rad": 0.006022665649652481
+          },
+          {
+            "case_id": 0,
+            "reflected": true,
+            "acceleration_RMS": 0.05364222824573517,
+            "steering_RMS_rad": 0.00676959240809083
+          },
+          {
+            "case_id": 1,
+            "reflected": true,
+            "acceleration_RMS": 0.038915056735277176,
+            "steering_RMS_rad": 0.008217439986765385
+          },
+          {
+            "case_id": 2,
+            "reflected": true,
+            "acceleration_RMS": 0.029926722869277,
+            "steering_RMS_rad": 0.006567317061126232
+          },
+          {
+            "case_id": 3,
+            "reflected": true,
+            "acceleration_RMS": 0.06893813610076904,
+            "steering_RMS_rad": 0.0071541788056492805
+          },
+          {
+            "case_id": 4,
+            "reflected": true,
+            "acceleration_RMS": 0.036806125193834305,
+            "steering_RMS_rad": 0.006516373250633478
+          },
+          {
+            "case_id": 5,
+            "reflected": true,
+            "acceleration_RMS": 0.10681268572807312,
+            "steering_RMS_rad": 0.007830137386918068
+          },
+          {
+            "case_id": 6,
+            "reflected": true,
+            "acceleration_RMS": 0.044879648834466934,
+            "steering_RMS_rad": 0.006859280169010162
+          },
+          {
+            "case_id": 7,
+            "reflected": true,
+            "acceleration_RMS": 0.056567657738924026,
+            "steering_RMS_rad": 0.008416300639510155
+          },
+          {
+            "case_id": 8,
+            "reflected": true,
+            "acceleration_RMS": 0.10807529836893082,
+            "steering_RMS_rad": 0.0053525520488619804
+          },
+          {
+            "case_id": 9,
+            "reflected": true,
+            "acceleration_RMS": 0.10455332696437836,
+            "steering_RMS_rad": 0.008224956691265106
+          },
+          {
+            "case_id": 10,
+            "reflected": true,
+            "acceleration_RMS": 0.10900053381919861,
+            "steering_RMS_rad": 0.006547574419528246
+          },
+          {
+            "case_id": 11,
+            "reflected": true,
+            "acceleration_RMS": 0.11168528348207474,
+            "steering_RMS_rad": 0.0071038431487977505
+          }
+        ],
+        "pose_response": [
+          {
+            "axis": "yaw_radians",
+            "normalized_steering_response_RMS": 0.026924094185233116,
+            "ceiling": 0.025375864934176207
+          },
+          {
+            "axis": "lateral_metres",
+            "normalized_steering_response_RMS": 0.0325290709733963,
+            "ceiling": 0.03252546302974224
+          }
+        ],
+        "offline_screen_passed": false,
+        "history": [
+          {
+            "seed": 22,
+            "additional_auxiliary_steps": 1,
+            "teacher_loss": 0.9211630821228027,
+            "response_loss": 0.3193439543247223
+          },
+          {
+            "seed": 22,
+            "additional_auxiliary_steps": 128,
+            "teacher_loss": 0.6302431225776672,
+            "response_loss": 0.3043636381626129
+          },
+          {
+            "seed": 22,
+            "additional_auxiliary_steps": 256,
+            "teacher_loss": 0.3652816414833069,
+            "response_loss": 0.28360939025878906
+          },
+          {
+            "seed": 22,
+            "additional_auxiliary_steps": 384,
+            "teacher_loss": 0.7163494825363159,
+            "response_loss": 0.2703222334384918
+          },
+          {
+            "seed": 22,
+            "additional_auxiliary_steps": 512,
+            "teacher_loss": 0.5088473558425903,
+            "response_loss": 0.2611114978790283
+          }
+        ],
+        "elapsed_seconds": 65.03099999995902,
+        "new_controls": 0,
+        "new_PPO_updates": 0
+      },
+      {
+        "seed": 33,
+        "source_model_sha256": "d59c15693835679959b8427adf2dbeb6b5c79d23270724bf467ac34afe9abd47",
+        "model_sha256": "e4aa3484859e42807a403ab904b62d13ed8c6f0803ed834edb1fbcb7080dc25d",
+        "new_auxiliary_Adam_steps": 512,
+        "actual_auxiliary_Adam_step_each": [
+          1536
+        ],
+        "auxiliary_optimizer_and_sampler_resumed": true,
+        "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+        "teacher_metrics": [
+          {
+            "case_id": 0,
+            "reflected": false,
+            "acceleration_RMS": 0.026575244963169098,
+            "steering_RMS_rad": 0.005662569776177406
+          },
+          {
+            "case_id": 1,
+            "reflected": false,
+            "acceleration_RMS": 0.023847192525863647,
+            "steering_RMS_rad": 0.006308781448751688
+          },
+          {
+            "case_id": 2,
+            "reflected": false,
+            "acceleration_RMS": 0.018684566020965576,
+            "steering_RMS_rad": 0.005846148822456598
+          },
+          {
+            "case_id": 3,
+            "reflected": false,
+            "acceleration_RMS": 0.03487804904580116,
+            "steering_RMS_rad": 0.006102310493588448
+          },
+          {
+            "case_id": 4,
+            "reflected": false,
+            "acceleration_RMS": 0.025374626740813255,
+            "steering_RMS_rad": 0.005356133449822664
+          },
+          {
+            "case_id": 5,
+            "reflected": false,
+            "acceleration_RMS": 0.05984848365187645,
+            "steering_RMS_rad": 0.006388443056493998
+          },
+          {
+            "case_id": 6,
+            "reflected": false,
+            "acceleration_RMS": 0.029698556289076805,
+            "steering_RMS_rad": 0.005330096930265427
+          },
+          {
+            "case_id": 7,
+            "reflected": false,
+            "acceleration_RMS": 0.025231247767806053,
+            "steering_RMS_rad": 0.00586142810061574
+          },
+          {
+            "case_id": 8,
+            "reflected": false,
+            "acceleration_RMS": 0.08502335846424103,
+            "steering_RMS_rad": 0.0051427739672362804
+          },
+          {
+            "case_id": 9,
+            "reflected": false,
+            "acceleration_RMS": 0.0837177038192749,
+            "steering_RMS_rad": 0.0059898616746068
+          },
+          {
+            "case_id": 10,
+            "reflected": false,
+            "acceleration_RMS": 0.09312789142131805,
+            "steering_RMS_rad": 0.005002311896532774
+          },
+          {
+            "case_id": 11,
+            "reflected": false,
+            "acceleration_RMS": 0.08752954006195068,
+            "steering_RMS_rad": 0.005612438078969717
+          },
+          {
+            "case_id": 0,
+            "reflected": true,
+            "acceleration_RMS": 0.047459494322538376,
+            "steering_RMS_rad": 0.006009947042912245
+          },
+          {
+            "case_id": 1,
+            "reflected": true,
+            "acceleration_RMS": 0.05150695890188217,
+            "steering_RMS_rad": 0.007722410839051008
+          },
+          {
+            "case_id": 2,
+            "reflected": true,
+            "acceleration_RMS": 0.03078695386648178,
+            "steering_RMS_rad": 0.006519652437418699
+          },
+          {
+            "case_id": 3,
+            "reflected": true,
+            "acceleration_RMS": 0.0902877151966095,
+            "steering_RMS_rad": 0.008418316021561623
+          },
+          {
+            "case_id": 4,
+            "reflected": true,
+            "acceleration_RMS": 0.03617992624640465,
+            "steering_RMS_rad": 0.006678667385131121
+          },
+          {
+            "case_id": 5,
+            "reflected": true,
+            "acceleration_RMS": 0.11459601670503616,
+            "steering_RMS_rad": 0.008051909506320953
+          },
+          {
+            "case_id": 6,
+            "reflected": true,
+            "acceleration_RMS": 0.04384010657668114,
+            "steering_RMS_rad": 0.006687384098768234
+          },
+          {
+            "case_id": 7,
+            "reflected": true,
+            "acceleration_RMS": 0.05012135952711105,
+            "steering_RMS_rad": 0.008397127501666546
+          },
+          {
+            "case_id": 8,
+            "reflected": true,
+            "acceleration_RMS": 0.10642030090093613,
+            "steering_RMS_rad": 0.005338313989341259
+          },
+          {
+            "case_id": 9,
+            "reflected": true,
+            "acceleration_RMS": 0.10530779510736465,
+            "steering_RMS_rad": 0.008407745510339737
+          },
+          {
+            "case_id": 10,
+            "reflected": true,
+            "acceleration_RMS": 0.1350017488002777,
+            "steering_RMS_rad": 0.005886164028197527
+          },
+          {
+            "case_id": 11,
+            "reflected": true,
+            "acceleration_RMS": 0.11055511236190796,
+            "steering_RMS_rad": 0.008825235068798065
+          }
+        ],
+        "pose_response": [
+          {
+            "axis": "yaw_radians",
+            "normalized_steering_response_RMS": 0.02539132721722126,
+            "ceiling": 0.025375864934176207
+          },
+          {
+            "axis": "lateral_metres",
+            "normalized_steering_response_RMS": 0.031104253605008125,
+            "ceiling": 0.03252546302974224
+          }
+        ],
+        "offline_screen_passed": false,
+        "history": [
+          {
+            "seed": 33,
+            "additional_auxiliary_steps": 1,
+            "teacher_loss": 0.9558055400848389,
+            "response_loss": 0.2877914607524872
+          },
+          {
+            "seed": 33,
+            "additional_auxiliary_steps": 128,
+            "teacher_loss": 0.9722703099250793,
+            "response_loss": 0.2686236500740051
+          },
+          {
+            "seed": 33,
+            "additional_auxiliary_steps": 256,
+            "teacher_loss": 0.48508375883102417,
+            "response_loss": 0.2601519227027893
+          },
+          {
+            "seed": 33,
+            "additional_auxiliary_steps": 384,
+            "teacher_loss": 0.7430482506752014,
+            "response_loss": 0.24661824107170105
+          },
+          {
+            "seed": 33,
+            "additional_auxiliary_steps": 512,
+            "teacher_loss": 0.46801918745040894,
+            "response_loss": 0.23453693091869354
+          }
+        ],
+        "elapsed_seconds": 54.26600000006147,
+        "new_controls": 0,
+        "new_PPO_updates": 0
+      },
+      {
+        "seed": 44,
+        "source_model_sha256": "03ab5136a25151fe6a43d79ca7a4c0c8c80b39c38d71b11ed06279ccbf16dc64",
+        "model_sha256": "4dfefae8a8814f5790fc3368193aefbc11d325c607721ac479582378b4f1d5a2",
+        "new_auxiliary_Adam_steps": 512,
+        "actual_auxiliary_Adam_step_each": [
+          1536
+        ],
+        "auxiliary_optimizer_and_sampler_resumed": true,
+        "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+        "teacher_metrics": [
+          {
+            "case_id": 0,
+            "reflected": false,
+            "acceleration_RMS": 0.022070497274398804,
+            "steering_RMS_rad": 0.005136937368661165
+          },
+          {
+            "case_id": 1,
+            "reflected": false,
+            "acceleration_RMS": 0.02152700535953045,
+            "steering_RMS_rad": 0.0064522684551775455
+          },
+          {
+            "case_id": 2,
+            "reflected": false,
+            "acceleration_RMS": 0.023879017680883408,
+            "steering_RMS_rad": 0.005761770531535149
+          },
+          {
+            "case_id": 3,
+            "reflected": false,
+            "acceleration_RMS": 0.028781579807400703,
+            "steering_RMS_rad": 0.005769665818661451
+          },
+          {
+            "case_id": 4,
+            "reflected": false,
+            "acceleration_RMS": 0.026811257004737854,
+            "steering_RMS_rad": 0.005166822578758001
+          },
+          {
+            "case_id": 5,
+            "reflected": false,
+            "acceleration_RMS": 0.06212373077869415,
+            "steering_RMS_rad": 0.006521993316709995
+          },
+          {
+            "case_id": 6,
+            "reflected": false,
+            "acceleration_RMS": 0.025449534878134727,
+            "steering_RMS_rad": 0.004972630180418491
+          },
+          {
+            "case_id": 7,
+            "reflected": false,
+            "acceleration_RMS": 0.03125382959842682,
+            "steering_RMS_rad": 0.0055617219768464565
+          },
+          {
+            "case_id": 8,
+            "reflected": false,
+            "acceleration_RMS": 0.08622018992900848,
+            "steering_RMS_rad": 0.00485710334032774
+          },
+          {
+            "case_id": 9,
+            "reflected": false,
+            "acceleration_RMS": 0.08390594273805618,
+            "steering_RMS_rad": 0.005924904718995094
+          },
+          {
+            "case_id": 10,
+            "reflected": false,
+            "acceleration_RMS": 0.09217245131731033,
+            "steering_RMS_rad": 0.005044462624937296
+          },
+          {
+            "case_id": 11,
+            "reflected": false,
+            "acceleration_RMS": 0.0880824401974678,
+            "steering_RMS_rad": 0.005352841690182686
+          },
+          {
+            "case_id": 0,
+            "reflected": true,
+            "acceleration_RMS": 0.04500821232795715,
+            "steering_RMS_rad": 0.0054813772439956665
+          },
+          {
+            "case_id": 1,
+            "reflected": true,
+            "acceleration_RMS": 0.05532342195510864,
+            "steering_RMS_rad": 0.007497107144445181
+          },
+          {
+            "case_id": 2,
+            "reflected": true,
+            "acceleration_RMS": 0.04276231303811073,
+            "steering_RMS_rad": 0.0057692332193255424
+          },
+          {
+            "case_id": 3,
+            "reflected": true,
+            "acceleration_RMS": 0.05750631168484688,
+            "steering_RMS_rad": 0.006664433982223272
+          },
+          {
+            "case_id": 4,
+            "reflected": true,
+            "acceleration_RMS": 0.033503055572509766,
+            "steering_RMS_rad": 0.006518085021525621
+          },
+          {
+            "case_id": 5,
+            "reflected": true,
+            "acceleration_RMS": 0.13763189315795898,
+            "steering_RMS_rad": 0.008089064620435238
+          },
+          {
+            "case_id": 6,
+            "reflected": true,
+            "acceleration_RMS": 0.04735139012336731,
+            "steering_RMS_rad": 0.007318977266550064
+          },
+          {
+            "case_id": 7,
+            "reflected": true,
+            "acceleration_RMS": 0.054329656064510345,
+            "steering_RMS_rad": 0.008097901940345764
+          },
+          {
+            "case_id": 8,
+            "reflected": true,
+            "acceleration_RMS": 0.10471424460411072,
+            "steering_RMS_rad": 0.005437513347715139
+          },
+          {
+            "case_id": 9,
+            "reflected": true,
+            "acceleration_RMS": 0.10763967037200928,
+            "steering_RMS_rad": 0.008255649358034134
+          },
+          {
+            "case_id": 10,
+            "reflected": true,
+            "acceleration_RMS": 0.110348641872406,
+            "steering_RMS_rad": 0.005434700287878513
+          },
+          {
+            "case_id": 11,
+            "reflected": true,
+            "acceleration_RMS": 0.11279357224702835,
+            "steering_RMS_rad": 0.007566375657916069
+          }
+        ],
+        "pose_response": [
+          {
+            "axis": "yaw_radians",
+            "normalized_steering_response_RMS": 0.025976568460464478,
+            "ceiling": 0.025375864934176207
+          },
+          {
+            "axis": "lateral_metres",
+            "normalized_steering_response_RMS": 0.03201202303171158,
+            "ceiling": 0.03252546302974224
+          }
+        ],
+        "offline_screen_passed": false,
+        "history": [
+          {
+            "seed": 44,
+            "additional_auxiliary_steps": 1,
+            "teacher_loss": 0.7146917581558228,
+            "response_loss": 0.30913612246513367
+          },
+          {
+            "seed": 44,
+            "additional_auxiliary_steps": 128,
+            "teacher_loss": 1.1450649499893188,
+            "response_loss": 0.28956666588783264
+          },
+          {
+            "seed": 44,
+            "additional_auxiliary_steps": 256,
+            "teacher_loss": 0.4417892098426819,
+            "response_loss": 0.275713175535202
+          },
+          {
+            "seed": 44,
+            "additional_auxiliary_steps": 384,
+            "teacher_loss": 0.49704381823539734,
+            "response_loss": 0.2585809826850891
+          },
+          {
+            "seed": 44,
+            "additional_auxiliary_steps": 512,
+            "teacher_loss": 0.5194947123527527,
+            "response_loss": 0.24742993712425232
+          }
+        ],
+        "elapsed_seconds": 53.0,
+        "new_controls": 0,
+        "new_PPO_updates": 0
+      },
+      {
+        "seed": 55,
+        "source_model_sha256": "eabc5cfc2b3e577409e1822913e740029f243279dee78ddb8e6c310bbe6c4dc9",
+        "model_sha256": "8a020941914c33b747c95f134ed479c0ff8fa3ac5d8a72c96e00ce76485870d1",
+        "new_auxiliary_Adam_steps": 512,
+        "actual_auxiliary_Adam_step_each": [
+          1536
+        ],
+        "auxiliary_optimizer_and_sampler_resumed": true,
+        "PPO_critic_logstd_optimizer_counters_RMS_retained": true,
+        "teacher_metrics": [
+          {
+            "case_id": 0,
+            "reflected": false,
+            "acceleration_RMS": 0.023654500022530556,
+            "steering_RMS_rad": 0.005580071825534105
+          },
+          {
+            "case_id": 1,
+            "reflected": false,
+            "acceleration_RMS": 0.01953543908894062,
+            "steering_RMS_rad": 0.006360539700835943
+          },
+          {
+            "case_id": 2,
+            "reflected": false,
+            "acceleration_RMS": 0.020110590383410454,
+            "steering_RMS_rad": 0.006389469373971224
+          },
+          {
+            "case_id": 3,
+            "reflected": false,
+            "acceleration_RMS": 0.03075486049056053,
+            "steering_RMS_rad": 0.005738759879022837
+          },
+          {
+            "case_id": 4,
+            "reflected": false,
+            "acceleration_RMS": 0.027427222579717636,
+            "steering_RMS_rad": 0.005501106847077608
+          },
+          {
+            "case_id": 5,
+            "reflected": false,
+            "acceleration_RMS": 0.0656743049621582,
+            "steering_RMS_rad": 0.007121427450329065
+          },
+          {
+            "case_id": 6,
+            "reflected": false,
+            "acceleration_RMS": 0.030648430809378624,
+            "steering_RMS_rad": 0.005099503323435783
+          },
+          {
+            "case_id": 7,
+            "reflected": false,
+            "acceleration_RMS": 0.02967202663421631,
+            "steering_RMS_rad": 0.005798736587166786
+          },
+          {
+            "case_id": 8,
+            "reflected": false,
+            "acceleration_RMS": 0.08627592772245407,
+            "steering_RMS_rad": 0.005079430062323809
+          },
+          {
+            "case_id": 9,
+            "reflected": false,
+            "acceleration_RMS": 0.08386790752410889,
+            "steering_RMS_rad": 0.0064794160425662994
+          },
+          {
+            "case_id": 10,
+            "reflected": false,
+            "acceleration_RMS": 0.09432122111320496,
+            "steering_RMS_rad": 0.0053168307058513165
+          },
+          {
+            "case_id": 11,
+            "reflected": false,
+            "acceleration_RMS": 0.08846480399370193,
+            "steering_RMS_rad": 0.0055716149508953094
+          },
+          {
+            "case_id": 0,
+            "reflected": true,
+            "acceleration_RMS": 0.039419811218976974,
+            "steering_RMS_rad": 0.005882717203348875
+          },
+          {
+            "case_id": 1,
+            "reflected": true,
+            "acceleration_RMS": 0.04210474342107773,
+            "steering_RMS_rad": 0.007736637722700834
+          },
+          {
+            "case_id": 2,
+            "reflected": true,
+            "acceleration_RMS": 0.03500478342175484,
+            "steering_RMS_rad": 0.006526632234454155
+          },
+          {
+            "case_id": 3,
+            "reflected": true,
+            "acceleration_RMS": 0.10281107574701309,
+            "steering_RMS_rad": 0.0075048054568469524
+          },
+          {
+            "case_id": 4,
+            "reflected": true,
+            "acceleration_RMS": 0.040558066219091415,
+            "steering_RMS_rad": 0.006572477985173464
+          },
+          {
+            "case_id": 5,
+            "reflected": true,
+            "acceleration_RMS": 0.12663191556930542,
+            "steering_RMS_rad": 0.008666319772601128
+          },
+          {
+            "case_id": 6,
+            "reflected": true,
+            "acceleration_RMS": 0.04619152843952179,
+            "steering_RMS_rad": 0.008081016130745411
+          },
+          {
+            "case_id": 7,
+            "reflected": true,
+            "acceleration_RMS": 0.04928277060389519,
+            "steering_RMS_rad": 0.00796578824520111
+          },
+          {
+            "case_id": 8,
+            "reflected": true,
+            "acceleration_RMS": 0.10679230093955994,
+            "steering_RMS_rad": 0.005496970843523741
+          },
+          {
+            "case_id": 9,
+            "reflected": true,
+            "acceleration_RMS": 0.10529056191444397,
+            "steering_RMS_rad": 0.007674040272831917
+          },
+          {
+            "case_id": 10,
+            "reflected": true,
+            "acceleration_RMS": 0.11005314439535141,
+            "steering_RMS_rad": 0.005739366170018911
+          },
+          {
+            "case_id": 11,
+            "reflected": true,
+            "acceleration_RMS": 0.11409389972686768,
+            "steering_RMS_rad": 0.008272000588476658
+          }
+        ],
+        "pose_response": [
+          {
+            "axis": "yaw_radians",
+            "normalized_steering_response_RMS": 0.024509331211447716,
+            "ceiling": 0.025375864934176207
+          },
+          {
+            "axis": "lateral_metres",
+            "normalized_steering_response_RMS": 0.03165920078754425,
+            "ceiling": 0.03252546302974224
+          }
+        ],
+        "offline_screen_passed": true,
+        "history": [
+          {
+            "seed": 55,
+            "additional_auxiliary_steps": 1,
+            "teacher_loss": 0.6818621754646301,
+            "response_loss": 0.28124600648880005
+          },
+          {
+            "seed": 55,
+            "additional_auxiliary_steps": 128,
+            "teacher_loss": 0.36061495542526245,
+            "response_loss": 0.2662530541419983
+          },
+          {
+            "seed": 55,
+            "additional_auxiliary_steps": 256,
+            "teacher_loss": 0.3475721776485443,
+            "response_loss": 0.25237739086151123
+          },
+          {
+            "seed": 55,
+            "additional_auxiliary_steps": 384,
+            "teacher_loss": 0.3173111081123352,
+            "response_loss": 0.24461309611797333
+          },
+          {
+            "seed": 55,
+            "additional_auxiliary_steps": 512,
+            "teacher_loss": 0.41898781061172485,
+            "response_loss": 0.23381532728672028
+          }
+        ],
+        "elapsed_seconds": 57.625,
+        "new_controls": 0,
+        "new_PPO_updates": 0
+      }
+    ],
+    "new_auxiliary_Adam_steps": 2560,
+    "offline_screens_passed": 2,
+    "new_controls": 0,
+    "new_PPO_updates": 0,
+    "limits": "Isolated CPU candidates only;the actual native queue and all its inputs remain unchanged. No native qualification or additional continuation is automatic."
+  },
+  "sampler_states_reconstructed_exactly_at1024_and1536_for_all5": true,
+  "actor_weights_updated": true,
+  "critic_logstd_PPOoptimizer_counters_and_RMS_unchanged": true,
+  "plan_wording_clarification": "The fixed weights entry means the same starting checkpoints;actor tensors receive512updates while critic/log_std remain fixed. Executed plan bytes are retained unchanged.",
+  "native_cohort_inputs_unchanged": true,
+  "candidate_uniform_gate_passed": false,
+  "new_controls": 0,
+  "new_optimizer_updates_for_PPO": 0,
+  "research_acceptance": "UNMET"
+}

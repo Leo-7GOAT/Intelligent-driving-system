@@ -1,0 +1,254 @@
+{
+  "scope": "Known six-metre native development tasks; all declared endpoints, no independent seeds or healthy-baseline claim",
+  "rows": [
+    {
+      "batch": "20261026T060439Z_native_flat_distribution",
+      "method": "B1_clipped_gaussian",
+      "protocol_sha256": "b6fff37e77548ce80781e757a1211fcc7561db4e1972da264a920b89c7effd87",
+      "raw_audit_sha256": "629d98fbf7bf833c3c23465e361d12805651adbd521f348e77265edd341aae44",
+      "model_sha256": "3aa7ba94596f2444a6cf8dff3c71e1aaf5acd96072b0eda6b1f1cb62cb410799",
+      "normalization_sha256": "0d209f1f2171b49571881b6e874447915459361b986518e37865a69ea3cb9cb0",
+      "training_controls": 4150,
+      "evaluation_controls": 960,
+      "total_verified_controls": 5110,
+      "world_ticks": 5822,
+      "segment_optimizer_steps": 130,
+      "lineage_training_controls": 4150,
+      "training_termination_counts": {
+        "deadline": 15,
+        "out_of_bounds": 3
+      },
+      "eval_successes": 0,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 240
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 240
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 240
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 240
+        }
+      ]
+    },
+    {
+      "batch": "20261026T060439Z_native_flat_distribution",
+      "method": "B1_tanh_gaussian_v1",
+      "protocol_sha256": "b6fff37e77548ce80781e757a1211fcc7561db4e1972da264a920b89c7effd87",
+      "raw_audit_sha256": "8c3e63a59a5f1f9ce52caae7709df4121a635e8643cf36a304b688989a09b860",
+      "model_sha256": "031f443f048c1a2ae18945667208c99f8a360b11991037cda8063c8a783ecce4",
+      "normalization_sha256": "4870244acef8d865a6c08c9abf88affb1569758abc814a84f7f44c2f4e2bfd02",
+      "training_controls": 4154,
+      "evaluation_controls": 960,
+      "total_verified_controls": 5114,
+      "world_ticks": 5826,
+      "segment_optimizer_steps": 130,
+      "lineage_training_controls": 4154,
+      "training_termination_counts": {
+        "deadline": 15,
+        "out_of_bounds": 3
+      },
+      "eval_successes": 0,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 240
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 240
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 240
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 240
+        }
+      ]
+    },
+    {
+      "batch": "20261026T061501Z_native_progress_sanity",
+      "method": "B1",
+      "protocol_sha256": "ede5a2195f0860b3f9861f94797b5cad46d0b5b0847e593fe7bd0f0f80df8fee",
+      "raw_audit_sha256": "c9bb18d73cedcd589b764c625b92db33c0203401b5d7352fed2bf6125875ef06",
+      "model_sha256": "b5214d53f5e92674cdfb9d7572f3d69e09c73bdbf3bd001fb38596571502b740",
+      "normalization_sha256": "4b1dbd86faf4b22276f5840c5a657cd0fda5779b5a87849a4455fe679859ca6e",
+      "training_controls": 4135,
+      "evaluation_controls": 646,
+      "total_verified_controls": 4781,
+      "world_ticks": 5493,
+      "segment_optimizer_steps": 130,
+      "lineage_training_controls": 4135,
+      "training_termination_counts": {
+        "deadline": 14,
+        "out_of_bounds": 3,
+        "success": 1
+      },
+      "eval_successes": 0,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "progress": 3.5181831776279187,
+          "physics_steps": 139
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "progress": 4.107882587712653,
+          "physics_steps": 112
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "progress": 4.517618233847728,
+          "physics_steps": 155
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 3.574569715755039,
+          "physics_steps": 240
+        }
+      ]
+    },
+    {
+      "batch": "20261026T062119Z_native_continuation",
+      "method": "B1",
+      "protocol_sha256": "7aefeb706d3c2328aa0df5d12bf2d1736692a2d0bff97400911352c73d3035c7",
+      "raw_audit_sha256": "ddc8e0d5dc8b7bc272b3fa3e42e71686ea7c29c69d8d638e3263b182674fd506",
+      "model_sha256": "2b8f99b482de9786d1fdd055cd89b100057776dd5f5fb04050c58ac05b024d6a",
+      "normalization_sha256": "fa9b2049449286e6864415f2eb7939ca897638224131a6a0822ee18cab67eb7c",
+      "training_controls": 16661,
+      "evaluation_controls": 960,
+      "total_verified_controls": 17621,
+      "world_ticks": 20782,
+      "segment_optimizer_steps": 530,
+      "lineage_training_controls": 20796,
+      "training_termination_counts": {
+        "deadline": 26,
+        "out_of_bounds": 70,
+        "success": 1
+      },
+      "eval_successes": 0,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.006826142620148801,
+          "physics_steps": 240
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 0.0,
+          "physics_steps": 240
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 3.443129789616385,
+          "physics_steps": 240
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "progress": 2.016596387679166,
+          "physics_steps": 240
+        }
+      ]
+    },
+    {
+      "batch": "20261026T063241Z_native_speed_sanity",
+      "method": "B1",
+      "protocol_sha256": "c89406071e3f19ae67f0d632dca2fc2fe0d99183cf8f4db85dc8b64d1930ed5e",
+      "raw_audit_sha256": "225431f0b0ee30996dae75ab13d9a66efdc3f6c97257fbf1a03b5622bce1c9ee",
+      "model_sha256": "348fc8ad4dae458bd2d7d4f5792b907c634b8332c1c924eb51be913acff2f02a",
+      "normalization_sha256": "567d4b07afbed9017174accb90f46a6b7e139d095895bd7656b195eecbc2b26e",
+      "training_controls": 4377,
+      "evaluation_controls": 634,
+      "total_verified_controls": 5011,
+      "world_ticks": 6126,
+      "segment_optimizer_steps": 140,
+      "lineage_training_controls": 4377,
+      "training_termination_counts": {
+        "out_of_bounds": 25,
+        "success": 4,
+        "deadline": 2
+      },
+      "eval_successes": 0,
+      "cases": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "progress": 3.972309135392337,
+          "physics_steps": 185
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "progress": 4.680393161218177,
+          "physics_steps": 91
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "progress": 4.557832967943579,
+          "physics_steps": 171
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "progress": 4.008375537323124,
+          "physics_steps": 187
+        }
+      ]
+    }
+  ],
+  "total_new_controls": 37637
+}

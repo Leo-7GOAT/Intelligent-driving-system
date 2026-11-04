@@ -1,0 +1,55 @@
+{
+  "scope": "Actual prerelease upload,unauthenticated public download and independent complete matched-broader first-pair reconstruction;no new driving or learning.",
+  "archive_sha256": "536125ada8d3bf8b4a55d78505d9f53c3a257f79195646c379d4a94e2765e92f",
+  "asset_source_commit": "369db6939ee67e540aa6b63c155b3eb27964f2bc",
+  "reproduction_source_commit": "369db6939ee67e540aa6b63c155b3eb27964f2bc",
+  "verified_files": 936,
+  "methods": [
+    {
+      "method": "H",
+      "raw_audit_sha256": "1cd20dc1b0e86e3e8f71de03b07dc4d189a534150507ac1a48b791e35491e249",
+      "verified_controls": 28772,
+      "measured_start_actions_reproduced": 24,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "method": "H0",
+      "raw_audit_sha256": "06b315f9c617958ec55643a2783972bd0859c034a9e09fc74185225c8cdacf9d",
+      "verified_controls": 28640,
+      "measured_start_actions_reproduced": 24,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "dd4854412258bbf0f74483e1413557149b1f411cdc79f9f1161e1a11b1fc4b1f",
+  "figure_byte_identical": true,
+  "figure_baseline": "packaged_analysis",
+  "release": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback",
+  "is_prerelease": true,
+  "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-feedback/native_matched_broader_H_H0_seed11_20261101_repro.zip.parts.json",
+  "unauthenticated_download_verified": true,
+  "archive": "native_matched_broader_H_H0_seed11_20261101_repro.zip",
+  "bytes": 141286566,
+  "parts": 135,
+  "part_bytes": 1048576,
+  "native_training_controls": {
+    "H": 20522,
+    "H0": 20529
+  },
+  "native_Adam_updates_each": 650,
+  "known_validation_successes_each": 24,
+  "unique_known_validation_conditions": 24,
+  "independent_training_seed_pairs": 1,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "source_CI": {
+    "conclusion": "success",
+    "headSha": "369db6939ee67e540aa6b63c155b3eb27964f2bc",
+    "status": "completed"
+  },
+  "network_failures": [],
+  "research_acceptance": "UNMET;one development pair,no feedback benefit,weak B1,no final confirmation"
+}

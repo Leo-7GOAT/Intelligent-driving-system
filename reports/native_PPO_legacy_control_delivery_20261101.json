@@ -1,0 +1,221 @@
+{
+  "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+  "batch": "20261101T075805697090Z_native_B1_exploration_PPO",
+  "protocol_sha256": "902eb710e8a16ed5c75926c491fcc5c790638bfce05baba880a3a620e7e04a83",
+  "control_delivery": "actor_async_legacy",
+  "bridge_streams": [
+    {
+      "name": "bridge_bd09dab4_responses.jsonl.gz",
+      "sha256": "da4a5d6ddd3ae999432fb60f75d8c38d37c4c0eed38677936f37d7b7a7615b76"
+    }
+  ],
+  "tolerance": 1e-05,
+  "counts": {
+    "controls": 12219,
+    "gear_or_handbrake_mismatches": 0,
+    "mismatches": 51,
+    "mismatches_matching_previous_request": 51
+  },
+  "mismatch_channels": {
+    "throttle": 45,
+    "steer": 51,
+    "brake": 4
+  },
+  "by_phase": {
+    "training_or_untraced_failure": {
+      "controls": 10240,
+      "mismatches": 47
+    },
+    "evaluation": {
+      "controls": 1979,
+      "mismatches": 4
+    }
+  },
+  "mismatch_examples": [
+    {
+      "episode_id": "ce67e17f8ef24d3bab16aae024371012",
+      "frame": 3743,
+      "requested": {
+        "throttle": 0.11195482544313626,
+        "brake": 0.0,
+        "steer": 0.0011253114730486854
+      },
+      "applied": {
+        "throttle": 0.07875657826662064,
+        "brake": 0.0,
+        "steer": 0.028394313529133797
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "ce67e17f8ef24d3bab16aae024371012",
+      "frame": 4126,
+      "requested": {
+        "throttle": 0.1743890785371289,
+        "brake": 0.0,
+        "steer": 0.04420730448001905
+      },
+      "applied": {
+        "throttle": 0.1718927025794983,
+        "brake": 0.0,
+        "steer": 0.06315409392118454
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "ce67e17f8ef24d3bab16aae024371012",
+      "frame": 4312,
+      "requested": {
+        "throttle": 0.05573820814515344,
+        "brake": 0.0,
+        "steer": 0.16920033394396972
+      },
+      "applied": {
+        "throttle": 0.10035061091184616,
+        "brake": 0.0,
+        "steer": 0.19692817330360413
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "ce67e17f8ef24d3bab16aae024371012",
+      "frame": 4450,
+      "requested": {
+        "throttle": 0.018009131273740597,
+        "brake": 0.0,
+        "steer": 0.2912616952800175
+      },
+      "applied": {
+        "throttle": 0.11612362414598465,
+        "brake": 0.0,
+        "steer": 0.2635338604450226
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "c1631ae98bdf4c668b78b2bbce88e93d",
+      "frame": 4831,
+      "requested": {
+        "throttle": 0.08448887824678702,
+        "brake": 0.0,
+        "steer": 0.012216922227564087
+      },
+      "applied": {
+        "throttle": 0.10320916771888733,
+        "brake": 0.0,
+        "steer": 0.019277915358543396
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "aa645256b35c420a8673f646c22c3ca2",
+      "frame": 5130,
+      "requested": {
+        "throttle": 0.08137889916426984,
+        "brake": 0.0,
+        "steer": -0.19823503436302875
+      },
+      "applied": {
+        "throttle": 0.08254236727952957,
+        "brake": 0.0,
+        "steer": -0.22596286237239838
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "aa645256b35c420a8673f646c22c3ca2",
+      "frame": 5188,
+      "requested": {
+        "throttle": 0.35869201623851826,
+        "brake": 0.0,
+        "steer": -0.184399100230463
+      },
+      "applied": {
+        "throttle": 0.3405364751815796,
+        "brake": 0.0,
+        "steer": -0.15667127072811127
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "aa645256b35c420a8673f646c22c3ca2",
+      "frame": 5348,
+      "requested": {
+        "throttle": 0.1304278542064769,
+        "brake": 0.0,
+        "steer": 0.05056706606963652
+      },
+      "applied": {
+        "throttle": 0.06063057854771614,
+        "brake": 0.0,
+        "steer": 0.07829490303993225
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "aa645256b35c420a8673f646c22c3ca2",
+      "frame": 5487,
+      "requested": {
+        "throttle": 0.11854144946917579,
+        "brake": 0.0,
+        "steer": 0.10511385123502988
+      },
+      "applied": {
+        "throttle": 0.08652383089065552,
+        "brake": 0.0,
+        "steer": 0.13284169137477875
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "aa645256b35c420a8673f646c22c3ca2",
+      "frame": 5518,
+      "requested": {
+        "throttle": 0.0,
+        "brake": 0.283516620728175,
+        "steer": -0.011513462748164631
+      },
+      "applied": {
+        "throttle": 0.0,
+        "brake": 0.10680703818798065,
+        "steer": -0.03924129903316498
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "aa645256b35c420a8673f646c22c3ca2",
+      "frame": 5635,
+      "requested": {
+        "throttle": 0.0,
+        "brake": 0.3,
+        "steer": 0.4467143359112781
+      },
+      "applied": {
+        "throttle": 0.0,
+        "brake": 0.30000001192092896,
+        "steer": 0.4189864993095398
+      },
+      "matches_previous_request": true
+    },
+    {
+      "episode_id": "2a9ea4c6b3b94ba39f0bedaa5a61d899",
+      "frame": 6164,
+      "requested": {
+        "throttle": 0.10801866152261778,
+        "brake": 0.0,
+        "steer": 0.08357170017747438
+      },
+      "applied": {
+        "throttle": 0.11192511022090912,
+        "brake": 0.0,
+        "steer": 0.05796896666288376
+      },
+      "matches_previous_request": true
+    }
+  ],
+  "all_engine_controls_match_requested": false,
+  "strict_delivery_gate_passed": false,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+}

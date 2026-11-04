@@ -1,0 +1,13 @@
+{
+  "scope": "Repair tracked metadata export to retain the exact already-published executed recipe bytes;frozen publication run and public assets unchanged",
+  "original_reencoded_recipe_sha256": "7d5b5f34fc4186658c2cf568e2493fade56129bfab89c2964038f9c94cadf5e1",
+  "executed_published_and_tracked_recipe_sha256": "940b062fa628ef4d0b0f86061cbe899018a1f552922a132160d3b6c5cfea0a2d",
+  "recipe_semantics_unchanged": true,
+  "original_reconstruction_receipt_bytes_unchanged": true,
+  "original_publication_complete_receipt_binding_preserved": true,
+  "local_export_fix_source_commit": "efe975d",
+  "new_uploads": 0,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

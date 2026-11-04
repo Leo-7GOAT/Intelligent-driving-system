@@ -1,0 +1,45 @@
+{
+  "results": {
+    "H0_remaining": {
+      "batch": "20261103_static_H0_remaining_staging_validation_not_execution",
+      "cases": 8,
+      "original_ids": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "protocol_sha256": "0ef47e77a9bd6390c5c6f3b9c06bf2ca390e711798959c73ac5e2a6c09b695ce",
+      "validation": "{\"worker\":\"native_road_learning.py\",\"source_files\":442,\"status\":\"INPUTS_VALIDATED_NOT_SERVER_PROBED\",\"batch\":\"20261103_static_H0_remaining_staging_validation_not_execution\"}",
+      "new_controls": 0
+    },
+    "H_teacher": {
+      "batch": "20261103_static_H_teacher_staging_validation_not_execution",
+      "cases": 12,
+      "original_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "protocol_sha256": "9c16824888054f1ce32a1fa986789324c6631343102c533522fe7b6c403e7132",
+      "validation": "{\"batch\":\"20261103_static_H_teacher_staging_validation_not_execution\",\"status\":\"INPUTS_VALIDATED_NOT_SERVER_PROBED\",\"source_files\":442,\"worker\":\"native_road_learning.py\"}",
+      "new_controls": 0
+    }
+  },
+  "scope": "Prepared inputs validated only; real remainder remains queued behind exact active coordinator",
+  "new_controls": 0,
+  "new_updates": 0
+}

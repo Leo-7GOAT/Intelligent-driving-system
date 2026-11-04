@@ -1,0 +1,72 @@
+{
+  "scope": "Actual schema-corrected shared-brake continuation plus native control-cadence queue;no new deployment result",
+  "snapshot_epoch": 1793455129.3614159,
+  "superseded_waiting_driver": {
+    "epoch": 1793454221.498373,
+    "reason": "Correct native info.trace postprocessing before any child activation",
+    "verified_owned_pid": 63328,
+    "exit_code": 1,
+    "native_children_started": 0,
+    "completed_probes": 0,
+    "source_and_prepared_batches_unchanged": true
+  },
+  "trace_schema_fix": {
+    "correct_schema": "row.info.trace",
+    "verified_actual_H_controls": 4337,
+    "verified_actual_B1_controls": 5019,
+    "native_drives_repeated": 0
+  },
+  "shared_brake": {
+    "execution": "shared_brake_five_seed_execution_20261031_v4_trace_schema_fix",
+    "plan_sha256": "63161e23e1c720bde486e1891347711199393ddacf466e7b376f0d93b2dc725f",
+    "snapshot_status": {
+      "phase": "WAITING_FOR_REGISTERED_B1_COHORT",
+      "epoch": 1793455121.5572708,
+      "pid": 70788,
+      "completed": [],
+      "dependency_pid": 60572,
+      "dependency_live_via_retained_handle": true
+    },
+    "frozen_files": 312
+  },
+  "control_cadence": {
+    "execution": "control_cadence_five_seed_execution_20261031",
+    "plan_sha256": "1bc2a645d5563f5ed140e7b47e5956bef8fa5be291d8e4dd32f600e0762f6b4d",
+    "snapshot_status": {
+      "phase": "WAITING_FOR_SHARED_BRAKE_COHORT",
+      "pid": 59456,
+      "epoch": 1793455126.9358652,
+      "completed": [],
+      "dependency_pid": 70788,
+      "dependency_live_via_retained_handle": true
+    },
+    "frozen_files": 315,
+    "planned_probes": 20,
+    "independent_trained_seeds_if_predecessors_finish": 5,
+    "requested_acceleration_steering_update_hz": [
+      10,
+      4
+    ],
+    "physics_and_actuator_inner_loop_hz": 20,
+    "H_PPOdecision_hz": 2,
+    "MPCprediction_grid_seconds": 0.05,
+    "MPC_retuning": false,
+    "baseline_trained_native20Hz_endpoints_reused": true,
+    "policy_training_updates": 0
+  },
+  "new_shared_brake_or_cadence_native_controls": 0,
+  "first_B2_endpoint": {
+    "seed": 11,
+    "successes": 9,
+    "cases": 12,
+    "termination_counts": {
+      "success": 9,
+      "deadline": 3
+    },
+    "training_controls": 20615,
+    "actual_Adam_steps": 650,
+    "raw_controls_verified": 26670,
+    "initial_actions_verified": 12
+  },
+  "research_acceptance": "UNMET"
+}

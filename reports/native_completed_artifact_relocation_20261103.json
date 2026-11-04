@@ -1,0 +1,33 @@
+{
+  "scope": "Completed historical native cohorts relocated to D;no current training files moved",
+  "files": 3989,
+  "bytes": 1069061697.0,
+  "runs": [
+    {
+      "bytes": 274749896.0,
+      "files": 1003,
+      "name": "20261101T011957251615Z_native_matched_broader_feedback"
+    },
+    {
+      "bytes": 273596478.0,
+      "files": 1002,
+      "name": "20261101T011938826336Z_native_matched_broader_feedback"
+    },
+    {
+      "bytes": 266720286.0,
+      "files": 1000,
+      "name": "20261101T011953260380Z_native_matched_broader_feedback"
+    },
+    {
+      "bytes": 253995037.0,
+      "files": 984,
+      "name": "20261101T011949266084Z_native_matched_broader_feedback"
+    }
+  ],
+  "all_moved_files_SHA256_checked": true,
+  "original_paths_retained_as_directory_junctions": true,
+  "automatic_review_rejected_recursive_delete_proposal": true,
+  "executed_method": "Native PowerShell per-file Move-Item with post-move hash verification;only verified empty source directories removed without recursion.",
+  "new_controls": 0,
+  "new_updates": 0
+}

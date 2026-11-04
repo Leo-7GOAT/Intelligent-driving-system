@@ -1,0 +1,110 @@
+{
+  "scope": "Offline same-query comparison against the immutable actual training kernel.",
+  "baseline_batch": "20261031T045159Z_native_recovery",
+  "fixture_sha256": "3a61f8bf086e9760ca804593affb6b094552f32477732af2013f1f9ce24c4de7",
+  "prototype_sha256": "f166a25fba4a031d2b3f8224d108624ab3130cd87c779eabd3870afce145695d",
+  "benchmark_sha256": "7009917389f430b0877ca196ac48fe3c950ca548da9fe4fc3a97d896b1fa994b",
+  "dependencies": {
+    "navstack/config.py": {
+      "original_sha256": "178c39d32b26eee0260a63184111bbd331d097c6e8c9583ad01934914465a12c",
+      "current_sha256": "178c39d32b26eee0260a63184111bbd331d097c6e8c9583ad01934914465a12c",
+      "source_text_equal": true
+    },
+    "navstack/planning.py": {
+      "original_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+      "current_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+      "source_text_equal": true
+    },
+    "navstack/world.py": {
+      "original_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+      "current_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+      "source_text_equal": true
+    },
+    "navstack/road_grid.py": {
+      "original_sha256": "080a14742b6f28b847627b079b9bfce8696d08f9ee1d1cbcc2439b98113c41f1",
+      "current_sha256": "080a14742b6f28b847627b079b9bfce8696d08f9ee1d1cbcc2439b98113c41f1",
+      "source_text_equal": true
+    },
+    "navstack/road_grid_batch.py": {
+      "original_sha256": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e",
+      "current_sha256": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e",
+      "source_text_equal": true
+    },
+    "navstack/vehicle.py": {
+      "original_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+      "current_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+      "source_text_equal": true
+    },
+    "navstack/dubins_guide.py": {
+      "original_sha256": "59c6972c3b1ce9c0a2ad4de3ffd15ca4db9256a7eb2ef38a20e66ab7d4dda900",
+      "current_sha256": "59c6972c3b1ce9c0a2ad4de3ffd15ca4db9256a7eb2ef38a20e66ab7d4dda900",
+      "source_text_equal": true
+    }
+  },
+  "repeats": 3,
+  "recorded_query_reproduced": true,
+  "actual_planner_batches": 7320,
+  "actual_planner_poses": 359114,
+  "collision_flags_exact": true,
+  "full_search_exact": {
+    "status": "timeout",
+    "failure_reason": "search_budget",
+    "expanded_nodes": 7200,
+    "cost": null,
+    "path_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "path_samples": 0
+  },
+  "occupied_rectangles": {
+    "original_cells": 30783,
+    "rectangle_partition": 185
+  },
+  "kernel_timings": {
+    "original_cells": {
+      "median": 2.1334540001116693,
+      "min": 2.1041995000559837,
+      "max": 2.2193428999744356,
+      "samples_seconds": [
+        2.1041995000559837,
+        2.2193428999744356,
+        2.1334540001116693
+      ]
+    },
+    "rectangle_partition": {
+      "median": 0.9006580000277609,
+      "min": 0.8577874999027699,
+      "max": 0.9696954998653382,
+      "samples_seconds": [
+        0.9006580000277609,
+        0.9696954998653382,
+        0.8577874999027699
+      ]
+    }
+  },
+  "search_timings": {
+    "original_cells": {
+      "median": 4.243369600037113,
+      "min": 4.232322999974713,
+      "max": 4.324510699836537,
+      "samples_seconds": [
+        4.232322999974713,
+        4.243369600037113,
+        4.324510699836537
+      ]
+    },
+    "rectangle_partition": {
+      "median": 3.2475040999706835,
+      "min": 3.207240500021726,
+      "max": 3.361746500013396,
+      "samples_seconds": [
+        3.361746500013396,
+        3.207240500021726,
+        3.2475040999706835
+      ]
+    }
+  },
+  "limits": "Finite saved queries only,not universal floating-point equivalence or full-runner realtime proof. Interleaved while independent frozen CARLAtraining may run.",
+  "production_behavior_changed": false,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "wall_seconds": 39.20299999997951
+}

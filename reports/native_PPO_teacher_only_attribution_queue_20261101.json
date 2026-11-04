@@ -1,0 +1,272 @@
+{
+  "scope": "Actual preparation and live owned observer for five matched teacher-only Hcontrols;not completed CARLA evaluation or PPO-value evidence",
+  "preparation": "H_pristine_baseline_preparation_20261101",
+  "execution": "H_pristine_baseline_execution_20261101",
+  "observer_pid": 73064,
+  "observer_creation_time": "2026-11-01T10:07:08.171144+08:00",
+  "launch_shim_pid": 16492,
+  "waiting_on_verified_owned_pid": 30268,
+  "plan_sha256": "2e44af1572d7607eddd4a88889f9bb7beb11e9a063c501e94cf5586b4b973417",
+  "observer_source_sha256": "bef67c8f947e5b39bc2dbb37fc3a0f9ae8f4fe9296fafd4c8e07ce8346ed6356",
+  "batches": [
+    {
+      "seed": 11,
+      "batch": "20261101T020242512174Z_native_pristine_H_baseline",
+      "paired_training_batch": "20261101T011938826336Z_native_matched_broader_feedback",
+      "protocol_sha256": "fe5c0a5208d92312c87a5eb47d352cfb05ceb12bd7f47f20e28efeadd97cbe39",
+      "model_sha256": "ee446452b7d81bee2201c6c0a3b7f0488fa5cda1b6fa4faf8876a2d9fd2e663a",
+      "normalization_sha256": "0ee557017eca0168169a5aba6e9821fefe878f1298bbfd993ac4f1e0ddfeedf1",
+      "actor_parameter_sha256": "145876e7cfd1ea9f6c89d0a5596ebdbde7fef54420acca3d96ce49e2be1bb711"
+    },
+    {
+      "seed": 22,
+      "batch": "20261101T020243559283Z_native_pristine_H_baseline",
+      "paired_training_batch": "20261101T011945179519Z_native_matched_broader_feedback",
+      "protocol_sha256": "c3dbf90c7553d84e1724305c8f17edbd8bb5e64e9c605cfb7d6ee63ac4a1fde3",
+      "model_sha256": "8cbf639a2a3dad35131f6be55b60ea70fb5d67b5b9c2f852d8800953b65d8eb0",
+      "normalization_sha256": "db5ceed4dddb57d9f27b19967d49cef8927287e736c2c3f8a6a4ece7149006fc",
+      "actor_parameter_sha256": "55cb6404a827e53a7a1221a9e12f0a2d8a55a2672801d00e17a55ef149a435cb"
+    },
+    {
+      "seed": 33,
+      "batch": "20261101T020244732149Z_native_pristine_H_baseline",
+      "paired_training_batch": "20261101T011949266084Z_native_matched_broader_feedback",
+      "protocol_sha256": "4b1d56ed4cf9e114e3df58cd00bf780e6f03abaf64f33087d410f0b1e1e02a4e",
+      "model_sha256": "57b77b7ff6a5dbfd63dd9ff477ab9aacd5d4ef0f3b91f6d0f826428c4ef6b23e",
+      "normalization_sha256": "a02aceb2c2e573167f2f14f01c46f111a2d38d2d4e6fe34e1e1978a57d2ae0b7",
+      "actor_parameter_sha256": "aa6c7f53e6e637df0db3208a8508fd635a5d8d714f79fed5c9747ca02f51aed7"
+    },
+    {
+      "seed": 44,
+      "batch": "20261101T020245721142Z_native_pristine_H_baseline",
+      "paired_training_batch": "20261101T011953260380Z_native_matched_broader_feedback",
+      "protocol_sha256": "f33e167a2eb81bb1286c4e191749191ffc5467802408bbab7034424c0efea943",
+      "model_sha256": "e88e46e7cee0443a3010776e2539ac15b85420893a9efe1c5954dfd69e46f087",
+      "normalization_sha256": "63056b65672a16cd206da3d32e1da5648ed80a5283cd5bd1ec3e3b213c564f54",
+      "actor_parameter_sha256": "032521235032c8e389901105eabb51373271c68847bd9fad3118de78a85afb25"
+    },
+    {
+      "seed": 55,
+      "batch": "20261101T020246624428Z_native_pristine_H_baseline",
+      "paired_training_batch": "20261101T011957251615Z_native_matched_broader_feedback",
+      "protocol_sha256": "6a81b6d7a6fece181d3e1c7b63e77d0636c6325ba1c5521aa85bc5b902a9dfd5",
+      "model_sha256": "b2c5694fd0c20ff1aafac2555e6ec8bf9fd440858071d36e26958f6cbd98c756",
+      "normalization_sha256": "73b254190165b3a8eebeac1f980a4479e82f786269566daa14aa9b02641e97ed",
+      "actor_parameter_sha256": "aa2f0e0566413fb52f0fd91d42ac2dfbe710014e63358e66cee9f52191c823e9"
+    }
+  ],
+  "CPU_frozen_worker_restores": [
+    {
+      "scope": "Actual frozen-worker pristine restore;inert environment rejects physical reset/step;one recorded teacher observation smoke inference only",
+      "batch": "20261101T020242512174Z_native_pristine_H_baseline",
+      "seed": 11,
+      "actor_parameter_sha256": "145876e7cfd1ea9f6c89d0a5596ebdbde7fef54420acca3d96ce49e2be1bb711",
+      "normalization_statistics_exact": true,
+      "saved_model_num_timesteps": 0,
+      "saved_model_n_updates": 0,
+      "Adam_entries": 0,
+      "teacher_observation_action": [
+        26
+      ],
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "physical_resets": 0
+    },
+    {
+      "scope": "Actual frozen-worker pristine restore;inert environment rejects physical reset/step;one recorded teacher observation smoke inference only",
+      "batch": "20261101T020243559283Z_native_pristine_H_baseline",
+      "seed": 22,
+      "actor_parameter_sha256": "55cb6404a827e53a7a1221a9e12f0a2d8a55a2672801d00e17a55ef149a435cb",
+      "normalization_statistics_exact": true,
+      "saved_model_num_timesteps": 0,
+      "saved_model_n_updates": 0,
+      "Adam_entries": 0,
+      "teacher_observation_action": [
+        26
+      ],
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "physical_resets": 0
+    },
+    {
+      "scope": "Actual frozen-worker pristine restore;inert environment rejects physical reset/step;one recorded teacher observation smoke inference only",
+      "batch": "20261101T020244732149Z_native_pristine_H_baseline",
+      "seed": 33,
+      "actor_parameter_sha256": "aa6c7f53e6e637df0db3208a8508fd635a5d8d714f79fed5c9747ca02f51aed7",
+      "normalization_statistics_exact": true,
+      "saved_model_num_timesteps": 0,
+      "saved_model_n_updates": 0,
+      "Adam_entries": 0,
+      "teacher_observation_action": [
+        26
+      ],
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "physical_resets": 0
+    },
+    {
+      "scope": "Actual frozen-worker pristine restore;inert environment rejects physical reset/step;one recorded teacher observation smoke inference only",
+      "batch": "20261101T020245721142Z_native_pristine_H_baseline",
+      "seed": 44,
+      "actor_parameter_sha256": "032521235032c8e389901105eabb51373271c68847bd9fad3118de78a85afb25",
+      "normalization_statistics_exact": true,
+      "saved_model_num_timesteps": 0,
+      "saved_model_n_updates": 0,
+      "Adam_entries": 0,
+      "teacher_observation_action": [
+        26
+      ],
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "physical_resets": 0
+    },
+    {
+      "scope": "Actual frozen-worker pristine restore;inert environment rejects physical reset/step;one recorded teacher observation smoke inference only",
+      "batch": "20261101T020246624428Z_native_pristine_H_baseline",
+      "seed": 55,
+      "actor_parameter_sha256": "aa2f0e0566413fb52f0fd91d42ac2dfbe710014e63358e66cee9f52191c823e9",
+      "normalization_statistics_exact": true,
+      "saved_model_num_timesteps": 0,
+      "saved_model_n_updates": 0,
+      "Adam_entries": 0,
+      "teacher_observation_action": [
+        26
+      ],
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "physical_resets": 0
+    }
+  ],
+  "launcher_preflights": "All5 INPUTS_VALIDATED_NOT_SERVER_PROBED",
+  "strong_rule_reuse": {
+    "batch": "20261031T082841Z_native_rule",
+    "raw_audit_sha256": "8e6756ffbe8b120c840933bc214a5a2e238bb29c0795738b2eb667eaa09b91d2",
+    "registered_cases": 24,
+    "raw_controls_verified": 8033,
+    "common_active_modules_sha256": {
+      "navstack/benchmark.py": "868993a095f526cb422fe593fcc8772e3f29493361f50d807ba35877437d8cab",
+      "navstack/bounded_policy.py": "6b67d2d0f2670d4e8293c8fbc67988a835327d3beb48854afd51c5916f3aa001",
+      "navstack/bridge_protocol.py": "47e0d51b1b263e69d514f60afc1875428a8a898c033453d15874625deaa5edfd",
+      "navstack/camera_recording.py": "c54b8e99bcfb133dd59227d3fa66da3210f9934bfd9947af90227b94fcca06b1",
+      "navstack/candidate_filter.py": "80e2fcd8313e1a9c5f0baa02d8459888490db4781f091ff2ecf1ebb1c23d226c",
+      "navstack/candidate_policy.py": "740b709e365763fc2cc2a507dccbbb63f2d94a0b385ddf967c0ec227441d7bc4",
+      "navstack/carla_actuation.py": "9d2752a43ec2d614e329deb2eb5fab79708e1d4a5149dbdd8c1dc9316cd11da0",
+      "navstack/carla_adapter.py": "7b3f8a24e92ae75cc26d5173c2bb627be406300d340e8f3e86bacb39f2a822bf",
+      "navstack/carla_bridge.py": "0fababbe11793ee7e75efdb4a48b2a555bfab3fd5ff11ea54795a74b5f3035f2",
+      "navstack/cli.py": "cc97382cfecd28544231b93128303e421d6664290644e2f11b04b6ae3ff24ede",
+      "navstack/config.py": "178c39d32b26eee0260a63184111bbd331d097c6e8c9583ad01934914465a12c",
+      "navstack/corrective_imitation.py": "18d8ef2dcec71790a2d6874f82c16621bbf0880f8bb58a4c22edcea45cfc29a9",
+      "navstack/discrete_flat_policy.py": "693b2bdcd5de06a16aaec0882ee8929d63f89f123a7157a7f6efc27e9861ca0a",
+      "navstack/dubins_guide.py": "59c6972c3b1ce9c0a2ad4de3ffd15ca4db9256a7eb2ef38a20e66ab7d4dda900",
+      "navstack/env.py": "605cea0ae6ba446bd1bad0077342945d2684bc98df12e930bdec5093aa924987",
+      "navstack/experiments.py": "62872e4ce79caf2defacc4b634674f2e86025b3ec593003b0f95201882835c7a",
+      "navstack/grid_smoothing.py": "f68207375ff201cf83a4d26b8f741e928933cd67e0c51b843019a2b0ce472e16",
+      "navstack/imitation.py": "3487638a1e7dca2dce4abee2ea3ca7414f89a8e58effe19e29c2c697a1ed755b",
+      "navstack/independent_clip_ppo.py": "3bf09e80e216a8c8bd308c417a4905feefa3a22a066083cba7852268694c9d7a",
+      "navstack/lane_projection.py": "930dcb793f6e16e0066c557e31e823348e2b7a496ef0ea56b886d5db48cad8c0",
+      "navstack/measured_demo.py": "d8182ded58e18835760e463fe9705b036eaf4f4bdf2b61640511330959ccb80c",
+      "navstack/metrics.py": "1dd70ed5e4f8c05e21537683b99500a5d076fb932ed32e200ab6b2888ab5b9f7",
+      "navstack/mpc.py": "cf24ffc14bc0829b5ff780a28523c250cc43f6e9425f67dee161849b587a9719",
+      "navstack/native_cases.py": "cbf3fa1ee103449e6b9287b71af50372191425aa9c566f2e8e1f8b3a6463e572",
+      "navstack/native_hazards.py": "3be4860fcbe5daab1ae2a026b84b15f2a325f0aa2403f59c966a5fc3ca44da19",
+      "navstack/native_partitions.py": "8648fec13f3a63763821d6b307822eee12ae342046fdcf78f034985e485bb38a",
+      "navstack/native_route.py": "cdc5ba9aa648aa3bb860526cdb84ae793b60c42f70555a9af5835a1fba2cd76e",
+      "navstack/owned_process.py": "fed625bb2fe102c5aeee72b1a2136e7fbec53989b0f297176701d67214a5253d",
+      "navstack/planner_memo.py": "b4ff9a4c6fea9749faefdc3d35b00994e67bc6dcf240d65fd36de75bbd7f306f",
+      "navstack/planning.py": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+      "navstack/process_lease.py": "d0c98c0325ea0f39aa66355845ad7fc1ece98e48839a76c4f831489b8b5d1b05",
+      "navstack/research.py": "dba46f4c80571865965986f3e7bb98472bc148ea5a97a9183767774d0b8d1a3e",
+      "navstack/reward.py": "3eaa0e137531de8c401039d475dca04858dbf764a323a2249dd42a46279589f8",
+      "navstack/road_candidate_policy.py": "5c7c8618cb847b3d1136aa0d2cf3c0bcc092938e61bc4c22f4fc5f6388110359",
+      "navstack/road_grid.py": "080a14742b6f28b847627b079b9bfce8696d08f9ee1d1cbcc2439b98113c41f1",
+      "navstack/road_grid_batch.py": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e",
+      "navstack/selection.py": "520285aa6c4c11aabe0f09e6242b4411ccde783922b9396083c9b816a8247c78",
+      "navstack/shield.py": "d31fc73da1ce271c72448a9227614618fc5e0e4f210cae9b7f78863d1b4a4025",
+      "navstack/squashed_road_policy.py": "e2a59cebbfd6145cc56c6bc23fe93ba0d187dcd699f708d683c00a5f6c597596",
+      "navstack/statistics.py": "3d9d2a550d2c69ad3c3f61a17773736c68117558744ed62409d3be1410584f03",
+      "navstack/subgoals.py": "854a4418e65c64eef1a891a70809b40fa8adee751aa8b12ae446f476806d7fbd",
+      "navstack/trajectory.py": "847ea502d150189efe3f5774651f4a362fb4ee69453f842ef2d67ede57cd7992",
+      "navstack/vehicle.py": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+      "navstack/world.py": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+      "navstack/__init__.py": "08d90edc776188a1d8a064b42e70e6d34ac60c8e3dea335fa745c3dad6de1d89",
+      "scripts/carla_bridge37.py": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a"
+    },
+    "excluded_inactive_diagnostic_modules": [
+      "control_cadence.py",
+      "critic_rate_policy.py",
+      "fixed_reward_units.py",
+      "pursuit_controller.py",
+      "reference_manifest.py",
+      "terminal_region.py"
+    ],
+    "scope": "Reuse the completed strong deterministic rule on the exact same24known conditions and actual bridge;not five independently trained rule policies"
+  },
+  "teacher_supervised_updates_inherited_each": 896,
+  "new_supervised_updates": 0,
+  "new_PPO_updates": 0,
+  "new_controls_so_far": 0,
+  "new_independent_PPO_training_seeds": 0,
+  "unique_known_development_validation_conditions": 24,
+  "all_seed_case_evaluations_planned": 120,
+  "new_final_confirmation_conditions": 0,
+  "evaluation_control_upper_bound": 108000,
+  "wall_seconds_each": 1800,
+  "finite_dependency_wait_seconds": 43200,
+  "automatic_retries": 0,
+  "resources": {
+    "disk_free_C_GiB_rounded": 26.8,
+    "disk_free_D_GiB_rounded": 484.4,
+    "disk_floor_GiB": 12,
+    "RAM_floor_GiB": 4,
+    "GPU_stop_temperature_C": 85,
+    "CPU_model_threads": 1
+  },
+  "comparison_scope": "Same initialization,complete frozen worker source,teacher data,normalization and24known conditions as each paired Hlearner. Compare retained teacher-only performance with added actual PPO and separately with the strong rule. Do not pool these controls as PPOtrained policies.",
+  "cost_scope": "Teacher and canonical prior costs remain in every copied protocol recovery ledger. Copying them is not new physical interaction. Five extra evaluation runs are pending,not zero-cost training evidence.",
+  "statistics": "Paired seed differences in safe completion for trained H minus pristine H and trained H minus strong deterministic B3;95percentt intervals and exact sign-flip descriptions,all5seeds/all24cases. Two exploratory comparisons,not confirmatory tests.",
+  "secondary_metric_limits": "Report unsafe outcomes,interventions and all-outcome costs. Travel time differences only on explicitly listed mutually successful case pairs. No120unique-condition or independent-rule-training claim.",
+  "local_tests": {
+    "passed": 13,
+    "seconds": 4.55,
+    "files": [
+      "tests/test_native_pristine_baselines.py",
+      "tests/test_native_broader_feedback_cohort.py"
+    ],
+    "broader_related_passed": 34,
+    "broader_related_seconds": 4.9
+  },
+  "prior_code_hosted_regression": {
+    "source_commit": "e2bc98aa4bff1158cb22af4eb09b5eba0e822b3a",
+    "passed": 971,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "seconds": 197.12,
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41262967134"
+  },
+  "initial_CPU_schema_probe_failure": {
+    "error": "KeyError:observations is not a file in the H/H0teacher archive",
+    "failed_source_sha256": "eb7d310d77de38cbf58199be2d3fb1b126ada6bedc6e77660cfc507fe143c8dc",
+    "corrected_source_sha256": "23b38c91b2bf66258391107ad9678f65d59391e3a0aabf7a325be45292d0c976",
+    "new_controls": 0,
+    "new_updates": 0,
+    "correction": "Read actual archive schema H_observations and select its explicit TRAINmask;all5actual frozen restores then passed"
+  },
+  "analysis_rebuild_entry": "python scripts/analyze_native_pristine_baselines.py --execution runs/H_pristine_baseline_execution_20261101 --output <fresh.json> (only after all paired endpoints finish)",
+  "continuation": "Observe the already running owned queue;do not launch duplicate baselines. Existing B1/recording/correction/broader queues and all prepared training inputs remain unchanged.",
+  "research_acceptance": "UNMET",
+  "independent_checkout_tests": {
+    "source_commit": "3d4e992f91fb5a0f613120dbee4433ec1d2c78a5",
+    "passed": 34,
+    "seconds": 6.28,
+    "new_controls": 0,
+    "new_optimizer_updates": 0
+  },
+  "current_code_hosted_regression": {
+    "source_commit": "3d4e992f91fb5a0f613120dbee4433ec1d2c78a5",
+    "passed": 980,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "seconds": 127.73,
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41264048875"
+  }
+}

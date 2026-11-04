@@ -1,0 +1,135 @@
+{
+  "scope": "Known-case frozen-policy engineering transfer;sampled native-road refinement v1 failed to repair case4",
+  "batch": "20261104_reference_road_refinement_H_pilot",
+  "protocol_sha256": "a6199580c3af54692472cbba8ea4ea2c01ec1546583008d2c5db5c688c0c837d",
+  "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+  "new_PPO_updates": 0,
+  "original_case_ids": [
+    1,
+    4
+  ],
+  "outcomes": [
+    {
+      "case": 1,
+      "reason": "success",
+      "controls": 332
+    },
+    {
+      "case": 4,
+      "reason": "out_of_bounds",
+      "controls": 258
+    }
+  ],
+  "total_controls": 590,
+  "world_ticks": 651,
+  "reset_ticks": 61,
+  "NN_decisions": 60,
+  "measured_starts": 2,
+  "verification": {
+    "endpoint_raw_audit.json": {
+      "sha256": "0b480ef1493df5689730630d0c043bfd8079cdd233da62a321ecd93e6b3c5fb7",
+      "receipt": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261104_reference_road_refinement_H_pilot",
+        "method": "H",
+        "protocol_sha256": "a6199580c3af54692472cbba8ea4ea2c01ec1546583008d2c5db5c688c0c837d",
+        "config_sha256": "6f2c91660741a46be9710b257a110438a2a92186fb6f79ac3ccb52dfcfacc160",
+        "summary_sha256": "2739b1f641839b26d3ccfcf8a3f59981249e382090b88a2f778e1145edbd5779",
+        "evaluation_sha256": "768c30cf152d565b4fcb874c203c314b76945f6abb16fc47432622962c25ae98",
+        "evaluation_trace_sha256": "879f382dcd91a646e83c337c03b6e7b3a59fa877db983ad573d2b3f8e2b7a20d",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793758984250741600.jsonl.gz": "8ff51d0a1d3dcdf8c7c9f74fc7d1f7c7cb9fb07965f3c3c78992d58e7baf9891"
+        },
+        "bridge_response_stream": "bridge_88bf44e2_responses.jsonl.gz",
+        "bridge_response_sha256": "344f69841ff7cd0eb6f11ed98b3c73e6e1b060194655ab7be670c3e2574bfef8",
+        "bridge_complete_rows": 605,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 590,
+        "total_applied_controls_verified": 590,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 651,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "6c31cb3e3afb8bec3dbc6b0aed96e91319ddd8cf3d25850955aff910151a54bc",
+        "lineage_controls": 41531,
+        "charged_controls_lower_bound": 90131,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 1310,
+        "unknown_unflushed_ancestor_tail": false
+      }
+    },
+    "measured_start_inference.json": {
+      "sha256": "5173ea3819d61554f2fb63cb57a0bd9ed94960ede52c681e72dbeba5b57d2865",
+      "receipt": {
+        "scope": "MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE",
+        "method": "H",
+        "batch": "20261104_reference_road_refinement_H_pilot",
+        "all_static_actions": false,
+        "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+        "normalization_sha256": "c1d31978ba2e34c2fbb8270f99685b8734967e235d6afed414e3e65380bf5dd3",
+        "raw_audit_sha256": "0b480ef1493df5689730630d0c043bfd8079cdd233da62a321ecd93e6b3c5fb7",
+        "script_sha256": "4e9dc08f675c5d6868ce6a613baf6c29aa7303a6a1d19253d13325ed04f81884",
+        "results": [
+          {
+            "case_id": 0,
+            "decisions": 1
+          },
+          {
+            "case_id": 1,
+            "decisions": 1
+          }
+        ],
+        "all_recorded_actions_match": true,
+        "inference_normalization_frozen": true,
+        "RMS_unchanged": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "limits": "Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible."
+      }
+    },
+    "static_action_inference.json": {
+      "sha256": "0e1f3879bf95d8d703b1ea80d2ab494f3fa2bfeb8ab296bfe51a7f6cd9964376",
+      "receipt": {
+        "scope": "MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE",
+        "method": "H",
+        "batch": "20261104_reference_road_refinement_H_pilot",
+        "all_static_actions": true,
+        "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+        "normalization_sha256": "c1d31978ba2e34c2fbb8270f99685b8734967e235d6afed414e3e65380bf5dd3",
+        "raw_audit_sha256": "0b480ef1493df5689730630d0c043bfd8079cdd233da62a321ecd93e6b3c5fb7",
+        "script_sha256": "4e9dc08f675c5d6868ce6a613baf6c29aa7303a6a1d19253d13325ed04f81884",
+        "results": [
+          {
+            "case_id": 0,
+            "decisions": 34
+          },
+          {
+            "case_id": 1,
+            "decisions": 26
+          }
+        ],
+        "all_recorded_actions_match": true,
+        "inference_normalization_frozen": true,
+        "RMS_unchanged": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "limits": "Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible."
+      }
+    }
+  },
+  "regression": {
+    "passed": 1358,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "seconds": 223.4,
+    "xml_sha256": "355b36b0b0d1838cb72a2893032dfdc44d0f1ef5d9aa9281143113ded64beba5"
+  },
+  "findings": [
+    "Initial reference rejected by same-frame native road query;7 planning-only occupied cells produced a new reference with zero sampled road-query rejections.",
+    "Actual task geometry and original v4 scoring unchanged;case4 still failed after 258 controls.",
+    "Reference initial steering differs substantially from measured steering at later replans;transition feasibility remains unresolved. Last failure raw native footprint probe is empty;do not attribute this new failure to the prior native-index corner miss."
+  ],
+  "limits": "Development pilot with one frozen model,not learning improvement,independent confirmation,continuous safety or formal acceptance. All failures retained. Local raw archive is not yet a public downloadable capsule."
+}

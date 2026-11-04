@@ -1,0 +1,80 @@
+{
+  "scope": "Compare both completed matched B1 actor-fit-to-PPO development endpoints.",
+  "analyzer_sha256": "e6c3f8608f4a9ade869dc6b12c1b6f4451312a994d319b1eecf10858e020e613",
+  "seed": 11,
+  "cases": 12,
+  "arms": {
+    "replay": {
+      "batch": "20261031T042301092506Z_native_supervised_ppo",
+      "successes": 4,
+      "termination_counts": {
+        "out_of_bounds": 4,
+        "success": 4,
+        "deadline": 3,
+        "collision": 1
+      },
+      "unsafe_episodes": 5,
+      "training_controls": 20480,
+      "optimizer_steps": 51,
+      "raw_controls_verified": 27579,
+      "charged_input_controls_lower_bound": 44440,
+      "model_sha256": "b1dc27b9461b15121302949a57229658ef2e3e031e5b6da85a88926001ea4a5b",
+      "raw_audit_sha256": "eb4fb4023c5b95298937b3314383b48b9ff7a6f18c8247caa46f3488a96965e2",
+      "core_successes": {
+        "curve_parking": 1,
+        "static": 3,
+        "dynamic": 0
+      },
+      "logged_KL_mean": 0.01698119140928611,
+      "logged_KL_max": 0.07922935485839844
+    },
+    "approach": {
+      "batch": "20261031T042300931172Z_native_supervised_ppo",
+      "successes": 6,
+      "termination_counts": {
+        "out_of_bounds": 4,
+        "success": 6,
+        "deadline": 1,
+        "collision": 1
+      },
+      "unsafe_episodes": 5,
+      "training_controls": 20480,
+      "optimizer_steps": 61,
+      "raw_controls_verified": 25745,
+      "charged_input_controls_lower_bound": 44131,
+      "model_sha256": "76d12d7a31b29fff1dc7c3e25152f3441ca2fdad0d06cb3603189ac026a79d03",
+      "raw_audit_sha256": "6218888f44b0c58c384216669228da3314d1fb773fc7c69f91bf39396ddc05b9",
+      "core_successes": {
+        "curve_parking": 2,
+        "static": 3,
+        "dynamic": 1
+      },
+      "logged_KL_mean": 0.013239050807897002,
+      "logged_KL_max": 0.021808478981256485
+    }
+  },
+  "schedule": {
+    "n_steps": 1280,
+    "batch_size": 320,
+    "n_epochs": 10,
+    "gamma": 0.9994976094477416,
+    "gae_lambda": 0.9974386212234697,
+    "learning_rate": 3e-05,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "target_kl": 0.01
+  },
+  "approach_only_cases": [
+    2,
+    10
+  ],
+  "replay_only_cases": [],
+  "approach_minus_replay_percentage_points": 16.666666666666668,
+  "both_rejected_as_healthy_full_task_baseline": true,
+  "new_audit_controls": 0,
+  "new_audit_optimizer_steps": 0,
+  "limits": "One seed, twelve correlated known development conditions. Different disclosed actor-fit labels; shared physical/PPO schedule. Actual Adam counts differ under KL stopping. No independent-seed significance, final-test, healthy-baseline or hierarchy-value claim.",
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,59 @@
+{
+  "scope": "Offline measured-reset observation benchmark;no vehicle integration,commands,NNupdates or realtime claim.",
+  "frozen_source_sha256": "8f60e3efb712567ef02f4b0ff6ba1e5ed1a9f29ca2bd69620bbab1387baf762e",
+  "optimized_source_sha256": "78cdb5f2dccf93d397289126f360aac950694780b53bf439e3c083fe8031c780",
+  "cases": [
+    {
+      "condition": 42,
+      "old_seconds": 0.0524039666634053,
+      "new_seconds": 0.04326506665286919,
+      "observation_bit_exact": true
+    },
+    {
+      "condition": 43,
+      "old_seconds": 0.06418870001410444,
+      "new_seconds": 0.056082566656793155,
+      "observation_bit_exact": true
+    },
+    {
+      "condition": 44,
+      "old_seconds": 0.0488533666357398,
+      "new_seconds": 0.042993300051117934,
+      "observation_bit_exact": true
+    },
+    {
+      "condition": 45,
+      "old_seconds": 0.17980986662829915,
+      "new_seconds": 0.15440466666283706,
+      "observation_bit_exact": true
+    },
+    {
+      "condition": 46,
+      "old_seconds": 0.12514783333366117,
+      "new_seconds": 0.10490836668759584,
+      "observation_bit_exact": true
+    },
+    {
+      "condition": 47,
+      "old_seconds": 0.18410403335777423,
+      "new_seconds": 0.15676839998923242,
+      "observation_bit_exact": true
+    },
+    {
+      "condition": 0,
+      "old_seconds": 0.04689856665208936,
+      "new_seconds": 0.04756159995061656,
+      "observation_bit_exact": true
+    },
+    {
+      "condition": 1,
+      "old_seconds": 0.05495990005632242,
+      "new_seconds": 0.05220163334161043,
+      "observation_bit_exact": true
+    }
+  ],
+  "old_mean_seconds": 0.09454577916767448,
+  "new_mean_seconds": 0.08227319999908408,
+  "new_physical_controls": 0,
+  "live_training_source_unchanged": true
+}

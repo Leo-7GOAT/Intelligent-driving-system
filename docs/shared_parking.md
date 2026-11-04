@@ -1,0 +1,298 @@
+# Shared terminal parking assistance: engineering validation
+
+The frozen B1, H and strong-rule B3 each complete all **four known TRAIN roads**
+with zero collision/bounds episodes when using the same explicit physical parking
+aid. This is a single-seed development transfer, not research acceptance or proof
+of a PPO advantage. Those three frozen transfer policies were not trained under
+this wrapper. The separate subsequent B1 course below uses it throughout PPO.
+
+| Method | Success | Controls | Parking overrides | Override fraction |
+|---|---:|---:|---:|---:|
+| Direct B1 | 4/4 | 1,409 | 6 | 0.43% |
+| Hierarchical H | 4/4 | 1,287 | 8 | 0.62% |
+| Strong-rule B3 | 4/4 | 1,286 | 8 | 0.62% |
+
+The audit verifies identical parking-helper bytes, numerical calibration, vehicle
+limits and goal thresholds across all three methods. Every physical frame is
+joined to CARLA and its returned engine control. Every successful terminal frame
+satisfies the original position, heading and speed conditions and is **not** an
+intervened frame. No pose, velocity, goal or termination criterion is rewritten.
+[Complete engineering audit](../reports/native_shared_parking_engineering_20261101.json).
+
+`goal_parking_assist=True` enables `inside_goal_pose_overspeed_brake_v2`.
+After actual travel exceeds the existing 0.1 m requirement, the aid may request
+full physical braking only if the measured ego is already inside the existing
+goal position/heading gates and still exceeds the existing goal speed. Steering
+is unchanged. It releases control once speed is low enough; the next ordinary
+policy/controller command is physically executed before the unchanged success
+gate can accept the episode. All overrides and unassisted proposals are logged.
+The option is shared by H, H0, B1, B2 and B3 and defaults to disabled, preserving
+historical serialized configurations and signatures.
+
+The first implementation, v1, mistakenly kept intervening after the car was
+already parked. The existing `allowed_success=not intervention` guard therefore
+blocked success. That run is retained: 1/4 success, three deadlines, 3,021 physical
+controls. Its prepared H counterpart was abandoned before any lifecycle and the
+launcher now rejects that marker. V2 changes the assistance release condition;
+the original success guard remains unchanged. A regression test executes the
+intervened braking frame and then the unassisted successful terminal frame.
+
+This engineering result must stay separate from learning results. The preceding
+unassisted B1 reflection fit was 3/4 with one bounds failure. A separately learned
+177-parameter acceleration head passed its offline overspeed screen, but actual
+deployment was only 2/4: it fixed one failure while introducing others. Those
+failed models and data remain preserved. Earlier real PPO completed 10,240 new
+physical training controls and 320 verified Adam steps but also remained 2/4.
+Neither the failed neural fits nor this shared assistance establish added PPO
+value. H also transfers from legacy async delivery to the validated synchronous
+interface; its numerical gains are unchanged.
+
+The B1 transfer uses model `72d465ab…`, with 30,720 actual PPO controls in its
+lineage and separately disclosed supervised pose/reflection fits. H uses model
+`c46da0e2…`, with 20,579 controls in its independent training lineage. Their
+different histories mean this small transfer is **not** a budget-matched
+hierarchical-advantage comparison. B3 performs no learned-policy updates.
+
+All 7,003 controls across the three v2 arms and failed v1 run are included in the
+engineering audit; 3,982 belong to v2. The same four conditions are reused for
+development, not counted as twelve new conditions. No final set is activated.
+Five independently trained healthy baselines, meaningful added PPO value,
+explainable collaboration gains, remaining fair ablations and 120 new final
+conditions are still required. A formal comparison must train related methods
+with the shared wrapper fixed throughout training.
+
+```powershell
+python -m pytest tests/test_parking_assist.py -q
+python scripts/analyze_native_shared_parking.py --output FRESH_ENGINEERING_AUDIT.json
+```
+
+The audit command requires the corresponding preserved run inputs. Existing
+registered lifecycles must not be launched again.
+
+The [development prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-shared-parking)
+contains all five capsules, including the failed v1 and actual-PPO runs.
+An independent checkout at `ba7b3cfc393b3bc7cec26d6eaa9b0a81a2dd3a6d`
+downloaded them without authentication and verified **2,816 files, 18,936 physical
+control records and four byte-identical figures**. The engineering report rebuilt
+exactly. No additional controls or optimizer updates were performed by this
+reconstruction. All 19 remote asset digests also match the uploaded bytes.
+[Public reconstruction](../reports/native_shared_parking_public_verification_20261101.json),
+[remote assets and Linux CI](../reports/native_shared_parking_public_release_assets_20261101.json).
+
+The same independent checkout then prepared a new owned CARLA lifecycle from
+the downloaded B1 model, selecting original TRAIN case 0 before launch. It
+succeeded in **356 real controls with three parking overrides**. Every action
+reconstructs bit-exactly from the measured history, every engine control matches,
+and the final frame satisfies the unchanged goal gates without intervention.
+The owned server stopped normally. Model and normalizer bytes remain unchanged.
+This adds one reproduction episode, not a new training seed or final condition.
+[Physical replay receipt](../reports/native_shared_parking_public_CARLA_replay_20261101.json).
+
+From a fresh checkout with the README dependencies installed:
+
+```powershell
+python scripts/reproduce_shared_parking_release.py --recipe protocols/public_native_shared_parking_20261101.json --output runs/shared_parking_public_reproduction
+$parent = 'runs/shared_parking_public_reproduction/B1_rebuild/asset/20261101T104233573082Z_native_shared_parking_v2_B1'
+python scripts/prepare_published_native_replay.py --batch $parent --method B1 --output runs/my_public_B1_replay --case 0
+./scripts/run_registered_native.ps1 -Batch runs/my_public_B1_replay -Kind learning -ActivateQueued -UseCurrentGuard -Python .venv/Scripts/python.exe -CarlaPython .carla-python37/runtime/python.exe
+python scripts/audit_native_method_endpoint.py --batch runs/my_public_B1_replay --method B1
+$env:NAVSTACK_AUDIT_SOURCE_ROOT = (Resolve-Path runs/my_public_B1_replay/source).Path
+python scripts/audit_native_policy_inference.py --batch runs/my_public_B1_replay --method B1 --output runs/my_public_B1_replay/B1/measured_start_inference.json
+Remove-Item Env:NAVSTACK_AUDIT_SOURCE_ROOT
+python scripts/audit_native_flat_sequence.py --batch runs/my_public_B1_replay --output runs/my_public_B1_replay/B1/whole_sequence_inference.json
+python scripts/analyze_public_native_replay.py --batch runs/my_public_B1_replay --output runs/my_public_B1_replay/verification.json
+```
+
+The physical commands require the existing CARLA 0.9.15 installation and the
+isolated client described in the README. Each output directory must be new.
+The release tag remains fixed at `77a136477cfe2a2e215aa797efdcb4be30de11f2`;
+its frozen capsule source is `2794b00236319aedbb2ed801f934b61524e2aae4`.
+Use subsequent source `ba7b3cf` or newer for CPU reproduction: it fixes the
+contiguous matrix layout of two rejected experimental policy classes so their
+strict numerical tests also pass on Linux. Released B1/H models use neither class.
+
+## Actual PPO with the wrapper fixed
+
+The subsequent seed22 course uses unchanged parking v2 and synchronous delivery
+throughout **10,240 actual CARLA training controls**. Saved Adam state proves
+**318 new updates in every one of 35 parameter states**; the existing KL stop
+accounts for two fewer updates than the unrestricted 320. Actor and critic both
+change. Observation mean, variance and count remain exact; no labels, auxiliary
+updates or exploration reset are added. The final predeclared endpoint passes
+the unchanged basic gate: **4/4 successes, zero collision/bounds**.
+
+| Known TRAIN case | Endpoint controls | Parking overrides | Outcome |
+|---|---:|---:|---|
+| 0 | 349 | 2 | Success |
+| 1 | 429 | 2 | Success |
+| 2 | 320 | 1 | Success |
+| 3 | 301 | 1 | Success |
+
+Every one of the **11,639** training/evaluation controls is joined to its measured
+CARLA frame and confirmed engine control. The exact frozen helper is reconstructed
+for all **10,240 training controls** (41 parking overrides) and all 1,399 endpoint
+controls (six overrides). All 1,399 endpoint policy actions reconstruct bit-exactly
+from measured history. Training retains **26 successes, three bounds failures and
+the budget-truncated 30th episode**. It takes 856.10 seconds before endpoint
+evaluation. Total inherited PPO lineage is 40,960 controls; this is not the total
+project development cost. The separately executed public replay costs 356 controls.
+
+The frozen starting model was already 4/4 with the same assistance. This course
+therefore establishes **basic capability retention under real PPO updates**,
+without demonstrating added PPO value. It is one warm-started policy, not five
+independent healthy baselines or a full-task result. Final model SHA256 is
+`29efb9c3567c347a194717715570bbe4573699a8af72383e1bf349bd3692c753`.
+[Full learning/frame/latency audit](../reports/native_B1_shared_parking_PPO_20261101.json),
+[whole-sequence action audit](../reports/native_B1_shared_parking_PPO_whole_sequence_20261101.json),
+[prospective registration](../reports/native_B1_shared_parking_PPO_registration_20261101.json).
+
+![All four audited final trajectories](../reports/figures/native_B1_shared_parking_PPO_20261101.png)
+
+Synchronous execution does not establish real-time operation. Per-case decision
+cycle P95 is 0.085/0.275/0.067/0.193 seconds against a 0.05-second period;
+over-period fractions are 33.8%/74.1%/26.9%/63.5%. The audit includes P99, maximum,
+control-cycle timing and success-conditioned travel time for every case.
+
+The subsequent frozen probe on **all twelve original known conditions** is now
+complete: **curve/parking4/4,static vehicles4/4,crossing walkers4/4**. All4,848
+controls,12measured-start actions,engine acknowledgements and helper commands
+verify;all successful terminal frames satisfy the original nonintervened goal
+gate. Model/normalizer bytes are unchanged and no new PPO update occurs.
+[Full three-class audit](../reports/native_B1_shared_parking_full_probe_20261101.json).
+These are already-known development conditions,not twelve new final tests or five
+independent policies. The dynamic whole-action reconstruction is not claimed.
+
+The [actual-PPO development release](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-parking-ppo)
+is fixed at source`b521af521a42c068a819f25f3dee6796866e9c52`. Its572-file capsule
+was independently downloaded without authentication;all11,639rawcontrols,four
+measured-start actions,the identical endpoint figure and complete saved-Adam/RMS
+audit reproduce exactly. The checked upload contains seven parts plus a manifest,
+whose server digests match. [Public verification receipt](../reports/native_B1_shared_parking_PPO_public_verification_20261101.json).
+
+```powershell
+$recipe = Get-Content protocols/public_native_B1_shared_parking_PPO_20261101.json -Raw | ConvertFrom-Json
+python scripts/download_native_asset.py --manifest-url $recipe.manifest_url --sha256 $recipe.archive_sha256 --output runs/my_parking_PPO_download
+python scripts/reproduce_native_asset.py --archive (Join-Path runs/my_parking_PPO_download $recipe.archive_name) --sha256 $recipe.archive_sha256 --output runs/my_parking_PPO_rebuild
+python scripts/analyze_native_shared_parking_ppo.py --batch runs/my_parking_PPO_rebuild/asset/20261101T112758733226Z_native_B1_shared_parking_PPO --output runs/my_parking_PPO_learning_audit.json
+```
+
+The same release also includes the complete12-condition probe capsule:513files,
+4,848physicalcontrols,12measured starts and its endpoint figure all rebuild
+exactly from an unauthenticated public download. The complete three-class audit
+also reproduces field-for-field. Its three parts and manifest were added without
+changing the release tag or the eight existing PPO assets.
+[Full-probe public receipt](../reports/native_B1_shared_parking_full_probe_public_verification_20261101.json).
+
+```powershell
+$recipe = Get-Content protocols/public_native_B1_shared_parking_full_probe_20261101.json -Raw | ConvertFrom-Json
+python scripts/download_native_asset.py --manifest-url $recipe.manifest_url --sha256 $recipe.archive_sha256 --output runs/my_full_probe_download
+python scripts/reproduce_native_asset.py --archive (Join-Path runs/my_full_probe_download $recipe.archive_name) --sha256 $recipe.archive_sha256 --output runs/my_full_probe_rebuild
+python scripts/analyze_native_shared_parking_full_probe.py --batch runs/my_full_probe_rebuild/asset/20261101T114634589144Z_native_B1_shared_parking_full_probe --output runs/my_full_probe_audit.json
+```
+
+The registered evaluation on all24existing development-validation conditions has
+now completed with the same frozen model and assistance and zero updates.
+The completed outcome and initialization recovery are recorded below. The frozen
+worker's actual parser verifies all24conditions before launch. This is a
+development generalization check,not the new120-condition final set.
+[Prospective registration](../reports/native_B1_shared_parking_validation_probe_registration_20261101.json).
+
+## Existing development validation and independent replication
+
+The frozen trained model succeeds on **14/24 existing development-validation
+conditions**. These roads differ from its four native basic-training roads.
+
+| Core class | Success | Bounds | Collision |
+|---|---:|---:|---:|
+| Curve/parking | 5/8 | 3 | 0 |
+| Static vehicles | 3/8 | 3 | 2 |
+| Crossing walkers | 6/8 | 2 | 0 |
+
+The first lifecycle closes17complete cases before a walker-spawn collision on the
+next reset stops it. Its17outcomes and6,529controls are authenticated without
+creating a synthetic completed endpoint. A new owned child evaluates only the
+seven unfinished original cases,retaining their reset seeds and charging all
+parent costs. It uses the already validated +0.2m walker spawn-height clearance
+before the unchanged30settlement ticks;XY,yaw,model,normalizer,vehicle control and
+goal gates remain unchanged. All3,681child controls and seven measured starts
+verify. Combined control count is10,210. Original case16 uses the legacy walker
+initialization;cases17–23 use the clearance version. This mixed initialization
+record supports descriptive failure diagnosis and does not establish a uniform
+formal comparison. All failures remain in the24-condition denominator.
+[Interrupted-prefix evidence](../reports/native_B1_validation_interrupted_prefix_20261101.json),
+[complete recovery record](../reports/native_B1_shared_parking_validation_complete_20261101.json).
+
+The known12-condition success does not establish generalization:validation
+completion is58.3% and collision/bounds41.7%,below the requested engineering
+targets. Both records are one trained policy,not independent training seeds.
+
+Five new courses are now prepared from the distinct actual20,480-control parents
+for seeds11/22/33/44/55. The earlier29efpilot is excluded. Every parent receives
+the same1,024TRAIN-only actor Adam steps using3,424acknowledged teacher rows,
+3,424virtual reflections and120virtual pose triplets;no validation labels are
+used. All five original/fitted actors are distinct. Critic,log_std,PPOoptimizer,
+PPOcounters and observation moments are retained. Actual auxiliary cost is5,120
+steps,with no new driving in the fitting phase. Every pose-response diagnostic
+still misses its fixed offline ceiling;these failed screens are retained.
+[Independent initialization audit](../reports/native_B1_shared_parking_cohort_initialization_20261101.json).
+
+The prospectively registered next phase is real learning,not qualification from
+those fits. Every seed receives exactly10,240new actual PPO controls on all four
+original basic roads,with the same frozen worker,shared parking v2,synchronous
+delivery and walker initialization version. Qualification is checked after
+learning:at least3/4successes **and zero collision/bounds**,separately for every
+seed. The serial queue records checkpoints,raw controls,saved Adam increments,
+measured-start actions,whole endpoint actions and every failed gate. No best seed
+or checkpoint is selected. The first two courses have completed:seed11is3/4with
+one bounds failure and fails the basic gate;seed22is4/4with zero unsafe and passes.
+Each performs10,240new actual PPO controls and320saved Adam increments in all35
+parameter states. Both complete raw/action audits are retained.
+Seed33has also completed4/4with zero unsafe and passed;seed44is training,next55.
+There is no five-seed qualification yet. Final confirmation has not been activated.
+[Locked recipe](../protocols/native_B1_shared_parking_five_seed_course_20261101.json).
+
+The retained17-case prefix and complete24-condition recovery record also
+reproduce field-for-field from an independent checkout. Its related16CPUtests
+pass;source9a5a409fullCIpasses.
+[Independent verification](../reports/native_B1_validation_independent_verification_20261101.json).
+
+Fixed TRAIN-only response diagnostics compare the first two course initial/final
+models. Seed11's lateral response error changes only0.034145→0.034247,and yaw
+0.028032→0.028051. Its failed native case never gets closer than3.494m to the goal
+and has zero parking overrides. Seed22passes4/4while its response errors also
+change little. These findings do not establish the cause of failure;they locate
+the failed rollout before terminal parking and retain the initial underfitting.
+[Seed11diagnostic](../reports/native_B1_shared_parking_seed11_pose_retention_20261101.json),
+[seed22diagnostic](../reports/native_B1_shared_parking_seed22_pose_retention_20261101.json).
+
+One isolated continuation of every original1,024-step actor fit adds exactly512
+auxiliary Adam updates per seed,2,560total. All five auxiliary optimizer states
+advance to1,536;the sampler states at1,024and1,536reconstruct exactly. Critic,
+log_std,PPOoptimizer,counters and RMS remain unchanged. Actor weights change from
+the same starting checkpoints. Only seeds11and55pass the unchanged offline
+ceilings;the other three fail. This is not a qualified common initialization and
+does not replace any input to the running native queue. No extra continuation or
+native deployment is automatic.
+[Complete CPU candidate audit](../reports/native_B1_reflection_cohort_continuation_20261101.json).
+
+A separate **20,480-control broader learning study** is registered from the
+canonical seed22 final checkpoint that passes the actual basic gate. It uses all
+36existingTRAINconditions and24existingdevelopment-validation conditions. A
+read-only process handle binds its observer to the exact current five-seed
+queue;the new study starts only after that whole queue exits normally with all
+five outcomes retained. This is one development pilot,not five-seed full-task
+qualification or a matched H/B1comparison. No validation labels are used.
+
+The vehicle,environment,reward,planner,MPC,adapter,delivery and parking-helper
+source bytes are preserved. The worker/case-dispatch modules add the existing
+separate-validation support;the bridge additionally records settled walker
+height without changing its motion initialization. A frozen-runtime import check
+caught a missing partition module before launch;that unstarted preparation is
+retained and abandoned with zero controls. The replacement passes the actual
+36/24parser,configuration-signature and launcher input checks. Training has not
+started while the observer waits.
+[Broader study registration](../reports/native_B1_broader_shared_parking_registration_20261101.json).
+
+The14/24reference uses the older29efpilot. The broader study starts fromea2d,
+the independent-cohort seed22endpoint. These different initial models preclude
+interpreting a later score against14/24as an isolated PPO improvement.

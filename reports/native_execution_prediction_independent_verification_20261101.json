@@ -1,0 +1,51 @@
+{
+  "scope": "Actual independent checkout CPUreplay of all prespecified predictor folds from hash-checked measured-TRAINdatasets;no new native controls or policy updates.",
+  "source_commit": "ae76d1ddd872519b7c7d0b073d59c97c30e53e81",
+  "datasets_checked": 6,
+  "selected_TRAIN_decisions": 20800,
+  "independent_replayed_predictor_Adam_updates": 2400,
+  "prediction_absolute_tolerance": 1e-07,
+  "folds": [
+    {
+      "fold": 0,
+      "maximum_prediction_errors": {
+        "geometry": 0.0,
+        "geometry_and_previous_execution": 0.0,
+        "history_only": 0.0
+      }
+    },
+    {
+      "fold": 1,
+      "maximum_prediction_errors": {
+        "geometry": 0.0,
+        "geometry_and_previous_execution": 0.0,
+        "history_only": 0.0
+      }
+    },
+    {
+      "fold": 2,
+      "maximum_prediction_errors": {
+        "geometry": 0.0,
+        "geometry_and_previous_execution": 0.0,
+        "history_only": 0.0
+      }
+    },
+    {
+      "fold": 3,
+      "maximum_prediction_errors": {
+        "geometry": 0.0,
+        "geometry_and_previous_execution": 0.0,
+        "history_only": 0.0
+      }
+    }
+  ],
+  "negative_adoption_decision_unchanged": true,
+  "new_controls": 0,
+  "registered_policy_updates": 0,
+  "research_acceptance": "UNMET",
+  "independent_targeted_regression": {
+    "passed": 33,
+    "seconds": 8.99
+  },
+  "original_validation_report_sha256": "2f047646b5ddcbadf16574b5c6408deb1b23f3e43555d1d0af2fb7ea25e14c5e"
+}

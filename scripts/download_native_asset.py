@@ -1,0 +1,152 @@
+"""Download one public project evidence capsule with an explicitly trusted SHA256."""
+import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import hashlib
+from http.client import HTTPException
+import json
+from pathlib import Path
+import re
+import shutil
+import sys
+import time
+from urllib.parse import urlsplit
+from urllib.request import Request, urlopen
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.native_asset_parts import join, validate_manifest
+
+
+def release_url(url):
+    parsed = urlsplit(url)
+    if (parsed.scheme != 'https' or parsed.netloc != 'github.com' or parsed.query or parsed.fragment
+            or not re.fullmatch(r'/Leo-7GOAT/Intelligent-driving-system/releases/download/'
+                                r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\.parts\.json', parsed.path)):
+        raise ValueError('Require a public HTTPS parts manifest from this project release')
+    return url.rsplit('/', 1)
+
+
+def read_bounded(url, maximum, deadline):
+    remaining = deadline-time.monotonic()
+    if remaining <= 0:
+        raise TimeoutError('Download wall budget exhausted')
+    request = Request(url, headers={'User-Agent': 'native-evidence-download/1'})
+    chunks, size = [], 0
+    with urlopen(request, timeout=min(60., remaining)) as response:
+        while True:
+            if time.monotonic() >= deadline:
+                raise TimeoutError('Download wall budget exhausted')
+            chunk = response.read(min(65536, maximum-size+1))
+            if not chunk:
+                break
+            chunks.append(chunk)
+            size += len(chunk)
+            if size > maximum:
+                raise ValueError('Response exceeds its declared size bound')
+    return b''.join(chunks)
+
+
+def download(manifest_url, directory, expected_sha256, wall_seconds=1200, *, resume=False):
+    if not isinstance(expected_sha256, str) or not re.fullmatch('[0-9a-f]{64}', expected_sha256):
+        raise ValueError('Require the trusted archive SHA256 from the published verification report')
+    if type(wall_seconds) not in (int, float) or not 1 <= wall_seconds <= 1200:
+        raise ValueError('Download wall budget must be1..1200seconds')
+    base, manifest_name = release_url(manifest_url)
+    directory = Path(directory)
+    if directory.exists() and not resume:
+        raise FileExistsError('Use a fresh output directory; interrupted evidence is preserved')
+    started = time.monotonic()
+    deadline = started+wall_seconds
+    manifest_failures = []
+    for attempt in range(1, 4):
+        try:
+            payload = read_bounded(manifest_url, 1024**2, deadline)
+            break
+        except (OSError, HTTPException, TimeoutError) as error:
+            manifest_failures.append({'attempt': attempt, 'error': str(error)})
+            if attempt == 3 or time.monotonic() >= deadline:
+                raise
+    manifest = json.loads(payload)
+    parts = validate_manifest(manifest, expected_sha256)
+    archive_name = manifest.get('archive')
+    if (not isinstance(archive_name, str) or not re.fullmatch(r'[A-Za-z0-9_.-]+\.zip', archive_name)
+            or manifest_name != archive_name+'.parts.json'
+            or any(part['name'] != archive_name+f'.part{index:03d}'
+                   for index, part in enumerate(parts, 1))):
+        raise ValueError('Archive and ordered part names differ from the transfer format')
+    if resume and directory.exists():
+        if (directory / archive_name).exists() or (directory / 'download_receipt.json').exists():
+            raise FileExistsError('Use the verified complete-download cache; do not overwrite its receipt')
+        if (directory / manifest_name).read_bytes() != payload:
+            raise ValueError('Partial download manifest differs from the fresh public manifest')
+    ancestor = directory.resolve().parent
+    while not ancestor.exists():
+        ancestor = ancestor.parent
+    if shutil.disk_usage(ancestor).free < 2*manifest['bytes']+64*1024**2:
+        raise OSError('Insufficient free space for checked parts and assembled archive')
+    directory.mkdir(parents=True, exist_ok=resume)
+    manifest_path = directory/manifest_name
+    if not manifest_path.exists():
+        with manifest_path.open('xb') as stream:
+            stream.write(payload)
+    retained = []
+    for part in parts:
+        path = directory / part['name']
+        if path.exists():
+            if path.stat().st_size != part['bytes'] or hashlib.sha256(path.read_bytes()).hexdigest() != part['sha256']:
+                raise ValueError('Retained download part changed: ' + part['name'])
+            retained.append(part['name'])
+
+    def fetch(part):
+        if part['name'] in retained:
+            return
+        prior = [int(match.group(1)) for path in directory.glob(part['name'] + '.attempt*')
+                 if (match := re.search(r'\.attempt(\d+)\.', path.name))]
+        offset = max(prior, default=0)
+        for number in range(1, 4):
+            attempt = offset + number
+            try:
+                data = read_bounded(base+'/'+part['name'], part['bytes'], deadline)
+                temporary = directory/(part['name']+f'.attempt{attempt}.partial')
+                with temporary.open('xb') as stream:
+                    stream.write(data)
+                if len(data) != part['bytes'] or hashlib.sha256(data).hexdigest() != part['sha256']:
+                    raise ValueError('Downloaded part differs: '+part['name'])
+                temporary.rename(directory/part['name'])
+                return
+            except (OSError, HTTPException, ValueError, TimeoutError) as error:
+                evidence = directory/(part['name']+f'.attempt{attempt}.failure.json')
+                evidence.write_text(json.dumps({'attempt': attempt, 'error': str(error),
+                                               'new_controls': 0}), encoding='utf-8')
+                if number == 3 or time.monotonic() >= deadline:
+                    raise
+
+    with ThreadPoolExecutor(max_workers=min(3, len(parts))) as workers:
+        futures = [workers.submit(fetch, part) for part in parts]
+        try:
+            for future in as_completed(futures):
+                future.result()
+        except BaseException:
+            for future in futures:
+                future.cancel()
+            raise
+    result = join(manifest_path, directory/archive_name, expected_sha256)
+    result.update(manifest_url=manifest_url, archive=archive_name,
+                  wall_seconds=time.monotonic()-started, new_controls=0, optimizer_updates=0,
+                  manifest_network_failures=manifest_failures,
+                  resumed_verified_parts=retained,
+                  retained_part_failure_records=[p.name for p in sorted(directory.glob('*.failure.json'))])
+    with (directory/'download_receipt.json').open('x', encoding='utf-8') as stream:
+        json.dump(result, stream, indent=2)
+    return result
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--manifest-url', required=True)
+    parser.add_argument('--output', required=True, help='Fresh directory for checked parts and assembled ZIP')
+    parser.add_argument('--sha256', required=True)
+    parser.add_argument('--wall-seconds', type=float, default=1200)
+    parser.add_argument('--resume', action='store_true', help='Explicit bounded continuation;recheck fresh manifest and every retained part,never overwrite failures or completed receipts')
+    args = parser.parse_args()
+    print(json.dumps(download(args.manifest_url, args.output, args.sha256, args.wall_seconds, resume=args.resume)))

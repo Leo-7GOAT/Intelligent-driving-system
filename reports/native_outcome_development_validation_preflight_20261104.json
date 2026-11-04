@@ -1,0 +1,36 @@
+{
+  "results": {
+    "placements30": {
+      "cases": 30,
+      "protocol_sha256": "ed5b7938393bf4cbe329e9e2a5f28643c76630b65fd03800afdec271e0c68d6d",
+      "same_complete_task_inventory": true,
+      "same_frozen_source": true,
+      "same_model_and_normalization": true,
+      "policy_observation_size": 4736,
+      "preflight_new_controls": 0,
+      "new_updates": 0
+    },
+    "known24": {
+      "cases": 24,
+      "protocol_sha256": "243dbd73ebc10ffb58f692eaea11d8bb80bd8145723a38cf5e25af3c46772f8a",
+      "same_complete_task_inventory": true,
+      "same_frozen_source": true,
+      "same_model_and_normalization": true,
+      "policy_observation_size": 4736,
+      "preflight_new_controls": 0,
+      "new_updates": 0
+    }
+  },
+  "scope": "Prepared source/task/model/launcher preflight only;not new driving or performance evidence",
+  "status": "H_FROZEN_FULL_INVENTORY_PREFLIGHTED_NOT_NATIVE_STARTED",
+  "preparer_sha256": "e11d9cef56d364272a34b769e9a2fa8fce11516fddbfddf8fe4428464ee1fc63",
+  "launcher_checks": [
+    "INPUTS_VALIDATED_NOT_SERVER_PROBED",
+    "INPUTS_VALIDATED_NOT_SERVER_PROBED"
+  ],
+  "rejected_unknown_phase_and_template_without_staging": true,
+  "H0_model_not_yet_available": true,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "limits": "Two frozen H preparations and actual model/source/task/launcher checks only;no simulator connection,no new driving,no new performance claim.H0 training must close before paired broader evaluation."
+}

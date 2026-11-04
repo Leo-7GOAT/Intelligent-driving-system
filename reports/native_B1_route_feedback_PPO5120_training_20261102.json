@@ -1,0 +1,77 @@
+{
+  "batch": "20261102T114745271816Z_native_route_feedback_PPO5120",
+  "protocol_sha256": "95478d94b62d09c0d2068012e71ca60d8e161e299a59111b60feabb99a99a3f9",
+  "script_sha256": "2322818e05414dd1b838526f9cc0cebaa369a89d67e896b360bfce57c1e2e470",
+  "new_actual_PPO_controls": 5120,
+  "new_actual_Adam_steps": 160,
+  "saved_Adam": {
+    "original_states": 35,
+    "new_route_states": 5,
+    "step_increment_each": 160
+  },
+  "all_actual_frames_verified": true,
+  "strict_engine_delivery": {
+    "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+    "batch": "20261102T114745271816Z_native_route_feedback_PPO5120",
+    "protocol_sha256": "95478d94b62d09c0d2068012e71ca60d8e161e299a59111b60feabb99a99a3f9",
+    "control_delivery": "batch_sync_v1",
+    "bridge_streams": [
+      {
+        "name": "bridge_db527ddb_responses.jsonl.gz",
+        "sha256": "fd124d5adf045d23fcb0663a8ff5a51caddf688a8d58e314b87aa2eda3780b8b"
+      }
+    ],
+    "tolerance": 1e-05,
+    "counts": {
+      "controls": 5120,
+      "gear_or_handbrake_mismatches": 0,
+      "missing_or_negative_sync_ack": 0
+    },
+    "mismatch_channels": {},
+    "by_phase": {
+      "training_or_untraced_failure": {
+        "controls": 5120
+      }
+    },
+    "mismatch_examples": [],
+    "all_engine_controls_match_requested": true,
+    "strict_delivery_gate_passed": true,
+    "new_controls": 0,
+    "new_optimizer_updates": 0,
+    "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+  },
+  "observation_RMS_exact": true,
+  "changed_network_tensors": {
+    "actor": 26,
+    "critic": 14
+  },
+  "training_outcomes": {
+    "out_of_bounds": 3,
+    "success": 2,
+    "collision": 7,
+    "deadline": 3
+  },
+  "new_auxiliary_steps": 0,
+  "model_sha256": "5085cfb491ebf1c07a14dcfc71f0c6cb5673476fd464ff28286fc20bcbb6e11d",
+  "normalization_sha256": "d9c78f13a51ac235750264631f4138dc273b96fe78d864f169b0535dd1774d5f",
+  "transition_hashes": {
+    "transitions_000000000_1793620081023323600.jsonl.gz": "cfd6aea9058b805114d8d801fbf9b26a8a3c047b43e286d44beb298979e91d54"
+  },
+  "bridge_streams": [
+    {
+      "name": "bridge_db527ddb_responses.jsonl.gz",
+      "sha256": "fd124d5adf045d23fcb0663a8ff5a51caddf688a8d58e314b87aa2eda3780b8b"
+    }
+  ],
+  "world_ticks": 5615,
+  "endpoint_validation": "PENDING;training outcomes are stochastic training,not frozen-policy evaluation",
+  "research_acceptance": "UNMET",
+  "training_wall_seconds": 418.62392592430115,
+  "lineage_PPO_controls": 56320,
+  "charged_controls_lower_bound": 160573,
+  "actor_l2_change": 0.021195299923419952,
+  "training_audit_sha256": "62f1062efc48488f1532aba04e8a677c124296bf7d699c3d91c39b707f0b1627",
+  "retained_learning_rate": 3e-06,
+  "original_gaussian_std_approximately": 0.018315,
+  "endpoints": "Original four-road CARLA probe running;fullknown24 only after safety gate. No performance claim from training outcomes."
+}

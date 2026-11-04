@@ -1,0 +1,152 @@
+{
+  "scope": "Rejected candidate-geometry development version; one seed and all4known full static roads. All failures retained; no superiority or independent confirmation claim.",
+  "batch": "20261027T020918Z_native_hazard_learning",
+  "candidate_geometry": "kinematic_arcs_goal_v1",
+  "methods": {
+    "H": {
+      "training_controls": 20480,
+      "decisions": 2048,
+      "optimizer_steps": 640,
+      "training_termination_counts": {
+        "deadline": 22
+      },
+      "frozen_successes": 0,
+      "frozen_cases": [
+        {
+          "case_id": 0,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 16.723345087148793,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900,
+          "plan_failures": 90
+        },
+        {
+          "case_id": 2,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 19.351629226491802,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900,
+          "plan_failures": 90
+        }
+      ],
+      "raw_controls_verified": 24080,
+      "raw_audit_sha256": "fe47bec718757cc140645b2ddee914d1327b65cfaab6a5f943d7ac25ceea8af9"
+    },
+    "H0": {
+      "training_controls": 20480,
+      "decisions": 2048,
+      "optimizer_steps": 640,
+      "training_termination_counts": {
+        "deadline": 22
+      },
+      "frozen_successes": 0,
+      "frozen_cases": [
+        {
+          "case_id": 0,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 1.4003061358127091,
+          "interventions": 870,
+          "plan_failures": 87
+        },
+        {
+          "case_id": 1,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900,
+          "plan_failures": 90
+        },
+        {
+          "case_id": 2,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900,
+          "plan_failures": 90
+        },
+        {
+          "case_id": 3,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.5162891289438427,
+          "interventions": 880,
+          "plan_failures": 88
+        }
+      ],
+      "raw_controls_verified": 24080,
+      "raw_audit_sha256": "264aecffbac7a50f90ed596e65070d92a5ef97f89832dbc7a78b477ddb78b35c"
+    },
+    "B1": {
+      "training_controls": 20680,
+      "decisions": 2112,
+      "optimizer_steps": 660,
+      "training_termination_counts": {
+        "out_of_bounds": 37,
+        "collision": 54
+      },
+      "frozen_successes": 0,
+      "frozen_cases": [
+        {
+          "case_id": 0,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 259,
+          "progress": 13.649079260570858,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 1,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 55,
+          "progress": 1.199512492084576,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 2,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 179,
+          "progress": 7.95320594096504,
+          "interventions": 0,
+          "plan_failures": 0
+        },
+        {
+          "case_id": 3,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 181,
+          "progress": 3.320036812003547,
+          "interventions": 0,
+          "plan_failures": 0
+        }
+      ],
+      "raw_controls_verified": 21354,
+      "raw_audit_sha256": "9d99369785c35606e86bd73a17097583c2cc82369280d690ec69c729e67d4cea"
+    }
+  },
+  "all_raw_controls_verified": 69514,
+  "actual_H_initializer_and_postinit_rng_equal_prior": true,
+  "initializer_tensor_count": 30,
+  "initializer_sha256": "d20e8c87407690fee7ec59834496a58983634ce36b60ea558c3432f78b203e8f",
+  "prior_H_frozen_successes": 2,
+  "new_H_frozen_successes": 0,
+  "interpretation": "Better initial endpoint connectivity did not improve learned whole-task completion. Do not adopt this catalog as an improvement. Nominal budgets match, but final rollout overshoot and updates differ and are separately recorded.",
+  "normal_cleanup": "owned_empty_server_stopped",
+  "protocol_sha256": "704b693ba705be4f3b67bbe37bc65cb5ec20124214a2c4e049c24050661ad4dc"
+}

@@ -1,0 +1,20 @@
+{
+  "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+  "archive_sha256": "491575700daf9a47c47c5f3a859418e59783f704187c7c49fb24ff8f41441123",
+  "asset_source_commit": "3978a881af276d70e479f1e9b9259435fd25dcc4",
+  "reproduction_source_commit": "3cd21327bb9eb7ff1ce39aa4d24a7bd2cc4b6f72",
+  "verified_files": 463,
+  "methods": [
+    {
+      "method": "B1",
+      "raw_audit_sha256": "7939cc3db014709221cf9ef277309439327e1d66556aa0ece921b606bc47010e",
+      "verified_controls": 23025,
+      "measured_start_actions_reproduced": 4,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "f6fdc815c48feb5965cbdbbf1b2f0ebc261ee887898853d33a1f50fa3a56cbd0",
+  "figure_byte_identical": true
+}

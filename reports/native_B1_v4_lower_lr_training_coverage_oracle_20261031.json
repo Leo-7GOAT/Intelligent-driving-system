@@ -1,0 +1,62 @@
+{
+  "scope": "Actual offline B3/MPC counterfactual queries on fixed early states of every condition's first completed training episode;not driving or a fitted policy.",
+  "batch": "20261031T055729299388Z_native_supervised_ppo",
+  "raw_audit_sha256": "f5a1035cb4a51f747bbd5657bfcec4ca401f12813502da5922b6ea9e2d9619d9",
+  "query_script_sha256": "24037301d93856446980f089cca6827ccc2fca61c6dcda7fdd325c52368ac224",
+  "history_script_sha256": "9ba227ec52867cfeb2ff4cbe46155c96aeb4525eb69a65eed39fbd7d885b839d",
+  "query_log_sha256": "aeb88cfe18186b908fdaa6334408d3923c2fb973895db7d0cb39ace844871aec",
+  "dataset_sha256": "421bfa31955616c09b69b0e6eb8fc3663eec4efb6bfd11c9ffb8d6b4d66cff6e",
+  "selection": "First completed training episode per registered condition,regardless of outcome;fixed absolute controls0,40,80,120,160,200 when present. No evaluation states or outcome selection.",
+  "coverage_profile": "first_episode_early_controls_v1",
+  "conditions": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "fixed_controls": [
+    0,
+    40,
+    80,
+    120,
+    160,
+    200
+  ],
+  "queries": 72,
+  "available_labels": 72,
+  "oracle_modes": {
+    "reference": 61,
+    "wait": 3,
+    "dynamic_brake": 8
+  },
+  "normalized_acknowledged_command_MSE": 0.16881754444136648,
+  "per_condition_command_MSE": {
+    "0": 0.006005565763100438,
+    "1": 0.32397210590654013,
+    "2": 0.008738018559005271,
+    "3": 0.014784247548458626,
+    "4": 0.006847723172539458,
+    "5": 0.4208324904132192,
+    "6": 0.01615105879995449,
+    "7": 0.011684798219574258,
+    "8": 0.4141571522961412,
+    "9": 0.18639068622495436,
+    "10": 0.16850620532755453,
+    "11": 0.4477404810653561
+  },
+  "all_selected_training_controls_bound": true,
+  "evaluation_states_used": 0,
+  "new_executed_teacher_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "limits": "Early controls only,not all later departure states. Command disagreement does not demonstrate that the counterfactual trajectory would recover. No labels deployed or fit yet.",
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,100 @@
+{
+  "scope": "Unauthenticated independent-checkout reconstruction of actual shared-parking PPO evidence. No new driving or optimizer updates.",
+  "recipe_sha256": "2e98180492efbcc8e91c7482bf031c43af11904a9ea4ec45f73be70617c45665",
+  "upload": {
+    "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-parking-ppo",
+    "immutable_target_commit": "b521af521a42c068a819f25f3dee6796866e9c52",
+    "CI": {
+      "conclusion": "success",
+      "headSha": "95d723983c23d1008b6739f1379bf670c6807448",
+      "status": "completed"
+    },
+    "CI_run": 41303560231,
+    "archive_sha256": "b9b60fd0b71c23fcacaf36b1f51d613d0c64098b8fd0348be88dfa27bb28905e",
+    "verified_assets": [
+      {
+        "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part001",
+        "bytes": 8388608,
+        "sha256": "f12fe02ca3ef2015a0f5059ead0153095b3be25f8ac859f493eb49feaa852eb2"
+      },
+      {
+        "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part002",
+        "bytes": 8388608,
+        "sha256": "5a95e4ceafff9b5e0b8c005f4547af6fd9418b0c491d40571890e8a7b88de15a"
+      },
+      {
+        "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part003",
+        "bytes": 8388608,
+        "sha256": "bc71c84fe8ad6ffed9d9761d835e626b8e3a8a8610477fd78b55ea65b4bbdc32"
+      },
+      {
+        "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part004",
+        "bytes": 8388608,
+        "sha256": "46512074db41b609a6088c3e96bb79bd4d0b226561826a27d67d2a15cc06a4b5"
+      },
+      {
+        "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part005",
+        "bytes": 8388608,
+        "sha256": "b7181980ded345697cdb7a20a2d63b41a4a4c8dea416a70e6135bf7a96cfd018"
+      },
+      {
+        "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part006",
+        "bytes": 8388608,
+        "sha256": "752c52fe6d4db54507addcb5baf915a8041c2a25158f777fc756bf28dd212ac4"
+      },
+      {
+        "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part007",
+        "bytes": 2549916,
+        "sha256": "837fc8be3af3181d9ed9824841b647308cfcec30f33b022c6d40d4fffeb34776"
+      },
+      {
+        "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.parts.json",
+        "bytes": 1623,
+        "sha256": "7417fa812c1f548bd8a0d8e2336e7abab680edd0e92dde02c8aebce5941fef31"
+      }
+    ],
+    "new_controls": 0,
+    "new_optimizer_updates": 0
+  },
+  "download": {
+    "bytes": 52881564,
+    "sha256": "b9b60fd0b71c23fcacaf36b1f51d613d0c64098b8fd0348be88dfa27bb28905e",
+    "parts": 7,
+    "archive_byte_exact": true,
+    "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-parking-ppo/native_B1_shared_parking_PPO_seed22_20261101.zip.parts.json",
+    "archive": "native_B1_shared_parking_PPO_seed22_20261101.zip",
+    "wall_seconds": 47.70299999997951,
+    "new_controls": 0,
+    "optimizer_updates": 0,
+    "manifest_network_failures": [],
+    "retained_part_failure_records": []
+  },
+  "reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "b9b60fd0b71c23fcacaf36b1f51d613d0c64098b8fd0348be88dfa27bb28905e",
+    "asset_source_commit": "95d723983c23d1008b6739f1379bf670c6807448",
+    "reproduction_source_commit": "b521af521a42c068a819f25f3dee6796866e9c52",
+    "verified_files": 572,
+    "methods": [
+      {
+        "method": "B1",
+        "raw_audit_sha256": "a6ebdd6a6e0002e448380aff5072decf8210bd473473644603616d0a53f2f383",
+        "verified_controls": 11639,
+        "measured_start_actions_reproduced": 4,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "0b91a82879406699d48583a0799586c2078e6e74ea8d5746fcf50548806a94a8",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  },
+  "complete_learning_audit_field_exact": true,
+  "learning_audit_sha256": "208b5f954f0984bd756eff78c91c571e1eb73b245b364dd291d99124d0248cce",
+  "all35_saved_Adam_states_advance318": true,
+  "observation_RMS_frozen": true,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,545 @@
+{
+  "scope": "Seed11 development only: four known roads crossed with three scene families. All trained-policy endpoints here are actor-supervised initialization with ZERO PPO updates. Not unseen tests, independent training seeds, or final research acceptance.",
+  "case_manifest": "configs/native_development_cases_v1.json",
+  "case_manifest_sha256": "3f15b74f6a60f6659e11c746d0f927cf2c7f9ba2fc3ae639930c83cf65a706e1",
+  "rule": {
+    "batch": "20261027T080111Z_native_rule",
+    "policy_kind": "rule_only_B3",
+    "successes": 12,
+    "cases": 12,
+    "evaluation_controls": 4329,
+    "world_ticks": 4700,
+    "raw_audit_sha256": "cfa81297137a7155f8f8b2607bf6f1c9e343daa09199678d8ddbab09594b5994",
+    "protocol_sha256": "4813469b0897c1302845c1fb80d2f191d4f7436c5db7de6fa7c7d35f6da0aa7d",
+    "episodes": [
+      {
+        "case_id": 0,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 340,
+        "progress": 24.27947205256057,
+        "interventions": 0
+      },
+      {
+        "case_id": 1,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 347,
+        "progress": 23.791476974358982,
+        "interventions": 0
+      },
+      {
+        "case_id": 2,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 311,
+        "progress": 22.21485502368846,
+        "interventions": 0
+      },
+      {
+        "case_id": 3,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 301,
+        "progress": 20.164398505411675,
+        "interventions": 0
+      },
+      {
+        "case_id": 4,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 356,
+        "progress": 24.113400566280795,
+        "interventions": 0
+      },
+      {
+        "case_id": 5,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 361,
+        "progress": 23.717344859955748,
+        "interventions": 0
+      },
+      {
+        "case_id": 6,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 339,
+        "progress": 22.428201346292553,
+        "interventions": 0
+      },
+      {
+        "case_id": 7,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 345,
+        "progress": 20.156748241735944,
+        "interventions": 0
+      },
+      {
+        "case_id": 8,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 415,
+        "progress": 24.115047846327627,
+        "interventions": 70
+      },
+      {
+        "case_id": 9,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 444,
+        "progress": 23.766124166817097,
+        "interventions": 90
+      },
+      {
+        "case_id": 10,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 381,
+        "progress": 22.191988551982337,
+        "interventions": 60
+      },
+      {
+        "case_id": 11,
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 389,
+        "progress": 20.282403628866728,
+        "interventions": 80
+      }
+    ]
+  },
+  "teacher_unique_controls": 4329,
+  "teacher_macro_labels": 439,
+  "methods": [
+    {
+      "batch": "20261027T094138Z_native_hierarchical_bc",
+      "method": "H",
+      "successes": 11,
+      "cases": 12,
+      "families": {
+        "curve_parking": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "static_obstacle": {
+          "successes": 3,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "dynamic_interaction": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "actual_training_controls": 0,
+      "evaluation_controls": 4914,
+      "raw_controls": 4914,
+      "optimizer_steps": 0,
+      "optimization_phases": 0,
+      "model_sha256": "5ee988dac57dd0a8df443a39b845d7de59162c6163e61b9e998a546647d10f37",
+      "normalization_sha256": "0ee557017eca0168169a5aba6e9821fefe878f1298bbfd993ac4f1e0ddfeedf1",
+      "raw_audit_sha256": "d359d471f928584b7057d310e78b74a41e08a3ba26c1ea4cdd5689ee23a51a16",
+      "protocol_sha256": "519ef9701287a1d34e420c2dd424a93e24a623d3d63ede641232e7b7cc3501eb",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "progress": 24.279598478663782,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 347,
+          "progress": 23.793146852890388,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 311,
+          "progress": 22.21498198376045,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 301,
+          "progress": 20.190713288572837,
+          "interventions": 0
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 356,
+          "progress": 24.1136027087604,
+          "interventions": 0
+        },
+        {
+          "case_id": 5,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 371,
+          "progress": 23.646885985905083,
+          "interventions": 10
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "progress": 22.41911432727381,
+          "interventions": 0
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 13.639761697689842,
+          "interventions": 650
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 420,
+          "progress": 24.296260279401228,
+          "interventions": 70
+        },
+        {
+          "case_id": 9,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 459,
+          "progress": 23.97925616778936,
+          "interventions": 90
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "progress": 22.192761974776083,
+          "interventions": 60
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 391,
+          "progress": 20.272814692047696,
+          "interventions": 80
+        }
+      ],
+      "supervised_optimizer_steps": 896
+    },
+    {
+      "batch": "20261027T094138Z_native_hierarchical_bc",
+      "method": "H0",
+      "successes": 11,
+      "cases": 12,
+      "families": {
+        "curve_parking": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "static_obstacle": {
+          "successes": 3,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "dynamic_interaction": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "actual_training_controls": 0,
+      "evaluation_controls": 4889,
+      "raw_controls": 4889,
+      "optimizer_steps": 0,
+      "optimization_phases": 0,
+      "model_sha256": "143083d68fe00853b2355b3c03324981f1f9e3716cbf4018fd8473c26a918123",
+      "normalization_sha256": "474db8f7b3ed0a2a6bbb694243f6cba52731aa4044b0eceffde9da8e08ee179c",
+      "raw_audit_sha256": "13aba68680a14d9d705b7fac71d2e5b0f67d3893fc9f03c71b4b1451481eebd3",
+      "protocol_sha256": "519ef9701287a1d34e420c2dd424a93e24a623d3d63ede641232e7b7cc3501eb",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "progress": 24.279456201901258,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 351,
+          "progress": 23.879645677341628,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 311,
+          "progress": 22.214969054923863,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "progress": 20.39382180538659,
+          "interventions": 0
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 356,
+          "progress": 24.113535301961544,
+          "interventions": 0
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "progress": 22.42169843030968,
+          "interventions": 0
+        },
+        {
+          "case_id": 7,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 351,
+          "progress": 20.04880256053025,
+          "interventions": 10
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 421,
+          "progress": 24.255380168943056,
+          "interventions": 70
+        },
+        {
+          "case_id": 9,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 444,
+          "progress": 23.766298753721376,
+          "interventions": 90
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "progress": 22.219649327838273,
+          "interventions": 60
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 391,
+          "progress": 20.279827614426306,
+          "interventions": 80
+        }
+      ],
+      "supervised_optimizer_steps": 896
+    },
+    {
+      "batch": "20261027T095043Z_native_measured_bc",
+      "method": "B1",
+      "successes": 4,
+      "cases": 12,
+      "families": {
+        "curve_parking": {
+          "successes": 2,
+          "cases": 4,
+          "unsafe": 1
+        },
+        "static_obstacle": {
+          "successes": 2,
+          "cases": 4,
+          "unsafe": 2
+        },
+        "dynamic_interaction": {
+          "successes": 0,
+          "cases": 4,
+          "unsafe": 3
+        }
+      },
+      "actual_training_controls": 0,
+      "evaluation_controls": 4459,
+      "raw_controls": 4459,
+      "optimizer_steps": 0,
+      "optimization_phases": 0,
+      "model_sha256": "675ab04ab8c8cb3e0ac9b8b30d6e710ba7c7c79681c291c67ec5fc0fb8e729c6",
+      "normalization_sha256": "6f6a3ae3210815325ac6d3f3a3b2f3299021fad0a1570e7925835e309cefeda0",
+      "raw_audit_sha256": "4c4a08a9d0769ecc47f2610b22622df1e2d2406ce5d3061c57fe2b766175a4f5",
+      "protocol_sha256": "1796b1271863394f6703f3d205129a38e45f2fb9a5e7640af7c04c1927126fcf",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "progress": 24.232612236611317,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 3.3867216543846013,
+          "interventions": 0
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 381,
+          "progress": 19.85732841659763,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 305,
+          "progress": 20.708081617522055,
+          "interventions": 0
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 374,
+          "progress": 23.849331426937404,
+          "interventions": 0
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 164,
+          "progress": 5.710692989418455,
+          "interventions": 0
+        },
+        {
+          "case_id": 6,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 476,
+          "progress": 20.15507834077208,
+          "interventions": 0
+        },
+        {
+          "case_id": 7,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 328,
+          "progress": 20.057615993138164,
+          "interventions": 0
+        },
+        {
+          "case_id": 8,
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 94,
+          "progress": 6.15863907955335,
+          "interventions": 0
+        },
+        {
+          "case_id": 9,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 3.5994799766320718,
+          "interventions": 0
+        },
+        {
+          "case_id": 10,
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 92,
+          "progress": 6.3135293090341165,
+          "interventions": 0
+        },
+        {
+          "case_id": 11,
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 105,
+          "progress": 6.10892036583593,
+          "interventions": 0
+        }
+      ],
+      "supervised_optimizer_steps": 1792
+    }
+  ],
+  "direct_view_dataset": {
+    "dataset_sha256": "4a368af1b0bce676520691d2a750f4a26c7f3ce3a6e385a92ba385daf0b3ab2e",
+    "controls": 4329,
+    "conversion_wall_seconds": 392.1720000000205,
+    "registered_wall_budget_seconds": 1800,
+    "new_controls": 0
+  },
+  "qualifications": {
+    "B1_healthy": false,
+    "B1_unsafe_episodes": 6,
+    "B1_core_curve_parking_successes": 2,
+    "B1_dynamic_successes": 0,
+    "PPO_value_proven": false,
+    "hierarchy_advantage_proven": false,
+    "feedback_advantage_proven": false
+  },
+  "current_followups": {
+    "real_PPO_batch": "20261027T100609Z_native_supervised_ppo",
+    "methods": [
+      "H",
+      "H0"
+    ],
+    "nominal_controls_per_method": 20480,
+    "learning_rate": 3e-05,
+    "initial_max_action_probability": 0.99,
+    "ordered_flat_batch": "20261027T102445Z_native_measured_bc",
+    "ordered_flat_status": "Fitted1792supervised steps; frozen CARLA evaluation queued after PPO. No performance improvement claimed.",
+    "ordered_flat_intervention": "Retains31ordered candidate embeddings; same4329teacher controls,seed,128epochs,train mask and direct accel/steering. Larger actor fusion disclosed; no planner/MPC execution by B1."
+  },
+  "caveats": [
+    "New static car distance13m differs from retained10mfailures; no claim those failures were fixed.",
+    "H/H0BC and B1BC use action-appropriate supervision with different optimizer counts; this is not the final matched-budget PPO comparison.",
+    "Frozen evaluation has one episode per known condition, not a statistical independence claim.",
+    "Five independent seeds,120new final conditions,complete ablations and unseen transfer remain required."
+  ]
+}

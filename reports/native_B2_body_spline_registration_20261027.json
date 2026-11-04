@@ -1,0 +1,44 @@
+{
+  "scope": "Prepared/validated and actually queued stronger postprocessing deployment ablation,not an evaluation result. Earlier legacy4/12retained.",
+  "batch": "20261027T141335Z_native_frozen_B2",
+  "parent_H": "20261027T100609Z_native_supervised_ppo",
+  "queue_after": "20261027T140111Z_native_supervised_ppo",
+  "queue_pid": 41036,
+  "protocol_sha256": "4c08a47e196f48f1655fa306029aadc4a035df1f5ae954305c631d9407bae8a2",
+  "wall_seconds": 1800,
+  "cases": 12,
+  "intervention": {
+    "version": "frozen_H_grid_astar_v1",
+    "parent_method": "H",
+    "runtime_method": "B2",
+    "environment_changes": {
+      "method": [
+        "H",
+        "B2"
+      ],
+      "planner.grid_postprocess": [
+        "legacy",
+        "body_spline_v1"
+      ]
+    },
+    "model_sha256": "6cf8605a4cf2e6d85b22dbe05d5516c60499066af19cd6d2ac1f874b84c05d8f",
+    "grid_postprocess": "body_spline_v1",
+    "configuration_harness": {
+      "parent_sha256": "a6278c15d23672e3795463d6ce561dfacbab9030e165e1bb27e7711aed4d104f",
+      "initialized_sha256": "25ba0004df45ab0612a17b5de44fbfb1c9a2ae19d1fbdeefca0fcde520cc0209",
+      "scope": "training_config only; explicit Grid A* postprocessor, no plant/training-loop/evaluation code change"
+    },
+    "normalization_sha256": "b618c36ca5c6d98377829c66cf639d5538a2b5953baceea5076f5e7314ff736b",
+    "cleanup_harness": {
+      "parent_sha256": "cb8d63ec12ff2ea0aebb8c9252534f192d06b76367a80cfa3528acce1a8440e5",
+      "initialized_sha256": "9cfbde79c30d8b8d4d6400e536eb58d9d2562eb62bceacdeacd42b20021d3e41",
+      "scope": "Bridge.clear only; actuation, sensing, scenario generation and policy semantics unchanged by AST comparison"
+    },
+    "scope": "Existing2DGridAStarPlanner with its existing geometric smoothing/feasibility checks. Same H weights,observations,trajectory,MPC,vehicle,reward and scene list; feedback outcomes naturally change with planner execution."
+  },
+  "hypothesis": "Existing body_spline_v1 can repair the six initial open/static planning failures; all8offlineinitialqueries succeed,not proof of closed-loop completion.",
+  "status": "ACTUALLY_QUEUED_WAITING_FOR_PARENT_NORMAL_OWNED_CLEANUP",
+  "training_controls": 0,
+  "new_optimizer_steps": 0,
+  "compute_disclosure": "Grid A* uses a finite8connected grid and body-spline150least-squares function evaluations with up to5certification spacings. The legacy grid search does not enforce Hybrid max_nodes; actual expanded nodes and timings are recorded. Not an equal-compute or real-time claim."
+}

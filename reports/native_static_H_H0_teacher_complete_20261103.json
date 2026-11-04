@@ -1,0 +1,328 @@
+{
+  "scope": "Assemble all12 old static H/H0 cases from authenticated, nonoverlapping segments.",
+  "script_sha256": "07c94d4f4d53b80bf38a7df9511462178463afc387f6959ceaa62596c08ca4ac",
+  "research_acceptance": "UNMET",
+  "results": {
+    "H": {
+      "cases": 12,
+      "successes": 3,
+      "termination_counts": {
+        "deadline": 8,
+        "success": 3,
+        "out_of_bounds": 1
+      },
+      "completed_case_controls": 8306
+    },
+    "H0": {
+      "cases": 12,
+      "successes": 4,
+      "termination_counts": {
+        "deadline": 7,
+        "success": 4,
+        "out_of_bounds": 1
+      },
+      "completed_case_controls": 7761
+    },
+    "H_teacher": {
+      "cases": 12,
+      "successes": 5,
+      "termination_counts": {
+        "success": 5,
+        "deadline": 6,
+        "out_of_bounds": 1
+      },
+      "completed_case_controls": 7339
+    }
+  },
+  "paired_cases": [
+    {
+      "case_id": 0,
+      "H_success": false,
+      "H0_success": false,
+      "H_termination": "deadline",
+      "H0_termination": "deadline",
+      "H_teacher_success": true,
+      "H_teacher_termination": "success"
+    },
+    {
+      "case_id": 1,
+      "H_success": true,
+      "H0_success": true,
+      "H_termination": "success",
+      "H0_termination": "success",
+      "H_teacher_success": true,
+      "H_teacher_termination": "success"
+    },
+    {
+      "case_id": 2,
+      "H_success": false,
+      "H0_success": false,
+      "H_termination": "deadline",
+      "H0_termination": "deadline",
+      "H_teacher_success": false,
+      "H_teacher_termination": "deadline"
+    },
+    {
+      "case_id": 3,
+      "H_success": true,
+      "H0_success": true,
+      "H_termination": "success",
+      "H0_termination": "success",
+      "H_teacher_success": true,
+      "H_teacher_termination": "success"
+    },
+    {
+      "case_id": 4,
+      "H_success": false,
+      "H0_success": false,
+      "H_termination": "out_of_bounds",
+      "H0_termination": "out_of_bounds",
+      "H_teacher_success": false,
+      "H_teacher_termination": "out_of_bounds"
+    },
+    {
+      "case_id": 5,
+      "H_success": false,
+      "H0_success": false,
+      "H_termination": "deadline",
+      "H0_termination": "deadline",
+      "H_teacher_success": false,
+      "H_teacher_termination": "deadline"
+    },
+    {
+      "case_id": 6,
+      "H_success": false,
+      "H0_success": false,
+      "H_termination": "deadline",
+      "H0_termination": "deadline",
+      "H_teacher_success": false,
+      "H_teacher_termination": "deadline"
+    },
+    {
+      "case_id": 7,
+      "H_success": false,
+      "H0_success": false,
+      "H_termination": "deadline",
+      "H0_termination": "deadline",
+      "H_teacher_success": false,
+      "H_teacher_termination": "deadline"
+    },
+    {
+      "case_id": 8,
+      "H_success": true,
+      "H0_success": true,
+      "H_termination": "success",
+      "H0_termination": "success",
+      "H_teacher_success": true,
+      "H_teacher_termination": "success"
+    },
+    {
+      "case_id": 9,
+      "H_success": false,
+      "H0_success": false,
+      "H_termination": "deadline",
+      "H0_termination": "deadline",
+      "H_teacher_success": false,
+      "H_teacher_termination": "deadline"
+    },
+    {
+      "case_id": 10,
+      "H_success": false,
+      "H0_success": true,
+      "H_termination": "deadline",
+      "H0_termination": "success",
+      "H_teacher_success": true,
+      "H_teacher_termination": "success"
+    },
+    {
+      "case_id": 11,
+      "H_success": false,
+      "H0_success": false,
+      "H_termination": "deadline",
+      "H0_termination": "deadline",
+      "H_teacher_success": false,
+      "H_teacher_termination": "deadline"
+    }
+  ],
+  "prefix_start_inference": [
+    {
+      "case_id": 0,
+      "action": 26,
+      "recorded_action": 26
+    },
+    {
+      "case_id": 1,
+      "action": 26,
+      "recorded_action": 26
+    },
+    {
+      "case_id": 2,
+      "action": 26,
+      "recorded_action": 26
+    },
+    {
+      "case_id": 3,
+      "action": 26,
+      "recorded_action": 26
+    }
+  ],
+  "prefix_audit_sha256": "7fe913ab745df0ec0a97cc6a515cb8b109b21138e9758505221c075604b2c3dc",
+  "remainder_raw_audit_sha256": "3fb0eeb1587b626070ae7ed4419c7f1485f73561ef9faa90e5f7810bf611a0fe",
+  "H_model_sha256": "5898c136b82b86d10f94fdc3a51418d9950bc4299563dbfcdf911da5455b7649",
+  "H0_model_sha256": "1529a3d5e3b0dcdbc597434097c05790ba612eab2929088c9320ee4a1c005f23",
+  "H0_consumed_evaluation_controls_lower_bound": 7850,
+  "H0_unknown_unflushed_original_tail": true,
+  "new_controls": 0,
+  "new_updates": 0,
+  "shared_bounds_anatomy": [
+    {
+      "case_id": 4,
+      "detail": {
+        "H": {
+          "controls": 101,
+          "policy_actions": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "plan_statuses": [
+            "success",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused"
+          ],
+          "controller_status_counts": {
+            "solved": 101
+          },
+          "final_tracking": {
+            "lateral": 0.0355714163338515,
+            "heading": 0.03764400201685714,
+            "speed": -0.03171333654481345,
+            "missing_reason": null
+          },
+          "final_road_surface_probe": {
+            "sample_count": 12,
+            "offroad_points_world": [
+              [
+                91.297119140625,
+                15.235952377319336,
+                0.0018806075677275658
+              ]
+            ],
+            "raw_offroad_points_world": [
+              [
+                91.297119140625,
+                15.235952377319336,
+                0.0018806075677275658
+              ]
+            ],
+            "geometry_version": "carla_driving_indexed_union_256_v4",
+            "scope": "sampled actual rear-axle footprint, not continuous swept-body proof"
+          },
+          "recorded_metrics": {
+            "plan_failures": 0,
+            "mpc_failures": 0,
+            "interventions": 0,
+            "lateral_errors_rms": 0.1029338989557351,
+            "heading_errors_rms": 0.03963003539947174
+          }
+        },
+        "H0": {
+          "controls": 101,
+          "policy_actions": [
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26,
+            26
+          ],
+          "plan_statuses": [
+            "success",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused",
+            "reference_reused"
+          ],
+          "controller_status_counts": {
+            "solved": 101
+          },
+          "final_tracking": {
+            "lateral": 0.0355714163338515,
+            "heading": 0.03764400201685714,
+            "speed": -0.03171333654481345,
+            "missing_reason": null
+          },
+          "final_road_surface_probe": {
+            "sample_count": 12,
+            "offroad_points_world": [
+              [
+                91.297119140625,
+                15.235952377319336,
+                0.0018806075677275658
+              ]
+            ],
+            "raw_offroad_points_world": [
+              [
+                91.297119140625,
+                15.235952377319336,
+                0.0018806075677275658
+              ]
+            ],
+            "geometry_version": "carla_driving_indexed_union_256_v4",
+            "scope": "sampled actual rear-axle footprint, not continuous swept-body proof"
+          },
+          "recorded_metrics": {
+            "plan_failures": 0,
+            "mpc_failures": 0,
+            "interventions": 0,
+            "lateral_errors_rms": 0.1029338989557351,
+            "heading_errors_rms": 0.03963003539947174
+          }
+        }
+      },
+      "actual_state_sequences_identical": true,
+      "actual_command_sequences_identical": true,
+      "interpretation": "This retained failure occurs with stable high-level actions and converged MPC. Goal switching alone cannot explain all static failures;nominal planning/solver success does not prove actual footprint containment.",
+      "limits": "Failure anatomy only;does not identify the exact geometry/controller cause or establish a repaired counterfactual."
+    }
+  ],
+  "teacher_comparison": {
+    "status": "COMPLETE",
+    "model_sha256": "8cbf639a2a3dad35131f6be55b60ea70fb5d67b5b9c2f852d8800953b65d8eb0",
+    "raw_audit_sha256": "a5a9c198d8e9cbcc8e64dae3763c3294eaca3f763f95e918c3aceab7bec4fb6a",
+    "delivery_sha256": "86452df4225bedb38cacb3a41f549febf8681fd99e901c734a421f8c3ef78846",
+    "source": "BC-initialized neural high-level policy with zero PPO updates;not the direct B3 rule controller",
+    "lineage_supervised_updates": 896,
+    "shared_teacher_demonstration_controls": 4329,
+    "interpretation": "Observed old H and H0 success counts are below this teacher transfer;no PPO advantage established."
+  },
+  "reference_context_models": "NOT_EVALUATED_HERE",
+  "limits": "One canonical seed old4705-input policies on knownTRAIN12. Combined only disjoint authenticated completed cases;original failures/torn tails retained. No five-seed feedback or PPO benefit claim,no final confirmation."
+}

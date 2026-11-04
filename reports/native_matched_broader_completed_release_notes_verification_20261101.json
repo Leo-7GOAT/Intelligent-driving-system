@@ -1,0 +1,11 @@
+{
+  "scope": "Actual completed-cohort GitHub release notes read back after update;no tag movement or asset replacement",
+  "release": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-feedback",
+  "is_prerelease": true,
+  "unchanged_target_commit": "369db6939ee67e540aa6b63c155b3eb27964f2bc",
+  "notes_match_uploaded_file_ignoring_final_newline": true,
+  "actual_body_sha256": "6f90794cdef92dfefb8742eaa6326e7d079d71925ebf4fc6fe4a75309629e948",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

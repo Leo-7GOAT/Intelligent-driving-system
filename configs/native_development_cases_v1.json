@@ -1,0 +1,18 @@
+{
+  "version": "native_development_cases_v1",
+  "split": "development",
+  "cases": [
+    {"route_index": 0, "hazard": null},
+    {"route_index": 1, "hazard": null},
+    {"route_index": 2, "hazard": null},
+    {"route_index": 3, "hazard": null},
+    {"route_index": 0, "hazard": {"version": "native_hazard_v1", "kind": "static_vehicle", "distance_m": 13.0, "static_geometry": "projected_box_strips12_v1"}},
+    {"route_index": 1, "hazard": {"version": "native_hazard_v1", "kind": "static_vehicle", "distance_m": 13.0, "static_geometry": "projected_box_strips12_v1"}},
+    {"route_index": 2, "hazard": {"version": "native_hazard_v1", "kind": "static_vehicle", "distance_m": 13.0, "static_geometry": "projected_box_strips12_v1"}},
+    {"route_index": 3, "hazard": {"version": "native_hazard_v1", "kind": "static_vehicle", "distance_m": 13.0, "static_geometry": "projected_box_strips12_v1"}},
+    {"route_index": 0, "hazard": {"version": "native_hazard_v1", "kind": "crossing_walker", "distance_m": 10.0, "lateral_m": -2.5, "speed_m_s": 0.8, "start_delay_s": 2.5}},
+    {"route_index": 1, "hazard": {"version": "native_hazard_v1", "kind": "crossing_walker", "distance_m": 10.0, "lateral_m": -2.5, "speed_m_s": 0.8, "start_delay_s": 2.5}},
+    {"route_index": 2, "hazard": {"version": "native_hazard_v1", "kind": "crossing_walker", "distance_m": 10.0, "lateral_m": -2.5, "speed_m_s": 0.8, "start_delay_s": 2.5}},
+    {"route_index": 3, "hazard": {"version": "native_hazard_v1", "kind": "crossing_walker", "distance_m": 10.0, "lateral_m": -2.5, "speed_m_s": 0.8, "start_delay_s": 2.5}}
+  ]
+}

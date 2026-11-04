@@ -1,0 +1,202 @@
+{
+  "scope": "One independently trained seed pair on twelve known development conditions;exploratory feedback ablation,not final confirmation",
+  "seed": 55,
+  "H_successes": 12,
+  "H0_successes": 12,
+  "cases": 12,
+  "H_only_success_cases": [],
+  "H0_only_success_cases": [],
+  "paired_difference_percentage_points": 0.0,
+  "conditional_exact_discordance_p_two_sided": 1.0,
+  "families": {
+    "curve_parking": {
+      "cases": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "H_success": 4,
+      "H0_success": 4
+    },
+    "static_obstacle": {
+      "cases": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "H_success": 4,
+      "H0_success": 4
+    },
+    "dynamic_interaction": {
+      "cases": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "H_success": 4,
+      "H0_success": 4
+    }
+  },
+  "source_and_model_proof": [
+    {
+      "batch": "20261031T093206498809Z_native_supervised_ppo",
+      "raw_controls": 24860,
+      "raw_audit_sha256": "9e4422ff630d492fb58a3863265e93c77ddc5f07c513241067a2320efad39620",
+      "model_sha256": "fa12201979763b5e0e9c38d0e3f0d7df46b543f18de8c63ad6c8ddfb5432b951",
+      "summary": {
+        "physics_steps": 20523,
+        "actions": 2080,
+        "episodes": 50,
+        "optimization_phases": 65,
+        "optimizer_steps": 650,
+        "reward_components": {
+          "event": 940.0,
+          "time": -102.61499999997916,
+          "risk": -215.7239694313219,
+          "comfort": -14.124999621629756,
+          "potential": 32.664116148766794,
+          "task_progress": 562.6146073928006
+        },
+        "modes": {
+          "reference": 1757,
+          "plan_failed": 184,
+          "parking_brake": 17,
+          "wait": 18,
+          "dynamic_brake": 104
+        },
+        "action_histogram": {
+          "26": 980,
+          "5": 4,
+          "22": 145,
+          "12": 250,
+          "2": 364,
+          "25": 15,
+          "28": 83,
+          "17": 8,
+          "29": 15,
+          "15": 9,
+          "11": 8,
+          "19": 10,
+          "3": 2,
+          "10": 19,
+          "6": 16,
+          "18": 4,
+          "30": 28,
+          "20": 40,
+          "27": 7,
+          "7": 10,
+          "9": 10,
+          "16": 8,
+          "8": 8,
+          "0": 18,
+          "13": 4,
+          "21": 5,
+          "4": 3,
+          "14": 3,
+          "23": 2,
+          "24": 2
+        },
+        "method": "H",
+        "job_name": "H",
+        "rollout_actions": 32,
+        "ppo_epochs": 10,
+        "batch_size": 32,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 22103,
+        "reset_ticks": 1580,
+        "actor_l2_change": 0.4017331898212433,
+        "reload_exact": true,
+        "wall_seconds": 478.15869307518005,
+        "stopped_reason": null,
+        "lineage_control_steps": 20523,
+        "charged_control_steps_lower_bound": 29762,
+        "inherited_controls_not_in_checkpoint": 9239,
+        "scope": "Real native PPO after disclosed shared teacher supervision; frozen train-only statistics and explicit exploration initialization; not ordinary from-scratch PPO or formal hierarchy superiority"
+      }
+    },
+    {
+      "batch": "20261031T093206498809Z_native_supervised_ppo",
+      "raw_controls": 24836,
+      "raw_audit_sha256": "0a8dde0003253f3a531d6cd224e5dab3c856281229a4afff3d8250dbb740ed5c",
+      "model_sha256": "a76cb7cf7348d1b536b5cf67dc7ff8766d5b68f948ba7ca1ee2e2bf9e62a978b",
+      "summary": {
+        "physics_steps": 20517,
+        "actions": 2080,
+        "episodes": 49,
+        "optimization_phases": 65,
+        "optimizer_steps": 650,
+        "reward_components": {
+          "event": 890.0,
+          "time": -102.58499999997919,
+          "risk": -212.7547484112191,
+          "comfort": -14.41350830108994,
+          "potential": 32.20723318994511,
+          "task_progress": 558.0411384224482
+        },
+        "modes": {
+          "reference": 1752,
+          "wait": 25,
+          "plan_failed": 181,
+          "dynamic_brake": 107,
+          "parking_brake": 15
+        },
+        "action_histogram": {
+          "26": 902,
+          "5": 5,
+          "22": 209,
+          "12": 251,
+          "2": 410,
+          "25": 11,
+          "28": 80,
+          "17": 5,
+          "29": 11,
+          "0": 25,
+          "6": 9,
+          "9": 11,
+          "30": 24,
+          "20": 40,
+          "10": 6,
+          "27": 4,
+          "7": 10,
+          "11": 7,
+          "16": 4,
+          "15": 2,
+          "4": 4,
+          "19": 3,
+          "23": 2,
+          "21": 14,
+          "13": 3,
+          "24": 7,
+          "1": 4,
+          "8": 12,
+          "3": 3,
+          "18": 1,
+          "14": 1
+        },
+        "method": "H0",
+        "job_name": "H0",
+        "rollout_actions": 32,
+        "ppo_epochs": 10,
+        "batch_size": 32,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 22066,
+        "reset_ticks": 1549,
+        "actor_l2_change": 0.4892157018184662,
+        "reload_exact": true,
+        "wall_seconds": 660.8528819084167,
+        "stopped_reason": null,
+        "lineage_control_steps": 20517,
+        "charged_control_steps_lower_bound": 29717,
+        "inherited_controls_not_in_checkpoint": 9200,
+        "scope": "Real native PPO after disclosed shared teacher supervision; frozen train-only statistics and explicit exploration initialization; not ordinary from-scratch PPO or formal hierarchy superiority"
+      }
+    }
+  ],
+  "limits": "One training seed;conditions reused in development;actual physical budgets and inherited costs are reported per method,including phase overshoot. No seed-level confidence interval or PPO-vs-rule advantage established.",
+  "research_acceptance": "UNMET"
+}

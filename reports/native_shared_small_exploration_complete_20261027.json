@@ -1,0 +1,125 @@
+{
+  "scope": "Completed seed11 known-road development. Both methods score2/4; no aggregate feedback advantage or PPO improvement established. Not independent confirmation.",
+  "methods": [
+    {
+      "batch": "20261027T070950Z_native_supervised_ppo",
+      "method": "H",
+      "successes": 2,
+      "cases": 4,
+      "families": {
+        "legacy_static": {
+          "successes": 2,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "actual_training_controls": 20669,
+      "evaluation_controls": 2551,
+      "raw_controls": 23220,
+      "optimizer_steps": 650,
+      "optimization_phases": 65,
+      "model_sha256": "690bda9f97da7ebbab70ec9306867ccc7c5362f12316439f2d38ad55221ecff9",
+      "normalization_sha256": "ac6a92d2bbc9842985a2f802873af8007e60a52e25b2fdca47e8bfc016fb2539",
+      "raw_audit_sha256": "bd1b1484fff98792daa18921dae2124b2396d4ecd1ebc14279b0274841117059",
+      "protocol_sha256": "dffac7941ead9531779ff07ca0f168e9059fa4f5418e58483148faf716cdefe0",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 400,
+          "progress": 24.355260183879004,
+          "interventions": 0
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 351,
+          "progress": 22.4013752594118,
+          "interventions": 0
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 2.567961082769905,
+          "interventions": 840
+        }
+      ]
+    },
+    {
+      "batch": "20261027T070950Z_native_supervised_ppo",
+      "method": "H0",
+      "successes": 2,
+      "cases": 4,
+      "families": {
+        "legacy_static": {
+          "successes": 2,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "actual_training_controls": 20756,
+      "evaluation_controls": 2517,
+      "raw_controls": 23273,
+      "optimizer_steps": 650,
+      "optimization_phases": 65,
+      "model_sha256": "d2a3a0cbfaac4e74e4b86ae50a7bfc4edef7093e37b5e6c97b5c0b616ea17367",
+      "normalization_sha256": "de5df651f70a86e184fab5210e2bed1474a33aa2ac51d6877751879b094c57d8",
+      "raw_audit_sha256": "10a4523c53b95e2500c0c2e8b20f4d2837073028c863c4b5e1aba6ad1946e63a",
+      "protocol_sha256": "dffac7941ead9531779ff07ca0f168e9059fa4f5418e58483148faf716cdefe0",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 2.905087784692288,
+          "interventions": 850
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "progress": 0.0,
+          "interventions": 900
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 366,
+          "progress": 22.40848645370127,
+          "interventions": 20
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 351,
+          "progress": 20.229200215503308,
+          "interventions": 0
+        }
+      ]
+    }
+  ],
+  "total_raw_controls": 46493,
+  "guard": {
+    "epoch": 1793093081.5316184,
+    "worker_pid": 58236,
+    "exit_code": 0,
+    "reason": null
+  },
+  "owned_cleanup_status": "owned_empty_server_stopped"
+}

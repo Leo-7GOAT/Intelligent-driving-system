@@ -1,0 +1,15 @@
+{
+  "scope": "Prepared,zero-execution native fixed-reference controller pair;all four original roads,exact same fixed full-goal references,calibration,vehicle limits,execution mapping and frozen source. Not a PPO or final-confirmation result.",
+  "MPC_batch": "20261028T024600457573Z_native_curve_control",
+  "pursuit_PI_batch": "20261028T024604590505Z_native_curve_control",
+  "source_files": 390,
+  "all_frozen_source_hashes_identical": true,
+  "calibration_sha256": "1e8d61baa0043da9ec376f9f63c1a625d0d966d50f27a1969b0ae912b01c7cae",
+  "fixed_reference_manifest_sha256": "ef90c3031e9697b932a2f538abcc3ce1d2aa849b9596a157d50547cdf87901d0",
+  "source_preparation": "First actual B3 reference regenerated with its frozen planner;one local reference gets one global extension query from its predicted endpoint. Retimed1m/s stop reference is shared;no actual vehicle state modified.",
+  "new_physical_controls": 0,
+  "PPO_updates": 0,
+  "declared_native_comparison_episodes": 8,
+  "launcher_kind": "control",
+  "ValidateOnly_both_passed": true
+}

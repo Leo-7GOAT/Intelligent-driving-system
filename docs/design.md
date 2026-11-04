@@ -1,0 +1,132 @@
+# 设计与数学约定
+
+原生路界新增可选`road_observation`：CARLA Driving车道五点采样生成64×64栅格，以哈希关联场景；完整车体SAT、规划、局部地图、风险、终止和全部策略的4096维附加输入共用该栅格。基础观测变为4447维并单独签名，旧模型不静默适配。路界含保守离散误差和车道缝隙，不等同于物理路面分割。真实H/B1短训练已执行，见[结果与限制](../reports/native_road_learning_20261022.md)。
+
+最新诊断实现了基于实际加速度的PI与实测油门模型前馈，滤波/积分状态逐帧导出；这些状态尚未纳入PPO观测，因此桥接明确拒绝普通训练使用，默认执行器未变。固定距离课程由`route_stages`配置，所有方法共用物理步阈值，只在回合重置时切换；验证保持完整任务。见[实验依据](../reports/actuation_curriculum_20261022.md)。
+
+## 状态与执行链
+
+研究对象是低速导航的 H: PPO → 局部目标位姿/速度 → 前进 Hybrid A* → 时间轨迹 → MPC → VehiclePlant。规划不参与反向传播；策略梯度只来自标准 SB3 PPO。B1 直接控制同一 VehiclePlant；B2 替换空间规划器；B3 替换高层策略。规则策略从未用于冒充 PPO 更新。
+
+坐标系右手系，x/y 单位 m、yaw 逆时针 rad、时间 s；状态参考点为后轴中心。默认地图 34×24 m，轴距 2.5 m，车体前悬至后轴 3.4 m、后轴至尾部 0.8 m、宽 1.8 m。转角上限 0.5 rad，最小转弯半径由 L/tan(delta_max)=4.576 m 推导，不能独立填写一个不一致半径。速度上限 3 m/s，候选目标速度 0.75/1.5 m/s。加速度范围 [-2.5,1.5] m/s²，转向速率上限 0.6 rad/s。
+
+`VehicleState` 是冻结对象；只有 `VehiclePlant.step()` 在物理控制后替换状态。规划器返回参考，MPC 返回控制，均不修改 plant。车辆积分用平均速度和中点 yaw；输入延迟队列、转向一阶滞后、命令速率限制真实参与方程；轴距和纵向加速度比例失配只改变 plant，预测模型仍用标称参数。只限执行器和速度，不裁剪位置、不吸附终点。每个 episode 创建新 plant/controller，其余周期保留时间、速度、转角、上一命令与延迟队列。
+
+默认 control_dt=0.05，decision_dt=0.5，必须为整数比。H/B2/B3 每动作 10 步，B1 默认每动作 1 步；B1 hold10 为频率敏感性对照。仅真实任务终止可以提前结束宏动作；此时无 bootstrap。外部 TimeLimit 只在宏动作边界截断，SB3 DummyVecEnv 提供 terminal_observation 和 TimeLimit.truncated。没有在固定 gamma 下混入可变时长的非终止转移。
+
+## 搜索与轨迹
+
+道路碰撞计算另有默认关闭的 `road_collision_backend=batch_sat_v1`。它批量执行完整车体与闭合占用栅格的 SAT，接触附近回到原标量判定；空间分组只减少计算，不删候选障碍。配置与策略签名记录该版本，所有方法共享，旧默认配置保持原格式。单点碰撞、风险、净空与终止检查仍使用原标量实现，实测范围见[性能实验](../reports/road_collision_batch_20261025.md)。当前原生 PPO 批次未切换后端。
+
+Hybrid A* 的节点为连续 (x,y,yaw)，以 0.4 m、0.15 rad 和上一转角档位作为搜索键。五个转向原语使用自行车常曲率精确积分，长 0.8 m，沿原语以不超过 0.12 m 间距检查整个矩形车体。碰撞包络增加覆盖平移与旋转采样间隙的保守裕量。墙体碰撞使用分离轴定理，边界检查所有车体角点。去重包含上一转角，因为代价包括转角变化。默认节点预算 1800、时间预算 0.1 s；较重单个扩展可能使墙钟略超预算。
+
+启发式为位置距离下界与转向距离下界的最大值，默认乘 1.5。**这是加权、离散索引近似的前进 Hybrid A*，不声称全局最优、倒车或 Reeds–Shepp。** 早期纯距离排序容易在长直行目标上耗尽时间；修改只改变搜索排序，不改变运动学或碰撞约束。PlanResult 包含 status/path/cost/expanded_nodes/planning_time/failure_reason。失败不返回伪成功轨迹。
+
+墙钟限时会使相同种子受机器负载影响，实际重复运行已观察到同动作 success/timeout 分岔。`planner.max_seconds=null`（configs/offline_H.json）显式启用只按1800节点限额的离线模式，用于可复现实验；仍测量墙钟，不声称满足0.1 s期限。它必须单独训练并按签名加载，不静默替换已有模型的低层。默认0.1 s模式保留用于超时敏感性实验。
+
+二维 A* 独立保留：8 邻接，正交代价 1、对角 sqrt(2)，octile 启发式，无穿角。Dijkstra 使用完全相同邻居/代价，随机地图回归比较最优代价。B2 用半车宽膨胀的网格、可视线简化、端点切向约束三次样条，尝试多个路径点密度；任何候选都重新检查完整车体及曲率，不可行就明确失败。它没有被故意删除功能，但仍有保守膨胀和曲线拟合失败的局限，应在规划成功率中披露。
+
+时间轨迹包含 x/y/yaw/s/kappa/v/a/t。先累积真实欧氏段长，再等弧长重采样；yaw 先 unwrap，kappa 为 d(yaw)/ds。速度受到目标档位、横向加速度 1.5 m/s²、纵向加减速限制。局部目标末端保持非零速度；只有参考穿过最终停车容差时才截断参考并规划停车。初始速度保持实测值，停车距离不足会失败降级。改变的是参考，绝不改变实际位置。
+
+## MPC 与动态障碍
+
+单周期接口 `MPC.step(state, reference, previous_command)`：4 状态 (x,y,v,yaw)、2 控制 (a,delta)，围绕时间参考线性化为稀疏 QP。默认预测 20×0.05=1 s，OSQP 真实求解并复用求解器/稀疏结构 warm start。第一个转角相对上一实际发出的命令限速，其后相邻预测控制也限速。参考按执行时刻插值，yaw 与实测 yaw 对齐相同 2π 分支。QP 模型未显式建模执行器滞后，失配试验会暴露这一局限。
+
+求解异常、不可行或约束残差过大，返回 failed 与制动命令，记录 reason；不能算作成功控制。QP 无障碍硬约束：空间规划、动态预测与每物理步安全事件各自负责相应检查，因此该实现不是经过证明的安全控制器。
+
+动态物体是匀速圆形障碍。仅使用当前可见的位置/速度，做 3 s 常速预测和时间轨迹碰撞检查；冲突则本宏动作制动，物理时间继续推进。Hybrid A* 本身只规划静态空间。实际执行逐物理步、含 1/4 步插值检查动态障碍和车体碰撞，不会把预测结果代替真实碰撞。尚无时间扩展搜索、概率预测或任意行为保证。
+
+## 动作与共同信息
+
+H/B2/B3 的 Discrete(31) 恒定：1 个等待动作，3/6/9 m 名义原语长度 × 五个曲率候选 (-0.12,-0.06,0,0.06,0.12) × 两个速度档位。动作编码对应固定自车坐标的 (x,y,yaw,v)，不随地图大小变化，未用伪概率掩码。B1 Box(2) 的顺序为归一化纵向加速度、转角，同样经过 plant 限制。PPO 两路 MLP 均为 64/64，最后动作层尺寸不同，实际参数数目会记录。
+
+351 维 float32 观测：16 个本车/执行器/5 步容量延迟队列特征；7 个最终目标及时间特征；11×11 固定局部占用格；最多 3 个 15 m 内动态邻车的相对位置/速度/掩码；4 个上次行为特征；最多 20 个静态矩形的自车坐标四角与掩码（180）；地图四角（8）。
+
+所有策略获得相同静态真值地图几何和邻车可见性。静态地图视为预先已知，动态状态在 15 m 内无噪声可见，无遮挡模拟；视野外动态物体与未来意图不可见，因此仍是部分可观测任务。MPC/规划器使用同样已知的静态图；不能让 H 使用 B1 从未获得的障碍几何。辅助规则只出现在明确的 B3 或 cycle 调试中。
+
+H/B2/B3 有规划失败制动和动态预测制动，B1 只有同样的执行器限制，没有额外安全盾；这是架构差异，接管率必须联合报告。H–B1 的差异也包括动作空间、控制频率、网络输出层和计算成本，不能将全部效果笼统归因于层级。
+
+## 奖励与终止
+
+每个物理步共享 RewardCalculator：事件 +20/-30/-20/-10（成功/碰撞/越界/任务截止），减 dt×(0.1+0.4×risk+0.04×comfort)，再加 beta×(gamma_low×Phi(next)-Phi(before))，beta=1。这是初始配置，不是经证实的最优权重。
+
+Phi(s)=-min(到最终目标欧氏距离/40 m,2)，与 PPO 子目标无关，对不可达地图仍有限。正常步保留负进度；真实终止 next potential=0；外部截断不归零。低层 gamma=0.99^dt，高层 gamma=gamma_low^N。宏动作奖励为 sum(gamma_low^j*r_j)，回合同时记录原始物理奖励和完整折扣回报。GAE lambda 也按 0.95^(N×dt) 设置。
+
+risk 是 [0,1]：静态障碍用车体边到矩形边最小距离，动态用当前/1 s 常速预测净空的较小值，经 exp(-max(clearance,0)/1.5 m) 归一化，取相关障碍最大值。comfort 是三项均值：|jerk|/(5 m/s³)、|a_lat|/(2 m/s²)、|steer_rate|/(0.6 rad/s)，每项截断到 [0,1]。这些值来自实际状态差分，并非 MPC 目标值。
+
+终止优先级：碰撞历史 > 车体越界 > 安全到达且满足停车速度/yaw及已实际移动 > 截止时间。事件只发一次，终止后 step 抛错。没有有效控制/路径、未移动的 episode 不会成功。截止时间是任务定义，剩余时间在观测中，因此 terminated=True。失败回合保留；无参考误差为 null 和原因。
+
+## 记录与条件接入
+
+跟踪位置误差通过实测位置投影到执行参考线段，按投影比例插值 unwrapped yaw；速度误差单独按执行时间参考计算。该位置值包含端点之外的剩余距离，不等价于无限延伸直线横向距离。没有对不同采样率数组直接相减。B1 没有参考，不报告虚构 MPC RMSE。
+
+每次运行独立 run_id，保存配置/种子/源码 SHA256/包版本、场景初态、物理轨迹/控制/奖励分项、逐回合结果、优化诊断、模型、归一化和重载探针。没有 Git commit 时明确为 null，不伪造版本号。预算结束的未完成回合另存 censored 状态，不当作成功或悄悄删除。
+
+本轮已实际接入指定目录的CARLA 0.9.15：Python3.7隔离桥接负责唯一tick，Python3.11保留PPO/规划/MPC。真实标定、场景、碰撞传感器验证、PPO冻结迁移及双方PPO微调均已有原始帧日志。执行器和几何的实测范围、剩余限制、一次服务崩溃与恢复见 `CARLA_bridge.md`。不能把连接成功或单种子微调当作最终优势证据。
+
+## 本轮版本化开发变更
+
+`terminal_goal_prefix=true`只在PPO选择的原候选弧线已经穿过停车区域时，将规划目标提前结束于任务终点，避免本来不会执行的远端越界导致整条参考被拒绝。规划/停车制动均不移动实测状态。旧模型默认false并保留原结果；H/B2/B3的新版本需独立训练/评测，不悄悄修改旧策略语义。这项停车参考先验是完整系统差异的一部分。
+
+`shared_shield=true`为H/B1提供同一当前曲率、反应时间和制动距离检查，只读取当前可见几何/速度，不调用Hybrid A*或MPC。启用时H的额外时空轨迹制动关闭，双方统一执行端制动；规划失败制动仍属于分层结构。原始命令、外部盾与最终执行命令分别记录。补充配置需要独立训练。
+
+development_v2将共同潜势奖励beta从1调整到10，增加可见的进度学习信号；B1采用log_std_init=-0.7及初始纵向均值0.3，减少高频随机制动占优的探索问题。它是有明确开发失败依据的有限参数候选，必须经过相同开发清单比较后冻结，不按最终测试调参。
+
+该v2候选实际100k开发验证中H/B1均为0/12，已拒绝作为确认方案，数据完整保留。v3采用共同6/16/23米训练课程和B1的gSDE时间相关探索，B1训练开始出现真实停车成功，但完整路线开发仍差。formal_v4保留beta=1、参考修复与共同课程，双方加target_kl=.03限制观测到的过大PPO更新，正式五seed累计推进100k/300k/1M。课程按真实物理步推进，验证/测试从不缩短路线。新方案完整比较仍包括停车先验、模型和安全机制，不能等同于单独层级因素。
+
+CARLA与轻量状态来源在plant接口处分开：轻量只有VehiclePlant积分；CarlaWorld.advance为空操作，BridgePlant接收对应真实帧。桥接的request_id重放缓存防止重复tick，episode_id隔离旧回合，IMU帧确认同步；服务与传感器故障抛出基础设施异常。CARLA续训恢复优化器/归一化/RNG与累计成本，但必须新建真实回合并计入重置tick。
+
+历史确认版本formal_v5从新初始化重复formal_v4的冻结超参数，修复保存后重载验证对全局RNG的污染；旧版本原始记录保留。其已查看测试清单现降级为历史评估，当前没有锁定的新最终确认版本。保存/恢复验证对Python、NumPy与Torch随机状态进行隔离，B1连续训练与分段恢复的实际参数一致测试通过；H的OSQP工作区会重建，仍不声称恢复时位级一致。
+
+时延口径：plan_times主要记录规划搜索，control_times记录MPC计算，qp_times是QP子项；control_cycle_times覆盖环境内单物理tick的控制、执行、事件、奖励和跟踪处理。后者不包含外层PPO推理、宏动作之前的规划/时间参数化和末端观测编码，不能当作完整端到端延迟。当前离线并行测量仅用于计算成本描述，端到端部署时延和硬实时保证尚未验证。
+
+## v12候选共享评分开发假设
+
+v8的450维平铺MLP未建立反馈优势，且失败状态存在未被选中的可规划候选。v12增加显式目标几何并共享候选评分权重：605维输入由351维共同状态、31个8维候选描述和6维上次执行结果组成。actor先把共同状态和上次执行结果编码为64维，再与每个候选的8维描述拼接，经共享64/32层和单输出头产生31个logit，使用标准SB3分类PPO。critic仍读取完整输入；没有改写PPO损失、动作概率、规划器或物理控制。
+
+候选几何使用固定尺度，绕过逐槽运行归一化，保证同样的几何与可执行性特征获得同样含义。H0保留几何，只将3个候选反馈维度及6个执行结果置零。共同状态继续使用训练统计，评估冻结。旧450维模型不会被转换为605维，也不会继承优化器；所有新模型从头训练。B1/B2/B3均可获得605维同样信息，正式跨架构比较需要分别匹配训练。v12与v8的差异同时包含几何表示和网络结构，不能归因于反馈单项；反馈作用由v12内部H/H0对照检验。
+
+## Optional terminal-pose shaping and native-road diagnostics
+
+`heading_potential_weight=0` preserves the published distance-only potential and checkpoint signature. Active shaping adds `-w*(1-cos(yaw-goal_yaw))*exp(-distance/radius)` to the state potential, before the existing physical-gamma difference and terminal-zero handling. It changes learning credit, not the base task or success gate. v17is an exploratory fresh-policy trial; its baseprogressrewarddiffersfromolderH and cannot be pooled into an unfair architecture comparison.
+
+Native map routes are reflected into the same right-handed rear-axle frame, verified against map/OpenDRIVE and geometry hashes, and executed with actual CARLA state feedback. Twelve actual footprint samples query driving surface each frame. This is a sampled diagnostic, not yet a road-boundary observation/reward for PPO. The environment explicitly rejects native_curve PPO use until that integration is implemented. `carla_actuation.py` preserves legacy longitudinal mapping by default; experimentalcoast/manualgear modes are explicitly versioned and have not resolved comfort failures.
+
+## Explicit supervision diagnostics, 2026-10-23
+
+The native-road restriction in the preceding historical section was subsequently
+resolved through the versioned common road raster and v3 lane-union geometry;
+actual native PPO training and frame verification are documented in
+[the native geometry report](../reports/indexed_native_geometry_20261022.md).
+That engineering result does not establish learned task competence.
+
+The separate B1 diagnosis adds declared supervision before standard PPO. An
+actual teacher execution is replayed by a separate direct-control plant to get
+method-correct observations. Later collection explicitly selects teacher or
+learner commands once per ten controls, while querying the teacher at every
+actually visited state. All visits, including failed episodes, are retained;
+heldout examples never enter fitting or normalization updates. Aggregating
+labels from learner-influenced visits follows the motivation of
+[Ross, Gordon and Bagnell (2011)](https://proceedings.mlr.press/v15/ross11a.html).
+Our finite two-round mixture, teacher implementation and neural optimizer do
+not establish the assumptions or guarantees of that work.
+
+The teacher is a private planner/controller workspace reading the actual plant.
+It cannot advance the plant or change episode accounting. Its label is not a
+command until an explicit collection branch selects it. Policy evaluation and
+ordinary PPO never invoke this teacher. Supervised optimizer steps, teacher
+queries/time, replay controls and later PPO interactions are separate costs.
+These models are not pure PPO baselines; a formal architecture comparison using
+them requires comparable supervision for the other methods.
+
+Two distinct hypotheses are kept separate: (1) critic-return regression may
+affect actor fitting through a shared gradient-norm clip, tested by actor-only
+supervision; (2) the teacher's held reference/controller history may make labels
+depend on information absent from the direct learner's observation, tested by
+relabeling identical physically replayed visits with a fresh current-state
+teacher. The latter leaves observations, returns and splits unchanged. Its
+fitting entry requires complete raw-label verification, identical control data,
+initial checkpoint/statistics and the same fitting-function definition. Neither
+experiment changes the PPO objective or authorizes a hierarchy advantage claim.
+Actual negative results and the additional learner-visit audit are retained in
+[the recovery report](../reports/recovery_aggregation_20261023.md).

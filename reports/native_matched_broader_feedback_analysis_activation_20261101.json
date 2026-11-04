@@ -1,0 +1,33 @@
+{
+  "scope": "Read-only all-five same-harness feedback analysis after exact training cleanup;no new controls or learning",
+  "execution": "native_matched_broader_feedback_analysis_execution_20261101",
+  "actual_observer_pid": 37956,
+  "actual_phase": "WAITING_FOR_ALL_FIVE_EXACT_OWNED_TRAINED_FEEDBACK_PAIRS",
+  "registered_pairs_manifest": "protocols/native_matched_broader_feedback_pairs_20261101.json",
+  "pairs_sha256": "2cfb30443d6c7665e0d57dab0cd0683b4dadd7463caffc8d63ac46bcff52c0ef",
+  "registered_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "unique_known_validation_conditions": 24,
+  "training_conditions": 36,
+  "completed_pairs_at_activation": [
+    {
+      "seed": 11,
+      "batch": "20261101T011938826336Z_native_matched_broader_feedback"
+    }
+  ],
+  "required_complete_source_equality_across_all_pairs": true,
+  "statistics": "Paired mean and95pct seed tinterval,exact two-sided sign-flip description;all five seeds,no selection;exploratory development comparison.",
+  "output_report": "native_matched_broader_feedback_cohort_20261101.json",
+  "output_figure": "reports/figures/native_matched_broader_feedback_cohort_20261101.png",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "automatic_retries": 0,
+  "new_cohort_results_available": false,
+  "legacy_published_figure_regression_sha256": "cafca085ed2550173858f647a6de72c4dccbcedfa6ef03497325720c8c94eb87",
+  "research_acceptance": "UNMET"
+}

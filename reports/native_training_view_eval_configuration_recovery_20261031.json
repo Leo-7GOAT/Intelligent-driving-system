@@ -1,0 +1,14 @@
+{
+  "scope": "Actual evaluation-only configuration recovery before any driving;all fitted actors/norm/RNG/datasets retained without refit",
+  "failed_replay_parent": "20261031T093757339917Z_native_replay_training_view_bc",
+  "parent_verified_raw_controls": 0,
+  "replay_child": "20261031T123039922770Z_native_replay_eval_configuration_recovery",
+  "replay_protocol_sha256": "31a215ab73d00d298b3d2fa21b9677406b4127eecd56c5aa50af437c77677687",
+  "measured_unstarted_batch": "20261031T094314260006Z_native_measured36_training_view_bc",
+  "measured_original_protocol_sha256": "11159ea6e8cd45bf3b8082504457336517502226a000f7935e002d70c1b83fc5",
+  "measured_corrected_protocol_sha256": "3b798f4a95c876a0591ab6bd765128bc27da4dfd0b99552b9c73ec240e864421",
+  "no_actor_refit": true,
+  "no_PPO_updates": true,
+  "regression_tests_passed": 2,
+  "research_acceptance": "UNMET"
+}

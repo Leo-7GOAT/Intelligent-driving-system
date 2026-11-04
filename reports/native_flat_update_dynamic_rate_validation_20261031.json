@@ -1,0 +1,12 @@
+{
+  "scope": "Executed dynamic-rate first-update audit on old public3e-5 and new native3e-6initializations;all sampled actions and first-checkpoint parameters exact.",
+  "script_sha256": "c84fbd7dd4090177fd08aa924c3dfc72bbf5b6e2938c87cbb430a623af08b7a5",
+  "old_profile_regression_all_nonsource_nontiming_fields_exact": true,
+  "old_sampled_actions_exact": 1280,
+  "new_sampled_actions_exact": 1280,
+  "new_actual_Adam_steps": 40,
+  "new_exact_full_rollout_KL_mean": 0.008355614840896388,
+  "new_exact_full_rollout_KL_max": 0.17072318804154316,
+  "new_controls": 0,
+  "deployed_updates": 0
+}

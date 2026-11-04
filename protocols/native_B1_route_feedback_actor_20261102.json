@@ -1,0 +1,25 @@
+{
+  "version": "route_feedback_actor_v5",
+  "seed": 22,
+  "steps": 4096,
+  "learning_rate": 0.001,
+  "source_checkpoint": "runs/B1_diverse_geometry_actor_execution_20261102/canonical22_fit/checkpoint",
+  "source_model_sha256": "5b4311f51d5941a2e02c26b4af0176c67064fe4375251ef9328c35251d1fc62c",
+  "source_hashes": {
+    "scripts/fit_route_feedback_actor.py": "2790d23720415acd013945c51f8ccdb85e7e2da413e5c3a89d010f44d32dfbcb",
+    "scripts/native_route_feedback_data.py": "b4430299460a9f83449ada95b5954f6b58e1e0119e82a0fa2ae11434ff2c99f0",
+    "scripts/fit_diverse_native_actor.py": "4e7f497f23ebaffea0c711cbafbed4cc24b7294c54cc57c73bf0401b4a7f0c1f",
+    "scripts/fit_broader_measured_actor.py": "8f95c4f6d6dcb2bada5d58b8fb9ee9f7ec0a414e41607a50c28fa814e5a38d5e",
+    "scripts/fit_broader_native_recovery.py": "6601a90a3c5f54d025ba916333951d20bf1b7990d9accef90b9d4a29f4b76240",
+    "navstack/route_error.py": "7fd351f68ed1c5a62ffdba0d9d5ca2e14c84e554c8052d21a628bcd4ba5d29c7",
+    "navstack/route_feedback_policy.py": "386e697728f81243d2f2b4137985addd3d0aafbcc09676e356d73e293b922ac1",
+    "navstack/config.py": "9a6d6c70d03b6e9054961f9d1b1b4cb54cb85245c8139a0b48916dc328490e06",
+    "navstack/env.py": "20311652c41b43db53388a5bb6398c8cd19b17c35e1c1f000b5adbdc1dd7bb57",
+    "navstack/experiments.py": "44031e2b1b2cbcc88e6001ea182cabe0d8eb091679a71569f8ed24ddb95681e2"
+  },
+  "selection": "One fixed TRAIN-only residual endpoint; original four-road gate then known24VAL only if passed; no automatic PPO promotion.",
+  "information": "Known map-route Frenet lateral/heading/curvature and measured ego; learned direct NN residual, no runtime teacher/controller.",
+  "new_PPO_updates": 0,
+  "final_conditions_used": 0,
+  "automatic_retries": 0
+}

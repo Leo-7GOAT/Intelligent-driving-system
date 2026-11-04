@@ -1,0 +1,132 @@
+{
+  "status": "FIVE_INITIALIZERS_PREPARED_AND_WAITING_NO_NATIVE_B1_STARTED",
+  "research_acceptance": "UNMET",
+  "recorded_utc": "2026-11-04T11:33:13.744990+00:00",
+  "source_commit": "60a62994e90d90f1d398c7711f03932f24996827",
+  "registered_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "registration_sha256": "158984c137b68ac879e935cc30aa9ec1b9899ae3cd0e5a29605f02322bfcd818",
+  "CPU_protocol_preflight_sha256": "41993fc5250fe8c612cd6794c6526e58054b24c77f57c9eebfb4d89d9cbacfba",
+  "initializers": [
+    {
+      "seed": 11,
+      "independent_actor_sha256": "b5a5f855183b1451aba30fa025780420fedef7a0b40baf6f032cbf0a8ceac646",
+      "model_sha256": "7f78c1a41f6b068a969d433a54d8468b00918530973d759625f68947398a9427",
+      "inherited_controls_lower_bound": 39189,
+      "teacher_controls": 4329,
+      "inherited_supervised_updates": 2304,
+      "dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+      "RMS_and_saved_RNG_retained": true,
+      "inherited_TRAIN_sample_predictions_exact": 65
+    },
+    {
+      "seed": 22,
+      "independent_actor_sha256": "5fe4b698c939ecad6d117f26c6ad8b58b1db5961177a0a60f63de01eb9103c81",
+      "model_sha256": "0a4001a29c22d09ba6adfde78b0729946225e118b8f8455e2b88dfc0731a2a61",
+      "inherited_controls_lower_bound": 39189,
+      "teacher_controls": 4329,
+      "inherited_supervised_updates": 2304,
+      "dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+      "RMS_and_saved_RNG_retained": true,
+      "inherited_TRAIN_sample_predictions_exact": 65
+    },
+    {
+      "seed": 33,
+      "independent_actor_sha256": "d0f1c301176811a977cc2e656c74218df4e2ed59e944061a316aa267b72e0df4",
+      "model_sha256": "5c3f919cead1cf0ce95d9aefb0ad0a70326dff034af14cd596cb03ca1c9db20b",
+      "inherited_controls_lower_bound": 39189,
+      "teacher_controls": 4329,
+      "inherited_supervised_updates": 2304,
+      "dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+      "RMS_and_saved_RNG_retained": true,
+      "inherited_TRAIN_sample_predictions_exact": 65
+    },
+    {
+      "seed": 44,
+      "independent_actor_sha256": "358fc29617958fa311c529e0f486c5160d4b702b4fc27b4ffd646acdac2b9756",
+      "model_sha256": "a2f7ca04b4299f01e25065bb89151aab38194c50614ffe75b098caa5d1c8e817",
+      "inherited_controls_lower_bound": 39189,
+      "teacher_controls": 4329,
+      "inherited_supervised_updates": 2304,
+      "dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+      "RMS_and_saved_RNG_retained": true,
+      "inherited_TRAIN_sample_predictions_exact": 65
+    },
+    {
+      "seed": 55,
+      "independent_actor_sha256": "69ba12f3fc18b321b9ad5716422c3f260aa7a924f72ed6d62fd57253970c5810",
+      "model_sha256": "e68c129b9d8b5f418e0b959f2ed35933f5806fd51c64d6eaa2112202828c1580",
+      "inherited_controls_lower_bound": 39189,
+      "teacher_controls": 4329,
+      "inherited_supervised_updates": 2304,
+      "dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+      "RMS_and_saved_RNG_retained": true,
+      "inherited_TRAIN_sample_predictions_exact": 65
+    }
+  ],
+  "shared_navstack_source_byte_exact_with_current_H_cohort": true,
+  "common_teacher_controls_each": 4329,
+  "requested_new_PPO_controls_each": 30720,
+  "new_actual_controls": 0,
+  "new_PPO_updates": 0,
+  "new_supervised_updates": 0,
+  "new_final_conditions": 0,
+  "recipe": {
+    "policy": "navstack.road_candidate_policy.OrderedFlatRoadCandidatePolicy",
+    "rollout_actions": 1280,
+    "batch_size": 320,
+    "epochs": 10,
+    "learning_rate": 3e-06,
+    "target_KL": 0.01,
+    "initial_log_std": [
+      -4.0,
+      -4.0
+    ],
+    "learner_reward_scale": 0.05,
+    "physical_reward_unchanged": true
+  },
+  "tasks": {
+    "TRAIN_unique_conditions": 48,
+    "exposures_per_cycle": 64,
+    "basic_probe_conditions": 4,
+    "known_validation_conditions": 24,
+    "post_basic_health_rule": "At least3of4successes andzero collision/bounds,the existing basic gate.All seeds retained regardless of scores."
+  },
+  "runtime": {
+    "observer_pid": 6828,
+    "dependency_pid": 17884,
+    "new_native_jobs": 0,
+    "maximum_native_jobs": 20,
+    "automatic_retries": 0,
+    "owned_RPC_span": [
+      2110,
+      2111,
+      2112
+    ],
+    "waits_for_all25H_cohort_jobs_and_owned_driver_exit": true,
+    "does_not_restart_or_terminate_dependency": true
+  },
+  "tests": {
+    "passed": 16,
+    "seconds": 6.22,
+    "evidence": "matched_flat_cohort_tests.xml",
+    "real_saved_initializer_preflight_cases": 15,
+    "includes_optimizer_profile_equality_and_inherited_TRAIN_tensor_mean_value_equivalence": true
+  },
+  "limits": "Prepared/waiting actors are not trained or healthy baseline policies.Matched new PPOwindow and commonteacher interactions do not imply equal historical development costs.B1inherits2304supervised updates and39189charged prior controls perseed;H896supervised updates and its separately recorded priorcosts.B1direct20Hz acceleration/steering differs from H2Hz pose/speed plus planning/MPC,categorical endpoint mask and31structured feedback slots.No main superiority or final-confirmation claim.",
+  "equivalence_sample_provenance": "Inherited TRAIN tensors include the previously disclosed counterfactual approach views;equivalence is not a new native rollout or a claim that every sampled tensor is directly measured.",
+  "CI": {
+    "source_commit": "60a62994e90d90f1d398c7711f03932f24996827",
+    "status": "SUCCESS",
+    "passed": 1413,
+    "skipped": 25,
+    "carla_deselected": 4,
+    "seconds": 371.9,
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41820579188"
+  }
+}

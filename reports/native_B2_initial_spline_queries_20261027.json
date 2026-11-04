@@ -1,0 +1,132 @@
+{
+  "scope": "Eight preselected initial states,all open/static cases. Existing body_spline_v1 versus recorded legacy planning; computed references only,not driving or planner impossibility evidence. Dynamic cases excluded.",
+  "batch": "20261027T134723Z_native_frozen_B2",
+  "wall_budget_seconds": 300,
+  "actual_wall_seconds": 7.156000000075437,
+  "queries": [
+    {
+      "case_id": 0,
+      "action": 26,
+      "legacy_mode": "reference",
+      "spline_mode": "reference",
+      "detail": {
+        "status": "success",
+        "expanded_nodes": 137,
+        "cost": 24.864666372040702,
+        "planning_time": 0.3322120000375435,
+        "failure_reason": null,
+        "terminal_goal_prefix": true
+      },
+      "points": 209
+    },
+    {
+      "case_id": 1,
+      "action": 28,
+      "legacy_mode": "plan_failed",
+      "spline_mode": "reference",
+      "detail": {
+        "status": "success",
+        "expanded_nodes": 33,
+        "cost": 11.340027798827116,
+        "planning_time": 1.4019011999480426,
+        "failure_reason": null,
+        "terminal_goal_prefix": false
+      },
+      "points": 96
+    },
+    {
+      "case_id": 2,
+      "action": 26,
+      "legacy_mode": "reference",
+      "spline_mode": "reference",
+      "detail": {
+        "status": "success",
+        "expanded_nodes": 120,
+        "cost": 23.63559436183911,
+        "planning_time": 0.5093694000970572,
+        "failure_reason": null,
+        "terminal_goal_prefix": true
+      },
+      "points": 198
+    },
+    {
+      "case_id": 3,
+      "action": 26,
+      "legacy_mode": "plan_failed",
+      "spline_mode": "reference",
+      "detail": {
+        "status": "success",
+        "expanded_nodes": 121,
+        "cost": 22.18561744199303,
+        "planning_time": 0.8080509999999776,
+        "failure_reason": null,
+        "terminal_goal_prefix": true
+      },
+      "points": 186
+    },
+    {
+      "case_id": 4,
+      "action": 26,
+      "legacy_mode": "plan_failed",
+      "spline_mode": "reference",
+      "detail": {
+        "status": "success",
+        "expanded_nodes": 262,
+        "cost": 24.927259064544455,
+        "planning_time": 2.703647399903275,
+        "failure_reason": null,
+        "terminal_goal_prefix": true
+      },
+      "points": 209
+    },
+    {
+      "case_id": 5,
+      "action": 6,
+      "legacy_mode": "plan_failed",
+      "spline_mode": "reference",
+      "detail": {
+        "status": "success",
+        "expanded_nodes": 23,
+        "cost": 6.006817435453367,
+        "planning_time": 0.2549180999631062,
+        "failure_reason": null,
+        "terminal_goal_prefix": false
+      },
+      "points": 52
+    },
+    {
+      "case_id": 6,
+      "action": 26,
+      "legacy_mode": "plan_failed",
+      "spline_mode": "reference",
+      "detail": {
+        "status": "success",
+        "expanded_nodes": 213,
+        "cost": 23.129894402550686,
+        "planning_time": 0.7386973999673501,
+        "failure_reason": null,
+        "terminal_goal_prefix": true
+      },
+      "points": 194
+    },
+    {
+      "case_id": 7,
+      "action": 30,
+      "legacy_mode": "plan_failed",
+      "spline_mode": "reference",
+      "detail": {
+        "status": "success",
+        "expanded_nodes": 98,
+        "cost": 13.85858493225804,
+        "planning_time": 0.21196889993734658,
+        "failure_reason": null,
+        "terminal_goal_prefix": false
+      },
+      "points": 117
+    }
+  ],
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "source_trace_sha256": "9dc9a008a56970f1c4f1b233924e104805a3254c5fff08da74df13e3cd65987d",
+  "producer_sha256": "a336586f1079733e62a00cb90675e5f9047005c3e0cb4107e10c3ca3a43bfaf8"
+}

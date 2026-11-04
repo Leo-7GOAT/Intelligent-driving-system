@@ -1,0 +1,76 @@
+{
+  "scope": "Additional bridge-harness audit of the retrospective H/B2 comparison;not a pure isolated planner-effect claim",
+  "source_comparison_sha256": "773b5ff5897ef6cc1b7ea448a6780a832072c552f5b8faccebfc1a05baadbb70",
+  "all_five_bridge_sources_differ": true,
+  "pairs": [
+    {
+      "seed": 11,
+      "initialization_patch": {
+        "version": "native_walker_clearance_020_v1",
+        "parent_sha256": "ae6b0d83fbb8a131ea39b482dbb0f0d6e9193d189b16e54052a606636bc8f8fe",
+        "initialized_sha256": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a",
+        "scope": "Only native walker pre-control Z clearance and settled-height evidence;XY,yaw,walking,vehicle actuation and other bridge code unchanged by AST comparison"
+      },
+      "bridge_hashes_bound_to_actual_pair": true
+    },
+    {
+      "seed": 22,
+      "initialization_patch": {
+        "version": "native_walker_clearance_020_v1",
+        "parent_sha256": "ae6b0d83fbb8a131ea39b482dbb0f0d6e9193d189b16e54052a606636bc8f8fe",
+        "initialized_sha256": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a",
+        "scope": "Only native walker pre-control Z clearance and settled-height evidence;XY,yaw,walking,vehicle actuation and other bridge code unchanged by AST comparison"
+      },
+      "bridge_hashes_bound_to_actual_pair": true
+    },
+    {
+      "seed": 33,
+      "initialization_patch": {
+        "version": "native_walker_clearance_020_v1",
+        "parent_sha256": "ae6b0d83fbb8a131ea39b482dbb0f0d6e9193d189b16e54052a606636bc8f8fe",
+        "initialized_sha256": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a",
+        "scope": "Only native walker pre-control Z clearance and settled-height evidence;XY,yaw,walking,vehicle actuation and other bridge code unchanged by AST comparison"
+      },
+      "bridge_hashes_bound_to_actual_pair": true
+    },
+    {
+      "seed": 44,
+      "initialization_patch": {
+        "version": "native_walker_clearance_020_v1",
+        "parent_sha256": "ae6b0d83fbb8a131ea39b482dbb0f0d6e9193d189b16e54052a606636bc8f8fe",
+        "initialized_sha256": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a",
+        "scope": "Only native walker pre-control Z clearance and settled-height evidence;XY,yaw,walking,vehicle actuation and other bridge code unchanged by AST comparison"
+      },
+      "bridge_hashes_bound_to_actual_pair": true
+    },
+    {
+      "seed": 55,
+      "initialization_patch": {
+        "version": "native_walker_clearance_020_v1",
+        "parent_sha256": "ae6b0d83fbb8a131ea39b482dbb0f0d6e9193d189b16e54052a606636bc8f8fe",
+        "initialized_sha256": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a",
+        "scope": "Only native walker pre-control Z clearance and settled-height evidence;XY,yaw,walking,vehicle actuation and other bridge code unchanged by AST comparison"
+      },
+      "bridge_hashes_bound_to_actual_pair": true
+    }
+  ],
+  "differences": "B2 uses native_walker_clearance_020_v1:walker spawn Z is raised0.2m before the same30settlement ticks;added settled-height logging. All five Hreferences use the original bridge. RequestedXY,yaw,walker speed/delay,vehicle actuation and critical planner/controller modules remain matched.",
+  "interpretation": "The training/evaluation bridge harnesses are not byte-identical. The known-development numerical difference must not be attributed solely to the planner. The preparation records bind the scoped patch to the actual two bridge hashes;they do not replace a matched-harness confirmatory experiment.",
+  "family_successes": {
+    "curve_parking": {
+      "H": 20,
+      "B2": 19
+    },
+    "static_obstacle": {
+      "H": 18,
+      "B2": 6
+    },
+    "dynamic_interaction": {
+      "H": 20,
+      "B2": 19
+    }
+  },
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

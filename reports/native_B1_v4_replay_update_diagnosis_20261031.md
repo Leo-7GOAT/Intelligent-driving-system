@@ -1,0 +1,87 @@
+# Completed replay-initialized B1 PPO regression
+
+The registered 20,480-control endpoint finishes 4/12 known development cases,
+with four bounds failures, one collision and three deadlines. Its actor-fit
+initializer finished 8/12. The trained endpoint is rejected as a healthy baseline.
+All 27,579 physical controls and twelve measured-start actions verify; the
+owned server was cleaned up normally. No failed episode is excluded.
+
+`audit_flat_first_ppo_update.py` reconstructs the first 1,280 native training
+decisions from measured histories, exact initializer normalization and saved
+RNG. Every sampled action matches. After applying the registered fixed 1/20
+learner reward units, the original two Adam steps reproduce **every parameter
+in the first checkpoint exactly**, as well as its PPO metrics.
+
+| Constant learning rate | Actual/discarded Adam steps | Exact whole-rollout KL mean | KL max |
+|---|---:|---:|---:|
+| 3e-5, reproduced actual update | 2 | 0.042839 | 0.777710 |
+| 1e-5, discarded offline branch | 3 | 0.018322 | 0.258190 |
+| 3e-6, discarded offline branch | 40 | 0.008218 | 0.284747 |
+
+The original KL target is 0.01. SB3's minibatch early stopping does not enforce
+a bound on the final full-rollout distribution; the reported minibatch estimate
+for the original update is 0.020229. Over all sixteen actual phases the logged
+KL median is 0.012189 and maximum 0.079229. Eleven phases exceed 0.01.
+This supports testing a smaller learning rate while keeping the action space,
+reward, rollout, termination and safety criteria fixed. It does not prove that
+large updates caused every failure or that smaller updates improve driving.
+Smaller learning rates can execute more optimizer steps before early stopping;
+their compute costs must be reported separately.
+
+The separate terminal-history audit reproduces all 7,099 evaluation controls
+and all twelve final actions. Initial and trained policies are evaluated on
+the trained policy's visited terminal states; those initial-policy predictions
+are **not** counterfactual closed-loop results. Remaining braking, steering and
+collision failures are preserved rather than attributed solely to update size.
+
+The first reconstruction attempt omitted fixed reward units and failed its
+checkpoint equality guard. That diagnostic was corrected; it never changed a
+deployed model. Alternative in-memory optimizer branches are discarded and add
+zero driving controls or deployed PPO updates.
+
+Evidence: `native_B1_v4_replay_fit_PPO_endpoint_20261031.json`,
+`native_B1_v4_replay_first_update_lr_audit_20261031.json` and
+`native_B1_v4_replay_PPO_terminal_drift_20261031.json`.
+
+The complete failed endpoint is now public in 21 hash-checked transfer parts.
+Unauthenticated download and isolated reconstruction verify all **27,579**
+training/evaluation controls, twelve measured-start actions and a byte-identical
+result figure. See [public verification](B1_v4_replay_PPO_public_verification_20261031.json).
+The [independent first-update verification](B1_v4_replay_PPO_public_update_verification_20261031.json)
+also reconstructs all 1,280 sampled training actions and every first-checkpoint
+parameter from that downloaded capsule. All non-timing report fields, including
+the three optimizer branches and exact KL values, agree with the original audit.
+The first archive omitted the separately captured operational watchdog source;
+an [exact guard supplement](B1_v4_replay_PPO_guard_public_verification_20261031.json)
+adds all 56 hash-checked snapshot/launcher files and binds the original archive
+SHA256. The original package is preserved. Future full packages include and
+verify this operational snapshot directly. Eighteen packaging tests cover
+missing/tampered source, manifest and executed-guard mismatches, path escape,
+undeclared overrides and unchanged historical exports.
+Auxiliary failure prose containing private home paths is redacted as a complete
+metadata string with its original SHA256 retained in the transformation ledger.
+Hash-bound raw inputs remain protected from redaction. This preserves launch
+failure status and original evidence identity without publishing personal paths;
+four additional Windows/Unix/embedded-JSON/error-prose tests pass (22 total).
+
+Run the first-update audit with `NAVSTACK_AUDIT_SOURCE_ROOT` set to the completed
+batch's archived `source`, using a fresh output path. Preparation now exposes
+`--freeze-observation-statistics` as an explicit registered continuation profile;
+37 supervised-preparation, entry-gate and replay checks pass.
+
+The resulting 3e-6 approach-initialized probe is registered as
+`20261031T055729299388Z_native_supervised_ppo`. Its policy tensors, normalizer
+and RNG bytes match the original 3e-5 approach probe; all physical source hashes
+and environment fields match. Only configuration metadata scope text differs.
+All 378 archived inputs pass launcher validation. It has the same 20,480-control
+budget, 1,280-action rollout, 320-sample minibatches, ten epochs, 0.01 KL target,
+fixed 1/20 reward units and frozen observation statistics. It is queued after
+the current approach PPO endpoint and before the broader H/H0 campaign, using
+the owned-empty-server cleanup gate and a bounded read-only completion audit.
+The old idle queue alone was replaced after checking its creation time,
+executable, exact script and untouched child. No worker or server was stopped.
+See `native_B1_v4_approach_lower_lr_preparation_20261031.json` for preparation
+and queue evidence; no native score is available for this probe yet.
+
+All results here are development diagnostics. The main five-seed/new-condition
+research acceptance remains UNMET.

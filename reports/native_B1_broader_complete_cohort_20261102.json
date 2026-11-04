@@ -1,0 +1,300 @@
+{
+  "scope": "Rebuild all registered broader B1 outcomes, with explicit interruption costs.",
+  "script_sha256": "8c60ff1d5b91a41c835fe29610e0ee09d1d1005ac47d9c530a1972b4fee7a1a1",
+  "registered_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "complete_five_seed_cohort": true,
+  "completed_seeds": 5,
+  "pending_seeds": [],
+  "seeds": [
+    {
+      "seed": 11,
+      "batch": "20261102T044003693349Z_native_broader_B1_seed11",
+      "interrupted_and_recovered": false,
+      "effective_new_PPO_controls": 20480,
+      "effective_new_Adam_steps": 640,
+      "all_bridge_controls_verified": 30621,
+      "validation_successes": 11,
+      "validation_cases": 24,
+      "unsafe_cases": 8,
+      "termination_counts": {
+        "success": 11,
+        "deadline": 5,
+        "out_of_bounds": 5,
+        "collision": 3
+      },
+      "by_core": {
+        "curve_parking": {
+          "cases": 8,
+          "successes": 4,
+          "termination_counts": {
+            "success": 4,
+            "deadline": 2,
+            "out_of_bounds": 2
+          }
+        },
+        "static_vehicle": {
+          "cases": 8,
+          "successes": 4,
+          "termination_counts": {
+            "success": 4,
+            "out_of_bounds": 2,
+            "collision": 2
+          }
+        },
+        "crossing_walker": {
+          "cases": 8,
+          "successes": 3,
+          "termination_counts": {
+            "success": 3,
+            "out_of_bounds": 1,
+            "deadline": 3,
+            "collision": 1
+          }
+        }
+      },
+      "development_screen_passed": false,
+      "model_sha256": "abb78e8a1bd85221036abcab9cab808de57fdb188e3582c71026409596687f66",
+      "lineage_PPO_controls": 51200,
+      "inherited_unknown_unflushed_tail": false
+    },
+    {
+      "seed": 22,
+      "batch": "20261101T131830295783Z_native_B1_broader_shared_parking_PPO",
+      "interrupted_and_recovered": false,
+      "effective_new_PPO_controls": 20480,
+      "effective_new_Adam_steps": 630,
+      "all_bridge_controls_verified": 31480,
+      "validation_successes": 7,
+      "validation_cases": 24,
+      "unsafe_cases": 16,
+      "termination_counts": {
+        "success": 7,
+        "out_of_bounds": 11,
+        "deadline": 1,
+        "collision": 5
+      },
+      "by_core": {
+        "curve_parking": {
+          "cases": 8,
+          "successes": 5,
+          "termination_counts": {
+            "success": 5,
+            "out_of_bounds": 2,
+            "deadline": 1
+          }
+        },
+        "static_vehicle": {
+          "cases": 8,
+          "successes": 0,
+          "termination_counts": {
+            "collision": 5,
+            "out_of_bounds": 3
+          }
+        },
+        "crossing_walker": {
+          "cases": 8,
+          "successes": 2,
+          "termination_counts": {
+            "success": 2,
+            "out_of_bounds": 6
+          }
+        }
+      },
+      "development_screen_passed": false,
+      "model_sha256": "0016264136790224daf02204fba22e586c02ae756662751fc8781c7fb03f6b6b",
+      "lineage_PPO_controls": 51200,
+      "inherited_unknown_unflushed_tail": false
+    },
+    {
+      "seed": 33,
+      "batch": "20261102T044004346066Z_native_broader_B1_seed33",
+      "interrupted_and_recovered": false,
+      "effective_new_PPO_controls": 20480,
+      "effective_new_Adam_steps": 619,
+      "all_bridge_controls_verified": 29621,
+      "validation_successes": 11,
+      "validation_cases": 24,
+      "unsafe_cases": 13,
+      "termination_counts": {
+        "success": 11,
+        "out_of_bounds": 7,
+        "collision": 6
+      },
+      "by_core": {
+        "curve_parking": {
+          "cases": 8,
+          "successes": 6,
+          "termination_counts": {
+            "success": 6,
+            "out_of_bounds": 2
+          }
+        },
+        "static_vehicle": {
+          "cases": 8,
+          "successes": 0,
+          "termination_counts": {
+            "out_of_bounds": 3,
+            "collision": 5
+          }
+        },
+        "crossing_walker": {
+          "cases": 8,
+          "successes": 5,
+          "termination_counts": {
+            "success": 5,
+            "collision": 1,
+            "out_of_bounds": 2
+          }
+        }
+      },
+      "development_screen_passed": false,
+      "model_sha256": "b898c40fbaa2b7a27cbbca0a9139c5bfb3974d888888cb0fd6743680d66fbb0b",
+      "lineage_PPO_controls": 51200,
+      "inherited_unknown_unflushed_tail": false
+    },
+    {
+      "seed": 44,
+      "batch": "20261102T063246381418Z_native_broader_B1_seed44_recovery",
+      "interrupted_and_recovered": true,
+      "effective_new_PPO_controls": 20480,
+      "effective_new_Adam_steps": 640,
+      "all_bridge_controls_verified": 31097,
+      "validation_successes": 15,
+      "validation_cases": 24,
+      "unsafe_cases": 7,
+      "termination_counts": {
+        "success": 15,
+        "out_of_bounds": 3,
+        "deadline": 2,
+        "collision": 4
+      },
+      "by_core": {
+        "curve_parking": {
+          "cases": 8,
+          "successes": 6,
+          "termination_counts": {
+            "success": 6,
+            "out_of_bounds": 1,
+            "deadline": 1
+          }
+        },
+        "static_vehicle": {
+          "cases": 8,
+          "successes": 4,
+          "termination_counts": {
+            "success": 4,
+            "collision": 4
+          }
+        },
+        "crossing_walker": {
+          "cases": 8,
+          "successes": 5,
+          "termination_counts": {
+            "success": 5,
+            "out_of_bounds": 2,
+            "deadline": 1
+          }
+        }
+      },
+      "development_screen_passed": false,
+      "model_sha256": "e71ce437eb4ab6edce9d7ed39598858c40966cde57c1ba18566f76895626731d",
+      "lineage_PPO_controls": 51200,
+      "inherited_unknown_unflushed_tail": true
+    },
+    {
+      "seed": 55,
+      "batch": "20261102T044005159056Z_native_broader_B1_seed55",
+      "interrupted_and_recovered": false,
+      "effective_new_PPO_controls": 20480,
+      "effective_new_Adam_steps": 619,
+      "all_bridge_controls_verified": 28841,
+      "validation_successes": 10,
+      "validation_cases": 24,
+      "unsafe_cases": 14,
+      "termination_counts": {
+        "success": 10,
+        "out_of_bounds": 7,
+        "collision": 7
+      },
+      "by_core": {
+        "curve_parking": {
+          "cases": 8,
+          "successes": 5,
+          "termination_counts": {
+            "success": 5,
+            "out_of_bounds": 3
+          }
+        },
+        "static_vehicle": {
+          "cases": 8,
+          "successes": 2,
+          "termination_counts": {
+            "success": 2,
+            "collision": 6
+          }
+        },
+        "crossing_walker": {
+          "cases": 8,
+          "successes": 3,
+          "termination_counts": {
+            "success": 3,
+            "out_of_bounds": 4,
+            "collision": 1
+          }
+        }
+      },
+      "development_screen_passed": false,
+      "model_sha256": "271e2f72ef7d9b97e62f2017940fecc8cb93ab42becb058ae5e4ef1029e864fe",
+      "lineage_PPO_controls": 51200,
+      "inherited_unknown_unflushed_tail": true
+    }
+  ],
+  "input_audits": [
+    {
+      "seed": 11,
+      "learning_audit_sha256": "c6da8d0198252bbf8c8295e630582f84ea54f5363c2b539810e0e6a3b03d8e89",
+      "protocol_sha256": "f8e3589219b2030548840d117271956cf4f7b703ea646ed29fef3863031a68d1"
+    },
+    {
+      "seed": 22,
+      "learning_audit_sha256": "82fd47fc0780f1e618878919f1bcb9ecb23803d57f17f36d326e5e39b71bf5f5",
+      "protocol_sha256": "b895e0ed6dd206294568d83ffb6c6e612c0ebbfb16cf43507fd4168fbbf1b94e"
+    },
+    {
+      "seed": 33,
+      "learning_audit_sha256": "beffdc3bf2dc9a39a90d460cd20c1a067e86178db1b7df162753e7488b05d5a7",
+      "protocol_sha256": "3d193c14f60b7e97d41eca1429130eadd106e24228ac056b6e9ef6631a1b1db1"
+    },
+    {
+      "seed": 44,
+      "original_prefix_sha256": "eb9cf32ff8c7f59a6cf0ef82bae41c3cdc94bcd443eb927159d5205408f759e8"
+    },
+    {
+      "seed": 44,
+      "learning_audit_sha256": "e1944c9a981ceeaee109112d0371bb786fe9f02c6ed28e85cfce6c8e981c67a2",
+      "protocol_sha256": "f80994daea83b107ef4c0f6f4169a4fe8cbff647b3ba75e1af7d05814e623b32"
+    },
+    {
+      "seed": 55,
+      "learning_audit_sha256": "61c8e4ee9c95da49104b1dbd635bc3b4cf7c28c9e3587cb7533e35cff69fe632",
+      "protocol_sha256": "91252e808aa61e997506d0bb56bfd32076c74e64d3d88875b03115ffe23c9b91"
+    }
+  ],
+  "unique_known_validation_conditions": 24,
+  "policy_condition_evaluations": 120,
+  "endpoint_successes": 54,
+  "unsafe_cases": 58,
+  "mean_completed_seed_success_fraction": 0.45,
+  "qualified_development_seeds": 0,
+  "effective_new_PPO_controls": 102400,
+  "effective_new_Adam_steps": 3148,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "limits": "Known24development conditions reused across independent warm starts;not120new final conditions,from-scratch learning,matched H/B1budgets or isolated PPOvalue. Recovered44uses a new measured episode;all interruptions and failures retained. Partial means describe completed seeds only."
+}

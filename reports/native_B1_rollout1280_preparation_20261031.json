@@ -1,0 +1,19 @@
+{
+  "matched_control": "20261028T020728Z_native_supervised_ppo",
+  "new_batch": "20261031T004737Z_native_supervised_ppo",
+  "rollout_actions": [
+    320,
+    1280
+  ],
+  "controls_each": 20480,
+  "initial_policy_tensors_exactly_equal": true,
+  "initial_optimizer_empty_each": true,
+  "initial_normalizer_bytes_exact": true,
+  "initial_RNG_bytes_exact": true,
+  "initial_config_exact": true,
+  "evidence": "Control first episode terminates at401physical controls; its first320-control PPO collection ends before any terminal feedback. Longer1280collection changes this bootstrap/credit-assignment exposure; not a proven sole cause.",
+  "hypothesis": "Collect complete episodes before the first PPO update while keeping physical budget,mini-batch,epochs,learning rate,KL,exploration,reward units and stopping rule fixed.",
+  "stopping_rule": "One20480-control endpoint,all12development conditions; no early-checkpoint promotion or extra retries.",
+  "status": "PREPARED_NOT_STARTED",
+  "acceptance": "Healthy B1 and final research gates unchanged."
+}

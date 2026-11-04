@@ -1,0 +1,169 @@
+{
+  "status": "FIRST_SEED_NATIVE_PPO_RUNNING_OTHER_REGISTERED_JOBS_QUEUED",
+  "research_acceptance": "UNMET",
+  "recorded_utc": "2026-11-04T11:04:15.340523+00:00",
+  "version": "independent_outcome_TRAIN48_v1",
+  "frozen_training_source_commit": "62d03aa16d497f0e8de3ea9e16afe42632dbdd0f",
+  "registered_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "independent_initializers": [
+    {
+      "seed": 11,
+      "independent_actor_sha256": "145876e7cfd1ea9f6c89d0a5596ebdbde7fef54420acca3d96ce49e2be1bb711",
+      "source_model_sha256": "ee446452b7d81bee2201c6c0a3b7f0488fa5cda1b6fa4faf8876a2d9fd2e663a",
+      "inherited_control_cost_lower_bound": 9243,
+      "inherited_teacher_controls": 4329,
+      "inherited_supervised_optimizer_steps": 896,
+      "all30old_tensors_exact": true,
+      "paired_weights_Adam_RMS_RNG_exact": true
+    },
+    {
+      "seed": 22,
+      "independent_actor_sha256": "55cb6404a827e53a7a1221a9e12f0a2d8a55a2672801d00e17a55ef149a435cb",
+      "source_model_sha256": "8cbf639a2a3dad35131f6be55b60ea70fb5d67b5b9c2f852d8800953b65d8eb0",
+      "inherited_control_cost_lower_bound": 4329,
+      "inherited_teacher_controls": 4329,
+      "inherited_supervised_optimizer_steps": 896,
+      "all30old_tensors_exact": true,
+      "paired_weights_Adam_RMS_RNG_exact": true
+    },
+    {
+      "seed": 33,
+      "independent_actor_sha256": "aa6c7f53e6e637df0db3208a8508fd635a5d8d714f79fed5c9747ca02f51aed7",
+      "source_model_sha256": "57b77b7ff6a5dbfd63dd9ff477ab9aacd5d4ef0f3b91f6d0f826428c4ef6b23e",
+      "inherited_control_cost_lower_bound": 4329,
+      "inherited_teacher_controls": 4329,
+      "inherited_supervised_optimizer_steps": 896,
+      "all30old_tensors_exact": true,
+      "paired_weights_Adam_RMS_RNG_exact": true
+    },
+    {
+      "seed": 44,
+      "independent_actor_sha256": "032521235032c8e389901105eabb51373271c68847bd9fad3118de78a85afb25",
+      "source_model_sha256": "e88e46e7cee0443a3010776e2539ac15b85420893a9efe1c5954dfd69e46f087",
+      "inherited_control_cost_lower_bound": 4329,
+      "inherited_teacher_controls": 4329,
+      "inherited_supervised_optimizer_steps": 896,
+      "all30old_tensors_exact": true,
+      "paired_weights_Adam_RMS_RNG_exact": true
+    },
+    {
+      "seed": 55,
+      "independent_actor_sha256": "aa2f0e0566413fb52f0fd91d42ac2dfbe710014e63358e66cee9f52191c823e9",
+      "source_model_sha256": "b2c5694fd0c20ff1aafac2555e6ec8bf9fd440858071d36e26958f6cbd98c756",
+      "inherited_control_cost_lower_bound": 4329,
+      "inherited_teacher_controls": 4329,
+      "inherited_supervised_optimizer_steps": 896,
+      "all30old_tensors_exact": true,
+      "paired_weights_Adam_RMS_RNG_exact": true
+    }
+  ],
+  "fully_closed_new_training_policies": 0,
+  "registration_sha256": "970c895b91f488dc46bac2ba9bd067d02a57f8bc30a00adcb2d7f1ee1be175e7",
+  "initializer_tensor_proof_sha256": "4507f7da2817f22cb28ac54e9370d1d40101a284aab0185701505a7a467c82a7",
+  "requested_controls_per_arm": 30720,
+  "expected_native_jobs": 25,
+  "new_supervised_updates": 0,
+  "new_final_conditions": 0,
+  "partition": {
+    "version": "native_training_validation_v1",
+    "training_conditions": 48,
+    "validation_conditions": 24,
+    "minimum_sampled_route_separation_m": 13.25,
+    "scope": "Distinct development validation roads,not final confirmation or proof of unvisited historical roads"
+  },
+  "initial_resources": {
+    "free_GPU_MiB": 10049,
+    "free_RAM_GiB": 40.44037628173828,
+    "free_disk_GiB": 428.3694610595703,
+    "logical_CPUs": 12,
+    "maximum_simultaneous_servers": 2,
+    "unowned_2100_never_stopped": true
+  },
+  "automatic_retries": 0,
+  "per_native_job_wall_seconds": 14400,
+  "seed11_zero_PPO_baseline": {
+    "cases": 24,
+    "successes": 24,
+    "controls": 8101,
+    "interventions": 394,
+    "plan_failures": 5,
+    "raw_audit_sha256": "fdd3759a18c4f18b0cfb8b6850c5b34736c84b5f8ede47674a46e155995ba321",
+    "strict_delivery_sha256": "b8099c1237376e200317e67176c588d2fbdf4411a6f0893561c9bdab1671517a",
+    "measured_start_decisions": 24,
+    "static_decisions": 509,
+    "new_PPO_updates": 0
+  },
+  "seed11_first_saved_update": {
+    "scope": "First saved native rollout only;full training/raw/engine closure pending",
+    "checkpoint": "checkpoint_000000320",
+    "checkpoint_metadata_sha256": "b5d9bb348f41daec5e57b9da2da83c6572a9cc2810fe0b18d8cbcfe4b0cc7207",
+    "physics_steps": 320,
+    "decisions": 32,
+    "all34Adam_states_advance": 10,
+    "actual_initialized_weights_Adam_exact": true,
+    "RMS_exact": true,
+    "learned_tensors_changed": true,
+    "new_model_sha256": "c3edb2637a10a1c37ff341ba3f53ba75a8f5e93b77a695b1bb0083345f5e4045",
+    "new_final_conditions": 0
+  },
+  "training_live_schedule": {
+    "batch": "20261104_independent_outcome_seed11_H_TRAIN48_PPO30720",
+    "script_sha256": "5714161fecea18802880de9ade2ed37b197f0ff63423ce720a9e81c451c537c5",
+    "protocol_sha256": "c0e9f2df2c873c74524a0ae9fedb4fd0c90821126bc933c9e547ef2714e5ef6f",
+    "scope": "LIVE_PREFIX_DIAGNOSTIC",
+    "saved_next_case_index": 0,
+    "recorded_resets": 6,
+    "all_actual_reset_conditions_match": true,
+    "unique_inventory_conditions": 48,
+    "schedule_exposures": 64,
+    "actual_control_frames_in_readable_stream": 2636,
+    "actual_controlled_episode_counts": {
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "4": 1,
+      "3": 1,
+      "5": 1
+    },
+    "original_basic_episode_counts": {
+      "0": 1,
+      "3": 1,
+      "6": 0,
+      "9": 0
+    },
+    "repeated_exposures_not_independent_conditions": true,
+    "new_controls": 0,
+    "new_updates": 0
+  },
+  "CPU_tests": {
+    "cohort_and_continuation": {
+      "passed": 32,
+      "seconds": 22.34,
+      "evidence": "independent_outcome_final_tests.xml"
+    },
+    "partition_compatibility_fix": {
+      "passed": 29,
+      "seconds": 9.81,
+      "evidence": "cohort_partition_compat_tests.xml"
+    }
+  },
+  "CI": {
+    "initial_cohort_commit": "62d03aa",
+    "initial_result": "FAIL_TWO_LEGACY_PARTITION_OVERLAY_CONTRACT_TESTS",
+    "fix_commit": "67939eb",
+    "fix": "Capture the unique evaluation inventory before applying repeated TRAIN exposures.Root-only fix;frozen cohort does not evaluate scheduled training episodes and is unaffected.",
+    "latest_CI": "SUCCESS",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41817293573",
+    "passed": 1410,
+    "skipped": 25,
+    "carla_deselected": 4,
+    "seconds": 374.1
+  },
+  "limits": "Teacher-initialized zero-PPO baseline already completes24/24known validation;this is not new PPO success.Current training has only partial saved-rollout evidence,not completed raw/engine closure or five fully trained policies.H/H0starts are paired;new negative branches alone are hidden in H0.No final conditions opened;no matched H/B1claim or PPO superiority."
+}

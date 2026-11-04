@@ -1,0 +1,173 @@
+{
+  "scope": "Frozen-policy baseline for explicit repeated-option persistence,known3cases only",
+  "batch": "20261104_option_commitment_frozen_H_pilot",
+  "protocol_sha256": "f0c35d389311eefa598d5dafdeb3357a872d27b947a72df46881c6b6d604ce04",
+  "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+  "controls": 1586,
+  "world_ticks": 1678,
+  "reset_ticks": 92,
+  "NN_decisions": 159,
+  "new_PPO_updates": 0,
+  "outcomes": [
+    {
+      "original_case_id": 0,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "plan_failures": 66,
+      "interventions": 660
+    },
+    {
+      "original_case_id": 1,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 336,
+      "plan_failures": 0,
+      "interventions": 1
+    },
+    {
+      "original_case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 350,
+      "plan_failures": 0,
+      "interventions": 1
+    }
+  ],
+  "verification": {
+    "endpoint_raw_audit.json": {
+      "sha256": "b7e37cddc3a332b3ef834acea224e62fb9c91010af9b10e71e36274f60e3c4b4",
+      "receipt": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261104_option_commitment_frozen_H_pilot",
+        "method": "H",
+        "protocol_sha256": "f0c35d389311eefa598d5dafdeb3357a872d27b947a72df46881c6b6d604ce04",
+        "config_sha256": "6f2c91660741a46be9710b257a110438a2a92186fb6f79ac3ccb52dfcfacc160",
+        "summary_sha256": "469b1c1277083a86638f01e9ad6c801579c0d464b4ccd45b13a193fa04a1fb68",
+        "evaluation_sha256": "56e2a1abd663dc5a97bbe40378f76abfefd09f466d27f09effa8b5134c5ce13f",
+        "evaluation_trace_sha256": "0ee4a21a7daa56efa4db6147f5ee8f9861b1473942980cd2397952709e1dbe0a",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793762268371662700.jsonl.gz": "98d11c3b74bb0ab1a8cbe01bd4c5c7e5ede3583b27632c9ce2bcefe05d6e1eb4"
+        },
+        "bridge_response_stream": "bridge_b5f1a553_responses.jsonl.gz",
+        "bridge_response_sha256": "cf67106b6784a851676ba836100dcd6b0ff4c1d77833a6ba3918e6ccc5daf727",
+        "bridge_complete_rows": 1605,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 1586,
+        "total_applied_controls_verified": 1586,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 1678,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "6c31cb3e3afb8bec3dbc6b0aed96e91319ddd8cf3d25850955aff910151a54bc",
+        "lineage_controls": 41531,
+        "charged_controls_lower_bound": 90131,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 1310,
+        "unknown_unflushed_ancestor_tail": false
+      }
+    },
+    "measured_start_inference.json": {
+      "sha256": "582dc74cb29ae686de047b735c7c35e7b01d751ccfab58f063a14fefb9e8c922",
+      "receipt": {
+        "scope": "MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE",
+        "method": "H",
+        "batch": "20261104_option_commitment_frozen_H_pilot",
+        "all_static_actions": false,
+        "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+        "normalization_sha256": "c1d31978ba2e34c2fbb8270f99685b8734967e235d6afed414e3e65380bf5dd3",
+        "raw_audit_sha256": "b7e37cddc3a332b3ef834acea224e62fb9c91010af9b10e71e36274f60e3c4b4",
+        "script_sha256": "9a66438439293a99874bf9ccb854b2b2b457135a958e9926712442e1cfdd6033",
+        "results": [
+          {
+            "case_id": 0,
+            "decisions": 1
+          },
+          {
+            "case_id": 1,
+            "decisions": 1
+          },
+          {
+            "case_id": 2,
+            "decisions": 1
+          }
+        ],
+        "all_recorded_actions_match": true,
+        "inference_normalization_frozen": true,
+        "RMS_unchanged": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "limits": "Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible."
+      }
+    },
+    "static_action_inference.json": {
+      "sha256": "c937157c4587ee50d65f15f2ed4c0fbe0eeab1fa1affac83e68d74a3fb80d449",
+      "receipt": {
+        "scope": "MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE",
+        "method": "H",
+        "batch": "20261104_option_commitment_frozen_H_pilot",
+        "all_static_actions": true,
+        "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+        "normalization_sha256": "c1d31978ba2e34c2fbb8270f99685b8734967e235d6afed414e3e65380bf5dd3",
+        "raw_audit_sha256": "b7e37cddc3a332b3ef834acea224e62fb9c91010af9b10e71e36274f60e3c4b4",
+        "script_sha256": "9a66438439293a99874bf9ccb854b2b2b457135a958e9926712442e1cfdd6033",
+        "results": [
+          {
+            "case_id": 0,
+            "decisions": 90
+          },
+          {
+            "case_id": 1,
+            "decisions": 34
+          },
+          {
+            "case_id": 2,
+            "decisions": 35
+          }
+        ],
+        "all_recorded_actions_match": true,
+        "inference_normalization_frozen": true,
+        "RMS_unchanged": true,
+        "new_controls": 0,
+        "new_updates": 0,
+        "limits": "Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible."
+      }
+    }
+  },
+  "engine": {
+    "sha256": "23137f1c783ad3505a1934c487c08ab8432c18fab48b8d54e7af1af34d8ae70d",
+    "receipt": {
+      "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+      "batch": "20261104_option_commitment_frozen_H_pilot",
+      "protocol_sha256": "f0c35d389311eefa598d5dafdeb3357a872d27b947a72df46881c6b6d604ce04",
+      "control_delivery": "batch_sync_v1",
+      "bridge_streams": [
+        {
+          "name": "bridge_b5f1a553_responses.jsonl.gz",
+          "sha256": "cf67106b6784a851676ba836100dcd6b0ff4c1d77833a6ba3918e6ccc5daf727"
+        }
+      ],
+      "tolerance": 1e-05,
+      "counts": {
+        "controls": 1586,
+        "gear_or_handbrake_mismatches": 0,
+        "missing_or_negative_sync_ack": 0
+      },
+      "mismatch_channels": {},
+      "by_phase": {
+        "evaluation": {
+          "controls": 1586
+        }
+      },
+      "mismatch_examples": [],
+      "all_engine_controls_match_requested": true,
+      "strict_delivery_gate_passed": true,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+    }
+  },
+  "limits": "Case0still times out. A repeated selected label can now continue the fixed old local target,but no rule chooses that action for PPO. This is an interface baseline,not evidence of learning or independent acceptance."
+}

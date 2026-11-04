@@ -1,0 +1,204 @@
+{
+  "scope": "Offline left/right reflection sensitivity; no policy or simulator updates.",
+  "script_sha256": "6e4c8e57bc4525d56f2d5fb21ecf9f2251a3658527d979e0c4ed10e81b9d021e",
+  "dataset_sha256": "381519ab8340263e7114332e1e6b5225b090ee65da89b8b4ef4f49abf5e6de20",
+  "model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+  "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+  "records": [
+    {
+      "case_id": 0,
+      "TRAINrows": 272,
+      "original_action_RMS_error": [
+        0.01746876910328865,
+        0.0072337789461016655
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.18265847861766815,
+        0.06467413902282715
+      ],
+      "reflection_inconsistency_RMS": [
+        0.18224315345287323,
+        0.06670178472995758
+      ]
+    },
+    {
+      "case_id": 1,
+      "TRAINrows": 278,
+      "original_action_RMS_error": [
+        0.015447411686182022,
+        0.009925360791385174
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.17755170166492462,
+        0.2146635800600052
+      ],
+      "reflection_inconsistency_RMS": [
+        0.17570970952510834,
+        0.21634958684444427
+      ]
+    },
+    {
+      "case_id": 2,
+      "TRAINrows": 249,
+      "original_action_RMS_error": [
+        0.023334484547376633,
+        0.007432198151946068
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.23100988566875458,
+        0.11296382546424866
+      ],
+      "reflection_inconsistency_RMS": [
+        0.2249688059091568,
+        0.1137303039431572
+      ]
+    },
+    {
+      "case_id": 3,
+      "TRAINrows": 241,
+      "original_action_RMS_error": [
+        0.017658917233347893,
+        0.008997181430459023
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.31100955605506897,
+        0.16069290041923523
+      ],
+      "reflection_inconsistency_RMS": [
+        0.30946749448776245,
+        0.16055499017238617
+      ]
+    },
+    {
+      "case_id": 4,
+      "TRAINrows": 285,
+      "original_action_RMS_error": [
+        0.01428066473454237,
+        0.00969110056757927
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.11002646386623383,
+        0.2214374542236328
+      ],
+      "reflection_inconsistency_RMS": [
+        0.10984097421169281,
+        0.22237613797187805
+      ]
+    },
+    {
+      "case_id": 5,
+      "TRAINrows": 289,
+      "original_action_RMS_error": [
+        0.0518857017159462,
+        0.01288891676813364
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.39316055178642273,
+        0.2879636883735657
+      ],
+      "reflection_inconsistency_RMS": [
+        0.395457923412323,
+        0.2892630100250244
+      ]
+    },
+    {
+      "case_id": 6,
+      "TRAINrows": 272,
+      "original_action_RMS_error": [
+        0.015195684507489204,
+        0.011069977656006813
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.20617160201072693,
+        0.1629810929298401
+      ],
+      "reflection_inconsistency_RMS": [
+        0.20717059075832367,
+        0.16397717595100403
+      ]
+    },
+    {
+      "case_id": 7,
+      "TRAINrows": 276,
+      "original_action_RMS_error": [
+        0.017156191170215607,
+        0.010521579533815384
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.27738121151924133,
+        0.22474665939807892
+      ],
+      "reflection_inconsistency_RMS": [
+        0.2783530354499817,
+        0.22465156018733978
+      ]
+    },
+    {
+      "case_id": 8,
+      "TRAINrows": 332,
+      "original_action_RMS_error": [
+        0.0815548524260521,
+        0.007788253016769886
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.44575217366218567,
+        0.13583169877529144
+      ],
+      "reflection_inconsistency_RMS": [
+        0.43466269969940186,
+        0.13648661971092224
+      ]
+    },
+    {
+      "case_id": 9,
+      "TRAINrows": 356,
+      "original_action_RMS_error": [
+        0.07882735133171082,
+        0.010760788805782795
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.5188010931015015,
+        0.26627787947654724
+      ],
+      "reflection_inconsistency_RMS": [
+        0.5172384977340698,
+        0.264761358499527
+      ]
+    },
+    {
+      "case_id": 10,
+      "TRAINrows": 305,
+      "original_action_RMS_error": [
+        0.08993727713823318,
+        0.008999708108603954
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.4220966100692749,
+        0.08446978032588959
+      ],
+      "reflection_inconsistency_RMS": [
+        0.419450581073761,
+        0.08446934819221497
+      ]
+    },
+    {
+      "case_id": 11,
+      "TRAINrows": 312,
+      "original_action_RMS_error": [
+        0.08554402738809586,
+        0.01129367295652628
+      ],
+      "reflected_input_unmirrored_output_RMS_error": [
+        0.6227299571037292,
+        0.15558718144893646
+      ],
+      "reflection_inconsistency_RMS": [
+        0.6269772052764893,
+        0.15618640184402466
+      ]
+    }
+  ],
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "limits": "Reflection is a hypothetical representation diagnostic under nominal left/right vehicle symmetry,not a measured CARLA replay or driving gain. No averaging,canonicalization or augmentation adopted."
+}

@@ -1,0 +1,137 @@
+{
+  "scope": "Recorded terminal-state diagnosis only;existing success/timeout definitions unchanged;zero driving/updates",
+  "batch": "20261031T022652Z_native_supervised_ppo",
+  "method": "B1",
+  "raw_audit_sha256": "901ec62efce6e7731cab3585ad0191e771bcae2d9283c8964ac2ce22a84e4ecc",
+  "trace_sha256": "8ef896fe6f046c7830c09b2fe7b822433d530e5081719a6b696faa77c133e856",
+  "thresholds": {
+    "goal_tolerance": 0.8,
+    "goal_speed": 0.25,
+    "goal_yaw_tolerance": 0.35,
+    "parking": true
+  },
+  "deadline_cases": [
+    {
+      "case_id": 3,
+      "frame": 26617,
+      "state": {
+        "x": 23.32221914337145,
+        "y": 4.954481945512168,
+        "yaw": -1.3551134681435635,
+        "v": -3.841978905745139e-06,
+        "steering": -0.1260964950732743,
+        "acceleration": 2.650939489094224e-05,
+        "time": 45.000000670552254
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "distance_metres": 1.9757015133196538,
+      "speed_abs_m_s": 3.841978905745139e-06,
+      "heading_error_abs_rad": 0.3074401057675198,
+      "distance_gate_met": false,
+      "speed_gate_met": true,
+      "heading_gate_met": true
+    },
+    {
+      "case_id": 5,
+      "frame": 27911,
+      "state": {
+        "x": 23.034594457674288,
+        "y": 24.984359866876375,
+        "yaw": 0.9507628486162822,
+        "v": -8.673820540699006e-09,
+        "steering": -0.09141149195276527,
+        "acceleration": 2.1625177641043313e-08,
+        "time": 45.000000670552254
+      },
+      "goal": [
+        22.97632870348976,
+        23.45306935920438,
+        1.0470276415190511
+      ],
+      "distance_metres": 1.5323986155687572,
+      "speed_abs_m_s": 8.673820540699006e-09,
+      "heading_error_abs_rad": 0.0962647929027689,
+      "distance_gate_met": false,
+      "speed_gate_met": true,
+      "heading_gate_met": true
+    },
+    {
+      "case_id": 7,
+      "frame": 29203,
+      "state": {
+        "x": 24.685634610790338,
+        "y": 4.374938831227983,
+        "yaw": -1.2292704014295062,
+        "v": 0.35163306515151305,
+        "steering": -0.08787960360591009,
+        "acceleration": 1.7748205878494883,
+        "time": 45.000000670552254
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "distance_metres": 3.446918944893241,
+      "speed_abs_m_s": 0.35163306515151305,
+      "heading_error_abs_rad": 0.1815970390534627,
+      "distance_gate_met": false,
+      "speed_gate_met": false,
+      "heading_gate_met": true
+    },
+    {
+      "case_id": 10,
+      "frame": 31095,
+      "state": {
+        "x": 28.32688385190018,
+        "y": 7.438011476132276,
+        "yaw": -0.22132306765547227,
+        "v": -2.81098287954258e-09,
+        "steering": 0.04982029616531938,
+        "acceleration": -2.788636069523432e-07,
+        "time": 45.000000670552254
+      },
+      "goal": [
+        28.135424875625418,
+        6.0,
+        -0.5232536299210251
+      ],
+      "distance_metres": 1.4507010529686357,
+      "speed_abs_m_s": 2.81098287954258e-09,
+      "heading_error_abs_rad": 0.3019305622655528,
+      "distance_gate_met": false,
+      "speed_gate_met": true,
+      "heading_gate_met": true
+    },
+    {
+      "case_id": 11,
+      "frame": 32026,
+      "state": {
+        "x": 22.165832659998888,
+        "y": 8.316721255676526,
+        "yaw": -0.9078797465717154,
+        "v": -4.112885933510053e-10,
+        "steering": -0.49241267951735723,
+        "acceleration": -4.772318025476553e-07,
+        "time": 45.000000670552254
+      },
+      "goal": [
+        21.64582764152185,
+        6.0,
+        -1.0476733623760435
+      ],
+      "distance_metres": 2.3743636191082285,
+      "speed_abs_m_s": 4.112885933510053e-10,
+      "heading_error_abs_rad": 0.13979361580432803,
+      "distance_gate_met": false,
+      "speed_gate_met": true,
+      "heading_gate_met": true
+    }
+  ],
+  "new_physical_controls": 0,
+  "optimizer_updates": 0
+}

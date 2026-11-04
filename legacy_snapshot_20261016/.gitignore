@@ -1,0 +1,59 @@
+# =========================
+# Python cache / build files
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.so
+*.egg-info/
+build/
+dist/
+
+# =========================
+# Virtual environment
+# =========================
+venv/
+.venv/
+env/
+ENV/
+
+# =========================
+# IDE / Editor settings
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS-specific junk files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs & temporary outputs
+# =========================
+*.log
+*.tmp
+
+# =========================
+# Experiment artifacts
+# =========================
+# PPO / training outputs
+rewards.npy
+successes.npy
+ppo_tb/
+runs/
+out/
+
+# MPC / metrics / plots
+metrics.csv
+figs/
+videos/
+
+# Cached data files
+*.npy
+*.npz

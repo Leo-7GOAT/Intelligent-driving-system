@@ -1,0 +1,259 @@
+{
+  "scope": "New real-PPO basic-motion course after all-five supervised-entry failure;not a healthy/full-task B1baseline claim",
+  "predecessor_failed_gates": [
+    22,
+    33,
+    44,
+    55
+  ],
+  "old_gate_results": [
+    {
+      "scope": "New all-five B1actor-maturation development cohort;all outcomes retained,not final confirmation",
+      "seed": 11,
+      "batch": "20261031T131044921585Z_native_B1_actor_maturation",
+      "cases": 12,
+      "successes": 9,
+      "termination_counts": {
+        "success": 9,
+        "out_of_bounds": 3
+      },
+      "new_training_controls": 0,
+      "new_optimizer_steps": 0,
+      "raw_controls_verified": 4916,
+      "evaluation_controls": 4916,
+      "model_sha256": "a2d706bdb1d20a0ec650c12840a30dfd79398bbad9db0f035aeb066ac0d5256d",
+      "normalization_sha256": "e718b900d5355f8b73669bae47d9e4c7d7d64892f98e029294f48045a372b133",
+      "raw_audit_sha256": "c088e6a7933e3e4625dfdd1cef35ef39ef1d71215d3c11031a994051afdbac7f",
+      "research_acceptance": "UNMET"
+    },
+    {
+      "scope": "New all-five B1actor-maturation development cohort;all outcomes retained,not final confirmation",
+      "seed": 22,
+      "batch": "20261031T131138220112Z_native_B1_actor_maturation",
+      "cases": 12,
+      "successes": 4,
+      "termination_counts": {
+        "out_of_bounds": 7,
+        "success": 4,
+        "collision": 1
+      },
+      "new_training_controls": 0,
+      "new_optimizer_steps": 0,
+      "raw_controls_verified": 4551,
+      "evaluation_controls": 4551,
+      "model_sha256": "fa3ad7cfd7df2c4b37dfac5e3aafdf4709f5bce7d5328a2bfa02f93e537179c1",
+      "normalization_sha256": "aa0b871714b2e176491020ca0c1f74a2c3f354a7ff7d2e8d841b1e387a18aa35",
+      "raw_audit_sha256": "c4ab5f89521a8b9737776a501620976e55b5f8c1b8f3ddf5a65b552e12d49187",
+      "research_acceptance": "UNMET"
+    },
+    {
+      "scope": "New all-five B1actor-maturation development cohort;all outcomes retained,not final confirmation",
+      "seed": 33,
+      "batch": "20261031T131235976652Z_native_B1_actor_maturation",
+      "cases": 12,
+      "successes": 5,
+      "termination_counts": {
+        "out_of_bounds": 5,
+        "success": 5,
+        "collision": 2
+      },
+      "new_training_controls": 0,
+      "new_optimizer_steps": 0,
+      "raw_controls_verified": 4237,
+      "evaluation_controls": 4237,
+      "model_sha256": "40ba6f3ee71d3ff84809b95c466b8db2fd10269abe7eca6d72c5912d51ef93b9",
+      "normalization_sha256": "1a0a8c9bd87c35f3c51f591da88c23643b3efef13abb93d750576dac9b2afe07",
+      "raw_audit_sha256": "e6d562b68ec8541563a95925e15bf0e88d055dd3fc81ec1c7e607a047ff0e4e4",
+      "research_acceptance": "UNMET"
+    },
+    {
+      "scope": "New all-five B1actor-maturation development cohort;all outcomes retained,not final confirmation",
+      "seed": 44,
+      "batch": "20261031T131332227703Z_native_B1_actor_maturation",
+      "cases": 12,
+      "successes": 5,
+      "termination_counts": {
+        "success": 5,
+        "out_of_bounds": 6,
+        "deadline": 1
+      },
+      "new_training_controls": 0,
+      "new_optimizer_steps": 0,
+      "raw_controls_verified": 5176,
+      "evaluation_controls": 5176,
+      "model_sha256": "15d7d7dff1d34c7f4af27e051e7c93c731db2d1965811481c30bfd01810eee65",
+      "normalization_sha256": "b085f2f363bc64cf1e1d11552e7958ac0b285d14affa637931d4660ce0848fdc",
+      "raw_audit_sha256": "e235c013f5db3f8aa713ea8a165991cafaf533309cbddd3d22f0f7a3d0839d37",
+      "research_acceptance": "UNMET"
+    },
+    {
+      "scope": "New all-five B1actor-maturation development cohort;all outcomes retained,not final confirmation",
+      "seed": 55,
+      "batch": "20261031T131429935122Z_native_B1_actor_maturation",
+      "cases": 12,
+      "successes": 7,
+      "termination_counts": {
+        "out_of_bounds": 5,
+        "success": 7
+      },
+      "new_training_controls": 0,
+      "new_optimizer_steps": 0,
+      "raw_controls_verified": 4730,
+      "evaluation_controls": 4730,
+      "model_sha256": "eb50e368e032645f96a865afd61cddff69bb561fbd3da5a44f5d9e27a9fb4206",
+      "normalization_sha256": "6472429dcec3f2396ddf508c85c70b2d9e00e672f8d5c08521dc3d9c56a1f1c0",
+      "raw_audit_sha256": "2e1608248c384b9182e124efee639f7675137905c96689be4a02d6b95ddf5a3f",
+      "research_acceptance": "UNMET"
+    }
+  ],
+  "old_gate_controls_total": 23610,
+  "rejected_additional_actor_updates": 5120,
+  "PPO_updates_in_old_gates": 0,
+  "old_failure_sha256": "0a3abf61e18ccfdb7cbe3ffc42df1444ae5136d323920746b8d5127f3c5726a5",
+  "TRAIN_fit_diagnostic": "reports/native_B1_all_five_actor_maturation_fit_diagnostic_20261031.json",
+  "new_course": {
+    "independent_seeds": [
+      11,
+      22,
+      33,
+      44,
+      55
+    ],
+    "controls_each": 10240,
+    "total_registered_controls": 51200,
+    "training_conditions": 4,
+    "training_family": "known unobstructed native roads",
+    "full_original_task_conditions": 12,
+    "PPO_learning_rate": 3e-05,
+    "rollout_actions": 1280,
+    "minibatch_size": 320,
+    "epochs": 10,
+    "target_KL": 0.01,
+    "initial_log_std": -4.0,
+    "fixed_PPO_reward_scale": 0.05,
+    "observation_statistics_frozen": true,
+    "new_supervised_updates": 0,
+    "qualification": "After learning:atleast3of4known basic conditions and zero collision/bounds. This is not full-task/final qualification.",
+    "batches": [
+      {
+        "seed": 11,
+        "batch": "20261031T155537318174Z_native_B1_basic_PPO_course",
+        "protocol_sha256": "5cd884bf0e1bd2b4caea4c80fd9e37c1f3bdad1bf9aefbb412cc1204657f2ffc",
+        "initial_model_sha256": "90e4857df2a95f699a1af7bebfa830518409aecbbd2ecee002e607ecfea9d126",
+        "PPO_updates_before_start": 0
+      },
+      {
+        "seed": 22,
+        "batch": "20261031T155541502787Z_native_B1_basic_PPO_course",
+        "protocol_sha256": "4074be65871319f057741f774976fcd214499204a3d3f03368b8f4e3d1fd09c0",
+        "initial_model_sha256": "acca371f60d85730de7e4de599eb09d91c4927e7ecf135e0f4296b64a925ff13",
+        "PPO_updates_before_start": 0
+      },
+      {
+        "seed": 33,
+        "batch": "20261031T155544100336Z_native_B1_basic_PPO_course",
+        "protocol_sha256": "c76bdfd00f46e481ab5d021c7d8c3834b736bf5e40c8e24680686961852b7767",
+        "initial_model_sha256": "d6e0dd16ccd03f06439905304816394c5ce534ed01e3661232f9db5b8e87ee80",
+        "PPO_updates_before_start": 0
+      },
+      {
+        "seed": 44,
+        "batch": "20261031T155546628309Z_native_B1_basic_PPO_course",
+        "protocol_sha256": "ca3d06dc9b8fcf36a75f0c6e941d59df5acebea9af1a29ade063adaf6bf3a806",
+        "initial_model_sha256": "8628adfdbf05060dcf4656319c56ac7df549927951aa7509bb0c728efefc3c1a",
+        "PPO_updates_before_start": 0
+      },
+      {
+        "seed": 55,
+        "batch": "20261031T155549129757Z_native_B1_basic_PPO_course",
+        "protocol_sha256": "cc819bf85cb33e5f5a1120152a1b01036878b4413f7b17f85ce34ded2d6e9818",
+        "initial_model_sha256": "b2d359cf9c681ed30860708bf9a09501e3f73a094697e260c0c8ac29bc667659",
+        "PPO_updates_before_start": 0
+      }
+    ],
+    "actual_frozen_runtime_restores": [
+      {
+        "seed": 11,
+        "actual_frozen_restore_succeeded": true,
+        "runtime_config_matches_saved": true,
+        "empty_PPO_and_Adam_state": true,
+        "normalization_statistics_unchanged": true,
+        "policy_tensor_sha256": "640aa551777aa193d986d5af603e024d7df198a093e99ecf5895cecf745e6950",
+        "new_resets": 0,
+        "new_controls": 0,
+        "new_optimizer_updates": 0
+      },
+      {
+        "seed": 22,
+        "actual_frozen_restore_succeeded": true,
+        "runtime_config_matches_saved": true,
+        "empty_PPO_and_Adam_state": true,
+        "normalization_statistics_unchanged": true,
+        "policy_tensor_sha256": "06fdacc3f674162799caf3d584ce227e067eea3dbdbaba5f3e689e50c82be1ef",
+        "new_resets": 0,
+        "new_controls": 0,
+        "new_optimizer_updates": 0
+      },
+      {
+        "seed": 33,
+        "actual_frozen_restore_succeeded": true,
+        "runtime_config_matches_saved": true,
+        "empty_PPO_and_Adam_state": true,
+        "normalization_statistics_unchanged": true,
+        "policy_tensor_sha256": "c699ec7803b8a6d681cf091cd52d66c1ab1b9248468f43a4ba3ecd628dfbbd05",
+        "new_resets": 0,
+        "new_controls": 0,
+        "new_optimizer_updates": 0
+      },
+      {
+        "seed": 44,
+        "actual_frozen_restore_succeeded": true,
+        "runtime_config_matches_saved": true,
+        "empty_PPO_and_Adam_state": true,
+        "normalization_statistics_unchanged": true,
+        "policy_tensor_sha256": "037a06d1768f3a2b238d42e4db35d453317addd91ab209b8d5fbdcdfdf9f7dd4",
+        "new_resets": 0,
+        "new_controls": 0,
+        "new_optimizer_updates": 0
+      },
+      {
+        "seed": 55,
+        "actual_frozen_restore_succeeded": true,
+        "runtime_config_matches_saved": true,
+        "empty_PPO_and_Adam_state": true,
+        "normalization_statistics_unchanged": true,
+        "policy_tensor_sha256": "1385bec8be8b6832c10a21165f9b25839c24344706a36cf6a14de8863c3f1c04",
+        "new_resets": 0,
+        "new_controls": 0,
+        "new_optimizer_updates": 0
+      }
+    ]
+  },
+  "actual_execution": {
+    "phase": "TRAINING_BASIC_MOTION_WITH_ACTUAL_PPO",
+    "pid": 25348,
+    "epoch": 1793462712.9781353,
+    "completed": [],
+    "seed": 11,
+    "batch": "20261031T155537318174Z_native_B1_basic_PPO_course"
+  },
+  "resources_at_report": {
+    "C_free_GiB": 16.576190948486328,
+    "D_free_GiB": 411.9443473815918,
+    "disk_stop_GiB": 12,
+    "RAM_stop_GiB": 4,
+    "GPU_temperature_stop_C": 85,
+    "automatic_native_retries": 0
+  },
+  "limits": "Earlier failed gates,fit costs and prior supervised/teacher interactions remain separately charged. Additional curriculum interactions must be included in any future matched-budget learning curve. Equal-budget H/B1superiority is not established by these courses. No unseen-final condition generated or used.",
+  "research_acceptance": "UNMET",
+  "first_actual_PPO_update": {
+    "physics_steps": 1280,
+    "optimizer_steps": 1,
+    "actor_l2_change": 0.011022014543414116
+  },
+  "root_related_tests": {
+    "passed": 163,
+    "seconds": 6.66
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "scope": "Worker completed normally;first operational cleanup lacked its probe dependency;unchanged original fallback cleanup verified empty matching server and stopped it. Preserve original launcher failure,do not rerun training.",
+  "epoch": 1793423867.799988,
+  "parent": "20261031T045159Z_native_recovery",
+  "reason": "operational_snapshot_missing_probe_dependency",
+  "source_hashes": {
+    "guard_final.json": "f12ba32c28e6cc75ef4dcf528de2369e0b63b97bdbe6d42a4ee288be98838a8a",
+    "summary.json": "5c25bdc8363adcff5d284cadc78434114ee5df1aa4a897ee5da88fca9eafaf55",
+    "launcher_failure.json": "2a2ef867c0e4ab70ccc5b730e4080277935158b81b4f0ccdd21c1aa7096e6fef",
+    "server_cleanup.json": "5a2f86b463726187cdd137ce1df9ea2855587d6120c6b4e97d7ba5fd153b9cea",
+    "infrastructure/server_start.json": "0c08503c7e639c9e9ae735c40d901e2c8eb87ca1ed16c7dbf67d04314bab4c28",
+    "infrastructure/server_stop.json": "b10cfc7edfa3cf49afd2b74cd0f867c23ff0972ddb5ca8c233375ecee4d0f257"
+  },
+  "verified_empty_probe_sha256": "f764e957c95b675ccdab6c30eca7813c597c568c121a91ccfd0c3a8dc9647c2c",
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "owned_lifecycle_gone": true,
+  "original_failure_preserved": true,
+  "training_completion_preserved": true
+}

@@ -1,0 +1,629 @@
+{
+  "scope": "Offline counterfactual B3/MPC queries across first completed TRAINING trajectories;no validation states,execution,fitted actor or PPO benefit claim",
+  "batch": "20261031T055729299388Z_native_supervised_ppo",
+  "queries": 80,
+  "available_labels": 80,
+  "oracle_modes": {
+    "reference": 61,
+    "wait": 14,
+    "dynamic_brake": 5
+  },
+  "coverage_profile": "first_episode_full_trajectory_stride80_v1",
+  "selection": "First completed training episode per registered condition,regardless of outcome;fixed stride80controls from start through the last pre-control state. No evaluation states or outcome selection.",
+  "maximum_queries": 156,
+  "elapsed_seconds": 27.781999999890104,
+  "script_sha256": "8111aa8e343ffb794b25bd1c562832b62024a88774ba11cb781727ff9843efad",
+  "history_source_sha256": "9ba227ec52867cfeb2ff4cbe46155c96aeb4525eb69a65eed39fbd7d885b839d",
+  "dataset_sha256": "651d5a30ca22d41db2a9402785e0e535f866b3d626d75cff33dfa7432e7fb1fb",
+  "query_log_sha256": "05fe0635b6bcd574d7217b2dccf0cbea6eb914068ef8b25fe764dec1a136cc33",
+  "raw_audit_sha256": "f5a1035cb4a51f747bbd5657bfcec4ca401f12813502da5922b6ea9e2d9619d9",
+  "per_condition_query_counts": {
+    "0": 6,
+    "1": 8,
+    "2": 5,
+    "3": 6,
+    "4": 6,
+    "5": 8,
+    "6": 6,
+    "7": 6,
+    "8": 7,
+    "9": 9,
+    "10": 7,
+    "11": 6
+  },
+  "per_condition_command_MSE": {
+    "0": 0.03702883247889261,
+    "1": 0.29816222688762906,
+    "2": 0.15324588078531956,
+    "3": 0.052169247373051175,
+    "4": 0.022319509667745735,
+    "5": 0.4456876646687667,
+    "6": 0.026787848906654,
+    "7": 0.02411920296430081,
+    "8": 0.10234661659363212,
+    "9": 0.36885737000185137,
+    "10": 0.1453240844834964,
+    "11": 0.3570123113766319
+  },
+  "per_condition_late_command_MSE": {
+    "0": 0.07233639640367083,
+    "1": 0.1874051969403903,
+    "2": 0.36957025558104384,
+    "3": 0.08632416251417663,
+    "4": 0.040520481454987024,
+    "5": 0.3210146444519205,
+    "6": 0.038444407526879366,
+    "7": 0.04321532825625205,
+    "8": 0.00830705353783966,
+    "9": 0.3671450276603901,
+    "10": 0.0031466697044710305,
+    "11": 0.04613205208009799
+  },
+  "queries_detail": [
+    {
+      "condition": 0,
+      "control_index": 0,
+      "training_episode": 0,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0017115154775475417
+    },
+    {
+      "condition": 0,
+      "control_index": 80,
+      "training_episode": 0,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.00045874408536583644
+    },
+    {
+      "condition": 0,
+      "control_index": 160,
+      "training_episode": 0,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0029935460994297853
+    },
+    {
+      "condition": 0,
+      "control_index": 240,
+      "training_episode": 0,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0043197576184108855
+    },
+    {
+      "condition": 0,
+      "control_index": 320,
+      "training_episode": 0,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.041186272220304354
+    },
+    {
+      "condition": 0,
+      "control_index": 378,
+      "training_episode": 0,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.17150315937229726
+    },
+    {
+      "condition": 1,
+      "control_index": 0,
+      "training_episode": 1,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0010848869555061414
+    },
+    {
+      "condition": 1,
+      "control_index": 80,
+      "training_episode": 1,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 1.1529160076361737
+    },
+    {
+      "condition": 1,
+      "control_index": 160,
+      "training_episode": 1,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.2942709358074014
+    },
+    {
+      "condition": 1,
+      "control_index": 240,
+      "training_episode": 1,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.21252950641115945
+    },
+    {
+      "condition": 1,
+      "control_index": 320,
+      "training_episode": 1,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.17170865471005892
+    },
+    {
+      "condition": 1,
+      "control_index": 400,
+      "training_episode": 1,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.1552816260187802
+    },
+    {
+      "condition": 1,
+      "control_index": 480,
+      "training_episode": 1,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.18423188084186337
+    },
+    {
+      "condition": 1,
+      "control_index": 519,
+      "training_episode": 1,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.21327431672008945
+    },
+    {
+      "condition": 2,
+      "control_index": 0,
+      "training_episode": 2,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0005811946661093065
+    },
+    {
+      "condition": 2,
+      "control_index": 80,
+      "training_episode": 2,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.004818318979805643
+    },
+    {
+      "condition": 2,
+      "control_index": 160,
+      "training_episode": 2,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.021689379118595142
+    },
+    {
+      "condition": 2,
+      "control_index": 240,
+      "training_episode": 2,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0061661121968970434
+    },
+    {
+      "condition": 2,
+      "control_index": 300,
+      "training_episode": 2,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.7329743989651907
+    },
+    {
+      "condition": 3,
+      "control_index": 0,
+      "training_episode": 3,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.008328559316539225
+    },
+    {
+      "condition": 3,
+      "control_index": 80,
+      "training_episode": 3,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0038006001334696393
+    },
+    {
+      "condition": 3,
+      "control_index": 160,
+      "training_episode": 3,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.04191383724576839
+    },
+    {
+      "condition": 3,
+      "control_index": 240,
+      "training_episode": 3,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.06935881648947642
+    },
+    {
+      "condition": 3,
+      "control_index": 320,
+      "training_episode": 3,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.18820275960639357
+    },
+    {
+      "condition": 3,
+      "control_index": 324,
+      "training_episode": 3,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.0014109114466598627
+    },
+    {
+      "condition": 4,
+      "control_index": 0,
+      "training_episode": 4,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.004037691893736535
+    },
+    {
+      "condition": 4,
+      "control_index": 80,
+      "training_episode": 4,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.001518246375290357
+    },
+    {
+      "condition": 4,
+      "control_index": 160,
+      "training_episode": 4,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.006799675372486448
+    },
+    {
+      "condition": 4,
+      "control_index": 240,
+      "training_episode": 4,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.00522762657733733
+    },
+    {
+      "condition": 4,
+      "control_index": 320,
+      "training_episode": 4,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.002801354490302055
+    },
+    {
+      "condition": 4,
+      "control_index": 362,
+      "training_episode": 4,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.1135324632973217
+    },
+    {
+      "condition": 5,
+      "control_index": 0,
+      "training_episode": 5,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.04349901980866358
+    },
+    {
+      "condition": 5,
+      "control_index": 80,
+      "training_episode": 5,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 1.9107986256384564
+    },
+    {
+      "condition": 5,
+      "control_index": 160,
+      "training_episode": 5,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0061304496434109405
+    },
+    {
+      "condition": 5,
+      "control_index": 240,
+      "training_episode": 5,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.17999396683679025
+    },
+    {
+      "condition": 5,
+      "control_index": 320,
+      "training_episode": 5,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.09504042681808283
+    },
+    {
+      "condition": 5,
+      "control_index": 400,
+      "training_episode": 5,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.21174465166600479
+    },
+    {
+      "condition": 5,
+      "control_index": 480,
+      "training_episode": 5,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.5286980350760306
+    },
+    {
+      "condition": 5,
+      "control_index": 492,
+      "training_episode": 5,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.589596141862694
+    },
+    {
+      "condition": 6,
+      "control_index": 0,
+      "training_episode": 6,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0004938363710862827
+    },
+    {
+      "condition": 6,
+      "control_index": 80,
+      "training_episode": 6,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.03581325092448795
+    },
+    {
+      "condition": 6,
+      "control_index": 160,
+      "training_episode": 6,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.009086783563711648
+    },
+    {
+      "condition": 6,
+      "control_index": 240,
+      "training_episode": 6,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0019259614436544577
+    },
+    {
+      "condition": 6,
+      "control_index": 320,
+      "training_episode": 6,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.004980548363219955
+    },
+    {
+      "condition": 6,
+      "control_index": 371,
+      "training_episode": 6,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.1084267127737637
+    },
+    {
+      "condition": 7,
+      "control_index": 0,
+      "training_episode": 7,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0004118911022619187
+    },
+    {
+      "condition": 7,
+      "control_index": 80,
+      "training_episode": 7,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.001551324635887025
+    },
+    {
+      "condition": 7,
+      "control_index": 160,
+      "training_episode": 7,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.013106017278899734
+    },
+    {
+      "condition": 7,
+      "control_index": 240,
+      "training_episode": 7,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.018915569748840372
+    },
+    {
+      "condition": 7,
+      "control_index": 320,
+      "training_episode": 7,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.023458569723212613
+    },
+    {
+      "condition": 7,
+      "control_index": 331,
+      "training_episode": 7,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.08727184529670318
+    },
+    {
+      "condition": 8,
+      "control_index": 0,
+      "training_episode": 8,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.004241898799765956
+    },
+    {
+      "condition": 8,
+      "control_index": 80,
+      "training_episode": 8,
+      "oracle_mode": "dynamic_brake",
+      "normalized_acknowledged_command_MSE": 6.223161040708192e-06
+    },
+    {
+      "condition": 8,
+      "control_index": 160,
+      "training_episode": 8,
+      "oracle_mode": "dynamic_brake",
+      "normalized_acknowledged_command_MSE": 0.6789499800432596
+    },
+    {
+      "condition": 8,
+      "control_index": 240,
+      "training_episode": 8,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0018784108090277602
+    },
+    {
+      "condition": 8,
+      "control_index": 320,
+      "training_episode": 8,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.011561659822463826
+    },
+    {
+      "condition": 8,
+      "control_index": 400,
+      "training_episode": 8,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.01756062834777586
+    },
+    {
+      "condition": 8,
+      "control_index": 425,
+      "training_episode": 8,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.002227515172091195
+    },
+    {
+      "condition": 9,
+      "control_index": 0,
+      "training_episode": 9,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0009863642849509292
+    },
+    {
+      "condition": 9,
+      "control_index": 80,
+      "training_episode": 9,
+      "oracle_mode": "dynamic_brake",
+      "normalized_acknowledged_command_MSE": 0.00011045105227935892
+    },
+    {
+      "condition": 9,
+      "control_index": 160,
+      "training_episode": 9,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 1.1157493487170917
+    },
+    {
+      "condition": 9,
+      "control_index": 240,
+      "training_episode": 9,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 1.1503574906228842
+    },
+    {
+      "condition": 9,
+      "control_index": 320,
+      "training_episode": 9,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.20836851561856762
+    },
+    {
+      "condition": 9,
+      "control_index": 400,
+      "training_episode": 9,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.1690599178859002
+    },
+    {
+      "condition": 9,
+      "control_index": 480,
+      "training_episode": 9,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.24495089117504412
+    },
+    {
+      "condition": 9,
+      "control_index": 560,
+      "training_episode": 9,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.24674205731290677
+    },
+    {
+      "condition": 9,
+      "control_index": 600,
+      "training_episode": 9,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.18339129334703774
+    },
+    {
+      "condition": 10,
+      "control_index": 0,
+      "training_episode": 10,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.002769417436676383
+    },
+    {
+      "condition": 10,
+      "control_index": 80,
+      "training_episode": 10,
+      "oracle_mode": "dynamic_brake",
+      "normalized_acknowledged_command_MSE": 0.00023517657894700505
+    },
+    {
+      "condition": 10,
+      "control_index": 160,
+      "training_episode": 10,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 1.0016773185509673
+    },
+    {
+      "condition": 10,
+      "control_index": 240,
+      "training_episode": 10,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0005285877343395693
+    },
+    {
+      "condition": 10,
+      "control_index": 320,
+      "training_episode": 10,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0019378011098915293
+    },
+    {
+      "condition": 10,
+      "control_index": 400,
+      "training_episode": 10,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0007273498058730787
+    },
+    {
+      "condition": 10,
+      "control_index": 406,
+      "training_episode": 10,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.009392940167779945
+    },
+    {
+      "condition": 11,
+      "control_index": 0,
+      "training_episode": 11,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.002034550752733959
+    },
+    {
+      "condition": 11,
+      "control_index": 80,
+      "training_episode": 11,
+      "oracle_mode": "dynamic_brake",
+      "normalized_acknowledged_command_MSE": 1.9927981935300352
+    },
+    {
+      "condition": 11,
+      "control_index": 160,
+      "training_episode": 11,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.008844967736728382
+    },
+    {
+      "condition": 11,
+      "control_index": 240,
+      "training_episode": 11,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.02888472043125745
+    },
+    {
+      "condition": 11,
+      "control_index": 320,
+      "training_episode": 11,
+      "oracle_mode": "reference",
+      "normalized_acknowledged_command_MSE": 0.0885213209620404
+    },
+    {
+      "condition": 11,
+      "control_index": 400,
+      "training_episode": 11,
+      "oracle_mode": "wait",
+      "normalized_acknowledged_command_MSE": 0.020990114846996113
+    }
+  ],
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "limits": "First completed training episodes can precede later policy drift and differ from evaluation failure trajectories;oracle disagreement does not prove a replacement policy would succeed. All wait/brake labels retained;no dataset fit has been performed.",
+  "research_acceptance": "UNMET"
+}

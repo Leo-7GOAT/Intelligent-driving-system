@@ -1,0 +1,31 @@
+{
+  "scope": "Reconstruct every direct-policy endpoint action from its measured state history.",
+  "batch": "20261101T121859752667Z_native_B1_shared_parking_cohort_seed22",
+  "script_sha256": "0179ac157ac7586b3e7d130a8e9f7ecce5bf61bc32d5f4bc5cd00c2297fb08b8",
+  "model_sha256": "ea2d12ab9345777a28ee31c44fc372949692fa935c760f387ef1ee4dd5235fee",
+  "normalization_sha256": "627f8c548bc7579f35d5ba27bad14b2bc9cbfc50d11d86380b6de274e2d41833",
+  "raw_audit_sha256": "57c4cbe4b021e56fb047327e2812427712c69df84675fc26554eba412adec191",
+  "protocol_sha256": "4d4da6237af0683078258b6d6c8bddf67c2dbc111e81dae55bb3dd26be15b774",
+  "cases": [
+    {
+      "case_id": 0,
+      "policy_actions_bit_exact": 334
+    },
+    {
+      "case_id": 1,
+      "policy_actions_bit_exact": 450
+    },
+    {
+      "case_id": 2,
+      "policy_actions_bit_exact": 311
+    },
+    {
+      "case_id": 3,
+      "policy_actions_bit_exact": 293
+    }
+  ],
+  "total_bit_exact_actions": 1388,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "limits": "Reconstructs the saved endpoint from measured states/history;does not replay or validate historical training policies and is not a new physical evaluation."
+}

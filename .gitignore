@@ -16,6 +16,7 @@ dist/
 # =========================
 venv/
 .venv/
+.carla-python37/
 env/
 ENV/
 
@@ -48,6 +49,7 @@ successes.npy
 ppo_tb/
 runs/
 out/
+reports/*.xml
 
 # MPC / metrics / plots
 metrics.csv

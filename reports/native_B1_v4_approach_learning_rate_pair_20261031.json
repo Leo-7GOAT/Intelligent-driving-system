@@ -1,0 +1,70 @@
+{
+  "scope": "Compare completed constant-rate native B1 PPO probes from identical weights.",
+  "analyzer_sha256": "2d774f4cde64e0ad4232e2c2e28e1d13a3772557731c197cf409a3a766d5aad5",
+  "seed": 11,
+  "cases": 12,
+  "arms": {
+    "baseline": {
+      "batch": "20261031T042300931172Z_native_supervised_ppo",
+      "successes": 6,
+      "termination_counts": {
+        "out_of_bounds": 4,
+        "success": 6,
+        "deadline": 1,
+        "collision": 1
+      },
+      "unsafe_episodes": 5,
+      "core_successes": {
+        "curve_parking": 2,
+        "static": 3,
+        "dynamic": 1
+      },
+      "training_controls": 20480,
+      "optimizer_steps": 61,
+      "verified_controls": 25745,
+      "learning_rate": 3e-05,
+      "charged_input_controls_lower_bound": 44131,
+      "model_sha256": "76d12d7a31b29fff1dc7c3e25152f3441ca2fdad0d06cb3603189ac026a79d03",
+      "raw_audit_sha256": "6218888f44b0c58c384216669228da3314d1fb773fc7c69f91bf39396ddc05b9",
+      "normalization_RMS_frozen_exact": true
+    },
+    "probe": {
+      "batch": "20261031T055729299388Z_native_supervised_ppo",
+      "successes": 10,
+      "termination_counts": {
+        "success": 10,
+        "out_of_bounds": 2
+      },
+      "unsafe_episodes": 2,
+      "core_successes": {
+        "curve_parking": 4,
+        "static": 3,
+        "dynamic": 3
+      },
+      "training_controls": 20480,
+      "optimizer_steps": 610,
+      "verified_controls": 25499,
+      "learning_rate": 3e-06,
+      "charged_input_controls_lower_bound": 44131,
+      "model_sha256": "b991f85ca80806cede439c18cef6dde7be1c87f36a979f5ed6da6327597ffb0c",
+      "raw_audit_sha256": "f5a1035cb4a51f747bbd5657bfcec4ca401f12813502da5922b6ea9e2d9619d9",
+      "normalization_RMS_frozen_exact": true
+    }
+  },
+  "initial_policy_weights_exact": true,
+  "initial_normalization_RNG_bytes_exact": true,
+  "physical_and_worker_source_exact": true,
+  "probe_only_success_cases": [
+    0,
+    3,
+    8,
+    9
+  ],
+  "baseline_only_success_cases": [],
+  "probe_minus_baseline_percentage_points": 33.333333333333336,
+  "probe_safety_target_met": false,
+  "limits": "One independent training seed on correlated known development conditions;actual Adam counts differ under KL stopping. New native trajectories differ slightly. No final-test or independent-seed significance claim.",
+  "new_audit_controls": 0,
+  "new_audit_optimizer_steps": 0,
+  "research_acceptance": "UNMET"
+}

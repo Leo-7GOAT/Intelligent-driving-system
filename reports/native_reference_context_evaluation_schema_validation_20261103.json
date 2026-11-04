@@ -1,0 +1,81 @@
+{
+  "scope": "Frozen evaluation source and actual saved learners preflight;no new driving",
+  "evaluation_observation_container": {
+    "version": 1,
+    "worker_sha256_before": "82d4216e9a54c9bc98259542b4a1f71cf4fc4e7c4b9408feda2b4b376541d99b",
+    "worker_sha256_after": "2dbaa61f4ff298ab86254c2321c7f5ba858d5345980e744196080f23a3d1221c",
+    "change": "Historical eval-only RecordedRoadEnv replaced by the already-declared training environment_class",
+    "scope": "Observation container only;retain trained4736-input schema,policy and all planner/trajectory/MPC/actuation source. No controls from the failed4705-input attempt."
+  },
+  "actual_saved_model_probe": {
+    "scope": "Replay a measured begin into the frozen evaluation constructor; never step a plant.",
+    "script_sha256": "5c3848915877d0e6e8627c086e1e710c515a23966565f9ed64ab51234d741323",
+    "worker_sha256": "2dbaa61f4ff298ab86254c2321c7f5ba858d5345980e744196080f23a3d1221c",
+    "protocol_sha256": "dbfd79a547a8049d5efae2f98a96d4b3fa7f0a9f148d81b7166365fff65c55a7",
+    "measured_begin_stream_sha256": "80146eb9374c895a46699df48fa93a273a3b286aba8149ec59064fa10c27d76a",
+    "results": {
+      "H": {
+        "observation_shape": [
+          4736
+        ],
+        "normalized_shape": [
+          1,
+          4736
+        ],
+        "action": 26,
+        "checkpoint_model_sha256": "f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff",
+        "saved_learning_model_sha256": "f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff",
+        "all_policy_and_optimizer_tensors_identical": true,
+        "client_operations": [
+          "begin"
+        ]
+      },
+      "H0": {
+        "observation_shape": [
+          4736
+        ],
+        "normalized_shape": [
+          1,
+          4736
+        ],
+        "action": 26,
+        "checkpoint_model_sha256": "4a7a222cb5ca0bef3903ab631e562166f63056ac8665b571931f3161d31b4cd3",
+        "saved_learning_model_sha256": "4a7a222cb5ca0bef3903ab631e562166f63056ac8665b571931f3161d31b4cd3",
+        "all_policy_and_optimizer_tensors_identical": true,
+        "client_operations": [
+          "begin"
+        ]
+      }
+    },
+    "new_controls": 0,
+    "new_world_ticks": 0,
+    "new_updates": 0,
+    "limits": "Recorded begin replay and actual model inference only. No CARLA connection,plant.step or performance score."
+  },
+  "protocol_sha256": "dbfd79a547a8049d5efae2f98a96d4b3fa7f0a9f148d81b7166365fff65c55a7",
+  "only_constructor_bytes_changed": true,
+  "launcher_input_validation": "INPUTS_VALIDATED_NOT_SERVER_PROBED",
+  "new_controls": 0,
+  "new_updates": 0,
+  "real_endpoint_evaluation": "PENDING",
+  "research_acceptance": "UNMET",
+  "complete_CPU": {
+    "passed": 1310,
+    "skipped": 1,
+    "carla_deselected": 4,
+    "seconds": 360.28,
+    "xml_sha256": "6825b69819031dcad8248c8248e6d57d047957be04f7c1767b00e7131cd4909c",
+    "temporary_artifact_drive": "D"
+  },
+  "static_pair_wall_seconds": 14400,
+  "known_validation_wall_seconds": 3600,
+  "wall_scope": "Only finite wall allowance changed;policy,all cases,episode deadlines and physical controls unchanged",
+  "first_CPU_attempt": {
+    "passed": 1302,
+    "failed": 7,
+    "skipped": 1,
+    "resource_failures": 6,
+    "partition_anchor_failures": 1,
+    "xml_sha256": "28f907c8937ba47b63d02298086e902499109270c4b37cea689aa1b4546c8473"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "status": "RECORDED_EQUIVALENCE_VERIFIED_NATIVE_RECOVERY_COMPLETE",
+  "closed_result_report": "native_option_full_development_complete_20261104.json",
+  "research_acceptance": "UNMET",
+  "profile": "exact_static_reference_compute_v3",
+  "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+  "scope": "Known development only; zero new PPO updates, no task or scoring changes.",
+  "recorded_equivalence": {
+    "batch": "20261104_option_adapted_all30_placements_H",
+    "case_id": 23,
+    "actual_control_frames_bound": 900,
+    "exact_decisions": 90,
+    "old_search_nodes": 402570,
+    "new_search_nodes": 1491,
+    "old_native_queries": 270,
+    "new_native_queries": 90,
+    "proof": "exact_reference_compute_case23_all90_source_bound.json",
+    "limits": "Read-only replay of recorded CARLA states/replies; no new native latency or success-rate claim. Every control command, constraint set and queried reference matched actual recorded evidence. Proof was created from a live prefix; selected completed case was fully bound before cooperative closure."
+  },
+  "closed_parent_prefix": {
+    "completed_cases": 28,
+    "successes": 20,
+    "deadlines": 8,
+    "all_actual_controls_verified": 14055,
+    "remaining_case_ids": [28, 29],
+    "raw_receipt": "20261104_option_adapted_all30_placements_H/H/exact_compute_recovery_prefix_raw_audit.json",
+    "partial_costs_retained": true,
+    "full_evaluation_complete": false
+  },
+  "recovery": {
+    "execution": "20261104_exact_compute_development_recovery_execution_closed_owner_fix",
+    "children": [
+      {"batch": "20261104_option_adapted_all30_placements_H_exact_compute_tail", "cases": 2},
+      {"batch": "20261104_option_adapted_known24_H_exact_compute", "cases": 24}
+    ],
+    "automatic_retries": 0,
+    "startup_failure_retained": "20261104_exact_compute_development_recovery_execution/failure.json",
+    "startup_fix": "Handle the exact missing-owned-process exception only after terminal receipt and ended lifecycle verification; creation/executable mismatch still rejects adoption. No vehicle controls occurred in the failed supervisor startup."
+  },
+  "validation": {
+    "targeted_tests_passed": 50,
+    "seconds": 5.25,
+    "junit": "compute_recovery_tests.xml",
+    "full_CPU_for_this_profile": "NOT_RUN",
+    "native_children": "COMPLETE_RAW_NN_REFERENCE_ENGINE_VERIFIED",
+    "github_CI": {"commit": "82bd22d206c44005aee5cbe26f63dc18e945e913", "run": 41776901661, "conclusion": "success"}
+  },
+  "mechanism": "Cache exact static spatial searches with copied paths; parameterize and validate each new timed reference afresh. Stop same-frame deterministic refinement when rejected reference repeats or rejection changes no effective grid cell. Dynamic and wall-time-limited searches bypass shortcuts. Default behavior remains unchanged.",
+  "limitations": "No independent final conditions or new independent training seeds. Existing same3 learning comparison remains 2/3 before and after. This computation optimization is not evidence of PPO learning benefit, real-time execution, or research acceptance."
+}

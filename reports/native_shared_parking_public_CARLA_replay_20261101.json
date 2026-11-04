@@ -1,0 +1,39 @@
+{
+  "scope": "Verify a fresh owned physical replay prepared from a downloaded frozen capsule.",
+  "script_sha256": "202c546ccf347df3b347a4bc44d46d9f6d31561258e9e95f4301d96477f517f0",
+  "batch": "20261101_public_native_reproduction_B1_case0",
+  "protocol_sha256": "ff7e2fbaf4e763735446eff7dcf7041c8a8ee03963c56d0d8b89e9638c576a6f",
+  "model_sha256": "72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844",
+  "normalization_sha256": "b8a464e6ba54fb5745d0b4c128ece3a90581e8a082227b05c9d1fb38c7ff79b0",
+  "registered_reproduction": {
+    "parent_protocol_sha256": "9a428ebd648b217f8b4a6a929160b981f2c772b78f194590544574fc550315ef",
+    "original_case_id": 0,
+    "local_case_id": 0,
+    "model_sha256": "72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844",
+    "new_PPO_updates": 0,
+    "new_final_conditions": 0,
+    "case_selection": "Original case0 by default;fixed before the new lifecycle."
+  },
+  "new_actual_controls": 356,
+  "new_PPO_updates": 0,
+  "all_engine_controls_acknowledged": true,
+  "all_policy_actions_bit_exact": true,
+  "parking": {
+    "helper_sha256": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+    "cases": [
+      {
+        "case_id": 0,
+        "termination": "success",
+        "controls": 356,
+        "parking_overrides": 3,
+        "terminal_intervened": false,
+        "final_speed": 0.09668426344525481
+      }
+    ],
+    "all_assistance_commands_verified": true,
+    "successful_terminal_frames_satisfy_original_unassisted_goal_gate": true
+  },
+  "owned_server_cleanup": "owned_empty_server_stopped",
+  "raw_audit_sha256": "a94325a9b78993c1b48fe533ea88bb2f674da5c338cd43c47f00c195d2c103e8",
+  "limits": "One already-known TRAINcondition from an independent checkout and public download. Not an independent training seed, new final condition, or evidence of added PPO value."
+}

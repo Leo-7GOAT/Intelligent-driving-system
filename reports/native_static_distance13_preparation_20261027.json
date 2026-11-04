@@ -1,0 +1,23 @@
+{
+  "scope": "Prepared rule-only actor-placement diagnostic, NOT started or a claimed fix/performance improvement.",
+  "batch": "20261027T071952Z_native_rule",
+  "old_static_batch": "20261027T003800Z_native_rule",
+  "change": "Actor spawn distance10to13route arc metres on all four original roads. Shared configuration, routes, measured body representation and calibration identical.",
+  "hypothesis": "More start-to-obstacle maneuvering space may permit the forward-only planner; original bounded search failures are not a physical-infeasibility proof.",
+  "scene_intervention": {
+    "version": "explicit_native_hazard_distance_v1",
+    "distance_m": 13.0,
+    "scope": "New development actor-placement conditions on all four original roads. Original failed conditions remain; not a repair or rerun of their results, matched-task policy improvement, unseen confirmation or PPO evidence."
+  },
+  "new_training_controls": 0,
+  "optimizer_updates": 0,
+  "queue_at_recording": {
+    "deadline_epoch": 1793107344,
+    "epoch": 1793085744,
+    "pid": 41164,
+    "parent": "20261027T070950Z_native_supervised_ppo",
+    "status": "WAITING_FOR_PARENT_NORMAL_OWNED_CLEANUP",
+    "child": "20261027T071952Z_native_rule"
+  },
+  "task_scope": "New development actor placements; original failed conditions and their scores remain unchanged. Not an unseen final test or a same-task improvement."
+}

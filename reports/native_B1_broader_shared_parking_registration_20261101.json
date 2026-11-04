@@ -1,0 +1,66 @@
+{
+  "scope": "Registered broader-distribution actual PPO pilot;waiting for exact owned five-seed cohort exit. Training has not started.",
+  "batch": "20261101T131830295783Z_native_B1_broader_shared_parking_PPO",
+  "protocol_sha256": "4de83640a2a35a8ed7364092c474a79f7a4e6568b805bce747916634199774a1",
+  "study": {
+    "version": "existing36TRAIN_broader_B1_shared_wrapper_v1",
+    "new_actual_PPO_controls": 20480,
+    "source_model_sha256": "ea2d12ab9345777a28ee31c44fc372949692fa935c760f387ef1ee4dd5235fee",
+    "normalization_sha256": "627f8c548bc7579f35d5ba27bad14b2bc9cbfc50d11d86380b6de274e2d41833",
+    "new_supervised_updates": 0,
+    "inventory_protocol_sha256": "f9e467f77816cf8bd5fc5f182f396b2013f771ed4158bf8546a754adc18c41a4",
+    "partition": {
+      "version": "native_training_validation_v1",
+      "training_conditions": 36,
+      "validation_conditions": 24,
+      "minimum_sampled_route_separation_m": 13.25,
+      "scope": "Distinct development validation roads,not final confirmation or proof of unvisited historical roads"
+    },
+    "parent_basic_audit_sha256": "1a7fe6b307da2b5a321d3395e02016b58cad63fe247d788349c207a151111501",
+    "preserved_low_level_source_hashes": {
+      "navstack/env.py": "6a32105e65eb453537a5956f665a87140f1ba447044fcbdc1aaaacc287073418",
+      "navstack/config.py": "c2a4d64d6b593236801322d321ca7f28cc81c7596132b285b250984e530eb084",
+      "navstack/vehicle.py": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+      "navstack/carla_adapter.py": "7b3f8a24e92ae75cc26d5173c2bb627be406300d340e8f3e86bacb39f2a822bf",
+      "navstack/carla_actuation.py": "87554a90247e96a4221d8dc1634c6d53ec81ad0975e4f96b8e637a37af1244da",
+      "navstack/carla_bridge.py": "ae4e4ada65a9457d25a9083004d5a347a704e15323e22ee72bf8c85c04e9369a",
+      "navstack/road_grid.py": "080a14742b6f28b847627b079b9bfce8696d08f9ee1d1cbcc2439b98113c41f1",
+      "navstack/road_candidate_policy.py": "726644ec5862d3545456417ed37e3d306fdbb49f85387341e747bca00fe3a04f",
+      "navstack/planning.py": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+      "navstack/mpc.py": "cf24ffc14bc0829b5ff780a28523c250cc43f6e9425f67dee161849b587a9719",
+      "navstack/trajectory.py": "847ea502d150189efe3f5774651f4a362fb4ee69453f842ef2d67ede57cd7992",
+      "navstack/parking_assist.py": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d"
+    },
+    "declared_source_overlays": [
+      "scripts/native_road_learning.py",
+      "navstack/native_cases.py",
+      "navstack/native_partitions.py",
+      "scripts/carla_bridge37.py"
+    ],
+    "selection": "Canonical seed22 fixed final endpoint only;all36TRAINand24knownvalidation conditions. No best checkpoint selection.",
+    "purpose": "Weak14/24different-road validation motivates training on broader geometry/static/walker states instead of treating the four-road course as a full-task baseline.",
+    "limits": "One selected development seed already passes the basic gate. This study does not waive the five-independent-policy requirement or claim a matched H/B1budget. No final conditions or validation labels used for training."
+  },
+  "requested_new_actual_PPO_controls": 20480,
+  "resource_limits": {
+    "wall_seconds": 7200,
+    "disk_min_GiB": 12,
+    "ram_min_GiB": 4,
+    "gpu_stop_temperature_C": 85,
+    "automatic_retries": 0
+  },
+  "actual_frozen_worker_import_and36_24_partition_checked": true,
+  "config_signature_exact": true,
+  "observer_phase_at_recording": "WAITING_FOR_EXACT_BASIC_COHORT_PROCESS_EXIT",
+  "dependency_execution": "B1_shared_parking_five_seed_execution_20261101",
+  "dependency_PID_and_creation_identity_verified": true,
+  "source_seed22_basic_gate_passed": true,
+  "abandoned_preparation": {
+    "batch": "20261101T131623568637Z_native_B1_broader_shared_parking_PPO",
+    "reason": "Missing native_partitions dependency caught by prelaunch frozen-runtime import;preserved and abandoned with0controls.",
+    "new_controls": 0
+  },
+  "new_controls_so_far": 0,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET"
+}

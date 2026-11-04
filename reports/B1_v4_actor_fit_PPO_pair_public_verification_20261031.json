@@ -1,0 +1,22 @@
+{
+  "scope": "Complete matched B1 PPO comparison rerun in an isolated checkout from both publicly downloaded model/raw capsules; no new driving.",
+  "source_commit": "abac2f1f54d4d672b8724a57f2c38d53b9cdff51",
+  "comparison_value_exact": true,
+  "comparison_byte_exact": true,
+  "original_comparison_sha256": "5dd6b14d7d6db19131a08ec7ed3a2ebd94d943d1885d6711ea4aa0a0ff76db8e",
+  "independent_comparison_sha256": "5dd6b14d7d6db19131a08ec7ed3a2ebd94d943d1885d6711ea4aa0a0ff76db8e",
+  "total_controls_reaudited": 53324,
+  "cases_per_arm": 12,
+  "public_archives": {
+    "replay": "34b86773b541171b99b68b1d58fc8fbd1b8d05bb10bb155232d77a7a0ffbaec6",
+    "approach": "ebc35169fb1efee6841f21b595071de12a20cae85074aef574290c28469b58f7"
+  },
+  "independent_export_tests_passed": 22,
+  "export_test_log_sha256": "66133b8f3f6eae47093711d18e420fcbbcf632bfb9cf31c11e360b3ab9eac70d",
+  "hosted_export_source_commit": "49db83765062578fa77304cfdbbb3e24f71b1662",
+  "hosted_export_regression": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41175364415",
+  "hosted_export_conclusion": "success",
+  "new_controls": 0,
+  "new_optimizer_steps": 0,
+  "research_acceptance": "UNMET"
+}

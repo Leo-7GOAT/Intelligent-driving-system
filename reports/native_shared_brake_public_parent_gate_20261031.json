@@ -1,0 +1,10 @@
+{
+  "scope": "Actual read-only lifecycle verification on the independently downloaded canonical33public capsule;not new preparation or driving",
+  "public_archive_sha256": "647e96acd757a62aa30639402d51dd53bc811d1a7348e16b73ed385b09b7bde0",
+  "operational_lock_file_absent": true,
+  "terminal_guard_owned_cleanup_and_process_exit_verified": true,
+  "downloaded_parent_files_unchanged": true,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

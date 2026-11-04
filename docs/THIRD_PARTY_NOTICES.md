@@ -1,0 +1,40 @@
+# Third-party notices
+
+The original project MIT license and copyright attribution in `LICENSE` are preserved. The development asset contains project-generated models/data and project source. It does not redistribute installed dependency runtimes, CARLA server/client binaries, map assets, or third-party video assets.
+
+The following inventory was read from the installed distribution metadata used for the local experiments. License expressions may include bundled components; the complete distribution notices remain authoritative.
+
+| Dependency | Installed version | Declared license |
+|---|---|---|
+| numpy | 2.4.6 | BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0 |
+| scipy | 1.17.1 | BSD-style; see installed distribution notices |
+| osqp | 1.1.3 | Apache-2.0 |
+| gymnasium | 1.4.0 | MIT |
+| stable-baselines3 | 2.9.0 | MIT |
+| torch | 2.14.1 | Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT |
+| matplotlib | 3.10.8 | Matplotlib/PSF-style; bundled components have additional notices |
+| pytest | 9.1.1 | MIT |
+| imageio-ffmpeg (optional video tools) | 0.6.0 | BSD-2-Clause for the Python package; encoder has separate notices |
+
+`requirements-video.txt` installs the optional encoder wrapper separately. The local Windows wheel supplied FFmpeg 7.1 (`7.1-essentials_build-www.gyan.dev`), used to encode project-generated CARLA RGB captures with libx264. This repository and its video evidence asset do not redistribute that executable or its runtime. FFmpeg builds and enabled codecs have their own license obligations; the package's BSD license is not a license for the encoder. Generated videos include the simulator's rendered environment and are identified as CARLA 0.9.15 output, not original simulator assets created by this project.
+
+Project URLs from package metadata are preserved in `dependency_licenses.json`. Install dependencies independently rather than copying environment directories into Git or release assets. CARLA installation and map redistribution are outside this release; users must obtain the matching simulator under its own terms.
+
+Algorithm attribution: PPO is implemented by Stable-Baselines3; QP solving uses OSQP; the environment API uses Gymnasium; tensor learning uses PyTorch. The project implements its own forward bicycle-model Hybrid A* search, trajectory handling and MPC assembly. It does not claim these established algorithms as original inventions.
+
+`navstack/dubins_guide.py` adapts the six-family obstacle-free Dubins length
+formulas from Mark Moll's [OMPL DubinsStateSpace.cpp](https://github.com/ompl/ompl/blob/main/src/ompl/base/spaces/src/DubinsStateSpace.cpp),
+copyright(c)2010 Rice University, BSD-3-Clause. The complete source notice is
+retained in [third_party/ompl/LICENSE](../third_party/ompl/LICENSE). No OMPL
+binary/runtime or optimized classification implementation is redistributed.
+This optional search-order guide is not an original Dubins algorithm or an
+optimality claim for the project's tolerant, weighted Hybrid A* search.
+
+The recovery-state supervision diagnostics use dataset aggregation ideas associated
+with Ross, Gordon and Bagnell, *A Reduction of Imitation Learning and Structured
+Prediction to No-Regret Online Learning*, AISTATS/PMLR15:627–635 (2011),
+[paper and bibliographic record](https://proceedings.mlr.press/v15/ross11a.html).
+The project's two-round teacher/learner mixture and subsequent label audit are
+adapted diagnostics, not a reproduction of the paper's experiments or an
+implementation satisfying its theoretical guarantees. Project code was written
+locally; no third-party implementation or paper figures are redistributed.

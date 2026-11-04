@@ -1,0 +1,26 @@
+{
+  "scope": "Verified storage-interrupted frozen B2recovery,prepared/validated and actually queued after running B1longtraining. No new policy fitting or learning;old incomplete attempt retained.",
+  "parent": "20261027T141335Z_native_frozen_B2",
+  "batch": "20261028T000521Z_native_evaluation_recovery",
+  "queue_after": "20261027T235448Z_native_continuation",
+  "queue_pid": 64524,
+  "status": "ACTUALLY_WAITING_NOT_YET_EVALUATING",
+  "protocol_sha256": "bdfcddd22877d9b8a9ae5750fdbeb39fce2557eb54017ce2b9a4bd873a6ed833",
+  "old_failure": "RuntimeError('Disk below12GiB')",
+  "interrupted_controls": 1486,
+  "inherited_charged_controls": 31269,
+  "retained_H_training_controls": 20541,
+  "retained_H_optimizer_steps": 650,
+  "new_training_controls": 0,
+  "new_optimizer_steps": 0,
+  "model_normalizer_RNG_config_bytes_exact": true,
+  "PID_reuse_check": {
+    "historical_launcher_pid": 29180,
+    "historical_guard_ended_epoch": 1793112472.2380626,
+    "observed_current_creation_epoch": 1793145246.565,
+    "scope": "A later creation proves a different process instance. Read-only identity check; no foreign process adoption or termination."
+  },
+  "rescheduling": "The previous B1queue stopped when B2failed. New B1continuation has been prepared/launched first; this frozen recovery waits for its normal owned cleanup. Learning budget/settings/fixed endpoints unchanged.",
+  "planned_registered_conditions": 12,
+  "evaluation_started": false
+}

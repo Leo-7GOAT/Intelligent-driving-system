@@ -1,0 +1,354 @@
+{
+  "scope": "Actual frozen all-five common-harness H/H0broader-development preparation and live owned waiting queue;not training results or final confirmation.",
+  "execution": "H_H0_matched_broader_execution_20261101",
+  "preparation": "H_H0_matched_broader_preparation_20261101",
+  "observer_identity": {
+    "pid": 72028,
+    "creation_epoch": 1793496097.042307,
+    "executable_name": "python.exe"
+  },
+  "observed_phase": "WAITING_FOR_OWNED_PREDECESSOR_NATIVE_QUEUE",
+  "dependency_execution": "native_PPO_camera_execution_20261101",
+  "dependency_identity": {
+    "pid": 42060,
+    "creation_epoch": 1793493728.174767,
+    "executable_name": "python.exe"
+  },
+  "plan_sha256": "d47390189344df748a8323d010c620e6fff07354de10578599e77a4869b228ec",
+  "observer_source_manifest_sha256": "24e9b4a7f483996fc81545ab4d246b8672189be4d5eefa5e05c72404c4b3acac",
+  "all_five_complete_source_trees_identical": true,
+  "common_source_file_count": 517,
+  "common_low_level_source": {
+    "navstack/env.py": "605cea0ae6ba446bd1bad0077342945d2684bc98df12e930bdec5093aa924987",
+    "navstack/planning.py": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+    "navstack/mpc.py": "cf24ffc14bc0829b5ff780a28523c250cc43f6e9425f67dee161849b587a9719",
+    "navstack/trajectory.py": "847ea502d150189efe3f5774651f4a362fb4ee69453f842ef2d67ede57cd7992",
+    "navstack/shield.py": "d31fc73da1ce271c72448a9227614618fc5e0e4f210cae9b7f78863d1b4a4025",
+    "navstack/carla_bridge.py": "0fababbe11793ee7e75efdb4a48b2a555bfab3fd5ff11ea54795a74b5f3035f2",
+    "scripts/carla_bridge37.py": "852e6e751f54e39c6b17887c49b1523481ffcc1cb1bc18fa52d9acc0fd59ba9a"
+  },
+  "distinct_pristine_actor_initializations_each_method": {
+    "H": 5,
+    "H0": 5
+  },
+  "requested_training_controls_each_method_each_seed": 20480,
+  "requested_total_new_training_controls": 204800,
+  "training_conditions": 36,
+  "known_development_validation_conditions": 24,
+  "new_final_confirmation_conditions": 0,
+  "additional_supervised_updates": 0,
+  "additional_predictor_in_policy": false,
+  "stopping_rule": "All five seeds,both methods,fixed endpoint budget and all24validation conditions. No seed or checkpoint selection;finite7200second native batch walls and12hour predecessor wait;no automatic training retry.",
+  "cost_scope": "New training distribution and common patched bridge before first PPOupdate. Earlier canonical12and single-seed broader runs are historical,tuning costs retained,not pooled as new matched-harness results. Pristine actor weights/statistics/RNG are copied unchanged;policy PPOlineage starts at zero while prior development costs remain charged.",
+  "source_hashes": {
+    "scripts/prepare_native_broader_feedback_cohort.py": "2c12cb095724875e3eb3135da2433c9c59706639f0f716253e5bdd66a4357c0a",
+    "scripts/run_native_broader_feedback_cohort.py": "79ba9548bada548b762a61cc4af312a43d3ed69e65322dc490a44ab8cdffbca5"
+  },
+  "verification": {
+    "targeted_regression_passed": 33,
+    "seconds": 8.56,
+    "actual_frozen_CPU_restores": 10,
+    "actual_launcher_input_validations": 5,
+    "server_probed": false,
+    "new_controls": 0,
+    "optimizer_updates": 0
+  },
+  "batches": [
+    {
+      "seed": 11,
+      "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+      "protocol_sha256": "f9ebe863fd1350ecd0553e5f73dd8b9f1704fef67699d30fc46a30b8ba1d625d",
+      "input_checkpoints": {
+        "H": {
+          "canonical_batch": "20261031T025409165666Z_native_supervised_ppo",
+          "pristine_model_sha256": "ee446452b7d81bee2201c6c0a3b7f0488fa5cda1b6fa4faf8876a2d9fd2e663a",
+          "pristine_metadata_sha256": "0948ea56b4e7691ec5effe124391744c2c76cf925c145043b993e203bd04feab",
+          "actor_parameter_sha256": "145876e7cfd1ea9f6c89d0a5596ebdbde7fef54420acca3d96ce49e2be1bb711",
+          "canonical_raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f",
+          "prior_development_controls_charged_lower_bound": 39053
+        },
+        "H0": {
+          "canonical_batch": "20261031T025409165666Z_native_supervised_ppo",
+          "pristine_model_sha256": "836821d5af7dd320a54b62d5c7e8cd7bad5d20a3fd2fe71511420251c7707bb5",
+          "pristine_metadata_sha256": "b64a6db9359c43a7e39347bfa0c3154d61192e26cc26a03f8267c1b716e0e194",
+          "actor_parameter_sha256": "f3641bd8874da9ee622c31e884e79cfa6afe88d6c46d88f204f3ac8d1409d045",
+          "canonical_raw_audit_sha256": "e02948a388e140254d62068bff0844dcace6f282e63c255f27cd9ab7b4f66f63",
+          "prior_development_controls_charged_lower_bound": 35037
+        }
+      },
+      "CPU_restore": {
+        "scope": "Actual frozen-runtime restoration with inert environments that reject reset/step;not simulator readiness or actual learning",
+        "batch": "20261101T011938826336Z_native_matched_broader_feedback",
+        "seed": 11,
+        "methods": [
+          {
+            "method": "H",
+            "pristine_actor_parameter_sha256": "145876e7cfd1ea9f6c89d0a5596ebdbde7fef54420acca3d96ce49e2be1bb711",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          },
+          {
+            "method": "H0",
+            "pristine_actor_parameter_sha256": "f3641bd8874da9ee622c31e884e79cfa6afe88d6c46d88f204f3ac8d1409d045",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          }
+        ],
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "physical_resets": 0
+      },
+      "teacher_condition_prefix_preserved": true,
+      "launcher_status": "INPUTS_VALIDATED_NOT_SERVER_PROBED"
+    },
+    {
+      "seed": 22,
+      "batch": "20261101T011945179519Z_native_matched_broader_feedback",
+      "protocol_sha256": "bfffc56ffc184e8c250d724576e6a9334ebe540753c6f568850b3ed463dc90cb",
+      "input_checkpoints": {
+        "H": {
+          "canonical_batch": "20261031T025409042778Z_native_supervised_ppo",
+          "pristine_model_sha256": "8cbf639a2a3dad35131f6be55b60ea70fb5d67b5b9c2f852d8800953b65d8eb0",
+          "pristine_metadata_sha256": "d12cb0dd58eb329d285f7729a50617d0bd7114f66fab48420f9176cefa8e4696",
+          "actor_parameter_sha256": "55cb6404a827e53a7a1221a9e12f0a2d8a55a2672801d00e17a55ef149a435cb",
+          "canonical_raw_audit_sha256": "066b71cc36bf88b11d002fc98ca6727d19d492e5e2c3ebb10c88aa284f22378d",
+          "prior_development_controls_charged_lower_bound": 34632
+        },
+        "H0": {
+          "canonical_batch": "20261031T093208454506Z_native_H0_canonical_budget_replica",
+          "pristine_model_sha256": "7c3a904c7b08cd9747cc08fdf0736f9e55ee9e69cca1bc087433c909b1eeb5b0",
+          "pristine_metadata_sha256": "6752c683a5b676878100a07749cbf26597003ef8714ad8fc3a06288605a54908",
+          "actor_parameter_sha256": "6542d6c9cccc70f5b030573a982732aa3858fc993ab069cb9e5c95446c58e4fb",
+          "canonical_raw_audit_sha256": "2258c30ada4770cb297416aca767f3265474fc1038f0351b4b03e85b2226bb94",
+          "prior_development_controls_charged_lower_bound": 34107
+        }
+      },
+      "CPU_restore": {
+        "scope": "Actual frozen-runtime restoration with inert environments that reject reset/step;not simulator readiness or actual learning",
+        "batch": "20261101T011945179519Z_native_matched_broader_feedback",
+        "seed": 22,
+        "methods": [
+          {
+            "method": "H",
+            "pristine_actor_parameter_sha256": "55cb6404a827e53a7a1221a9e12f0a2d8a55a2672801d00e17a55ef149a435cb",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          },
+          {
+            "method": "H0",
+            "pristine_actor_parameter_sha256": "6542d6c9cccc70f5b030573a982732aa3858fc993ab069cb9e5c95446c58e4fb",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          }
+        ],
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "physical_resets": 0
+      },
+      "teacher_condition_prefix_preserved": true,
+      "launcher_status": "INPUTS_VALIDATED_NOT_SERVER_PROBED"
+    },
+    {
+      "seed": 33,
+      "batch": "20261101T011949266084Z_native_matched_broader_feedback",
+      "protocol_sha256": "5787154410d3c643c9d0091f03569820fe58bd9923aa105f32d4ef8777d36c25",
+      "input_checkpoints": {
+        "H": {
+          "canonical_batch": "20261031T093156483162Z_native_supervised_ppo",
+          "pristine_model_sha256": "57b77b7ff6a5dbfd63dd9ff477ab9aacd5d4ef0f3b91f6d0f826428c4ef6b23e",
+          "pristine_metadata_sha256": "c4ce83213ce5273221a01b3b991ec73bbbc23fa589e7251ef5687cc19774e937",
+          "actor_parameter_sha256": "aa6c7f53e6e637df0db3208a8508fd635a5d8d714f79fed5c9747ca02f51aed7",
+          "canonical_raw_audit_sha256": "575b1ae6c801e8d0947949984cb7474f3b3d10787f6f833453ae2f18d0c0a226",
+          "prior_development_controls_charged_lower_bound": 35191
+        },
+        "H0": {
+          "canonical_batch": "20261031T093156483162Z_native_supervised_ppo",
+          "pristine_model_sha256": "aa5ab05ed5ccf2a1c9ce93ec0ad535174e628e34a93af9f93568dd365a2f1c32",
+          "pristine_metadata_sha256": "f8f6c39848ff3d0d6755d3ab87e7358efa298846152e01dbe894497016923192",
+          "actor_parameter_sha256": "36bdffc225277c78e1e16e3def5e272f4edb67055c108cbe6f3649db340286b3",
+          "canonical_raw_audit_sha256": "d88e353eafd736b7b484f89ea9b34d79cf7677108b1aa4c7b52425fac18a9839",
+          "prior_development_controls_charged_lower_bound": 34070
+        }
+      },
+      "CPU_restore": {
+        "scope": "Actual frozen-runtime restoration with inert environments that reject reset/step;not simulator readiness or actual learning",
+        "batch": "20261101T011949266084Z_native_matched_broader_feedback",
+        "seed": 33,
+        "methods": [
+          {
+            "method": "H",
+            "pristine_actor_parameter_sha256": "aa6c7f53e6e637df0db3208a8508fd635a5d8d714f79fed5c9747ca02f51aed7",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          },
+          {
+            "method": "H0",
+            "pristine_actor_parameter_sha256": "36bdffc225277c78e1e16e3def5e272f4edb67055c108cbe6f3649db340286b3",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          }
+        ],
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "physical_resets": 0
+      },
+      "teacher_condition_prefix_preserved": true,
+      "launcher_status": "INPUTS_VALIDATED_NOT_SERVER_PROBED"
+    },
+    {
+      "seed": 44,
+      "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+      "protocol_sha256": "02b16be4a9bf2c757c6ad132120faa2378d1c349227acab43cdba61273796ccc",
+      "input_checkpoints": {
+        "H": {
+          "canonical_batch": "20261031T093202647818Z_native_supervised_ppo",
+          "pristine_model_sha256": "e88e46e7cee0443a3010776e2539ac15b85420893a9efe1c5954dfd69e46f087",
+          "pristine_metadata_sha256": "cd3a86cea82b2b01dd6514dd26c8eb805ce6b19075f9aa1033ec4056ff8c3055",
+          "actor_parameter_sha256": "032521235032c8e389901105eabb51373271c68847bd9fad3118de78a85afb25",
+          "canonical_raw_audit_sha256": "733ae826652f0833e4a4a2446498f41e8beab61dfd29b815ac4354b1098597bb",
+          "prior_development_controls_charged_lower_bound": 33524
+        },
+        "H0": {
+          "canonical_batch": "20261031T093202647818Z_native_supervised_ppo",
+          "pristine_model_sha256": "223d46c6e1f33b47043ec872500458773de73f2767f985b3c0e064722edb0888",
+          "pristine_metadata_sha256": "4e664d53758e8a2b06938eb8020faaba4349944b83f8a13b1b744089c0750c4d",
+          "actor_parameter_sha256": "57dcd9be56ffc189b5d4a9da24ce842cea8b04bac9a9f517a286d9aad7d48d83",
+          "canonical_raw_audit_sha256": "f39a27725990ef6e8fa917fad6ae5cab26e79696645bdb87df1ddfe633164a27",
+          "prior_development_controls_charged_lower_bound": 34663
+        }
+      },
+      "CPU_restore": {
+        "scope": "Actual frozen-runtime restoration with inert environments that reject reset/step;not simulator readiness or actual learning",
+        "batch": "20261101T011953260380Z_native_matched_broader_feedback",
+        "seed": 44,
+        "methods": [
+          {
+            "method": "H",
+            "pristine_actor_parameter_sha256": "032521235032c8e389901105eabb51373271c68847bd9fad3118de78a85afb25",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          },
+          {
+            "method": "H0",
+            "pristine_actor_parameter_sha256": "57dcd9be56ffc189b5d4a9da24ce842cea8b04bac9a9f517a286d9aad7d48d83",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          }
+        ],
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "physical_resets": 0
+      },
+      "teacher_condition_prefix_preserved": true,
+      "launcher_status": "INPUTS_VALIDATED_NOT_SERVER_PROBED"
+    },
+    {
+      "seed": 55,
+      "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+      "protocol_sha256": "bbabe27d5ea3538de61f9f6cd9c6a8e689235652c15c0042a738e020fa40d986",
+      "input_checkpoints": {
+        "H": {
+          "canonical_batch": "20261031T093206498809Z_native_supervised_ppo",
+          "pristine_model_sha256": "b2c5694fd0c20ff1aafac2555e6ec8bf9fd440858071d36e26958f6cbd98c756",
+          "pristine_metadata_sha256": "f3e45409f828c28f1e2d0c328ecb5595132b8f243ab66a2ef35afca9f1866b8b",
+          "actor_parameter_sha256": "aa2f0e0566413fb52f0fd91d42ac2dfbe710014e63358e66cee9f52191c823e9",
+          "canonical_raw_audit_sha256": "9e4422ff630d492fb58a3863265e93c77ddc5f07c513241067a2320efad39620",
+          "prior_development_controls_charged_lower_bound": 34099
+        },
+        "H0": {
+          "canonical_batch": "20261031T093206498809Z_native_supervised_ppo",
+          "pristine_model_sha256": "945167d2a8b71346d5e0631633ad9b8720452ce90432cde6db91626d59c5ba44",
+          "pristine_metadata_sha256": "a94fd23e6b25aa9635fdfd740e2c04bf85466334366614f45ec2bb267b72a766",
+          "actor_parameter_sha256": "4ab4431f0d38f36dfca251a04712e2281b1965f782fc16f255afc47fe8d9bef5",
+          "canonical_raw_audit_sha256": "0a8dde0003253f3a531d6cd224e5dab3c856281229a4afff3d8250dbb740ed5c",
+          "prior_development_controls_charged_lower_bound": 34036
+        }
+      },
+      "CPU_restore": {
+        "scope": "Actual frozen-runtime restoration with inert environments that reject reset/step;not simulator readiness or actual learning",
+        "batch": "20261101T011957251615Z_native_matched_broader_feedback",
+        "seed": 55,
+        "methods": [
+          {
+            "method": "H",
+            "pristine_actor_parameter_sha256": "aa2f0e0566413fb52f0fd91d42ac2dfbe710014e63358e66cee9f52191c823e9",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          },
+          {
+            "method": "H0",
+            "pristine_actor_parameter_sha256": "4ab4431f0d38f36dfca251a04712e2281b1965f782fc16f255afc47fe8d9bef5",
+            "PPO_updates": 0,
+            "Adam_state_entries": 0,
+            "frozen_obs_statistics_exact": true,
+            "n_steps": 32,
+            "n_epochs": 10,
+            "batch_size": 32,
+            "learning_rate": 3e-05,
+            "signature_exact": true
+          }
+        ],
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "physical_resets": 0
+      },
+      "teacher_condition_prefix_preserved": true,
+      "launcher_status": "INPUTS_VALIDATED_NOT_SERVER_PROBED"
+    }
+  ],
+  "research_acceptance": "UNMET"
+}

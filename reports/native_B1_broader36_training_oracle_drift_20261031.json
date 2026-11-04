@@ -1,0 +1,585 @@
+{
+  "scope": "Offline initial/final B1 disagreement with TRAIN-only counterfactual controls;not driving,policy fitting or unseen-performance proof",
+  "batch": "20261031T073909784878Z_native_supervised_ppo",
+  "queries": 242,
+  "available_labels": 239,
+  "audit_script_sha256": "e4c60f2b023d8cc716456f356d2676d79b7875bbe9f5b2662f852556c73b6fc0",
+  "policy_implementation": "Exact hash-verified batch/source",
+  "rejections": {
+    "recorded_pose_not_free": 3
+  },
+  "selection": "First completed training episode per registered condition,regardless of outcome;fixed stride80controls from start through the last pre-control state. No evaluation states or outcome selection.",
+  "oracle_dataset_sha256": "37c6a376898a6dd2456c0ac2850956330995a55eb080cfdce554b53d9b7e59c5",
+  "oracle_manifest_sha256": "c2f63eeb136a0f1cb6177b08c2148ae29ef8368cecd1b63c655e94f7982c8ecc",
+  "raw_audit_sha256": "a3202f013e87e57241d43c65eb7f77b3b1368820e2d8e5866156e9423a37a12b",
+  "initial_model_sha256": "90a36aec6e52538b21664af21802dd5e7381739b250df02de70a360faf494ed4",
+  "final_model_sha256": "2631ea0440682082c352bb1a84aa520b710658fca7a733c9aa34a48934b8f9da",
+  "normalization_statistics_and_inputs_exactly_equal": true,
+  "metrics": {
+    "all": {
+      "initial": {
+        "rows": 239,
+        "MSE": 0.280265096698057,
+        "acceleration_MSE": 0.556454185195475,
+        "steering_MSE": 0.004076008200639057
+      },
+      "trained": {
+        "rows": 239,
+        "MSE": 0.2806752377535117,
+        "acceleration_MSE": 0.5573163738021093,
+        "steering_MSE": 0.004034101704914195
+      }
+    },
+    "mode_dynamic_brake": {
+      "initial": {
+        "rows": 10,
+        "MSE": 0.7725525960039741,
+        "acceleration_MSE": 1.5391070949327608,
+        "steering_MSE": 0.005998097075187292
+      },
+      "trained": {
+        "rows": 10,
+        "MSE": 0.7736503883933753,
+        "acceleration_MSE": 1.5410796707084689,
+        "steering_MSE": 0.006221106078281647
+      }
+    },
+    "mode_reference": {
+      "initial": {
+        "rows": 159,
+        "MSE": 0.14688433302910897,
+        "acceleration_MSE": 0.29016142103540515,
+        "steering_MSE": 0.0036072450228127727
+      },
+      "trained": {
+        "rows": 159,
+        "MSE": 0.14714925979961238,
+        "acceleration_MSE": 0.29079055462509107,
+        "steering_MSE": 0.0035079649741336988
+      }
+    },
+    "mode_wait": {
+      "initial": {
+        "rows": 70,
+        "MSE": 0.5129031885595365,
+        "acceleration_MSE": 1.0209401909680214,
+        "steering_MSE": 0.004866186151051871
+      },
+      "trained": {
+        "rows": 70,
+        "MSE": 0.5135449375859596,
+        "acceleration_MSE": 1.0221731206604276,
+        "steering_MSE": 0.004916754511491686
+      }
+    },
+    "condition_0": {
+      "initial": {
+        "rows": 8,
+        "MSE": 0.1821697342345489,
+        "acceleration_MSE": 0.3591614832542436,
+        "steering_MSE": 0.005177985214854243
+      },
+      "trained": {
+        "rows": 8,
+        "MSE": 0.18438527904191657,
+        "acceleration_MSE": 0.36382831272844784,
+        "steering_MSE": 0.004942245355385243
+      }
+    },
+    "condition_1": {
+      "initial": {
+        "rows": 8,
+        "MSE": 0.3450695823270984,
+        "acceleration_MSE": 0.6852179085985461,
+        "steering_MSE": 0.004921256055650755
+      },
+      "trained": {
+        "rows": 8,
+        "MSE": 0.34572030973099244,
+        "acceleration_MSE": 0.6867854743730772,
+        "steering_MSE": 0.004655145088907688
+      }
+    },
+    "condition_2": {
+      "initial": {
+        "rows": 5,
+        "MSE": 0.05232804973207163,
+        "acceleration_MSE": 0.10425041140857401,
+        "steering_MSE": 0.0004056880555692348
+      },
+      "trained": {
+        "rows": 5,
+        "MSE": 0.05335898724404431,
+        "acceleration_MSE": 0.1063640851630648,
+        "steering_MSE": 0.00035388932502380965
+      }
+    },
+    "condition_3": {
+      "initial": {
+        "rows": 11,
+        "MSE": 0.5973763707126942,
+        "acceleration_MSE": 1.1923588503741984,
+        "steering_MSE": 0.00239389105119003
+      },
+      "trained": {
+        "rows": 11,
+        "MSE": 0.6010531993109052,
+        "acceleration_MSE": 1.1997554605273906,
+        "steering_MSE": 0.002350938094419952
+      }
+    },
+    "condition_4": {
+      "initial": {
+        "rows": 6,
+        "MSE": 0.007515693043974516,
+        "acceleration_MSE": 0.01365622096597943,
+        "steering_MSE": 0.0013751651219696028
+      },
+      "trained": {
+        "rows": 6,
+        "MSE": 0.0071863754073839894,
+        "acceleration_MSE": 0.012853771923051196,
+        "steering_MSE": 0.0015189788917167818
+      }
+    },
+    "condition_5": {
+      "initial": {
+        "rows": 8,
+        "MSE": 0.26687706234804415,
+        "acceleration_MSE": 0.5332321914420167,
+        "steering_MSE": 0.00052193325407165
+      },
+      "trained": {
+        "rows": 8,
+        "MSE": 0.2657990975632528,
+        "acceleration_MSE": 0.5311177681601074,
+        "steering_MSE": 0.0004804269663982244
+      }
+    },
+    "condition_6": {
+      "initial": {
+        "rows": 6,
+        "MSE": 0.020195603356941136,
+        "acceleration_MSE": 0.038139429912715024,
+        "steering_MSE": 0.002251776801167245
+      },
+      "trained": {
+        "rows": 6,
+        "MSE": 0.018933614036927737,
+        "acceleration_MSE": 0.03577239683833374,
+        "steering_MSE": 0.0020948312355217337
+      }
+    },
+    "condition_7": {
+      "initial": {
+        "rows": 6,
+        "MSE": 0.05058771304936558,
+        "acceleration_MSE": 0.09892210078578485,
+        "steering_MSE": 0.002253325312946314
+      },
+      "trained": {
+        "rows": 6,
+        "MSE": 0.0496444281871846,
+        "acceleration_MSE": 0.0973682494380889,
+        "steering_MSE": 0.0019206069362803213
+      }
+    },
+    "condition_8": {
+      "initial": {
+        "rows": 7,
+        "MSE": 0.12507746330376973,
+        "acceleration_MSE": 0.24844754549123746,
+        "steering_MSE": 0.0017073811163019813
+      },
+      "trained": {
+        "rows": 7,
+        "MSE": 0.12399429123301327,
+        "acceleration_MSE": 0.24645929639418926,
+        "steering_MSE": 0.0015292860718372672
+      }
+    },
+    "condition_9": {
+      "initial": {
+        "rows": 9,
+        "MSE": 0.2404007431667709,
+        "acceleration_MSE": 0.47488459051916593,
+        "steering_MSE": 0.00591689581437603
+      },
+      "trained": {
+        "rows": 9,
+        "MSE": 0.2411437097869888,
+        "acceleration_MSE": 0.47678006953159596,
+        "steering_MSE": 0.005507350042381721
+      }
+    },
+    "condition_10": {
+      "initial": {
+        "rows": 7,
+        "MSE": 0.3174084809374665,
+        "acceleration_MSE": 0.6256627607871099,
+        "steering_MSE": 0.009154201087823053
+      },
+      "trained": {
+        "rows": 7,
+        "MSE": 0.3176768105033148,
+        "acceleration_MSE": 0.6257299229843615,
+        "steering_MSE": 0.009623698022268336
+      }
+    },
+    "condition_11": {
+      "initial": {
+        "rows": 7,
+        "MSE": 0.5831540425322983,
+        "acceleration_MSE": 1.1624715960728373,
+        "steering_MSE": 0.003836488991759305
+      },
+      "trained": {
+        "rows": 7,
+        "MSE": 0.5847866805019899,
+        "acceleration_MSE": 1.1656436891592992,
+        "steering_MSE": 0.003929671844680875
+      }
+    },
+    "condition_12": {
+      "initial": {
+        "rows": 5,
+        "MSE": 0.05385754718399412,
+        "acceleration_MSE": 0.10490696705117,
+        "steering_MSE": 0.002808127316818238
+      },
+      "trained": {
+        "rows": 5,
+        "MSE": 0.05291323271769739,
+        "acceleration_MSE": 0.10301493286493146,
+        "steering_MSE": 0.0028115325704632954
+      }
+    },
+    "condition_13": {
+      "initial": {
+        "rows": 6,
+        "MSE": 0.16485841238136176,
+        "acceleration_MSE": 0.32363854397823094,
+        "steering_MSE": 0.006078280784492583
+      },
+      "trained": {
+        "rows": 6,
+        "MSE": 0.16444550177192616,
+        "acceleration_MSE": 0.32302213826888976,
+        "steering_MSE": 0.005868865274962535
+      }
+    },
+    "condition_14": {
+      "initial": {
+        "rows": 13,
+        "MSE": 0.4941831484164363,
+        "acceleration_MSE": 0.9824710400641609,
+        "steering_MSE": 0.005895256768711726
+      },
+      "trained": {
+        "rows": 13,
+        "MSE": 0.49445416805392955,
+        "acceleration_MSE": 0.9828746729143665,
+        "steering_MSE": 0.006033663193492581
+      }
+    },
+    "condition_15": {
+      "initial": {
+        "rows": 4,
+        "MSE": 0.32195457255007587,
+        "acceleration_MSE": 0.6408962079183169,
+        "steering_MSE": 0.003012937181834859
+      },
+      "trained": {
+        "rows": 4,
+        "MSE": 0.32186540546699915,
+        "acceleration_MSE": 0.6411805211531356,
+        "steering_MSE": 0.002550289780862665
+      }
+    },
+    "condition_16": {
+      "initial": {
+        "rows": 5,
+        "MSE": 0.06797853384893371,
+        "acceleration_MSE": 0.133499348464812,
+        "steering_MSE": 0.0024577192330553846
+      },
+      "trained": {
+        "rows": 5,
+        "MSE": 0.06794785265827426,
+        "acceleration_MSE": 0.13382939888484596,
+        "steering_MSE": 0.002066306431702543
+      }
+    },
+    "condition_17": {
+      "initial": {
+        "rows": 6,
+        "MSE": 0.0958393911619,
+        "acceleration_MSE": 0.18774371304665816,
+        "steering_MSE": 0.003935069277141841
+      },
+      "trained": {
+        "rows": 6,
+        "MSE": 0.09646453569917589,
+        "acceleration_MSE": 0.18929732788638734,
+        "steering_MSE": 0.003631743511964445
+      }
+    },
+    "condition_18": {
+      "initial": {
+        "rows": 5,
+        "MSE": 0.0528313195152091,
+        "acceleration_MSE": 0.10422492311356565,
+        "steering_MSE": 0.0014377159168525552
+      },
+      "trained": {
+        "rows": 5,
+        "MSE": 0.05164846682746822,
+        "acceleration_MSE": 0.1019089199782075,
+        "steering_MSE": 0.0013880136767289203
+      }
+    },
+    "condition_19": {
+      "initial": {
+        "rows": 5,
+        "MSE": 0.06340959538783195,
+        "acceleration_MSE": 0.11574202039716419,
+        "steering_MSE": 0.011077170378499684
+      },
+      "trained": {
+        "rows": 5,
+        "MSE": 0.06580007894721782,
+        "acceleration_MSE": 0.11976487970522462,
+        "steering_MSE": 0.011835278189210995
+      }
+    },
+    "condition_20": {
+      "initial": {
+        "rows": 1,
+        "MSE": 0.0016887198344882654,
+        "acceleration_MSE": 0.0027324452676111832,
+        "steering_MSE": 0.0006449944013653477
+      },
+      "trained": {
+        "rows": 1,
+        "MSE": 0.0019558158027353847,
+        "acceleration_MSE": 0.003299776185716752,
+        "steering_MSE": 0.0006118554197540176
+      }
+    },
+    "condition_21": {
+      "initial": {
+        "rows": 7,
+        "MSE": 0.515683665248639,
+        "acceleration_MSE": 1.029091594566633,
+        "steering_MSE": 0.0022757359306449136
+      },
+      "trained": {
+        "rows": 7,
+        "MSE": 0.5185599581254101,
+        "acceleration_MSE": 1.034981478730938,
+        "steering_MSE": 0.0021384375198823563
+      }
+    },
+    "condition_22": {
+      "initial": {
+        "rows": 8,
+        "MSE": 0.2927993358704141,
+        "acceleration_MSE": 0.5825371713616032,
+        "steering_MSE": 0.003061500379225025
+      },
+      "trained": {
+        "rows": 8,
+        "MSE": 0.2896645329353208,
+        "acceleration_MSE": 0.5762913264488166,
+        "steering_MSE": 0.0030377394218250257
+      }
+    },
+    "condition_23": {
+      "initial": {
+        "rows": 6,
+        "MSE": 0.06940082672582552,
+        "acceleration_MSE": 0.13626216486099194,
+        "steering_MSE": 0.002539488590659084
+      },
+      "trained": {
+        "rows": 6,
+        "MSE": 0.06946345463403412,
+        "acceleration_MSE": 0.13619465373495607,
+        "steering_MSE": 0.0027322555331121758
+      }
+    },
+    "condition_24": {
+      "initial": {
+        "rows": 8,
+        "MSE": 0.2368341533871751,
+        "acceleration_MSE": 0.46943148041345506,
+        "steering_MSE": 0.004236826360895094
+      },
+      "trained": {
+        "rows": 8,
+        "MSE": 0.2391073302115934,
+        "acceleration_MSE": 0.47431428088104566,
+        "steering_MSE": 0.003900379542141079
+      }
+    },
+    "condition_25": {
+      "initial": {
+        "rows": 3,
+        "MSE": 0.44326668530814733,
+        "acceleration_MSE": 0.8829917919268165,
+        "steering_MSE": 0.0035415786894782233
+      },
+      "trained": {
+        "rows": 3,
+        "MSE": 0.45649139579701775,
+        "acceleration_MSE": 0.9091767256680144,
+        "steering_MSE": 0.0038060659260210072
+      }
+    },
+    "condition_26": {
+      "initial": {
+        "rows": 5,
+        "MSE": 0.23031366988764052,
+        "acceleration_MSE": 0.45659671700431465,
+        "steering_MSE": 0.004030622770966399
+      },
+      "trained": {
+        "rows": 5,
+        "MSE": 0.22992261551293555,
+        "acceleration_MSE": 0.4562140492760435,
+        "steering_MSE": 0.0036311817498276833
+      }
+    },
+    "condition_27": {
+      "initial": {
+        "rows": 6,
+        "MSE": 0.12086053405409815,
+        "acceleration_MSE": 0.23932017395351057,
+        "steering_MSE": 0.0024008941546857236
+      },
+      "trained": {
+        "rows": 6,
+        "MSE": 0.11904806662944184,
+        "acceleration_MSE": 0.23570278516960597,
+        "steering_MSE": 0.00239334808927774
+      }
+    },
+    "condition_28": {
+      "initial": {
+        "rows": 9,
+        "MSE": 0.3527985232924852,
+        "acceleration_MSE": 0.7004141422757403,
+        "steering_MSE": 0.005182904309230171
+      },
+      "trained": {
+        "rows": 9,
+        "MSE": 0.35301840550340235,
+        "acceleration_MSE": 0.7006933792169908,
+        "steering_MSE": 0.005343431789814048
+      }
+    },
+    "condition_29": {
+      "initial": {
+        "rows": 8,
+        "MSE": 0.15062885059697123,
+        "acceleration_MSE": 0.2960515909000168,
+        "steering_MSE": 0.0052061102939256546
+      },
+      "trained": {
+        "rows": 8,
+        "MSE": 0.15001257675270924,
+        "acceleration_MSE": 0.29516173791573186,
+        "steering_MSE": 0.004863415589686617
+      }
+    },
+    "condition_30": {
+      "initial": {
+        "rows": 7,
+        "MSE": 0.35231228168187234,
+        "acceleration_MSE": 0.7007955376192883,
+        "steering_MSE": 0.0038290257444563896
+      },
+      "trained": {
+        "rows": 7,
+        "MSE": 0.3513861782165736,
+        "acceleration_MSE": 0.6990239229632048,
+        "steering_MSE": 0.0037484334699423453
+      }
+    },
+    "condition_31": {
+      "initial": {
+        "rows": 9,
+        "MSE": 0.3949217212942624,
+        "acceleration_MSE": 0.7839140886987319,
+        "steering_MSE": 0.005929353889792833
+      },
+      "trained": {
+        "rows": 9,
+        "MSE": 0.39422457016683105,
+        "acceleration_MSE": 0.7818633889731621,
+        "steering_MSE": 0.006585751360500051
+      }
+    },
+    "condition_32": {
+      "initial": {
+        "rows": 8,
+        "MSE": 0.3752535328850471,
+        "acceleration_MSE": 0.74191336225095,
+        "steering_MSE": 0.00859370351914421
+      },
+      "trained": {
+        "rows": 8,
+        "MSE": 0.3712750070035644,
+        "acceleration_MSE": 0.7334620940251906,
+        "steering_MSE": 0.009087919981938218
+      }
+    },
+    "condition_33": {
+      "initial": {
+        "rows": 9,
+        "MSE": 0.6077592502528172,
+        "acceleration_MSE": 1.2105747749380806,
+        "steering_MSE": 0.004943725567553593
+      },
+      "trained": {
+        "rows": 9,
+        "MSE": 0.608891881091355,
+        "acceleration_MSE": 1.213276702950495,
+        "steering_MSE": 0.004507059232215182
+      }
+    },
+    "condition_34": {
+      "initial": {
+        "rows": 4,
+        "MSE": 0.49715198350229195,
+        "acceleration_MSE": 0.9914589484305433,
+        "steering_MSE": 0.0028450185740406648
+      },
+      "trained": {
+        "rows": 4,
+        "MSE": 0.4983420733431241,
+        "acceleration_MSE": 0.9941581752715899,
+        "steering_MSE": 0.0025259714146582775
+      }
+    },
+    "condition_35": {
+      "initial": {
+        "rows": 4,
+        "MSE": 0.2963369480037434,
+        "acceleration_MSE": 0.5918554506729113,
+        "steering_MSE": 0.0008184453345754595
+      },
+      "trained": {
+        "rows": 4,
+        "MSE": 0.3031282262213103,
+        "acceleration_MSE": 0.605230130819112,
+        "steering_MSE": 0.0010263216235085332
+      }
+    }
+  },
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "limits": "First completed training episodes can precede later drift. Oracle labels are counterfactual,including waits/brakes;label disagreement does not prove driving quality. No validation observations are used.",
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,555 @@
+{
+  "scope": "One continued-seed, known-condition development ablation",
+  "research_acceptance": "UNMET",
+  "independent_seeds": 1,
+  "continued_seed": 22,
+  "new_final_conditions": 0,
+  "initial_weights_Adam_RNG_RMS_exact": true,
+  "H0_new_failure_terms_remained_zero": true,
+  "intervention": "Only new failed-action actor/critic branches hidden in H0;old feedback retained",
+  "H": {
+    "scope": "Closed known-condition learning comparison with fixed lowlevel;single continued policy",
+    "research_acceptance": "UNMET",
+    "training_batch": "20261104_outcome_context_PPO10240_H",
+    "endpoint_batch": "20261104_outcome_context_PPO10240_H_same2_endpoint",
+    "baseline_batch": "20261104_mpc_reference_effort_H_same2_transfer",
+    "source_git_commit": "b94c1ae63782dccb0fa3fdb46e15b2cfb78b0065",
+    "training": {
+      "actual_controls": 10482,
+      "reset_ticks": 557,
+      "decisions": 1056,
+      "Adam_updates_each": 330,
+      "parameter_states": 34,
+      "learned_failure_gain": 0.0014071838231757283,
+      "actual_initial_weights_Adam_RNG_equal": true,
+      "RMS_exact": true,
+      "completed_episode_termination_counts": {
+        "success": 17
+      },
+      "unfinished_episode_not_counted_as_success": true,
+      "new_supervision": 0,
+      "learned_reference_gain": -0.00030437199166044593,
+      "wall_seconds": 2191.3862566947937,
+      "world_ticks": 11039,
+      "requested_controls": 10240,
+      "rollout_overshoot": 242
+    },
+    "before_successes": 1,
+    "after_successes": 2,
+    "before_unsafe_episodes": 0,
+    "after_unsafe_episodes": 0,
+    "unique_known_conditions": 2,
+    "paired_cases": [
+      {
+        "original_case_id": 21,
+        "before": {
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 561,
+          "interventions": 43,
+          "distance": 26.89365808814793
+        },
+        "after": {
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 449,
+          "interventions": 0,
+          "distance": 26.66259806562283,
+          "simulation_seconds": 22.45000033453107,
+          "progress": 25.996394595066715,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "control_cycle_times": {
+            "count": 449,
+            "median": 0.011555199998838361,
+            "p95": 0.013963819999480619,
+            "p99": 0.014766283998906145,
+            "max": 0.3267530999983137,
+            "over_period_fraction": 0.0022271714922048997,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 45,
+            "median": 0.35897250000198255,
+            "p95": 0.49624393999911254,
+            "p99": 12.622709356000607,
+            "max": 21.8137209000015,
+            "over_period_fraction": 0.06666666666666667,
+            "period": 0.5,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 45,
+            "median": 0.0018356000000494532,
+            "p95": 0.0022859600016090554,
+            "p99": 0.003026839999365623,
+            "max": 0.003572000001440756,
+            "over_period_fraction": 0.0,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        }
+      },
+      {
+        "original_case_id": 27,
+        "before": {
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "interventions": 560,
+          "distance": 18.403269271609837
+        },
+        "after": {
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 462,
+          "interventions": 1,
+          "distance": 26.626175883955572,
+          "simulation_seconds": 23.100000344216824,
+          "progress": 24.64166275109287,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "control_cycle_times": {
+            "count": 462,
+            "median": 0.012226300001202617,
+            "p95": 0.014643699998305237,
+            "p99": 0.0155989190002947,
+            "max": 0.3288603000000876,
+            "over_period_fraction": 0.0021645021645021645,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 47,
+            "median": 0.29763850000017555,
+            "p95": 1.133219720001578,
+            "p99": 3.360754353998634,
+            "max": 4.556653199997527,
+            "over_period_fraction": 0.0851063829787234,
+            "period": 0.5,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 47,
+            "median": 0.0017864000001281966,
+            "p95": 0.0023388200013869202,
+            "p99": 0.0024025080003775654,
+            "max": 0.0024048999985097907,
+            "over_period_fraction": 0.0,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        }
+      }
+    ],
+    "before_model_sha256": "6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e",
+    "after_model_sha256": "ca2f4bffb178c0bbde5695306a1f82d80ba527b5ce6e3e932bdda74b86469f76",
+    "initializer_model_sha256": "85740d818a0517b9d35c62554f2aa5665a2d43323c59d1da0c9f82001c0208c4",
+    "zero_effect_schema_migration": true,
+    "raw_audit_sha256": {
+      "training": "01597df96b4937af86b1c4deee0768c3936330cb22e7f0c5f1b7b9bdf79f7f81",
+      "before": "3cc57f96cc9b41dd6a89a2a93a324772572a1e1c85a090e527e4ff6dba941188",
+      "after": "9225329b2e912e3733c9ac458c20e1583c1d63212d18133535af0cdc6cab8dfd"
+    },
+    "saved_learning_proof_sha256": "11fd214c3574b7d7a7505761314d2af0619ca3b59fff92fe59c669bd965df42a",
+    "actual_controls_in_comparison": 12854,
+    "script_sha256": "1e3e912f16f5bd046f2cd06a9930b945f7ca0c2d0ee203c71795326ceba8d05c",
+    "limits": "Repeated known conditions and one continued seed,not independent-seed statistical evidence or final confirmation. Stochastic training success is separate from frozen-policy performance. Formal five-seed,120unique-condition,baseline and ablation requirements remain unmet.",
+    "architecture": {
+      "policy": "OutcomeContextPolicy",
+      "rollout_actions": 32,
+      "ppo_epochs": 10,
+      "batch_size": 32,
+      "algorithm": "PPO",
+      "gradient_clip_mode": "global",
+      "normalizer": "ReferenceContextVecNormalize",
+      "parameters": 238848,
+      "observation_shape": [
+        4736
+      ],
+      "action_shape": [],
+      "road_candidate_policy": true,
+      "reference_gain_scale": 100.0
+    },
+    "frozen_endpoint_costs": {
+      "physical_controls": 911,
+      "simulation_seconds": 45.55000067874789,
+      "interventions": 1,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    "failure_history_nonempty_predecision_count": 0
+  },
+  "H0": {
+    "scope": "Closed known-condition learning comparison with fixed lowlevel;single continued policy",
+    "research_acceptance": "UNMET",
+    "training_batch": "20261104_outcome_context_PPO10240_H0",
+    "endpoint_batch": "20261104_outcome_context_PPO10240_H0_same2_endpoint",
+    "baseline_batch": "20261104_mpc_reference_effort_H_same2_transfer",
+    "source_git_commit": "b94c1ae63782dccb0fa3fdb46e15b2cfb78b0065",
+    "training": {
+      "actual_controls": 10489,
+      "reset_ticks": 588,
+      "decisions": 1056,
+      "Adam_updates_each": 330,
+      "parameter_states": 34,
+      "learned_failure_gain": 0.0,
+      "actual_initial_weights_Adam_RNG_equal": true,
+      "RMS_exact": true,
+      "completed_episode_termination_counts": {
+        "success": 17,
+        "deadline": 1
+      },
+      "unfinished_episode_not_counted_as_success": true,
+      "new_supervision": 0,
+      "learned_reference_gain": 3.227394245186588e-06,
+      "wall_seconds": 2663.7217898368835,
+      "world_ticks": 11077,
+      "requested_controls": 10240,
+      "rollout_overshoot": 249
+    },
+    "before_successes": 1,
+    "after_successes": 2,
+    "before_unsafe_episodes": 0,
+    "after_unsafe_episodes": 0,
+    "unique_known_conditions": 2,
+    "paired_cases": [
+      {
+        "original_case_id": 21,
+        "before": {
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 561,
+          "interventions": 43,
+          "distance": 26.89365808814793
+        },
+        "after": {
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 530,
+          "interventions": 21,
+          "distance": 26.666222478467507,
+          "simulation_seconds": 26.50000039488077,
+          "progress": 26.003563908203116,
+          "plan_failures": 2,
+          "mpc_failures": 0,
+          "control_cycle_times": {
+            "count": 530,
+            "median": 0.014380900000105612,
+            "p95": 0.016800285001045266,
+            "p99": 0.017935284001978292,
+            "max": 0.32445999999981723,
+            "over_period_fraction": 0.0018867924528301887,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 53,
+            "median": 0.4835361000004923,
+            "p95": 1.0689366800004785,
+            "p99": 16.121958291999242,
+            "max": 30.31820289999814,
+            "over_period_fraction": 0.4716981132075472,
+            "period": 0.5,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 53,
+            "median": 0.0021038000013504643,
+            "p95": 0.003120720000151777,
+            "p99": 0.003978980000247243,
+            "max": 0.004623000000719912,
+            "over_period_fraction": 0.0,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        }
+      },
+      {
+        "original_case_id": 27,
+        "before": {
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "interventions": 560,
+          "distance": 18.403269271609837
+        },
+        "after": {
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 484,
+          "interventions": 13,
+          "distance": 26.94105177647168,
+          "simulation_seconds": 24.2000003606081,
+          "progress": 24.878536492557373,
+          "plan_failures": 1,
+          "mpc_failures": 0,
+          "control_cycle_times": {
+            "count": 484,
+            "median": 0.01543274999858113,
+            "p95": 0.0195777149991045,
+            "p99": 0.0309178099989731,
+            "max": 0.3322511000005761,
+            "over_period_fraction": 0.004132231404958678,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 49,
+            "median": 0.425195599997096,
+            "p95": 1.1239943600005031,
+            "p99": 4.048700172000515,
+            "max": 6.51031470000089,
+            "over_period_fraction": 0.20408163265306123,
+            "period": 0.5,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 49,
+            "median": 0.002052299998467788,
+            "p95": 0.003114839999761897,
+            "p99": 0.0032194000013987534,
+            "max": 0.0032194000013987534,
+            "over_period_fraction": 0.0,
+            "period": 0.5,
+            "unit": "seconds"
+          }
+        }
+      }
+    ],
+    "before_model_sha256": "6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e",
+    "after_model_sha256": "efe3e54a0f3d0ea4471c248c44b69f122150241808f98fd0b1947dc8c0143e64",
+    "initializer_model_sha256": "9cd67b8e2f22f7fb75a759f8d33013842bc4ca8095d1abf67f8a94df45facb91",
+    "zero_effect_schema_migration": true,
+    "raw_audit_sha256": {
+      "training": "08fc839bb72f3dc925736f4d3187ddb08ca94ba12b76f2ef57518d4b4d77c43e",
+      "before": "3cc57f96cc9b41dd6a89a2a93a324772572a1e1c85a090e527e4ff6dba941188",
+      "after": "4c40fcfc2338294ba844ef9da967adabdd8524e89e6c6a299cbd174aa069de4d"
+    },
+    "saved_learning_proof_sha256": "7ee3d96e5ca537d7269c544f81aafbbaeeec9653d756d89fe9bf06a855e67a91",
+    "actual_controls_in_comparison": 12964,
+    "script_sha256": "1e3e912f16f5bd046f2cd06a9930b945f7ca0c2d0ee203c71795326ceba8d05c",
+    "limits": "Repeated known conditions and one continued seed,not independent-seed statistical evidence or final confirmation. Stochastic training success is separate from frozen-policy performance. Formal five-seed,120unique-condition,baseline and ablation requirements remain unmet.",
+    "architecture": {
+      "policy": "OutcomeContextPolicy",
+      "rollout_actions": 32,
+      "ppo_epochs": 10,
+      "batch_size": 32,
+      "algorithm": "PPO",
+      "gradient_clip_mode": "global",
+      "normalizer": "ReferenceContextVecNormalize",
+      "parameters": 238848,
+      "observation_shape": [
+        4736
+      ],
+      "action_shape": [],
+      "road_candidate_policy": true,
+      "reference_gain_scale": 100.0
+    },
+    "frozen_endpoint_costs": {
+      "physical_controls": 1014,
+      "simulation_seconds": 50.70000075548887,
+      "interventions": 34,
+      "plan_failures": 3,
+      "mpc_failures": 0
+    },
+    "failure_history_nonempty_predecision_count": 3
+  },
+  "paired_cases": [
+    {
+      "original_known_case_id": 21,
+      "before": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 561,
+        "interventions": 43,
+        "distance": 26.89365808814793
+      },
+      "H": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 449,
+        "interventions": 0,
+        "distance": 26.66259806562283,
+        "simulation_seconds": 22.45000033453107,
+        "progress": 25.996394595066715,
+        "plan_failures": 0,
+        "mpc_failures": 0,
+        "control_cycle_times": {
+          "count": 449,
+          "median": 0.011555199998838361,
+          "p95": 0.013963819999480619,
+          "p99": 0.014766283998906145,
+          "max": 0.3267530999983137,
+          "over_period_fraction": 0.0022271714922048997,
+          "period": 0.05,
+          "unit": "seconds"
+        },
+        "decision_cycle_times": {
+          "count": 45,
+          "median": 0.35897250000198255,
+          "p95": 0.49624393999911254,
+          "p99": 12.622709356000607,
+          "max": 21.8137209000015,
+          "over_period_fraction": 0.06666666666666667,
+          "period": 0.5,
+          "unit": "seconds"
+        },
+        "policy_prediction_times": {
+          "count": 45,
+          "median": 0.0018356000000494532,
+          "p95": 0.0022859600016090554,
+          "p99": 0.003026839999365623,
+          "max": 0.003572000001440756,
+          "over_period_fraction": 0.0,
+          "period": 0.5,
+          "unit": "seconds"
+        }
+      },
+      "H0": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 530,
+        "interventions": 21,
+        "distance": 26.666222478467507,
+        "simulation_seconds": 26.50000039488077,
+        "progress": 26.003563908203116,
+        "plan_failures": 2,
+        "mpc_failures": 0,
+        "control_cycle_times": {
+          "count": 530,
+          "median": 0.014380900000105612,
+          "p95": 0.016800285001045266,
+          "p99": 0.017935284001978292,
+          "max": 0.32445999999981723,
+          "over_period_fraction": 0.0018867924528301887,
+          "period": 0.05,
+          "unit": "seconds"
+        },
+        "decision_cycle_times": {
+          "count": 53,
+          "median": 0.4835361000004923,
+          "p95": 1.0689366800004785,
+          "p99": 16.121958291999242,
+          "max": 30.31820289999814,
+          "over_period_fraction": 0.4716981132075472,
+          "period": 0.5,
+          "unit": "seconds"
+        },
+        "policy_prediction_times": {
+          "count": 53,
+          "median": 0.0021038000013504643,
+          "p95": 0.003120720000151777,
+          "p99": 0.003978980000247243,
+          "max": 0.004623000000719912,
+          "over_period_fraction": 0.0,
+          "period": 0.5,
+          "unit": "seconds"
+        }
+      }
+    },
+    {
+      "original_known_case_id": 27,
+      "before": {
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "interventions": 560,
+        "distance": 18.403269271609837
+      },
+      "H": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 462,
+        "interventions": 1,
+        "distance": 26.626175883955572,
+        "simulation_seconds": 23.100000344216824,
+        "progress": 24.64166275109287,
+        "plan_failures": 0,
+        "mpc_failures": 0,
+        "control_cycle_times": {
+          "count": 462,
+          "median": 0.012226300001202617,
+          "p95": 0.014643699998305237,
+          "p99": 0.0155989190002947,
+          "max": 0.3288603000000876,
+          "over_period_fraction": 0.0021645021645021645,
+          "period": 0.05,
+          "unit": "seconds"
+        },
+        "decision_cycle_times": {
+          "count": 47,
+          "median": 0.29763850000017555,
+          "p95": 1.133219720001578,
+          "p99": 3.360754353998634,
+          "max": 4.556653199997527,
+          "over_period_fraction": 0.0851063829787234,
+          "period": 0.5,
+          "unit": "seconds"
+        },
+        "policy_prediction_times": {
+          "count": 47,
+          "median": 0.0017864000001281966,
+          "p95": 0.0023388200013869202,
+          "p99": 0.0024025080003775654,
+          "max": 0.0024048999985097907,
+          "over_period_fraction": 0.0,
+          "period": 0.5,
+          "unit": "seconds"
+        }
+      },
+      "H0": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 484,
+        "interventions": 13,
+        "distance": 26.94105177647168,
+        "simulation_seconds": 24.2000003606081,
+        "progress": 24.878536492557373,
+        "plan_failures": 1,
+        "mpc_failures": 0,
+        "control_cycle_times": {
+          "count": 484,
+          "median": 0.01543274999858113,
+          "p95": 0.0195777149991045,
+          "p99": 0.0309178099989731,
+          "max": 0.3322511000005761,
+          "over_period_fraction": 0.004132231404958678,
+          "period": 0.05,
+          "unit": "seconds"
+        },
+        "decision_cycle_times": {
+          "count": 49,
+          "median": 0.425195599997096,
+          "p95": 1.1239943600005031,
+          "p99": 4.048700172000515,
+          "max": 6.51031470000089,
+          "over_period_fraction": 0.20408163265306123,
+          "period": 0.5,
+          "unit": "seconds"
+        },
+        "policy_prediction_times": {
+          "count": 49,
+          "median": 0.002052299998467788,
+          "p95": 0.003114839999761897,
+          "p99": 0.0032194000013987534,
+          "max": 0.0032194000013987534,
+          "over_period_fraction": 0.0,
+          "period": 0.5,
+          "unit": "seconds"
+        }
+      }
+    }
+  ],
+  "contribution_limits": "Equal completion counts do not show a feedback success-rate benefit. Nonempty failure history is counted from raw modes;zero H exposure means its new failure terms did not directly change endpoint logits/values. Training-path effects and observed intervention/time differences remain exploratory.",
+  "safe_completion_count_difference_H_minus_H0": 0,
+  "unsafe_count_difference_H_minus_H0": 0,
+  "new_training_and_endpoint_controls": 22896,
+  "registration_protocol_sha256": [
+    "0cb26915f272537d660150650a0baa599ca9edbedfe98d27900f6de1cc43dc02",
+    "c3e9bdbd6712dc8e659d502734c2db3e606cf97469e8243debedb22c72416a58"
+  ],
+  "script_sha256": "9201056208825277bcc0dc97e39733ff58623a6c590e69b6cba95361e59080dd",
+  "limits": "One seed and two previously used conditions;no independent-seed confidence interval or general benefit claim. Actual rollout overshoot is disclosed separately for each arm. Baseline controls are shared historical costs,not charged twice as new interactions."
+}

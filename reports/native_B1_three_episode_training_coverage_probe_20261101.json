@@ -1,0 +1,106 @@
+{
+  "scope": "Development hypothesis: first3own TRAIN episodes per basic condition, stride40,99solved-reference labels;512actor-only steps,unchanged PPO/critic/norm. Compare all4known roads against exact already-evaluated replay policy. No new independent trained seed or final conditions.",
+  "arms": [
+    {
+      "arm": "replay",
+      "batch": "20261101T014911209543Z_native_trained_actor_replay",
+      "protocol_sha256": "b01929ab9b777e726d4e447e2a33ae313d0d71a36c7a8d8bcd5f730f40c5f3aa",
+      "model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+      "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+      "reuse_completed": true,
+      "equivalent_prepared_checkpoint": "runs/20261101T032412251159Z_native_trained_actor_replay/resume/B1/model.zip",
+      "equivalent_prepared_model_sha256": "8d12757e5461824242cbe56877096e397d3812ba25af31b678558fa1daa287cd",
+      "reused_result_hashes": {
+        "evaluation.json": "7c69a9cff2e19e5a928fe49e7b189e60410a9c33ea1d62fb3531f8e4f36a6cf0",
+        "summary.json": "cb234da608bdc9928005f9041da562bd545f2673118a6e810b3415ac533fce26",
+        "endpoint_raw_audit.json": "ca49808794f6ae76b1183e9ec851b1598381f3ba373f073168051bb9fd982016",
+        "measured_start_inference.json": "21563b964764a62b66d1743088d25238e8c116ac872d7e65fbb59b79bb368c57"
+      },
+      "cases": 4,
+      "successes": 3,
+      "termination_counts": {
+        "success": 3,
+        "out_of_bounds": 1
+      },
+      "case_results": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "controls": 378
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "controls": 264
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "controls": 312
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "controls": 321
+        }
+      ],
+      "unsafe_cases": 1,
+      "basic_gate_passed": false,
+      "raw_controls_verified": 1275,
+      "new_PPO_updates": 0,
+      "additional_supervised_updates_before_evaluation": 512,
+      "raw_audit_sha256": "ca49808794f6ae76b1183e9ec851b1598381f3ba373f073168051bb9fd982016"
+    },
+    {
+      "arm": "trajectory_correction",
+      "batch": "20261101T032412886357Z_native_trained_actor_trajectory_correction",
+      "protocol_sha256": "bf62cd77e803a38c99df403d930ccaa60be7407339f33d0f0a6fa4bb6ca96227",
+      "model_sha256": "59a1e0b019f88ab5edac35579b02dadb19fb7c57aaf8948100791d7ceafdbba4",
+      "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+      "cases": 4,
+      "successes": 2,
+      "termination_counts": {
+        "success": 2,
+        "out_of_bounds": 2
+      },
+      "case_results": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "controls": 353
+        },
+        {
+          "case_id": 1,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "controls": 152
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "controls": 310
+        },
+        {
+          "case_id": 3,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "controls": 143
+        }
+      ],
+      "unsafe_cases": 2,
+      "basic_gate_passed": false,
+      "raw_controls_verified": 958,
+      "new_PPO_updates": 0,
+      "additional_supervised_updates_before_evaluation": 512,
+      "raw_audit_sha256": "8cf03cb1e647c31d4e992c2131e56e4637eba3702a1576c5557c4b28a7e04e7d"
+    }
+  ],
+  "new_PPO_updates": 0,
+  "research_acceptance": "UNMET;one known development seed,not a qualified five-seed baseline"
+}

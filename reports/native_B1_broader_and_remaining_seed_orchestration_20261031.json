@@ -1,0 +1,44 @@
+{
+  "scope": "Waiting-only orchestration revision;no training or server interrupted",
+  "old_execution": "remaining_v4_seed_PPO_execution_20261031_v3",
+  "old_idle_status": {
+    "epoch": 1793432919.8368948,
+    "pid": 55888,
+    "creation_epoch": 1793423988.154003,
+    "prior_status": {
+      "phase": "WAITING_FOR_ALL_THREE_COMPLETE_SEED_GATES",
+      "pid": 55888,
+      "epoch": 1793432914.1459143,
+      "created_batches": []
+    },
+    "replacement_execution": "remaining_v4_seed_PPO_execution_20261031_v4",
+    "scope": "No worker or CARLA server terminated;no physical controls or optimizer steps in old driver"
+  },
+  "new_execution": "remaining_v4_seed_PPO_execution_20261031_v4",
+  "new_plan_sha256": "748ac6ced4ca27c7036d38f91c35d4a36f622f45d2144fe02e48c87563e083cf",
+  "same_seed_plan_bytes": true,
+  "seeds": [
+    33,
+    44,
+    55
+  ],
+  "frozen_source_files_verified": 291,
+  "source_manifest_sha256": "522a9e33d652f55a61b7f2b3a9c6495d9d7cdd9fe561e2588e889368fd2e9894",
+  "same_bound_postprocessor": true,
+  "dependency": "20261031T073909784878Z_native_supervised_ppo",
+  "dependency_requires_normal_guard_and_owned_server_cleanup": true,
+  "observed_status": {
+    "phase": "WAITING_FOR_REGISTERED_B1_BROADER_PPO",
+    "pid": 60176,
+    "epoch": 1793433309.5375638,
+    "created_batches": []
+  },
+  "launch_receipt": {
+    "driver_creation_epoch": 1793432936.424,
+    "queue_pid": 50796,
+    "driver_pid": 5444,
+    "queue_creation_epoch": 1793432936.415,
+    "scope": "Same seed33,44,55 PPO plan after prepared B1;old waiting-only driver superseded with verified retained handle"
+  },
+  "research_acceptance": "UNMET"
+}

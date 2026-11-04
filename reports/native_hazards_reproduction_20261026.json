@@ -1,0 +1,60 @@
+{
+  "scope": "Actual source921e069 independent Windows checkout and hosted CPU verification. Local cadence model data reconstructed offline; not a new public-model download or CARLA replay.",
+  "source_commit": "921e06931db56bf00a48af98038ef930a2c543db",
+  "hosted_ci": {
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/40338847695",
+    "conclusion": "success",
+    "passed": 345,
+    "skipped": 3,
+    "carla_deselected": 4,
+    "seconds": 106.37,
+    "log_sha256": "73799fc551975f2220dd7401aaa924279c4cb7a4aa1cd077d2ec238910f900b2"
+  },
+  "independent_cpu": {
+    "passed": 347,
+    "skipped": 1,
+    "carla_deselected": 4,
+    "seconds": 300.3,
+    "log_sha256": "c1a8f7969ab2b58e99e839029aeee4c35f0f3319929e56e3356dfe152d1de3b9",
+    "junit_sha256": "e287bfb94c3697071c5b20851f9c72f940b67be5cc7051b499f6db070f7d7236"
+  },
+  "raw_audit_equal": true,
+  "raw_audit_sha256": "1db5d9e6ff17bb477f991ecab867a9129388786265dced9b7cc4e6ebe269d5c5",
+  "raw_controls_verified": 21725,
+  "policy_model_sha256": "26279f158f5769ed73b1ece3ae7770f826afb722c4a1f618f4f96facebf89b24",
+  "measured_initial_actions_verified": [
+    {
+      "case_id": 0,
+      "action": [
+        1,
+        3
+      ]
+    },
+    {
+      "case_id": 1,
+      "action": [
+        0,
+        5
+      ]
+    },
+    {
+      "case_id": 2,
+      "action": [
+        1,
+        3
+      ]
+    },
+    {
+      "case_id": 3,
+      "action": [
+        1,
+        4
+      ]
+    }
+  ],
+  "frozen_inference_normalization": true,
+  "figure_byte_identical": true,
+  "figure_sha256": "a85faf062ab5faa77540d8d4a013ce6172ccdd2add6b8e16abde2da11106a57e",
+  "new_controls": 0,
+  "optimizer_updates": 0
+}

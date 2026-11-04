@@ -1,0 +1,83 @@
+{
+  "scope": "Closed four-condition engineering transfer plus previously closed single-condition transfer;same frozen PPO and identical navstack source",
+  "research_acceptance": "UNMET",
+  "source_commit": "2f3fb5d",
+  "cases": [
+    {
+      "original_case_id": 0,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "distance": 16.770703753848238,
+      "interventions": 650,
+      "plan_failures": 65,
+      "mpc_failures": 0
+    },
+    {
+      "original_case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 410,
+      "distance": 24.752811038397425,
+      "interventions": 31,
+      "plan_failures": 3,
+      "mpc_failures": 0
+    },
+    {
+      "original_case_id": 21,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "distance": 0.0,
+      "interventions": 900,
+      "plan_failures": 90,
+      "mpc_failures": 0
+    },
+    {
+      "original_case_id": 27,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "distance": 0.0,
+      "interventions": 900,
+      "plan_failures": 90,
+      "mpc_failures": 0
+    }
+  ],
+  "four_condition_successes": 1,
+  "four_condition_controls": 3110,
+  "four_condition_world_ticks": 3233,
+  "four_condition_NN_decisions": 311,
+  "raw_audit_sha256": "b8ffa6868a98a171c4d4e931f68c095afb8fb4e766c6744c2c8d6bd2700f8fa2",
+  "combined_v2": {
+    "unique_known_conditions": 5,
+    "successes": 2,
+    "deadlines": 3,
+    "controls": 3668,
+    "one_original_failed_condition_repaired": 1,
+    "baseline_same_five_successes": 1,
+    "independent_training_seeds": 0
+  },
+  "all_joint_profile_native_controls_including_failed_v1": 4568,
+  "CPU_regression": {
+    "passed": 1392,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "seconds": 321.32,
+    "failures": 0,
+    "xml": "joint_speed_full_CPU.xml",
+    "xml_sha256": "e220b3a7b5c1953712963ce8708db9f6aca61ee4d41c5c05190c3088180a8282",
+    "github_CI": {
+      "commit": "2f3fb5ddd1fa4a9b9d39fa3f36568c3b09848740",
+      "run": 41779692919,
+      "conclusion": "success"
+    }
+  },
+  "failure_taxonomy": {
+    "original_case0": "Progress then policy switch;2 incompatible initial-speed caps,1 native rejection,62 open-set exhaustions.",
+    "original_case21": "Lower-speed spatial path found7989nodes,but nine-offset native reference query rejected one point at final pose227of228.",
+    "original_case27": "Lower-speed spatial path found486nodes,but native query rejected one point at pose221of228 near terminal approach."
+  },
+  "current_action": "Offline nine-offset search prototype completed32000-node timeout;not adopted. No native workers or CPU suites remain active.",
+  "limits": "Only descriptive development comparison with one frozen policy;no independent-seed inference. Formal earlier30/24results unchanged. Does not justify expanding training or claiming general safety,learning benefit or real-time operation."
+}

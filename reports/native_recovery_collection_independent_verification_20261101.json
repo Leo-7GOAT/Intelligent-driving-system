@@ -1,0 +1,30 @@
+{
+  "scope": "Independent Git checkout rebuild of the completed new-TRAINnative recovery report;local raw inputs,no network redownload or new driving.",
+  "source_commit": "4e2e25f22743bde0fac21a34de15e4acfc8d769f",
+  "independent_targeted_tests": {
+    "passed": 21,
+    "seconds": 2.91
+  },
+  "root_full_CPU_regression": {
+    "passed": 1091,
+    "skipped": 1,
+    "CARLA_deselected": 4,
+    "seconds": 156.11
+  },
+  "report": "reports/native_B1_executed_recovery_collection_and_probe_20261101.json",
+  "report_sha256": "43a44cfa3832076dc1b731888cb135966bd6cc29548e1205a12f4fd91373b696",
+  "independent_report_bytes_identical": true,
+  "new_controls": 0,
+  "new_fit_updates": 0,
+  "raw_assets_publicly_reconstructed": false,
+  "research_acceptance": "UNMET",
+  "hosted_CPU_CI": {
+    "run_id": 41285718700,
+    "source_commit": "4e2e25f22743bde0fac21a34de15e4acfc8d769f",
+    "conclusion": "success",
+    "passed": 1074,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "seconds": 200.39
+  }
+}

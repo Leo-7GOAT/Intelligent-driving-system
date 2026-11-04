@@ -1,0 +1,366 @@
+{
+  "scope": "Complete known-development endpoint capsules for continued-seed H/H0 and shared-lowlevel rule B3",
+  "research_acceptance": "UNMET",
+  "source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+  "capsules": [
+    {
+      "files": 645,
+      "bytes": 17803714,
+      "sha256": "9d53e4565f1317c6836a3892a5b60fbc8421fec0147c460cfdae6b394f718172",
+      "verified_controls": {
+        "H": 10715
+      },
+      "metadata_files_transformed": 6,
+      "role": "H_placements30",
+      "batch": "20261104_outcome_frozen_H_placements30",
+      "archive": "outcome_H_placements30.zip",
+      "package_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+      "package_worktree_had_local_changes": false
+    },
+    {
+      "files": 639,
+      "bytes": 15680364,
+      "sha256": "f930aa3811acacb497645cd971aa1697bd4afcf788d94695c5e5ab8e929982dc",
+      "verified_controls": {
+        "H": 8257
+      },
+      "metadata_files_transformed": 6,
+      "role": "H_known24",
+      "batch": "20261104_outcome_frozen_H_known24",
+      "archive": "outcome_H_known24.zip",
+      "package_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+      "package_worktree_had_local_changes": false
+    },
+    {
+      "files": 645,
+      "bytes": 17739657,
+      "sha256": "aeff7cb3ab8550ac9975f1936868af8bc44c875ed634387b057ae5d89b1897bd",
+      "verified_controls": {
+        "H": 10751
+      },
+      "metadata_files_transformed": 6,
+      "role": "H0_placements30",
+      "batch": "20261104_outcome_frozen_H0_placements30",
+      "archive": "outcome_H0_placements30.zip",
+      "package_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+      "package_worktree_had_local_changes": true
+    },
+    {
+      "files": 639,
+      "bytes": 15585188,
+      "sha256": "4f36b85959bb01e555eb6f4a851ae4080f83b22fc0ced62657c64c7e1ea97339",
+      "verified_controls": {
+        "H": 8151
+      },
+      "metadata_files_transformed": 6,
+      "role": "H0_known24",
+      "batch": "20261104_outcome_frozen_H0_known24",
+      "archive": "outcome_H0_known24.zip",
+      "package_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+      "package_worktree_had_local_changes": true
+    },
+    {
+      "role": "B3_both",
+      "archive": "shared_B3_both_inventories.zip",
+      "bytes": 22689037,
+      "sha256": "cdb2cde306958ac322366753b36c92a1372d12596afa60d821db5b6fbef32fd7",
+      "files": 1300,
+      "verified_controls": 18814,
+      "package_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+      "package_worktree_had_local_changes": true
+    }
+  ],
+  "verified_evaluation_controls": 56688,
+  "registered_entries_each_method": 54,
+  "independent_learned_seeds": 1,
+  "new_final_conditions": 0,
+  "new_controls_during_packaging": 0,
+  "new_optimizer_updates_during_packaging": 0,
+  "limits": "Complete known-development endpoint and raw/model/figure reproduction for one continued learned seed,not full ancestor training reconstruction. H/H0/B3 all54/54;no PPO or feedback completion-rate advantage established. All four H/H0 fresh reconstructions and both B3 raw/engine inventories completed;all original failures and costs retained. No new physical execution,rule-action replay or final conditions.",
+  "release": {
+    "tag": "v0.4.0-dev.20261104-outcome-shared-control",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.4.0-dev.20261104-outcome-shared-control",
+    "published_at": "2026-11-04T12:17:36Z",
+    "target_commit": "582f8f4839b087dd09d6522a6968a59a11b769cb",
+    "is_prerelease": true
+  },
+  "anonymous_download": {
+    "scope": "Anonymous public download of every new ZIP and verification of every exported file byte;NN/raw replay results are separate",
+    "capsules": [
+      {
+        "archive": "outcome_H_placements30.zip",
+        "sha256": "9d53e4565f1317c6836a3892a5b60fbc8421fec0147c460cfdae6b394f718172",
+        "bytes": 17803714,
+        "verified_files": 645,
+        "anonymous": true,
+        "all_zip_files_exact": true
+      },
+      {
+        "archive": "outcome_H_known24.zip",
+        "sha256": "f930aa3811acacb497645cd971aa1697bd4afcf788d94695c5e5ab8e929982dc",
+        "bytes": 15680364,
+        "verified_files": 639,
+        "anonymous": true,
+        "all_zip_files_exact": true
+      },
+      {
+        "archive": "outcome_H0_placements30.zip",
+        "sha256": "aeff7cb3ab8550ac9975f1936868af8bc44c875ed634387b057ae5d89b1897bd",
+        "bytes": 17739657,
+        "verified_files": 645,
+        "anonymous": true,
+        "all_zip_files_exact": true
+      },
+      {
+        "archive": "outcome_H0_known24.zip",
+        "sha256": "4f36b85959bb01e555eb6f4a851ae4080f83b22fc0ced62657c64c7e1ea97339",
+        "bytes": 15585188,
+        "verified_files": 639,
+        "anonymous": true,
+        "all_zip_files_exact": true
+      },
+      {
+        "archive": "shared_B3_both_inventories.zip",
+        "sha256": "cdb2cde306958ac322366753b36c92a1372d12596afa60d821db5b6fbef32fd7",
+        "bytes": 22689037,
+        "verified_files": 1300,
+        "anonymous": true,
+        "all_zip_files_exact": true
+      }
+    ],
+    "verified_files": 3868,
+    "verified_bytes": 89497960,
+    "new_controls": 0,
+    "new_updates": 0
+  },
+  "server_assets": [
+    {
+      "name": "assets.json",
+      "bytes": 3020,
+      "sha256": "9305cf3ee6b1f9a80b2b99c7df10d51924c789c9ae52a92187922476815101a2"
+    },
+    {
+      "name": "fresh_reproduction_complete.json",
+      "bytes": 7116,
+      "sha256": "151825a328aaa268c5b40a0a1d668b0fa01bdf91942043ebc9af4a1b17aa1cb3"
+    },
+    {
+      "name": "outcome_H0_known24.zip",
+      "bytes": 15585188,
+      "sha256": "4f36b85959bb01e555eb6f4a851ae4080f83b22fc0ced62657c64c7e1ea97339"
+    },
+    {
+      "name": "outcome_H0_placements30.zip",
+      "bytes": 17739657,
+      "sha256": "aeff7cb3ab8550ac9975f1936868af8bc44c875ed634387b057ae5d89b1897bd"
+    },
+    {
+      "name": "outcome_H_known24.zip",
+      "bytes": 15680364,
+      "sha256": "f930aa3811acacb497645cd971aa1697bd4afcf788d94695c5e5ab8e929982dc"
+    },
+    {
+      "name": "outcome_H_placements30.zip",
+      "bytes": 17803714,
+      "sha256": "9d53e4565f1317c6836a3892a5b60fbc8421fec0147c460cfdae6b394f718172"
+    },
+    {
+      "name": "RELEASE_NOTES.md",
+      "bytes": 4496,
+      "sha256": "548789d5aceba3090ba22c272be3859f87ee81e017de4ce8b47cf01b0733b45d"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 461,
+      "sha256": "3ee629c29587cd587a904645d761e9848b205fecc997e38fa68da7a6eaee5355"
+    },
+    {
+      "name": "shared_B3_both_inventories.zip",
+      "bytes": 22689037,
+      "sha256": "cdb2cde306958ac322366753b36c92a1372d12596afa60d821db5b6fbef32fd7"
+    }
+  ],
+  "fresh_checkout_reconstruction": {
+    "H_placements30": {
+      "status": "COMPLETE",
+      "receipt_sha256": "97d2d5f7c358973c49889b9cac436f8a48fce7675c825e746d50f369c4e35472",
+      "receipt": {
+        "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+        "archive_sha256": "9d53e4565f1317c6836a3892a5b60fbc8421fec0147c460cfdae6b394f718172",
+        "asset_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "reproduction_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "verified_files": 645,
+        "methods": [
+          {
+            "method": "H",
+            "raw_audit_sha256": "32821d5fa144a02e7801eedb852ffe57034ee83a7d4c2c3c2ff094b0d2feb18a",
+            "verified_controls": 10715,
+            "measured_start_actions_reproduced": 30,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0,
+            "static_cases_reproduced": 30,
+            "static_actions_reproduced": 1086
+          }
+        ],
+        "figure_sha256": "5f14f3d1af0aebcf6e6f7213b19af282061bb40c362cf5b84756c45833de479e",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis",
+        "reference_context_reproduced": true,
+        "strict_engine_delivery_reproduced": true,
+        "engine_controls_verified": 10715
+      }
+    },
+    "H_known24": {
+      "status": "COMPLETE",
+      "receipt_sha256": "cb3b81f1dae141776981d16a9b42fdedbbc7e0b4e79c7018ad41655f38b305f9",
+      "receipt": {
+        "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+        "archive_sha256": "f930aa3811acacb497645cd971aa1697bd4afcf788d94695c5e5ab8e929982dc",
+        "asset_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "reproduction_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "verified_files": 639,
+        "methods": [
+          {
+            "method": "H",
+            "raw_audit_sha256": "bd0ca94870ba277e4e85d94aa416262c67f84391bad1a063f33f73efca4be10f",
+            "verified_controls": 8257,
+            "measured_start_actions_reproduced": 24,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0,
+            "static_cases_reproduced": 16,
+            "static_actions_reproduced": 519
+          }
+        ],
+        "figure_sha256": "924156ad58c67507c95d7b95a9723beb62bd2561c405fef4e72221e7c00999f2",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis",
+        "reference_context_reproduced": true,
+        "strict_engine_delivery_reproduced": true,
+        "engine_controls_verified": 8257
+      }
+    },
+    "H0_placements30": {
+      "status": "COMPLETE",
+      "receipt_sha256": "05d34d8c369520afde2c31ac0001ea95fb18af7607e5e52d36f9c65046d3a16e",
+      "receipt": {
+        "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+        "archive_sha256": "aeff7cb3ab8550ac9975f1936868af8bc44c875ed634387b057ae5d89b1897bd",
+        "asset_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "reproduction_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "verified_files": 645,
+        "methods": [
+          {
+            "method": "H",
+            "raw_audit_sha256": "8363ed5097bb25bd6fe8c01d9c00aec60b36427ea6c334a30ea58aa5ecd8a321",
+            "verified_controls": 10751,
+            "measured_start_actions_reproduced": 30,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0,
+            "static_cases_reproduced": 30,
+            "static_actions_reproduced": 1091
+          }
+        ],
+        "figure_sha256": "637b0feaaa34d255500389ff4d1e9156c51f5e694780050a776be299c10618b8",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis",
+        "reference_context_reproduced": true,
+        "strict_engine_delivery_reproduced": true,
+        "engine_controls_verified": 10751
+      }
+    },
+    "H0_known24": {
+      "status": "COMPLETE",
+      "receipt_sha256": "fd91c57cb81eb3b74fadc49cb36ebe82541129ad4d9349cfacd5d2d43f75e868",
+      "receipt": {
+        "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+        "archive_sha256": "4f36b85959bb01e555eb6f4a851ae4080f83b22fc0ced62657c64c7e1ea97339",
+        "asset_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "reproduction_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+        "verified_files": 639,
+        "methods": [
+          {
+            "method": "H",
+            "raw_audit_sha256": "2e6a4ad2f92ae947908a3d3f3848b58cfbdf90cce96b0e8d8d0cf5449e5d5fca",
+            "verified_controls": 8151,
+            "measured_start_actions_reproduced": 24,
+            "normalization_frozen": true,
+            "new_controls": 0,
+            "optimizer_updates": 0,
+            "static_cases_reproduced": 16,
+            "static_actions_reproduced": 511
+          }
+        ],
+        "figure_sha256": "af199f62b7c3100ddc2f608748250054ba96ae35b8d4b6f5cbeef3cdeb320b9b",
+        "figure_byte_identical": true,
+        "figure_baseline": "packaged_analysis",
+        "reference_context_reproduced": true,
+        "strict_engine_delivery_reproduced": true,
+        "engine_controls_verified": 8151
+      }
+    },
+    "B3": {
+      "status": "COMPLETE",
+      "receipt_sha256": "0126d2c1bc6c6bbb374103d2b75b2fe71aa0265d686905fb7523b83cc2e9f0f1",
+      "receipt": {
+        "scope": "Fresh checkout trusted B3 capsule file/raw/engine verification;no rule-action replay or new execution",
+        "archive_sha256": "cdb2cde306958ac322366753b36c92a1372d12596afa60d821db5b6fbef32fd7",
+        "verified_files": 1300,
+        "batches": [
+          {
+            "batch": "20261104_shared_lowlevel_B3_r2_placements30",
+            "cases": 30,
+            "controls": 10720,
+            "raw_exact": true,
+            "engine_gate": true
+          },
+          {
+            "batch": "20261104_shared_lowlevel_B3_r2_known24",
+            "cases": 24,
+            "controls": 8094,
+            "raw_exact": true,
+            "engine_gate": true
+          }
+        ],
+        "new_controls": 0,
+        "new_updates": 0
+      }
+    }
+  },
+  "fresh_source_commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+  "fresh_source_worktree_clean": true,
+  "auditors_byte_identical_between_fresh_and_CI_commits": true,
+  "source_CI": {
+    "commit": "582f8f4839b087dd09d6522a6968a59a11b769cb",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41827384332",
+    "status": "SUCCESS",
+    "passed": 1415,
+    "skipped": 25,
+    "carla_excluded": 4,
+    "seconds": 166.51
+  },
+  "initial_CI_failure_preserved": {
+    "commit": "ac41666e97b617e677aed54057a8bad48b245aa8",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41826135659",
+    "failed": 2,
+    "passed": 1413,
+    "cause": "Offline RectangleRoadBatch subclass overrode refresh and lacked production integer-window cache;explicit merged-rectangle window override fixes it without changing the production kernel or endpoint auditors"
+  },
+  "complete_reconstruction_totals": {
+    "verified_files": 3868,
+    "engine_controls": 56688,
+    "measured_start_actions": 108,
+    "static_NN_actions": 3207,
+    "byte_identical_figures": 4,
+    "new_controls": 0,
+    "new_updates": 0
+  },
+  "complete_reconstruction_asset_sha256": "151825a328aaa268c5b40a0a1d668b0fa01bdf91942043ebc9af4a1b17aa1cb3",
+  "complete_reconstruction_asset": {
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.4.0-dev.20261104-outcome-shared-control/fresh_reproduction_complete.json",
+    "sha256": "151825a328aaa268c5b40a0a1d668b0fa01bdf91942043ebc9af4a1b17aa1cb3",
+    "anonymous_download_verified": true
+  }
+}

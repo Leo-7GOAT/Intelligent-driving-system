@@ -1,0 +1,20 @@
+{
+  "scope": "Actual retained-state lower-rate basic PPOlearning extension;not full-task qualification",
+  "seed": 11,
+  "batch": "20261101T005612994446Z_native_B1_basic_lr_extension",
+  "parent_basic_course": "20261031T232838093068Z_native_B1_basic_PPO_course",
+  "cases": 4,
+  "successes": 3,
+  "termination_counts": {
+    "success": 3,
+    "deadline": 1
+  },
+  "total_policy_lineage_controls": 20480,
+  "raw_controls_verified": 12267,
+  "model_sha256": "e7abb6ea1181b934c26053b95500b78d668a7561e682c3d50a53cd0adef8c5d0",
+  "normalization_sha256": "e615c46217a9b6db9dd4405e26dd1f94f50084a7dcd81cb4e48137bb0659d34f",
+  "research_acceptance": "UNMET",
+  "basic_qualified_after_learning": true,
+  "new_basic_training_controls": 10240,
+  "new_basic_Adam_steps": 320
+}

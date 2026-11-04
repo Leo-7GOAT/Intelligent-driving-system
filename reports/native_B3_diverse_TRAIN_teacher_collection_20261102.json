@@ -1,0 +1,56 @@
+{
+  "scope": "Completed strongB3 TRAIN-only supervision collection on twelve separated new base paths;not learned-policy performance.",
+  "batch": "20261102T101413887816Z_native_diverse_TRAIN36_teacher",
+  "data_role": "TRAIN_EXTRA_SUPERVISION",
+  "base_paths": 12,
+  "cases": 36,
+  "successes": 31,
+  "core_successes": {
+    "curve": 12,
+    "static": 7,
+    "walker": 12
+  },
+  "failures": [
+    {
+      "case_id": 14,
+      "termination": "deadline",
+      "controls": 900
+    },
+    {
+      "case_id": 16,
+      "termination": "out_of_bounds",
+      "controls": 101
+    },
+    {
+      "case_id": 17,
+      "termination": "deadline",
+      "controls": 900
+    },
+    {
+      "case_id": 19,
+      "termination": "deadline",
+      "controls": 900
+    },
+    {
+      "case_id": 23,
+      "termination": "deadline",
+      "controls": 900
+    }
+  ],
+  "actual_controls": 14479,
+  "world_ticks": 15594,
+  "reset_ticks": 1115,
+  "wall_seconds": 1836.4903635978699,
+  "all_engine_controls_acknowledged": true,
+  "raw_cases_verified": 36,
+  "raw_controls_verified": 14479,
+  "protocol_sha256": "00353a174179effb1394962c39dba29b3241c0a1fa6461abd4dcb23c57786621",
+  "raw_audit_sha256": "6da40f1fe20cfc686194309fd079dabaab16bce38be3c2cf58af1b31e5f80662",
+  "strict_delivery_sha256": "7830d59cd75129e5fbc43fd9b78c09c441489a196b5a76f2d2db0ca07de7f031",
+  "inventory_sha256": "020733789977622869afcea179ea187d441a72ed170513976ad592aa35a6def1",
+  "source_files": 391,
+  "new_PPO_updates": 0,
+  "final_conditions_used": 0,
+  "research_acceptance": "UNMET",
+  "limits": "Rule-only extra TRAINlabels,not PPO gain,independent final validation or a fully healthy controller. Four static deadlines and one bounds failure retained. Only successful nominal episodes eligible for actor teaching;allrawcases kept."
+}

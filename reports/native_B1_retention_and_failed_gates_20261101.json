@@ -1,0 +1,573 @@
+{
+  "scope": "Actual rejected99-label native probe and subsequent TRAIN-only retention diagnostics;no accepted new baseline",
+  "native_99label_probe": {
+    "report": "reports/native_B1_three_episode_training_coverage_probe_20261101.json",
+    "replay_successes": 3,
+    "replay_bounds_failures": 1,
+    "correction_successes": 2,
+    "correction_bounds_failures": 2,
+    "correction_new_evaluation_controls": 958,
+    "new_PPO_updates": 0
+  },
+  "teacher_TRAIN_retention_diagnostic": {
+    "scope": "TRAIN-only retention errors of existing policies;no fitting or driving",
+    "rows": 3496,
+    "models": {
+      "trained_parent": {
+        "all_teacher_TRAIN": {
+          "rows": 3496,
+          "MSE": 0.0019380453814969395,
+          "acceleration_MSE": 0.003667738308784205,
+          "steering_MSE": 0.0002083524542096749
+        },
+        "groups": {
+          "0": {
+            "rows": 272,
+            "MSE": 0.00040743493434815655,
+            "acceleration_MSE": 0.0005450715810116135,
+            "steering_MSE": 0.0002697982876846996
+          },
+          "1": {
+            "rows": 278,
+            "MSE": 0.00028154233652069144,
+            "acceleration_MSE": 0.00040157992732378146,
+            "steering_MSE": 0.00016150474571760155
+          },
+          "2": {
+            "rows": 249,
+            "MSE": 0.002384058922247388,
+            "acceleration_MSE": 0.004593469511371165,
+            "steering_MSE": 0.00017464833312360987
+          },
+          "3": {
+            "rows": 241,
+            "MSE": 0.0004096406742318541,
+            "acceleration_MSE": 0.0005222054433088104,
+            "steering_MSE": 0.00029707590515489765
+          },
+          "4": {
+            "rows": 285,
+            "MSE": 0.00021224470053385713,
+            "acceleration_MSE": 0.00025600694344253436,
+            "steering_MSE": 0.00016848245762517987
+          },
+          "5": {
+            "rows": 289,
+            "MSE": 0.002292081899229391,
+            "acceleration_MSE": 0.004316085578443514,
+            "steering_MSE": 0.00026807822001526663
+          },
+          "6": {
+            "rows": 272,
+            "MSE": 0.00028319480038735883,
+            "acceleration_MSE": 0.00036191377840542156,
+            "steering_MSE": 0.00020447582236929606
+          },
+          "7": {
+            "rows": 276,
+            "MSE": 0.0003645200265200859,
+            "acceleration_MSE": 0.0005167180910614558,
+            "steering_MSE": 0.0002123219619787161
+          },
+          "8": {
+            "rows": 332,
+            "MSE": 0.003574890293560162,
+            "acceleration_MSE": 0.006988032411728793,
+            "steering_MSE": 0.00016174817539153227
+          },
+          "9": {
+            "rows": 356,
+            "MSE": 0.003294178682504651,
+            "acceleration_MSE": 0.006435535057801373,
+            "steering_MSE": 0.00015282230720792774
+          },
+          "10": {
+            "rows": 305,
+            "MSE": 0.004450439229743665,
+            "acceleration_MSE": 0.008748939693761483,
+            "steering_MSE": 0.0001519387657258474
+          },
+          "11": {
+            "rows": 312,
+            "MSE": 0.00397177833720274,
+            "acceleration_MSE": 0.007632229039546008,
+            "steering_MSE": 0.00031132763485947133
+          },
+          "1024": {
+            "rows": 5,
+            "MSE": 0.0011670541431998028,
+            "acceleration_MSE": 0.0022158844816121182,
+            "steering_MSE": 0.00011822380478748729
+          },
+          "1025": {
+            "rows": 5,
+            "MSE": 0.0006129200428625859,
+            "acceleration_MSE": 0.0011615459708062658,
+            "steering_MSE": 6.42941149189058e-05
+          },
+          "1026": {
+            "rows": 5,
+            "MSE": 0.0002528085443561645,
+            "acceleration_MSE": 0.00040277355420150764,
+            "steering_MSE": 0.0001028435345108214
+          },
+          "1027": {
+            "rows": 5,
+            "MSE": 0.0006964174509396692,
+            "acceleration_MSE": 0.0013078748783354036,
+            "steering_MSE": 8.49600235439348e-05
+          },
+          "1031": {
+            "rows": 2,
+            "MSE": 0.0003842443216724445,
+            "acceleration_MSE": 0.0007258105953390492,
+            "steering_MSE": 4.267804800583974e-05
+          },
+          "1034": {
+            "rows": 3,
+            "MSE": 0.005970084330448602,
+            "acceleration_MSE": 0.011857478714505987,
+            "steering_MSE": 8.268994639121692e-05
+          },
+          "1035": {
+            "rows": 3,
+            "MSE": 0.0016211790640754606,
+            "acceleration_MSE": 0.002736280461045834,
+            "steering_MSE": 0.0005060776671050871
+          },
+          "1041": {
+            "rows": 1,
+            "MSE": 6.53118876155212e-05,
+            "acceleration_MSE": 9.096425006660525e-05,
+            "steering_MSE": 3.965952516443716e-05
+          }
+        },
+        "log_std": [
+          -4.000025272369385,
+          -3.999575138092041
+        ]
+      },
+      "replay": {
+        "all_teacher_TRAIN": {
+          "rows": 3496,
+          "MSE": 0.0015531365047104716,
+          "acceleration_MSE": 0.0030090024864378004,
+          "steering_MSE": 9.727052298314204e-05
+        },
+        "groups": {
+          "0": {
+            "rows": 272,
+            "MSE": 0.00017874268175099544,
+            "acceleration_MSE": 0.00030515777847533223,
+            "steering_MSE": 5.232758502665863e-05
+          },
+          "1": {
+            "rows": 278,
+            "MSE": 0.00016856768868822038,
+            "acceleration_MSE": 0.00023862257217506855,
+            "steering_MSE": 9.851280520137222e-05
+          },
+          "2": {
+            "rows": 249,
+            "MSE": 0.0002998678514691334,
+            "acceleration_MSE": 0.0005444981450986466,
+            "steering_MSE": 5.523755783962027e-05
+          },
+          "3": {
+            "rows": 241,
+            "MSE": 0.00019639331158271506,
+            "acceleration_MSE": 0.0003118373774899915,
+            "steering_MSE": 8.09492456754386e-05
+          },
+          "4": {
+            "rows": 285,
+            "MSE": 0.00014892736443847105,
+            "acceleration_MSE": 0.00020393733616985458,
+            "steering_MSE": 9.39173927070875e-05
+          },
+          "5": {
+            "rows": 289,
+            "MSE": 0.0014291249320325349,
+            "acceleration_MSE": 0.0026921256272414945,
+            "steering_MSE": 0.00016612423682357458
+          },
+          "6": {
+            "rows": 272,
+            "MSE": 0.0001767266663848497,
+            "acceleration_MSE": 0.00023090890184281545,
+            "steering_MSE": 0.00012254443092688384
+          },
+          "7": {
+            "rows": 276,
+            "MSE": 0.00020251924816609064,
+            "acceleration_MSE": 0.0002943348883103912,
+            "steering_MSE": 0.00011070360802179
+          },
+          "8": {
+            "rows": 332,
+            "MSE": 0.00335592674545572,
+            "acceleration_MSE": 0.006651196631393036,
+            "steering_MSE": 6.065685951840359e-05
+          },
+          "9": {
+            "rows": 356,
+            "MSE": 0.0031647753531196636,
+            "acceleration_MSE": 0.006213756161162624,
+            "steering_MSE": 0.00011579454507670079
+          },
+          "10": {
+            "rows": 305,
+            "MSE": 0.004084854244267995,
+            "acceleration_MSE": 0.00808871375342547,
+            "steering_MSE": 8.099473511052133e-05
+          },
+          "11": {
+            "rows": 312,
+            "MSE": 0.003722663981612684,
+            "acceleration_MSE": 0.0073177809117675905,
+            "steering_MSE": 0.00012754705145777816
+          },
+          "1024": {
+            "rows": 5,
+            "MSE": 0.0001887829871787705,
+            "acceleration_MSE": 0.00035912381994164245,
+            "steering_MSE": 1.8442154415898583e-05
+          },
+          "1025": {
+            "rows": 5,
+            "MSE": 3.572811297869218e-05,
+            "acceleration_MSE": 4.841794124841314e-05,
+            "steering_MSE": 2.3038284708971207e-05
+          },
+          "1026": {
+            "rows": 5,
+            "MSE": 7.11187761615495e-05,
+            "acceleration_MSE": 0.00012971700131014785,
+            "steering_MSE": 1.2520551012951131e-05
+          },
+          "1027": {
+            "rows": 5,
+            "MSE": 2.2564986846115787e-05,
+            "acceleration_MSE": 1.4536509622856305e-05,
+            "steering_MSE": 3.059346406937527e-05
+          },
+          "1031": {
+            "rows": 2,
+            "MSE": 3.275186525897311e-05,
+            "acceleration_MSE": 5.788080136781559e-05,
+            "steering_MSE": 7.622929150130631e-06
+          },
+          "1034": {
+            "rows": 3,
+            "MSE": 0.000872200988039161,
+            "acceleration_MSE": 0.001695564720568828,
+            "steering_MSE": 4.883725550949384e-05
+          },
+          "1035": {
+            "rows": 3,
+            "MSE": 0.00013366368764845352,
+            "acceleration_MSE": 0.0002482159541976059,
+            "steering_MSE": 1.9111421099301158e-05
+          },
+          "1041": {
+            "rows": 1,
+            "MSE": 7.656455875110213e-06,
+            "acceleration_MSE": 3.863865537745426e-06,
+            "steering_MSE": 1.1449046212475e-05
+          }
+        },
+        "log_std": [
+          -4.000025272369385,
+          -3.999575138092041
+        ]
+      },
+      "correction99": {
+        "all_teacher_TRAIN": {
+          "rows": 3496,
+          "MSE": 0.0018485363664794462,
+          "acceleration_MSE": 0.0035107503811147283,
+          "steering_MSE": 0.00018632235184416383
+        },
+        "groups": {
+          "0": {
+            "rows": 272,
+            "MSE": 0.0007073771680786319,
+            "acceleration_MSE": 0.0012594956306178433,
+            "steering_MSE": 0.00015525870553942053
+          },
+          "1": {
+            "rows": 278,
+            "MSE": 0.0004590873227176408,
+            "acceleration_MSE": 0.0007353193558785324,
+            "steering_MSE": 0.0001828552895567493
+          },
+          "2": {
+            "rows": 249,
+            "MSE": 0.0008347950038934515,
+            "acceleration_MSE": 0.0015443602845378619,
+            "steering_MSE": 0.000125229723249041
+          },
+          "3": {
+            "rows": 241,
+            "MSE": 0.0006605848572918332,
+            "acceleration_MSE": 0.0011251879644195038,
+            "steering_MSE": 0.00019598175016416288
+          },
+          "4": {
+            "rows": 285,
+            "MSE": 0.00036094496441036985,
+            "acceleration_MSE": 0.0005273639005689896,
+            "steering_MSE": 0.00019452602825175007
+          },
+          "5": {
+            "rows": 289,
+            "MSE": 0.00102141694859298,
+            "acceleration_MSE": 0.0018334442066624806,
+            "steering_MSE": 0.00020938969052347985
+          },
+          "6": {
+            "rows": 272,
+            "MSE": 0.00042149445914345607,
+            "acceleration_MSE": 0.0006418711702441236,
+            "steering_MSE": 0.00020111774804278844
+          },
+          "7": {
+            "rows": 276,
+            "MSE": 0.000419341539948404,
+            "acceleration_MSE": 0.0006069649947736849,
+            "steering_MSE": 0.00023171808512312324
+          },
+          "8": {
+            "rows": 332,
+            "MSE": 0.0037573999990147444,
+            "acceleration_MSE": 0.007350866580958826,
+            "steering_MSE": 0.00016393341707066346
+          },
+          "9": {
+            "rows": 356,
+            "MSE": 0.003532330292678398,
+            "acceleration_MSE": 0.006863176831445606,
+            "steering_MSE": 0.00020148375391118784
+          },
+          "10": {
+            "rows": 305,
+            "MSE": 0.004372861592410491,
+            "acceleration_MSE": 0.008616144044329768,
+            "steering_MSE": 0.00012957914049121269
+          },
+          "11": {
+            "rows": 312,
+            "MSE": 0.004125743260496594,
+            "acceleration_MSE": 0.008003011951181499,
+            "steering_MSE": 0.0002484745698116891
+          },
+          "1024": {
+            "rows": 5,
+            "MSE": 0.0008821641419561154,
+            "acceleration_MSE": 0.0017117015391420964,
+            "steering_MSE": 5.2626744770134515e-05
+          },
+          "1025": {
+            "rows": 5,
+            "MSE": 9.977191525377127e-05,
+            "acceleration_MSE": 0.00011076874666522407,
+            "steering_MSE": 8.877508384231847e-05
+          },
+          "1026": {
+            "rows": 5,
+            "MSE": 0.0002579182662679369,
+            "acceleration_MSE": 0.00044905500875977997,
+            "steering_MSE": 6.678152377609381e-05
+          },
+          "1027": {
+            "rows": 5,
+            "MSE": 0.0006696271531602808,
+            "acceleration_MSE": 0.0012467744934200173,
+            "steering_MSE": 9.247981290054432e-05
+          },
+          "1031": {
+            "rows": 2,
+            "MSE": 0.0002955697744069785,
+            "acceleration_MSE": 0.0005175709013963692,
+            "steering_MSE": 7.356864741758784e-05
+          },
+          "1034": {
+            "rows": 3,
+            "MSE": 0.002559058718841408,
+            "acceleration_MSE": 0.005042558862013417,
+            "steering_MSE": 7.555857566939976e-05
+          },
+          "1035": {
+            "rows": 3,
+            "MSE": 0.001016928312422773,
+            "acceleration_MSE": 0.001973208072446331,
+            "steering_MSE": 6.064855239921544e-05
+          },
+          "1041": {
+            "rows": 1,
+            "MSE": 0.0001542194370055816,
+            "acceleration_MSE": 0.00027408467993894625,
+            "steering_MSE": 3.435419407221696e-05
+          }
+        },
+        "log_std": [
+          -4.000025272369385,
+          -3.999575138092041
+        ]
+      }
+    },
+    "seconds": 2.030999999959022,
+    "new_controls": 0,
+    "optimizer_updates": 0
+  },
+  "rejected_fit_profiles": [
+    {
+      "fit": "B1_seed22_retention_weight8_fit_20261101",
+      "rejected_result_sha256": "6180311a9c69e5b79e8f490bad8dde2707ef504f9cd4f82a944cd77993e62781",
+      "executed_script_sha256": "8bb1a7594bed8eb3762b9513911aac9880ca6b057048c2fc7d9af157f490f4de",
+      "new_auxiliary_Adam_proposals": 512,
+      "retention_gate": {
+        "basic_teacher_groups": [
+          {
+            "group": 0,
+            "rows": 272,
+            "MSE": 0.00024975696562692115,
+            "replay_MSE": 0.00017874268175099544,
+            "fixed_ceiling": 0.0002334283521887443,
+            "passed": false
+          },
+          {
+            "group": 1,
+            "rows": 278,
+            "MSE": 0.0002213610922037792,
+            "replay_MSE": 0.00016856768868822038,
+            "fixed_ceiling": 0.00022070961086027548,
+            "passed": false
+          },
+          {
+            "group": 2,
+            "rows": 249,
+            "MSE": 0.0003093224610164259,
+            "replay_MSE": 0.0002998678514691334,
+            "fixed_ceiling": 0.0003848348143364168,
+            "passed": true
+          },
+          {
+            "group": 3,
+            "rows": 241,
+            "MSE": 0.00028702326698015404,
+            "replay_MSE": 0.00019639331158271506,
+            "fixed_ceiling": 0.00025549163947839385,
+            "passed": false
+          }
+        ],
+        "query_MSE": 0.0011014540231081187,
+        "replay_query_MSE": 0.04224037617862061,
+        "query_ceiling": 0.021120188089310304,
+        "passed": false
+      },
+      "native_probe_started": false,
+      "backtracking_blocks": 0
+    },
+    {
+      "fit": "B1_seed22_hard_retention_fit_20261101",
+      "rejected_result_sha256": "96182390ec21224f3447a1506366b050cb772e1d7984b6fd181acb9ed7302c64",
+      "executed_script_sha256": "ad12c05062f4428bcff8c79d96a1090721c413e03694e731a56a097083daf132",
+      "new_auxiliary_Adam_proposals": 512,
+      "retention_gate": {
+        "basic_teacher_groups": [
+          {
+            "group": 0,
+            "rows": 272,
+            "MSE": 0.00018091504278530356,
+            "replay_MSE": 0.00017874268175099544,
+            "fixed_ceiling": 0.0002334283521887443,
+            "passed": true
+          },
+          {
+            "group": 1,
+            "rows": 278,
+            "MSE": 0.00019732954645569823,
+            "replay_MSE": 0.00016856768868822038,
+            "fixed_ceiling": 0.00022070961086027548,
+            "passed": true
+          },
+          {
+            "group": 2,
+            "rows": 249,
+            "MSE": 0.0003729234118604938,
+            "replay_MSE": 0.0002998678514691334,
+            "fixed_ceiling": 0.0003848348143364168,
+            "passed": true
+          },
+          {
+            "group": 3,
+            "rows": 241,
+            "MSE": 0.00020300234028904787,
+            "replay_MSE": 0.00019639331158271506,
+            "fixed_ceiling": 0.00025549163947839385,
+            "passed": true
+          }
+        ],
+        "query_MSE": 0.03620632737699843,
+        "replay_query_MSE": 0.04224037617862061,
+        "query_ceiling": 0.021120188089310304,
+        "passed": false
+      },
+      "native_probe_started": false,
+      "backtracking_blocks": 9
+    },
+    {
+      "fit": "B1_seed22_persistent_teacher_matched_fit_20261101",
+      "new_auxiliary_Adam_proposals": 512,
+      "reused_replay_fit_updates": 512,
+      "retention_gate": {
+        "basic_teacher_groups": [
+          {
+            "group": 0,
+            "rows": 272,
+            "MSE": 0.011538711852331981,
+            "replay_MSE": 0.00017874268175099544,
+            "fixed_ceiling": 0.0002334283521887443,
+            "passed": false
+          },
+          {
+            "group": 1,
+            "rows": 278,
+            "MSE": 0.001153320348363611,
+            "replay_MSE": 0.00016856768868822038,
+            "fixed_ceiling": 0.00022070961086027548,
+            "passed": false
+          },
+          {
+            "group": 2,
+            "rows": 249,
+            "MSE": 0.010029729510584888,
+            "replay_MSE": 0.0002998678514691334,
+            "fixed_ceiling": 0.0003848348143364168,
+            "passed": false
+          },
+          {
+            "group": 3,
+            "rows": 241,
+            "MSE": 0.002873620163368362,
+            "replay_MSE": 0.00019639331158271506,
+            "fixed_ceiling": 0.00025549163947839385,
+            "passed": false
+          }
+        ],
+        "query_MSE": 0.007023824245655331,
+        "replay_query_MSE": 0.18599098097293873,
+        "query_ceiling": 0.09299549048646936,
+        "passed": false
+      },
+      "native_probe_started": false,
+      "teacher_context": "persistent_2Hz_plan_20Hz_MPC_v1"
+    }
+  ],
+  "new_auxiliary_Adam_proposals_across_two_retention_hypotheses": 1024,
+  "new_native_controls_after_the99label_failure": 0,
+  "limits": "All three fits failed their predeclared TRAINscreen and were not deployed. Original99-label native failure remains2/4with2bounds. Context differences identify different labels,not a proven better driving policy. A separate fixed-provenance physical-teacher-only fit excludes29historical counterfactual rows;formal driving gates are unchanged.",
+  "research_acceptance": "UNMET",
+  "new_auxiliary_Adam_proposals_across_rejected_retention_and_context_hypotheses": 1536
+}

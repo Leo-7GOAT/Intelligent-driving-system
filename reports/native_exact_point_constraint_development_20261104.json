@@ -1,0 +1,115 @@
+{
+  "scope": "Source-bound exact native-counterexample point constraints;known development only",
+  "research_acceptance": "UNMET",
+  "offline_model_probes": [
+    {
+      "original_case_id": 21,
+      "evidence": "native_case21_exact_point_runtime_source_bound.json",
+      "sha256": "4b4a825ee63bcbffe063f99d897c62c0ecc730b7d828c247946fe6a79fd8fdb2",
+      "status": "success",
+      "nodes": 7989,
+      "seconds": 10.049075999999332,
+      "retimed_seconds": 28.93058145754832,
+      "local_points": [
+        [
+          35.13665186828382,
+          14.528872787683147
+        ]
+      ],
+      "constraint_source_hashes": {
+        "navstack/reference_point_constraints.py": "03eb2f7b7f473023d94cfe557f31328f7a59aedeb161687ef350f4f28f4b9629",
+        "navstack/world.py": "b3098614be0d8fcd1467a67ee468da35c842c66634e77d6a0a8bbd3af0079a24",
+        "navstack/reference_road_refinement.py": "638bb46f076b8f76997e1af1cd535e8284b3fb5cc4760334afd18d2b0328055c",
+        "navstack/planner_memo.py": "25b331c122eb9fe150a126f0a8bfbe136d21699056e620dba80ffb0a1d7391f6"
+      }
+    },
+    {
+      "original_case_id": 27,
+      "evidence": "native_case27_exact_point_runtime_source_bound.json",
+      "sha256": "957be537a2152a1f67b15a0f897ac56b5344fcbcd7394ef54b8f347e1853f4ad",
+      "status": "success",
+      "nodes": 2031,
+      "seconds": 2.880933799999184,
+      "retimed_seconds": 28.94674037521748,
+      "local_points": [
+        [
+          34.51325089944541,
+          7.001457884958665
+        ]
+      ],
+      "constraint_source_hashes": {
+        "navstack/reference_point_constraints.py": "03eb2f7b7f473023d94cfe557f31328f7a59aedeb161687ef350f4f28f4b9629",
+        "navstack/world.py": "b3098614be0d8fcd1467a67ee468da35c842c66634e77d6a0a8bbd3af0079a24",
+        "navstack/reference_road_refinement.py": "638bb46f076b8f76997e1af1cd535e8284b3fb5cc4760334afd18d2b0328055c",
+        "navstack/planner_memo.py": "25b331c122eb9fe150a126f0a8bfbe136d21699056e620dba80ffb0a1d7391f6"
+      }
+    }
+  ],
+  "offline_SDK_road": {
+    "evidence": "native_case21_27_exact_point_road_probe.json",
+    "sha256": "03c68a14220814545fa418cf91e8fbf246741525f25d19ce4f44231e6d43f361",
+    "nine_offset_rejected_points": [
+      0,
+      0
+    ],
+    "new_native_controls": 0
+  },
+  "mechanism": "Add exact frame-returned rejected local points to a private planning world. Its full body avoids those points for all nine unchanged road-query offsets. Physical world,task scores,policy goals,weights and native acceptance are unchanged. Entire new timed references are still queried natively.",
+  "exact_memo": "Cache key includes point-model version,float-roundtrip allowance and all local float64 point bytes. Default absent-point key remains unchanged. Dynamic and wall-time-limited searches remain uncached.",
+  "guardrails": {
+    "maximum_points": 8192,
+    "max_refinement_attempts": 3,
+    "normal_and_low_speed_search_nodes_each": 32000,
+    "automatic_retries": 0
+  },
+  "validation": {
+    "targeted_tests_passed": 46,
+    "seconds": 6.2,
+    "full_CPU": "COMPLETE_1399PASS_1SKIP_4DESELECT_277.28SECONDS",
+    "junit": "exact_point_full_CPU.xml",
+    "junit_sha256": "1e873d54dada5cf22feb7163ae04d6f28679c60e5a044c5fb245240488df3c29",
+    "registration_extension_targeted_tests": 40,
+    "registration_extension_seconds": 3.38,
+    "scope": "Full suite on point-constrained lowlevel;subsequent registration-only training gate changes additionally tested separately."
+  },
+  "native_pilot": {
+    "batch": "20261104_exact_point_joint_speed_H_two_condition_pilot",
+    "original_case_ids": [
+      21,
+      27
+    ],
+    "status": "COMPLETE_0_SUCCESS_2_DEADLINES",
+    "actual_counterexamples_acquired_during_run": true,
+    "offline_points_not_preseeded": true,
+    "max_controls": 1800,
+    "new_PPO_updates": 0,
+    "actual_controls": 1800,
+    "world_ticks": 1861,
+    "raw_audit_sha256": "8d6c88c1231bfa3705d817c441607905362743d024f5f1ba010cd163d8317c00",
+    "verified_NN_decisions": 180,
+    "results": [
+      {
+        "original_case_id": 21,
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "distance": 3.351373805853956,
+        "interventions": 810,
+        "plan_failures": 81,
+        "mpc_failures": 0
+      },
+      {
+        "original_case_id": 27,
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "distance": 18.46365558155733,
+        "interventions": 570,
+        "plan_failures": 57,
+        "mpc_failures": 0
+      }
+    ]
+  },
+  "limits": "Offline sampled model and SDK-map checks do not prove native closed-loop success,continuous road safety,learning benefit,independent-seed superiority or real-time performance. Earlier joint-speed five-condition result remains2/5.",
+  "next_registered_work": "COMPLETE:5438actual training controls,170Adamupdates,initial parameter/Adam/RNG equality and frozen RMS verified;frozen same2endpoint changes0/2success,0unsafe to1/2success,1bounds. See native_exact_point_PPO5120_complete_20261104.json. Safety target unmet;do not expand seeds based on this screen."
+}

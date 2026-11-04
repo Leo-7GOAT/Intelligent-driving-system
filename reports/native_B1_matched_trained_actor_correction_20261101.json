@@ -1,0 +1,39 @@
+{
+  "scope": "All4known basic cases after two matched512step trained actor fits;one development seed,not final or healthy full baseline",
+  "arms": [
+    {
+      "arm": "replay",
+      "batch": "20261101T014911209543Z_native_trained_actor_replay",
+      "cases": 4,
+      "successes": 3,
+      "termination_counts": {
+        "success": 3,
+        "out_of_bounds": 1
+      },
+      "raw_controls_verified": 1275,
+      "PPO_updates": 0,
+      "additional_supervised_updates": 512,
+      "model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+      "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+      "raw_audit_sha256": "ca49808794f6ae76b1183e9ec851b1598381f3ba373f073168051bb9fd982016"
+    },
+    {
+      "arm": "trajectory_correction",
+      "batch": "20261101T014911842823Z_native_trained_actor_trajectory_correction",
+      "cases": 4,
+      "successes": 3,
+      "termination_counts": {
+        "success": 3,
+        "out_of_bounds": 1
+      },
+      "raw_controls_verified": 1153,
+      "PPO_updates": 0,
+      "additional_supervised_updates": 512,
+      "model_sha256": "f19ee134980e9325709f15ae4ac532d277597073d5ee00a0f02daa43dd8978ee",
+      "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+      "raw_audit_sha256": "a95f9d2942c5784eadf0600514ca6324394afe856027736b8200be26a9cc4bc1"
+    }
+  ],
+  "new_PPO_updates": 0,
+  "research_acceptance": "UNMET"
+}

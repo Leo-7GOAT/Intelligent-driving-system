@@ -1,0 +1,141 @@
+{
+  "scope": "One fixed reflection-augmented actor fit after the failed real PPO course.",
+  "script_sha256": "d1522cbc11534c3d989a0d3e9c191b4a45acdfdd8755d95ac3d6153ad6f237fe",
+  "reflection_source_sha256": "6e4c8e57bc4525d56f2d5fb21ecf9f2251a3658527d979e0c4ed10e81b9d021e",
+  "source_model_sha256": "5d8437458d4015ea0fe852cb53fe791f577d929afc498d48c33c806c2327094c",
+  "source_normalization_sha256": "b8a464e6ba54fb5745d0b4c128ece3a90581e8a082227b05c9d1fb38c7ff79b0",
+  "source_PPO_report_sha256": "490a4c31d1367906c52a20d98d8a54a47e6c9245d139c7c52f7b3cede268030f",
+  "acknowledged_teacher_TRAINrows": 3424,
+  "virtual_reflected_rows": 3424,
+  "virtual_pose_triplets": 120,
+  "hypothetical_rows_are_executed": false,
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "steps": 512,
+  "learning_rate": 0.0001,
+  "seed": 22,
+  "loss": "Episode-and-reflection balanced teacher MSE divided by[.1,.02],plus original and reflected pose-response MSE divided by TRAINtarget response RMS.",
+  "screen": "All4basic original steering RMS<=.01rad and reflected<=.02rad;original basic acceleration normalized RMS<=.1;all pose-response RMS errors<=1.25times the preceding accepted offline pose-fit values. Native gate unchanged.",
+  "fixed": "Direct architecture,critic,log_std,PPOAdam,counters,RMS;actor road encoder now trainable with the augmented images.",
+  "limits": "Nominal reflection symmetry is a virtual augmentation assumption,not new measured CARLA demonstrations or final conditions.",
+  "inherited_reflection_Adam_steps": 512,
+  "auxiliary_Adam_and_sampler_resumed_exact": true,
+  "continuation_parent_result_sha256": "065d24dfc588929dbcbff3b28a4ffbe0e48fffdc129414e1e0519a09d7d9a5f9",
+  "continuation_reason": "Both response screens narrowly fail while TRAINloss remains decreasing;one fixed512additional-step endpoint with identical ceilings,no intermediate selection.",
+  "model_sha256": "72d465ab4e553c189fd04c5e472a5fcc7cc0eafa371ee7c5c62f6eb9e0ab5844",
+  "fit_inputs_sha256": "a35a2391e3f4cdaea4ea3d3eb865c55bc531bd7529c26c97bd84a66837d9c8fe",
+  "new_auxiliary_Adam_updates": 512,
+  "auxiliary_Adam_sha256": "7bf133b6e8dd699f78bb6cdb7368314df9ff0ac01fb8893c1e6a4e0aaebecc74",
+  "teacher_metrics": [
+    {
+      "case_id": 0,
+      "reflected": false,
+      "acceleration_RMS": 0.0300026573240757,
+      "steering_RMS_rad": 0.0046375710517168045
+    },
+    {
+      "case_id": 1,
+      "reflected": false,
+      "acceleration_RMS": 0.03310775011777878,
+      "steering_RMS_rad": 0.006256405729800463
+    },
+    {
+      "case_id": 2,
+      "reflected": false,
+      "acceleration_RMS": 0.022893056273460388,
+      "steering_RMS_rad": 0.006098081823438406
+    },
+    {
+      "case_id": 3,
+      "reflected": false,
+      "acceleration_RMS": 0.034191444516181946,
+      "steering_RMS_rad": 0.005309396889060736
+    },
+    {
+      "case_id": 0,
+      "reflected": true,
+      "acceleration_RMS": 0.06706742942333221,
+      "steering_RMS_rad": 0.007069121114909649
+    },
+    {
+      "case_id": 1,
+      "reflected": true,
+      "acceleration_RMS": 0.06295662373304367,
+      "steering_RMS_rad": 0.009051910601556301
+    },
+    {
+      "case_id": 2,
+      "reflected": true,
+      "acceleration_RMS": 0.036687251180410385,
+      "steering_RMS_rad": 0.006635815370827913
+    },
+    {
+      "case_id": 3,
+      "reflected": true,
+      "acceleration_RMS": 0.09596104919910431,
+      "steering_RMS_rad": 0.009639470838010311
+    }
+  ],
+  "pose_response": [
+    {
+      "axis": "yaw_radians",
+      "normalized_steering_response_RMS": 0.023972539231181145,
+      "ceiling": 0.025375864934176207
+    },
+    {
+      "axis": "lateral_metres",
+      "normalized_steering_response_RMS": 0.028552301228046417,
+      "ceiling": 0.03252546302974224
+    }
+  ],
+  "offline_screen_passed": true,
+  "history": [
+    {
+      "steps": 1,
+      "teacher_loss": 1.1867363452911377,
+      "response_loss": 0.26567772030830383
+    },
+    {
+      "steps": 64,
+      "teacher_loss": 0.7525228261947632,
+      "response_loss": 0.2546736001968384
+    },
+    {
+      "steps": 128,
+      "teacher_loss": 0.9833652973175049,
+      "response_loss": 0.2399318665266037
+    },
+    {
+      "steps": 192,
+      "teacher_loss": 0.7682961225509644,
+      "response_loss": 0.23476187884807587
+    },
+    {
+      "steps": 256,
+      "teacher_loss": 0.8743959665298462,
+      "response_loss": 0.22657771408557892
+    },
+    {
+      "steps": 320,
+      "teacher_loss": 0.5434967875480652,
+      "response_loss": 0.22253069281578064
+    },
+    {
+      "steps": 384,
+      "teacher_loss": 0.49678027629852295,
+      "response_loss": 0.21618370711803436
+    },
+    {
+      "steps": 448,
+      "teacher_loss": 0.6060712337493896,
+      "response_loss": 0.21082331240177155
+    },
+    {
+      "steps": 512,
+      "teacher_loss": 0.3328530192375183,
+      "response_loss": 0.20226912200450897
+    }
+  ],
+  "elapsed_seconds": 49.438000000081956,
+  "research_acceptance": "UNMET"
+}

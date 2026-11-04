@@ -1,0 +1,19 @@
+{
+  "scope": "Actual native PPO basic-motion DEVELOPMENT course;not a qualified full-task B1baseline",
+  "seed": 33,
+  "batch": "20261031T232844835057Z_native_B1_basic_PPO_course",
+  "cases": 4,
+  "successes": 2,
+  "termination_counts": {
+    "out_of_bounds": 2,
+    "success": 2
+  },
+  "basic_qualified_after_learning": false,
+  "new_training_controls": 10240,
+  "new_Adam_steps": 33,
+  "raw_controls_verified": 11737,
+  "model_sha256": "7b48c361584f3f76e942ca7fb8c124166ffacd874064ac8a8279f441fa2e5557",
+  "normalization_sha256": "4ed40fee32662780510249c104b1152778dd4193e714084f343a5e6b6389170c",
+  "raw_audit_sha256": "681127a29700cd4c1112b73883a4de9c52b328962567d3b9d7f6a60567ac5e2e",
+  "research_acceptance": "UNMET"
+}

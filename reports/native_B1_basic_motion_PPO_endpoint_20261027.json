@@ -1,0 +1,180 @@
+{
+  "scope": "Complete real CARLA B1 PPO on twelve known development conditions.4/12versus6/12initializer; not a healthy baseline or hierarchy superiority proof. All failures retained.",
+  "batch": "20261027T130748Z_native_supervised_ppo",
+  "parent": "20261027T112446Z_native_measured_bc",
+  "seed": 11,
+  "successes": 4,
+  "cases": 12,
+  "families": {
+    "curve_parking": {
+      "successes": 1,
+      "cases": 4,
+      "unsafe": 1
+    },
+    "static_obstacle": {
+      "successes": 2,
+      "cases": 4,
+      "unsafe": 1
+    },
+    "dynamic_interaction": {
+      "successes": 1,
+      "cases": 4,
+      "unsafe": 1
+    }
+  },
+  "training_controls": 20480,
+  "optimizer_steps": 640,
+  "optimization_phases": 64,
+  "evaluation_controls": 7857,
+  "audited_current_controls": 28337,
+  "charged_training_input_lower_bound": 24809,
+  "cost_limit": "The checkpoint charge is a lower bound, not all research tuning cost. It includes4329teacher controls; the parent7123evaluation controls and other rejected diagnostics remain separately retained.",
+  "guard": {
+    "epoch": 1793109298.1465008,
+    "worker_pid": 25560,
+    "exit_code": 0,
+    "reason": null
+  },
+  "owned_cleanup_status": "owned_empty_server_stopped",
+  "update_diagnostic": {
+    "median_approx_kl": 0.02377425692975521,
+    "max_approx_kl": 0.3419523239135742,
+    "phases_above_.015": 45,
+    "phases": 64,
+    "hypothesis": "Excessive within-rollout policy changes may contribute to degradation; not an established cause."
+  },
+  "raw_audit": {
+    "schema_version": 1,
+    "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+    "batch": "20261027T130748Z_native_supervised_ppo",
+    "method": "B1",
+    "protocol_sha256": "f2738374d2e8e2fa68267df7c0fe37e2adffe7f13d05c96b3dacb572790473a6",
+    "config_sha256": "51073fdd96710580b83ced7f87f5661fe0811d1bba7742be601c6304e25b55bd",
+    "summary_sha256": "499de0bae1a37965959330a77761636b2c7fcbf8d4d301166bc526f3c664f453",
+    "evaluation_sha256": "022f369c68a7cd443dbe1583482ec7e887eb31f9b8ffd2e1ec7a51d03ebc5fbb",
+    "evaluation_trace_sha256": "37f22ccffa901952c70b43a47d057ec3c301c833c762084e093cba8ed7eb49a8",
+    "optimization_sha256": "10ceba0db3c14900b17f1f075bab3d4e5643f9da5aa459767a6ed748489a7d18",
+    "transition_hashes": {
+      "transitions_000000000_1793106644350009800.jsonl.gz": "c5b03ca795f1a78d5d6f7a7cea4ccba6b5ec8baf73c46e82422f5d22bc2dee10"
+    },
+    "bridge_response_stream": "bridge_05ff94fc_responses.jsonl.gz",
+    "bridge_response_sha256": "f807a686d62493a9df7680af87244f6b1c26ae126b54f7a7b66884b6c7f050ef",
+    "bridge_complete_rows": 28432,
+    "training_control_frames_verified": 20480,
+    "evaluation_control_frames_verified": 7857,
+    "total_applied_controls_verified": 28337,
+    "training_world_ticks_verified": 21595,
+    "evaluation_world_ticks_verified": 8229,
+    "training_termination_reasons": {
+      "success": 19,
+      "out_of_bounds": 5,
+      "deadline": 9,
+      "collision": 2
+    },
+    "checkpoint": "checkpoint_000020480",
+    "checkpoint_metadata_sha256": "e5d97e83692554e95ff0b4f4cf2570974deb1272bfbc23d93b6951a46ee445f8",
+    "lineage_controls": 20480,
+    "charged_controls_lower_bound": 24809,
+    "segment_optimizer_steps": 640,
+    "optimizer_steps_total_lower_bound": 640,
+    "unknown_unflushed_ancestor_tail": false
+  },
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "actions": 365,
+      "progress": 24.032670342039417,
+      "interventions": 0
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "actions": 896,
+      "progress": 22.056030620504767,
+      "interventions": 0
+    },
+    {
+      "case_id": 2,
+      "success": false,
+      "termination_reason": "deadline",
+      "actions": 900,
+      "progress": 21.297008171002922,
+      "interventions": 0
+    },
+    {
+      "case_id": 3,
+      "success": false,
+      "termination_reason": "deadline",
+      "actions": 900,
+      "progress": 18.577691969699003,
+      "interventions": 0
+    },
+    {
+      "case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "actions": 356,
+      "progress": 23.852568540717947,
+      "interventions": 0
+    },
+    {
+      "case_id": 5,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "actions": 778,
+      "progress": 21.14678966100437,
+      "interventions": 0
+    },
+    {
+      "case_id": 6,
+      "success": true,
+      "termination_reason": "success",
+      "actions": 346,
+      "progress": 21.982713015323238,
+      "interventions": 0
+    },
+    {
+      "case_id": 7,
+      "success": false,
+      "termination_reason": "deadline",
+      "actions": 900,
+      "progress": 19.091300718046178,
+      "interventions": 0
+    },
+    {
+      "case_id": 8,
+      "success": true,
+      "termination_reason": "success",
+      "actions": 466,
+      "progress": 24.22106138711698,
+      "interventions": 0
+    },
+    {
+      "case_id": 9,
+      "success": false,
+      "termination_reason": "collision",
+      "actions": 150,
+      "progress": 4.796547886941795,
+      "interventions": 0
+    },
+    {
+      "case_id": 10,
+      "success": false,
+      "termination_reason": "deadline",
+      "actions": 900,
+      "progress": 18.83199071663588,
+      "interventions": 0
+    },
+    {
+      "case_id": 11,
+      "success": false,
+      "termination_reason": "deadline",
+      "actions": 900,
+      "progress": 14.873568780772171,
+      "interventions": 0
+    }
+  ]
+}

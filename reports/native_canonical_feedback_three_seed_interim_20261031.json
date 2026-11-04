@@ -1,0 +1,96 @@
+{
+  "scope": "Descriptive interim of all currently complete matched canonical development seed pairs;not a final hypothesis test or seed-level CI",
+  "independent_training_seeds": [
+    11,
+    33,
+    44
+  ],
+  "seed_pairs": [
+    {
+      "seed": 11,
+      "batch": "20261031T025409165666Z_native_supervised_ppo",
+      "methods": {
+        "H": {
+          "successes": 12,
+          "cases": 12,
+          "training_controls": 20563,
+          "Adam_steps": 650,
+          "raw_controls_verified": 24900,
+          "raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f",
+          "model_sha256": "dbde8619f1b25db2f37731343ec6d6204269cfd464023b63c1e5d0485a8ce537"
+        },
+        "H0": {
+          "successes": 11,
+          "cases": 12,
+          "training_controls": 20562,
+          "Adam_steps": 650,
+          "raw_controls_verified": 25448,
+          "raw_audit_sha256": "e02948a388e140254d62068bff0844dcace6f282e63c255f27cd9ab7b4f66f63",
+          "model_sha256": "779332499f55f3715e75d04ad5ea9fcba83608a78deaeaf6a638baa978244998"
+        }
+      },
+      "paired_difference_percentage_points": 8.333333333333334
+    },
+    {
+      "seed": 33,
+      "batch": "20261031T093156483162Z_native_supervised_ppo",
+      "methods": {
+        "H": {
+          "successes": 10,
+          "cases": 12,
+          "training_controls": 20561,
+          "Adam_steps": 650,
+          "raw_controls_verified": 25987,
+          "raw_audit_sha256": "575b1ae6c801e8d0947949984cb7474f3b3d10787f6f833453ae2f18d0c0a226",
+          "model_sha256": "bc6f67841183333b86fb64f8871b895c591ab19bc8895b644b77a2618edd2f6d"
+        },
+        "H0": {
+          "successes": 12,
+          "cases": 12,
+          "training_controls": 20561,
+          "Adam_steps": 650,
+          "raw_controls_verified": 24856,
+          "raw_audit_sha256": "d88e353eafd736b7b484f89ea9b34d79cf7677108b1aa4c7b52425fac18a9839",
+          "model_sha256": "3203cd8fd2917a4d279bcb242223a676caa73d3a05c9603e33529d5eff2a4c8b"
+        }
+      },
+      "paired_difference_percentage_points": -16.666666666666668
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T093202647818Z_native_supervised_ppo",
+      "methods": {
+        "H": {
+          "successes": 12,
+          "cases": 12,
+          "training_controls": 20502,
+          "Adam_steps": 650,
+          "raw_controls_verified": 24846,
+          "raw_audit_sha256": "733ae826652f0833e4a4a2446498f41e8beab61dfd29b815ac4354b1098597bb",
+          "model_sha256": "7a39f136042083aeffd4a8b1daa8965792bec6faa2687b1c67c094e044d05f49"
+        },
+        "H0": {
+          "successes": 11,
+          "cases": 12,
+          "training_controls": 20586,
+          "Adam_steps": 650,
+          "raw_controls_verified": 25462,
+          "raw_audit_sha256": "f39a27725990ef6e8fa917fad6ae5cab26e79696645bdb87df1ddfe633164a27",
+          "model_sha256": "2cf765c756ffcbcf39fd6eb01a3cca2b1465429318a3f6ca13d24b47171f5ff4"
+        }
+      },
+      "paired_difference_percentage_points": 8.333333333333334
+    }
+  ],
+  "mean_paired_difference_percentage_points": 0.0,
+  "H_total_successes": 34,
+  "H0_total_successes": 34,
+  "conditions_per_seed": 12,
+  "unavailable_canonical_pairs": {
+    "22": "Original recovered H0consumes unequal gross budget;fresh H0replica remains queued",
+    "55": "Actually running,not omitted"
+  },
+  "old_high_rate_seed33": "Retained separately and not counted as another independent seed",
+  "limits": "Known12development conditions;only3of5matched pairs. Broader36/24same-seed branch is separate and not an extra independent seed. No pooled-case independence or stable feedback benefit claim.",
+  "research_acceptance": "UNMET"
+}

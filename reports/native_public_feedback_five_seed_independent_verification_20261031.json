@@ -1,0 +1,313 @@
+{
+  "scope": "Rebuild all five DEVELOPMENT feedback pairs from six public evidence capsules.",
+  "recipe_sha256": "428b6dc1c35cbad08616896ad82b6807d784e689f3707032f53b0834a34b2c6e",
+  "source_commit": "6a5486aa4083bc2f14f32762c1983fc0e5dfbafa",
+  "public_capsules": [
+    {
+      "slot": "seed11_pair",
+      "archive_sha256": "1374429bca525b878cfdb86fb9ffd9f6b1d3943c24ff8208c056b6458e009351",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H_H0_v4_PPO_20261031_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "140d7190db8658c2ba50a1b0339e4a18397dbedbf35be632aa7d455bf9b2eda8",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "7c043b5e8fb9f16df06688f6518585f2f2c2d968c3cb575de5dd4d3d3e4ff42f",
+          "verified_controls": 24900,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "e02948a388e140254d62068bff0844dcace6f282e63c255f27cd9ab7b4f66f63",
+          "verified_controls": 25448,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    },
+    {
+      "slot": "seed22_H_with_interruption",
+      "archive_sha256": "e70b381b397e344f2f6354f23aa81f841762b8a6675020f5e720fc1f8be951ed",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed22_H_completed_with_H0_interruption_20261031_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "c75069d1a43645dc1cef25134032af8571a125f8b3ad0cb90a28ac5d51a9e8a2",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "066b71cc36bf88b11d002fc98ca6727d19d492e5e2c3ebb10c88aa284f22378d",
+          "verified_controls": 24858,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 68
+    },
+    {
+      "slot": "seed22_fresh_H0",
+      "archive_sha256": "769e67dfebbf69b82669fc067ae3b7413a5cc0b975b14298d2d41d30e060e37c",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed22_fresh_H0_20261031_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "fcbdfe78090a925c369ea64ab2564f0f8f8fb46da116d0bf18ec7de2cf6c990c",
+      "methods": [
+        {
+          "method": "H0",
+          "raw_audit_sha256": "2258c30ada4770cb297416aca767f3265474fc1038f0351b4b03e85b2226bb94",
+          "verified_controls": 25439,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    },
+    {
+      "slot": "seed33_pair",
+      "archive_sha256": "647e96acd757a62aa30639402d51dd53bc811d1a7348e16b73ed385b09b7bde0",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed33_canonical_feedback_pair_20261031_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "58b4b02c52bb64bcc59f460f222dc038f857955a5eaf80d8fb15b3080c196a91",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "575b1ae6c801e8d0947949984cb7474f3b3d10787f6f833453ae2f18d0c0a226",
+          "verified_controls": 25987,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "d88e353eafd736b7b484f89ea9b34d79cf7677108b1aa4c7b52425fac18a9839",
+          "verified_controls": 24856,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    },
+    {
+      "slot": "seed44_pair",
+      "archive_sha256": "d8971e84b3e753441ba6d3c28f8ad236565e0a69fdf5fab869c2247e9215dffb",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed44_canonical_feedback_pair_20261031_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "da6701a3fb714a48555a66b9ac6e337e0bcf1e6835b2777132e77534ae683cbd",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "733ae826652f0833e4a4a2446498f41e8beab61dfd29b815ac4354b1098597bb",
+          "verified_controls": 24846,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "f39a27725990ef6e8fa917fad6ae5cab26e79696645bdb87df1ddfe633164a27",
+          "verified_controls": 25462,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    },
+    {
+      "slot": "seed55_pair",
+      "archive_sha256": "a46025038116e0f0f789f3509a9bf42e468683f6bb352bfbb67712c6ec0bc4e6",
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed55_canonical_feedback_pair_20261031_repro.zip.parts.json",
+      "unauthenticated_download": true,
+      "transfer_source": "verified_prior_public_download",
+      "original_download_receipt_sha256": "554b4eefeb9d6fc4a4cf0042b5edd4271fd7d079ff25a83aff7f9ae1bfaa3109",
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "9e4422ff630d492fb58a3863265e93c77ddc5f07c513241067a2320efad39620",
+          "verified_controls": 24860,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "0a8dde0003253f3a531d6cd224e5dab3c856281229a4afff3d8250dbb740ed5c",
+          "verified_controls": 24836,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_byte_identical": true,
+      "retained_incomplete_sibling_files": 0
+    }
+  ],
+  "all_reference_cohort_fields_identical": true,
+  "independent_training_seeds": 5,
+  "unique_known_development_conditions": 12,
+  "H_successes": 58,
+  "H0_successes": 57,
+  "episodes_each_method": 60,
+  "statistics": {
+    "independent_training_seeds": 5,
+    "paired_mean_difference": 0.01666666666666667,
+    "paired_95pct_t_interval": [
+      -0.11824431539239197,
+      0.1515776487257253
+    ],
+    "exploratory_exact_sign_flip_p_two_sided": 1.0,
+    "assumptions": "tinterval assumes approximately normal seed differences;sign-flip null assumes symmetric exchangeable seed differences. Small N,known development conditions and retrospective analysis do not establish confirmatory significance."
+  },
+  "model_and_optimizer_proof": [
+    {
+      "seed": 11,
+      "method": "H",
+      "batch": "20261031T025409165666Z_native_supervised_ppo",
+      "model_sha256": "dbde8619f1b25db2f37731343ec6d6204269cfd464023b63c1e5d0485a8ce537",
+      "policy_tensor_sha256": "125874a96bd34d8be79b65de2b25d804ea453858d0d300e5b14b5d7542584397",
+      "training_controls": 20563,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 11,
+      "method": "H0",
+      "batch": "20261031T025409165666Z_native_supervised_ppo",
+      "model_sha256": "779332499f55f3715e75d04ad5ea9fcba83608a78deaeaf6a638baa978244998",
+      "policy_tensor_sha256": "b626668f721f6f98400a62eb2630c4184ad1f509635376f935f4218904013dac",
+      "training_controls": 20562,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 22,
+      "method": "H",
+      "batch": "20261031T025409042778Z_native_supervised_ppo",
+      "model_sha256": "091512ffb368c503c7a49b7b2e7fb49696b64a691d3c45e86040b904465642e3",
+      "policy_tensor_sha256": "2ae21f3ce87b17f4445ec35c2550fa83a880093337ce424f0d598190044e3c31",
+      "training_controls": 20539,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 22,
+      "method": "H0",
+      "batch": "20261031T093208454506Z_native_H0_canonical_budget_replica",
+      "model_sha256": "4439b4aa3d4e9fec32e5e3a98b7c231a07f5c6284652e7e9d15fab320f907b63",
+      "policy_tensor_sha256": "d9b9b19e64b2c862800d824c1f6ee32fa4532486e3956877d421cb5299923ab6",
+      "training_controls": 20532,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 33,
+      "method": "H",
+      "batch": "20261031T093156483162Z_native_supervised_ppo",
+      "model_sha256": "bc6f67841183333b86fb64f8871b895c591ab19bc8895b644b77a2618edd2f6d",
+      "policy_tensor_sha256": "71488a3142a62bdb607258d5776833a00a7dca3d5e5ef43eb47a13bd5468d7c5",
+      "training_controls": 20561,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 33,
+      "method": "H0",
+      "batch": "20261031T093156483162Z_native_supervised_ppo",
+      "model_sha256": "3203cd8fd2917a4d279bcb242223a676caa73d3a05c9603e33529d5eff2a4c8b",
+      "policy_tensor_sha256": "933f8dfafec680c6ce856af4bf8782a037c6ceebcd630dfc5e43cba34a1caf6d",
+      "training_controls": 20561,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 44,
+      "method": "H",
+      "batch": "20261031T093202647818Z_native_supervised_ppo",
+      "model_sha256": "7a39f136042083aeffd4a8b1daa8965792bec6faa2687b1c67c094e044d05f49",
+      "policy_tensor_sha256": "465c2fe220666760c4434b6541975b7a1890fdde312ad528b3af4d814b546296",
+      "training_controls": 20502,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 44,
+      "method": "H0",
+      "batch": "20261031T093202647818Z_native_supervised_ppo",
+      "model_sha256": "2cf765c756ffcbcf39fd6eb01a3cca2b1465429318a3f6ca13d24b47171f5ff4",
+      "policy_tensor_sha256": "0a973e2dcc9b0b1c059971f11d1201ff3a27ad9398b0b43e83520ac640b5f1d3",
+      "training_controls": 20586,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 55,
+      "method": "H",
+      "batch": "20261031T093206498809Z_native_supervised_ppo",
+      "model_sha256": "fa12201979763b5e0e9c38d0e3f0d7df46b543f18de8c63ad6c8ddfb5432b951",
+      "policy_tensor_sha256": "d4b1b7d2b5e1ee750b9ec82f5e99f53b480be710b6e892f4b03d8ef2118a7108",
+      "training_controls": 20523,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    },
+    {
+      "seed": 55,
+      "method": "H0",
+      "batch": "20261031T093206498809Z_native_supervised_ppo",
+      "model_sha256": "a76cb7cf7348d1b536b5cf67dc7ff8766d5b68f948ba7ca1ee2e2bf9e62a978b",
+      "policy_tensor_sha256": "420afba1e3910a798d848f42af402dddc05db35df94c81497583f34ddbad2756",
+      "training_controls": 20517,
+      "actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "normalization_statistics_exact": true
+    }
+  ],
+  "five_distinct_final_policy_tensors_each_method": true,
+  "figure_byte_identical": true,
+  "figure_sha256": "cafca085ed2550173858f647a6de72c4dccbcedfa6ef03497325720c8c94eb87",
+  "wall_seconds": 344.375,
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "research_acceptance": "UNMET",
+  "transfer_provenance": "All six archives come from actual prior unauthenticated public downloads;each original download receipt,parts manifest and entire archive SHA256 rechecked before fresh independent reconstruction. Previous network-truncated/disconnected whole-cohort attempts retained separately. No local-training archive substituted.",
+  "verification": {
+    "related_tests_passed": 150,
+    "related_test_seconds": 12.21,
+    "hosted_run_id": 41215466456,
+    "hosted_conclusion": "success"
+  },
+  "source_manifest_sha256": "96534567b6a5460bb714960be1f695c4d4eb55bcdb07557fc87a2ba07e6be3c0"
+}

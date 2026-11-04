@@ -1,0 +1,79 @@
+{
+  "scope": "Reconstruct all five canonical H/H0DEVELOPMENT seed pairs from six publicly hashed model/raw capsules;12reused known conditions,not final confirmation",
+  "pairs_manifest": "protocols/native_feedback_development_pairs_20261031.json",
+  "expected_report": "reports/native_feedback_five_seed_development_cohort_20261031.json",
+  "expected_figure": "reports/figures/native_feedback_five_seed_development_20261031.png",
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "capsules": [
+    {
+      "slot": "seed11_pair",
+      "batch": "20261031T025409165666Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H_H0_v4_PPO_20261031_repro.zip.parts.json",
+      "sha256": "1374429bca525b878cfdb86fb9ffd9f6b1d3943c24ff8208c056b6458e009351",
+      "reference_figure": null
+    },
+    {
+      "slot": "seed22_H_with_interruption",
+      "batch": "20261031T025409042778Z_native_supervised_ppo",
+      "methods": [
+        "H"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed22_H_completed_with_H0_interruption_20261031_repro.zip.parts.json",
+      "sha256": "e70b381b397e344f2f6354f23aa81f841762b8a6675020f5e720fc1f8be951ed",
+      "reference_figure": "reports/figures/native_seed22_H_completed_with_H0_interruption_20261031.png"
+    },
+    {
+      "slot": "seed22_fresh_H0",
+      "batch": "20261031T093208454506Z_native_H0_canonical_budget_replica",
+      "methods": [
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed22_fresh_H0_20261031_repro.zip.parts.json",
+      "sha256": "769e67dfebbf69b82669fc067ae3b7413a5cc0b975b14298d2d41d30e060e37c",
+      "reference_figure": "reports/figures/native_seed22_fresh_H0_canonical_endpoints_20261031.png"
+    },
+    {
+      "slot": "seed33_pair",
+      "batch": "20261031T093156483162Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed33_canonical_feedback_pair_20261031_repro.zip.parts.json",
+      "sha256": "647e96acd757a62aa30639402d51dd53bc811d1a7348e16b73ed385b09b7bde0",
+      "reference_figure": null
+    },
+    {
+      "slot": "seed44_pair",
+      "batch": "20261031T093202647818Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed44_canonical_feedback_pair_20261031_repro.zip.parts.json",
+      "sha256": "d8971e84b3e753441ba6d3c28f8ad236565e0a69fdf5fab869c2247e9215dffb",
+      "reference_figure": "reports/figures/native_seed44_canonical_endpoints_20261031.png"
+    },
+    {
+      "slot": "seed55_pair",
+      "batch": "20261031T093206498809Z_native_supervised_ppo",
+      "methods": [
+        "H",
+        "H0"
+      ],
+      "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed55_canonical_feedback_pair_20261031_repro.zip.parts.json",
+      "sha256": "a46025038116e0f0f789f3509a9bf42e468683f6bb352bfbb67712c6ec0bc4e6",
+      "reference_figure": "reports/figures/native_seed55_canonical_endpoints_20261031.png"
+    }
+  ]
+}

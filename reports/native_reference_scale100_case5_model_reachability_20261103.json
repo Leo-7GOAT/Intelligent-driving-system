@@ -1,0 +1,450 @@
+{
+  "scope": "Additional bounded model-reachability diagnosis of known static case5;no CARLAexecution or new policy",
+  "input_sha256": "0fb4c5ef1e0b8044e8f39c3fa028f26fa81553934c4d5d2a71e03e47c2c1a54f",
+  "two_stage": {
+    "report_sha256": "5f7bd92055d7d24472636191d38ff8892fcc9e639c2cdd160d855ec1045786b9",
+    "registration": {
+      "case_id": 5,
+      "input_sha256": "0fb4c5ef1e0b8044e8f39c3fa028f26fa81553934c4d5d2a71e03e47c2c1a54f",
+      "initial_accessible_targets": [
+        [
+          12.000002580874666,
+          9.19476143245723,
+          0.0
+        ],
+        [
+          12.000002580874666,
+          10.69476143245723,
+          0.0
+        ],
+        [
+          15.000002580852795,
+          12.194757667585801,
+          0.0
+        ],
+        [
+          18.000002580806505,
+          12.194764482841212,
+          0.0
+        ]
+      ],
+      "per_search_node_budget": 7200,
+      "maximum_searches": 8,
+      "scope": "All four original-catalog endpoints with successful initial geometric paths;no policy-driven early stopping,no physics or supervision",
+      "new_controls": 0,
+      "new_updates": 0
+    },
+    "results": [
+      {
+        "target": [
+          12.000002580874666,
+          9.19476143245723,
+          0.0
+        ],
+        "first_status": "success",
+        "first_nodes": 1,
+        "first_terminal_pose": [
+          12.000002580874666,
+          9.19476143245723,
+          0.0
+        ],
+        "second_status": "no_path",
+        "second_nodes": 1,
+        "second_reason": "open_set_exhausted",
+        "offline_seconds": 0.036806599935516715
+      },
+      {
+        "target": [
+          12.000002580874666,
+          10.69476143245723,
+          0.0
+        ],
+        "first_status": "success",
+        "first_nodes": 25,
+        "first_terminal_pose": [
+          12.170805597812306,
+          10.6275683040146,
+          -0.07746965492723193
+        ],
+        "second_status": "no_path",
+        "second_nodes": 1,
+        "second_reason": "open_set_exhausted",
+        "offline_seconds": 0.06538889999501407
+      },
+      {
+        "target": [
+          15.000002580852795,
+          12.194757667585801,
+          0.0
+        ],
+        "first_status": "success",
+        "first_nodes": 1,
+        "first_terminal_pose": [
+          15.000002580852797,
+          12.194757667585801,
+          0.0
+        ],
+        "second_status": "no_path",
+        "second_nodes": 1542,
+        "second_reason": "open_set_exhausted",
+        "offline_seconds": 1.3079145001247525
+      },
+      {
+        "target": [
+          18.000002580806505,
+          12.194764482841212,
+          0.0
+        ],
+        "first_status": "success",
+        "first_nodes": 1,
+        "first_terminal_pose": [
+          18.000002580806505,
+          12.19476448284121,
+          0.0
+        ],
+        "second_status": "no_path",
+        "second_nodes": 1121,
+        "second_reason": "open_set_exhausted",
+        "offline_seconds": 0.8923037999775261
+      }
+    ]
+  },
+  "refined_lattice": {
+    "report_sha256": "d60cfca6ab47a87a6e17a3db96f44d6df400e41f15a68373cd0b0a3b02f11267",
+    "registration": {
+      "scope": "One bounded offline finer lattice probe;physical geometry and original scores unchanged",
+      "input_sha256": "0fb4c5ef1e0b8044e8f39c3fa028f26fa81553934c4d5d2a71e03e47c2c1a54f",
+      "protocol_sha256": "3f013f6519173b0cea125d03e277f788c31a343da35b53def5ae936d14bbca7f",
+      "original_planner": {
+        "xy_resolution": 0.4,
+        "yaw_resolution": 0.15,
+        "primitive_length": 0.8,
+        "collision_step": 0.12,
+        "goal_tolerance": 0.55,
+        "yaw_tolerance": 0.2,
+        "max_nodes": 7200,
+        "max_seconds": null,
+        "steer_cost": 0.05,
+        "steer_change_cost": 0.08,
+        "grid_resolution": 0.5,
+        "heuristic_weight": 1.5,
+        "analytic_expansion": true,
+        "vectorized_primitives": true,
+        "grid_postprocess": "legacy",
+        "heuristic_mode": "dubins_v1"
+      },
+      "probe_planner": {
+        "xy_resolution": 0.2,
+        "yaw_resolution": 0.075,
+        "primitive_length": 0.8,
+        "collision_step": 0.12,
+        "goal_tolerance": 0.55,
+        "yaw_tolerance": 0.2,
+        "max_nodes": 57600,
+        "max_seconds": null,
+        "steer_cost": 0.05,
+        "steer_change_cost": 0.08,
+        "grid_resolution": 0.5,
+        "heuristic_weight": 1.5,
+        "analytic_expansion": true,
+        "vectorized_primitives": true,
+        "grid_postprocess": "legacy",
+        "heuristic_mode": "dubins_v1"
+      },
+      "maximum_searches": 1,
+      "new_controls": 0,
+      "new_updates": 0
+    },
+    "result": {
+      "status": "no_path",
+      "nodes": 38717,
+      "reason": "open_set_exhausted",
+      "path_poses": 0,
+      "offline_seconds": 41.0576080000028
+    },
+    "original_recorded_status": "no_path",
+    "original_recorded_nodes": 6694
+  },
+  "interpretation": "Four locally reachable original-catalog subgoals did not yield a two-stage full path. Half XY/yaw bins and up to8times nodes also exhausted the open set. Local candidate reachability is not a demonstrated complete alternative. These negative searches do not prove physical impossibility or isolate the cause;do not assume entropy tuning alone resolves this case.",
+  "new_controls": 0,
+  "new_updates": 0,
+  "new_final_conditions": 0,
+  "research_acceptance": "UNMET",
+  "limits": "Known development evidence only;extra offline planner work is disclosed. No current training/configuration changed,no score recalculated,and no failure removed. No unexecuted planner or geometry repair is claimed.",
+  "heading_probes": {
+    "registration": {
+      "input_sha256": "0fb4c5ef1e0b8044e8f39c3fa028f26fa81553934c4d5d2a71e03e47c2c1a54f",
+      "probes": [
+        {
+          "original_target": [
+            12.000002580874666,
+            9.19476143245723,
+            0.0
+          ],
+          "target": [
+            12.000002580874666,
+            9.19476143245723,
+            -0.4
+          ],
+          "heading_offset_rad": -0.4
+        },
+        {
+          "original_target": [
+            12.000002580874666,
+            9.19476143245723,
+            0.0
+          ],
+          "target": [
+            12.000002580874666,
+            9.19476143245723,
+            0.4
+          ],
+          "heading_offset_rad": 0.4
+        },
+        {
+          "original_target": [
+            12.000002580874666,
+            10.69476143245723,
+            0.0
+          ],
+          "target": [
+            12.000002580874666,
+            10.69476143245723,
+            -0.4
+          ],
+          "heading_offset_rad": -0.4
+        },
+        {
+          "original_target": [
+            12.000002580874666,
+            10.69476143245723,
+            0.0
+          ],
+          "target": [
+            12.000002580874666,
+            10.69476143245723,
+            0.4
+          ],
+          "heading_offset_rad": 0.4
+        },
+        {
+          "original_target": [
+            15.000002580852795,
+            12.194757667585801,
+            0.0
+          ],
+          "target": [
+            15.000002580852795,
+            12.194757667585801,
+            -0.4
+          ],
+          "heading_offset_rad": -0.4
+        },
+        {
+          "original_target": [
+            15.000002580852795,
+            12.194757667585801,
+            0.0
+          ],
+          "target": [
+            15.000002580852795,
+            12.194757667585801,
+            0.4
+          ],
+          "heading_offset_rad": 0.4
+        },
+        {
+          "original_target": [
+            18.000002580806505,
+            12.194764482841212,
+            0.0
+          ],
+          "target": [
+            18.000002580806505,
+            12.194764482841212,
+            -0.4
+          ],
+          "heading_offset_rad": -0.4
+        },
+        {
+          "original_target": [
+            18.000002580806505,
+            12.194764482841212,
+            0.0
+          ],
+          "target": [
+            18.000002580806505,
+            12.194764482841212,
+            0.4
+          ],
+          "heading_offset_rad": 0.4
+        }
+      ],
+      "per_search_node_budget": 7200,
+      "maximum_searches": 16,
+      "scope": "Eight endpoint-heading coverage probes on a known frozen scene;unchanged actual planner/geometry and zero physics",
+      "new_controls": 0,
+      "new_updates": 0
+    },
+    "result": {
+      "input_sha256": "0fb4c5ef1e0b8044e8f39c3fa028f26fa81553934c4d5d2a71e03e47c2c1a54f",
+      "registration_sha256": "4589b9b81eb9498d3dcd600f826130b35e0bff7c443274a5d0e1892529464112",
+      "results": [
+        {
+          "original_target": [
+            12.000002580874666,
+            9.19476143245723,
+            0.0
+          ],
+          "target": [
+            12.000002580874666,
+            9.19476143245723,
+            -0.4
+          ],
+          "heading_offset_rad": -0.4,
+          "endpoint_free": false
+        },
+        {
+          "original_target": [
+            12.000002580874666,
+            9.19476143245723,
+            0.0
+          ],
+          "target": [
+            12.000002580874666,
+            9.19476143245723,
+            0.4
+          ],
+          "heading_offset_rad": 0.4,
+          "endpoint_free": true,
+          "first_status": "success",
+          "first_nodes": 8,
+          "first_terminal_pose": [
+            11.584004645231143,
+            9.116635601775211,
+            0.21344119137635698
+          ],
+          "second_status": "no_path",
+          "second_nodes": 6
+        },
+        {
+          "original_target": [
+            12.000002580874666,
+            10.69476143245723,
+            0.0
+          ],
+          "target": [
+            12.000002580874666,
+            10.69476143245723,
+            -0.4
+          ],
+          "heading_offset_rad": -0.4,
+          "endpoint_free": true,
+          "first_status": "no_path",
+          "first_nodes": 5463
+        },
+        {
+          "original_target": [
+            12.000002580874666,
+            10.69476143245723,
+            0.0
+          ],
+          "target": [
+            12.000002580874666,
+            10.69476143245723,
+            0.4
+          ],
+          "heading_offset_rad": 0.4,
+          "endpoint_free": true,
+          "first_status": "success",
+          "first_nodes": 1,
+          "first_terminal_pose": [
+            12.000002580874666,
+            10.694761432457232,
+            0.4000000000000001
+          ],
+          "second_status": "no_path",
+          "second_nodes": 3070
+        },
+        {
+          "original_target": [
+            15.000002580852795,
+            12.194757667585801,
+            0.0
+          ],
+          "target": [
+            15.000002580852795,
+            12.194757667585801,
+            -0.4
+          ],
+          "heading_offset_rad": -0.4,
+          "endpoint_free": false
+        },
+        {
+          "original_target": [
+            15.000002580852795,
+            12.194757667585801,
+            0.0
+          ],
+          "target": [
+            15.000002580852795,
+            12.194757667585801,
+            0.4
+          ],
+          "heading_offset_rad": 0.4,
+          "endpoint_free": true,
+          "first_status": "success",
+          "first_nodes": 1,
+          "first_terminal_pose": [
+            15.000002580852795,
+            12.194757667585801,
+            0.39999999999999997
+          ],
+          "second_status": "no_path",
+          "second_nodes": 2198
+        },
+        {
+          "original_target": [
+            18.000002580806505,
+            12.194764482841212,
+            0.0
+          ],
+          "target": [
+            18.000002580806505,
+            12.194764482841212,
+            -0.4
+          ],
+          "heading_offset_rad": -0.4,
+          "endpoint_free": false
+        },
+        {
+          "original_target": [
+            18.000002580806505,
+            12.194764482841212,
+            0.0
+          ],
+          "target": [
+            18.000002580806505,
+            12.194764482841212,
+            0.4
+          ],
+          "heading_offset_rad": 0.4,
+          "endpoint_free": true,
+          "first_status": "success",
+          "first_nodes": 1,
+          "first_terminal_pose": [
+            18.000002580806505,
+            12.194764482841212,
+            0.4000000000000001
+          ],
+          "second_status": "no_path",
+          "second_nodes": 2265
+        }
+      ],
+      "new_controls": 0,
+      "new_updates": 0,
+      "new_final_conditions": 0,
+      "limits": "Offline changed candidate heading and additional bounded planning work only;these poses were not available to the tested policy. No new policy,actual task success,continuous safety or guarantee of tracking is claimed. Current trained/evaluated versions and all failures remain unchanged. Negative searches do not prove physical impossibility."
+    }
+  }
+}

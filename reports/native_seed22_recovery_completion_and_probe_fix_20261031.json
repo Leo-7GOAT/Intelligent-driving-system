@@ -1,0 +1,48 @@
+{
+  "scope": "Completed recovered H0endpoint with original telemetry loss and secondary cleanup failure preserved;current B1PPOlive with complete operational snapshot",
+  "completed_H": {
+    "seed": 22,
+    "successes": 12,
+    "cases": 12,
+    "unsafe": 0,
+    "training_controls": 20539,
+    "optimizer_steps": 650,
+    "raw_controls_verified": 24858
+  },
+  "completed_H0": {
+    "seed": 22,
+    "successes": 10,
+    "cases": 12,
+    "unsafe": 0,
+    "new_training_controls": 10465,
+    "retained_lineage_controls": 20537,
+    "new_optimizer_steps": 330,
+    "retained_optimizer_steps_total": 650,
+    "raw_new_segment_controls_verified": 15887,
+    "parent_consumed_training_controls_lower_bound": 16770,
+    "gross_training_controls_lower_bound": 27235,
+    "unknown_unflushed_parent_tail_preserved": true
+  },
+  "comparison_limit": "Same registered conditions/physical sources and retained nominal budget;H0 consumed more interactions after a checkpoint rollback and starts a fresh episode. Not an equal-consumed-budget causal result,not final confirmation.",
+  "cleanup_fix": {
+    "missing_file": "probe_carla37.py",
+    "original_launcher_failure_preserved": true,
+    "original_fallback_owned_cleanup_verified": true,
+    "snapshot_dependency_regression_passed": 18,
+    "regression_seconds": 14.39,
+    "actual_new_snapshot_contains_probe": true,
+    "native_probe_status": "CONNECTED",
+    "native_probe_actor_count_during_active_training": 3,
+    "native_probe_client_server_versions_equal": "0.9.15",
+    "probe_evidence_sha256": "04b89e6697a608b3b2d399e3bb73cc600524e0414705cbc70f4e55dd227bd748",
+    "readonly_probe_never_advances_world": true
+  },
+  "active_B1PPO": {
+    "batch": "20261031T042301092506Z_native_supervised_ppo",
+    "guard_source_sha256": "ae93f94213e824fa4f07c7bb195d143361548129b5b015b4783df11927d5410b",
+    "operational_manifest_sha256": "44ca3f1e7eb4972e3d90d07b093b780c40f17ff21b5c849dddfbdbe48efadec0",
+    "scope": "Actually running first replay-fit PPO study,not an endpoint score"
+  },
+  "remaining_seed_driver": "V3frozen dependency-complete launcher,still waiting original33/44/55gates;no prepared PPOchildren",
+  "research_acceptance": "UNMET"
+}

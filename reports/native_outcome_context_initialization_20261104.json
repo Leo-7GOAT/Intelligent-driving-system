@@ -1,0 +1,127 @@
+{
+  "scope": "Action-aligned outcome feedback initialization,not a new performance result",
+  "research_acceptance": "UNMET",
+  "observation_version": "action_aligned_outcome_context_v1",
+  "observation_size": 4736,
+  "action_count": 31,
+  "feedback": "Existing reusable-reference bits stay+1. Planner-failed labels since the last accepted reference are-1;other slots0. History resets at each episode or accepted reference. This is structured existing goal/outcome information,not a new physical oracle.",
+  "actor": "Original reusable-reference gain is preserved. Independent free-signed failure gain starts0. No action mask,forced commitment,manual failed-action penalty or proposal replacement added.",
+  "critic": "Original value branch preserved;new failure value weights start0.",
+  "optimizer": {
+    "original32_states_exact": true,
+    "new2_zero_moments_and_steps": true,
+    "total_parameter_states": 34,
+    "failure_learning_coordinate_scale": 1000.0,
+    "original_reference_scale": 100.0
+  },
+  "tests": {
+    "outcome_and_migration_tests": 5,
+    "seconds": 12.61,
+    "training_contract_tests": 37,
+    "contract_seconds": 13.18,
+    "final_pair_contract": {
+      "passed": 18,
+      "seconds": 19.78,
+      "evidence": "outcome_pair_final_tests.xml"
+    },
+    "full_CPU_final_pair": {
+      "passed": 1411,
+      "skipped": 1,
+      "carla_deselected": 4,
+      "seconds": 258.91,
+      "evidence": "outcome_pair_full_CPU.xml",
+      "sha256": "1b85645d4251d4e8acdf68694dbc5c2dfad58294005f423cd3caeb4c2d2df31b"
+    }
+  },
+  "native_learning": "H_AND_H0_COMPLETE_FULL_KNOWN_VALIDATION_RUNNING",
+  "limits": "H/H0 close10482/10489 controls,330Adam each and2/2 known endpoints each.No success-rate gain established.H/H0interventions1/34 are exploratory;H failure history empty during these endpoints.One continued seed;complete known validation is running;final120 untouched.",
+  "paired_initialization": {
+    "parameters_exact": true,
+    "full_Adam_exact": true,
+    "RNG_and_normalization_bytes_exact": true,
+    "only_intervention": "New negative-context actor/critic branches disabled in H0;old feedback retained",
+    "H_sha256": "85740d818a0517b9d35c62554f2aa5665a2d43323c59d1da0c9f82001c0208c4",
+    "H0_sha256": "9cd67b8e2f22f7fb75a759f8d33013842bc4ca8095d1abf67f8a94df45facb91",
+    "continued_seed": 22,
+    "independent_seeds": 1,
+    "requested_controls_each": 10240,
+    "maximum_rollout_overshoot_each": 319,
+    "new_final_conditions": 0,
+    "automatic_retries": 0
+  },
+  "migrations": {
+    "H": {
+      "version": "action_aligned_outcome_context_v1",
+      "parent_batch": "20261104_mpc_reference_effort_H_same2_transfer",
+      "old_model_sha256": "6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e",
+      "new_model_sha256": "85740d818a0517b9d35c62554f2aa5665a2d43323c59d1da0c9f82001c0208c4",
+      "normalization_sha256": "3453eda20d3b72a2fd8fbba7b52f897166c822d695284dfe88a95ab2159c4245",
+      "source_checkpoint_metadata_sha256": "e842eac5b5f2c483c2c229efd70a6533ea360c136890f467be030538a5bb5b39",
+      "original32_parameter_and_Adam_states_exact": true,
+      "new_parameter_names": [
+        "action_net.reference_bias.failure_gain",
+        "value_net.failure_weight"
+      ],
+      "new_parameters_and_Adam_steps_zero": true,
+      "copied_resume_RNG_sha256": "8fcd38745b1fb72b7a9b6336cb60440be6cc0d6b2ab3134a29b47d941ba3aa09",
+      "global_Torch_RNG_unchanged": true,
+      "failure_gain_scale": 1000.0,
+      "failure_feedback_ablated": false,
+      "script_sha256": "72130ca942258bc64e37dcd658d85b8f1d3758a8bdf80607d385e6a4e8303feb",
+      "policy_source_sha256": "a152959a29e372c96485c59319c7900545e6edbcd3d4d5cc36fe2aef8013f085",
+      "new_controls": 0,
+      "new_updates": 0,
+      "limits": "Schema/optimizer initialization only;requires native-state equivalence proof and actual new learning before any benefit claim."
+    },
+    "H0": {
+      "version": "action_aligned_outcome_context_v1",
+      "parent_batch": "20261104_mpc_reference_effort_H_same2_transfer",
+      "old_model_sha256": "6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e",
+      "new_model_sha256": "9cd67b8e2f22f7fb75a759f8d33013842bc4ca8095d1abf67f8a94df45facb91",
+      "normalization_sha256": "3453eda20d3b72a2fd8fbba7b52f897166c822d695284dfe88a95ab2159c4245",
+      "source_checkpoint_metadata_sha256": "e842eac5b5f2c483c2c229efd70a6533ea360c136890f467be030538a5bb5b39",
+      "original32_parameter_and_Adam_states_exact": true,
+      "new_parameter_names": [
+        "action_net.reference_bias.failure_gain",
+        "value_net.failure_weight"
+      ],
+      "new_parameters_and_Adam_steps_zero": true,
+      "copied_resume_RNG_sha256": "8fcd38745b1fb72b7a9b6336cb60440be6cc0d6b2ab3134a29b47d941ba3aa09",
+      "global_Torch_RNG_unchanged": true,
+      "failure_gain_scale": 1000.0,
+      "failure_feedback_ablated": true,
+      "script_sha256": "72130ca942258bc64e37dcd658d85b8f1d3758a8bdf80607d385e6a4e8303feb",
+      "policy_source_sha256": "a152959a29e372c96485c59319c7900545e6edbcd3d4d5cc36fe2aef8013f085",
+      "new_controls": 0,
+      "new_updates": 0,
+      "limits": "Schema/optimizer initialization only;requires native-state equivalence proof and actual new learning before any benefit claim."
+    }
+  },
+  "recorded_state_equivalence": {
+    "H": {
+      "evidence": "outcome_feedback_H_all147_equivalence.json",
+      "actual_decisions": 147,
+      "probability_vectors_and_values_exact": true,
+      "new_controls": 0,
+      "new_updates": 0
+    },
+    "H0": {
+      "evidence": "outcome_feedback_H0_all147_equivalence.json",
+      "actual_decisions": 147,
+      "probability_vectors_and_values_exact": true,
+      "new_controls": 0,
+      "new_updates": 0
+    }
+  },
+  "comparison": "Same continued seed22;10240 requested native controls each(+up to319 rollout overshoot);same fixed lowlevel.H0 disables only new failed-action actor/critic context;old feedback retained.Sequential CARLA instances,no automatic retries.",
+  "source_git_commit": "b94c1ae",
+  "queue": {
+    "registration": "20261104_outcome_pair_sequential_queue/registration.json",
+    "status": "20261104_outcome_pair_sequential_queue/status.json",
+    "script": "run_outcome_pair_sequential_queue.py",
+    "failure_retries": 0,
+    "starts_H0_only_after_H_training_and_endpoint_fully_audited": true
+  },
+  "H_closed_result": "native_outcome_context_H_learning_complete_20261104.json",
+  "complete_pair_report": "native_outcome_context_pair_complete_20261104.json"
+}

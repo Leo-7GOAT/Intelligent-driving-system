@@ -1,0 +1,72 @@
+{
+  "scope": "Complete fixed-weight/fixed-physical-mask feedback input intervention on the observed24development trajectories;not ablated-policy driving",
+  "methods": [
+    {
+      "scope": "Reconstruct all decisions,then hide learned feedback with weights/mask fixed.\n\nThis is an observational-state intervention,not new driving or performance of\nan ablated policy. H0 supplies a negative control because it already hides it.\n",
+      "batch": "20261031T070638Z_native_evaluation_recovery",
+      "method": "H",
+      "script_sha256": "ceb04dffbd008b6e7a25adca81d8101ffee247bbf8d8ef388c9ead243dfb4c60",
+      "raw_audit_sha256": "9f8dd105d54119cb3c38feea35dbda32850e15611d4f2c1658654b6710407bbc",
+      "model_sha256": "da2796dde60d0d770c1bfa4cd7201a6f090f2f256390798891578d8a46d6afd6",
+      "decisions_reproduced": 823,
+      "native_control_history_verified": 8089,
+      "changed_actions": 24,
+      "mean_probability_total_variation": 0.03732376218795031,
+      "weights_statistics_and_physical_mask_unchanged": true,
+      "wall_seconds": 39.984999999869615,
+      "new_controls": 0,
+      "optimizer_updates": 0,
+      "limits": "Same visited states only;no counterfactual trajectories or success rates. Nonzero sensitivity is not evidence of performance benefit or feedback sufficiency.",
+      "research_acceptance": "UNMET",
+      "full_report_sha256": "bd3fb82f9b1f3aea55c620a3de719e31fd3aa2b4247c675f65a2bd2075856d8f",
+      "changed_actions_per_case": {
+        "0": 3,
+        "1": 2,
+        "2": 1,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 1,
+        "9": 1,
+        "15": 1,
+        "17": 3,
+        "18": 2,
+        "19": 1,
+        "20": 1,
+        "23": 2
+      },
+      "H_only_success_case_changes": {
+        "9": 1,
+        "13": 0,
+        "15": 1
+      }
+    },
+    {
+      "scope": "Reconstruct all decisions,then hide learned feedback with weights/mask fixed.\n\nThis is an observational-state intervention,not new driving or performance of\nan ablated policy. H0 supplies a negative control because it already hides it.\n",
+      "batch": "20261031T071026696107Z_native_H0_spawn_recovery",
+      "method": "H0",
+      "script_sha256": "ceb04dffbd008b6e7a25adca81d8101ffee247bbf8d8ef388c9ead243dfb4c60",
+      "raw_audit_sha256": "400fe5a2bd6be91c37c00de8637f9cb34180a6822b294d3706572e1785f0087c",
+      "model_sha256": "85b1007c1d235877fdfd7fdae5f176814bd809a87884b1797037aed8862ea7c0",
+      "decisions_reproduced": 985,
+      "native_control_history_verified": 9731,
+      "changed_actions": 0,
+      "mean_probability_total_variation": 0.0,
+      "weights_statistics_and_physical_mask_unchanged": true,
+      "wall_seconds": 48.21899999980815,
+      "new_controls": 0,
+      "optimizer_updates": 0,
+      "limits": "Same visited states only;no counterfactual trajectories or success rates. Nonzero sensitivity is not evidence of performance benefit or feedback sufficiency.",
+      "research_acceptance": "UNMET",
+      "full_report_sha256": "4352c605fdc6228c94483eacf3d325b4768b8bfcd743ac962defa9a43b4c5b54",
+      "changed_actions_per_case": {},
+      "H_only_success_case_changes": null
+    }
+  ],
+  "total_decisions_reconstructed": 1808,
+  "negative_control_unchanged": true,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "limits": "Hchanges24/823decisions,H0changes0/985;H-only win case13has zero changed actions on Hvisited states. This establishes input sensitivity,not causal success benefit or feedback sufficiency.",
+  "research_acceptance": "UNMET"
+}

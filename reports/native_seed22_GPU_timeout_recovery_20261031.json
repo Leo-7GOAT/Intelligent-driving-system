@@ -1,0 +1,76 @@
+{
+  "scope": "Executed GPU-probe guard fault,verified owned cleanup and H0-only checkpoint recovery;not a completed second-seed pair or budget-matched superiority result",
+  "parent": "20261031T025409042778Z_native_supervised_ppo",
+  "recovery_child": "20261031T045159Z_native_recovery",
+  "parent_guard": {
+    "epoch": 1793421835.239542,
+    "worker_pid": 42192,
+    "exit_code": 1,
+    "reason": "guard_exception: TimeoutExpired(['nvidia-smi', '--query-gpu=temperature.gpu', '--format=csv,noheader,nounits'], 10)"
+  },
+  "owned_server_cleanup_status": "owned_empty_server_stopped",
+  "H_completed_training_controls": 20539,
+  "H_successes": 12,
+  "H0_consumed_parent_controls_lower_bound": 16770,
+  "H0_retained_checkpoint_controls": 10072,
+  "H0_retained_optimizer_steps": 320,
+  "H0_nonretained_parent_controls_lower_bound": 6698,
+  "H0_unknown_unflushed_parent_tail": true,
+  "H0_new_control_budget": 10408,
+  "H0_lineage_target": 20480,
+  "unchanged_checkpoint_files": {
+    "model.zip": true,
+    "normalization.pkl": true,
+    "resume_state.pkl": true
+  },
+  "unchanged_physical_and_learning_module_text": {
+    "config": true,
+    "env": true,
+    "vehicle": true,
+    "world": true,
+    "planning": true,
+    "road_grid": true,
+    "road_grid_batch": true,
+    "trajectory": true,
+    "mpc": true,
+    "reward": true,
+    "carla_actuation": true,
+    "carla_bridge": true,
+    "native_route": true,
+    "subgoals": true,
+    "candidate_filter": true,
+    "road_candidate_policy": true,
+    "independent_clip_ppo": true
+  },
+  "native_bridge_actuation_source_text_unchanged": true,
+  "env_config_exact": true,
+  "completed_H_not_retrained": true,
+  "new_guard_source_sha256": "ae93f94213e824fa4f07c7bb195d143361548129b5b015b4783df11927d5410b",
+  "operational_snapshot_manifest_sha256": "2dc9c632dc46c1a8571f9e557193ba301c5bee58306b0d9f1ab43bb0be41887f",
+  "gpu_guard_policy": {
+    "attempts_max": 2,
+    "timeout_seconds_each": 10,
+    "stop_temperature_c": 85,
+    "both_attempts_fail": "stop",
+    "infinite_retries": false
+  },
+  "tests": {
+    "initial_guard_recovery_subset": {
+      "passed": 65,
+      "seconds": 12.03
+    },
+    "snapshot_subset": {
+      "passed": 51,
+      "seconds": 13.43
+    },
+    "full_CPU": {
+      "passed": 700,
+      "skipped": 1,
+      "CARLA_deselected": 4,
+      "warnings": 3,
+      "seconds": 246.47
+    }
+  },
+  "current_scope": "Native resumed worker observed live and healthy;new guard has normal45-50C readings. CLI timeout origin beyond the recorded failed probe is unknown. All consumed/lost/reset interactions remain charged.",
+  "research_acceptance": "UNMET"
+}

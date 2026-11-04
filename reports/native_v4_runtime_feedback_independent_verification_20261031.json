@@ -1,0 +1,46 @@
+{
+  "scope": "Bounded independent reconstruction from previously public-downloaded assets.",
+  "independent_source_commit": "bd645ae8c3e638329458f45ef74b506097d61365",
+  "source_fixed_during_all_reconstruction": true,
+  "runtime_reports": [
+    {
+      "report": "native_H_v4_seed11_runtime_20261031.json",
+      "byte_identical": true,
+      "sha256": "cf830a2f104d8c35aa20e47ac7948e71e757ca11131cc6ec4fbd3e08746010b8"
+    },
+    {
+      "report": "native_H0_v4_seed11_runtime_20261031.json",
+      "byte_identical": true,
+      "sha256": "1fb306d87a8ff0650429b8e1e35b2beb0d5c6086bcfa97924ef7c74398e85fab"
+    },
+    {
+      "report": "native_B1_v4_PPO_runtime_20261031.json",
+      "byte_identical": true,
+      "sha256": "b34f68c89c1e31bf0e60bceffe7ed72a83b10999c61a25e4ce056888b47f592e"
+    },
+    {
+      "report": "native_B1_v4_approach_fit_runtime_20261031.json",
+      "byte_identical": true,
+      "sha256": "63137e7e3765db0b45d26bf55189d67dfb4cfee2efeede7da7cae7dbb6bcbcef"
+    }
+  ],
+  "reliance_reports": [
+    {
+      "report": "native_H_v4_feedback_reliance_20261031.json",
+      "all_decisions_and_probabilities_identical": true,
+      "comparison_excludes_only_offline_wall_seconds": true,
+      "decisions": 439,
+      "changed_actions": 10
+    },
+    {
+      "report": "native_H0_v4_feedback_reliance_20261031.json",
+      "all_decisions_and_probabilities_identical": true,
+      "comparison_excludes_only_offline_wall_seconds": true,
+      "decisions": 494,
+      "changed_actions": 0
+    }
+  ],
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

@@ -1,0 +1,91 @@
+{
+  "scope": "Versioned low-level command delivery transfer;fixed replay policy and all4known TRAINroads. No new learning or research superiority claim.",
+  "parent_model_sha256": "4f20570844ff17da318c601893be8523ddf504193d21775f9553a3d5c8530ca0",
+  "normalization_sha256": "db467fb35b0f78a989e8e042b0400036cada30cfad36b41fba727a4f432e5df5",
+  "model_normalizer_and_env_exact": true,
+  "calibration_gains_exact_except_delivery_version": true,
+  "physical_source_overlays": [
+    "navstack/carla_actuation.py",
+    "navstack/carla_bridge.py",
+    "scripts/carla_bridge37.py"
+  ],
+  "other_parent_source_hashes_exact": true,
+  "arms": [
+    {
+      "batch": "20261101T014911209543Z_native_trained_actor_replay",
+      "delivery": "actor_async_legacy",
+      "actual_controls": 1275,
+      "control_mismatches": 5,
+      "previous_request_matches": 5,
+      "successes": 3,
+      "unsafe_cases": 1,
+      "case_outcomes": [
+        {
+          "case_id": 0,
+          "termination": "success",
+          "controls": 378
+        },
+        {
+          "case_id": 1,
+          "termination": "out_of_bounds",
+          "controls": 264
+        },
+        {
+          "case_id": 2,
+          "termination": "success",
+          "controls": 312
+        },
+        {
+          "case_id": 3,
+          "termination": "success",
+          "controls": 321
+        }
+      ],
+      "raw_audit_sha256": "ca49808794f6ae76b1183e9ec851b1598381f3ba373f073168051bb9fd982016",
+      "protocol_sha256": "9dfd91f633e9d87e40e0e62af9dc38350bc78e37f3fdb7a7e7dd8b4ac7888469"
+    },
+    {
+      "batch": "20261101T084713744547Z_native_sync_delivery_transfer",
+      "delivery": "batch_sync_v1",
+      "actual_controls": 1271,
+      "control_mismatches": 0,
+      "previous_request_matches": 0,
+      "successes": 3,
+      "unsafe_cases": 1,
+      "case_outcomes": [
+        {
+          "case_id": 0,
+          "termination": "success",
+          "controls": 382
+        },
+        {
+          "case_id": 1,
+          "termination": "out_of_bounds",
+          "controls": 256
+        },
+        {
+          "case_id": 2,
+          "termination": "success",
+          "controls": 312
+        },
+        {
+          "case_id": 3,
+          "termination": "success",
+          "controls": 321
+        }
+      ],
+      "raw_audit_sha256": "2814672a49a4a424baaa05a84494331ea6a0683034536e47a5a01e908c5cf681",
+      "protocol_sha256": "3ae140468645f2a19e3ddf424f0e2878ae0672fbbcec5b287be1d058139a1ac1"
+    }
+  ],
+  "new_controls": 1271,
+  "new_PPO_updates": 0,
+  "new_supervised_updates": 0,
+  "all_new_engine_acknowledgements_match": true,
+  "new_raw_frames_verified": 1271,
+  "new_measured_start_actions_verified": 4,
+  "original_basic_driving_gate_passed": false,
+  "legacy_PPO_diagnosis": "reports/native_PPO_legacy_control_delivery_20261101.json",
+  "disclosure": "Earlier frame audits verified CARLAstates,requests and bridge echoes;they did not establish equality to returned engine controls. Historical physical outcomes remain preserved. Legacy mismatches are not erased or claimed to cause failure.",
+  "limits": "Single known seed,frozen-policy low-level transfer. Native3/4and sync3/4both retain one bounds failure;no health qualification or PPOcontribution. Dynamic actor delivery was not tested."
+}

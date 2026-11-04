@@ -1,0 +1,286 @@
+{
+  "scope": "Closed known-development transfer;two disclosed computation profiles;not independent final confirmation",
+  "research_acceptance": "UNMET",
+  "execution": "20261104_exact_compute_development_recovery_execution_closed_owner_fix",
+  "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+  "source_report_script_sha256": "fc8034486cfd422c32f857324a919237ac83ebf9d17c8a6f24d9f39818c48339",
+  "evidence_sha256": {
+    "20261104_option_adapted_all30_placements_H\\H\\exact_compute_recovery_prefix_raw_audit.json": "6b95d0d642b0fdf57f7693708a69d5ecae4f12f5fa673fa4e49f843fe1ea266d",
+    "20261104_option_adapted_all30_placements_H_exact_compute_tail\\H\\endpoint_raw_audit.json": "0a3973670ffb22146aadeacbc0ebf5358b05c2318808f808069ffbaf0f9da256",
+    "20261104_option_adapted_known24_H_exact_compute\\H\\endpoint_raw_audit.json": "b74b101e942b23cf6809c49d00876f1d83eb87d0d2f6634de4cc67f36f6dae93"
+  },
+  "placements": {
+    "cases": 30,
+    "successes": 21,
+    "reasons": {
+      "deadline": 9,
+      "success": 21
+    },
+    "episodes": [
+      {
+        "case_id": 0,
+        "success": false,
+        "termination": "deadline",
+        "controls": 900,
+        "interventions": 670
+      },
+      {
+        "case_id": 1,
+        "success": false,
+        "termination": "deadline",
+        "controls": 900,
+        "interventions": 900
+      },
+      {
+        "case_id": 2,
+        "success": false,
+        "termination": "deadline",
+        "controls": 900,
+        "interventions": 660
+      },
+      {
+        "case_id": 3,
+        "success": true,
+        "termination": "success",
+        "controls": 330,
+        "interventions": 1
+      },
+      {
+        "case_id": 4,
+        "success": true,
+        "termination": "success",
+        "controls": 346,
+        "interventions": 2
+      },
+      {
+        "case_id": 5,
+        "success": true,
+        "termination": "success",
+        "controls": 330,
+        "interventions": 2
+      },
+      {
+        "case_id": 6,
+        "success": true,
+        "termination": "success",
+        "controls": 331,
+        "interventions": 1
+      },
+      {
+        "case_id": 7,
+        "success": true,
+        "termination": "success",
+        "controls": 334,
+        "interventions": 0
+      },
+      {
+        "case_id": 8,
+        "success": true,
+        "termination": "success",
+        "controls": 322,
+        "interventions": 2
+      },
+      {
+        "case_id": 9,
+        "success": true,
+        "termination": "success",
+        "controls": 328,
+        "interventions": 2
+      },
+      {
+        "case_id": 10,
+        "success": true,
+        "termination": "success",
+        "controls": 322,
+        "interventions": 2
+      },
+      {
+        "case_id": 11,
+        "success": true,
+        "termination": "success",
+        "controls": 325,
+        "interventions": 2
+      },
+      {
+        "case_id": 12,
+        "success": true,
+        "termination": "success",
+        "controls": 338,
+        "interventions": 2
+      },
+      {
+        "case_id": 13,
+        "success": true,
+        "termination": "success",
+        "controls": 323,
+        "interventions": 1
+      },
+      {
+        "case_id": 14,
+        "success": true,
+        "termination": "success",
+        "controls": 327,
+        "interventions": 2
+      },
+      {
+        "case_id": 15,
+        "success": true,
+        "termination": "success",
+        "controls": 333,
+        "interventions": 1
+      },
+      {
+        "case_id": 16,
+        "success": true,
+        "termination": "success",
+        "controls": 337,
+        "interventions": 11
+      },
+      {
+        "case_id": 17,
+        "success": true,
+        "termination": "success",
+        "controls": 329,
+        "interventions": 2
+      },
+      {
+        "case_id": 18,
+        "success": true,
+        "termination": "success",
+        "controls": 318,
+        "interventions": 2
+      },
+      {
+        "case_id": 19,
+        "success": true,
+        "termination": "success",
+        "controls": 349,
+        "interventions": 2
+      },
+      {
+        "case_id": 20,
+        "success": true,
+        "termination": "success",
+        "controls": 342,
+        "interventions": 2
+      },
+      {
+        "case_id": 21,
+        "success": false,
+        "termination": "deadline",
+        "controls": 900,
+        "interventions": 900
+      },
+      {
+        "case_id": 22,
+        "success": false,
+        "termination": "deadline",
+        "controls": 900,
+        "interventions": 810
+      },
+      {
+        "case_id": 23,
+        "success": false,
+        "termination": "deadline",
+        "controls": 900,
+        "interventions": 900
+      },
+      {
+        "case_id": 24,
+        "success": true,
+        "termination": "success",
+        "controls": 348,
+        "interventions": 1
+      },
+      {
+        "case_id": 25,
+        "success": true,
+        "termination": "success",
+        "controls": 343,
+        "interventions": 2
+      },
+      {
+        "case_id": 26,
+        "success": false,
+        "termination": "deadline",
+        "controls": 900,
+        "interventions": 650
+      },
+      {
+        "case_id": 27,
+        "success": false,
+        "termination": "deadline",
+        "controls": 900,
+        "interventions": 900
+      },
+      {
+        "case_id": 28,
+        "success": false,
+        "termination": "deadline",
+        "controls": 900,
+        "interventions": 900
+      },
+      {
+        "case_id": 29,
+        "success": true,
+        "termination": "success",
+        "controls": 351,
+        "interventions": 11
+      }
+    ],
+    "completed_controls": 15106,
+    "prior_interrupted_controls": 200,
+    "verified_NN_decisions": 1520
+  },
+  "children": [
+    {
+      "batch": "20261104_option_adapted_all30_placements_H_exact_compute_tail",
+      "cases": 2,
+      "successes": 1,
+      "reasons": {
+        "deadline": 1,
+        "success": 1
+      },
+      "raw_sha256": "0a3973670ffb22146aadeacbc0ebf5358b05c2318808f808069ffbaf0f9da256",
+      "controls": 1251,
+      "failed_cases": [
+        {
+          "case_id": 0,
+          "termination": "deadline",
+          "controls": 900,
+          "interventions": 900
+        }
+      ]
+    },
+    {
+      "batch": "20261104_option_adapted_known24_H_exact_compute",
+      "cases": 24,
+      "successes": 22,
+      "reasons": {
+        "success": 22,
+        "deadline": 2
+      },
+      "raw_sha256": "b74b101e942b23cf6809c49d00876f1d83eb87d0d2f6634de4cc67f36f6dae93",
+      "controls": 9090,
+      "failed_cases": [
+        {
+          "case_id": 15,
+          "termination": "deadline",
+          "controls": 900,
+          "interventions": 810
+        },
+        {
+          "case_id": 17,
+          "termination": "deadline",
+          "controls": 900,
+          "interventions": 880
+        }
+      ]
+    }
+  ],
+  "all_actual_evaluation_controls_charged": 24396,
+  "new_PPO_updates": 0,
+  "new_final_conditions": 0,
+  "learning_comparison": "Previously closed same3 endpoint remained2/3 before and after;no demonstrated learning gain.",
+  "limits": "Single continued policy;known repeated development conditions. Earlier23/30used different low-level/model. Do not attribute differences to PPO, infer independent-seed intervals, claim real-time operation, or treat zero unsafe episodes as proof of general safety."
+}

@@ -1,0 +1,58 @@
+{
+  "scope": "All five trained B2development policies actually publicly downloaded and independently reconstructed;not a research-acceptance claim",
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "verified_controls": 133687,
+  "measured_initial_actions": 60,
+  "capsules": [
+    {
+      "seed": 11,
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed11_trained_20261031_repro.zip.parts.json",
+      "archive_sha256": "dfc81e823b161afe63fde22da8da58e6dd5189b1825d826a5f0accb7aaff1950",
+      "versioned_reference_figure": "reports/figures/native_B2_seed11_trained_endpoint_20261101.png",
+      "figure_sha256": "521d543346224b2c05999edb5d4a3dc700a7fa1682906183624e9fb7d4eedef0",
+      "reproduction_source_commit": "6a5486aa4083bc2f14f32762c1983fc0e5dfbafa"
+    },
+    {
+      "seed": 22,
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed22_trained_20261031_repro.zip.parts.json",
+      "archive_sha256": "7b317ac1ab6012faa7bb659d7148cfda56d6665d451b47bc3d24677f62346455",
+      "versioned_reference_figure": "reports/figures/native_B2_seed22_trained_endpoint_20261101.png",
+      "figure_sha256": "fe0f1a44dd871f20689ce65453d9173046182e629e628fb26e2bde87bab849df",
+      "reproduction_source_commit": "6a5486aa4083bc2f14f32762c1983fc0e5dfbafa"
+    },
+    {
+      "seed": 33,
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed33_trained_20261031_repro.zip.parts.json",
+      "archive_sha256": "791a9e0ead298c9589244af3aed52dd044a93e4970b406bb86782b8cb990436e",
+      "versioned_reference_figure": "reports/figures/native_B2_seed33_trained_endpoint_20261101.png",
+      "figure_sha256": "521fbc558f879b3d9c52ef387a8a8337eda0f9d4a0fb35c56cae9a199ab9bbb1",
+      "reproduction_source_commit": "6a5486aa4083bc2f14f32762c1983fc0e5dfbafa"
+    },
+    {
+      "seed": 44,
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed44_trained_20261031_repro.zip.parts.json",
+      "archive_sha256": "a0b814589f1124450f2e04efc063d7f9f801a1a88fc6495b92f295e1f86d3fd0",
+      "versioned_reference_figure": "reports/figures/native_B2_seed44_trained_endpoint_20261101.png",
+      "figure_sha256": "0d31db3e336a03e3b329118a1828a827f531616790b7fa023a07f9933ed27787",
+      "reproduction_source_commit": "6a5486aa4083bc2f14f32762c1983fc0e5dfbafa"
+    },
+    {
+      "seed": 55,
+      "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B2_seed55_trained_20261031_repro.zip.parts.json",
+      "archive_sha256": "37fbbf692bc4572d0626cf64b7f00402d3447415a50b538f627b4a6581eda89e",
+      "versioned_reference_figure": "reports/figures/native_B2_seed55_trained_endpoint_20261101.png",
+      "figure_sha256": "d4ac5139f9b30755630b5db9cf1f5ea0539a24a31e40591fd535a225a5a9cf26",
+      "reproduction_source_commit": "6a5486aa4083bc2f14f32762c1983fc0e5dfbafa"
+    }
+  ],
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "limits": "Archives retain original model/raw bytes. Explicit independently rendered versioned reference figures fix the missing packaged figure-baseline verification failure. Original failed verification outputs and failed transfers retained. No repeated training or correct public download. H/B2walker initialization mismatch remains disclosed.",
+  "research_acceptance": "UNMET"
+}

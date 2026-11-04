@@ -1,0 +1,33 @@
+{
+  "version": "public_native_single_PPO_segment_v1",
+  "scope": "One actually trained development pilot,failed gate;not final research confirmation.",
+  "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101",
+  "release_tag": "v0.2.0-dev.20261101",
+  "tag_target_unchanged": "ba932787113168ad5781ee640c6f06d09bbee0e1",
+  "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101/native_B1_exploration_PPO_seed22_20261101_repro.zip.parts.json",
+  "archive_name": "native_B1_exploration_PPO_seed22_20261101_repro.zip",
+  "archive_sha256": "438778411ba8cba4faf2708c3e07daa39b70c8597927f6db18fc55a1118bdbcf",
+  "archive_bytes": 56422535,
+  "packager_repository_commit": "286e72f8661075d399f0c14b6cc848d2261a1f30",
+  "frozen_runtime": "Exact per-file source_hashes in the packaged protocol,not the older release tag or a claim that every frozen file equals the packager Git tree.",
+  "reference_figure": {
+    "path": "reports/figures/native_B1_exploration_PPO_seed22_endpoint_20261101.png",
+    "sha256": "08f30f30e4e7b52dd9fc9b2087b2a6ef480b8e06df154e8bcef6f434006ebe4a",
+    "required_explicit_reference": true
+  },
+  "expected": {
+    "files": 563,
+    "controls": 12219,
+    "measured_start_actions": 4,
+    "new_actual_PPO_controls": 10240,
+    "new_actual_PPO_Adam_updates": 320,
+    "PPO_Adam_parameter_states": 35,
+    "initial_intervention_tensors_exact": true,
+    "final_observation_RMS_frozen": true,
+    "endpoint_successes": 2,
+    "endpoint_unsafe_cases": 1,
+    "basic_gate_passed": false
+  },
+  "documentation": "docs/native_B1_exploration_reproduction.md",
+  "no_new_controls_or_updates_during_reproduction": true
+}

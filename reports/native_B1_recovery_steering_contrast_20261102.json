@@ -1,0 +1,92 @@
+{
+  "scope": "Matched steering-weight contrast did not recover basic closed-loop safety.",
+  "parent_model_sha256": "5f42425596c4f1555f5f9870f2a18f3ccc4bda337e5fbe197e28a14e667456d3",
+  "model_sha256": "b661a4c4568dd258d0a89fef4dc48dee72efb6a9aab8edba29c7eeb9e9f04f59",
+  "only_change": "Steering loss coefficient4x(.02to.01scale);same6179executedrecoverylabels,35nominalepisodes,seed22,lr1e-4,1024updates.",
+  "new_auxiliary_Adam_steps": 1024,
+  "basic": {
+    "batch": "20261102T094359962820Z_native_recovery_actor_basic22",
+    "episodes": [
+      {
+        "case_id": 0,
+        "termination": "success",
+        "controls": 352
+      },
+      {
+        "case_id": 1,
+        "termination": "success",
+        "controls": 348
+      },
+      {
+        "case_id": 2,
+        "termination": "success",
+        "controls": 319
+      },
+      {
+        "case_id": 3,
+        "termination": "out_of_bounds",
+        "controls": 130
+      }
+    ],
+    "successes": 3,
+    "unsafe": 1,
+    "gate_passed": false,
+    "raw_audit_sha256": "a55fb843b2775c9ff9ef9cc5ba6da8b3cd17d88e53ef6a4eb35d142660cd3832",
+    "all_sequence_actions": 1149
+  },
+  "case3_metrics": {
+    "group": 3,
+    "train_controls": 238,
+    "train_action_RMS": [
+      0.027341922745108604,
+      0.009506342001259327
+    ],
+    "correlated_holdout_controls": 60,
+    "correlated_holdout_action_RMS": [
+      0.07092803716659546,
+      0.01102306880056858
+    ]
+  },
+  "loss_history": [
+    {
+      "auxiliary_steps": 1,
+      "teacher_scaled_MSE": 10.257892608642578
+    },
+    {
+      "auxiliary_steps": 128,
+      "teacher_scaled_MSE": 1.7778984308242798
+    },
+    {
+      "auxiliary_steps": 256,
+      "teacher_scaled_MSE": 1.1797200441360474
+    },
+    {
+      "auxiliary_steps": 384,
+      "teacher_scaled_MSE": 1.6662571430206299
+    },
+    {
+      "auxiliary_steps": 512,
+      "teacher_scaled_MSE": 1.1545287370681763
+    },
+    {
+      "auxiliary_steps": 640,
+      "teacher_scaled_MSE": 1.2611418962478638
+    },
+    {
+      "auxiliary_steps": 768,
+      "teacher_scaled_MSE": 0.9176623821258545
+    },
+    {
+      "auxiliary_steps": 896,
+      "teacher_scaled_MSE": 1.1728296279907227
+    },
+    {
+      "auxiliary_steps": 1024,
+      "teacher_scaled_MSE": 0.7137642502784729
+    }
+  ],
+  "new_PPO_updates": 0,
+  "validation_controls": 0,
+  "decision": "No further steering-weight search. Test incomplete optimization by continuing original objective from actual saved1024Adam+sampler to fixed8192endpoint,without new data or repeated initial updates.",
+  "research_acceptance": "UNMET"
+}

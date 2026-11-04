@@ -1,0 +1,408 @@
+{
+  "scope": "Actor-supervised seed11 shared physical mask development evaluation. No new PPO updates. H reused exact previous BC; H0 retrained896actor-only updates with learned actor/critic feedback ablated internally.",
+  "both_methods_share_physical_endpoint_mask_and_raw_information": true,
+  "new_PPO_controls": 0,
+  "methods": [
+    {
+      "batch": "20261028T002857Z_native_shared_mask_bc",
+      "method": "H",
+      "successes": 11,
+      "cases": 12,
+      "families": {
+        "curve_parking": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "static_obstacle": {
+          "successes": 3,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "dynamic_interaction": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "termination_counts": {
+        "success": 11,
+        "deadline": 1
+      },
+      "evaluation_controls": 4910,
+      "raw_audit": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261028T002857Z_native_shared_mask_bc",
+        "method": "H",
+        "protocol_sha256": "c37ed59645eff7688b408651142432a757a374f6113cb098de88cef68a8b022a",
+        "config_sha256": "77aa8d6f62aa67d93d34b2b3fc943abcf8b19564b5cb57fb94e6784aac1d016b",
+        "summary_sha256": "17d8cfc4f1593f3fc68693067937b1b3873793c7f83416b45d1677f66c9294fc",
+        "evaluation_sha256": "692d2cd89fcc4cdd1f0ac25ac06de2468e3edee0068f3228b55ec8b0cb9d957c",
+        "evaluation_trace_sha256": "5bb08c37d9a960d7ec9513064614067a9662816226901db1c0c826aa0f930153",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793150640714917200.jsonl.gz": "d1b91c29f0358a44dba86ea418220e40e9843ee6ae3a122370be477eb94d8b0a"
+        },
+        "bridge_response_stream": "bridge_9c627450_responses.jsonl.gz",
+        "bridge_response_sha256": "c3f05aefe463997279e5dd432c12abc69ec97324649b457a4ada027cd6f23451",
+        "bridge_complete_rows": 4934,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 4910,
+        "total_applied_controls_verified": 4910,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 5281,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "f0ffb7d0de2984be7a3569bc92ecec763e461d98cab5c4bd6b3680080c261adb",
+        "lineage_controls": 0,
+        "charged_controls_lower_bound": 9243,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 0,
+        "unknown_unflushed_ancestor_tail": false
+      },
+      "guard": {
+        "epoch": 1793150942.6776168,
+        "worker_pid": 66644,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_cleanup_status": "owned_empty_server_stopped",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 341,
+          "actions": 35,
+          "progress": 24.32057096040394,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 347,
+          "actions": 35,
+          "progress": 23.79331543486055,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 311,
+          "actions": 32,
+          "progress": 22.21475821852845,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "actions": 31,
+          "progress": 20.38121153379359,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 356,
+          "actions": 36,
+          "progress": 24.113844929826573,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 5,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 374,
+          "actions": 38,
+          "progress": 23.835940254191367,
+          "interventions": 10,
+          "plan_failures": 1,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 341,
+          "actions": 35,
+          "progress": 22.532538670985378,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "progress": 13.639721797103045,
+          "interventions": 650,
+          "plan_failures": 65,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 421,
+          "actions": 43,
+          "progress": 24.28412588770798,
+          "interventions": 70,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 9,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 444,
+          "actions": 45,
+          "progress": 23.76918749679998,
+          "interventions": 90,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "progress": 22.191942431741637,
+          "interventions": 60,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 388,
+          "actions": 39,
+          "progress": 20.217900500547852,
+          "interventions": 80,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        }
+      ]
+    },
+    {
+      "batch": "20261028T002857Z_native_shared_mask_bc",
+      "method": "H0",
+      "successes": 11,
+      "cases": 12,
+      "families": {
+        "curve_parking": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "static_obstacle": {
+          "successes": 3,
+          "cases": 4,
+          "unsafe": 0
+        },
+        "dynamic_interaction": {
+          "successes": 4,
+          "cases": 4,
+          "unsafe": 0
+        }
+      },
+      "termination_counts": {
+        "success": 11,
+        "deadline": 1
+      },
+      "evaluation_controls": 5260,
+      "raw_audit": {
+        "schema_version": 1,
+        "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+        "batch": "20261028T002857Z_native_shared_mask_bc",
+        "method": "H0",
+        "protocol_sha256": "c37ed59645eff7688b408651142432a757a374f6113cb098de88cef68a8b022a",
+        "config_sha256": "77aa8d6f62aa67d93d34b2b3fc943abcf8b19564b5cb57fb94e6784aac1d016b",
+        "summary_sha256": "4c5cb7b4b238da055a2ab427243e184564c66834039ac088a47bbe50b2eb412b",
+        "evaluation_sha256": "81753577cc169444be456064ff77fc8f85cb960d21dd5319ec37c6855e9234f2",
+        "evaluation_trace_sha256": "70ec00faba4b2b885a6695b1ac5b6ecd1cfc375d4f8cdd19e1ca5c9e519f32f3",
+        "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "transition_hashes": {
+          "transitions_000000000_1793150784246717500.jsonl.gz": "e60cae7a6c00e03d2b654de43e76c8e63a858706031f98ce518f324f2d962599"
+        },
+        "bridge_response_stream": "bridge_e974a211_responses.jsonl.gz",
+        "bridge_response_sha256": "1e76810bfec39e20b2f4b945b65441d54fa042d5c5ba73e7a1d5a4785a5ea985",
+        "bridge_complete_rows": 5284,
+        "training_control_frames_verified": 0,
+        "evaluation_control_frames_verified": 5260,
+        "total_applied_controls_verified": 5260,
+        "training_world_ticks_verified": 0,
+        "evaluation_world_ticks_verified": 5631,
+        "training_termination_reasons": {},
+        "checkpoint": "checkpoint_000000000",
+        "checkpoint_metadata_sha256": "6a5e569f7a325fe22aa66dda4015023f0a2cd80c01361d47d8abff07efd4becb",
+        "lineage_controls": 0,
+        "charged_controls_lower_bound": 4329,
+        "segment_optimizer_steps": 0,
+        "optimizer_steps_total_lower_bound": 0,
+        "unknown_unflushed_ancestor_tail": false
+      },
+      "guard": {
+        "epoch": 1793150942.6776168,
+        "worker_pid": 66644,
+        "exit_code": 0,
+        "reason": null
+      },
+      "owned_cleanup_status": "owned_empty_server_stopped",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 341,
+          "actions": 35,
+          "progress": 24.23613030321628,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 347,
+          "actions": 35,
+          "progress": 23.791882409308627,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 311,
+          "actions": 32,
+          "progress": 22.214838227010265,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "actions": 31,
+          "progress": 20.384920386843763,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 356,
+          "actions": 36,
+          "progress": 24.113764312729444,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 5,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 721,
+          "actions": 73,
+          "progress": 23.61143209458,
+          "interventions": 360,
+          "plan_failures": 36,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 341,
+          "actions": 35,
+          "progress": 22.534857316594334,
+          "interventions": 0,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "progress": 13.646945332231134,
+          "interventions": 650,
+          "plan_failures": 65,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 421,
+          "actions": 43,
+          "progress": 24.28060871999032,
+          "interventions": 70,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 9,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 444,
+          "actions": 45,
+          "progress": 23.76629961023984,
+          "interventions": 90,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "progress": 22.192497660509922,
+          "interventions": 60,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 391,
+          "actions": 40,
+          "progress": 20.236185020571387,
+          "interventions": 80,
+          "plan_failures": 0,
+          "mpc_failures": 0
+        }
+      ]
+    }
+  ],
+  "conclusion": "Single-seed initialization diagnostic; no feedback performance benefit or PPO contribution established."
+}

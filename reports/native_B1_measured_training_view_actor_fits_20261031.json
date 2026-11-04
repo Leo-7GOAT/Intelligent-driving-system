@@ -1,0 +1,59 @@
+{
+  "scope": "Actual matched512step actor-only fits;training loss comparison only,not native or validation success",
+  "teacher_TRAIN_controls": 20521,
+  "new_measured_TRAIN_rows": 4156,
+  "records": [
+    {
+      "arm": "replay",
+      "batch": "20261031T093757339917Z_native_replay_training_view_bc",
+      "protocol_sha256": "3262ef4a05ca2dece71e771e33ebf17294768fc737017c652efb45623b6c6d25",
+      "model_sha256": "687b0bb4c7ebc22007d62d31d1d347d4d0007be9be2e328c882b05b787277e28",
+      "critic_exact": true,
+      "normalization_and_RNG_bytes_exact": true,
+      "fit_steps": 512,
+      "PPO_updates": 0,
+      "training_fit_metrics_only": {
+        "original_TRAIN": {
+          "rows": 3496,
+          "MSE": 0.0015112101564567775,
+          "acceleration_MSE": 0.002918868959264432,
+          "steering_MSE": 0.00010355135364912238
+        },
+        "broader_measured_TRAIN": {
+          "rows": 4156,
+          "MSE": 0.13245311594122303,
+          "acceleration_MSE": 0.24658125691380478,
+          "steering_MSE": 0.01832497496864129
+        }
+      }
+    },
+    {
+      "arm": "measured36",
+      "batch": "20261031T094314260006Z_native_measured36_training_view_bc",
+      "protocol_sha256": "11159ea6e8cd45bf3b8082504457336517502226a000f7935e002d70c1b83fc5",
+      "model_sha256": "26ab5561f539ccfca85d57e2e1ce0196cc335136d09e6af1fbe518cf7b52d97c",
+      "critic_exact": true,
+      "normalization_and_RNG_bytes_exact": true,
+      "fit_steps": 512,
+      "PPO_updates": 0,
+      "training_fit_metrics_only": {
+        "original_TRAIN": {
+          "rows": 3496,
+          "MSE": 0.0027232313790936636,
+          "acceleration_MSE": 0.004949958761077722,
+          "steering_MSE": 0.000496503997109606
+        },
+        "broader_measured_TRAIN": {
+          "rows": 4156,
+          "MSE": 0.029715835073495157,
+          "acceleration_MSE": 0.0573691897136538,
+          "steering_MSE": 0.002062480433336516
+        }
+      }
+    }
+  ],
+  "native_controls": 0,
+  "PPO_updates": 0,
+  "partial_replay_fit_preserved": "Replayfit saved before optional metadata field KeyError;completed metadata without repeating its512updates. Intermediate history absent,final heartbeat and weights retained.",
+  "research_acceptance": "UNMET"
+}

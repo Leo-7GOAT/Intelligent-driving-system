@@ -1,0 +1,123 @@
+{
+  "scope": "Read-only failure reconstruction for the four failed cases in the first six completed static cases;not a complete inventory score",
+  "research_acceptance": "UNMET",
+  "model_sha256": "15ba2e1b17a99086d07eb031babe0ce5f008afb0516c208928f5035992969753",
+  "evidence": [
+    {
+      "file": "reports/native_reference_scale100_case0_switch_diagnostic_20261103.json",
+      "sha256": "83aa47f24d9d2ebe410161604e424032847cbf9e623a597fa8b2309c80985791"
+    },
+    {
+      "file": "reports/native_reference_scale100_case2_switch_diagnostic_20261103.json",
+      "sha256": "33baa73347ace59dabeacf1102986a6799c789c0d920e83a00b09bdc300f1050"
+    },
+    {
+      "file": "reports/native_reference_scale100_case4_switch_diagnostic_20261103.json",
+      "sha256": "55a8ea404fe3d5e77b2e5c5e68a6c6d009856c99281d4f64577d216a15224ced"
+    },
+    {
+      "file": "reports/native_reference_scale100_case5_switch_diagnostic_20261103.json",
+      "sha256": "911960edc99878e60c0ac8c9a4a15785c3e03433d092d7afe151ea3b0da39a9b"
+    },
+    {
+      "file": "reports/native_reference_scale100_initial_candidate_coverage_20261103.json",
+      "sha256": "a0c75e92303725c5393b134f64993c920913fa109c99cf8faa088df026785765"
+    }
+  ],
+  "first_six_completed_cases": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "failed_cases_reconstructed": [
+    0,
+    2,
+    4,
+    5
+  ],
+  "cases": [
+    {
+      "case_id": 0,
+      "full_recorded_decisions": 90,
+      "reconstructed_decisions": 24,
+      "termination": "deadline",
+      "first_action": 26,
+      "first_action_probability": 0.9466738700866699,
+      "switches_away_from_reusable_reference_before_first_failure": 1,
+      "all_actions26": false,
+      "recorded_planning_failures": 67,
+      "input_sha256": "6be06d161c1322e3008628f4ea5c28952ba3df77873310e2efc4826e568ea690"
+    },
+    {
+      "case_id": 2,
+      "full_recorded_decisions": 90,
+      "reconstructed_decisions": 1,
+      "termination": "deadline",
+      "first_action": 26,
+      "first_action_probability": 0.9877469539642334,
+      "switches_away_from_reusable_reference_before_first_failure": 0,
+      "all_actions26": true,
+      "recorded_planning_failures": 90,
+      "input_sha256": "0f6b69eb68d24ba4383ef455fb1c3d6008ba8e30779f2ffc2a086e4e2c2fc8ca",
+      "initial_bounded_path_success_actions": [
+        3,
+        4,
+        5,
+        6,
+        11,
+        12
+      ]
+    },
+    {
+      "case_id": 4,
+      "full_recorded_decisions": 11,
+      "reconstructed_decisions": 11,
+      "termination": "out_of_bounds",
+      "first_action": 26,
+      "first_action_probability": 0.9572190046310425,
+      "switches_away_from_reusable_reference_before_first_failure": 0,
+      "all_actions26": true,
+      "recorded_planning_failures": 0,
+      "input_sha256": "2513b89a4618236ea5dc269b56891638963289bdc9f7c7a6a14418dcdfefcae8"
+    },
+    {
+      "case_id": 5,
+      "full_recorded_decisions": 90,
+      "reconstructed_decisions": 1,
+      "termination": "deadline",
+      "first_action": 26,
+      "first_action_probability": 0.9522147178649902,
+      "switches_away_from_reusable_reference_before_first_failure": 0,
+      "all_actions26": true,
+      "recorded_planning_failures": 90,
+      "input_sha256": "0fb4c5ef1e0b8044e8f39c3fa028f26fa81553934c4d5d2a71e03e47c2c1a54f",
+      "initial_bounded_path_success_actions": [
+        5,
+        6,
+        7,
+        8,
+        19,
+        20,
+        29,
+        30
+      ]
+    }
+  ],
+  "saved_PPO_hyperparameters": {
+    "learning_rate": 3e-05,
+    "n_steps": 32,
+    "batch_size": 32,
+    "n_epochs": 10,
+    "ent_coef": 0.0,
+    "gamma": 0.9949874371066204,
+    "gae_lambda": 0.9746794344808963
+  },
+  "new_controls": 0,
+  "new_updates": 0,
+  "new_final_conditions": 0,
+  "interpretation": "Reference availability is absent at the first decision of cases2/5. Both retain action26 for all90recorded decisions and all90plans fail. Scaling a reference-availability term cannot directly distinguish candidates in those initial states. Other candidates have bounded geometric paths,but this does not prove timed feasibility or task completion. Zero entropy regularization and saturated initial probabilities motivate an exploration diagnostic;they do not establish the cause or benefit of an unexecuted change.",
+  "limits": "Known development prefix only. Case4 remains an out-of-bounds failure under unchanged v4 semantics;earlier road predicate disagreement is preserved separately. A reusable reference does not prove success. Candidate path success is not driving success. Do not change current frozen model,physics or scoring,discard failures,or treat these cases as independent trained seeds."
+}

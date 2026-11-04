@@ -1,0 +1,207 @@
+{
+  "scope": "All-row TRAIN fit diagnostics; no validation labels, driving or updates.",
+  "script_sha256": "ef832d5fb9cf85d1f19a5f068848cb362a543c7fe1f2fd9e4feaaa07fb0c2bd1",
+  "dataset_sha256": "1e59cf80b811b8313c47ba9dd85febe47d66e4fef8145ceb375b58f077c5fb32",
+  "models": [
+    {
+      "arm": "before_additional_fit",
+      "model_sha256": "ad1b01bb0f1349171d44602d8e812058bdae84ddf676630a18ecbccffccf0414",
+      "normalization_sha256": "e718b900d5355f8b73669bae47d9e4c7d7d64892f98e029294f48045a372b133",
+      "blocks": {
+        "original_TRAIN": {
+          "rows": 3496,
+          "unclipped_mean_squared_error_each_action": [
+            0.0033183961641043425,
+            0.0001434721634723246
+          ],
+          "clipped_deployment_mean_squared_error_each_action": [
+            0.003297303570434451,
+            0.0001421777269570157
+          ],
+          "weighted_unclipped_action_MSE": 0.001632168558983511,
+          "target_action_mean": [
+            0.010204936377704144,
+            0.005561914294958115
+          ],
+          "target_action_std": [
+            0.38986629247665405,
+            0.4310998320579529
+          ],
+          "actor_mean": [
+            0.009567850269377232,
+            0.00825213361531496
+          ]
+        },
+        "additional_measured36_TRAIN": {
+          "rows": 4156,
+          "unclipped_mean_squared_error_each_action": [
+            0.24432097375392914,
+            0.01767748035490513
+          ],
+          "clipped_deployment_mean_squared_error_each_action": [
+            0.24415287375450134,
+            0.017591865733265877
+          ],
+          "weighted_unclipped_action_MSE": 0.13099922816132967,
+          "target_action_mean": [
+            -0.13148945569992065,
+            0.09934933483600616
+          ],
+          "target_action_std": [
+            0.5758323669433594,
+            0.5003156065940857
+          ],
+          "actor_mean": [
+            0.039784274995326996,
+            0.09359299391508102
+          ]
+        }
+      }
+    },
+    {
+      "arm": "replay_512",
+      "model_sha256": "687b0bb4c7ebc22007d62d31d1d347d4d0007be9be2e328c882b05b787277e28",
+      "normalization_sha256": "e718b900d5355f8b73669bae47d9e4c7d7d64892f98e029294f48045a372b133",
+      "blocks": {
+        "original_TRAIN": {
+          "rows": 3496,
+          "unclipped_mean_squared_error_each_action": [
+            0.002934212563559413,
+            0.00010455582378199324
+          ],
+          "clipped_deployment_mean_squared_error_each_action": [
+            0.002918870886787772,
+            0.00010355125414207578
+          ],
+          "weighted_unclipped_action_MSE": 0.001331067231504351,
+          "target_action_mean": [
+            0.010204936377704144,
+            0.005561914294958115
+          ],
+          "target_action_std": [
+            0.38986629247665405,
+            0.4310998320579529
+          ],
+          "actor_mean": [
+            0.009788401424884796,
+            0.007227809634059668
+          ]
+        },
+        "additional_measured36_TRAIN": {
+          "rows": 4156,
+          "unclipped_mean_squared_error_each_action": [
+            0.24675960838794708,
+            0.018407998606562614
+          ],
+          "clipped_deployment_mean_squared_error_each_action": [
+            0.24658097326755524,
+            0.01832497864961624
+          ],
+          "weighted_unclipped_action_MSE": 0.1325839778919939,
+          "target_action_mean": [
+            -0.13148945569992065,
+            0.09934933483600616
+          ],
+          "target_action_std": [
+            0.5758323669433594,
+            0.5003156065940857
+          ],
+          "actor_mean": [
+            0.03977065160870552,
+            0.09308964014053345
+          ]
+        }
+      }
+    },
+    {
+      "arm": "measured36_512",
+      "model_sha256": "26ab5561f539ccfca85d57e2e1ce0196cc335136d09e6af1fbe518cf7b52d97c",
+      "normalization_sha256": "e718b900d5355f8b73669bae47d9e4c7d7d64892f98e029294f48045a372b133",
+      "blocks": {
+        "original_TRAIN": {
+          "rows": 3496,
+          "unclipped_mean_squared_error_each_action": [
+            0.00496223708614707,
+            0.000520876666996628
+          ],
+          "clipped_deployment_mean_squared_error_each_action": [
+            0.004949960857629776,
+            0.000496504595503211
+          ],
+          "weighted_unclipped_action_MSE": 0.002616816468159482,
+          "target_action_mean": [
+            0.010204936377704144,
+            0.005561914294958115
+          ],
+          "target_action_std": [
+            0.38986629247665405,
+            0.4310998320579529
+          ],
+          "actor_mean": [
+            -0.006613369099795818,
+            0.004473845940083265
+          ]
+        },
+        "additional_measured36_TRAIN": {
+          "rows": 4156,
+          "unclipped_mean_squared_error_each_action": [
+            0.05737562105059624,
+            0.0021249065175652504
+          ],
+          "clipped_deployment_mean_squared_error_each_action": [
+            0.05736919492483139,
+            0.0020624781027436256
+          ],
+          "weighted_unclipped_action_MSE": 0.029750260031562174,
+          "target_action_mean": [
+            -0.13148945569992065,
+            0.09934933483600616
+          ],
+          "target_action_std": [
+            0.5758323669433594,
+            0.5003156065940857
+          ],
+          "actor_mean": [
+            -0.12861031293869019,
+            0.09891138970851898
+          ]
+        }
+      }
+    }
+  ],
+  "complete_validation_results": [
+    {
+      "batch": "20261031T123039922770Z_native_replay_eval_configuration_recovery",
+      "cases": 24,
+      "successes": 8,
+      "termination_counts": {
+        "success": 8,
+        "out_of_bounds": 9,
+        "deadline": 4,
+        "collision": 3
+      },
+      "raw_controls_verified": 11474,
+      "model_sha256": "687b0bb4c7ebc22007d62d31d1d347d4d0007be9be2e328c882b05b787277e28"
+    },
+    {
+      "batch": "20261031T094314260006Z_native_measured36_training_view_bc",
+      "cases": 24,
+      "successes": 5,
+      "termination_counts": {
+        "success": 5,
+        "deadline": 5,
+        "collision": 5,
+        "out_of_bounds": 9
+      },
+      "raw_controls_verified": 11086,
+      "model_sha256": "26ab5561f539ccfca85d57e2e1ce0196cc335136d09e6af1fbe518cf7b52d97c"
+    }
+  ],
+  "critic_unchanged": true,
+  "normalization_unchanged": true,
+  "new_controls": 0,
+  "PPO_updates": 0,
+  "supervised_updates": 0,
+  "limits": "TRAIN fit only,not holdout accuracy. Added-data and replay actors each have512additional fits but different data distributions. Full validation is one development seed. A fit/driving association is not a causal proof of failure mechanism. Extra teacher controls and failed training episodes are retained in source manifests.",
+  "research_acceptance": "UNMET"
+}

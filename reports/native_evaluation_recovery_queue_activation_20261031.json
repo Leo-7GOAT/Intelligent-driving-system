@@ -1,0 +1,106 @@
+{
+  "scope": "Actual replacement queue activation after evaluation-only flag error;transient live snapshot,not completion",
+  "snapshot_epoch": 1793450598.4648998,
+  "executions": [
+    {
+      "execution": "B3_and_B1_independent_cohort_execution_20261031_v5_eval_profile_fix",
+      "pid": 26916,
+      "creation_epoch": 1793449992.571,
+      "plan_sha256": "d75e6775239412e7773dceb7279f27ce186f09a0636da0739038e7421e9d8627",
+      "snapshot_status": {
+        "phase": "RUNNING_TRAINING_VIEW_ACTOR_VALIDATION",
+        "epoch": 1793450583.8330312,
+        "pid": 26916,
+        "created": [],
+        "arm": "measured36",
+        "batch": "20261031T094314260006Z_native_measured36_training_view_bc"
+      },
+      "superseded_failed_execution": "B3_and_B1_independent_cohort_execution_20261031_v4_training_view_probes",
+      "retained_failure": {
+        "epoch": 1793448274.5920799,
+        "error": "RuntimeError('Registered child failed:actor_replay_validation_lifecycle.log')",
+        "created": [],
+        "scope": "No retries,seed omission,foreign process kill or metric change;retain all original lifecycles"
+      }
+    },
+    {
+      "execution": "B2_five_seed_PPO_execution_20261031_v2_eval_profile_fix",
+      "pid": 38164,
+      "creation_epoch": 1793450111.973,
+      "plan_sha256": "fa7acbef4f9e5f14c34873180e1a2f1ffa98d3d58c675cdee7264a59acab3f47",
+      "snapshot_status": {
+        "phase": "WAITING_FOR_REGISTERED_B1_COHORT",
+        "pid": 38164,
+        "epoch": 1793450595.9772658,
+        "completed": [],
+        "dependency_pid": 26916,
+        "dependency_live_via_retained_handle": true
+      },
+      "superseded_failed_execution": "B2_five_seed_PPO_execution_20261031",
+      "retained_failure": {
+        "epoch": 1793448281.7303343,
+        "error": "RuntimeError('Predecessor failed;unactivated B2 trials preserved')",
+        "completed": [],
+        "scope": "No seed omissions,retries or process kills;all native evidence retained"
+      }
+    },
+    {
+      "execution": "shared_brake_five_seed_execution_20261031_v2_eval_profile_fix",
+      "pid": 10408,
+      "creation_epoch": 1793450168.22,
+      "plan_sha256": "25daae75babff1c7ef0be15576915fade3309b7285b0ddb9a776ba3ca8812f94",
+      "snapshot_status": {
+        "phase": "WAITING_FOR_REGISTERED_B2_COHORT",
+        "epoch": 1793450592.7103474,
+        "pid": 10408,
+        "completed": [],
+        "dependency_pid": 38164,
+        "dependency_live_via_retained_handle": true
+      },
+      "superseded_failed_execution": "shared_brake_five_seed_execution_20261031",
+      "retained_failure": {
+        "epoch": 1793448290.3332279,
+        "error": "RuntimeError('Predecessor failed or bounded wait exhausted;unactivated probes retained')",
+        "completed": [],
+        "scope": "No experiment retries,seed omissions or process kills;all artifacts retained"
+      }
+    }
+  ],
+  "actor_validation_heartbeat": {
+    "pid": 63800,
+    "epoch": 1793450560.8615422,
+    "case_id": 23,
+    "actions": 880
+  },
+  "guard_snapshot": {
+    "pid": 2100,
+    "worker_pid": 63800,
+    "epoch": 1793450561.4353795,
+    "last_progress": 1793450560.861542,
+    "deadline_epoch": 1793451796.033,
+    "healthy": true,
+    "reason": null,
+    "gpu_telemetry": {
+      "status": "ok",
+      "temperature_c": 51,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    }
+  },
+  "completed_B3_reused_without_redrive": true,
+  "B2_controls_so_far": 0,
+  "shared_brake_controls_so_far": 0,
+  "actor_refits_during_recovery": 0,
+  "PPO_updates_during_recovery": 0,
+  "finite_limits": {
+    "actor_gate_seconds_each": 1800,
+    "B1_training_controls_each": 20480,
+    "B2_training_controls_each": 20480,
+    "dependency_wait_seconds": 28800,
+    "automatic_retries": 0
+  },
+  "research_acceptance": "UNMET"
+}

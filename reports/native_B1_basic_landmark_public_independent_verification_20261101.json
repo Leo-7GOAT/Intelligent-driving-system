@@ -1,0 +1,18 @@
+{
+  "scope": "Actual independent checkout replay from the already publicly downloaded complete failed B1course capsule;not a new simulator or driving experiment.",
+  "source_commit": "1d1727f0bd96cc7955e7c5f9c9c8f8f2c19e848f",
+  "public_manifest": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_B1_basic_seed11_failed_gate_20261101_repro.zip.parts.json",
+  "public_capsule_sha256": "d13dcf3b07fe1574d8823e23f5c29abcc6e43bbdd1d68e1e5e9b506a5c0aa22a",
+  "all_result_fields_identical": true,
+  "reconstructed_measured_decisions": 13,
+  "all_four_conditions_included": true,
+  "maximum_executed_action_reconstruction_error": 0.0,
+  "result_sha256": "5cdf62dd54e214c652aa4057cb96aeab8773bc90803ff9a6be26111d15f19bb9",
+  "independent_tests": {
+    "passed": 31,
+    "seconds": 7.66
+  },
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

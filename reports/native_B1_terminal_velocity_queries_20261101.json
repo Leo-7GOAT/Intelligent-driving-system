@@ -1,0 +1,890 @@
+{
+  "scope": "Held-reference terminal velocity queries around measured basic TRAIN states.",
+  "script_sha256": "a66855ee59f7c4c074478f7d93e66c5972e4f25f8dc9f34488dc590451d24bd2",
+  "teacher_trace_sha256": "1efe3089db928d0cd55f01f2ebd6b70fa4376099caf6adacf9c159d11cf1de92",
+  "teacher_protocol_sha256": "4813469b0897c1302845c1fb80d2f191d4f7436c5db7de6fa7c7d35f6da0aa7d",
+  "selection": "All4original TRAINroads,reference-prefix control_index modulo5 equals0,goal distance<=3m,current+prior returned controls match requests.",
+  "queried_speeds_m_s": [
+    0.25,
+    0.75,
+    1.25,
+    1.75
+  ],
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "hypothetical_velocities_are_executed": false,
+  "wall_seconds": 300,
+  "limits": "Fixed measured pose,time,reference and previous command. Current speed alone is counterfactual;no plant integration or new driving.",
+  "queries": 108,
+  "available_labels": 108,
+  "golden_prefix_controls": 1297,
+  "golden_max_command_error": 0.0,
+  "dataset_sha256": "3f84c3213589a8672ab4081d3a56ed59e032824ee8000d1869a80e3c105c3f6a",
+  "records": [
+    {
+      "case_id": 0,
+      "control_index": 305,
+      "frame_before": 950,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 0,
+      "control_index": 305,
+      "frame_before": 950,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999956582344677
+    },
+    {
+      "case_id": 0,
+      "control_index": 305,
+      "frame_before": 950,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5940292094756686
+    },
+    {
+      "case_id": 0,
+      "control_index": 305,
+      "frame_before": 950,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3361122228278459
+    },
+    {
+      "case_id": 0,
+      "control_index": 310,
+      "frame_before": 955,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 0,
+      "control_index": 310,
+      "frame_before": 955,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999940979940541
+    },
+    {
+      "case_id": 0,
+      "control_index": 310,
+      "frame_before": 955,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5592022358059713
+    },
+    {
+      "case_id": 0,
+      "control_index": 310,
+      "frame_before": 955,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.35700851256608335
+    },
+    {
+      "case_id": 0,
+      "control_index": 315,
+      "frame_before": 960,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 0,
+      "control_index": 315,
+      "frame_before": 960,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999985183413084
+    },
+    {
+      "case_id": 0,
+      "control_index": 315,
+      "frame_before": 960,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5938619247896164
+    },
+    {
+      "case_id": 0,
+      "control_index": 315,
+      "frame_before": 960,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3362128559128733
+    },
+    {
+      "case_id": 0,
+      "control_index": 320,
+      "frame_before": 965,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999732802354
+    },
+    {
+      "case_id": 0,
+      "control_index": 320,
+      "frame_before": 965,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999951954436
+    },
+    {
+      "case_id": 0,
+      "control_index": 320,
+      "frame_before": 965,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5687393571065956
+    },
+    {
+      "case_id": 0,
+      "control_index": 320,
+      "frame_before": 965,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3512867764774331
+    },
+    {
+      "case_id": 0,
+      "control_index": 325,
+      "frame_before": 970,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999994087998768
+    },
+    {
+      "case_id": 0,
+      "control_index": 325,
+      "frame_before": 970,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999834931831447
+    },
+    {
+      "case_id": 0,
+      "control_index": 325,
+      "frame_before": 970,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5559916919715444
+    },
+    {
+      "case_id": 0,
+      "control_index": 325,
+      "frame_before": 970,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3589362655069729
+    },
+    {
+      "case_id": 0,
+      "control_index": 330,
+      "frame_before": 975,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999995374695074
+    },
+    {
+      "case_id": 0,
+      "control_index": 330,
+      "frame_before": 975,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999913016202
+    },
+    {
+      "case_id": 0,
+      "control_index": 330,
+      "frame_before": 975,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.2736614958580738
+    },
+    {
+      "case_id": 0,
+      "control_index": 330,
+      "frame_before": 975,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.5283377765403333
+    },
+    {
+      "case_id": 0,
+      "control_index": 335,
+      "frame_before": 980,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999807216189834
+    },
+    {
+      "case_id": 0,
+      "control_index": 335,
+      "frame_before": 980,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9090838332024423
+    },
+    {
+      "case_id": 0,
+      "control_index": 335,
+      "frame_before": 980,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": -0.1470924110183179
+    },
+    {
+      "case_id": 0,
+      "control_index": 335,
+      "frame_before": 980,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.9731917069410695
+    },
+    {
+      "case_id": 1,
+      "control_index": 310,
+      "frame_before": 1326,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 1,
+      "control_index": 310,
+      "frame_before": 1326,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 1,
+      "control_index": 310,
+      "frame_before": 1326,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5996876727882468
+    },
+    {
+      "case_id": 1,
+      "control_index": 310,
+      "frame_before": 1326,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3327069825877459
+    },
+    {
+      "case_id": 1,
+      "control_index": 315,
+      "frame_before": 1331,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 1,
+      "control_index": 315,
+      "frame_before": 1331,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999825266336
+    },
+    {
+      "case_id": 1,
+      "control_index": 315,
+      "frame_before": 1331,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5672639847192379
+    },
+    {
+      "case_id": 1,
+      "control_index": 315,
+      "frame_before": 1331,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.35216717497259215
+    },
+    {
+      "case_id": 1,
+      "control_index": 320,
+      "frame_before": 1336,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 1,
+      "control_index": 320,
+      "frame_before": 1336,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999995577831697
+    },
+    {
+      "case_id": 1,
+      "control_index": 320,
+      "frame_before": 1336,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5936218788552551
+    },
+    {
+      "case_id": 1,
+      "control_index": 320,
+      "frame_before": 1336,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3363329288107399
+    },
+    {
+      "case_id": 1,
+      "control_index": 325,
+      "frame_before": 1341,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 1,
+      "control_index": 325,
+      "frame_before": 1341,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999995156266163
+    },
+    {
+      "case_id": 1,
+      "control_index": 325,
+      "frame_before": 1341,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5669370964436604
+    },
+    {
+      "case_id": 1,
+      "control_index": 325,
+      "frame_before": 1341,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.35243936108856555
+    },
+    {
+      "case_id": 1,
+      "control_index": 330,
+      "frame_before": 1346,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999978615391569
+    },
+    {
+      "case_id": 1,
+      "control_index": 330,
+      "frame_before": 1346,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.99998689210306
+    },
+    {
+      "case_id": 1,
+      "control_index": 330,
+      "frame_before": 1346,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5456647406711969
+    },
+    {
+      "case_id": 1,
+      "control_index": 330,
+      "frame_before": 1346,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.36533761779339075
+    },
+    {
+      "case_id": 1,
+      "control_index": 335,
+      "frame_before": 1351,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999998453067022
+    },
+    {
+      "case_id": 1,
+      "control_index": 335,
+      "frame_before": 1351,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.999999650495783
+    },
+    {
+      "case_id": 1,
+      "control_index": 335,
+      "frame_before": 1351,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.23493589858846056
+    },
+    {
+      "case_id": 1,
+      "control_index": 335,
+      "frame_before": 1351,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.5518261374633685
+    },
+    {
+      "case_id": 1,
+      "control_index": 340,
+      "frame_before": 1356,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999990653272
+    },
+    {
+      "case_id": 1,
+      "control_index": 340,
+      "frame_before": 1356,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999749925974785
+    },
+    {
+      "case_id": 1,
+      "control_index": 340,
+      "frame_before": 1356,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": -0.03939610946976052
+    },
+    {
+      "case_id": 1,
+      "control_index": 340,
+      "frame_before": 1356,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.9128721167765164
+    },
+    {
+      "case_id": 1,
+      "control_index": 345,
+      "frame_before": 1361,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9094392682733324
+    },
+    {
+      "case_id": 1,
+      "control_index": 345,
+      "frame_before": 1361,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.14735201673521287
+    },
+    {
+      "case_id": 1,
+      "control_index": 345,
+      "frame_before": 1361,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": -0.8641159372674746
+    },
+    {
+      "case_id": 1,
+      "control_index": 345,
+      "frame_before": 1361,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -1.0
+    },
+    {
+      "case_id": 2,
+      "control_index": 280,
+      "frame_before": 1674,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999799794374234
+    },
+    {
+      "case_id": 2,
+      "control_index": 280,
+      "frame_before": 1674,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999994134528318
+    },
+    {
+      "case_id": 2,
+      "control_index": 280,
+      "frame_before": 1674,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5676595991997492
+    },
+    {
+      "case_id": 2,
+      "control_index": 280,
+      "frame_before": 1674,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3519429171085621
+    },
+    {
+      "case_id": 2,
+      "control_index": 285,
+      "frame_before": 1679,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999955239582574
+    },
+    {
+      "case_id": 2,
+      "control_index": 285,
+      "frame_before": 1679,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.999999256644089
+    },
+    {
+      "case_id": 2,
+      "control_index": 285,
+      "frame_before": 1679,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5850675318974047
+    },
+    {
+      "case_id": 2,
+      "control_index": 285,
+      "frame_before": 1679,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3414986580485921
+    },
+    {
+      "case_id": 2,
+      "control_index": 290,
+      "frame_before": 1684,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999990228795816
+    },
+    {
+      "case_id": 2,
+      "control_index": 290,
+      "frame_before": 1684,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999989409961151
+    },
+    {
+      "case_id": 2,
+      "control_index": 290,
+      "frame_before": 1684,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.568522020315969
+    },
+    {
+      "case_id": 2,
+      "control_index": 290,
+      "frame_before": 1684,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3514264553746892
+    },
+    {
+      "case_id": 2,
+      "control_index": 295,
+      "frame_before": 1689,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999998125491389
+    },
+    {
+      "case_id": 2,
+      "control_index": 295,
+      "frame_before": 1689,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999575712847
+    },
+    {
+      "case_id": 2,
+      "control_index": 295,
+      "frame_before": 1689,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5949711673299714
+    },
+    {
+      "case_id": 2,
+      "control_index": 295,
+      "frame_before": 1689,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.33555783944735657
+    },
+    {
+      "case_id": 2,
+      "control_index": 300,
+      "frame_before": 1694,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999998821557851
+    },
+    {
+      "case_id": 2,
+      "control_index": 300,
+      "frame_before": 1694,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999439759134
+    },
+    {
+      "case_id": 2,
+      "control_index": 300,
+      "frame_before": 1694,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5328636407853021
+    },
+    {
+      "case_id": 2,
+      "control_index": 300,
+      "frame_before": 1694,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.37282445714714757
+    },
+    {
+      "case_id": 2,
+      "control_index": 305,
+      "frame_before": 1699,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999985385426701
+    },
+    {
+      "case_id": 2,
+      "control_index": 305,
+      "frame_before": 1699,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999925841468
+    },
+    {
+      "case_id": 2,
+      "control_index": 305,
+      "frame_before": 1699,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.30607324617387327
+    },
+    {
+      "case_id": 2,
+      "control_index": 305,
+      "frame_before": 1699,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.5089049990958323
+    },
+    {
+      "case_id": 3,
+      "control_index": 270,
+      "frame_before": 2006,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 3,
+      "control_index": 270,
+      "frame_before": 2006,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999994912271681
+    },
+    {
+      "case_id": 3,
+      "control_index": 270,
+      "frame_before": 2006,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5766406063395458
+    },
+    {
+      "case_id": 3,
+      "control_index": 270,
+      "frame_before": 2006,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3465313084393701
+    },
+    {
+      "case_id": 3,
+      "control_index": 275,
+      "frame_before": 2011,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 3,
+      "control_index": 275,
+      "frame_before": 2011,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999993566787899
+    },
+    {
+      "case_id": 3,
+      "control_index": 275,
+      "frame_before": 2011,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5833953794402091
+    },
+    {
+      "case_id": 3,
+      "control_index": 275,
+      "frame_before": 2011,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.34247863073243273
+    },
+    {
+      "case_id": 3,
+      "control_index": 280,
+      "frame_before": 2016,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 1.0
+    },
+    {
+      "case_id": 3,
+      "control_index": 280,
+      "frame_before": 2016,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999996829778178
+    },
+    {
+      "case_id": 3,
+      "control_index": 280,
+      "frame_before": 2016,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.5978730576342614
+    },
+    {
+      "case_id": 3,
+      "control_index": 280,
+      "frame_before": 2016,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3337924850815372
+    },
+    {
+      "case_id": 3,
+      "control_index": 285,
+      "frame_before": 2021,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999646984546
+    },
+    {
+      "case_id": 3,
+      "control_index": 285,
+      "frame_before": 2021,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999997565119535
+    },
+    {
+      "case_id": 3,
+      "control_index": 285,
+      "frame_before": 2021,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.6073800864683562
+    },
+    {
+      "case_id": 3,
+      "control_index": 285,
+      "frame_before": 2021,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.32808946599347716
+    },
+    {
+      "case_id": 3,
+      "control_index": 290,
+      "frame_before": 2026,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999034374739
+    },
+    {
+      "case_id": 3,
+      "control_index": 290,
+      "frame_before": 2026,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999999430663813
+    },
+    {
+      "case_id": 3,
+      "control_index": 290,
+      "frame_before": 2026,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.4926393980365938
+    },
+    {
+      "case_id": 3,
+      "control_index": 290,
+      "frame_before": 2026,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.3969371023106068
+    },
+    {
+      "case_id": 3,
+      "control_index": 295,
+      "frame_before": 2031,
+      "speed": 0.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.999999998573367
+    },
+    {
+      "case_id": 3,
+      "control_index": 295,
+      "frame_before": 2031,
+      "speed": 0.75,
+      "status": "solved",
+      "normalized_acceleration_label": 0.9999899183818745
+    },
+    {
+      "case_id": 3,
+      "control_index": 295,
+      "frame_before": 2031,
+      "speed": 1.25,
+      "status": "solved",
+      "normalized_acceleration_label": 0.11952469899663076
+    },
+    {
+      "case_id": 3,
+      "control_index": 295,
+      "frame_before": 2031,
+      "speed": 1.75,
+      "status": "solved",
+      "normalized_acceleration_label": -0.6208178128260051
+    }
+  ],
+  "elapsed_seconds": 40.51600000006147
+}

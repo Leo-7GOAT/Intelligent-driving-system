@@ -1,0 +1,60 @@
+{
+  "scope": "Reuse only fully trained/audited Hseed22after H0sibling infrastructure interruption;failed sibling not counted complete",
+  "parent": "20261031T025409042778Z_native_supervised_ppo",
+  "method": "H",
+  "parent_target_training_controls": 20539,
+  "parent_target_optimizer_steps": 650,
+  "parent_target_raw_controls_verified": 24858,
+  "parent_failure_evidence_sha256": {
+    "guard_final.json": "735171564685074e8111c8dd5a67d0f978dd82bc2b5b8cf1500cf99f8eba14d5",
+    "launcher_failure.json": "e197dccebc60b14f96541dcba8c1e7e28e6d3367308b3125f9a16be4b4ff2d81"
+  },
+  "failure_json_present": false,
+  "parent_guard_exit_code": 1,
+  "parent_guard_reason": "guard_exception: TimeoutExpired(['nvidia-smi', '--query-gpu=temperature.gpu', '--format=csv,noheader,nounits'], 10)",
+  "verified_owned_cleanup": "owned_empty_server_stopped",
+  "prepared": [
+    {
+      "enabled": false,
+      "batch": "20261031T112845660650Z_native_shared_brake_OFF",
+      "protocol_sha256": "4cd1682557fa9de3bf6255cd517837c1a0420b4556f9fd9ce2b07e4081c882a7"
+    },
+    {
+      "enabled": true,
+      "batch": "20261031T112847134056Z_native_shared_brake_ON",
+      "protocol_sha256": "74579e8401497f368a87ae7ab6a9929afee7465dfd78a946e211cbaf8cf179fd"
+    }
+  ],
+  "actual_frozen_restores": [
+    {
+      "method": "H",
+      "enabled": false,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "normalization_stats_unchanged_on_restore": true,
+      "policy_tensor_sha256": "11ecd142ba1829bb3ff488a1fa80b571e231ee090594eaabb9a9baf6868ea60d",
+      "retained_actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    },
+    {
+      "method": "H",
+      "enabled": true,
+      "actual_frozen_restore_succeeded": true,
+      "runtime_config_matches_saved": true,
+      "normalization_stats_unchanged_on_restore": true,
+      "policy_tensor_sha256": "11ecd142ba1829bb3ff488a1fa80b571e231ee090594eaabb9a9baf6868ea60d",
+      "retained_actual_Adam_steps": 650,
+      "nominal_SB3_updates": 650,
+      "new_resets": 0,
+      "new_controls": 0,
+      "new_optimizer_updates": 0
+    }
+  ],
+  "metadata_correction": "Original failure.json-existence flag was false despite watchdog/launcher failure. Corrected before activation;original protocol/prepared/registration bytes and guard/launcher receipts retained. No model or runtime-source changes.",
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

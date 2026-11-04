@@ -1,0 +1,141 @@
+{
+  "scope": "Actual independent public Hcapsule replay and exact-corner source validation;no driving/updates.",
+  "source_commit": "7dfbb3d471eb1597478ccdb2dc81e25a1dad1080",
+  "H_public_parts": 2,
+  "H_archive_bytes": 12426025,
+  "H_download_without_authentication": true,
+  "H_reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "e396916448b185df02e695f570f6950013711440d0a60f335338129050f64acd",
+    "asset_source_commit": "8687f98c489d9429b69565aaf7cf4effb87720c5",
+    "reproduction_source_commit": "7dfbb3d471eb1597478ccdb2dc81e25a1dad1080",
+    "verified_files": 457,
+    "methods": [
+      {
+        "method": "H",
+        "raw_audit_sha256": "247616a02bfda0f62c1091206c273c12572c0a96d6e6088d826db04f6e258f26",
+        "verified_controls": 6569,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "1e0cd182b96f2906fec305d35943ced097626961152896a2ff18a5eb3c241d9f",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  },
+  "H_archive_scope": "Only the6569new frozen evaluation controls;the retained20674training-control/650Adam model lineage is not additional training in this archive.",
+  "geometry_tests": {
+    "passed": 7,
+    "seconds": 4.41
+  },
+  "independent_hard_query": {
+    "scope": "Offline saved-query compute comparison;no CARLA ticks,PPO updates or active source changes.",
+    "baseline_batch": "20261031T004553035320Z_native_curve_control",
+    "fixture_sha256": "1dbf3c1b8117fe8db8eb1dded766fb93895d93a7158ab0d243cdff543767386b",
+    "baseline_kernel_sha256": "41fcb252190d52b5c001c19ccacfa74b5f053aeab278ce20405127d001d8bf0d",
+    "candidate_kernel_sha256": "4f980a67414953ebbada82b76cafa01891f18410284d8afef08ee90186337139",
+    "dependencies": {
+      "navstack/config.py": {
+        "baseline_sha256": "389bc42ca7603292036d1b678855eef72264376de65b74afd8f30edda933187e",
+        "current_sha256": "0477a3393ebae1a381dfea90bbcd54910c94e1a4832919f240133daee9256941",
+        "text_equal": true
+      },
+      "navstack/planning.py": {
+        "baseline_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+        "current_sha256": "0658353fac855cf36525eb05ed3680a6df45b324df0127724d6f82825deddfb1",
+        "text_equal": true
+      },
+      "navstack/world.py": {
+        "baseline_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+        "current_sha256": "9f4270efd59b9d1f3464a4b88e019d3029a5c77ff7c9d97737825455eb71abd4",
+        "text_equal": true
+      },
+      "navstack/road_grid.py": {
+        "baseline_sha256": "8b04d6c9056f58b0d17a1c76c49aadddd296543692679056dfdcf7e4c1ff50ac",
+        "current_sha256": "5723f630ff40b1a8f752573bd89b129b5d20387f122065be5706215d173e9be0",
+        "text_equal": true
+      },
+      "navstack/vehicle.py": {
+        "baseline_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+        "current_sha256": "59cbf50a316272fc971b27a385101232402e3bd6910edea5d741421e7f2166f1",
+        "text_equal": true
+      },
+      "navstack/dubins_guide.py": {
+        "baseline_sha256": "59c6972c3b1ce9c0a2ad4de3ffd15ca4db9256a7eb2ef38a20e66ab7d4dda900",
+        "current_sha256": "1635a072f580d9dc387d28e7e718f41a5db56282d6621752c603bc7fe836d88c",
+        "text_equal": true
+      }
+    },
+    "repeats": 3,
+    "actual_planner_batches": 7626,
+    "actual_planner_poses": 549151,
+    "collision_flags_exact": true,
+    "full_search_exact": {
+      "status": "timeout",
+      "failure_reason": "search_budget",
+      "expanded_nodes": 7200,
+      "cost": null,
+      "path_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path_samples": 0
+    },
+    "kernel_timings": {
+      "baseline": {
+        "median": 5.06328530004248,
+        "min": 4.980659399996512,
+        "max": 5.188236000016332,
+        "samples_seconds": [
+          5.06328530004248,
+          5.188236000016332,
+          4.980659399996512
+        ]
+      },
+      "batched_corners": {
+        "median": 2.4734772999072447,
+        "min": 2.437291100039147,
+        "max": 2.544049800024368,
+        "samples_seconds": [
+          2.544049800024368,
+          2.4734772999072447,
+          2.437291100039147
+        ]
+      }
+    },
+    "search_timings": {
+      "baseline": {
+        "median": 6.132530399947427,
+        "min": 6.04640340001788,
+        "max": 6.342721699969843,
+        "samples_seconds": [
+          6.132530399947427,
+          6.342721699969843,
+          6.04640340001788
+        ]
+      },
+      "batched_corners": {
+        "median": 3.67071139998734,
+        "min": 3.6039815000258386,
+        "max": 3.69193189998623,
+        "samples_seconds": [
+          3.67071139998734,
+          3.69193189998623,
+          3.6039815000258386
+        ]
+      }
+    },
+    "concurrent_load": "An independently frozen CARLA development phase may be running;interleaved samples are not a hardware/realtime certification.",
+    "new_physical_controls": 0,
+    "optimizer_updates": 0
+  },
+  "root_hard_query_search_median_seconds": [
+    6.439639799995348,
+    3.6675507000181824
+  ],
+  "query_JSON_values_exact": true,
+  "original_CRLF_query_release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_recorded_timeout_query_20261031.json",
+  "original_CRLF_query_sha256": "3bca0b623b320e4480964ad033aa4349a1d665bf692aa6573af31d1003d4c11a",
+  "Git_LF_query_sha256": "1dbf3c1b8117fe8db8eb1dded766fb93895d93a7158ab0d243cdff543767386b",
+  "H_planning_outcomes_independently_exact": true,
+  "research_acceptance": "UNMET"
+}

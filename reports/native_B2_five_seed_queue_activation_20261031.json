@@ -1,0 +1,39 @@
+{
+  "scope": "Actual live finite B2queue waiting on a read-only retained predecessor handle;five prepared pristine checkpoints,zero B2training yet",
+  "execution": "B2_five_seed_PPO_execution_20261031",
+  "phase": "WAITING_FOR_REGISTERED_B1_COHORT",
+  "verified_pid": 15744,
+  "dependency_pid": 68480,
+  "dependency_live_via_retained_handle": true,
+  "driver_source_commit": "417f53f299722ef28c6a42ee67995e513929b954",
+  "driver_sha256": "e655233b07f1e7c0d99f02d18b93b234113bf35b9a41482162b023e479fd8802",
+  "plan_sha256": "cd35cca374929df9a946d73f4577af892677014559102196c21f10fbb1bb2ec4",
+  "frozen_source_files_verified": 308,
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "prepared_batches": [
+    "20261031T104032928978Z_native_planner_training",
+    "20261031T104126873363Z_native_planner_training",
+    "20261031T104129314279Z_native_planner_training",
+    "20261031T104131479611Z_native_planner_training",
+    "20261031T104133575143Z_native_planner_training"
+  ],
+  "B2training_started": false,
+  "controls_each": 20480,
+  "wall_seconds_each": 7200,
+  "dependency_wait_seconds": 43200,
+  "automatic_retries": 0,
+  "seed_omissions": false,
+  "disk_floor_GiB": 12,
+  "RAM_floor_GiB": 4,
+  "GPU_stop_C": 85,
+  "current_disk_free_bytes": 19790512128,
+  "current_RAM_available_bytes": 42964713472,
+  "predecessor_order": "Canonical H/H0pairs and seed22H0replica;B3broader validation;both training-view probes;four B1seeds;then five B2seeds",
+  "research_acceptance": "UNMET"
+}

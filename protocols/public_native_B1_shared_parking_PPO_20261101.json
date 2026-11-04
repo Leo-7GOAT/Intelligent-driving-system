@@ -1,0 +1,63 @@
+{
+  "version": "public_native_single_PPO_segment_v1",
+  "scope": "One warm-started actual shared-wrapper PPO retention course;4/4 known TRAINroad endpoint,not five independent seeds or added PPOvalue.",
+  "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-parking-ppo",
+  "release_tag": "v0.2.0-dev.20261101-parking-ppo",
+  "manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261101-parking-ppo/native_B1_shared_parking_PPO_seed22_20261101.zip.parts.json",
+  "archive_name": "native_B1_shared_parking_PPO_seed22_20261101.zip",
+  "archive_sha256": "b9b60fd0b71c23fcacaf36b1f51d613d0c64098b8fd0348be88dfa27bb28905e",
+  "archive_bytes": 52881564,
+  "packager_repository_commit": "95d723983c23d1008b6739f1379bf670c6807448",
+  "frozen_runtime": "Exact per-file source_hashes in the packaged protocol;wrapper and delivery fixed throughout actual training.",
+  "expected": {
+    "files": 572,
+    "controls": 11639,
+    "measured_start_actions": 4,
+    "new_actual_PPO_controls": 10240,
+    "new_actual_PPO_Adam_updates": 318,
+    "PPO_Adam_parameter_states": 35,
+    "final_observation_RMS_frozen": true,
+    "endpoint_successes": 4,
+    "endpoint_unsafe_cases": 0,
+    "basic_gate_passed": true
+  },
+  "parts": [
+    {
+      "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part001",
+      "bytes": 8388608,
+      "sha256": "f12fe02ca3ef2015a0f5059ead0153095b3be25f8ac859f493eb49feaa852eb2"
+    },
+    {
+      "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part002",
+      "bytes": 8388608,
+      "sha256": "5a95e4ceafff9b5e0b8c005f4547af6fd9418b0c491d40571890e8a7b88de15a"
+    },
+    {
+      "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part003",
+      "bytes": 8388608,
+      "sha256": "bc71c84fe8ad6ffed9d9761d835e626b8e3a8a8610477fd78b55ea65b4bbdc32"
+    },
+    {
+      "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part004",
+      "bytes": 8388608,
+      "sha256": "46512074db41b609a6088c3e96bb79bd4d0b226561826a27d67d2a15cc06a4b5"
+    },
+    {
+      "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part005",
+      "bytes": 8388608,
+      "sha256": "b7181980ded345697cdb7a20a2d63b41a4a4c8dea416a70e6135bf7a96cfd018"
+    },
+    {
+      "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part006",
+      "bytes": 8388608,
+      "sha256": "752c52fe6d4db54507addcb5baf915a8041c2a25158f777fc756bf28dd212ac4"
+    },
+    {
+      "name": "native_B1_shared_parking_PPO_seed22_20261101.zip.part007",
+      "bytes": 2549916,
+      "sha256": "837fc8be3af3181d9ed9824841b647308cfcec30f33b022c6d40d4fffeb34776"
+    }
+  ],
+  "documentation": "docs/shared_parking.md",
+  "no_new_controls_or_updates_during_reproduction": true
+}

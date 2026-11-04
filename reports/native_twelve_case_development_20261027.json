@@ -1,0 +1,157 @@
+{
+  "scope": "Prepared common-catalog twelve-condition DEVELOPMENT rule pilot; not started, new driving, PPO performance, independent seeds or unseen final testing.",
+  "batch": "20261027T080111Z_native_rule",
+  "protocol_sha256": "21da10fadfd75013b41989a11381f7e1cb2da9c8962f0bccf669f46f0fac32bf",
+  "case_manifest_sha256": "22a5c846de5a4f4cbb3a5fe8c6c9224bd88005153b1527ab802475ccab12dbc2",
+  "compiled_requests_sha256": "522d13d32150851162dd2937cce811cdaa4777d7f406382c884f64b0046b04eb",
+  "current_and_frozen_compiled_requests_identical": true,
+  "inventory": [
+    {
+      "case_id": 0,
+      "route_index": 0,
+      "family": "curve_parking",
+      "actor_spec": null
+    },
+    {
+      "case_id": 1,
+      "route_index": 1,
+      "family": "curve_parking",
+      "actor_spec": null
+    },
+    {
+      "case_id": 2,
+      "route_index": 2,
+      "family": "curve_parking",
+      "actor_spec": null
+    },
+    {
+      "case_id": 3,
+      "route_index": 3,
+      "family": "curve_parking",
+      "actor_spec": null
+    },
+    {
+      "case_id": 4,
+      "route_index": 0,
+      "family": "static_obstacle",
+      "actor_spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 13.0,
+        "static_geometry": "projected_box_strips12_v1"
+      }
+    },
+    {
+      "case_id": 5,
+      "route_index": 1,
+      "family": "static_obstacle",
+      "actor_spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 13.0,
+        "static_geometry": "projected_box_strips12_v1"
+      }
+    },
+    {
+      "case_id": 6,
+      "route_index": 2,
+      "family": "static_obstacle",
+      "actor_spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 13.0,
+        "static_geometry": "projected_box_strips12_v1"
+      }
+    },
+    {
+      "case_id": 7,
+      "route_index": 3,
+      "family": "static_obstacle",
+      "actor_spec": {
+        "version": "native_hazard_v1",
+        "kind": "static_vehicle",
+        "distance_m": 13.0,
+        "static_geometry": "projected_box_strips12_v1"
+      }
+    },
+    {
+      "case_id": 8,
+      "route_index": 0,
+      "family": "dynamic_interaction",
+      "actor_spec": {
+        "version": "native_hazard_v1",
+        "kind": "crossing_walker",
+        "distance_m": 10.0,
+        "lateral_m": -2.5,
+        "speed_m_s": 0.8,
+        "start_delay_s": 2.5
+      }
+    },
+    {
+      "case_id": 9,
+      "route_index": 1,
+      "family": "dynamic_interaction",
+      "actor_spec": {
+        "version": "native_hazard_v1",
+        "kind": "crossing_walker",
+        "distance_m": 10.0,
+        "lateral_m": -2.5,
+        "speed_m_s": 0.8,
+        "start_delay_s": 2.5
+      }
+    },
+    {
+      "case_id": 10,
+      "route_index": 2,
+      "family": "dynamic_interaction",
+      "actor_spec": {
+        "version": "native_hazard_v1",
+        "kind": "crossing_walker",
+        "distance_m": 10.0,
+        "lateral_m": -2.5,
+        "speed_m_s": 0.8,
+        "start_delay_s": 2.5
+      }
+    },
+    {
+      "case_id": 11,
+      "route_index": 3,
+      "family": "dynamic_interaction",
+      "actor_spec": {
+        "version": "native_hazard_v1",
+        "kind": "crossing_walker",
+        "distance_m": 10.0,
+        "lateral_m": -2.5,
+        "speed_m_s": 0.8,
+        "start_delay_s": 2.5
+      }
+    }
+  ],
+  "fairness": "One explicit case inventory, route catalog, measured vehicle, trajectory/MPC and sensor interface. Future selected methods use the same registered cases; no policy condition ID or future actor script is added to observations.",
+  "validation": "All original roads must be included; physical duplicates (including representation/default aliases), ambiguous global hazards and final-test labels are rejected. Auditors bind scene condition/route, measured actor identity and complete variable-size case inventory.",
+  "source_compatibility": {
+    "prior_B1_verified_controls": 23025,
+    "prior_B3_verified_controls": 1926,
+    "both_full_raw_audit_files_byte_identical": true
+  },
+  "tests": "58 targeted tests passed in8.13s; includes positive and corrupted raw rule/policy evidence.",
+  "queue_at_recording": {
+    "child": "20261027T080111Z_native_rule",
+    "pid": 20124,
+    "status": "WAITING_FOR_PARENT_NORMAL_OWNED_CLEANUP",
+    "deadline_epoch": 1793109754,
+    "parent": "20261027T070950Z_native_supervised_ppo",
+    "epoch": 1793088154
+  },
+  "superseded_unstarted_batch": "20261027T071952Z_native_rule",
+  "supersession_receipt": {
+    "epoch": 1793088153,
+    "pid": 41164,
+    "status": "SUPERSEDED_BEFORE_CHILD_START",
+    "reason": "The twelve-case common-catalog pilot includes every original distance13 condition plus open-curve and walker conditions; avoid driving the same four static conditions twice.",
+    "applied_controls": 0,
+    "replacement": "20261027T080111Z_native_rule"
+  },
+  "stopping": "Wait for070950normal guard/owned cleanup/lifecycle release, then activate with1800s wall guard. Parent failure stops the queue; no automatic repeat.",
+  "limits": "Four known roads across three actor families, not twelve new road layouts. Static distance13 differs from the retained historical distance10 conditions. Rule-only teacher collection, not evidence of learned task completion or research acceptance."
+}

@@ -1,0 +1,14 @@
+{
+  "scope": "Executed independent checkout regression and source-bound figure/rule-comparison reconstruction;no new driving",
+  "verified_code_commit": "9eec6e651e7fdd4c5d8a8edb83a4d610178a7a04",
+  "root_related_tests": 44,
+  "root_test_wall_seconds": 7.1,
+  "independent_related_tests": 44,
+  "independent_test_wall_seconds": 8.55,
+  "feedback_figure_byte_identical": true,
+  "feedback_figure_sha256": "cafca085ed2550173858f647a6de72c4dccbcedfa6ef03497325720c8c94eb87",
+  "H_B3_all_report_fields_identical": true,
+  "all_five_B1_frozen_restores_succeeded": true,
+  "B1_basic_motion_health_not_yet_established": true,
+  "research_acceptance": "UNMET"
+}

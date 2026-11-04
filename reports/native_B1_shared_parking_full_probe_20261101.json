@@ -1,0 +1,522 @@
+{
+  "scope": "Audit every known curve, static-obstacle and walker condition of the trained B1 probe.",
+  "script_sha256": "c71ba3b293dc610ae6c6e5f28949f4e87cd278d2829a00554fd1d245753e4b41",
+  "batch": "20261101T114634589144Z_native_B1_shared_parking_full_probe",
+  "protocol_sha256": "921a5be48458a205d81414bad14ea3a0eaedd5bd5f276be707daf3fdb05c43e4",
+  "model_sha256": "29efb9c3567c347a194717715570bbe4573699a8af72383e1bf349bd3692c753",
+  "normalization_sha256": "20ea49708ad7e1333b57394b3d76736377ab771407965521659816fdbb5da6c8",
+  "seed": 22,
+  "cases": 12,
+  "successes": 12,
+  "termination_counts": {
+    "success": 12
+  },
+  "by_core": {
+    "curve_parking": {
+      "cases": 4,
+      "successes": 4,
+      "termination_counts": {
+        "success": 4
+      }
+    },
+    "static_vehicle": {
+      "cases": 4,
+      "successes": 4,
+      "termination_counts": {
+        "success": 4
+      }
+    },
+    "crossing_walker": {
+      "cases": 4,
+      "successes": 4,
+      "termination_counts": {
+        "success": 4
+      }
+    }
+  },
+  "new_actual_controls": 4848,
+  "new_PPO_updates": 0,
+  "all_engine_controls_acknowledged": true,
+  "measured_start_actions_verified": 12,
+  "parking": {
+    "helper_sha256": "d3edb58ffddc227fc646c6c753d278fb2cd69a45b28e41ddadc1456f36bdd53d",
+    "cases": [
+      {
+        "case_id": 0,
+        "termination": "success",
+        "controls": 349,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.09659294364510981
+      },
+      {
+        "case_id": 1,
+        "termination": "success",
+        "controls": 429,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.09726106947106339
+      },
+      {
+        "case_id": 2,
+        "termination": "success",
+        "controls": 320,
+        "parking_overrides": 1,
+        "terminal_intervened": false,
+        "final_speed": 0.0976879413515851
+      },
+      {
+        "case_id": 3,
+        "termination": "success",
+        "controls": 301,
+        "parking_overrides": 1,
+        "terminal_intervened": false,
+        "final_speed": 0.10028312155170585
+      },
+      {
+        "case_id": 4,
+        "termination": "success",
+        "controls": 334,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.09839850666992501
+      },
+      {
+        "case_id": 5,
+        "termination": "success",
+        "controls": 402,
+        "parking_overrides": 1,
+        "terminal_intervened": false,
+        "final_speed": 0.09763212849643849
+      },
+      {
+        "case_id": 6,
+        "termination": "success",
+        "controls": 335,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.09619779295647835
+      },
+      {
+        "case_id": 7,
+        "termination": "success",
+        "controls": 331,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.09833866451827256
+      },
+      {
+        "case_id": 8,
+        "termination": "success",
+        "controls": 466,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": 0.004258704570282249
+      },
+      {
+        "case_id": 9,
+        "termination": "success",
+        "controls": 549,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": -9.14133211943916e-05
+      },
+      {
+        "case_id": 10,
+        "termination": "success",
+        "controls": 535,
+        "parking_overrides": 2,
+        "terminal_intervened": false,
+        "final_speed": -9.297691822425058e-05
+      },
+      {
+        "case_id": 11,
+        "termination": "success",
+        "controls": 497,
+        "parking_overrides": 3,
+        "terminal_intervened": false,
+        "final_speed": 0.09861138510450446
+      }
+    ],
+    "all_assistance_commands_verified": true,
+    "successful_terminal_frames_satisfy_original_unassisted_goal_gate": true
+  },
+  "lineage_PPO_controls": 40960,
+  "raw_audit_sha256": "08e20fcca17da639d0e274324a002951f1831fc561ffe5af03f30e123bc6a28a",
+  "case_metrics": [
+    {
+      "case_id": 0,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 349,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 17.450000260025263,
+      "progress": 23.89974247213376,
+      "travel_time_success_only": 17.450000260025263,
+      "decision_cycle_times": {
+        "count": 349,
+        "median": 0.032210699981078506,
+        "p95": 0.07175126001238821,
+        "p99": 0.07729648002423346,
+        "max": 0.31058970000594854,
+        "over_period_fraction": 0.3151862464183381,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 349,
+        "median": 0.005494799930602312,
+        "p95": 0.006773460004478693,
+        "p99": 0.008192808022722592,
+        "max": 0.30536839994601905,
+        "over_period_fraction": 0.0028653295128939827,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 1,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 429,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 21.450000319629908,
+      "progress": 23.618729321190184,
+      "travel_time_success_only": 21.450000319629908,
+      "decision_cycle_times": {
+        "count": 429,
+        "median": 0.13573099998757243,
+        "p95": 0.22537207994610067,
+        "p99": 0.26838242797181006,
+        "max": 0.31991379987448454,
+        "over_period_fraction": 0.7342657342657343,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 429,
+        "median": 0.009282700018957257,
+        "p95": 0.010995899885892868,
+        "p99": 0.012667772099375724,
+        "max": 0.315275999950245,
+        "over_period_fraction": 0.002331002331002331,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 2,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 320,
+      "interventions": 1,
+      "goal_parking_controls": 1,
+      "simulation_seconds": 16.00000023841858,
+      "progress": 21.98815567860725,
+      "travel_time_success_only": 16.00000023841858,
+      "decision_cycle_times": {
+        "count": 320,
+        "median": 0.027023050119169056,
+        "p95": 0.06137115989113227,
+        "p99": 0.06534677791409195,
+        "max": 0.3204852999188006,
+        "over_period_fraction": 0.25,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 320,
+        "median": 0.0054063498973846436,
+        "p95": 0.006536120036616922,
+        "p99": 0.007613781925756486,
+        "max": 0.3156735999509692,
+        "over_period_fraction": 0.003125,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 3,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 301,
+      "interventions": 1,
+      "goal_parking_controls": 1,
+      "simulation_seconds": 15.050000224262476,
+      "progress": 19.955818089929686,
+      "travel_time_success_only": 15.050000224262476,
+      "decision_cycle_times": {
+        "count": 301,
+        "median": 0.08163650007918477,
+        "p95": 0.206137599889189,
+        "p99": 0.22995600011199713,
+        "max": 0.31678270013071597,
+        "over_period_fraction": 0.6245847176079734,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 301,
+        "median": 0.008205699967220426,
+        "p95": 0.009881099918857217,
+        "p99": 0.01148949982598424,
+        "max": 0.31038239994086325,
+        "over_period_fraction": 0.0033222591362126247,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 4,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 334,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 16.700000248849392,
+      "progress": 23.968853722921025,
+      "travel_time_success_only": 16.700000248849392,
+      "decision_cycle_times": {
+        "count": 334,
+        "median": 0.024397449917159975,
+        "p95": 0.07869046009145676,
+        "p99": 0.09190669992007326,
+        "max": 0.32443320006132126,
+        "over_period_fraction": 0.20059880239520958,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 334,
+        "median": 0.006820100010372698,
+        "p95": 0.008827240066602822,
+        "p99": 0.010715776134748016,
+        "max": 0.3196364000905305,
+        "over_period_fraction": 0.0029940119760479044,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 5,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 402,
+      "interventions": 1,
+      "goal_parking_controls": 1,
+      "simulation_seconds": 20.10000029951334,
+      "progress": 23.582885158331067,
+      "travel_time_success_only": 20.10000029951334,
+      "decision_cycle_times": {
+        "count": 402,
+        "median": 0.058833600021898746,
+        "p95": 0.16318694500951095,
+        "p99": 0.21901220401981847,
+        "max": 0.3280126000754535,
+        "over_period_fraction": 0.582089552238806,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 402,
+        "median": 0.00967404991388321,
+        "p95": 0.011893619911279529,
+        "p99": 0.013913470781408251,
+        "max": 0.3234232999384403,
+        "over_period_fraction": 0.0024875621890547263,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 6,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 335,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 16.75000024959445,
+      "progress": 22.022275773502187,
+      "travel_time_success_only": 16.75000024959445,
+      "decision_cycle_times": {
+        "count": 335,
+        "median": 0.021654500160366297,
+        "p95": 0.05637067009229213,
+        "p99": 0.06447507794946435,
+        "max": 0.3159461000468582,
+        "over_period_fraction": 0.056716417910447764,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 335,
+        "median": 0.005871499888598919,
+        "p95": 0.007694890000857413,
+        "p99": 0.01062495002523066,
+        "max": 0.3107569001149386,
+        "over_period_fraction": 0.0029850746268656717,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 7,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 331,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 16.550000246614218,
+      "progress": 20.0265194341654,
+      "travel_time_success_only": 16.550000246614218,
+      "decision_cycle_times": {
+        "count": 331,
+        "median": 0.029267999809235334,
+        "p95": 0.078883400070481,
+        "p99": 0.09132398993242527,
+        "max": 0.3198724000249058,
+        "over_period_fraction": 0.18126888217522658,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 331,
+        "median": 0.0075131000485271215,
+        "p95": 0.009058550000190735,
+        "p99": 0.011657380126416681,
+        "max": 0.3147742999717593,
+        "over_period_fraction": 0.0030211480362537764,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 8,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 466,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 23.300000347197056,
+      "progress": 23.983875582485126,
+      "travel_time_success_only": 23.300000347197056,
+      "decision_cycle_times": {
+        "count": 466,
+        "median": 0.05361244990490377,
+        "p95": 0.07448454992845654,
+        "p99": 0.09661541501991462,
+        "max": 0.3184610998723656,
+        "over_period_fraction": 0.5450643776824035,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 466,
+        "median": 0.005351849948056042,
+        "p95": 0.006607924937270582,
+        "p99": 0.008739570097532155,
+        "max": 0.3129957001656294,
+        "over_period_fraction": 0.002145922746781116,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 9,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 549,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 27.450000409036875,
+      "progress": 23.63482411113435,
+      "travel_time_success_only": 27.450000409036875,
+      "decision_cycle_times": {
+        "count": 549,
+        "median": 0.12869910011067986,
+        "p95": 0.21271966011263432,
+        "p99": 0.25909882406704127,
+        "max": 0.4344594001304358,
+        "over_period_fraction": 0.8014571948998178,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 549,
+        "median": 0.008655199781060219,
+        "p95": 0.011141599994152785,
+        "p99": 0.012881868099793789,
+        "max": 0.3136404000688344,
+        "over_period_fraction": 0.0018214936247723133,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 10,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 535,
+      "interventions": 2,
+      "goal_parking_controls": 2,
+      "simulation_seconds": 26.750000398606062,
+      "progress": 22.047967142149563,
+      "travel_time_success_only": 26.750000398606062,
+      "decision_cycle_times": {
+        "count": 535,
+        "median": 0.046299600042402744,
+        "p95": 0.06704413993284106,
+        "p99": 0.08014644998591391,
+        "max": 0.323059500195086,
+        "over_period_fraction": 0.2635514018691589,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 535,
+        "median": 0.004748299950733781,
+        "p95": 0.005853620031848549,
+        "p99": 0.007710041971877208,
+        "max": 0.3182053999044001,
+        "over_period_fraction": 0.001869158878504673,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    },
+    {
+      "case_id": 11,
+      "success": true,
+      "termination_reason": "success",
+      "physics_steps": 497,
+      "interventions": 3,
+      "goal_parking_controls": 3,
+      "simulation_seconds": 24.850000370293856,
+      "progress": 20.11937023886362,
+      "travel_time_success_only": 24.850000370293856,
+      "decision_cycle_times": {
+        "count": 497,
+        "median": 0.13874170021153986,
+        "p95": 0.19023632002063096,
+        "p99": 0.21456405599601575,
+        "max": 0.3203948999289423,
+        "over_period_fraction": 0.8088531187122736,
+        "period": 0.05,
+        "unit": "seconds"
+      },
+      "control_cycle_times": {
+        "count": 497,
+        "median": 0.007902299985289574,
+        "p95": 0.009714160021394492,
+        "p99": 0.010409891949966553,
+        "max": 0.3144149000290781,
+        "over_period_fraction": 0.002012072434607646,
+        "period": 0.05,
+        "unit": "seconds"
+      }
+    }
+  ],
+  "limits": "One independently trained warm-started seed, twelve KNOWN development conditions. No full-task PPO updates here. Whole-trajectory policy-action reconstruction is not claimed for the dynamic cases. Not final confirmation, five-seed qualification, or an isolated PPO benefit.",
+  "research_acceptance": "UNMET"
+}

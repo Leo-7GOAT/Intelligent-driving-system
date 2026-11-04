@@ -1,0 +1,2 @@
+# Optional local video encoder; no FFmpeg binaries are committed or redistributed.
+imageio-ffmpeg==0.6.0

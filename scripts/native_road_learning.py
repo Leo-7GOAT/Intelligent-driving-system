@@ -1,0 +1,720 @@
+"""Bounded real CARLA training for the new shared-road interface (development)."""
+import argparse
+import gzip
+from dataclasses import asdict
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+import pickle
+from pathlib import Path
+import random
+import shutil
+import sys
+import time
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+import numpy as np
+import torch
+from stable_baselines3 import PPO
+from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
+from stable_baselines3.common.logger import configure
+from navstack.carla_bridge import BridgeClient, CarlaNavigationEnv
+from navstack.config import EnvConfig, VehicleConfig, RewardConfig
+from navstack.experiments import actor_vector, write_json, signature, append_json, jsonable
+from navstack.native_route import select_routes
+from navstack.native_cases import registered_native_cases
+from navstack.research import ResearchRecorder, resources_ok
+from navstack.research import atomic_json
+from navstack.independent_clip_ppo import IndependentClipPPO, load_ppo, GLOBAL_CLIP, INDEPENDENT_CLIP, actor_critic_parameters
+from navstack.planner_memo import configure_planner_memo
+from navstack.metrics import timing_summary
+from scripts.carla_steering_audit import guard
+
+
+def timed_policy_step(model, normalizer, env, observation, clock=None):
+    """Time normalization/prediction and the complete synchronous decision separately."""
+    clock = time.perf_counter if clock is None else clock
+    started = clock()
+    action, _ = model.predict(normalizer.normalize_obs(observation[None]), deterministic=True)
+    predicted = clock()
+    result = env.step(action[0])
+    finished = clock()
+    if not started <= predicted <= finished:
+        raise ValueError('Decision timing requires a monotonic clock')
+    return action, result, {'policy_prediction_seconds': predicted-started,
+                            'full_decision_seconds': finished-started}
+
+
+def prepare(parent, road_geometry_version="carla_driving_64_v1", controlled_budget=640, wall_seconds=900, episode_seconds=20, evaluate=False, feedback_ablation=False, road_candidate_policy=False):
+    if not 640<=controlled_budget<=100000 or not 900<=wall_seconds<=7200 or not 20<=episode_seconds<=90:
+        raise ValueError("Native development budget outside supported bounds")
+    if road_candidate_policy and not feedback_ablation:
+        raise ValueError('Structured road policy requires the declared H0/H/B1 feedback comparison')
+    healthy, reason = resources_ok(ROOT)
+    if not healthy or shutil.disk_usage(ROOT).free < 12*1024**3:
+        raise RuntimeError("Resource guard: "+str(reason))
+    parent = Path(parent)
+    batch = ROOT / "runs" / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"_native_road_learning")
+    batch.mkdir()
+    for name in ("infrastructure", "calibration"):
+        (batch/name).mkdir()
+    shutil.copy2(parent/"calibration/calibration.json", batch/"calibration/calibration.json")
+    survey = json.loads((parent/"native_routes.json").read_text(encoding="utf-8"))
+    hashes = {}
+    for folder in ("navstack", "scripts", "tests"):
+        for source in (ROOT/folder).rglob("*.py"):
+            relative = source.relative_to(ROOT)
+            target = batch/"source"/relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
+            hashes[relative.as_posix()] = hashlib.sha256(source.read_bytes()).hexdigest()
+    for name in ('start_carla.ps1','stop_owned_carla.ps1'):
+        relative=Path('scripts')/name
+        shutil.copy2(ROOT/relative,batch/'source'/relative)
+        hashes[relative.as_posix()]=hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()
+    write_json(batch/"protocol.json", {"scope": "Shared native-road real PPO interface training, not convergence or hierarchy advantage",
+        "created_epoch": time.time(), "deadline_epoch": time.time()+wall_seconds, "source_hashes": hashes,
+        "road_geometry_version":road_geometry_version,
+        "deterministic_training_route_evaluation":evaluate,
+        "feedback_ablation":feedback_ablation,
+        "road_candidate_policy":road_candidate_policy,
+        "cleanup_owned_carla":road_candidate_policy,
+        "representation_note": "4701shared inputs: existing candidate geometry plus road raster; learned CNN and shared candidate scores/pooling, fixed binary road/candidate scaling. New incompatible models, no masks or route prior." if road_candidate_policy else "Historical flat observation/MLP representation",
+        "hypothesis": "Same-size H0/H feedback ablation and equally informed direct B1; unchanged action catalog, reward, controller and PPO settings" if feedback_ablation else "Shared native-road interface development",
+        "calibration_sha256": hashlib.sha256((batch/"calibration/calibration.json").read_bytes()).hexdigest(),
+        "routes": select_routes(survey), "methods": ["H0", "H", "B1"] if feedback_ablation else ["H", "B1"], "seed": 11,
+        "checkpoint_thresholds": sorted({min(controlled_budget, step) for step in (10000, 30000, controlled_budget)}),
+        "controlled_budget_per_method": controlled_budget, "reset_ticks_counted_separately": True,
+        "rollout_actions": 32, "ppo_epochs": 2, "episode_seconds": episode_seconds,
+        "resource_limits": {"wall_seconds": wall_seconds, "disk_min_GiB": 12, "ram_min_GiB": 4, "gpu_stop_temperature_C": 85, "automatic_retries": 0},
+        "disk_free_bytes": shutil.disk_usage(ROOT).free})
+    write_json(ROOT/"runs/native_road_learning.json", {"batch": str(batch)})
+    print(batch, flush=True)
+
+
+def training_config(protocol, method, vehicle):
+    planner_nodes=protocol.get('planner_nodes',1800)
+    if type(planner_nodes) is not int or planner_nodes not in (1800,7200):
+        raise ValueError('Native training supports the registered1800/7200node budgets')
+    feedback = ("ablated" if method == "H0" else "enabled") if protocol.get("feedback_ablation", False) else "off"
+    if protocol.get('continuation_feedback', False):
+        feedback = 'continuation_ablated' if method == 'H0' else 'continuation'
+    shared_mask=protocol.get('shared_endpoint_mask_v1',False)
+    if type(shared_mask) is not bool:raise ValueError('Shared endpoint mask must be an explicit boolean')
+    if shared_mask:
+        if (not protocol.get('continuation_feedback') or not protocol.get('feedback_ablation')
+                or not protocol.get('road_candidate_policy') or protocol.get('candidate_head')!='unshared_endpoint_v1'):
+            raise ValueError('Shared mask requires the complete endpoint feedback comparison')
+        feedback='continuation'
+    config = EnvConfig(method="H" if method == "H0" else method, vehicle=vehicle, road_observation=True,
+        flat_route_observation=protocol.get('flat_route_observation',False),
+        goal_parking_assist=protocol.get('goal_parking_assist',False),
+        execution_feedback=feedback,candidate_observation=protocol.get('road_candidate_policy',False),
+        road_geometry_version=protocol.get("road_geometry_version","carla_driving_64_v1"),
+        subgoal_mode=protocol.get('subgoal_mode', 'ego_arcs'),
+        route_goal_candidate=protocol.get('route_goal_candidate',False),
+        reference_reuse=protocol.get('reference_reuse',False),
+        actuator_observation=protocol.get('actuator_observation', 'off'),
+        local_candidate_filter=protocol.get('candidate_head')=='unshared_local_v1',
+        endpoint_candidate_filter=protocol.get('candidate_head')=='unshared_endpoint_v1',
+        road_collision_backend=protocol.get('road_collision_backend', 'scalar'),
+        flat_hold=protocol.get('flat_hold',10) if method=='B1' else 10, deadline=protocol["episode_seconds"], obstacle_num=0,
+        flat_longitudinal_mode=protocol.get('flat_longitudinal_mode','acceleration') if method=='B1' else 'acceleration')
+    geometry=protocol.get('route_candidate_geometry','route_offsets_v1')
+    if geometry!='route_offsets_v1':
+        if not hasattr(config,'route_candidate_geometry'):raise ValueError('Frozen source does not support this candidate geometry')
+        config=EnvConfig.from_dict({**config.to_dict(),'route_candidate_geometry':geometry})
+    if method=='B1' and protocol.get('flat_action_catalog','continuous')!='continuous':
+        config.flat_action_catalog=protocol['flat_action_catalog'];config.__post_init__()
+    config.planner.max_seconds=None
+    config.planner.max_nodes=planner_nodes
+    heuristic=protocol.get('planner_heuristic','euclidean')
+    if heuristic not in ('euclidean','dubins_v1'):raise ValueError('Unknown native planner heuristic')
+    config.planner.heuristic_mode=heuristic
+    config.planner.vectorized_primitives=True
+    config.planner.analytic_expansion=True
+    postprocess=protocol.get('grid_postprocess','legacy')
+    if postprocess not in ('legacy','body_spline_v1') or (postprocess!='legacy' and method!='B2'):
+        raise ValueError('Explicit Grid A* postprocessing is supported only for B2')
+    config.planner.grid_postprocess=postprocess
+    # An explicit new task reward applies equally to all methods. Historical
+    # protocols keep the original potential-only progress signal unchanged.
+    if 'task_progress_weight' in protocol:
+        weight=protocol['task_progress_weight']
+        if isinstance(weight,bool) or not isinstance(weight,(int,float)):
+            raise ValueError('Task progress weight must be an explicit finite number')
+        config.reward=RewardConfig(**{**asdict(config.reward),'progress_weight':weight})
+    if 'unsafe_event_penalty' in protocol:
+        penalty=protocol['unsafe_event_penalty']
+        if isinstance(penalty,bool) or not isinstance(penalty,(int,float)) or not np.isfinite(penalty) or penalty>=0:
+            raise ValueError('Unsafe-event penalty must be a finite negative shared task reward')
+        config.reward=RewardConfig(**{**asdict(config.reward),'collision':penalty,'out_of_bounds':penalty})
+    return config
+
+
+def learning_schedule(protocol,config,rollout_actions):
+    batch_size=protocol.get('ppo_batch_size',32)
+    if type(batch_size) is not int or batch_size<2 or rollout_actions%batch_size:
+        raise ValueError('PPO batch must divide the registered rollout')
+    return {'n_steps':rollout_actions,'batch_size':batch_size,'n_epochs':protocol['ppo_epochs'],
+            'gamma':config.gamma,'gae_lambda':.95**(config.control_dt*config.substeps)}
+
+
+class RecordedRoadEnv(CarlaNavigationEnv):
+    def __init__(self, config, client, cases, output):
+        self.output = output
+        super().__init__(config, client, cases)
+
+    def reset(self, **kwargs):
+        result = super().reset(**kwargs)
+        write_json(self.output/("scene_%04d.json" % self.reset_count), {"scene": self.scene_evidence,
+            "initial": self.initial_scenario, "frame": self.plant.frame,
+            "observation_shape": list(result[0].shape)})
+        return result
+
+
+def native_environment_class(reference_context=False, recorded=True):
+    """Use the same declared observation schema in learning and evaluation."""
+    parent=RecordedRoadEnv if recorded else CarlaNavigationEnv
+    if not reference_context:return parent
+    from navstack.reference_context_policy import ReferenceContextObservationMixin
+    from navstack.outcome_context_policy import VERSION as OUTCOME_VERSION,OutcomeContextObservationMixin
+    mixin=OutcomeContextObservationMixin if reference_context==OUTCOME_VERSION else ReferenceContextObservationMixin
+    class ContextRoadEnv(mixin,parent):pass
+    return ContextRoadEnv
+
+
+def restore_training(checkpoint, raw, config, seed, gradient_clip_mode=None, allow_intervention=False,
+                     rollout_actions=None, allow_rollout_intervention=False):
+    """Restore learning state, deliberately begin a new measured CARLA episode."""
+    checkpoint = Path(checkpoint)
+    saved = json.loads((checkpoint/'metadata.json').read_text(encoding='utf-8'))
+    metadata = json.loads((checkpoint/'config.json').read_text(encoding='utf-8'))
+    if metadata['signature'] != signature(config):
+        raise ValueError('Recovery configuration differs from saved policy semantics')
+    for name,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')]:
+        if hashlib.sha256((checkpoint/name).read_bytes()).hexdigest() != saved[key]:
+            raise ValueError('Recovery checkpoint hash mismatch')
+    state_file=checkpoint/'resume_state.pkl'
+    expected_rng=saved.get('resume_state_sha256')
+    if expected_rng is not None:
+        if not state_file.is_file() or hashlib.sha256(state_file.read_bytes()).hexdigest()!=expected_rng:
+            raise ValueError('Recovery RNG hash mismatch or recorded state missing')
+    elif state_file.exists():
+        raise ValueError('Recovery RNG file has no recorded hash')
+    vec = VecNormalize.load(checkpoint/'normalization.pkl',raw)
+    vec.training=True;vec.norm_reward=False;vec.returns[:]=0
+    model = load_ppo(checkpoint/'model.zip',env=vec,device='cpu',force_reset=True,
+                     gradient_clip_mode=gradient_clip_mode,allow_intervention=allow_intervention,
+                     rollout_actions=rollout_actions,allow_rollout_intervention=allow_rollout_intervention)
+    if state_file.exists():
+        with state_file.open('rb') as stream:state=pickle.load(stream)
+        random.setstate(state['python']);np.random.set_state(state['numpy']);torch.set_rng_state(state['torch'])
+        raw.envs[0].np_random.bit_generator.state=state['env_rng']
+        raw.envs[0].case_index=state['next_case_index']
+        raw._seeds=[None]
+        mode='saved RNG; interrupted physical episode discarded, next route reset'
+    else:
+        # Legacy inference checkpoints lack RNG and physical state. Account for
+        # their lost work explicitly; never claim an uninterrupted continuation.
+        random.seed(seed);np.random.seed(seed);torch.manual_seed(seed);raw.seed(seed)
+        raw.envs[0].case_index=saved['episodes']+1
+        mode='legacy checkpoint: explicit fresh RNG seed and new measured episode'
+    return model,vec,mode
+
+
+def publish_checkpoint_directory(temporary,checkpoint):
+    """Bounded retry of transient directory publication failures; no overwrite."""
+    temporary,checkpoint=Path(temporary),Path(checkpoint)
+    if (temporary.parent.resolve()!=checkpoint.parent.resolve()
+            or temporary.name!=checkpoint.name+'.partial'):
+        raise ValueError('Checkpoint publication must stay in its intended parent')
+    for attempt in range(5):
+        if checkpoint.exists():raise FileExistsError('Preserve existing published checkpoint')
+        try:
+            os.rename(temporary,checkpoint)
+            return
+        except PermissionError:
+            if attempt==4:raise
+            time.sleep(.1*2**attempt)
+
+
+def save_training_checkpoint(output, threshold, model, vec, raw, metadata):
+    """Publish a checkpoint only after all files and their hashes exist."""
+    checkpoint=output/('checkpoint_%09d'%threshold)
+    temporary=output/(checkpoint.name+'.partial')
+    temporary.mkdir()
+    model.save(temporary/'model.zip');vec.save(temporary/'normalization.pkl')
+    shutil.copy2(output/'config.json',temporary/'config.json')
+    state={'python':random.getstate(),'numpy':np.random.get_state(),'torch':torch.get_rng_state(),
+           'env_rng':raw.envs[0].np_random.bit_generator.state,'next_case_index':raw.envs[0].case_index}
+    with (temporary/'resume_state.pkl').open('wb') as stream:pickle.dump(state,stream)
+    for name,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256'),('resume_state.pkl','resume_state_sha256')]:
+        metadata[key]=hashlib.sha256((temporary/name).read_bytes()).hexdigest()
+    metadata['note']='Learning state retained; recovery starts a new CARLA episode and counts all reset/lost interactions'
+    if getattr(model.policy,'reference_context_version',None) is not None:
+        metadata['observation_encoding']=model.policy.reference_context_version
+        metadata['reference_gain_scale']=getattr(model.policy,'reference_gain_scale',1.0)
+        if hasattr(model.policy,'failure_gain_scale'):
+            metadata['failure_gain_scale']=model.policy.failure_gain_scale
+            metadata['policy_parameter_states']=len(list(model.policy.named_parameters()))
+    write_json(temporary/'metadata.json',metadata)
+    publish_checkpoint_directory(temporary,checkpoint)
+    atomic_json(output/'latest_checkpoint.json',{'folder':checkpoint.name,**metadata})
+
+
+def registered_jobs(protocol):
+    """Legacy method lists retain behavior; experimental paired arms are explicit."""
+    jobs = protocol.get('jobs')
+    if jobs is None:
+        return [{'name': method, 'method': method} for method in protocol['methods']]
+    if protocol.get('frozen_policy_comparison'):
+        names=[job.get('name') for job in jobs]
+        if (protocol['frozen_policy_comparison'].get('version')!='named_frozen_native_v1'
+                or protocol.get('evaluation_only') is not True or not jobs
+                or names!=protocol['methods'] or len(set(names))!=len(names)
+                or protocol.get('controlled_budget_per_method')!=0
+                or protocol.get('method_budgets')!={name:0 for name in names}
+                or set(protocol.get('recovery',{}))!=set(names)
+                or any(not name or not name.replace('_','').isalnum() for name in names)
+                or any(set(job)!={'name','method'} or job['method'] not in ('H','H0','B1') for job in jobs)
+                or any(protocol.get(flag) for flag in ('gradient_clipping_experiment','rollout_length_experiment',
+                    'flat_distribution_experiment','actor_head_experiment'))):
+            raise ValueError('Named frozen comparison requires saved policies and strictly zero learning budgets')
+        return jobs
+    clipping=bool(protocol.get('gradient_clipping_experiment'))
+    rollout=bool(protocol.get('rollout_length_experiment'))
+    distribution=bool(protocol.get('flat_distribution_experiment'))
+    head=bool(protocol.get('actor_head_experiment'))
+    if sum((clipping,rollout,distribution,head)) != 1 or not jobs:
+        raise ValueError('Named native jobs require exactly one registered learning intervention')
+    names = [job['name'] for job in jobs]
+    if names != protocol['methods'] or len(set(names)) != len(names):
+        raise ValueError('Native job names must uniquely match worker scopes')
+    for job in jobs:
+        if not job['name'].replace('_', '').isalnum() or job['method'] not in ('H0','H','B1'):
+            raise ValueError('Invalid native experiment job')
+        if job.get('gradient_clip_mode') not in (GLOBAL_CLIP, INDEPENDENT_CLIP):
+            raise ValueError('Every experiment arm must declare its gradient clipping mode')
+        if distribution and (job['method'] != 'B1' or
+                job['gradient_clip_mode'] != GLOBAL_CLIP or
+                job.get('flat_action_distribution') not in ('clipped_gaussian','tanh_gaussian_v1') or
+                'rollout_actions' in job or protocol.get('recovery')):
+            raise ValueError('Distribution pair requires fresh flat policies and unchanged common PPO schedule')
+        if not distribution and 'flat_action_distribution' in job:
+            raise ValueError('Action distribution changes require their own registered experiment')
+        if head and (job['method'] not in ('H0','H') or
+                job['gradient_clip_mode'] != GLOBAL_CLIP or
+                job.get('candidate_head') not in ('shared','unshared_v1') or
+                'rollout_actions' in job or protocol.get('recovery')):
+            raise ValueError('Head comparison requires fresh hierarchical policies and the common PPO schedule')
+        if not head and 'candidate_head' in job:
+            raise ValueError('Candidate head changes require their own experiment')
+        if rollout and (job['gradient_clip_mode'] != GLOBAL_CLIP or
+                        type(job.get('rollout_actions')) is not int or job['rollout_actions'] not in (32,256)):
+            raise ValueError('Rollout study must retain global clipping and declare 32 or 256 actions')
+        if clipping and 'rollout_actions' in job:
+            raise ValueError('Clipping study cannot change rollout length')
+    return jobs
+
+
+def configure_continuation_normalization(vec,protocol,recovery):
+    if protocol.get('freeze_observation_statistics',False):
+        if recovery is None or protocol.get('evaluation_only'):
+            raise ValueError('Frozen observation statistics require registered learning continuation')
+        vec.training=False
+
+
+def camera_evaluation_mode(protocol):
+    camera=protocol.get('native_camera_evaluation')
+    if camera is None:return False
+    methods=protocol.get('methods',[])
+    if (not isinstance(camera,dict) or camera.get('version')!='frozen_native_RGB_v1'
+            or len(methods)!=1 or protocol.get('evaluation_only') is not True
+            or protocol.get('controlled_budget_per_method')!=0
+            or protocol.get('method_budgets')!={methods[0]:0}
+            or protocol.get('deterministic_training_route_evaluation') is not True
+            or not protocol.get('recovery',{}).get(methods[0])):
+        raise ValueError('Native camera requires one frozen saved policy and zero learning budget')
+    for name in ('model_sha256','normalization_sha256'):
+        digest=camera.get(name)
+        if not isinstance(digest,str) or len(digest)!=64 or any(c not in '0123456789abcdef' for c in digest):
+            raise ValueError('Native camera requires explicit evaluated artifact hashes')
+    ids=camera.get('original_case_ids',[])
+    if (not isinstance(ids,list) or not 1<=len(ids)<=4 or len(set(ids))!=len(ids)
+            or any(type(i) is not int or i<0 for i in ids)
+            or len(protocol.get('native_case_manifest',{}).get('cases',[]))!=len(ids)
+            or protocol.get('native_validation')):
+        raise ValueError('Native camera requires one to four explicitly selected known development cases')
+    return True
+
+
+def run(batch):
+    batch = Path(batch).resolve()
+    protocol = json.loads((batch/"protocol.json").read_text(encoding="utf-8"))
+    context=protocol.get('reference_context')
+    if context is not None:
+        from navstack.reference_context_policy import VERSION,ReferenceContextObservationMixin,ReferenceContextVecNormalize
+        from navstack.outcome_context_policy import VERSION as OUTCOME_VERSION
+        if (context not in ({'version':VERSION},{'version':OUTCOME_VERSION}) or not set(protocol['methods'])<=set(('H','H0'))
+                or not protocol.get('shared_endpoint_mask_v1') or not protocol.get('reference_reuse')
+                or set(protocol.get('recovery',{}))!=set(protocol['methods'])):
+            raise ValueError('Reference context requires a versioned matched saved H/H0pair')
+        VERSION=context['version']
+    environment_class=native_environment_class(context['version'] if context else False)
+    record_camera=camera_evaluation_mode(protocol)
+    jobs = registered_jobs(protocol)
+    for relative, digest in protocol["source_hashes"].items():
+        if hashlib.sha256((ROOT/relative).read_bytes()).hexdigest() != digest:
+            raise ValueError("Run frozen source only")
+    if hashlib.sha256((batch/"calibration/calibration.json").read_bytes()).hexdigest() != protocol["calibration_sha256"]:
+        raise ValueError("Calibration mismatch")
+    if (batch/"started.json").exists():
+        raise RuntimeError("No automatic repeat of completed or failed evidence")
+    guard(batch, protocol)
+    write_json(batch/"started.json", {"epoch": time.time()})
+    vehicle = VehicleConfig(**json.loads((batch/"calibration/calibration.json").read_text(encoding="utf-8"))["vehicle"])
+    torch.set_num_threads(1)
+    results = []
+    try:
+        for job in jobs:
+            method, job_name = job['method'], job['name']
+            rollout_actions=job.get('rollout_actions',protocol['rollout_actions'])
+            guard(batch, protocol)
+            if time.time() >= protocol["deadline_epoch"]:
+                raise RuntimeError("Registered wall budget expired")
+            config=training_config(protocol,method,vehicle)
+            output = batch/job_name
+            output.mkdir()
+            write_json(output/"config.json", {"env": config.to_dict(), "signature": signature(config),
+                "seed": protocol["seed"], "backend": "CARLA_0.9.15", "scope": protocol["scope"],
+                **({'observation_encoding':context,
+                    'reference_gain_scale':protocol.get('reference_learning_registration',{}).get('gain_scale',1.0)} if context is not None else {})})
+            if record_camera:
+                output_config=json.loads((output/'config.json').read_text(encoding='utf-8'))
+                output_config.update(record_camera=True,policy='learned_PPO',
+                    model_sha256=protocol['native_camera_evaluation']['model_sha256'])
+                write_json(output/"config.json",output_config)
+            cases = registered_native_cases(protocol)
+            evaluation_cases = registered_native_cases(protocol,'evaluation') if protocol.get('native_validation') else cases
+            if protocol.get('training_case_schedule') and not protocol.get('evaluation_only'):
+                from navstack.native_case_schedule import scheduled_native_cases
+                cases = scheduled_native_cases(cases,protocol['training_case_schedule'])
+            client = BridgeClient(batch,record_dir=output/'camera') if record_camera else BridgeClient(batch)
+            vec = None
+            recorder = None
+            try:
+                raw = DummyVecEnv([lambda: configure_planner_memo(environment_class(config, client, cases, output), protocol)])
+                raw.seed(protocol["seed"])
+                recovery=protocol.get('recovery',{}).get(job_name)
+                if recovery:
+                    model,vec,resume_mode=restore_training(batch/recovery['checkpoint'],raw,config,protocol['seed'],
+                        gradient_clip_mode=job.get('gradient_clip_mode'),
+                        allow_intervention=bool(protocol.get('gradient_clipping_experiment')),
+                        rollout_actions=rollout_actions,
+                        allow_rollout_intervention=bool(protocol.get('rollout_length_experiment')))
+                    write_json(output/'resume_event.json',{'mode':resume_mode,**recovery,
+                        'gradient_clip_mode':getattr(model,'gradient_clip_mode',GLOBAL_CLIP),
+                        'rollout_actions':model.n_steps,
+                        'registered_rollout_intervention':bool(protocol.get('rollout_length_experiment')),
+                        'registered_gradient_intervention':bool(protocol.get('gradient_clipping_experiment'))})
+                else:
+                    normalizer,policy=VecNormalize,"MlpPolicy"
+                    if protocol.get('road_candidate_policy',False):
+                        from navstack.road_candidate_policy import RoadCandidateVecNormalize,RoadCandidateActorCriticPolicy,FlatRoadCandidateActorCriticPolicy
+                        normalizer=RoadCandidateVecNormalize
+                        policy=FlatRoadCandidateActorCriticPolicy if method=='B1' else RoadCandidateActorCriticPolicy
+                        if method=='B1' and getattr(config,'flat_action_catalog','continuous')=='speed_steer_3x7_v1':
+                            from navstack.discrete_flat_policy import DiscreteFlatRoadPolicy
+                            policy=DiscreteFlatRoadPolicy
+                        if job.get('flat_action_distribution') == 'tanh_gaussian_v1':
+                            from navstack.squashed_road_policy import SquashedFlatRoadPolicy
+                            policy=SquashedFlatRoadPolicy
+                        selected_head=job.get('candidate_head',protocol.get('candidate_head'))
+                        if method!='B1' and selected_head == 'unshared_v1':
+                            from navstack.road_candidate_policy import UnsharedRoadCandidatePolicy
+                            policy=UnsharedRoadCandidatePolicy
+                        elif method!='B1' and selected_head == 'unshared_local_v1':
+                            from navstack.road_candidate_policy import LocalWitnessRoadPolicy
+                            policy=LocalWitnessRoadPolicy
+                        elif method!='B1' and selected_head == 'unshared_endpoint_v1':
+                            from navstack.road_candidate_policy import endpoint_policy_class
+                            policy=endpoint_policy_class(protocol,method)
+                    vec = normalizer(raw, norm_reward=False, gamma=config.gamma)
+                    algorithm = IndependentClipPPO if job.get('gradient_clip_mode') == INDEPENDENT_CLIP else PPO
+                    model = algorithm(policy, vec, **learning_schedule(protocol,config,rollout_actions),
+                        policy_kwargs={"net_arch":{"pi":[64,64],"vf":[64,64]}}, seed=protocol["seed"], device="cpu")
+                if (model.n_steps != rollout_actions or model.n_epochs != protocol['ppo_epochs'] or
+                        model.batch_size!=protocol.get('ppo_batch_size',32)):
+                    raise ValueError('Restored learner differs from registered rollout/epoch schedule')
+                if context is not None:
+                    if (getattr(model.policy,'reference_context_version',None)!=VERSION
+                            or model.policy.reference_ablated!=(method=='H0')
+                            or getattr(model.policy,'reference_gain_scale',1.0)!=protocol.get('reference_learning_registration',{}).get('gain_scale',1.0)
+                            or not isinstance(vec,ReferenceContextVecNormalize)):
+                        raise ValueError('Saved policy/normalizer lacks the registered reference schema or ablation')
+                    if context['version']==OUTCOME_VERSION:
+                        registration=protocol.get('outcome_context_registration',{})
+                        if (getattr(model.policy,'failure_gain_scale',None)!=registration.get('failure_gain_scale')
+                                or getattr(model.policy,'outcome_ablated',None)!=registration.get('failure_feedback_ablated')):
+                            raise ValueError('Outcome feedback learning-coordinate scale differs from registration')
+                configure_continuation_normalization(vec,protocol,recovery)
+                if protocol.get('fresh_cadence_experiment') and recovery is not None:
+                    raise ValueError('Cadence diagnostic must use fresh weights')
+                if protocol.get('fresh_cadence_experiment') or protocol.get('record_initial_parameters'):
+                    from scripts.collect_native_recovery import tensor_digest
+                    write_json(output/'initial_parameter_fingerprints.json',{
+                        'parameters':{name:hashlib.sha256(value.detach().cpu().numpy().tobytes()).hexdigest()
+                            for name,value in model.policy.state_dict().items()},
+                        'torch_rng_sha256':hashlib.sha256(torch.get_rng_state().numpy().tobytes()).hexdigest(),
+                        'optimizer_sha256':tensor_digest(model.policy.optimizer.state_dict()),
+                        'optimizer_steps':{name:float(model.policy.optimizer.state.get(value,{}).get('step',0))
+                            for name,value in model.policy.named_parameters()},
+                        'rollout_actions':model.n_steps,'batch_size':model.batch_size,'gamma':model.gamma,'gae_lambda':model.gae_lambda,
+                        'decision_seconds':config.control_dt*config.substeps,'rollout_nominal_controls':model.n_steps*config.substeps})
+                write_json(output/'policy_architecture.json',{'policy':type(model.policy).__name__,
+                    'rollout_actions':model.n_steps,'ppo_epochs':model.n_epochs,'batch_size':model.batch_size,
+                    'algorithm':type(model).__name__,'gradient_clip_mode':getattr(model,'gradient_clip_mode',GLOBAL_CLIP),
+                    'normalizer':type(vec).__name__,'parameters':sum(p.numel() for p in model.policy.parameters()),
+                    'observation_shape':list(model.observation_space.shape),
+                    'action_shape':list(model.action_space.shape),'road_candidate_policy':protocol.get('road_candidate_policy',False),
+                    **({'reference_gain_scale':getattr(model.policy,'reference_gain_scale',1.0)} if context is not None else {})})
+                inherited_lineage=0 if recovery is None else recovery['lineage_controls']
+                inherited_cost=0 if recovery is None else recovery['consumed_controls_lower_bound']
+                budget=protocol.get('method_budgets',{}).get(job_name,protocol['controlled_budget_per_method'])
+                evaluation_only=bool(protocol.get('evaluation_only'))
+                if evaluation_only and (budget!=0 or recovery is None):
+                    raise ValueError('Evaluation-only phase requires zero budget and a verified saved checkpoint')
+                replay=protocol.get('own_success_replay')
+                replay_data=None;replay_steps=0
+                if replay:
+                    if evaluation_only or recovery is None or not protocol.get('freeze_observation_statistics'):
+                        raise ValueError('Own-success replay requires explicit frozen-statistics training continuation')
+                    replay_path=batch/replay['dataset']
+                    if hashlib.sha256(replay_path.read_bytes()).hexdigest()!=replay['sha256']:
+                        raise ValueError('Own-success replay dataset changed')
+                    if replay['steps_per_phase'] not in (10,100):raise ValueError('Unregistered auxiliary replay schedule')
+                    if replay.get('speed_label_smoothing',0.) not in (0.,.3):raise ValueError('Unregistered replay speed smoothing')
+                    replay_data=np.load(replay_path,allow_pickle=False)
+                model.set_logger(configure(str(output/"sb3"), ["csv"]))
+                before = actor_vector(model).clone()
+                recorder = ResearchRecorder(output, protocol["deadline_epoch"])
+                online_memory=None
+                callbacks=recorder
+                if replay and replay.get('online_success_updates'):
+                    from scripts.own_success_replay import OwnSuccessMemory
+                    from stable_baselines3.common.callbacks import CallbackList
+                    def recorded_condition(index):
+                        return json.loads((output/f'scene_{index+1:04d}.json').read_text(encoding='utf-8'))['scene']['condition']
+                    qualify=None
+                    selected=replay.get('success_selection',{'version':'all_success_v1'})
+                    if selected['version']=='terminal_margin_v1':
+                        from scripts.fit_own_success_policy import terminal_quality,has_terminal_margin
+                        if selected!={'version':'terminal_margin_v1','distance_max_m':.5,'speed_max_m_s':.15,'yaw_max_rad':.2}:
+                            raise ValueError('Unknown terminal-margin replay thresholds')
+                        def qualify(info):
+                            return has_terminal_margin(terminal_quality(info['trace'][-1]['state'],info['initial_scenario']['goal']))
+                    elif selected!={'version':'all_success_v1'}:raise ValueError('Unknown online own-success selector')
+                    online_memory=OwnSuccessMemory(vec.normalize_obs(replay_data['observations']),replay_data['actions'],
+                        replay_data['groups'],recorded_condition,qualify)
+                    callbacks=CallbackList([online_memory,recorder])
+                optimizer_steps = [0]
+                gradient_samples = []
+                gradient_groups = actor_critic_parameters(model.policy) if protocol.get('gradient_clipping_experiment') else None
+                def count_step(*unused):
+                    optimizer_steps[0] += 1
+                    if gradient_groups is not None:
+                        # Adam leaves .grad in place until the next zero_grad.
+                        # Both arms use the same post-step measurement, after
+                        # their respective clipping, without touching gradients.
+                        gradient_samples.append([float(torch.sqrt(sum(
+                            (p.grad.detach().square().sum() for p in group if p.grad is not None),
+                            torch.zeros((),device=model.device)))) for group in gradient_groups])
+                hook = model.policy.optimizer.register_step_post_hook(count_step)
+                started = time.time()
+                saved_thresholds = set()
+                while recorder.counts["physics_steps"] < budget and not recorder.stopped_reason:
+                    guard(batch, protocol)
+                    previous = model._n_updates
+                    gradient_samples.clear()
+                    model.learn(rollout_actions, callback=callbacks, reset_num_timesteps=False)
+                    if model._n_updates > previous:
+                        recorder.counts["optimization_phases"] += 1
+                        replay_record={}
+                        if replay_data is not None:
+                            from scripts.fit_own_success_policy import fit_actor
+                            inputs=(vec.normalize_obs(replay_data['observations']),replay_data['actions'],replay_data['groups']) if online_memory is None else online_memory.arrays()
+                            fitted=fit_actor(model,*inputs,replay['steps_per_phase'],seed=protocol['seed']+recorder.counts['optimization_phases'],
+                                speed_label_smoothing=replay.get('speed_label_smoothing',0.))
+                            replay_steps+=fitted['actor_optimizer_steps']
+                            replay_record={'auxiliary_actor_optimizer_steps':replay_steps,
+                                'ppo_optimizer_steps':optimizer_steps[0]-replay_steps,'own_success_fit':fitted}
+                            if online_memory is not None:
+                                memory_file=output/'own_success_memory.npz'
+                                replay_record['online_success_memory']={**online_memory.save(memory_file),
+                                    'sha256':hashlib.sha256(memory_file.read_bytes()).hexdigest()}
+                        gradient_record = {}
+                        if gradient_samples:
+                            gradient_array=np.asarray(gradient_samples)
+                            gradient_record={'postclip_gradients':{
+                                'optimizer_steps_sampled':len(gradient_samples),
+                                'actor_l2_mean':float(gradient_array[:,0].mean()),
+                                'critic_l2_mean':float(gradient_array[:,1].mean()),
+                                'scope':'Measured after clipping and Adam step, before next gradient reset'}}
+                        append_json(output/"optimization.jsonl", {**recorder.counts, "optimizer_steps": optimizer_steps[0],
+                            **gradient_record,**replay_record,
+                            "actor_l2_change": float(torch.linalg.vector_norm(actor_vector(model)-before)),
+                            "metrics": {k: float(v) for k,v in model.logger.name_to_value.items() if np.isscalar(v) and np.isfinite(v)}})
+                    thresholds=sorted(set(protocol.get('checkpoint_thresholds',[]))|set(range(10000,budget+1,10000))|{budget})
+                    for threshold in thresholds:
+                        if threshold not in saved_thresholds and recorder.counts["physics_steps"] >= threshold:
+                            save_training_checkpoint(output,threshold,model,vec,raw,{"threshold": threshold, **recorder.counts,
+                                "optimizer_steps":optimizer_steps[0], "world_ticks":client.total_ticks,
+                                'lineage_control_steps':inherited_lineage+recorder.counts['physics_steps'],
+                                'charged_control_steps_lower_bound':inherited_cost+recorder.counts['physics_steps']})
+                            saved_thresholds.add(threshold)
+                hook.remove()
+                # A completed training trace must survive a later evaluation
+                # interruption. Never leave its gzip footer open during driving.
+                recorder.close()
+                if evaluation_only:
+                    origin=batch/recovery['checkpoint']
+                    for name in ('model.zip','normalization.pkl'):
+                        shutil.copy2(origin/name,output/name)
+                    (output/'optimization.jsonl').touch(exist_ok=False)
+                    checkpoint=output/'checkpoint_000000000';checkpoint.mkdir()
+                    for name in ('model.zip','normalization.pkl','resume_state.pkl'):
+                        shutil.copy2(origin/name,checkpoint/name)
+                    shutil.copy2(output/'config.json',checkpoint/'config.json')
+                    metadata={**recorder.counts,'optimizer_steps':0,'world_ticks':0,
+                        'lineage_control_steps':inherited_lineage,'charged_control_steps_lower_bound':inherited_cost,
+                        'evaluation_only':True,'origin_metadata_sha256':hashlib.sha256((origin/'metadata.json').read_bytes()).hexdigest()}
+                    for name,key in [('model.zip','model_sha256'),('normalization.pkl','normalization_sha256'),('resume_state.pkl','resume_state_sha256')]:
+                        metadata[key]=hashlib.sha256((checkpoint/name).read_bytes()).hexdigest()
+                    write_json(checkpoint/'metadata.json',metadata)
+                    write_json(output/'latest_checkpoint.json',{'folder':checkpoint.name,**metadata})
+                else:
+                    model.save(output/"model.zip"); vec.save(output/"normalization.pkl")
+                loaded = load_ppo(output/"model.zip", device="cpu")
+                if record_camera:
+                    for name,key in (('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')):
+                        if hashlib.sha256((output/name).read_bytes()).hexdigest()!=protocol['native_camera_evaluation'][key]:
+                            raise ValueError('Camera evaluation artifact differs from registered source')
+                if evaluation_only:
+                    if any(not torch.equal(v,loaded.policy.state_dict()[k]) for k,v in model.policy.state_dict().items()):
+                        raise ValueError('Frozen evaluation weights differ from the saved source')
+                else:
+                    sample = vec.normalize_obs(raw.envs[0]._observation()[None])
+                    np.testing.assert_array_equal(model.predict(sample, deterministic=True)[0], loaded.predict(sample, deterministic=True)[0])
+                result = {**recorder.counts, "method": method, "job_name":job_name,
+                    'rollout_actions':model.n_steps,'ppo_epochs':model.n_epochs,'batch_size':model.batch_size,
+                    "gradient_clip_mode":getattr(model,'gradient_clip_mode',GLOBAL_CLIP), "backend": "CARLA_0.9.15",
+                    "world_ticks": client.total_ticks, "reset_ticks": client.total_ticks-recorder.counts["physics_steps"],
+                    "optimizer_steps": optimizer_steps[0], "actor_l2_change": float(torch.linalg.vector_norm(actor_vector(model)-before)),
+                    "reload_exact": all(torch.equal(v, loaded.policy.state_dict()[k]) for k,v in model.policy.state_dict().items()),
+                    "wall_seconds": time.time()-started, "stopped_reason": recorder.stopped_reason,
+                    'lineage_control_steps':inherited_lineage+recorder.counts['physics_steps'],
+                    'charged_control_steps_lower_bound':inherited_cost+recorder.counts['physics_steps'],
+                    'inherited_controls_not_in_checkpoint':inherited_cost-inherited_lineage,
+                    "scope": protocol["scope"]}
+                if replay is not None:
+                    result.update(auxiliary_actor_optimizer_steps=replay_steps,
+                                  ppo_optimizer_steps=optimizer_steps[0]-replay_steps)
+                if online_memory is not None:
+                    result['online_success_memory']={**online_memory.save(output/'own_success_memory.npz'),
+                        'sha256':hashlib.sha256((output/'own_success_memory.npz').read_bytes()).hexdigest()}
+                write_json(output/"summary.json", result)
+                results.append(result)
+                print(json.dumps(result), flush=True)
+                if protocol.get('native_recovery_collection') is not None:
+                    from scripts.collect_native_recovery import collect
+                    result.update(collect(config,client,cases,loaded,vec,output,protocol,
+                        RecordedRoadEnv,lambda:guard(batch,protocol)))
+                    write_json(output/"summary.json", result)
+                elif protocol.get("deterministic_training_route_evaluation",False):
+                    # These are the same four training geometries: development
+                    # endpoint probes, not held-out generalization evidence.
+                    vec.training=False
+                    mean,var=vec.obs_rms.mean.copy(),vec.obs_rms.var.copy()
+                    evaluation_ticks=client.total_ticks
+                    evaluation_class=native_environment_class(context['version'] if context else False,recorded=evaluation_only)
+                    evaluation=evaluation_class(config,client,evaluation_cases,output) if evaluation_only else evaluation_class(config,client,evaluation_cases)
+                    configure_planner_memo(evaluation, protocol)
+                    episodes=[]
+                    with gzip.open(output/"evaluation_trace.jsonl.gz","wt",encoding="utf-8") as stream:
+                        for case_id,case in enumerate(evaluation_cases):
+                            guard(batch,protocol)
+                            obs,_=evaluation.reset(seed=7301+case_id,options={"case":case})
+                            if record_camera:
+                                begin_frame=evaluation.plant.frame;camera_episode=client.episode_id
+                            actions=0
+                            prediction_times, full_decision_times = [], []
+                            while True:
+                                if protocol.get('reference_compute_profile') and (batch/'STOP').exists():
+                                    guard(batch,protocol)
+                                if actions%20==0:
+                                    guard(batch,protocol)
+                                if actions%20==0 or protocol.get('reference_compute_profile'):
+                                    atomic_json(output/'evaluation_heartbeat.json',{'pid':os.getpid(),'epoch':time.time(),'case_id':case_id,'actions':actions})
+                                action, step_result, decision_timing = timed_policy_step(loaded, vec, evaluation, obs)
+                                obs,_,done,truncated,info=step_result;actions+=1
+                                prediction_times.append(decision_timing['policy_prediction_seconds'])
+                                full_decision_times.append(decision_timing['full_decision_seconds'])
+                                stream.write(json.dumps({"case_id":case_id,"policy_action":action[0],"info":info,
+                                    **decision_timing},default=jsonable)+"\n")
+                                if done or truncated:
+                                    episodes.append({"case_id":case_id,**info["episode_metrics"],
+                                        'policy_prediction_times':timing_summary(prediction_times,config.control_dt*config.substeps),
+                                        'full_decision_times':timing_summary(full_decision_times,config.control_dt*config.substeps)})
+                                    if record_camera:
+                                        append_json(output/'episodes.jsonl',{'case_id':case_id,'case':case,
+                                            'original_parent_case_id':protocol['native_camera_evaluation']['original_case_ids'][case_id],
+                                            'status':'completed',**info['episode_metrics'],
+                                            'recording':{'episode_id':camera_episode,'begin_frame':begin_frame,
+                                                'terminal_frame':evaluation.plant.frame,
+                                                'manifest':'camera/'+camera_episode+'/frames.jsonl',
+                                                'kind':'actual_CARLA_RGB','sensor_tick':config.control_dt}})
+                                    break
+                    evaluation.close()
+                    np.testing.assert_array_equal(mean,vec.obs_rms.mean)
+                    np.testing.assert_array_equal(var,vec.obs_rms.var)
+                    evaluation_scope=("Frozen deterministic probes on all registered development conditions, no extra policy updates or independent-condition claim"
+                        if protocol.get('native_case_manifest') else "Frozen deterministic probes on all four TRAINING roads, no extra policy updates or independent-condition claim")
+                    if record_camera:
+                        evaluation_scope='Illustrative real RGB evaluation of an unchanged trained PPOpolicy;selected known development cases,not independent confirmation or model selection'
+                    if protocol.get('native_validation'):
+                        evaluation_scope='Frozen deterministic probes on registered geometry-separated development validation roads; zero updates,not final confirmation'
+                    write_json(output/"evaluation.json",{"scope":evaluation_scope,
+                        "partition":'validation' if protocol.get('native_validation') else 'development',
+                        'decision_timing_scope':'policy_prediction_times includes normalization and deterministic prediction;full_decision_times includes that plus the complete environment step. Historical decision_cycle_times remains environment-only. Excludes trace serialization and job setup.',
+                        "episodes":episodes,"world_ticks":client.total_ticks-evaluation_ticks,
+                        "model_sha256":hashlib.sha256((output/"model.zip").read_bytes()).hexdigest(),
+                        "normalization_sha256":hashlib.sha256((output/"normalization.pkl").read_bytes()).hexdigest()})
+                    print(json.dumps({"method":method,"job_name":job_name,"evaluation_success":sum(e["success"] for e in episodes),"episodes":len(evaluation_cases)}),flush=True)
+            finally:
+                if recorder is not None:
+                    recorder.close()
+                if vec is not None:
+                    vec.close()
+                client.close()
+        write_json(batch/"summary.json", {"status": "complete", "methods": results})
+    except BaseException as exc:
+        write_json(batch/"failure.json", {"error": repr(exc), "epoch": time.time(), "completed_methods": results})
+        raise
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--prepare")
+    parser.add_argument("--batch")
+    parser.add_argument("--road-geometry-version",choices=["carla_driving_64_v1","carla_driving_refined_union_64_v2","carla_driving_indexed_union_64_v3"],default="carla_driving_64_v1")
+    parser.add_argument("--controlled-budget",type=int,default=640)
+    parser.add_argument("--wall-seconds",type=int,default=900)
+    parser.add_argument("--episode-seconds",type=float,default=20)
+    parser.add_argument("--evaluate",action="store_true")
+    parser.add_argument("--feedback-ablation",action="store_true")
+    parser.add_argument("--road-candidate-policy",action="store_true")
+    args = parser.parse_args()
+    prepare(args.prepare,args.road_geometry_version,args.controlled_budget,args.wall_seconds,args.episode_seconds,args.evaluate,args.feedback_ablation,args.road_candidate_policy) if args.prepare else run(args.batch)

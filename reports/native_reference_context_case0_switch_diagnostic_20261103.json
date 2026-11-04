@@ -1,0 +1,816 @@
+{
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_v4_static_schema_fixed",
+  "method": "H",
+  "case_id": 0,
+  "source_sha256": "a7924221ba7850f272c3dfe9e73bead3e14c85b2ed7139948910c01e3e15533e",
+  "immutable_input_snapshot_sha256": "f196cf6a9d4482c57c257d518bbd297b20d975637b4eac7d9e782bb24ea734d1",
+  "enclosing_live_trace_prefix_error": "EOFError: Compressed file ended before the end-of-stream marker was reached",
+  "reconstruction_actions": 24,
+  "events": [
+    {
+      "decision": 0,
+      "action": 26,
+      "previous_selection": null,
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": false,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 0.0,
+      "selected_probability": 0.9137939214706421,
+      "entropy_nats": 0.43303701281547546,
+      "context_actions": [],
+      "selected_context": false,
+      "minimum_additional_context_logit_for_tie": null
+    },
+    {
+      "decision": 1,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 0.5000000074505806,
+      "selected_probability": 0.9367522597312927,
+      "entropy_nats": 0.3430824279785156,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 2,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 1.0000000149011612,
+      "selected_probability": 0.9510165452957153,
+      "entropy_nats": 0.2789934575557709,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 3,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 1.5000000223517418,
+      "selected_probability": 0.978157103061676,
+      "entropy_nats": 0.14205069839954376,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 4,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 2.0000000298023224,
+      "selected_probability": 0.9762943387031555,
+      "entropy_nats": 0.15252172946929932,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 5,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 2.500000037252903,
+      "selected_probability": 0.9782376289367676,
+      "entropy_nats": 0.14227642118930817,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 6,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 3.0000000447034836,
+      "selected_probability": 0.9604459404945374,
+      "entropy_nats": 0.23457831144332886,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 7,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 3.500000052154064,
+      "selected_probability": 0.935859739780426,
+      "entropy_nats": 0.34459325671195984,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 8,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 4.000000059604645,
+      "selected_probability": 0.6950399875640869,
+      "entropy_nats": 1.0202926397323608,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 9,
+      "action": 30,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          23.7451361973571,
+          8.51902042478039,
+          0.09742513981581125
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 4.500000067055225,
+      "selected_probability": 0.7071328163146973,
+      "entropy_nats": 1.1259557008743286,
+      "context_actions": [
+        26
+      ],
+      "selected_context": false,
+      "minimum_additional_context_logit_for_tie": 1.8758044242858887
+    },
+    {
+      "decision": 10,
+      "action": 26,
+      "previous_selection": [
+        [
+          23.7451361973571,
+          8.51902042478039,
+          0.09742513981581125
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 5.000000074505806,
+      "selected_probability": 0.5279141664505005,
+      "entropy_nats": 1.246055245399475,
+      "context_actions": [],
+      "selected_context": false,
+      "minimum_additional_context_logit_for_tie": null
+    },
+    {
+      "decision": 11,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 5.500000081956387,
+      "selected_probability": 0.9584559798240662,
+      "entropy_nats": 0.24455933272838593,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 12,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 6.000000089406967,
+      "selected_probability": 0.9876362681388855,
+      "entropy_nats": 0.09564734250307083,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 13,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 6.500000096857548,
+      "selected_probability": 0.9883027672767639,
+      "entropy_nats": 0.09065801650285721,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 14,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 7.000000104308128,
+      "selected_probability": 0.991773784160614,
+      "entropy_nats": 0.06682421267032623,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 15,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 7.500000111758709,
+      "selected_probability": 0.9839173555374146,
+      "entropy_nats": 0.11688347160816193,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 16,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 8.00000011920929,
+      "selected_probability": 0.9828324913978577,
+      "entropy_nats": 0.13149544596672058,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 17,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 8.50000012665987,
+      "selected_probability": 0.979923665523529,
+      "entropy_nats": 0.14640262722969055,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 18,
+      "action": 26,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 9.00000013411045,
+      "selected_probability": 0.8776217699050903,
+      "entropy_nats": 0.5844503045082092,
+      "context_actions": [
+        26
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 19,
+      "action": 22,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          30.88352477944938,
+          7.480279049817062,
+          0.25487631091775786
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 9.500000141561031,
+      "selected_probability": 0.2364814430475235,
+      "entropy_nats": 2.1228082180023193,
+      "context_actions": [
+        26
+      ],
+      "selected_context": false,
+      "minimum_additional_context_logit_for_tie": 0.025629639625549316
+    },
+    {
+      "decision": 20,
+      "action": 22,
+      "previous_selection": [
+        [
+          30.88352477944938,
+          7.480279049817062,
+          0.25487631091775786
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "success",
+      "measured_time": 10.000000149011612,
+      "selected_probability": 0.3726416528224945,
+      "entropy_nats": 1.9958163499832153,
+      "context_actions": [],
+      "selected_context": false,
+      "minimum_additional_context_logit_for_tie": null
+    },
+    {
+      "decision": 21,
+      "action": 22,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 10.500000156462193,
+      "selected_probability": 0.4896516799926758,
+      "entropy_nats": 1.9922536611557007,
+      "context_actions": [
+        22,
+        24,
+        26,
+        28,
+        30
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 22,
+      "action": 22,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": false,
+      "recorded_mode": "reference",
+      "reconstructed_prepare_mode": "reference",
+      "recorded_plan_status": "reference_reused",
+      "measured_time": 11.000000163912773,
+      "selected_probability": 0.3142816424369812,
+      "entropy_nats": 2.3297557830810547,
+      "context_actions": [
+        22,
+        24,
+        26,
+        28,
+        30
+      ],
+      "selected_context": true,
+      "minimum_additional_context_logit_for_tie": 0.0
+    },
+    {
+      "decision": 23,
+      "action": 2,
+      "previous_selection": [
+        [
+          31.24669992128881,
+          7.578791466707203,
+          0.26330154381200854
+        ],
+        1.5
+      ],
+      "new_selection": [
+        [
+          28.11647155092429,
+          6.430797321049784,
+          0.18956087881167752
+        ],
+        1.5
+      ],
+      "previous_reference_still_reusable": true,
+      "switched_selection": true,
+      "recorded_mode": "plan_failed",
+      "reconstructed_prepare_mode": "plan_failed",
+      "recorded_plan_status": "no_path",
+      "measured_time": 11.500000171363354,
+      "selected_probability": 0.6845800876617432,
+      "entropy_nats": 1.5276163816452026,
+      "context_actions": [
+        22,
+        24,
+        26,
+        28,
+        30
+      ],
+      "selected_context": false,
+      "minimum_additional_context_logit_for_tie": 2.364938974380493
+    }
+  ],
+  "switches_away_from_reusable_reference": 5,
+  "observed_terminal": "deadline",
+  "policy_inference": {
+    "model_sha256": "f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff",
+    "normalization_sha256": "28c7e16ccf6fee44f67db784f34c441caab9e497cc67a8f1a205381f46e66367",
+    "learned_gain": 0.0011252184631302953,
+    "gain_scale": 1.0,
+    "effective_reference_logit": 0.0011252184631302953,
+    "reference_ablated": false,
+    "all_reconstructed_NN_actions_exact": true
+  },
+  "new_controls": 0,
+  "new_updates": 0,
+  "limits": "Recorded static-state reconstruction only;no plant stepping or physical counterfactual. A reusable old reference is not proof that retaining it would complete the task. Logit ties do not predict driving success or the result of further training. Not a full-batch score or a causal policy comparison."
+}

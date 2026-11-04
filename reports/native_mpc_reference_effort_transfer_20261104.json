@@ -1,0 +1,86 @@
+{
+  "scope": "Reference-centered MPC effort frozen-policy engineering transfer;known conditions only",
+  "research_acceptance": "UNMET",
+  "parent": "20261104_exact_point_PPO5120_H_same2_endpoint",
+  "batch": "20261104_mpc_reference_effort_H_same2_transfer",
+  "frozen_model_sha256": "6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e",
+  "original_case_ids": [
+    21,
+    27
+  ],
+  "status": "COMPLETE_RAW_NN_ENGINE_VERIFIED",
+  "change": "Input effort penalties center on reference acceleration/steering feedforward instead of zero. All cost weights,input bounds,road scoring and high-level PPO weights unchanged.",
+  "motivation": "Previous bounds tick had0.1003m lateral and0.08089rad heading error,outside the sampled road-query offsets,while QP status was solved. Reference-centering removes a demonstrated steady-turn effort bias;does not by itself guarantee safety.",
+  "validation": {
+    "analytical_equilibrium_tests": 2,
+    "targeted_integration_tests": 15,
+    "full_CPU": {
+      "passed": 1402,
+      "skipped": 1,
+      "CARLA_deselected": 4,
+      "seconds": 301.92,
+      "xml_sha256": "ebb21367f82cf79d561ad27ee58a7aa59ccc339acd54d2c44724ca80f3e1f5b9"
+    }
+  },
+  "new_PPO_updates": 0,
+  "new_independent_seeds": 0,
+  "new_final_conditions": 0,
+  "constraint_source_hashes": {
+    "navstack/mpc.py": "37f6af19023da72acad46e96d2a35d47122a477bd0f4f3cee6250232f42809f7",
+    "navstack/mpc_reference_effort.py": "9e8d2784f933e2d0b1fd48ae654f7c8b7e3cb4e2e34b38d2b05963bd6ca1cfb7",
+    "navstack/carla_bridge.py": "ebb1fe82382d35c8b4dc1eb3b136155f9635ea837d574244dceb5557a967c3f9"
+  },
+  "limits": "Single frozen policy and two repeated known conditions. One bounds became a deadline;success count remains1/2. This does not establish safety,controller superiority,learning benefit,real-time operation or final acceptance. Stalled controls and every previous unsafe result remain retained.",
+  "retained_for_development": true,
+  "adopted_as_final": false,
+  "actual_controls_verified": 1461,
+  "world_ticks_verified": 1522,
+  "NN_decisions_verified": 147,
+  "all_solved_MPC_ticks_confirm_new_effort_flag": true,
+  "solved_MPC_ticks": 858,
+  "raw_audit_sha256": "3cc57f96cc9b41dd6a89a2a93a324772572a1e1c85a090e527e4ff6dba941188",
+  "before_successes": 1,
+  "after_successes": 1,
+  "before_unsafe": 1,
+  "after_unsafe": 0,
+  "paired_cases": [
+    {
+      "original_case_id": 21,
+      "before": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 487,
+        "interventions": 0,
+        "plan_failures": 0,
+        "mpc_failures": 0
+      },
+      "after": {
+        "success": true,
+        "termination_reason": "success",
+        "physics_steps": 561,
+        "interventions": 43,
+        "plan_failures": 4,
+        "mpc_failures": 0
+      }
+    },
+    {
+      "original_case_id": 27,
+      "before": {
+        "success": false,
+        "termination_reason": "out_of_bounds",
+        "physics_steps": 460,
+        "interventions": 10,
+        "plan_failures": 1,
+        "mpc_failures": 0
+      },
+      "after": {
+        "success": false,
+        "termination_reason": "deadline",
+        "physics_steps": 900,
+        "interventions": 560,
+        "plan_failures": 56,
+        "mpc_failures": 0
+      }
+    }
+  ]
+}

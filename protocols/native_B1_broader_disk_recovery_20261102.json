@@ -1,0 +1,50 @@
+{
+  "rows": [
+    {
+      "seed": 11,
+      "batch": "20261102T044003693349Z_native_broader_B1_seed11",
+      "protocol_sha256": "bf3e8f92387e050481db7f3a24c5d3f6b7bdbd1dcff265d92f6aefafc21b5936",
+      "initial_model_sha256": "13aa5eec688e9933c4494afcd0e1369c0e4b8313b870f91e221967dc16d63ca1"
+    },
+    {
+      "seed": 33,
+      "batch": "20261102T044004346066Z_native_broader_B1_seed33",
+      "protocol_sha256": "5a5d8a5492c5c0891f5323df16d9f45ac4b450f6746c9c23fbcca881e3b8fbeb",
+      "initial_model_sha256": "05283feeceb51cf9e4c6c3f11c70b3e4b64e4538f6862d0acd5a70bd37fd2802"
+    },
+    {
+      "seed": 44,
+      "batch": "20261102T063246381418Z_native_broader_B1_seed44_recovery",
+      "protocol_sha256": "19d8a4875431c7330f260d980afd4fe91e98f2e1d3fb9d5a92323773975549af",
+      "initial_model_sha256": "0d43ab73f6c947fea6c74b8f6c22361fa9d4a905185a7dd4b5eb9cc9821dc835",
+      "recovery_disclosed": true
+    },
+    {
+      "seed": 55,
+      "batch": "20261102T044005159056Z_native_broader_B1_seed55",
+      "protocol_sha256": "d904299f23a5a5cf8a8be44b0f5e5160916b81444bb1315f79c48af7a4e40af2",
+      "initial_model_sha256": "567e425bc71dbee04427d1117edf6077aabe4cba519e15f76b29fb1dfff62530"
+    }
+  ],
+  "retained_completed": [
+    {
+      "seed": 11,
+      "batch": "20261102T044003693349Z_native_broader_B1_seed11",
+      "audit_sha256": "c6da8d0198252bbf8c8295e630582f84ea54f5363c2b539810e0e6a3b03d8e89"
+    },
+    {
+      "seed": 33,
+      "batch": "20261102T044004346066Z_native_broader_B1_seed33",
+      "audit_sha256": "beffdc3bf2dc9a39a90d460cd20c1a067e86178db1b7df162753e7488b05d5a7"
+    }
+  ],
+  "original_execution": "B1_additional_broader_cohort_20261102",
+  "recovered_seed44": "20261102T063246381418Z_native_broader_B1_seed44_recovery",
+  "pending_seed55": "20261102T044005159056Z_native_broader_B1_seed55",
+  "saved_controls": 11520,
+  "remaining_controls": 8960,
+  "initial_C_free_bytes": 24018206720,
+  "automatic_retries": 0,
+  "new_PPO_controls_requested": 29440,
+  "final_conditions": 0
+}

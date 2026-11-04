@@ -1,0 +1,83 @@
+{
+  "scope": "Unauthenticated public-download reproduction from independent checkout/runtime; raw controls, saved policy starts and repository figures. No new CARLA driving or training.",
+  "reproduction_source_commit": "36f5297d63c4c3f2203dd0732548f5be72f7fc89",
+  "assets": [
+    {
+      "asset": {
+        "name": "native_twelve_case_rule_seed11_20261027_repro.zip",
+        "sha256": "7df3067990cfee74713d3d3421069f9bbc39b0fc10a0c1843ff1ec79a128edee",
+        "bytes": 3838557,
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_twelve_case_rule_seed11_20261027_repro.zip",
+        "authentication_used": false
+      },
+      "verified_files": 421,
+      "rebuilt": [
+        {
+          "method": "B3_rule_only",
+          "raw_controls": 4329,
+          "cases": 12
+        }
+      ],
+      "figure": null,
+      "new_controls": 0,
+      "PPO_updates": 0
+    },
+    {
+      "asset": {
+        "name": "native_twelve_case_hierarchical_bc_seed11_20261027_repro.zip",
+        "sha256": "18779c7b0285aa0d8e63d96a8401ccf9cc9b0f6876e56fdf8fc992eb5b8078f9",
+        "bytes": 12551030,
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_twelve_case_hierarchical_bc_seed11_20261027_repro.zip",
+        "authentication_used": false
+      },
+      "verified_files": 469,
+      "rebuilt": [
+        {
+          "method": "H",
+          "raw_controls": 4914,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true
+        },
+        {
+          "method": "H0",
+          "raw_controls": 4889,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true
+        }
+      ],
+      "figure": {
+        "repository_figure": "native_twelve_case_hierarchical_bc_20261027.png",
+        "sha256": "55a2741abca524ef238a649f31bf5d76bc1d8c25749a777993b754b1d41749b1",
+        "byte_identical": true
+      },
+      "new_controls": 0,
+      "PPO_updates": 0
+    },
+    {
+      "asset": {
+        "name": "native_twelve_case_pooled_B1_bc_seed11_20261027_repro.zip",
+        "sha256": "c945382bf29fa4bbd3028073d3ee2659ffb6f093369c9547b98ab02018236b11",
+        "bytes": 7672569,
+        "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_twelve_case_pooled_B1_bc_seed11_20261027_repro.zip",
+        "authentication_used": false
+      },
+      "verified_files": 431,
+      "rebuilt": [
+        {
+          "method": "B1",
+          "raw_controls": 4459,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true
+        }
+      ],
+      "figure": {
+        "repository_figure": "native_twelve_case_pooled_B1_bc_20261027.png",
+        "sha256": "fd9bc2568cfc7582d8261730e1d02158f7df191cf1520a341c62025bf89c1425",
+        "byte_identical": true
+      },
+      "new_controls": 0,
+      "PPO_updates": 0
+    }
+  ],
+  "total_raw_controls_verified": 18591
+}

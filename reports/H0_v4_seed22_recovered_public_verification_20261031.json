@@ -1,0 +1,42 @@
+{
+  "scope": "Executed public upload,unauthenticated download and independent raw/model/PNG reconstruction;zero driving or updates",
+  "public_manifest": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_H0_v4_seed22_recovered_20261031_repro.zip.parts.json",
+  "parts": 13,
+  "archive": {
+    "files": 536,
+    "bytes": 26992204,
+    "sha256": "25b5f696697bdba5b9056193ca517cebb2ad223d7d506b797dccfd5b0753dee7",
+    "verified_controls": {
+      "H0": 15887
+    },
+    "metadata_files_transformed": 9
+  },
+  "assembly": {
+    "bytes": 26992204,
+    "sha256": "25b5f696697bdba5b9056193ca517cebb2ad223d7d506b797dccfd5b0753dee7",
+    "parts": 13,
+    "archive_byte_exact": true
+  },
+  "reproduction": {
+    "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+    "archive_sha256": "25b5f696697bdba5b9056193ca517cebb2ad223d7d506b797dccfd5b0753dee7",
+    "asset_source_commit": "49db83765062578fa77304cfdbbb3e24f71b1662",
+    "reproduction_source_commit": "a8898c8579c603aa0746d4ac7195cbabad48f798",
+    "verified_files": 536,
+    "methods": [
+      {
+        "method": "H0",
+        "raw_audit_sha256": "202c7d90e0a776c9cd2ef6005c34096770588f13d7c1bfccac4ea3cf10f8743e",
+        "verified_controls": 15887,
+        "measured_start_actions_reproduced": 12,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0
+      }
+    ],
+    "figure_sha256": "453993d52922f576a9ed937629d18ceb1f2db9af8689915d6ad36e9847a136f9",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis"
+  },
+  "research_acceptance": "UNMET;one recovered seed,twelve known development conditions,H0 10/12 with two deadlines; lost interactions charged,not an equal-consumed-budget pair"
+}

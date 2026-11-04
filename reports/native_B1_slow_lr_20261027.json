@@ -1,0 +1,184 @@
+{
+  "scope": "Completed single-seed known-static-road B1 learning-rate diagnostic, not formal architecture comparison.",
+  "batch": "20261027T040132Z_native_supervised_ppo",
+  "seed": 11,
+  "summary": {
+    "physics_steps": 20480,
+    "actions": 20480,
+    "episodes": 28,
+    "optimization_phases": 64,
+    "optimizer_steps": 640,
+    "reward_components": {
+      "event": -780.0,
+      "time": -102.39999999997936,
+      "risk": -276.80605480282395,
+      "comfort": -15.822147507435702,
+      "potential": 20.350598246389815,
+      "task_progress": 176.32077736186005
+    },
+    "modes": {
+      "flat": 20480
+    },
+    "action_histogram": {},
+    "method": "B1",
+    "job_name": "B1",
+    "rollout_actions": 320,
+    "ppo_epochs": 10,
+    "batch_size": 320,
+    "gradient_clip_mode": "global",
+    "backend": "CARLA_0.9.15",
+    "world_ticks": 21378,
+    "reset_ticks": 898,
+    "actor_l2_change": 0.21367864310741425,
+    "reload_exact": true,
+    "wall_seconds": 1446.484370470047,
+    "stopped_reason": null,
+    "lineage_control_steps": 20480,
+    "charged_control_steps_lower_bound": 22406,
+    "inherited_controls_not_in_checkpoint": 1926,
+    "scope": "Real native PPO after disclosed shared teacher supervision; frozen train-only statistics and explicit exploration initialization; not ordinary from-scratch PPO or formal hierarchy superiority"
+  },
+  "raw_audit": {
+    "schema_version": 1,
+    "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+    "batch": "20261027T040132Z_native_supervised_ppo",
+    "method": "B1",
+    "protocol_sha256": "c3f1d04ac19009578d3ec68863ea8d76ee61ddbc9d1623257d22a29d01276c93",
+    "config_sha256": "88a536332d6415d8d63c2132c3d7aab85d9eba6de1bb403f168ecd77de1adb48",
+    "summary_sha256": "2777779a2d27d555414ebf3246a2c5af6ef0b294c1ed19207c52018520d13828",
+    "evaluation_sha256": "eed64039f29ed4f6cf8f0710caf3d082801479b5ea06405f381fc7c8e4fa1475",
+    "evaluation_trace_sha256": "8de354b182a2485381393a3802b84271db945a7ebbbd11efd3f016d422daa5e6",
+    "optimization_sha256": "f708c421d6b6dc3652d3dc060ed23c00e56274e3a4e94d790286b91e568ae18f",
+    "transition_hashes": {
+      "transitions_000000000_1793076908847982300.jsonl.gz": "98eaff8e547e02a19e3285036772d45a1c35c0c84fcddce84f38750d506fd99c"
+    },
+    "bridge_response_stream": "bridge_7d4fb42e_responses.jsonl.gz",
+    "bridge_response_sha256": "8fcea403aa507b6f43acd8486bcd563ee74f86e98537ea22cffe46ac9a01dd91",
+    "bridge_complete_rows": 23471,
+    "training_control_frames_verified": 20480,
+    "evaluation_control_frames_verified": 2926,
+    "total_applied_controls_verified": 23406,
+    "training_world_ticks_verified": 21378,
+    "evaluation_world_ticks_verified": 3050,
+    "training_termination_reasons": {
+      "deadline": 19,
+      "out_of_bounds": 7,
+      "success": 2
+    },
+    "checkpoint": "checkpoint_000020480",
+    "checkpoint_metadata_sha256": "b034e53a48d0ed36218b33878ad91642a79e272b3f8984a56e952a751c864641",
+    "lineage_controls": 20480,
+    "charged_controls_lower_bound": 22406,
+    "segment_optimizer_steps": 640,
+    "optimizer_steps_total_lower_bound": 640,
+    "unknown_unflushed_ancestor_tail": false
+  },
+  "learning_rate": 3e-05,
+  "frozen_successes": 0,
+  "cases": 4,
+  "episodes": [
+    {
+      "case_id": 0,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 5.951139388753962,
+      "interventions": 0
+    },
+    {
+      "case_id": 1,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 0.0,
+      "interventions": 0
+    },
+    {
+      "case_id": 2,
+      "success": false,
+      "termination_reason": "deadline",
+      "physics_steps": 900,
+      "progress": 4.936276588860988,
+      "interventions": 0
+    },
+    {
+      "case_id": 3,
+      "success": false,
+      "termination_reason": "out_of_bounds",
+      "physics_steps": 226,
+      "progress": 13.686574245677875,
+      "interventions": 0
+    }
+  ],
+  "teacher_retention": [
+    {
+      "stage": "initial",
+      "model_sha256": "6650b2c6a7d3e39eb8ccfb5896d2c423e7426c28358d4cccdb3cd4b8bf0a101f",
+      "train_action_mse": 5.971348946332e-05,
+      "correlated_holdout_action_mse": 0.001272226101718843,
+      "log_std": [
+        -2.299999952316284,
+        -2.299999952316284
+      ],
+      "observation_stats_exactly_unchanged": true
+    },
+    {
+      "stage": "final",
+      "model_sha256": "9626d781231ec1179aac6f3214f96fc3948cfe3bf2359e9a8aaa6f28f4b38d41",
+      "train_action_mse": 0.004107912071049213,
+      "correlated_holdout_action_mse": 0.005005656275898218,
+      "log_std": [
+        -2.3021674156188965,
+        -2.301748275756836
+      ],
+      "observation_stats_exactly_unchanged": true
+    }
+  ],
+  "retention_limit": "Same correlated teacher examples; no independent validation or task-success inference from MSE.",
+  "logged_rollout_composition": {
+    "320": {
+      "decisions_per_full_group": 320,
+      "groups": 64,
+      "decisions_in_final_group": 320,
+      "all_logged_decisions_included": 20480,
+      "groups_without_terminal_fraction": 0.578125,
+      "mean_episodes_per_group": 1.4375,
+      "mean_physical_seconds_per_group": 16.0,
+      "mean_terminal_count_per_group": 0.4375,
+      "nonzero_final_value_dependency_fraction": 0.782568359375,
+      "mean_final_value_error_multiplier": 0.5206952879651097,
+      "max_final_value_error_multiplier": 0.9994976094477416
+    },
+    "1280": {
+      "decisions_per_full_group": 1280,
+      "groups": 16,
+      "decisions_in_final_group": 1280,
+      "all_logged_decisions_included": 20480,
+      "groups_without_terminal_fraction": 0.0,
+      "mean_episodes_per_group": 2.75,
+      "mean_physical_seconds_per_group": 64.0,
+      "mean_terminal_count_per_group": 1.75,
+      "nonzero_final_value_dependency_fraction": 0.339453125,
+      "mean_final_value_error_multiplier": 0.16472010101441215,
+      "max_final_value_error_multiplier": 0.9994976094477416
+    }
+  },
+  "composition_limit": "1280-step groups reorganize observations from changing short-rollout policies; they are not new on-policy updates or counterfactual driving outcomes.",
+  "next_registered_diagnostic": {
+    "scope": "Matched initial teacher weights and PPO settings; collection/update interval is the sole learner change. Not yet started.",
+    "short_batch": "20261027T040132Z_native_supervised_ppo",
+    "long_batch": "20261027T052446Z_native_supervised_ppo",
+    "policy_tensors_identical": true,
+    "policy_tensor_count": 33,
+    "normalization_identical": true,
+    "resume_rng_identical": true,
+    "short_rollout_actions": 320,
+    "long_rollout_actions": 1280,
+    "minibatch": 320,
+    "epochs": 10,
+    "physical_budget": 20480,
+    "planned_adam_steps_each": 640
+  },
+  "conclusion": "Lower LR still yields zero/4; 19 deadline, 7 bounds and 2 success training ends. It does not solve the unhealthy baseline. The longer-rollout job is a separate fixed-budget hypothesis with identical initial policy/normalizer/RNG and same total planned Adam steps.",
+  "next_registered_diagnostic_live_state": "052446 is actually running since13:29; embedded parity proof was recorded before launch."
+}

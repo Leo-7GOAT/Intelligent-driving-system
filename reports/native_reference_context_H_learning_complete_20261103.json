@@ -1,0 +1,30 @@
+{
+  "scope": "H fixed-budget saved-learning endpoint; H0 and full batch raw audit still pending",
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_v4",
+  "method": "H",
+  "physics_steps": 10511,
+  "actions": 1056,
+  "optimizer_steps": 330,
+  "all32_adam_delta": 330,
+  "RMS_exact": true,
+  "new_states": [
+    "action_net.reference_bias.gain",
+    "value_net.context_weight"
+  ],
+  "changed_parameter_tensors": {
+    "actor": 17,
+    "critic": 15
+  },
+  "learned_reference_gain": 0.0011252184631302953,
+  "gain_scale": 1.0,
+  "model_sha256": "f973176ff7731f6a3c0b1ed0ca20981dbdb6d42fad2fef74cf09ba355a054aff",
+  "normalization_sha256": "28c7e16ccf6fee44f67db784f34c441caab9e497cc67a8f1a205381f46e66367",
+  "endpoint_evaluation": "NOT_EXECUTED",
+  "strict_full_batch_frame_audit": "PENDING",
+  "research_acceptance": "UNMET",
+  "local_proof_sha256": "5357c16286007b12228bf8ee24bf8027479c0804f23ff89d8a6bf90524623e32",
+  "requested_controls": 10240,
+  "rollout_overshoot": 271,
+  "maximum_registered_overshoot": 319,
+  "H0": "ACTUAL_NATIVE_TRAINING_STARTED"
+}

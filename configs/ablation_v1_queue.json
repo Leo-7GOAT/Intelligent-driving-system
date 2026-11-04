@@ -1,0 +1,6 @@
+[
+  {"version":"ablation_v1","name":"B2_seed11","method":"B2","seed":11,"budget":100000},
+  {"version":"ablation_v1","name":"B1_hold10_seed11","method":"B1","flat_hold":10,"seed":11,"budget":100000},
+  {"version":"ablation_v1","name":"H_shared_seed11","method":"H","shared_shield":true,"seed":11,"budget":100000},
+  {"version":"ablation_v1","name":"B1_shared_seed11","method":"B1","shared_shield":true,"seed":11,"budget":100000}
+]

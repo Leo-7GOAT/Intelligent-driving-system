@@ -1,0 +1,45 @@
+{
+  "scope": "Actual prelaunch source/protocol and partition validation of queued broader H/H0 development campaign;no server probe or policy result.",
+  "batch": "20261031T025445532080Z_native_supervised_ppo",
+  "status": "INPUTS_VALIDATED_NOT_SERVER_PROBED",
+  "source_files": 389,
+  "protocol_sha256": "f76249998db7c55fbaef930d73741b8dbb123831da754d70a2de5d5ef7ac6775",
+  "partition": {
+    "version": "native_training_validation_v1",
+    "training_conditions": 36,
+    "validation_conditions": 24,
+    "minimum_sampled_route_separation_m": 13.25,
+    "scope": "Distinct development validation roads,not final confirmation or proof of unvisited historical roads"
+  },
+  "methods": [
+    "H",
+    "H0"
+  ],
+  "method_budgets": {
+    "H": 20480,
+    "H0": 20480
+  },
+  "road_geometry_version": "carla_driving_indexed_union_256_v4",
+  "original_teacher_case_indices_preserved": {
+    "inventory_sha256": "07d0724d87f4a3bb117265656e2a0d1296c02a749b1bd37186401d8229800961",
+    "verification": {
+      "version": "native_training_validation_v1",
+      "training_conditions": 36,
+      "validation_conditions": 24,
+      "minimum_sampled_route_separation_m": 13.25,
+      "scope": "Distinct development validation roads,not final confirmation or proof of unvisited historical roads"
+    },
+    "source_overrides": [
+      "navstack/native_cases.py",
+      "navstack/native_partitions.py",
+      "scripts/native_road_learning.py"
+    ],
+    "original_teacher_conditions_preserved": 12,
+    "scope": "New training distribution before any PPO update; unchanged initialized weights,teacher data,low-level physics,reward or normalization. Original12case gate is not qualification on the new36training or24validation conditions."
+  },
+  "queue_parent": "20261031T055729299388Z_native_supervised_ppo",
+  "no_child_lifecycle_started": true,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "research_acceptance": "UNMET"
+}

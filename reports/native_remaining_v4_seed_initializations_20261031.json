@@ -1,0 +1,100 @@
+{
+  "scope": "Three distinct existing seed initializers copied to v4 before their first native gate;zero new fitting or PPO. Not five trained policies. Original v3teacher inputs remain charged.",
+  "batches": [
+    {
+      "seed": 33,
+      "batch": "20261031T040926397622Z_native_initialization_v4",
+      "parent": "20261028T004052Z_native_hierarchical_bc",
+      "methods": {
+        "H": {
+          "unchanged_checkpoint_files": {
+            "model.zip": true,
+            "normalization.pkl": true,
+            "resume_state.pkl": true
+          },
+          "changed_env_fields": [
+            "road_geometry_version"
+          ],
+          "model_sha256": "ddb70d02795a0ca398cffbb1c0bc3b538ac4f7f33f8a4b7639a5afda4267abb0"
+        },
+        "H0": {
+          "unchanged_checkpoint_files": {
+            "model.zip": true,
+            "normalization.pkl": true,
+            "resume_state.pkl": true
+          },
+          "changed_env_fields": [
+            "road_geometry_version"
+          ],
+          "model_sha256": "1fd0ea1647fed31509ad213d9ecf67478be6de63b1b4ba8d7e932508003f80e0"
+        }
+      },
+      "new_controls": 0,
+      "PPO_updates": 0
+    },
+    {
+      "seed": 44,
+      "batch": "20261031T041003482907Z_native_initialization_v4",
+      "parent": "20261028T004453Z_native_hierarchical_bc",
+      "methods": {
+        "H": {
+          "unchanged_checkpoint_files": {
+            "model.zip": true,
+            "normalization.pkl": true,
+            "resume_state.pkl": true
+          },
+          "changed_env_fields": [
+            "road_geometry_version"
+          ],
+          "model_sha256": "a05ec4fc5b826724eb5f8728920e37e7d0d7d64c10a2852c5ec2392513fd2a50"
+        },
+        "H0": {
+          "unchanged_checkpoint_files": {
+            "model.zip": true,
+            "normalization.pkl": true,
+            "resume_state.pkl": true
+          },
+          "changed_env_fields": [
+            "road_geometry_version"
+          ],
+          "model_sha256": "c4e1b0546e315e36e7c853aeeecb313bf34411abab4662dc70a12e15cc389a70"
+        }
+      },
+      "new_controls": 0,
+      "PPO_updates": 0
+    },
+    {
+      "seed": 55,
+      "batch": "20261031T041003481908Z_native_initialization_v4",
+      "parent": "20261028T004856Z_native_hierarchical_bc",
+      "methods": {
+        "H": {
+          "unchanged_checkpoint_files": {
+            "model.zip": true,
+            "normalization.pkl": true,
+            "resume_state.pkl": true
+          },
+          "changed_env_fields": [
+            "road_geometry_version"
+          ],
+          "model_sha256": "a73da39c385d98b6309fd97d047f52910a33c35dd2659a9134d0950d4c5da5b2"
+        },
+        "H0": {
+          "unchanged_checkpoint_files": {
+            "model.zip": true,
+            "normalization.pkl": true,
+            "resume_state.pkl": true
+          },
+          "changed_env_fields": [
+            "road_geometry_version"
+          ],
+          "model_sha256": "09e8ae8afc739b73c85106c63df7374c4795cf3c70fb32406c89f351425b0020"
+        }
+      },
+      "new_controls": 0,
+      "PPO_updates": 0
+    }
+  ],
+  "native_gate": "Complete all12known conditions for both methods;existing75percent representation gate before PPO;no seed omission or checkpoint selection",
+  "research_acceptance": "UNMET"
+}

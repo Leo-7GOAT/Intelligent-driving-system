@@ -1,0 +1,116 @@
+{
+  "scope": "All8public prerelease assets downloaded without Authorization,then bothcapsules fully rebuilt from a fresh checkout",
+  "research_acceptance": "UNMET",
+  "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.3.0-dev.20261103-reference-context",
+  "tag": "v0.3.0-dev.20261103-reference-context",
+  "source_commit": "f0fcba1e82ab0545989da00408a08644c5f77ad5",
+  "source_checkout_fresh": true,
+  "source_checkout_clean": true,
+  "runtime": "Existing locked Python3.11runtime;fresh dependency installation was checked separately by clean GitHub CPUCI. No new local virtualenv installation is claimed.",
+  "anonymous_assets_verified": 8,
+  "downloaded_bytes": 52081782,
+  "download_receipt_sha256": "aafabb5306c9c1ad933c95451ae8300ec03729fc348411302a81683338fc3480",
+  "archives_reproduced": 2,
+  "files_verified": 1254,
+  "actual_native_controls_reverified": 32060,
+  "measured_starts_reproduced": 72,
+  "static_NN_actions_reproduced": 2611,
+  "figures_byte_identical": 2,
+  "strict_engine_delivery_reproduced": true,
+  "reproduction_new_controls": 0,
+  "reproduction_PPO_updates": 0,
+  "new_final_conditions": 0,
+  "source_CI": {
+    "run": 41628896576,
+    "conclusion": "success",
+    "passed": 1311,
+    "skipped": 18,
+    "CARLA_deselected": 4,
+    "seconds": 179.71
+  },
+  "profiles": [
+    {
+      "profile": "static12",
+      "reproduction_sha256": "32f48b14356bfc753c65d761626159e2105f612288bfee45e3ccfe6b87be0a61",
+      "receipt_identical_to_published": true,
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "87a766612046fc5f6a3f72918eb32fff7cd4a46c722eacceae2fb183826129c2",
+      "asset_source_commit": "f0fcba1e82ab0545989da00408a08644c5f77ad5",
+      "reproduction_source_commit": "f0fcba1e82ab0545989da00408a08644c5f77ad5",
+      "verified_files": 616,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "de318fd20059353035c7f790abdefef780340c5a481520e8dbe05df5afb6cafa",
+          "verified_controls": 8304,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 12,
+          "static_actions_reproduced": 833
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "de0093be7d1cc4175e7c793a038e7549ec504de556af97c1be255f2143e59eef",
+          "verified_controls": 7761,
+          "measured_start_actions_reproduced": 12,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 12,
+          "static_actions_reproduced": 778
+        }
+      ],
+      "figure_sha256": "4436ed0f907891110c1f72fb818b06a612bcbeac4927960e088c5c1fcfbcee3a",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 16065
+    },
+    {
+      "profile": "known24",
+      "reproduction_sha256": "06f51fa12915d9b0e25fffe557ca07186ff364fe188139b84588b197887ee220",
+      "receipt_identical_to_published": true,
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "cc47c7d24320e1428467b3982447a59b7cbe7c386870c687fdd029b59091618f",
+      "asset_source_commit": "f0fcba1e82ab0545989da00408a08644c5f77ad5",
+      "reproduction_source_commit": "f0fcba1e82ab0545989da00408a08644c5f77ad5",
+      "verified_files": 638,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "bce37136a9d472a3e3a711a30a8e471c32295e0d7026a809b346488f20073850",
+          "verified_controls": 8002,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 501
+        },
+        {
+          "method": "H0",
+          "raw_audit_sha256": "ee3e463f0e0745309c04ba37754754edf88778d36dc9a86ddc38b0bc902f6694",
+          "verified_controls": 7993,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 499
+        }
+      ],
+      "figure_sha256": "ffd92a6c21845ec379baf8c5c84afce46ff375d327a97f82b39024ccafa4e071",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 15995
+    }
+  ],
+  "results_unchanged": "Known static H3/12,H04/12with1bounds failureeach;known validation24/24each. No observed static improvement or feedback/PPO advantage;one canonical seed only.",
+  "concurrency": "The separate H-only scale100 native PPO course continued during packaging/reproduction. Its wall times are shared-host development measurements,not isolated real-time evidence.",
+  "limits": "Offline reproduction re-verifies the same measured histories and is not new driving or independent training. Endpoint capsules retain all local evaluation failures but do not duplicate upstream raw training/failed-ancestor streams. Full research requirements remain unmet."
+}

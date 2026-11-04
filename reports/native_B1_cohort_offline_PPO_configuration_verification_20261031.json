@@ -1,0 +1,154 @@
+{
+  "scope": "Executed disposable pretraining configuration reconstruction for all4unstarted seeds;no model saved or deployed,no driving",
+  "seeds": [
+    {
+      "seed": 22,
+      "empty_rollout_rebuild": {
+        "previous_rollout_actions": 320,
+        "initialized_rollout_actions": 1280,
+        "batch_size": 320,
+        "ppo_epochs": 10,
+        "policy_parameters_exactly_unchanged": true,
+        "ppo_optimizer_untouched": true,
+        "scope": "Changed collection/update interval only; same minibatch size and epochs. A common full physical budget divisible by both lengths has equal Adam step count."
+      },
+      "same_PPO_hyperparameters_as_seed11": {
+        "n_steps": 1280,
+        "n_epochs": 10,
+        "batch_size": 320,
+        "gamma": 0.9994976094477416,
+        "gae_lambda": 0.9974386212234697,
+        "ent_coef": 0.0,
+        "vf_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "normalize_advantage": true,
+        "target_kl": 0.01
+      },
+      "non_logstd_policy_tensors_unchanged": true,
+      "actor_lr": 3e-06,
+      "reward_units_initialization": {
+        "version": "fixed_physical_reward_units_v1",
+        "PPO_reward_scale": 0.05,
+        "unsafe_event_in_PPO_units": -4.5,
+        "raw_environment_reward_unchanged": true,
+        "observation_statistics_unchanged": true,
+        "scope": "Positive constant scale of all PPO rewards,including terminal events; no clipping,adaptive return statistics,extra labels or physical-reward change. Untrained initial critic tensors remain identical."
+      },
+      "observation_statistics_unchanged": true,
+      "PPO_controls": 0,
+      "Adam_steps": 0
+    },
+    {
+      "seed": 33,
+      "empty_rollout_rebuild": {
+        "previous_rollout_actions": 320,
+        "initialized_rollout_actions": 1280,
+        "batch_size": 320,
+        "ppo_epochs": 10,
+        "policy_parameters_exactly_unchanged": true,
+        "ppo_optimizer_untouched": true,
+        "scope": "Changed collection/update interval only; same minibatch size and epochs. A common full physical budget divisible by both lengths has equal Adam step count."
+      },
+      "same_PPO_hyperparameters_as_seed11": {
+        "n_steps": 1280,
+        "n_epochs": 10,
+        "batch_size": 320,
+        "gamma": 0.9994976094477416,
+        "gae_lambda": 0.9974386212234697,
+        "ent_coef": 0.0,
+        "vf_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "normalize_advantage": true,
+        "target_kl": 0.01
+      },
+      "non_logstd_policy_tensors_unchanged": true,
+      "actor_lr": 3e-06,
+      "reward_units_initialization": {
+        "version": "fixed_physical_reward_units_v1",
+        "PPO_reward_scale": 0.05,
+        "unsafe_event_in_PPO_units": -4.5,
+        "raw_environment_reward_unchanged": true,
+        "observation_statistics_unchanged": true,
+        "scope": "Positive constant scale of all PPO rewards,including terminal events; no clipping,adaptive return statistics,extra labels or physical-reward change. Untrained initial critic tensors remain identical."
+      },
+      "observation_statistics_unchanged": true,
+      "PPO_controls": 0,
+      "Adam_steps": 0
+    },
+    {
+      "seed": 44,
+      "empty_rollout_rebuild": {
+        "previous_rollout_actions": 320,
+        "initialized_rollout_actions": 1280,
+        "batch_size": 320,
+        "ppo_epochs": 10,
+        "policy_parameters_exactly_unchanged": true,
+        "ppo_optimizer_untouched": true,
+        "scope": "Changed collection/update interval only; same minibatch size and epochs. A common full physical budget divisible by both lengths has equal Adam step count."
+      },
+      "same_PPO_hyperparameters_as_seed11": {
+        "n_steps": 1280,
+        "n_epochs": 10,
+        "batch_size": 320,
+        "gamma": 0.9994976094477416,
+        "gae_lambda": 0.9974386212234697,
+        "ent_coef": 0.0,
+        "vf_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "normalize_advantage": true,
+        "target_kl": 0.01
+      },
+      "non_logstd_policy_tensors_unchanged": true,
+      "actor_lr": 3e-06,
+      "reward_units_initialization": {
+        "version": "fixed_physical_reward_units_v1",
+        "PPO_reward_scale": 0.05,
+        "unsafe_event_in_PPO_units": -4.5,
+        "raw_environment_reward_unchanged": true,
+        "observation_statistics_unchanged": true,
+        "scope": "Positive constant scale of all PPO rewards,including terminal events; no clipping,adaptive return statistics,extra labels or physical-reward change. Untrained initial critic tensors remain identical."
+      },
+      "observation_statistics_unchanged": true,
+      "PPO_controls": 0,
+      "Adam_steps": 0
+    },
+    {
+      "seed": 55,
+      "empty_rollout_rebuild": {
+        "previous_rollout_actions": 320,
+        "initialized_rollout_actions": 1280,
+        "batch_size": 320,
+        "ppo_epochs": 10,
+        "policy_parameters_exactly_unchanged": true,
+        "ppo_optimizer_untouched": true,
+        "scope": "Changed collection/update interval only; same minibatch size and epochs. A common full physical budget divisible by both lengths has equal Adam step count."
+      },
+      "same_PPO_hyperparameters_as_seed11": {
+        "n_steps": 1280,
+        "n_epochs": 10,
+        "batch_size": 320,
+        "gamma": 0.9994976094477416,
+        "gae_lambda": 0.9974386212234697,
+        "ent_coef": 0.0,
+        "vf_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "normalize_advantage": true,
+        "target_kl": 0.01
+      },
+      "non_logstd_policy_tensors_unchanged": true,
+      "actor_lr": 3e-06,
+      "reward_units_initialization": {
+        "version": "fixed_physical_reward_units_v1",
+        "PPO_reward_scale": 0.05,
+        "unsafe_event_in_PPO_units": -4.5,
+        "raw_environment_reward_unchanged": true,
+        "observation_statistics_unchanged": true,
+        "scope": "Positive constant scale of all PPO rewards,including terminal events; no clipping,adaptive return statistics,extra labels or physical-reward change. Untrained initial critic tensors remain identical."
+      },
+      "observation_statistics_unchanged": true,
+      "PPO_controls": 0,
+      "Adam_steps": 0
+    }
+  ],
+  "research_acceptance": "UNMET"
+}

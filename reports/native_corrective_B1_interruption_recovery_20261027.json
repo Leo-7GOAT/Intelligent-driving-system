@@ -1,0 +1,29 @@
+{
+  "scope": "Infrastructure-interrupted frozen B1 evaluation, not a completed endpoint. Same saved actor/norm/RNG/config restored for ALL12conditions,zero new fitting/PPO. Original prefix and failure retained.",
+  "parent": "20261027T115212Z_native_corrective_bc",
+  "recovery": "20261027T122049Z_native_evaluation_recovery",
+  "parent_failure": "InfrastructureFailure('RuntimeError: Owned actor cleanup incomplete: destroy actor 57: destroy returned false')",
+  "parent_guard_exit": 1,
+  "parent_owned_cleanup_status": "owned_empty_server_stopped",
+  "parent_readable_evaluation_controls": 3578,
+  "interruption_kind": "owned_actor_cleanup_failure",
+  "interrupted_controls_charged": 3578,
+  "prior_input_controls": 16717,
+  "recovery_consumed_controls_lower_bound": 20295,
+  "copied_checkpoint_bytes_exact": {
+    "model.zip": true,
+    "normalization.pkl": true,
+    "resume_state.pkl": true,
+    "config.json": true
+  },
+  "changed_harness_sources": [
+    "scripts/carla_bridge37.py",
+    "scripts/prepare_native_evaluation_recovery.py"
+  ],
+  "navstack_sources_unchanged": true,
+  "registered_teacher_dataset_sha256": "fa546cba9e56d4243f4f71e63eadaca6939339fd71fca3212a8c4a5bc39a9d49",
+  "teacher_dataset_restored_exact": true,
+  "recovery_status": "ACTUALLY_RUNNING_NO_COMPLETE_RESULT_YET",
+  "PPO_updates": 0,
+  "new_fit_steps": 0
+}

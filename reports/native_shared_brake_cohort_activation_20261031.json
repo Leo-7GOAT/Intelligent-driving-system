@@ -1,0 +1,49 @@
+{
+  "scope": "Actual finite shared-brake queue waiting on verified B2predecessor;zero new driving yet.20planned OFF/ONdeployment probes from10policies/5paired training seeds,not20independent policies",
+  "execution": "shared_brake_five_seed_execution_20261031",
+  "phase": "WAITING_FOR_REGISTERED_B2_COHORT",
+  "verified_pid": 64036,
+  "dependency_pid": 15744,
+  "dependency_live_via_retained_handle": true,
+  "source_commit": "ddea246024ce58238a098be88fedc0d251b4ec41",
+  "driver_sha256": "5f0abd868c4c49bb74e235218536089512fdb7d497de7ad7d11e9e630378d042",
+  "plan_sha256": "0d32fd56dfa757cb2263dbefa1198ad39baa0700058dd6d9008c24bc82d8807a",
+  "frozen_source_files_verified": 310,
+  "preprepared_probes": 6,
+  "planned_probes": 20,
+  "paired_training_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "methods": [
+    "H",
+    "B1"
+  ],
+  "training_controls_per_probe": 0,
+  "optimizer_updates_per_probe": 0,
+  "automatic_experiment_retries": 0,
+  "seed_omissions": false,
+  "native_reference_safety_gate_retained": true,
+  "new_driving_started": false,
+  "related_root_tests": {
+    "passed": 19,
+    "seconds": 3.79
+  },
+  "independent_checkout_tests": {
+    "source_commit": "ddea246024ce58238a098be88fedc0d251b4ec41",
+    "passed": 19,
+    "seconds": 4.21
+  },
+  "resource_policy": {
+    "wall_seconds_per_probe": 3600,
+    "dependency_wait_seconds": 86400,
+    "disk_floor_GiB": 12,
+    "RAM_floor_GiB": 4,
+    "GPU_stop_C": 85
+  },
+  "limits": "Frozen deployment intervention,not safety-wrapper training. Same inexpensive current-curvature brake;no safety certification. All original native gates remain. Completed seed22Hmay be reused despite a separately retained H0infrastructure interruption.",
+  "research_acceptance": "UNMET"
+}

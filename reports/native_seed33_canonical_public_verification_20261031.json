@@ -1,0 +1,69 @@
+{
+  "scope": "Actual unauthenticated public download and independent raw/model/figure/full-feedback reproduction of canonical seed33;negative development result,not final confirmation",
+  "archive_sha256": "647e96acd757a62aa30639402d51dd53bc811d1a7348e16b73ed385b09b7bde0",
+  "asset_source_commit": "7dd84756e4c00eeddf8832f371e30b34f4c8fc17",
+  "reproduction_source_commit": "7dd84756e4c00eeddf8832f371e30b34f4c8fc17",
+  "verified_files": 669,
+  "methods": [
+    {
+      "method": "H",
+      "raw_audit_sha256": "575b1ae6c801e8d0947949984cb7474f3b3d10787f6f833453ae2f18d0c0a226",
+      "verified_controls": 25987,
+      "measured_start_actions_reproduced": 12,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "method": "H0",
+      "raw_audit_sha256": "d88e353eafd736b7b484f89ea9b34d79cf7677108b1aa4c7b52425fac18a9839",
+      "verified_controls": 24856,
+      "measured_start_actions_reproduced": 12,
+      "normalization_frozen": true,
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "figure_sha256": "4777c58e2e3a4917f7d39dd26173f008c2ea564d3c442215b11bb7b57e25c623",
+  "figure_byte_identical": true,
+  "figure_baseline": "packaged_analysis",
+  "public_manifest_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.2.0-dev.20261022/native_seed33_canonical_feedback_pair_20261031_repro.zip.parts.json",
+  "public_archive_bytes": 67070602,
+  "public_parts": 32,
+  "unauthenticated_download_verified": true,
+  "download_wall_seconds": 33.0,
+  "H_successes": 10,
+  "H0_successes": 12,
+  "training_controls_each": 20561,
+  "Adam_steps_each": 650,
+  "feedback_reproductions": [
+    {
+      "method": "H",
+      "all_non_timing_fields_exact": true,
+      "script_bytes_identical": true,
+      "decisions_reproduced": 547,
+      "verified_evaluation_controls": 5426,
+      "hidden_feedback_argmax_changes": 19,
+      "independent_result_sha256": "bbc072fef4479be7624e72a5c2cdd92ae35b4650c7ad1387fe379f1444a3d8e0",
+      "new_controls": 0,
+      "optimizer_updates": 0
+    },
+    {
+      "method": "H0",
+      "all_non_timing_fields_exact": true,
+      "script_bytes_identical": true,
+      "decisions_reproduced": 435,
+      "verified_evaluation_controls": 4295,
+      "hidden_feedback_argmax_changes": 0,
+      "independent_result_sha256": "9ef7c04fe2ac3b96656552650abf1aedfa96575ac06a33843b996a1b45a5ce74",
+      "new_controls": 0,
+      "optimizer_updates": 0
+    }
+  ],
+  "hosted_code_workflow": {
+    "commit": "bfa17404839ff8351a264b37366b131e5c741eca",
+    "conclusion": "success",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41194528717"
+  },
+  "research_acceptance": "UNMET"
+}

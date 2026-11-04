@@ -1,0 +1,365 @@
+{
+  "scope": "Cost ledger for the complete audited five-pair,24-known-condition cohort.",
+  "cohort_sha256": "4f05ccfeecb37ab5f9db01aa5123b6b2c6901334e4097ad40d40a341579ddb38",
+  "analysis_source_sha256": "ba6953cc1cc0db78796b0cb3fd53eabd0d52793c083f11a58a2a275656134614",
+  "results": [
+    {
+      "seed": 11,
+      "endpoints": {
+        "H": {
+          "raw_audit_sha256": "1cd20dc1b0e86e3e8f71de03b07dc4d189a534150507ac1a48b791e35491e249",
+          "training_controls": 20522,
+          "training_decisions": 2080,
+          "actual_Adam_steps": 650,
+          "training_wall_seconds": 881.5007865428925,
+          "evaluation_controls": 8250
+        },
+        "H0": {
+          "raw_audit_sha256": "06b315f9c617958ec55643a2783972bd0859c034a9e09fc74185225c8cdacf9d",
+          "training_controls": 20529,
+          "training_decisions": 2080,
+          "actual_Adam_steps": 650,
+          "training_wall_seconds": 867.1617438793182,
+          "evaluation_controls": 8111
+        }
+      },
+      "paired_execution_costs": {
+        "left_successes": 24,
+        "right_successes": 24,
+        "safe_completion_difference": 0.0,
+        "left_unsafe_episodes": 0,
+        "right_unsafe_episodes": 0,
+        "left_termination_counts": {
+          "success": 24
+        },
+        "right_termination_counts": {
+          "success": 24
+        },
+        "left_all_outcome_simulation_seconds": 412.500006146729,
+        "right_all_outcome_simulation_seconds": 405.5500060431659,
+        "left_interventions": 470,
+        "right_interventions": 390,
+        "mutually_successful_case_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "mutually_successful_mean_time_difference_seconds": 0.2895833376484613,
+        "duration_limit": "All-outcome duration is a cost ledger,not speed superiority;early failures may be short. Travel-time difference uses only explicitly listed mutually successful cases."
+      }
+    },
+    {
+      "seed": 22,
+      "endpoints": {
+        "H": {
+          "raw_audit_sha256": "820182f58f0d37558a7f018333aa0c3e1f27def1ec0751b1e67cbc701df71213",
+          "training_controls": 20579,
+          "training_decisions": 2080,
+          "actual_Adam_steps": 650,
+          "training_wall_seconds": 1095.1578097343445,
+          "evaluation_controls": 8102
+        },
+        "H0": {
+          "raw_audit_sha256": "06b5deee6281457283719cfaa32893274490c7a70710fb8f916d48ac33e45f4d",
+          "training_controls": 20539,
+          "training_decisions": 2080,
+          "actual_Adam_steps": 650,
+          "training_wall_seconds": 1015.7523717880249,
+          "evaluation_controls": 8089
+        }
+      },
+      "paired_execution_costs": {
+        "left_successes": 24,
+        "right_successes": 24,
+        "safe_completion_difference": 0.0,
+        "left_unsafe_episodes": 0,
+        "right_unsafe_episodes": 0,
+        "left_termination_counts": {
+          "success": 24
+        },
+        "right_termination_counts": {
+          "success": 24
+        },
+        "left_all_outcome_simulation_seconds": 405.1000060364604,
+        "right_all_outcome_simulation_seconds": 404.45000602677464,
+        "left_interventions": 380,
+        "right_interventions": 390,
+        "mutually_successful_case_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "mutually_successful_mean_time_difference_seconds": 0.02708333373690645,
+        "duration_limit": "All-outcome duration is a cost ledger,not speed superiority;early failures may be short. Travel-time difference uses only explicitly listed mutually successful cases."
+      }
+    },
+    {
+      "seed": 33,
+      "endpoints": {
+        "H": {
+          "raw_audit_sha256": "c5d5235aa9c8b8a3c3c4ebdce09f15869c9c0c3ebb16cc2287dfcbfa0611f735",
+          "training_controls": 20544,
+          "training_decisions": 2080,
+          "actual_Adam_steps": 650,
+          "training_wall_seconds": 940.2440717220306,
+          "evaluation_controls": 8125
+        },
+        "H0": {
+          "raw_audit_sha256": "0b63b1110564a84383813e69ec9fa6aa2149f560bcc8cc04653b9c93ac143ed3",
+          "training_controls": 20583,
+          "training_decisions": 2080,
+          "actual_Adam_steps": 650,
+          "training_wall_seconds": 1088.709144115448,
+          "evaluation_controls": 8122
+        }
+      },
+      "paired_execution_costs": {
+        "left_successes": 24,
+        "right_successes": 24,
+        "safe_completion_difference": 0.0,
+        "left_unsafe_episodes": 0,
+        "right_unsafe_episodes": 0,
+        "left_termination_counts": {
+          "success": 24
+        },
+        "right_termination_counts": {
+          "success": 24
+        },
+        "left_all_outcome_simulation_seconds": 406.25000605359674,
+        "right_all_outcome_simulation_seconds": 406.10000605136156,
+        "left_interventions": 390,
+        "right_interventions": 390,
+        "mutually_successful_case_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "mutually_successful_mean_time_difference_seconds": 0.0062500000931322575,
+        "duration_limit": "All-outcome duration is a cost ledger,not speed superiority;early failures may be short. Travel-time difference uses only explicitly listed mutually successful cases."
+      }
+    },
+    {
+      "seed": 44,
+      "endpoints": {
+        "H": {
+          "raw_audit_sha256": "403e5f32e96e49a220f8d4a56d7b5e5032a5c509f30679e9c391e006a77c5f9b",
+          "training_controls": 20766,
+          "training_decisions": 2112,
+          "actual_Adam_steps": 660,
+          "training_wall_seconds": 739.498945236206,
+          "evaluation_controls": 8248
+        },
+        "H0": {
+          "raw_audit_sha256": "b938fa7d71e7df2ce619d4685042065118477f942ad64e470856265501860217",
+          "training_controls": 20540,
+          "training_decisions": 2080,
+          "actual_Adam_steps": 650,
+          "training_wall_seconds": 802.0406243801117,
+          "evaluation_controls": 8683
+        }
+      },
+      "paired_execution_costs": {
+        "left_successes": 24,
+        "right_successes": 23,
+        "safe_completion_difference": 0.041666666666666664,
+        "left_unsafe_episodes": 0,
+        "right_unsafe_episodes": 0,
+        "left_termination_counts": {
+          "success": 24
+        },
+        "right_termination_counts": {
+          "success": 23,
+          "deadline": 1
+        },
+        "left_all_outcome_simulation_seconds": 412.4000061452389,
+        "right_all_outcome_simulation_seconds": 434.15000646933913,
+        "left_interventions": 390,
+        "right_interventions": 1170,
+        "mutually_successful_case_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "mutually_successful_mean_time_difference_seconds": 0.29130435216686,
+        "duration_limit": "All-outcome duration is a cost ledger,not speed superiority;early failures may be short. Travel-time difference uses only explicitly listed mutually successful cases."
+      }
+    },
+    {
+      "seed": 55,
+      "endpoints": {
+        "H": {
+          "raw_audit_sha256": "4351e9566560bbd771d77617ae22ccb70983f027a268362aca817b2cb65f8446",
+          "training_controls": 20786,
+          "training_decisions": 2112,
+          "actual_Adam_steps": 660,
+          "training_wall_seconds": 849.0325322151184,
+          "evaluation_controls": 8089
+        },
+        "H0": {
+          "raw_audit_sha256": "908283c4c8b734ccae2b213810f9df1dc1f893b411b73e4b7f5e2147b65aaa87",
+          "training_controls": 20520,
+          "training_decisions": 2080,
+          "actual_Adam_steps": 650,
+          "training_wall_seconds": 800.9784204959869,
+          "evaluation_controls": 8084
+        }
+      },
+      "paired_execution_costs": {
+        "left_successes": 24,
+        "right_successes": 24,
+        "safe_completion_difference": 0.0,
+        "left_unsafe_episodes": 0,
+        "right_unsafe_episodes": 0,
+        "left_termination_counts": {
+          "success": 24
+        },
+        "right_termination_counts": {
+          "success": 24
+        },
+        "left_all_outcome_simulation_seconds": 404.45000602677464,
+        "right_all_outcome_simulation_seconds": 404.20000602304935,
+        "left_interventions": 390,
+        "right_interventions": 390,
+        "mutually_successful_case_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "mutually_successful_mean_time_difference_seconds": 0.010416666821887096,
+        "duration_limit": "All-outcome duration is a cost ledger,not speed superiority;early failures may be short. Travel-time difference uses only explicitly listed mutually successful cases."
+      }
+    }
+  ],
+  "totals": {
+    "H": {
+      "training_controls": 103197,
+      "training_decisions": 10464,
+      "actual_Adam_steps": 3270,
+      "training_wall_seconds": 4505.434145450592,
+      "evaluation_controls": 40814,
+      "interventions": 2020,
+      "plan_failures": 8,
+      "mpc_failures": 0,
+      "simulation_seconds": 2040.7000304087996
+    },
+    "H0": {
+      "training_controls": 102711,
+      "training_decisions": 10400,
+      "actual_Adam_steps": 3250,
+      "training_wall_seconds": 4574.64230465889,
+      "evaluation_controls": 41089,
+      "interventions": 2730,
+      "plan_failures": 78,
+      "mpc_failures": 0,
+      "simulation_seconds": 2054.4500306136906
+    }
+  },
+  "limits": "All outcomes retained. Travel-time comparisons use only the listed mutually successful cases. All-outcome duration is a cost,not a speed claim. These are new-cohort costs,not a whole-project ledger;earlier training,teacher fitting,failed experiments and reconstruction costs remain separate. 24known conditions repeated across five trained policies are not120unique final conditions.",
+  "new_controls_for_analysis": 0,
+  "optimizer_updates_for_analysis": 0,
+  "research_acceptance": "UNMET"
+}

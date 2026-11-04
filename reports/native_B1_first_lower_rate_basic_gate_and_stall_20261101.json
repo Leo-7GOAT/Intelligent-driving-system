@@ -1,0 +1,443 @@
+{
+  "scope": "Complete measured goal diagnostics after the first retained-state lower-rate basic PPOcourse;not full-task health or research acceptance.",
+  "batch": "20261101T005612994446Z_native_B1_basic_lr_extension",
+  "endpoint_report": "reports/native_B1_basic_lr_extension_seed11_endpoint_20261101.json",
+  "basic_gate_passed": true,
+  "successes": 3,
+  "cases": 4,
+  "collision_or_bounds_episodes": 0,
+  "deadline_episodes": 1,
+  "new_training_controls": 10240,
+  "new_actual_Adam_updates": 320,
+  "policy_lineage_controls": 20480,
+  "goal_cases": [
+    {
+      "case_id": 0,
+      "minimum_goal_distance_m": 0.5331621853387003,
+      "pose_qualified_controls": 1,
+      "pose_qualified_without_intervention_controls": 1,
+      "closest_measured_approach": {
+        "distance_m": 0.5331621853387003,
+        "absolute_speed_mps": 0.9546820048332184,
+        "yaw_error_rad": 0.05577444955147515,
+        "unmet_pose_criteria": [
+          "speed"
+        ],
+        "policy_action": [
+          -0.7492544651031494,
+          0.05870037153363228
+        ],
+        "intervention": false,
+        "simulation_seconds": 17.150000255554914
+      },
+      "final_goal_distance_m": 0.5338285482224665,
+      "final_yaw_error_rad": 0.05623397799756846,
+      "final_absolute_speed_mps": 0.0006253303753489025,
+      "final_unmet_pose_criteria": [],
+      "first_position_entry": {
+        "distance_m": 0.7748025963217413,
+        "absolute_speed_mps": 1.4382464033700373,
+        "yaw_error_rad": 0.040740372565759575,
+        "unmet_pose_criteria": [
+          "speed"
+        ],
+        "policy_action": [
+          0.31118255853652954,
+          0.24901513755321503
+        ],
+        "intervention": false,
+        "simulation_seconds": 16.75000024959445
+      },
+      "recorded_termination_reason": "success"
+    },
+    {
+      "case_id": 1,
+      "minimum_goal_distance_m": 0.4825757235873776,
+      "pose_qualified_controls": 1,
+      "pose_qualified_without_intervention_controls": 1,
+      "closest_measured_approach": {
+        "distance_m": 0.4825757235873776,
+        "absolute_speed_mps": 0.1565183961747719,
+        "yaw_error_rad": 0.07368968400724896,
+        "unmet_pose_criteria": [],
+        "policy_action": [
+          -0.693977415561676,
+          0.4004685878753662
+        ],
+        "intervention": false,
+        "simulation_seconds": 24.600000366568565
+      },
+      "final_goal_distance_m": 0.4825757235873776,
+      "final_yaw_error_rad": 0.07368968400724896,
+      "final_absolute_speed_mps": 0.1565183961747719,
+      "final_unmet_pose_criteria": [],
+      "first_position_entry": {
+        "distance_m": 0.7640850299745885,
+        "absolute_speed_mps": 1.5048642559919765,
+        "yaw_error_rad": 0.047132633294600275,
+        "unmet_pose_criteria": [
+          "speed"
+        ],
+        "policy_action": [
+          -0.43798208236694336,
+          0.36190688610076904
+        ],
+        "intervention": false,
+        "simulation_seconds": 24.25000036135316
+      },
+      "recorded_termination_reason": "success"
+    },
+    {
+      "case_id": 2,
+      "minimum_goal_distance_m": 0.7775415821347008,
+      "pose_qualified_controls": 1,
+      "pose_qualified_without_intervention_controls": 1,
+      "closest_measured_approach": {
+        "distance_m": 0.7775415821347008,
+        "absolute_speed_mps": 0.2478081440792146,
+        "yaw_error_rad": 0.08422406737040955,
+        "unmet_pose_criteria": [],
+        "policy_action": [
+          -0.416392982006073,
+          0.0439411997795105
+        ],
+        "intervention": false,
+        "simulation_seconds": 14.550000216811895
+      },
+      "final_goal_distance_m": 0.7775415821347008,
+      "final_yaw_error_rad": 0.08422406737040955,
+      "final_absolute_speed_mps": 0.2478081440792146,
+      "final_unmet_pose_criteria": [],
+      "first_position_entry": {
+        "distance_m": 0.7775415821347008,
+        "absolute_speed_mps": 0.2478081440792146,
+        "yaw_error_rad": 0.08422406737040955,
+        "unmet_pose_criteria": [],
+        "policy_action": [
+          -0.416392982006073,
+          0.0439411997795105
+        ],
+        "intervention": false,
+        "simulation_seconds": 14.550000216811895
+      },
+      "recorded_termination_reason": "success"
+    },
+    {
+      "case_id": 3,
+      "minimum_goal_distance_m": 1.030521084265949,
+      "pose_qualified_controls": 0,
+      "pose_qualified_without_intervention_controls": 0,
+      "closest_measured_approach": {
+        "distance_m": 1.030521084265949,
+        "absolute_speed_mps": 0.628837374461924,
+        "yaw_error_rad": 0.03011386463482868,
+        "unmet_pose_criteria": [
+          "position",
+          "speed"
+        ],
+        "policy_action": [
+          0.9601538181304932,
+          0.6611109375953674
+        ],
+        "intervention": false,
+        "simulation_seconds": 17.55000026151538
+      },
+      "final_goal_distance_m": 2.164326714925041,
+      "final_yaw_error_rad": 0.02348948444985144,
+      "final_absolute_speed_mps": 6.103864266116485e-11,
+      "final_unmet_pose_criteria": [
+        "position"
+      ],
+      "recorded_termination_reason": "deadline",
+      "first_position_entry": null
+    }
+  ],
+  "same_state_parent_vs_continued_policy_landmarks": {
+    "scope": "Compare the initial and trained B1 actions at audited measured decision states.",
+    "batch": "20261101T005612994446Z_native_B1_basic_lr_extension",
+    "raw_audit_sha256": "9a769b1e7155428f80b15ab0be081d5e3e5bb56fc9180cb80e49b0f5ae8cf000",
+    "model_sha256": "e7abb6ea1181b934c26053b95500b78d668a7561e682c3d50a53cd0adef8c5d0",
+    "initial_model_sha256": "54fffa583ed624cb4e1b93474e44ea230ccf4354a768c8f5a1e3edf3b6dd8ac7",
+    "initial_metadata_sha256": "8e0297751896d61095fb705c03eefef26da47d2163e9cfc2e6aec73be1bfffe0",
+    "normalization_sha256": "e615c46217a9b6db9dd4405e26dd1f94f50084a7dcd81cb4e48137bb0659d34f",
+    "script_sha256": "dfef8fe6aca6790c45fb7712d28f36e8696937eccb6de897645d22c83cb0f8b2",
+    "frozen_observation_statistics_identical": true,
+    "cases": 4,
+    "reconstructed_decisions": 11,
+    "results": [
+      {
+        "case_id": 0,
+        "landmarks": [
+          "initial"
+        ],
+        "decision_index": 0,
+        "simulation_seconds": 0.0,
+        "goal_distance_m": 24.63177920846838,
+        "absolute_speed_mps": 0.0,
+        "yaw_error_rad": 0.5222659966307686,
+        "initial_policy_action": [
+          0.9479844570159912,
+          0.03473835065960884
+        ],
+        "trained_policy_action": [
+          0.9465309381484985,
+          0.031733207404613495
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          -0.0014535188674926758,
+          -0.003005143254995346
+        ]
+      },
+      {
+        "case_id": 0,
+        "landmarks": [
+          "first_position_entry_decision"
+        ],
+        "decision_index": 335,
+        "simulation_seconds": 16.75000024959445,
+        "goal_distance_m": 0.7748025963217413,
+        "absolute_speed_mps": 1.4382464033700373,
+        "yaw_error_rad": 0.040740372565759575,
+        "initial_policy_action": [
+          0.5425894260406494,
+          0.22273142635822296
+        ],
+        "trained_policy_action": [
+          0.545543909072876,
+          0.22751078009605408
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          0.0029544830322265625,
+          0.004779353737831116
+        ]
+      },
+      {
+        "case_id": 0,
+        "landmarks": [
+          "closest_observed_decision",
+          "last_observed_decision"
+        ],
+        "decision_index": 343,
+        "simulation_seconds": 17.150000255554914,
+        "goal_distance_m": 0.5331621853387003,
+        "absolute_speed_mps": 0.9546820048332184,
+        "yaw_error_rad": 0.05577444955147515,
+        "initial_policy_action": [
+          -0.4199204742908478,
+          0.03177657723426819
+        ],
+        "trained_policy_action": [
+          -0.4244285225868225,
+          0.03141048178076744
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          -0.0045080482959747314,
+          -0.0003660954535007477
+        ]
+      },
+      {
+        "case_id": 1,
+        "landmarks": [
+          "initial"
+        ],
+        "decision_index": 0,
+        "simulation_seconds": 0.0,
+        "goal_distance_m": 24.347595354860264,
+        "absolute_speed_mps": 0.0,
+        "yaw_error_rad": 1.0470275749400235,
+        "initial_policy_action": [
+          0.9006679654121399,
+          0.1903403401374817
+        ],
+        "trained_policy_action": [
+          0.9008204936981201,
+          0.18938308954238892
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          0.0001525282859802246,
+          -0.0009572505950927734
+        ]
+      },
+      {
+        "case_id": 1,
+        "landmarks": [
+          "first_position_entry_decision"
+        ],
+        "decision_index": 485,
+        "simulation_seconds": 24.25000036135316,
+        "goal_distance_m": 0.7640850299745885,
+        "absolute_speed_mps": 1.5048642559919765,
+        "yaw_error_rad": 0.047132633294600275,
+        "initial_policy_action": [
+          -0.4268869459629059,
+          0.3777692914009094
+        ],
+        "trained_policy_action": [
+          -0.4294965863227844,
+          0.38199764490127563
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          -0.00260964035987854,
+          0.004228353500366211
+        ]
+      },
+      {
+        "case_id": 1,
+        "landmarks": [
+          "closest_observed_decision",
+          "last_observed_decision"
+        ],
+        "decision_index": 491,
+        "simulation_seconds": 24.550000365823507,
+        "goal_distance_m": 0.501507922660079,
+        "absolute_speed_mps": 1.0489118800984292,
+        "yaw_error_rad": 0.07114371032751166,
+        "initial_policy_action": [
+          -0.6890886425971985,
+          0.39428138732910156
+        ],
+        "trained_policy_action": [
+          -0.693977415561676,
+          0.4004685878753662
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          -0.004888772964477539,
+          0.0061872005462646484
+        ]
+      },
+      {
+        "case_id": 2,
+        "landmarks": [
+          "initial"
+        ],
+        "decision_index": 0,
+        "simulation_seconds": 0.0,
+        "goal_distance_m": 22.78235834793003,
+        "absolute_speed_mps": 0.0,
+        "yaw_error_rad": 0.5232530972888059,
+        "initial_policy_action": [
+          0.9181731939315796,
+          -0.0070635611191391945
+        ],
+        "trained_policy_action": [
+          0.9177490472793579,
+          -0.008684717118740082
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          -0.0004241466522216797,
+          -0.0016211559996008873
+        ]
+      },
+      {
+        "case_id": 2,
+        "landmarks": [
+          "closest_observed_decision",
+          "last_observed_decision"
+        ],
+        "decision_index": 290,
+        "simulation_seconds": 14.500000216066837,
+        "goal_distance_m": 0.8134035364272664,
+        "absolute_speed_mps": 1.310677803015281,
+        "yaw_error_rad": 0.08403844504243187,
+        "initial_policy_action": [
+          -0.41280031204223633,
+          0.03926825523376465
+        ],
+        "trained_policy_action": [
+          -0.416392982006073,
+          0.0439411997795105
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          -0.00359266996383667,
+          0.00467294454574585
+        ]
+      },
+      {
+        "case_id": 3,
+        "landmarks": [
+          "initial"
+        ],
+        "decision_index": 0,
+        "simulation_seconds": 0.0,
+        "goal_distance_m": 20.723819531487553,
+        "absolute_speed_mps": 0.0,
+        "yaw_error_rad": 1.0476728297438251,
+        "initial_policy_action": [
+          0.9897939562797546,
+          -0.01704474911093712
+        ],
+        "trained_policy_action": [
+          0.9868699312210083,
+          -0.019946834072470665
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          -0.002924025058746338,
+          -0.0029020849615335464
+        ]
+      },
+      {
+        "case_id": 3,
+        "landmarks": [
+          "closest_observed_decision"
+        ],
+        "decision_index": 351,
+        "simulation_seconds": 17.55000026151538,
+        "goal_distance_m": 1.030521084265949,
+        "absolute_speed_mps": 0.628837374461924,
+        "yaw_error_rad": 0.03011386463482868,
+        "initial_policy_action": [
+          0.8970494866371155,
+          0.6384758949279785
+        ],
+        "trained_policy_action": [
+          0.8975751399993896,
+          0.6467502117156982
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          0.0005256533622741699,
+          0.008274316787719727
+        ]
+      },
+      {
+        "case_id": 3,
+        "landmarks": [
+          "last_observed_decision"
+        ],
+        "decision_index": 899,
+        "simulation_seconds": 44.950000669807196,
+        "goal_distance_m": 2.164326714925041,
+        "absolute_speed_mps": 8.28152727196292e-10,
+        "yaw_error_rad": 0.02348948444985144,
+        "initial_policy_action": [
+          -0.1303779035806656,
+          0.03136676922440529
+        ],
+        "trained_policy_action": [
+          -0.13630130887031555,
+          0.03731187433004379
+        ],
+        "executed_policy_action_error": 0.0,
+        "trained_minus_initial_action": [
+          -0.005923405289649963,
+          0.005945105105638504
+        ]
+      }
+    ],
+    "new_controls": 0,
+    "optimizer_updates": 0,
+    "limits": "Same measured states from the trained policy,not executed initial-policy counterfactuals. Post-terminal states are not queried. Action differences do not establish a causal source of failure or driving improvement.",
+    "research_acceptance": "UNMET"
+  },
+  "limits": "The remaining timeout never enters the.8m position tolerance,ends2.1643m from goal,and is stationary at45s. Passing the unchanged3of4zero-unsafe basic gate is not healthy full-task qualification or compliance with the final80percent success goal. No collision-free claim hides this stall. Same-state action comparisons are not executed counterfactuals.",
+  "research_acceptance": "UNMET"
+}

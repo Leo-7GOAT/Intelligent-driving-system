@@ -1,0 +1,78 @@
+{
+  "scope": "All four measured development initial scenes. Endpoint-clear action counts and fixed-budget plan connections only; no plant execution, PPO update, independent seed or task success. Speed pairs share one geometric search.",
+  "source_batch": "20261027T003800Z_native_rule",
+  "protocol_sha256": "d5d8a7ba089700d3ee5390004938865b50f8e517936bd8cc299da7d91a15a4d1",
+  "node_budget_per_unique_pose": 7200,
+  "new_controls": 0,
+  "optimizer_updates": 0,
+  "rows": [
+    {
+      "case_id": 0,
+      "scene_sha256": "4316dd658b8a44f17d3aab2a9de71f1dec979c698c4561bf6300ca1c3fc451a5",
+      "catalogs": {
+        "route_offsets_v1": {
+          "unique_targets": 15,
+          "endpoint_clear_actions": 14,
+          "planned_actions": 10
+        },
+        "kinematic_arcs_goal_v1": {
+          "unique_targets": 15,
+          "endpoint_clear_actions": 14,
+          "planned_actions": 14
+        }
+      }
+    },
+    {
+      "case_id": 1,
+      "scene_sha256": "85624c1e1bf84d336f42305429673caecd33f9209593ebad07c7f2d578a2a254",
+      "catalogs": {
+        "route_offsets_v1": {
+          "unique_targets": 15,
+          "endpoint_clear_actions": 6,
+          "planned_actions": 0
+        },
+        "kinematic_arcs_goal_v1": {
+          "unique_targets": 15,
+          "endpoint_clear_actions": 12,
+          "planned_actions": 8
+        }
+      }
+    },
+    {
+      "case_id": 2,
+      "scene_sha256": "540a0486555d9b62d2783042f50e874645df7afee153412e3ccecbe4e9e06321",
+      "catalogs": {
+        "route_offsets_v1": {
+          "unique_targets": 15,
+          "endpoint_clear_actions": 14,
+          "planned_actions": 10
+        },
+        "kinematic_arcs_goal_v1": {
+          "unique_targets": 15,
+          "endpoint_clear_actions": 14,
+          "planned_actions": 14
+        }
+      }
+    },
+    {
+      "case_id": 3,
+      "scene_sha256": "1b5d439389f0657a9ff587b5eb66fbce6fdff55394a9db20a40df7a11ef7cebf",
+      "catalogs": {
+        "route_offsets_v1": {
+          "unique_targets": 15,
+          "endpoint_clear_actions": 8,
+          "planned_actions": 6
+        },
+        "kinematic_arcs_goal_v1": {
+          "unique_targets": 15,
+          "endpoint_clear_actions": 12,
+          "planned_actions": 10
+        }
+      }
+    }
+  ],
+  "full_diagnostic_sha256": {
+    "route_offsets_v1": "61afc88ff1e1daba03b8519b4e823f01477c878627de3061c75078e4d8f2a0a6",
+    "kinematic_arcs_goal_v1": "901d3d18f33dd80263357a268fa4e5c8b65a51f5d66c6761ecdddf2ea5f388ea"
+  }
+}
