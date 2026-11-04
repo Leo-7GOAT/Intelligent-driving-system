@@ -6,6 +6,8 @@ A known-map, low-speed research system combining **PPO high-level decisions → 
 
 **Development prerelease; research acceptance remains unmet.** Real CARLA training, control-frame audits and public model reproduction have been executed. The current evidence does not establish hierarchical superiority, a stable added-PPO benefit, or road-safety certification.
 
+The [spatial B2/Hybrid component check](docs/spatial_planner_component.md) now enforces the previously ignored grid node cap and reproduces all16static/curve fixtures using public inputs. It remains separate from native B2 driving and contribution claims.
+
 
 The first independently initialized H learner has completed **30,773 actual CARLA training controls and970 Adam updates**,with every measured control and all48 TRAIN conditions audited. Its complete known24endpoint is24/24,the same as its zero-PPO teacher-initialized baseline;controls rise8,101→8,165 and interventions394→408,so this seed supplies no observed PPO completion or efficiency gain. H0 is now training from equal actual parameter/Adam/Torch-RNG fingerprints;its first320-control saved update is verified and the removed failure coordinates remain zero. Four further H learners and all five H0closures are pending. [Closed first learner and complete comparison](reports/native_independent_outcome_seed11_H_complete_20261104.json),[cohort procedure](docs/independent_outcome_cohort.md). These are known development conditions,not final confirmation or training from scratch.
 
