@@ -76,8 +76,17 @@ def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False):
                 inference=dict(selected_probability=float(probabilities[action]),entropy_nats=float(distribution.entropy()[0]),
                     context_actions=active,selected_context=bool(context[action]),
                     minimum_additional_context_logit_for_tie=margin)
-            mode,detail=env._prepare_reference(action)
             recorded=row['info']['plan']
+            owner=env.world
+            if protocol.get('reference_road_refinement') and recorded and recorded['status']=='success':
+                from navstack.reference_road_refinement import planning_view
+                env.world=planning_view(owner,recorded['road_refinement']['cells'])
+            try:
+                if protocol.get('reference_steering_transition'):
+                    from navstack.steering_transition import prepare_reference,settings
+                    mode,detail=prepare_reference(env,action,env._prepare_reference,settings(protocol))
+                else:mode,detail=env._prepare_reference(action)
+            finally:env.world=owner
             if detail is not None and (detail['status']!=recorded['status']
                     or detail.get('expanded_nodes')!=recorded.get('expanded_nodes')):
                 raise ValueError('Reconstructed search differs from its recorded result')

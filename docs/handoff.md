@@ -1,3 +1,11 @@
+# 最新关闭：2026-11-04 11:15 32k三场pilot已全部审计
+
+当前无原生作业需要等待：32k worker2088/launcher16444已正常退出并清空owned server。原case0 deadline900控制/66planfail/660interventions；原case1 success333、case4 success340。共1573控制/1665世界ticks(92reset)/158NN/3起点，raw、NN完整重建及engine全通过；58次精确失败缓存命中。公开 `reports/native_steering_budget32k_pilot_20261104.json`。case0起步22510节点成功，执行24个macro后因更换子目标规划失败停车；不接受为完整修复、不重算旧4/12。
+
+关键新增诊断：D:/ThesisNativeArchive_20261104/steering_budget_case0_policy_switch.json，前25次NN与规划精确重建。decision23/24均放弃仍可复用参考；decision24旧目标(30.9139,7.48894,.25558)仍可复用，但当前所有state-relative动作都不解码到这个固定目标，31个context bits全0。不是简单再增大熵或规则锁死动作；可版本化重复选中同一option时保留已选世界坐标目标，让PPO通过显式重复动作选择继续参考，再在固定低层下真实适配。该新option语义尚未实现/训练，不得宣称学习收益。
+
+之前全量1361通过属于v1；最新缓存/STOP等32项专项通过10.23秒。当前HEAD05c04e9已推送，400dfa4 hostedCI成功。不可重启已关闭批次；原full_transfer known24已abandoned_before_launch。
+
 # 最新状态：2026-11-04 11:08 低预算回归已关闭；32k三场pilot运行
 
 旧full_transfer协调器26208及static worker26140均已结束。主动STOP按guard正常关闭，完整保留40次同输入7200节点timeout/400制动静止控制；cooperative_stop_raw_audit.json验证全部400控制与engine回执。不是基础设施故障或完整case结果。known_validation prepared已标abandoned_before_launch，禁止误启动。公开报告 `reports/native_steering_transfer_regression_stop_20261104.json`。旧两场成功pilot仍保留，不能把它推广为完整方法成功。
