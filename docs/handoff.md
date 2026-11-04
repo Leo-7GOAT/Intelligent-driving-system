@@ -1,3 +1,11 @@
+# 最新：2026-11-04 11:46 真实学习已闭合，冻结复测修复子批次运行
+
+原生5120请求课程已正常完成5396控制(overshoot276)/544决策/17rollout/170Adam。32个Adam均真实推进170，初始化全部权重/完整Adam/RNG相等、RMS精确冻结，训练raw/engine通过，模型13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23。学习系数从+.00030845变为-.000599594，负值保留，不预设反馈获益。公开 reports/native_reference_option_adaptation_learning_complete_20261104.json。训练worker5832/watch6060/协调器12704已正常关闭，不能重跑训练。
+
+协调器原_same3_endpoint因训练专属freeze_observation_statistics未删除，在任何车辆控制前失败；全部failed数据保留，owned server已清空停止，确认0控制/0reset。修复只在endpoint准备函数pop该flag；针对性3测试通过6.59秒，无控制代码变更。新子批 D:/ThesisNativeArchive_20261104/20261104_option_native_PPO5120_H_same3_endpoint_normalization_fixed 已启动，launcher23644 creation1793763935.650，实际worker身份待查worker_process.json；模型/normalizer/source_hashes与原失败准备批完全一致。恢复注册位于execution/normalization_endpoint_recovery.json。新eval须手工raw/startNN/allStaticNN/engine核验后汇总，原coordinator failure.json保持真实，不要伪造complete。
+
+source fc38cd3全量CPU1378通过/1skip/4CARLA deselect/361.97秒已保存，doc commit16ee9e9已推。现有root新增仅endpoint编排修复及测试，待提交。正式研究仍UNMET，不把3known条件或12随机训练回合当独立最终验证。
+
 # 当前运行：2026-11-04 11:31 真实5120-control option适配已启动
 
 当前唯一原生作业 D:/ThesisNativeArchive_20261104/20261104_option_native_PPO5120_H，固定source fc38cd3，471文件。协调器实际12704（身份D:/ThesisNativeArchive_20261104/option_native_coordinator_identity.json，venv外壳7496），worker5832 creation_epoch1793762826.276，watch6060；先复核OS身份/status，勿重复启动。协调执行 D:/ThesisNativeArchive_20261104/20261104_option_native_PPO5120_execution。脚本 `run_fixed_lowlevel_adaptation.py`在训练正常结束后自动逐帧审计、32Adam/RMS/初始RNG证明，再用训练冻结源码和同3条件生成_same3_endpoint并核验raw、全部NN、engine。无自动重试。

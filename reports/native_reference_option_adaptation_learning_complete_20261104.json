@@ -1,0 +1,185 @@
+{
+  "scope": "One continued seed22 policy;fixed-lowlevel known3-case native PPOadaptation only",
+  "batch": "20261104_option_native_PPO5120_H",
+  "source_git_commit": "fc38cd3",
+  "protocol_sha256": "8193e480aa3e229e5c7bd4155e39250ce9311ae5520fe60ddb43f5395fbdce01",
+  "initial_model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+  "final_model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+  "normalization_sha256": "7fc77a99014427de305b8493c36d25e9fe65b3f9c15749c816740cdc9e52ea06",
+  "requested_controls": 5120,
+  "actual_controls": 5396,
+  "rollout_overshoot": 276,
+  "decisions": 544,
+  "rollouts": 17,
+  "Adam_updates": 170,
+  "new_auxiliary_updates": 0,
+  "training_episodes": 12,
+  "training_successes": 11,
+  "initial_reference_gain": 0.00030845458968542516,
+  "final_reference_gain": -0.000599594262894243,
+  "gain_scale": 100.0,
+  "verification": {
+    "raw": {
+      "sha256": "b0d7ef0bf71eab36d3a7458aa7b87116cab5891d5ab72cb93cd91766953b0714",
+      "receipt": {
+        "scope": "Bind every training-only transition to measured CARLA frames and saved counters.",
+        "batch": "20261104_option_native_PPO5120_H",
+        "protocol_sha256": "8193e480aa3e229e5c7bd4155e39250ce9311ae5520fe60ddb43f5395fbdce01",
+        "script_sha256": "581de8d671dc0f6eb227357aefec6e1d34d5d3722369c7cb25e5d7d7e0f09d77",
+        "bridge_streams": [
+          {
+            "name": "bridge_41aad238_responses.jsonl.gz",
+            "sha256": "ee1a4b1bc0895d52d400aeb1681bc56d1b6b0f9548b5e4f0c507e160d93f27a8"
+          }
+        ],
+        "methods": {
+          "H": {
+            "controls": 5396,
+            "actions": 544,
+            "optimizer_steps": 170,
+            "episodes_with_controls": 13,
+            "bridge_response_stream": "bridge_41aad238_responses.jsonl.gz",
+            "transition_hashes": {
+              "transitions_000000000_1793762831953570300.jsonl.gz": "0e45d92bb97caf05521c56c490ecf46a25262cac5b877b43e5f7e0f7ae8df79f"
+            },
+            "reward_components": {
+              "event": 210.0,
+              "time": -26.979999999998917,
+              "risk": -73.1056011453767,
+              "comfort": -4.042064134742172,
+              "potential": 8.517542015355941,
+              "task_progress": 144.75792479865189
+            },
+            "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+            "normalization_sha256": "7fc77a99014427de305b8493c36d25e9fe65b3f9c15749c816740cdc9e52ea06",
+            "checkpoint_metadata_sha256": "4cc41f267b9164328f3064c0a04fcf50e54a3141de42efb8e268d1566d823072"
+          }
+        },
+        "training_control_frames_verified": 5396,
+        "reset_ticks_verified": 402,
+        "new_controls": 0,
+        "new_updates": 0,
+        "limits": "Authenticates recorded state,commands,sensor evidence and reward accumulation;does not establish policy superiority or re-execute physics."
+      }
+    },
+    "engine": {
+      "sha256": "522298da017bc4d8f458964270b584dea215208315efada970f101a8871587aa",
+      "receipt": {
+        "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+        "batch": "20261104_option_native_PPO5120_H",
+        "protocol_sha256": "8193e480aa3e229e5c7bd4155e39250ce9311ae5520fe60ddb43f5395fbdce01",
+        "control_delivery": "batch_sync_v1",
+        "bridge_streams": [
+          {
+            "name": "bridge_41aad238_responses.jsonl.gz",
+            "sha256": "ee1a4b1bc0895d52d400aeb1681bc56d1b6b0f9548b5e4f0c507e160d93f27a8"
+          }
+        ],
+        "tolerance": 1e-05,
+        "counts": {
+          "controls": 5396,
+          "gear_or_handbrake_mismatches": 0,
+          "missing_or_negative_sync_ack": 0
+        },
+        "mismatch_channels": {},
+        "by_phase": {
+          "training_or_untraced_failure": {
+            "controls": 5396
+          }
+        },
+        "mismatch_examples": [],
+        "all_engine_controls_match_requested": true,
+        "strict_delivery_gate_passed": true,
+        "new_controls": 0,
+        "new_optimizer_updates": 0,
+        "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+      }
+    },
+    "learning": {
+      "sha256": "66f499b911449f192bb2ab87c86bde1ebe81c0f6566be2c050bb0500f042b152",
+      "receipt": {
+        "summary": {
+          "physics_steps": 5396,
+          "actions": 544,
+          "episodes": 12,
+          "optimization_phases": 17,
+          "optimizer_steps": 170,
+          "reward_components": {
+            "event": 210.0,
+            "time": -26.979999999998917,
+            "risk": -73.1056011453767,
+            "comfort": -4.042064134742172,
+            "potential": 8.517542015355941,
+            "task_progress": 144.75792479865189
+          },
+          "modes": {
+            "reference": 445,
+            "plan_failed": 97,
+            "wait": 2
+          },
+          "action_histogram": {
+            "26": 234,
+            "20": 4,
+            "9": 2,
+            "30": 28,
+            "28": 4,
+            "12": 24,
+            "29": 3,
+            "7": 2,
+            "15": 1,
+            "2": 177,
+            "22": 43,
+            "11": 3,
+            "27": 1,
+            "10": 4,
+            "16": 2,
+            "8": 2,
+            "6": 2,
+            "17": 1,
+            "18": 1,
+            "0": 2,
+            "14": 1,
+            "24": 2,
+            "13": 1
+          },
+          "method": "H",
+          "job_name": "H",
+          "rollout_actions": 32,
+          "ppo_epochs": 10,
+          "batch_size": 32,
+          "gradient_clip_mode": "global",
+          "backend": "CARLA_0.9.15",
+          "world_ticks": 5798,
+          "reset_ticks": 402,
+          "actor_l2_change": 0.1851789504289627,
+          "reload_exact": true,
+          "wall_seconds": 919.5319221019745,
+          "stopped_reason": null,
+          "lineage_control_steps": 46927,
+          "charged_control_steps_lower_bound": 97113,
+          "inherited_controls_not_in_checkpoint": 50186,
+          "scope": "Single continued native PPOpolicy adapting to fixed32000-node slew planning and explicit repeated-option persistence;known development only"
+        },
+        "all32Adamstates_advance": 170,
+        "actual_initialized_parameters_and_Adam_exact": true,
+        "initial_torch_RNG_exact": true,
+        "RMS_exact": true,
+        "new_supervision": 0,
+        "model_sha256": "13e5fa1e55ec784d0e5bf83f99e73f25493b43d2720dec4bb7295e1cc0cd1b23",
+        "learned_reference_gain": -0.000599594262894243
+      }
+    },
+    "initialized_state": {
+      "actual_parameters_match": true,
+      "actual_Adam_state_matches": true,
+      "actual_torch_RNG_matches": true,
+      "initialized_Adam_states": 32,
+      "initial_step_values": [
+        330.0,
+        1310.0
+      ],
+      "new_updates_for_this_check": 0
+    }
+  },
+  "limits": "Same3known development conditions and one continued chain,not independent confirmation or a new independent seed. Negative final reference gain is retained;do not impose a positive benefit. Training successes do not establish frozen-policy improvement. Post-training endpoint initially failed before controls due to an orchestration normalization flag;that attempt is retained and a same-source/same-model child is running."
+}

@@ -27,6 +27,7 @@ def endpoint(batch,target):
     for name in ['source','calibration']:shutil.copytree(batch/name,target/name,ignore=shutil.ignore_patterns('__pycache__'))
     shutil.copytree(source,target/'resume/H')
     p.pop('lineage_targets',None);p.pop('fixed_lowlevel_training',None)
+    p.pop('freeze_observation_statistics',None)
     p.update(evaluation_only=True,controlled_budget_per_method=0,method_budgets={'H':0},checkpoint_thresholds=[],
         deterministic_training_route_evaluation=True,scope='Same3known development conditions after one fixed-lowlevel native adaptation;zero new updates')
     prior=p['recovery']['H']
