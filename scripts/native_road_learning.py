@@ -637,8 +637,11 @@ def run(batch):
                             actions=0
                             prediction_times, full_decision_times = [], []
                             while True:
+                                if protocol.get('reference_compute_profile') and (batch/'STOP').exists():
+                                    guard(batch,protocol)
                                 if actions%20==0:
                                     guard(batch,protocol)
+                                if actions%20==0 or protocol.get('reference_compute_profile'):
                                     atomic_json(output/'evaluation_heartbeat.json',{'pid':os.getpid(),'epoch':time.time(),'case_id':case_id,'actions':actions})
                                 action, step_result, decision_timing = timed_policy_step(loaded, vec, evaluation, obs)
                                 obs,_,done,truncated,info=step_result;actions+=1

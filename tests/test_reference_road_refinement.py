@@ -64,3 +64,29 @@ def test_query_is_bounded_and_returns_actual_query_coordinates():
     assert len(calls)==result['sample_count']==108 and result['pose_sha256']==pose_digest(poses)
     assert result['rejected_world'] and not result['truncated']
     with pytest.raises(ValueError):query_points([[float('nan'),0.,0.]],{}, {},contains,SimpleNamespace)
+
+
+def test_optin_deterministic_refinement_stops_a_known_rejected_repeated_path():
+    env,owner=fixture();env.config=SimpleNamespace(planner=SimpleNamespace(max_seconds=None));calls=[];queries=[]
+    def prepare(action):
+        calls.append(action);env.reference=SimpleNamespace(x=[1.],y=[1.],yaw=[0.]);return 'reference',dict(status='success',expanded_nodes=3)
+    def reject(poses):
+        queries.append(poses);return {'reference_road_probe':dict(version=VERSION,pose_sha256=pose_digest(poses),rejected_world=[[1.5,-1.5,0.]],truncated=False)}
+    mode,detail=prepare_reference(env,26,prepare,reject,dict(max_attempts=3,stop_repeated_references=True))
+    assert mode=='plan_failed' and len(calls)==2 and len(queries)==1
+    assert env.reference is None and env.world is owner and owner.road.collision_drivable.all()
+    assert env.episode['plan_failures']==1 and detail['road_refinement']['shortcut']=='identical_reference_already_rejected_in_this_frame'
+    # A later decision still queries the native predicate afresh. The existing
+    # rejected cell means it can then stop after one unchanged-model attempt.
+    prepare_reference(env,26,prepare,reject,dict(max_attempts=3,stop_repeated_references=True))
+    assert len(calls)==3 and len(queries)==2 and env.episode['plan_failures']==2
+
+
+def test_wall_budget_searches_do_not_use_deterministic_shortcuts():
+    env,owner=fixture();env.config=SimpleNamespace(planner=SimpleNamespace(max_seconds=.1));queries=[]
+    def prepare(action):
+        env.reference=SimpleNamespace(x=[1.],y=[1.],yaw=[0.]);return 'reference',dict(status='success')
+    def reject(poses):
+        queries.append(poses);return {'reference_road_probe':dict(version=VERSION,pose_sha256=pose_digest(poses),rejected_world=[],truncated=True)}
+    prepare_reference(env,26,prepare,reject,dict(max_attempts=3,stop_repeated_references=True))
+    assert len(queries)==3

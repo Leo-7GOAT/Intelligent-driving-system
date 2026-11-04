@@ -14,13 +14,28 @@ from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.audit_native_policy_sequence import observation_env,advance_observation
 
 
-def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
+def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,prefix_audit=None):
     import numpy as np
     from navstack.independent_clip_ppo import load_ppo
     batch=Path(batch).resolve();folder=batch/method
-    p=read(batch/'protocol.json');raw=read(folder/'endpoint_raw_audit.json');evaluation=read(folder/'evaluation.json')
-    if raw['protocol_sha256']!=sha(batch/'protocol.json') or raw['evaluation_sha256']!=sha(folder/'evaluation.json'):
-        raise ValueError('Require a full raw-bound evaluation')
+    p=read(batch/'protocol.json');raw_path=folder/'endpoint_raw_audit.json';completed=None
+    if prefix_audit is None:
+        raw=read(raw_path);evaluation=read(folder/'evaluation.json')
+        if raw['protocol_sha256']!=sha(batch/'protocol.json') or raw['evaluation_sha256']!=sha(folder/'evaluation.json'):
+            raise ValueError('Require a full raw-bound evaluation')
+    else:
+        if migration_proof is not None:raise ValueError('Prefix inference does not certify policy migration')
+        raw_path=Path(prefix_audit);prefix=read(raw_path)
+        if (prefix['protocol_sha256']!=sha(batch/'protocol.json') or prefix['full_evaluation_complete'] is not False
+                or prefix['new_PPO_updates']!=0 or len(prefix['bridge_streams'])!=1):
+            raise ValueError('Require a closed raw-verified zero-update prefix')
+        from scripts.prepare_native_recovery import verified_checkpoint_metadata
+        meta=verified_checkpoint_metadata(batch/p['recovery'][method]['checkpoint'])
+        evaluation={key:meta[key] for key in ['model_sha256','normalization_sha256']}
+        completed=set(prefix['completed_case_ids']);evaluation['episodes']=prefix['completed_cases']
+        stream=prefix['bridge_streams'][0]
+        raw=dict(protocol_sha256=prefix['protocol_sha256'],evaluation_trace_sha256=prefix['evaluation_trace_sha256'],
+            bridge_response_stream=stream['name'],bridge_response_sha256=stream['sha256'])
     for name,key in (('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')):
         if sha(folder/name)!=evaluation[key]:raise ValueError('Evaluated model/normalizer changed')
     for name,h in p['source_hashes'].items():
@@ -40,6 +55,7 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
                 or sha(checkpoint/'normalization.pkl')!=evaluation['normalization_sha256']):
             raise ValueError('Require the registered reference-context evaluated model')
         scope='MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE'
+        if prefix_audit is not None:scope+='_CLOSED_COMPLETED_PREFIX_ONLY'
     model=load_ppo(checkpoint/'model.zip',device='cpu')
     if getattr(model.policy,'reference_context_version',None)!=VERSION or model.observation_space.shape!=(4736,):
         raise ValueError('Unsupported reference-context policy schema')
@@ -74,6 +90,10 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
     if sha(trace)!=raw['evaluation_trace_sha256']:raise ValueError('Recorded policy trace changed')
     rows,error=read_prefix(trace)
     if error:raise ValueError(error)
+    if completed is not None:
+        actual_complete={r['case_id'] for r in rows if 'episode_metrics' in r['info']}
+        if actual_complete!=completed:raise ValueError('Completed prefix selection differs from actual episode metrics')
+        rows=[r for r in rows if r['case_id'] in completed]
     cfg=EnvConfig.from_dict(read(folder/'config.json')['env']);results=[]
     for case in sorted({r['case_id'] for r in rows}):
         selected=[r for r in rows if r['case_id']==case]
@@ -101,6 +121,10 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
                         from navstack.reference_road_refinement import planning_view,rejected_cells,pose_digest,VERSION as REFINEMENT_VERSION
                         evidence=(recorded or {}).get('road_refinement')
                         if evidence is None or evidence['version']!=REFINEMENT_VERSION:raise ValueError('Missing planning refinement evidence')
+                        if p.get('reference_compute_profile'):
+                            from navstack.reference_compute import VERSION as COMPUTE_VERSION,enabled
+                            if not enabled(p) or evidence.get('compute_profile')!=COMPUTE_VERSION:
+                                raise ValueError('Missing registered exact-compute evidence')
                         for reply in evidence['probes']:
                             key=(episode,reply['request_id']);request=probe_requests.get(key)
                             if reply!=probe_responses.get(key) or not request or request['op']!='reference_road_probe':
@@ -123,7 +147,16 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
                             raise ValueError('Measured steering transition differs')
                         if detail.get('reference_option_commitment')!=recorded.get('reference_option_commitment'):
                             raise ValueError('Selected option persistence differs')
-                        if detail['status']!=recorded['status'] or detail.get('expanded_nodes')!=recorded.get('expanded_nodes'):
+                        def effective_nodes(value):
+                            if value.get('cache_hit'):
+                                if value.get('expanded_nodes')!=0 or type(value.get('cached_expanded_nodes')) is not int or value['cached_expanded_nodes']<=0:
+                                    raise ValueError('Invalid exact spatial-plan cache counters')
+                                return value['cached_expanded_nodes']
+                            return value.get('expanded_nodes')
+                        if recorded.get('cache_scope')=='exact_static_steering_plan_v3':
+                            from navstack.reference_compute import enabled
+                            if not enabled(p):raise ValueError('Unregistered successful spatial-plan memo')
+                        if detail['status']!=recorded['status'] or effective_nodes(detail)!=effective_nodes(recorded):
                             raise ValueError('Reconstructed timed reference differs from recorded planner')
                         if refinement is not None and recorded['status']=='success':
                             if not evidence['probes']:raise ValueError('New reference lacks native geometry query')
@@ -144,7 +177,7 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
     if rms[2]!=norm.obs_rms.count:raise ValueError('Frozen inference RMS count changed')
     return dict(scope=scope,method=method,batch=batch.name,all_static_actions=all_static,
         model_sha256=sha(checkpoint/'model.zip'),normalization_sha256=sha(checkpoint/'normalization.pkl'),
-        raw_audit_sha256=sha(folder/'endpoint_raw_audit.json'),script_sha256=sha(Path(__file__)),
+        raw_audit_sha256=sha(raw_path),script_sha256=sha(Path(__file__)),
         results=results,all_recorded_actions_match=True,inference_normalization_frozen=not norm.training,
         RMS_unchanged=True,new_controls=0,new_updates=0,
         limits='Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible.')
@@ -153,7 +186,8 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--batch',required=True);p.add_argument('--method',required=True)
     p.add_argument('--checkpoint');p.add_argument('--migration-proof');p.add_argument('--all-static-actions',action='store_true');p.add_argument('--output',required=True)
+    p.add_argument('--prefix-audit')
     a=p.parse_args();output=Path(a.output)
     if output.exists():raise FileExistsError('Preserve previous inference audit')
-    result=audit(a.batch,a.method,checkpoint=a.checkpoint,migration_proof=a.migration_proof,all_static=a.all_static_actions)
+    result=audit(a.batch,a.method,checkpoint=a.checkpoint,migration_proof=a.migration_proof,all_static=a.all_static_actions,prefix_audit=a.prefix_audit)
     atomic_json(output,result);print({'cases':len(result['results']),'decisions':sum(r['decisions'] for r in result['results']),'scope':result['scope']})

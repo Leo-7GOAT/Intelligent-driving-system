@@ -15,7 +15,8 @@ def settings(protocol):
     if (not valid or not (protocol.get('evaluation_only') is True or registered(protocol))
             or protocol.get('methods') not in (['H'],['H0'])):
         raise ValueError('Steering transition prototype requires frozen H/H0 evaluation')
-    return value
+    from .reference_compute import enabled
+    return dict(value,cache_success=True) if enabled(protocol) else value
 
 
 def prepare_reference(env,action,prepare,options):
@@ -27,9 +28,12 @@ def prepare_reference(env,action,prepare,options):
     budget=options.get('max_nodes',env.config.planner.max_nodes)
     backend=HybridAStar(env.config.vehicle,replace(env.config.planner,max_nodes=budget))
     memo=options['version']==VERSION_BUDGET
+    cache_success=options.get('cache_success',False)
     if memo:
         from .planner_memo import ExactSteeringFailureMemo
-        if not hasattr(env,'_steering_failure_memo'):env._steering_failure_memo=ExactSteeringFailureMemo(backend)
+        if (not hasattr(env,'_steering_failure_memo')
+                or env._steering_failure_memo.cache_success!=cache_success):
+            env._steering_failure_memo=ExactSteeringFailureMemo(backend,cache_success=cache_success)
         env._steering_failure_memo.planner=backend
         backend=env._steering_failure_memo
     class Adapter:
@@ -44,4 +48,5 @@ def prepare_reference(env,action,prepare,options):
         detail=dict(detail)
         detail['steering_transition']=dict(version=options['version'],initial_steering=initial,speed_ceiling=ceiling,
             analytic_connections=False,exact_failure_memo=memo,max_nodes=budget)
+        if cache_success:detail['steering_transition']['exact_success_cache']=True
     return mode,detail

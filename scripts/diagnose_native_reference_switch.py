@@ -111,7 +111,8 @@ def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False,inspect_r
                 else:mode,detail=env._prepare_reference(action)
             finally:env.world=owner
             if detail is not None and (detail['status']!=recorded['status']
-                    or detail.get('expanded_nodes')!=recorded.get('expanded_nodes')):
+                    or (detail.get('cached_expanded_nodes') if detail.get('cache_hit') else detail.get('expanded_nodes'))
+                    !=(recorded.get('cached_expanded_nodes') if recorded.get('cache_hit') else recorded.get('expanded_nodes'))):
                 raise ValueError('Reconstructed search differs from its recorded result')
             events.append(dict(decision=index,action=action,previous_selection=old,new_selection=selected,
                 previous_reference_still_reusable=bool(reusable),switched_selection=old is not None and selected!=old,

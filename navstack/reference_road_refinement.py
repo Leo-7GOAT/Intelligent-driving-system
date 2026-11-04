@@ -19,7 +19,8 @@ def settings(protocol):
             or value!={'version':VERSION,'max_attempts':3} or not (protocol.get('evaluation_only') is True or registered(protocol))
             or protocol.get('methods') not in (['H'],['H0'])):
         raise ValueError('Refinement prototype requires explicit frozen H/H0 evaluation registration')
-    return value
+    from .reference_compute import enabled
+    return dict(value,stop_repeated_references=True) if enabled(protocol) else value
 
 
 def pose_digest(poses):
@@ -76,7 +77,9 @@ def prepare_reference(env,action,prepare,validate,options):
     owner=env.world
     if getattr(env,'_refinement_world_owner',None) is not owner:
         env._refinement_world_owner=owner;env._refinement_cells=set();env._validated_road_reference=None
-    probes=[];attempts=[]
+    probes=[];attempts=[];rejected_hashes=set();shortcut=None
+    exact_shortcut=(options.get('stop_repeated_references',False)
+                    and env.config.planner.max_seconds is None)
     for _ in range(options['max_attempts']):
         reuse=(env.reference is not None and env.reference is env._validated_road_reference
                and int(action)!=0 and env.reusable_reference(*env.decode_action(action)))
@@ -88,13 +91,23 @@ def prepare_reference(env,action,prepare,validate,options):
         if mode!='reference':break
         if env.reference is env._validated_road_reference:break
         poses=[[float(x),float(y),float(yaw)] for x,y,yaw in zip(env.reference.x,env.reference.y,env.reference.yaw)]
+        if exact_shortcut and pose_digest(poses) in rejected_hashes:
+            env.reference=None;env._reference_selection=None;env._rule_plan_cache=None
+            mode='plan_failed';detail.update(status='trajectory_failed',failure_reason='native_reference_road_refinement_stalled')
+            env.episode['plan_failures']+=1;shortcut='identical_reference_already_rejected_in_this_frame';break
         reply=validate(poses);probes.append(reply)
         result=reply['reference_road_probe']
         if result['version']!=VERSION or result['pose_sha256']!=pose_digest(poses):raise ValueError('Unbound road query reply')
         if not result['rejected_world'] and not result['truncated']:
             env._validated_road_reference=env.reference;break
-        env._refinement_cells.update(rejected_cells(result['rejected_world'],env.scene_evidence['native_layout'],owner.road))
+        rejected_hashes.add(result['pose_sha256'])
+        added=rejected_cells(result['rejected_world'],env.scene_evidence['native_layout'],owner.road)-env._refinement_cells
+        geometry_changed=any(owner.road.collision_drivable[row,column] for row,column in added)
+        env._refinement_cells.update(added)
         env.reference=None;env._reference_selection=None;env._rule_plan_cache=None
+        if exact_shortcut and not geometry_changed:
+            mode='plan_failed';detail.update(status='trajectory_failed',failure_reason='native_reference_road_refinement_stalled')
+            env.episode['plan_failures']+=1;shortcut='rejection_adds_no_new_planning_constraint';break
     else:
         mode='plan_failed';detail.update(status='trajectory_failed',failure_reason='native_reference_road_refinement_exhausted')
         env.episode['plan_failures']+=1
@@ -102,4 +115,7 @@ def prepare_reference(env,action,prepare,validate,options):
         attempts=attempts,probes=probes,rejected_references=sum(bool(p['reference_road_probe']['rejected_world']) for p in probes),
         total_expanded_nodes=sum(a.get('expanded_nodes') or 0 for a in attempts),
         query_samples=sum(p['reference_road_probe'].get('sample_count',0) for p in probes))
+    if options.get('stop_repeated_references',False):
+        from .reference_compute import VERSION as COMPUTE_VERSION
+        detail['road_refinement'].update(compute_profile=COMPUTE_VERSION,shortcut=shortcut)
     return mode,detail

@@ -1,4 +1,14 @@
-# 当前接续：2026-11-04 12:27 54场队列仍运行，禁止重复启动或追加变体
+# 当前接续：2026-11-04 13:03 精确计算优化补跑2+24，原28场已核验保留
+
+旧all30队列已主动STOP安全关闭，owned server停止且端口空，协调器26172/worker32608均已退出。前28完整场20success/8deadline，全部14055实际控制(含未完成尾部)及engine均通过；raw receipt在原batch/H/exact_compute_recovery_prefix_raw_audit.json。原case28未完整结束，须补28/29，不重复前28场，不重复5396已完成训练。原known24未启动并已abandoned，禁止误启动。
+
+唯一活动恢复执行：D:/ThesisNativeArchive_20261104/20261104_exact_compute_development_recovery_execution_closed_owner_fix，实际协调器9060，venv14168，启动13:02:25；需按OS创建时间/可执行文件核验。恢复脚本scripts/run_exact_compute_recovery.py已启动，先补all30_placements_H_exact_compute_tail(2场)，再known24_H_exact_compute(24场)，保持模型13e5fa1e/normalizer/任务/评分，零PPO；source快照使用新exact_static_reference_compute_v3。同时后台只读核验原28场全部NN与参考。先看status/failure/complete和实际进程，禁止重复启动。
+
+优化仅缓存精确静态空间路径并中止同帧不改变约束的重复细化，每次仍以实际状态重新时间参数化/原生道路查询；默认旧行为不变，动态/墙钟搜索旁路。case23已离线逐一绑定90NN/900实测控制，命令/约束/查询位姿一致，搜索402570→1491节点、270→90查询。证据D:/ThesisNativeArchive_20261104/exact_reference_compute_case23_all90_source_bound.json。不是新实车吞吐实测，更不是成功率或学习收益；原慢case23仍deadline900。50专项测试通过5.25秒，当前新源未跑全量CPU，旧1378不能冒称覆盖本次。公开reports/native_exact_reference_compute_development_20261104.json。
+
+首次恢复协调器因旧OwnedProcess已结束抛RuntimeError(而非OSError)在任何新原生控制前退出，原execution/failure保留；修复只接收exact missing handle错误并验证终态/生命周期已结束，身份不符仍拒绝。后缀closed_owner_fix为当前真实运行。后续先完成2+24及原28场NN审计，按全部结果决定是否保留方案；不盲目追加训练/控制器变体。验收UNMET，最终120清单未生成/查看。
+
+# 历史接续：2026-11-04 12:27 54场旧队列状态（已被上文覆盖）
 
 当前只跟进已启动的完整开发评估；暂勿再做新控制器/训练/参数变体，也勿重包旧发布资产。主目标不变且研究验收UNMET。请按status/OS身份继续，而非根据旧文档重跑。
 

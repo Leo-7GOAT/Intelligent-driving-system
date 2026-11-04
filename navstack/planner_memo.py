@@ -1,7 +1,7 @@
-"""Opt-in memoization of exact, deterministic static Hybrid A* failures.
+"""Opt-in exact static search memoization, with failure-only defaults.
 
-No pose bins, action filtering, successful-path reuse, or physical-infeasibility
-claim. Node-budget failure is only the result of this particular bounded search.
+Keys preserve exact inputs. Optional spatial-result caching still creates and
+validates each timed reference anew. Search failure is no infeasibility proof.
 """
 from collections import OrderedDict
 from dataclasses import asdict, dataclass, replace
@@ -21,6 +21,11 @@ VERSION = 'exact_static_failure_v1'
 class MemoizedFailure(PlanResult):
     cache_hit: bool = True
     cached_expanded_nodes: int = 0
+
+
+@dataclass
+class MemoizedStaticPlan(MemoizedFailure):
+    cache_scope: str = 'exact_static_steering_plan_v3'
 
 
 class ExactStaticFailureMemo:
@@ -97,8 +102,14 @@ class ExactSteeringFailureMemo(ExactStaticFailureMemo):
     """Exact static failures also keyed by measured steering and speed ceiling.
 
     Private planning-view identities may change; the entire supported geometry
-    remains in the key. No pose/angle/speed quantization or success reuse.
+    remains in the key. Optional success caching stores immutable spatial search
+    results; every reference is still parameterized and natively validated anew.
     """
+    def __init__(self,planner,max_entries=128,cache_success=False):
+        super().__init__(planner,max_entries)
+        if type(cache_success) is not bool:raise ValueError('Explicit success-cache boolean required')
+        self.cache_success=cache_success
+
     def plan(self,start,goal,world,*,initial_steering,reference_speed):
         started=time.perf_counter()
         values=np.asarray([*start,*goal,initial_steering,reference_speed],dtype=np.float64)
@@ -110,13 +121,17 @@ class ExactSteeringFailureMemo(ExactStaticFailureMemo):
         previous=self._failures.get(key)
         if previous is not None:
             self.hits+=1;self._failures.move_to_end(key)
-            return MemoizedFailure(previous.status,previous.path.copy(),previous.cost,0,
+            kind=MemoizedStaticPlan if self.cache_success else MemoizedFailure
+            return kind(previous.status,previous.path.copy(),previous.cost,0,
                 time.perf_counter()-started,previous.failure_reason,cached_expanded_nodes=previous.expanded_nodes)
         self.misses+=1
         result=self.planner.plan(start,goal,world,initial_steering=initial_steering,reference_speed=reference_speed)
         eligible=(result.status=='no_path' and result.failure_reason=='open_set_exhausted'
             or result.status=='timeout' and result.failure_reason=='search_budget' and result.expanded_nodes==self.config.max_nodes)
-        if eligible and result.path.shape==(0,3) and result.cost is None:
+        eligible_failure=eligible and result.path.shape==(0,3) and result.cost is None
+        eligible_success=(self.cache_success and result.status=='success' and len(result.path)>=2
+            and result.cost is not None and np.isfinite(result.cost) and np.isfinite(result.path).all())
+        if eligible_failure or eligible_success:
             self._failures[key]=replace(result,path=result.path.copy())
             if len(self._failures)>self.max_entries:self._failures.popitem(last=False)
         return result

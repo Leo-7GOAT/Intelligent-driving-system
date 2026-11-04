@@ -70,3 +70,21 @@ def test_budget_version_requires_exact_registration():
     assert settings(p)['max_nodes']==32000
     for budget in [32000.,7200,True]:
         with pytest.raises(ValueError):settings({**p,'reference_steering_transition':dict(version=VERSION_BUDGET,max_nodes=budget)})
+
+
+def test_success_memo_is_optin_exact_and_returns_independent_path_arrays():
+    from navstack.planner_memo import ExactSteeringFailureMemo
+    v=VehicleConfig();c=PlannerConfig(max_seconds=None,max_nodes=200)
+    planner=ExactSteeringFailureMemo(HybridAStar(v,c),cache_success=True)
+    def call(steer=0.,speed=1.5,world=None):
+        return planner.plan((6.,10.,0.),(10.,10.,0.),world or World(25,25),initial_steering=steer,reference_speed=speed)
+    first=call();second=call()
+    assert first.status==second.status=='success' and second.cache_hit and second.expanded_nodes==0
+    assert second.cached_expanded_nodes==first.expanded_nodes
+    np.testing.assert_array_equal(first.path,second.path)
+    second.path[0]=999
+    np.testing.assert_array_equal(first.path,call().path)
+    assert not getattr(call(steer=1e-12),'cache_hit',False)
+    assert not getattr(call(speed=1.5000000001),'cache_hit',False)
+    moving=World(25,25);moving.dynamic=[object()]
+    assert not getattr(call(world=moving),'cache_hit',False)

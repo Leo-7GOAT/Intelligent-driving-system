@@ -451,7 +451,7 @@ class NavigationEnv(gym.Env):
         }
         if getattr(plan, 'cache_hit', False):
             detail.update(cache_hit=True, cached_expanded_nodes=plan.cached_expanded_nodes,
-                          cache_scope='exact_static_failure_v1; current expanded_nodes are zero')
+                          cache_scope=getattr(plan,'cache_scope','exact_static_failure_v1; current expanded_nodes are zero'))
         if plan.status != "success" or len(plan.path) < 2:
             self.episode["plan_failures"] += 1
             return "plan_failed", detail
