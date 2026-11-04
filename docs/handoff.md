@@ -1,3 +1,15 @@
+# 当前唯一训练：2026-11-04 15:46 H已完整关闭2/2，H0正在同预算真实训练
+
+H不得重启：20261104_outcome_context_PPO10240_execution_H/complete.json已存在，训练worker29016/coordinator20928已退出。最终10482实际controls(请求10240+242overshoot)/1056决策/33rollouts/330Adam/11039worldticks(557reset)，17个完整训练回合全success，未完整尾段不计成功。34Adam状态全部推进330，真实初始化权重/完整Adam/RNG一致，RMSmean/var/count精确冻结。model ca2f4bffb178c0bbde5695306a1f82d80ba527b5ce6e3e932bdda74b86469f76，failure_gain .0014071838231757283，reuse_gain -.00030437199166044593。低层/评分均固定、0新增监督。
+
+冻结same2_endpoint完整raw/startNN/allstaticNN/engine全部通过：原21 success449/0interventions/0planfails；原27 success462/1intervention/0planfails。共911实际评估controls。相对同初始化零效应原基线1/2、case27deadline900，现2/2、0unsafe，但只有两个known开发条件、一个continuedseed22，不能宣称反馈贡献/最终达标。注意两端点plan_failures均0，失败context不直接触发；解释新增反馈贡献必须看配对H0和训练路径，不能称在复测中纠正了失败动作。公开完整报告reports/native_outcome_context_H_learning_complete_20261104.json由summarize_fixed_lowlevel_adaptation.py实际重建，比较总controls12854(含历史baseline1461)。
+
+H0已经自动启动：batch D:/ThesisNativeArchive_20261104/20261104_outcome_context_PPO10240_H0，execution20261104_outcome_context_PPO10240_execution_H0；coordinator仍是顺序队列base12544(creation15:06:56.219948)，worker33520(creation15:43:08.007，basePython311)，worker_process.json留证。最新约420controls/42决策/1rollout；以当前heartbeat/OS为准。禁止手动重启H0或另开CARLA。队列20261104_outcome_pair_sequential_queue/status.json为RUNNING_H0_COURSE_AND_ENDPOINT，H0仅屏蔽新增负actor/critic反馈，其余同源/初始化/低层/任务/预算一致，不是第二独立seed。
+
+自动配对重建进程2184仍持12544只读核验句柄等待；D:/ThesisNativeArchive_20261104/20261104_outcome_pair_rebuild/complete.json或failure.json为后续入口。脚本summarize_outcome_context_pair.py已被该进程载入，结束前别修改它或其导入summarize_fixed_lowlevel_adaptation.py，避免已载入代码和后续源码哈希不符。H0完整训练+same2审计后自动生成pair报告；实际验证脚本尚待该终态。若只看到缺失终端session，不得重启任何批次。读OS/status/heartbeat后继续。
+
+1411CPU/1skip/4CARLAdeselect已通过258.91s；新summary源码77877a8的CI41791653607也SUCCESS。最新验收表已更新11/04；中英README如实新增H已闭合结果及H0仍在训。最终120仍未生成/查看，正式五独立seed/健康B1/强B3/新消融及性能门槛仍UNMET，不把这两场2/2当成全项目完成。
+
 # 活动任务补充：2026-11-04 15:20
 
 H已至约3644真实控制/367决策/110Adam，尚非终态；worker29016与coord20928正常，禁止重跑。H0自动队列base12544(identity outcome_pair_queue_process_identities.json)仍WAITING；H0不能手动另启。

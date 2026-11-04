@@ -6,7 +6,9 @@
 
 **目前是开发预发布，整体研究验收尚未通过。** 已有真实 CARLA 训练、逐帧控制审计和公开模型复现；尚不能宣称分层优越、稳定 PPO 增益、实时性或实际道路安全。
 
-2026-11-04 开发进度：固定 option 接口的继续训练策略在已知静态摆放为 **21/30**，已知验证为 **22/24**，全部原始控制及策略推理已核验；低于此前另一套配置的23/30、24/24，不能宣称改进。[完整记录](../reports/native_option_full_development_complete_20261104.json)。后续速度与转向联合重定时修复了一个原地停滞条件（558个真实控制步成功），但预登记的五个已知条件合计仅 **2/5** 成功；不是新增PPO学习或独立种子优势。[成功与失败证据](../reports/native_joint_speed_four_condition_complete_20261104.json)。当前重定时源码全量CPU测试1392项通过，CARLA审计另行提供。
+最新动作对齐失败反馈课程已关闭：**10482个真实CARLA训练控制、34组参数各330次Adam更新**，初始权重/完整Adam/RNG一致，RMS冻结。最终模型在原两场已知条件均成功：**2/2**，分别449/462控制、0/1次干预；训练前为1/2。原始帧、全部NN推理及引擎控制审计均通过。[完整学习比较](../reports/native_outcome_context_H_learning_complete_20261104.json)。仅屏蔽新增失败反馈、保留旧反馈的H0已从相同初始化实际开始同预算训练；尚不能区分追加训练与新增反馈的贡献。只有一个继续训练种子和两个已知条件，不是最终能力或优越性证据。
+
+2026-11-04 开发进度：固定 option 接口的继续训练策略在已知静态摆放为 **21/30**，已知验证为 **22/24**，全部原始控制及策略推理已核验；低于此前另一套配置的23/30、24/24，不能宣称改进。[完整记录](../reports/native_option_full_development_complete_20261104.json)。后续速度与转向联合重定时修复了一个原地停滞条件（558个真实控制步成功），但预登记的五个已知条件合计仅 **2/5** 成功；不是新增PPO学习或独立种子优势。[成功与失败证据](../reports/native_joint_speed_four_condition_complete_20261104.json)。该重定时版本全量CPU测试1392项通过，CARLA审计另行提供。
 
 随后在固定低层下实际进行 **5438 个 PPO 控制步、170 次 Adam 更新**，两场已知条件冻结复测由0/2变为1/2，但新增一次越界，安全目标未通过。[完整学习与安全退化](../reports/native_exact_point_PPO5120_complete_20261104.json)。参考中心MPC代价的冻结迁移仍为1/2，原越界改为超时，没有完成率增益。[控制器对照](../reports/native_mpc_reference_effort_transfer_20261104.json)。该MPC源码全量CPU测试1402项通过；不能把这些单策略、已知条件开发结果当作独立种子优势或研究验收完成。
 
@@ -23,7 +25,7 @@ H/H0真实适配已完成，24个已知开发条件均为 **24/24，零不安全
 
 另一个独立注册的模型可行摆放开发清单中，同一冻结PPO为 **23/30，越界2/30**，12402控制和1252NN均核验通过；这是场景条件变化后的迁移，原4/12不改，不归因于学习。[完整清单](../reports/native_model_supported_placements_complete_20261104.json)。
 
-最新完整本地CPU回归 **1344通过、1跳过、4项CARLA排除**，专项60通过；随后仅澄清注册字段，10项验证通过。[CPU凭证](../reports/native_reference_entropy_memo_cpu_verification_20261103.json)。[对应源码GitHub CPU验证](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41651263807)也已成功：1327通过、18跳过、4项CARLA排除。
+动作结果反馈源码的完整本地CPU回归已结束：**1411通过、1跳过、4项CARLA排除**。[版本化初始化与CPU凭证](../reports/native_outcome_context_initialization_20261104.json)。[对应GitHub CPU工作流](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41791653607)也已成功。实际CARLA训练和驾驶审计分别提供。
 
 [五种子 B1 扩展预发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1)的69项资产已公开下载重建：151,660个控制帧、120个初始动作及5张图表均核验一致。[公开复现凭证](../reports/native_B1_broader_public_download_verification_20261102.json)。教师、恢复采集和失败的离线观测修正均已结束，不要重复启动。
 

@@ -33,8 +33,8 @@
       "sha256": "1b85645d4251d4e8acdf68694dbc5c2dfad58294005f423cd3caeb4c2d2df31b"
     }
   },
-  "native_learning": "H_RUNNING_H0_REGISTERED_IN_BOUNDED_SEQUENTIAL_QUEUE",
-  "limits": "No learned benefit established.Outcome-feedback pair is one development seed,not two independent seeds.Final120 unseen conditions remain unopened.H running status is provisional;course raw/Adam/RNG/RMS and frozen endpoint audits must close before any learned result.",
+  "native_learning": "H_COMPLETE_H0_RUNNING",
+  "limits": "H closes10482 real controls/330Adam and2/2 known endpoints.H0 is running from matched initialization;no failure-feedback benefit established.One continued seed;final120 untouched.",
   "paired_initialization": {
     "parameters_exact": true,
     "full_Adam_exact": true,
@@ -121,5 +121,6 @@
     "script": "run_outcome_pair_sequential_queue.py",
     "failure_retries": 0,
     "starts_H0_only_after_H_training_and_endpoint_fully_audited": true
-  }
+  },
+  "H_closed_result": "native_outcome_context_H_learning_complete_20261104.json"
 }
