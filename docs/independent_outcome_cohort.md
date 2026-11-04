@@ -56,3 +56,18 @@ process identity. A missing terminal session is not a reason to restart.
 `execution/failure.json` stops the queue and preserves the failed job;it is not
 a score-dependent retry instruction. Local registrations contain runtime paths
 and require sanitization before public asset packaging.
+
+First closed learner (2026-11-04): seed11 H executes30,773 actual controls,
+3,104 high-level decisions and970Adam updates. All34Adam states advance970,
+initial weights/Adam/Torch RNG match and observation RMS remains fixed.
+Raw/engine audits bind30,773controls plus2,045reset ticks;all48conditions
+receive controls over66actual reset exposures. Of65complete training episodes,
+58succeed and seven time out;the unfinished66th segment is not a success.
+The final fixed-budget model scores24/24known validation with8,165controls,
+408interventions and seven planning failures. Its zero-PPO baseline already
+scores24/24with8,101controls,394interventions and five planning failures.
+No PPO completion or efficiency gain follows from this first seed. All24starts
+and516static NN actions reconstruct;H0now trains from equal actual initial
+weights/full Adam/Torch RNG,with its first320-control saved update checked.
+See `reports/native_independent_outcome_seed11_H_complete_20261104.json`.
+This status does not change the remaining fixed-budget jobs or final protocol.

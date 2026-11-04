@@ -1,3 +1,13 @@
+# 当前：2026-11-04 21:15 首个独立H训练与验证全部闭合，H0真实学习中
+
+本轮是实际进展：seed11 H TRAIN48完整30773controls/3104decisions/97rollouts/970Adam，预算30720+53，stopped_reason=None；34Adam全部+970、实际初始权重/Adam/Torch RNG/RMS核验PASS，模型63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256。原始训练30773帧/2045reset/32818ticks与engine全部PASS，48/48条件均实际有controls，66重置暴露，65完整TRAIN回合58success+7deadline，末66段未完不算success。实际wall7866.8849s。H历史继承charged9243，训练charged40016，额外监督0。源cohort冻结62d不变。训练worker29968/bridge9164已正常0退出且owned server清理，不能再等/重启这些旧PID。
+
+新H known24也已全闭合24/24、8165controls、408interventions、7planfails、0unsafe；原始/engine/24starts/516staticNN均PASS，cohort execution seed11_H_endpoint_complete.json存在。零PPO基线24/24、8101controls、394interventions、5planfails；训练后+64controls/+14interv/+2fail，没有PPO完成或效率增益。baseline/post完整config/task/source/calibration一致，全部24case保留。新公开reports/native_independent_outcome_seed11_H_complete_20261104.json有全部证据SHA/每case耗时/成本/初始化与首H0更新/签名解释；已更新中英文README与验收表，不缩小最终目标。
+
+当前同一cohort coordinator17884（18:42:19.160207）已自动进入seed11 H0训练：batch20261104_independent_outcome_seed11_H0_TRAIN48_PPO30720，base worker13440 creation21:08:28.043389、wrapper17092、bridge37 28224 creation21:08:31.003449；guard base17276。最新21:14 heartbeat2852controls/288actions/8rollouts，guardhealthy49C。实际H/H0初始化fp整个dict相等（34parameters/fullAdam/TorchRNG/learnerprofile），初始norm bytes相等。H0checkpoint320已只读核验34Adam全部+10、其他policy参数改变、failure_gain/criticfailureweight严格0、RMS不变；这只是首保存学习状态验证，完整H0raw/engine仍待闭合。私有cohort/seed11_actual_pair_first_update_proof.json不可重复创建。新H最终failure_gain=-0.0009055266，scale1000×context-1给failedlabel正logit+0.9055，不能声称学会抑制失败或有益retry。固定预算继续，不按此中途符号改模型/选checkpoint。
+
+原cohort工具session53342仍对应17884；B1waiter6828仍WAITING_FOR_OWNED_H_COHORT/0新native。3个nativejobs已正常关闭（seed11baseline/Htrain/Hendpoint），当前第4个H0train；不是整个项目3/25完成，也不是5个H已完成。不要另开native/改冻结source/动外部2100。最终120未生成/查看，全部验收仍UNMET。此后若需等待，核验上述当前13440/父17884，而不是旧29968；用heartbeat/guard/OS真实进程，禁止反复下载或重跑已经闭合的学习器/复验。
+
 # 当前：2026-11-04 20:26 H0补充复验全部完成，完整发布凭证已公开
 
 此前离线driver7388/session15229已正常退出0，H0两份reproduction.json均完整存在。全部四套H/H0端点fresh复验：108starts/3207staticNN/四张bitexact图；B3两库存raw/engine也PASS，总3868files/56688引擎controls。不要再跑这5包/四套NN/旧release下载。公开reports/native_outcome_shared_public_release_20261104.json已更新全部COMPLETE；额外fresh_reproduction_complete.json已上传同v0.4.0预发布并匿名下载验证，当前9assets所有服务器SHA均核验。原ZIP/校验和/原publication-time说明资产保持原字节，发布正文追加20:24完成更新，没有覆写失败或训练数据。sourceCI仍582f8f4/41827384332的1415PASS；fresh source为干净ac41666，所有auditor与582字节相同。
