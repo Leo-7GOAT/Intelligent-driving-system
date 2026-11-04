@@ -126,8 +126,8 @@
   "active_training_source_unchanged": true,
   "limits": "Offline planner-model primitives seeded by saved measured states;not native execution or full HybridA* replay.All8known roads and up to24uniformly sampled starts perroad retained.Five alternating-order trials on a shared workstation are exploratory kernel timings,not isolated real-time control or new task completion evidence.",
   "original_measurement_sha256": "f6c7c932908afa68ca2b564d454362d0dc06ed719c570e8594585959da121f68",
-  "provenance_note": "The original measurement is retained unchanged. Its script hash binds the as-executed script; the current CLI only corrects fixed24 to up to24 in the limits sentence. No timing rerun or favorable-trial selection.",
-  "current_benchmark_script_sha256": "14596937491f340a1b9bf239d8a881758dd613c1b9aabd7f1e3114d3dba1cf7f",
+  "provenance_note": "The original measurement is retained unchanged. Its script hash binds the as-executed script; the current CLI only corrects fixed24 to up to24 in the limits sentence. No timing rerun or favorable-trial selection. The current script hash uses Git LF bytes; the original executed-script hash uses its original local bytes.",
+  "current_benchmark_script_sha256": "4fe5b886fa2f7c753362f09c0bbc8ab57d08215a170303afb09e543564e575ec",
   "planner_equivalence": {
     "scope": "Two static native-road geometry fixtures;offline1800node steering-transition searches,not full native refinement or execution",
     "results": [

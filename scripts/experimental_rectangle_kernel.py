@@ -36,3 +36,8 @@ class RectangleRoadBatch(ExactRoadBatch):
         self.rectangles=indices*np.array([self.grid.dx,self.grid.dy,self.grid.dx,self.grid.dy])
         self.centers=(self.rectangles[:,:2]+self.rectangles[:,2:])/2
         self.radii=(self.rectangles[:,2:]-self.rectangles[:,:2])/2
+
+    def _window(self, corners, reach):
+        # Merged rectangles do not have the production raster's one-cell index.
+        # The inherited SAT applies its exact pose-dependent bounds filter next.
+        return self.rectangles,self.centers,self.radii
