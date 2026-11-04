@@ -8,6 +8,8 @@
 
 当前低层的五种子H/H0队列已完成初始化，**第一个种子已开始真实CARLA PPO更新，其余作业按固定顺序排队**。每臂固定30720个TRAIN48控制步；每对权重/Adam/RMS/RNG一致，五个actor互不重复。seed11的零PPO教师初始化基线已为24/24，不能把这个成绩归于本轮PPO训练。首个实际检查点核验320控制步、32决策、34个Adam状态各推进10次，RMS冻结。[运行证据](../reports/native_independent_outcome_cohort_started_20261104.json)、[冻结流程与命令](independent_outcome_cohort.md)。五个新策略完整训练和最终确认仍未完成。
 
+五种子B1配对队列已准备好，**正在等待当前H/H0队列完整结束，尚无新增B1原生训练**。五份保存优化配置一致，15组基础/TRAIN/验证输入预检通过。新增PPO窗口和共同教师交互量匹配，继承监督与历史开发消耗单列；实际学习后的基础驾驶合格检查仍待执行。[准备证据与边界](../reports/native_matched_flat_cohort_ready_20261104.json)、[运行流程](matched_flat_cohort.md)。
+
 动作对齐反馈配对实验已全部关闭：**H/H0实际训练控制10482/10489、各330次Adam更新**，初始权重/完整Adam/RNG/RMS一致，低层固定。两组在相同两个已知条件均 **2/2成功**，未显示新增反馈的完成率优势。H/H0评估控制911/1014、干预1/34、规划失败0/3；这些成本差异只是单种子探索性证据。H两场决策时失败历史均为空，不能声称新失败项在复测中直接纠正动作。[完整配对、实际成本与每场耗时分位数](../reports/native_outcome_context_pair_complete_20261104.json)。两组完整30摆放及24已知验证清单也已全部闭合，零新增PPO、零最终条件。
 
 新模型的本地端点包已从独立干净工作树实际重建：**619文件、911实测控制帧、92个静态NN决策及逐字节一致图表**，归一化冻结。[实际复现凭证](../reports/native_outcome_H_fresh_checkout_reproduction_20261104.json)。复用既有锁定环境，使用本地包，不冒称新增安装、下载、驾驶或新公开资产。[新旧冻结源码回放兼容核验](../reports/native_outcome_frozen_codec_compatibility_20261104.json)另列。

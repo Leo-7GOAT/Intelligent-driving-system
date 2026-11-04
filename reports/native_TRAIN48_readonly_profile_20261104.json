@@ -1,0 +1,631 @@
+{
+  "scope": "Nonblocking30second read-only samples of this task learner and bridge during current TRAIN48;not an isolated benchmark",
+  "research_acceptance": "UNMET",
+  "recorded_utc": "2026-11-04T11:46:16.907639+00:00",
+  "source_commit": "62d03aa16d497f0e8de3ea9e16afe42632dbdd0f",
+  "batch": "20261104_independent_outcome_seed11_H_TRAIN48_PPO30720",
+  "tool_version": "py-spy0.4.3",
+  "tool_manifest_sha256": "0481016a95e2bd45ca7b98439941188b1369e2acd0aaa17f233b3a5442d6cfe2",
+  "tool_installed_into_training_runtime": false,
+  "nonblocking": true,
+  "includes_idle": true,
+  "profiling_added_controls": 0,
+  "profiling_added_optimizer_updates": 0,
+  "training_code_unchanged": true,
+  "profiles": {
+    "learner": {
+      "raw_profile_sha256": "f2c375faf86cc0fc989b1edc0b81f0306b66bbdce2bd3875e59cbbd17e91c0f2",
+      "profiles": [
+        {
+          "thread": "Thread 16612 \"MainThread\"",
+          "sample_count": 1418,
+          "weight_seconds": 28.938775510203605,
+          "inclusive": [
+            {
+              "function": "run",
+              "file": "native_road_learning.py",
+              "inclusive_sample_percent": 99.15
+            },
+            {
+              "function": "OnPolicyAlgorithm.collect_rollouts",
+              "file": "on_policy_algorithm.py",
+              "inclusive_sample_percent": 99.15
+            },
+            {
+              "function": "<module>",
+              "file": "native_road_learning.py",
+              "inclusive_sample_percent": 99.15
+            },
+            {
+              "function": "PPO.learn",
+              "file": "ppo.py",
+              "inclusive_sample_percent": 99.15
+            },
+            {
+              "function": "OnPolicyAlgorithm.learn",
+              "file": "on_policy_algorithm.py",
+              "inclusive_sample_percent": 99.15
+            },
+            {
+              "function": "VecEnv.step",
+              "file": "base_vec_env.py",
+              "inclusive_sample_percent": 98.52
+            },
+            {
+              "function": "DummyVecEnv.step_wait",
+              "file": "dummy_vec_env.py",
+              "inclusive_sample_percent": 98.52
+            },
+            {
+              "function": "VecNormalize.step_wait",
+              "file": "vec_normalize.py",
+              "inclusive_sample_percent": 98.52
+            },
+            {
+              "function": "NavigationEnv.step",
+              "file": "env.py",
+              "inclusive_sample_percent": 97.53
+            },
+            {
+              "function": "OutcomeContextObservationMixin.step",
+              "file": "outcome_context_policy.py",
+              "inclusive_sample_percent": 97.53
+            },
+            {
+              "function": "configure.<locals>.prepare_option",
+              "file": "reference_option_commitment.py",
+              "inclusive_sample_percent": 80.75
+            },
+            {
+              "function": "CarlaNavigationEnv._prepare_reference",
+              "file": "carla_bridge.py",
+              "inclusive_sample_percent": 80.47
+            },
+            {
+              "function": "prepare_reference",
+              "file": "reference_road_refinement.py",
+              "inclusive_sample_percent": 80.47
+            },
+            {
+              "function": "prepare_reference",
+              "file": "steering_transition.py",
+              "inclusive_sample_percent": 76.94
+            },
+            {
+              "function": "CarlaNavigationEnv._prepare_reference.<locals>.<lambda>",
+              "file": "carla_bridge.py",
+              "inclusive_sample_percent": 76.94
+            },
+            {
+              "function": "NavigationEnv._prepare_reference",
+              "file": "env.py",
+              "inclusive_sample_percent": 76.66
+            },
+            {
+              "function": "ExactSteeringFailureMemo.plan",
+              "file": "planner_memo.py",
+              "inclusive_sample_percent": 75.67
+            },
+            {
+              "function": "prepare_reference.<locals>.Adapter.plan",
+              "file": "steering_transition.py",
+              "inclusive_sample_percent": 75.67
+            },
+            {
+              "function": "HybridAStar.plan",
+              "file": "planning.py",
+              "inclusive_sample_percent": 75.53
+            },
+            {
+              "function": "World.free_many",
+              "file": "world.py",
+              "inclusive_sample_percent": 62.76
+            },
+            {
+              "function": "ExactRoadBatch.intersects_many",
+              "file": "road_grid_batch.py",
+              "inclusive_sample_percent": 43.3
+            },
+            {
+              "function": "RoadGrid.rectangles",
+              "file": "road_grid.py",
+              "inclusive_sample_percent": 10.93
+            },
+            {
+              "function": "HybridAStar.plan.<locals>.<listcomp>",
+              "file": "planning.py",
+              "inclusive_sample_percent": 10.86
+            },
+            {
+              "function": "steering_transition_primitive",
+              "file": "planning.py",
+              "inclusive_sample_percent": 10.72
+            },
+            {
+              "function": "BridgeClient.exchange",
+              "file": "carla_bridge.py",
+              "inclusive_sample_percent": 7.33
+            },
+            {
+              "function": "BridgeClient.request",
+              "file": "carla_bridge.py",
+              "inclusive_sample_percent": 7.33
+            },
+            {
+              "function": "Condition.wait",
+              "file": "threading.py",
+              "inclusive_sample_percent": 7.26
+            },
+            {
+              "function": "Queue.get",
+              "file": "queue.py",
+              "inclusive_sample_percent": 7.26
+            },
+            {
+              "function": "World.risk",
+              "file": "world.py",
+              "inclusive_sample_percent": 5.78
+            },
+            {
+              "function": "OutcomeContextObservationMixin._observation",
+              "file": "outcome_context_policy.py",
+              "inclusive_sample_percent": 5.57
+            },
+            {
+              "function": "unique",
+              "file": "_arraysetops_impl.py",
+              "inclusive_sample_percent": 5.22
+            },
+            {
+              "function": "World.free",
+              "file": "world.py",
+              "inclusive_sample_percent": 4.65
+            }
+          ],
+          "leaf": [
+            {
+              "function": "World.free_many",
+              "file": "world.py",
+              "inclusive_sample_percent": 18.05
+            },
+            {
+              "function": "ExactRoadBatch.intersects_many",
+              "file": "road_grid_batch.py",
+              "inclusive_sample_percent": 17.07
+            },
+            {
+              "function": "Condition.wait",
+              "file": "threading.py",
+              "inclusive_sample_percent": 7.26
+            },
+            {
+              "function": "RoadGrid.rectangles",
+              "file": "road_grid.py",
+              "inclusive_sample_percent": 6.42
+            },
+            {
+              "function": "steering_transition_primitive",
+              "file": "planning.py",
+              "inclusive_sample_percent": 5.99
+            },
+            {
+              "function": "_amax",
+              "file": "_methods.py",
+              "inclusive_sample_percent": 3.67
+            },
+            {
+              "function": "_body_corners_many",
+              "file": "road_grid_batch.py",
+              "inclusive_sample_percent": 3.24
+            },
+            {
+              "function": "_unique1d",
+              "file": "_arraysetops_impl.py",
+              "inclusive_sample_percent": 3.1
+            },
+            {
+              "function": "AxisConcatenator.__getitem__",
+              "file": "_index_tricks_impl.py",
+              "inclusive_sample_percent": 2.54
+            },
+            {
+              "function": "_wrapfunc",
+              "file": "fromnumeric.py",
+              "inclusive_sample_percent": 2.33
+            },
+            {
+              "function": "RoadGrid.clearance",
+              "file": "road_grid.py",
+              "inclusive_sample_percent": 2.33
+            },
+            {
+              "function": "_all",
+              "file": "_methods.py",
+              "inclusive_sample_percent": 1.97
+            },
+            {
+              "function": "_amin",
+              "file": "_methods.py",
+              "inclusive_sample_percent": 1.97
+            },
+            {
+              "function": "norm",
+              "file": "_linalg.py",
+              "inclusive_sample_percent": 1.48
+            },
+            {
+              "function": "HybridAStar.plan",
+              "file": "planning.py",
+              "inclusive_sample_percent": 1.41
+            },
+            {
+              "function": "column_stack",
+              "file": "_shape_base_impl.py",
+              "inclusive_sample_percent": 1.2
+            },
+            {
+              "function": "array_equal",
+              "file": "numeric.py",
+              "inclusive_sample_percent": 1.06
+            },
+            {
+              "function": "body_corners",
+              "file": "world.py",
+              "inclusive_sample_percent": 0.92
+            },
+            {
+              "function": "cumsum",
+              "file": "fromnumeric.py",
+              "inclusive_sample_percent": 0.78
+            },
+            {
+              "function": "_wrapreduction_any_all",
+              "file": "fromnumeric.py",
+              "inclusive_sample_percent": 0.78
+            },
+            {
+              "function": "World.out_of_bounds",
+              "file": "world.py",
+              "inclusive_sample_percent": 0.78
+            },
+            {
+              "function": "World.risk",
+              "file": "world.py",
+              "inclusive_sample_percent": 0.78
+            },
+            {
+              "function": "stack",
+              "file": "shape_base.py",
+              "inclusive_sample_percent": 0.71
+            },
+            {
+              "function": "moveaxis",
+              "file": "numeric.py",
+              "inclusive_sample_percent": 0.71
+            },
+            {
+              "function": "ExactRoadBatch.intersects_many.<locals>.<listcomp>",
+              "file": "road_grid_batch.py",
+              "inclusive_sample_percent": 0.71
+            },
+            {
+              "function": "unique",
+              "file": "_arraysetops_impl.py",
+              "inclusive_sample_percent": 0.63
+            },
+            {
+              "function": "dubins_families",
+              "file": "dubins_guide.py",
+              "inclusive_sample_percent": 0.63
+            },
+            {
+              "function": "_clip",
+              "file": "_methods.py",
+              "inclusive_sample_percent": 0.63
+            },
+            {
+              "function": "HybridAStar.plan.<locals>.key",
+              "file": "planning.py",
+              "inclusive_sample_percent": 0.63
+            },
+            {
+              "function": "nonzero",
+              "file": "fromnumeric.py",
+              "inclusive_sample_percent": 0.56
+            },
+            {
+              "function": "normalize_axis_tuple",
+              "file": "numeric.py",
+              "inclusive_sample_percent": 0.42
+            },
+            {
+              "function": "clip",
+              "file": "fromnumeric.py",
+              "inclusive_sample_percent": 0.42
+            }
+          ]
+        },
+        {
+          "thread": "Thread 33744 \"Thread-5 (read)\"",
+          "sample_count": 1418,
+          "weight_seconds": 28.938775510203605,
+          "inclusive": [
+            {
+              "function": "Thread._bootstrap_inner",
+              "file": "threading.py",
+              "inclusive_sample_percent": 100.0
+            },
+            {
+              "function": "Thread.run",
+              "file": "threading.py",
+              "inclusive_sample_percent": 100.0
+            },
+            {
+              "function": "Thread._bootstrap",
+              "file": "threading.py",
+              "inclusive_sample_percent": 100.0
+            },
+            {
+              "function": "BridgeClient.__init__.<locals>.read",
+              "file": "carla_bridge.py",
+              "inclusive_sample_percent": 100.0
+            },
+            {
+              "function": "GzipFile.write",
+              "file": "gzip.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "loads",
+              "file": "__init__.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "JSONDecoder.raw_decode",
+              "file": "decoder.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "JSONDecoder.decode",
+              "file": "decoder.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "JSONEncoder.encode",
+              "file": "encoder.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "JSONEncoder.iterencode",
+              "file": "encoder.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "dumps",
+              "file": "__init__.py",
+              "inclusive_sample_percent": 0.07
+            }
+          ],
+          "leaf": [
+            {
+              "function": "BridgeClient.__init__.<locals>.read",
+              "file": "carla_bridge.py",
+              "inclusive_sample_percent": 99.79
+            },
+            {
+              "function": "GzipFile.write",
+              "file": "gzip.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "JSONDecoder.raw_decode",
+              "file": "decoder.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "JSONEncoder.iterencode",
+              "file": "encoder.py",
+              "inclusive_sample_percent": 0.07
+            }
+          ]
+        }
+      ]
+    },
+    "bridge37": {
+      "raw_profile_sha256": "4dbdc385f01b578596add7b31a0e6d74ab61eafc20ac0dc0cd9b551a7e26caf7",
+      "profiles": [
+        {
+          "thread": "Thread 31824 \"MainThread\"",
+          "sample_count": 1469,
+          "weight_seconds": 29.979591836734162,
+          "inclusive": [
+            {
+              "function": "<module>",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 100.0
+            },
+            {
+              "function": "execute",
+              "file": "bridge_protocol.py",
+              "inclusive_sample_percent": 6.88
+            },
+            {
+              "function": "handle",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 6.88
+            },
+            {
+              "function": "query_points",
+              "file": "reference_road_refinement.py",
+              "inclusive_sample_percent": 2.79
+            },
+            {
+              "function": "step",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 2.59
+            },
+            {
+              "function": "contains",
+              "file": "lane_projection.py",
+              "inclusive_sample_percent": 2.18
+            },
+            {
+              "function": "tick",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 1.16
+            },
+            {
+              "function": "read",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 0.82
+            },
+            {
+              "function": "deliver_vehicle_control",
+              "file": "carla_actuation.py",
+              "inclusive_sample_percent": 0.68
+            },
+            {
+              "function": "<listcomp>",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 0.48
+            },
+            {
+              "function": "begin",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 0.34
+            },
+            {
+              "function": "<listcomp>",
+              "file": "lane_projection.py",
+              "inclusive_sample_percent": 0.2
+            },
+            {
+              "function": "refined_lane_point",
+              "file": "lane_projection.py",
+              "inclusive_sample_percent": 0.2
+            },
+            {
+              "function": "inspect",
+              "file": "lane_projection.py",
+              "inclusive_sample_percent": 0.2
+            },
+            {
+              "function": "clear",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 0.2
+            },
+            {
+              "function": "footprint_points",
+              "file": "reference_road_refinement.py",
+              "inclusive_sample_percent": 0.2
+            },
+            {
+              "function": "<listcomp>",
+              "file": "reference_road_refinement.py",
+              "inclusive_sample_percent": 0.2
+            },
+            {
+              "function": "<lambda>",
+              "file": "lane_projection.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "encode",
+              "file": "encoder.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "dumps",
+              "file": "__init__.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "iterencode",
+              "file": "encoder.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "spawn_vehicle",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 0.07
+            }
+          ],
+          "leaf": [
+            {
+              "function": "<module>",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 93.06
+            },
+            {
+              "function": "contains",
+              "file": "lane_projection.py",
+              "inclusive_sample_percent": 1.97
+            },
+            {
+              "function": "tick",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 1.16
+            },
+            {
+              "function": "handle",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 1.16
+            },
+            {
+              "function": "deliver_vehicle_control",
+              "file": "carla_actuation.py",
+              "inclusive_sample_percent": 0.68
+            },
+            {
+              "function": "query_points",
+              "file": "reference_road_refinement.py",
+              "inclusive_sample_percent": 0.48
+            },
+            {
+              "function": "<listcomp>",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 0.48
+            },
+            {
+              "function": "read",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 0.27
+            },
+            {
+              "function": "clear",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 0.2
+            },
+            {
+              "function": "<listcomp>",
+              "file": "reference_road_refinement.py",
+              "inclusive_sample_percent": 0.2
+            },
+            {
+              "function": "refined_lane_point",
+              "file": "lane_projection.py",
+              "inclusive_sample_percent": 0.14
+            },
+            {
+              "function": "<lambda>",
+              "file": "lane_projection.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "iterencode",
+              "file": "encoder.py",
+              "inclusive_sample_percent": 0.07
+            },
+            {
+              "function": "spawn_vehicle",
+              "file": "carla_bridge37.py",
+              "inclusive_sample_percent": 0.07
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "inference": "In this window planning dominates learner stacks;road SAT batching is a substantial subcost.Bridge main mostly waits for requests,so current evidence prioritizes client collision computation over reinstalling or changing CARLA.",
+  "limits": "Inclusive fractions overlap and include wall waits.They are sampling shares,not additive exclusive CPUcosts or proof for all cases.Nonblocking reads may lose samples.Concurrent training continued consuming its own registered controls/updates.No collision tolerance,planner budget,weights or live source changed."
+}

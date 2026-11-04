@@ -1,3 +1,19 @@
+# 当前：2026-11-04 19:32 五种子B1已实际准备并进入只读等待；H训练继续
+
+本轮进展：scripts/run_matched_flat_cohort.py与测试/文档已实现并push60a6299。基于protocols/native_B1_all_five_actor_maturation_20261031.json的五个零PPO actor，所有原输入数据同SHA381519ab...、teacher4329controls、各2304继承监督更新/39189历史chargedcontrols。原recipe不一致：11已1280rollout/3e-6/σ=exp(-4)/FixedRewardUnits，其余4为320rollout/3e-4/σ=1/普通RoadNormalize。现在统一1280/320batch/10epochs/3e-6/KL.01/logstd=-4/固定PPO rewardscale.05；保留actor means/critic/RMS/原RNG（仅声明std改变），不做新监督。实体奖励不改，shared parking=True，全部navstack源码SHA同当前H frozen62d。H categorical端点mask不能直接用于连续B1，方法/flat_hold/endpointfilter是环境配置唯一差异。B1是20Hz连续加速度/转向，不是speed_target，H2Hz候选pose/speed；不同先验/计算费用要披露。
+
+实际产物：D:/ThesisNativeArchive_20261104/20261104_matched_flat_TRAIN48/registration.json、initializers/seed{11,22,33,44,55}、source、CPU_protocol_preflight.json。五个保存learner完整profile相同，继承TRAIN张量样本（含已披露counterfactual视图）约65个/seed的确定均值和值逐项相等；15个真实basic4/TRAIN48+64exposures/known24协议的config/signature均PASS。16项CPU回归PASS6.22s。代码60a已push，CI41820579188已SUCCESS：1413PASS/25skip/4CARLAexclude，371.90s。没有新B1车辆控制/梯度更新，不能称五个健康baseline。公开reports/native_matched_flat_cohort_ready_20261104.json及docs/matched_flat_cohort.md。
+
+B1等待进程已真实启动：工具session82008，base6828；通过OwnedProcess绑定H coordinator17884创建时间/EXE，allow_terminate=False。身份私有文件D:/ThesisNativeArchive_20261104/matched_flat_cohort_process_identities.json。status WAITING_FOR_OWNED_H_COHORT/new_native_jobs0。它会等H driver退出，并核验25个完整子作业正常cleanup和protocol SHA，才开始B1每seed zero_PPO basic4→30720TRAIN→basic4→known24，20nativejobs。所有seed不看成绩跳过，基础health仍原≥3/4且零unsafe。父H失败/退出缺完整证据则B1只读等待终止并留failure，不会启动新CARLA、不重启/killH。绝不能另启B1或改变其冻结source/registration；先核实同一进程。大工件D，GPU/RAM/磁盘仍每次native入场实测，4h/job/0retry/全局有限；不动未归属2100server。
+
+H原队列17884和native29968仍活跃，前台session53342，当前seed11_H_TRAIN48_PPO30720至少4746controls/14rollout，guardhealthy。各历史H/H0/B3全54、seed11新zeroPPO known24基线及初始化证明不重跑。native H低吞吐有实际数据：前8完整TRAIN回合7success+1deadline；失败回合900controls、84planfails，不能删。一次只读checkpoint诊断failure_gain=-.0013881（因此对负context给正logit偏置，不能宣称已学会抑制失败）；最后90决策28plan_failed，若干最后plan只显示9/17nodes但environment_decision35/41s，不能据末次节点数断言已知性能根因或忽略更早搜索/retiming/nativequery代价。当前固定预算实验仍运行，不手改gain、不换其冻结低层、不按中途成绩选择checkpoint。若4h资源窗口到期，先审计并恢复真实checkpoint/全部费用，不能把未满30720当完成。
+
+当前还缺真正的五独立闭合模型、健康B1公平结果、PPO/反馈实质收益及最终120新条件等，目标保持UNMET。两队列都用现有开发TRAIN/known24，无任何final生成或查看；所有public结论分清“已准备/等待/部分训练/完整闭合”。H新cohort冻结源码62d；root兼容修复679全CI1410PASS/25skip/4exclude已成功，其余实时状态用OS/guard与终态文件更新。
+
+只读采样已实际完成：D:/ThesisNativeArchive_20261104/seed11_readonly_sampling_30s，py-spy0.4.3从PyPI wheel解到D工具目录，未装进训练环境，--nonblocking/--idle/49Hz/30s，核验了29968与bridge9164创建时间及本batch命令行；两录制器均0退出，未停/改训练或追加控制。主线程1418样本28.94s：HybridAStar.plan inclusive75.53%、World.free_many62.76%、ExactRoadBatch.intersects_many43.30%、RoadGrid.rectangles10.93%、BridgeClient等待7.33%；bridge1469样本29.98s中模块stdin等待约93.1%。public reports/native_TRAIN48_readonly_profile_20261104.json只保留文件basename/函数/哈希，raw profiles留D。比例inclusive不可相加，不等于独占CPU耗时，也不能推广到全TRAIN。当前更有依据优先诊断road_grid_batch/road_grid碰撞计算，而不是重装CARLA。源码未改：ExactRoadBatch已有union SAT/大批次分箱/数值接触scalar fallback，后续若优化必须对原scalar/旧batch保持边界判定与轨迹一致，先做实际场景离线benchmark/回归，不能直接改当前冻结source或放宽1e-12碰撞容差。当前H训练有真实吞吐瓶颈，不能用最后一次9node掩盖整个决策周期35s；当前fixed30720/4h实验继续，达到资源上限时也不冒称完成。
+
+下面为此前接续记录；本段新状态优先。
+
 # 当前：2026-11-04 18:55 五独立种子新队列真实运行，seed11 H已产生PPO更新
 
 本轮是实际进展：新增并测试五seed H/H0新训练入口/配对初始化，全部原始独立actor已从各自canonical零PPO检查点30→34参数迁移；旧30参数和优化器超参数逐项核验，旧Adam为空，新34状态零缓冲语义等价，首次原参数Adam更新等价有单测。H/H0每对权重/完整Adam/RMS/RNG相同，仅H0新负失败分支关闭；五actor哈希不同。源62d03aa已push。额外监督0；继承teacher4329controls、各896监督更新，seed11额外旧初始化消耗总9243，其余4329，全部披露。不是从头无监督、不是五个已经训完的策略。
