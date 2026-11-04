@@ -1,3 +1,11 @@
+# 活动任务：2026-11-04 15:07 H真实训练，H0已入有界顺序队列
+
+唯一H训练协调器20928(basePython，creation15:03:38.068885)，wrapper26736，worker29016；身份outcome_feedback_H_base_coordinator_identity.json和batch/worker_process.json。batch D:/ThesisNativeArchive_20261104/20261104_outcome_context_PPO10240_H，execution20261104_outcome_context_PPO10240_execution_H。最近876真实控制/88决策/2rollout，非终态，最终以raw/engine/34Adam/RNG/RMS证明为准。source b94c1ae已push；模型首320检查点ddded865，10Adam，不能据训练成功称冻结任务改进。
+
+H0已准备，禁止手动再启动：D:/ThesisNativeArchive_20261104/run_outcome_pair_sequential_queue.py于15:06:56实际启动(wrapper23776，base见outcome_pair_queue_process_identities.json)，只持20928创建时间+exe核验的只读OwnedProcess句柄，H课程+same2端点全审计成功且退出后，自动启动20261104_outcome_context_PPO10240_H0/执行20261104_outcome_context_PPO10240_execution_H0。队列状态20261104_outcome_pair_sequential_queue/status.json，单次、0retry、4.5h依赖等待/每课程4h上限；失败保留failure.json。不杀不匹配进程，不删除锁，不并发CARLA。检查队列和OS再继续，不重开同批。
+
+最终完整CPU session99269已DONE0：1411PASS/1SKIP/4CARLA DESELECT/258.91s，XML outcome_pair_full_CPU.xml；无需重跑。18专项通过也已保留。最终配对协议outcome_feedback_paired_protocol_registration.json，初始化权重/完整Adam/RMS/RNG完全一致，两组147状态概率和值完全一致。H0仅屏蔽新增负反馈，保留旧反馈。只有一个continued seed22、known[21,27]，不算2seed。最终120未生成/查看，验收UNMET。跟至两组终态并运行summarize_fixed_lowlevel_adaptation.py分别闭合，再比较结果，不能重复旧课程或凭小样本扩5seed。
+
 # 当前接续：2026-11-04 最终H/H0配对初始化已核验，立即启动顺序原生训练
 
 最终源码新增failure-only消融outcome_ablated：H0保留旧reuse/几何/执行反馈，仅屏蔽新增负context的actor与critic分支。两组所有权重、完整Adam、RNG与normalizer逐项一致；分别在原两场全部147真实决策证明概率向量与价值完全相同。最终initializer为D:/ThesisNativeArchive_20261104/20261104_outcome_feedback_initializer_H和_H0，证明outcome_feedback_H_all147_equivalence.json与outcome_feedback_H0_all147_equivalence.json，配对登记outcome_feedback_paired_initialization.json。此前history_initializer不再用于新训练，原证据保留。

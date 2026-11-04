@@ -23,10 +23,18 @@
       "passed": 18,
       "seconds": 19.78,
       "evidence": "outcome_pair_final_tests.xml"
+    },
+    "full_CPU_final_pair": {
+      "passed": 1411,
+      "skipped": 1,
+      "carla_deselected": 4,
+      "seconds": 258.91,
+      "evidence": "outcome_pair_full_CPU.xml",
+      "sha256": "1b85645d4251d4e8acdf68694dbc5c2dfad58294005f423cd3caeb4c2d2df31b"
     }
   },
-  "native_learning": "PAIR_INITIALIZATION_VERIFIED_NOT_YET_STARTED",
-  "limits": "No learned benefit established.New pair is one development seed,not two independent seeds.Final120 unseen conditions remain unopened.Full CPU suite currently running;older1402 result does not cover this new source.",
+  "native_learning": "H_RUNNING_H0_REGISTERED_IN_BOUNDED_SEQUENTIAL_QUEUE",
+  "limits": "No learned benefit established.Outcome-feedback pair is one development seed,not two independent seeds.Final120 unseen conditions remain unopened.H running status is provisional;course raw/Adam/RNG/RMS and frozen endpoint audits must close before any learned result.",
   "paired_initialization": {
     "parameters_exact": true,
     "full_Adam_exact": true,
@@ -105,5 +113,13 @@
       "new_updates": 0
     }
   },
-  "comparison": "Same continued seed22;10240 requested native controls each(+up to319 rollout overshoot);same fixed lowlevel.H0 disables only new failed-action actor/critic context;old feedback retained.Sequential CARLA instances,no automatic retries."
+  "comparison": "Same continued seed22;10240 requested native controls each(+up to319 rollout overshoot);same fixed lowlevel.H0 disables only new failed-action actor/critic context;old feedback retained.Sequential CARLA instances,no automatic retries.",
+  "source_git_commit": "b94c1ae",
+  "queue": {
+    "registration": "20261104_outcome_pair_sequential_queue/registration.json",
+    "status": "20261104_outcome_pair_sequential_queue/status.json",
+    "script": "run_outcome_pair_sequential_queue.py",
+    "failure_retries": 0,
+    "starts_H0_only_after_H_training_and_endpoint_fully_audited": true
+  }
 }
