@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "research_acceptance": "UNMET",
+  "reason": "external_process_loss_cause_unknown",
+  "parent": "20261104_independent_outcome_seed22_H_TRAIN48_PPO30720",
+  "batch": "20261105_independent_outcome_seed22_H_recovered_TRAIN48",
+  "protocol_sha256": "2225061c10d42dfaf51b17743a99a651b7d7efc269b18900114d8fae91aa85ce",
+  "budget": {
+    "version": "saved_outcome_cohort_recovery_v1",
+    "original_target": 30720,
+    "saved_controls": 12660,
+    "parent_protocol_sha256": "9e31292d3d5fd7a84d53b2d3dba56a6471cdebd049536a2743ad66e5fc275efc",
+    "interruption_audit_sha256": "c8d086b9fc8032f74e4bfc982501229dac7f59105e6cf4c8e5227d1aebc68812"
+  },
+  "accounting": {
+    "reason": "external_process_loss_cause_unknown",
+    "readable_parent_controls": 12780,
+    "retained_parent_controls": 12660,
+    "discarded_readable_tail": 120,
+    "uncertainty": "Unflushed tail remains unknown;all parent costs retained as lower bounds. Not exact uninterrupted or exact matched-interaction evidence."
+  },
+  "recovery": {
+    "H": {
+      "checkpoint": "resume/H",
+      "parent_batch": "20261104_independent_outcome_seed22_H_TRAIN48_PPO30720",
+      "parent_checkpoint": "checkpoint_000012480",
+      "lineage_controls": 12660,
+      "consumed_controls_lower_bound": 17109,
+      "retained_optimizer_steps": 400,
+      "unknown_unflushed_parent_tail": true,
+      "model_sha256": "9c5b73c4c103d1ac4e3ea0befdd05e296af0910e3944d228d00314e28498fb6c",
+      "normalization_sha256": "42ab8c3d0b0c6c65040c3e1f19c9f8b5cda5c961967717dcb62f1d38c3c7dccb"
+    }
+  },
+  "resumed_update_proof": {
+    "actual_initial_parameters_Adam_Torch_RNG_exact": true,
+    "all34_Adam_advance": 30,
+    "actual_new_controls": 947,
+    "model_parameters_changed": true,
+    "protocol_sha256": "2225061c10d42dfaf51b17743a99a651b7d7efc269b18900114d8fae91aa85ce",
+    "checkpoint": "checkpoint_000000640"
+  },
+  "source_overlay": {
+    "navstack/fixed_lowlevel_training.py": "1efe931c8f23c0d01c00f16803237e02b466650a3208f0ce0834d03916697b4b"
+  },
+  "preserved_completed_native_jobs": 6,
+  "independent_completed_pairs": 1,
+  "final_new_conditions": 0,
+  "local_regression": {
+    "recovery_related": 15,
+    "cohort_related": 7,
+    "counts_overlap": true
+  },
+  "prior_delivery": {
+    "main_commit": "f28dafa868c64b9d99e59ff101c76a2ef460ecd6",
+    "pull_request": "https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/2",
+    "cpu_CI": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41852963673",
+    "CPU_passed": 1417
+  },
+  "grid_deployment": {
+    "status": "PREPARED_NOT_NATIVE_EXECUTED",
+    "source_commit": "e1e032c33e03612ad35577d45ed30872048d77ba",
+    "source_files": 501,
+    "preflight": {
+      "status": "PASS",
+      "scope": "One recorded static start;actual frozen model/schema restore and Grid-selected reference preparation only;no CARLA query or vehicle integration",
+      "batch": "20261104_seed11_shared_native_Grid_known24",
+      "protocol_sha256": "f80850bdcd42d17e6e1d98566a9f19de061212cfaaef5cdc8c93633de5642f92",
+      "source_files": 501,
+      "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+      "normalization_sha256": "4be6505a00d509fce571b9e746055b04c0c87778f04aa75542bf20d8a9055170",
+      "source_scene_sha256": "8a738e4efb6b75d35ec770ddc0eb25d3fd3ac90977820c260c58cafce0d0fe97",
+      "observation_shape": [
+        4736
+      ],
+      "policy_action": 26,
+      "reference_mode": "reference",
+      "detail": {
+        "status": "success",
+        "expanded_nodes": 184,
+        "cost": 24.89656265270896,
+        "planning_time": 1.031668700001319,
+        "failure_reason": null,
+        "terminal_goal_prefix": true,
+        "steering_transition": {
+          "version": "measured_steering_slew_32000_memo_v2",
+          "initial_steering": -0.0,
+          "speed_ceiling": 1.5,
+          "analytic_connections": false,
+          "exact_failure_memo": false,
+          "max_nodes": 32000,
+          "exact_success_cache": false,
+          "spatial_planner": {
+            "version": "frozen_grid_body_spline_transfer_v1",
+            "max_nodes": 32000,
+            "grid_postprocess": "body_spline_v1"
+          },
+          "measured_steering_in_spatial_search": false,
+          "measured_steering_in_shared_retimer": true,
+          "joint_speed": {
+            "version": "measured_steering_rate_retiming_v2",
+            "spatial_speed_ceiling": 0.25
+          }
+        },
+        "joint_speed_search": {
+          "attempts": [
+            {
+              "speed_ceiling": 1.5,
+              "status": "success",
+              "expanded_nodes": 184,
+              "planning_time": 1.031668700001319,
+              "cache_hit": false
+            }
+          ],
+          "total_expanded_nodes": 184
+        }
+      },
+      "policy_and_full_Adam_unchanged": true,
+      "new_controls": 0,
+      "new_optimizer_steps": 0,
+      "native_runtime_complete": false
+    },
+    "cpu_CI": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41854253961",
+    "CPU_passed": 1431
+  },
+  "limitations": [
+    "Recovered learner is not a new seed",
+    "Unflushed parent tail unknown;no exact matched-budget claim",
+    "One recorded-start Grid preparation is not CARLA driving",
+    "No PPO contribution or independent final-confirmation claim"
+  ]
+}

@@ -219,14 +219,22 @@ def stage(output,row,phase,checkpoint):
     return batch
 
 
-def run(output):
+def run(output,resume_dependency=None):
     import numpy as np
     import torch
     from navstack.owned_process import OwnedProcess
     from navstack.independent_clip_ppo import load_ppo
     from scripts.collect_native_recovery import tensor_digest
     from scripts.run_native_basic_motion_ppo_cohort import basic_qualification
-    output=Path(output).resolve();plan=read(output/'registration.json');execution=output/'execution';execution.mkdir()
+    output=Path(output).resolve();plan=read(output/'registration.json')
+    execution=output/('execution_resume_20261105' if resume_dependency else 'execution');execution.mkdir()
+    if resume_dependency:
+        if any((output.parent/f'20261104_matched_flat_seed{seed}_{phase}').exists()
+               for seed in SEEDS for phase in ('zero_PPO_basic','TRAIN48_PPO30720','basic','known24')):
+            raise ValueError('This observer recovery requires zero previous native B1 jobs')
+        plan['dependency_identity']=read(Path(resume_dependency))
+        atomic_json(execution/'dependency_recovery.json',dict(identity=plan['dependency_identity'],
+            original_registration_sha256=sha(output/'registration.json'),physical_or_policy_changes=0))
     h=Path(plan['h_cohort']);owner=None;torch.set_num_threads(1)
     def status(phase,**values):atomic_json(execution/'status.json',dict(phase=phase,pid=os.getpid(),epoch=time.time(),**values))
     def call(command,label,timeout=1800,env=None):
@@ -298,6 +306,6 @@ def run(output):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('phase',choices=('prepare','run'))
-    p.add_argument('--output',required=True);p.add_argument('--h-cohort');args=p.parse_args()
+    p.add_argument('--output',required=True);p.add_argument('--h-cohort');p.add_argument('--resume-dependency');args=p.parse_args()
     if args.phase=='prepare':prepare(args.output,args.h_cohort)
-    else:run(args.output)
+    else:run(args.output,args.resume_dependency)

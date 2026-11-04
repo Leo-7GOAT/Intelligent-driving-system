@@ -31,12 +31,26 @@ def registered(protocol):
     elif registration==REGISTRATION:
         features=protocol.get('reference_joint_speed') is None and protocol.get('reference_point_constraints') is None
     else:return False
+    segment_budget=budget
+    recovery=protocol.get('fixed_cohort_recovery')
+    if recovery is not None:
+        prior=protocol.get('recovery',{}).get('H',{})
+        if (registration!=REGISTRATION_COHORT or not isinstance(recovery,dict)
+                or set(recovery)!={'version','original_target','saved_controls','parent_protocol_sha256','interruption_audit_sha256'}
+                or recovery.get('version')!='saved_outcome_cohort_recovery_v1'
+                or type(recovery.get('original_target')) is not int or recovery['original_target']!=budget
+                or type(recovery.get('saved_controls')) is not int or not 0<recovery['saved_controls']<budget
+                or prior.get('lineage_controls')!=recovery['saved_controls']
+                or any(not isinstance(recovery.get(k),str) or len(recovery[k])!=64
+                    or any(c not in '0123456789abcdef' for c in recovery[k])
+                    for k in ('parent_protocol_sha256','interruption_audit_sha256'))):return False
+        segment_budget=budget-recovery['saved_controls']
     return (features and protocol.get('evaluation_only') is False
         and type(protocol.get('fixed_lowlevel_training',{}).get('new_controls')) is int
         and protocol.get('methods')==['H']
         and type(protocol.get('controlled_budget_per_method')) is int
-        and protocol.get('controlled_budget_per_method')==budget
-        and protocol.get('method_budgets')=={'H':budget}
+        and protocol.get('controlled_budget_per_method')==segment_budget
+        and protocol.get('method_budgets')=={'H':segment_budget}
         and type(protocol.get('method_budgets',{}).get('H')) is int
         and protocol.get('freeze_observation_statistics') is True
         and protocol.get('record_initial_parameters') is True

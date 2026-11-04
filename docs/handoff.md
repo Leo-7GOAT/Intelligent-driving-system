@@ -1,4 +1,12 @@
-# 当前：2026-11-04 22:45 首个seed11独立配对闭合，seed22 H真实训练，准备默认main开发交付
+# 当前：2026-11-05 07:49 外部进程丢失已验证，seed22保留状态恢复真实学习
+
+原17884/33408/6828及全部CARLA进程已不存在，昨晚23:10后无新完成作业；不能再称它们live，原因未知、不写成重启或成功夜跑。seed22原始interruption_audit保留gzip EOF，readable12780controls/saved12660/400Adam，120未保存交互与unknown unflushed tail计费不抹去。原批次/六个已闭合作业不重跑。新恢复批次20261105_independent_outcome_seed22_H_recovered_TRAIN48，剩余18060lineagecontrols；只覆盖fixed_lowlevel_training.registered admission，旧物理/PPO/观测/MPC/规划源码保持原字节。新driver32508 creation07:45:23.250311，worker33900 creation07:45:45.782479，guard33148；工具session44378。首保存947controls/34Adam全部+30/实际初始参数与完整Adam/Torch RNG exact，训练已真实继续。新execution_resume_20261105有独立registration与logs，继续原未完成阶段并回填原completion接口；勿重启此driver。
+
+B1原observer已退出，新的只读observer4100/tool39552已开，identity文件independent_outcome_resumed_owner_20261105.json对应32508；等待全25jobs闭合，无新B1native。新B1执行日志execution_resume_20261105。未来核对OS/worker_process/guard再采用上述PID，绝不只信status文件。
+
+GitHub PR2已正常merge为main f28dafa868c64b9d99e59ff101c76a2ef460ecd6，CI41852963673 SUCCESS1417/25/4/367.94s。新的B2真实Grid入口代码e1e032c已push，CI41854253961 SUCCESS1431/25/4/170.44s；本地32专项及55关联（重复覆盖不相加）通过。新B2批次20261104_seed11_shared_native_Grid_known24实际准备/501files ValidateOnly/实际旧记录首pose模型加载+Grid184nodes+共同retimer参考成功；0新native/updates，不能声称B2驾驶已闭合。原D/preflight_shared_grid_as_executed.py与offline_preflight.json保留。正式B2仍待原队列资源。新增恢复相关15tests及7关联PASS，不合计唯一22。最终120仍未生成/查看，研究UNMET。详见docs/independent_cohort_recovery.md与新报告。
+
+# 历史：2026-11-04 22:45 首个seed11独立配对闭合，seed22 H真实训练，准备默认main开发交付
 
 当前本轮实际进展：B2节点预算bug已修复/公开ad261ef，完整CI8bec1417PASS；首seed11 H/H0训练与known24两组也已全部正常闭合，新的reports/native_independent_outcome_seed11_pair_complete_20261104.json保留所有数据与成本。H30773controls/970Adam/65完整TRAIN=58success+7deadline/66reset/2045resetTicks/7866.8849s，H030752/970Adam/67完整=62success+5deadline/68reset/2107resetTicks/4063.2701s。两组48条件都实际有control，末未完段不算success；H/H0实际初始fp整个dict、初始norm bytes及完整保存RNG语义digest都相同，移除分支仅新的负failure actor/critic，旧ref正反馈/几何反馈保留。完整saved-state proof34Adam各+970/RMS冻结/实际torch RNG与初始化精确；H0failure两坐标0由原cohort关闭代码核验。
 
