@@ -28,6 +28,8 @@ class BridgeClient:
         self.reference_steering_transition=steering_settings(protocol)
         from .reference_option_commitment import settings as option_settings
         self.reference_option_commitment=option_settings(protocol)
+        from .mpc_reference_effort import settings as effort_settings
+        self.mpc_reference_effort=effort_settings(protocol)
         rpc_host=protocol.get("carla_rpc_host","127.0.0.1")
         rpc_port=protocol.get("carla_rpc_port",2000)
         if not isinstance(rpc_host,str) or not rpc_host or any(c.isspace() for c in rpc_host):
@@ -162,6 +164,11 @@ class BridgePlant:
 
 
 class CarlaNavigationEnv(NavigationEnv):
+    def reset(self,*args,**kwargs):
+        result=super().reset(*args,**kwargs)
+        self.controller.reference_centered_effort=getattr(self.client,'mpc_reference_effort',False)
+        return result
+
     def _prepare_reference(self,action):
         from .steering_transition import prepare_reference as steering_prepare
         steering=getattr(self.client,'reference_steering_transition',None)

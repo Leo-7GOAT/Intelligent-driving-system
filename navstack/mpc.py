@@ -17,8 +17,10 @@ class ControlResult:
 
 
 class MPC:
-    def __init__(self, vehicle, dt=0.05, horizon=20):
+    def __init__(self, vehicle, dt=0.05, horizon=20, reference_centered_effort=False):
+        if type(reference_centered_effort) is not bool:raise ValueError('Explicit MPC effort-centering boolean required')
         self.vehicle, self.dt, self.horizon = vehicle, dt, horizon
+        self.reference_centered_effort=reference_centered_effort
         self.solver = None
         self.pattern = None
         self.solution = None
@@ -64,6 +66,12 @@ class MPC:
         for k in range(n):
             sl = slice(nx + 2 * k, nx + 2 * k + 2)
             P[sl, sl] += np.diag(2 * (rweight + rd))
+            if self.reference_centered_effort:
+                elapsed=state.time+k*dt-reference.start_time
+                acceleration=float(np.interp(elapsed,reference.t,reference.a))
+                curvature=float(np.interp(elapsed,reference.t,reference.kappa))
+                steering=float(np.clip(math.atan(c.wheelbase*curvature),-c.max_steer,c.max_steer))
+                q[sl]-=2*rweight*np.array([acceleration,steering])
             if k == 0:
                 q[sl] -= 2 * rd * prev
             else:
@@ -204,5 +212,6 @@ class MPC:
                 "control_seconds": time.perf_counter() - started,
                 "constraint_violation": violation,
                 "objective": float(answer.info.obj_val),
+                **({'reference_centered_effort':True} if self.reference_centered_effort else {}),
             },
         )

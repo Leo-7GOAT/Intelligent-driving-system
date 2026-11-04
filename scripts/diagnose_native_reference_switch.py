@@ -67,6 +67,8 @@ def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False,inspect_r
             action=int(row['policy_action']);old=env._reference_selection
             selected=None if action==0 else env.decode_action(action)
             reusable=old is not None and env.reusable_reference(*old)
+            from navstack.trajectory import tracking_error
+            tracking_before=tracking_error(env.state,env.reference)
             inference={}
             if inspect_policy:
                 context=reference_candidate_context(env)
@@ -101,9 +103,10 @@ def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False,inspect_r
                         finally:env._execution_feedback=feedback
             recorded=row['info']['plan']
             owner=env.world
-            if protocol.get('reference_road_refinement') and recorded and recorded['status']=='success':
+            if protocol.get('reference_road_refinement') and recorded and (recorded['status']=='success' or protocol.get('reference_point_constraints')):
                 from navstack.reference_road_refinement import planning_view
-                env.world=planning_view(owner,recorded['road_refinement']['cells'])
+                points=recorded['road_refinement']['point_constraints']['points'] if protocol.get('reference_point_constraints') else None
+                env.world=planning_view(owner,recorded['road_refinement']['cells'],points)
             try:
                 if protocol.get('reference_steering_transition'):
                     from navstack.steering_transition import prepare_reference,settings
@@ -116,6 +119,7 @@ def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False,inspect_r
                 raise ValueError('Reconstructed search differs from its recorded result')
             events.append(dict(decision=index,action=action,previous_selection=old,new_selection=selected,
                 previous_reference_still_reusable=bool(reusable),switched_selection=old is not None and selected!=old,
+                reference_tracking_before=tracking_before,
                 recorded_mode=row['info']['mode'],reconstructed_prepare_mode=mode,
                 recorded_plan_status=None if recorded is None else recorded['status'],
                 measured_time=env.state.time,**inference))

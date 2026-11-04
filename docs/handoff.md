@@ -1,4 +1,16 @@
-# 当前接续：2026-11-04 14:00 固定点约束低层PPO正在真实更新，禁止重复启动
+# 当前接续：2026-11-04 14:19 点约束PPO课程已闭合；MPC参考中心代价两场对照运行
+
+5438实际训练控制/544决策/17rollout/170Adam已正常关闭，5654worldticks=5438+216reset；32Adam均推进170、全部初始化参数/完整Adam/RNG一致、RMS mean/var/count精确冻结。6完整随机训练回合1success/5deadline，最后未完整回合不计成功。source d16cf45，model13e5fa1e→6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e，gain-.0005996→+.0001183888。原5120execution/complete.json存在，28696/21740/endpoint27392已退出，不得重跑课程。
+
+冻结same2端点及raw/95NN/engine均完成：原21 success487/0interventions/0planfail，原27 out_of_bounds460/10interventions/1planfail。训练前0/2且0unsafe→训练后1/2且1unsafe，安全退化，不能宣称达标或稳定学习优势。端点947controls，训练+before1800+after947=8185本比较实际控制。完整报告reports/native_exact_point_PPO5120_complete_20261104.json；scripts/summarize_fixed_lowlevel_adaptation.py验证闭合hash/模型/任务及同低层AST，仅注册门限允许不同，可由原始记录重建。新只读诊断exact_point_case21_policy_switch_diagnosis.json重建10个NN精确，decision9放弃仍reusable参考，lat.18497/yaw-.0315/context26，换action30→no_path；并非只能归因旧参考失效。
+
+新MPC试验有明确单改动：原QP R项以0acceleration/0steering为中心，对非零转弯产生偏差。navstack/mpc.py新增默认False的reference_centered_effort bool，True仅把同R项线性中心移到同reference.a与atan(L*kappa)前馈，weights/limits/QP容差不变。2个恒定转弯/直线平衡解析测试PASS，15个专项PASS。mpc_reference_effort_v1门限仅允许point/joint冻结评估，不能用旧训练登记训练新控制器。CarlaNavigationEnv.reset每个新episode应用client显式开关，默认False行为不变。新增公开reports/native_mpc_reference_effort_transfer_20261104.json尚未有结果。
+
+当前唯一原生作业 D:/ThesisNativeArchive_20261104/20261104_mpc_reference_effort_H_same2_transfer，execution20261104_mpc_reference_effort_same2_execution；协调器32888 creation14:16:48.749075(basePy311，venv29164)，worker32960，身份D:/ThesisNativeArchive_20261104/mpc_reference_effort_coordinator_identity.json。模型6e885fd6冻结，相同[21,27]，零PPO/零新条件，native后自动raw/startNN/allstaticNN/engine。跟进真实终态，勿重复启动、勿在结果前扩展seed或低层变体。
+
+新MPC/bridge reset源码全CPU exec session76997正在运行，basetemp D:/ThesisNativeArchive_20261104/pytest_mpc_reference_effort_full_CPU，XML mpc_reference_effort_full_CPU.xml；不能把旧1399当新MPC通过，不重跑全套。等待这两项关闭再做完整报告/决定保留。所有版本负结果不改分，最终120未生成/查看，验收UNMET。
+
+# 历史接续：2026-11-04 14:00 固定点约束PPO（现已闭合）
 
 唯一原生课程 D:/ThesisNativeArchive_20261104/20261104_exact_point_PPO5120_H 已从source commit d16cf45准备并启动，execution20261104_exact_point_PPO5120_execution。实际协调器28696 creation13:58:09.008901(basePy311)，venv14140；worker21740 creation_epoch1793771900.915，身份文件batch/worker_process.json和D:/ThesisNativeArchive_20261104/exact_point_PPO5120_coordinator_identity.json。必须先核实OS/status/heartbeat，禁止重复启动或重跑已完成5396旧课程。
 
