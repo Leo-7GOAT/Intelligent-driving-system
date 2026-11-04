@@ -267,7 +267,7 @@ def stage(cohort, archive, row, method, label, *, training, checkpoint):
     return output
 
 
-def learning_proof(batch):
+def learning_proof(batch, expected_budget=BUDGET):
     import numpy as np
     import torch
     from navstack.independent_clip_ppo import load_ppo
@@ -275,7 +275,7 @@ def learning_proof(batch):
     before = load_ppo(batch/'resume/H/model.zip',device='cpu')
     after = load_ppo(batch/'H/model.zip',device='cpu'); s = read(batch/'H/summary.json')
     fp = read(batch/'H/initial_parameter_fingerprints.json')
-    if (not BUDGET <= s['physics_steps'] < BUDGET+320 or s['stopped_reason'] is not None
+    if (not expected_budget <= s['physics_steps'] < expected_budget+320 or s['stopped_reason'] is not None
             or after.num_timesteps-before.num_timesteps != s['actions']
             or fp['parameters'] != {n:hashlib.sha256(v.cpu().numpy().tobytes()).hexdigest() for n,v in before.policy.state_dict().items()}
             or fp['optimizer_sha256'] != tensor_digest(before.policy.optimizer.state_dict())):
@@ -306,9 +306,16 @@ def learning_proof(batch):
         new_supervision=0,model_sha256=sha(batch/'H/model.zip'),summary=s)
 
 
-def run(cohort, archive):
+def run(cohort, archive, recovery_batch=None):
     cohort, archive = Path(cohort).resolve(), Path(archive).resolve()
-    plan = read(cohort/'registration.json'); execution = cohort/'execution'; execution.mkdir()
+    plan = read(cohort/'registration.json'); original_execution = cohort/'execution'
+    execution = cohort/('execution_resume_20261105' if recovery_batch else 'execution'); execution.mkdir()
+    def completed(label):
+        marker=original_execution/(label+'_complete.json')
+        if not recovery_batch or not marker.exists():return False
+        receipt=read(marker); batch=archive/receipt['batch'];require_finished_parent(batch)
+        if sha(batch/'protocol.json')!=receipt['protocol_sha256']:raise ValueError('Completed job changed')
+        return True
     from navstack.independent_clip_ppo import load_ppo
     import torch
     torch.set_num_threads(1)
@@ -339,7 +346,7 @@ def run(cohort, archive):
                 '--output',batch/'training_only_raw_audit.json'],label+'_raw',env)
             call([sys.executable,cohort/'source/scripts/audit_native_training_schedule.py','--batch',batch,
                 '--output',batch/'training_schedule_audit.json'],label+'_schedule',env)
-            atomic_json(batch/'H/saved_learning_proof.json',learning_proof(batch))
+            atomic_json(batch/'H/saved_learning_proof.json',learning_proof(batch,read(batch/'protocol.json')['method_budgets']['H']))
             expected_controls=read(batch/'H/summary.json')['physics_steps']
         else:
             call([sys.executable,cohort/'source/scripts/audit_native_method_endpoint.py','--batch',batch,
@@ -355,19 +362,36 @@ def run(cohort, archive):
             raise ValueError('Engine control count differs from the complete phase')
         atomic_json(execution/(label+'_complete.json'),dict(batch=batch.name,
             protocol_sha256=sha(batch/'protocol.json'),training=training))
+        if recovery_batch:
+            marker=original_execution/(label+'_complete.json')
+            if marker.exists():raise FileExistsError('Do not replace completed evidence')
+            atomic_json(marker,read(execution/(label+'_complete.json')))
     try:
         for row in plan['initializer_results']:
             seed = row['seed']; checkpoint = cohort/row['arms']['H']['path']
-            baseline = stage(cohort,archive,row,'H','zero_PPO_known24',training=False,checkpoint=checkpoint)
-            execute(baseline,f'seed{seed}_baseline',False)
+            if not completed(f'seed{seed}_baseline'):
+                baseline = stage(cohort,archive,row,'H','zero_PPO_known24',training=False,checkpoint=checkpoint)
+                execute(baseline,f'seed{seed}_baseline',False)
             for method in ('H','H0'):
                 initial = cohort/row['arms'][method]['path']
-                training = stage(cohort,archive,row,method,method+'_TRAIN48_PPO30720',training=True,checkpoint=initial)
-                execute(training,f'seed{seed}_{method}_training',True)
+                training_label=f'seed{seed}_{method}_training'
+                if completed(training_label):
+                    training=archive/read(original_execution/(training_label+'_complete.json'))['batch']
+                else:
+                    if recovery_batch and seed==22 and method=='H':training=Path(recovery_batch)
+                    else:training = stage(cohort,archive,row,method,method+'_TRAIN48_PPO30720',training=True,checkpoint=initial)
+                    execute(training,training_label,True)
                 checkpoint = training/'H'/read(training/'H/latest_checkpoint.json')['folder']
-                endpoint = stage(cohort,archive,row,method,method+'_known24',training=False,checkpoint=checkpoint)
-                execute(endpoint,f'seed{seed}_{method}_endpoint',False)
+                if not completed(f'seed{seed}_{method}_endpoint'):
+                    endpoint = stage(cohort,archive,row,method,method+'_known24',training=False,checkpoint=checkpoint)
+                    if read(training/'protocol.json').get('fixed_cohort_recovery'):
+                        ep=read(endpoint/'protocol.json')
+                        ep['recovery']['H']['retained_optimizer_steps']+=read(training/'protocol.json')['recovery']['H']['retained_optimizer_steps']
+                        atomic_json(endpoint/'protocol.json',ep)
+                        atomic_json(endpoint/'prepared.json',dict(status='PREPARED_NOT_STARTED',protocol_sha256=sha(endpoint/'protocol.json')))
+                    execute(endpoint,f'seed{seed}_{method}_endpoint',False)
         atomic_json(execution/'complete.json',dict(seeds=list(SEEDS),status='ALL_REGISTERED_JOBS_CLOSED',research_acceptance='UNMET'))
+        if recovery_batch:atomic_json(original_execution/'complete.json',read(execution/'complete.json'))
     except BaseException as error:
         atomic_json(execution/'failure.json',dict(error=repr(error),epoch=time.time())); raise
 
@@ -375,5 +399,6 @@ def run(cohort, archive):
 if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('phase',choices=('prepare','run')); parser.add_argument('--cohort',required=True)
-    parser.add_argument('--archive',required=True); args=parser.parse_args()
-    (prepare if args.phase=='prepare' else run)(args.cohort,args.archive)
+    parser.add_argument('--archive',required=True);parser.add_argument('--recovery-batch'); args=parser.parse_args()
+    if args.phase=='prepare':prepare(args.cohort,args.archive)
+    else:run(args.cohort,args.archive,args.recovery_batch)
