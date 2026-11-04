@@ -84,6 +84,9 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
         env.world.road_collision_backend=cfg.road_collision_backend
         env.reference=None;env._reference_selection=None;env._rule_plan_cache=None
         env.episode=dict(plan_times=[],plan_failures=0)
+        if p.get('reference_option_commitment'):
+            from navstack.reference_option_commitment import configure,settings as option_settings
+            configure(env,option_settings(p))
         refinement_cells=set()
         counts=0
         try:
@@ -118,6 +121,8 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
                         finally:env.world=owner
                         if detail.get('steering_transition')!=recorded.get('steering_transition'):
                             raise ValueError('Measured steering transition differs')
+                        if detail.get('reference_option_commitment')!=recorded.get('reference_option_commitment'):
+                            raise ValueError('Selected option persistence differs')
                         if detail['status']!=recorded['status'] or detail.get('expanded_nodes')!=recorded.get('expanded_nodes'):
                             raise ValueError('Reconstructed timed reference differs from recorded planner')
                         if refinement is not None and recorded['status']=='success':

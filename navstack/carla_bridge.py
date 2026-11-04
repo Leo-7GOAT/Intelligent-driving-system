@@ -26,6 +26,8 @@ class BridgeClient:
         self.reference_road_refinement=settings(protocol)
         from .steering_transition import settings as steering_settings
         self.reference_steering_transition=steering_settings(protocol)
+        from .reference_option_commitment import settings as option_settings
+        self.reference_option_commitment=option_settings(protocol)
         rpc_host=protocol.get("carla_rpc_host","127.0.0.1")
         rpc_port=protocol.get("carla_rpc_port",2000)
         if not isinstance(rpc_host,str) or not rpc_host or any(c.isspace() for c in rpc_host):
@@ -176,6 +178,8 @@ class CarlaNavigationEnv(NavigationEnv):
     def __init__(self, config, client, cases=None):
         self.client=client;self.cases=cases;self.case_index=0
         super().__init__(config)
+        from .reference_option_commitment import configure
+        configure(self,getattr(client,'reference_option_commitment',None))
 
     def _create_episode(self,options=None):
         case=(options or {}).get("case")

@@ -1,3 +1,11 @@
+# 最新关闭及准备：2026-11-04 11:26 显式option接口与5120原生适配
+
+option_commitment_frozen_H_pilot worker18076/launcher10056已正常结束，原case0deadline900、case1success336、case4success350，1586控制/1678ticks/159NN/3起点raw、策略/参考重建、engine均通过。报告 `reports/native_reference_option_frozen_pilot_20261104.json`。新接口仅在PPO重复选择相同action标签、旧参考仍有效时保留原世界坐标目标；换标签/失效/新回合均重新规划，不自动替PPO作决定。旧策略仍失败，是后续真实学习前对照，不能宣称接口已修复任务。
+
+新增 `scripts/prepare_fixed_lowlevel_adaptation.py`准备单H seed22继续5120真实控制(rollout overshoot<=319)，原3个known开发条件，固定32k低层与option语义、零辅助监督、RMS冻结；32参数/Adam/RNG原样恢复，新增worker初始指纹覆盖继续训练并记录optimizer hash，训练后须验证32个Adam状态真实推进。训练门限只有完整注册允许；AST核验低层代码相对pilot只改变settings注册函数。`scripts/run_fixed_lowlevel_adaptation.py`可顺序执行训练、raw/engine/学习保存证明、同3场冻结端点、raw/NN/engine。当前尚未准备或启动训练，不得声称正在训练。
+
+76项相关恢复/门限/option/缓存/STOP测试通过8.93秒；另43项通过5.79秒、Python3.7编译通过。原全量1361属于旧v1源。本次新增源尚待提交/准备后实际运行。旧full_transfer known24不得启动。
+
 # 最新关闭：2026-11-04 11:15 32k三场pilot已全部审计
 
 当前无原生作业需要等待：32k worker2088/launcher16444已正常退出并清空owned server。原case0 deadline900控制/66planfail/660interventions；原case1 success333、case4 success340。共1573控制/1665世界ticks(92reset)/158NN/3起点，raw、NN完整重建及engine全通过；58次精确失败缓存命中。公开 `reports/native_steering_budget32k_pilot_20261104.json`。case0起步22510节点成功，执行24个macro后因更换子目标规划失败停车；不接受为完整修复、不重算旧4/12。

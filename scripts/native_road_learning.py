@@ -448,11 +448,15 @@ def run(batch):
                 configure_continuation_normalization(vec,protocol,recovery)
                 if protocol.get('fresh_cadence_experiment') and recovery is not None:
                     raise ValueError('Cadence diagnostic must use fresh weights')
-                if protocol.get('fresh_cadence_experiment') or (protocol.get('record_initial_parameters') and recovery is None):
+                if protocol.get('fresh_cadence_experiment') or protocol.get('record_initial_parameters'):
+                    from scripts.collect_native_recovery import tensor_digest
                     write_json(output/'initial_parameter_fingerprints.json',{
                         'parameters':{name:hashlib.sha256(value.detach().cpu().numpy().tobytes()).hexdigest()
                             for name,value in model.policy.state_dict().items()},
                         'torch_rng_sha256':hashlib.sha256(torch.get_rng_state().numpy().tobytes()).hexdigest(),
+                        'optimizer_sha256':tensor_digest(model.policy.optimizer.state_dict()),
+                        'optimizer_steps':{name:float(model.policy.optimizer.state.get(value,{}).get('step',0))
+                            for name,value in model.policy.named_parameters()},
                         'rollout_actions':model.n_steps,'batch_size':model.batch_size,'gamma':model.gamma,'gae_lambda':model.gae_lambda,
                         'decision_seconds':config.control_dt*config.substeps,'rollout_nominal_controls':model.n_steps*config.substeps})
                 write_json(output/'policy_architecture.json',{'policy':type(model.policy).__name__,

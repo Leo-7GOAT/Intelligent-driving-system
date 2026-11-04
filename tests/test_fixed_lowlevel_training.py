@@ -1,0 +1,31 @@
+from copy import deepcopy
+import pytest
+from navstack.fixed_lowlevel_training import REGISTRATION,registered
+from navstack.reference_road_refinement import settings as road_settings
+from navstack.steering_transition import settings as steering_settings
+from navstack.reference_option_commitment import settings as option_settings
+
+
+def protocol():
+    return dict(evaluation_only=False,methods=['H'],controlled_budget_per_method=5120,method_budgets={'H':5120},
+        freeze_observation_statistics=True,record_initial_parameters=True,fixed_lowlevel_training=deepcopy(REGISTRATION),
+        reference_road_refinement=dict(version='sampled_native_reference_refinement_v1',max_attempts=3),
+        reference_steering_transition=dict(version='measured_steering_slew_32000_memo_v2',max_nodes=32000),
+        reference_option_commitment=dict(version='selected_local_reference_option_v1'))
+
+
+def test_one_exact_registered_training_course_is_enabled():
+    p=protocol();assert registered(p)
+    assert road_settings(p) and steering_settings(p) and option_settings(p)
+
+
+@pytest.mark.parametrize('key,value',[
+    ('controlled_budget_per_method',5120.),('method_budgets',{'H':5120.}),
+    ('fixed_lowlevel_training',None),('freeze_observation_statistics',False),
+    ('record_initial_parameters',False),('methods',['B1']),
+    ('reference_steering_transition',dict(version='measured_steering_slew_primitives_v1'))])
+def test_unregistered_or_changed_training_is_rejected(key,value):
+    p=protocol();p[key]=value
+    assert not registered(p)
+    for settings in [road_settings,steering_settings,option_settings]:
+        with pytest.raises(ValueError):settings(p)

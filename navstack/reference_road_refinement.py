@@ -14,8 +14,9 @@ VERSION='sampled_native_reference_refinement_v1'
 def settings(protocol):
     value=protocol.get('reference_road_refinement')
     if value is None:return None
+    from .fixed_lowlevel_training import registered
     if (not isinstance(value,dict) or type(value.get('max_attempts')) is not int
-            or value!={'version':VERSION,'max_attempts':3} or not protocol.get('evaluation_only')
+            or value!={'version':VERSION,'max_attempts':3} or not (protocol.get('evaluation_only') is True or registered(protocol))
             or protocol.get('methods') not in (['H'],['H0'])):
         raise ValueError('Refinement prototype requires explicit frozen H/H0 evaluation registration')
     return value

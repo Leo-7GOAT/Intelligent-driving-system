@@ -11,7 +11,8 @@ def settings(protocol):
     if value is None:return None
     valid=(value=={'version':VERSION} or isinstance(value,dict) and type(value.get('max_nodes')) is int
            and value=={'version':VERSION_BUDGET,'max_nodes':32000})
-    if (not valid or not protocol.get('evaluation_only')
+    from .fixed_lowlevel_training import registered
+    if (not valid or not (protocol.get('evaluation_only') is True or registered(protocol))
             or protocol.get('methods') not in (['H'],['H0'])):
         raise ValueError('Steering transition prototype requires frozen H/H0 evaluation')
     return value

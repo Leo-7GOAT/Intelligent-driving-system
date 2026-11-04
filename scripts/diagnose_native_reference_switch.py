@@ -38,6 +38,9 @@ def diagnose(batch,method,case_id,output,limit=16,inspect_policy=False):
     env.world.road_collision_backend=env.config.road_collision_backend
     env.reference=None;env._reference_selection=None;env._rule_plan_cache=None
     env.episode=dict(plan_times=[],plan_failures=0)
+    if protocol.get('reference_option_commitment'):
+        from navstack.reference_option_commitment import configure,settings as option_settings
+        configure(env,option_settings(protocol))
     events=[];policy_proof=None
     if inspect_policy:
         import pickle
