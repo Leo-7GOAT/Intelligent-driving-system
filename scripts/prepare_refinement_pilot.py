@@ -11,7 +11,7 @@ from scripts.prepare_native_reference_evaluation import prepare as prepare_endpo
 from scripts.prepare_native_camera import selected_camera_inputs
 
 
-def prepare(parent,output,ids,steering_transition=False,phase='static'):
+def prepare(parent,output,ids,steering_transition=False,phase='static',budget32k=False):
     output=Path(output).resolve()
     if read(Path(parent)/'protocol.json')['methods']!=['H']:raise ValueError('Frozen H-only pilot required')
     prepare_endpoint(parent,output,phase);p=read(output/'protocol.json')
@@ -21,8 +21,8 @@ def prepare(parent,output,ids,steering_transition=False,phase='static'):
         p['routes'],p['native_case_manifest'],mapping=selected_camera_inputs(p['routes'],p['native_case_manifest'],ids)
     p['reference_road_refinement']=dict(version=VERSION,max_attempts=3)
     if steering_transition:
-        from navstack.steering_transition import VERSION as STEERING_VERSION
-        p['reference_steering_transition']=dict(version=STEERING_VERSION)
+        from navstack.steering_transition import VERSION as STEERING_VERSION,VERSION_BUDGET
+        p['reference_steering_transition']=dict(version=VERSION_BUDGET,max_nodes=32000) if budget32k else dict(version=STEERING_VERSION)
         p.pop('planner_failure_memo',None)
     p['refinement_transfer_registration']=dict(original_case_ids=ids,builder_sha256=sha(Path(__file__)),
         physics_and_actual_v4_scoring_unchanged=True,planning_only_constraints=True,
@@ -45,4 +45,5 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--parent',required=True);parser.add_argument('--output',required=True)
     parser.add_argument('--case-ids',nargs='+',type=int,default=[1,4]);parser.add_argument('--steering-transition',action='store_true')
     parser.add_argument('--phase',choices=['static','known_validation'],default='static');parser.add_argument('--full-inventory',action='store_true')
-    a=parser.parse_args();prepare(a.parent,a.output,None if a.full_inventory else a.case_ids,a.steering_transition,a.phase)
+    parser.add_argument('--steering-budget32k',action='store_true')
+    a=parser.parse_args();prepare(a.parent,a.output,None if a.full_inventory else a.case_ids,a.steering_transition or a.steering_budget32k,a.phase,a.steering_budget32k)

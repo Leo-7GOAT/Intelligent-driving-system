@@ -1,0 +1,123 @@
+{
+  "scope": "Intentional early development rejection of a regressed frozen-policy planning transfer;not a completed case or endpoint",
+  "batch": "20261104_steering_full_transfer_static",
+  "protocol_sha256": "d86e6bd20e122d4cfc489e43343e35eb80c62a1415554fa55394e5a16c793afc",
+  "original_case_id": 0,
+  "retained_controls": 400,
+  "retained_decisions": 40,
+  "plan_failures": 40,
+  "all_searches_exhausted_7200_nodes": true,
+  "all_inputs_identical": true,
+  "progress_metres": 0.0,
+  "completed_cases": 0,
+  "new_PPO_updates": 0,
+  "queued_known_validation_started": false,
+  "stop_registration": {
+    "epoch": 1793760944.436921,
+    "scope": "Early engineering regression rejection,not a completed evaluation or score",
+    "reason": "Case0 remains stationary under repeated planning/braking,despite the prior frozen model completing this condition. Avoid spending the full4h window on an already-regressed deployment variant.",
+    "evidence": {
+      "last_heartbeat": {
+        "pid": 26140,
+        "epoch": 1793760751.0729759,
+        "case_id": 0,
+        "actions": 20
+      },
+      "read_only_observed_frame": 3391,
+      "read_only_ego_speed": 0.0,
+      "read_only_ego_brake": 0.3996334671974182
+    },
+    "action": "Request existing cooperative STOP guard;allow logs/bridge to close,do not terminate unrelated processes"
+  },
+  "prefix_audit": {
+    "sha256": "25d372affd392f6e923ec66ec8954119e5496bcd074d42e30c06f7ed19f47215",
+    "receipt": {
+      "scope": "Authenticate completed cases inside a failed frozen evaluation without synthesizing an endpoint.",
+      "script_sha256": "725faa1e4f16778a1add6fc2aac31b9eacfd30142665327b1daffa517f0e0a5a",
+      "batch": "20261104_steering_full_transfer_static",
+      "protocol_sha256": "d86e6bd20e122d4cfc489e43343e35eb80c62a1415554fa55394e5a16c793afc",
+      "infrastructure_failure": "Intentional development rejection,not infrastructure failure: Case0 remains stationary under repeated planning/braking,despite the prior frozen model completing this condition. Avoid spending the full4h window on an already-regressed deployment variant.",
+      "evaluation_trace_sha256": "863441ec7c65e09921564ddf3da7698ead4d64f04ee0671f54c97e861074d796",
+      "bridge_streams": [
+        {
+          "name": "bridge_459d8631_responses.jsonl.gz",
+          "sha256": "8de27f02d8ad8ea8860db33a450d5c02b224424e3416af22b68261d96ba0f1cb"
+        }
+      ],
+      "all_recorded_actual_controls_verified": 400,
+      "all_engine_controls_acknowledged": true,
+      "completed_cases": [],
+      "completed_case_ids": [],
+      "remaining_case_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "completed_termination_counts": {},
+      "registered_cases": 12,
+      "full_evaluation_complete": false,
+      "new_controls_for_audit": 0,
+      "new_PPO_updates": 0,
+      "limits": "Authenticates retained measured prefix only;does not create evaluation.json,repair original data,declare a completed24-case endpoint or count infrastructure failure as policy success."
+    }
+  },
+  "cleanup": {
+    "guard": {
+      "epoch": 1793760963.4327385,
+      "worker_pid": 26140,
+      "exit_code": 1,
+      "reason": null
+    },
+    "server_stop": {
+      "probe": "D:\\ThesisNativeArchive_20261104\\20261104_steering_full_transfer_static\\infrastructure\\stop_probe_20261104T025604.json",
+      "epoch": 1793760966,
+      "shipping_pid": 11992,
+      "status": "owned_empty_server_stopped",
+      "post_stop_tcp": [],
+      "server_exit": "D:\\ThesisNativeArchive_20261104\\20261104_steering_full_transfer_static\\infrastructure\\server_exit.json",
+      "post_stop_udp": []
+    }
+  },
+  "failed_offline_probes": {
+    "steering_quintic_case0_probe.json": {
+      "seconds": 0.19703530000015235,
+      "found": false
+    },
+    "steering_quintic_graph_case0_probe.json": {
+      "status": "timeout",
+      "expanded": 7200,
+      "seconds": 7.574789699999883
+    },
+    "steering_accel_start_case0_probe.json": {
+      "status": "timeout",
+      "expanded": 7200,
+      "seconds": 8.379234600000018
+    },
+    "steering_checked_cubic_case0_probe.json": {
+      "status": "timeout",
+      "expanded": 7200,
+      "seconds": 6.901235999999926
+    }
+  },
+  "limits": "Earlier case1/case4 success retained,but this variant is rejected as a general replacement. No completed static score fabricated. Rejected connector and start-acceleration source variants archived locally and removed from runtime. Original entropy static4/12 unchanged.",
+  "offline_budget_probe": {
+    "sha256": "9857708f5eb8ca24aca48ef8f1eb470d94568e84bf905fa7ecf53d5b4be54020",
+    "result": {
+      "status": "success",
+      "expanded": 22510,
+      "seconds": 20.858182899999974,
+      "max_nodes": 32000,
+      "reference_points": 215
+    },
+    "scope": "Same recorded case0 initial state,only max_nodes7200→32000;not physical validation or a new success score"
+  }
+}

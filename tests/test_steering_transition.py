@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 from navstack.config import VehicleConfig,PlannerConfig
 from navstack.planning import HybridAStar,steering_transition_primitive
-from navstack.steering_transition import VERSION,settings,prepare_reference
+from navstack.steering_transition import VERSION,VERSION_BUDGET,settings,prepare_reference
 from navstack.world import World
 
 
@@ -43,3 +43,30 @@ def test_optin_only_and_restores_planner_on_exception():
         raise RuntimeError('failure')
     with pytest.raises(RuntimeError):prepare_reference(env,2,fail,settings(valid))
     assert env.planner is owner
+
+
+def test_failure_memo_binds_full_steering_speed_and_geometry_across_private_views():
+    from navstack.planner_memo import ExactSteeringFailureMemo
+    v=VehicleConfig();cfg=PlannerConfig(max_seconds=None,max_nodes=5)
+    memo=ExactSteeringFailureMemo(HybridAStar(v,cfg))
+    def world():return World(25,25,static=[(12.,0.,13.,25.)])
+    start,goal=(6.,10.,0.),(18.,10.,0.)
+    first=memo.plan(start,goal,world(),initial_steering=0.,reference_speed=1.5)
+    assert first.status=='timeout' and first.expanded_nodes==5
+    cached=memo.plan(start,goal,world(),initial_steering=0.,reference_speed=1.5)
+    assert cached.cache_hit and cached.expanded_nodes==0 and cached.cached_expanded_nodes==5
+    for steer,speed in [(1e-12,1.5),(0.,1.5000000001)]:
+        changed=memo.plan(start,goal,world(),initial_steering=steer,reference_speed=speed)
+        assert not getattr(changed,'cache_hit',False)
+    changed=world();changed.static[0]=(11.9,0.,13.,25.)
+    assert not getattr(memo.plan(start,goal,changed,initial_steering=0.,reference_speed=1.5),'cache_hit',False)
+    moving=world();moving.dynamic=[object()]
+    assert not getattr(memo.plan(start,goal,moving,initial_steering=0.,reference_speed=1.5),'cache_hit',False)
+    assert memo.bypasses==1
+
+
+def test_budget_version_requires_exact_registration():
+    p=dict(reference_steering_transition=dict(version=VERSION_BUDGET,max_nodes=32000),evaluation_only=True,methods=['H'])
+    assert settings(p)['max_nodes']==32000
+    for budget in [32000.,7200,True]:
+        with pytest.raises(ValueError):settings({**p,'reference_steering_transition':dict(version=VERSION_BUDGET,max_nodes=budget)})

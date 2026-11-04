@@ -93,6 +93,35 @@ class ExactStaticFailureMemo:
         return result
 
 
+class ExactSteeringFailureMemo(ExactStaticFailureMemo):
+    """Exact static failures also keyed by measured steering and speed ceiling.
+
+    Private planning-view identities may change; the entire supported geometry
+    remains in the key. No pose/angle/speed quantization or success reuse.
+    """
+    def plan(self,start,goal,world,*,initial_steering,reference_speed):
+        started=time.perf_counter()
+        values=np.asarray([*start,*goal,initial_steering,reference_speed],dtype=np.float64)
+        scope=self._geometry(world)
+        if scope is None or values.shape!=(8,) or not np.isfinite(values).all():
+            self.bypasses+=1
+            return self.planner.plan(start,goal,world,initial_steering=initial_steering,reference_speed=reference_speed)
+        key=(scope[1:],values.tobytes())
+        previous=self._failures.get(key)
+        if previous is not None:
+            self.hits+=1;self._failures.move_to_end(key)
+            return MemoizedFailure(previous.status,previous.path.copy(),previous.cost,0,
+                time.perf_counter()-started,previous.failure_reason,cached_expanded_nodes=previous.expanded_nodes)
+        self.misses+=1
+        result=self.planner.plan(start,goal,world,initial_steering=initial_steering,reference_speed=reference_speed)
+        eligible=(result.status=='no_path' and result.failure_reason=='open_set_exhausted'
+            or result.status=='timeout' and result.failure_reason=='search_budget' and result.expanded_nodes==self.config.max_nodes)
+        if eligible and result.path.shape==(0,3) and result.cost is None:
+            self._failures[key]=replace(result,path=result.path.copy())
+            if len(self._failures)>self.max_entries:self._failures.popitem(last=False)
+        return result
+
+
 def configure_planner_memo(env, protocol):
     version = protocol.get('planner_failure_memo')
     if version is None:

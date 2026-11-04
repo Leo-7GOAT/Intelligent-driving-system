@@ -1,3 +1,9 @@
+# 最新状态：2026-11-04 11:08 低预算回归已关闭；32k三场pilot运行
+
+旧full_transfer协调器26208及static worker26140均已结束。主动STOP按guard正常关闭，完整保留40次同输入7200节点timeout/400制动静止控制；cooperative_stop_raw_audit.json验证全部400控制与engine回执。不是基础设施故障或完整case结果。known_validation prepared已标abandoned_before_launch，禁止误启动。公开报告 `reports/native_steering_transfer_regression_stop_20261104.json`。旧两场成功pilot仍保留，不能把它推广为完整方法成功。
+
+同实测case0起点离线32k预算在22510节点、20.858秒找到路径；三种连接/起步原型仍在7200节点失败，均留D盘且从runtime移除。当前唯一原生任务 D:/ThesisNativeArchive_20261104/20261104_steering_budget32k_H_pilot，预注册原case0/1/4，worker2088 creation_epoch1793761636.161（身份见worker_process.json）、launcher16444。v2只增加节点上限至32000并按完整静态几何、配置、起终姿态、实测轮角和速度上限缓存精确确定性失败；不量化、不替换动作、不缓存成功、动态/墙钟预算旁路。用于避免重复40次无信息搜索，计算成本必须披露。32项缓存/STOP负检查等专项通过10.23秒，另组29通过6.04秒。全量1361通过是之前v1源，不能冒称v2全量通过。当前pilot尚无完成结果，须检查OS身份、日志后继续，禁止重复启动。
+
 # 当前运行：2026-11-04 10:49 完整开发清单转角规划迁移
 
 已启动 `scripts/run_steering_transfer_validation.py`：execution D:/ThesisNativeArchive_20261104/20261104_steering_full_transfer，实际协调器26208（身份 D:/ThesisNativeArchive_20261104/steering_full_coordinator_identity.json），venv外壳3600。两个batch均已准备：同前缀_static/known_validation，全部12/24原清单不删改，同一source_hashes、同一冻结bf6ef925模型、零新增PPO。先static，再known验证，然后每批raw/start/staticNN/engine核验；无自动重试。检查status.json、failure.json、complete.json及OS身份，不得重复启动。queued激活仅刷新对应批次时限，注册单批4h上限、D盘12GiB/内存4GiB/GPU85℃保护。
