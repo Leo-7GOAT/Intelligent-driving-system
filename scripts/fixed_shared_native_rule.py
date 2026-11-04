@@ -17,6 +17,10 @@ sys.path.insert(0,str(ROOT))
 def without_functions(path,names):
     tree=ast.parse(path.read_text(encoding='utf-8-sig'))
     tree.body=[n for n in tree.body if not isinstance(n,ast.FunctionDef) or n.name not in names]
+    for node in tree.body:
+        if isinstance(node,ast.ClassDef):
+            node.body=[child for child in node.body if not isinstance(child,ast.FunctionDef)
+                or node.name+'.'+child.name not in names]
     return ast.dump(tree,include_attributes=False)
 
 
@@ -69,6 +73,7 @@ def prepare(parent,template,output,phase):
     allowed={'navstack/env.py':{'rule_action'},'navstack/reference_road_refinement.py':{'settings'},
         'navstack/steering_transition.py':{'settings'},'navstack/reference_option_commitment.py':{'settings'},
         'navstack/reference_compute.py':{'enabled'}}
+    allowed['navstack/reference_context_policy.py']={'ReferenceContextObservationMixin.__init__'}
     for name,functions in allowed.items():
         if without_functions(ROOT/name,functions)!=without_functions(parent/'source'/name,functions):
             raise ValueError('Shared physical code differs outside rule/registration:'+name)

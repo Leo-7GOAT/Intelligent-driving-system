@@ -19,6 +19,23 @@ def test_rule_admission_is_strictly_evaluation_only_and_zero_learning():
         q=deepcopy(p);q[key]=value;assert not registered(q)
 
 
+def test_H_and_B3_use_identical_outcome_observation_constructor():
+    import numpy as np
+    from navstack.config import EnvConfig
+    from navstack.outcome_context_policy import OutcomeContextObservationMixin
+    class Observed(OutcomeContextObservationMixin,RouteFixture):pass
+    base=config().to_dict();base['reference_reuse']=True
+    h=Observed(EnvConfig.from_dict(base));b=Observed(EnvConfig.from_dict({**base,'method':'B3'}))
+    try:
+        a,_=h.reset(seed=11);z,_=b.reset(seed=11)
+        np.testing.assert_array_equal(a,z)
+        assert a.shape==z.shape==(4732,)
+        b._outcome_failed_actions={2};h._outcome_failed_actions={2}
+        np.testing.assert_array_equal(h._observation(),b._observation())
+        assert b._observation()[-29]==-1
+    finally:h.close();b.close()
+
+
 def test_failed_action_preference_is_finite_and_does_not_step_or_mask():
     env=RouteFixture(config())
     try:

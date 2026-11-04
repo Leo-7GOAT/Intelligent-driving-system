@@ -15,7 +15,7 @@ VERSION='appended_reference_context_v1'
 class ReferenceContextObservationMixin:
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
-        if self.observation_space.shape not in ((4701,),(4705,)) or self.config.method!='H' or not self.config.reference_reuse:
+        if self.observation_space.shape not in ((4701,),(4705,)) or self.config.method not in ('H','B3') or not self.config.reference_reuse:
             raise ValueError('Reference context requires the explicit hierarchical reference-reuse interface')
         self.observation_space=spaces.Box(-np.inf,np.inf,(self.observation_space.shape[0]+31,),dtype=np.float32)
 
