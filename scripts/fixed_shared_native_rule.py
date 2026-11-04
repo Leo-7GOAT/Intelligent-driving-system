@@ -1,6 +1,7 @@
 """Run the strong rule with the learned system's exact physical lowlevel."""
 import argparse
 import ast
+import ctypes
 from functools import partial
 import json
 from pathlib import Path
@@ -26,7 +27,14 @@ def prepare(parent,template,output,phase):
     from navstack.shared_rule_registration import VERSION,registered
     parent,output=Path(parent).resolve(),Path(output).resolve()
     gpu=int(subprocess.check_output(['nvidia-smi','--query-gpu=memory.free','--format=csv,noheader,nounits'],text=True,timeout=10).strip())
-    if gpu<6144:raise ValueError('Disjoint B3 requires at least6GiB currently free GPU memory')
+    class Memory(ctypes.Structure):
+        _fields_=[('length',ctypes.c_uint32),('load',ctypes.c_uint32)]+[(name,ctypes.c_ulonglong) for name in
+            ('total_phys','avail_phys','total_page','avail_page','total_virtual','avail_virtual','avail_extended')]
+    memory=Memory();memory.length=ctypes.sizeof(memory)
+    if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(memory)):
+        raise OSError('Physical memory admission could not be measured')
+    if gpu<4096 or memory.avail_phys<16*1024**3:
+        raise ValueError('Disjoint B3 requires4GiB free GPU memory and16GiB free system RAM')
     output=frozen_prepare(parent,template,output,phase)
     p=read(output/'protocol.json');task=p['fixed_outcome_development_validation'];config=read(parent/'H/config.json')['env']
     config={**config,'method':'B3'}
@@ -49,8 +57,10 @@ def prepare(parent,template,output,phase):
         scoring='Existing goal/path/speed/continuation scoring plus finite5m failed-label preference;no failure mask',
         compute='All candidate connectors and up to3nominal searches charged;selected action always uses the same measured-steering production pipeline',
         PPO_environment_config_exact_except_method=True,selection='All prespecified known cases;no score-based case selection')
-    p['fixed_shared_rule']['resource_admission']=dict(free_GPU_MiB=gpu,minimum_free_GPU_MiB=6144,
-        maximum_simultaneous_servers=2,unowned_peer_never_stopped=True)
+    p['fixed_shared_rule']['resource_admission']=dict(free_GPU_MiB=gpu,minimum_free_GPU_MiB=4096,
+        free_RAM_GiB=memory.avail_phys/1024**3,minimum_free_RAM_GiB=16,
+        maximum_simultaneous_servers=2,unowned_peer_never_stopped=True,
+        reason='The completed H0known24job already coexisted with the disjoint2100peer.Admission retains RAM headroom for WDDM memory management;not a scoring or learning-budget change.')
     p['fixed_shared_rule']['source_git_commit']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     atomic_json(output/'source_config.json',dict(env=config,scope='Exact parent environment except B3 method label'))
     p['source_config_sha256']=sha(output/'source_config.json')
