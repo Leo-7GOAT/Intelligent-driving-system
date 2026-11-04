@@ -1,3 +1,15 @@
+# 最新活动：2026-11-04 16:56 H30完整30/30且全部审计通过，H0同30实际运行到case13
+
+上一回合是实际进展：闭合H0训练/same2/pair并扩展真实成本重建；新H模型619file/911frames/92NN/figure从干净5afworktree重建，兼容32tests及旧新冻结source2+2真实起点通过；H完整30静态车辆摆放也已闭合，不是只报状态。
+
+禁止重跑H30：execution20261104_outcome_frozen_H_placements30_execution/complete.json已存在，原worker22476/audit17652已退出。全30个hazard.kind均static_vehicle，30/30success/0unsafe、10715真实controls、30实测起点/1086全部staticNN/engine全PASS，modelca2f4bff...完全冻结/0PPO。161interventions/11planfails/0MPCfails/51共享parkingoverride(52eligible)均保留。公开reports/native_outcome_H_all30_complete_20261104.json包含全部30行、hash与局限；不能与旧21/30不同低层/策略作PPO或反馈因果比较，也不算最终测试。
+
+当前唯一nativejob由既有完整队列14560自动启动：batch D:/ThesisNativeArchive_20261104/20261104_outcome_frozen_H0_placements30，execution同名_execution；worker6300 creation16:51:47.212(basePython311)，worker_process.json留证，最新H/evaluation_heartbeat.json case13/actions36(以新OS/status为准)。不能手动重启/并发CARLA。14560会在H0全30的native/raw/startNN/allstaticNN/engine后自动跑Hknown24和H0known24；资源每批4h、0retry、source固定run_outcome_development_validation.py/run_fixed_lowlevel_adaptation.py，结束前别改这两文件。状态20261104_outcome_full_known_validation_queue/status.json及completed_jobs.json/complete.json/failure.json，先查再行动。两组课程/两个same2/初始pair重建早已结束，旧12544/2184不得重开。
+
+完整pair公开reports/native_outcome_context_pair_complete_20261104.json：H/H010482/10489controls、各1056decisions/330Adam/34states，权重/fullAdam/RNG一致/RMS冻结。same2两组都是2/2/0unsafe，没有成功率优势，H/H0干预1/34、planningfail0/3、endpointcontrols911/1014，仅单seed探索性成本差。H在same2失败历史0次(不能称直接纠错)，H0历史3次但新分支隐去；后续H30有11planfail，不能把same2零暴露泛化到所有H运行。当前仍一个continuedseed22，未建立稳定反馈/PPO优越性，最终120仍未生成/查看，所有正式验收门槛仍UNMET。
+
+微基准D:/.../outcome_reference_audit_cpu_threads_probe.json只用已保存实际normalized末观测测试6threads/1thread各20pred(.0497/.0248s)，prob逐项相同；0新驾驶，不是实时控制测量，也没改审计器线程设置。别为此重跑已经完成1086NN或改正在运行审计源码的文件hash。所有新源4015543已push，e4CI41798380867SUCCESS，后来纯report/summary提交CI以实际状态为准。
+
 # 最新：2026-11-04 16:36 两组训练与same2均闭合2/2，完整H30已运行到case14
 
 H0训练/两场端点/全部raw/startNN/allstaticNN/engine以及pair重建均真实完成。旧coordinator12544、worker33520、重建器2184均已OS确认退出，禁止重跑任何两组课程或same2。H10482/H010489实际controls，1056decisions/330Adam各，34states全推进，所有initialweights/fullAdam/RNG一致及RMS冻结。Htrain17success；H0train17success+1deadline，未完整尾段不计成功。modelHca2f4bff...，H0efe3e54a0f3d0ea4471c248c44b69f122150241808f98fd0b1947dc8c0143e64；H0新增failure参数仍0。原D:/.../20261104_outcome_pair_rebuild/complete.json已完整成功，保留。
