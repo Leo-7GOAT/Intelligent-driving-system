@@ -1,4 +1,14 @@
-# 当前接续：2026-11-04 13:57 精确点约束已验证；两场仍超时，准备固定低层PPO适配
+# 当前接续：2026-11-04 14:00 固定点约束低层PPO正在真实更新，禁止重复启动
+
+唯一原生课程 D:/ThesisNativeArchive_20261104/20261104_exact_point_PPO5120_H 已从source commit d16cf45准备并启动，execution20261104_exact_point_PPO5120_execution。实际协调器28696 creation13:58:09.008901(basePy311)，venv14140；worker21740 creation_epoch1793771900.915，身份文件batch/worker_process.json和D:/ThesisNativeArchive_20261104/exact_point_PPO5120_coordinator_identity.json。必须先核实OS/status/heartbeat，禁止重复启动或重跑已完成5396旧课程。
+
+已实际保存checkpoint_000000320：320真实控制/32决策/350worldticks(30reset)/10Adam，actor L2改变.05237，policy model13e5fa1e→4ad2d3aa；初始全部权重/完整Adam/RNG逐字节相同，H/initial_restore_verification.json已留证。最新heartbeat已440控制/44决策；这些是运行中计数，最终仍需raw/engine/learning proof，不能称整个课程完成或已改善任务。RMS冻结只在结束后对mean/var/count做最终证明，不以pickle文件SHA不同判断均值被更新。
+
+注册单seed22继续链，5120请求control+≤319overshoot，固定全部点约束/转向/轨迹/MPC及option语义，零辅助监督。两条件[21,27]为之前完整0/2已知开发基线，没有新增独立seed或最终条件。协调器顺序训练→原始控制/engine/实际32Adam/RMS/初始证明→自动same2_endpoint→raw/startNN/allstaticNN/engine。无自动重试，4h guard/D12GiB/RAM4GiB/GPU85℃；跟到真实终态，不把训练随机成功代替冻结复测，不据小样本宣称正式研究验收。
+
+当前源点低层完整1399CPU通过/1skip/4CARLA deselect/277.28s；之后注册扩展40项通过3.38s。只修改注册门限允许新5120课程，preparer AST已实际核对与frozen点pilot除settings/registered/显式新增注册常量外相同。source d16cf45已push。新训练未结束，尚无新版完整评估、五独立seed或最终120确认；验收仍UNMET。
+
+# 已完成：2026-11-04 13:57 精确点约束与两场基线
 
 新opt-in native_counterexample_point_tube_v1把原生同帧拒绝点逆变换到局部精确XY，在private planning_view里对同9offset完整车身施加点障碍，真实World/评分/接受阈值不变；规划空间memo key增加版本/1e-5 float32 roundtrip容差/全部float64点bytes，dynamic/墙钟仍旁路。最多8192点、3细化次、每次normal/.25各32000节点，所有joint search成本保留。默认无点输入键不变。源码navstack/reference_point_constraints.py，World.free_many仅private点属性启用。case21/27离线分别7989/2031nodes，source-bound复查两条轨迹SDK全9offset均0badpoints；source-bound D盘native_case*_exact_point_runtime_source_bound.json和native_case21_27_exact_point_road_probe.json。
 

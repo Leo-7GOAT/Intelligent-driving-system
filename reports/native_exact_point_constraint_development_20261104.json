@@ -111,5 +111,5 @@
     ]
   },
   "limits": "Offline sampled model and SDK-map checks do not prove native closed-loop success,continuous road safety,learning benefit,independent-seed superiority or real-time performance. Earlier joint-speed five-condition result remains2/5.",
-  "next_registered_work": "Prepare one5120-control native PPO course on the same two known failed conditions,with all lowlevel physics/planning frozen and the same two-condition frozen endpoint. No final conditions or independent-seed claim."
+  "next_registered_work": "RUNNING:20261104_exact_point_PPO5120_H;source d16cf45;single continued seed22,fixed5120requested controls plus <=319rollout overshoot,zero auxiliary supervision. Full initialization weight/Adam/RNG equality verified;first320actual-control checkpoint contains10Adamupdates. Final raw/engine/RMS/learning and same2frozen endpoint proofs pending."
 }
