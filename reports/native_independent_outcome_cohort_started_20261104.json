@@ -1,7 +1,7 @@
 {
   "status": "FIRST_SEED_NATIVE_PPO_RUNNING_OTHER_REGISTERED_JOBS_QUEUED",
   "research_acceptance": "UNMET",
-  "recorded_utc": "2026-11-04T10:57:09.890154+00:00",
+  "recorded_utc": "2026-11-04T11:04:15.340523+00:00",
   "version": "independent_outcome_TRAIN48_v1",
   "frozen_training_source_commit": "62d03aa16d497f0e8de3ea9e16afe42632dbdd0f",
   "registered_seeds": [
@@ -158,7 +158,12 @@
     "initial_result": "FAIL_TWO_LEGACY_PARTITION_OVERLAY_CONTRACT_TESTS",
     "fix_commit": "67939eb",
     "fix": "Capture the unique evaluation inventory before applying repeated TRAIN exposures.Root-only fix;frozen cohort does not evaluate scheduled training episodes and is unaffected.",
-    "latest_CI": "PENDING_VERIFICATION"
+    "latest_CI": "SUCCESS",
+    "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41817293573",
+    "passed": 1410,
+    "skipped": 25,
+    "carla_deselected": 4,
+    "seconds": 374.1
   },
   "limits": "Teacher-initialized zero-PPO baseline already completes24/24known validation;this is not new PPO success.Current training has only partial saved-rollout evidence,not completed raw/engine closure or five fully trained policies.H/H0starts are paired;new negative branches alone are hidden in H0.No final conditions opened;no matched H/B1claim or PPO superiority."
 }
