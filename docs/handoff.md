@@ -1,3 +1,11 @@
+# 活动任务补充：2026-11-04 15:20
+
+H已至约3644真实控制/367决策/110Adam，尚非终态；worker29016与coord20928正常，禁止重跑。H0自动队列base12544(identity outcome_pair_queue_process_identities.json)仍WAITING；H0不能手动另启。
+
+新增scripts/summarize_outcome_context_pair.py，为两组最终完成后的只读重建器：复用单组完整raw/source/Adam/RNG/RMS/engine/inference门限，另验证配对协议、所有初始权重和完整Adam/RNG/RMS一致、H0新增failure参数在训练后仍0，按原case逐行比较，报告两组实际控制与overshoot，不做单seed置信区间。已py_compile；真实运行验证尚待两组完成，不能把1411CPU称为它的覆盖。
+
+自动重建器D:/ThesisNativeArchive_20261104/rebuild_outcome_pair_after_queue.py已实际启动(wrapper31000，base2184)，只读OwnedProcess等待12544，身份outcome_pair_rebuild_process_identities.json；依赖配对全部正常退出再生成20261104_outcome_pair_rebuild/complete.json，0retry、9h有限等待。当前status WAITING_FOR_PAIRED_TRAINING_AND_ENDPOINTS。先查status/complete/failure和OS，再分析真实结果；不重复启动这些课程或重建器。CI41789601170(b94c1ae)SUCCESS。
+
 # 活动任务：2026-11-04 15:07 H真实训练，H0已入有界顺序队列
 
 唯一H训练协调器20928(basePython，creation15:03:38.068885)，wrapper26736，worker29016；身份outcome_feedback_H_base_coordinator_identity.json和batch/worker_process.json。batch D:/ThesisNativeArchive_20261104/20261104_outcome_context_PPO10240_H，execution20261104_outcome_context_PPO10240_execution_H。最近876真实控制/88决策/2rollout，非终态，最终以raw/engine/34Adam/RNG/RMS证明为准。source b94c1ae已push；模型首320检查点ddded865，10Adam，不能据训练成功称冻结任务改进。
