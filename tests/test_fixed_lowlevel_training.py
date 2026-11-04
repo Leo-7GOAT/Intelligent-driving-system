@@ -55,7 +55,7 @@ def test_outcome_feedback_course_is_distinct_frozen_and_requires_its_complete_bu
         method_budgets={'H':10240},reference_joint_speed=dict(version='measured_steering_rate_retiming_v2',spatial_speed_ceiling=.25),
         reference_point_constraints=dict(version='native_counterexample_point_tube_v1'),reference_compute_profile=dict(version='exact_static_reference_compute_v3'),
         mpc_reference_effort=dict(version='reference_centered_mpc_effort_v1'),reference_context=dict(version='action_aligned_outcome_context_v1'),
-        outcome_context_registration=dict(version='action_aligned_outcome_context_v1',failure_gain_scale=1000.,parameter_states=34,new_supervision=0))
+        outcome_context_registration=dict(version='action_aligned_outcome_context_v1',failure_gain_scale=1000.,parameter_states=34,new_supervision=0,failure_feedback_ablated=False))
     assert registered(p) and outcome_registered(p) and mpc_settings(p)
     for patch in [dict(controlled_budget_per_method=5120),dict(method_budgets={'H':10240.}),
                   dict(reference_context={'version':'appended_reference_context_v1'}),dict(mpc_reference_effort=None),

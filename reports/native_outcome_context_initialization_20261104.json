@@ -14,42 +14,96 @@
     "failure_learning_coordinate_scale": 1000.0,
     "original_reference_scale": 100.0
   },
-  "migration": {
-    "version": "action_aligned_outcome_context_v1",
-    "parent_batch": "20261104_mpc_reference_effort_H_same2_transfer",
-    "old_model_sha256": "6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e",
-    "new_model_sha256": "5bfc6fcbc3208cb8d301c00efc30da1c1196ff9d6bd3c230cf28fdde7b30530c",
-    "normalization_sha256": "3453eda20d3b72a2fd8fbba7b52f897166c822d695284dfe88a95ab2159c4245",
-    "source_checkpoint_metadata_sha256": "e842eac5b5f2c483c2c229efd70a6533ea360c136890f467be030538a5bb5b39",
-    "original32_parameter_and_Adam_states_exact": true,
-    "new_parameter_names": [
-      "action_net.reference_bias.failure_gain",
-      "value_net.failure_weight"
-    ],
-    "new_parameters_and_Adam_steps_zero": true,
-    "copied_resume_RNG_sha256": "8fcd38745b1fb72b7a9b6336cb60440be6cc0d6b2ab3134a29b47d941ba3aa09",
-    "global_Torch_RNG_unchanged": true,
-    "failure_gain_scale": 1000.0,
-    "script_sha256": "ffbe59bcf660b0214d640d7a47c35b521fce055aa41ee6e40447a0b3f908f3a7",
-    "policy_source_sha256": "de9d9861f2180b1c5e621ca2a8bf15df767cf8cd44d9cc27226b3ea86fc1c052",
-    "new_controls": 0,
-    "new_updates": 0,
-    "limits": "Schema/optimizer initialization only;requires native-state equivalence proof and actual new learning before any benefit claim."
-  },
-  "recorded_state_equivalence": {
-    "evidence": "outcome_history_initializer_all147_native_equivalence.json",
-    "sha256": "1d5bb116e967da8ad015e556f4530a6f8cedf4bd176581c477c36b9798917003",
-    "actual_decisions": 147,
-    "probability_vectors_and_values_exact": true,
-    "new_controls": 0,
-    "new_updates": 0
-  },
   "tests": {
     "outcome_and_migration_tests": 5,
     "seconds": 12.61,
     "training_contract_tests": 37,
-    "contract_seconds": 13.18
+    "contract_seconds": 13.18,
+    "final_pair_contract": {
+      "passed": 18,
+      "seconds": 19.78,
+      "evidence": "outcome_pair_final_tests.xml"
+    }
   },
-  "native_learning": "NOT_YET_PREPARED_OR_STARTED",
-  "limits": "No evidence of learned task improvement yet. Larger failure learning-coordinate scale is an explicit optimization parameter;its coefficient is zero at initialization and not forced positive. One continued-policy course and eventualH0ablation are development work;five-seed and independent final requirements remain unmet."
+  "native_learning": "PAIR_INITIALIZATION_VERIFIED_NOT_YET_STARTED",
+  "limits": "No learned benefit established.New pair is one development seed,not two independent seeds.Final120 unseen conditions remain unopened.Full CPU suite currently running;older1402 result does not cover this new source.",
+  "paired_initialization": {
+    "parameters_exact": true,
+    "full_Adam_exact": true,
+    "RNG_and_normalization_bytes_exact": true,
+    "only_intervention": "New negative-context actor/critic branches disabled in H0;old feedback retained",
+    "H_sha256": "85740d818a0517b9d35c62554f2aa5665a2d43323c59d1da0c9f82001c0208c4",
+    "H0_sha256": "9cd67b8e2f22f7fb75a759f8d33013842bc4ca8095d1abf67f8a94df45facb91",
+    "continued_seed": 22,
+    "independent_seeds": 1,
+    "requested_controls_each": 10240,
+    "maximum_rollout_overshoot_each": 319,
+    "new_final_conditions": 0,
+    "automatic_retries": 0
+  },
+  "migrations": {
+    "H": {
+      "version": "action_aligned_outcome_context_v1",
+      "parent_batch": "20261104_mpc_reference_effort_H_same2_transfer",
+      "old_model_sha256": "6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e",
+      "new_model_sha256": "85740d818a0517b9d35c62554f2aa5665a2d43323c59d1da0c9f82001c0208c4",
+      "normalization_sha256": "3453eda20d3b72a2fd8fbba7b52f897166c822d695284dfe88a95ab2159c4245",
+      "source_checkpoint_metadata_sha256": "e842eac5b5f2c483c2c229efd70a6533ea360c136890f467be030538a5bb5b39",
+      "original32_parameter_and_Adam_states_exact": true,
+      "new_parameter_names": [
+        "action_net.reference_bias.failure_gain",
+        "value_net.failure_weight"
+      ],
+      "new_parameters_and_Adam_steps_zero": true,
+      "copied_resume_RNG_sha256": "8fcd38745b1fb72b7a9b6336cb60440be6cc0d6b2ab3134a29b47d941ba3aa09",
+      "global_Torch_RNG_unchanged": true,
+      "failure_gain_scale": 1000.0,
+      "failure_feedback_ablated": false,
+      "script_sha256": "72130ca942258bc64e37dcd658d85b8f1d3758a8bdf80607d385e6a4e8303feb",
+      "policy_source_sha256": "a152959a29e372c96485c59319c7900545e6edbcd3d4d5cc36fe2aef8013f085",
+      "new_controls": 0,
+      "new_updates": 0,
+      "limits": "Schema/optimizer initialization only;requires native-state equivalence proof and actual new learning before any benefit claim."
+    },
+    "H0": {
+      "version": "action_aligned_outcome_context_v1",
+      "parent_batch": "20261104_mpc_reference_effort_H_same2_transfer",
+      "old_model_sha256": "6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e",
+      "new_model_sha256": "9cd67b8e2f22f7fb75a759f8d33013842bc4ca8095d1abf67f8a94df45facb91",
+      "normalization_sha256": "3453eda20d3b72a2fd8fbba7b52f897166c822d695284dfe88a95ab2159c4245",
+      "source_checkpoint_metadata_sha256": "e842eac5b5f2c483c2c229efd70a6533ea360c136890f467be030538a5bb5b39",
+      "original32_parameter_and_Adam_states_exact": true,
+      "new_parameter_names": [
+        "action_net.reference_bias.failure_gain",
+        "value_net.failure_weight"
+      ],
+      "new_parameters_and_Adam_steps_zero": true,
+      "copied_resume_RNG_sha256": "8fcd38745b1fb72b7a9b6336cb60440be6cc0d6b2ab3134a29b47d941ba3aa09",
+      "global_Torch_RNG_unchanged": true,
+      "failure_gain_scale": 1000.0,
+      "failure_feedback_ablated": true,
+      "script_sha256": "72130ca942258bc64e37dcd658d85b8f1d3758a8bdf80607d385e6a4e8303feb",
+      "policy_source_sha256": "a152959a29e372c96485c59319c7900545e6edbcd3d4d5cc36fe2aef8013f085",
+      "new_controls": 0,
+      "new_updates": 0,
+      "limits": "Schema/optimizer initialization only;requires native-state equivalence proof and actual new learning before any benefit claim."
+    }
+  },
+  "recorded_state_equivalence": {
+    "H": {
+      "evidence": "outcome_feedback_H_all147_equivalence.json",
+      "actual_decisions": 147,
+      "probability_vectors_and_values_exact": true,
+      "new_controls": 0,
+      "new_updates": 0
+    },
+    "H0": {
+      "evidence": "outcome_feedback_H0_all147_equivalence.json",
+      "actual_decisions": 147,
+      "probability_vectors_and_values_exact": true,
+      "new_controls": 0,
+      "new_updates": 0
+    }
+  },
+  "comparison": "Same continued seed22;10240 requested native controls each(+up to319 rollout overshoot);same fixed lowlevel.H0 disables only new failed-action actor/critic context;old feedback retained.Sequential CARLA instances,no automatic retries."
 }

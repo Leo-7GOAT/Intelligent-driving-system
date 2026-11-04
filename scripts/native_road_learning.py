@@ -453,7 +453,9 @@ def run(batch):
                             or not isinstance(vec,ReferenceContextVecNormalize)):
                         raise ValueError('Saved policy/normalizer lacks the registered reference schema or ablation')
                     if context['version']==OUTCOME_VERSION:
-                        if getattr(model.policy,'failure_gain_scale',None)!=protocol.get('outcome_context_registration',{}).get('failure_gain_scale'):
+                        registration=protocol.get('outcome_context_registration',{})
+                        if (getattr(model.policy,'failure_gain_scale',None)!=registration.get('failure_gain_scale')
+                                or getattr(model.policy,'outcome_ablated',None)!=registration.get('failure_feedback_ablated')):
                             raise ValueError('Outcome feedback learning-coordinate scale differs from registration')
                 configure_continuation_normalization(vec,protocol,recovery)
                 if protocol.get('fresh_cadence_experiment') and recovery is not None:

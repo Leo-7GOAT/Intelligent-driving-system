@@ -19,7 +19,7 @@ from scripts.prepare_fixed_lowlevel_adaptation import without_settings
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
 
-def prepare(parent,initializer,equivalence,output):
+def prepare(parent,initializer,equivalence,output,rpc_port=2100):
     parent,initializer,equivalence,output=map(lambda p:Path(p).resolve(),[parent,initializer,equivalence,output])
     require_finished_parent(parent);old=read(parent/'protocol.json');raw=read(parent/'H/endpoint_raw_audit.json')
     receipt=read(initializer/'outcome_migration.json');proof=read(equivalence);meta=verified_checkpoint_metadata(initializer)
@@ -47,7 +47,10 @@ def prepare(parent,initializer,equivalence,output):
         method_budgets={'H':10240},fixed_lowlevel_training=deepcopy(REGISTRATION_OUTCOME),
         freeze_observation_statistics=True,record_initial_parameters=True,deterministic_training_route_evaluation=False,
         checkpoint_thresholds=list(range(320,10241,320)),
-        outcome_context_registration=dict(version=VERSION,failure_gain_scale=FAILURE_GAIN_SCALE,parameter_states=34,new_supervision=0))
+        outcome_context_registration=dict(version=VERSION,failure_gain_scale=FAILURE_GAIN_SCALE,parameter_states=34,new_supervision=0,
+            failure_feedback_ablated=receipt['failure_feedback_ablated']))
+    if type(rpc_port) is not int or rpc_port not in (2100,2110):raise ValueError('Use the two owned experimental RPC spans')
+    p.update(carla_rpc_port=rpc_port,carla_rpc_port_span=list(range(rpc_port,rpc_port+3)))
     p['reference_learning_registration'].update(requested_controls_each=10240,selection='Final fixed-budget checkpoint only')
     prior=old['recovery']['H']
     p['recovery']={'H':dict(checkpoint='resume/H',parent_batch=parent.name,parent_checkpoint='H/'+read(parent/'H/latest_checkpoint.json')['folder'],
@@ -60,6 +63,7 @@ def prepare(parent,initializer,equivalence,output):
         source_git_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         parent_raw_audit_sha256=sha(parent/'H/endpoint_raw_audit.json'),original_known_development_case_ids=[21,27],
         fixed_requested_controls=10240,maximum_rollout_overshoot=319,new_supervision=0,new_final_conditions=0,
+        comparison_label='H0_failure_feedback_off' if receipt['failure_feedback_ablated'] else 'H_outcome_feedback',
         selection='Final fixed requested budget;one continued seed22,all known conditions retained',
         limits='New structured feedback with twozero-initialized learning terms;not new physical information,an action override,independent seed or final confirmation.')
     p['outcome_initialization']=dict(receipt='resume/H/outcome_migration.json',equivalence='outcome_initialization_equivalence.json',
@@ -81,4 +85,5 @@ def prepare(parent,initializer,equivalence,output):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ['parent','initializer','equivalence','output']:p.add_argument('--'+name,required=True)
-    a=p.parse_args();prepare(a.parent,a.initializer,a.equivalence,a.output)
+    p.add_argument('--rpc-port',type=int,default=2100)
+    a=p.parse_args();prepare(a.parent,a.initializer,a.equivalence,a.output,a.rpc_port)

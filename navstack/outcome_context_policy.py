@@ -52,44 +52,48 @@ class OutcomeContextObservationMixin(ReferenceContextObservationMixin):
 
 
 class LearnedOutcomeBias(LearnedReferenceBias):
-    def __init__(self,scale,failure_scale):
+    def __init__(self,scale,failure_scale,ablated=False):
         super().__init__(scale)
         if not math.isfinite(failure_scale) or not 0<failure_scale<=1000:raise ValueError('Invalid failure learning-coordinate scale')
-        self.failure_scale=float(failure_scale);self.failure_gain=nn.Parameter(torch.zeros(()))
+        self.failure_scale=float(failure_scale);self.failure_gain=nn.Parameter(torch.zeros(()));self.failure_ablated=bool(ablated)
 
     def forward(self,logits,context,*,ablated=False):
         if logits.shape!=context.shape or logits.shape[-1]!=31:raise ValueError('Outcome context shape mismatch')
         if not torch.isfinite(context).all() or torch.any((context!=0)&(context!=1)&(context!=-1)) or torch.any(context[...,0]!=0):
             raise ValueError('Measured signed context required;wait must stay zero')
         visible=torch.zeros_like(context) if ablated else context
-        return logits+self.scale*self.gain*visible.clamp(min=0)+self.failure_scale*self.failure_gain*visible.clamp(max=0)
+        negative=torch.zeros_like(visible) if self.failure_ablated else visible.clamp(max=0)
+        return logits+self.scale*self.gain*visible.clamp(min=0)+self.failure_scale*self.failure_gain*negative
 
 
 class OutcomeValueHead(ReferenceValueHead):
-    def __init__(self,backbone):
-        super().__init__(backbone);self.failure_weight=nn.Parameter(torch.zeros(31,1))
+    def __init__(self,backbone,ablated=False):
+        super().__init__(backbone);self.failure_weight=nn.Parameter(torch.zeros(31,1));self.failure_ablated=bool(ablated)
 
     def forward(self,latent):
         context=latent[:,-31:]
+        negative=torch.zeros_like(context) if self.failure_ablated else context.clamp(max=0)
         return (self.backbone(latent[:,:-31])+context.clamp(min=0)@self.context_weight
-            +context.clamp(max=0)@self.failure_weight)
+            +negative@self.failure_weight)
 
 
 class OutcomePolicyBuild:
     reference_context_version=VERSION
 
-    def __init__(self,*args,failure_gain_scale=FAILURE_GAIN_SCALE,**kwargs):
+    def __init__(self,*args,failure_gain_scale=FAILURE_GAIN_SCALE,outcome_ablated=False,**kwargs):
         self.failure_gain_scale=float(failure_gain_scale)
+        if type(outcome_ablated) is not bool:raise ValueError('Explicit outcome-ablation boolean required')
+        self.outcome_ablated=outcome_ablated
         super().__init__(*args,**kwargs)
 
     def _get_constructor_parameters(self):
-        result=super()._get_constructor_parameters();result['failure_gain_scale']=self.failure_gain_scale
+        result=super()._get_constructor_parameters();result.update(failure_gain_scale=self.failure_gain_scale,outcome_ablated=self.outcome_ablated)
         return result
 
     def _build(self,lr_schedule):
         super()._build(lr_schedule)
-        self.action_net.reference_bias=LearnedOutcomeBias(self.reference_gain_scale,self.failure_gain_scale)
-        self.value_net=OutcomeValueHead(self.value_net.backbone)
+        self.action_net.reference_bias=LearnedOutcomeBias(self.reference_gain_scale,self.failure_gain_scale,self.outcome_ablated)
+        self.value_net=OutcomeValueHead(self.value_net.backbone,self.outcome_ablated)
         self.optimizer=self.optimizer_class(self.parameters(),lr=lr_schedule(1),**self.optimizer_kwargs)
 
 
@@ -99,7 +103,7 @@ class OutcomeContextPolicy(OutcomePolicyBuild,ReferenceContextPolicy):pass
 class AblatedOutcomeContextPolicy(OutcomePolicyBuild,AblatedReferenceContextPolicy):pass
 
 
-def migrate_learner(model):
+def migrate_learner(model,*,outcome_ablated=False):
     """Preserve every original tensor/Adam group/RNG;two new states are zero.
 
     The separate failure coordinate uses scale1000to permit order-one logit
@@ -111,7 +115,7 @@ def migrate_learner(model):
     if len(model.policy.optimizer.param_groups)!=1:raise ValueError('Require one retained Adam group')
     new=copy(model);new.env=None;new._last_obs=None
     new.policy_class=AblatedOutcomeContextPolicy if model.policy.reference_ablated else OutcomeContextPolicy
-    new.policy_kwargs={**model.policy_kwargs,'failure_gain_scale':FAILURE_GAIN_SCALE}
+    new.policy_kwargs={**model.policy_kwargs,'failure_gain_scale':FAILURE_GAIN_SCALE,'outcome_ablated':outcome_ablated}
     with torch.random.fork_rng(devices=[]):
         new.policy=new.policy_class(new.observation_space,model.action_space,model.lr_schedule,**new.policy_kwargs)
     old=model.policy.state_dict();values=new.policy.state_dict()

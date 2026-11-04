@@ -17,7 +17,9 @@ def registered(protocol):
             and protocol.get('reference_compute_profile')==dict(version='exact_static_reference_compute_v3')
             and protocol.get('mpc_reference_effort')==dict(version='reference_centered_mpc_effort_v1')
             and protocol.get('reference_context')==dict(version='action_aligned_outcome_context_v1')
-            and protocol.get('outcome_context_registration')==dict(version='action_aligned_outcome_context_v1',failure_gain_scale=1000.,parameter_states=34,new_supervision=0))
+            and type(protocol.get('outcome_context_registration',{}).get('failure_feedback_ablated')) is bool
+            and protocol.get('outcome_context_registration')==dict(version='action_aligned_outcome_context_v1',failure_gain_scale=1000.,parameter_states=34,new_supervision=0,
+                failure_feedback_ablated=protocol.get('outcome_context_registration',{}).get('failure_feedback_ablated')))
     elif registration==REGISTRATION_POINTS:
         features=(protocol.get('reference_joint_speed')==dict(version='measured_steering_rate_retiming_v2',spatial_speed_ceiling=.25)
             and protocol.get('reference_point_constraints')==dict(version='native_counterexample_point_tube_v1')

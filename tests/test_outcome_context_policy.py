@@ -34,7 +34,8 @@ def test_failure_gain_is_zero_initially_and_learns_a_sign_without_an_action_over
 
 
 @pytest.mark.parametrize('ablated',[False,True])
-def test_migration_preserves_original_model_adam_rng_and_roundtrip_learning(tmp_path,ablated):
+@pytest.mark.parametrize('failure_off',[False,True])
+def test_migration_preserves_original_model_adam_rng_and_roundtrip_learning(tmp_path,ablated,failure_off):
     from stable_baselines3 import PPO
     from stable_baselines3.common.vec_env import DummyVecEnv
     from navstack.config import EnvConfig
@@ -50,7 +51,7 @@ def test_migration_preserves_original_model_adam_rng_and_roundtrip_learning(tmp_
     old.learn(2);norm.training=False
     with torch.no_grad():
         old.policy.action_net.reference_bias.gain.fill_(.03);old.policy.value_net.context_weight.fill_(.02)
-    before_rng=torch.get_rng_state().clone();new=migrate_learner(old)
+    before_rng=torch.get_rng_state().clone();new=migrate_learner(old,outcome_ablated=failure_off)
     assert torch.equal(before_rng,torch.get_rng_state())
     a=torch.as_tensor(norm.normalize_obs(raw.reset())).repeat(3,1);a[:,-31:]=0;a[0,-5]=1
     z=a.clone();z[1,-29]=-1;z[1,-28]=-1
@@ -71,7 +72,17 @@ def test_migration_preserves_original_model_adam_rng_and_roundtrip_learning(tmp_
     wrapped=DummyVecEnv([lambda:OutcomeFixture(cfg)]);restored=ReferenceContextVecNormalize.load(tmp_path/'norm.pkl',wrapped);restored.training=False
     loaded=PPO.load(tmp_path/'model.zip',env=restored,device='cpu')
     assert loaded.policy.reference_context_version==VERSION and loaded.policy.failure_gain_scale==1000.
+    assert loaded.policy.outcome_ablated is failure_off
     steps={name:float(loaded.policy.optimizer.state[param]['step']) for name,param in loaded.policy.named_parameters()}
     loaded.learn(2,reset_num_timesteps=False)
     assert all(float(loaded.policy.optimizer.state[param]['step'])==steps[name]+1 for name,param in loaded.policy.named_parameters())
     restored.close();norm.close()
+
+
+def test_failure_ablation_preserves_reuse_feedback_but_removes_failure_gradient():
+    head=LearnedOutcomeBias(100.,1000.,ablated=True)
+    with torch.no_grad():head.gain.fill_(.01);head.failure_gain.fill_(.02)
+    logits=torch.zeros(1,31);context=torch.zeros_like(logits);context[0,2]=-1;context[0,26]=1
+    result=head(logits,context);result.sum().backward()
+    assert result[0,2]==0 and result[0,26]==1
+    assert head.failure_gain.grad==0 and head.gain.grad!=0

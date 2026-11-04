@@ -1,3 +1,9 @@
+# 当前接续：2026-11-04 最终H/H0配对初始化已核验，立即启动顺序原生训练
+
+最终源码新增failure-only消融outcome_ablated：H0保留旧reuse/几何/执行反馈，仅屏蔽新增负context的actor与critic分支。两组所有权重、完整Adam、RNG与normalizer逐项一致；分别在原两场全部147真实决策证明概率向量与价值完全相同。最终initializer为D:/ThesisNativeArchive_20261104/20261104_outcome_feedback_initializer_H和_H0，证明outcome_feedback_H_all147_equivalence.json与outcome_feedback_H0_all147_equivalence.json，配对登记outcome_feedback_paired_initialization.json。此前history_initializer不再用于新训练，原证据保留。
+
+最终专项18PASS19.78s，XML outcome_pair_final_tests.xml。全CPU已启动session99269，XML outcome_pair_full_CPU.xml；待实际终态，禁止重启或冒用旧1402结果。原生尚未启动：提交本源后prepare两个outcome_context_PPO10240_H和_H0，父批20261104_mpc_reference_effort_H_same2_transfer，每组10240请求控制+最多319overshoot，固定低层、34参数、零监督、RMS冻结、相同known[21,27]、一个continued seed22。现有CARLA前台启动器拒绝任何并发CARLA，因此先H课程及端点完整关闭，再H0，不能并行启动。4h上限/无自动重试/D盘预算，最终120仍未生成或查看，验收UNMET。
+
 # 当前接续：2026-11-04 14:53 动作结果反馈已实现并通过147原生状态零效应迁移，准备一次新方法学习
 
 新文件navstack/outcome_context_policy.py，VERSION action_aligned_outcome_context_v1；旧4736输入/31动作维度不变，末31context用+1保留原可复用参考、-1记录自上次accepted reference以来的失败planner动作集合、0其他。每新episode/accepted reference清历史；只编码已有目标与结果信息，不新增物理oracle，不mask/替换动作，不手工扣logit。原32参数/Adam逐名保持，新增actor failure_gain和critic failure_weight两个zero参数/zeroAdamstep，共34组；failure_gain自由正负，学习坐标scale1000(明确优化参数，初始惩罚仍0)，原reuse scale100/原gain保留。H/H0类均可用，尚未声称H0新训练完成。
