@@ -21,6 +21,7 @@ from scripts.collect_native_recovery import tensor_digest
 def endpoint(batch,target):
     """Clone the fixed course source and task list;change only learning/eval bookkeeping."""
     require_finished_parent(batch);p=deepcopy(read(batch/'protocol.json'));s=read(batch/'H/summary.json')
+    ids=p.get('fixed_lowlevel_adaptation_registration',{}).get('original_known_development_case_ids',[0,1,4])
     source=batch/'H'/read(batch/'H/latest_checkpoint.json')['folder'];m=verified_checkpoint_metadata(source)
     if target.exists():raise FileExistsError(target)
     target.mkdir();(target/'infrastructure').mkdir()
@@ -29,14 +30,15 @@ def endpoint(batch,target):
     p.pop('lineage_targets',None);p.pop('fixed_lowlevel_training',None)
     p.pop('freeze_observation_statistics',None)
     p.update(evaluation_only=True,controlled_budget_per_method=0,method_budgets={'H':0},checkpoint_thresholds=[],
-        deterministic_training_route_evaluation=True,scope='Same3known development conditions after one fixed-lowlevel native adaptation;zero new updates')
+        deterministic_training_route_evaluation=True,scope=f'Same{len(ids)}known development conditions after one fixed-lowlevel native adaptation;zero new updates')
     prior=p['recovery']['H']
     p['recovery']={'H':dict(checkpoint='resume/H',parent_batch=batch.name,parent_checkpoint='H/'+source.name,
         lineage_controls=m['lineage_control_steps'],consumed_controls_lower_bound=m['charged_control_steps_lower_bound'],
         retained_optimizer_steps=prior['retained_optimizer_steps']+s['optimizer_steps'],unknown_unflushed_parent_tail=False,
         model_sha256=m['model_sha256'],normalization_sha256=m['normalization_sha256'])}
     p['fixed_lowlevel_endpoint']=dict(parent=batch.name,parent_protocol_sha256=sha(batch/'protocol.json'),
-        same_all3_conditions=True,same_frozen_source=True,new_PPO_updates=0,new_final_conditions=0)
+        same_all3_conditions=ids==[0,1,4],same_all_conditions=True,original_case_ids=ids,
+        same_frozen_source=True,new_PPO_updates=0,new_final_conditions=0)
     now=time.time();p.update(created_epoch=now,deadline_epoch=now+p['resource_limits']['wall_seconds'])
     atomic_json(target/'protocol.json',p);atomic_json(target/'prepared.json',dict(status='PREPARED_NOT_STARTED',protocol_sha256=sha(target/'protocol.json')))
 
@@ -45,8 +47,9 @@ def run(batch,execution):
     import numpy as np
     batch,execution=Path(batch).resolve(),Path(execution).resolve();execution.mkdir()
     p=read(batch/'protocol.json')
+    ids=p.get('fixed_lowlevel_adaptation_registration',{}).get('original_known_development_case_ids',[0,1,4])
     atomic_json(execution/'registration.json',dict(batch=batch.name,protocol_sha256=sha(batch/'protocol.json'),
-        controls=5120,endpoint_case_ids=[0,1,4],new_final_conditions=0,automatic_retries=0))
+        controls=5120,endpoint_case_ids=ids,new_final_conditions=0,automatic_retries=0))
     def call(args,label,timeout=1800,env=None):
         atomic_json(execution/'status.json',dict(phase=label,pid=os.getpid(),epoch=time.time()))
         with (execution/(label+'.log')).open('xb') as log:
@@ -84,7 +87,7 @@ def run(batch,execution):
             initial_torch_RNG_exact=True,RMS_exact=True,new_supervision=0,model_sha256=sha(folder/'model.zip'),
             learned_reference_gain=float(after.policy.action_net.reference_bias.gain.detach()))
         atomic_json(folder/'saved_learning_proof.json',proof);atomic_json(execution/'training_complete.json',proof)
-        target=batch.parent/(batch.name+'_same3_endpoint');endpoint(batch,target)
+        target=batch.parent/(batch.name+f'_same{len(ids)}_endpoint');endpoint(batch,target)
         atomic_json(execution/'endpoint_prepared.json',dict(batch=str(target),protocol_sha256=sha(target/'protocol.json')))
         native(target,'endpoint_native');engine(target,'endpoint_engine')
         env=dict(env,NAVSTACK_AUDIT_SOURCE_ROOT=str(target/'source'))
@@ -93,10 +96,10 @@ def run(batch,execution):
             call([sys.executable,ROOT/'scripts/audit_native_reference_inference.py','--batch',target,'--method','H',*args,
                 '--output',target/'H'/name],'endpoint_'+name,env=env)
         e=read(target/'H/evaluation.json')['episodes']
-        if len(e)!=3:raise ValueError('Incomplete registered3-case endpoint')
+        if len(e)!=len(ids):raise ValueError('Incomplete registered endpoint inventory')
         atomic_json(execution/'complete.json',dict(training=batch.name,endpoint=target.name,
-            results=[dict(original_case_id=i,success=x['success'],termination_reason=x['termination_reason']) for i,x in zip([0,1,4],e)],
-            research_acceptance='UNMET',limits='Same3known training/development conditions,one continued seed,not independent or a formal contribution claim.'))
+            results=[dict(original_case_id=i,success=x['success'],termination_reason=x['termination_reason']) for i,x in zip(ids,e)],
+            research_acceptance='UNMET',limits='Same prespecified known training/development conditions,one continued seed,not independent or a formal contribution claim.'))
     except BaseException as error:
         atomic_json(execution/'failure.json',dict(error=repr(error),epoch=time.time()));raise
 

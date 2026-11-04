@@ -90,3 +90,33 @@ def test_wall_budget_searches_do_not_use_deterministic_shortcuts():
         queries.append(poses);return {'reference_road_probe':dict(version=VERSION,pose_sha256=pose_digest(poses),rejected_world=[],truncated=True)}
     prepare_reference(env,26,prepare,reject,dict(max_attempts=3,stop_repeated_references=True))
     assert len(queries)==3
+
+
+def test_exact_point_addition_can_refine_when_rejected_grid_cell_was_already_occupied():
+    env,owner=fixture();owner.road.collision_drivable[1,1]=False
+    env.config=SimpleNamespace(planner=SimpleNamespace(max_seconds=None));calls=[]
+    def prepare(action):
+        calls.append((action,env.world._reference_point_constraints))
+        env.reference=SimpleNamespace(x=[1.+len(calls)*.1],y=[1.],yaw=[0.])
+        return 'reference',dict(status='success')
+    def validate(poses):
+        return {'reference_road_probe':dict(version=VERSION,pose_sha256=pose_digest(poses),
+            rejected_world=[[1.5,-1.5,0.]] if len(calls)==1 else [],truncated=False)}
+    mode,detail=prepare_reference(env,26,prepare,validate,dict(max_attempts=3,stop_repeated_references=True,point_constraints=True))
+    assert mode=='reference' and calls==[(26,()),(26,((1.5,1.5),))]
+    assert detail['road_refinement']['point_constraints']['points']==[[1.5,1.5]]
+    assert not hasattr(owner,'_reference_point_constraints') and env.world is owner
+
+
+def test_exact_point_budget_fails_closed_without_executing_unvalidated_reference():
+    env,owner=fixture();env.config=SimpleNamespace(planner=SimpleNamespace(max_seconds=None));calls=[]
+    def prepare(action):
+        calls.append(action);env.reference=SimpleNamespace(x=[1.+len(calls)*.1],y=[1.],yaw=[0.])
+        return 'reference',dict(status='success')
+    def validate(poses):
+        points=[[i*.01,-1.,0.] for i in range(8192)] if len(calls)==1 else [[1000.,-1.,0.]]
+        return {'reference_road_probe':dict(version=VERSION,pose_sha256=pose_digest(poses),rejected_world=points,truncated=False)}
+    mode,detail=prepare_reference(env,26,prepare,validate,dict(max_attempts=3,stop_repeated_references=True,point_constraints=True))
+    assert mode=='plan_failed' and calls==[26,26] and env.reference is None
+    assert detail['road_refinement']['point_constraints']['budget_exceeded']
+    assert len(env._refinement_points)==8192 and env.world is owner

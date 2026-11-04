@@ -29,3 +29,20 @@ def test_unregistered_or_changed_training_is_rejected(key,value):
     assert not registered(p)
     for settings in [road_settings,steering_settings,option_settings]:
         with pytest.raises(ValueError):settings(p)
+
+
+def test_exact_point_course_requires_its_distinct_registration_and_all_frozen_features():
+    from navstack.fixed_lowlevel_training import REGISTRATION_POINTS
+    from navstack.steering_retiming import settings as timing_settings
+    from navstack.reference_point_constraints import settings as point_settings
+    p=protocol();p.update(fixed_lowlevel_training=deepcopy(REGISTRATION_POINTS),
+        reference_joint_speed=dict(version='measured_steering_rate_retiming_v2',spatial_speed_ceiling=.25),
+        reference_point_constraints=dict(version='native_counterexample_point_tube_v1'),
+        reference_compute_profile=dict(version='exact_static_reference_compute_v3'))
+    assert registered(p) and timing_settings(p) and point_settings(p)
+    assert road_settings(p)['point_constraints'] and steering_settings(p)['joint_speed']
+    assert not registered({**p,'fixed_lowlevel_training':REGISTRATION})
+    for patch in [dict(reference_point_constraints=None),dict(reference_compute_profile=None),
+                  dict(reference_joint_speed={'version':'measured_steering_rate_retiming_v2','spatial_speed_ceiling':.5})]:
+        assert not registered({**p,**patch})
+        with pytest.raises(ValueError):timing_settings({**p,**patch})

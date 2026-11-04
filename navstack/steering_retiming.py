@@ -15,8 +15,9 @@ def settings(protocol):
     value=protocol.get('reference_joint_speed')
     if value is None:return None
     from .reference_compute import enabled
+    from .fixed_lowlevel_training import registered
     if (value!={'version':VERSION,'spatial_speed_ceiling':.25}
-            or protocol.get('evaluation_only') is not True or not enabled(protocol)):
+            or not (protocol.get('evaluation_only') is True or registered(protocol)) or not enabled(protocol)):
         raise ValueError('Joint-speed prototype requires registered exact-compute frozen evaluation')
     return value
 

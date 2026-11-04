@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-from navstack.fixed_lowlevel_training import REGISTRATION,registered
+from navstack.fixed_lowlevel_training import REGISTRATION,REGISTRATION_POINTS,registered
 from navstack.reference_option_commitment import settings as option_settings
 from navstack.reference_road_refinement import settings as road_settings
 from navstack.steering_transition import settings as steering_settings
@@ -24,21 +24,27 @@ from scripts.prepare_native_recovery import verified_checkpoint_metadata
 def without_settings(path):
     tree=ast.parse(path.read_text(encoding='utf-8-sig'))
     tree.body=[n for n in tree.body if not isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)) or n.name!='settings']
+    if path.name=='fixed_lowlevel_training.py':
+        tree.body=[n for n in tree.body if not (isinstance(n,ast.FunctionDef) and n.name=='registered')
+            and not (isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id in ('VERSION_POINTS','REGISTRATION_POINTS') for t in n.targets))]
     return ast.dump(tree,include_attributes=False)
 
 
 def prepare(parent,output):
     parent,output=Path(parent).resolve(),Path(output).resolve();require_finished_parent(parent)
     old=read(parent/'protocol.json');raw=read(parent/'H/endpoint_raw_audit.json')
+    point_course=old.get('exact_point_pilot_registration',{}).get('original_case_ids')==[21,27]
+    ids=[21,27] if point_course else [0,1,4]
     if (old['methods']!=['H'] or not old.get('evaluation_only')
-            or old.get('refinement_transfer_registration',{}).get('original_case_ids')!=[0,1,4]
+            or not point_course and old.get('refinement_transfer_registration',{}).get('original_case_ids')!=[0,1,4]
             or raw['protocol_sha256']!=sha(parent/'protocol.json')
             or not read(parent/'strict_delivery.json')['strict_delivery_gate_passed']
-            or len(read(parent/'H/evaluation.json')['episodes'])!=3):
+            or len(read(parent/'H/evaluation.json')['episodes'])!=len(ids)):
         raise ValueError('Require complete audited prespecified frozen-option pilot,regardless of its outcomes')
     road_settings(old);steering_settings(old)
     if option_settings(old) is None:raise ValueError('Require the same explicit repeated-option interface')
-    registration_only={'navstack/reference_road_refinement.py','navstack/steering_transition.py','navstack/reference_option_commitment.py'}
+    registration_only={'navstack/reference_road_refinement.py','navstack/steering_transition.py','navstack/reference_option_commitment.py',
+        'navstack/steering_retiming.py','navstack/fixed_lowlevel_training.py'}
     for name,digest in old['source_hashes'].items():
         frozen=parent/'source'/name
         if sha(frozen)!=digest:raise ValueError('Pilot source changed:'+name)
@@ -53,10 +59,11 @@ def prepare(parent,output):
     for name in ['model.zip','normalization.pkl']:
         if sha(checkpoint/name)!=sha(folder/name):raise ValueError('Pilot initializer differs from its evaluated bytes')
     p=deepcopy(old);p.pop('reference_context_endpoint',None);p.pop('refinement_transfer_registration',None)
+    p.pop('exact_point_pilot_registration',None);p.pop('exact_compute_recovery',None)
     p.pop('own_success_replay',None)
     p.update(evaluation_only=False,method_budgets={'H':5120},controlled_budget_per_method=5120,
         deterministic_training_route_evaluation=False,freeze_observation_statistics=True,record_initial_parameters=True,
-        fixed_lowlevel_training=deepcopy(REGISTRATION),checkpoint_thresholds=list(range(320,5121,320)))
+        fixed_lowlevel_training=deepcopy(REGISTRATION_POINTS if point_course else REGISTRATION),checkpoint_thresholds=list(range(320,5121,320)))
     p['reference_learning_registration'].update(requested_controls_each=5120,physical_models_and_actions_unchanged=False,
         physical_actuation_unchanged=True,planner_and_option_semantics_changed=True,lowlevel_fixed_for_this_course=True,
         initializer_proof_sha256=sha(checkpoint/'metadata.json'),selection='Final fixed requested budget endpoint only')
@@ -68,9 +75,9 @@ def prepare(parent,output):
     p['lineage_targets']={'H':meta['lineage_control_steps']+5120}
     p['fixed_lowlevel_adaptation_registration']=dict(parent_pilot=parent.name,parent_protocol_sha256=sha(parent/'protocol.json'),
         source_git_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
-        parent_raw_audit_sha256=sha(parent/'H/endpoint_raw_audit.json'),original_known_development_case_ids=[0,1,4],
+        parent_raw_audit_sha256=sha(parent/'H/endpoint_raw_audit.json'),original_known_development_case_ids=ids,
         fixed_requested_controls=5120,maximum_rollout_overshoot=319,new_supervision=0,new_final_conditions=0,
-        selection='All3prespecified cases retained,regardless of pilot outcome;no seed/model selection',
+        selection='All prespecified cases retained,regardless of pilot outcome;no seed/model selection',
         limits='One continued policy and known development conditions only;new lowlevel/action semantics,not a matched from-scratch comparison,independent seed or final acceptance.')
     p['scope']='Single continued native PPOpolicy adapting to fixed32000-node slew planning and explicit repeated-option persistence;known development only'
     output.mkdir();(output/'infrastructure').mkdir();shutil.copytree(parent/'calibration',output/'calibration')

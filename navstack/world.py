@@ -132,6 +132,12 @@ class World:
                     valid[index] = not self.road.intersects(body_corners(poses[index], vehicle, margin))
             else:
                 raise ValueError("Unknown road collision backend")
+        points=getattr(self,'_reference_point_constraints',None)
+        if points is not None:
+            from .reference_point_constraints import allowed,signature
+            signature(self)
+            indices=np.flatnonzero(valid)
+            valid[indices] &= allowed(poses[indices],vehicle,points,margin)
         return valid
 
     def occupied(self, x, y):

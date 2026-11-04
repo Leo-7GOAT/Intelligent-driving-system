@@ -1,4 +1,14 @@
-# 当前接续：2026-11-04 13:42 四场与全CPU均闭合；局部精确拒绝点是下一必要验证
+# 当前接续：2026-11-04 13:57 精确点约束已验证；两场仍超时，准备固定低层PPO适配
+
+新opt-in native_counterexample_point_tube_v1把原生同帧拒绝点逆变换到局部精确XY，在private planning_view里对同9offset完整车身施加点障碍，真实World/评分/接受阈值不变；规划空间memo key增加版本/1e-5 float32 roundtrip容差/全部float64点bytes，dynamic/墙钟仍旁路。最多8192点、3细化次、每次normal/.25各32000节点，所有joint search成本保留。默认无点输入键不变。源码navstack/reference_point_constraints.py，World.free_many仅private点属性启用。case21/27离线分别7989/2031nodes，source-bound复查两条轨迹SDK全9offset均0badpoints；source-bound D盘native_case*_exact_point_runtime_source_bound.json和native_case21_27_exact_point_road_probe.json。
+
+两场真实baseline D:/ThesisNativeArchive_20261104/20261104_exact_point_joint_speed_H_two_condition_pilot 已闭合，execution20261104_exact_point_two_condition_execution/complete.json存在；16788/30940已结束，1800controls/180NN及raw/engine全PASS。仍0/2：原case21前进3.35m后PPO26→30，81次open_set_exhausted；原case27前进18.46m后转action2，57次open_set_exhausted。两者已能生成并实际执行通过native查询的参考，不是原初始query无法通过；不能说点约束修复完整任务或PPO学习已获益。
+
+全CPU exec9009 DONE0：1399PASS/1SKIP/4CARLA deselect/277.28s，XML D:/ThesisNativeArchive_20261104/exact_point_full_CPU.xml。之后仅训练注册gate改动，另40项PASS3.38s，XML point_training_gate_tests.xml；full覆盖点低层，40覆盖新gate，不冒称全CPU重新覆盖注册扩展。公开reports/native_exact_point_constraint_development_20261104.json。
+
+下一已具体实现：REGISTRATION_POINTS=fixed_exact_point_joint_speed_native_adaptation_v1，单5120新真实控制、零辅助监督、冻结RMS/全部低层，same2[21,27]端点。prepare_fixed_lowlevel_adaptation.py支持完整已审计point pilot，AST校验当前navstack与pilot除settings/registered及新注册常量外一致；原[0,1,4]课程不受影响。run_fixed_lowlevel_adaptation.py按注册ids派生same2_endpoint，实际权重/Adam/RNG初始化、32Adam步推进、RMS及训练/端点raw/NN/engine全自动核验。当前尚未准备或启动新课程，勿称正在学习；先提交当前源码，再准备 D:/ThesisNativeArchive_20261104/20261104_exact_point_PPO5120_H 并启动唯一execution。不要重复已关闭两场/低层变体/全CPU。仍一个continued seed22，所有旧负结果保留，最终120未生成/查看。
+
+# 历史接续：2026-11-04 13:42 四场与全CPU（已完成下一精确点验证）
 
 所有原生作业/审计/CPU/离线probe已结束，无活动任务需等待，不要重启旧队列。当前源2f3fb5d已推且GitHub CI41779692919成功；全CPU exec4192 DONE0，1392PASS/1SKIP/4CARLA DESELECT/321.32s，XML D:/ThesisNativeArchive_20261104/joint_speed_full_CPU.xml。四条件execution/complete.json已存在，31428/33496已退出；[0,4,21,27]为deadline900/success410/deadline900/deadline900，3110controls，raw/全部311NN/engine均PASS。与单case1success558合计同core源5个known条件2/5，v2实际3668controls；加v1失败900，共4568新控制，零PPO，不是独立seed。公开reports/native_joint_speed_four_condition_complete_20261104.json，英文/中文README已同步真实弱结果。
 

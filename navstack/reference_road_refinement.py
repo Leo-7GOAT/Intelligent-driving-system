@@ -20,7 +20,9 @@ def settings(protocol):
             or protocol.get('methods') not in (['H'],['H0'])):
         raise ValueError('Refinement prototype requires explicit frozen H/H0 evaluation registration')
     from .reference_compute import enabled
-    return dict(value,stop_repeated_references=True) if enabled(protocol) else value
+    result=dict(value,stop_repeated_references=True) if enabled(protocol) else value
+    from .reference_point_constraints import settings as point_settings
+    return dict(result,point_constraints=True) if point_settings(protocol) else result
 
 
 def pose_digest(poses):
@@ -54,12 +56,16 @@ def query_points(poses,vehicle,layout,contains,location):
                 rejected_world=[list(p) for p in ordered[:8192]],truncated=len(ordered)>8192)
 
 
-def planning_view(world,cells):
+def planning_view(world,cells,points=None):
     view=copy.copy(world);view.road=copy.deepcopy(world.road)
     for row,column in cells:
         if type(row) is not int or type(column) is not int or not 0<=row<view.road.size or not 0<=column<view.road.size:
             raise ValueError('Invalid planning-only road cell')
         view.road.collision_drivable[row,column]=False
+    if points is not None:
+        from .reference_point_constraints import VERSION as POINT_VERSION,signature
+        view._reference_point_constraints=tuple(sorted(points));view._reference_point_constraint_version=POINT_VERSION
+        signature(view)
     return view
 
 
@@ -76,18 +82,21 @@ def rejected_cells(points,layout,road):
 def prepare_reference(env,action,prepare,validate,options):
     owner=env.world
     if getattr(env,'_refinement_world_owner',None) is not owner:
-        env._refinement_world_owner=owner;env._refinement_cells=set();env._validated_road_reference=None
-    probes=[];attempts=[];rejected_hashes=set();shortcut=None
+        env._refinement_world_owner=owner;env._refinement_cells=set();env._refinement_points=set();env._validated_road_reference=None
+    probes=[];attempts=[];rejected_hashes=set();shortcut=None;point_budget_exceeded=False
     exact_shortcut=(options.get('stop_repeated_references',False)
                     and env.config.planner.max_seconds is None)
     for _ in range(options['max_attempts']):
         reuse=(env.reference is not None and env.reference is env._validated_road_reference
                and int(action)!=0 and env.reusable_reference(*env.decode_action(action)))
-        env.world=owner if reuse else planning_view(owner,env._refinement_cells)
+        env.world=owner if reuse else planning_view(owner,env._refinement_cells,
+            env._refinement_points if options.get('point_constraints') else None)
         try:mode,detail=prepare(action)
         finally:env.world=owner
         detail=dict(status='wait',expanded_nodes=0,planning_time=0.) if detail is None else dict(detail)
         attempts.append({k:detail.get(k) for k in ('status','expanded_nodes','planning_time')})
+        if detail.get('joint_speed_search') is not None:
+            attempts[-1]['joint_speed_search']=detail['joint_speed_search']
         if mode!='reference':break
         if env.reference is env._validated_road_reference:break
         poses=[[float(x),float(y),float(yaw)] for x,y,yaw in zip(env.reference.x,env.reference.y,env.reference.yaw)]
@@ -105,6 +114,16 @@ def prepare_reference(env,action,prepare,validate,options):
         geometry_changed=any(owner.road.collision_drivable[row,column] for row,column in added)
         env._refinement_cells.update(added)
         env.reference=None;env._reference_selection=None;env._rule_plan_cache=None
+        if options.get('point_constraints'):
+            from .reference_point_constraints import local_points,MAX_POINTS
+            points=set(local_points(result['rejected_world'],env.scene_evidence['native_layout']))
+            proposed=env._refinement_points|points
+            if len(proposed)>MAX_POINTS:
+                point_budget_exceeded=True;shortcut='exact_point_constraint_budget_exhausted'
+                mode='plan_failed';detail.update(status='trajectory_failed',failure_reason=shortcut)
+                env.episode['plan_failures']+=1;break
+            geometry_changed=geometry_changed or bool(points-env._refinement_points)
+            env._refinement_points=proposed
         if exact_shortcut and not geometry_changed:
             mode='plan_failed';detail.update(status='trajectory_failed',failure_reason='native_reference_road_refinement_stalled')
             env.episode['plan_failures']+=1;shortcut='rejection_adds_no_new_planning_constraint';break
@@ -113,9 +132,14 @@ def prepare_reference(env,action,prepare,validate,options):
         env.episode['plan_failures']+=1
     detail['road_refinement']=dict(version=VERSION,cells=sorted([list(c) for c in env._refinement_cells]),
         attempts=attempts,probes=probes,rejected_references=sum(bool(p['reference_road_probe']['rejected_world']) for p in probes),
-        total_expanded_nodes=sum(a.get('expanded_nodes') or 0 for a in attempts),
+        total_expanded_nodes=sum(a['joint_speed_search']['total_expanded_nodes'] if a.get('joint_speed_search') is not None
+            else a.get('expanded_nodes') or 0 for a in attempts),
         query_samples=sum(p['reference_road_probe'].get('sample_count',0) for p in probes))
     if options.get('stop_repeated_references',False):
         from .reference_compute import VERSION as COMPUTE_VERSION
         detail['road_refinement'].update(compute_profile=COMPUTE_VERSION,shortcut=shortcut)
+    if options.get('point_constraints'):
+        from .reference_point_constraints import VERSION as POINT_VERSION
+        detail['road_refinement']['point_constraints']=dict(version=POINT_VERSION,
+            points=sorted([list(p) for p in env._refinement_points]),budget_exceeded=point_budget_exceeded)
     return mode,detail

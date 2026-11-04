@@ -107,7 +107,7 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
         if p.get('reference_option_commitment'):
             from navstack.reference_option_commitment import configure,settings as option_settings
             configure(env,option_settings(p))
-        refinement_cells=set()
+        refinement_cells=set();refinement_points=set()
         counts=0
         try:
             for row in selected if all_static else selected[:1]:
@@ -135,11 +135,26 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
                                     or response['sample_count']!=len(request['poses'])*108):
                                 raise ValueError('Road query frame/pose/sample binding differs')
                             refinement_cells.update(rejected_cells(response['rejected_world'],begin['scene']['native_layout'],env.world.road))
+                            if p.get('reference_point_constraints'):
+                                from navstack.reference_point_constraints import local_points,MAX_POINTS
+                                proposed=refinement_points|set(local_points(response['rejected_world'],begin['scene']['native_layout']))
+                                if len(proposed)>MAX_POINTS:
+                                    if not evidence['point_constraints']['budget_exceeded']:
+                                        raise ValueError('Unreported point-constraint budget exhaustion')
+                                else:refinement_points=proposed
                         if sorted([list(c) for c in refinement_cells])!=evidence['cells']:
                             raise ValueError('Planning constraints do not match recorded counterexamples')
+                        if p.get('reference_point_constraints'):
+                            from navstack.reference_point_constraints import settings as point_settings
+                            point_settings(p)
+                            points=evidence.get('point_constraints')
+                            if (not points or points['version']!=p['reference_point_constraints']['version']
+                                    or points['points']!=sorted([list(q) for q in refinement_points])):
+                                raise ValueError('Exact point constraints differ from actual native counterexamples')
                     if recorded and recorded['status'] in ('success','reference_reused'):
                         owner=env.world
-                        if refinement is not None and recorded['status']=='success':env.world=planning_view(owner,refinement_cells)
+                        if refinement is not None and recorded['status']=='success':
+                            env.world=planning_view(owner,refinement_cells,refinement_points if p.get('reference_point_constraints') else None)
                         from navstack.steering_transition import prepare_reference as steering_prepare,settings as steering_settings
                         try:_,detail=steering_prepare(env,action,env._prepare_reference,steering_settings(p))
                         finally:env.world=owner

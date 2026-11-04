@@ -14,7 +14,7 @@ from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.audit_native_policy_sequence import observation_env
 
 
-def probe(batch,case_id,output):
+def probe(batch,case_id,output,exact_counterexamples=False):
     batch,output=Path(batch),Path(output)
     if output.exists():raise FileExistsError('Preserve every model probe')
     rows,error=read_prefix(batch/'H/evaluation_trace.jsonl.gz')
@@ -48,12 +48,28 @@ def probe(batch,case_id,output):
                     shifted=flat.copy();shifted[:,0]-=lat*np.sin(flat[:,2]);shifted[:,1]+=lat*np.cos(flat[:,2]);shifted[:,2]+=turn
                     valid &= base_free(shifted,vehicle,margin);calls[0]+=len(flat)
             return valid.reshape(poses.shape[:-1])
-        env.world.free_many=tube_free
+        points=()
+        if exact_counterexamples:
+            from navstack.reference_point_constraints import allowed,local_points
+            evidence=row['info']['plan']['road_refinement']['probes']
+            rejected=[point for reply in evidence for point in reply['reference_road_probe']['rejected_world']]
+            if not rejected:raise ValueError('Require actual rejected points')
+            raw=read(batch/'H/endpoint_raw_audit.json')
+            if raw['evaluation_trace_sha256']!=sha(batch/'H/evaluation_trace.jsonl.gz'):
+                raise ValueError('Require raw-verified measured trace')
+            points=local_points(rejected,begin['scene']['native_layout'])
+            from navstack.reference_road_refinement import planning_view
+            cells=set(map(tuple,row['info']['plan']['road_refinement']['cells']))
+            env.world=planning_view(env.world,cells,points);calls[0]=None
+        else:env.world.free_many=tube_free
         planner=HybridAStar(cfg.vehicle,replace(cfg.planner,max_nodes=32000,max_seconds=None,analytic_expansion=False))
         result=planner.plan(*captured[0],env.world,initial_steering=env.state.steering,reference_speed=.25)
         record=dict(batch=batch.name,case_id=case_id,action=row['policy_action'],status=result.status,
             failure_reason=result.failure_reason,nodes=result.expanded_nodes,seconds=result.planning_time,
             model_footprint_checks=calls[0],path=result.path.tolist(),trace_sha256=sha(batch/'H/evaluation_trace.jsonl.gz'),
+            exact_counterexamples=exact_counterexamples,local_points=points,
+            constraint_source_hashes={name:sha(ROOT/name) for name in ['navstack/reference_point_constraints.py',
+                'navstack/world.py','navstack/reference_road_refinement.py','navstack/planner_memo.py']},
             script_sha256=sha(Path(__file__)),layout=begin['scene']['native_layout'],new_native_controls=0,
             limits='Conservative raster model with nine-offset body checks;actual native road acceptance and tracking not established. Initial/goal nominal validity and task acceptance tolerances unchanged.')
         if result.status=='success':
@@ -66,4 +82,5 @@ def probe(batch,case_id,output):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--batch',required=True);p.add_argument('--case-id',type=int,required=True);p.add_argument('--output',required=True)
-    a=p.parse_args();probe(a.batch,a.case_id,a.output)
+    p.add_argument('--exact-counterexamples',action='store_true')
+    a=p.parse_args();probe(a.batch,a.case_id,a.output,a.exact_counterexamples)

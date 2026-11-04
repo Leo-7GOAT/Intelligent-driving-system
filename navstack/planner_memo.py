@@ -58,11 +58,15 @@ class ExactStaticFailureMemo:
         road_key = None if road is None else (
             road.width, road.height, road.dx, road.dy,
             road.collision_drivable.shape, road.collision_drivable.dtype.str, road.collision_drivable.tobytes())
-        return (id(world), world.width, world.height,
+        key = (id(world), world.width, world.height,
                 tuple(tuple(rect) for rect in world.static),
                 world.road_collision_backend, bool(getattr(world, 'measured_offroad', False)),
                 road_key, json.dumps(asdict(self.vehicle), sort_keys=True, allow_nan=False),
                 json.dumps(asdict(self.config), sort_keys=True, allow_nan=False))
+        if getattr(world,'_reference_point_constraints',None) is not None:
+            from .reference_point_constraints import signature
+            key=key+(signature(world),)
+        return key
 
     def plan(self, start, goal, world):
         started = time.perf_counter()
