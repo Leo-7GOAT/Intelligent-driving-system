@@ -69,6 +69,33 @@ def test_cached_cells_follow_public_raster_changes_and_free_road():
     assert batch.intersects_many(poses,vehicle)[0]==oracle(road,poses,vehicle,0.)[0]
 
 
+def test_integer_window_cache_preserves_rectangle_bits_and_is_bounded():
+    road=grid();batch=ExactRoadBatch(road);rng=np.random.default_rng(449)
+    windows=[rng.uniform(-5,37,(2,2)) for _ in range(450)]
+    for bounds in windows:
+        rect,centers,radii=batch._window(bounds,1e-8)
+        expected=road.rectangles(bounds,reach=1e-8)
+        np.testing.assert_array_equal(rect.view(np.uint64),expected.view(np.uint64))
+        np.testing.assert_array_equal(centers.view(np.uint64),((expected[:,:2]+expected[:,2:])/2).view(np.uint64))
+        np.testing.assert_array_equal(radii.view(np.uint64),((expected[:,2:]-expected[:,:2])/2).view(np.uint64))
+        assert len(batch._windows)<=256 and batch._window_cells<=65536
+    bounds=np.array([[12.,8.],[15.,11.]])
+    batch._window(bounds,1e-8);batch._window(bounds+1e-11,1e-8)
+    assert batch.window_cache_hits>0
+
+
+def test_cached_candidate_windows_are_invalidated_by_raster_edits():
+    road=grid();batch=ExactRoadBatch(road);poses=np.array([[10.,12.,.3],[15.,13.,.2]])
+    vehicle=VehicleConfig()
+    batch.intersects_many(poses,vehicle);batch.intersects_many(poses,vehicle)
+    assert batch.window_cache_hits>0
+    road.collision_drivable[:]=True
+    road.collision_drivable[24:29,19:23]=False
+    actual=batch.intersects_many(poses,vehicle)
+    np.testing.assert_array_equal(actual,oracle(road,poses,vehicle,0.))
+    assert batch.window_cache_hits==0
+
+
 def test_world_backend_preserves_bounds_static_road_and_invalid_pose_decisions():
     scalar=World(32.,28.,[(6.,14.,8.,17.)],road=grid())
     batched=World(32.,28.,scalar.static,road=scalar.road,road_collision_backend='batch_sat_v1')

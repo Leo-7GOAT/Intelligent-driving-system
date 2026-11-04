@@ -1,3 +1,9 @@
+# 当前：2026-11-04 20:04 碰撞内核优化已验证，现有原生训练继续
+
+root的ExactRoadBatch新增精确整数栅格窗口LRU，只缓存rect/center/radius，最多256窗口/65536cell rows；不缓存碰撞结果，不改完整车身、1e-12容差和接触scalar回退，raster公开修改仍失效。9项碰撞回归PASS5.45s，35项关联road/planning/trajectory回归PASS7.78s。实际已关闭seed11 zeroPPO known24的8道路、186测量起点派生37200模型primitive poses，old/new/scalar所有mask一致；5次交替顺序微基准cold1.106×/warm1.214×。两张实际static/curve地图的离线1800node HybridA*，status/nodes/cost/pathbits完全一致。不是完整native refinement/驾驶复测，不是全训练或实时提速证据，不归因PPO。公开reports/road_window_cache_development_20261104.json、docs/road_window_cache.md、可复现入口scripts/benchmark_road_windows.py。原测量/执行脚本留D，原SHA不覆盖，仅修正fixed24为up to24的文字，未择优重测。
+
+现有cohort冻结source全部未改，不将root优化注入在训课程；新增控制/更新0。OS核验同一H coordinator17884/worker29968/bridge9164与只读B1 waiter6828存活；20:04实际heartbeat16891controls/1703actions/53rollouts，最近checkpoint16508controls/520Adam，guardhealthy。B1仍WAITING_FOR_OWNED_H_COHORT/new_native_jobs0。严禁重复启动、编辑冻结source或动未归属2100。最终120未生成/查看，整体研究目标仍UNMET。下面是此前记录，实时状态仍以OS/guard/heartbeat和终态文件为准。
+
 # 当前：2026-11-04 19:32 五种子B1已实际准备并进入只读等待；H训练继续
 
 本轮进展：scripts/run_matched_flat_cohort.py与测试/文档已实现并push60a6299。基于protocols/native_B1_all_five_actor_maturation_20261031.json的五个零PPO actor，所有原输入数据同SHA381519ab...、teacher4329controls、各2304继承监督更新/39189历史chargedcontrols。原recipe不一致：11已1280rollout/3e-6/σ=exp(-4)/FixedRewardUnits，其余4为320rollout/3e-4/σ=1/普通RoadNormalize。现在统一1280/320batch/10epochs/3e-6/KL.01/logstd=-4/固定PPO rewardscale.05；保留actor means/critic/RMS/原RNG（仅声明std改变），不做新监督。实体奖励不改，shared parking=True，全部navstack源码SHA同当前H frozen62d。H categorical端点mask不能直接用于连续B1，方法/flat_hold/endpointfilter是环境配置唯一差异。B1是20Hz连续加速度/转向，不是speed_target，H2Hz候选pose/speed；不同先验/计算费用要披露。

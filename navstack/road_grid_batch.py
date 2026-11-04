@@ -4,6 +4,7 @@ Closed occupied cells, full vehicle corners and the scalar oracle's tolerance
 are retained. Numerically sensitive contacts use the unchanged scalar routine.
 """
 import math
+from collections import OrderedDict
 import numpy as np
 
 
@@ -40,6 +41,33 @@ class ExactRoadBatch:
             (xx+1)*self.grid.dx,(yy+1)*self.grid.dy]
         self.centers=(self.rectangles[:,:2]+self.rectangles[:,2:])/2
         self.radii=(self.rectangles[:,2:]-self.rectangles[:,:2])/2
+        self._cell_indices=np.full(self.mask.shape,-1,dtype=np.int32)
+        self._cell_indices[yy,xx]=np.arange(len(xx),dtype=np.int32)
+        self._windows=OrderedDict();self._window_cells=0
+        self.window_cache_hits=0;self.window_cache_misses=0
+
+    def _window(self, corners, reach):
+        """Cache only exact integer cell windows,never pose collision decisions."""
+        lo,hi=corners.min(axis=0)-reach,corners.max(axis=0)+reach
+        first=np.maximum(0,np.floor(lo/self.cell_size).astype(int)-1)
+        last=np.minimum(self.grid.size,np.floor(hi/self.cell_size).astype(int)+2)
+        if np.any(last<=first):
+            return self.rectangles[:0],self.centers[:0],self.radii[:0]
+        key=tuple(first)+tuple(last)
+        cached=self._windows.get(key)
+        if cached is not None:
+            self._windows.move_to_end(key);self.window_cache_hits+=1
+            return cached
+        self.window_cache_misses+=1
+        indices=self._cell_indices[first[1]:last[1],first[0]:last[0]].ravel()
+        indices=indices[indices>=0]
+        cached=(self.rectangles[indices],self.centers[indices],self.radii[indices])
+        for values in cached:values.flags.writeable=False
+        self._windows[key]=cached;self._window_cells+=len(indices)
+        # At most256windows and65536cell rows (~4MiB of float64 arrays).
+        while len(self._windows)>256 or self._window_cells>65536:
+            _,removed=self._windows.popitem(last=False);self._window_cells-=len(removed[0])
+        return cached
 
     def intersects_many(self, poses, vehicle, margin=0.):
         from .world import body_corners
@@ -72,13 +100,12 @@ class ExactRoadBatch:
             # Select the same closed cells through the raster's spatial window
             # before SAT. Scanning every occupied cell of a 256x256 map for
             # each small path chunk dominates repeated candidate witnesses.
-            rect=self.grid.rectangles(np.asarray([union_lo,union_hi]),reach=contact_band)
+            rect,centers,radii=self._window(np.asarray([union_lo,union_hi]),contact_band)
             keep=((rect[:,0]<=union_hi[0]+contact_band)&(rect[:,2]>=union_lo[0]-contact_band)
                 &(rect[:,1]<=union_hi[1]+contact_band)&(rect[:,3]>=union_lo[1]-contact_band))
             rect=rect[keep]
             if not len(rect):continue
-            centers=(rect[:,:2]+rect[:,2:])/2
-            radii=(rect[:,2:]-rect[:,:2])/2
+            centers=centers[keep];radii=radii[keep]
             xleft=hi[:,0,None]-rect[None,:,0]+tolerance
             xright=rect[None,:,2]-lo[:,0,None]+tolerance
             ybottom=hi[:,1,None]-rect[None,:,1]+tolerance

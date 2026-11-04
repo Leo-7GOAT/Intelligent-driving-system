@@ -1,0 +1,190 @@
+{
+  "scope": "Compare exact road SAT kernels on primitives seeded by saved native states.",
+  "research_acceptance": "UNMET",
+  "batch": "20261104_independent_outcome_seed11_zero_PPO_known24",
+  "protocol_sha256": "fff2e661bae88709f12402799451aacbfa6e548f82765d5e6caf6a766193fb0c",
+  "bound_trace_sha256": "48e310b7620139ea38a2a3249eb0c7f72bba802c36188b2859d3b1dfa01a5b0a",
+  "legacy_collision_sha256": "78cdb5f2dccf93d397289126f360aac950694780b53bf439e3c083fe8031c780",
+  "candidate_collision_sha256": "41141704e24fcc0c31e8f86165d63d1cb17a0c8c1cc1431bd8260badf1759cff",
+  "benchmark_script_sha256": "4b3843b9314e6547b078c55a71a6fd160ddca1aadf3d4b9551be06322b79282e",
+  "roads": 8,
+  "measured_seed_states": 186,
+  "generated_primitive_pose_tests": 37200,
+  "all_boolean_masks_equal_to_old_and_scalar": true,
+  "fixed_reference_speed": 0.25,
+  "steering_choices": 5,
+  "trials": [
+    {
+      "old": {
+        "construction_seconds": 0.00554310000006808,
+        "cold_seconds": 0.12472450000495883,
+        "warm_seconds": 0.12232029999722727,
+        "cache_hits": 0,
+        "cache_misses": 0,
+        "maximum_cached_cell_rows": 0
+      },
+      "candidate": {
+        "construction_seconds": 0.006782999997085426,
+        "cold_seconds": 0.11039049999817507,
+        "warm_seconds": 0.10037819999706699,
+        "cache_hits": 561,
+        "cache_misses": 541,
+        "maximum_cached_cell_rows": 4230
+      }
+    },
+    {
+      "candidate": {
+        "construction_seconds": 0.007966299999679904,
+        "cold_seconds": 0.10675289999926463,
+        "warm_seconds": 0.1035150000025169,
+        "cache_hits": 561,
+        "cache_misses": 541,
+        "maximum_cached_cell_rows": 4230
+      },
+      "old": {
+        "construction_seconds": 0.007770899996103253,
+        "cold_seconds": 0.12803899999562418,
+        "warm_seconds": 0.11560330000065733,
+        "cache_hits": 0,
+        "cache_misses": 0,
+        "maximum_cached_cell_rows": 0
+      }
+    },
+    {
+      "old": {
+        "construction_seconds": 0.0062752000012551434,
+        "cold_seconds": 0.12147579999873415,
+        "warm_seconds": 0.12347059999592602,
+        "cache_hits": 0,
+        "cache_misses": 0,
+        "maximum_cached_cell_rows": 0
+      },
+      "candidate": {
+        "construction_seconds": 0.00612869999895338,
+        "cold_seconds": 0.11317109999799868,
+        "warm_seconds": 0.10613690000172937,
+        "cache_hits": 561,
+        "cache_misses": 541,
+        "maximum_cached_cell_rows": 4230
+      }
+    },
+    {
+      "candidate": {
+        "construction_seconds": 0.008216199996240903,
+        "cold_seconds": 0.10997330000100192,
+        "warm_seconds": 0.10073939999711001,
+        "cache_hits": 561,
+        "cache_misses": 541,
+        "maximum_cached_cell_rows": 4230
+      },
+      "old": {
+        "construction_seconds": 0.006997099997533951,
+        "cold_seconds": 0.11762210000597406,
+        "warm_seconds": 0.12186450000444893,
+        "cache_hits": 0,
+        "cache_misses": 0,
+        "maximum_cached_cell_rows": 0
+      }
+    },
+    {
+      "old": {
+        "construction_seconds": 0.0061264999967534095,
+        "cold_seconds": 0.12211769999703392,
+        "warm_seconds": 0.12230700000509387,
+        "cache_hits": 0,
+        "cache_misses": 0,
+        "maximum_cached_cell_rows": 0
+      },
+      "candidate": {
+        "construction_seconds": 0.005442400004540104,
+        "cold_seconds": 0.11261329999979353,
+        "warm_seconds": 0.09974439999496099,
+        "cache_hits": 561,
+        "cache_misses": 541,
+        "maximum_cached_cell_rows": 4230
+      }
+    }
+  ],
+  "medians": {
+    "old": {
+      "construction_seconds": 0.0062752000012551434,
+      "cold_seconds": 0.12211769999703392,
+      "warm_seconds": 0.12230700000509387
+    },
+    "candidate": {
+      "construction_seconds": 0.006782999997085426,
+      "cold_seconds": 0.11039049999817507,
+      "warm_seconds": 0.10073939999711001
+    }
+  },
+  "speedup_ratios": {
+    "cold_seconds": 1.1062337791662573,
+    "warm_seconds": 1.2140929964701257
+  },
+  "new_native_controls": 0,
+  "new_optimizer_updates": 0,
+  "active_training_source_unchanged": true,
+  "limits": "Offline planner-model primitives seeded by saved measured states;not native execution or full HybridA* replay.All8known roads and up to24uniformly sampled starts perroad retained.Five alternating-order trials on a shared workstation are exploratory kernel timings,not isolated real-time control or new task completion evidence.",
+  "original_measurement_sha256": "f6c7c932908afa68ca2b564d454362d0dc06ed719c570e8594585959da121f68",
+  "provenance_note": "The original measurement is retained unchanged. Its script hash binds the as-executed script; the current CLI only corrects fixed24 to up to24 in the limits sentence. No timing rerun or favorable-trial selection.",
+  "current_benchmark_script_sha256": "14596937491f340a1b9bf239d8a881758dd613c1b9aabd7f1e3114d3dba1cf7f",
+  "planner_equivalence": {
+    "scope": "Two static native-road geometry fixtures;offline1800node steering-transition searches,not full native refinement or execution",
+    "results": [
+      {
+        "case_id": 0,
+        "scene_sha256": "9448461dfa77605700ff106b063f003f79f9a61ef9a7c625802f2e7b43640191",
+        "status": "success",
+        "nodes": 35,
+        "cost": 25.1575,
+        "path_sha256": "02dcb86410fbc88e2d0edd4189e905de94211121df4c1352959a687219ae3896",
+        "old_seconds": 0.03314890000183368,
+        "candidate_seconds": 0.029639399996085558,
+        "path_bit_exact": true
+      },
+      {
+        "case_id": 7,
+        "scene_sha256": "59f460b969cbce30e2ddf3ea038babd2a49e9bf0ab1f17aa922095f41a935d17",
+        "status": "success",
+        "nodes": 20,
+        "cost": 14.087500000000004,
+        "path_sha256": "8d6d9a5e06343e12adec4e12c9f182494d67be056302d201c828dd1f18429142",
+        "old_seconds": 0.02244339999742806,
+        "candidate_seconds": 0.023627700000361074,
+        "path_bit_exact": true
+      }
+    ],
+    "source_collision_sha256": "41141704e24fcc0c31e8f86165d63d1cb17a0c8c1cc1431bd8260badf1759cff",
+    "legacy_collision_sha256": "78cdb5f2dccf93d397289126f360aac950694780b53bf439e3c083fe8031c780",
+    "new_controls": 0,
+    "new_updates": 0,
+    "active_training_source_unchanged": true
+  },
+  "local_regression": [
+    {
+      "receipt": "road_window_cache_tests.xml",
+      "sha256": "5a4d023c8c374c6f1ce2a3a0b7a9d52efe06b0b396c7fe53cfd9f28810d857ae",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 5.447
+    },
+    {
+      "receipt": "road_window_related_tests.xml",
+      "sha256": "41a8613750679b7410b5dc2e680b1d409551ede7acdef1a9424427cc9432b1d3",
+      "tests": 35,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 7.775
+    }
+  ],
+  "cache_contract": {
+    "max_windows": 256,
+    "max_cached_cell_rows": 65536,
+    "cache_key": "exact integer rectangle window",
+    "collision_decisions_cached": false,
+    "public_raster_edits_invalidate": true,
+    "contact_tolerance_changed": false,
+    "scalar_fallback_retained": true
+  }
+}
