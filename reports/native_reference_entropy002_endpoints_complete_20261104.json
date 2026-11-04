@@ -1,0 +1,418 @@
+{
+  "scope": "Completed entropy0.02H native fixed-budget development course and full static12/known24 endpoints",
+  "recorded_at_utc": "2026-11-04T01:37:51.808134+00:00",
+  "research_acceptance": "UNMET",
+  "batch": "20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H",
+  "source_commit": "ac04d2015ad76d98e47503e43af2094ac19cc211",
+  "model_sha256": "bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a",
+  "protocol_sha256": "03c6c36003bcf6221e864174f05339a0bd17ef2b6d8515018cf7f9b305419a04",
+  "training_proof_sha256": "7f235a4169cae315bf33134021c4e2107351be80c0ee7fa7cc00afebc6bc626d",
+  "training_raw_sha256": "056f6065146b0ae3c1c66cc265ba330cdb23e823743f945d024ec5784866980b",
+  "training_engine_sha256": "89492ebb380eff0a8d716e3fb1fa29208cfd62d07a8c0d0b9a27eb6160e9f6da",
+  "training": {
+    "physics_steps": 10485,
+    "actions": 1056,
+    "episodes": 18,
+    "optimization_phases": 33,
+    "optimizer_steps": 330,
+    "reward_components": {
+      "event": 210.0,
+      "time": -52.42500000000837,
+      "risk": -147.61055506838937,
+      "comfort": -4.915180493014989,
+      "potential": 13.231399247990959,
+      "task_progress": 172.1679996397145
+    },
+    "modes": {
+      "reference": 559,
+      "dynamic_brake": 17,
+      "wait": 4,
+      "plan_failed": 476
+    },
+    "action_histogram": {
+      "26": 743,
+      "2": 163,
+      "22": 27,
+      "0": 4,
+      "12": 23,
+      "27": 2,
+      "30": 29,
+      "6": 7,
+      "29": 5,
+      "25": 1,
+      "21": 1,
+      "11": 1,
+      "19": 8,
+      "20": 9,
+      "10": 4,
+      "16": 2,
+      "18": 6,
+      "28": 4,
+      "8": 3,
+      "15": 2,
+      "4": 1,
+      "5": 4,
+      "9": 3,
+      "3": 1,
+      "17": 2,
+      "14": 1
+    },
+    "method": "H",
+    "job_name": "H",
+    "rollout_actions": 32,
+    "ppo_epochs": 10,
+    "batch_size": 32,
+    "gradient_clip_mode": "global",
+    "backend": "CARLA_0.9.15",
+    "world_ticks": 11073,
+    "reset_ticks": 588,
+    "actor_l2_change": 0.29632291197776794,
+    "reload_exact": true,
+    "wall_seconds": 1565.8871774673462,
+    "stopped_reason": null,
+    "lineage_control_steps": 41531,
+    "charged_control_steps_lower_bound": 90131,
+    "inherited_controls_not_in_checkpoint": 48600,
+    "scope": "One canonical seed versioned4736-input selected H actual TRAIN48course. New learned reference context,H0when selected hides old feedback and reference context. Fixed current lowlevel,reward and categorical actions;zero new supervision. Not isolated context-only training ablation or final confirmation."
+  },
+  "all32Adamstates_advance330": true,
+  "RMS_exact": true,
+  "entropy_coefficient": 0.02,
+  "gain_scale": 100,
+  "learned_reference_gain": 0.00030845458968542516,
+  "native_training_cached_failures": 253,
+  "results": {
+    "static": {
+      "cases": 12,
+      "successes": 4,
+      "terminations": {
+        "success": 4,
+        "deadline": 7,
+        "out_of_bounds": 1
+      },
+      "controls": 7752,
+      "static_NN_decisions": 777,
+      "measured_starts": 12,
+      "protocol_sha256": "f1ca6922f9d2dcc3714d3ce3a19dc200510b31053cd1e503472bbf881ede4a0a",
+      "raw_audit_sha256": "7f7d3f24b095e1f4c66ecf0c983f11ca3d720b4956efe774f743dc95341955d3",
+      "static_NN_audit_sha256": "624c9a2317393322f91ef74c35f022a75886f7ac2d9ee08321123b7f5bbf9398",
+      "start_NN_audit_sha256": "434d622b5a6960dce0d7b9a4fb9e11a372564b72bda5d72d9b4e284705d3db6f",
+      "engine_audit_sha256": "7a83aa1dab6b0ad87bc37606e945432ea51aaa6d373494647760db769fe01503",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 349,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 2,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "plan_failures": 90,
+          "interventions": 900
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 330,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 4,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 101,
+          "plan_failures": 0,
+          "interventions": 0
+        },
+        {
+          "case_id": 5,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "plan_failures": 90,
+          "interventions": 900
+        },
+        {
+          "case_id": 6,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "plan_failures": 65,
+          "interventions": 650
+        },
+        {
+          "case_id": 7,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "plan_failures": 90,
+          "interventions": 900
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 9,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "plan_failures": 89,
+          "interventions": 890
+        },
+        {
+          "case_id": 10,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "plan_failures": 67,
+          "interventions": 670
+        },
+        {
+          "case_id": 11,
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "plan_failures": 90,
+          "interventions": 900
+        }
+      ]
+    },
+    "known_validation": {
+      "cases": 24,
+      "successes": 24,
+      "terminations": {
+        "success": 24
+      },
+      "controls": 7993,
+      "static_NN_decisions": 499,
+      "measured_starts": 24,
+      "protocol_sha256": "64909c500c16b5b9665cd6dcfde1b907b1ad8a28750a28eefce2803b14aea67f",
+      "raw_audit_sha256": "fefa5247ac43e9be28cb6f205d06ae28ca3da9ab682f041ae6cd6466a8d88b93",
+      "static_NN_audit_sha256": "d7231f0304accd0e00d46412fcb82d6cd75a314b0acc9fba115d49ba6b2ecb9a",
+      "start_NN_audit_sha256": "53138a32a5007fd4fc1ffd21c0ac899890746f7e19bce6e49673b84e99737f48",
+      "engine_audit_sha256": "9b820d6b9e7a8a40ad5c5902f78b304791dddd76ed108dc80340f15f7ee7b4e5",
+      "episodes": [
+        {
+          "case_id": 0,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 336,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 1,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 341,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 2,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 311,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 3,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 295,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 4,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 224,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 5,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 230,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 6,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 7,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 8,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 350,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 9,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 378,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 10,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 328,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 11,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 331,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 12,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 353,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 13,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 14,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 334,
+          "plan_failures": 0,
+          "interventions": 2
+        },
+        {
+          "case_id": 15,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 323,
+          "plan_failures": 0,
+          "interventions": 1
+        },
+        {
+          "case_id": 16,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 387,
+          "plan_failures": 0,
+          "interventions": 42
+        },
+        {
+          "case_id": 17,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 430,
+          "plan_failures": 0,
+          "interventions": 82
+        },
+        {
+          "case_id": 18,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 407,
+          "plan_failures": 0,
+          "interventions": 72
+        },
+        {
+          "case_id": 19,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 373,
+          "plan_failures": 0,
+          "interventions": 42
+        },
+        {
+          "case_id": 20,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 375,
+          "plan_failures": 0,
+          "interventions": 32
+        },
+        {
+          "case_id": 21,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 400,
+          "plan_failures": 0,
+          "interventions": 52
+        },
+        {
+          "case_id": 22,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 360,
+          "plan_failures": 0,
+          "interventions": 42
+        },
+        {
+          "case_id": 23,
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 344,
+          "plan_failures": 0,
+          "interventions": 42
+        }
+      ]
+    }
+  },
+  "total_evaluation_controls": 15745,
+  "measured_starts": 36,
+  "static_NN_decisions": 1276,
+  "coordinator_complete_sha256": "241bf2c9d5dcbe2b772f28fba441eb5abaf05acf17ae25b2dc6073977542ccab",
+  "new_final_conditions": 0,
+  "new_auxiliary_updates": 0,
+  "interpretation": "Static4/12 vs previous scale1003/12;known24/24 retained. Static case0 changes from deadline to success. One seed known development;below70percent static goal and below teacher5/12. No formal feedback/PPO or entropy causal advantage. Computational memo is a separate engineering change;wall times across different learned trajectories do not isolate its benefit.",
+  "limits": "All failures retained under original v4 bounds semantics. No independent final test,5seed confirmation or120unique final conditions. Local paths,heading probes and finer-grid failures do not prove full physical infeasibility. Earlier lineage and tuning costs remain separately reported."
+}

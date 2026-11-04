@@ -1,22 +1,20 @@
-# 当前接续状态（2026-11-03 22:18）
+# 当前接续状态（2026-11-04 09:48）
 
 目标不变，研究验收UNMET。继续当前分支，不重建、不恢复瞬移、不新增子代理。以下是实际已启动状态；继续前须复核OS进程身份，不能仅凭状态文件重启任务。不要触碰Desktop/papper其他项目进程。
 
-## 唯一当前物理作业：熵0.02加精确失败缓存的单H真实PPO
+## 熵0.02课程全部关闭；当前只有模型场景预检
 
-batch `D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H`，execution `runs/reference_entropy002_memo_execution_20261103`，当前native_training。协调器72044（creation_epoch1793715140.203，venv父71536）、worker30936（1793715154.44）、guard46004、owned shipping8932（2026-11-03T14:12:25.8978653+00:00，launcher13116）。source commit ac04d2015ad76d98e47503e43af2094ac19cc211，460冻结源码均与提交源核对。继续前复核OS身份，禁止重复启动或使用旧48660/18496/4864/57848观察新任务。
+协调器72044、训练worker30936、静态19196、known67216及各owned server均已正常结束；三批require_finished_parent复核通过，无需重跑。execution `runs/reference_entropy002_memo_execution_20261103/complete.json`确认static4/12、known24/24。训练10485控制/1056决策/330Adam/18完整回合，11073世界步=10485+588reset，RMS不变、32Adam状态各推进330、ent_coef0.02。原始训练帧与engine全部通过。模型bf6ef9257ecbe619d7629c7c4baefeff4c60dd639da0fe01b74f0fe3a601f23a，source ac04d20。
 
-首个实际保存点320控制/10Adam：32状态均推进10、RMS不变、保存模型ent_coef确为0.02，见 `reports/native_reference_entropy002_first_saved_learning_20261103.json`。2026-11-03 22:18观察的最新保存点实际3178控制/100Adam，guard healthy。训练流正在写入，gzip尾EOF不等于失败；已读262个完整宏步前缀中78次cache_hit，证明缓存实际使用，但不是完整训练raw审计或成绩。
+完整评估15745控制/36起点/1276静态NN，全部raw/NN/engine通过；原v4口径保留。只比上一轮多成功case0，仍低于静态70%目标及零PPO BC教师5/12，不证明反馈或PPO优势。公开 `reports/native_reference_entropy002_endpoints_complete_20261104.json`。新课程训练耗时1565.887秒，原训练5005.225秒；策略与状态历史不同，不把时间差归因于缓存。实际训练253次cache_hit另列为计算记录。
 
-相对原scale100起点，只改训练损失ent_coef0→0.02，gain-scale仍100、32步rollout/10epochs/3e-5。32参数、30已有Adam状态、优化器组、norm文件及RNG文件逐字节一致，24实测起点prob/value完全一致。初始化在D:/ThesisNativeArchive_20261103/reference_scale100_entropy002_H_initializer_20261103，模型a8db11c644639135332e221e62f33a5d2cbb7b151daa9424c79818244f467617；不是从已训练scale100末点继续，原末点及全部失败独立保留。
+case5原局部可达的4个子目标均不能两段接到终点；半分辨率/8倍节点上限也在38717节点open_set_exhausted，8个±0.4rad朝向提案均未得到全程路径。公开 `reports/native_reference_scale100_case5_model_reachability_20261103.json`，全部输入/注册参数保留在D:/ThesisNativeArchive_20261103。失败搜索不证明物理不可能，也不能假定只调熵就解决。冻结几何图 `D:/ThesisNativeArchive_20261103/case5_frozen_geometry_20261104.png`揭示障碍与分隔带之间狭窄通道；是模型图，不是RGB录像。
 
-明确注册existing exact_static_failure_v1缓存，精确静态确定性失败复用，动态/墙钟限时旁路；改变计算次数与耗时，不选择/屏蔽动作。物理模型、动作、奖励、几何与控制器不改。正式方法比较须共享同计算包装，不能把缓存收益归给PPO。单H已知开发探索，不重复H0，不接触新最终条件。
+已完成 `scripts/preflight_native_static_placements.py`：12布局×9摆放=108提案，30个模型可行，分布case0/1/3/4/6/7/8/10/11；case2/5/9无通过者，保留全部拒绝。公开 `reports/native_static_placement_preflight_20261104.json`；D:/ThesisNativeArchive_20261104/static_placement_preflight_v1含完整注册、进度、全部路径。变换及相关hazard/memo专项30通过10.43秒。原清单不删除、不重算。
 
-固定请求10240、overshoot<=319、每320阈值保存、最终预算端点、完整static12+known24及raw/NN/engine，零自动重试，由当前协调器自动接续。启动时C7.389GiB、D431.780GiB、可用RAM35.667GiB；工件全部D盘，单批资源限额4h/最低D12GiB/RAM4GiB/GPU85C。旧scale100所有阶段正常结束、端口清空才启动本批。
+新增真实迁移pilot已关闭：D:/ThesisNativeArchive_20261104/20261104_case7_placement10_frozen_H_transfer_pilot。取case7首个模型可行提案(distance10m,lateral0)，原是13m；冻结同一bf6ef925模型，不新学习。327控制/33NN/357世界ticks、success、0planner failures、2interventions，raw/startNN/allNN/engine均通过，owned server正常清空退出。公开 `reports/native_case7_placement_transfer_pilot_20261104.json`。这是不同物理条件的工程可执行性复验，不是原case7重算或RL收益，原4/12仍保留。当前无本任务CARLA或预检作业需等待，不得重启旧PID。
 
-60专项通过58.76秒；完整CPU1344通过/1跳过/4CARLA排除236.25秒；随后仅澄清注册字段，10验证通过4秒。凭证 `reports/native_reference_entropy_memo_cpu_verification_20261103.json`、`reports/native_reference_entropy002_preparation_20261103.json`。GitHub CI41651263807对应ac04d20已实际成功，1327通过/18跳过/4CARLA排除337.84秒；并非CARLA物理成绩。
-
-入口已运行，不要再次调用：`.venv/Scripts/python.exe -u scripts/run_native_reference_course.py --batch D:/ThesisNativeArchive_20261103/20261103_reference_context_TRAIN48_PPO10240_scale100_entropy002_memo_H --execution runs/reference_entropy002_memo_execution_20261103`。先看status/complete/failure、worker_process/coordinator_process及实际OS。执行目录已存在，重复命令会被拒绝。当前课程不是最终达标交付。
+后续应在新版本任务构造中，按对所有方法相同且独立于策略成绩的预注册可执行性条件，验证完整模型路径与实际native Driving足迹，再实际闭环验证；不能因模型可行就删除旧失败或宣称独立最终验收。case4此前有栅格与native边界分歧，仍需严格保留原评分。最终集仍未开启；不继续盲扫熵或参考系数。
 
 ## 旧静态对照已全部结束，禁止重跑
 
