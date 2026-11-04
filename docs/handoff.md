@@ -1,3 +1,17 @@
+# 当前接续：2026-11-04 12:27 54场队列仍运行，禁止重复启动或追加变体
+
+当前只跟进已启动的完整开发评估；暂勿再做新控制器/训练/参数变体，也勿重包旧发布资产。主目标不变且研究验收UNMET。请按status/OS身份继续，而非根据旧文档重跑。
+
+唯一活动队列 D:/ThesisNativeArchive_20261104/20261104_option_adapted_full_development_execution，实际协调器26172（身份D:/ThesisNativeArchive_20261104/option_full_development_identity.json），venv外壳32308。当前all30_placements_H worker32608 creation1793764744.307、watch4240、owned server25952/port2100，已到case23(原case7唯一摆放)的80动作。该场每20次高层决策耗时约260-280秒，暴露严重计算开销；不要宣称实时性，也不改既定900控制/45秒终止口径来抹去失败。之后自动评估known24并逐批raw/start/all-staticNN/engine核验。计数30/24，全部条件保留、无重试；source471文件和模型13e5fa1e固定。
+
+新增纯只读帧监测scripts/watch_native_frames37.py（Py3.7编译通过），observer19964 creation1793765648.570，batch/frame_watch_process.json留身份。启动前核对owned shipping可执行文件及RPC监听PID，再以只读OwnedProcess句柄约束worker/server；只在实际观测到frame递增时写progress.json。已有54次真实帧前进观测(最近12849>12848)，无tick/control/state设置。用于防止每20决策才写心跳导致正常长规划被误判300秒无进度。worker退出后自动结束，不要把此监测当模型在后台思考。后续若known24也需监测，须重新验证该批worker/server身份，不沿用本批PID。
+
+现有闭合证据：5396真实训练控制/170Adam、RMS冻结、32初始Adam/RNG一致；同3端点仍2/3，case0deadline900/1成功334/4成功349，1583控制及159NN全部核验。学习无成功数提升，原failed端点标志错误和0新增控制保留。公开reports/native_reference_option_adaptation_endpoint_complete_20261104.json。不要把随机训练11/12当确定性或独立测试提升。
+
+sourcefc38cd3全量CPU1378pass/1skip/4deselect；endpoint编排补丁3项pass。已推15ce1e8且GitHub CI41770461387成功（fc38cd3/accc697 CI也成功）。本次只读监测和本handoff将另提交，控制代码仍fc38cd3。D盘额外只读拟合native_recorded_steering_response_fit.json：a=.1799,b=.8240,RMSE .00437rad，瞬时命令 .00562、配置tau.12模型 .00669；仅相关性，不是新标定，未据此改MPC。
+
+下一必要动作：等待这两批的真实终态和审计；如失败先保存全部已读前缀/资源身份，不重训5396已完成课程，不覆盖原失败。完成后依据完整30/24结果决定是否保留32k低层，避免继续凭两场成功或未实现想法扩展。最终120确认清单仍未生成/查看。
+
 # 最新接续：2026-11-04 12:00 学习端点无提升；完整54开发评估启动
 
 5396控制/170Adam课程已关闭，修复后的same3端点也关闭并全部审计：1583控制/1675ticks/159NN/3起点、engine无mismatch，case0deadline900、case1success334、case4success349。与冻结接口前2/3相同，无学习成功数提升。原端点因normalizationflag失败保留，execution/normalization_endpoint_recovery_complete.json汇总新子批闭合，原failure.json不覆盖。公开 reports/native_reference_option_adaptation_endpoint_complete_20261104.json。训练worker正常结束，原协调器12704因原端点编排错误退出（不是成功complete），手工修复端点结果已关闭。
