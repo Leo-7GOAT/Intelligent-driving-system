@@ -20,8 +20,14 @@ class PlanResult:
     failure_reason: str | None = None
 
 
-def grid_search(start, goal, obstacles, shape, dijkstra=False):
-    """Euclidean edges and admissible octile heuristic, no diagonal corner cutting."""
+def grid_search(start, goal, obstacles, shape, dijkstra=False, *, max_nodes=None):
+    """Octile A*,no corner cutting;an optional exact node cap preserves the API."""
+    return _grid_search(start,goal,obstacles,shape,dijkstra,max_nodes=max_nodes)[:3]
+
+
+def _grid_search(start, goal, obstacles, shape, dijkstra=False, *, max_nodes=None):
+    if max_nodes is not None and (type(max_nodes) is not int or max_nodes<1):
+        raise ValueError('Grid node budget must be a positive integer')
     width, height = (shape, shape) if isinstance(shape, int) else shape
 
     def free(p):
@@ -32,7 +38,7 @@ def grid_search(start, goal, obstacles, shape, dijkstra=False):
         return 0 if dijkstra else max(dx, dy) + (math.sqrt(2) - 1) * min(dx, dy)
 
     if not free(start) or not free(goal):
-        return [], math.inf, 0
+        return [], math.inf, 0, 'grid_start_or_goal_blocked'
     best, parent, queue, expanded = (
         {start: 0.0},
         {},
@@ -40,6 +46,8 @@ def grid_search(start, goal, obstacles, shape, dijkstra=False):
         0,
     )
     while queue:
+        if max_nodes is not None and expanded>=max_nodes:
+            return [], math.inf, expanded, 'node_budget'
         _, cost, current = heapq.heappop(queue)
         if cost != best[current]:
             continue
@@ -49,7 +57,7 @@ def grid_search(start, goal, obstacles, shape, dijkstra=False):
             while current in parent:
                 current = parent[current]
                 path.append(current)
-            return path[::-1], cost, expanded
+            return path[::-1], cost, expanded, None
         for dx, dy in (
             (1, 0),
             (-1, 0),
@@ -74,7 +82,7 @@ def grid_search(start, goal, obstacles, shape, dijkstra=False):
             if g < best.get(p, math.inf):
                 best[p], parent[p] = g, current
                 heapq.heappush(queue, (g + heuristic(p), g, p))
-    return [], math.inf, expanded
+    return [], math.inf, expanded, 'grid_search_empty'
 
 
 def primitive(pose, steer, length, wheelbase, step):
@@ -345,12 +353,15 @@ class GridAStarPlanner:
                     )
                 ):
                     blocked.add((ix, iy))
-        raw, cost, n = grid_search(
+        raw, cost, n, reason = _grid_search(
             (round(start[0] / r), round(start[1] / r)),
             (round(goal[0] / r), round(goal[1] / r)),
             blocked,
             shape,
+            max_nodes=c.max_nodes,
         )
+        if reason=='node_budget':
+            return result('budget',n=n,reason=reason)
         if len(raw) < 2:
             return result("no_path", n=n, reason="grid_search_empty")
         xy = np.array(raw, dtype=float) * r
