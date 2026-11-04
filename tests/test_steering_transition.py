@@ -27,7 +27,9 @@ def test_straight_transition_and_full_body_obstacle_rejection():
     assert a.status=='success' and np.max(np.abs(a.path[:,1]-10.))<1e-10
     b=planner.plan((6.,10.,0.),(10.,10.,0.),World(25,25,static=[(9.,0.,10.,25.)]),initial_steering=0.,reference_speed=1.5)
     assert b.status!='success'
-    with pytest.raises(ValueError):planner.plan((6.,10.,0.),(10.,10.,0.),World(25,25),initial_steering=.8,reference_speed=1.5)
+    with pytest.raises(ValueError):planner.plan((6.,10.,0.),(10.,10.,0.),World(25,25),initial_steering=math.pi/2,reference_speed=1.5)
+    measured=planner.plan((6.,10.,0.),(10.,10.,0.),World(25,25),initial_steering=.50362,reference_speed=1.5)
+    assert measured.status in ('success','timeout','no_path')
 
 
 def test_optin_only_and_restores_planner_on_exception():

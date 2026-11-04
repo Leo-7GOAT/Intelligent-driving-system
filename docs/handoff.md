@@ -1,3 +1,9 @@
+# 当前运行：2026-11-04 10:49 完整开发清单转角规划迁移
+
+已启动 `scripts/run_steering_transfer_validation.py`：execution D:/ThesisNativeArchive_20261104/20261104_steering_full_transfer，实际协调器26208（身份 D:/ThesisNativeArchive_20261104/steering_full_coordinator_identity.json），venv外壳3600。两个batch均已准备：同前缀_static/known_validation，全部12/24原清单不删改，同一source_hashes、同一冻结bf6ef925模型、零新增PPO。先static，再known验证，然后每批raw/start/staticNN/engine核验；无自动重试。检查status.json、failure.json、complete.json及OS身份，不得重复启动。queued激活仅刷新对应批次时限，注册单批4h上限、D盘12GiB/内存4GiB/GPU85℃保护。
+
+已修复实测转角略超命令max_steer时的输入误拒绝：保留有限且绝对值小于pi/2的实测角，目标命令仍max_steer限幅，完整路径/曲率检查保留；新增专项断言，27项通过5.95秒。此次仅输入域修复发生在全量1361通过之后，未虚称再次全量回归。两场成功pilot源已提交推送71e2031；完整清单源是本次输入域修复后的另一个冻结快照，不得混淆。
+
 # 最新接续：2026-11-04 10:45 转角连续规划两场原生pilot成功
 
 D:/ThesisNativeArchive_20261104/20261104_steering_transition_refinement_H_pilot 已正常关闭，8252worker/8828launcher均退出、server_cleanup=0。原case1成功333控制、原case4成功340控制，673控制/734ticks(61reset)/68NN/2起点全部raw、重建参考、NN和engine通过。报告 `reports/native_steering_transition_pilot_20261104.json`。新增转角连续规划从实测转角出发、按max(当前速度,所选速度,0.1)约束空间转角变化；关闭不满足该约束的analytic connectors并绕过pose-only memo。PPO冻结、实际道路/评分不变。并非学习收益或完整静态清单分数。27项专项通过；全量CPU 1361通过、1skip、4 CARLA deselect，261.06秒，XML D:/ThesisNativeArchive_20261104/steering_full_cpu.xml。

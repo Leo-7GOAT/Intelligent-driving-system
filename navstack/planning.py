@@ -167,8 +167,10 @@ class HybridAStar:
         transition=initial_steering is not None
         if transition and (reference_speed is None or not math.isfinite(reference_speed)
                 or reference_speed<=0 or not math.isfinite(initial_steering)
-                or abs(initial_steering)>v.max_steer+1e-6):
+                or abs(initial_steering)>=math.pi/2):
             raise ValueError('Measured steering and positive speed ceiling required')
+        # max_steer constrains requested commands. Measured wheel angles may
+        # slightly exceed it; preserve those measurements as the initial state.
 
         def result(status, path=None, cost=None, count=0, reason=None):
             return PlanResult(
