@@ -1,0 +1,168 @@
+{
+  "scope": "Read-only initial-state root-cause checks on three already failed known development conditions;no native controls",
+  "research_acceptance": "UNMET",
+  "cases": [
+    {
+      "case_id": 1,
+      "evidence": "native_case1_planner_reachability_20261104.json",
+      "sha256": "0b8963a596b150f07a8d276c1584fdada76951255ff4ac33adf300cb7fbca45c",
+      "start": [
+        6.000000149651865,
+        6.000001790904527,
+        0.0
+      ],
+      "goal": [
+        31.24669992128881,
+        7.578791466707203,
+        0.26330154381200854
+      ],
+      "results": [
+        {
+          "variant": "legacy_analytic",
+          "status": "success",
+          "failure_reason": null,
+          "nodes": 416,
+          "seconds": 0.246048899998641
+        },
+        {
+          "variant": "constant_steer_no_analytic",
+          "status": "success",
+          "failure_reason": null,
+          "nodes": 998,
+          "seconds": 0.39998109999942244
+        },
+        {
+          "variant": "measured_slew_no_analytic",
+          "status": "no_path",
+          "failure_reason": "open_set_exhausted",
+          "nodes": 72,
+          "seconds": 0.04772439999942435
+        }
+      ]
+    },
+    {
+      "case_id": 21,
+      "evidence": "native_case21_planner_reachability_20261104.json",
+      "sha256": "67026a0b3538ec39b0169ba7aac36f86e5d476954e80355d875555d08389227a",
+      "start": [
+        6.000000824702734,
+        6.000002411970409,
+        5.32632217886686e-07
+      ],
+      "goal": [
+        31.54701340853437,
+        14.027962364498002,
+        0.6089435011554141
+      ],
+      "results": [
+        {
+          "variant": "legacy_analytic",
+          "status": "success",
+          "failure_reason": null,
+          "nodes": 1824,
+          "seconds": 0.9681036000001768
+        },
+        {
+          "variant": "constant_steer_no_analytic",
+          "status": "success",
+          "failure_reason": null,
+          "nodes": 2952,
+          "seconds": 1.104477599999882
+        },
+        {
+          "variant": "measured_slew_no_analytic",
+          "status": "no_path",
+          "failure_reason": "open_set_exhausted",
+          "nodes": 60,
+          "seconds": 0.042296100000385195
+        }
+      ]
+    },
+    {
+      "case_id": 27,
+      "evidence": "native_case27_planner_reachability_20261104.json",
+      "sha256": "f82e703620174e1ed943e9a72903c9bb3f6f9e54393b75c74941cab18a515389",
+      "start": [
+        5.999998175858855,
+        6.000009314107259,
+        0.0
+      ],
+      "goal": [
+        31.369470406176102,
+        7.786041999448798,
+        0.294323584869554
+      ],
+      "results": [
+        {
+          "variant": "legacy_analytic",
+          "status": "success",
+          "failure_reason": null,
+          "nodes": 480,
+          "seconds": 0.2754279000000679
+        },
+        {
+          "variant": "constant_steer_no_analytic",
+          "status": "success",
+          "failure_reason": null,
+          "nodes": 769,
+          "seconds": 0.3491393000003882
+        },
+        {
+          "variant": "measured_slew_no_analytic",
+          "status": "no_path",
+          "failure_reason": "open_set_exhausted",
+          "nodes": 74,
+          "seconds": 0.054267900000922964
+        }
+      ]
+    }
+  ],
+  "speed_counterfactual": {
+    "case_id": 1,
+    "evidence": "native_case1_planner_speed_ceiling_counterfactual_20261104.json",
+    "sha256": "b2bb97c6b4acf542cf17098e1247191fa40409b69bd57b3beb67b1942798b0d3",
+    "results": [
+      {
+        "variant": "legacy_analytic",
+        "status": "success",
+        "failure_reason": null,
+        "nodes": 416,
+        "seconds": 0.23539600000003702
+      },
+      {
+        "variant": "constant_steer_no_analytic",
+        "status": "success",
+        "failure_reason": null,
+        "nodes": 998,
+        "seconds": 0.3824778999987757
+      },
+      {
+        "variant": "measured_slew_no_analytic",
+        "status": "no_path",
+        "failure_reason": "open_set_exhausted",
+        "nodes": 72,
+        "seconds": 0.05050920000030601
+      },
+      {
+        "variant": "counterfactual_slew_speed_ceiling",
+        "speed_ceiling": 0.5,
+        "status": "success",
+        "failure_reason": null,
+        "nodes": 16707,
+        "seconds": 13.710121500000241
+      },
+      {
+        "variant": "counterfactual_slew_speed_ceiling",
+        "speed_ceiling": 0.25,
+        "status": "success",
+        "failure_reason": null,
+        "nodes": 13736,
+        "seconds": 11.234562100000403
+      }
+    ]
+  },
+  "conclusion": "At identical recorded initial states/goals, both constant-steer variants find paths while the current1.5m/s measured-slew search exhausts its open set. Lowering the slew model speed ceiling restores a geometric path forcase1. This supports investigating joint speed/steering-transition planning;does not establish physical impossibility, native-road acceptance, real-time execution or PPO improvement.",
+  "next_bounded_hypothesis": "Validate steering-rate-aware retiming of a lower-speed slew-feasible spatial path;preserve measured initial speed, acceleration/braking feasibility and full native road constraints. No runtime speed substitution or new training has been implemented.",
+  "new_PPO_updates": 0,
+  "new_native_controls": 0
+}

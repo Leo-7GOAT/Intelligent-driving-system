@@ -1,4 +1,10 @@
-# 当前接续：2026-11-04 13:15 完整30+24已闭合，当前方案有退化，不得重复跑已完成队列
+# 当前接续：2026-11-04 13:20 三个失败起点已定位速度/转向过渡耦合
+
+完整30+24已闭合，全部raw/NN/engine通过；无活动原生作业。新只读脚本scripts/probe_native_planner_reachability.py比较同一实测初态/实际目标：case1旧analytic416节点成功，关analytic恒转角998成功，现有1.5m/s slew模型72节点open_set_exhausted；case21为1824/2952成功vs60失败；case27为480/769成功vs74失败。所以这些起点不能归因于只关闭analytic，更不能泛称PPO选错目标。counterfactual case1降低slew模型速度上限到.5/.25后，在16707/13736节点找到几何路径。公开reports/native_slew_reachability_root_cause_20261104.json及D盘对应native_case*_planner*.json；无新控制/PPO/方法评分，源码未改控制逻辑。
+
+下一最小验证已具体化：离线验证较低速度slew可行空间路径的转向速率感知时间参数化，保留实际初始速度、加减速、原生道路/车辆约束，允许在转向变化缓慢处恢复PPO请求速度。不能直接把规划速度假设.5而仍按1.5执行，也不能全程低速到超时后称成功。若该验证通过，再版本化单独pilot及固定低层训练，对B3等共享同样能力。此方案尚未实现，不得声称已解决。不要重复当前30/24或5396训练，也不要无依据扩展新参数组合。
+
+# 已闭合：2026-11-04 13:15 完整30+24，当前方案有退化
 
 所有原生训练/评估均已结束，当前无活动CARLA批次。恢复execution D:/ThesisNativeArchive_20261104/20261104_exact_compute_development_recovery_execution_closed_owner_fix/complete.json存在，协调器9060/31764与worker31316/31000均已退出，owned server停止。原28场1394NN、尾2场126NN、known24起点与全部staticNN、每个raw/engine均通过。完整摆放30场21success/9deadline(70%)，已完成15106控制，另保留中止旧case28的200控制，known24为22success/2deadline、9090控制；实际评估总控制24396。合并30采用两种公开compute实现，零PPO，不是新独立测试。
 
