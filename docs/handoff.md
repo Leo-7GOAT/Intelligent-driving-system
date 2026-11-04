@@ -1,4 +1,14 @@
-# 当前接续：2026-11-04 14:19 点约束PPO课程已闭合；MPC参考中心代价两场对照运行
+# 当前接续：2026-11-04 14:29 PPO与MPC对照均闭合，仍1/2；不要重复训练/测试/两场
+
+当前无活动原生或CPU任务。MPC实验execution20261104_mpc_reference_effort_same2_execution/complete.json存在，32888/32960已结束：case21 success561/43interventions/4planfails，case27 deadline900/560interventions/56planfails；1461actualcontrols/1522worldticks/147NN及raw/engine全部PASS，858个solvedMPC tick均确认reference_centered_effort=True。相对同模型旧控制器success487+out_of_bounds460，成功数仍1/2，越界改为超时，不是任务完成率改进。控制代价解析平衡偏差已修正但只保留开发prototype，不宣称最终候选达标。
+
+新源cb482f7全CPU exec76997 DONE0：1402PASS/1SKIP/4CARLA DESELECT/301.92s，XML D:/ThesisNativeArchive_20261104/mpc_reference_effort_full_CPU.xml。GitHub CI41784721153(cb482f7)和41782396600(d16cf45)均SUCCESS。公开reports/native_mpc_reference_effort_transfer_20261104.json已闭合，README中英已含5438学习的安全退化和MPC仅改超时结果。此前5438/170Adam课程完整report native_exact_point_PPO5120_complete_20261104.json及初始化/RMS/raw/95NN/engine证据均已闭合，禁止再次运行课程。
+
+额外只读结构检查D:/ThesisNativeArchive_20261104/stalled_failed_action_context_sensitivity.json：在新MPC末端真实失败状态重建NN action2精确，重复action2概率.95331；last_behavior已经编码上一目标，不得声称策略完全没有动作历史。当前reuse context全0，现有学习系数有效logit仅.0118389，抑制失败action2至次高动作需要5.06198；直接把该context改成-1的数学反事实仍选2，没有运行新schema。不能人工扣5.1logit、强制保留参考或换规则后冒充PPO学习。
+
+下一优先研发：固定当前已测试点约束/控制版本，检查真实candidate head及已有动作结果特征如何参与选择，针对95%置信度反复提出失败目标的学习/反馈表达做一个可验证改动。一个可研究的方向是版本化、动作对齐的失败反馈(例如signed execution context)作为学习输入/学习logit项，明确它是已有信息的结构化表示，不能伪称新物理信息；但尚未设计/实现/迁移/训练，不能据反事实宣称有效。需正式新版本和实际更新、H0公平消融。不要继续盲目追加5120、扩大5seed、重调低层权重或重复已关闭开发批次。当前source运行时保持cb482f7，最终120未生成/查看，验收UNMET。
+
+# 历史接续：2026-11-04 14:19 点约束PPO与MPC（均已闭合）
 
 5438实际训练控制/544决策/17rollout/170Adam已正常关闭，5654worldticks=5438+216reset；32Adam均推进170、全部初始化参数/完整Adam/RNG一致、RMS mean/var/count精确冻结。6完整随机训练回合1success/5deadline，最后未完整回合不计成功。source d16cf45，model13e5fa1e→6e885fd6f725bd7a9db295f7de9273f0690d2994e8dbbcb3f50e35ec2864307e，gain-.0005996→+.0001183888。原5120execution/complete.json存在，28696/21740/endpoint27392已退出，不得重跑课程。
 
