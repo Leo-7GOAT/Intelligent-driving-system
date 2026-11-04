@@ -25,8 +25,8 @@ def without_settings(path):
     tree=ast.parse(path.read_text(encoding='utf-8-sig'))
     tree.body=[n for n in tree.body if not isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)) or n.name!='settings']
     if path.name=='fixed_lowlevel_training.py':
-        tree.body=[n for n in tree.body if not (isinstance(n,ast.FunctionDef) and n.name=='registered')
-            and not (isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id in ('VERSION_POINTS','REGISTRATION_POINTS') for t in n.targets))]
+        tree.body=[n for n in tree.body if not (isinstance(n,ast.FunctionDef) and n.name in ('registered','outcome_registered'))
+            and not (isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id in ('VERSION_POINTS','REGISTRATION_POINTS','VERSION_OUTCOME','REGISTRATION_OUTCOME') for t in n.targets))]
     return ast.dump(tree,include_attributes=False)
 
 

@@ -14,7 +14,7 @@ from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.audit_native_policy_sequence import observation_env,advance_observation
 
 
-def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,prefix_audit=None):
+def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,prefix_audit=None,outcome_checkpoint=None):
     import numpy as np
     from navstack.independent_clip_ppo import load_ppo
     batch=Path(batch).resolve();folder=batch/method
@@ -39,8 +39,23 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
     for name,key in (('model.zip','model_sha256'),('normalization.pkl','normalization_sha256')):
         if sha(folder/name)!=evaluation[key]:raise ValueError('Evaluated model/normalizer changed')
     for name,h in p['source_hashes'].items():
-        if name.startswith('navstack/') and sha(ROOT/name)!=h:raise ValueError('Frozen observation/planning source differs')
-    if migration_proof is not None:
+        if name.startswith('navstack/') and sha(ROOT/name)!=h:
+            from scripts.prepare_fixed_lowlevel_adaptation import without_settings
+            if (outcome_checkpoint is None or name not in ('navstack/fixed_lowlevel_training.py','navstack/mpc_reference_effort.py')
+                    or without_settings(ROOT/name)!=without_settings(batch/'source'/name)):
+                raise ValueError('Frozen observation/planning source differs')
+    from navstack.outcome_context_policy import VERSION as OUTCOME_VERSION,outcome_context
+    expected_version=p.get('reference_context',{}).get('version',VERSION)
+    if outcome_checkpoint is not None:
+        if migration_proof is not None or prefix_audit is not None:raise ValueError('Outcome migration requires a closed full endpoint')
+        checkpoint=Path(outcome_checkpoint);receipt=read(checkpoint/'outcome_migration.json')
+        if (receipt['old_model_sha256']!=evaluation['model_sha256'] or receipt['new_model_sha256']!=sha(checkpoint/'model.zip')
+                or receipt['normalization_sha256']!=sha(checkpoint/'normalization.pkl')
+                or sha(folder/'normalization.pkl')!=sha(checkpoint/'normalization.pkl')
+                or receipt['policy_source_sha256']!=sha(ROOT/'navstack/outcome_context_policy.py')):
+            raise ValueError('Outcome migration artifacts differ')
+        expected_version=OUTCOME_VERSION;scope='OUTCOME_ZERO_EFFECT_ON_RECORDED_NATIVE_STATES'
+    elif migration_proof is not None:
         proof=read(migration_proof)['results'][method]
         checkpoint=Path(checkpoint)
         if (proof['old_model_sha256']!=evaluation['model_sha256']
@@ -50,14 +65,14 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
         scope='MIGRATION_EQUIVALENCE_ON_RECORDED_LEGACY_STATES'
     else:
         checkpoint=folder
-        if (p.get('reference_context')!={'version':VERSION}
+        if (p.get('reference_context') not in ({'version':VERSION},{'version':OUTCOME_VERSION})
                 or sha(checkpoint/'model.zip')!=evaluation['model_sha256']
                 or sha(checkpoint/'normalization.pkl')!=evaluation['normalization_sha256']):
             raise ValueError('Require the registered reference-context evaluated model')
         scope='MEASURED_REFERENCE_CONTEXT_NATIVE_INFERENCE'
         if prefix_audit is not None:scope+='_CLOSED_COMPLETED_PREFIX_ONLY'
     model=load_ppo(checkpoint/'model.zip',device='cpu')
-    if getattr(model.policy,'reference_context_version',None)!=VERSION or model.observation_space.shape!=(4736,):
+    if getattr(model.policy,'reference_context_version',None)!=expected_version or model.observation_space.shape!=(4736,):
         raise ValueError('Unsupported reference-context policy schema')
     if migration_proof is not None:
         import torch
@@ -66,6 +81,13 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
             raise ValueError('A migration equivalence check requires zero new parameters')
     with (checkpoint/'normalization.pkl').open('rb') as f:norm=pickle.load(f)
     norm.training=False
+    original_model=None
+    if outcome_checkpoint is not None:
+        import torch
+        original_model=load_ppo(folder/'model.zip',device='cpu')
+        if (torch.count_nonzero(model.policy.action_net.reference_bias.failure_gain)
+                or torch.count_nonzero(model.policy.value_net.failure_weight)):
+            raise ValueError('Outcome migration must have zero new actor and critic terms')
     rms=(norm.obs_rms.mean.copy(),norm.obs_rms.var.copy(),float(norm.obs_rms.count))
     if migration_proof is not None:
         with (folder/'normalization.pkl').open('rb') as f:original_norm=pickle.load(f)
@@ -108,10 +130,18 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
             from navstack.reference_option_commitment import configure,settings as option_settings
             configure(env,option_settings(p))
         refinement_cells=set();refinement_points=set()
-        counts=0
+        counts=0;last_action=None;failed_actions=set()
         try:
             for row in selected if all_static else selected[:1]:
-                obs=np.r_[env._observation(),reference_candidate_context(env)].astype(np.float32)
+                legacy_obs=np.r_[env._observation(),reference_candidate_context(env)].astype(np.float32)
+                obs=(np.r_[legacy_obs[:-31],outcome_context(env,last_action,failed_actions)] if expected_version==OUTCOME_VERSION else legacy_obs).astype(np.float32)
+                if original_model is not None:
+                    import torch
+                    a=torch.as_tensor(norm.normalize_obs(legacy_obs[None]));z=torch.as_tensor(norm.normalize_obs(obs[None]))
+                    with torch.no_grad():
+                        if (not torch.equal(original_model.policy.get_distribution(a).distribution.probs,model.policy.get_distribution(z).distribution.probs)
+                                or not torch.equal(original_model.policy.predict_values(a),model.policy.predict_values(z))):
+                            raise ValueError('Outcome migration changes a recorded distribution or value')
                 action=int(model.predict(norm.normalize_obs(obs[None]),deterministic=True)[0][0])
                 if action!=int(row['policy_action']):raise ValueError(f'NN action differs at case{case},decision{counts}')
                 counts+=1
@@ -184,6 +214,9 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
                         # Do not rerun a rejected search or invent its success.
                         env.reference=None;env._reference_selection=None
                     advance_observation(env,row)
+                    last_action=int(row['policy_action'])
+                    if row['info']['mode']=='reference':failed_actions.clear()
+                    elif row['info']['mode']=='plan_failed' and last_action:failed_actions.add(last_action)
         finally:env.close()
         results.append(dict(case_id=case,decisions=counts))
     if not results:raise ValueError('No measured inference cases selected')
@@ -194,6 +227,7 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
         model_sha256=sha(checkpoint/'model.zip'),normalization_sha256=sha(checkpoint/'normalization.pkl'),
         raw_audit_sha256=sha(raw_path),script_sha256=sha(Path(__file__)),
         results=results,all_recorded_actions_match=True,inference_normalization_frozen=not norm.training,
+        outcome_migration_probabilities_and_values_exact=original_model is not None,
         RMS_unchanged=True,new_controls=0,new_updates=0,
         limits='Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible.')
 
@@ -202,7 +236,8 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--batch',required=True);p.add_argument('--method',required=True)
     p.add_argument('--checkpoint');p.add_argument('--migration-proof');p.add_argument('--all-static-actions',action='store_true');p.add_argument('--output',required=True)
     p.add_argument('--prefix-audit')
+    p.add_argument('--outcome-checkpoint')
     a=p.parse_args();output=Path(a.output)
     if output.exists():raise FileExistsError('Preserve previous inference audit')
-    result=audit(a.batch,a.method,checkpoint=a.checkpoint,migration_proof=a.migration_proof,all_static=a.all_static_actions,prefix_audit=a.prefix_audit)
+    result=audit(a.batch,a.method,checkpoint=a.checkpoint,migration_proof=a.migration_proof,all_static=a.all_static_actions,prefix_audit=a.prefix_audit,outcome_checkpoint=a.outcome_checkpoint)
     atomic_json(output,result);print({'cases':len(result['results']),'decisions':sum(r['decisions'] for r in result['results']),'scope':result['scope']})

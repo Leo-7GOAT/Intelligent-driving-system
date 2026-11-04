@@ -29,14 +29,23 @@ def summarize(execution):
     ids=registration['original_known_development_case_ids'];before,br,bh=evaluation(baseline);after,ar,ah=evaluation(target)
     if len(before['episodes'])!=len(ids) or len(after['episodes'])!=len(ids):raise ValueError('Incomplete matched inventory')
     old=read(baseline/'protocol.json');endpoint=read(target/'protocol.json')
+    initializer_matches=sha(batch/'resume/H/model.zip')==before['model_sha256']
+    if p.get('outcome_initialization'):
+        receipt=read(batch/p['outcome_initialization']['receipt']);equivalence=read(batch/p['outcome_initialization']['equivalence'])
+        initializer_matches=(receipt['old_model_sha256']==before['model_sha256']
+            and receipt['new_model_sha256']==sha(batch/'resume/H/model.zip')
+            and equivalence['model_sha256']==receipt['new_model_sha256']
+            and equivalence['raw_audit_sha256']==bh and equivalence['outcome_migration_probabilities_and_values_exact'])
     if (p['routes']!=old['routes'] or p['native_case_manifest']!=old['native_case_manifest']
             or endpoint['source_hashes']!=p['source_hashes']
             or sha(batch/'H/model.zip')!=after['model_sha256']
-            or sha(batch/'resume/H/model.zip')!=before['model_sha256']):
+            or not initializer_matches):
         raise ValueError('Fixed task/source/model comparison violated')
     allowed={'navstack/reference_road_refinement.py','navstack/steering_transition.py','navstack/reference_option_commitment.py',
-        'navstack/steering_retiming.py','navstack/fixed_lowlevel_training.py'}
-    if {n for n in p['source_hashes'] if n.startswith('navstack/')}!={n for n in old['source_hashes'] if n.startswith('navstack/')}:
+        'navstack/steering_retiming.py','navstack/fixed_lowlevel_training.py','navstack/mpc_reference_effort.py'}
+    expected_modules={n for n in old['source_hashes'] if n.startswith('navstack/')}
+    if p.get('outcome_initialization'):expected_modules.add('navstack/outcome_context_policy.py')
+    if {n for n in p['source_hashes'] if n.startswith('navstack/')}!=expected_modules:
         raise ValueError('Runtime module inventory differs')
     for name,digest in old['source_hashes'].items():
         if name.startswith('navstack/') and digest!=p['source_hashes'][name]:
@@ -59,7 +68,8 @@ def summarize(execution):
     return dict(scope='Closed known-condition learning comparison with fixed lowlevel;single continued policy',research_acceptance='UNMET',
         training_batch=batch.name,endpoint_batch=target.name,baseline_batch=baseline.name,source_git_commit=registration['source_git_commit'],
         training=dict(actual_controls=raw['training_control_frames_verified'],reset_ticks=raw['reset_ticks_verified'],
-            decisions=raw['methods']['H']['actions'],Adam_updates_each=proof['all32Adamstates_advance'],
+            decisions=raw['methods']['H']['actions'],Adam_updates_each=proof.get('all_parameter_Adam_states_advance',proof.get('all32Adamstates_advance')),
+            parameter_states=proof.get('parameter_count',32),learned_failure_gain=proof.get('learned_failure_gain'),
             actual_initial_weights_Adam_RNG_equal=True,RMS_exact=True,completed_episode_termination_counts=dict(terminations),
             unfinished_episode_not_counted_as_success=True,new_supervision=0,learned_reference_gain=proof['learned_reference_gain']),
         before_successes=sum(e['success'] for e in before['episodes']),after_successes=sum(e['success'] for e in after['episodes']),
@@ -67,6 +77,7 @@ def summarize(execution):
         after_unsafe_episodes=sum(e['termination_reason'] in ('collision','out_of_bounds') for e in after['episodes']),
         unique_known_conditions=len(ids),paired_cases=summaries,
         before_model_sha256=before['model_sha256'],after_model_sha256=after['model_sha256'],
+        initializer_model_sha256=sha(batch/'resume/H/model.zip'),zero_effect_schema_migration=bool(p.get('outcome_initialization')),
         raw_audit_sha256=dict(training=sha(training_path),before=bh,after=ah),saved_learning_proof_sha256=sha(proof_path),
         actual_controls_in_comparison=raw['training_control_frames_verified']+br['evaluation_control_frames_verified']+ar['evaluation_control_frames_verified'],
         script_sha256=sha(Path(__file__)),

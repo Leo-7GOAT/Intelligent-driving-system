@@ -1,4 +1,4 @@
-"""Run one registered5120-control adaptation and the same frozen3-case endpoint."""
+"""Run a registered fixed-budget adaptation and its same-condition frozen endpoint."""
 import argparse
 from copy import deepcopy
 import hashlib
@@ -47,9 +47,10 @@ def run(batch,execution):
     import numpy as np
     batch,execution=Path(batch).resolve(),Path(execution).resolve();execution.mkdir()
     p=read(batch/'protocol.json')
+    budget=p['controlled_budget_per_method'];parameter_count=p.get('outcome_context_registration',{}).get('parameter_states',32)
     ids=p.get('fixed_lowlevel_adaptation_registration',{}).get('original_known_development_case_ids',[0,1,4])
     atomic_json(execution/'registration.json',dict(batch=batch.name,protocol_sha256=sha(batch/'protocol.json'),
-        controls=5120,endpoint_case_ids=ids,new_final_conditions=0,automatic_retries=0))
+        controls=budget,endpoint_case_ids=ids,new_final_conditions=0,automatic_retries=0))
     def call(args,label,timeout=1800,env=None):
         atomic_json(execution/'status.json',dict(phase=label,pid=os.getpid(),epoch=time.time()))
         with (execution/(label+'.log')).open('xb') as log:
@@ -66,7 +67,7 @@ def run(batch,execution):
         env=dict(os.environ,NAVSTACK_AUDIT_SOURCE_ROOT=str(batch/'source'),PYTHONIOENCODING='utf-8')
         call([sys.executable,ROOT/'scripts/audit_native_training_only.py','--batch',batch,'--output',batch/'training_only_raw_audit.json'],'training_raw',env=env)
         folder=batch/'H';s=read(folder/'summary.json');before=load_ppo(batch/'resume/H/model.zip',device='cpu');after=load_ppo(folder/'model.zip',device='cpu')
-        if not 5120<=s['physics_steps']<5440 or s['stopped_reason'] is not None or after.num_timesteps-before.num_timesteps!=s['actions']:
+        if not budget<=s['physics_steps']<budget+320 or s['stopped_reason'] is not None or after.num_timesteps-before.num_timesteps!=s['actions']:
             raise ValueError('Fixed native budget/decision counters incomplete')
         fp=read(folder/'initial_parameter_fingerprints.json')
         expected={n:hashlib.sha256(v.detach().cpu().numpy().tobytes()).hexdigest() for n,v in before.policy.state_dict().items()}
@@ -75,7 +76,7 @@ def run(batch,execution):
         with (batch/'resume/H/resume_state.pkl').open('rb') as f:rng=pickle.load(f)
         if fp['torch_rng_sha256']!=hashlib.sha256(rng['torch'].numpy().tobytes()).hexdigest():raise ValueError('Initial Torch RNG differs')
         old,new=dict(before.policy.named_parameters()),dict(after.policy.named_parameters())
-        if set(old)!=set(new) or len(new)!=32:raise ValueError('Parameter inventory changed')
+        if set(old)!=set(new) or len(new)!=parameter_count:raise ValueError('Parameter inventory changed')
         for name,value in new.items():
             initial=before.policy.optimizer.state[old[name]];final=after.policy.optimizer.state[value]
             if float(final['step'])-float(initial['step'])!=s['optimizer_steps']:raise ValueError('Adam advancement differs:'+name)
@@ -83,9 +84,11 @@ def run(batch,execution):
         with (folder/'normalization.pkl').open('rb') as f:z=pickle.load(f).obs_rms
         np.testing.assert_array_equal(a.mean,z.mean);np.testing.assert_array_equal(a.var,z.var)
         if a.count!=z.count or sha(folder/'model.zip')==sha(batch/'resume/H/model.zip'):raise ValueError('Frozen RMS or actual learning check failed')
-        proof=dict(summary=s,all32Adamstates_advance=s['optimizer_steps'],actual_initialized_parameters_and_Adam_exact=True,
+        proof=dict(summary=s,all_parameter_Adam_states_advance=s['optimizer_steps'],parameter_count=parameter_count,actual_initialized_parameters_and_Adam_exact=True,
             initial_torch_RNG_exact=True,RMS_exact=True,new_supervision=0,model_sha256=sha(folder/'model.zip'),
             learned_reference_gain=float(after.policy.action_net.reference_bias.gain.detach()))
+        if parameter_count==32:proof['all32Adamstates_advance']=s['optimizer_steps']
+        else:proof['learned_failure_gain']=float(after.policy.action_net.reference_bias.failure_gain.detach())
         atomic_json(folder/'saved_learning_proof.json',proof);atomic_json(execution/'training_complete.json',proof)
         target=batch.parent/(batch.name+f'_same{len(ids)}_endpoint');endpoint(batch,target)
         atomic_json(execution/'endpoint_prepared.json',dict(batch=str(target),protocol_sha256=sha(target/'protocol.json')))

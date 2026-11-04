@@ -180,7 +180,9 @@ def native_environment_class(reference_context=False, recorded=True):
     parent=RecordedRoadEnv if recorded else CarlaNavigationEnv
     if not reference_context:return parent
     from navstack.reference_context_policy import ReferenceContextObservationMixin
-    class ContextRoadEnv(ReferenceContextObservationMixin,parent):pass
+    from navstack.outcome_context_policy import VERSION as OUTCOME_VERSION,OutcomeContextObservationMixin
+    mixin=OutcomeContextObservationMixin if reference_context==OUTCOME_VERSION else ReferenceContextObservationMixin
+    class ContextRoadEnv(mixin,parent):pass
     return ContextRoadEnv
 
 
@@ -255,6 +257,9 @@ def save_training_checkpoint(output, threshold, model, vec, raw, metadata):
     if getattr(model.policy,'reference_context_version',None) is not None:
         metadata['observation_encoding']=model.policy.reference_context_version
         metadata['reference_gain_scale']=getattr(model.policy,'reference_gain_scale',1.0)
+        if hasattr(model.policy,'failure_gain_scale'):
+            metadata['failure_gain_scale']=model.policy.failure_gain_scale
+            metadata['policy_parameter_states']=len(list(model.policy.named_parameters()))
     write_json(temporary/'metadata.json',metadata)
     publish_checkpoint_directory(temporary,checkpoint)
     atomic_json(output/'latest_checkpoint.json',{'folder':checkpoint.name,**metadata})
@@ -352,11 +357,13 @@ def run(batch):
     context=protocol.get('reference_context')
     if context is not None:
         from navstack.reference_context_policy import VERSION,ReferenceContextObservationMixin,ReferenceContextVecNormalize
-        if (context!={'version':VERSION} or not set(protocol['methods'])<=set(('H','H0'))
+        from navstack.outcome_context_policy import VERSION as OUTCOME_VERSION
+        if (context not in ({'version':VERSION},{'version':OUTCOME_VERSION}) or not set(protocol['methods'])<=set(('H','H0'))
                 or not protocol.get('shared_endpoint_mask_v1') or not protocol.get('reference_reuse')
                 or set(protocol.get('recovery',{}))!=set(protocol['methods'])):
             raise ValueError('Reference context requires a versioned matched saved H/H0pair')
-    environment_class=native_environment_class(context is not None)
+        VERSION=context['version']
+    environment_class=native_environment_class(context['version'] if context else False)
     record_camera=camera_evaluation_mode(protocol)
     jobs = registered_jobs(protocol)
     for relative, digest in protocol["source_hashes"].items():
@@ -445,6 +452,9 @@ def run(batch):
                             or getattr(model.policy,'reference_gain_scale',1.0)!=protocol.get('reference_learning_registration',{}).get('gain_scale',1.0)
                             or not isinstance(vec,ReferenceContextVecNormalize)):
                         raise ValueError('Saved policy/normalizer lacks the registered reference schema or ablation')
+                    if context['version']==OUTCOME_VERSION:
+                        if getattr(model.policy,'failure_gain_scale',None)!=protocol.get('outcome_context_registration',{}).get('failure_gain_scale'):
+                            raise ValueError('Outcome feedback learning-coordinate scale differs from registration')
                 configure_continuation_normalization(vec,protocol,recovery)
                 if protocol.get('fresh_cadence_experiment') and recovery is not None:
                     raise ValueError('Cadence diagnostic must use fresh weights')
@@ -624,7 +634,7 @@ def run(batch):
                     vec.training=False
                     mean,var=vec.obs_rms.mean.copy(),vec.obs_rms.var.copy()
                     evaluation_ticks=client.total_ticks
-                    evaluation_class=native_environment_class(context is not None,recorded=evaluation_only)
+                    evaluation_class=native_environment_class(context['version'] if context else False,recorded=evaluation_only)
                     evaluation=evaluation_class(config,client,evaluation_cases,output) if evaluation_only else evaluation_class(config,client,evaluation_cases)
                     configure_planner_memo(evaluation, protocol)
                     episodes=[]
