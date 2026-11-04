@@ -1,0 +1,54 @@
+{
+  "scope": "Local trusted outcome-policy endpoint asset rebuilt in a clean separate checkout;not an asset download or new driving",
+  "research_acceptance": "UNMET",
+  "source_commit": "5af4035288e2ce17740c68631c17035f971184d6",
+  "fresh_source_worktree_clean": true,
+  "runtime": "Existing locked Python3.11environment reused;no new dependency installation claimed",
+  "archive": {
+    "file": "outcome_H_same2_endpoint_local_reproduction_wrapped.zip",
+    "bytes": 9719679,
+    "sha256": "9385c968d18e7f8326cd138a629b9fffc8a30be94fc9d3a40e1b80098f1b08ec",
+    "published": false
+  },
+  "reproduction": {
+    "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+    "archive_sha256": "9385c968d18e7f8326cd138a629b9fffc8a30be94fc9d3a40e1b80098f1b08ec",
+    "asset_source_commit": "5af4035288e2ce17740c68631c17035f971184d6",
+    "reproduction_source_commit": "5af4035288e2ce17740c68631c17035f971184d6",
+    "verified_files": 619,
+    "methods": [
+      {
+        "method": "H",
+        "raw_audit_sha256": "9225329b2e912e3733c9ac458c20e1583c1d63212d18133535af0cdc6cab8dfd",
+        "verified_controls": 911,
+        "measured_start_actions_reproduced": 2,
+        "normalization_frozen": true,
+        "new_controls": 0,
+        "optimizer_updates": 0,
+        "static_cases_reproduced": 2,
+        "static_actions_reproduced": 92
+      }
+    ],
+    "figure_sha256": "80061df3f0013688ec07e9e2f6a889eecd91c4f2fb43cfa92ae0b1a15284340e",
+    "figure_byte_identical": true,
+    "figure_baseline": "packaged_analysis",
+    "reference_context_reproduced": true,
+    "strict_engine_delivery_reproduced": true,
+    "engine_controls_verified": 911
+  },
+  "reproduction_receipt_sha256": "3ad40bc7c1fc52e70cdcf364c2348a7ac667af1d7f528253c96277313adfcabc",
+  "fresh_checkout_tests": {
+    "passed": 23,
+    "seconds": 6.2,
+    "evidence": "outcome_fresh_checkout_asset_tests.xml"
+  },
+  "privacy": {
+    "full_archive_scan_passed": true,
+    "auxiliary_metadata_files_redacted": 6,
+    "critical_model_normalization_and_raw_bytes_unchanged": true
+  },
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "training_provenance_rebuilt": false,
+  "limits": "Only the two-condition frozen H endpoint is reproduced here.H0 and complete broader validation remain in progress.No new public asset or final model release is claimed;wait for complete paired results before publishing outcome comparisons."
+}

@@ -13,6 +13,18 @@ from navstack.research import atomic_json
 from scripts.audit_native_method_endpoint import read,read_prefix,sha
 from scripts.audit_native_policy_sequence import observation_env,advance_observation
 
+OUTCOME_VERSION='action_aligned_outcome_context_v1'
+
+
+def outcome_codec(version,*,migration=False):
+    """Old frozen sources predate the new module and must remain replayable."""
+    if version!=OUTCOME_VERSION and not migration:
+        return None
+    from navstack.outcome_context_policy import VERSION as actual_version,outcome_context
+    if actual_version!=OUTCOME_VERSION:
+        raise ValueError('Outcome codec version differs from the registered auditor')
+    return outcome_context
+
 
 def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,prefix_audit=None,outcome_checkpoint=None):
     import numpy as np
@@ -44,8 +56,8 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
             if (outcome_checkpoint is None or name not in ('navstack/fixed_lowlevel_training.py','navstack/mpc_reference_effort.py')
                     or without_settings(ROOT/name)!=without_settings(batch/'source'/name)):
                 raise ValueError('Frozen observation/planning source differs')
-    from navstack.outcome_context_policy import VERSION as OUTCOME_VERSION,outcome_context
     expected_version=p.get('reference_context',{}).get('version',VERSION)
+    outcome_context=outcome_codec(expected_version,migration=outcome_checkpoint is not None)
     if outcome_checkpoint is not None:
         if migration_proof is not None or prefix_audit is not None:raise ValueError('Outcome migration requires a closed full endpoint')
         checkpoint=Path(outcome_checkpoint);receipt=read(checkpoint/'outcome_migration.json')

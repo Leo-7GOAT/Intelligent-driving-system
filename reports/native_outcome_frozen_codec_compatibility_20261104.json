@@ -1,0 +1,21 @@
+{
+  "scope": "Version-specific native-observation replay compatibility;no new driving",
+  "research_acceptance": "UNMET",
+  "auditor_sha256": "6b9ca2905ed5e6ea379c7cbeb93ec6cfeb0d48a2a8d6716a5466a3937ccb3cc5",
+  "tests": {
+    "passed": 32,
+    "seconds": 53.7,
+    "evidence": "outcome_legacy_frozen_codec_tests.xml"
+  },
+  "old_frozen_source_lacks_outcome_module": true,
+  "old_actual_start_decisions": 2,
+  "new_actual_start_decisions": 2,
+  "all_recorded_actions_match": true,
+  "old_raw_audit_sha256": "3cc57f96cc9b41dd6a89a2a93a324772572a1e1c85a090e527e4ff6dba941188",
+  "new_raw_audit_sha256": "9225329b2e912e3733c9ac458c20e1583c1d63212d18133535af0cdc6cab8dfd",
+  "old_receipt_sha256": "eb9fec4bae9caee8831935f3169733050a8eca51c728058d32c402658c56f5c9",
+  "new_receipt_sha256": "2a3e5c5b5fb22b696c247b9b86b3eca110c62d3aa9f11f6ba9892296b22fd66a",
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "limits": "Old codec does not import a module missing from historical snapshots.New codec still explicitly loads and validates its registered version.Two measured starts per version,not new task outcomes."
+}
