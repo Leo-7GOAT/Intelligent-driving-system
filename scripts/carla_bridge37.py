@@ -392,6 +392,17 @@ class Bridge:
                 "gear":applied.gear,"manual_gear_shift":applied.manual_gear_shift,"hand_brake":applied.hand_brake,"reverse":applied.reverse},"vehicle_control":{"throttle":throttle,"brake":braking,"steer":steer},"speed_setpoint":self.speed_target,"actuation_mode":actuation_mode,"actuation_state":self.acceleration_controller.state() if self.acceleration_controller else None}
 
     def handle(self,r):
+        if r['op']=='reference_road_probe':
+            if r.get('expected_frame')!=self.frame or self.world.get_snapshot().frame!=self.frame:
+                raise RuntimeError('Road query frame differs from current unticked episode')
+            if self.road_geometry_version!='carla_driving_indexed_union_256_v4':raise ValueError('Prototype requires frozen v4 lane predicate')
+            from navstack.reference_road_refinement import query_points
+            layout=dict(angle=self.angle,origin=self.origin,spawn_z=self.actor.get_location().z+.6)
+            started=time.monotonic()
+            report=query_points(r['poses'],self.cal['vehicle'],layout,self.road_surface_index.contains,carla.Location)
+            report['query_seconds']=time.monotonic()-started
+            if self.world.get_snapshot().frame!=self.frame:raise RuntimeError('Another world tick owner during road query')
+            return dict(frame=self.frame,reference_road_probe=report)
         if r["op"]=="begin":return self.begin(r)
         if r["op"]=="step":return self.step(r)
         if r["op"]=="finalize":

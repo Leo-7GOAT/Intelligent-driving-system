@@ -60,6 +60,15 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
     if sha(stream)!=raw['bridge_response_sha256']:raise ValueError('Measured bridge stream changed')
     bridge,error=read_prefix(stream)
     if error:raise ValueError(error)
+    refinement=p.get('reference_road_refinement')
+    probe_responses={(x['response'].get('episode_id'),x['response'].get('request_id')):x['response'] for x in bridge}
+    probe_requests={}
+    if refinement is not None:
+        for request_path in (batch/'infrastructure').glob('*_requests.jsonl.gz'):
+            requests,request_error=read_prefix(request_path)
+            if request_error:raise ValueError(request_error)
+            for wrapper in requests:
+                request=wrapper['request'];probe_requests[(request['episode_id'],request['request_id'])]=request
     begins={w['response']['episode_id']:w['response'] for w in bridge if 'scene' in w.get('response',{})}
     trace=folder/'evaluation_trace.jsonl.gz'
     if sha(trace)!=raw['evaluation_trace_sha256']:raise ValueError('Recorded policy trace changed')
@@ -75,6 +84,7 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
         env.world.road_collision_backend=cfg.road_collision_backend
         env.reference=None;env._reference_selection=None;env._rule_plan_cache=None
         env.episode=dict(plan_times=[],plan_failures=0)
+        refinement_cells=set()
         counts=0
         try:
             for row in selected if all_static else selected[:1]:
@@ -84,10 +94,35 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
                 counts+=1
                 if all_static:
                     recorded=row['info']['plan']
+                    if refinement is not None:
+                        from navstack.reference_road_refinement import planning_view,rejected_cells,pose_digest,VERSION as REFINEMENT_VERSION
+                        evidence=(recorded or {}).get('road_refinement')
+                        if evidence is None or evidence['version']!=REFINEMENT_VERSION:raise ValueError('Missing planning refinement evidence')
+                        for reply in evidence['probes']:
+                            key=(episode,reply['request_id']);request=probe_requests.get(key)
+                            if reply!=probe_responses.get(key) or not request or request['op']!='reference_road_probe':
+                                raise ValueError('Road query not bound to actual bridge stream')
+                            response=reply['reference_road_probe']
+                            if (reply['frame']!=env._measured_frame or request['expected_frame']!=env._measured_frame
+                                    or response['pose_sha256']!=pose_digest(request['poses'])
+                                    or response['sample_count']!=len(request['poses'])*108):
+                                raise ValueError('Road query frame/pose/sample binding differs')
+                            refinement_cells.update(rejected_cells(response['rejected_world'],begin['scene']['native_layout'],env.world.road))
+                        if sorted([list(c) for c in refinement_cells])!=evidence['cells']:
+                            raise ValueError('Planning constraints do not match recorded counterexamples')
                     if recorded and recorded['status'] in ('success','reference_reused'):
-                        _,detail=env._prepare_reference(action)
+                        owner=env.world
+                        if refinement is not None and recorded['status']=='success':env.world=planning_view(owner,refinement_cells)
+                        try:_,detail=env._prepare_reference(action)
+                        finally:env.world=owner
                         if detail['status']!=recorded['status'] or detail.get('expanded_nodes')!=recorded.get('expanded_nodes'):
                             raise ValueError('Reconstructed timed reference differs from recorded planner')
+                        if refinement is not None and recorded['status']=='success':
+                            if not evidence['probes']:raise ValueError('New reference lacks native geometry query')
+                            accepted=evidence['probes'][-1]['reference_road_probe']
+                            poses=[[float(x),float(y),float(yaw)] for x,y,yaw in zip(env.reference.x,env.reference.y,env.reference.yaw)]
+                            if (accepted['pose_sha256']!=pose_digest(poses) or accepted['rejected_world'] or accepted['truncated']):
+                                raise ValueError('Accepted query differs from reconstructed timed reference')
                     else:
                         # The recorded failure/wait has no active reference.
                         # Do not rerun a rejected search or invent its success.

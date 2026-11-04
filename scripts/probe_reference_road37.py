@@ -6,16 +6,9 @@ import json
 import math
 from pathlib import Path
 import time
-
-
-def footprint_points(pose,vehicle,layout):
-    x,y,yaw=pose;co,si=math.cos(yaw),math.sin(yaw)
-    angle=math.radians(layout['angle']);a,b=math.cos(angle),math.sin(angle)
-    ox,oy=layout['origin'];z=layout['spawn_z']-.6
-    return [[ox+(x+forward*co-lateral*si)*a+(y+forward*si+lateral*co)*b,
-             oy+(x+forward*co-lateral*si)*b-(y+forward*si+lateral*co)*a,z]
-        for forward in (-vehicle['rear'],0.,vehicle['front']*.5,vehicle['front'])
-        for lateral in (-vehicle['width']*.5,0.,vehicle['width']*.5)]
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from navstack.reference_road_refinement import footprint_points
 
 
 def run(input_path,xodr,module_path,output):

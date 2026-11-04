@@ -103,3 +103,5 @@ The original requirements remain:
 [Acceptance ledger](docs/research_acceptance.md) · [Failure analysis](docs/failure_analysis.md) · [Evidence-bounded Chinese/English project descriptions](docs/resume_project.md) · [Archived development snapshots](docs/README.development-history.md).
 
 Decision-cycle deadline overruns remain; synchronous simulator execution is not real-time validation. This work does not establish high-speed, production or real-vehicle capability. [MIT license](LICENSE) and [third-party notices](docs/THIRD_PARTY_NOTICES.md). Environment directories, simulator binaries, credentials and bulk raw videos are excluded from Git history.
+
+A sampled native-road reference-refinement prototype passed 1,358 CPU tests and complete native replay checks, but the original case4 still ended out of bounds (258 controls);the control case succeeded (332). This frozen-policy engineering pilot is retained as a failed repair, with no new PPO updates or revised historical scores. [Pilot evidence](reports/native_reference_road_refinement_pilot_20261104.json).

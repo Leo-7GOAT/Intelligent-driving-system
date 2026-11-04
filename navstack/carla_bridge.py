@@ -22,6 +22,8 @@ class BridgeClient:
     def __init__(self, batch, timeout=30, record_dir=None):
         self.batch=Path(batch).resolve();root=Path(__file__).resolve().parents[1]
         protocol=json.loads((self.batch/"protocol.json").read_text(encoding="utf-8"))
+        from .reference_road_refinement import settings
+        self.reference_road_refinement=settings(protocol)
         rpc_host=protocol.get("carla_rpc_host","127.0.0.1")
         rpc_port=protocol.get("carla_rpc_port",2000)
         if not isinstance(rpc_host,str) or not rpc_host or any(c.isspace() for c in rpc_host):
@@ -156,6 +158,16 @@ class BridgePlant:
 
 
 class CarlaNavigationEnv(NavigationEnv):
+    def _prepare_reference(self,action):
+        options=getattr(self.client,'reference_road_refinement',None)
+        if options is None:return super()._prepare_reference(action)
+        from .reference_road_refinement import prepare_reference
+        def validate(poses):
+            reply=self.client.request('reference_road_probe',expected_frame=self.plant.frame,poses=poses)
+            if reply['frame']!=self.plant.frame:raise InfrastructureFailure('Road query advanced the native frame')
+            return reply
+        return prepare_reference(self,action,super()._prepare_reference,validate,options)
+
     def __init__(self, config, client, cases=None):
         self.client=client;self.cases=cases;self.case_index=0
         super().__init__(config)
