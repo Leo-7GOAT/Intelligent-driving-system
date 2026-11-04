@@ -24,6 +24,8 @@ class BridgeClient:
         protocol=json.loads((self.batch/"protocol.json").read_text(encoding="utf-8"))
         from .reference_road_refinement import settings
         self.reference_road_refinement=settings(protocol)
+        from .steering_transition import settings as steering_settings
+        self.reference_steering_transition=steering_settings(protocol)
         rpc_host=protocol.get("carla_rpc_host","127.0.0.1")
         rpc_port=protocol.get("carla_rpc_port",2000)
         if not isinstance(rpc_host,str) or not rpc_host or any(c.isspace() for c in rpc_host):
@@ -159,14 +161,17 @@ class BridgePlant:
 
 class CarlaNavigationEnv(NavigationEnv):
     def _prepare_reference(self,action):
+        from .steering_transition import prepare_reference as steering_prepare
+        steering=getattr(self.client,'reference_steering_transition',None)
+        prepare=lambda a:steering_prepare(self,a,super(CarlaNavigationEnv,self)._prepare_reference,steering)
         options=getattr(self.client,'reference_road_refinement',None)
-        if options is None:return super()._prepare_reference(action)
+        if options is None:return prepare(action)
         from .reference_road_refinement import prepare_reference
         def validate(poses):
             reply=self.client.request('reference_road_probe',expected_frame=self.plant.frame,poses=poses)
             if reply['frame']!=self.plant.frame:raise InfrastructureFailure('Road query advanced the native frame')
             return reply
-        return prepare_reference(self,action,super()._prepare_reference,validate,options)
+        return prepare_reference(self,action,prepare,validate,options)
 
     def __init__(self, config, client, cases=None):
         self.client=client;self.cases=cases;self.case_index=0

@@ -1,3 +1,9 @@
+# 最新接续：2026-11-04 10:45 转角连续规划两场原生pilot成功
+
+D:/ThesisNativeArchive_20261104/20261104_steering_transition_refinement_H_pilot 已正常关闭，8252worker/8828launcher均退出、server_cleanup=0。原case1成功333控制、原case4成功340控制，673控制/734ticks(61reset)/68NN/2起点全部raw、重建参考、NN和engine通过。报告 `reports/native_steering_transition_pilot_20261104.json`。新增转角连续规划从实测转角出发、按max(当前速度,所选速度,0.1)约束空间转角变化；关闭不满足该约束的analytic connectors并绕过pose-only memo。PPO冻结、实际道路/评分不变。并非学习收益或完整静态清单分数。27项专项通过；全量CPU 1361通过、1skip、4 CARLA deselect，261.06秒，XML D:/ThesisNativeArchive_20261104/steering_full_cpu.xml。
+
+需继续完整开发清单检查。注意实测轮角可能略超过命令max_steer（case1终点0.50362rad>0.5），当前规划输入严格上限可能在其他场景触发；应接受有限且小于pi/2的实测角度而保持目标命令限幅，保留轨迹曲率验证，不能剪改实测状态。原case4旧失败和4/12均保留，未触碰最终确认集。
+
 # 最新接续：2026-11-04 原生道路参考修正v1已关闭
 
 原型真实运行case1成功332控制、case4仍越界258控制；590控制/651世界ticks/60NN/2起点全部raw、推理重建和engine核验通过。CPU1358通过/1skip/4CARLA deselect。完整报告 `reports/native_reference_road_refinement_pilot_20261104.json`。当前没有该批作业需要等待。原4/12不重算，未新增PPO。参考重规划初始曲率与实测转角不连续，是下一项待验证的执行接口假设；不能宣称修复。

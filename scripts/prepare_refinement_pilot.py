@@ -11,12 +11,16 @@ from scripts.prepare_native_reference_evaluation import prepare as prepare_endpo
 from scripts.prepare_native_camera import selected_camera_inputs
 
 
-def prepare(parent,output,ids):
+def prepare(parent,output,ids,steering_transition=False):
     output=Path(output).resolve()
     if read(Path(parent)/'protocol.json')['methods']!=['H']:raise ValueError('Frozen H-only pilot required')
     prepare_endpoint(parent,output,'static');p=read(output/'protocol.json')
     p['routes'],p['native_case_manifest'],mapping=selected_camera_inputs(p['routes'],p['native_case_manifest'],ids)
     p['reference_road_refinement']=dict(version=VERSION,max_attempts=3)
+    if steering_transition:
+        from navstack.steering_transition import VERSION as STEERING_VERSION
+        p['reference_steering_transition']=dict(version=STEERING_VERSION)
+        p.pop('planner_failure_memo',None)
     p['refinement_transfer_registration']=dict(original_case_ids=ids,builder_sha256=sha(Path(__file__)),
         physics_and_actual_v4_scoring_unchanged=True,planning_only_constraints=True,
         original_to_subset_route_indices=mapping,new_PPO_updates=0,new_final_conditions=0,
@@ -36,4 +40,5 @@ def prepare(parent,output,ids):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--parent',required=True);parser.add_argument('--output',required=True)
-    parser.add_argument('--case-ids',nargs='+',type=int,default=[1,4]);a=parser.parse_args();prepare(a.parent,a.output,a.case_ids)
+    parser.add_argument('--case-ids',nargs='+',type=int,default=[1,4]);parser.add_argument('--steering-transition',action='store_true')
+    a=parser.parse_args();prepare(a.parent,a.output,a.case_ids,a.steering_transition)

@@ -75,3 +75,5 @@ python -m venv .venv
 决策周期仍有超时，同步仿真能运行不代表实时控制。无高速、量产或实车能力结论。[历史开发快照](README.zh-CN.development-history.md)、[MIT 许可](../LICENSE)、[第三方说明](THIRD_PARTY_NOTICES.md)。
 
 独立的36条TRAIN教师采集已结束，完整成功、失败和额外监督成本均保留；教师结果不等于PPO成绩，也不包含最终条件。[实际采集证据](../reports/native_B3_diverse_TRAIN_teacher_collection_20261102.json)。
+
+2026-11-04开发进展：冻结PPO、保持原场景及越界口径，加入实测初始转角与有转向速率约束的Hybrid A*运动基元后，预注册case1/case4均成功（333/340控制步）。673控制、68次NN、2起点和全部参考重建/发动机回执通过。此前仅道路修正的case4越界失败保留。该两场工程迁移不证明PPO学习收益或整体验收达标，原完整静态4/12不重算。[证据](../reports/native_steering_transition_pilot_20261104.json)。

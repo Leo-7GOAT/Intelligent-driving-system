@@ -96,6 +96,29 @@ def primitive(pose, steer, length, wheelbase, step):
     )
 
 
+def steering_transition_primitive(pose, initial, target, length, vehicle, speed, step):
+    """Spatial bicycle integration with bounded steering slew at a speed ceiling.
+
+    This is a planning model, never a replacement for measured plant execution.
+    Substeps bound numerical integration error; callers still check the full body.
+    """
+    if not np.isfinite([initial,target,length,speed,step]).all() or min(length,speed,step)<=0:
+        raise ValueError('Finite positive transition primitive inputs required')
+    count=max(2,math.ceil(length/min(step,.02)))
+    ds=length/count
+    distances=(np.arange(count)+.5)*ds
+    delta=initial+np.clip(target-initial,-vehicle.steer_rate*distances/speed,
+                         vehicle.steer_rate*distances/speed)
+    dyaw=np.tan(delta)*ds/vehicle.wheelbase
+    yaw=pose[2]+np.cumsum(dyaw)
+    mid=yaw-dyaw/2
+    path=np.column_stack((pose[0]+np.cumsum(ds*np.cos(mid)),
+                          pose[1]+np.cumsum(ds*np.sin(mid)),yaw))
+    end=initial+float(np.clip(target-initial,-vehicle.steer_rate*length/speed,
+                             vehicle.steer_rate*length/speed))
+    return path,end
+
+
 def analytic_connection(start, goal, world, vehicle, spacing=0.06):
     """Bounded endpoint-tangent connector, checked against the full vehicle body.
 
@@ -138,9 +161,14 @@ class HybridAStar:
     def __init__(self, vehicle, config):
         self.vehicle, self.config = vehicle, config
 
-    def plan(self, start, goal, world):
+    def plan(self, start, goal, world, *, initial_steering=None, reference_speed=None):
         started = time.perf_counter()
         c, v = self.config, self.vehicle
+        transition=initial_steering is not None
+        if transition and (reference_speed is None or not math.isfinite(reference_speed)
+                or reference_speed<=0 or not math.isfinite(initial_steering)
+                or abs(initial_steering)>v.max_steer+1e-6):
+            raise ValueError('Measured steering and positive speed ceiling required')
 
         def result(status, path=None, cost=None, count=0, reason=None):
             return PlanResult(
@@ -154,13 +182,13 @@ class HybridAStar:
 
         if not world.free(start, v) or not world.free(goal, v):
             return result("invalid", reason="start_or_goal_body_collision_or_bounds")
-        if c.analytic_expansion:
+        if c.analytic_expansion and not transition:
             direct = analytic_connection(start, goal, world, v)
             if direct is not None:
                 return result("success", direct, float(np.linalg.norm(np.diff(direct[:, :2], axis=0), axis=1).sum()), 1)
         steers = np.linspace(-v.max_steer, v.max_steer, 5)
         local_segments = None
-        if c.vectorized_primitives:
+        if c.vectorized_primitives and not transition:
             local_segments = np.asarray([primitive((0,0,0),delta,c.primitive_length,v.wheelbase,c.collision_step) for delta in steers])
 
         def key(pose, steer_id):
@@ -169,7 +197,7 @@ class HybridAStar:
                 round(pose[0] / c.xy_resolution),
                 round(pose[1] / c.xy_resolution),
                 round((wrap(pose[2]) + math.pi) / c.yaw_resolution),
-                steer_id,
+                round(steer_id/.025) if transition else steer_id,
             )
 
         def geometric_heuristic(p):
@@ -191,8 +219,9 @@ class HybridAStar:
                 return max(base,dubins_distance(p,goal,v.min_turn_radius))
             return base
 
-        nodes = [(np.array(start, dtype=float), -1, np.empty((0, 3)), 2, 0.0)]
-        queue, best = [(c.heuristic_weight * heuristic(start), 0)], {key(start, 2): 0.0}
+        initial_si=initial_steering if transition else 2
+        nodes = [(np.array(start, dtype=float), -1, np.empty((0, 3)), initial_si, 0.0)]
+        queue, best = [(c.heuristic_weight * heuristic(start), 0)], {key(start, initial_si): 0.0}
         expanded = 0
         # Inflated envelopes cover interpolation between samples, including body rotation.
         margin = (
@@ -211,7 +240,7 @@ class HybridAStar:
             if g > best.get(key(pose, si), math.inf) + 1e-9:
                 continue
             expanded += 1
-            if c.analytic_expansion and expanded % 32 == 0:
+            if c.analytic_expansion and not transition and expanded % 32 == 0:
                 connection = analytic_connection(pose, goal, world, v)
                 if connection is not None:
                     pieces = [connection[1:]]
@@ -232,6 +261,12 @@ class HybridAStar:
                 path = np.vstack([np.array(start).reshape(1, 3)] + pieces[::-1])
                 return result("success", path, g, expanded)
             transformed = None
+            transition_ends = None
+            if transition:
+                candidates=[steering_transition_primitive(pose,si,delta,c.primitive_length,v,reference_speed,c.collision_step) for delta in steers]
+                transformed=np.asarray([candidate[0] for candidate in candidates])
+                transition_ends=[candidate[1] for candidate in candidates]
+                valid_segments=world.free_many(transformed.reshape(-1,3),v,margin).reshape(5,-1).all(axis=1)
             if local_segments is not None:
                 co,si_yaw = math.cos(pose[2]),math.sin(pose[2])
                 transformed = np.empty_like(local_segments)
@@ -240,15 +275,20 @@ class HybridAStar:
                 transformed[:,:,2] = pose[2]+local_segments[:,:,2]
                 valid_segments = world.free_many(transformed.reshape(-1,3),v,margin).reshape(5,-1).all(axis=1)
             for next_si, delta in enumerate(steers):
-                seg = transformed[next_si] if transformed is not None else primitive(pose,delta,c.primitive_length,v.wheelbase,c.collision_step)
-                if not (valid_segments[next_si] if transformed is not None else all(world.free(p,v,margin) for p in seg)):
+                edge_id=next_si
+                if transition:
+                    seg=transformed[next_si]
+                    next_si=transition_ends[next_si]
+                else:
+                    seg = transformed[next_si] if transformed is not None else primitive(pose,delta,c.primitive_length,v.wheelbase,c.collision_step)
+                if not (valid_segments[edge_id] if transformed is not None else all(world.free(p,v,margin) for p in seg)):
                     continue
                 end = seg[-1]
                 ng = (
                     g
                     + c.primitive_length
                     + c.steer_cost * abs(delta)
-                    + c.steer_change_cost * abs(delta - steers[si])
+                    + c.steer_change_cost * abs(delta - (si if transition else steers[si]))
                 )
                 nk = key(end, next_si)
                 if ng + 1e-9 < best.get(nk, math.inf):

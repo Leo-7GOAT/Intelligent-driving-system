@@ -113,8 +113,11 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False):
                     if recorded and recorded['status'] in ('success','reference_reused'):
                         owner=env.world
                         if refinement is not None and recorded['status']=='success':env.world=planning_view(owner,refinement_cells)
-                        try:_,detail=env._prepare_reference(action)
+                        from navstack.steering_transition import prepare_reference as steering_prepare,settings as steering_settings
+                        try:_,detail=steering_prepare(env,action,env._prepare_reference,steering_settings(p))
                         finally:env.world=owner
+                        if detail.get('steering_transition')!=recorded.get('steering_transition'):
+                            raise ValueError('Measured steering transition differs')
                         if detail['status']!=recorded['status'] or detail.get('expanded_nodes')!=recorded.get('expanded_nodes'):
                             raise ValueError('Reconstructed timed reference differs from recorded planner')
                         if refinement is not None and recorded['status']=='success':
