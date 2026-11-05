@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from scripts.build_native_delivery_comparison import digest, endpoint
+from scripts.build_native_delivery_comparison import basic_qualification, digest, endpoint
 
 
 @pytest.fixture
@@ -55,3 +55,13 @@ def test_engine_count_must_cover_every_control(closed_endpoint):
     (closed_endpoint/"strict_delivery.json").write_text('{"strict_delivery_gate_passed":true,"counts":{"controls":239}}')
     with pytest.raises(ValueError, match="accounting"):
         endpoint(closed_endpoint, 11, "H")
+
+
+@pytest.mark.parametrize('reasons,passed',[
+    (['success','success','success','deadline'],True),
+    (['success','success','success','out_of_bounds'],False),
+    (['success','success','collision','out_of_bounds'],False),
+])
+def test_basic_gate_requires_success_and_safety(reasons,passed):
+    episodes=[dict(case_id=i,success=r=='success',termination_reason=r) for i,r in enumerate(reasons)]
+    assert basic_qualification(episodes)['passed'] is passed

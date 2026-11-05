@@ -74,6 +74,7 @@
         "normalization_sha256": "4be6505a00d509fce571b9e746055b04c0c87778f04aa75542bf20d8a9055170"
       },
       "ancestry_correction": null,
+      "basic_probe": null,
       "cases": [
         {
           "case_id": 0,
@@ -388,6 +389,7 @@
         "normalization_sha256": "6a0a9a6b78fca2a1ef45b534acb2a5dda6f7a5270b962ed2f8256df86e2d70e6"
       },
       "ancestry_correction": null,
+      "basic_probe": null,
       "cases": [
         {
           "case_id": 0,
@@ -705,6 +707,12 @@
         "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22"
       },
       "ancestry_correction": null,
+      "basic_probe": {
+        "successes": 4,
+        "episodes": 4,
+        "unsafe": 0,
+        "passed": true
+      },
       "cases": [
         {
           "case_id": 0,
@@ -1032,6 +1040,7 @@
         "charged_controls_lower_bound": 35172,
         "reason": "Endpoint staging incorrectly reset ancestor uncertainty;the interrupted parent EOF cannot be erased by a closed recovery segment"
       },
+      "basic_probe": null,
       "cases": [
         {
           "case_id": 0,
@@ -1346,6 +1355,7 @@
         "normalization_sha256": "fda7335bd1d15cb2a792eaddef8aa661dccf7ae5d33924586c841412d0e14f02"
       },
       "ancestry_correction": null,
+      "basic_probe": null,
       "cases": [
         {
           "case_id": 0,
@@ -1662,6 +1672,12 @@
         "normalization_sha256": "624bffba2acaff2bdd98f3265e1e9e41042c4c503454bee2663159263eb8e109"
       },
       "ancestry_correction": null,
+      "basic_probe": {
+        "successes": 3,
+        "episodes": 4,
+        "unsafe": 0,
+        "passed": true
+      },
       "cases": [
         {
           "case_id": 0,
@@ -1977,6 +1993,7 @@
         "normalization_sha256": "8e4e16dbeb80a2e637e909c4ffc4718de1f6d9deaa488fb4876e199d1c9e0b9a"
       },
       "ancestry_correction": null,
+      "basic_probe": null,
       "cases": [
         {
           "case_id": 0,
@@ -2294,6 +2311,12 @@
         "normalization_sha256": "f5efad26d1d520c09cd991107a6955d7ae60f0f1dcc010ef259d752ff546c51a"
       },
       "ancestry_correction": null,
+      "basic_probe": {
+        "successes": 2,
+        "episodes": 4,
+        "unsafe": 2,
+        "passed": false
+      },
       "cases": [
         {
           "case_id": 0,
@@ -2568,7 +2591,7 @@
     "Repeated known24 conditions across learners are not new unique final conditions.",
     "Hierarchy includes planning/MPC and inherited teacher initialization; the gap is not attributable to PPO alone.",
     "Seed22 H has a preserved interruption, discarded readable tail and unknown unflushed ancestral tail; its correction sidecar governs ancestry.",
-    "B1 passed registered basic probes; complex-task convergence and equal total historical development cost are not established.",
+    "B1 basic qualification is per seed: seeds11/22 pass, seed33 fails2/4with2unsafe; complex-task convergence and equal historical development cost are not established.",
     "H0 and the strong historical B3 leave PPO-specific and added-feedback benefit unestablished.",
     "Five complete paired learners, final120, and the formal paired-confidence gate remain unmet."
   ]
