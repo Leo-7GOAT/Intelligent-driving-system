@@ -7,6 +7,7 @@ import hashlib
 import os
 from pathlib import Path
 import pickle
+import re
 import shutil
 import subprocess
 import sys
@@ -226,7 +227,9 @@ def checkpoint_ancestry(checkpoint,meta,cohort):
     return result
 
 
-def stage(cohort, archive, row, method, label, *, training, checkpoint):
+def stage(cohort, archive, row, method, label, *, training, checkpoint, rpc_port=2110):
+    if type(rpc_port) is not int or rpc_port not in (2110, 2120):
+        raise ValueError('Use one of the two registered disjoint native slots')
     from navstack.fixed_lowlevel_training import REGISTRATION_COHORT, registered
     from navstack.mpc_reference_effort import settings
     cohort, archive, checkpoint = Path(cohort), Path(archive), Path(checkpoint)
@@ -245,7 +248,7 @@ def stage(cohort, archive, row, method, label, *, training, checkpoint):
         method_budgets={'H':BUDGET if training else 0},
         deterministic_training_route_evaluation=not training,
         record_initial_parameters=True, scope=plan['interpretation'],
-        carla_rpc_port=2110, carla_rpc_port_span=[2110,2111,2112], allow_disjoint_carla=True,
+        carla_rpc_port=rpc_port, carla_rpc_port_span=list(range(rpc_port,rpc_port+3)), allow_disjoint_carla=True,
         source_hashes=plan['source_hashes'], calibration_sha256=plan['calibration_sha256'])
     p['outcome_context_registration']['failure_feedback_ablated'] = method == 'H0'
     meta = verified_checkpoint_metadata(checkpoint)
@@ -320,16 +323,43 @@ def learning_proof(batch, expected_budget=BUDGET):
         new_supervision=0,model_sha256=sha(batch/'H/model.zip'),summary=s)
 
 
-def run(cohort, archive, recovery_batch=None):
+def resumed_selection(seeds, execution_name, resume_completed, rpc_port):
+    selected=SEEDS if seeds is None else tuple(seeds)
+    if (not selected or any(type(s) is not int or s not in SEEDS for s in selected)
+            or len(set(selected))!=len(selected)):
+        raise ValueError('Select unique registered seeds')
+    if seeds is not None and not resume_completed:
+        raise ValueError('Seed selection requires explicit completed-phase reuse')
+    if execution_name is not None and not re.fullmatch(r'execution_[A-Za-z0-9_-]{1,90}',execution_name):
+        raise ValueError('Execution namespace must be a direct execution_ child')
+    if type(rpc_port) is not int or rpc_port not in (2110,2120):
+        raise ValueError('Use a registered disjoint native port')
+    return tuple(s for s in SEEDS if s in selected)
+
+
+def completed_phase(cohort, archive, label, reuse):
+    marker=Path(cohort)/'execution'/(label+'_complete.json')
+    if not reuse or not marker.exists():return False
+    receipt=read(marker)
+    name=receipt['batch']
+    if not isinstance(name,str) or name in ('.','..') or Path(name).name!=name or '/' in name or '\\' in name:
+        raise ValueError('Completed batch must be a direct archive child')
+    batch=Path(archive)/name
+    require_finished_parent(batch)
+    if sha(batch/'protocol.json')!=receipt['protocol_sha256']:
+        raise ValueError('Completed job changed')
+    return True
+
+
+def run(cohort, archive, recovery_batch=None, *, execution_name=None,
+        resume_completed=False, seeds=None, rpc_port=2110):
+    selected=resumed_selection(seeds,execution_name,resume_completed,rpc_port)
     cohort, archive = Path(cohort).resolve(), Path(archive).resolve()
     plan = read(cohort/'registration.json'); original_execution = cohort/'execution'
-    execution = cohort/('execution_resume_20261105' if recovery_batch else 'execution'); execution.mkdir()
+    reuse=bool(recovery_batch or resume_completed)
+    execution = cohort/(execution_name or ('execution_resume_20261105' if recovery_batch else 'execution')); execution.mkdir()
     def completed(label):
-        marker=original_execution/(label+'_complete.json')
-        if not recovery_batch or not marker.exists():return False
-        receipt=read(marker); batch=archive/receipt['batch'];require_finished_parent(batch)
-        if sha(batch/'protocol.json')!=receipt['protocol_sha256']:raise ValueError('Completed job changed')
-        return True
+        return completed_phase(cohort,archive,label,reuse)
     from navstack.independent_clip_ppo import load_ppo
     import torch
     torch.set_num_threads(1)
@@ -376,15 +406,16 @@ def run(cohort, archive, recovery_batch=None):
             raise ValueError('Engine control count differs from the complete phase')
         atomic_json(execution/(label+'_complete.json'),dict(batch=batch.name,
             protocol_sha256=sha(batch/'protocol.json'),training=training))
-        if recovery_batch:
+        if reuse:
             marker=original_execution/(label+'_complete.json')
             if marker.exists():raise FileExistsError('Do not replace completed evidence')
             atomic_json(marker,read(execution/(label+'_complete.json')))
     try:
         for row in plan['initializer_results']:
             seed = row['seed']; checkpoint = cohort/row['arms']['H']['path']
+            if seed not in selected:continue
             if not completed(f'seed{seed}_baseline'):
-                baseline = stage(cohort,archive,row,'H','zero_PPO_known24',training=False,checkpoint=checkpoint)
+                baseline = stage(cohort,archive,row,'H','zero_PPO_known24',training=False,checkpoint=checkpoint,rpc_port=rpc_port)
                 execute(baseline,f'seed{seed}_baseline',False)
             for method in ('H','H0'):
                 initial = cohort/row['arms'][method]['path']
@@ -393,14 +424,14 @@ def run(cohort, archive, recovery_batch=None):
                     training=archive/read(original_execution/(training_label+'_complete.json'))['batch']
                 else:
                     if recovery_batch and seed==22 and method=='H':training=Path(recovery_batch)
-                    else:training = stage(cohort,archive,row,method,method+'_TRAIN48_PPO30720',training=True,checkpoint=initial)
+                    else:training = stage(cohort,archive,row,method,method+'_TRAIN48_PPO30720',training=True,checkpoint=initial,rpc_port=rpc_port)
                     execute(training,training_label,True)
                 checkpoint = training/'H'/read(training/'H/latest_checkpoint.json')['folder']
                 if not completed(f'seed{seed}_{method}_endpoint'):
-                    endpoint = stage(cohort,archive,row,method,method+'_known24',training=False,checkpoint=checkpoint)
+                    endpoint = stage(cohort,archive,row,method,method+'_known24',training=False,checkpoint=checkpoint,rpc_port=rpc_port)
                     execute(endpoint,f'seed{seed}_{method}_endpoint',False)
-        atomic_json(execution/'complete.json',dict(seeds=list(SEEDS),status='ALL_REGISTERED_JOBS_CLOSED',research_acceptance='UNMET'))
-        if recovery_batch:atomic_json(original_execution/'complete.json',read(execution/'complete.json'))
+        atomic_json(execution/'complete.json',dict(seeds=list(selected),status='ALL_REGISTERED_JOBS_CLOSED' if selected==SEEDS else 'SELECTED_REGISTERED_JOBS_CLOSED',research_acceptance='UNMET'))
+        if reuse and selected==SEEDS:atomic_json(original_execution/'complete.json',read(execution/'complete.json'))
     except BaseException as error:
         atomic_json(execution/'failure.json',dict(error=repr(error),epoch=time.time())); raise
 
@@ -408,6 +439,9 @@ def run(cohort, archive, recovery_batch=None):
 if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('phase',choices=('prepare','run')); parser.add_argument('--cohort',required=True)
-    parser.add_argument('--archive',required=True);parser.add_argument('--recovery-batch'); args=parser.parse_args()
+    parser.add_argument('--archive',required=True);parser.add_argument('--recovery-batch')
+    parser.add_argument('--execution-name');parser.add_argument('--resume-completed',action='store_true')
+    parser.add_argument('--seeds',type=int,nargs='+');parser.add_argument('--rpc-port',type=int,default=2110);args=parser.parse_args()
     if args.phase=='prepare':prepare(args.cohort,args.archive)
-    else:run(args.cohort,args.archive,args.recovery_batch)
+    else:run(args.cohort,args.archive,args.recovery_batch,execution_name=args.execution_name,
+        resume_completed=args.resume_completed,seeds=args.seeds,rpc_port=args.rpc_port)
