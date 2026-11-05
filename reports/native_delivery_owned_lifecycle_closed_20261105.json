@@ -1,0 +1,280 @@
+{
+  "date": "2026-11-05",
+  "epoch": 1793857474.0961568,
+  "status": "ALL_CURRENT_OWNED_NATIVE_WORKERS_AND_SERVERS_CLOSED",
+  "normally_closed_native_jobs": 37,
+  "owned_native_workers_alive": 0,
+  "main_coordinators_alive": 0,
+  "jobs": [
+    {
+      "batch": "20261104_independent_outcome_seed11_zero_PPO_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "474a260ab693008069fd7b2ca2d8e6510cdf36f44b240071e9695788146bf4a7",
+      "server_stop_sha256": "55a9f696aa118fb9fcc1b9111debf2371d045a7fd8a38bdb9cdfffe3f5410d3d"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed11_H_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "c507b958e3d62c4d7a20efef43d3989fb358cc6a71cbd1b5253363635444b7ca",
+      "server_stop_sha256": "d48c0f11d9a94b82824119f633fffa6d2138d700cc67fd2633243cbcbeeb2cf5"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed11_H_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "dbd0c544cf3236122dc067b3fca5193a060ba8700795e7add9dd5db4a13218c8",
+      "server_stop_sha256": "22cc97cfd36841fa759680af83c51e64c31014bdfa56cf86738b94e252f3af2d"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed11_H0_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "9a26d2fb7571a226498380aadfec024be1c66be2df58f670419ea23e389f3e10",
+      "server_stop_sha256": "e0451dde56454cf03e35d1b8953132185e51113343ac6478094e711e33b79abc"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed11_H0_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "4c1d7f135e880370c1d2e00e29ecc1a54410d4c8aa923be17f68c5e14706e518",
+      "server_stop_sha256": "114d025cc00a37afdca69e0f53bddae2b253a1879687ae757cb2fc82e2f57f7c"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed22_zero_PPO_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "7e1a8861229830b7b62773386be8f43f37b3b8877bb3a2869087c24c1c202d19",
+      "server_stop_sha256": "c560c3b866bca46e4680ab7ae4f85254ed299f65b910727afeb8193741685b89"
+    },
+    {
+      "batch": "20261105_independent_outcome_seed22_H_recovered_TRAIN48",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "426acc5c772ea0e1495ed541f7896ed43b732f5d01926af4b1953835f9286ebc",
+      "server_stop_sha256": "c07c63753c47156075297de0cc83459bcbebdbfc3ac029a3a46c789bfccda96c"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed22_H_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "64072ac4885c6db229997fad26e8a77bf82f80952a5c543ea477df9a323c29ff",
+      "server_stop_sha256": "738c021bdbb3bfb16af86c23758bb78431d397aa20029d2b06c605b4ab2c5834"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed22_H0_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "1b100f474ef35e7264944e6e2e3a0710e5238a9d2b6928b4f4a8783f09c77ff8",
+      "server_stop_sha256": "6e038214d19b0efb332e4ec5d265aa275fa019905f6040d751a7f9ef5afb258b"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed22_H0_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "33607da7678ba80baa46fe96fc1ef74ba71e0a92e4409638c8372832cc981436",
+      "server_stop_sha256": "c9570ff37f511b5526d6d016b5b24ee978bb6da74aba956a09ccace404939ac5"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed33_zero_PPO_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "d96e742ae3bc02ef4927dc9f20e7aea35afafc62e8149317a823f0d3e44f4857",
+      "server_stop_sha256": "da3e14ac083d19c9c37c52a414bf038667b8b1628e012a17d48bcb648e3a92de"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed33_H_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "5467ce2a854ac885c237fc83ccace0d43fc3e45983a14295c3f237711ea4ad8e",
+      "server_stop_sha256": "199e86c352dd9b01903ded66bac219570a56237bd5ac8ebae89b4438ac5ca472"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed33_H_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "6690279135424929cd8616239582b8393149355a8d57c6ec8e030dc0c433a516",
+      "server_stop_sha256": "8ac942cab29af7a7517eb1c8606bb77046e5d961db51f141258e5cc791b14b8d"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed33_H0_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "546da23ee0fff7e7cade0bb66e6164d57a8e4f4bafe0f66d42475535a6d77ad1",
+      "server_stop_sha256": "a22e30d3c003fcda9afa6f00485f27cb85b4f06d6f0ad0a3ae9e524e78daa1f2"
+    },
+    {
+      "batch": "20261104_independent_outcome_seed33_H0_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "25cedd297c4c26f3d2cb87e40eb94f54dd0071a13a14a38662201f91ddb39494",
+      "server_stop_sha256": "0cc1b665e900262f681ed5ab1bd695eef19ad2a35f0e4dde6cf07e8c42b5d700"
+    },
+    {
+      "batch": "20261104_matched_flat_seed11_zero_PPO_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "8625955246b556f1ad66830a8db55e9dd96f98c2098f061251988bf7e4dcfdf4",
+      "server_stop_sha256": "4073d8cb9842231843a4a85055c775a3e47cbc0fc114c8916e5e134f1a4708fa"
+    },
+    {
+      "batch": "20261104_matched_flat_seed11_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "adab34c51cf0eea3d7ec7c038cc75766e871283b64683eb62b0291f178c5f9dd",
+      "server_stop_sha256": "9b0c8dc63345b0988e3a2e7585fbb4ba19a981507ab579f715f0fc9525f5dd75"
+    },
+    {
+      "batch": "20261104_matched_flat_seed11_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "d472b733164d9525cfb0c32b8b50d6758ab706c027f1098ad43374ceb7ea27ba",
+      "server_stop_sha256": "20b8a8534011313c95f64a0516845eb691b130a70477bc45dcd9529eac62d2a0"
+    },
+    {
+      "batch": "20261104_matched_flat_seed11_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "6d87e85e2a852d95776d720832d1213450186d51ff1a33a6d004e881052f0ba7",
+      "server_stop_sha256": "504e7091356b8d549c7698c286258eb5e517f6870b14cc23c1ade20acb4acdec"
+    },
+    {
+      "batch": "20261104_matched_flat_seed22_zero_PPO_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "fb46ac72ef8982a21e54cff1a1ff584641e90df643e8f749c4a1ca11e5eb8457",
+      "server_stop_sha256": "7da088659cc471ab2c4e224d738e9241c423b912f436568567f25ed9408e02d0"
+    },
+    {
+      "batch": "20261104_matched_flat_seed22_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "5c0678b86e41437eed66a1619429175315735ccef5daa292a7d254aa28ffdbcd",
+      "server_stop_sha256": "df1aba0279f4939773c90694944e0b9c65c037bb10c462f7b1d74dbc85aa9939"
+    },
+    {
+      "batch": "20261104_matched_flat_seed22_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "3fcb8c741d9af0ffcac7d89f59aac62371bc56bd00f1321f17e102a00e109741",
+      "server_stop_sha256": "19e2d0bf4b4f7ad35723f2764c580f8470dc98d69e848332acb3d048bc5882d3"
+    },
+    {
+      "batch": "20261104_matched_flat_seed22_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "5863a0cd3a1f5a7ae52052fa45d56143f4ea69b052604b919c08ebdbe17e0926",
+      "server_stop_sha256": "f03c2e4c3dcb09f1ea7b0acad1b56a1d9bb55b72643ed6d4c9c526986b9633b0"
+    },
+    {
+      "batch": "20261104_matched_flat_seed33_zero_PPO_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "a18975135dba982ef51f1ab12d70df4b2545d30f547f70f3c83be4784189a8bd",
+      "server_stop_sha256": "130e36d3946f3b3068f36e1af177431201e2a4aa087c17606d4559f8c30d3e70"
+    },
+    {
+      "batch": "20261104_matched_flat_seed33_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "737063fd1f8e79fc682b71deed4f648bb81304d1b36dcddedb2770ecc41791e6",
+      "server_stop_sha256": "7cff5fda6d5a2a0beb2d5d52650dbe480b4126bf4711e6e97d982c58e7a60880"
+    },
+    {
+      "batch": "20261104_matched_flat_seed33_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "22b4bf5e6bc23df7e77549cb496d259e3f5c033e9d044c2984be029ef5cb18ec",
+      "server_stop_sha256": "9b73efcd768d3dc63e24b1fda9f2b228d8dd3586b2c4fcfd56f2132c41a34043"
+    },
+    {
+      "batch": "20261104_matched_flat_seed33_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "dff47a72b120b22e322d662027a1d200055670e1014b9b4e1f5b9c8a94b80309",
+      "server_stop_sha256": "9c0eb17210ba3a0a42441fd367538367794cba61c729e62ee1468a3a572bca1b"
+    },
+    {
+      "batch": "20261104_matched_flat_seed44_zero_PPO_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "52dbafc196ef309f78d1bf5e86eba65ecabdf788c139ded275fe6f1c4badc7b9",
+      "server_stop_sha256": "116bf24403c23248316bbef8ec5b2b2bb9620f532c85c3e1d67b206cac99f43e"
+    },
+    {
+      "batch": "20261104_matched_flat_seed44_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "b91ee97966a80b1c5990ea249ed10ff5dadc71db2ae0bd584edbde24575872f0",
+      "server_stop_sha256": "6d5c9006dc7bb927d98f843e26c08ba70fb0ed43776fed2ec180522a691d9d93"
+    },
+    {
+      "batch": "20261104_matched_flat_seed44_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "4fff3d76df875b5a0e8a752d0f77a13b51bc490306afe92e155edd782168068b",
+      "server_stop_sha256": "63193b25dd38b1c1c0190c49e9a54009eea7f6eaf42cffb3060a3a06f792b1a3"
+    },
+    {
+      "batch": "20261104_matched_flat_seed44_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "11c22b83635e8c2429a866bdcd4856562a707666d7b55c58cbc97095246a7741",
+      "server_stop_sha256": "347f59ebfdf85eb984749cbc41208133136076a47d79c4e0029fff28d63a4530"
+    },
+    {
+      "batch": "20261104_matched_flat_seed55_zero_PPO_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "3eb902cedbd92a4d83dd1046f9fba48163b2675781155823d9ec9b04c8cc891b",
+      "server_stop_sha256": "ce809eb722ea54b98dcf9221f63353c812c8829450e3569f1e6670b375ed02f9"
+    },
+    {
+      "batch": "20261104_matched_flat_seed55_TRAIN48_PPO30720",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "307efe926fa80b755351318399f15a30c295f4a90d03f06e4f2ebb5f5699be48",
+      "server_stop_sha256": "35a6459273152da3da4599f4bba76694011e4653c654e488f9916106757f9e04"
+    },
+    {
+      "batch": "20261104_matched_flat_seed55_basic",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "0d79d741a93b4b5b00f2cf3f146fa790d88256e2b2e4d3a74e8d24214fecab27",
+      "server_stop_sha256": "805cc2002b7884a9cc4b09e9b80a4f538a5b671c736bfb20cbbd1f89cabac543"
+    },
+    {
+      "batch": "20261104_matched_flat_seed55_known24",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "2a06a3166ad4f9656ac210286ad32e47f614fd3a26845e2e7186b1d63d8d51f8",
+      "server_stop_sha256": "c9685aefb42fa1b54014753fdf661b152c522eb2dcc03cc9a4c94e164d99d7b8"
+    },
+    {
+      "batch": "20261105_three_hour_delivery_H_case12_camera",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "63a5242b646b7ab48aadaef7ae0f604831a2b48916c28227154360c25058845e",
+      "server_stop_sha256": "3e76968cf7fe114c2df94005b5599a9030ddc4426176b9478da888bda96572eb"
+    },
+    {
+      "batch": "20261105_three_hour_delivery_B1_camera",
+      "guard_exit_code": 0,
+      "owned_server_cleanup": "owned_empty_server_stopped",
+      "guard_sha256": "f9b389fb3c92f62db7ff845e6c7f5672d26fc59b4ec0ee72facdbd296ff637a9",
+      "server_stop_sha256": "936fd35cec6fa17db5d717a34759c72559e9e84e03b297a10b6a82f0f554f7b4"
+    }
+  ],
+  "hierarchical_queue_closure": {
+    "reason": "User final-three-hour admission barrier after three complete pairs",
+    "remaining_seeds_not_started": [
+      44,
+      55
+    ],
+    "native_jobs_started_beyond_barrier": 0,
+    "preserved_error": "FileExistsError('Preserve native attempt: 20261104_independent_outcome_seed44_zero_PPO_known24')"
+  },
+  "matched_flat_queue": "ALL20REGISTERED_PHASES_CLOSED",
+  "ancestral_H22_interruption": "Retained separately with recovery/unknown-tail disclosure;not counted as a normally closed original attempt"
+}

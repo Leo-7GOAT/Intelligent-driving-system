@@ -1,0 +1,594 @@
+{
+  "date": "2026-11-05",
+  "research_acceptance": "UNMET",
+  "status": "FIVE_FIXED_NEW_TRAINING_WINDOWS_AND_ALL_ENDPOINTS_CLOSED",
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "new_training_controls": 153600,
+  "actual_Adam_steps": 4657,
+  "successes": 38,
+  "repeated_known_episodes": 120,
+  "unique_known_conditions": 24,
+  "unsafe": 78,
+  "basic_gate_qualified_seeds": [
+    11,
+    22
+  ],
+  "complex_task_convergence_established": false,
+  "rows": [
+    {
+      "seed": 11,
+      "training_summary": {
+        "physics_steps": 30720,
+        "actions": 30720,
+        "episodes": 73,
+        "optimization_phases": 24,
+        "optimizer_steps": 917,
+        "reward_components": {
+          "event": -1960.0,
+          "time": -153.5999999999328,
+          "risk": -269.79512830944464,
+          "comfort": -25.130505078453904,
+          "potential": 48.069458005106256,
+          "task_progress": 700.433233179039
+        },
+        "modes": {
+          "flat": 30720
+        },
+        "action_histogram": {},
+        "method": "B1",
+        "job_name": "B1",
+        "rollout_actions": 1280,
+        "ppo_epochs": 10,
+        "batch_size": 320,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 33013,
+        "reset_ticks": 2293,
+        "actor_l2_change": 0.05690645053982735,
+        "reload_exact": true,
+        "wall_seconds": 2260.8077294826508,
+        "stopped_reason": null,
+        "lineage_control_steps": 30720,
+        "charged_control_steps_lower_bound": 69909,
+        "inherited_controls_not_in_checkpoint": 39189,
+        "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+      },
+      "learning_proof": {
+        "actual_initial_weights_Adam_exact": true,
+        "RMS_exact": true,
+        "all_Adam_steps": 917,
+        "new_supervision": 0,
+        "summary": {
+          "physics_steps": 30720,
+          "actions": 30720,
+          "episodes": 73,
+          "optimization_phases": 24,
+          "optimizer_steps": 917,
+          "reward_components": {
+            "event": -1960.0,
+            "time": -153.5999999999328,
+            "risk": -269.79512830944464,
+            "comfort": -25.130505078453904,
+            "potential": 48.069458005106256,
+            "task_progress": 700.433233179039
+          },
+          "modes": {
+            "flat": 30720
+          },
+          "action_histogram": {},
+          "method": "B1",
+          "job_name": "B1",
+          "rollout_actions": 1280,
+          "ppo_epochs": 10,
+          "batch_size": 320,
+          "gradient_clip_mode": "global",
+          "backend": "CARLA_0.9.15",
+          "world_ticks": 33013,
+          "reset_ticks": 2293,
+          "actor_l2_change": 0.05690645053982735,
+          "reload_exact": true,
+          "wall_seconds": 2260.8077294826508,
+          "stopped_reason": null,
+          "lineage_control_steps": 30720,
+          "charged_control_steps_lower_bound": 69909,
+          "inherited_controls_not_in_checkpoint": 39189,
+          "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+        }
+      },
+      "known24": {
+        "successes": 10,
+        "unsafe": 13,
+        "reasons": {
+          "success": 10,
+          "out_of_bounds": 11,
+          "deadline": 1,
+          "collision": 2
+        },
+        "by_core_class": {
+          "crossing_walker": {
+            "successes": 4,
+            "episodes": 8
+          },
+          "curve": {
+            "successes": 4,
+            "episodes": 8
+          },
+          "static_vehicle": {
+            "successes": 2,
+            "episodes": 8
+          }
+        },
+        "controls": 10961
+      },
+      "basic_probe": {
+        "successes": 4,
+        "episodes": 4,
+        "unsafe": 0,
+        "passed": true
+      },
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "raw_audit_sha256": "10729b601787b310c4d25a9ad0cbfdb2cdb04c6ce1cc7a7d6ee20a4f96d332f8"
+    },
+    {
+      "seed": 22,
+      "training_summary": {
+        "physics_steps": 30720,
+        "actions": 30720,
+        "episodes": 80,
+        "optimization_phases": 24,
+        "optimizer_steps": 939,
+        "reward_components": {
+          "event": -3270.0,
+          "time": -153.5999999999328,
+          "risk": -222.83108839855242,
+          "comfort": -24.574536613523275,
+          "potential": 52.28366017594656,
+          "task_progress": 639.8789102607102
+        },
+        "modes": {
+          "flat": 30720
+        },
+        "action_histogram": {},
+        "method": "B1",
+        "job_name": "B1",
+        "rollout_actions": 1280,
+        "ppo_epochs": 10,
+        "batch_size": 320,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 33230,
+        "reset_ticks": 2510,
+        "actor_l2_change": 0.055656179785728455,
+        "reload_exact": true,
+        "wall_seconds": 2629.158362388611,
+        "stopped_reason": null,
+        "lineage_control_steps": 30720,
+        "charged_control_steps_lower_bound": 69909,
+        "inherited_controls_not_in_checkpoint": 39189,
+        "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+      },
+      "learning_proof": {
+        "actual_initial_weights_Adam_exact": true,
+        "RMS_exact": true,
+        "all_Adam_steps": 939,
+        "new_supervision": 0,
+        "summary": {
+          "physics_steps": 30720,
+          "actions": 30720,
+          "episodes": 80,
+          "optimization_phases": 24,
+          "optimizer_steps": 939,
+          "reward_components": {
+            "event": -3270.0,
+            "time": -153.5999999999328,
+            "risk": -222.83108839855242,
+            "comfort": -24.574536613523275,
+            "potential": 52.28366017594656,
+            "task_progress": 639.8789102607102
+          },
+          "modes": {
+            "flat": 30720
+          },
+          "action_histogram": {},
+          "method": "B1",
+          "job_name": "B1",
+          "rollout_actions": 1280,
+          "ppo_epochs": 10,
+          "batch_size": 320,
+          "gradient_clip_mode": "global",
+          "backend": "CARLA_0.9.15",
+          "world_ticks": 33230,
+          "reset_ticks": 2510,
+          "actor_l2_change": 0.055656179785728455,
+          "reload_exact": true,
+          "wall_seconds": 2629.158362388611,
+          "stopped_reason": null,
+          "lineage_control_steps": 30720,
+          "charged_control_steps_lower_bound": 69909,
+          "inherited_controls_not_in_checkpoint": 39189,
+          "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+        }
+      },
+      "known24": {
+        "successes": 7,
+        "unsafe": 17,
+        "reasons": {
+          "success": 7,
+          "out_of_bounds": 12,
+          "collision": 5
+        },
+        "by_core_class": {
+          "crossing_walker": {
+            "successes": 2,
+            "episodes": 8
+          },
+          "curve": {
+            "successes": 3,
+            "episodes": 8
+          },
+          "static_vehicle": {
+            "successes": 2,
+            "episodes": 8
+          }
+        },
+        "controls": 9229
+      },
+      "basic_probe": {
+        "successes": 3,
+        "episodes": 4,
+        "unsafe": 0,
+        "passed": true
+      },
+      "model_sha256": "843cf903512234787709231a5ff75663783aac4f0f53589aa98f02e729497fcb",
+      "raw_audit_sha256": "d40ef24297232e07a93b126c077250358f19c4019235fc9893505a70654bad95"
+    },
+    {
+      "seed": 33,
+      "training_summary": {
+        "physics_steps": 30720,
+        "actions": 30720,
+        "episodes": 85,
+        "optimization_phases": 24,
+        "optimizer_steps": 928,
+        "reward_components": {
+          "event": -5010.0,
+          "time": -153.5999999999328,
+          "risk": -227.05066048870387,
+          "comfort": -28.161423817126067,
+          "potential": 55.10286543506661,
+          "task_progress": 754.6072767277988
+        },
+        "modes": {
+          "flat": 30720
+        },
+        "action_histogram": {},
+        "method": "B1",
+        "job_name": "B1",
+        "rollout_actions": 1280,
+        "ppo_epochs": 10,
+        "batch_size": 320,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 33385,
+        "reset_ticks": 2665,
+        "actor_l2_change": 0.060878898948431015,
+        "reload_exact": true,
+        "wall_seconds": 2843.511013031006,
+        "stopped_reason": null,
+        "lineage_control_steps": 30720,
+        "charged_control_steps_lower_bound": 69909,
+        "inherited_controls_not_in_checkpoint": 39189,
+        "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+      },
+      "learning_proof": {
+        "actual_initial_weights_Adam_exact": true,
+        "RMS_exact": true,
+        "all_Adam_steps": 928,
+        "new_supervision": 0,
+        "summary": {
+          "physics_steps": 30720,
+          "actions": 30720,
+          "episodes": 85,
+          "optimization_phases": 24,
+          "optimizer_steps": 928,
+          "reward_components": {
+            "event": -5010.0,
+            "time": -153.5999999999328,
+            "risk": -227.05066048870387,
+            "comfort": -28.161423817126067,
+            "potential": 55.10286543506661,
+            "task_progress": 754.6072767277988
+          },
+          "modes": {
+            "flat": 30720
+          },
+          "action_histogram": {},
+          "method": "B1",
+          "job_name": "B1",
+          "rollout_actions": 1280,
+          "ppo_epochs": 10,
+          "batch_size": 320,
+          "gradient_clip_mode": "global",
+          "backend": "CARLA_0.9.15",
+          "world_ticks": 33385,
+          "reset_ticks": 2665,
+          "actor_l2_change": 0.060878898948431015,
+          "reload_exact": true,
+          "wall_seconds": 2843.511013031006,
+          "stopped_reason": null,
+          "lineage_control_steps": 30720,
+          "charged_control_steps_lower_bound": 69909,
+          "inherited_controls_not_in_checkpoint": 39189,
+          "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+        }
+      },
+      "known24": {
+        "successes": 5,
+        "unsafe": 17,
+        "reasons": {
+          "out_of_bounds": 13,
+          "success": 5,
+          "deadline": 2,
+          "collision": 4
+        },
+        "by_core_class": {
+          "crossing_walker": {
+            "successes": 0,
+            "episodes": 8
+          },
+          "curve": {
+            "successes": 3,
+            "episodes": 8
+          },
+          "static_vehicle": {
+            "successes": 2,
+            "episodes": 8
+          }
+        },
+        "controls": 8884
+      },
+      "basic_probe": {
+        "successes": 2,
+        "episodes": 4,
+        "unsafe": 2,
+        "passed": false
+      },
+      "model_sha256": "a6775c9f0006c4220024b854192b2648196aa9050b51c50dea6068e3372c0dc1",
+      "raw_audit_sha256": "c7ffc6d0f0569ae829d90c66e45831bb6d1c170c797faee4854c598f60b24dfe"
+    },
+    {
+      "seed": 44,
+      "training_summary": {
+        "physics_steps": 30720,
+        "actions": 30720,
+        "episodes": 77,
+        "optimization_phases": 24,
+        "optimizer_steps": 933,
+        "reward_components": {
+          "event": -3660.0,
+          "time": -153.5999999999328,
+          "risk": -237.7475992602876,
+          "comfort": -26.82833165203592,
+          "potential": 51.0861771207662,
+          "task_progress": 667.5202916993408
+        },
+        "modes": {
+          "flat": 30720
+        },
+        "action_histogram": {},
+        "method": "B1",
+        "job_name": "B1",
+        "rollout_actions": 1280,
+        "ppo_epochs": 10,
+        "batch_size": 320,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 33137,
+        "reset_ticks": 2417,
+        "actor_l2_change": 0.05777033418416977,
+        "reload_exact": true,
+        "wall_seconds": 2567.018236398697,
+        "stopped_reason": null,
+        "lineage_control_steps": 30720,
+        "charged_control_steps_lower_bound": 69909,
+        "inherited_controls_not_in_checkpoint": 39189,
+        "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+      },
+      "learning_proof": {
+        "actual_initial_weights_Adam_exact": true,
+        "RMS_exact": true,
+        "all_Adam_steps": 933,
+        "new_supervision": 0,
+        "summary": {
+          "physics_steps": 30720,
+          "actions": 30720,
+          "episodes": 77,
+          "optimization_phases": 24,
+          "optimizer_steps": 933,
+          "reward_components": {
+            "event": -3660.0,
+            "time": -153.5999999999328,
+            "risk": -237.7475992602876,
+            "comfort": -26.82833165203592,
+            "potential": 51.0861771207662,
+            "task_progress": 667.5202916993408
+          },
+          "modes": {
+            "flat": 30720
+          },
+          "action_histogram": {},
+          "method": "B1",
+          "job_name": "B1",
+          "rollout_actions": 1280,
+          "ppo_epochs": 10,
+          "batch_size": 320,
+          "gradient_clip_mode": "global",
+          "backend": "CARLA_0.9.15",
+          "world_ticks": 33137,
+          "reset_ticks": 2417,
+          "actor_l2_change": 0.05777033418416977,
+          "reload_exact": true,
+          "wall_seconds": 2567.018236398697,
+          "stopped_reason": null,
+          "lineage_control_steps": 30720,
+          "charged_control_steps_lower_bound": 69909,
+          "inherited_controls_not_in_checkpoint": 39189,
+          "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+        }
+      },
+      "known24": {
+        "successes": 9,
+        "unsafe": 15,
+        "reasons": {
+          "success": 9,
+          "out_of_bounds": 12,
+          "collision": 3
+        },
+        "by_core_class": {
+          "crossing_walker": {
+            "successes": 2,
+            "episodes": 8
+          },
+          "curve": {
+            "successes": 4,
+            "episodes": 8
+          },
+          "static_vehicle": {
+            "successes": 3,
+            "episodes": 8
+          }
+        },
+        "controls": 9583
+      },
+      "basic_probe": {
+        "successes": 3,
+        "episodes": 4,
+        "unsafe": 1,
+        "passed": false
+      },
+      "model_sha256": "33e92e2337ced346267c29b12bcb4aa43978a7dffa111de2f7a56e078650d4cc",
+      "raw_audit_sha256": "102f3bf250e1a89175b52474d57ef8f3e4f4f990581dd2e0c9ccaeec6ff24a8e"
+    },
+    {
+      "seed": 55,
+      "training_summary": {
+        "physics_steps": 30720,
+        "actions": 30720,
+        "episodes": 81,
+        "optimization_phases": 24,
+        "optimizer_steps": 940,
+        "reward_components": {
+          "event": -3330.0,
+          "time": -153.5999999999328,
+          "risk": -257.4939503365146,
+          "comfort": -26.33681874509144,
+          "potential": 53.24673324080799,
+          "task_progress": 722.2421162936032
+        },
+        "modes": {
+          "flat": 30720
+        },
+        "action_histogram": {},
+        "method": "B1",
+        "job_name": "B1",
+        "rollout_actions": 1280,
+        "ppo_epochs": 10,
+        "batch_size": 320,
+        "gradient_clip_mode": "global",
+        "backend": "CARLA_0.9.15",
+        "world_ticks": 33261,
+        "reset_ticks": 2541,
+        "actor_l2_change": 0.05931660532951355,
+        "reload_exact": true,
+        "wall_seconds": 2468.246733903885,
+        "stopped_reason": null,
+        "lineage_control_steps": 30720,
+        "charged_control_steps_lower_bound": 69909,
+        "inherited_controls_not_in_checkpoint": 39189,
+        "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+      },
+      "learning_proof": {
+        "actual_initial_weights_Adam_exact": true,
+        "RMS_exact": true,
+        "all_Adam_steps": 940,
+        "new_supervision": 0,
+        "summary": {
+          "physics_steps": 30720,
+          "actions": 30720,
+          "episodes": 81,
+          "optimization_phases": 24,
+          "optimizer_steps": 940,
+          "reward_components": {
+            "event": -3330.0,
+            "time": -153.5999999999328,
+            "risk": -257.4939503365146,
+            "comfort": -26.33681874509144,
+            "potential": 53.24673324080799,
+            "task_progress": 722.2421162936032
+          },
+          "modes": {
+            "flat": 30720
+          },
+          "action_histogram": {},
+          "method": "B1",
+          "job_name": "B1",
+          "rollout_actions": 1280,
+          "ppo_epochs": 10,
+          "batch_size": 320,
+          "gradient_clip_mode": "global",
+          "backend": "CARLA_0.9.15",
+          "world_ticks": 33261,
+          "reset_ticks": 2541,
+          "actor_l2_change": 0.05931660532951355,
+          "reload_exact": true,
+          "wall_seconds": 2468.246733903885,
+          "stopped_reason": null,
+          "lineage_control_steps": 30720,
+          "charged_control_steps_lower_bound": 69909,
+          "inherited_controls_not_in_checkpoint": 39189,
+          "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+        }
+      },
+      "known24": {
+        "successes": 7,
+        "unsafe": 16,
+        "reasons": {
+          "success": 7,
+          "out_of_bounds": 8,
+          "deadline": 1,
+          "collision": 8
+        },
+        "by_core_class": {
+          "crossing_walker": {
+            "successes": 2,
+            "episodes": 8
+          },
+          "curve": {
+            "successes": 3,
+            "episodes": 8
+          },
+          "static_vehicle": {
+            "successes": 2,
+            "episodes": 8
+          }
+        },
+        "controls": 8021
+      },
+      "basic_probe": {
+        "successes": 3,
+        "episodes": 4,
+        "unsafe": 1,
+        "passed": false
+      },
+      "model_sha256": "d8887be295f89b22263a9ce5a91e0e3dfe60fe3cf4bc1f612d1de602486d570a",
+      "raw_audit_sha256": "96574fb53b815559a1fe9080bb2fd228d01fb860bc7f0c6962aa436a863ab21d"
+    }
+  ],
+  "new_final_conditions_generated": 0
+}
