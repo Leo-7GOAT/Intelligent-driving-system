@@ -28,6 +28,17 @@ road problem infeasible. Alternatives must be checked from the same recorded
 state before deciding whether stronger selection feedback could help or the
 vehicle already reached a pose with no available forward recovery.
 
+That follow-up model check is now complete at the first failed pose. All30
+motion labels decode to the same finalpose,with15 labels per speed0.75/1.5.
+Fresh preparation and preparation retaining the reconstructed previous option
+each yield30 `plan_failed` and one `wait`. The selected failure's status,node
+count and reason match the record before other candidates are probed. These
+checks find no accepted reference within the registered forward model;they do
+not prove global geometric infeasibility or that another executed maneuver
+could never recover. They support inspecting earlier candidate/continuation
+behavior rather than treating the late failed-label ranking as the sole cause.
+[All31candidate records and explicit scope](../reports/native_seed22_candidate_alias_probe_20261105.json).
+
 These are same-weight actor counterfactuals,not the independently trained H0
 policy. No alternative is driven,and no counterfactual completion gain is
 claimed. Weights,full Adam,Torch CPU RNG and timestep counters remain unchanged;

@@ -14,7 +14,7 @@
 
 首个独立热启动 **H/H0配对已全部闭合**：实际CARLA训练30773/30752控制步、各970次Adam更新，全部48个TRAIN条件及原始帧/引擎/保存状态核验通过。两组已知24条验证均24/24，与共同零PPO基线持平；H/H0评估控制8165/8096、干预408/364、规划失败7/3，这个种子未证明新增失败反馈的收益。实际初始参数/Adam/Torch RNG及保存RNG内容相同，H0只移除新增负失败分支。[完整配对及全部结果](../reports/native_independent_outcome_seed11_pair_complete_20261104.json)、[冻结流程](independent_outcome_cohort.md)。种子22已开始真实PPO更新；其余4对与最终确认仍待完成。
 
-五种子B1配对队列已准备好，**正在等待当前H/H0队列完整结束，尚无新增B1原生训练**。五份保存优化配置一致，15组基础/TRAIN/验证输入预检通过。新增PPO窗口和共同教师交互量匹配，继承监督与历史开发消耗单列；实际学习后的基础驾驶合格检查仍待执行。[准备证据与边界](../reports/native_matched_flat_cohort_ready_20261104.json)、[运行流程](matched_flat_cohort.md)。
+五种子B1队列已在独立2120端口**开始真实PPO，与2110上的H/H0并行**，仍限制最多两台仿真。20组配方核验仅port/span变化，模型、数据、物理设置和预算保持原值。seed11零PPO基础评估4/4、1425控制帧审计通过，随后首个已核验5120步PPO状态的35个Adam各推进147次，actor头已改变、RMS不变。初始化成功不能算PPO收益，训练后健康与完整五种子结果仍待完成。[执行与成本](../reports/native_parallel_flat_execution_20261105.json)、[资源与调度边界](parallel_native_execution.md)、[原始准备](../reports/native_matched_flat_cohort_ready_20261104.json)。
 
 动作对齐反馈配对实验已全部关闭：**H/H0实际训练控制10482/10489、各330次Adam更新**，初始权重/完整Adam/RNG/RMS一致，低层固定。两组在相同两个已知条件均 **2/2成功**，未显示新增反馈的完成率优势。H/H0评估控制911/1014、干预1/34、规划失败0/3；这些成本差异只是单种子探索性证据。H两场决策时失败历史均为空，不能声称新失败项在复测中直接纠正动作。[完整配对、实际成本与每场耗时分位数](../reports/native_outcome_context_pair_complete_20261104.json)。两组完整30摆放及24已知验证清单也已全部闭合，零新增PPO、零最终条件。
 

@@ -23,7 +23,7 @@ After the existing H/H0 and matched-flat queues finish:
 .venv/Scripts/python.exe scripts/run_shared_native_grid.py --batch D:/ARCHIVE/GRID_BATCH --execution D:/ARCHIVE/GRID_BATCH/execution --after-flat D:/ARCHIVE/FLAT_COHORT
 ```
 
-The driver requires all20 distinct matched-flat phase receipts,normal lifecycle
+The driver requires all25H/H0closures and all20 distinct matched-flat phase receipts,normal lifecycle
 closure and matching protocol hashes. It measures4GiB free GPU memory,16GiB
 RAM and16GiB archive headroom before launch. Queue activation changes only the
 bounded wall window and retains the original protocol/preparation receipt.
