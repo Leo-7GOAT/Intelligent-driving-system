@@ -1,3 +1,5 @@
+> 当前补跑（2026-11-05）：剩余seed44/55的H/H0配对已在两个隔离CARLA端口运行，每臂保持原30,720物理控制步预算。下方发布和表格仍为已完成三组的历史快照；完成后再加入五组结果。[实际执行登记](../reports/native_remaining_pairs_resumed_20261105.json)。
+
 # 分层自动驾驶：PPO、Hybrid A* 与 MPC
 
 [English](../README.md) · [逐条件结果与模型哈希](../reports/native_delivery_comparison_20261105.json) · [GitHub 模型发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.5.0-dev.20261105-hierarchical-delivery)

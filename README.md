@@ -1,3 +1,5 @@
+> Current development run (2026-11-05): the remaining registered H/H0 seeds44and55are running in two disjoint native CARLA slots at the original30,720physical-control budget per arm. The release and result tables below are the completed three-pair snapshot. Five-pair results will be added after the remaining jobs close. [Execution registration](reports/native_remaining_pairs_resumed_20261105.json).
+
 # Hierarchical autonomous driving with PPO, Hybrid A* and MPC
 
 [中文说明](docs/README.zh-CN.md) · [Results and raw evidence](reports/native_delivery_comparison_20261105.json) · [Models and releases](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases) · [Acceptance ledger](docs/research_acceptance.md)

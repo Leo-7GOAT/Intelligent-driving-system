@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-05",
+  "status": "RUNNING_TWO_REMAINING_REGISTERED_H_H0_PAIRS",
+  "research_acceptance": "UNMET",
+  "operational_driver_commit": "50c300f6dc7e0ec3e7eae4fdf86bdd04ab3bd72c",
+  "frozen_native_registration_sha256": "970c895b91f488dc46bac2ba9bd067d02a57f8bc30a00adcb2d7f1ee1be175e7",
+  "seeds": [
+    44,
+    55
+  ],
+  "ports": {
+    "44": [
+      2110,
+      2111,
+      2112
+    ],
+    "55": [
+      2120,
+      2121,
+      2122
+    ]
+  },
+  "unchanged_new_physical_controls_per_arm": 30720,
+  "maximum_rollout_overshoot": 319,
+  "training_jobs": 4,
+  "evaluation_jobs": 6,
+  "reused_prior_complete_phases": 15,
+  "maximum_simultaneous_servers": 2,
+  "per_native_job_wall_seconds": 14400,
+  "automatic_retries": 0,
+  "paired_initial_weights_Adam_RNG_RMS_verified": true,
+  "old_deadline_monitor_closed_before_resumption": true,
+  "new_final_conditions": 0,
+  "other_deferred_studies_started": 0,
+  "current_phases": {
+    "44": "seed44_baseline_native",
+    "55": "seed55_baseline_native"
+  },
+  "available_resources": {
+    "free_GPU_MiB": 14538,
+    "free_RAM_GiB": 43.859458923339844,
+    "free_disk_GiB": 430.7164192199707,
+    "logical_CPUs": 12,
+    "maximum_simultaneous_servers": 2,
+    "unowned_2100_never_stopped": true
+  },
+  "preflight": "Both frozen launchers INPUTS_VALIDATED_NOT_SERVER_PROBED;port-only operational difference verified;no new model/task/physical version",
+  "historical_three_pair_release": "v0.5.0-dev.20261105-hierarchical-delivery",
+  "recorded_local": "2026-11-05T14:20:28.465039+08:00"
+}
