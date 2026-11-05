@@ -1,0 +1,54 @@
+{
+  "scope": "Actual saved Adam parameter-group rates from the six closed paired training models;zero driving",
+  "records": [
+    {
+      "seed": 11,
+      "method": "H",
+      "training_batch": "20261104_independent_outcome_seed11_H_TRAIN48_PPO30720",
+      "actual_saved_Adam_rates": [
+        3e-05
+      ]
+    },
+    {
+      "seed": 11,
+      "method": "B1",
+      "training_batch": "20261104_matched_flat_seed11_TRAIN48_PPO30720",
+      "actual_saved_Adam_rates": [
+        3e-06
+      ]
+    },
+    {
+      "seed": 22,
+      "method": "H",
+      "training_batch": "20261105_independent_outcome_seed22_H_recovered_TRAIN48",
+      "actual_saved_Adam_rates": [
+        3e-05
+      ]
+    },
+    {
+      "seed": 22,
+      "method": "B1",
+      "training_batch": "20261104_matched_flat_seed22_TRAIN48_PPO30720",
+      "actual_saved_Adam_rates": [
+        3e-06
+      ]
+    },
+    {
+      "seed": 33,
+      "method": "H",
+      "training_batch": "20261104_independent_outcome_seed33_H_TRAIN48_PPO30720",
+      "actual_saved_Adam_rates": [
+        3e-05
+      ]
+    },
+    {
+      "seed": 33,
+      "method": "B1",
+      "training_batch": "20261104_matched_flat_seed33_TRAIN48_PPO30720",
+      "actual_saved_Adam_rates": [
+        3e-06
+      ]
+    }
+  ],
+  "interpretation": "The new physical-control window is matched;algorithm rates,rollout cadence,optimizer updates and historical costs are not equal. This descriptive comparison is not an optimizer-controlled causal attribution."
+}

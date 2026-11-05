@@ -18,6 +18,14 @@ def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def basic_qualification(episodes):
+    if len(episodes) != 4 or sorted(e['case_id'] for e in episodes) != list(range(4)):
+        raise ValueError('Require all four registered basic probes')
+    unsafe=sum(e['termination_reason'] in ('collision','out_of_bounds') for e in episodes)
+    successes=sum(e['success'] for e in episodes)
+    return dict(successes=successes,episodes=4,unsafe=unsafe,passed=successes>=3 and unsafe==0)
+
+
 def endpoint(batch, seed, label):
     p = read(batch / "protocol.json")
     method, = p["methods"]
@@ -54,6 +62,13 @@ def endpoint(batch, seed, label):
         result['core_class'] = hazard['kind'] if hazard else 'curve'
     ancestry = dict(p["recovery"][method])
     correction = batch / "recovery_ancestry_correction.json"
+    basic = None
+    basic_batch=batch.with_name(batch.name.replace('_known24','_basic'))
+    if label=='B1' and (basic_batch/'B1/evaluation.json').exists():
+        basic_path=basic_batch/'B1/evaluation.json'
+        if digest(basic_path)!=read(basic_batch/'B1/endpoint_raw_audit.json')['evaluation_sha256']:
+            raise ValueError('Basic qualification input changed')
+        basic=basic_qualification(read(basic_path)['episodes'])
     return dict(seed=seed, method=label, native_method=method, batch=batch.name,
         successes=sum(e["success"] for e in episodes), episodes=len(episodes),
         unsafe=sum(e["termination_reason"] in ("collision", "out_of_bounds") for e in episodes),
@@ -63,7 +78,7 @@ def endpoint(batch, seed, label):
         controls=controls, model_sha256=ev["model_sha256"], normalization_sha256=ev["normalization_sha256"],
         protocol_sha256=digest(batch / "protocol.json"), raw_audit_sha256=digest(folder / "endpoint_raw_audit.json"),
         ancestry=ancestry, ancestry_correction=read(correction) if correction.exists() else None,
-        cases=results)
+        basic_probe=basic,cases=results)
 
 
 def build(archive, output, figure):
@@ -96,7 +111,7 @@ def build(archive, output, figure):
         limitations=["Repeated known24 conditions across learners are not new unique final conditions.",
             "Hierarchy includes planning/MPC and inherited teacher initialization; the gap is not attributable to PPO alone.",
             "Seed22 H has a preserved interruption, discarded readable tail and unknown unflushed ancestral tail; its correction sidecar governs ancestry.",
-            "B1 passed registered basic probes; complex-task convergence and equal total historical development cost are not established.",
+            "B1 basic qualification is per seed: seeds11/22 pass, seed33 fails2/4with2unsafe; complex-task convergence and equal historical development cost are not established.",
             "H0 and the strong historical B3 leave PPO-specific and added-feedback benefit unestablished.",
             "Five complete paired learners, final120, and the formal paired-confidence gate remain unmet."])
     output.parent.mkdir(parents=True, exist_ok=True)

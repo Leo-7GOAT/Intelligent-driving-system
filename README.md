@@ -23,7 +23,7 @@ On the same **24 known development conditions**, the first three closed learner 
 
 ![Three-seed native development comparison](docs/assets/native_delivery_comparison_20261105.png)
 
-**Evidence scope:** 72 episodes repeat 24 known conditions across three learners; they are not 72 unique final cases. Seed22 H was recovered after an interruption and retains an unknown ancestral tail. B1 passes its registered basic-road probes, but adequate complex-task convergence and equal historical development cost are not established. This is a descriptive engineering comparison, not the required five-seed independent confirmation or a PPO-only causal gain.
+**Evidence scope:** 72 episodes repeat 24 known conditions across three learners; they are not 72 unique final cases. Seed22 H was recovered after an interruption and retains an unknown ancestral tail. B1 seeds11and22pass the registered basic gate; seed33fails with2/4successes and2unsafe episodes. All three are retained in the table. The two gate-qualified pairs alone are H47/48 versus B117/48 (+62.5points), still on known development conditions. Adequate complex-task convergence and equal historical development cost are not established. The saved Adam rates are H3e-5 versus B13e-6; rollout cadence and update counts also differ ([actual recipe audit](reports/native_delivery_actual_learning_rates_20261105.json)). This is a descriptive engineering comparison, not the required five-seed independent confirmation or a PPO-only causal gain.
 
 Across the three paired learners, the per-class success counts are **24/24 versus10/24 on curves**, **23/24 versus6/24 with static vehicles**, and **23/24 versus6/24 with crossing walkers** (H versus B1). Each class repeats eight known geometries/conditions across three learners.
 
@@ -59,7 +59,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pytest -q -m "not carla"
 ```
 
-The pre-delivery source passed **1,473 CPU tests**, with 25 skipped and 4 CARLA tests deselected ([executed CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41962595926)). Delivery tooling is checked separately in the final publication receipt. CPU checks cover dynamics, planning, MPC, PPO updates and recovery; live CARLA evidence is separate. [Native setup and execution](docs/CARLA_bridge.md), [method and module layout](docs/design.md).
+The delivered source and tooling passed **1,480 CPU tests**, with 25 skipped and 4 CARLA tests deselected ([executed PR CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41966329644)). The implementation and README were merged through [PR9](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/9). CPU checks cover dynamics, planning, MPC, PPO updates and recovery; live CARLA evidence is separate. [Native setup and execution](docs/CARLA_bridge.md), [method and module layout](docs/design.md).
 
 ## Download models and reproduce evidence
 
