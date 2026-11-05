@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-05",
+  "status": "ALL18RELEASE_ASSETS_VERIFIED",
+  "research_acceptance": "UNMET",
+  "public_prerelease": true,
+  "release_url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.6.0-dev.20261105-five-paired-learners",
+  "release_assets": 18,
+  "new_ZIP_capsules_verified_separately": 10,
+  "new_metadata_assets_anonymously_verified": 8,
+  "metadata": [
+    {
+      "asset": "native_five_pair_complete_20261105.json",
+      "bytes": 9288,
+      "sha256": "7330be0499fbd96e319d79ae949b33bb018bd95e35d448d64b6136050dafd1f0",
+      "anonymous_download": true
+    },
+    {
+      "asset": "native_five_pair_comparison_20261105.json",
+      "bytes": 188009,
+      "sha256": "bfda3b0daa95c54c3d3167d0a4797d25f448f91db577dc4402b1b41836e1893f",
+      "anonymous_download": true
+    },
+    {
+      "asset": "native_five_pair_public_reproduction_20261105.json",
+      "bytes": 11161,
+      "sha256": "0a4308da6e1dfcd52345e02e508a195517cbc6214eb3b72623e6321e5859dcad",
+      "anonymous_download": true
+    },
+    {
+      "asset": "native_five_pair_owned_lifecycle_closed_20261105.json",
+      "bytes": 16914,
+      "sha256": "a4fb96ffa1be67bc172d4aab418f199d18763cd334c62319d2e4c75dd33965ee",
+      "anonymous_download": true
+    },
+    {
+      "asset": "public_native_five_pair_assets_20261105.json",
+      "bytes": 31418,
+      "sha256": "32426361cb6774a5ed8ec14f77a5f9df10824b6b1a8dae961b570991ef31b1ae",
+      "anonymous_download": true
+    },
+    {
+      "asset": "native_five_pair_comparison_20261105.png",
+      "bytes": 70851,
+      "sha256": "b98f894339591f0affd69624536d61a65d722bd9ca13324ee60b70da51785ee4",
+      "anonymous_download": true
+    },
+    {
+      "asset": "RELEASE_NOTES.md",
+      "bytes": 3067,
+      "sha256": "9d240509531d29346396cdfaa2be041a2e1bd2913bd4718552ebd8a342282bba",
+      "anonymous_download": true
+    },
+    {
+      "asset": "SHA256SUMS.txt",
+      "bytes": 1660,
+      "sha256": "385eca6f5127d042b2033ecac0449963032e461d38dba81a3fb8b5e242c2320c",
+      "anonymous_download": true
+    }
+  ],
+  "ZIP_reproduction_report": "reports/native_five_pair_public_reproduction_20261105.json",
+  "epoch": 1793875546.7105613
+}

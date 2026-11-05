@@ -52,7 +52,7 @@
 
 seed44/55四段训练与六次评估已按原预算全部完成，十个新增原生作业正常闭合并清理自身服务器；五组H/H0与五组flat固定窗口均闭合。[完成回执](../reports/native_five_pair_complete_20261105.json)。
 
-[五组补充发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.6.0-dev.20261105-five-paired-learners)的10个新增证据包均已匿名下载，在同主机新checkout复现；完整五组比较JSON语义一致、主图字节一致。[执行证明](../reports/native_five_pair_public_reproduction_20261105.json)。[资产总清单](../protocols/public_native_five_pair_assets_20261105.json)同时保留此前30个包与两段视频。
+[五组补充发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.6.0-dev.20261105-five-paired-learners)的10个新增证据包均已匿名下载，在同主机新checkout复现；完整五组比较JSON语义一致、主图字节一致。[执行证明](../reports/native_five_pair_public_reproduction_20261105.json)。补充发布的18个资产已公开，其中8个元数据文件也已匿名下载并核验哈希（[最终资产回执](../reports/native_five_pair_public_metadata_verification_20261105.json)）。[资产总清单](../protocols/public_native_five_pair_assets_20261105.json)同时保留此前30个包与两段视频。
 
 条件反馈、部署频率/共同安全制动、新固定参考及完整原生Grid研究继续延期，本次未新增其原生结果。
 
