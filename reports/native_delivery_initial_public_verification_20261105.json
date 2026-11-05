@@ -1,0 +1,339 @@
+{
+  "epoch": 1793856084.2785695,
+  "source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+  "fresh_checkout": true,
+  "installed_environment_reused": true,
+  "anonymous_downloads": [
+    {
+      "archive": "seed11_H_known24.zip",
+      "bytes": 16112029,
+      "sha256": "a2ed511b97899b431f8aec7d33e30ed662e6ff59486d64bc943c7a038b3e081d",
+      "anonymous": true
+    },
+    {
+      "archive": "seed11_H0_known24.zip",
+      "bytes": 16004193,
+      "sha256": "bd60d080748166bb8849ef871406a073b57c7754e855e1d2bbdc22697e4c5e0d",
+      "anonymous": true
+    },
+    {
+      "archive": "seed11_B1_known24.zip",
+      "bytes": 21231764,
+      "sha256": "cf5940d61e43d4a5abf94bc4e036b677bcd2f5ab75836926ea1990b3360746ea",
+      "anonymous": true
+    },
+    {
+      "archive": "seed22_H_known24.zip",
+      "bytes": 16322284,
+      "sha256": "2c7ab118fd704992f95e888bbcd91b290c11703d1f0dc0b5b0024cf36bbcb8d7",
+      "anonymous": true
+    },
+    {
+      "archive": "seed22_H0_known24.zip",
+      "bytes": 16023704,
+      "sha256": "f2bbde1dcb933a98bce5e31cc9d790382dce8b9fe50feac94f8a127e538bb83b",
+      "anonymous": true
+    },
+    {
+      "archive": "seed22_B1_known24.zip",
+      "bytes": 19999067,
+      "sha256": "677f43d476875c9abed67e7545014a90660d3db5ed186708f6eb7e675562ce9d",
+      "anonymous": true
+    },
+    {
+      "archive": "seed33_H_known24.zip",
+      "bytes": 16120008,
+      "sha256": "227599db68dfa7d90ad542c9b9eda3494d6850d1be06a5fe9d2a9feb0ae1fee0",
+      "anonymous": true
+    },
+    {
+      "archive": "seed33_B1_known24.zip",
+      "bytes": 19779207,
+      "sha256": "9383c5e9ade72929186416e273aac0e6297a15c1743f272e4f486b37805d37ac",
+      "anonymous": true
+    },
+    {
+      "archive": "closed_native_training_segments.zip",
+      "bytes": 1694783921,
+      "sha256": "85f7f8d3e94c3723619c8b08daf1d2d1dfdc246a4638024beb95109a3fcffb5e",
+      "anonymous": true
+    }
+  ],
+  "endpoint_reproductions": [
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "a2ed511b97899b431f8aec7d33e30ed662e6ff59486d64bc943c7a038b3e081d",
+      "asset_source_commit": "25d0982e3ae03d2c64e23fc08ced79a68747cba8",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 573,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "5582ee71c9c62b01eae1ba419de91d5b8964fa582ac03d5be01716220711ce8d",
+          "verified_controls": 8165,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 516
+        }
+      ],
+      "figure_sha256": "5c284c17c8be33f5250d2352f1544a189844024caeed7e5e161b5670e756d9d4",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8165,
+      "archive": "seed11_H_known24.zip",
+      "seed": 11,
+      "method": "H"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "bd60d080748166bb8849ef871406a073b57c7754e855e1d2bbdc22697e4c5e0d",
+      "asset_source_commit": "25d0982e3ae03d2c64e23fc08ced79a68747cba8",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 573,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "41062098f51dc4cd0f9f5077293128752ff3cd15b9facd7216bff7c4d78519ef",
+          "verified_controls": 8096,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 506
+        }
+      ],
+      "figure_sha256": "9a879cb8abfc1b77df43287e3defac3dab660b2fd30068e0976caac911106ab7",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8096,
+      "archive": "seed11_H0_known24.zip",
+      "seed": 11,
+      "method": "H0"
+    },
+    {
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "cf5940d61e43d4a5abf94bc4e036b677bcd2f5ab75836926ea1990b3360746ea",
+      "asset_source_commit": "25d0982e3ae03d2c64e23fc08ced79a68747cba8",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 573,
+      "methods": [
+        {
+          "method": "B1",
+          "raw_audit_sha256": "10729b601787b310c4d25a9ad0cbfdb2cdb04c6ce1cc7a7d6ee20a4f96d332f8",
+          "verified_controls": 10961,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "f2afba22aa8a660b59c33d2943b69a307257c9239109e3ce94b55fd11cf2726a",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "archive": "seed11_B1_known24.zip",
+      "seed": 11,
+      "method": "B1"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "2c7ab118fd704992f95e888bbcd91b290c11703d1f0dc0b5b0024cf36bbcb8d7",
+      "asset_source_commit": "25d0982e3ae03d2c64e23fc08ced79a68747cba8",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 574,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "910c7a85e564da99361b1ab3010de86c58e7c6b19f8e421551f6d591b362da64",
+          "verified_controls": 8781,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 525
+        }
+      ],
+      "figure_sha256": "ac3bdc511e8503318b5c822cdedeea79e506a2735a58bbdaf95325715cf77cad",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8781,
+      "archive": "seed22_H_known24.zip",
+      "seed": 22,
+      "method": "H"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "f2bbde1dcb933a98bce5e31cc9d790382dce8b9fe50feac94f8a127e538bb83b",
+      "asset_source_commit": "25d0982e3ae03d2c64e23fc08ced79a68747cba8",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 573,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "e20e1af9abef1b4c10633f83a6cd19bedc00ddfa46ca0d5428e29380f8c7d302",
+          "verified_controls": 8056,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 503
+        }
+      ],
+      "figure_sha256": "72112334ff438d94ace9a4bef8e66aac3a70ad5552eb3877691dcc3922bc73a9",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8056,
+      "archive": "seed22_H0_known24.zip",
+      "seed": 22,
+      "method": "H0"
+    },
+    {
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "677f43d476875c9abed67e7545014a90660d3db5ed186708f6eb7e675562ce9d",
+      "asset_source_commit": "25d0982e3ae03d2c64e23fc08ced79a68747cba8",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 574,
+      "methods": [
+        {
+          "method": "B1",
+          "raw_audit_sha256": "d40ef24297232e07a93b126c077250358f19c4019235fc9893505a70654bad95",
+          "verified_controls": 9229,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "ce403d136cff46f497770f794df276c70e9d6eea6b6269526a6df576b12ac850",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "archive": "seed22_B1_known24.zip",
+      "seed": 22,
+      "method": "B1"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "227599db68dfa7d90ad542c9b9eda3494d6850d1be06a5fe9d2a9feb0ae1fee0",
+      "asset_source_commit": "25d0982e3ae03d2c64e23fc08ced79a68747cba8",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 574,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "8a040c7f65bd76f63cbc250d9acae238d266e1be22bb50523b3634700b8110bc",
+          "verified_controls": 8672,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 569
+        }
+      ],
+      "figure_sha256": "8acb51125e32ad1db3e9d7f91af18ac7b6391510f8c1c594d2d07cc6a0d7012a",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8672,
+      "archive": "seed33_H_known24.zip",
+      "seed": 33,
+      "method": "H"
+    },
+    {
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "9383c5e9ade72929186416e273aac0e6297a15c1743f272e4f486b37805d37ac",
+      "asset_source_commit": "25d0982e3ae03d2c64e23fc08ced79a68747cba8",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 574,
+      "methods": [
+        {
+          "method": "B1",
+          "raw_audit_sha256": "c7ffc6d0f0569ae829d90c66e45831bb6d1c170c797faee4854c598f60b24dfe",
+          "verified_controls": 8884,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "3429da7c2df54ad36d2a2338ac9b4bd7e58252cf563483e96ff20e3094351aaf",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "archive": "seed33_B1_known24.zip",
+      "seed": 33,
+      "method": "B1"
+    }
+  ],
+  "training_reproductions": [
+    {
+      "batch": "20261104_independent_outcome_seed11_H_TRAIN48_PPO30720",
+      "controls_verified": 30773,
+      "engine_controls_verified": 30773,
+      "raw_semantically_identical": true
+    },
+    {
+      "batch": "20261104_independent_outcome_seed11_H0_TRAIN48_PPO30720",
+      "controls_verified": 30752,
+      "engine_controls_verified": 30752,
+      "raw_semantically_identical": true
+    },
+    {
+      "batch": "20261104_matched_flat_seed11_TRAIN48_PPO30720",
+      "controls_verified": 30720,
+      "engine_controls_verified": 30720,
+      "raw_semantically_identical": true
+    },
+    {
+      "batch": "20261105_independent_outcome_seed22_H_recovered_TRAIN48",
+      "controls_verified": 18063,
+      "engine_controls_verified": 18063,
+      "raw_semantically_identical": true
+    },
+    {
+      "batch": "20261104_independent_outcome_seed22_H0_TRAIN48_PPO30720",
+      "controls_verified": 30758,
+      "engine_controls_verified": 30758,
+      "raw_semantically_identical": true
+    },
+    {
+      "batch": "20261104_matched_flat_seed22_TRAIN48_PPO30720",
+      "controls_verified": 30720,
+      "engine_controls_verified": 30720,
+      "raw_semantically_identical": true
+    },
+    {
+      "batch": "20261104_independent_outcome_seed33_H_TRAIN48_PPO30720",
+      "controls_verified": 30728,
+      "engine_controls_verified": 30728,
+      "raw_semantically_identical": true
+    },
+    {
+      "batch": "20261104_matched_flat_seed33_TRAIN48_PPO30720",
+      "controls_verified": 30720,
+      "engine_controls_verified": 30720,
+      "raw_semantically_identical": true
+    }
+  ],
+  "training_manifest_files_verified": 7555,
+  "comparison_figure_identical": true,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "scope": "Initial eight public endpoint capsules and eight closed new training segments;fresh checkout and anonymous downloads on the same host,installed environment reused",
+  "release_source_commit": "08568e658b8f14b6d22bab46d10a77727e536a2e",
+  "inference_raw_engine_and_native_modules_identical_to_release": true,
+  "research_acceptance": "UNMET"
+}

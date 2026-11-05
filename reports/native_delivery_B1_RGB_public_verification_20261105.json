@@ -1,0 +1,23 @@
+{
+  "scope": "Anonymous public direct RGBvideo download and complete decoder verification;actual same known case12,not final confirmation",
+  "method": "B1",
+  "seed": 11,
+  "known_case": 12,
+  "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_case12_actual_RGB.mp4",
+  "sha256": "98c2eb4e6cd69ce75aefea0cb94a0413b82ddbf81512e726379e4a73940068da",
+  "bytes": 105290,
+  "anonymous_download": true,
+  "decode": {
+    "scope": "complete decoding/hash/fps verification; visual inspection is separate",
+    "videos": [
+      {
+        "file": "case_00_native_curve_collision.mp4",
+        "decoded_frames": 126,
+        "fps": 20.0,
+        "sha256": "98c2eb4e6cd69ce75aefea0cb94a0413b82ddbf81512e726379e4a73940068da"
+      }
+    ]
+  },
+  "new_controls": 0,
+  "new_optimizer_updates": 0
+}

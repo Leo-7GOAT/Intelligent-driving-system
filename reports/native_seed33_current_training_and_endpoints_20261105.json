@@ -1,7 +1,7 @@
 {
   "date": "2026-11-05",
   "research_acceptance": "UNMET",
-  "status": "H_AND_B1_THIRD_SEED_TRAINING_AND_KNOWN24_CLOSED_H0_IN_PROGRESS",
+  "status": "THIRD_H_H0_PAIR_AND_MATCHED_B1_CHAIN_CLOSED",
   "seed": 33,
   "evidence": {
     "H": {
@@ -199,6 +199,91 @@
           "physics_steps": 407
         }
       ]
+    },
+    "H0": {
+      "saved_learning_proof": {
+        "parameter_count": 34,
+        "all_parameter_Adam_states_advance": 980,
+        "actual_initialized_parameters_and_Adam_exact": true,
+        "initial_torch_RNG_exact": true,
+        "RMS_exact": true,
+        "new_supervision": 0,
+        "model_sha256": "c4392f88fa0204e3a0471163a6dd5b9c28c7764378558f007adcec570e9ec94a",
+        "summary": {
+          "physics_steps": 31038,
+          "actions": 3136,
+          "episodes": 71,
+          "optimization_phases": 98,
+          "optimizer_steps": 980,
+          "reward_components": {
+            "event": 1270.0,
+            "time": -155.18999999993136,
+            "risk": -338.8838606171109,
+            "comfort": -21.49528596766575,
+            "potential": 47.60784553282068,
+            "task_progress": 763.5533846386143
+          },
+          "modes": {
+            "plan_failed": 513,
+            "reference": 2480,
+            "dynamic_brake": 80,
+            "wait": 63
+          },
+          "action_histogram": {
+            "10": 16,
+            "26": 1733,
+            "30": 24,
+            "28": 100,
+            "22": 166,
+            "13": 5,
+            "17": 8,
+            "6": 26,
+            "4": 6,
+            "3": 6,
+            "1": 7,
+            "12": 233,
+            "29": 14,
+            "15": 6,
+            "2": 555,
+            "5": 22,
+            "14": 11,
+            "11": 13,
+            "0": 63,
+            "25": 14,
+            "9": 8,
+            "19": 9,
+            "27": 11,
+            "8": 9,
+            "24": 8,
+            "16": 9,
+            "20": 19,
+            "21": 4,
+            "18": 16,
+            "7": 9,
+            "23": 6
+          },
+          "method": "H",
+          "job_name": "H",
+          "rollout_actions": 32,
+          "ppo_epochs": 10,
+          "batch_size": 32,
+          "gradient_clip_mode": "global",
+          "backend": "CARLA_0.9.15",
+          "world_ticks": 33269,
+          "reset_ticks": 2231,
+          "actor_l2_change": 0.5243262052536011,
+          "reload_exact": true,
+          "wall_seconds": 5205.538640975952,
+          "stopped_reason": null,
+          "lineage_control_steps": 31038,
+          "charged_control_steps_lower_bound": 35367,
+          "inherited_controls_not_in_checkpoint": 4329,
+          "scope": "Independent warm-started actors with inherited TRAIN-only teacher supervision;not from scratch or a matched H/B1main comparison.All new learning executes native controls with fixed lowlevel."
+        }
+      },
+      "known24_successes": 24,
+      "known24_unsafe": 0,
+      "evaluation_controls": 8275
     }
   },
   "endpoint_report": "reports/native_delivery_comparison_20261105.json"

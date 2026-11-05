@@ -1,3 +1,5 @@
+> Final delivery,2026-11-05: three H/H0pairs and five flat fixed-window courses are closed;all37normally completed native lifecycles are cleaned up. All30public ZIPcapsules and two real same-case videos are verified. Matched H70/72 versus B122/72 is descriptive known-development evidence;B1basic qualification is2/5, warm H72/72 and H072/72 leave added PPOvalue unestablished. Five H/H0pairs,the ungenerated/unseen final120,healthy baseline and remaining controls are unmet. **Overall research acceptance:UNMET.** See the final delivery ledger;entries below are historical.
+
 > Delivery snapshot (2026-11-05): hierarchy H70/72 versus B122/72 across three closed learners on24known conditions; Hunsafe0/72, B147/72. Full acceptance remains UNMET. Final120 is ungenerated/unseen. Additional queued control/pilot studies were deferred before native launch under the user’s three-hour cutoff. See the final delivery receipt and comparison report; historical entries below retain their original scope.
 
 # Current acceptance audit — 2026-11-05

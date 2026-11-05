@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "tag": "v0.5.0-dev.20261105-hierarchical-delivery",
+  "release_code_commit": "08568e658b8f14b6d22bab46d10a77727e536a2e",
+  "research_acceptance": "UNMET",
+  "scope": "All normally closed native jobs in current three H/H0pairs and five flat fixed-window courses,including before/after basic probes and same-case actual RGBillustrations;not final confirmation",
+  "zip_capsules": [
+    {
+      "files": 573,
+      "bytes": 16112029,
+      "sha256": "a2ed511b97899b431f8aec7d33e30ed662e6ff59486d64bc943c7a038b3e081d",
+      "verified_controls": {
+        "H": 8165
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed11_H_known24.zip",
+      "batch": "20261104_independent_outcome_seed11_H_known24",
+      "seed": 11,
+      "method": "H",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H_known24.zip",
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "files": 573,
+      "bytes": 16004193,
+      "sha256": "bd60d080748166bb8849ef871406a073b57c7754e855e1d2bbdc22697e4c5e0d",
+      "verified_controls": {
+        "H": 8096
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed11_H0_known24.zip",
+      "batch": "20261104_independent_outcome_seed11_H0_known24",
+      "seed": 11,
+      "method": "H0",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H0_known24.zip",
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "files": 573,
+      "bytes": 21231764,
+      "sha256": "cf5940d61e43d4a5abf94bc4e036b677bcd2f5ab75836926ea1990b3360746ea",
+      "verified_controls": {
+        "B1": 10961
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed11_B1_known24.zip",
+      "batch": "20261104_matched_flat_seed11_known24",
+      "seed": 11,
+      "method": "B1",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_known24.zip",
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "files": 574,
+      "bytes": 16322284,
+      "sha256": "2c7ab118fd704992f95e888bbcd91b290c11703d1f0dc0b5b0024cf36bbcb8d7",
+      "verified_controls": {
+        "H": 8781
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed22_H_known24.zip",
+      "batch": "20261104_independent_outcome_seed22_H_known24",
+      "seed": 22,
+      "method": "H",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed22_H_known24.zip",
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "files": 573,
+      "bytes": 16023704,
+      "sha256": "f2bbde1dcb933a98bce5e31cc9d790382dce8b9fe50feac94f8a127e538bb83b",
+      "verified_controls": {
+        "H": 8056
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed22_H0_known24.zip",
+      "batch": "20261104_independent_outcome_seed22_H0_known24",
+      "seed": 22,
+      "method": "H0",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed22_H0_known24.zip",
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "files": 574,
+      "bytes": 19999067,
+      "sha256": "677f43d476875c9abed67e7545014a90660d3db5ed186708f6eb7e675562ce9d",
+      "verified_controls": {
+        "B1": 9229
+      },
+      "metadata_files_transformed": 8,
+      "archive": "seed22_B1_known24.zip",
+      "batch": "20261104_matched_flat_seed22_known24",
+      "seed": 22,
+      "method": "B1",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed22_B1_known24.zip",
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "files": 574,
+      "bytes": 16120008,
+      "sha256": "227599db68dfa7d90ad542c9b9eda3494d6850d1be06a5fe9d2a9feb0ae1fee0",
+      "verified_controls": {
+        "H": 8672
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed33_H_known24.zip",
+      "batch": "20261104_independent_outcome_seed33_H_known24",
+      "seed": 33,
+      "method": "H",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed33_H_known24.zip",
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "files": 574,
+      "bytes": 19779207,
+      "sha256": "9383c5e9ade72929186416e273aac0e6297a15c1743f272e4f486b37805d37ac",
+      "verified_controls": {
+        "B1": 8884
+      },
+      "metadata_files_transformed": 8,
+      "archive": "seed33_B1_known24.zip",
+      "batch": "20261104_matched_flat_seed33_known24",
+      "seed": 33,
+      "method": "B1",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed33_B1_known24.zip",
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "files": 574,
+      "bytes": 11072809,
+      "sha256": "822ad9bbed51b406eef908b5ec0c9e3c6ef46568f988201bd4f81bc409d6c0f4",
+      "verified_controls": {
+        "H": 8101
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed11_H_before_new_PPO_known24.zip",
+      "batch": "20261104_independent_outcome_seed11_zero_PPO_known24",
+      "seed": 11,
+      "method": "H_before_new_PPO",
+      "role": "Warm initialized hierarchical policy before this new PPOcourse;not a rule baseline or independent final test",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H_before_new_PPO_known24.zip"
+    },
+    {
+      "files": 574,
+      "bytes": 11174332,
+      "sha256": "16fbfb2d1f98ce44b6508bff3837e8c3cdf399d16baaa35bb247b79f6601de2a",
+      "verified_controls": {
+        "H": 8275
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed22_H_before_new_PPO_known24.zip",
+      "batch": "20261104_independent_outcome_seed22_zero_PPO_known24",
+      "seed": 22,
+      "method": "H_before_new_PPO",
+      "role": "Warm initialized hierarchical policy before this new PPOcourse;not a rule baseline or independent final test",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed22_H_before_new_PPO_known24.zip"
+    },
+    {
+      "files": 574,
+      "bytes": 11183844,
+      "sha256": "8a72cc518c8097176c424831e32ce5424f5b90f1b0731f522fc627d426ae4f51",
+      "verified_controls": {
+        "H": 8280
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed33_H_before_new_PPO_known24.zip",
+      "batch": "20261104_independent_outcome_seed33_zero_PPO_known24",
+      "seed": 33,
+      "method": "H_before_new_PPO",
+      "role": "Warm initialized hierarchical policy before this new PPOcourse;not a rule baseline or independent final test",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed33_H_before_new_PPO_known24.zip"
+    },
+    {
+      "files": 554,
+      "bytes": 14111526,
+      "sha256": "d1bb4f3e026ee67e9244ffe749bb43465ec73c12813c81e7dc7971ed2ad5c6e0",
+      "verified_controls": {
+        "B1": 1465
+      },
+      "metadata_files_transformed": 8,
+      "archive": "seed11_B1_basic.zip",
+      "batch": "20261104_matched_flat_seed11_basic",
+      "seed": 11,
+      "method": "B1",
+      "role": "All four registered post-training basic qualification probes;failures retained",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_basic.zip"
+    },
+    {
+      "files": 553,
+      "bytes": 14317404,
+      "sha256": "ce124c11f647a891cd3f75ce4e99f84ed2a43e77ef0122857abaae63fff2ad0f",
+      "verified_controls": {
+        "B1": 1912
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed22_B1_basic.zip",
+      "batch": "20261104_matched_flat_seed22_basic",
+      "seed": 22,
+      "method": "B1",
+      "role": "All four registered post-training basic qualification probes;failures retained",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed22_B1_basic.zip"
+    },
+    {
+      "files": 553,
+      "bytes": 14154173,
+      "sha256": "9878b1af96637dc7fcbd417a3d5b407335c9f43cfa4f78cff161c8dbb9bfb171",
+      "verified_controls": {
+        "B1": 1538
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed33_B1_basic.zip",
+      "batch": "20261104_matched_flat_seed33_basic",
+      "seed": 33,
+      "method": "B1",
+      "role": "All four registered post-training basic qualification probes;failures retained",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed33_B1_basic.zip"
+    },
+    {
+      "files": 573,
+      "bytes": 20280897,
+      "sha256": "37fa5e7e8ffe4876b52b5257f1540a06565aac778d3ed3901a6a5adfd4d910cc",
+      "verified_controls": {
+        "B1": 9583
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed44_B1_known24.zip",
+      "batch": "20261104_matched_flat_seed44_known24",
+      "seed": 44,
+      "method": "B1",
+      "role": "known24_endpoint",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed44_B1_known24.zip"
+    },
+    {
+      "files": 553,
+      "bytes": 14120266,
+      "sha256": "46b3ff855eda6c74579e478edd5b9c4441ac745ca6ea70a9c0f7c7dcef487aba",
+      "verified_controls": {
+        "B1": 1650
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed44_B1_basic.zip",
+      "batch": "20261104_matched_flat_seed44_basic",
+      "seed": 44,
+      "method": "B1",
+      "role": "post_training_basic",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed44_B1_basic.zip"
+    },
+    {
+      "jobs": [
+        {
+          "batch": "20261104_matched_flat_seed44_TRAIN48_PPO30720",
+          "method": "B1",
+          "controls": 30720,
+          "optimizer_steps": 933,
+          "charged_controls_lower_bound": 69909,
+          "model_sha256": "33e92e2337ced346267c29b12bcb4aa43978a7dffa111de2f7a56e078650d4cc",
+          "protocol_sha256": "367b5384f23b3ecee267cb2d9d7213308b9c3256e6b5e80104f5bb0e8a7c695c"
+        }
+      ],
+      "files": 755,
+      "bytes": 130712599,
+      "sha256": "8e2ffd23785f3d5419654ca90bcf28f21447714a0c829ede7676c2d8735b463c",
+      "archive": "seed44_B1_training.zip",
+      "seed": 44,
+      "method": "B1",
+      "role": "closed_new_training_segment",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed44_B1_training.zip"
+    },
+    {
+      "jobs": [
+        {
+          "batch": "20261104_independent_outcome_seed33_H0_TRAIN48_PPO30720",
+          "method": "H",
+          "controls": 31038,
+          "optimizer_steps": 980,
+          "charged_controls_lower_bound": 35367,
+          "model_sha256": "c4392f88fa0204e3a0471163a6dd5b9c28c7764378558f007adcec570e9ec94a",
+          "protocol_sha256": "6f79b0956c42ad94bda733c0f64d13242c24c31a97cf6a2d578a68f4b653bd5b"
+        }
+      ],
+      "files": 1109,
+      "bytes": 283554874,
+      "sha256": "edf4d85a1ab8697601bffb4cb67a266770c6a68c8edbeee8e26eba3e45606a0c",
+      "archive": "seed33_H0_training.zip",
+      "seed": 33,
+      "method": "H0",
+      "role": "closed_new_training_segment",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed33_H0_training.zip"
+    },
+    {
+      "files": 574,
+      "bytes": 16157096,
+      "sha256": "d5f244ee9f6d54282ae08b086366bbfa0f074f97ee9aba12e0dbd87ef47723ee",
+      "verified_controls": {
+        "H": 8275
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed33_H0_known24.zip",
+      "batch": "20261104_independent_outcome_seed33_H0_known24",
+      "seed": 33,
+      "method": "H0",
+      "role": "known24_endpoint",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed33_H0_known24.zip"
+    },
+    {
+      "jobs": [
+        {
+          "batch": "20261104_matched_flat_seed55_TRAIN48_PPO30720",
+          "method": "B1",
+          "controls": 30720,
+          "optimizer_steps": 940,
+          "charged_controls_lower_bound": 69909,
+          "model_sha256": "d8887be295f89b22263a9ce5a91e0e3dfe60fe3cf4bc1f612d1de602486d570a",
+          "protocol_sha256": "544594f2444ea3611167ef0fb3bae85b03e7394165a01bdde7e2e01606b31179"
+        }
+      ],
+      "files": 759,
+      "bytes": 130699774,
+      "sha256": "2e9e4c67d9d7a28fe629596f560d8c7f0f6bfdf3fe20d934e674e59aef3656e5",
+      "archive": "seed55_B1_training.zip",
+      "seed": 55,
+      "method": "B1",
+      "role": "closed_new_training_segment",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed55_B1_training.zip"
+    },
+    {
+      "files": 573,
+      "bytes": 19041775,
+      "sha256": "df0baf104202fbff805662da4f29caa6d6da2ad92e292a9ba17efd8ad164b4c9",
+      "verified_controls": {
+        "B1": 8021
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed55_B1_known24.zip",
+      "batch": "20261104_matched_flat_seed55_known24",
+      "seed": 55,
+      "method": "B1",
+      "role": "known24_endpoint",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed55_B1_known24.zip"
+    },
+    {
+      "files": 553,
+      "bytes": 13906594,
+      "sha256": "fdd5b04a7256425cfc8352a3f72e18c1b8b2f5f75d1b99fbebfdd26d7d008362",
+      "verified_controls": {
+        "B1": 1209
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed55_B1_basic.zip",
+      "batch": "20261104_matched_flat_seed55_basic",
+      "seed": 55,
+      "method": "B1",
+      "role": "post_training_basic",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed55_B1_basic.zip"
+    },
+    {
+      "files": 642,
+      "bytes": 10404798,
+      "sha256": "56c7b3fad9230e0eac7535d07b0035f494133f2e1ec107ecf352a68f8fdf3e98",
+      "verified_controls": {
+        "H": 355
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed11_H_actual_RGB.zip",
+      "batch": "20261105_three_hour_delivery_H_case12_camera",
+      "seed": 11,
+      "method": "H",
+      "role": "same_case_actual_RGB_endpoint",
+      "original_known_case_id": 12,
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H_actual_RGB.zip"
+    },
+    {
+      "files": 642,
+      "bytes": 13605459,
+      "sha256": "01e0c43e06ceebb4828876a48395de429f2fb7f417ae1466569445ac2eee241a",
+      "verified_controls": {
+        "B1": 125
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed11_B1_actual_RGB.zip",
+      "batch": "20261105_three_hour_delivery_B1_camera",
+      "seed": 11,
+      "method": "B1",
+      "role": "same_case_actual_RGB_endpoint",
+      "original_known_case_id": 12,
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_actual_RGB.zip"
+    },
+    {
+      "jobs": [
+        {
+          "batch": "20261104_independent_outcome_seed11_H_TRAIN48_PPO30720",
+          "method": "H",
+          "controls": 30773,
+          "optimizer_steps": 970,
+          "charged_controls_lower_bound": 40016,
+          "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+          "protocol_sha256": "c0e9f2df2c873c74524a0ae9fedb4fd0c90821126bc933c9e547ef2714e5ef6f"
+        },
+        {
+          "batch": "20261104_independent_outcome_seed11_H0_TRAIN48_PPO30720",
+          "method": "H",
+          "controls": 30752,
+          "optimizer_steps": 970,
+          "charged_controls_lower_bound": 39995,
+          "model_sha256": "012f24cd2d17bf2b7e6749f324ee8bb79c66805373b4e9979f22f740e3c7db35",
+          "protocol_sha256": "fb997b5f093a5c54e4096503a1af370a1be76a1eee5780d07c744b49b5f58e6c"
+        },
+        {
+          "batch": "20261104_matched_flat_seed11_TRAIN48_PPO30720",
+          "method": "B1",
+          "controls": 30720,
+          "optimizer_steps": 917,
+          "charged_controls_lower_bound": 69909,
+          "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+          "protocol_sha256": "e0cbc08c2ab342817fdd8605ab0b7b2d7cfd0a560d56a9f615aabece181ac697"
+        },
+        {
+          "batch": "20261105_independent_outcome_seed22_H_recovered_TRAIN48",
+          "method": "H",
+          "controls": 18063,
+          "optimizer_steps": 570,
+          "charged_controls_lower_bound": 35172,
+          "model_sha256": "7b7a09d3fb44b27d73e7e280232ce9afdfa0ed865b6592d94e00e3711642f9aa",
+          "protocol_sha256": "2225061c10d42dfaf51b17743a99a651b7d7efc269b18900114d8fae91aa85ce"
+        },
+        {
+          "batch": "20261104_independent_outcome_seed22_H0_TRAIN48_PPO30720",
+          "method": "H",
+          "controls": 30758,
+          "optimizer_steps": 970,
+          "charged_controls_lower_bound": 35087,
+          "model_sha256": "20cd428dfcdebc0c672e19d28ded9b49d48b2fe00b4bfd30308a2bb44b26556f",
+          "protocol_sha256": "9e1130a37a881b62c7fc6dc7dad5199ccc70d12272462bacbadbe5fba7bef23b"
+        },
+        {
+          "batch": "20261104_matched_flat_seed22_TRAIN48_PPO30720",
+          "method": "B1",
+          "controls": 30720,
+          "optimizer_steps": 939,
+          "charged_controls_lower_bound": 69909,
+          "model_sha256": "843cf903512234787709231a5ff75663783aac4f0f53589aa98f02e729497fcb",
+          "protocol_sha256": "575838abff95324592d2ceb753c58d2bd114992a9e0f9833c75d9491602180aa"
+        },
+        {
+          "batch": "20261104_independent_outcome_seed33_H_TRAIN48_PPO30720",
+          "method": "H",
+          "controls": 30728,
+          "optimizer_steps": 970,
+          "charged_controls_lower_bound": 35057,
+          "model_sha256": "599496b0f4072f8589ff5e9abc98b6429a2a75bc82d4d498779ebd82ca7dabc0",
+          "protocol_sha256": "98ddb5673e04d7df17c52a9560d2b29ad149b192993265ebcac65145fea86987"
+        },
+        {
+          "batch": "20261104_matched_flat_seed33_TRAIN48_PPO30720",
+          "method": "B1",
+          "controls": 30720,
+          "optimizer_steps": 928,
+          "charged_controls_lower_bound": 69909,
+          "model_sha256": "a6775c9f0006c4220024b854192b2648196aa9050b51c50dea6068e3372c0dc1",
+          "protocol_sha256": "10ef0e660e052728716d49a210b9143bf333f0cd6f3519b09bb68fca4714d4d2"
+        }
+      ],
+      "files": 7555,
+      "bytes": 1694783921,
+      "sha256": "85f7f8d3e94c3723619c8b08daf1d2d1dfdc246a4638024beb95109a3fcffb5e",
+      "archive": "closed_native_training_segments.zip",
+      "role": "closed_new_training_segments",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/closed_native_training_segments.zip"
+    },
+    {
+      "files": 553,
+      "bytes": 6606494,
+      "sha256": "1f9c9848cf28907b7d77448a0cfc396da6f4afdc48e7317cfb419adf9365f0f0",
+      "verified_controls": {
+        "B1": 1425
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed11_B1_before_new_PPO_basic.zip",
+      "batch": "20261104_matched_flat_seed11_zero_PPO_basic",
+      "seed": 11,
+      "method": "B1",
+      "role": "warm_initialized_B1_basic_before_new_PPO",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_before_new_PPO_basic.zip"
+    },
+    {
+      "files": 554,
+      "bytes": 6453167,
+      "sha256": "c957eee7447996590a925bb3d541e87a52538ca6b8ac0bbd27cec89fa69d374d",
+      "verified_controls": {
+        "B1": 1192
+      },
+      "metadata_files_transformed": 8,
+      "archive": "seed22_B1_before_new_PPO_basic.zip",
+      "batch": "20261104_matched_flat_seed22_zero_PPO_basic",
+      "seed": 22,
+      "method": "B1",
+      "role": "warm_initialized_B1_basic_before_new_PPO",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed22_B1_before_new_PPO_basic.zip"
+    },
+    {
+      "files": 553,
+      "bytes": 6660443,
+      "sha256": "4277ae07aebf77300b1058e5aef746e08bac59b2987ca9ada74373a861e8ee52",
+      "verified_controls": {
+        "B1": 1480
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed33_B1_before_new_PPO_basic.zip",
+      "batch": "20261104_matched_flat_seed33_zero_PPO_basic",
+      "seed": 33,
+      "method": "B1",
+      "role": "warm_initialized_B1_basic_before_new_PPO",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed33_B1_before_new_PPO_basic.zip"
+    },
+    {
+      "files": 554,
+      "bytes": 6690174,
+      "sha256": "adda3e5834254097a69e1197d7e4fff555e029f68c87a3fd8df5183ec988a6bc",
+      "verified_controls": {
+        "B1": 1715
+      },
+      "metadata_files_transformed": 8,
+      "archive": "seed44_B1_before_new_PPO_basic.zip",
+      "batch": "20261104_matched_flat_seed44_zero_PPO_basic",
+      "seed": 44,
+      "method": "B1",
+      "role": "warm_initialized_B1_basic_before_new_PPO",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed44_B1_before_new_PPO_basic.zip"
+    },
+    {
+      "files": 554,
+      "bytes": 6421933,
+      "sha256": "26eb986fd7d0710a4abbc49087ff6e79897ef4b81b2c387dc597653cf4701617",
+      "verified_controls": {
+        "B1": 1147
+      },
+      "metadata_files_transformed": 8,
+      "archive": "seed55_B1_before_new_PPO_basic.zip",
+      "batch": "20261104_matched_flat_seed55_zero_PPO_basic",
+      "seed": 55,
+      "method": "B1",
+      "role": "warm_initialized_B1_basic_before_new_PPO",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed55_B1_before_new_PPO_basic.zip"
+    }
+  ],
+  "direct_videos": [
+    {
+      "file": "seed11_H_case12_actual_RGB.mp4",
+      "bytes": 297993,
+      "sha256": "084e8f808518dd721cd84eae2a022f693052a1c771f30c899025a8f861436252",
+      "original_file": "case_00_native_curve_success.mp4",
+      "scope": "Unchanged actual CARLA RGBvideo;known case12,trained Hseed11,zero updates",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H_case12_actual_RGB.mp4"
+    },
+    {
+      "file": "seed11_B1_case12_actual_RGB.mp4",
+      "bytes": 105290,
+      "sha256": "98c2eb4e6cd69ce75aefea0cb94a0413b82ddbf81512e726379e4a73940068da",
+      "original_file": "case_00_native_curve_collision.mp4",
+      "scope": "Unchanged actual CARLA RGBvideo;known case12,trained B1seed11,zero updates",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_case12_actual_RGB.mp4"
+    }
+  ],
+  "endpoint_capsules": 26,
+  "training_archive_count": 4,
+  "closed_new_training_segments": 11,
+  "final_conditions_generated": 0,
+  "ancestor_raw_not_duplicated": true,
+  "seed22_unknown_ancestral_tail_retained": true,
+  "unique_known_validation_conditions": 24,
+  "known_TRAIN_basic_conditions": 4
+}

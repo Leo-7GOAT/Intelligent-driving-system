@@ -1,0 +1,168 @@
+{
+  "reproductions": [
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "822ad9bbed51b406eef908b5ec0c9e3c6ef46568f988201bd4f81bc409d6c0f4",
+      "asset_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 574,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "fdd3759a18c4f18b0cfb8b6850c5b34736c84b5f8ede47674a46e155995ba321",
+          "verified_controls": 8101,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 509
+        }
+      ],
+      "figure_sha256": "068a30bb337996339b88cb38cf63063c89028fc10568c199fdd3777388dd791a",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8101,
+      "archive": "seed11_H_before_new_PPO_known24.zip",
+      "anonymous_download": true,
+      "role": "Warm initialized hierarchical policy before this new PPOcourse;not a rule baseline or independent final test"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "16fbfb2d1f98ce44b6508bff3837e8c3cdf399d16baaa35bb247b79f6601de2a",
+      "asset_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 574,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "244195182cfa27a8cf4dfe427c6cdcc5c4fa4c2a9e124441243901009406ffd8",
+          "verified_controls": 8275,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 525
+        }
+      ],
+      "figure_sha256": "a957d46b3a1ea9e68000882d2cc21c6ce9b3f26f6d643d289a4fa29e0806c5b0",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8275,
+      "archive": "seed22_H_before_new_PPO_known24.zip",
+      "anonymous_download": true,
+      "role": "Warm initialized hierarchical policy before this new PPOcourse;not a rule baseline or independent final test"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "8a72cc518c8097176c424831e32ce5424f5b90f1b0731f522fc627d426ae4f51",
+      "asset_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 574,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "87fae6bc528f59b89e15033e31698cca1b4790ea44e65c22b187868cc91d04c8",
+          "verified_controls": 8280,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 523
+        }
+      ],
+      "figure_sha256": "832658c90bf65e46d69d14cfac5907f5689008f9448e818c51ca65ff6e3b1f88",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8280,
+      "archive": "seed33_H_before_new_PPO_known24.zip",
+      "anonymous_download": true,
+      "role": "Warm initialized hierarchical policy before this new PPOcourse;not a rule baseline or independent final test"
+    },
+    {
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "d1bb4f3e026ee67e9244ffe749bb43465ec73c12813c81e7dc7971ed2ad5c6e0",
+      "asset_source_commit": "08568e658b8f14b6d22bab46d10a77727e536a2e",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 554,
+      "methods": [
+        {
+          "method": "B1",
+          "raw_audit_sha256": "71b4e894100cb0cfffd3bd99647dc29f5f745f018e3ba62629f42e0c38ed4a57",
+          "verified_controls": 1465,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "59323ffea062b9eebea4ea66a20d105f58277b37793d5c3e3c8f29a3b18adecc",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "archive": "seed11_B1_basic.zip",
+      "anonymous_download": true,
+      "role": "All four registered post-training basic qualification probes;failures retained"
+    },
+    {
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "ce124c11f647a891cd3f75ce4e99f84ed2a43e77ef0122857abaae63fff2ad0f",
+      "asset_source_commit": "08568e658b8f14b6d22bab46d10a77727e536a2e",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 553,
+      "methods": [
+        {
+          "method": "B1",
+          "raw_audit_sha256": "929576fb0ff0e0432efa0284b87e30d414f573af74cd46c0119307bf57cdafbd",
+          "verified_controls": 1912,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "2e4e7b6371fbdf8a421c803047b49555d866878b3f33e792572f0db815f75e8e",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "archive": "seed22_B1_basic.zip",
+      "anonymous_download": true,
+      "role": "All four registered post-training basic qualification probes;failures retained"
+    },
+    {
+      "scope": "Downloaded trusted asset raw audit, measured-start inference and plot reproduction; no new driving",
+      "archive_sha256": "9878b1af96637dc7fcbd417a3d5b407335c9f43cfa4f78cff161c8dbb9bfb171",
+      "asset_source_commit": "08568e658b8f14b6d22bab46d10a77727e536a2e",
+      "reproduction_source_commit": "7c5f00a059b1c6751754fa311f5611feed654b7c",
+      "verified_files": 553,
+      "methods": [
+        {
+          "method": "B1",
+          "raw_audit_sha256": "982f7936e75038ba61d3fce329ca2a0e42b6511cd0b7ccfd7bc1fff1191f924c",
+          "verified_controls": 1538,
+          "measured_start_actions_reproduced": 4,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0
+        }
+      ],
+      "figure_sha256": "ed39b4dc452bed71e93d2ef2ed138f6defdfb9bf935185481a63bd56d11104e6",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "archive": "seed33_B1_basic.zip",
+      "anonymous_download": true,
+      "role": "All four registered post-training basic qualification probes;failures retained"
+    }
+  ],
+  "epoch": 1793855538.75699,
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "scope": "Three warm initialized H endpoints plus all four basic probes for each of B1seeds11/22/33;all known outcomes retained",
+  "research_acceptance": "UNMET"
+}

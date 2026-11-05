@@ -50,5 +50,28 @@
       ]
     }
   ],
-  "interpretation": "The new physical-control window is matched;algorithm rates,rollout cadence,optimizer updates and historical costs are not equal. This descriptive comparison is not an optimizer-controlled causal attribution."
+  "interpretation": "The new physical-control window is matched;algorithm rates,rollout cadence,optimizer updates and historical costs are not equal. This descriptive comparison is not an optimizer-controlled causal attribution.",
+  "training_catalog_comparison": [
+    {
+      "seed": 11,
+      "training_routes": 16,
+      "unique_TRAIN_conditions": 48,
+      "all_training_geometry_manifest_schedule_calibration_equal": true,
+      "training_schedule_sha256": "27534e70be8c3a54fb0c7504fdaffc32cbccdf42c96eb8e6d30f05c217984f0c"
+    },
+    {
+      "seed": 22,
+      "training_routes": 16,
+      "unique_TRAIN_conditions": 48,
+      "all_training_geometry_manifest_schedule_calibration_equal": true,
+      "training_schedule_sha256": "27534e70be8c3a54fb0c7504fdaffc32cbccdf42c96eb8e6d30f05c217984f0c"
+    },
+    {
+      "seed": 33,
+      "training_routes": 16,
+      "unique_TRAIN_conditions": 48,
+      "all_training_geometry_manifest_schedule_calibration_equal": true,
+      "training_schedule_sha256": "27534e70be8c3a54fb0c7504fdaffc32cbccdf42c96eb8e6d30f05c217984f0c"
+    }
+  ]
 }
