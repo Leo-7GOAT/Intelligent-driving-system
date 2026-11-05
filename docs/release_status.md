@@ -1,3 +1,5 @@
+> Current completed supplement, 2026-11-05: all five registered H/H0 pairs and all five B1 fixed-window courses are closed. H 118/120 versus B1 38/120, H0 120/120, warm H 120/120 on the same 24 known conditions; B1 basic gate 2/5. All ten new capsules were publicly downloaded and reconstructed. Five-pair count is complete; final120, healthy-baseline qualification and PPO-specific value remain unestablished. **Research acceptance: UNMET.** [Current ledger](../reports/native_five_pair_complete_20261105.json), [public reconstruction](../reports/native_five_pair_public_reproduction_20261105.json). Entries below are dated history, not active queues.
+
 # Latest development delivery — 2026-10-31
 
 Current update: all five canonical H/H0pairs complete58/60versus57/60on12known
