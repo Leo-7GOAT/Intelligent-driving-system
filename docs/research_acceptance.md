@@ -5,6 +5,8 @@ remain unchanged. The following results belong to different, explicitly
 versioned development systems; they cannot be pooled into a final success rate.
 No new final-confirmation conditions have been generated or inspected.
 
+Current update (2026-11-05): two of five independent warm-started H/H0 pairs are closed. Seed11 scores 24/24 versus 24/24; seed22 scores 23/24 versus 24/24, with the interrupted H ancestry explicitly retained. The first matched B1 seed completes 30,720 native training controls and 917 actual Adam updates; its four-basic health check passes, but known24 scores 10/24 with 13 unsafe episodes. H seed33 and B1 seed22 continue in parallel. These are the same 24 known development conditions, not new final-confirmation conditions. [Second pair](../reports/native_independent_seed22_pair_complete_20261105.json), [complete B1 seed](../reports/native_matched_B1_seed11_complete_20261105.json).
+
 | Original requirement | Current evidence and remaining work | Status |
 |---|---|---|
 | PPO → goal/speed → Hybrid A* → timed trajectory → MPC → actual CARLA feedback | Native PPO updates, measured-state/raw-frame audits, saved optimizer/RNG state and engine-control delivery have executed. The earlier closed H/H0pair contains10,482/10,489controls and330Adam updates each.The new independently initialized seed11 H closes30,773native controls and970Adam updates;its exact actual initialization,frozen RMS and all48TRAIN exposures are audited.This proves execution,not final capability or superiority | Engineering chain executed |

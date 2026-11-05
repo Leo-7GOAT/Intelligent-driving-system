@@ -60,3 +60,34 @@ complete reconstruction;running the standalone audit first is optional.
 [Full proof,probabilities and failure boundaries](../reports/native_seed22_failure_term_mechanism_20261105.json).
 The endpoint remains23/24against24/24for zero-PPO;this is not a PPO benefit.
 Research acceptance remains unmet.
+
+The candidate probe is now available as a portable command. It reconstructs the
+recorded prefix up to the decision immediately before the requested zero-based
+index, preserves the held option, independently clones and rebinds each option
+wrapper, and checks the actual selected preparation against the record before
+examining alternatives. For example, decision29 precedes the later case20
+planning dead end:
+
+```powershell
+$env:OMP_NUM_THREADS='1'
+$env:MKL_NUM_THREADS='1'
+.venv/Scripts/python.exe scripts/probe_recorded_reference_candidates.py --batch D:/ARCHIVE/ENDPOINT --case-id 20 --decision-index 29 --output D:/ARCHIVE/new_candidate_probe.json
+```
+
+Run it in a fresh interpreter. It refuses existing output or registration files.
+Alternative references receive no new native geometry queries and are not
+driven. A nominal endpoint inside the task pose region is not proof of achieved
+parking or safety. The command does not change physical source or live training.
+
+The earlier-state check has now completed at case20 decision29 (14.5s). The
+actually held action12 still reuses a terminal reference ending 0.0381m from
+the goal with zero nominal speed. The policy instead chooses action2, whose
+new local reference ends 0.9837m from the goal with nominal speed1.5m/s. Its
+recorded mode, status,84 search nodes and failure reason are reproduced before
+alternatives are inspected. Across all31 labels the frozen model returns25
+references, five planning failures and one wait. Twenty terminal-reference
+labels represent only two distinct goal/speed pairs. Thus the earlier state
+still contains a model-accepted terminal option, unlike the later state where
+all30 motion labels fail. This identifies an earlier selection issue to test;
+it does not prove that retaining the option would succeed in native driving.
+[Complete candidate matrix, endpoint metrics and source hashes](../reports/native_seed22_earlier_option_selection_20261105.json).

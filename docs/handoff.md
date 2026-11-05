@@ -1,4 +1,22 @@
-# 当前：2026-11-05 08:52 B1/H0真实并行学习，完整动态诊断及31候选检查完成
+# 当前：2026-11-05 09:44 两个独立配对及首个B1完整种子已闭合
+
+新实际诊断已闭合：scripts/probe_recorded_reference_candidates.py由独立fresh interpreter加载冻结source，case20 decision29（t14.5）完整前缀NN重建后检查31候选，6相关CPU测试通过5.78s。实际action2 mode/status/84nodes/reason复现；之前held12仍reference_reused、参考终点距goal .03806m且v0，PPO却改选action2新局部ref，终点距goal .98365m且v1.5。25reference/5plan_failed/1wait；20个terminal标签只是2个goal/speed组合。比decision38全部motion失败更早，指出可验证的option选择问题，尚无替代真实驾驶或成功因果证据。D原始输出seed22_case20_decision29_candidates_20261105.json及as-executed源码均保留，公共报告native_seed22_earlier_option_selection_20261105.json包含全矩阵与SHA；不再重复两个既有失败状态probe。源deea200已push，CI41951583944运行中，活跃课程物理source未改。
+
+H/H0为2/5个完整配对：seed11为24/24对24/24；seed22为23/24对24/24，H的中断恢复/120个已读丢弃控制和未知尾部继续披露。新增失败分支尚无稳定收益证据。第二配对报告 reports/native_independent_seed22_pair_complete_20261105.json。
+
+B1 seed11已完整结束30,720训练控制、917个实际Adam更新（35状态），基础4/4；known24仅10/24成功，11越界、2碰撞、1超时，10961评估控制/11704worldTicks/24interventions。全部raw/engine/24起点NN核验闭合；basic通过不等于复杂任务健康或充分收敛，没有注册zero-PPO known24比较不能声称10/24为学习增益。完整报告 reports/native_matched_B1_seed11_complete_20261105.json，未再运行已完成课程。
+
+两条真实队列已自动推进：H parent32508 birth07:45:23.250311、worker23436 birth09:17:04.908（seed33 Htrain）；B1 parent17912 birth08:41:33.142839、worker29564 birth09:38:39.523（seed22 train），均base Python311。身份/状态于本次CIM复核，下一次必须再次核对worker_process/guard/heartbeat与OS，不按旧PID操作。H tool44378，B1 tool3630。源冻结，2110/2120隔离；不再启动superseded observer。B2需两队列全部25+20逻辑阶段闭合后再执行，不开第三台。最终120仍未生成/查看，验收UNMET。
+
+# 历史：2026-11-05 09:12 第二个独立H/H0配对闭合，H33与B1并行
+
+seed22 H0训练已正常完整闭合30758controls/3104decisions/97rollouts/970Adam，70summary episodes/2200resetTicks/32958worldTicks/2621.8631s，34Adam各+970、实际初始weights/Adam/Torch RNG exact、RMS固定、negative actor/critic两分支权重实际加载核验严格0，model20cd428dfcdebc0c672e19d28ded9b49d48b2fe00b4bfd30308a2bb44b26556f。H0 known24也全部闭合24/24、8056controls/364interv/3planfail、0unsafe，raw/engine/24starts/503staticNN均PASS；暂未扩展该H0全movingNN，不能把H22的889proof套给它。H23/24/8781/915/59，H-H0=-1success/+725controls/+551interv/+56planfail，H0比共同zeroPPO24/24/8275/430/10少219controls/66interv/7fail。H初始原段与H0实际FP整个dict相等、norm初始bytes相等、完整saved RNG tensor_digest相等；但H中断恢复/丢失120+unknown尾部是比较限制，不能因H0好一例就作因果或5seed结论。报告native_independent_seed22_pair_complete_20261105.json保留全部边界与H0全24行，仍仅2/5完整pair、同24known条件不是48新final。
+
+Hcoordinator32508/tool44378已正常自动进入seed33（先baseline后Htrain），当前准确phase/worker须读execution_resume_20261105/status与该batch/worker_process再CIM；旧34136已正常结束，不要等它。B1parent17912/tool3630继续seed11 TRAIN48，worker23596（08:44:14.000350）仍live，09:07左右17674controls，之后按actualheartbeat为准。两台owned CARLA继续2110/2120，不动外部进程、不再恢复已superseded的4100/tool39552。PR5通过正常merge为main20e254bd8a3ae797b9e82f714462684a313ca45f，source de79 CI1443绿、PR5head0cab CPUcheck41945580211 SUCCESS，merge mainCI41946550326另查。PR4main2baf mergeCI41942802021也SUCCESS。新source全部冻结，报告/README更新不取消已过sourceCI。
+
+已直接核对gamma实现：gamma_per_second=.99，gamma_low=.99**control_dt，macroGamma=gamma_low**substeps；不要假设它是每50ms的.99或把5s短视当已证实根因。31候选/保留ref反事实已完成无需重跑；continuation witness在ideal/实际returned端点都False，不能伪称理想证书通过。后续研发需基于全5seed/健康B1及更早的可执行性/参考到期证据，不改变最终目标，不把传输隔离/低层工程修补归功PPO。最终120未生成/查看，整体UNMET。
+
+# 历史：2026-11-05 08:52 B1/H0真实并行学习，完整动态诊断及31候选检查完成
 
 关键提速已实际执行，不再串行等H全部25阶段：原未归属2100peer已不存在，测得GPU空闲8702MiB/RAM47.02GiB/D盘425.70GiB后，在原两服务器上限内将B1放到2120–2122，H/H0保留2110–2112。原read-only B1observer4100（creation07:46:32.032822）已按完整birth/exe OwnedProcess验证后有意终止，旧tool39552退出1是INTENTIONALLY_SUPERSEDED，不是训练失败。不得重启它。原B1registration不改，20个recipe逐字典核验只改port/span，物理/模型/RMS/数据/任务/PPO/30720预算完全不变。新B1parent17912 creation08:41:33.142839/basePython，tool3630，日志execution_parallel_20261105；Hparent32508/tool44378/H0worker34136仍在。B2driver已加必须全25H/H0+20B1闭合，防止B1并行先完就抢2110；不启第三CARLA。
 

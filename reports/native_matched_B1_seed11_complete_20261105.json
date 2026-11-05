@@ -1,0 +1,4226 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "research_acceptance": "UNMET",
+  "status": "FIRST_MATCHED_B1_SEED_COMPLETE_SEED22_TRAINING_ACTIVE",
+  "seed": 11,
+  "batch": "20261104_matched_flat_seed11_TRAIN48_PPO30720",
+  "summary": {
+    "physics_steps": 30720,
+    "actions": 30720,
+    "episodes": 73,
+    "optimization_phases": 24,
+    "optimizer_steps": 917,
+    "reward_components": {
+      "event": -1960.0,
+      "time": -153.5999999999328,
+      "risk": -269.79512830944464,
+      "comfort": -25.130505078453904,
+      "potential": 48.069458005106256,
+      "task_progress": 700.433233179039
+    },
+    "modes": {
+      "flat": 30720
+    },
+    "action_histogram": {},
+    "method": "B1",
+    "job_name": "B1",
+    "rollout_actions": 1280,
+    "ppo_epochs": 10,
+    "batch_size": 320,
+    "gradient_clip_mode": "global",
+    "backend": "CARLA_0.9.15",
+    "world_ticks": 33013,
+    "reset_ticks": 2293,
+    "actor_l2_change": 0.05690645053982735,
+    "reload_exact": true,
+    "wall_seconds": 2260.8077294826508,
+    "stopped_reason": null,
+    "lineage_control_steps": 30720,
+    "charged_control_steps_lower_bound": 69909,
+    "inherited_controls_not_in_checkpoint": 39189,
+    "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+  },
+  "saved_learning_proof": {
+    "actual_initial_weights_Adam_exact": true,
+    "RMS_exact": true,
+    "all_Adam_steps": 917,
+    "new_supervision": 0,
+    "summary": {
+      "physics_steps": 30720,
+      "actions": 30720,
+      "episodes": 73,
+      "optimization_phases": 24,
+      "optimizer_steps": 917,
+      "reward_components": {
+        "event": -1960.0,
+        "time": -153.5999999999328,
+        "risk": -269.79512830944464,
+        "comfort": -25.130505078453904,
+        "potential": 48.069458005106256,
+        "task_progress": 700.433233179039
+      },
+      "modes": {
+        "flat": 30720
+      },
+      "action_histogram": {},
+      "method": "B1",
+      "job_name": "B1",
+      "rollout_actions": 1280,
+      "ppo_epochs": 10,
+      "batch_size": 320,
+      "gradient_clip_mode": "global",
+      "backend": "CARLA_0.9.15",
+      "world_ticks": 33013,
+      "reset_ticks": 2293,
+      "actor_l2_change": 0.05690645053982735,
+      "reload_exact": true,
+      "wall_seconds": 2260.8077294826508,
+      "stopped_reason": null,
+      "lineage_control_steps": 30720,
+      "charged_control_steps_lower_bound": 69909,
+      "inherited_controls_not_in_checkpoint": 39189,
+      "scope": "Matched new30720PPOwindow and common4329teacher physical controls;historical development costs differ and remain charged.B1uses fixed.05learner reward units,3e-6rate,20Hz direct control,1280-action rollout;Huses its registered2Hz recipe.No claim of equal end-to-end development cost or healthy baseline until actual post-training basic probes."
+    }
+  },
+  "training_raw_audit": {
+    "scope": "Bind every training-only transition to measured CARLA frames and saved counters.",
+    "batch": "20261104_matched_flat_seed11_TRAIN48_PPO30720",
+    "protocol_sha256": "e0cbc08c2ab342817fdd8605ab0b7b2d7cfd0a560d56a9f615aabece181ac697",
+    "script_sha256": "581de8d671dc0f6eb227357aefec6e1d34d5d3722369c7cb25e5d7d7e0f09d77",
+    "bridge_streams": [
+      {
+        "name": "bridge_754c27bf_responses.jsonl.gz",
+        "sha256": "ad8a9f8f177804b31274f24897f9a72137435dc8da9ca5c247f77158ead098d3"
+      }
+    ],
+    "methods": {
+      "B1": {
+        "controls": 30720,
+        "actions": 30720,
+        "optimizer_steps": 917,
+        "episodes_with_controls": 74,
+        "bridge_response_stream": "bridge_754c27bf_responses.jsonl.gz",
+        "transition_hashes": {
+          "transitions_000000000_1793839459253136800.jsonl.gz": "af77ddef5ada8c6a4baabdfcbaf6f27fca69ebc28f8d1e3592426b86bde92770"
+        },
+        "reward_components": {
+          "event": -1960.0,
+          "time": -153.5999999999328,
+          "risk": -269.79512830944464,
+          "comfort": -25.130505078453904,
+          "potential": 48.069458005106256,
+          "task_progress": 700.433233179039
+        },
+        "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+        "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22",
+        "checkpoint_metadata_sha256": "02fd17b626db188e128e7548851cb3e96d988a21259824ab480ecc0e566fce6b"
+      }
+    },
+    "training_control_frames_verified": 30720,
+    "reset_ticks_verified": 2293,
+    "new_controls": 0,
+    "new_updates": 0,
+    "limits": "Authenticates recorded state,commands,sensor evidence and reward accumulation;does not establish policy superiority or re-execute physics."
+  },
+  "engine_audit": {
+    "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+    "batch": "20261104_matched_flat_seed11_TRAIN48_PPO30720",
+    "protocol_sha256": "e0cbc08c2ab342817fdd8605ab0b7b2d7cfd0a560d56a9f615aabece181ac697",
+    "control_delivery": "batch_sync_v1",
+    "bridge_streams": [
+      {
+        "name": "bridge_754c27bf_responses.jsonl.gz",
+        "sha256": "ad8a9f8f177804b31274f24897f9a72137435dc8da9ca5c247f77158ead098d3"
+      }
+    ],
+    "tolerance": 1e-05,
+    "counts": {
+      "controls": 30720,
+      "gear_or_handbrake_mismatches": 0,
+      "missing_or_negative_sync_ack": 0
+    },
+    "mismatch_channels": {},
+    "by_phase": {
+      "training_or_untraced_failure": {
+        "controls": 30720
+      }
+    },
+    "mismatch_examples": [],
+    "all_engine_controls_match_requested": true,
+    "strict_delivery_gate_passed": true,
+    "new_controls": 0,
+    "new_optimizer_updates": 0,
+    "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+  },
+  "exposure_audit": {
+    "batch": "20261104_matched_flat_seed11_TRAIN48_PPO30720",
+    "script_sha256": "5714161fecea18802880de9ade2ed37b197f0ff63423ce720a9e81c451c537c5",
+    "protocol_sha256": "e0cbc08c2ab342817fdd8605ab0b7b2d7cfd0a560d56a9f615aabece181ac697",
+    "scope": "COMPLETE_TRAIN_RESET_AND_EXPOSURE_AUDIT",
+    "saved_next_case_index": 0,
+    "recorded_resets": 74,
+    "all_actual_reset_conditions_match": true,
+    "unique_inventory_conditions": 48,
+    "schedule_exposures": 64,
+    "actual_control_frames_in_readable_stream": 30720,
+    "actual_controlled_episode_counts": {
+      "0": 5,
+      "1": 2,
+      "2": 2,
+      "4": 2,
+      "3": 5,
+      "5": 2,
+      "7": 2,
+      "8": 2,
+      "6": 5,
+      "10": 2,
+      "11": 1,
+      "12": 2,
+      "9": 4,
+      "13": 1,
+      "14": 1,
+      "15": 2,
+      "16": 1,
+      "17": 1,
+      "18": 2,
+      "19": 1,
+      "20": 1,
+      "21": 2,
+      "22": 1,
+      "23": 1,
+      "24": 1,
+      "25": 1,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "29": 1,
+      "30": 1,
+      "31": 1,
+      "32": 1,
+      "33": 1,
+      "34": 1,
+      "35": 1,
+      "36": 1,
+      "37": 1,
+      "38": 1,
+      "39": 1,
+      "40": 1,
+      "41": 1,
+      "42": 1,
+      "43": 1,
+      "44": 1,
+      "45": 1,
+      "46": 1,
+      "47": 1
+    },
+    "original_basic_episode_counts": {
+      "0": 5,
+      "3": 5,
+      "6": 5,
+      "9": 4
+    },
+    "repeated_exposures_not_independent_conditions": true,
+    "new_controls": 0,
+    "new_updates": 0
+  },
+  "post_training_basic": {
+    "batch": "20261104_matched_flat_seed11_basic",
+    "qualification": {
+      "passed": true,
+      "episodes": [
+        {
+          "case_id": 0,
+          "reward": 30.086781716784518,
+          "discounted_return": 25.901420824287804,
+          "physics_steps": 357,
+          "actions": 357,
+          "distance": 24.281816544194914,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 3,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.784999999999984,
+            "risk": -0.5257818984877822,
+            "comfort": -0.27382322603325043,
+            "potential": 0.6753160271939131,
+            "task_progress": 11.996070814111642
+          },
+          "goal_parking_controls": 3,
+          "goal_parking_eligible_controls": 3,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 17.850000265985727,
+          "progress": 23.99214162822328,
+          "path_efficiency_success_only": 0.9814660762753301,
+          "travel_time_success_only": 17.850000265985727,
+          "intervention_rate": 0.008403361344537815,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 65.23856128013622,
+          "lateral_acceleration_rms": 0.04652219975665054,
+          "risk_rms": 0.0736629665386453,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 357,
+            "median": 0.008224300006986596,
+            "p95": 0.010896660006255842,
+            "p99": 0.013627935996628366,
+            "max": 0.3209066999988863,
+            "over_period_fraction": 0.0056022408963585435,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 357,
+            "median": 0.06441380000615027,
+            "p95": 0.10403294000134337,
+            "p99": 0.1619855800061485,
+            "max": 0.32276189999538474,
+            "over_period_fraction": 0.5686274509803921,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 357,
+            "median": 0.0016785999905550852,
+            "p95": 0.0031264000048395247,
+            "p99": 0.0038551319984253497,
+            "max": 0.008398699996178038,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 357,
+            "median": 0.06635870000172872,
+            "p95": 0.10543327999184839,
+            "p99": 0.16455988399859034,
+            "max": 0.32498849999683443,
+            "over_period_fraction": 0.6050420168067226,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 1,
+          "reward": 23.996823181160828,
+          "discounted_return": 19.123283144325356,
+          "physics_steps": 495,
+          "actions": 495,
+          "distance": 24.46112897901751,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1,
+          "reward_components": {
+            "event": 20.0,
+            "time": -2.4749999999999694,
+            "risk": -5.6333704979646555,
+            "comfort": -0.36866021485669853,
+            "potential": 0.6897141406004046,
+            "task_progress": 11.784139753381782
+          },
+          "goal_parking_controls": 1,
+          "goal_parking_eligible_controls": 1,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 24.75000036880374,
+          "progress": 23.568279506763552,
+          "path_efficiency_success_only": 0.962653660632718,
+          "travel_time_success_only": 24.75000036880374,
+          "intervention_rate": 0.00202020202020202,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 58.43244145115262,
+          "lateral_acceleration_rms": 0.13394034375092498,
+          "risk_rms": 0.5926059492530724,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 495,
+            "median": 0.011378299997886643,
+            "p95": 0.016205419998732394,
+            "p99": 0.029163170002866536,
+            "max": 0.3223398999980418,
+            "over_period_fraction": 0.00404040404040404,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 495,
+            "median": 0.1402996999968309,
+            "p95": 0.28271399000223024,
+            "p99": 0.38049631000147205,
+            "max": 0.5828783000033582,
+            "over_period_fraction": 0.7818181818181819,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 495,
+            "median": 0.0015094999980647117,
+            "p95": 0.002480700000887736,
+            "p99": 0.004019088004715741,
+            "max": 0.0063870999874779955,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 495,
+            "median": 0.14240430000063498,
+            "p95": 0.2844302700046682,
+            "p99": 0.3828319179971004,
+            "max": 0.58466770000814,
+            "over_period_fraction": 0.7818181818181819,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 2,
+          "reward": 29.537188925489524,
+          "discounted_return": 26.02404905834586,
+          "physics_steps": 300,
+          "actions": 300,
+          "distance": 22.361838730261066,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.49999999999999,
+            "risk": -0.38976550372105356,
+            "comfort": -0.23800409951172394,
+            "potential": 0.6157716146532154,
+            "task_progress": 11.049186914069079
+          },
+          "goal_parking_controls": 2,
+          "goal_parking_eligible_controls": 2,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 15.000000223517418,
+          "progress": 22.098373828138158,
+          "path_efficiency_success_only": 0.983030000935589,
+          "travel_time_success_only": 15.000000223517418,
+          "intervention_rate": 0.006666666666666667,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 47.99367932412372,
+          "lateral_acceleration_rms": 0.05230483146880817,
+          "risk_rms": 0.06545409662946941,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 300,
+            "median": 0.006550500002049375,
+            "p95": 0.008448369993857341,
+            "p99": 0.009232558989606324,
+            "max": 0.3215051000006497,
+            "over_period_fraction": 0.0033333333333333335,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 300,
+            "median": 0.048907150005106814,
+            "p95": 0.0900101350103796,
+            "p99": 0.09914199899969388,
+            "max": 0.32304699999804143,
+            "over_period_fraction": 0.49666666666666665,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 300,
+            "median": 0.0014211500019882806,
+            "p95": 0.002178670005378081,
+            "p99": 0.0027235160024429187,
+            "max": 0.0033177000004798174,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 300,
+            "median": 0.05084625000017695,
+            "p95": 0.09158192000249983,
+            "p99": 0.10110575300932395,
+            "max": 0.32517830000142567,
+            "over_period_fraction": 0.5066666666666667,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 3,
+          "reward": 24.547367791424307,
+          "discounted_return": 21.28688706215145,
+          "physics_steps": 313,
+          "actions": 313,
+          "distance": 21.925252342979288,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.5649999999999886,
+            "risk": -4.095175003039461,
+            "comfort": -0.3154194950700302,
+            "potential": 0.5590268236119259,
+            "task_progress": 9.963935465921873
+          },
+          "goal_parking_controls": 1,
+          "goal_parking_eligible_controls": 1,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 15.650000233203173,
+          "progress": 19.927870931843753,
+          "path_efficiency_success_only": 0.9087156316295435,
+          "travel_time_success_only": 15.650000233203173,
+          "intervention_rate": 0.003194888178913738,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 81.11669571480182,
+          "lateral_acceleration_rms": 0.15530066207490847,
+          "risk_rms": 0.683879891267711,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 313,
+            "median": 0.009519200000795536,
+            "p95": 0.011467619994073175,
+            "p99": 0.01234416400140617,
+            "max": 0.3116879000008339,
+            "over_period_fraction": 0.003194888178913738,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 313,
+            "median": 0.0926132000022335,
+            "p95": 0.19998309999355116,
+            "p99": 0.21120520799420775,
+            "max": 0.3138279999984661,
+            "over_period_fraction": 0.5846645367412141,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 313,
+            "median": 0.0014847999991616234,
+            "p95": 0.0020390000019688157,
+            "p99": 0.0026356480008689685,
+            "max": 0.004818599991267547,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 313,
+            "median": 0.09407410000858363,
+            "p95": 0.2012578199908603,
+            "p99": 0.21279982799955177,
+            "max": 0.31522839999524876,
+            "over_period_fraction": 0.5942492012779552,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        }
+      ]
+    },
+    "evaluation": {
+      "scope": "Frozen deterministic probes on all registered development conditions, no extra policy updates or independent-condition claim",
+      "partition": "development",
+      "decision_timing_scope": "policy_prediction_times includes normalization and deterministic prediction;full_decision_times includes that plus the complete environment step. Historical decision_cycle_times remains environment-only. Excludes trace serialization and job setup.",
+      "episodes": [
+        {
+          "case_id": 0,
+          "reward": 30.086781716784518,
+          "discounted_return": 25.901420824287804,
+          "physics_steps": 357,
+          "actions": 357,
+          "distance": 24.281816544194914,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 3,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.784999999999984,
+            "risk": -0.5257818984877822,
+            "comfort": -0.27382322603325043,
+            "potential": 0.6753160271939131,
+            "task_progress": 11.996070814111642
+          },
+          "goal_parking_controls": 3,
+          "goal_parking_eligible_controls": 3,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 17.850000265985727,
+          "progress": 23.99214162822328,
+          "path_efficiency_success_only": 0.9814660762753301,
+          "travel_time_success_only": 17.850000265985727,
+          "intervention_rate": 0.008403361344537815,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 65.23856128013622,
+          "lateral_acceleration_rms": 0.04652219975665054,
+          "risk_rms": 0.0736629665386453,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 357,
+            "median": 0.008224300006986596,
+            "p95": 0.010896660006255842,
+            "p99": 0.013627935996628366,
+            "max": 0.3209066999988863,
+            "over_period_fraction": 0.0056022408963585435,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 357,
+            "median": 0.06441380000615027,
+            "p95": 0.10403294000134337,
+            "p99": 0.1619855800061485,
+            "max": 0.32276189999538474,
+            "over_period_fraction": 0.5686274509803921,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 357,
+            "median": 0.0016785999905550852,
+            "p95": 0.0031264000048395247,
+            "p99": 0.0038551319984253497,
+            "max": 0.008398699996178038,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 357,
+            "median": 0.06635870000172872,
+            "p95": 0.10543327999184839,
+            "p99": 0.16455988399859034,
+            "max": 0.32498849999683443,
+            "over_period_fraction": 0.6050420168067226,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 1,
+          "reward": 23.996823181160828,
+          "discounted_return": 19.123283144325356,
+          "physics_steps": 495,
+          "actions": 495,
+          "distance": 24.46112897901751,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1,
+          "reward_components": {
+            "event": 20.0,
+            "time": -2.4749999999999694,
+            "risk": -5.6333704979646555,
+            "comfort": -0.36866021485669853,
+            "potential": 0.6897141406004046,
+            "task_progress": 11.784139753381782
+          },
+          "goal_parking_controls": 1,
+          "goal_parking_eligible_controls": 1,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 24.75000036880374,
+          "progress": 23.568279506763552,
+          "path_efficiency_success_only": 0.962653660632718,
+          "travel_time_success_only": 24.75000036880374,
+          "intervention_rate": 0.00202020202020202,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 58.43244145115262,
+          "lateral_acceleration_rms": 0.13394034375092498,
+          "risk_rms": 0.5926059492530724,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 495,
+            "median": 0.011378299997886643,
+            "p95": 0.016205419998732394,
+            "p99": 0.029163170002866536,
+            "max": 0.3223398999980418,
+            "over_period_fraction": 0.00404040404040404,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 495,
+            "median": 0.1402996999968309,
+            "p95": 0.28271399000223024,
+            "p99": 0.38049631000147205,
+            "max": 0.5828783000033582,
+            "over_period_fraction": 0.7818181818181819,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 495,
+            "median": 0.0015094999980647117,
+            "p95": 0.002480700000887736,
+            "p99": 0.004019088004715741,
+            "max": 0.0063870999874779955,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 495,
+            "median": 0.14240430000063498,
+            "p95": 0.2844302700046682,
+            "p99": 0.3828319179971004,
+            "max": 0.58466770000814,
+            "over_period_fraction": 0.7818181818181819,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 2,
+          "reward": 29.537188925489524,
+          "discounted_return": 26.02404905834586,
+          "physics_steps": 300,
+          "actions": 300,
+          "distance": 22.361838730261066,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.49999999999999,
+            "risk": -0.38976550372105356,
+            "comfort": -0.23800409951172394,
+            "potential": 0.6157716146532154,
+            "task_progress": 11.049186914069079
+          },
+          "goal_parking_controls": 2,
+          "goal_parking_eligible_controls": 2,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 15.000000223517418,
+          "progress": 22.098373828138158,
+          "path_efficiency_success_only": 0.983030000935589,
+          "travel_time_success_only": 15.000000223517418,
+          "intervention_rate": 0.006666666666666667,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 47.99367932412372,
+          "lateral_acceleration_rms": 0.05230483146880817,
+          "risk_rms": 0.06545409662946941,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 300,
+            "median": 0.006550500002049375,
+            "p95": 0.008448369993857341,
+            "p99": 0.009232558989606324,
+            "max": 0.3215051000006497,
+            "over_period_fraction": 0.0033333333333333335,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 300,
+            "median": 0.048907150005106814,
+            "p95": 0.0900101350103796,
+            "p99": 0.09914199899969388,
+            "max": 0.32304699999804143,
+            "over_period_fraction": 0.49666666666666665,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 300,
+            "median": 0.0014211500019882806,
+            "p95": 0.002178670005378081,
+            "p99": 0.0027235160024429187,
+            "max": 0.0033177000004798174,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 300,
+            "median": 0.05084625000017695,
+            "p95": 0.09158192000249983,
+            "p99": 0.10110575300932395,
+            "max": 0.32517830000142567,
+            "over_period_fraction": 0.5066666666666667,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 3,
+          "reward": 24.547367791424307,
+          "discounted_return": 21.28688706215145,
+          "physics_steps": 313,
+          "actions": 313,
+          "distance": 21.925252342979288,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.5649999999999886,
+            "risk": -4.095175003039461,
+            "comfort": -0.3154194950700302,
+            "potential": 0.5590268236119259,
+            "task_progress": 9.963935465921873
+          },
+          "goal_parking_controls": 1,
+          "goal_parking_eligible_controls": 1,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 15.650000233203173,
+          "progress": 19.927870931843753,
+          "path_efficiency_success_only": 0.9087156316295435,
+          "travel_time_success_only": 15.650000233203173,
+          "intervention_rate": 0.003194888178913738,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 81.11669571480182,
+          "lateral_acceleration_rms": 0.15530066207490847,
+          "risk_rms": 0.683879891267711,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 313,
+            "median": 0.009519200000795536,
+            "p95": 0.011467619994073175,
+            "p99": 0.01234416400140617,
+            "max": 0.3116879000008339,
+            "over_period_fraction": 0.003194888178913738,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 313,
+            "median": 0.0926132000022335,
+            "p95": 0.19998309999355116,
+            "p99": 0.21120520799420775,
+            "max": 0.3138279999984661,
+            "over_period_fraction": 0.5846645367412141,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 313,
+            "median": 0.0014847999991616234,
+            "p95": 0.0020390000019688157,
+            "p99": 0.0026356480008689685,
+            "max": 0.004818599991267547,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 313,
+            "median": 0.09407410000858363,
+            "p95": 0.2012578199908603,
+            "p99": 0.21279982799955177,
+            "max": 0.31522839999524876,
+            "over_period_fraction": 0.5942492012779552,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        }
+      ],
+      "world_ticks": 1588,
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22"
+    },
+    "raw_audit": {
+      "schema_version": 1,
+      "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+      "batch": "20261104_matched_flat_seed11_basic",
+      "method": "B1",
+      "protocol_sha256": "aabd3ce6ed8f00959a8bccaa69db656dfc56fa1a0c43ea910d1f9b91245b2587",
+      "config_sha256": "c5d39adeea2ed543fab993a2bd59aee4252e7bc6f8cb1aad2ccbf189b8293f2e",
+      "summary_sha256": "13ea800e77c97640f94453deef149796de4b1125276537379fa187042c61fe55",
+      "evaluation_sha256": "7554ad0a424a04f0d50f28c7a5c4f4eaa834cb75c9050d176331b1239c7cf642",
+      "evaluation_trace_sha256": "d7e9c6548cd6a24510b037d5fd5eac6dbd272bff41b07a47a09f8b4c1bfe2dbc",
+      "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transition_hashes": {
+        "transitions_000000000_1793841769160728800.jsonl.gz": "2baf67c240449603bb92282bb6a80a1ffbe9c28734a7026e66f2c7bc6a90b761"
+      },
+      "bridge_response_stream": "bridge_92b716dd_responses.jsonl.gz",
+      "bridge_response_sha256": "d1a8eab4e496bc55f605e7d047403f5b4552c83c1dd1cc0817052d26a6d1056c",
+      "bridge_complete_rows": 1473,
+      "training_control_frames_verified": 0,
+      "evaluation_control_frames_verified": 1465,
+      "total_applied_controls_verified": 1465,
+      "training_world_ticks_verified": 0,
+      "evaluation_world_ticks_verified": 1588,
+      "training_termination_reasons": {},
+      "checkpoint": "checkpoint_000000000",
+      "checkpoint_metadata_sha256": "bfa31d2514f8537a02a30832f042a1ac132c7cc96e07782cdb523f32a9090dea",
+      "lineage_controls": 30720,
+      "charged_controls_lower_bound": 69909,
+      "segment_optimizer_steps": 0,
+      "optimizer_steps_total_lower_bound": 917,
+      "unknown_unflushed_ancestor_tail": false
+    },
+    "engine": {
+      "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+      "batch": "20261104_matched_flat_seed11_basic",
+      "protocol_sha256": "aabd3ce6ed8f00959a8bccaa69db656dfc56fa1a0c43ea910d1f9b91245b2587",
+      "control_delivery": "batch_sync_v1",
+      "bridge_streams": [
+        {
+          "name": "bridge_92b716dd_responses.jsonl.gz",
+          "sha256": "d1a8eab4e496bc55f605e7d047403f5b4552c83c1dd1cc0817052d26a6d1056c"
+        }
+      ],
+      "tolerance": 1e-05,
+      "counts": {
+        "controls": 1465,
+        "gear_or_handbrake_mismatches": 0,
+        "missing_or_negative_sync_ack": 0
+      },
+      "mismatch_channels": {},
+      "by_phase": {
+        "evaluation": {
+          "controls": 1465
+        }
+      },
+      "mismatch_examples": [],
+      "all_engine_controls_match_requested": true,
+      "strict_delivery_gate_passed": true,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+    }
+  },
+  "new_supervised_updates": 0,
+  "actual_initial_weights_full_Adam_Torch_RNG_exact": true,
+  "RMS_exact": true,
+  "closed_training_seeds": 1,
+  "registered_seeds": 5,
+  "provenance_hashes": {
+    "protocol.json": "e0cbc08c2ab342817fdd8605ab0b7b2d7cfd0a560d56a9f615aabece181ac697",
+    "B1/summary.json": "1de9c8d52602aa2cab5f0bb524f865b19b3c5db9b9c08d64917108127f6fcce6",
+    "B1/saved_learning_proof.json": "5a9562dbb05ceaeeb4835300ecbfd7e7a5a75314a39ed600366803bf57b81433",
+    "training_only_raw_audit.json": "8dea39b5b962a606c23bd4da42b41aaf384490089a7573175262160c036ebad5",
+    "strict_delivery.json": "0aa10c5d3d180ae1686c43e0c5ee9562a56ce46d36cf44952b7754cb96604a70",
+    "training_schedule_audit.json": "483008670c22c401c68dd1e8b2014037bc1d29dfc6afe2491f60a2f5bb7675b1"
+  },
+  "limits": [
+    "One fixed-budget30720control native PPO course;not five qualified baseline seeds or convergence proof",
+    "Post-training four-basic sanity gate passes;known24 completes10/24 with13unsafe episodes;not a robust baseline or convergence proof",
+    "Initial supervised prior and shared parking assistance remain disclosed;do not count initial4/4asPPO benefit",
+    "All35saved Adam states advance917;early target-KL stopping makes this differ from nominal960",
+    "Native episodes operate on isolated2120whileH uses2110;shared workstation wall times are not isolated timing",
+    "No final120condition set generated or viewed",
+    "No zero-PPO known24 B1 arm was registered for this cohort;post-training10/24 cannot be called an improvement from its different four-basic initializer probe"
+  ],
+  "post_training_known24": {
+    "batch": "20261104_matched_flat_seed11_known24",
+    "totals": {
+      "success": 10,
+      "physics_steps": 10961,
+      "interventions": 24,
+      "plan_failures": 0,
+      "mpc_failures": 0
+    },
+    "termination_reasons": {
+      "success": 10,
+      "out_of_bounds": 11,
+      "deadline": 1,
+      "collision": 2
+    },
+    "unsafe_episodes": 13,
+    "unsafe_episode_fraction": 0.5416666666666666,
+    "evaluation": {
+      "scope": "Frozen deterministic probes on registered geometry-separated development validation roads; zero updates,not final confirmation",
+      "partition": "validation",
+      "decision_timing_scope": "policy_prediction_times includes normalization and deterministic prediction;full_decision_times includes that plus the complete environment step. Historical decision_cycle_times remains environment-only. Excludes trace serialization and job setup.",
+      "episodes": [
+        {
+          "case_id": 0,
+          "reward": 30.303942474935642,
+          "discounted_return": 26.337636926934987,
+          "physics_steps": 339,
+          "actions": 339,
+          "distance": 24.210018675835393,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.6949999999999859,
+            "risk": -0.48451589338880907,
+            "comfort": -0.15940483264627012,
+            "potential": 0.672349934344878,
+            "task_progress": 11.97051326662583
+          },
+          "goal_parking_controls": 1,
+          "goal_parking_eligible_controls": 1,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 16.950000252574682,
+          "progress": 23.941026533251666,
+          "path_efficiency_success_only": 0.98760486383856,
+          "travel_time_success_only": 16.950000252574682,
+          "intervention_rate": 0.0029498525073746312,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 45.22029365432527,
+          "lateral_acceleration_rms": 0.04827079124580224,
+          "risk_rms": 0.07238114615701871,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 339,
+            "median": 0.0066063999984180555,
+            "p95": 0.007982759998412801,
+            "p99": 0.009296529998537154,
+            "max": 0.3206040000077337,
+            "over_period_fraction": 0.0029498525073746312,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 339,
+            "median": 0.04213869999512099,
+            "p95": 0.09991072000848362,
+            "p99": 0.11816837400372607,
+            "max": 0.32234789998619817,
+            "over_period_fraction": 0.4277286135693215,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 339,
+            "median": 0.0013984999968670309,
+            "p95": 0.001894160000665579,
+            "p99": 0.002293905999395065,
+            "max": 0.004349899987573735,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 339,
+            "median": 0.04358470000443049,
+            "p95": 0.10154919000924564,
+            "p99": 0.11962542599620066,
+            "max": 0.3242640999960713,
+            "over_period_fraction": 0.43952802359882004,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 1,
+          "reward": -86.67104555826049,
+          "discounted_return": -61.571707835967906,
+          "physics_steps": 673,
+          "actions": 673,
+          "distance": 27.904457261328712,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -3.3649999999999505,
+            "risk": -4.237319901226456,
+            "comfort": -0.5444973803381566,
+            "potential": 0.7238232630743436,
+            "task_progress": 10.751948460229766
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 33.650000501424074,
+          "progress": 21.50389692045955,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 74.58040070965936,
+          "lateral_acceleration_rms": 0.08710228940465926,
+          "risk_rms": 0.38704740733410997,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 673,
+            "median": 0.00689760000386741,
+            "p95": 0.009242520006955602,
+            "p99": 0.011934936001780442,
+            "max": 0.3188687000074424,
+            "over_period_fraction": 0.0014858841010401188,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 673,
+            "median": 0.04376380000030622,
+            "p95": 0.10382271999842484,
+            "p99": 0.1329315280017908,
+            "max": 0.3199140000069747,
+            "over_period_fraction": 0.4234769687964339,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 673,
+            "median": 0.0013804000045638531,
+            "p95": 0.0020858800009591503,
+            "p99": 0.002618751992704346,
+            "max": 0.005266199994366616,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 673,
+            "median": 0.04516940000758041,
+            "p95": 0.105119180001202,
+            "p99": 0.1345164600014686,
+            "max": 0.3218150000029709,
+            "over_period_fraction": 0.43833580980683506,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 2,
+          "reward": -14.040995143953214,
+          "discounted_return": -8.481582188614144,
+          "physics_steps": 900,
+          "actions": 900,
+          "distance": 25.692595154729183,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -10.0,
+            "time": -4.499999999999926,
+            "risk": -9.67212655606383,
+            "comfort": -0.4958596001614643,
+            "potential": 0.642383127081649,
+            "task_progress": 9.984607885190325
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "deadline",
+          "scenario": "native_curve",
+          "simulation_seconds": 45.000000670552254,
+          "progress": 19.969215770380657,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 39.354549528427086,
+          "lateral_acceleration_rms": 0.07656676738648518,
+          "risk_rms": 0.5576067640858484,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 900,
+            "median": 0.009110449995205272,
+            "p95": 0.011993355004960904,
+            "p99": 0.014236928992031607,
+            "max": 0.30958289999398403,
+            "over_period_fraction": 0.0011111111111111111,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 900,
+            "median": 0.01067930000135675,
+            "p95": 0.08486008000254515,
+            "p99": 0.10943147400088488,
+            "max": 0.31024489999981597,
+            "over_period_fraction": 0.27111111111111114,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 900,
+            "median": 0.0014354000013554469,
+            "p95": 0.0018877149967011064,
+            "p99": 0.0021685460084700024,
+            "max": 0.004003199996077456,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 900,
+            "median": 0.012205150007503107,
+            "p95": 0.08603653000609482,
+            "p99": 0.11232046799705128,
+            "max": 0.31196160000399686,
+            "over_period_fraction": 0.2733333333333333,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 3,
+          "reward": 27.749651958311738,
+          "discounted_return": 23.8200389241867,
+          "physics_steps": 351,
+          "actions": 351,
+          "distance": 22.017929731803143,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 3,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.7549999999999846,
+            "risk": -0.9083724287859786,
+            "comfort": -0.36074835751496703,
+            "potential": 0.5736136289663593,
+            "task_progress": 10.200159115646315
+          },
+          "goal_parking_controls": 3,
+          "goal_parking_eligible_controls": 3,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 17.55000026151538,
+          "progress": 20.400318231292648,
+          "path_efficiency_success_only": 0.9171973583603057,
+          "travel_time_success_only": 17.55000026151538,
+          "intervention_rate": 0.008547008547008548,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 101.27358429502847,
+          "lateral_acceleration_rms": 0.1565472911904429,
+          "risk_rms": 0.19831006490584294,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 351,
+            "median": 0.007784200002788566,
+            "p95": 0.008908299998438451,
+            "p99": 0.009271750001062173,
+            "max": 0.3170698000030825,
+            "over_period_fraction": 0.002849002849002849,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 351,
+            "median": 0.03515220001281705,
+            "p95": 0.09397094999440014,
+            "p99": 0.10855774999799905,
+            "max": 0.3193382999888854,
+            "over_period_fraction": 0.4188034188034188,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 351,
+            "median": 0.00144160000490956,
+            "p95": 0.0019729000123334117,
+            "p99": 0.0021777499932795763,
+            "max": 0.0023988000029930845,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 351,
+            "median": 0.03668130000005476,
+            "p95": 0.09540145000210032,
+            "p99": 0.11057189999701222,
+            "max": 0.3211791999929119,
+            "over_period_fraction": 0.43304843304843305,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 4,
+          "reward": 26.248679357165273,
+          "discounted_return": 23.256216680804158,
+          "physics_steps": 278,
+          "actions": 278,
+          "distance": 15.82747940430891,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.3899999999999924,
+            "risk": -0.45520828941789737,
+            "comfort": -0.22580786227784852,
+            "potential": 0.44090644952072755,
+            "task_progress": 7.878789059340292
+          },
+          "goal_parking_controls": 1,
+          "goal_parking_eligible_controls": 1,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 13.90000020712614,
+          "progress": 15.757578118680588,
+          "path_efficiency_success_only": 0.9910870131598369,
+          "travel_time_success_only": 13.90000020712614,
+          "intervention_rate": 0.0035971223021582736,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 76.51339461383513,
+          "lateral_acceleration_rms": 0.0381552547886345,
+          "risk_rms": 0.08214069371773491,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 278,
+            "median": 0.007380149996606633,
+            "p95": 0.009164335001696599,
+            "p99": 0.009853241994132988,
+            "max": 0.30832440000085626,
+            "over_period_fraction": 0.0035971223021582736,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 278,
+            "median": 0.024723800001083873,
+            "p95": 0.06584235499904025,
+            "p99": 0.08059774600566019,
+            "max": 0.3103601999901002,
+            "over_period_fraction": 0.1510791366906475,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 278,
+            "median": 0.0014238999938243069,
+            "p95": 0.0020557200092298435,
+            "p99": 0.0024717969969788103,
+            "max": 0.002926800007116981,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 278,
+            "median": 0.02653424999152776,
+            "p95": 0.06715194499993231,
+            "p99": 0.08233659200544938,
+            "max": 0.3126783999905456,
+            "over_period_fraction": 0.1618705035971223,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 5,
+          "reward": -86.76525949466767,
+          "discounted_return": -72.95133455197697,
+          "physics_steps": 340,
+          "actions": 340,
+          "distance": 19.720175950030413,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -1.6999999999999857,
+            "risk": -2.319258075696926,
+            "comfort": -0.3293119949255487,
+            "potential": 0.45694637211848677,
+            "task_progress": 7.126364203836306
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 17.00000025331974,
+          "progress": 14.252728407672603,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 91.19861674982836,
+          "lateral_acceleration_rms": 0.1377185262973156,
+          "risk_rms": 0.4190481054014194,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 340,
+            "median": 0.008566799995605834,
+            "p95": 0.011368419999053003,
+            "p99": 0.012549085995415227,
+            "max": 0.32090140000218526,
+            "over_period_fraction": 0.0029411764705882353,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 340,
+            "median": 0.019371249996765982,
+            "p95": 0.07578321999972105,
+            "p99": 0.08715159199855414,
+            "max": 0.32167889999982435,
+            "over_period_fraction": 0.36470588235294116,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 340,
+            "median": 0.0013078000047244132,
+            "p95": 0.0019116250041406602,
+            "p99": 0.0022231179993832486,
+            "max": 0.008996799995657057,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 340,
+            "median": 0.020986900002753828,
+            "p95": 0.07697418499374181,
+            "p99": 0.08928597699617974,
+            "max": 0.3236590000014985,
+            "over_period_fraction": 0.37058823529411766,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 6,
+          "reward": -88.77230824767581,
+          "discounted_return": -83.97833764059914,
+          "physics_steps": 111,
+          "actions": 111,
+          "distance": 6.108356137402823,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -0.5550000000000004,
+            "risk": -1.5867100907236145,
+            "comfort": -0.0961756216515626,
+            "potential": 0.41328899867643204,
+            "task_progress": 3.052288466022943
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 5.550000082701445,
+          "progress": 6.104576932045886,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 54.38195086358209,
+          "lateral_acceleration_rms": 0.05582294007838318,
+          "risk_rms": 0.7186077253842285,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 111,
+            "median": 0.012347099996986799,
+            "p95": 0.01385015000414569,
+            "p99": 0.017366280003625452,
+            "max": 0.32078419999743346,
+            "over_period_fraction": 0.009009009009009009,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 111,
+            "median": 0.049033900009817444,
+            "p95": 0.0718788499943912,
+            "p99": 0.08053149000043051,
+            "max": 0.33377690000634175,
+            "over_period_fraction": 0.43243243243243246,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 111,
+            "median": 0.00138899999728892,
+            "p95": 0.001880449999589473,
+            "p99": 0.002235400008794387,
+            "max": 0.0023167999897850677,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 111,
+            "median": 0.050163300009444356,
+            "p95": 0.07312459999957355,
+            "p99": 0.08162955000589138,
+            "max": 0.3361836999974912,
+            "over_period_fraction": 0.5225225225225225,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 7,
+          "reward": 24.326865679396924,
+          "discounted_return": 21.649308115687635,
+          "physics_steps": 253,
+          "actions": 253,
+          "distance": 13.941726770093142,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 3,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.264999999999995,
+            "risk": -0.8679446616825308,
+            "comfort": -0.25820597549132057,
+            "potential": 0.35752192513833875,
+            "task_progress": 6.360494391432437
+          },
+          "goal_parking_controls": 3,
+          "goal_parking_eligible_controls": 3,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 12.650000188499689,
+          "progress": 12.720988782864868,
+          "path_efficiency_success_only": 0.9028235744387333,
+          "travel_time_success_only": 12.650000188499689,
+          "intervention_rate": 0.011857707509881422,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 92.17215911855482,
+          "lateral_acceleration_rms": 0.214691768611714,
+          "risk_rms": 0.2419445898567144,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 253,
+            "median": 0.008633699995698407,
+            "p95": 0.00991702000319492,
+            "p99": 0.010791875995928419,
+            "max": 0.3233856000006199,
+            "over_period_fraction": 0.003952569169960474,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 253,
+            "median": 0.019230199992307462,
+            "p95": 0.05003372000646777,
+            "p99": 0.05769019199942704,
+            "max": 0.325557200005278,
+            "over_period_fraction": 0.05138339920948617,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 253,
+            "median": 0.0014126000023679808,
+            "p95": 0.001831019995734095,
+            "p99": 0.0022116839984664682,
+            "max": 0.0024631999986013398,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 253,
+            "median": 0.020459199993638322,
+            "p95": 0.051828320001368396,
+            "p99": 0.05900041199522093,
+            "max": 0.32755420000466984,
+            "over_period_fraction": 0.09486166007905138,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 8,
+          "reward": -87.93235909434473,
+          "discounted_return": -61.0516381949305,
+          "physics_steps": 689,
+          "actions": 689,
+          "distance": 27.841462969072534,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -3.4449999999999488,
+            "risk": -5.926463838893481,
+            "comfort": -0.48751455834591834,
+            "potential": 0.6792358857155956,
+            "task_progress": 11.24738341717902
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 34.450000513345,
+          "progress": 22.494766834358032,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 52.910857724580154,
+          "lateral_acceleration_rms": 0.17828914761882503,
+          "risk_rms": 0.4877565956167272,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 689,
+            "median": 0.00876520000747405,
+            "p95": 0.010594259997014889,
+            "p99": 0.01111479600192979,
+            "max": 0.314128800004255,
+            "over_period_fraction": 0.001451378809869376,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 689,
+            "median": 0.011384299999917857,
+            "p95": 0.06953573999926449,
+            "p99": 0.07580028000462334,
+            "max": 0.3152420999977039,
+            "over_period_fraction": 0.11901306240928883,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 689,
+            "median": 0.0013662999990629032,
+            "p95": 0.0017610200040508062,
+            "p99": 0.0019032199989305809,
+            "max": 0.002096199998049997,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 689,
+            "median": 0.012772699992638081,
+            "p95": 0.0709412399912253,
+            "p99": 0.07747244799917098,
+            "max": 0.3173951000062516,
+            "over_period_fraction": 0.11901306240928883,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 9,
+          "reward": -93.35969518097289,
+          "discounted_return": -64.2140050359798,
+          "physics_steps": 733,
+          "actions": 733,
+          "distance": 29.969216335426722,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -3.664999999999944,
+            "risk": -10.894902604648465,
+            "comfort": -0.40432532001294674,
+            "potential": 0.6892890082387517,
+            "task_progress": 10.915243735449787
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 36.65000054612756,
+          "progress": 21.830487470899563,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 49.291108429834104,
+          "lateral_acceleration_rms": 0.1378546488044256,
+          "risk_rms": 0.7994080396565115,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 733,
+            "median": 0.00863769999705255,
+            "p95": 0.011961979998159221,
+            "p99": 0.013350943996338162,
+            "max": 0.3145098999957554,
+            "over_period_fraction": 0.001364256480218281,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 733,
+            "median": 0.010958200000459328,
+            "p95": 0.08195605999790131,
+            "p99": 0.09812738399952643,
+            "max": 0.3159281000116607,
+            "over_period_fraction": 0.19781718963165076,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 733,
+            "median": 0.0013246000016806647,
+            "p95": 0.0018180199986090884,
+            "p99": 0.0021217560023069353,
+            "max": 0.0024763000110397115,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 733,
+            "median": 0.01225360001262743,
+            "p95": 0.08327320000389589,
+            "p99": 0.09948407600808415,
+            "max": 0.31853370000317227,
+            "over_period_fraction": 0.21282401091405184,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 10,
+          "reward": 24.480477373520785,
+          "discounted_return": 20.491431287749514,
+          "physics_steps": 393,
+          "actions": 393,
+          "distance": 24.070970533148095,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.96499999999998,
+            "risk": -4.820174701363353,
+            "comfort": -0.3705439111926433,
+            "potential": 0.6271793660739864,
+            "task_progress": 11.009016620002793
+          },
+          "goal_parking_controls": 1,
+          "goal_parking_eligible_controls": 1,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 19.650000292807817,
+          "progress": 22.01803324000558,
+          "path_efficiency_success_only": 0.9138262251843341,
+          "travel_time_success_only": 19.650000292807817,
+          "intervention_rate": 0.002544529262086514,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 61.05065280969247,
+          "lateral_acceleration_rms": 0.15202682195817518,
+          "risk_rms": 0.6263397153103323,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 393,
+            "median": 0.011200399996596389,
+            "p95": 0.014728520004427991,
+            "p99": 0.01617309199587907,
+            "max": 0.3263721999974223,
+            "over_period_fraction": 0.002544529262086514,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 393,
+            "median": 0.04242559999693185,
+            "p95": 0.07727212000463621,
+            "p99": 0.08673862800176717,
+            "max": 0.3285187000001315,
+            "over_period_fraction": 0.3231552162849873,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 393,
+            "median": 0.00134599999000784,
+            "p95": 0.0018200599937699732,
+            "p99": 0.0020266959996661157,
+            "max": 0.00251649999700021,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 393,
+            "median": 0.04365490000054706,
+            "p95": 0.07886206000403034,
+            "p99": 0.08799173199571664,
+            "max": 0.3305739000061294,
+            "over_period_fraction": 0.35877862595419846,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 11,
+          "reward": -88.08698293424277,
+          "discounted_return": -71.0265501368349,
+          "physics_steps": 417,
+          "actions": 417,
+          "distance": 26.487207494619657,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -2.0849999999999778,
+            "risk": -5.274741868894238,
+            "comfort": -0.3700665066631059,
+            "potential": 0.575632324061804,
+            "task_progress": 9.067193117252788
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 20.85000031068921,
+          "progress": 18.134386234505563,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 65.00212192663068,
+          "lateral_acceleration_rms": 0.30492411660970614,
+          "risk_rms": 0.6692702035081006,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 417,
+            "median": 0.00993110000854358,
+            "p95": 0.013840420002816245,
+            "p99": 0.02020206800778382,
+            "max": 0.3165042999899015,
+            "over_period_fraction": 0.002398081534772182,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 417,
+            "median": 0.0281503000005614,
+            "p95": 0.057873460007249376,
+            "p99": 0.06487704799801576,
+            "max": 0.31785300000046846,
+            "over_period_fraction": 0.14628297362110312,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 417,
+            "median": 0.0013807000068482012,
+            "p95": 0.0021059399965452025,
+            "p99": 0.002940231991815378,
+            "max": 0.011660200005280785,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 417,
+            "median": 0.0296873999905074,
+            "p95": 0.05948997999948915,
+            "p99": 0.06634511199779808,
+            "max": 0.3204317999916384,
+            "over_period_fraction": 0.1750599520383693,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 12,
+          "reward": -86.77042001362203,
+          "discounted_return": -81.44568700694809,
+          "physics_steps": 125,
+          "actions": 125,
+          "distance": 8.227676479173102,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -0.6250000000000004,
+            "risk": -0.706258728136679,
+            "comfort": -0.11474262598022467,
+            "potential": 0.6505595869681093,
+            "task_progress": 4.025021753526769
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "collision",
+          "scenario": "native_curve",
+          "simulation_seconds": 6.2500000931322575,
+          "progress": 8.050043507053537,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 51.70072291312543,
+          "lateral_acceleration_rms": 0.17937701822700006,
+          "risk_rms": 0.4112376429598258,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 125,
+            "median": 0.008524800010491163,
+            "p95": 0.011029379995306954,
+            "p99": 0.018663856001221595,
+            "max": 0.31812840000202414,
+            "over_period_fraction": 0.008,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 125,
+            "median": 0.06881139999313746,
+            "p95": 0.13444377999403515,
+            "p99": 0.15238885200000374,
+            "max": 0.33464729999832343,
+            "over_period_fraction": 0.856,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 125,
+            "median": 0.0013942999939899892,
+            "p95": 0.002441200002795085,
+            "p99": 0.003637279997929002,
+            "max": 0.004067500005476177,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 125,
+            "median": 0.07035359999281354,
+            "p95": 0.1366467400046531,
+            "p99": 0.15376395999686798,
+            "max": 0.3368761000019731,
+            "over_period_fraction": 0.872,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 13,
+          "reward": -86.06697689907962,
+          "discounted_return": -68.16214625815792,
+          "physics_steps": 456,
+          "actions": 456,
+          "distance": 29.627348030329586,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -2.2799999999999736,
+            "risk": -4.742659787093963,
+            "comfort": -0.441639163366823,
+            "potential": 0.6877665372170608,
+            "task_progress": 10.709555514164093
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 22.800000339746475,
+          "progress": 21.419111028328178,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 68.2650862263311,
+          "lateral_acceleration_rms": 0.15473924983722143,
+          "risk_rms": 0.5542204783346276,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 456,
+            "median": 0.008440700003120583,
+            "p95": 0.01146882499961066,
+            "p99": 0.012361334998422535,
+            "max": 0.3154209000058472,
+            "over_period_fraction": 0.0021929824561403508,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 456,
+            "median": 0.03827925000223331,
+            "p95": 0.07153719998677843,
+            "p99": 0.07916322999735712,
+            "max": 0.31634930000291206,
+            "over_period_fraction": 0.17543859649122806,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 456,
+            "median": 0.001186149995191954,
+            "p95": 0.0016058500004874077,
+            "p99": 0.001711115000216523,
+            "max": 0.0019477000023471192,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 456,
+            "median": 0.03964524999901187,
+            "p95": 0.0727494749953621,
+            "p99": 0.08043404999480115,
+            "max": 0.31808559999626596,
+            "over_period_fraction": 0.19736842105263158,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 14,
+          "reward": 24.510619485681694,
+          "discounted_return": 20.842963250363702,
+          "physics_steps": 362,
+          "actions": 362,
+          "distance": 24.1898456868706,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.8099999999999834,
+            "risk": -4.974106792975151,
+            "comfort": -0.34917129050110385,
+            "potential": 0.6210113692105853,
+            "task_progress": 11.022886199947362
+          },
+          "goal_parking_controls": 1,
+          "goal_parking_eligible_controls": 1,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 18.100000269711018,
+          "progress": 22.04577239989472,
+          "path_efficiency_success_only": 0.9093354469296632,
+          "travel_time_success_only": 18.100000269711018,
+          "intervention_rate": 0.0027624309392265192,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 71.16863024225125,
+          "lateral_acceleration_rms": 0.17874825810609948,
+          "risk_rms": 0.7049947078411645,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 362,
+            "median": 0.0108057999968878,
+            "p95": 0.013926350003748667,
+            "p99": 0.014808822005143154,
+            "max": 0.3233213999919826,
+            "over_period_fraction": 0.0027624309392265192,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 362,
+            "median": 0.02922184999624733,
+            "p95": 0.09661002500361064,
+            "p99": 0.10527981399660345,
+            "max": 0.3262946000031661,
+            "over_period_fraction": 0.2955801104972376,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 362,
+            "median": 0.0011953499997616746,
+            "p95": 0.0015729200073110402,
+            "p99": 0.0017084680004336404,
+            "max": 0.0018494999967515469,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 362,
+            "median": 0.03061014999548206,
+            "p95": 0.09754291000790545,
+            "p99": 0.10636730900354446,
+            "max": 0.3281764999992447,
+            "over_period_fraction": 0.30386740331491713,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 15,
+          "reward": -86.49914516204309,
+          "discounted_return": -71.21849782622512,
+          "physics_steps": 375,
+          "actions": 375,
+          "distance": 25.11009294890299,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -1.874999999999982,
+            "risk": -4.232569030371615,
+            "comfort": -0.3869574312610859,
+            "potential": 0.5742036872933425,
+            "task_progress": 9.421177612296269
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 18.750000279396772,
+          "progress": 18.842355224592552,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 72.18949406360056,
+          "lateral_acceleration_rms": 0.3130158817865087,
+          "risk_rms": 0.6323852509742474,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 375,
+            "median": 0.0086266999860527,
+            "p95": 0.011108110008353832,
+            "p99": 0.011931251994392367,
+            "max": 0.31704559999343473,
+            "over_period_fraction": 0.0026666666666666666,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 375,
+            "median": 0.019163500008289702,
+            "p95": 0.0758452199981548,
+            "p99": 0.08323417199513643,
+            "max": 0.317741599996225,
+            "over_period_fraction": 0.104,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 375,
+            "median": 0.0010923999943770468,
+            "p95": 0.0015288900001905858,
+            "p99": 0.0017526359984185542,
+            "max": 0.002195599998231046,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 375,
+            "median": 0.02023370000824798,
+            "p95": 0.07715167000569638,
+            "p99": 0.0843846399965696,
+            "max": 0.31880269999965094,
+            "over_period_fraction": 0.10933333333333334,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 16,
+          "reward": -84.15430056600157,
+          "discounted_return": -61.37532466408064,
+          "physics_steps": 598,
+          "actions": 598,
+          "distance": 27.662590928569816,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -2.9899999999999585,
+            "risk": -2.1119843482305627,
+            "comfort": -0.5323585344201753,
+            "potential": 0.7009692211143952,
+            "task_progress": 10.779073095534773
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 29.90000044554472,
+          "progress": 21.558146191069525,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 79.95448644470268,
+          "lateral_acceleration_rms": 0.07740404186974185,
+          "risk_rms": 0.28043541920389725,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 598,
+            "median": 0.005497050005942583,
+            "p95": 0.006844709994766162,
+            "p99": 0.007392637995362745,
+            "max": 0.3051021999999648,
+            "over_period_fraction": 0.0016722408026755853,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 598,
+            "median": 0.02337689999694703,
+            "p95": 0.08220621000436949,
+            "p99": 0.08694988099668988,
+            "max": 0.3058364999887999,
+            "over_period_fraction": 0.35618729096989965,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 598,
+            "median": 0.0010853499989025295,
+            "p95": 0.001600015001167776,
+            "p99": 0.0016948509974463377,
+            "max": 0.0017902999970829114,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 598,
+            "median": 0.02464365000196267,
+            "p95": 0.08336082500900374,
+            "p99": 0.0879259070025,
+            "max": 0.3070762999996077,
+            "over_period_fraction": 0.3612040133779264,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 17,
+          "reward": 23.550560772360953,
+          "discounted_return": 16.71877866627833,
+          "physics_steps": 656,
+          "actions": 656,
+          "distance": 26.448480765118802,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 8,
+          "reward_components": {
+            "event": 20.0,
+            "time": -3.2799999999999523,
+            "risk": -5.224759160194776,
+            "comfort": -0.5073144957213848,
+            "potential": 0.7386783925542386,
+            "task_progress": 11.823956035722864
+          },
+          "goal_parking_controls": 8,
+          "goal_parking_eligible_controls": 8,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 32.80000048875809,
+          "progress": 23.647912071445727,
+          "path_efficiency_success_only": 0.8900451363752371,
+          "travel_time_success_only": 32.80000048875809,
+          "intervention_rate": 0.012195121951219513,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 73.23991424919313,
+          "lateral_acceleration_rms": 0.08069172844795204,
+          "risk_rms": 0.4561484733551091,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 656,
+            "median": 0.007098549998772796,
+            "p95": 0.00901585000610794,
+            "p99": 0.009503750005387702,
+            "max": 0.3086691000062274,
+            "over_period_fraction": 0.001524390243902439,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 656,
+            "median": 0.057077099998423364,
+            "p95": 0.08458820000305423,
+            "p99": 0.10243761500751135,
+            "max": 0.30977160000475124,
+            "over_period_fraction": 0.5685975609756098,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 656,
+            "median": 0.001174749995698221,
+            "p95": 0.0016256750059255864,
+            "p99": 0.0017506250005681068,
+            "max": 0.0018860999989556149,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 656,
+            "median": 0.058365050004795194,
+            "p95": 0.08592510000016773,
+            "p99": 0.10380776500605865,
+            "max": 0.3116792999935569,
+            "over_period_fraction": 0.5807926829268293,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 18,
+          "reward": 23.18980371083218,
+          "discounted_return": 17.66303771915759,
+          "physics_steps": 540,
+          "actions": 540,
+          "distance": 23.052174855968726,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "reward_components": {
+            "event": 20.0,
+            "time": -2.6999999999999647,
+            "risk": -5.358613819990796,
+            "comfort": -0.44240924090496014,
+            "potential": 0.6677245266370415,
+            "task_progress": 11.023102245090886
+          },
+          "goal_parking_controls": 2,
+          "goal_parking_eligible_controls": 2,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 27.000000402331352,
+          "progress": 22.046204490181776,
+          "path_efficiency_success_only": 0.9542129658596887,
+          "travel_time_success_only": 27.000000402331352,
+          "intervention_rate": 0.003703703703703704,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 71.18740160206387,
+          "lateral_acceleration_rms": 0.10393680609968459,
+          "risk_rms": 0.5225940472056512,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 540,
+            "median": 0.009593350005161483,
+            "p95": 0.011369704998651286,
+            "p99": 0.011802610992453994,
+            "max": 0.3095241000119131,
+            "over_period_fraction": 0.001851851851851852,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 540,
+            "median": 0.059261049995257054,
+            "p95": 0.07983124500169651,
+            "p99": 0.08588851200023782,
+            "max": 0.31177390000084415,
+            "over_period_fraction": 0.6703703703703704,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 540,
+            "median": 0.0012347000010777265,
+            "p95": 0.0016436200006864966,
+            "p99": 0.0017909900008817206,
+            "max": 0.0021726000122725964,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 540,
+            "median": 0.060546050000994,
+            "p95": 0.08132891000132075,
+            "p99": 0.08730737299207249,
+            "max": 0.31384699999762233,
+            "over_period_fraction": 0.6814814814814815,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 19,
+          "reward": -89.40525058849803,
+          "discounted_return": -84.76410820741754,
+          "physics_steps": 107,
+          "actions": 107,
+          "distance": 5.149965752760843,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -0.5350000000000004,
+            "risk": -1.4097960247757413,
+            "comfort": -0.10742400071146066,
+            "potential": 0.550337626716503,
+            "task_progress": 2.0966318102726564
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "collision",
+          "scenario": "native_curve",
+          "simulation_seconds": 5.350000079721212,
+          "progress": 4.193263620545313,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 99.9601030592416,
+          "lateral_acceleration_rms": 0.1716619566151223,
+          "risk_rms": 0.7061671896179861,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 107,
+            "median": 0.007864200000767596,
+            "p95": 0.009903970002778805,
+            "p99": 0.033124235999712225,
+            "max": 0.3226954999990994,
+            "over_period_fraction": 0.009345794392523364,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 107,
+            "median": 0.0804372999991756,
+            "p95": 0.12672089999687153,
+            "p99": 0.16225145400501784,
+            "max": 0.37805430000298657,
+            "over_period_fraction": 1.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 107,
+            "median": 0.0012932999961776659,
+            "p95": 0.0019969900065916588,
+            "p99": 0.0024690460032434198,
+            "max": 0.0026975000073434785,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 107,
+            "median": 0.0818542999913916,
+            "p95": 0.12881371999683316,
+            "p99": 0.1641759739987901,
+            "max": 0.3795287999964785,
+            "over_period_fraction": 1.0,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 20,
+          "reward": -82.64423352360112,
+          "discounted_return": -60.345776140537346,
+          "physics_steps": 591,
+          "actions": 591,
+          "distance": 27.492725446242776,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -2.954999999999959,
+            "risk": -0.9017278625152916,
+            "comfort": -0.4537181800373186,
+            "potential": 0.7066995135686867,
+            "task_progress": 10.959513005382803
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 29.550000440329313,
+          "progress": 21.919026010765606,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 74.27968086480979,
+          "lateral_acceleration_rms": 0.05824342962365594,
+          "risk_rms": 0.08497241962293335,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 591,
+            "median": 0.005675000007613562,
+            "p95": 0.006974350006203167,
+            "p99": 0.00762365999835311,
+            "max": 0.3059932000032859,
+            "over_period_fraction": 0.001692047377326565,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 591,
+            "median": 0.03555279999272898,
+            "p95": 0.0837575499972445,
+            "p99": 0.11741539999929959,
+            "max": 0.307166500002495,
+            "over_period_fraction": 0.42470389170896783,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 591,
+            "median": 0.0011628000065684319,
+            "p95": 0.0016274500012514181,
+            "p99": 0.001803210003708955,
+            "max": 0.0024118000001180917,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 591,
+            "median": 0.03677159998915158,
+            "p95": 0.0852367499974207,
+            "p99": 0.11966119000862821,
+            "max": 0.3093883999972604,
+            "over_period_fraction": 0.42978003384094754,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 21,
+          "reward": -87.2675761333,
+          "discounted_return": -63.11356668261326,
+          "physics_steps": 647,
+          "actions": 647,
+          "distance": 27.548141535785856,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 0,
+          "reward_components": {
+            "event": -90.0,
+            "time": -3.2349999999999532,
+            "risk": -5.420532540227589,
+            "comfort": -0.4207790902387356,
+            "potential": 0.729246650449017,
+            "task_progress": 11.079488846717293
+          },
+          "goal_parking_controls": 0,
+          "goal_parking_eligible_controls": 0,
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "scenario": "native_curve",
+          "simulation_seconds": 32.350000482052565,
+          "progress": 22.158977693434576,
+          "path_efficiency_success_only": null,
+          "travel_time_success_only": null,
+          "intervention_rate": 0.0,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 73.04990076505992,
+          "lateral_acceleration_rms": 0.07766571920635201,
+          "risk_rms": 0.4794006077218938,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 647,
+            "median": 0.007295599993085489,
+            "p95": 0.009282310001435682,
+            "p99": 0.01132904399157267,
+            "max": 0.3067633000027854,
+            "over_period_fraction": 0.0015455950540958269,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 647,
+            "median": 0.06044300000939984,
+            "p95": 0.11240500999992946,
+            "p99": 0.14107883400429272,
+            "max": 0.30752650000795256,
+            "over_period_fraction": 0.5656877897990726,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 647,
+            "median": 0.0012705999979516491,
+            "p95": 0.0017492800048785283,
+            "p99": 0.0022377439987030802,
+            "max": 0.0029861000075470656,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 647,
+            "median": 0.06169140001293272,
+            "p95": 0.11378356000059284,
+            "p99": 0.14275400999118573,
+            "max": 0.3094398999965051,
+            "over_period_fraction": 0.5811437403400309,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 22,
+          "reward": 22.886142738204693,
+          "discounted_return": 17.117528881697968,
+          "physics_steps": 566,
+          "actions": 566,
+          "distance": 22.911918538932174,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "reward_components": {
+            "event": 20.0,
+            "time": -2.829999999999962,
+            "risk": -5.535848342410641,
+            "comfort": -0.4414836702158921,
+            "potential": 0.6757568126850363,
+            "task_progress": 11.017717938146191
+          },
+          "goal_parking_controls": 2,
+          "goal_parking_eligible_controls": 2,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 28.300000421702862,
+          "progress": 22.035435876292375,
+          "path_efficiency_success_only": 0.9600542224979137,
+          "travel_time_success_only": 28.300000421702862,
+          "intervention_rate": 0.0035335689045936395,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 71.31951878078686,
+          "lateral_acceleration_rms": 0.09802400458065673,
+          "risk_rms": 0.5070197844098251,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 566,
+            "median": 0.010154550000152085,
+            "p95": 0.012895099996967474,
+            "p99": 0.015464985002472531,
+            "max": 0.31806150000193156,
+            "over_period_fraction": 0.0017667844522968198,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 566,
+            "median": 0.06625309999799356,
+            "p95": 0.08497372500642086,
+            "p99": 0.11036510000412832,
+            "max": 0.3204831000039121,
+            "over_period_fraction": 0.7402826855123675,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 566,
+            "median": 0.0013117999988025986,
+            "p95": 0.0018024249948211946,
+            "p99": 0.0022498500009533033,
+            "max": 0.00350770000659395,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 566,
+            "median": 0.06754470000305446,
+            "p95": 0.08630310000080499,
+            "p99": 0.11212533999059832,
+            "max": 0.322456299996702,
+            "over_period_fraction": 0.7544169611307421,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 23,
+          "reward": 26.07489860116992,
+          "discounted_return": 21.007845574963532,
+          "physics_steps": 461,
+          "actions": 461,
+          "distance": 22.380367298403687,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "reward_components": {
+            "event": 20.0,
+            "time": -2.304999999999973,
+            "risk": -1.914881977373136,
+            "comfort": -0.4227667412323735,
+            "potential": 0.5987946662239554,
+            "task_progress": 10.118752653551478
+          },
+          "goal_parking_controls": 2,
+          "goal_parking_eligible_controls": 2,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 23.050000343471766,
+          "progress": 20.23750530710295,
+          "path_efficiency_success_only": 0.9023438586735393,
+          "travel_time_success_only": 23.050000343471766,
+          "intervention_rate": 0.004338394793926247,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 89.00408512857776,
+          "lateral_acceleration_rms": 0.13309364989940103,
+          "risk_rms": 0.2880211522732429,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 461,
+            "median": 0.007844599997042678,
+            "p95": 0.009357999995700084,
+            "p99": 0.010814579992438659,
+            "max": 0.3215473000018392,
+            "over_period_fraction": 0.0021691973969631237,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 461,
+            "median": 0.05365659999370109,
+            "p95": 0.0971199999912642,
+            "p99": 0.1316946999955688,
+            "max": 0.3239523999945959,
+            "over_period_fraction": 0.5813449023861171,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 461,
+            "median": 0.001408700001775287,
+            "p95": 0.001827999993111007,
+            "p99": 0.0022243399900617068,
+            "max": 0.002877099992474541,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 461,
+            "median": 0.0550445000117179,
+            "p95": 0.09845989999303129,
+            "p99": 0.13344929999730068,
+            "max": 0.32627840001077857,
+            "over_period_fraction": 0.6052060737527115,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        }
+      ],
+      "world_ticks": 11704,
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22"
+    },
+    "raw_audit": {
+      "schema_version": 1,
+      "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+      "batch": "20261104_matched_flat_seed11_known24",
+      "method": "B1",
+      "protocol_sha256": "36b4a61d7e334d364f06978ba33a51cfc5ca206f94274e7d2f1d3d780047e2d4",
+      "config_sha256": "c5d39adeea2ed543fab993a2bd59aee4252e7bc6f8cb1aad2ccbf189b8293f2e",
+      "summary_sha256": "df9036cee7d3cbf9989bf9a02a2ac5d94da9fc5a717833ff0c2af7fd526f8ad6",
+      "evaluation_sha256": "5e13d95d6aa855f0a1c66aea55d89dbd07c61bf24ccb12df70986fae840aeddd",
+      "evaluation_trace_sha256": "97b06a2a6e9b87ab1271d297856ea258c1913ffd96eccbaa0585cbb3932f8bb6",
+      "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transition_hashes": {
+        "transitions_000000000_1793841963959127000.jsonl.gz": "beba96eeaf9f7fb2e358f0bda78a5fc3cf2fbe28f3500d8b6aee1e977cb281d2"
+      },
+      "bridge_response_stream": "bridge_77204215_responses.jsonl.gz",
+      "bridge_response_sha256": "b13b638165436b1908415e1e659bce6b2db4fa76684ac1eb124c7a03031f998c",
+      "bridge_complete_rows": 11009,
+      "training_control_frames_verified": 0,
+      "evaluation_control_frames_verified": 10961,
+      "total_applied_controls_verified": 10961,
+      "training_world_ticks_verified": 0,
+      "evaluation_world_ticks_verified": 11704,
+      "training_termination_reasons": {},
+      "checkpoint": "checkpoint_000000000",
+      "checkpoint_metadata_sha256": "bfa31d2514f8537a02a30832f042a1ac132c7cc96e07782cdb523f32a9090dea",
+      "lineage_controls": 30720,
+      "charged_controls_lower_bound": 69909,
+      "segment_optimizer_steps": 0,
+      "optimizer_steps_total_lower_bound": 917,
+      "unknown_unflushed_ancestor_tail": false
+    },
+    "engine": {
+      "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+      "batch": "20261104_matched_flat_seed11_known24",
+      "protocol_sha256": "36b4a61d7e334d364f06978ba33a51cfc5ca206f94274e7d2f1d3d780047e2d4",
+      "control_delivery": "batch_sync_v1",
+      "bridge_streams": [
+        {
+          "name": "bridge_77204215_responses.jsonl.gz",
+          "sha256": "b13b638165436b1908415e1e659bce6b2db4fa76684ac1eb124c7a03031f998c"
+        }
+      ],
+      "tolerance": 1e-05,
+      "counts": {
+        "controls": 10961,
+        "gear_or_handbrake_mismatches": 0,
+        "missing_or_negative_sync_ack": 0
+      },
+      "mismatch_channels": {},
+      "by_phase": {
+        "evaluation": {
+          "controls": 10961
+        }
+      },
+      "mismatch_examples": [],
+      "all_engine_controls_match_requested": true,
+      "strict_delivery_gate_passed": true,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+    },
+    "measured_start_inference": {
+      "scope": "Offline inference at measured evaluation starts; zero new CARLA ticks, not whole-trajectory re-execution",
+      "method": "B1",
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "trace_sha256": "97b06a2a6e9b87ab1271d297856ea258c1913ffd96eccbaa0585cbb3932f8bb6",
+      "loaded_normalization_training": false,
+      "inference_normalization_frozen": true,
+      "audit_script_sha256": "a8565c82dd407a15cc12703052a8ffc11e88d973eca0e669c3b25aa51734a239",
+      "batch_protocol_sha256": "36b4a61d7e334d364f06978ba33a51cfc5ca206f94274e7d2f1d3d780047e2d4",
+      "new_controls": 0,
+      "optimizer_updates": 0,
+      "results": [
+        {
+          "case_id": 0,
+          "action": [
+            0.9563693404197693,
+            0.02470730058848858
+          ],
+          "recorded_action": [
+            0.9563693404197693,
+            0.02470730058848858
+          ],
+          "road_sha256": "a2329094b232c9b8daf160efc2f18965cb70c750a745bdb64d61d40b37e513d9",
+          "mean": [
+            0.9563693404197693,
+            0.02470730058848858
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 1,
+          "action": [
+            0.4386008381843567,
+            0.09449976682662964
+          ],
+          "recorded_action": [
+            0.4386008381843567,
+            0.09449976682662964
+          ],
+          "road_sha256": "b1ecd7c953c3a56ea9d0374021e4f4c95014e955f476d328b1f67266b90c44e0",
+          "mean": [
+            0.4386008381843567,
+            0.09449976682662964
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 2,
+          "action": [
+            0.8974051475524902,
+            0.11282999813556671
+          ],
+          "recorded_action": [
+            0.8974051475524902,
+            0.11282999813556671
+          ],
+          "road_sha256": "21d5bb4f646127df5a57d3f8e248dc9b8bfff0292c936e92d5a432ae869aa83e",
+          "mean": [
+            0.8974051475524902,
+            0.11282999813556671
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 3,
+          "action": [
+            0.791875958442688,
+            -0.15736956894397736
+          ],
+          "recorded_action": [
+            0.791875958442688,
+            -0.15736956894397736
+          ],
+          "road_sha256": "c5d699509dbc6fd1225b7a2ebf09f1fe5c9ff1b2dabdcc99f11fe76fffb8adb7",
+          "mean": [
+            0.791875958442688,
+            -0.15736956894397736
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 4,
+          "action": [
+            0.8082921504974365,
+            0.008455848321318626
+          ],
+          "recorded_action": [
+            0.8082921504974365,
+            0.008455848321318626
+          ],
+          "road_sha256": "0dd63e0b2776a4f299605e41295f54a8fa301395c6a3368ca55c3665d0b37cd3",
+          "mean": [
+            0.8082921504974365,
+            0.008455848321318626
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 5,
+          "action": [
+            0.2896609604358673,
+            0.10325770080089569
+          ],
+          "recorded_action": [
+            0.2896609604358673,
+            0.10325770080089569
+          ],
+          "road_sha256": "5a0d6238accadd9ea5256e7731a36038daeebef7aef7fa4a48b3af4210d9d7bf",
+          "mean": [
+            0.2896609604358673,
+            0.10325770080089569
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 6,
+          "action": [
+            0.7298012375831604,
+            0.06299863755702972
+          ],
+          "recorded_action": [
+            0.7298012375831604,
+            0.06299863755702972
+          ],
+          "road_sha256": "8f09c64cef764f71e0f916c26ca24b080c293d94433836700cfc7c5566ce3ac5",
+          "mean": [
+            0.7298012375831604,
+            0.06299863755702972
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 7,
+          "action": [
+            0.484171599149704,
+            -0.1695134937763214
+          ],
+          "recorded_action": [
+            0.484171599149704,
+            -0.1695134937763214
+          ],
+          "road_sha256": "abb53c7180e28316685bcaedfe382bf241279996ab2caf847ceac80ff7781d9c",
+          "mean": [
+            0.484171599149704,
+            -0.1695134937763214
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 8,
+          "action": [
+            0.8260582685470581,
+            -0.0010985340923070908
+          ],
+          "recorded_action": [
+            0.8260582685470581,
+            -0.0010985340923070908
+          ],
+          "road_sha256": "a2329094b232c9b8daf160efc2f18965cb70c750a745bdb64d61d40b37e513d9",
+          "mean": [
+            0.8260582685470581,
+            -0.0010985340923070908
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 9,
+          "action": [
+            0.3831758201122284,
+            -0.0846310555934906
+          ],
+          "recorded_action": [
+            0.3831758201122284,
+            -0.0846310555934906
+          ],
+          "road_sha256": "b1ecd7c953c3a56ea9d0374021e4f4c95014e955f476d328b1f67266b90c44e0",
+          "mean": [
+            0.3831758201122284,
+            -0.0846310555934906
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 10,
+          "action": [
+            0.7965109944343567,
+            0.12154912203550339
+          ],
+          "recorded_action": [
+            0.7965109944343567,
+            0.12154912203550339
+          ],
+          "road_sha256": "21d5bb4f646127df5a57d3f8e248dc9b8bfff0292c936e92d5a432ae869aa83e",
+          "mean": [
+            0.7965109944343567,
+            0.12154912203550339
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 11,
+          "action": [
+            0.6626728177070618,
+            -0.06685005128383636
+          ],
+          "recorded_action": [
+            0.6626728177070618,
+            -0.06685005128383636
+          ],
+          "road_sha256": "c5d699509dbc6fd1225b7a2ebf09f1fe5c9ff1b2dabdcc99f11fe76fffb8adb7",
+          "mean": [
+            0.6626728177070618,
+            -0.06685005128383636
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 12,
+          "action": [
+            0.7851538062095642,
+            -0.03833106905221939
+          ],
+          "recorded_action": [
+            0.7851538062095642,
+            -0.03833106905221939
+          ],
+          "road_sha256": "a2329094b232c9b8daf160efc2f18965cb70c750a745bdb64d61d40b37e513d9",
+          "mean": [
+            0.7851538062095642,
+            -0.03833106905221939
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 13,
+          "action": [
+            0.5664854645729065,
+            -0.13582220673561096
+          ],
+          "recorded_action": [
+            0.5664854645729065,
+            -0.13582220673561096
+          ],
+          "road_sha256": "b1ecd7c953c3a56ea9d0374021e4f4c95014e955f476d328b1f67266b90c44e0",
+          "mean": [
+            0.5664854645729065,
+            -0.13582220673561096
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 14,
+          "action": [
+            0.8674885034561157,
+            0.10470432043075562
+          ],
+          "recorded_action": [
+            0.8674885034561157,
+            0.10470432043075562
+          ],
+          "road_sha256": "21d5bb4f646127df5a57d3f8e248dc9b8bfff0292c936e92d5a432ae869aa83e",
+          "mean": [
+            0.8674885034561157,
+            0.10470432043075562
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 15,
+          "action": [
+            0.7295684814453125,
+            -0.0747969001531601
+          ],
+          "recorded_action": [
+            0.7295684814453125,
+            -0.0747969001531601
+          ],
+          "road_sha256": "c5d699509dbc6fd1225b7a2ebf09f1fe5c9ff1b2dabdcc99f11fe76fffb8adb7",
+          "mean": [
+            0.7295684814453125,
+            -0.0747969001531601
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 16,
+          "action": [
+            0.9607714414596558,
+            0.020381389185786247
+          ],
+          "recorded_action": [
+            0.9607714414596558,
+            0.020381389185786247
+          ],
+          "road_sha256": "a2329094b232c9b8daf160efc2f18965cb70c750a745bdb64d61d40b37e513d9",
+          "mean": [
+            0.9607714414596558,
+            0.020381389185786247
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 17,
+          "action": [
+            0.37881022691726685,
+            0.032334864139556885
+          ],
+          "recorded_action": [
+            0.37881022691726685,
+            0.032334864139556885
+          ],
+          "road_sha256": "b1ecd7c953c3a56ea9d0374021e4f4c95014e955f476d328b1f67266b90c44e0",
+          "mean": [
+            0.37881022691726685,
+            0.032334864139556885
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 18,
+          "action": [
+            0.9128513336181641,
+            0.1837434619665146
+          ],
+          "recorded_action": [
+            0.9128513336181641,
+            0.1837434619665146
+          ],
+          "road_sha256": "21d5bb4f646127df5a57d3f8e248dc9b8bfff0292c936e92d5a432ae869aa83e",
+          "mean": [
+            0.9128513336181641,
+            0.1837434619665146
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 19,
+          "action": [
+            0.7273448705673218,
+            -0.19380754232406616
+          ],
+          "recorded_action": [
+            0.7273448705673218,
+            -0.19380754232406616
+          ],
+          "road_sha256": "c5d699509dbc6fd1225b7a2ebf09f1fe5c9ff1b2dabdcc99f11fe76fffb8adb7",
+          "mean": [
+            0.7273448705673218,
+            -0.19380754232406616
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 20,
+          "action": [
+            0.9632991552352905,
+            0.017844228073954582
+          ],
+          "recorded_action": [
+            0.9632991552352905,
+            0.017844228073954582
+          ],
+          "road_sha256": "a2329094b232c9b8daf160efc2f18965cb70c750a745bdb64d61d40b37e513d9",
+          "mean": [
+            0.9632991552352905,
+            0.017844228073954582
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 21,
+          "action": [
+            0.4314999282360077,
+            0.04023415595293045
+          ],
+          "recorded_action": [
+            0.4314999282360077,
+            0.04023415595293045
+          ],
+          "road_sha256": "b1ecd7c953c3a56ea9d0374021e4f4c95014e955f476d328b1f67266b90c44e0",
+          "mean": [
+            0.4314999282360077,
+            0.04023415595293045
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 22,
+          "action": [
+            0.9196431040763855,
+            0.1850668489933014
+          ],
+          "recorded_action": [
+            0.9196431040763855,
+            0.1850668489933014
+          ],
+          "road_sha256": "21d5bb4f646127df5a57d3f8e248dc9b8bfff0292c936e92d5a432ae869aa83e",
+          "mean": [
+            0.9196431040763855,
+            0.1850668489933014
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        },
+        {
+          "case_id": 23,
+          "action": [
+            0.6993389129638672,
+            -0.20655223727226257
+          ],
+          "recorded_action": [
+            0.6993389129638672,
+            -0.20655223727226257
+          ],
+          "road_sha256": "c5d699509dbc6fd1225b7a2ebf09f1fe5c9ff1b2dabdcc99f11fe76fffb8adb7",
+          "mean": [
+            0.6993389129638672,
+            -0.20655223727226257
+          ],
+          "std": [
+            0.018322229385375977,
+            0.01831655204296112
+          ]
+        }
+      ]
+    },
+    "guard_final": {
+      "epoch": 1793842513.5932589,
+      "worker_pid": 24076,
+      "exit_code": 0,
+      "reason": null
+    }
+  },
+  "privacy_redactions": [
+    "Absolute frozen_source_root removed from public inference receipt;original artifact SHA256 retained"
+  ],
+  "endpoint_provenance_hashes": {
+    "protocol.json": "36b4a61d7e334d364f06978ba33a51cfc5ca206f94274e7d2f1d3d780047e2d4",
+    "strict_delivery.json": "031894be63ad9ca93d2fff7ccc7841b650d9e7a16c969d41abcf36aaf557a19c",
+    "guard_final.json": "6d87e85e2a852d95776d720832d1213450186d51ff1a33a6d004e881052f0ba7",
+    "B1/evaluation.json": "5e13d95d6aa855f0a1c66aea55d89dbd07c61bf24ccb12df70986fae840aeddd",
+    "B1/endpoint_raw_audit.json": "10729b601787b310c4d25a9ad0cbfdb2cdb04c6ce1cc7a7d6ee20a4f96d332f8",
+    "B1/measured_start_inference.json": "57c8fb0877f81a5e92ad21459fd2c8dadc32bb0ed45f25ac1b05daec9f93fff9",
+    "B1/model.zip": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+    "B1/normalization.pkl": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22"
+  }
+}
