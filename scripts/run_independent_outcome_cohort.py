@@ -351,11 +351,18 @@ def completed_phase(cohort, archive, label, reuse):
     return True
 
 
+def runtime_paths(plan, python=None, carla_python=None):
+    paths=[Path(python or plan['runtime_python']).resolve(),Path(carla_python or plan['runtime_carla_python']).resolve()]
+    if not all(p.is_file() for p in paths):raise ValueError('Explicit existing learning/client executables required')
+    return tuple(map(str,paths))
+
+
 def run(cohort, archive, recovery_batch=None, *, execution_name=None,
-        resume_completed=False, seeds=None, rpc_port=2110):
+        resume_completed=False, seeds=None, rpc_port=2110, python=None, carla_python=None):
     selected=resumed_selection(seeds,execution_name,resume_completed,rpc_port)
     cohort, archive = Path(cohort).resolve(), Path(archive).resolve()
     plan = read(cohort/'registration.json'); original_execution = cohort/'execution'
+    runtime_python,runtime_carla_python=runtime_paths(plan,python,carla_python)
     reuse=bool(recovery_batch or resume_completed)
     execution = cohort/(execution_name or ('execution_resume_20261105' if recovery_batch else 'execution')); execution.mkdir()
     def completed(label):
@@ -377,7 +384,7 @@ def run(cohort, archive, recovery_batch=None, *, execution_name=None,
             if sha(cohort/'source'/name) != digest:
                 raise ValueError('Frozen cohort source changed')
         call([shutil.which('pwsh'),'-NoProfile','-File',cohort/'source/scripts/run_registered_native.ps1',
-            '-Batch',batch,'-Python',plan['runtime_python'],'-CarlaPython',plan['runtime_carla_python']],
+            '-Batch',batch,'-Python',runtime_python,'-CarlaPython',runtime_carla_python],
             label+'_native',timeout=15000)
         require_finished_parent(batch)
         env = dict(os.environ,NAVSTACK_AUDIT_SOURCE_ROOT=str(batch/'source'),PYTHONIOENCODING='utf-8')
@@ -441,7 +448,9 @@ if __name__ == '__main__':
     parser.add_argument('phase',choices=('prepare','run')); parser.add_argument('--cohort',required=True)
     parser.add_argument('--archive',required=True);parser.add_argument('--recovery-batch')
     parser.add_argument('--execution-name');parser.add_argument('--resume-completed',action='store_true')
-    parser.add_argument('--seeds',type=int,nargs='+');parser.add_argument('--rpc-port',type=int,default=2110);args=parser.parse_args()
+    parser.add_argument('--seeds',type=int,nargs='+');parser.add_argument('--rpc-port',type=int,default=2110)
+    parser.add_argument('--python');parser.add_argument('--carla-python');args=parser.parse_args()
     if args.phase=='prepare':prepare(args.cohort,args.archive)
     else:run(args.cohort,args.archive,args.recovery_batch,execution_name=args.execution_name,
-        resume_completed=args.resume_completed,seeds=args.seeds,rpc_port=args.rpc_port)
+        resume_completed=args.resume_completed,seeds=args.seeds,rpc_port=args.rpc_port,
+        python=args.python,carla_python=args.carla_python)

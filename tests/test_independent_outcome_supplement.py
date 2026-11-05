@@ -49,3 +49,13 @@ def test_unregistered_port_is_rejected_before_staging_anything(tmp_path):
     with pytest.raises(ValueError,match='disjoint'):
         stage(tmp_path,tmp_path,{},'H','unused',training=True,checkpoint=tmp_path,rpc_port=2100)
     assert not list(tmp_path.iterdir())
+
+
+def test_explicit_runtime_paths_preserve_old_registration_and_fail_before_missing_runtime(tmp_path):
+    from scripts.run_independent_outcome_cohort import runtime_paths
+    plan=dict(runtime_python='unavailable_old_path',runtime_carla_python='unavailable_old_client')
+    before=dict(plan)
+    with pytest.raises(ValueError,match='executables'):runtime_paths(plan)
+    py=tmp_path/'learning.exe';client=tmp_path/'client.exe';py.touch();client.touch()
+    assert runtime_paths(plan,py,client)==(str(py.resolve()),str(client.resolve()))
+    assert plan==before

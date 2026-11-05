@@ -19,7 +19,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from navstack.process_lease import ProcessLease
 from navstack.research import atomic_json
-from scripts.run_independent_outcome_cohort import completed_phase, resource_admission
+from scripts.run_independent_outcome_cohort import completed_phase, resource_admission, runtime_paths
 from scripts.audit_native_method_endpoint import read, sha
 from scripts.prepare_native_recovery import verified_checkpoint_metadata
 
@@ -65,6 +65,7 @@ def preflight(cohort,archive,output):
     if output.parent!=archive:raise ValueError('Use a fresh direct archive child')
     if (archive/'STOP').exists():raise ValueError('Archive STOP requires its recorded owner to be resolved')
     plan=read(cohort/'registration.json');resources=resource_admission(archive);check_idle_ports()
+    python,carla_python=runtime_paths(plan,ROOT/'.venv/Scripts/python.exe',ROOT/'.carla-python37/runtime/python.exe')
     for name,digest in plan['source_hashes'].items():
         if sha(cohort/'source'/name)!=digest:raise ValueError('Frozen native source differs:'+name)
     original={}
@@ -99,6 +100,8 @@ def preflight(cohort,archive,output):
         maximum_simultaneous_servers=2,resources=resources,original_registration_sha256=sha(cohort/'registration.json'),
         previous_completed_markers=original,initializers=initializers,operational_source_hashes=code,
         repository_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),created_epoch=time.time())
+    registration.update(runtime_python=python,runtime_carla_python=carla_python,
+        runtime_override_note='Explicit executables from existing workspace;original registration strings and SHA retained unchanged')
     atomic_json(output/'registration.json',registration)
     print(json.dumps(dict(status='PREFLIGHT_COMPLETE_NOT_STARTED',completed_phases_reused=len(original),remaining_seeds=list(SLOTS))),flush=True)
 
@@ -118,7 +121,8 @@ def run(output):
             execution=f'execution_supplement_seed{seed}_20261105'
             command=[sys.executable,str(output/'operational_source/scripts/run_independent_outcome_cohort.py'),'run',
                 '--cohort',str(cohort),'--archive',str(archive),'--resume-completed','--execution-name',execution,
-                '--seeds',str(seed),'--rpc-port',str(SLOTS[seed])]
+                '--seeds',str(seed),'--rpc-port',str(SLOTS[seed]),
+                '--python',p['runtime_python'],'--carla-python',p['runtime_carla_python']]
             with (output/f'seed{seed}_driver.log').open('xb') as stream:
                 child=subprocess.Popen(command,cwd=ROOT,stdout=stream,stderr=subprocess.STDOUT)
                 atomic_json(output/f'seed{seed}_driver_process.json',dict(pid=child.pid,epoch=time.time(),execution=execution))
