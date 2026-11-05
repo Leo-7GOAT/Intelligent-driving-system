@@ -1,4 +1,10 @@
-# 当前：2026-11-05 08:16 seed22 H恢复训练闭合，完整known24正在评估
+# 当前：2026-11-05 08:19 seed22 H完整验证23/24，H0配对真实训练中
+
+seed22 H known24已全部闭合（原worker28432正常退出，勿再等它），23/24success+1deadline/0unsafe，8781controls/915interventions/59planfail。共同zeroPPO24/24、8275/430/10；训练后少1success、+506controls/+485interventions/+49planfail，不能宣称PPO收益。失败case20为route0 crossing_walker(distance11,lateral-2.5,speed1.2,delay3.5)，900controls/540interv/52planfails/0MPCfail，尚无新failure分支因果归因。源/校准/任务list/config与baseline逐字典相同；raw/engine全PASS、24measuredstarts/525staticNN全PASS，但moving fullNN仍未复算。报告reports/native_seed22_H_known24_complete_20261105.json含全部24+baseline24行及时延指标和ancestor accounting correction，不删失败不选checkpoint。rootf42b623包含上段恢复报告/祖先标志修复已push，CI状态另查；勿将f42源码注入现有worker。
+
+同一coordinator32508/tool44378自动进入20261104_independent_outcome_seed22_H0_TRAIN48_PPO30720：新worker34136 creation08:17:42.613（精度以worker_process/CIM为准），08:19 heartbeat2405controls/242actions/7rollouts。guard以该新batch为准。B1observer4100/tool39552仍只读等全25阶段。当前仅1/5独立pair完整，第二H结束不等于第二pair；endpoint原登记的祖先unknownfalse按sidecar更正为true，当前物理运行版本不改。最终120未生成/查看，研究UNMET。
+
+# 历史：2026-11-05 08:16 seed22 H恢复训练闭合，完整known24正在评估
 
 恢复worker33900已正常退出0，不能再等该旧PID；coordinator32508/tool44378仍在，已自动进入20261104_independent_outcome_seed22_H_known24，worker28432 creation08:12:44.931485/basePython，guard3004。先用OS核验当前identity。B1observer4100/tool39552仍只读等待全25jobs，不能抢开B2或第二CARLA。原cohort/物理源仍冻结62d，恢复仅admission覆盖。
 

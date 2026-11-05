@@ -6,6 +6,8 @@ A known-map, low-speed research system combining **PPO high-level decisions → 
 
 **Development prerelease; research acceptance remains unmet.** Real CARLA training, control-frame audits and public model reproduction have been executed. The current evidence does not establish hierarchical superiority, a stable added-PPO benefit, or road-safety certification.
 
+The recovered seed22 H learner reaches30,723 retained training controls/970Adam updates,but its complete known24endpoint scores**23/24**,versus**24/24**for the common zero-PPO baseline. It uses506more controls,485more interventions and49more planning failures,including one crossing-walker deadline. Raw/engine/all-start/static-NN checks close;the interrupted ancestor's unknown tail remains disclosed. H0seed22is training,and only one independent H/H0pair is closed. [All paired outcomes and accounting correction](reports/native_seed22_H_known24_complete_20261105.json). This result does not establish a PPO benefit.
+
 The [spatial B2/Hybrid component check](docs/spatial_planner_component.md) now enforces the previously ignored grid node cap and reproduces all16static/curve fixtures using public inputs. It remains separate from native B2 driving and contribution claims.
 
 
