@@ -29,6 +29,27 @@ def write(path, value):
     Path(path).write_text(json.dumps(value, indent=2, default=jsonable), encoding="utf-8")
 
 
+def make_controller(vehicle,protocol):
+    """Legacy comparisons retain their cost;the current study opts in explicitly."""
+    profile=protocol.get('current_fixed_reference_control')
+    centered=False
+    if profile is not None:
+        if (profile!={'version':'current_fixed_reference_control_v1','reference_centered_effort':True,
+                      'new_training_controls':0,'new_optimizer_updates':0}
+                or profile.get('reference_centered_effort') is not True
+                or any(type(profile.get(k)) is not int for k in ('new_training_controls','new_optimizer_updates'))
+                or protocol['dt']!=.05 or protocol['mpc_horizon']!=20
+                or protocol.get('comparison_controller') not in ('mpc20','pursuit_pi')):
+            raise ValueError('Explicit unchanged20Hz current fixed-reference controller profile required')
+        centered=True
+    if protocol.get('comparison_controller')=='pursuit_pi':
+        from navstack.pursuit_controller import TimedPursuitPI,PARAMETERS
+        if profile is not None and protocol['controller_parameters']!=PARAMETERS:
+            raise ValueError('Current controller study must retain the registered pursuit/PI baseline')
+        return TimedPursuitPI(vehicle,protocol['dt'],**protocol['controller_parameters'])
+    return MPC(vehicle,protocol['dt'],protocol['mpc_horizon'],reference_centered_effort=centered)
+
+
 def prepare(survey_batch, adapter="legacy", fit_path=None, planning_audit=None, plan_method="H", road_geometry_version="carla_driving_64_v1",comparison_controller=None,calibration_source=None,rpc_port=2000,fixed_references=None):
     if comparison_controller not in (None,'mpc20','pursuit_pi') or type(rpc_port) is not int or not 1024<=rpc_port<=65533:
         raise ValueError('Unknown controller or invalid registered RPC port')
@@ -154,6 +175,8 @@ def run(batch):
     from scripts.carla_steering_audit import guard
     batch = Path(batch).resolve()
     protocol = json.loads((batch / "protocol.json").read_text(encoding="utf-8"))
+    output_scope=('diagnostic_current_fixed_reference_controller_not_PPO'
+        if protocol.get('current_fixed_reference_control') else 'diagnostic_fixed_reference_MPC_not_PPO')
     for name, digest in protocol["source_hashes"].items():
         if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != digest:
             raise ValueError("Execute the frozen registered source")
@@ -211,10 +234,7 @@ def run(batch):
             case.mkdir()
             write(case / "scene.json", measured["scene"])
             write(case / "reference.json", asdict(reference))
-            controller = MPC(vehicle, protocol["dt"], protocol["mpc_horizon"])
-            if protocol.get('comparison_controller')=='pursuit_pi':
-                from navstack.pursuit_controller import TimedPursuitPI
-                controller=TimedPursuitPI(vehicle,protocol['dt'],**protocol['controller_parameters'])
+            controller = make_controller(vehicle,protocol)
             previous = Command(**measured["command"])
             errors, cycle_times, qp_times, path_length, failures = [], [], [], 0., 0
             reason = None
@@ -254,9 +274,9 @@ def run(batch):
                   "qp_times": timing_summary(qp_times, .05), "collisions": final["collisions"]}
             write(case / "summary.json", summary)
             episodes.append(summary)
-            write(batch / "partial_summary.json", {"scope": "diagnostic_fixed_reference_MPC_not_PPO", "episodes": episodes})
+            write(batch / "partial_summary.json", {"scope": output_scope, "episodes": episodes})
             print(json.dumps(summary), flush=True)
-        write(batch / "summary.json", {"scope": "diagnostic_fixed_reference_MPC_not_PPO", "episodes": episodes,
+        write(batch / "summary.json", {"scope": output_scope, "episodes": episodes,
               "world_ticks_before_final_cleanup": client.total_ticks, "control_ticks": sum(e["control_ticks"] for e in episodes),
               "complete": True})
     except BaseException as exc:
