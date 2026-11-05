@@ -1,97 +1,57 @@
-# Executability-aware hierarchical driving research
+# Hierarchical autonomous driving with PPO, Hybrid A* and MPC
 
-[中文说明](docs/README.zh-CN.md) · [Acceptance ledger](docs/research_acceptance.md) · [Method](docs/design.md) · [Releases](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases)
+[中文说明](docs/README.zh-CN.md) · [Results and raw evidence](reports/native_delivery_comparison_20261105.json) · [Models and releases](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases) · [Acceptance ledger](docs/research_acceptance.md)
 
-A known-map, low-speed research system combining **PPO high-level decisions → local pose/speed goals → Hybrid A* → timed trajectories → MPC → actual CARLA state and reward feedback**. Flat PPO, grid-planner and strong-rule comparisons share the declared physical constraints and safety capabilities.
+A low-speed, known-map driving system with a complete physical feedback loop in **CARLA 0.9.15**:
 
-**Development prerelease; research acceptance remains unmet.** Real CARLA training, control-frame audits and public model reproduction have been executed. The current evidence does not establish hierarchical superiority, a stable added-PPO benefit, or road-safety certification.
+**PPO decisions → local pose/speed goals → Hybrid A* → timed trajectories → MPC → vehicle controls → measured CARLA state and reward.**
 
-The recovered seed22 H learner reaches30,723 retained training controls/970Adam updates,but its complete known24endpoint scores**23/24**,versus**24/24**for the common zero-PPO baseline. It uses506more controls,485more interventions and49more planning failures,including one crossing-walker deadline. Raw/engine/all-start/static-NN checks close;the interrupted ancestor's unknown tail remains disclosed. H0 seed22 has also closed; two independent H/H0 pairs are complete. [All paired outcomes and accounting correction](reports/native_seed22_H_known24_complete_20261105.json). This result does not establish a PPO benefit.
+The hierarchy lets learning choose a driving intention while a vehicle-aware planner and trajectory controller handle its physical execution. There is no pose teleportation during a drive. Training includes real PPO/Adam updates, checkpoint recovery, frozen observation statistics and recorded simulator acknowledgements.
 
-The second complete independent warm-started pair is now closed:H0seed22scores24/24after30,758native training controls/970Adam updates,against H23/24. Actual initial parameter/Adam/Torch-RNG fingerprints,full saved initial RNG contents and initial normalizer bytes match. H used an explicit interrupted recovery,so this is not an exact uninterrupted matched-budget causal comparison. Both pairs and every failure are retained;seed33and B1native training continue. [Complete second pair and limits](reports/native_independent_seed22_pair_complete_20261105.json). No stable added-failure-feedback benefit is established.
+## Measured advantage over direct flat PPO
 
-A [complete seed22 recorded-frame diagnosis](docs/full_moving_failure_diagnosis.md) now verifies889static/moving NN decisions. The failed-label term slightly reduces failed-action probabilities,but changes no deterministic choices in58exposed decisions;the time-out repeatedly selects an already failed label. This read-only result does not predict alternative driving success.
+On the same **24 known development conditions**, the first three closed learner seeds give:
 
-A new [conditional-feedback pilot](docs/contextual_outcome_pilot.md) is implemented and queued behind the matched B1 cohort. It uses the existing observation and physical pipeline,with exact zero-effect initialization and paired weights/Adam/RMS/RNG. Both prepared models and queued activation have been verified;the pilot has not yet performed native training. [Preparation and limits](reports/native_conditional_feedback_pilot_ready_20261105.json).
-
-The [spatial B2/Hybrid component check](docs/spatial_planner_component.md) now enforces the previously ignored grid node cap and reproduces all16static/curve fixtures using public inputs. It remains separate from native B2 driving and contribution claims.
-
-
-The first independent warm-started **H/H0 pair is closed**:30,773/30,752 actual CARLA training controls,970Adam updates each,all48TRAIN conditions and complete raw/engine/saved-state audits. Both known24endpoints score24/24,the same as the common zero-PPO baseline. H/H0 use8,165/8,096endpoint controls,408/364interventions and7/3planning failures;this seed does not establish a benefit from the new failed-action branches. Initial parameter/Adam/Torch-RNG fingerprints and saved RNG contents match;H0 removes only the new negative branches. [Complete paired results and all outcomes](reports/native_independent_outcome_seed11_pair_complete_20261104.json),[procedure](docs/independent_outcome_cohort.md). Seed33 is now performing native PPO; three further paired closures and final confirmation remain pending.
-
-The five-seed flat-baseline cohort is **performing native PPO in parallel with H/H0**, on isolated 2120/2110 RPC spans within the existing two-server allowance. Two seeds are complete, each with30,720 actual training controls and917/939 Adam updates. Seed11/22 post-training basic checks score4/4 and3/4; their complete known24 endpoints score **10/24 and7/24**, with **13 and17 unsafe episodes**. Raw controls, engine delivery and all measured-start predictions are verified; all failures remain included. Seed33 has started. Passing the minimum basic gate does not establish convergence or robust complex-task performance. [Seed11](reports/native_matched_B1_seed11_complete_20261105.json), [seed22](reports/native_matched_B1_seed22_complete_20261105.json), [resource/scheduling scope](docs/parallel_native_execution.md).
-
-The matched action-aligned feedback experiment is closed: **H/H0 perform10,482/10,489 actual CARLA training controls and330 Adam updates each**, from equal weights/full Adam/RNG/RMS with a fixed lowlevel. Both final policies score **2/2 on the same previously used conditions**, so no feedback success-rate gain is established. H/H0 use911/1,014 endpoint controls,1/34 interventions and0/3 planner failures; these cost differences remain single-seed exploratory evidence. H has no nonempty failure history during these two endpoint runs, so its new failure terms do not directly change their logits/values. [Complete paired results,actual costs and per-case timing](reports/native_outcome_context_pair_complete_20261104.json). Both models have also completed the full known inventories below,with no further PPO updates or new final conditions.
-
-The [complete H/H0/B3 development prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.4.0-dev.20261104-outcome-shared-control) now publishes five capsules retaining **56,688 evaluation controls**. All five ZIPs were downloaded without login and every one of their **3,868 files** verified. A clean separate worktree rebuilt all four H/H0 inventories:108 measured starts,3,207 static NN decisions,four byte-identical figures,and raw/engine delivery. Both B3 raw/engine inventories also reconstruct. The complete reconstruction receipt is publicly downloadable and independently verified without login. [Release,hashes,reproduction commands and exact scope](reports/native_outcome_shared_public_release_20261104.json). These are known-development endpoints,not full ancestral training reconstruction or final confirmation.
-
-The shared-lowlevel strong-rule comparison is now complete and fully raw/engine audited. Every method finishes all **30 static placements +24 known validation entries**, with zero unsafe episodes:
-
-| Method | Successes | Actual evaluation controls | Interventions | Planner failures |
+| Learner seed | Hierarchy H success | Flat PPO B1 success | H collision/bounds | B1 collision/bounds |
 |---|---:|---:|---:|---:|
-| H | 54/54 | 18,972 | 561 | 18 |
-| H0 | 54/54 | 18,902 | 567 | 18 |
-| Strong B3 | 54/54 | 18,814 | 384 | 0 |
+| 11 | 24/24 | 10/24 | 0/24 | 13/24 |
+| 22 | 23/24 | 7/24 | 0/24 | 17/24 |
+| 33 | 23/24 | 5/24 | 0/24 | 17/24 |
+| **Total** | **70/72 (97.2%)** | **22/72 (30.6%)** | **0/72** | **47/72** |
 
-[Complete H/H0/B3pairing,all conditions and measured compute](reports/native_shared_lowlevel_H_H0_B3_complete_20261104.json). **No PPO or feedback completion-rate advantage is established.** B3has fewer interventions and planning failures. Learned policy selection is cheaper,while complete-cycle costs include its resulting planning/control work;all P95/P99/max/over-period figures are retained. These are known development conditions and one continued learned seed,not independent final confirmation. The first B3constructor failure occurred before any control;it was preserved,regression-fixed and followed by fresh immutable batches. [Execution and cleanup evidence](reports/native_shared_lowlevel_B3_execution_20261104.json). The same-weight feedback probe remains separate:2choices change out of1,086static decisions,without executing alternatives or proving driving benefit. [Mechanism record](reports/native_outcome_failure_term_action_influence_20261104.json).
+**The observed completion advantage is 66.7 percentage points.** These are all three closed H/B1 pairs at the delivery snapshot, including every failure. Each course requested 30,720 additional physical training controls; hierarchical rollouts can overshoot the boundary. All inherited training costs remain charged. [Per-case outcomes, model hashes, raw/engine audits and ancestry](reports/native_delivery_comparison_20261105.json).
 
-Earlier development snapshot (2026-11-04): the continued fixed-option H policy scored **21/30** on known static placements and **22/24** on known validation conditions, with all raw controls and inference audited. This regressed from the earlier separate recipe's 23/30 and 24/24. [Complete record](reports/native_option_full_development_complete_20261104.json). A subsequent joint speed/steering retiming transfer repaired one previously stationary condition (558 actual controls), but scored only **2/5** across its prespecified known probes. [Positive and failed pilot evidence](reports/native_joint_speed_four_condition_complete_20261104.json). A later fixed-lowlevel course performed **5,438 actual PPO controls and 170 Adam updates**: its two known-condition frozen successes changed from 0/2 to 1/2, with one new bounds failure. [Learning and safety regression](reports/native_exact_point_PPO5120_complete_20261104.json). Reference-centered MPC then retained 1/2 successes, replacing that bounds failure with a deadline; it remains below the task-completion target. [Controller transfer](reports/native_mpc_reference_effort_transfer_20261104.json). That MPC version passed 1,402 CPU tests; CARLA audits are separate. These studies do not establish independent-seed superiority or research acceptance.
+![Three-seed native development comparison](docs/assets/native_delivery_comparison_20261105.png)
 
-Earlier public baseline release: the [five-seed broader B1 prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261102-broader-b1) is public. Its 69 assets were downloaded without authentication and reconstructed: 151,660 controls, 120 initial actions and five byte-identical figures. [Public receipt](reports/native_B1_broader_public_download_verification_20261102.json).
+**Evidence scope:** 72 episodes repeat 24 known conditions across three learners; they are not 72 unique final cases. Seed22 H was recovered after an interruption and retains an unknown ancestral tail. B1 passes its registered basic-road probes, but adequate complex-task convergence and equal historical development cost are not established. This is a descriptive engineering comparison, not the required five-seed independent confirmation or a PPO-only causal gain.
 
-Recent baseline repairs remain unsuccessful. Additional TRAIN geometry scored 3/24; a learned route-error residual scored 1/24 on the same known development inventory. Actual 5,120-control PPO courses then scored 5/24 at the retained learning rate and 4/24 in a matched rate-only contrast. All raw controls, actual Adam counts and failures are retained. [Low-rate result](reports/native_B1_route_feedback_PPO5120_complete_validation_20261102.json), [rate contrast](reports/native_B1_route_feedback_rate_contrast_complete_20261102.json). These are single-seed development results, not a healthy baseline or independent final confirmation.
+Across the three paired learners, the per-class success counts are **24/24 versus10/24 on curves**, **23/24 versus6/24 with static vehicles**, and **23/24 versus6/24 with crossing walkers** (H versus B1). Each class repeats eight known geometries/conditions across three learners.
 
-The route-error branch was rejected. A matched TRAIN rehearsal course from the earlier CARLA-trained canonical seed22 policy retained all model/Adam/RMS/RNG initialization bytes and used 10,240 new actual controls with zero new supervision. It passed the basic roads **4/4** and scored **15/24** on known development conditions (curve/static/walker: 6/3/6 successes out of eight each; seven bounds and two collisions). The same-budget course without familiar-road rehearsal failed one basic road. This is one-seed development evidence, not five-seed health or final confirmation. [Training, schedule and raw-control evidence](reports/native_B1_matched_rehearsal_complete_20261102.json).
+## What the hierarchy contributes
 
-The canonical H/H0 adaptation completed with **24/24 known development successes each and zero unsafe cases**. Retained new learning controls are 10,467/10,453, with 330 retained Adam updates each. H0 recovery lost at least 1,643 consumed controls and 50 Adam steps; its unknown tail remains disclosed. Equal scores do not establish a feedback benefit. [Complete evidence](reports/native_H_H0_diverse_recovered_complete_20261103.json). Earlier interrupted diagnostics and all failures remain retained.
+- **A structured learning problem.** PPO selects local targets at 2 Hz; it does not have to generate 20 Hz steering and acceleration directly as B1 does.
+- **Physically executable motion.** Hybrid A* accounts for vehicle geometry and measured steering; trajectory retiming respects speed and steering-rate limits before MPC tracking.
+- **Closed-loop correction.** The controller follows actual CARLA measurements. Planning, tracking, intervention and execution-failure information is exposed to the high-level policy and logged.
+- **Inspectability and recovery.** A failed target, failed plan, tracking error or actuator mismatch can be traced separately. Saved models include optimizer state, normalization and RNG evidence.
 
-For the old twelve static TRAIN conditions, H scored **3/12** (8 deadlines,1 bounds failure) and H0 now has a complete recovered **4/12** (7 deadlines,1 bounds failure). H0 combines only disjoint authenticated cases with identical frozen model and normalization bytes;all torn data and costs remain retained. This one-seed comparison does not establish a feedback benefit. The completed zero-PPO, BC-initialized teacher transfer scored **5/12** (6 deadlines,1 bounds failure;7,339 controls). This is a neural imitation policy, not the direct B3 rule controller. [Authenticated three-policy comparison](reports/native_static_H_H0_teacher_complete_20261103.json). [Complete recovered pair](reports/native_static_H_H0_recovered_complete_20261103.json). The shared bounds case had identical measured states and commands despite stable goal actions;offline lane queries and read-only engine surface rays reveal a raster/lane/surface disagreement. Original failures and scores are unchanged. [Geometry evidence and limits](reports/native_static_shared_road_disagreement_20261103.json). The reference-context H/H0 course completed **21,024 actual training controls**, with 330 Adam updates per learner and unchanged RMS. Its fully audited endpoints scored **H 3/12 and H0 4/12** on the difficult static TRAIN inventory, and **24/24 each** on the separate known-validation inventory. All 32,060 evaluation control frames, measured starts, static-action inference and engine acknowledgements were verified. Static success counts did not improve; this one-seed development study does not establish a feedback benefit or final acceptance. [Completed learning and retained failure costs](reports/native_reference_context_learning_complete_20261103.json), [complete endpoint evidence](reports/native_reference_context_endpoints_complete_20261103.json).
+These mechanisms explain the architecture; the table establishes its observed development advantage over this flat baseline. They do not establish that every module improves every case. In particular, zero-PPO initialized H is already strong, the current feedback ablation does not improve completion, and a strong rule B3 reaches 54/54 on an earlier known-condition inventory. **Additional PPO-specific benefit over B3 remains unproven.** [H/H0 seed11](reports/native_independent_outcome_seed11_pair_complete_20261104.json), [seed22](reports/native_independent_seed22_pair_complete_20261105.json), [strong B3 comparison](reports/native_shared_lowlevel_H_H0_B3_complete_20261104.json).
 
-The [reference-context development prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.3.0-dev.20261103-reference-context) publishes both closed endpoint capsules and their figures/checksums. All 8 assets were downloaded without login and fully rebuilt from a fresh checkout: 1,254 files, 32,060 measured controls, 72 starts, 2,611 static NN decisions and 2 byte-identical figures. [Public download and reproduction proof](reports/native_reference_context_public_download_verification_20261103.json).
+```mermaid
+flowchart LR
+    S[Measured CARLA state] --> P[PPO local target / speed]
+    P --> A[Hybrid A*]
+    A --> T[Trajectory retiming]
+    T --> M[MPC at 20 Hz]
+    M --> V[CARLA vehicle]
+    V --> S
+    A --> F[Execution feedback and reward]
+    M --> F
+    F --> P
+```
 
-The H-only scale100 course is closed: **10,501 training controls, 330 Adam updates, static 3/12 and known validation 24/24**. All 16,293 evaluation controls, 36 measured starts and 1,330 static NN decisions passed raw, inference and engine checks. Static success remains unchanged from scale1. [Complete endpoints](reports/native_reference_scale100_endpoints_complete_20261103.json). The entropy 0.02 follow-up is also closed: **10,485 native training controls, 330 Adam updates, static 4/12 and known validation 24/24**. All 15,745 evaluation controls, 36 starts and 1,276 static NN decisions passed verification. One additional static success on known development conditions does not establish a general or causal advantage; the static target remains unmet. [Complete results](reports/native_reference_entropy002_endpoints_complete_20261104.json).
+## Install and verify
 
-A separate, model-supported development inventory scored **23/30** with the same frozen PPO, including **2/30 bounds failures**. All 12,402 controls and 1,252 NN decisions were verified. This changes scene placements and does not revise the original 4/12 or establish a learning gain. [Complete transfer inventory](reports/native_model_supported_placements_complete_20261104.json).
-
-The outcome-feedback source passed the complete local CPU regression: **1,411 tests passed, one skipped, four CARLA tests deselected**. [Versioned initialization and CPU evidence](reports/native_outcome_context_initialization_20261104.json). Its [hosted CPU workflow](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41791653607) also passed. Actual CARLA training and driving audits are reported separately.
-
-## Verified development evidence
-
-The following studies have different training histories and declared interfaces. They are separate results, not a single budget-matched comparison.
-
-| Study | Measured result | Evidence and limitation |
-|---|---|---|
-| Five independent H/H0 pairs, 36 TRAIN / 24 known validation conditions | H 120/120; H0 119/120; no collision/bounds | [Paired report](reports/native_matched_broader_feedback_cohort_20261101.json). Mean +0.83 percentage points, 95% interval [−1.48, +3.15]. This is 24 unique conditions, not 120 new conditions. |
-| Added PPO after teacher initialization | Trained H 120/120; teacher-only 117/120; strong B3 24/24 | [Attribution report](reports/native_broader_PPO_teacher_rule_attribution_20261101.json). Paired mean +2.50 points, 95% interval [−2.13, +7.13]; stable PPO benefit is unproven. |
-| Shared terminal parking aid, frozen B1/H/B3 transfers | Each 4/4 on the same four known TRAIN roads | [Engineering audit](reports/native_shared_parking_engineering_20261101.json). B1/H/B3 overrides: 6/1,409, 8/1,287, 8/1,286 controls. Deployment transfer, not new learning. |
-| Single B1 PPO course with the aid fixed throughout training | 10,240 new actual controls; 318 Adam steps; basic endpoint 4/4 | [Learning audit](reports/native_B1_shared_parking_PPO_20261101.json). Initial model already passed 4/4; this proves retention, not an added-PPO gain. |
-| Same frozen B1, twelve original known conditions | 12/12; 4,848 verified controls | [Three-class probe](reports/native_B1_shared_parking_full_probe_20261101.json). No new learning or final conditions. |
-| Same B1, 24 different registered development roads | 14/24: curve/parking 5/8, static 3/8, walkers 6/8; eight bounds and two collisions | [Complete record](reports/native_B1_shared_parking_validation_complete_20261101.json). 10,210 controls verified. A spawn failure and seven-case continuation use explicitly disclosed mixed initialization versions; descriptive development evidence only. |
-| Broader B1 course, canonical seed22 | 20,480 new actual controls; 630 Adam steps; 7/24 known VAL successes (5/8 curve, 0/8 static, 2/8 walker); 11 bounds, five collisions, one deadline | [Completed audit](reports/native_B1_broader_seed22_20261102.json). All 31,480 controls verified; RMS unchanged. Development screen fails. Different initialization from the older 14/24 model; no causal comparison is made. |
-| Same broader B1 recipe, seed11 | 20,480 new actual controls; 640 Adam steps; 11/24 successes (4/8,4/8,3/8); five deadlines,five bounds,three collisions | [Completed audit](reports/native_B1_broader_seed11_20261102.json). Development screen also fails; allfive broader courses complete. |
-| Same broader B1 recipe, seed33 | 20,480 new actual controls;619 Adam steps;11/24successes (6/8,0/8,5/8);seven bounds,six collisions | [Completed audit](reports/native_B1_broader_seed33_20261102.json). 29,621controls verified;development screen fails; allfive complete. |
-
-| Same broader B1 recipe, recovered seed44 | 15/24 successes (6/8 curve,4/8 static,5/8 walker);four collisions,three bounds,two deadlines | [Complete segment audit](reports/native_B1_broader_seed44_recovered_20261102.json). Saved11,520 plus8,960 resumed controls retain20,480learning controls/640Adamsteps. The course fails the development screen;interruption retained. |
-
-| Same broader B1 recipe, seed55 | 10/24successes (5/8curve,2/8static,3/8walker);seven collisions,seven bounds | [Completed audit](reports/native_B1_broader_seed55_20261102.json). 20,480newcontrols/619Adamsteps;28,841rawcontrols verified. Screen fails. |
-
-All five registered B1 basic courses are complete: seeds 11/22/33/44/55 score **3/4, 4/4, 4/4, 4/4, 3/4**. The two failures are bounds violations, so only **three of five basic gates pass**. The courses retain 51,200 new actual learning controls and 1,599 Adam steps. These are four repeated known TRAIN roads, not 20 unique conditions or a healthy full-task baseline. [All five outcomes and costs](reports/native_B1_shared_parking_complete_basic_cohort_20261102.json).
-
-Seed55 includes an explicit interruption recovery: 3,840 saved controls plus 6,400 resumed controls. Reported consumed training controls are at least 51,858, of which 51,837 have readable bridge acknowledgements; the remaining 21 trace-only controls and an unknown tail are disclosed. The broader seed22 course is now complete at 7/24 on known validation conditions. It is additional development learning, not final confirmation. [Recovery proof](reports/native_B1_seed55_recovery_registration_20261102.json), [broader registration](reports/native_B1_broader_shared_parking_registration_20261101.json).
-
-A measured-input diagnosis confirms that feedback reaches H: hiding both feedback groups changes 11/446 sampled greedy actions; H0 remains exactly invariant in all 448 samples. The physical mask stays fixed. This local sensitivity supplies no new driving-performance claim. [Diagnostic and reproduction](docs/native_feedback_use.md).
-
-Before seeing seed22's validation results, the other four seeds were registered for the same additional 20,480-control broader course. Allfive broader courses are complete:seeds11/22/33/44/55score11/7/11/15/10outof24. [Prospective four-course registration and limits](docs/broader_B1_cohort.md). The complete five-seed broader result is54/120successes (45%) and58collision-or-bounds cases;allfive development screens fail. These reuse24known conditions,not120new final conditions. [Complete cohort and costs](reports/native_B1_broader_complete_cohort_20261102.json). The seed22 audit also reconstructs field-for-field from an independent checkout using local data. [Verification receipt](reports/native_B1_broader_seed22_independent_verification_20261102.json).
-
-Seed44 hit disk protection after 11,520 saved controls; it completed the remaining 8,960 from the exact model/Adam/RMS/RNG checkpoint. Completed old artifacts were hash-verified and relocated to D while retaining their original paths. The interruption and replacement downstream queues are explicit. The earlier four-seed partial44/96record is retained separately. [Historical partial cohort](reports/native_B1_broader_partial_cohort_20261102.json). [Recovery evidence](reports/native_B1_broader_seed44_interruption_20261102.json).
-
-The parking aid requests physical braking only inside the unchanged goal pose gates while overspeed; it changes neither steering nor vehicle state. It releases before success can be accepted. H/H0/B1/B2/B3 can share the same version. Every override is recorded. [Implementation and experiments](docs/shared_parking.md).
-
-The original [TRAIN-only teacher collection](docs/broader_TRAIN_teacher.md) and subsequent recovery/diverse-road collections are complete. Their extra supervision and unsuccessful policy probes are recorded separately from PPO learning. The newest 36-case teacher collection achieved 31/36; that teacher result is not flat-policy performance. [Collection evidence](reports/native_B3_diverse_TRAIN_teacher_collection_20261102.json).
-
-## Install and run CPU checks
-
-Use Python 3.11 and an isolated environment. Existing installations need not be recreated.
+Use **Python 3.11** for the learning stack and the existing **CARLA 0.9.15** installation with its separate compatible Python 3.7 client. Do not recreate an existing working environment.
 
 ```powershell
 python -m venv .venv
@@ -99,47 +59,30 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pytest -q -m "not carla"
 ```
 
-[GitHub CPU workflow](.github/workflows/cpu-regression.yml) exercises dynamics, planning, MPC, actual PPO/checkpoint updates and recovery. Live simulator tests are excluded or opt-in; a CPU pass does not certify CARLA performance. Source-specific counts and exclusions are recorded in verification receipts.
+The pre-delivery source passed **1,473 CPU tests**, with 25 skipped and 4 CARLA tests deselected ([executed CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41962595926)). Delivery tooling is checked separately in the final publication receipt. CPU checks cover dynamics, planning, MPC, PPO updates and recovery; live CARLA evidence is separate. [Native setup and execution](docs/CARLA_bridge.md), [method and module layout](docs/design.md).
 
-CARLA uses the existing **0.9.15 server and its separate compatible Python 3.7 client**. Do not install CARLA binaries in this repository or attach another tick owner to an active world. [Bridge, calibration and live verification](docs/CARLA_bridge.md).
+## Download models and reproduce evidence
 
-## Reproduce a published trained model and raw results
+The [2026-11-05 delivery prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.5.0-dev.20261105-hierarchical-delivery) contains frozen models, normalization, configuration, source, complete endpoint traces and training evidence. It is a **development release**, not a research acceptance certificate. See its asset manifest for exact SHA256 values and the publication receipt for actual anonymous download/rebuild verification.
 
-The [shared-wrapper PPO prerelease](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.2.0-dev.20261101-parking-ppo) includes models, normalization, frozen source, configuration and raw controls. Its 572-file PPO capsule was publicly downloaded and independently rebuilt: all 11,639 controls, four measured-start actions, the figure and saved Adam/RMS proof match. [Executed receipt](reports/native_B1_shared_parking_PPO_public_verification_20261101.json).
-
-From the repository root, use fresh output paths:
+For each endpoint capsule, in a fresh checkout and fresh output directory:
 
 ```powershell
-$recipe = Get-Content protocols/public_native_B1_shared_parking_PPO_20261101.json -Raw | ConvertFrom-Json
-.\.venv\Scripts\python.exe scripts/download_native_asset.py --manifest-url $recipe.manifest_url --sha256 $recipe.archive_sha256 --output runs/my_parking_PPO_download
-.\.venv\Scripts\python.exe scripts/reproduce_native_asset.py --archive (Join-Path runs/my_parking_PPO_download $recipe.archive_name) --sha256 $recipe.archive_sha256 --output runs/my_parking_PPO_rebuild
-.\.venv\Scripts\python.exe scripts/analyze_native_shared_parking_ppo.py --batch runs/my_parking_PPO_rebuild/asset/20261101T112758733226Z_native_B1_shared_parking_PPO --output runs/my_parking_PPO_learning_audit.json
+.\.venv\Scripts\python.exe scripts/reproduce_native_asset.py --archive PATH_TO_DOWNLOADED_ENDPOINT.zip --sha256 PUBLISHED_SHA256 --output runs/my_fresh_rebuild
 ```
 
-This restores the policy and reconstructs existing evidence; it performs zero new driving or learning. [Additional capsules, whole-action audits and a real replay of a publicly downloaded model](docs/shared_parking.md). The public five-seed H/H0 release independently reconstructs 287,811 recorded controls and its paired statistics. [Verification](reports/native_public_matched_broader_feedback_five_seed_verification_20261101.json).
+This verifies every packaged file, restores the saved policy, reconstructs measured-start inference and raw controls, and rebuilds the trajectory figure. It performs zero new driving or learning. To rebuild the comparison after extracting the endpoints under one directory:
 
-## Training, recovery and remaining acceptance work
+```powershell
+.\.venv\Scripts\python.exe scripts/build_native_delivery_comparison.py --archive EXTRACTED_BATCH_PARENT --output runs/comparison.json --figure runs/comparison.png
+```
 
-Each native batch freezes its source hashes, model, normalization, physical-interaction budget and watchdog limits before execution. Completed jobs are preserved, failed gates remain failures, and new low-level versions are distinguished from frozen-policy transfers. [Exact local handoff and queue identities](docs/handoff.md) and [current experiment details](docs/shared_parking.md) describe the already launched courses; status files require verification against live process identity before any recovery. Do not launch a duplicate of an active queue.
+Training archives also include exact new training traces, reset/engine streams, checkpoint/Adam/RMS proofs and inherited-cost metadata. Historical ancestor traces are not duplicated. Simulator binaries, installed environments and credentials are excluded. Earlier [verified model releases](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.4.0-dev.20261104-outcome-shared-control) and actual camera evidence in the earlier release catalog retain their original versions and outcomes.
 
-The original requirements remain:
+## Delivery status and research limits
 
-- At least five independently trained policies and a flat baseline with demonstrated basic learning, sound implementation and adequate training, with fair H/H0/B1/B2/B3, frequency, safety and fixed-reference comparisons.
-- At least 120 **new, unique, paired final conditions**, including at least 30 per core class and unseen layouts or vehicle parameters. Existing 12- and 24-condition development sets are not final confirmation.
-- Lightweight safe completion ≥85% overall / ≥75% per core; CARLA ≥80% / ≥70%, with collision-or-bounds episodes ≤5%.
-- H minus healthy B1 ≥10 percentage points with a paired 95% lower bound above zero, or a prospectively frozen efficiency alternative; separately demonstrated PPO value against strong B3 and interpretable collaboration benefit.
-- Reproducible models, raw results, all failures/costs, honest conclusions and public delivery. Current releases fulfill engineering reproduction milestones, not the full research acceptance.
+The user imposed a final three-hour delivery window on 2026-11-05. Work closes with the available measured evidence; unstarted conditional-feedback, deployment-frequency/safety and new fixed-reference control studies are explicitly **deferred with zero native results**, not presented as completed experiments. The native Grid baseline also lacks its planned complete run. [Delivery and reproduction receipt](reports/native_final_delivery_20261105.json).
 
-[Acceptance ledger](docs/research_acceptance.md) · [Failure analysis](docs/failure_analysis.md) · [Evidence-bounded Chinese/English project descriptions](docs/resume_project.md) · [Archived development snapshots](docs/README.development-history.md).
+The original research target remains: five independent trained learners, a sufficiently trained fair flat baseline, at least 120 **new unique paired final conditions**, per-class safety/completion gates, and a paired confidence bound supporting the required advantage. Those final conditions have not been generated or inspected. PPO-specific benefit and full collaboration/control ablations remain incomplete. **Full research acceptance is UNMET.** The project does not establish real-time, high-speed, production or real-vehicle capability.
 
-Decision-cycle deadline overruns remain; synchronous simulator execution is not real-time validation. This work does not establish high-speed, production or real-vehicle capability. [MIT license](LICENSE) and [third-party notices](docs/THIRD_PARTY_NOTICES.md). Environment directories, simulator binaries, credentials and bulk raw videos are excluded from Git history.
-
-A sampled native-road reference-refinement prototype passed 1,358 CPU tests and complete native replay checks, but the original case4 still ended out of bounds (258 controls);the control case succeeded (332). This frozen-policy engineering pilot is retained as a failed repair, with no new PPO updates or revised historical scores. [Pilot evidence](reports/native_reference_road_refinement_pilot_20261104.json).
-
-The measured-steering, slew-aware planner transfer then completed both prespecified known cases: case1 in **333** controls and the previously failing case4 in **340**. All **673 controls,68 NN decisions and2 starts** passed raw,reference reconstruction and engine checks. This changes the low-level planning model with a frozen PPO and is an engineering pilot,not a learning gain or a revised full-inventory score. [Verified pilot](reports/native_steering_transition_pilot_20261104.json).
-
-Expansion of that planner to the unchanged inventory exposed a case0 regression: **40 identical7200-node search timeouts and400 stationary controls**. The development run was cooperatively stopped;all400 controls/engine acknowledgements were authenticated and the queued24-case validation was never started. No complete score is claimed. A bounded offline32000-node probe found a path at22510 nodes;its physical evaluation is a separate new pilot. [Retained regression and costs](reports/native_steering_transfer_regression_stop_20261104.json).
-
-The32000-node follow-up retained case1/case4 successes,while case0 reached17m progress then timed out after goal switches (900 controls). All1573 controls/158 NN decisions were verified;58 exact failure-cache hits avoided repeated identical searches. The remaining problem includes a state-relative local-target interface with no action matching the previous fixed local target. [Complete three-case evidence](reports/native_steering_budget32k_pilot_20261104.json).
-
-A fixed-lowlevel,explicit repeated-option adaptation completed **5396 actual CARLAcontrols and170Adamupdates**,with exact initialized weights/Adam/RNG and unchanged RMS. Its fully audited same3-condition deterministic endpoint remained **2/3**,matching the untrained-interface baseline:case0still timed out. All1583 endpoint controls and159 NNdecisions passed verification. [Learning proof](reports/native_reference_option_adaptation_learning_complete_20261104.json),[closed before/after result and retained startup failure](reports/native_reference_option_adaptation_endpoint_complete_20261104.json). [Full CPU regression:1378passed](reports/native_reference_option_CPU_regression_20261104.json). This does not establish a learning benefit.
+[Failure analysis](docs/failure_analysis.md) · [Feedback diagnosis](docs/full_moving_failure_diagnosis.md) · [Experiment history](docs/README.development-history.md) · [Evidence-bounded CV description](docs/resume_project.md) · [MIT license](LICENSE) · [Third-party notices](docs/THIRD_PARTY_NOTICES.md)

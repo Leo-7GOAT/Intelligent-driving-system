@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "research_acceptance": "UNMET",
+  "status": "DEFERRED_BY_USER_THREE_HOUR_CUTOFF",
+  "source_commit": "13fc375e4bab52de54fb4aed947b965917a92852",
+  "seed": 11,
+  "methods": [
+    "H",
+    "B1"
+  ],
+  "variants": [
+    "10Hzcommand",
+    "4Hzcommand",
+    "common_brake_OFF",
+    "common_brake_ON"
+  ],
+  "jobs": [
+    {
+      "label": "H_hold2",
+      "method": "H",
+      "kind": "cadence",
+      "value": 2,
+      "batch": "20261105_current_deployment_controls_seed11_H_hold2",
+      "queued_protocol_sha256": "6976abed68b6f5aa939e0440aafd1db503540aa873f22c52eb7c3c19a704e86d",
+      "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+      "normalization_sha256": "4be6505a00d509fce571b9e746055b04c0c87778f04aa75542bf20d8a9055170",
+      "baseline": "20261104_independent_outcome_seed11_H_known24"
+    },
+    {
+      "label": "H_hold5",
+      "method": "H",
+      "kind": "cadence",
+      "value": 5,
+      "batch": "20261105_current_deployment_controls_seed11_H_hold5",
+      "queued_protocol_sha256": "6efbd0e8a9235fa5a445556c55e27780b5956231d7346d794481fa1b51cb1683",
+      "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+      "normalization_sha256": "4be6505a00d509fce571b9e746055b04c0c87778f04aa75542bf20d8a9055170",
+      "baseline": "20261104_independent_outcome_seed11_H_known24"
+    },
+    {
+      "label": "H_brake_OFF",
+      "method": "H",
+      "kind": "shared_brake",
+      "value": false,
+      "batch": "20261105_current_deployment_controls_seed11_H_brake_OFF",
+      "queued_protocol_sha256": "36d3125bb6af0a871da7bcd6c8a7b3e3cc7598261cd551a7bae1c5e5790d56f1",
+      "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+      "normalization_sha256": "4be6505a00d509fce571b9e746055b04c0c87778f04aa75542bf20d8a9055170",
+      "baseline": "20261104_independent_outcome_seed11_H_known24"
+    },
+    {
+      "label": "H_brake_ON",
+      "method": "H",
+      "kind": "shared_brake",
+      "value": true,
+      "batch": "20261105_current_deployment_controls_seed11_H_brake_ON",
+      "queued_protocol_sha256": "1c3135401183e802ce2da6bcaea2c759621cf79a95379436e2e267091d408e61",
+      "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+      "normalization_sha256": "4be6505a00d509fce571b9e746055b04c0c87778f04aa75542bf20d8a9055170",
+      "baseline": "20261104_independent_outcome_seed11_H_known24"
+    },
+    {
+      "label": "B1_hold2",
+      "method": "B1",
+      "kind": "cadence",
+      "value": 2,
+      "batch": "20261105_current_deployment_controls_seed11_B1_hold2",
+      "queued_protocol_sha256": "f3824e83ac8d82ee4204383f004dc0c730fbd0fb364d4936328477e3301de999",
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22",
+      "baseline": "20261104_matched_flat_seed11_known24"
+    },
+    {
+      "label": "B1_hold5",
+      "method": "B1",
+      "kind": "cadence",
+      "value": 5,
+      "batch": "20261105_current_deployment_controls_seed11_B1_hold5",
+      "queued_protocol_sha256": "3d04d5745cbc25dfe72d575affce2a966af98dcc413ac385813bbfcee99b91a9",
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22",
+      "baseline": "20261104_matched_flat_seed11_known24"
+    },
+    {
+      "label": "B1_brake_OFF",
+      "method": "B1",
+      "kind": "shared_brake",
+      "value": false,
+      "batch": "20261105_current_deployment_controls_seed11_B1_brake_OFF",
+      "queued_protocol_sha256": "48e9c5453cb0609efb006c66c36178cb932ba3f020cabadd5083ef8326203423",
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22",
+      "baseline": "20261104_matched_flat_seed11_known24"
+    },
+    {
+      "label": "B1_brake_ON",
+      "method": "B1",
+      "kind": "shared_brake",
+      "value": true,
+      "batch": "20261105_current_deployment_controls_seed11_B1_brake_ON",
+      "queued_protocol_sha256": "2f721d55f60be0290741e3badd3cd0777455d0e1f346817a53a9e9db73b3880d",
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22",
+      "baseline": "20261104_matched_flat_seed11_known24"
+    }
+  ],
+  "unique_known_validation_conditions": 24,
+  "prepared_episode_attempts": 192,
+  "new_trained_seeds": 0,
+  "new_training_controls": 0,
+  "new_native_evaluation_controls": 0,
+  "actual_frozen_worker_config_model_preflight": {
+    "status": "PASS",
+    "results": [
+      {
+        "label": "H_cadence_2",
+        "shape": [
+          4736
+        ],
+        "parameter_states": 34,
+        "runtime_config_exact": true,
+        "native_controls": 0,
+        "PPO_updates": 0
+      },
+      {
+        "label": "H_cadence_5",
+        "shape": [
+          4736
+        ],
+        "parameter_states": 34,
+        "runtime_config_exact": true,
+        "native_controls": 0,
+        "PPO_updates": 0
+      },
+      {
+        "label": "H_shared_brake_False",
+        "shape": [
+          4736
+        ],
+        "parameter_states": 34,
+        "runtime_config_exact": true,
+        "native_controls": 0,
+        "PPO_updates": 0
+      },
+      {
+        "label": "H_shared_brake_True",
+        "shape": [
+          4736
+        ],
+        "parameter_states": 34,
+        "runtime_config_exact": true,
+        "native_controls": 0,
+        "PPO_updates": 0
+      },
+      {
+        "label": "B1_cadence_2",
+        "shape": [
+          4705
+        ],
+        "parameter_states": 35,
+        "runtime_config_exact": true,
+        "native_controls": 0,
+        "PPO_updates": 0
+      },
+      {
+        "label": "B1_cadence_5",
+        "shape": [
+          4705
+        ],
+        "parameter_states": 35,
+        "runtime_config_exact": true,
+        "native_controls": 0,
+        "PPO_updates": 0
+      },
+      {
+        "label": "B1_shared_brake_False",
+        "shape": [
+          4705
+        ],
+        "parameter_states": 35,
+        "runtime_config_exact": true,
+        "native_controls": 0,
+        "PPO_updates": 0
+      },
+      {
+        "label": "B1_shared_brake_True",
+        "shape": [
+          4705
+        ],
+        "parameter_states": 35,
+        "runtime_config_exact": true,
+        "native_controls": 0,
+        "PPO_updates": 0
+      }
+    ],
+    "new_native_controls": 0,
+    "new_PPO_updates": 0
+  },
+  "launcher_validation": "All8INPUTS_VALIDATED_NOT_SERVER_PROBED",
+  "coordinator": {
+    "pid": 15988,
+    "birth": "2026-11-05T11:11:16.295905+08:00",
+    "phase": "WAITING_FOR_CONDITIONAL_PILOT",
+    "dependency_pid": 4912,
+    "runtime": "Python3.11",
+    "new_native_jobs": 0
+  },
+  "dependency": "Conditional pilot must close all4native jobs before2120can launch these probes",
+  "maximum_simultaneous_servers": 2,
+  "maximum_evaluation_controls": 172800,
+  "maximum_wait_seconds": 86400,
+  "per_job_wall_seconds": 14400,
+  "automatic_retries": 0,
+  "cadence_confound": {
+    "before": {
+      "status": "CONFIRMED_DORMANT_CADENCE_PROTOTYPE_BUG",
+      "source_sha256": "a9cb50822e7879f827b1c1c2d357d9132a3dc22986216deac0d42e826c83bbeb",
+      "outer_flag": true,
+      "inner_flag": false,
+      "actual_steering": 0.27,
+      "centered_steering": 0.3000010772572432,
+      "new_native_controls": 0,
+      "scope": "No current H/H0/B1job uses HeldMPC;existing native results are not changed"
+    },
+    "fix": "Forward native reset effort flag to actual solver,invalidate held command,record and audit it on every cadence reference frame",
+    "scope": "Default-vehicle equilibrium controller calculation;zero native controls,current H/H0/B1jobs use no wrapper and are unaffected"
+  },
+  "source_provenance": {
+    "driver_source_files": 510,
+    "driver_sha256": "594da30ef173f2c28c0a50300e0cd4eeac2f8ea0917e131bdacd8f55b3f36c07",
+    "actual_preflight_script_sha256": "f9a7b5834c98dfbdbd5d2b07b0cc1ccbf3ddcfcebbed2ec88cb9f39e7c3f6345"
+  },
+  "checks": {
+    "related_local_passes": 37,
+    "local_seconds": 4.44,
+    "source_CPU_CI": {
+      "run_id": 41959085877,
+      "status": "SUCCESS",
+      "passed": 1469,
+      "skipped": 25,
+      "CARLA_deselected": 4,
+      "seconds": 405.6
+    }
+  },
+  "limits": [
+    "Frozen-policy deployment sensitivity,not retraining or retuned MPCdesign",
+    "Hpolicy stays2Hz,MPCprediction stays20Hz;B1direct policy issues held actions10/4Hz",
+    "Both common-brake arms retain native Htrajectory safety check;all event checks and physics stay20Hz",
+    "Twenty-four known conditions repeat across variants,not192unique test conditions or8new training seeds",
+    "One first-registered seed11pair;formal claims require adequate independent runs",
+    "No deployment probe has driven yet;source/model validation isnot performance evidence",
+    "Model files remain local current-cohort checkpoints,not new public release assets"
+  ],
+  "delivery_cutoff": {
+    "date": "2026-11-05",
+    "reason": "User requested final three-hour delivery; queued coordinator stopped before any native job",
+    "native_jobs_launched": 0,
+    "native_controls": 0,
+    "coordinator_state": "STOPPED_WHILE_WAITING",
+    "prepared_artifacts_retained": true
+  }
+}

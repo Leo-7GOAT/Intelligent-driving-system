@@ -99,3 +99,21 @@ def test_one_tick_wrapper_preserves_actual_MPC_commands_on_the_same_measured_sta
         assert after.command.steering==pytest.approx(before.command.steering,abs=1e-12)
         assert after.diagnostics['controller_recomputed'] is True
         previous=before.command
+
+
+def test_native_reset_effort_flag_reaches_actual_solver_and_invalidates_held_command():
+    from test_mpc_reference_effort import equilibrium_reference
+    vehicle,state,reference,previous=equilibrium_reference(.3)
+    inner=MPC(vehicle);wrapped=HeldMPC(inner,5)
+    initial=wrapped.step(state,reference,previous)
+    wrapped.reference_centered_effort=True
+    assert inner.reference_centered_effort and wrapped.reference_centered_effort
+    actual=wrapped.step(state,reference,previous)
+    expected=MPC(vehicle,reference_centered_effort=True).step(state,reference,previous)
+    # The reused solver has a different warm start from the fresh comparator.
+    assert actual.command.steering==pytest.approx(expected.command.steering,abs=2e-5)
+    assert actual.command.acceleration==pytest.approx(expected.command.acceleration,abs=2e-5)
+    assert actual.diagnostics['controller_recomputed'] is True
+    assert actual.diagnostics['reference_centered_effort'] is True
+    assert abs(actual.command.steering-.3)<abs(initial.command.steering-.3)*.1
+    with pytest.raises(ValueError):wrapped.reference_centered_effort=1

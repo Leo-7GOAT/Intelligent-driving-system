@@ -2,6 +2,26 @@ from copy import deepcopy
 import pytest
 from scripts.native_road_learning import camera_evaluation_mode
 from scripts.prepare_native_camera import selected_manifest,selected_camera_inputs
+from scripts.prepare_native_camera import training_ancestry
+
+
+def test_validation_camera_preserves_trained_ancestry_without_inventing_updates():
+    p={'evaluation_only':True,'native_validation':{'version':'test'},
+       'recovery':{'H':{'lineage_controls':30773,'consumed_controls_lower_bound':40016,
+                       'retained_optimizer_steps':970,'unknown_unflushed_parent_tail':True}}}
+    s={'stopped_reason':None,'physics_steps':0,'optimizer_steps':0}
+    result=training_ancestry(p,s,'H',True)
+    assert result==p['recovery']['H']
+    assert s['optimizer_steps']==0
+
+
+@pytest.mark.parametrize('field,value',[('retained_optimizer_steps',0),('lineage_controls',0)])
+def test_validation_camera_rejects_untrained_ancestry(field,value):
+    p={'evaluation_only':True,'native_validation':True,'recovery':{'H':{
+        'lineage_controls':30720,'consumed_controls_lower_bound':40000,'retained_optimizer_steps':970}}}
+    p['recovery']['H'][field]=value
+    with pytest.raises(ValueError,match='trained frozen validation'):
+        training_ancestry(p,{'stopped_reason':None,'physics_steps':0,'optimizer_steps':0},'H',True)
 
 
 def camera_protocol():

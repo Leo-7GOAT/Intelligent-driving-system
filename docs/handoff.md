@@ -1,3 +1,7 @@
+# 最后三小时交付，2026-11-05
+
+用户要求 14:43（上海时间）前停止并交付；不再追加研究实验。13:58停止进入新阶段，14:28原生作业硬截止，保留清理和发布时间。当前三组 H/B1 全部端点闭合：70/72 对22/72，unsafe0/72对47/72，24已知条件重复；H0仅按实际闭合计。条件反馈、部署8探针、新固定参考队列已在等待阶段停止，0native。最终120未生成或查看，整体UNMET。最新状态与发布校验以 reports/native_final_delivery_20261105.json 为准；下文均为历史快照，不代表应重启的活跃任务。
+
 # 当前：2026-11-05 10:44 B1第二完整种子闭合，条件反馈PR7已合并
 
 B1 seed22完整30,720train/30,720decisions/939实际Adam/80summary episodes/2629.1584s，all35Adam实际推进、actual init weights/fullAdam/Torch RNG exact、RMS冻结。zeroPPO basic3/4，1192controls/6interv/1bounds；postbasic3/4，1912controls/7interv/1deadline/0unsafe，预设>=3/4+0unsafe gate通过；完整known24仅7/24，9229controls/19interv/12bounds+5collision，17unsafe，无deadline。所有training/raw30720、engine30720及各eval全帧/engine/24starts均核验，四阶段完成marker齐，队列正常推进seed33 zeroPPO basic（下一次须读实际phase）。公开reports/native_matched_B1_seed22_complete_20261105.json保留全部数据和实际原始SHA；没有zeroPPO known24，不能声称7/24为PPO学习增益。B1两种子分别10/24、7/24，unsafe13/17；不是48unique final或五个充分收敛基线。

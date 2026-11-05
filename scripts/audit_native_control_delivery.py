@@ -19,7 +19,14 @@ def control_errors(desired,applied,tolerance=1e-5):
 
 def evaluation_episodes(batch,protocol):
     batch=Path(batch)
-    paths=[batch/method/'evaluation_trace.jsonl.gz' for method in protocol['methods']]
+    if protocol.get('comparison_controller'):
+        result=set()
+        for path in sorted(batch.glob('case_*/transitions.jsonl.gz')):
+            rows,error=read_prefix(path)
+            if error:raise ValueError(error)
+            result.update(row['measurement']['episode_id'] for row in rows)
+        return result
+    paths=[batch/method/'evaluation_trace.jsonl.gz' for method in protocol.get('methods',[])]
     summary=batch/'summary.json'
     rule=(protocol.get('policy_kind')=='rule_only_B3' or
           summary.is_file() and read(summary).get('policy_kind')=='rule_only_B3')

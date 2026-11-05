@@ -1,3 +1,5 @@
+> Delivery snapshot (2026-11-05): hierarchy H70/72 versus B122/72 across three closed learners on24known conditions; Hunsafe0/72, B147/72. Full acceptance remains UNMET. Final120 is ungenerated/unseen. Additional queued control/pilot studies were deferred before native launch under the user’s three-hour cutoff. See the final delivery receipt and comparison report; historical entries below retain their original scope.
+
 # Current acceptance audit — 2026-11-05
 
 **Overall acceptance: UNMET.** The original thresholds and research questions

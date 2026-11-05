@@ -38,3 +38,14 @@ def test_direct_policy_decisions_do_not_become_MPCsolves(tmp_path):
 def test_incomplete_or_unregistered_cadence_evidence_is_not_scored(info,tmp_path):
     path=tmp_path/'trace.gz';write(path,[{'info':info}])
     with pytest.raises(ValueError):cadence_trace_counts(path,'H',2)
+
+
+def test_cadence_cannot_silently_remove_reference_centered_effort(tmp_path):
+    path=tmp_path/'trace.gz'
+    row={'info':{'mode':'reference','executed_substeps':1,'trace':[tick(True)]}}
+    write(path,[row])
+    with pytest.raises(ValueError,match='effort'):
+        cadence_trace_counts(path,'H',2,reference_centered_effort=True)
+    row['info']['trace'][0]['diagnostics']['reference_centered_effort']=True
+    write(path,[row])
+    assert cadence_trace_counts(path,'H',2,reference_centered_effort=True)['physics_controls']==1

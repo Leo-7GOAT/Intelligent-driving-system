@@ -45,19 +45,43 @@ def selected_camera_inputs(routes,manifest,ids):
     return selected_routes,chosen,{str(old):new for old,new in mapping.items()}
 
 
-def prepare(parent,method,case_ids):
+def training_ancestry(protocol, summary, method, from_validation_endpoint=False):
+    """Carry actual trained ancestry through a zero-update validation endpoint."""
+    if summary['stopped_reason'] is not None:
+        raise ValueError('Require a normally completed parent')
+    previous=protocol.get('recovery',{}).get(method,{})
+    if from_validation_endpoint:
+        if (not protocol.get('evaluation_only') or not protocol.get('native_validation')
+                or summary['physics_steps'] or summary['optimizer_steps']
+                or previous.get('retained_optimizer_steps',0)<=0
+                or previous.get('lineage_controls',0)<=0):
+            raise ValueError('Require an explicitly trained frozen validation endpoint')
+        return dict(lineage_controls=previous['lineage_controls'],
+            consumed_controls_lower_bound=previous['consumed_controls_lower_bound'],
+            retained_optimizer_steps=previous['retained_optimizer_steps'],
+            unknown_unflushed_parent_tail=previous.get('unknown_unflushed_parent_tail',False))
+    if summary['optimizer_steps']<=0:
+        raise ValueError('Require completed actual PPOtraining,not a rule or untrained actor')
+    return dict(lineage_controls=summary['lineage_control_steps'],
+        consumed_controls_lower_bound=summary['charged_control_steps_lower_bound'],
+        retained_optimizer_steps=previous.get('retained_optimizer_steps',0)+summary['optimizer_steps'])
+
+
+def prepare(parent,method,case_ids,from_validation_endpoint=False,output=None):
     parent=Path(parent).resolve();require_finished_parent(parent)
     old=read(parent/'protocol.json');folder=parent/method
     if method not in ('H','H0','B1') or method not in old['methods']:
         raise ValueError('Require an existing native trained policy')
-    routes,manifest,route_mapping=selected_camera_inputs(old['routes'],old['native_case_manifest'],case_ids)
+    catalog=old['native_validation'] if from_validation_endpoint else None
+    routes,manifest,route_mapping=selected_camera_inputs(
+        catalog['routes'] if catalog else old['routes'],
+        catalog['manifest'] if catalog else old['native_case_manifest'],case_ids)
     audit=read(folder/'endpoint_raw_audit.json');evaluation=read(folder/'evaluation.json')
     for name,key in (('config.json','config_sha256'),('evaluation.json','evaluation_sha256'),('summary.json','summary_sha256')):
         if sha(folder/name)!=audit[key]:raise ValueError('Parent endpoint changed after raw audit')
     if sha(parent/'protocol.json')!=audit['protocol_sha256']:raise ValueError('Parent protocol changed')
     summary=read(folder/'summary.json')
-    if summary['optimizer_steps']<=0 or summary['stopped_reason'] is not None:
-        raise ValueError('Require completed actual PPOtraining,not a rule or untrained actor')
+    ancestry=training_ancestry(old,summary,method,from_validation_endpoint)
     latest=read(folder/'latest_checkpoint.json')['folder']
     if Path(latest).name!=latest:raise ValueError('Checkpoint must be a direct child')
     origin=folder/latest;metadata=verified_checkpoint_metadata(origin)
@@ -68,8 +92,10 @@ def prepare(parent,method,case_ids):
         if sha(parent/'source'/name)!=digest:raise ValueError('Parent source changed')
     if sha(parent/'calibration/calibration.json')!=old['calibration_sha256']:
         raise ValueError('Parent physical calibration changed')
-    okay,reason=resources_ok(ROOT)
-    if not okay or shutil.disk_usage(ROOT).free<13*1024**3:raise RuntimeError('Recording resource guard:'+str(reason))
+    batch=Path(output).resolve() if output else ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_native_PPO_camera')
+    if batch.exists():raise FileExistsError('Preserve existing recording batch')
+    okay,reason=resources_ok(batch.parent)
+    if not okay or shutil.disk_usage(batch.parent).free<13*1024**3:raise RuntimeError('Recording resource guard:'+str(reason))
     p=deepcopy(old)
     for key in ('jobs','actor_head_experiment','gradient_clipping_experiment','rollout_length_experiment',
                 'fresh_cadence_experiment','freeze_observation_statistics','own_success_replay','native_validation'):
@@ -80,19 +106,17 @@ def prepare(parent,method,case_ids):
         native_camera_evaluation={'version':'frozen_native_RGB_v1','original_case_ids':case_ids,
             'model_sha256':evaluation['model_sha256'],'normalization_sha256':evaluation['normalization_sha256'],
             'parent_batch':parent.name,'parent_raw_audit_sha256':sha(folder/'endpoint_raw_audit.json'),
+            'parent_partition':'validation' if from_validation_endpoint else 'development',
             'original_to_recording_route_indices':route_mapping,
             'selection':'Prespecified illustrative cases from known results;all new outcomes retained,no success/failure matching enforced',
             'rendering':'Actual640x360RGB at20Hz;unchanged physical and policy code;rendering enabled with frame fences,not a no-camera timing benchmark'},
-        recovery={method:{'checkpoint':'resume/'+method,'parent_batch':parent.name,'parent_checkpoint':latest,
-            'lineage_controls':summary['lineage_control_steps'],
-            'consumed_controls_lower_bound':summary['charged_control_steps_lower_bound']+audit['evaluation_control_frames_verified'],
-            'retained_optimizer_steps':old.get('recovery',{}).get(method,{}).get('retained_optimizer_steps',0)+summary['optimizer_steps']}},
+        recovery={method:{**ancestry,'checkpoint':'resume/'+method,'parent_batch':parent.name,'parent_checkpoint':latest,
+            'consumed_controls_lower_bound':ancestry['consumed_controls_lower_bound']+audit['evaluation_control_frames_verified']}},
         resource_limits={**old['resource_limits'],'wall_seconds':1800,'automatic_retries':0})
     camera_evaluation_mode(p)
     vehicle=VehicleConfig(**read(parent/'calibration/calibration.json')['vehicle'])
     if signature(training_config(p,method,vehicle))!=read(origin/'config.json')['signature']:
         raise ValueError('Camera evaluation changes saved policy/task semantics')
-    batch=ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_native_PPO_camera')
     batch.mkdir(parents=True);(batch/'infrastructure').mkdir()
     shutil.copytree(parent/'source',batch/'source',ignore=shutil.ignore_patterns('__pycache__'))
     shutil.copytree(parent/'calibration',batch/'calibration')
@@ -115,4 +139,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--parent',required=True);parser.add_argument('--method',required=True)
     parser.add_argument('--case-ids',required=True,type=int,nargs='+')
-    args=parser.parse_args();prepare(args.parent,args.method,args.case_ids)
+    parser.add_argument('--from-validation-endpoint',action='store_true',help='Record known validation cases from a trained zero-update endpoint;carry its actual training ancestry')
+    parser.add_argument('--output',help='Fresh recording batch directory;resource guard checks this actual destination volume')
+    args=parser.parse_args();prepare(args.parent,args.method,args.case_ids,args.from_validation_endpoint,args.output)
