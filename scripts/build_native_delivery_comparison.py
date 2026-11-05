@@ -26,6 +26,20 @@ def basic_qualification(episodes):
     return dict(successes=successes,episodes=4,unsafe=unsafe,passed=successes>=3 and unsafe==0)
 
 
+def five_seed_comparisons(rows):
+    """Use trained seeds as replications,conditional on the fixed known catalog."""
+    from scripts.analyze_native_feedback_cohort import paired_seed_statistics
+    expected=[11,22,33,44,55];result={}
+    for left,right in (('H','B1'),('H','H0'),('H','H_before_new_PPO')):
+        a={r['seed']:r for r in rows if r['method']==left}
+        b={r['seed']:r for r in rows if r['method']==right}
+        if sorted(set(a)&set(b))!=expected:continue
+        differences=[a[s]['successes']/a[s]['episodes']-b[s]['successes']/b[s]['episodes'] for s in expected]
+        result[left+'_minus_'+right]=dict(paired_seeds=expected,
+            per_seed_completion_rate_differences=differences,**paired_seed_statistics(differences))
+    return result
+
+
 def endpoint(batch, seed, label):
     p = read(batch / "protocol.json")
     method, = p["methods"]
@@ -113,7 +127,17 @@ def build(archive, output, figure):
             "Seed22 H has a preserved interruption, discarded readable tail and unknown unflushed ancestral tail; its correction sidecar governs ancestry.",
             "B1 basic qualification is per seed: seeds11/22 pass, seed33 fails2/4with2unsafe; complex-task convergence and equal historical development cost are not established.",
             "H0 and the strong historical B3 leave PPO-specific and added-feedback benefit unestablished.",
-            "Five complete paired learners, final120, and the formal paired-confidence gate remain unmet."])
+            ("Five complete paired learners, final120, and the formal paired-confidence gate remain unmet." if len(paired)<5
+             else "Five paired trained main learners are available on the known catalog;final120,healthy-baseline and formal confirmation gates remain unmet.")])
+    if len(paired)==5:
+        before=[]
+        for seed in paired:
+            b=archive/f'20261104_independent_outcome_seed{seed}_zero_PPO_known24'
+            if (b/'summary.json').exists() and read(b/'summary.json').get('status')=='complete':
+                before.append(endpoint(b,seed,'H_before_new_PPO'))
+        data['warm_initialized_H_before_new_PPO']=before
+        data['exploratory_seed_level_comparisons']=five_seed_comparisons(rows+before)
+        data['statistics_scope']='All five registered training seeds;unadjusted exploratory tinterval and exact sign-flip on fixed known conditions. No episode pseudoreplication,no formal confirmation or automatic research acceptance.'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(data, indent=2)+"\n", encoding="utf-8")
     import matplotlib
