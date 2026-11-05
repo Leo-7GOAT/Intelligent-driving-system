@@ -1,0 +1,35 @@
+{
+  "version": "remaining_two_pair_development_analysis_v1",
+  "registered_before_remaining_H_H0_endpoint_results": true,
+  "recorded_local": "2026-11-05T14:31:08.362566+08:00",
+  "training_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "fixed_known_validation_conditions": 24,
+  "comparisons": [
+    "H_minus_B1",
+    "H_minus_H0",
+    "H_after_minus_warm_initialized_H_before_new_PPO"
+  ],
+  "statistic": "Mean per-training-seed completion-rate difference;paired95percent Student-t interval using df=n-1;existing exact two-sided sign-flip enumeration",
+  "replication_unit": "Independent trained learner seed,not episodes",
+  "require_all_registered_five_for_each_comparison": true,
+  "all_failed_seeds_retained": true,
+  "filter_on_basic_health_for_primary_statistics": false,
+  "multiplicity": "Three unadjusted exploratory development contrasts;no confirmatory significance claim",
+  "known_limits": [
+    "Small N,normality/exchangeability assumptions",
+    "Fixed known catalog,not new unique final conditions",
+    "Flat basic qualification only2of5;no healthy converged baseline claim",
+    "Seed22recovery uncertainty retained",
+    "No current five-seed strong-B3causal evidence"
+  ],
+  "final120_generated": 0,
+  "new_training_or_task_changes": 0,
+  "existing_three_seed_results_already_observed": true,
+  "not_confirmatory_preregistration": true
+}
