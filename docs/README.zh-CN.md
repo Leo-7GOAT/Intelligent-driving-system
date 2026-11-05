@@ -12,6 +12,8 @@
 
 第二个独立配对现已闭合：H0seed22真实训练30,758控制步/970次Adam更新，known24为24/24，对照H为23/24。实际初始化参数/Adam/Torch-RNG指纹、完整初始保存RNG及归一化字节一致；H经历显式恢复，不能把这一配对当成完全连续、精确同交互量的因果证据。全部失败保留，seed33与B1真实训练继续。[第二配对完整结果与边界](../reports/native_independent_seed22_pair_complete_20261105.json)。新增失败反馈仍没有稳定收益证据。
 
+新的[状态条件反馈配对试验](contextual_outcome_pilot.md)已实现，排队等待B1释放端口。它沿用现有观测和物理链路，初始输出零效应，两组权重/Adam/RMS/RNG一致；实际模型加载与排队激活流程已核验，尚未开始该试验的原生训练。[准备证据及边界](../reports/native_conditional_feedback_pilot_ready_20261105.json)。
+
 [二维A*/Hybrid空间组件对照](spatial_planner_component.md)已修复二维搜索未执行节点上限的问题，并用公开输入复现全部16个静态/弯道查询。它与原生B2驾驶及贡献结论分开，不能替代正式消融。
 
 首个独立热启动 **H/H0配对已全部闭合**：实际CARLA训练30773/30752控制步、各970次Adam更新，全部48个TRAIN条件及原始帧/引擎/保存状态核验通过。两组已知24条验证均24/24，与共同零PPO基线持平；H/H0评估控制8165/8096、干预408/364、规划失败7/3，这个种子未证明新增失败反馈的收益。实际初始参数/Adam/Torch RNG及保存RNG内容相同，H0只移除新增负失败分支。[完整配对及全部结果](../reports/native_independent_outcome_seed11_pair_complete_20261104.json)、[冻结流程](independent_outcome_cohort.md)。种子33已开始真实PPO更新；其余3对与最终确认仍待完成。

@@ -1,4 +1,14 @@
-# 当前：2026-11-05 09:44 两个独立配对及首个B1完整种子已闭合
+# 当前：2026-11-05 10:32 状态条件反馈已实现、实际迁移及排队
+
+新源2514ff1e831f2c9c3c5a8295a26f225114ae3098，源CI41955163669 SUCCESS。navstack/contextual_outcome_policy.py在旧v1同4736观测/物理链路上增加状态条件actor/critic残差，输出层严格0，旧34tensor/Adam逐名保留，增加8状态/36931参数，总42；没有强制保持、mask或规则换动作。Hc0只关新增条件分支，两组旧正/负反馈仍保留，不能混同当前H/H0消融。短fixture实际PPO验证enabled分支变化、ablated不变化；最初加强断言失败因4步全零反馈，已按实际planned reusable ref暴露后通过；失败记录不算native负结果。
+
+已实际准备 D:/ThesisNativeArchive_20261104/20261105_conditional_outcome_TRAIN48_pilot 与_Hc/_Hc0，canonical seed22零PPO model0f275f75、4329已继承控制；两组全部42权重/Adam/RMS/RNG相同，90功能输入=30旧实测静态base×3合成context，概率和值严格相同。真实frozen-source模型恢复、42状态/36931新参数及所有旧Adam精确核验通过；所有既有navstack除admission gate逐字节保持62d冻结source，worker只插新policy admission。source510files，两个PowerShell ValidateOnly通过。shadow queued activation也真实执行，只有created/deadline变、24validation任务语义严格同一，0native controls；actual_Hc/Hc0排队协议未动。
+
+新排队coordinator实际4912 birth2026-11-05 10:30:48（精确身份见pilot/coordinator_identity_20261105.json），base Python311，tool session15145。已CIM核验live，phase WAITING_FOR_MATCHED_FLAT，native jobs0；只读OwnedProcess绑定B1parent17912 birth08:41:33.142，等execution_parallel_20261105全部20阶段+所有closed lifecycle/hash后再用2120。H/H0保留2110，绝不第三server。最多wait24h；pilot两组各10240+<=319新native train，known24两次endpoint，4h/job/0retry。每phase重新GPU4GiB/RAM16GiB/disk16GiB admission。frozen driver与run_fixed来自pilot/source，不用会后变化的root源码。不要重复启动此队列。source2514在真正prepare前commit；b760首次prepare因缺psutil在创建artifact前失败，已保留receipt，改CIM/kernel无安装后成功。完整准备报告reports/native_conditional_feedback_pilot_ready_20261105.json。
+
+主队列继续：Hparent32508，当前seed33 Htrain；B1parent17912当前seed22 known24，seed22训练和basic已经闭合，完整endpoint尚不能预写结果。旧B1trainworker29564已结束，需按phase新的worker_process核对，不再等旧PID。当前2/5完整H/H0配对，1/5完整B1种子；最终120未生成/查看，研究验收仍UNMET。gamma与GAE均已核对按物理秒缩放：gamma=.99**decisionSeconds，gae_lambda=.95**decisionSeconds；不要再次提出每50ms固定.99/.95造成短视的假设。
+
+# 历史：2026-11-05 09:44 两个独立配对及首个B1完整种子已闭合
 
 新实际诊断已闭合：scripts/probe_recorded_reference_candidates.py由独立fresh interpreter加载冻结source，case20 decision29（t14.5）完整前缀NN重建后检查31候选，6相关CPU测试通过5.78s。实际action2 mode/status/84nodes/reason复现；之前held12仍reference_reused、参考终点距goal .03806m且v0，PPO却改选action2新局部ref，终点距goal .98365m且v1.5。25reference/5plan_failed/1wait；20个terminal标签只是2个goal/speed组合。比decision38全部motion失败更早，指出可验证的option选择问题，尚无替代真实驾驶或成功因果证据。D原始输出seed22_case20_decision29_candidates_20261105.json及as-executed源码均保留，公共报告native_seed22_earlier_option_selection_20261105.json包含全矩阵与SHA；不再重复两个既有失败状态probe。源deea200已push，CI41951583944运行中，活跃课程物理source未改。
 
