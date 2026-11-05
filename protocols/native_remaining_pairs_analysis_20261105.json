@@ -29,5 +29,7 @@
     "No current five-seed strong-B3causal evidence"
   ],
   "final120_generated": 0,
-  "new_training_or_task_changes": 0
+  "new_training_or_task_changes": 0,
+  "existing_three_seed_results_already_observed": true,
+  "not_confirmatory_preregistration": true
 }
