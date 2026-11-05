@@ -1,0 +1,3552 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "research_acceptance": "UNMET",
+  "scope": "All31candidate reference preparations at one already-recorded first-failure pose;no alternative driving",
+  "fresh": {
+    "status": "COMPLETE",
+    "registration": {
+      "case_id": 20,
+      "decision_index_in_case": 38,
+      "source_model_sha256": "7b7a09d3fb44b27d73e7e280232ce9afdfa0ed865b6592d94e00e3711642f9aa",
+      "protocol_sha256": "aa2b4a42ae12dc0c185a22274c983936985f2a86910326b9c7d0e70d0e4806c9",
+      "trace_sha256": "e28ae3651ae5fe7377a919e5c3a86ff6ac776683cfec931158c726f7204b84f4",
+      "script_sha256": "0df25710017024c351d9547cb10587faa53b7fbc44ffb5bcb190f7c85f38e8de",
+      "candidate_order": [
+        2,
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "wall_seconds": 300,
+      "max_nodes_per_search": 32000,
+      "actual_selected_action": 2,
+      "state": {
+        "x": 29.282907126276157,
+        "y": 11.166668592986989,
+        "yaw": 0.28210439321434944,
+        "v": 0.509638364508652,
+        "steering": 0.2425560403111982,
+        "acceleration": 2.664814837255035,
+        "time": 19.000000283122063
+      },
+      "goal": [
+        29.960008679592754,
+        12.041430605195668,
+        0.5216661195952286
+      ],
+      "scope": "Fresh spatial+retiming+constant-velocity dynamic check;no option reuse,no new native road queries,no control execution",
+      "new_controls": 0,
+      "new_updates": 0
+    },
+    "results": [
+      {
+        "action": 2,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05473230000643525,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 2,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.020789300004253164,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03394300000218209,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 0,
+        "target": null,
+        "speed": 0.0,
+        "mode": "wait",
+        "detail": null,
+        "active_reference_samples": 0
+      },
+      {
+        "action": 1,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06288429998676293,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 1,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.02887399999599438,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.034010299990768544,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 3,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06209230000968091,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 3,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.03374420000181999,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.02834810000786092,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 4,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05528519999643322,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 4,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.02400140000099782,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.0312837999954354,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 5,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06251019999035634,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 5,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.031212499990942888,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03129769999941345,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 6,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.04899150000710506,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 6,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.020070099999429658,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.028921400007675402,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 7,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.056218799989437684,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 7,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.025669099995866418,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.030549699993571267,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 8,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05361730000004172,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 8,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.02050519999465905,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03311210000538267,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 9,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06096240000624675,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 9,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.03340559999924153,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.027556800007005222,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 10,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.057607199996709824,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 10,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.024427900003502145,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03317929999320768,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 11,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05450110000674613,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 11,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.02451610000571236,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.029985000001033768,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 12,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.0554382000118494,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 12,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.0240955000044778,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.031342700007371604,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 13,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06454500000108965,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 13,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.02686689999245573,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03767810000863392,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 14,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.049758299996028654,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 14,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.023001399997156113,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.02675689999887254,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 15,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05442269999184646,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 15,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.026183199996012263,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.028239499995834194,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 16,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05184459999145474,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 16,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.021505400000023656,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.030339199991431087,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 17,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.0627130000066245,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 17,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.028621200006455183,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.034091800000169314,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 18,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.0521862999885343,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 18,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.021923799999058247,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.030262499989476055,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 19,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05649249999260064,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 19,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.029225000005681068,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.027267499986919574,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 20,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.053607499998179264,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 20,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.020145999995293096,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03346150000288617,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 21,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06715400000393856,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 21,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.03414180000254419,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.033012200001394376,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 22,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05543809999653604,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 22,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.021334399993065745,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.034103700003470294,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 23,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06877530000929255,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 23,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.03399530000751838,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03478000000177417,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 24,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05331639999349136,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 24,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.020063699994352646,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03325269999913871,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 25,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.059496799993212335,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 25,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.027687499998137355,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03180929999507498,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 26,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06102049998298753,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 26,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.024462799992761575,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.036557699990225956,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 27,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05862330000672955,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 27,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.026428500001202337,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03219480000552721,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 28,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05484850000357255,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 28,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.020995500002754852,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.0338530000008177,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 29,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06164600000192877,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 29,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.030542299995431677,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.031103700006497093,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 30,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.058250899994163774,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 30,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.02364129999477882,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.034609599999384955,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      }
+    ],
+    "mode_counts": {
+      "plan_failed": 30,
+      "wait": 1
+    },
+    "actual_selected_failure_reproduced": true,
+    "wall_seconds": 2.0825119018554688,
+    "limits": "One already failed measured pose;no proof of alternative driving recovery or native road acceptance;fresh searches omit pre-existing option reuse;not an independent condition or model"
+  },
+  "retained": {
+    "status": "COMPLETE",
+    "registration": {
+      "case_id": 20,
+      "actual_first_failure_decision": 38,
+      "script_sha256": "fbafee4051f5398d60bf9ee709445b3ce56d408811d0ac0d92472f4a84b64c9b",
+      "replay_script_sha256": "b6e8ebfe88c5485f37519c1db53808dd2d20855a0ba526eacdb7e6a61e880c46",
+      "protocol_sha256": "aa2b4a42ae12dc0c185a22274c983936985f2a86910326b9c7d0e70d0e4806c9",
+      "trace_sha256": "e28ae3651ae5fe7377a919e5c3a86ff6ac776683cfec931158c726f7204b84f4",
+      "candidate_order": [
+        2,
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "wall_seconds_for_candidates": 300,
+      "new_controls": 0,
+      "new_updates": 0,
+      "scope": "Recorded-state prefix reconstruction and full candidate preparation with the actually retained option;no driving"
+    },
+    "state": {
+      "x": 29.282907126276157,
+      "y": 11.166668592986989,
+      "yaw": 0.28210439321434944,
+      "v": 0.509638364508652,
+      "steering": 0.2425560403111982,
+      "acceleration": 2.664814837255035,
+      "time": 19.000000283122063
+    },
+    "actually_held_action": 2,
+    "reference_selection": [
+      [
+        28.979358854845323,
+        11.442428812780435,
+        0.49025141089093616
+      ],
+      1.5
+    ],
+    "results": [
+      {
+        "action": 2,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.0603700000065146,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 2,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.022988199998508207,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.037381800008006394,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 0,
+        "target": null,
+        "speed": 0.0,
+        "mode": "wait",
+        "detail": null,
+        "active_reference_samples": 0
+      },
+      {
+        "action": 1,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.0571155999932671,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 1,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.025675199998659082,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.031440399994608015,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 3,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05758310000237543,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 3,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.028182900001411326,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.029400200000964105,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 4,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.055491500010248274,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 4,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.02056530000118073,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03492620000906754,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 5,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05255310000211466,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 5,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.022481499996501952,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03007160000561271,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 6,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05273060000035912,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 6,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.02077859999553766,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03195200000482146,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 7,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.061398599995300174,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 7,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.0286296999984188,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03276889999688137,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 8,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.056680099994991906,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 8,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.020455499994568527,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03622460000042338,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 9,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06645299999217968,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 9,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.03271139999560546,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03374159999657422,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 10,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.051956800001789816,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 10,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.02095710000139661,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.030999700000393204,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 11,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.057872799996403046,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 11,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.026528699992923066,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03134410000347998,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 12,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.050635500010685064,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 12,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.020700699998997152,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.029934800011687912,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 13,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05786210000223946,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 13,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.02829129999736324,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.02957080000487622,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 14,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05237689999921713,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 14,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.019751500003621913,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03262539999559522,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 15,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05936369998380542,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 15,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.026187999988906085,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03317569999489933,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 16,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05976879999798257,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 16,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.024701600006665103,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.035067199991317466,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 17,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.061688100002356805,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 17,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.02660570001171436,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03508239999064244,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 18,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.0580136000062339,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 18,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.022640800001681782,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03537280000455212,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 19,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.063341599990963,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 19,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.027832599997054785,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03550899999390822,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 20,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.04980569999315776,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 20,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.021198899994487874,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.028606799998669885,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 21,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05710429999453481,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 21,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.028529299990623258,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.028575000003911555,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 22,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05235230000107549,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 22,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.023536099994089454,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.028816200006986037,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 23,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.060357800000929274,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 23,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.02807060000486672,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.032287199996062554,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 24,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.062130899998010136,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 24,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.025818800000706688,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03631209999730345,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 25,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.06774739999673329,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 25,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.0353047999960836,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03244260000064969,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 26,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.055652099996223114,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 26,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.02352719999908004,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.032124899997143075,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 27,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05961899999238085,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 27,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.027432999995653518,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03218599999672733,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 28,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.055704700003843755,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 28,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.02395529999921564,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.031749400004628114,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 29,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.05881919999956153,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 29,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 0.75,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 0.75,
+                "status": "no_path",
+                "expanded_nodes": 72,
+                "planning_time": 0.0296334000013303,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.029185799998231232,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 159
+          }
+        },
+        "active_reference_samples": 0
+      },
+      {
+        "action": 30,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "no_path",
+          "expanded_nodes": 87,
+          "cost": null,
+          "planning_time": 0.056830799992894754,
+          "failure_reason": "open_set_exhausted",
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 30,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": 0.2425560403111982,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "no_path",
+                "expanded_nodes": 56,
+                "planning_time": 0.02472929999930784,
+                "cache_hit": false
+              },
+              {
+                "speed_ceiling": 0.25,
+                "status": "no_path",
+                "expanded_nodes": 87,
+                "planning_time": 0.03210149999358691,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 143
+          }
+        },
+        "active_reference_samples": 0
+      }
+    ],
+    "mode_counts": {
+      "plan_failed": 30,
+      "wait": 1
+    },
+    "actual_selected_failure_reproduced": true,
+    "wall_seconds_for_candidates": 2.042614698410034,
+    "limits": "Retained-reference preparation only;no alternative control or CARLA query/execution,no counterfactual success guarantee. Prefix stops at the inspected state;complete889decision proof is separately retained."
+  },
+  "evidence_hashes": {
+    "seed22_case20_first_failure_fresh_candidates_20261105.json": "8ca3132deb073dbe470f8df07a5142e2d6d1fbc5b7bbc1fffd0dcf2ae8d3d488",
+    "seed22_case20_retained_option_candidates_20261105.json": "981ce65ee62d7937d23a5b29f8d4651f42439ae42c037df5fa6af702a4478e07",
+    "check_seed22_first_failure_candidates_as_executed_20261105.py": "0df25710017024c351d9547cb10587faa53b7fbc44ffb5bcb190f7c85f38e8de",
+    "check_seed22_retained_option_as_executed_20261105.py": "fbafee4051f5398d60bf9ee709445b3ce56d408811d0ac0d92472f4a84b64c9b"
+  },
+  "unique_motion_target_poses": 1,
+  "probed_candidate_labels_per_reference_state": 31,
+  "new_controls": 0,
+  "new_PPO_updates": 0,
+  "observations": [
+    "All30motion labels decode to the same registered finalpose at this state,with15labels per requested speed0.75/1.5",
+    "Both fresh and retained-option preparations produce30plan_failed and1wait;selected failure is exactly reproduced before probing alternatives",
+    "Retained option existed but could no longer pass reusable_reference at this pose;no valid continuation was found by these registered model checks"
+  ],
+  "limits": [
+    "One pose/two reference-state preparations are not62new driving conditions or independent samples",
+    "Finite forward searches returningno_path are not a continuous geometric infeasibility proof",
+    "No alternative command was executed and no new native-road certificate was queried",
+    "As-executed source snapshots are retained in the development archive;portable publication of these two state-probe harnesses is pending",
+    "This supports examining earlier subgoal/continuation viability rather than assuming a stronger failed-label penalty alone repairs the late state"
+  ]
+}

@@ -54,3 +54,9 @@ def test_dependency_requires_every_closed_job_and_rejects_recorded_failure(tmp_p
 def test_unknown_flat_phase_is_rejected_before_any_staging(tmp_path):
     with pytest.raises(ValueError):protocol_for(tmp_path,{},'best_checkpoint',tmp_path)
     assert not list(tmp_path.iterdir())
+
+
+@pytest.mark.parametrize('port',[True,2110.,2111,2119,2123,65535])
+def test_unregistered_or_overlapping_parallel_ports_rejected_before_staging(tmp_path,port):
+    with pytest.raises(ValueError,match='RPC span'):protocol_for(tmp_path,{},'zero_PPO_basic',tmp_path,port)
+    assert not list(tmp_path.iterdir())

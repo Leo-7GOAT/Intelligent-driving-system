@@ -1,4 +1,14 @@
-# 当前：2026-11-05 seed22完整889动态/静态NN复算与失败项诊断完成
+# 当前：2026-11-05 08:52 B1/H0真实并行学习，完整动态诊断及31候选检查完成
+
+关键提速已实际执行，不再串行等H全部25阶段：原未归属2100peer已不存在，测得GPU空闲8702MiB/RAM47.02GiB/D盘425.70GiB后，在原两服务器上限内将B1放到2120–2122，H/H0保留2110–2112。原read-only B1observer4100（creation07:46:32.032822）已按完整birth/exe OwnedProcess验证后有意终止，旧tool39552退出1是INTENTIONALLY_SUPERSEDED，不是训练失败。不得重启它。原B1registration不改，20个recipe逐字典核验只改port/span，物理/模型/RMS/数据/任务/PPO/30720预算完全不变。新B1parent17912 creation08:41:33.142839/basePython，tool3630，日志execution_parallel_20261105；Hparent32508/tool44378/H0worker34136仍在。B2driver已加必须全25H/H0+20B1闭合，防止B1并行先完就抢2110；不启第三CARLA。
+
+新B1 seed11 zero_PPO_basic已完整4/4、1425controls，raw/engine/起点NN闭合；这是有监督initializer不是PPO收益。当前20261104_matched_flat_seed11_TRAIN48_PPO30720真PPO，worker23596 creation08:44:14.000（精度以worker_process/CIM为准）；首检查点5120controls/5120decisions/35Adam全+147（target_KL早停不硬推160）、实际初始化weights+完整Adam+TorchRNG exact、RMS mean/var/count不变、模型改变，proof在batch/first_parallel_PPO_update_proof.json。08:52左右B1heartbeat7173、H0seed22heartbeat23917。两CARLA端口2110/2120各自owned，GPU约2027MiB余量在准入后保留，温度35C、RAM仍充足，物理worker均CPU PPO。只能核对当前OS/guard，不能按旧PID杀进程；28432已被复用为B1旧阶段guard，不再是Hendpointworker。
+
+source de79cc53c8a89a6f2c666f0da73ee8cc764fc8ea实际driver bytes与Git blob完全同SHA，hostedCI41943194130 SUCCESS1443/25skip/4exclude/232.10s，10本地scheduling tests4.41s。新public报告native_parallel_flat_execution_20261105.json保留20transport-only checks、资源、4basic和首真实PPO；其中inference绝对frozen_source_root已显式脱敏并保留original SHA。并行wall-time不可作独立算力贡献或实时性证据。PR4已正常merge为main2bafbc683f51135f1ccbe33d6407ef587b58cfa8，620源CPU两checks均SUCCESS；最新主分支CI另查。root新source仅de79调度，不注入冻结H/B1worker。
+
+新增root-cause实测D/seed22_case20_first_failure_fresh_candidates_20261105.json（2.08s、31候选）和retained_option_candidates同姿态保留旧reference版本：两者均30plan_failed+1wait、30motion全部goal同pose×15每speed(0.75/1.5)，原action2firstfail的status/node/reason精确复现。warm从完整NN复算prefix在case20第37决策后捕获真实ref，deepcopy后已重绑option closures防止误引用原env；as-executed两脚本在D/check_seed22_*_as_executed_20261105.py，不需重跑。state(29.2829,11.1667,yaw.2821,v.5096,steer.24256,time19)，goal(29.9600,12.0414,.52167)，旧selectedpoint(28.9794,11.4424,.49025)；上一接受reference是case20decision29，native pose query末点(29.41918,11.21980,.29247)，与selectedpoint误差.49295m/.19778rad，落在planner .55m/.2rad终止容差内；静态goal witness在ideal与returned endpoint都False，不能误称ideal证书曾通过。尚无替代驾驶成功/global infeasibility结论；public native_seed22_candidate_alias_probe_20261105.json保留完整矩阵/限制，portable harness publication仍待。下一根因工作可检查较早的候选/参考到期/价值奖励信用，不把加强失败项当已证实修复，也不改变当前冻结五种子课程。最终120未生成/查看，整体UNMET。
+
+# 历史：2026-11-05 seed22完整889动态/静态NN复算与失败项诊断完成
 
 新all-actions只读诊断已实际完成，24条件全部889次NN（525static/364moving，8moving cases）从原生frame/actor快照复算一致；原raw8781/engine闭合仍有效。脚本scripts/audit_native_reference_inference.py新--all-actions，diagnose_outcome_feedback_actions.py支持同选项且修复mixed-data的static默认选择。25关联CPU回归PASS2.91s。最初两次拓展失败已保存D/first_full_moving_reconstruction_failures_20261105.json及failed_all_actions_auditor_v1快照，原因是旧static假设把dynamic_brake的success空间搜索也要求accepted road query；新helper验证mode一致/无active reference，同时accepted reference仍需精确native pose hash与无rejections，未改物理worker。
 

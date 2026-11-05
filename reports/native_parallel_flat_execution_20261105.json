@@ -1,0 +1,1158 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "research_acceptance": "UNMET",
+  "status": "B1_NATIVE_PPO_ACTIVE_IN_PARALLEL_WITH_H0",
+  "source_commit": "de79cc53c8a89a6f2c666f0da73ee8cc764fc8ea",
+  "scheduling_revision": {
+    "version": "isolated_native_ports_v1",
+    "source_registration_sha256": "158984c137b68ac879e935cc30aa9ec1b9899ae3cd0e5a29605f02322bfcd818",
+    "driver_sha256": "9dc4a2f710c3bccdb81733103be5aca860d1df031419df684c4e0fb5fe46c1bd",
+    "rpc_port": 2120,
+    "maximum_simultaneous_servers": 2,
+    "automatic_retries": 0,
+    "physics_policy_task_budget_changes": 0,
+    "reason": "Disjoint2100peer absent;use the originally admitted second server for frozen B1",
+    "wall_timing": "Concurrency disclosed;no isolated wall-time contribution claim"
+  },
+  "resource_admission_and_all20_profile_checks": {
+    "resource_admission": {
+      "free_GPU_MiB": 8702,
+      "free_RAM_GiB": 47.01995849609375,
+      "free_disk_GiB": 425.69878005981445,
+      "logical_CPUs": 12,
+      "maximum_simultaneous_servers": 2,
+      "unowned_2100_never_stopped": true
+    },
+    "unchanged_profile_checks": [
+      {
+        "seed": 11,
+        "phase": "zero_PPO_basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 11,
+        "phase": "TRAIN48_PPO30720",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 11,
+        "phase": "basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 11,
+        "phase": "known24",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 22,
+        "phase": "zero_PPO_basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 22,
+        "phase": "TRAIN48_PPO30720",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 22,
+        "phase": "basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 22,
+        "phase": "known24",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 33,
+        "phase": "zero_PPO_basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 33,
+        "phase": "TRAIN48_PPO30720",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 33,
+        "phase": "basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 33,
+        "phase": "known24",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 44,
+        "phase": "zero_PPO_basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 44,
+        "phase": "TRAIN48_PPO30720",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 44,
+        "phase": "basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 44,
+        "phase": "known24",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 55,
+        "phase": "zero_PPO_basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 55,
+        "phase": "TRAIN48_PPO30720",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 55,
+        "phase": "basic",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      },
+      {
+        "seed": 55,
+        "phase": "known24",
+        "changes": {
+          "carla_rpc_port_span": [
+            [
+              2110,
+              2111,
+              2112
+            ],
+            [
+              2120,
+              2121,
+              2122
+            ]
+          ],
+          "carla_rpc_port": [
+            2110,
+            2120
+          ]
+        }
+      }
+    ],
+    "source_registration_sha256": "158984c137b68ac879e935cc30aa9ec1b9899ae3cd0e5a29605f02322bfcd818",
+    "driver_sha256": "9dc4a2f710c3bccdb81733103be5aca860d1df031419df684c4e0fb5fe46c1bd",
+    "new_controls": 0,
+    "new_updates": 0
+  },
+  "reason": "Former unowned2100peer absent;use the previously admitted second-server slot instead of waiting for allH/H0phases",
+  "own_ports": {
+    "H": [
+      2110,
+      2111,
+      2112
+    ],
+    "B1": [
+      2120,
+      2121,
+      2122
+    ]
+  },
+  "maximum_simultaneous_servers": 2,
+  "zero_PPO_basic": {
+    "batch": "20261104_matched_flat_seed11_zero_PPO_basic",
+    "protocol_sha256": "172eb86466fbdc3d2aa49671ede6b9b46032004df2d900c9b856ae6604de11d3",
+    "evaluation": {
+      "scope": "Frozen deterministic probes on all registered development conditions, no extra policy updates or independent-condition claim",
+      "partition": "development",
+      "decision_timing_scope": "policy_prediction_times includes normalization and deterministic prediction;full_decision_times includes that plus the complete environment step. Historical decision_cycle_times remains environment-only. Excludes trace serialization and job setup.",
+      "episodes": [
+        {
+          "case_id": 0,
+          "reward": 30.0903252821132,
+          "discounted_return": 25.91560378676872,
+          "physics_steps": 356,
+          "actions": 356,
+          "distance": 24.35992191613466,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 3,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.779999999999984,
+            "risk": -0.5504200124394264,
+            "comfort": -0.26384317340118796,
+            "potential": 0.6751402446042568,
+            "task_progress": 12.009448223349558
+          },
+          "goal_parking_controls": 3,
+          "goal_parking_eligible_controls": 3,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 17.80000026524067,
+          "progress": 24.018896446699113,
+          "path_efficiency_success_only": 0.9783191953781893,
+          "travel_time_success_only": 17.80000026524067,
+          "intervention_rate": 0.008426966292134831,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 61.17905736089092,
+          "lateral_acceleration_rms": 0.04597331809694288,
+          "risk_rms": 0.07739790305068528,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 356,
+            "median": 0.00600865000160411,
+            "p95": 0.0071994749960140325,
+            "p99": 0.007583494999562388,
+            "max": 0.307620899999165,
+            "over_period_fraction": 0.0028089887640449437,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 356,
+            "median": 0.038073600007919595,
+            "p95": 0.08507694999934756,
+            "p99": 0.09140399498865007,
+            "max": 0.30994490000011865,
+            "over_period_fraction": 0.41292134831460675,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 356,
+            "median": 0.0011803000015788712,
+            "p95": 0.0015846750029595569,
+            "p99": 0.001743250008439645,
+            "max": 0.003721800007042475,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 356,
+            "median": 0.03936960000282852,
+            "p95": 0.08638702500684303,
+            "p99": 0.09245017500579705,
+            "max": 0.3115735000028508,
+            "over_period_fraction": 0.4241573033707865,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 1,
+          "reward": 24.166674319953497,
+          "discounted_return": 19.556449392780095,
+          "physics_steps": 463,
+          "actions": 463,
+          "distance": 24.596483833832394,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "reward_components": {
+            "event": 20.0,
+            "time": -2.314999999999973,
+            "risk": -5.7343290337017825,
+            "comfort": -0.28400224119519374,
+            "potential": 0.684992404644886,
+            "task_progress": 11.815013190205583
+          },
+          "goal_parking_controls": 2,
+          "goal_parking_eligible_controls": 2,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 23.15000034496188,
+          "progress": 23.630026380411145,
+          "path_efficiency_success_only": 0.9573561617157088,
+          "travel_time_success_only": 23.15000034496188,
+          "intervention_rate": 0.004319654427645789,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 63.67281807194285,
+          "lateral_acceleration_rms": 0.1417600580152184,
+          "risk_rms": 0.6481703603483637,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 463,
+            "median": 0.009892299989587627,
+            "p95": 0.011810489995696116,
+            "p99": 0.012309802001982461,
+            "max": 0.310004700004356,
+            "over_period_fraction": 0.0021598272138228943,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 463,
+            "median": 0.11513339998782612,
+            "p95": 0.20620451000577303,
+            "p99": 0.23640202799957472,
+            "max": 0.31111609999788925,
+            "over_period_fraction": 0.6997840172786177,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 463,
+            "median": 0.001177300000563264,
+            "p95": 0.0016286200043396093,
+            "p99": 0.0017024700046749785,
+            "max": 0.0017967000021599233,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 463,
+            "median": 0.11625079999794252,
+            "p95": 0.2072753500091494,
+            "p99": 0.2376522300031501,
+            "max": 0.3124213000119198,
+            "over_period_fraction": 0.7041036717062635,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 2,
+          "reward": 29.620800626039163,
+          "discounted_return": 26.089695679851694,
+          "physics_steps": 301,
+          "actions": 301,
+          "distance": 22.30979619430894,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 2,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.50499999999999,
+            "risk": -0.3873229337067113,
+            "comfort": -0.12445681035232159,
+            "potential": 0.6159298321636705,
+            "task_progress": 11.02165053793451
+          },
+          "goal_parking_controls": 2,
+          "goal_parking_eligible_controls": 2,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 15.050000224262476,
+          "progress": 22.043301075869042,
+          "path_efficiency_success_only": 0.9853231359207826,
+          "travel_time_success_only": 15.050000224262476,
+          "intervention_rate": 0.006644518272425249,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 34.63449661186815,
+          "lateral_acceleration_rms": 0.054349323871616916,
+          "risk_rms": 0.0648289216663576,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 301,
+            "median": 0.005804799991892651,
+            "p95": 0.006927499998710118,
+            "p99": 0.007471500008250587,
+            "max": 0.308532600000035,
+            "over_period_fraction": 0.0033222591362126247,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 301,
+            "median": 0.03503389999968931,
+            "p95": 0.07758810000086669,
+            "p99": 0.0870464999898104,
+            "max": 0.3100352000037674,
+            "over_period_fraction": 0.3388704318936877,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 301,
+            "median": 0.0011178999993717298,
+            "p95": 0.001556999995955266,
+            "p99": 0.0016352999955415726,
+            "max": 0.0018048999918391928,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 301,
+            "median": 0.036097999996854924,
+            "p95": 0.0788990000000922,
+            "p99": 0.08809600000677165,
+            "max": 0.3116160000063246,
+            "over_period_fraction": 0.3654485049833887,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        },
+        {
+          "case_id": 3,
+          "reward": 24.595161337580368,
+          "discounted_return": 21.387603970751073,
+          "physics_steps": 305,
+          "actions": 305,
+          "distance": 21.7422295562154,
+          "plan_failures": 0,
+          "mpc_failures": 0,
+          "interventions": 1,
+          "reward_components": {
+            "event": 20.0,
+            "time": -1.5249999999999895,
+            "risk": -4.094618233197848,
+            "comfort": -0.30708921876355466,
+            "potential": 0.5592587153465995,
+            "task_progress": 9.962610074195165
+          },
+          "goal_parking_controls": 1,
+          "goal_parking_eligible_controls": 1,
+          "success": true,
+          "termination_reason": "success",
+          "scenario": "native_curve",
+          "simulation_seconds": 15.250000227242708,
+          "progress": 19.92522014839033,
+          "path_efficiency_success_only": 0.9163650618246728,
+          "travel_time_success_only": 15.250000227242708,
+          "intervention_rate": 0.003278688524590164,
+          "plan_failure_rate": null,
+          "mpc_failure_rate": null,
+          "tracking_reference_coverage": 0.0,
+          "tracking_missing_reason": "flat_policy_has_no_reference",
+          "lateral_errors_rms": null,
+          "heading_errors_rms": null,
+          "speed_errors_rms": null,
+          "jerk_rms": 84.45849878306608,
+          "lateral_acceleration_rms": 0.15639974735891018,
+          "risk_rms": 0.6986758740982252,
+          "plan_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "qp_times": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "p99": null,
+            "max": null,
+            "over_period_fraction": null
+          },
+          "control_cycle_times": {
+            "count": 305,
+            "median": 0.008442099991953,
+            "p95": 0.009870740002952516,
+            "p99": 0.010623376008006738,
+            "max": 0.31021390001114924,
+            "over_period_fraction": 0.003278688524590164,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "decision_cycle_times": {
+            "count": 305,
+            "median": 0.07741489999170881,
+            "p95": 0.16257987999997567,
+            "p99": 0.17349334800208452,
+            "max": 0.31175369999255054,
+            "over_period_fraction": 0.5737704918032787,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "policy_prediction_times": {
+            "count": 305,
+            "median": 0.0011904999992111698,
+            "p95": 0.0016081799985840917,
+            "p99": 0.001696124000009149,
+            "max": 0.0017316000012215227,
+            "over_period_fraction": 0.0,
+            "period": 0.05,
+            "unit": "seconds"
+          },
+          "full_decision_times": {
+            "count": 305,
+            "median": 0.0786043999978574,
+            "p95": 0.16377095999196173,
+            "p99": 0.1750163719966076,
+            "max": 0.31304150000505615,
+            "over_period_fraction": 0.5737704918032787,
+            "period": 0.05,
+            "unit": "seconds"
+          }
+        }
+      ],
+      "world_ticks": 1548,
+      "model_sha256": "7f78c1a41f6b068a969d433a54d8468b00918530973d759625f68947398a9427",
+      "normalization_sha256": "b0ee5428680b356b2ee2f55f93dedda3280743e7ffdb8c0cea2bb7f491c48edd"
+    },
+    "raw_audit": {
+      "schema_version": 1,
+      "scope": "Per-method raw CARLA verification; every training/evaluation control is bound to one measured bridge frame.",
+      "batch": "20261104_matched_flat_seed11_zero_PPO_basic",
+      "method": "B1",
+      "protocol_sha256": "172eb86466fbdc3d2aa49671ede6b9b46032004df2d900c9b856ae6604de11d3",
+      "config_sha256": "c5d39adeea2ed543fab993a2bd59aee4252e7bc6f8cb1aad2ccbf189b8293f2e",
+      "summary_sha256": "5f625b9be2761fdf52ff2fc509347ce0e4438c59d6b584fc870c9e6a9df7aa14",
+      "evaluation_sha256": "277bfb34507900225eb1c7c9b40300f5f03fc473056fe9b9eb1e3d2847ee4017",
+      "evaluation_trace_sha256": "c7b240ffe00d335b0685ace65d94261a8c2726c34c4b365982b863cc54bfd57b",
+      "optimization_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transition_hashes": {
+        "transitions_000000000_1793839311904387500.jsonl.gz": "379d0af61d2550329759217f932a27bb630a8fa5dc1b2edaae47d39fa1d61b25"
+      },
+      "bridge_response_stream": "bridge_a01ce88b_responses.jsonl.gz",
+      "bridge_response_sha256": "800028c3fa5543eee1b86f516f12b8e141eb2c8beea3c5e9e105579697d3ce4e",
+      "bridge_complete_rows": 1433,
+      "training_control_frames_verified": 0,
+      "evaluation_control_frames_verified": 1425,
+      "total_applied_controls_verified": 1425,
+      "training_world_ticks_verified": 0,
+      "evaluation_world_ticks_verified": 1548,
+      "training_termination_reasons": {},
+      "checkpoint": "checkpoint_000000000",
+      "checkpoint_metadata_sha256": "6956ca1444904588af23ed2b15c1f5f02e52f6fec4d7156ed2d81b05939735e9",
+      "lineage_controls": 0,
+      "charged_controls_lower_bound": 39189,
+      "segment_optimizer_steps": 0,
+      "optimizer_steps_total_lower_bound": 0,
+      "unknown_unflushed_ancestor_tail": false
+    },
+    "engine": {
+      "scope": "Compare requested pedals with CARLA's returned last-tick control,offline.",
+      "batch": "20261104_matched_flat_seed11_zero_PPO_basic",
+      "protocol_sha256": "172eb86466fbdc3d2aa49671ede6b9b46032004df2d900c9b856ae6604de11d3",
+      "control_delivery": "batch_sync_v1",
+      "bridge_streams": [
+        {
+          "name": "bridge_a01ce88b_responses.jsonl.gz",
+          "sha256": "800028c3fa5543eee1b86f516f12b8e141eb2c8beea3c5e9e105579697d3ce4e"
+        }
+      ],
+      "tolerance": 1e-05,
+      "counts": {
+        "controls": 1425,
+        "gear_or_handbrake_mismatches": 0,
+        "missing_or_negative_sync_ack": 0
+      },
+      "mismatch_channels": {},
+      "by_phase": {
+        "evaluation": {
+          "controls": 1425
+        }
+      },
+      "mismatch_examples": [],
+      "all_engine_controls_match_requested": true,
+      "strict_delivery_gate_passed": true,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "limits": "Checks CARLAget_control against requested pedals,not independent wheel torque. Previous-request matches establish an acknowledgement discrepancy,not its causal contribution to policy failure."
+    },
+    "inference": {
+      "scope": "Offline inference at measured evaluation starts; zero new CARLA ticks, not whole-trajectory re-execution",
+      "method": "B1",
+      "model_sha256": "7f78c1a41f6b068a969d433a54d8468b00918530973d759625f68947398a9427",
+      "trace_sha256": "c7b240ffe00d335b0685ace65d94261a8c2726c34c4b365982b863cc54bfd57b",
+      "loaded_normalization_training": false,
+      "inference_normalization_frozen": true,
+      "audit_script_sha256": "a8565c82dd407a15cc12703052a8ffc11e88d973eca0e669c3b25aa51734a239",
+      "batch_protocol_sha256": "172eb86466fbdc3d2aa49671ede6b9b46032004df2d900c9b856ae6604de11d3",
+      "new_controls": 0,
+      "optimizer_updates": 0,
+      "results": [
+        {
+          "case_id": 0,
+          "action": [
+            0.9419365525245667,
+            0.01846853457391262
+          ],
+          "recorded_action": [
+            0.9419365525245667,
+            0.01846853457391262
+          ],
+          "road_sha256": "47b5127a849994af4445e6fba5abf57a090e45734364f19a314c0e7a86259159",
+          "mean": [
+            0.9419365525245667,
+            0.01846853457391262
+          ],
+          "std": [
+            0.018315639346837997,
+            0.018315639346837997
+          ]
+        },
+        {
+          "case_id": 1,
+          "action": [
+            0.8932409882545471,
+            0.1857287436723709
+          ],
+          "recorded_action": [
+            0.8932409882545471,
+            0.1857287436723709
+          ],
+          "road_sha256": "933857fae1a76192fdbf9d73ed4539ad36fd1cc1a37473803fc7fe33e6ce696d",
+          "mean": [
+            0.8932409882545471,
+            0.1857287436723709
+          ],
+          "std": [
+            0.018315639346837997,
+            0.018315639346837997
+          ]
+        },
+        {
+          "case_id": 2,
+          "action": [
+            0.9092931747436523,
+            -0.02648286335170269
+          ],
+          "recorded_action": [
+            0.9092931747436523,
+            -0.02648286335170269
+          ],
+          "road_sha256": "0ddd27a04ef97fc903a9e01e56d554d1d923d0527c09bb2ad828f338bc1df0b0",
+          "mean": [
+            0.9092931747436523,
+            -0.02648286335170269
+          ],
+          "std": [
+            0.018315639346837997,
+            0.018315639346837997
+          ]
+        },
+        {
+          "case_id": 3,
+          "action": [
+            0.9862542152404785,
+            -0.041843026876449585
+          ],
+          "recorded_action": [
+            0.9862542152404785,
+            -0.041843026876449585
+          ],
+          "road_sha256": "a0837986943657f25f98684bd3e0309ca4ae104a60ea2956954a45790c982ec6",
+          "mean": [
+            0.9862542152404785,
+            -0.041843026876449585
+          ],
+          "std": [
+            0.018315639346837997,
+            0.018315639346837997
+          ]
+        }
+      ],
+      "source_root_scope": "Batch-relative frozen source;local absolute path redacted in this public copy"
+    },
+    "successes": 4,
+    "cases": 4,
+    "controls": 1425,
+    "interpretation": "Supervised warm initializer;zero newPPO,not a post-training health or RL-benefit result",
+    "original_inference_sha256": "999b2f75718e44531ea183a18245352564b3b17ec86dae8b50411ffe2d321352"
+  },
+  "first_saved_native_PPO_proof": {
+    "batch": "20261104_matched_flat_seed11_TRAIN48_PPO30720",
+    "protocol_sha256": "e0cbc08c2ab342817fdd8605ab0b7b2d7cfd0a560d56a9f615aabece181ac697",
+    "checkpoint": "checkpoint_000005120",
+    "physics_steps": 5120,
+    "actions": 5120,
+    "Adam_advancement_each_of35": 147,
+    "actual_initial_weights_full_Adam_and_Torch_RNG_exact": true,
+    "RMS_exact": true,
+    "parameters_changed": true,
+    "model_sha256": "59951e2c54e519046af19e0a7c987f5f86d38216120a2c10879b110fc12d8e03",
+    "new_supervision": 0,
+    "scope": "First retained native PPO state,not a closed course or an independent performance result"
+  },
+  "source_CI": {
+    "run": "https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41943194130",
+    "status": "SUCCESS",
+    "passed": 1443,
+    "skipped": 25,
+    "CARLA_excluded": 4,
+    "seconds": 232.1
+  },
+  "local_related_CPU_tests": {
+    "passed": 10,
+    "seconds": 4.41
+  },
+  "limits": [
+    "All20recipes retain the same frozen physical source,data,model,normalizer,learner settings and interaction budget;only RPCport/span differ",
+    "The20profile checks use the immutable initializer checkpoints to compare transport configuration,not trained endpoint performance",
+    "Concurrent workstation wall times are not isolated causal compute or real-time evidence",
+    "Both H/H0 and B1cohorts remain incomplete;all five baseline seeds retained regardless of health result",
+    "B2driver now requires both25H/H0and20B1closed phases before using2110;no third simulator started",
+    "Baseline zero-evaluation costs are separate recorded interactions,not newPPOor additional training seeds"
+  ],
+  "serial_observer_superseded": {
+    "status": "INTENTIONALLY_SUPERSEDED_READONLY_OBSERVER",
+    "native_jobs_started": 0,
+    "reason": "Move unchanged20job recipe to isolated2120span;no policy/data/budget changes"
+  },
+  "first_actor_head_change_check": {
+    "checkpoint": "checkpoint_000005120",
+    "action_net_weight_changed": true,
+    "action_net_bias_changed": true,
+    "changed_parameter_names": [
+      "log_std",
+      "mlp_extractor.policy_net_road.0.weight",
+      "mlp_extractor.policy_net_road.0.bias",
+      "mlp_extractor.policy_net_road.2.weight",
+      "mlp_extractor.policy_net_road.2.bias",
+      "mlp_extractor.policy_net_road.6.weight",
+      "mlp_extractor.policy_net_road.6.bias",
+      "mlp_extractor.policy_net_context.0.weight",
+      "mlp_extractor.policy_net_context.0.bias",
+      "mlp_extractor.policy_net_context.2.weight",
+      "mlp_extractor.policy_net_context.2.bias",
+      "mlp_extractor.policy_net_candidate.0.weight",
+      "mlp_extractor.policy_net_candidate.0.bias",
+      "mlp_extractor.policy_net_candidate.2.weight",
+      "mlp_extractor.policy_net_candidate.2.bias",
+      "mlp_extractor.policy_net_fusion.0.weight",
+      "mlp_extractor.policy_net_fusion.0.bias",
+      "mlp_extractor.policy_net_fusion.2.weight",
+      "mlp_extractor.policy_net_fusion.2.bias",
+      "mlp_extractor.value_net_road.0.weight",
+      "mlp_extractor.value_net_road.0.bias",
+      "mlp_extractor.value_net_road.2.weight",
+      "mlp_extractor.value_net_road.2.bias",
+      "mlp_extractor.value_net_road.6.weight",
+      "mlp_extractor.value_net_road.6.bias",
+      "mlp_extractor.value_net_candidate.0.weight",
+      "mlp_extractor.value_net_candidate.0.bias",
+      "mlp_extractor.value_net_fusion.0.weight",
+      "mlp_extractor.value_net_fusion.0.bias",
+      "mlp_extractor.value_net_fusion.2.weight",
+      "mlp_extractor.value_net_fusion.2.bias",
+      "action_net.weight",
+      "action_net.bias",
+      "value_net.weight",
+      "value_net.bias"
+    ],
+    "new_controls": 0,
+    "new_updates": 0
+  }
+}

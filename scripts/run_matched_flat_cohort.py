@@ -160,12 +160,14 @@ def dependency_complete(cohort):
     return True
 
 
-def protocol_for(output,row,phase,checkpoint):
+def protocol_for(output,row,phase,checkpoint,rpc_port=2110):
     from navstack.config import VehicleConfig
     from scripts.native_road_learning import training_config
     from navstack.experiments import signature
     if phase not in ('zero_PPO_basic','TRAIN48_PPO30720','basic','known24'):
         raise ValueError('Unknown registered flat cohort phase')
+    if type(rpc_port) is not int or rpc_port not in (2110,2120):
+        raise ValueError('Use the registered serial2110 or isolated parallel2120 RPC span')
     output=Path(output);plan=read(output/'registration.json')
     training=phase=='TRAIN48_PPO30720'
     p=deepcopy(row['source_protocol'])
@@ -178,7 +180,7 @@ def protocol_for(output,row,phase,checkpoint):
         rollout_actions=1280,ppo_batch_size=320,ppo_epochs=10,learning_rate=3e-6,
         controlled_budget_per_method=BUDGET if training else 0,method_budgets={'B1':BUDGET if training else 0},
         source_hashes=plan['source_hashes'],calibration_sha256=plan['calibration_sha256'],
-        carla_rpc_port=2110,carla_rpc_port_span=[2110,2111,2112],allow_disjoint_carla=True,
+        carla_rpc_port=rpc_port,carla_rpc_port_span=list(range(rpc_port,rpc_port+3)),allow_disjoint_carla=True,
         PPO_reward_units=dict(version='fixed_physical_reward_units_v1',scale=.05),
         scope=plan['limits'],checkpoint_thresholds=list(range(1280,BUDGET+1,1280)) if training else [])
     if training:
@@ -202,11 +204,15 @@ def protocol_for(output,row,phase,checkpoint):
     return p
 
 
-def stage(output,row,phase,checkpoint):
+def stage(output,row,phase,checkpoint,rpc_port=2110):
     output=Path(output);plan=read(output/'registration.json')
     batch=output.parent/f'20261104_matched_flat_seed{row["seed"]}_{phase}'
     if batch.exists():raise FileExistsError('Preserve every flat native attempt')
-    p=protocol_for(output,row,phase,checkpoint)
+    p=protocol_for(output,row,phase,checkpoint,rpc_port)
+    if rpc_port==2120:
+        p['parallel_scheduling']=dict(version='isolated_native_ports_v1',rpc_port=2120,maximum_simultaneous_servers=2,
+            physics_policy_task_budget_changes=0,wall_timing='Shared workstation;not isolated causal timing',
+            reason='Former disjoint2100peer is absent;use its existing second-server resource slot for B1')
     p['resource_admission']=resource_admission(output.parent)
     now=time.time();p.update(created_epoch=now,deadline_epoch=now+14400,
         resource_limits={**p['resource_limits'],'wall_seconds':14400,'automatic_retries':0},
@@ -219,7 +225,7 @@ def stage(output,row,phase,checkpoint):
     return batch
 
 
-def run(output,resume_dependency=None):
+def run(output,resume_dependency=None,parallel_port=None):
     import numpy as np
     import torch
     from navstack.owned_process import OwnedProcess
@@ -227,7 +233,9 @@ def run(output,resume_dependency=None):
     from scripts.collect_native_recovery import tensor_digest
     from scripts.run_native_basic_motion_ppo_cohort import basic_qualification
     output=Path(output).resolve();plan=read(output/'registration.json')
-    execution=output/('execution_resume_20261105' if resume_dependency else 'execution');execution.mkdir()
+    if parallel_port is not None and (type(parallel_port) is not int or parallel_port!=2120 or not resume_dependency):
+        raise ValueError('Parallel execution requires registered2120span and verified live H owner identity')
+    execution=output/('execution_parallel_20261105' if parallel_port else 'execution_resume_20261105' if resume_dependency else 'execution');execution.mkdir()
     if resume_dependency:
         if any((output.parent/f'20261104_matched_flat_seed{seed}_{phase}').exists()
                for seed in SEEDS for phase in ('zero_PPO_basic','TRAIN48_PPO30720','basic','known24')):
@@ -235,6 +243,12 @@ def run(output,resume_dependency=None):
         plan['dependency_identity']=read(Path(resume_dependency))
         atomic_json(execution/'dependency_recovery.json',dict(identity=plan['dependency_identity'],
             original_registration_sha256=sha(output/'registration.json'),physical_or_policy_changes=0))
+    if parallel_port:
+        atomic_json(execution/'scheduling_revision.json',dict(version='isolated_native_ports_v1',
+            source_registration_sha256=sha(output/'registration.json'),driver_sha256=sha(Path(__file__)),
+            rpc_port=parallel_port,maximum_simultaneous_servers=2,automatic_retries=0,physics_policy_task_budget_changes=0,
+            reason='Disjoint2100peer absent;use the originally admitted second server for frozen B1',
+            wall_timing='Concurrency disclosed;no isolated wall-time contribution claim'))
     h=Path(plan['h_cohort']);owner=None;torch.set_num_threads(1)
     def status(phase,**values):atomic_json(execution/'status.json',dict(phase=phase,pid=os.getpid(),epoch=time.time(),**values))
     def call(command,label,timeout=1800,env=None):
@@ -244,7 +258,11 @@ def run(output,resume_dependency=None):
     try:
         if sha(h/'registration.json')!=plan['h_registration_sha256']:raise ValueError('H dependency registration changed')
         until=time.time()+plan['maximum_wait_seconds']
-        if not dependency_complete(h):
+        if parallel_port:
+            d=plan['dependency_identity'];owner=OwnedProcess(d['pid'],d['creation_epoch'],d['executable'],allow_terminate=False)
+            if owner.poll() is not None:raise ValueError('Parallel peer coordinator is not live')
+            resource_admission(output.parent)
+        elif not dependency_complete(h):
             d=plan['dependency_identity'];owner=OwnedProcess(d['pid'],d['creation_epoch'],d['executable'],allow_terminate=False)
             while owner.poll() is None:
                 if (h/'execution/failure.json').exists() or time.time()>until:
@@ -252,7 +270,7 @@ def run(output,resume_dependency=None):
                 status('WAITING_FOR_OWNED_H_COHORT',dependency_pid=d['pid'],new_native_jobs=0)
                 time.sleep(30)
             owner.kernel.CloseHandle(owner.handle);owner=None
-        if not dependency_complete(h):raise ValueError('H driver ended without complete evidence;no native launch')
+        if not parallel_port and not dependency_complete(h):raise ValueError('H driver ended without complete evidence;no native launch')
         started=time.time();results=[]
         for row in plan['initializers']:
             checkpoint=output/row['initializer'];training_folder=None
@@ -261,7 +279,7 @@ def run(output,resume_dependency=None):
                     raise TimeoutError('Cannot admit another full bounded native job')
                 for name,digest in plan['source_hashes'].items():
                     if sha(output/'source'/name)!=digest:raise ValueError('Frozen flat source changed')
-                batch=stage(output,row,phase,checkpoint);label=f'seed{row["seed"]}_{phase}'
+                batch=stage(output,row,phase,checkpoint,parallel_port or 2110);label=f'seed{row["seed"]}_{phase}'
                 call([shutil.which('pwsh'),'-NoProfile','-File',output/'source/scripts/run_registered_native.ps1',
                     '-Batch',batch,'-Python',plan['runtime_python'],'-CarlaPython',plan['runtime_carla_python']],label+'_native',15000)
                 require_finished_parent(batch)
@@ -306,6 +324,6 @@ def run(output,resume_dependency=None):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('phase',choices=('prepare','run'))
-    p.add_argument('--output',required=True);p.add_argument('--h-cohort');p.add_argument('--resume-dependency');args=p.parse_args()
+    p.add_argument('--output',required=True);p.add_argument('--h-cohort');p.add_argument('--resume-dependency');p.add_argument('--parallel-port',type=int);args=p.parse_args()
     if args.phase=='prepare':prepare(args.output,args.h_cohort)
-    else:run(args.output,args.resume_dependency)
+    else:run(args.output,args.resume_dependency,args.parallel_port)
