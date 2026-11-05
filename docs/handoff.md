@@ -1,4 +1,12 @@
-# 当前：2026-11-05 10:32 状态条件反馈已实现、实际迁移及排队
+# 当前：2026-11-05 10:44 B1第二完整种子闭合，条件反馈PR7已合并
+
+B1 seed22完整30,720train/30,720decisions/939实际Adam/80summary episodes/2629.1584s，all35Adam实际推进、actual init weights/fullAdam/Torch RNG exact、RMS冻结。zeroPPO basic3/4，1192controls/6interv/1bounds；postbasic3/4，1912controls/7interv/1deadline/0unsafe，预设>=3/4+0unsafe gate通过；完整known24仅7/24，9229controls/19interv/12bounds+5collision，17unsafe，无deadline。所有training/raw30720、engine30720及各eval全帧/engine/24starts均核验，四阶段完成marker齐，队列正常推进seed33 zeroPPO basic（下一次须读实际phase）。公开reports/native_matched_B1_seed22_complete_20261105.json保留全部数据和实际原始SHA；没有zeroPPO known24，不能声称7/24为PPO学习增益。B1两种子分别10/24、7/24，unsafe13/17；不是48unique final或五个充分收敛基线。
+
+PR7 https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/7 已正常merge，main ebef1249928ef7446aa02473061058bcf48f39fa。源2514ff1 CI41955163669 SUCCESS：1465PASS/25SKIP/4CARLA DESELECT/169.09s；PRhead5ba13c3 CI41956068037也SUCCESS。新条件反馈coordinator4912/tool15145仍WAITING_FOR_MATCHED_FLAT，0新native，冻结source2514与510files不动；当前B1parent17912仍活跃，Hparent32508/seed33 Htrain。只用读过的PID+birth/exe身份核对，不依靠过期B1worker8008或29564。
+
+当前H/H0完整2/5，B1完整2/5；新条件反馈只是已验证并排队的一个探索配对，未有native结果，不替代当前五种子结论。最终120未生成/查看，全部研究目标与门槛不变，整体UNMET。
+
+# 历史：2026-11-05 10:32 状态条件反馈已实现、实际迁移及排队
 
 新源2514ff1e831f2c9c3c5a8295a26f225114ae3098，源CI41955163669 SUCCESS。navstack/contextual_outcome_policy.py在旧v1同4736观测/物理链路上增加状态条件actor/critic残差，输出层严格0，旧34tensor/Adam逐名保留，增加8状态/36931参数，总42；没有强制保持、mask或规则换动作。Hc0只关新增条件分支，两组旧正/负反馈仍保留，不能混同当前H/H0消融。短fixture实际PPO验证enabled分支变化、ablated不变化；最初加强断言失败因4步全零反馈，已按实际planned reusable ref暴露后通过；失败记录不算native负结果。
 
