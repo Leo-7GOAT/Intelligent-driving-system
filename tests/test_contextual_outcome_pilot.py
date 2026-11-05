@@ -42,3 +42,15 @@ def test_dependency_identity_uses_resolved_output_argument_and_numeric_tasks_are
     assert not identifies_dependency(['python','other.py','--output',str(tmp_path)],tmp_path)
     assert canonical_digest({'x':[1.,0.]})==canonical_digest({'x':[1,0]})
     assert canonical_digest({'x':1.001})!=canonical_digest({'x':1.002})
+
+
+def test_owner_query_parses_quoted_command_without_extra_dependencies(monkeypatch):
+    import json
+    from scripts import prepare_contextual_outcome_pilot as pilot
+    row=dict(pid=12,creation_epoch=10.5,executable='python.exe',
+             command='"python.exe" "run_matched_flat_cohort.py" run --output "some folder" --parallel-port 2120')
+    monkeypatch.setattr(pilot.subprocess,'check_output',lambda *args,**kwargs:json.dumps(row))
+    identity,command=pilot.live_owner(12)
+    assert identity=={k:v for k,v in row.items() if k!='command'}
+    assert command[command.index('--output')+1]=='some folder'
+    with pytest.raises(ValueError):pilot.live_owner(True)

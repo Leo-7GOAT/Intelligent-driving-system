@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import pickle
+import shlex
 import shutil
 import subprocess
 import sys
@@ -47,9 +48,31 @@ def identifies_dependency(command,flat):
     except (ValueError,IndexError,OSError):return False
 
 
+def live_owner(pid):
+    if type(pid) is not int or pid<=0:raise ValueError('Positive integer owner PID required')
+    command=(f'$taskOwner=Get-CimInstance Win32_Process -Filter "ProcessId = {pid}"; '
+        'if($null -eq $taskOwner){throw "Owner process is absent"}; '
+        '[ordered]@{pid=$taskOwner.ProcessId;creation_epoch=([DateTimeOffset]$taskOwner.CreationDate).ToUnixTimeMilliseconds()/1000.;'
+        'executable=$taskOwner.ExecutablePath;command=$taskOwner.CommandLine} | ConvertTo-Json -Compress')
+    value=json.loads(subprocess.check_output([shutil.which('pwsh'),'-NoProfile','-Command',command],
+        text=True,encoding='utf-8-sig',timeout=15,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0)))
+    arguments=[part.strip('"') for part in shlex.split(value.pop('command'),posix=False)]
+    return value,arguments
+
+
+def available_memory():
+    import ctypes
+    class Memory(ctypes.Structure):
+        _fields_=[('length',ctypes.c_uint32),('load',ctypes.c_uint32)]+[(name,ctypes.c_ulonglong) for name in
+            ('total_phys','avail_phys','total_page','avail_page','total_virtual','avail_virtual','avail_extended')]
+    memory=Memory();memory.length=ctypes.sizeof(memory)
+    if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(memory)):
+        raise OSError('Cannot measure available RAM')
+    return memory.avail_phys/1024**3
+
+
 def prepare(output,cohort,flat,owner_pid):
     import numpy as np
-    import psutil
     import torch
     from navstack.config import EnvConfig,VehicleConfig
     from navstack.contextual_outcome_policy import migrate_learner
@@ -65,16 +88,15 @@ def prepare(output,cohort,flat,owner_pid):
     if output.exists():raise FileExistsError('Preserve all pilot preparations')
     if any((output.parent/(output.name+'_'+arm)).exists() for arm in ('Hc','Hc0')):
         raise FileExistsError('Preserve all pilot arm preparations')
-    if output.drive.lower()!='d:' or shutil.disk_usage(output.parent).free<24*1024**3:
-        raise ValueError('Use D archive with24GiB free before preparation')
+    if output.drive.lower()!='d:' or shutil.disk_usage(output.parent).free<24*1024**3 or available_memory()<4:
+        raise ValueError('Use D archive with24GiB disk and4GiB RAM free before CPU preparation')
     oldplan=read(cohort/'registration.json');flatplan=read(flat/'registration.json')
     if Path(flatplan['h_cohort']).resolve()!=cohort or flatplan['h_registration_sha256']!=sha(cohort/'registration.json'):
         raise ValueError('Matched queue does not reference the immutable H cohort')
-    process=psutil.Process(owner_pid)
-    if not identifies_dependency(process.cmdline(),flat):
+    identity,command=live_owner(owner_pid)
+    if not identifies_dependency(command,flat):
         raise ValueError('Dependency process does not identify the matched queue')
-    identity=dict(pid=owner_pid,creation_epoch=process.create_time(),executable=process.exe())
-    if '--parallel-port' not in process.cmdline() or '2120' not in process.cmdline():
+    if '--parallel-port' not in command or '2120' not in command:
         raise ValueError('Require the explicitly isolated2120matched queue')
     owner=OwnedProcess(**identity,allow_terminate=False)
     if owner.poll() is not None:raise ValueError('Matched queue coordinator is not live')
@@ -174,7 +196,7 @@ def prepare(output,cohort,flat,owner_pid):
     plan=dict(version=VERSION,source_git_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         source_hashes=source_hashes,dependency_cohort=str(flat),dependency_registration_sha256=sha(flat/'registration.json'),
         dependency_identity=identity,dependency_execution='execution_parallel_20261105',maximum_wait_seconds=86400,
-        preparation_resources=dict(free_RAM_GiB=psutil.virtual_memory().available/1024**3,
+        preparation_resources=dict(free_RAM_GiB=available_memory(),
             free_disk_GiB=shutil.disk_usage(output.parent).free/1024**3,new_native_jobs=0),
         arms=arms,controls_per_arm=10240,max_overshoot=319,
         maximum_native_jobs=4,maximum_simultaneous_servers=2,new_supervised_updates=0,new_final_conditions=0,
