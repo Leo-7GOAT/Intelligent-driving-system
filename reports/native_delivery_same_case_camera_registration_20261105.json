@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-05",
+  "status": "PREPARED_BEFORE_ANY_RGB_NATIVE_LAUNCH",
+  "seed": 11,
+  "original_known_case_id": 12,
+  "same_registered_route_hazard_calibration": true,
+  "new_PPO_updates": 0,
+  "selection": "Illustrative known case selected from already observed Hsuccess/B1collision;all newly recorded outcomes will be retained,not final confirmation",
+  "methods": {
+    "H": {
+      "batch": "20261105_three_hour_delivery_H_case12_camera",
+      "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+      "parent_batch": "20261104_independent_outcome_seed11_H_known24",
+      "protocol_sha256": "3d444d0d7408dff3543f7ae240f8f5d162c488da9a2ae960ea42284545950949"
+    },
+    "B1": {
+      "batch": "20261105_three_hour_delivery_B1_camera",
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "parent_batch": "20261104_matched_flat_seed11_known24",
+      "protocol_sha256": "7c96f9957f4ffe648a146e3705e1b1014c76ae5e34f8175b1a9090344bd6abd8"
+    }
+  },
+  "superseded_H_case0_preparation": {
+    "native_jobs": 0,
+    "status": "ABANDONED_BEFORE_LAUNCH"
+  }
+}

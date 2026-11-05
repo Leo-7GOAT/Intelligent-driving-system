@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-05",
+  "scope": "Same known24development conditions before/after the new PPOcourse;warm teacher initialization,not a rule or untrained-from-scratch policy",
+  "rows": [
+    {
+      "seed": 11,
+      "before_new_PPO_successes": 24,
+      "after_new_PPO_successes": 24,
+      "episodes_per_stage": 24,
+      "before_unsafe": 0,
+      "after_unsafe": 0,
+      "before_model_sha256": "86d3d57109d2bb7c74157fc090abd2b54fcf13d7917424502feade82c61b31f9",
+      "after_model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+      "before_batch": "20261104_independent_outcome_seed11_zero_PPO_known24",
+      "after_batch": "20261104_independent_outcome_seed11_H_known24",
+      "before_raw_audit_sha256": "fdd3759a18c4f18b0cfb8b6850c5b34736c84b5f8ede47674a46e155995ba321"
+    },
+    {
+      "seed": 22,
+      "before_new_PPO_successes": 24,
+      "after_new_PPO_successes": 23,
+      "episodes_per_stage": 24,
+      "before_unsafe": 0,
+      "after_unsafe": 0,
+      "before_model_sha256": "0f275f75f35158e3a7a95ce6c079685ce94438daff3cc21ac0b052a2a2832112",
+      "after_model_sha256": "7b7a09d3fb44b27d73e7e280232ce9afdfa0ed865b6592d94e00e3711642f9aa",
+      "before_batch": "20261104_independent_outcome_seed22_zero_PPO_known24",
+      "after_batch": "20261104_independent_outcome_seed22_H_known24",
+      "before_raw_audit_sha256": "244195182cfa27a8cf4dfe427c6cdcc5c4fa4c2a9e124441243901009406ffd8"
+    },
+    {
+      "seed": 33,
+      "before_new_PPO_successes": 24,
+      "after_new_PPO_successes": 23,
+      "episodes_per_stage": 24,
+      "before_unsafe": 0,
+      "after_unsafe": 0,
+      "before_model_sha256": "c66c7d478cc1a4bb2330895587baa1588e2ee3454d7677dc296115d14b7c3363",
+      "after_model_sha256": "599496b0f4072f8589ff5e9abc98b6429a2a75bc82d4d498779ebd82ca7dabc0",
+      "before_batch": "20261104_independent_outcome_seed33_zero_PPO_known24",
+      "after_batch": "20261104_independent_outcome_seed33_H_known24",
+      "before_raw_audit_sha256": "87fae6bc528f59b89e15033e31698cca1b4790ea44e65c22b187868cc91d04c8"
+    }
+  ],
+  "before_successes": 72,
+  "after_successes": 70,
+  "repeated_episodes_per_stage": 72,
+  "added_PPO_completion_benefit_established": false,
+  "new_controls": 0
+}
