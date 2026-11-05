@@ -16,7 +16,7 @@ def read(path):return json.loads(Path(path).read_text(encoding='utf-8-sig'))
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def cadence_trace_counts(path,method,hold):
+def cadence_trace_counts(path,method,hold,*,reference_centered_effort=None):
     if method not in ('H','B1') or type(hold) is not int or hold not in (2,5):
         raise ValueError('Registered H/B1cadence required')
     result={'physics_controls':0,'policy_decisions':0,'MPCrecomputations':0,
@@ -35,6 +35,9 @@ def cadence_trace_counts(path,method,hold):
                 result['physics_controls']+=1
                 if method=='H' and info['mode']=='reference':
                     d=tick['diagnostics'];recomputed=d['controller_recomputed']
+                    if (reference_centered_effort is not None
+                            and d.get('reference_centered_effort',False) is not reference_centered_effort):
+                        raise ValueError('Cadence probe changed the registered MPC effort cost')
                     if type(recomputed) is not bool or d['controller_hold_steps']!=hold:
                         raise ValueError('Recorded MPCcadence differs from registered profile')
                     if recomputed:

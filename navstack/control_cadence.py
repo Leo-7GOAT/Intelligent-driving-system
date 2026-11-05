@@ -40,6 +40,18 @@ class HeldMPC:
         self.last_result=None
         self.last_time=None
 
+    @property
+    def reference_centered_effort(self):
+        return getattr(self.controller,'reference_centered_effort',False)
+
+    @reference_centered_effort.setter
+    def reference_centered_effort(self,enabled):
+        # CarlaNavigationEnv.reset sets this on its exposed controller. Forward
+        # it to the actual solver rather than silently shadowing it on a hold.
+        if type(enabled) is not bool:raise ValueError('Explicit MPC effort-centering boolean required')
+        self.controller.reference_centered_effort=enabled
+        self.reference=None;self.last_result=None;self.last_time=None
+
     def step(self,state,reference,previous_command):
         now=float(state.time)
         if not math.isfinite(now):raise ValueError('Measured finite simulation time required')
@@ -54,6 +66,7 @@ class HeldMPC:
             diagnostics.update(control_seconds=0.,qp_seconds=0.)
         diagnostics.update(controller_recomputed=recompute,
             controller_hold_steps=self.hold_steps,controller_period_seconds=self.hold_steps*.05,
+            reference_centered_effort=self.reference_centered_effort,
             prediction_grid_seconds=.05,
             cadence_scope='deployment-only zero-order hold;unchanged native MPCdesign,no retraining')
         return replace(self.last_result,diagnostics=diagnostics)
