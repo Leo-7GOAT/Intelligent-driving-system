@@ -213,6 +213,19 @@ def prepare(cohort, archive):
     return plan
 
 
+def checkpoint_ancestry(checkpoint,meta,cohort):
+    checkpoint=Path(checkpoint)
+    result=dict(parent_batch=Path(cohort).name,retained_optimizer_steps=meta['optimizer_steps'],
+        unknown_unflushed_parent_tail=False)
+    parent=checkpoint.parent.parent
+    if checkpoint.parent.name=='H' and (parent/'protocol.json').is_file():
+        prior=read(parent/'protocol.json').get('recovery',{}).get('H',{})
+        result.update(parent_batch=parent.name,
+            retained_optimizer_steps=meta['optimizer_steps']+prior.get('retained_optimizer_steps',0),
+            unknown_unflushed_parent_tail=prior.get('unknown_unflushed_parent_tail',False))
+    return result
+
+
 def stage(cohort, archive, row, method, label, *, training, checkpoint):
     from navstack.fixed_lowlevel_training import REGISTRATION_COHORT, registered
     from navstack.mpc_reference_effort import settings
@@ -242,6 +255,7 @@ def stage(cohort, archive, row, method, label, *, training, checkpoint):
         consumed_controls_lower_bound=meta['charged_control_steps_lower_bound'],
         retained_optimizer_steps=meta['optimizer_steps'], unknown_unflushed_parent_tail=False,
         model_sha256=meta['model_sha256'], normalization_sha256=meta['normalization_sha256'])}
+    p['recovery']['H'].update(checkpoint_ancestry(checkpoint,meta,cohort))
     if training:
         p.update(routes=plan['training_routes'], native_case_manifest=plan['training_manifest'],
             training_case_schedule=plan['training_schedule'], fixed_lowlevel_training=REGISTRATION_COHORT,
@@ -384,11 +398,6 @@ def run(cohort, archive, recovery_batch=None):
                 checkpoint = training/'H'/read(training/'H/latest_checkpoint.json')['folder']
                 if not completed(f'seed{seed}_{method}_endpoint'):
                     endpoint = stage(cohort,archive,row,method,method+'_known24',training=False,checkpoint=checkpoint)
-                    if read(training/'protocol.json').get('fixed_cohort_recovery'):
-                        ep=read(endpoint/'protocol.json')
-                        ep['recovery']['H']['retained_optimizer_steps']+=read(training/'protocol.json')['recovery']['H']['retained_optimizer_steps']
-                        atomic_json(endpoint/'protocol.json',ep)
-                        atomic_json(endpoint/'prepared.json',dict(status='PREPARED_NOT_STARTED',protocol_sha256=sha(endpoint/'protocol.json')))
                     execute(endpoint,f'seed{seed}_{method}_endpoint',False)
         atomic_json(execution/'complete.json',dict(seeds=list(SEEDS),status='ALL_REGISTERED_JOBS_CLOSED',research_acceptance='UNMET'))
         if recovery_batch:atomic_json(original_execution/'complete.json',read(execution/'complete.json'))

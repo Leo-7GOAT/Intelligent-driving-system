@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 
-def diagnose(batch, output):
+def diagnose(batch, output, *, all_actions=False):
     batch, output = Path(batch).resolve(), Path(output).resolve()
     if output.exists():
         raise FileExistsError('Preserve every completed mechanism diagnostic')
@@ -33,7 +33,8 @@ def diagnose(batch, output):
     rows, error = read_prefix(trace)
     if error:
         raise ValueError(error)
-    ordered = [r for case in sorted({r['case_id'] for r in rows}) for r in rows if r['case_id'] == case]
+    ordered = [r for case in sorted({r['case_id'] for r in rows}) for r in rows
+               if r['case_id'] == case and (all_actions or not r['info']['initial_scenario']['dynamic'])]
     original_load = loader.load_ppo
     loaded = []
     examined = []
@@ -83,11 +84,11 @@ def diagnose(batch, output):
 
     try:
         loader.load_ppo = observed_load
-        proof = audit(batch, 'H', all_static=True)
+        proof = audit(batch, 'H', **({'all_actions':True} if all_actions else {'all_static':True}))
     finally:
         loader.load_ppo = original_load
     if len(examined) != len(ordered) or not loaded:
-        raise ValueError('Require every recorded static decision,not an exposed-only selection')
+        raise ValueError('Require every selected recorded decision,not an exposed-only selection')
     model, before = loaded[0]
     if (tensor_digest(model.policy.state_dict()) != before[0]
             or tensor_digest(model.policy.optimizer.state_dict()) != before[1]
@@ -99,6 +100,9 @@ def diagnose(batch, output):
         protocol_sha256=sha(batch / 'protocol.json'), model_sha256=sha(batch / 'H/model.zip'),
         trace_sha256=sha(trace), reconstruction=proof, decisions=len(examined),
         negative_context_decisions=len(exposed),
+        all_recorded_actions=all_actions,
+        learned_failure_gain=float(model.policy.action_net.reference_bias.failure_gain.detach()),
+        failure_gain_scale=float(model.policy.action_net.reference_bias.failure_scale),
         deterministic_modes_changed=sum(r['actual_action'] != r['same_weights_failure_hidden_action'] for r in exposed),
         exposed_decisions=exposed, weights_and_full_Adam_RNG_counters_unchanged=True,
         new_controls=0, new_updates=0,
@@ -109,5 +113,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--batch', required=True)
     parser.add_argument('--output', required=True)
+    parser.add_argument('--all-actions',action='store_true')
     args = parser.parse_args()
-    diagnose(args.batch, args.output)
+    diagnose(args.batch, args.output,all_actions=args.all_actions)

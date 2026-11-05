@@ -1,5 +1,19 @@
 # Interrupted independent-cohort recovery
 
+The recovery segment is now closed:18,063 new controls/570 Adam updates,
+complete raw/applied-control audits and exact saved learning-state checks.
+The retained checkpoint lineage is30,723 controls/970 Adam updates. This does
+not make the interrupted ancestor's raw streams complete. The seed22 known24
+endpoint is running;one independent H/H0 pair is still the only closed pair.
+[Completed segment and ancestry limits](../reports/native_seed22_H_recovery_complete_20261105.json).
+
+Endpoint staging incorrectly reset the inherited unknown-tail flag. Future
+staging now preserves this uncertainty,cumulative Adam and actual training
+parent. The active endpoint protocol remains immutable and its explicit
+`recovery_ancestry_correction.json` records the accounting correction. Exports
+and downstream reports must retain it;the original false flag is not proof of
+complete ancestry. Physical execution and model selection are unchanged.
+
 On 2026-11-05 the recorded worker, guard, server and coordinators were absent.
 Their last observations were around 23:10 on November4. The cause is unknown;
 this is not recorded as a successful overnight run or a machine reboot.
