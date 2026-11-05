@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tag": "v0.5.0-dev.20261105-hierarchical-delivery",
+  "research_acceptance": "UNMET",
+  "scope": "Initialized H known24and all four B1post-training basic probes;every outcome retained",
+  "assets": [
+    {
+      "files": 574,
+      "bytes": 11072809,
+      "sha256": "822ad9bbed51b406eef908b5ec0c9e3c6ef46568f988201bd4f81bc409d6c0f4",
+      "verified_controls": {
+        "H": 8101
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed11_H_before_new_PPO_known24.zip",
+      "batch": "20261104_independent_outcome_seed11_zero_PPO_known24",
+      "seed": 11,
+      "method": "H_before_new_PPO",
+      "role": "Warm initialized hierarchical policy before this new PPOcourse;not a rule baseline or independent final test",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H_before_new_PPO_known24.zip"
+    },
+    {
+      "files": 574,
+      "bytes": 11174332,
+      "sha256": "16fbfb2d1f98ce44b6508bff3837e8c3cdf399d16baaa35bb247b79f6601de2a",
+      "verified_controls": {
+        "H": 8275
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed22_H_before_new_PPO_known24.zip",
+      "batch": "20261104_independent_outcome_seed22_zero_PPO_known24",
+      "seed": 22,
+      "method": "H_before_new_PPO",
+      "role": "Warm initialized hierarchical policy before this new PPOcourse;not a rule baseline or independent final test",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed22_H_before_new_PPO_known24.zip"
+    },
+    {
+      "files": 574,
+      "bytes": 11183844,
+      "sha256": "8a72cc518c8097176c424831e32ce5424f5b90f1b0731f522fc627d426ae4f51",
+      "verified_controls": {
+        "H": 8280
+      },
+      "metadata_files_transformed": 6,
+      "archive": "seed33_H_before_new_PPO_known24.zip",
+      "batch": "20261104_independent_outcome_seed33_zero_PPO_known24",
+      "seed": 33,
+      "method": "H_before_new_PPO",
+      "role": "Warm initialized hierarchical policy before this new PPOcourse;not a rule baseline or independent final test",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed33_H_before_new_PPO_known24.zip"
+    },
+    {
+      "files": 554,
+      "bytes": 14111526,
+      "sha256": "d1bb4f3e026ee67e9244ffe749bb43465ec73c12813c81e7dc7971ed2ad5c6e0",
+      "verified_controls": {
+        "B1": 1465
+      },
+      "metadata_files_transformed": 8,
+      "archive": "seed11_B1_basic.zip",
+      "batch": "20261104_matched_flat_seed11_basic",
+      "seed": 11,
+      "method": "B1",
+      "role": "All four registered post-training basic qualification probes;failures retained",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_basic.zip"
+    },
+    {
+      "files": 553,
+      "bytes": 14317404,
+      "sha256": "ce124c11f647a891cd3f75ce4e99f84ed2a43e77ef0122857abaae63fff2ad0f",
+      "verified_controls": {
+        "B1": 1912
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed22_B1_basic.zip",
+      "batch": "20261104_matched_flat_seed22_basic",
+      "seed": 22,
+      "method": "B1",
+      "role": "All four registered post-training basic qualification probes;failures retained",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed22_B1_basic.zip"
+    },
+    {
+      "files": 553,
+      "bytes": 14154173,
+      "sha256": "9878b1af96637dc7fcbd417a3d5b407335c9f43cfa4f78cff161c8dbb9bfb171",
+      "verified_controls": {
+        "B1": 1538
+      },
+      "metadata_files_transformed": 7,
+      "archive": "seed33_B1_basic.zip",
+      "batch": "20261104_matched_flat_seed33_basic",
+      "seed": 33,
+      "method": "B1",
+      "role": "All four registered post-training basic qualification probes;failures retained",
+      "url": "https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed33_B1_basic.zip"
+    }
+  ]
+}

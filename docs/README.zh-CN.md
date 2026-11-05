@@ -15,7 +15,7 @@
 | 33 | 23/24 | 5/24 | 0/24 | 17/24 |
 | **累计** | **70/72（97.2%）** | **22/72（30.6%）** | **0/72** | **47/72** |
 
-分层方案的观察完成率高出 **66.7 个百分点**，且这三组中未出现碰撞或越界。全部成功与失败均保留。每个学习课程预设新增 30,720 个真实物理控制步，分层 rollout 允许到边界后有限超额；历史训练、教师与恢复成本另行计入。[完整证据](../reports/native_delivery_comparison_20261105.json)。
+分层方案的观察完成率高出 **66.7 个百分点**，且这三组中未出现碰撞或越界。全部成功与失败均保留。学习课程共用同48条件TRAIN目录、重访顺序和物理标定，每个课程预设新增30,720个真实物理控制步，分层 rollout 允许到边界后有限超额；历史训练、教师与恢复成本另行计入。[完整证据](../reports/native_delivery_comparison_20261105.json)。
 
 ![分层与 flat PPO 的开发集对照](assets/native_delivery_comparison_20261105.png)
 
@@ -34,7 +34,7 @@
 
 ## 运行与复现
 
-学习栈使用 Python 3.11；CARLA 0.9.15 服务端使用已有安装及独立兼容 Python 3.7 客户端，不重建已有环境。安装、CPU 测试与公开模型复现命令见 [根 README](../README.md)。交付源码及工具的 GitHub CI 实际通过 **1,480 项 CPU 测试**，25 项跳过、4 项 CARLA 测试排除；已通过 [PR9](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/9) 合并主分支。
+学习栈使用 Python 3.11；CARLA 0.9.15 服务端使用已有安装及独立兼容 Python 3.7 客户端，不重建已有环境。安装、CPU 测试与公开模型复现命令见 [根 README](../README.md)。交付源码及工具的 GitHub CI 实际通过 **1,483 项 CPU 测试**，25 项跳过、4 项 CARLA 测试排除；已通过 [PR9](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/9) 及 [PR10](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/10) 合并主分支。
 
 [本次开发发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.5.0-dev.20261105-hierarchical-delivery)提供模型、归一化、协议、冻结源码、全量端点评估及训练证据包。下载后按公开 SHA256 校验，使用 `scripts/reproduce_native_asset.py` 在新目录重建原始控制审计、策略推理与结果图；该流程不新增驾驶或学习。[CARLA 说明](CARLA_bridge.md)。
 

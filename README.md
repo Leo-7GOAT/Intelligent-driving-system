@@ -19,7 +19,7 @@ On the same **24 known development conditions**, the first three closed learner 
 | 33 | 23/24 | 5/24 | 0/24 | 17/24 |
 | **Total** | **70/72 (97.2%)** | **22/72 (30.6%)** | **0/72** | **47/72** |
 
-**The observed completion advantage is 66.7 percentage points.** These are all three closed H/B1 pairs at the delivery snapshot, including every failure. Each course requested 30,720 additional physical training controls; hierarchical rollouts can overshoot the boundary. All inherited training costs remain charged. [Per-case outcomes, model hashes, raw/engine audits and ancestry](reports/native_delivery_comparison_20261105.json).
+**The observed completion advantage is 66.7 percentage points.** These are all three closed H/B1 pairs at the delivery snapshot, including every failure. The courses share the same48-condition TRAIN catalog, rehearsal schedule and physical calibration. Each course requested30,720 additional physical training controls; hierarchical rollouts can overshoot the boundary. All inherited training costs remain charged. [Per-case outcomes, model hashes, raw/engine audits and ancestry](reports/native_delivery_comparison_20261105.json).
 
 ![Three-seed native development comparison](docs/assets/native_delivery_comparison_20261105.png)
 
@@ -59,7 +59,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pytest -q -m "not carla"
 ```
 
-The delivered source and tooling passed **1,480 CPU tests**, with 25 skipped and 4 CARLA tests deselected ([executed PR CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41966329644)). The implementation and README were merged through [PR9](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/9). CPU checks cover dynamics, planning, MPC, PPO updates and recovery; live CARLA evidence is separate. [Native setup and execution](docs/CARLA_bridge.md), [method and module layout](docs/design.md).
+The delivered source and tooling passed **1,483 CPU tests**, with 25 skipped and 4 CARLA tests deselected ([executed PR CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41967786740)). The implementation and README were merged through [PR9](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/9) and the gate-disclosure correction [PR10](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/10). CPU checks cover dynamics, planning, MPC, PPO updates and recovery; live CARLA evidence is separate. [Native setup and execution](docs/CARLA_bridge.md), [method and module layout](docs/design.md).
 
 ## Download models and reproduce evidence
 
