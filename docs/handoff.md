@@ -1,3 +1,7 @@
+# 两组补跑已启动，2026-11-05
+
+用户明确允许数小时按原预算补齐seed44/55，先前三小时截止不再约束此次补跑。只执行剩余四段H/H0训练和六次评估，不启动最终120或其他延期研究。管理目录 D:/ThesisNativeArchive_20261104/20261105_remaining_independent_outcome_seed44_seed55_v2；manager实际PID11880，driver44实际31920、driver55实际28140，精确birth/exe见verified_owners_20261105.json，后续必须重新核验身份。foreground tool session48074。两个执行目录execution_supplement_seed44_20261105、execution_supplement_seed55_20261105，分别2110/2120。前三组15完成标记复用且SHA固定，所有原物理source/初始化Adam/RNG/RMS/课程/预算不变，仅显式允许第二运行端口和正确解释器路径。v1/v2最初ValidateOnly路径乱码来自诊断脚本默认Windows解码，原UTF8登记字节完好，correction sidecar保留；无原生失败或重复训练。原seed44零PPO目录只有deadline barrier，已原样移动到v2管理目录retired_three_hour_admission_barrier。50c300f操作源码快照固定，16针对性测试通过，完整CI41978978603需核对。每原生作业4h/0retry/最大2server，资源门槛4GiB GPU、16GiB RAM/Ddisk。下文全部是补跑前历史交付快照。
+
 # 已交付并关闭本地原生作业，2026-11-05
 
 完整交付见 reports/native_final_delivery_20261105.json。三组H/H0配对及五个flat新30720物理步窗口均闭合，37个正常完成原生作业已核验guard0和owned server cleanup，当前owned worker/coordinator为0。H70/72、H072/72、warm H72/72；配对B122/72，五个B1全体38/120且basic仅2/5通过。全部30ZIP公开下载复现、378起点动作、4732静态H决策、136592eval及325712新训练段控制通过；真实同case12录像H成功355步、B1碰撞125步，均公开解码。用户截止14:43，native提前完成，deadline guard已正常退出。H44/55未启动，Hparent在seed44zeroPPO目录的预登记admission barrier正常结束进入新课程；原FileExistsError原样保留。条件反馈、部署8探针、新固定参考及完整Grid对照延期，0native。最终120未生成/查看，完整研究验收UNMET。下文全部是历史快照，不能当作活跃队列或恢复指令。
