@@ -1,3 +1,5 @@
+> Delivery status, 2026-11-05: deferred by the user’s final three-hour cutoff. The waiting coordinator was stopped before any native job; prepared inputs are retained. No native result or benefit is claimed.
+
 # Current fixed-reference native controller study
 
 The earlier four-route controller result used the64×64 indexed road grid and

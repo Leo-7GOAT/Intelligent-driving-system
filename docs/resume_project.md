@@ -1,3 +1,11 @@
+# Current evidence-bounded wording — 2026-11-05
+
+中文：实现 PPO→局部位姿/速度→Hybrid A*→时间轨迹→MPC→CARLA 0.9.15 实测反馈闭环，完成真实 PPO 训练、模型恢复及逐帧执行审计。三个已闭合学习种子在同24个已知开发条件上累计完成70/72（97.2%），直接控制flat PPO为22/72（30.6%），观察优势66.7个百分点；碰撞/越界为0/72对47/72。公开模型、冻结源码与原始证据并验证复现。该结果为开发集比较，seed22保留中断恢复不确定性，尚未达到五种子/120个新最终条件与PPO独立贡献的完整研究验收。
+
+English: Built a physical PPO→local goal→Hybrid A*→timed trajectory→MPC→CARLA 0.9.15 feedback loop with actual PPO training, recovery and frame-level execution audits. Across three closed learners on the same24known development conditions, hierarchy completed70/72(97.2%) versus22/72(30.6%) for direct flat PPO, an observed66.7percentage-point gap; collision/bounds episodes were0/72 versus47/72. Published models, frozen source and raw evidence with reproduction checks. This development comparison retains seed22 recovery uncertainty and does not establish full five-seed/final120 acceptance or PPO-specific causal benefit.
+
+[Per-case evidence](../reports/native_delivery_comparison_20261105.json). The historical descriptions below are versioned snapshots.
+
 # Evidence-bounded project descriptions
 
 This pilot's public reconstruction is complete:563files/12,219controls/4starts,byte-identical figure,exact initial intervention and320added Adam steps in all35PPOparameter states;observation RMS unchanged. Full local CPU:1,101pass;latest completed hostedCI:1,084pass. Overall research acceptance remains UNMET. [Public verification receipt](../reports/native_B1_exploration_PPO_public_verification_20261101.json).

@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-05",
+  "status": "PACKAGING_AND_PUBLICATION_IN_PROGRESS",
+  "research_acceptance": "UNMET",
+  "user_deadline_local": "2026-11-05T14:43:00+08:00",
+  "comparison_report": "reports/native_delivery_comparison_20261105.json",
+  "complete_paired_seeds": [
+    11,
+    22,
+    33
+  ],
+  "known_unique_conditions": 24,
+  "H_successes": 70,
+  "B1_successes": 22,
+  "paired_repeated_episodes_per_method": 72,
+  "H_unsafe": 0,
+  "B1_unsafe": 47,
+  "new_final_conditions_generated": 0,
+  "deferred_before_native_launch": [
+    "conditional_feedback_pilot",
+    "current_deployment_eight_probes",
+    "current_fixed_reference_controls"
+  ],
+  "native_grid_complete": false,
+  "publication_verification": "PENDING"
+}
