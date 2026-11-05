@@ -8,6 +8,8 @@ A known-map, low-speed research system combining **PPO high-level decisions → 
 
 The recovered seed22 H learner reaches30,723 retained training controls/970Adam updates,but its complete known24endpoint scores**23/24**,versus**24/24**for the common zero-PPO baseline. It uses506more controls,485more interventions and49more planning failures,including one crossing-walker deadline. Raw/engine/all-start/static-NN checks close;the interrupted ancestor's unknown tail remains disclosed. H0seed22is training,and only one independent H/H0pair is closed. [All paired outcomes and accounting correction](reports/native_seed22_H_known24_complete_20261105.json). This result does not establish a PPO benefit.
 
+A [complete seed22 recorded-frame diagnosis](docs/full_moving_failure_diagnosis.md) now verifies889static/moving NN decisions. The failed-label term slightly reduces failed-action probabilities,but changes no deterministic choices in58exposed decisions;the time-out repeatedly selects an already failed label. This read-only result does not predict alternative driving success.
+
 The [spatial B2/Hybrid component check](docs/spatial_planner_component.md) now enforces the previously ignored grid node cap and reproduces all16static/curve fixtures using public inputs. It remains separate from native B2 driving and contribution claims.
 
 

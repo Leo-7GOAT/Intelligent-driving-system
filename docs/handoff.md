@@ -1,4 +1,12 @@
-# 当前：2026-11-05 08:19 seed22 H完整验证23/24，H0配对真实训练中
+# 当前：2026-11-05 seed22完整889动态/静态NN复算与失败项诊断完成
+
+新all-actions只读诊断已实际完成，24条件全部889次NN（525static/364moving，8moving cases）从原生frame/actor快照复算一致；原raw8781/engine闭合仍有效。脚本scripts/audit_native_reference_inference.py新--all-actions，diagnose_outcome_feedback_actions.py支持同选项且修复mixed-data的static默认选择。25关联CPU回归PASS2.91s。最初两次拓展失败已保存D/first_full_moving_reconstruction_failures_20261105.json及failed_all_actions_auditor_v1快照，原因是旧static假设把dynamic_brake的success空间搜索也要求accepted road query；新helper验证mode一致/无active reference，同时accepted reference仍需精确native pose hash与无rejections，未改物理worker。
+
+新R2结果D/seed22_H_full_sequence_failure_term_probe_r2_20261105.json与full_moving_probe_scripts_r2快照一致。model7b7a...的failure_gain=+0.00011648429790511727，scale1000，负context贡献-0.1164843logit；58negative-context/0modechanges，case20中51negative decisions全选已失败label2，含/隐藏该项mean P2=0.9761799609/0.978743365。52plan failures全部open_set_exhausted，非nodebudget/MPC失败；尚未证明其他动作能驾驶成功或该处有forward可行方案，不把有限搜空说成地图全局不可行。完整weights/fullAdam/TorchCPU RNG/num_timesteps/RMS未变，0newcontrols/updates。public reports/native_seed22_failure_term_mechanism_20261105.json与docs/full_moving_failure_diagnosis.md包含全部概率及失败尝试，不需重跑这项分析。
+
+下一有效根因工作：从case20第一个失败前的同一测量pose，离线核对完整31候选的fresh spatial/retiming可行性，先确认是否存在forward alternative再设计新开发版本；不得用未执行的替代轨迹宣称成功，不修改当前五种子冻结队列。先读当前OS/guard确认H0仍34136/parent32508/B1observer4100；旧33900/28432均已正常退出。当前已闭合仍仅1pair，Hseed22=23/24；H0seed22真实训练中。最终120未生成/查看，研究UNMET。先前f42b623源码CI41940138278已SUCCESS1434/25skip/4excluded/366.63s；新auditor修复待新commit CI，不能把旧CI冒充新源码全绿。
+
+# 历史：2026-11-05 08:19 seed22 H完整验证23/24，H0配对真实训练中
 
 seed22 H known24已全部闭合（原worker28432正常退出，勿再等它），23/24success+1deadline/0unsafe，8781controls/915interventions/59planfail。共同zeroPPO24/24、8275/430/10；训练后少1success、+506controls/+485interventions/+49planfail，不能宣称PPO收益。失败case20为route0 crossing_walker(distance11,lateral-2.5,speed1.2,delay3.5)，900controls/540interv/52planfails/0MPCfail，尚无新failure分支因果归因。源/校准/任务list/config与baseline逐字典相同；raw/engine全PASS、24measuredstarts/525staticNN全PASS，但moving fullNN仍未复算。报告reports/native_seed22_H_known24_complete_20261105.json含全部24+baseline24行及时延指标和ancestor accounting correction，不删失败不选checkpoint。rootf42b623包含上段恢复报告/祖先标志修复已push，CI状态另查；勿将f42源码注入现有worker。
 

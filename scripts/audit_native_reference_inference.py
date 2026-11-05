@@ -16,6 +16,19 @@ from scripts.audit_native_policy_sequence import observation_env,advance_observa
 OUTCOME_VERSION='action_aligned_outcome_context_v1'
 
 
+def verify_accepted_reference(mode,reference,evidence):
+    from navstack.reference_road_refinement import pose_digest
+    if mode=='dynamic_brake':
+        if reference is not None:raise ValueError('Dynamic rejection retained an unaccepted reference')
+        return
+    if mode!='reference' or reference is None:raise ValueError('Successful planning has no accepted or dynamically rejected reference')
+    if not evidence['probes']:raise ValueError('New accepted reference lacks native geometry query')
+    accepted=evidence['probes'][-1]['reference_road_probe']
+    poses=[[float(x),float(y),float(yaw)] for x,y,yaw in zip(reference.x,reference.y,reference.yaw)]
+    if (accepted['pose_sha256']!=pose_digest(poses) or accepted['rejected_world'] or accepted['truncated']):
+        raise ValueError('Accepted query differs from reconstructed timed reference')
+
+
 def outcome_codec(version,*,migration=False):
     """Old frozen sources predate the new module and must remain replayable."""
     if version!=OUTCOME_VERSION and not migration:
@@ -26,7 +39,9 @@ def outcome_codec(version,*,migration=False):
     return outcome_context
 
 
-def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,prefix_audit=None,outcome_checkpoint=None):
+def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,prefix_audit=None,outcome_checkpoint=None,all_actions=False):
+    if all_static and all_actions:raise ValueError('Choose static-only or all recorded actions,not both')
+    full_sequence=all_static or all_actions
     import numpy as np
     from navstack.independent_clip_ppo import load_ppo
     batch=Path(batch).resolve();folder=batch/method
@@ -144,7 +159,7 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
         refinement_cells=set();refinement_points=set()
         counts=0;last_action=None;failed_actions=set()
         try:
-            for row in selected if all_static else selected[:1]:
+            for row in selected if full_sequence else selected[:1]:
                 legacy_obs=np.r_[env._observation(),reference_candidate_context(env)].astype(np.float32)
                 obs=(np.r_[legacy_obs[:-31],outcome_context(env,last_action,failed_actions)] if expected_version==OUTCOME_VERSION else legacy_obs).astype(np.float32)
                 if original_model is not None:
@@ -157,7 +172,7 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
                 action=int(model.predict(norm.normalize_obs(obs[None]),deterministic=True)[0][0])
                 if action!=int(row['policy_action']):raise ValueError(f'NN action differs at case{case},decision{counts}')
                 counts+=1
-                if all_static:
+                if full_sequence:
                     recorded=row['info']['plan']
                     if refinement is not None:
                         from navstack.reference_road_refinement import planning_view,rejected_cells,pose_digest,VERSION as REFINEMENT_VERSION
@@ -198,8 +213,10 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
                         if refinement is not None and recorded['status']=='success':
                             env.world=planning_view(owner,refinement_cells,refinement_points if p.get('reference_point_constraints') else None)
                         from navstack.steering_transition import prepare_reference as steering_prepare,settings as steering_settings
-                        try:_,detail=steering_prepare(env,action,env._prepare_reference,steering_settings(p))
+                        try:replayed_mode,detail=steering_prepare(env,action,env._prepare_reference,steering_settings(p))
                         finally:env.world=owner
+                        if all_actions and replayed_mode!=row['info']['mode']:
+                            raise ValueError('Reconstructed reference/dynamic-rejection mode differs')
                         if detail.get('steering_transition')!=recorded.get('steering_transition'):
                             raise ValueError('Measured steering transition differs')
                         if detail.get('reference_option_commitment')!=recorded.get('reference_option_commitment'):
@@ -216,11 +233,7 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
                         if detail['status']!=recorded['status'] or effective_nodes(detail)!=effective_nodes(recorded):
                             raise ValueError('Reconstructed timed reference differs from recorded planner')
                         if refinement is not None and recorded['status']=='success':
-                            if not evidence['probes']:raise ValueError('New reference lacks native geometry query')
-                            accepted=evidence['probes'][-1]['reference_road_probe']
-                            poses=[[float(x),float(y),float(yaw)] for x,y,yaw in zip(env.reference.x,env.reference.y,env.reference.yaw)]
-                            if (accepted['pose_sha256']!=pose_digest(poses) or accepted['rejected_world'] or accepted['truncated']):
-                                raise ValueError('Accepted query differs from reconstructed timed reference')
+                            verify_accepted_reference(replayed_mode,env.reference,evidence)
                     else:
                         # The recorded failure/wait has no active reference.
                         # Do not rerun a rejected search or invent its success.
@@ -235,13 +248,20 @@ def audit(batch,method,*,checkpoint=None,migration_proof=None,all_static=False,p
     if not all_static and len(results)!=len(evaluation['episodes']):raise ValueError('Missing measured start')
     np.testing.assert_array_equal(rms[0],norm.obs_rms.mean);np.testing.assert_array_equal(rms[1],norm.obs_rms.var)
     if rms[2]!=norm.obs_rms.count:raise ValueError('Frozen inference RMS count changed')
-    return dict(scope=scope,method=method,batch=batch.name,all_static_actions=all_static,
+    result=dict(scope=scope,method=method,batch=batch.name,all_static_actions=all_static,
         model_sha256=sha(checkpoint/'model.zip'),normalization_sha256=sha(checkpoint/'normalization.pkl'),
         raw_audit_sha256=sha(raw_path),script_sha256=sha(Path(__file__)),
         results=results,all_recorded_actions_match=True,inference_normalization_frozen=not norm.training,
         outcome_migration_probabilities_and_values_exact=original_model is not None,
         RMS_unchanged=True,new_controls=0,new_updates=0,
         limits='Recorded-state inference only,no vehicle integration or new performance score. Static action replay reconstructs successful references and consumes recorded failure/wait outcomes;it does not prove failed searches infeasible.')
+    if all_actions:
+        if sum(r['decisions'] for r in results)!=len(rows):raise ValueError('Missing recorded sequence decision')
+        result.update(scope=scope+'_ALL_RECORDED_ACTIONS',all_actions=True,
+            moving_case_ids=[case for case in sorted({r['case_id'] for r in rows})
+                if begins[next(r for r in rows if r['case_id']==case)['info']['trace'][0]['backend_evidence']['episode_id']]['dynamic']],
+            limits='All recorded static and moving decision inputs/actions reconstructed from measured frames and actor snapshots. Successful timed references reconstruct;failure/wait outcomes are consumed,not counterfactually searched. No physics rerun or alternative driving result.')
+    return result
 
 
 if __name__=='__main__':
@@ -249,7 +269,8 @@ if __name__=='__main__':
     p.add_argument('--checkpoint');p.add_argument('--migration-proof');p.add_argument('--all-static-actions',action='store_true');p.add_argument('--output',required=True)
     p.add_argument('--prefix-audit')
     p.add_argument('--outcome-checkpoint')
+    p.add_argument('--all-actions',action='store_true')
     a=p.parse_args();output=Path(a.output)
     if output.exists():raise FileExistsError('Preserve previous inference audit')
-    result=audit(a.batch,a.method,checkpoint=a.checkpoint,migration_proof=a.migration_proof,all_static=a.all_static_actions,prefix_audit=a.prefix_audit,outcome_checkpoint=a.outcome_checkpoint)
+    result=audit(a.batch,a.method,checkpoint=a.checkpoint,migration_proof=a.migration_proof,all_static=a.all_static_actions,prefix_audit=a.prefix_audit,outcome_checkpoint=a.outcome_checkpoint,all_actions=a.all_actions)
     atomic_json(output,result);print({'cases':len(result['results']),'decisions':sum(r['decisions'] for r in result['results']),'scope':result['scope']})
