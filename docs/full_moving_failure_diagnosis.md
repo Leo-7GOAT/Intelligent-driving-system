@@ -60,3 +60,21 @@ complete reconstruction;running the standalone audit first is optional.
 [Full proof,probabilities and failure boundaries](../reports/native_seed22_failure_term_mechanism_20261105.json).
 The endpoint remains23/24against24/24for zero-PPO;this is not a PPO benefit.
 Research acceptance remains unmet.
+
+The candidate probe is now available as a portable command. It reconstructs the
+recorded prefix up to the decision immediately before the requested zero-based
+index, preserves the held option, independently clones and rebinds each option
+wrapper, and checks the actual selected preparation against the record before
+examining alternatives. For example, decision29 precedes the later case20
+planning dead end:
+
+```powershell
+$env:OMP_NUM_THREADS='1'
+$env:MKL_NUM_THREADS='1'
+.venv/Scripts/python.exe scripts/probe_recorded_reference_candidates.py --batch D:/ARCHIVE/ENDPOINT --case-id 20 --decision-index 29 --output D:/ARCHIVE/new_candidate_probe.json
+```
+
+Run it in a fresh interpreter. It refuses existing output or registration files.
+Alternative references receive no new native geometry queries and are not
+driven. A nominal endpoint inside the task pose region is not proof of achieved
+parking or safety. The command does not change physical source or live training.
