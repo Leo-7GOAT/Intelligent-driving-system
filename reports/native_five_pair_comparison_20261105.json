@@ -1,0 +1,6472 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "scope": "Descriptive native CARLA development comparison; all closed endpoints retained, no new driving",
+  "research_acceptance": "UNMET",
+  "paired_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "unique_known_conditions": 24,
+  "aggregates": {
+    "H": {
+      "successes": 118,
+      "episodes": 120,
+      "unsafe": 0,
+      "controls": 42004,
+      "success_rate": 0.9833333333333333
+    },
+    "B1": {
+      "successes": 38,
+      "episodes": 120,
+      "unsafe": 78,
+      "controls": 46678,
+      "success_rate": 0.31666666666666665
+    }
+  },
+  "H_minus_B1_percentage_points": 66.66666666666666,
+  "endpoints": [
+    {
+      "seed": 11,
+      "method": "H",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed11_H_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8165,
+      "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+      "normalization_sha256": "4be6505a00d509fce571b9e746055b04c0c87778f04aa75542bf20d8a9055170",
+      "protocol_sha256": "e976885e91e12f236fbce4e16c5e1dfca96df27ad442681248782a3c11973fe7",
+      "raw_audit_sha256": "5582ee71c9c62b01eae1ba419de91d5b8964fa582ac03d5be01716220711ce8d",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 30773,
+        "consumed_controls_lower_bound": 40016,
+        "retained_optimizer_steps": 970,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
+        "normalization_sha256": "4be6505a00d509fce571b9e746055b04c0c87778f04aa75542bf20d8a9055170"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 350,
+          "actions": 35,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 344,
+          "actions": 35,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 299,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 255,
+          "actions": 26,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 400,
+          "actions": 40,
+          "interventions": 13,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 354,
+          "actions": 36,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 383,
+          "actions": 39,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 370,
+          "actions": 37,
+          "interventions": 22,
+          "plan_failures": 2,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 33,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 456,
+          "actions": 46,
+          "interventions": 52,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 419,
+          "actions": 42,
+          "interventions": 73,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 23,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 400,
+          "actions": 40,
+          "interventions": 52,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 11,
+      "method": "H0",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed11_H0_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8096,
+      "model_sha256": "012f24cd2d17bf2b7e6749f324ee8bb79c66805373b4e9979f22f740e3c7db35",
+      "normalization_sha256": "6a0a9a6b78fca2a1ef45b534acb2a5dda6f7a5270b962ed2f8256df86e2d70e6",
+      "protocol_sha256": "0f63f598ba99523dbfe8d3f8a7903a176bb1a60ea08f4d2a60e142dc08a24cd8",
+      "raw_audit_sha256": "41062098f51dc4cd0f9f5077293128752ff3cd15b9facd7216bff7c4d78519ef",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 30752,
+        "consumed_controls_lower_bound": 39995,
+        "retained_optimizer_steps": 970,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "012f24cd2d17bf2b7e6749f324ee8bb79c66805373b4e9979f22f740e3c7db35",
+        "normalization_sha256": "6a0a9a6b78fca2a1ef45b534acb2a5dda6f7a5270b962ed2f8256df86e2d70e6"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 350,
+          "actions": 35,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 344,
+          "actions": 35,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 299,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 400,
+          "actions": 40,
+          "interventions": 13,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "actions": 34,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 335,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "actions": 31,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 385,
+          "actions": 39,
+          "interventions": 31,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 481,
+          "actions": 49,
+          "interventions": 51,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 416,
+          "actions": 42,
+          "interventions": 72,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 333,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 23,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 401,
+          "actions": 41,
+          "interventions": 53,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 11,
+      "method": "B1",
+      "native_method": "B1",
+      "batch": "20261104_matched_flat_seed11_known24",
+      "successes": 10,
+      "episodes": 24,
+      "unsafe": 13,
+      "reasons": {
+        "success": 10,
+        "out_of_bounds": 11,
+        "deadline": 1,
+        "collision": 2
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 10,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 4,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 4,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 2,
+          "episodes": 8
+        }
+      },
+      "controls": 10961,
+      "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+      "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22",
+      "protocol_sha256": "36b4a61d7e334d364f06978ba33a51cfc5ca206f94274e7d2f1d3d780047e2d4",
+      "raw_audit_sha256": "10729b601787b310c4d25a9ad0cbfdb2cdb04c6ce1cc7a7d6ee20a4f96d332f8",
+      "ancestry": {
+        "checkpoint": "resume/B1",
+        "parent_batch": "20261104_matched_flat_TRAIN48",
+        "lineage_controls": 30720,
+        "consumed_controls_lower_bound": 69909,
+        "retained_optimizer_steps": 917,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "30d73e3e5e96459086c647fd48e1a3e98fae8adf9aefa91b9f367d9c1080372f",
+        "normalization_sha256": "a2b0041ecf917ab9a872286d3adfaae704aa4281a1ef77721e7f6f075a2e5b22"
+      },
+      "ancestry_correction": null,
+      "basic_probe": {
+        "successes": 4,
+        "episodes": 4,
+        "unsafe": 0,
+        "passed": true
+      },
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 339,
+          "actions": 339,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 673,
+          "actions": 673,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 900,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 351,
+          "actions": 351,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 278,
+          "actions": 278,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 340,
+          "actions": 340,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 111,
+          "actions": 111,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 253,
+          "actions": 253,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 689,
+          "actions": 689,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 733,
+          "actions": 733,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 393,
+          "actions": 393,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 417,
+          "actions": 417,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 125,
+          "actions": 125,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 456,
+          "actions": 456,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 362,
+          "actions": 362,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 375,
+          "actions": 375,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 598,
+          "actions": 598,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 656,
+          "actions": 656,
+          "interventions": 8,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 540,
+          "actions": 540,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 107,
+          "actions": 107,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 591,
+          "actions": 591,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 647,
+          "actions": 647,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 566,
+          "actions": 566,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 461,
+          "actions": 461,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 22,
+      "method": "H",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed22_H_known24",
+      "successes": 23,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 23,
+        "deadline": 1
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 23,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 7,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8781,
+      "model_sha256": "7b7a09d3fb44b27d73e7e280232ce9afdfa0ed865b6592d94e00e3711642f9aa",
+      "normalization_sha256": "3244dfe068ccfd0e839a579ca56b170f18075e3dafa09f6dc58129b6210b7052",
+      "protocol_sha256": "aa2b4a42ae12dc0c185a22274c983936985f2a86910326b9c7d0e70d0e4806c9",
+      "raw_audit_sha256": "910c7a85e564da99361b1ab3010de86c58e7c6b19f8e421551f6d591b362da64",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 30723,
+        "consumed_controls_lower_bound": 35172,
+        "retained_optimizer_steps": 970,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "7b7a09d3fb44b27d73e7e280232ce9afdfa0ed865b6592d94e00e3711642f9aa",
+        "normalization_sha256": "3244dfe068ccfd0e839a579ca56b170f18075e3dafa09f6dc58129b6210b7052"
+      },
+      "ancestry_correction": {
+        "scope": "Accounting-only correction;running protocol,worker,model and physical behavior unchanged",
+        "protocol_sha256": "aa2b4a42ae12dc0c185a22274c983936985f2a86910326b9c7d0e70d0e4806c9",
+        "training_parent": "20261105_independent_outcome_seed22_H_recovered_TRAIN48",
+        "training_protocol_sha256": "2225061c10d42dfaf51b17743a99a651b7d7efc269b18900114d8fae91aa85ce",
+        "recorded_parent_batch": "20261104_independent_outcome_TRAIN48",
+        "correct_parent_batch": "20261105_independent_outcome_seed22_H_recovered_TRAIN48",
+        "recorded_unknown_unflushed_parent_tail": false,
+        "correct_unknown_unflushed_parent_tail": true,
+        "retained_optimizer_steps": 970,
+        "charged_controls_lower_bound": 35172,
+        "reason": "Endpoint staging incorrectly reset ancestor uncertainty;the interrupted parent EOF cannot be erased by a closed recovery segment"
+      },
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 392,
+          "actions": 40,
+          "interventions": 21,
+          "plan_failures": 2,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 353,
+          "actions": 36,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 299,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 229,
+          "actions": 23,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 221,
+          "actions": 23,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 475,
+          "actions": 48,
+          "interventions": 22,
+          "plan_failures": 2,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 387,
+          "actions": 39,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 349,
+          "actions": 35,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 372,
+          "actions": 38,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 338,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "actions": 31,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 385,
+          "actions": 39,
+          "interventions": 31,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 469,
+          "actions": 47,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 410,
+          "actions": 41,
+          "interventions": 71,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "interventions": 540,
+          "plan_failures": 52,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 407,
+          "actions": 41,
+          "interventions": 51,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 22,
+      "method": "H0",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed22_H0_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8056,
+      "model_sha256": "20cd428dfcdebc0c672e19d28ded9b49d48b2fe00b4bfd30308a2bb44b26556f",
+      "normalization_sha256": "fda7335bd1d15cb2a792eaddef8aa661dccf7ae5d33924586c841412d0e14f02",
+      "protocol_sha256": "54e3fba44e511a08ee335cb083975a5205a5fe60bf605fb0fe9b98acfa2d23b1",
+      "raw_audit_sha256": "e20e1af9abef1b4c10633f83a6cd19bedc00ddfa46ca0d5428e29380f8c7d302",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 30758,
+        "consumed_controls_lower_bound": 35087,
+        "retained_optimizer_steps": 970,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "20cd428dfcdebc0c672e19d28ded9b49d48b2fe00b4bfd30308a2bb44b26556f",
+        "normalization_sha256": "fda7335bd1d15cb2a792eaddef8aa661dccf7ae5d33924586c841412d0e14f02"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 344,
+          "actions": 35,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 299,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 229,
+          "actions": 23,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 387,
+          "actions": 39,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 349,
+          "actions": 35,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 335,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "actions": 31,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 33,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 487,
+          "actions": 49,
+          "interventions": 52,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 386,
+          "actions": 39,
+          "interventions": 62,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 353,
+          "actions": 36,
+          "interventions": 32,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 399,
+          "actions": 40,
+          "interventions": 52,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 22,
+      "method": "B1",
+      "native_method": "B1",
+      "batch": "20261104_matched_flat_seed22_known24",
+      "successes": 7,
+      "episodes": 24,
+      "unsafe": 17,
+      "reasons": {
+        "success": 7,
+        "out_of_bounds": 12,
+        "collision": 5
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 7,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 2,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 3,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 2,
+          "episodes": 8
+        }
+      },
+      "controls": 9229,
+      "model_sha256": "843cf903512234787709231a5ff75663783aac4f0f53589aa98f02e729497fcb",
+      "normalization_sha256": "624bffba2acaff2bdd98f3265e1e9e41042c4c503454bee2663159263eb8e109",
+      "protocol_sha256": "2aeecdcdd25e19764c4c1dcf5bc43a28386291c17f992e4e3cf4218561143548",
+      "raw_audit_sha256": "d40ef24297232e07a93b126c077250358f19c4019235fc9893505a70654bad95",
+      "ancestry": {
+        "checkpoint": "resume/B1",
+        "parent_batch": "20261104_matched_flat_TRAIN48",
+        "lineage_controls": 30720,
+        "consumed_controls_lower_bound": 69909,
+        "retained_optimizer_steps": 939,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "843cf903512234787709231a5ff75663783aac4f0f53589aa98f02e729497fcb",
+        "normalization_sha256": "624bffba2acaff2bdd98f3265e1e9e41042c4c503454bee2663159263eb8e109"
+      },
+      "ancestry_correction": null,
+      "basic_probe": {
+        "successes": 3,
+        "episodes": 4,
+        "unsafe": 0,
+        "passed": true
+      },
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 376,
+          "actions": 376,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 412,
+          "actions": 412,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 654,
+          "actions": 654,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 413,
+          "actions": 413,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 253,
+          "actions": 253,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 297,
+          "actions": 297,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 870,
+          "actions": 870,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 440,
+          "actions": 440,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 358,
+          "actions": 358,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 576,
+          "actions": 576,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 189,
+          "actions": 189,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 334,
+          "actions": 334,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 351,
+          "actions": 351,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 490,
+          "actions": 490,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 137,
+          "actions": 137,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 372,
+          "actions": 372,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 431,
+          "actions": 431,
+          "interventions": 6,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 85,
+          "actions": 85,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 520,
+          "actions": 520,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 123,
+          "actions": 123,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 478,
+          "actions": 478,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 137,
+          "actions": 137,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 497,
+          "actions": 497,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 436,
+          "actions": 436,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 33,
+      "method": "H",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed33_H_known24",
+      "successes": 23,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 23,
+        "deadline": 1
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 23,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 7,
+          "episodes": 8
+        }
+      },
+      "controls": 8672,
+      "model_sha256": "599496b0f4072f8589ff5e9abc98b6429a2a75bc82d4d498779ebd82ca7dabc0",
+      "normalization_sha256": "8e4e16dbeb80a2e637e909c4ffc4718de1f6d9deaa488fb4876e199d1c9e0b9a",
+      "protocol_sha256": "2ec8a45eb69195eafcae5cc443b937715dcb43400abf3bfd84becb0d827f090a",
+      "raw_audit_sha256": "8a040c7f65bd76f63cbc250d9acae238d266e1be22bb50523b3634700b8110bc",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 30728,
+        "consumed_controls_lower_bound": 35057,
+        "retained_optimizer_steps": 970,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "599496b0f4072f8589ff5e9abc98b6429a2a75bc82d4d498779ebd82ca7dabc0",
+        "normalization_sha256": "8e4e16dbeb80a2e637e909c4ffc4718de1f6d9deaa488fb4876e199d1c9e0b9a"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 343,
+          "actions": 35,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 299,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 229,
+          "actions": 23,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 372,
+          "actions": 38,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 420,
+          "actions": 42,
+          "interventions": 22,
+          "plan_failures": 2,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 338,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 90,
+          "interventions": 810,
+          "plan_failures": 81,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 33,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 467,
+          "actions": 47,
+          "interventions": 40,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 386,
+          "actions": 39,
+          "interventions": 62,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 333,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 406,
+          "actions": 41,
+          "interventions": 52,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 33,
+      "method": "H0",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed33_H0_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8275,
+      "model_sha256": "c4392f88fa0204e3a0471163a6dd5b9c28c7764378558f007adcec570e9ec94a",
+      "normalization_sha256": "87c98e8b54ed6d73eda05ca0e72b1389d9f887b9c576b7cdf6d4fe42b6a343aa",
+      "protocol_sha256": "8cf905e94d82f6405d8adaa1315ccee2f5c75395f02001c3d55921e676f3be3d",
+      "raw_audit_sha256": "b4775fc6d2f9805611ed677ba0a939252154189c223f051ca750a4598f5944ba",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 31038,
+        "consumed_controls_lower_bound": 35367,
+        "retained_optimizer_steps": 980,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "c4392f88fa0204e3a0471163a6dd5b9c28c7764378558f007adcec570e9ec94a",
+        "normalization_sha256": "87c98e8b54ed6d73eda05ca0e72b1389d9f887b9c576b7cdf6d4fe42b6a343aa"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 21,
+          "plan_failures": 2,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 343,
+          "actions": 35,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 299,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 255,
+          "actions": 26,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 191,
+          "actions": 20,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 370,
+          "actions": 37,
+          "interventions": 10,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 411,
+          "actions": 42,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 356,
+          "actions": 36,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 335,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 343,
+          "actions": 35,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 398,
+          "actions": 40,
+          "interventions": 42,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 552,
+          "actions": 56,
+          "interventions": 44,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 386,
+          "actions": 39,
+          "interventions": 62,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 333,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 23,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 401,
+          "actions": 41,
+          "interventions": 53,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 33,
+      "method": "B1",
+      "native_method": "B1",
+      "batch": "20261104_matched_flat_seed33_known24",
+      "successes": 5,
+      "episodes": 24,
+      "unsafe": 17,
+      "reasons": {
+        "out_of_bounds": 13,
+        "success": 5,
+        "deadline": 2,
+        "collision": 4
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 5,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 0,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 3,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 2,
+          "episodes": 8
+        }
+      },
+      "controls": 8884,
+      "model_sha256": "a6775c9f0006c4220024b854192b2648196aa9050b51c50dea6068e3372c0dc1",
+      "normalization_sha256": "f5efad26d1d520c09cd991107a6955d7ae60f0f1dcc010ef259d752ff546c51a",
+      "protocol_sha256": "7d8d07bab1b3936448ce9dd8a16c55d25cae5497258202ccc6ad83e02b2aba17",
+      "raw_audit_sha256": "c7ffc6d0f0569ae829d90c66e45831bb6d1c170c797faee4854c598f60b24dfe",
+      "ancestry": {
+        "checkpoint": "resume/B1",
+        "parent_batch": "20261104_matched_flat_TRAIN48",
+        "lineage_controls": 30720,
+        "consumed_controls_lower_bound": 69909,
+        "retained_optimizer_steps": 928,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "a6775c9f0006c4220024b854192b2648196aa9050b51c50dea6068e3372c0dc1",
+        "normalization_sha256": "f5efad26d1d520c09cd991107a6955d7ae60f0f1dcc010ef259d752ff546c51a"
+      },
+      "ancestry_correction": null,
+      "basic_probe": {
+        "successes": 2,
+        "episodes": 4,
+        "unsafe": 2,
+        "passed": false
+      },
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 417,
+          "actions": 417,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 153,
+          "actions": 153,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 371,
+          "actions": 371,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 275,
+          "actions": 275,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 284,
+          "actions": 284,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 298,
+          "actions": 298,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 360,
+          "actions": 360,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 170,
+          "actions": 170,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 900,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 404,
+          "actions": 404,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 341,
+          "actions": 341,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 322,
+          "actions": 322,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 900,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 478,
+          "actions": 478,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 333,
+          "actions": 333,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 318,
+          "actions": 318,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 467,
+          "actions": 467,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 80,
+          "actions": 80,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 567,
+          "actions": 567,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 85,
+          "actions": 85,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 511,
+          "actions": 511,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 121,
+          "actions": 121,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 604,
+          "actions": 604,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 125,
+          "actions": 125,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 44,
+      "method": "H",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed44_H_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8109,
+      "model_sha256": "94048f8049e486006c84c84179d264dd3d16775ee4058f112da9c11ba9aacac2",
+      "normalization_sha256": "70369d16f64844a17ec8c48943944044b3f04d04238b4402c19f5469027f8696",
+      "protocol_sha256": "47f7740eeca432d9c2121b5d675a8a03d7e466804e138949bd2b11a85e48f7e7",
+      "raw_audit_sha256": "b3a74fd5e22cf1aa84d59d90cd554cc632148ac52b6e5b9a7876dbae3fe707f5",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_seed44_H_TRAIN48_PPO30720",
+        "lineage_controls": 30748,
+        "consumed_controls_lower_bound": 35077,
+        "retained_optimizer_steps": 970,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "94048f8049e486006c84c84179d264dd3d16775ee4058f112da9c11ba9aacac2",
+        "normalization_sha256": "70369d16f64844a17ec8c48943944044b3f04d04238b4402c19f5469027f8696"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 392,
+          "actions": 40,
+          "interventions": 21,
+          "plan_failures": 2,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 344,
+          "actions": 35,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 318,
+          "actions": 32,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 230,
+          "actions": 23,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 241,
+          "actions": 25,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 357,
+          "actions": 36,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 331,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 388,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 335,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 304,
+          "actions": 31,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 31,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 462,
+          "actions": 47,
+          "interventions": 43,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 416,
+          "actions": 42,
+          "interventions": 72,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 23,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 401,
+          "actions": 41,
+          "interventions": 53,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 44,
+      "method": "H0",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed44_H0_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8266,
+      "model_sha256": "bd56134dffbee0e4ee7bdf60822cb54aaf2630e763808fefe1bcc46a2151d72c",
+      "normalization_sha256": "3ea7a6f2b7dfd2289c6cfd254d6a5b23ea6a59917bf3c9c1f10a8889fd6330cb",
+      "protocol_sha256": "c7e82e162376c5f656c3235acc72da258ca10f3a162506addcf63e96abd0d144",
+      "raw_audit_sha256": "49b9f55f7ac6b921cfe1945d300868a5f20f204da41c57505675b5e1adde457d",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_seed44_H0_TRAIN48_PPO30720",
+        "lineage_controls": 30722,
+        "consumed_controls_lower_bound": 35051,
+        "retained_optimizer_steps": 970,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "bd56134dffbee0e4ee7bdf60822cb54aaf2630e763808fefe1bcc46a2151d72c",
+        "normalization_sha256": "3ea7a6f2b7dfd2289c6cfd254d6a5b23ea6a59917bf3c9c1f10a8889fd6330cb"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 392,
+          "actions": 40,
+          "interventions": 21,
+          "plan_failures": 2,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 344,
+          "actions": 35,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 299,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 229,
+          "actions": 23,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 384,
+          "actions": 39,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 331,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 372,
+          "actions": 38,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 335,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 329,
+          "actions": 33,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 385,
+          "actions": 39,
+          "interventions": 31,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 552,
+          "actions": 56,
+          "interventions": 44,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 386,
+          "actions": 39,
+          "interventions": 62,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 358,
+          "actions": 36,
+          "interventions": 32,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 388,
+          "actions": 39,
+          "interventions": 23,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 401,
+          "actions": 41,
+          "interventions": 53,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 369,
+          "actions": 37,
+          "interventions": 41,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 44,
+      "method": "B1",
+      "native_method": "B1",
+      "batch": "20261104_matched_flat_seed44_known24",
+      "successes": 9,
+      "episodes": 24,
+      "unsafe": 15,
+      "reasons": {
+        "success": 9,
+        "out_of_bounds": 12,
+        "collision": 3
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 9,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 2,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 4,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 3,
+          "episodes": 8
+        }
+      },
+      "controls": 9583,
+      "model_sha256": "33e92e2337ced346267c29b12bcb4aa43978a7dffa111de2f7a56e078650d4cc",
+      "normalization_sha256": "342f4d59b56cdc9938e60a289c800044ea9975626f2245cdd5dac36c2475acf0",
+      "protocol_sha256": "4aa68bbef671854857b6ede6b6fdfb2345849a13ed918299a8ef368ff79eda3a",
+      "raw_audit_sha256": "102f3bf250e1a89175b52474d57ef8f3e4f4f990581dd2e0c9ccaeec6ff24a8e",
+      "ancestry": {
+        "checkpoint": "resume/B1",
+        "parent_batch": "20261104_matched_flat_TRAIN48",
+        "lineage_controls": 30720,
+        "consumed_controls_lower_bound": 69909,
+        "retained_optimizer_steps": 933,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "33e92e2337ced346267c29b12bcb4aa43978a7dffa111de2f7a56e078650d4cc",
+        "normalization_sha256": "342f4d59b56cdc9938e60a289c800044ea9975626f2245cdd5dac36c2475acf0"
+      },
+      "ancestry_correction": null,
+      "basic_probe": {
+        "successes": 3,
+        "episodes": 4,
+        "unsafe": 1,
+        "passed": false
+      },
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 369,
+          "actions": 369,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 466,
+          "actions": 466,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 425,
+          "actions": 425,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 319,
+          "actions": 319,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 432,
+          "actions": 432,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 197,
+          "actions": 197,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 277,
+          "actions": 277,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 263,
+          "actions": 263,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 392,
+          "actions": 392,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 566,
+          "actions": 566,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 469,
+          "actions": 469,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 338,
+          "actions": 338,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 374,
+          "actions": 374,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 601,
+          "actions": 601,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 148,
+          "actions": 148,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 211,
+          "actions": 211,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 438,
+          "actions": 438,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 637,
+          "actions": 637,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 186,
+          "actions": 186,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 456,
+          "actions": 456,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 473,
+          "actions": 473,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 499,
+          "actions": 499,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 474,
+          "actions": 474,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 573,
+          "actions": 573,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 55,
+      "method": "H",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed55_H_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8277,
+      "model_sha256": "1d987a6729ae956197e04e9c12847f44b34169428cefd2d3aa2ae46cfb12dbc5",
+      "normalization_sha256": "e0d6d28a05dc6dfe2ebd2bb5e4b30f4a465794392bf945578e4b7115f4db27fa",
+      "protocol_sha256": "0128db2302c293de60a5883359c593037fa31c39713bb459d7eda566642f7131",
+      "raw_audit_sha256": "0341210afc355107d8a56654b7eee50aea6cee8b7e2164dc58a3d10944b7467d",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_seed55_H_TRAIN48_PPO30720",
+        "lineage_controls": 30753,
+        "consumed_controls_lower_bound": 35082,
+        "retained_optimizer_steps": 970,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "1d987a6729ae956197e04e9c12847f44b34169428cefd2d3aa2ae46cfb12dbc5",
+        "normalization_sha256": "e0d6d28a05dc6dfe2ebd2bb5e4b30f4a465794392bf945578e4b7115f4db27fa"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 372,
+          "actions": 38,
+          "interventions": 13,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 320,
+          "actions": 32,
+          "interventions": 13,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 249,
+          "actions": 25,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 372,
+          "actions": 38,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 386,
+          "actions": 39,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 340,
+          "actions": 34,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 372,
+          "actions": 38,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 385,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 338,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 323,
+          "actions": 33,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 387,
+          "actions": 39,
+          "interventions": 32,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 469,
+          "actions": 47,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 424,
+          "actions": 43,
+          "interventions": 81,
+          "plan_failures": 2,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 31,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 401,
+          "actions": 41,
+          "interventions": 31,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 420,
+          "actions": 42,
+          "interventions": 61,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 55,
+      "method": "H0",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed55_H0_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8193,
+      "model_sha256": "8f779caafdee500f6cd42e4c524e543401c1cf5b3c42a4a17237c9031a75f72d",
+      "normalization_sha256": "ab784cb31764824c2a06d01388ff7e5035a342b2f7020f48b41a0c061d8f90b7",
+      "protocol_sha256": "c11a93f88406379b3818d8130978e91309ff36d534a8ee7ba8ba09e74273f649",
+      "raw_audit_sha256": "cb470be1a2aea1e669d9f3990ffd6fa4b6e9fcb7c1d2f42f32ac8cb0adb9e626",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_seed55_H0_TRAIN48_PPO30720",
+        "lineage_controls": 30765,
+        "consumed_controls_lower_bound": 35094,
+        "retained_optimizer_steps": 970,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "8f779caafdee500f6cd42e4c524e543401c1cf5b3c42a4a17237c9031a75f72d",
+        "normalization_sha256": "ab784cb31764824c2a06d01388ff7e5035a342b2f7020f48b41a0c061d8f90b7"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 389,
+          "actions": 39,
+          "interventions": 23,
+          "plan_failures": 2,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 349,
+          "actions": 35,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 318,
+          "actions": 32,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 250,
+          "actions": 25,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 215,
+          "actions": 22,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 371,
+          "actions": 38,
+          "interventions": 10,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 338,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 304,
+          "actions": 31,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 33,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 459,
+          "actions": 46,
+          "interventions": 41,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 424,
+          "actions": 43,
+          "interventions": 81,
+          "plan_failures": 2,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 352,
+          "actions": 36,
+          "interventions": 31,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 21,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 409,
+          "actions": 41,
+          "interventions": 51,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 368,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 55,
+      "method": "B1",
+      "native_method": "B1",
+      "batch": "20261104_matched_flat_seed55_known24",
+      "successes": 7,
+      "episodes": 24,
+      "unsafe": 16,
+      "reasons": {
+        "success": 7,
+        "out_of_bounds": 8,
+        "deadline": 1,
+        "collision": 8
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 7,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 2,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 3,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 2,
+          "episodes": 8
+        }
+      },
+      "controls": 8021,
+      "model_sha256": "d8887be295f89b22263a9ce5a91e0e3dfe60fe3cf4bc1f612d1de602486d570a",
+      "normalization_sha256": "b9570a85c84ba198b2eb265194df483a6e7a989c730e1d062fdaf8a1864417d3",
+      "protocol_sha256": "397e458e798c7b7416b9f8c41a0fd7f20c6263d07f11893c7a509257f39ffaf3",
+      "raw_audit_sha256": "96574fb53b815559a1fe9080bb2fd228d01fb860bc7f0c6962aa436a863ab21d",
+      "ancestry": {
+        "checkpoint": "resume/B1",
+        "parent_batch": "20261104_matched_flat_TRAIN48",
+        "lineage_controls": 30720,
+        "consumed_controls_lower_bound": 69909,
+        "retained_optimizer_steps": 940,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "d8887be295f89b22263a9ce5a91e0e3dfe60fe3cf4bc1f612d1de602486d570a",
+        "normalization_sha256": "b9570a85c84ba198b2eb265194df483a6e7a989c730e1d062fdaf8a1864417d3"
+      },
+      "ancestry_correction": null,
+      "basic_probe": {
+        "successes": 3,
+        "episodes": 4,
+        "unsafe": 1,
+        "passed": false
+      },
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 365,
+          "actions": 365,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 420,
+          "actions": 420,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 239,
+          "actions": 239,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "deadline",
+          "physics_steps": 900,
+          "actions": 900,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 251,
+          "actions": 251,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 381,
+          "actions": 381,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 75,
+          "actions": 75,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 174,
+          "actions": 174,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 384,
+          "actions": 384,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 119,
+          "actions": 119,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 221,
+          "actions": 221,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 184,
+          "actions": 184,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 355,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 111,
+          "actions": 111,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 243,
+          "actions": 243,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 188,
+          "actions": 188,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 415,
+          "actions": 415,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 588,
+          "actions": 588,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 544,
+          "actions": 544,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 77,
+          "actions": 77,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 481,
+          "actions": 481,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 587,
+          "actions": 587,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "out_of_bounds",
+          "physics_steps": 608,
+          "actions": 608,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": false,
+          "termination_reason": "collision",
+          "physics_steps": 111,
+          "actions": 111,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    }
+  ],
+  "new_controls": 0,
+  "new_optimizer_updates": 0,
+  "limitations": [
+    "Repeated known24 conditions across learners are not new unique final conditions.",
+    "Hierarchy includes planning/MPC and inherited teacher initialization; the gap is not attributable to PPO alone.",
+    "Seed22 H has a preserved interruption, discarded readable tail and unknown unflushed ancestral tail; its correction sidecar governs ancestry.",
+    "B1 basic qualification is per seed: seeds11/22 pass, seed33 fails2/4with2unsafe; complex-task convergence and equal historical development cost are not established.",
+    "H0 and the strong historical B3 leave PPO-specific and added-feedback benefit unestablished.",
+    "Five paired trained main learners are available on the known catalog;final120,healthy-baseline and formal confirmation gates remain unmet."
+  ],
+  "warm_initialized_H_before_new_PPO": [
+    {
+      "seed": 11,
+      "method": "H_before_new_PPO",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed11_zero_PPO_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8101,
+      "model_sha256": "86d3d57109d2bb7c74157fc090abd2b54fcf13d7917424502feade82c61b31f9",
+      "normalization_sha256": "81ef8416d80cff10aa1a61bd974a7754988a7a4f8fa6f75ca9f1049a17c4cd15",
+      "protocol_sha256": "fff2e661bae88709f12402799451aacbfa6e548f82765d5e6caf6a766193fb0c",
+      "raw_audit_sha256": "fdd3759a18c4f18b0cfb8b6850c5b34736c84b5f8ede47674a46e155995ba321",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 0,
+        "consumed_controls_lower_bound": 9243,
+        "retained_optimizer_steps": 0,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "86d3d57109d2bb7c74157fc090abd2b54fcf13d7917424502feade82c61b31f9",
+        "normalization_sha256": "81ef8416d80cff10aa1a61bd974a7754988a7a4f8fa6f75ca9f1049a17c4cd15"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 360,
+          "actions": 36,
+          "interventions": 10,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 344,
+          "actions": 35,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 299,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 233,
+          "actions": 24,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 191,
+          "actions": 20,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 400,
+          "actions": 40,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 335,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "actions": 31,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 33,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 471,
+          "actions": 48,
+          "interventions": 62,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 422,
+          "actions": 43,
+          "interventions": 71,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 333,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 23,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 399,
+          "actions": 40,
+          "interventions": 52,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 22,
+      "method": "H_before_new_PPO",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed22_zero_PPO_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8275,
+      "model_sha256": "0f275f75f35158e3a7a95ce6c079685ce94438daff3cc21ac0b052a2a2832112",
+      "normalization_sha256": "c8e764b2cf9f2af8889e841536633f92574d78b3e86cbc1a70216b804252a2be",
+      "protocol_sha256": "e4e51d8d6b0f3496c564fd7e71eec645a085fb87c810730e65be4e66fc5715c6",
+      "raw_audit_sha256": "244195182cfa27a8cf4dfe427c6cdcc5c4fa4c2a9e124441243901009406ffd8",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 0,
+        "consumed_controls_lower_bound": 4329,
+        "retained_optimizer_steps": 0,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "0f275f75f35158e3a7a95ce6c079685ce94438daff3cc21ac0b052a2a2832112",
+        "normalization_sha256": "c8e764b2cf9f2af8889e841536633f92574d78b3e86cbc1a70216b804252a2be"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 396,
+          "actions": 40,
+          "interventions": 21,
+          "plan_failures": 2,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 359,
+          "actions": 36,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 316,
+          "actions": 32,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 231,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 375,
+          "actions": 38,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 424,
+          "actions": 43,
+          "interventions": 22,
+          "plan_failures": 2,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 349,
+          "actions": 35,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 338,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 366,
+          "actions": 37,
+          "interventions": 22,
+          "plan_failures": 2,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 387,
+          "actions": 39,
+          "interventions": 32,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 461,
+          "actions": 47,
+          "interventions": 43,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 403,
+          "actions": 41,
+          "interventions": 71,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 333,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 21,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 430,
+          "actions": 43,
+          "interventions": 51,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 33,
+      "method": "H_before_new_PPO",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed33_zero_PPO_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8280,
+      "model_sha256": "c66c7d478cc1a4bb2330895587baa1588e2ee3454d7677dc296115d14b7c3363",
+      "normalization_sha256": "cacda4555c0bd466c41cabea7cca0603334a1f96945ae0ee6888607f6b4bce7e",
+      "protocol_sha256": "6ffe6daedb11218006405e3c22207381ae59cac39e327c69ecb3c2a41ae9132a",
+      "raw_audit_sha256": "87fae6bc528f59b89e15033e31698cca1b4790ea44e65c22b187868cc91d04c8",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 0,
+        "consumed_controls_lower_bound": 4329,
+        "retained_optimizer_steps": 0,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "c66c7d478cc1a4bb2330895587baa1588e2ee3454d7677dc296115d14b7c3363",
+        "normalization_sha256": "cacda4555c0bd466c41cabea7cca0603334a1f96945ae0ee6888607f6b4bce7e"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 410,
+          "actions": 41,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 298,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 234,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 191,
+          "actions": 20,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 410,
+          "actions": 41,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 349,
+          "actions": 35,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 351,
+          "actions": 36,
+          "interventions": 13,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 383,
+          "actions": 39,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 335,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 343,
+          "actions": 35,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 33,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 540,
+          "actions": 54,
+          "interventions": 61,
+          "plan_failures": 2,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 386,
+          "actions": 39,
+          "interventions": 62,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 333,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 407,
+          "actions": 41,
+          "interventions": 51,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 349,
+          "actions": 35,
+          "interventions": 32,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 44,
+      "method": "H_before_new_PPO",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed44_zero_PPO_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8252,
+      "model_sha256": "76c48ec93f5e908ec87bedbb407ff554b4ffbbe134fdfe9ffe720ac11c39ad60",
+      "normalization_sha256": "b0605d4ea5a591f73a2f2133bf35f6e9e9d96e3a06bd3a8a0bd60b5b2776229d",
+      "protocol_sha256": "322545ac9cb3b7825dbde00cb6db60811d06a247ff6fe483f52a1b80c1e8e725",
+      "raw_audit_sha256": "dbeeb4e4f0c5e5fa0d18d47b14af6d5be313c95576801203b927ded9742e8999",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 0,
+        "consumed_controls_lower_bound": 4329,
+        "retained_optimizer_steps": 0,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "76c48ec93f5e908ec87bedbb407ff554b4ffbbe134fdfe9ffe720ac11c39ad60",
+        "normalization_sha256": "b0605d4ea5a591f73a2f2133bf35f6e9e9d96e3a06bd3a8a0bd60b5b2776229d"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 372,
+          "actions": 38,
+          "interventions": 13,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 344,
+          "actions": 35,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 316,
+          "actions": 32,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 230,
+          "actions": 23,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 235,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 372,
+          "actions": 38,
+          "interventions": 11,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 337,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 331,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 372,
+          "actions": 38,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 437,
+          "actions": 44,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 335,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 387,
+          "actions": 39,
+          "interventions": 32,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 464,
+          "actions": 47,
+          "interventions": 43,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 431,
+          "actions": 44,
+          "interventions": 71,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 352,
+          "actions": 36,
+          "interventions": 31,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 23,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 401,
+          "actions": 41,
+          "interventions": 53,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 365,
+          "actions": 37,
+          "interventions": 31,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    },
+    {
+      "seed": 55,
+      "method": "H_before_new_PPO",
+      "native_method": "H",
+      "batch": "20261104_independent_outcome_seed55_zero_PPO_known24",
+      "successes": 24,
+      "episodes": 24,
+      "unsafe": 0,
+      "reasons": {
+        "success": 24
+      },
+      "by_scenario": {
+        "native_curve": {
+          "successes": 24,
+          "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
+      "controls": 8241,
+      "model_sha256": "a7005ea906758c75115311259f0ecfdbc35c3286c68576cbc03e4179368ce876",
+      "normalization_sha256": "e559e61f0fcee8f2047d474a3f8547cfedf52f1c7cf2c2db95d2bcc984db7e3d",
+      "protocol_sha256": "9b0e7cd35d842c440a42a26ad635393ac526d742c4f7e14c603054d453d1c467",
+      "raw_audit_sha256": "4198bce687e11e4c41962a8162bdc9668b71ec90877e2bc6f923ac5dc44c98c2",
+      "ancestry": {
+        "checkpoint": "resume/H",
+        "parent_batch": "20261104_independent_outcome_TRAIN48",
+        "lineage_controls": 0,
+        "consumed_controls_lower_bound": 4329,
+        "retained_optimizer_steps": 0,
+        "unknown_unflushed_parent_tail": false,
+        "model_sha256": "a7005ea906758c75115311259f0ecfdbc35c3286c68576cbc03e4179368ce876",
+        "normalization_sha256": "e559e61f0fcee8f2047d474a3f8547cfedf52f1c7cf2c2db95d2bcc984db7e3d"
+      },
+      "ancestry_correction": null,
+      "basic_probe": null,
+      "cases": [
+        {
+          "case_id": 0,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 386,
+          "actions": 39,
+          "interventions": 21,
+          "plan_failures": 2,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 1,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 466,
+          "actions": 47,
+          "interventions": 52,
+          "plan_failures": 5,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 2,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 314,
+          "actions": 32,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 3,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 299,
+          "actions": 30,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 4,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 231,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 5,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 235,
+          "actions": 24,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 6,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 214,
+          "actions": 22,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 7,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 189,
+          "actions": 19,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "curve"
+        },
+        {
+          "case_id": 8,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 351,
+          "actions": 36,
+          "interventions": 0,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 9,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 10,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 349,
+          "actions": 35,
+          "interventions": 12,
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 11,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 332,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 12,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 355,
+          "actions": 36,
+          "interventions": 3,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 13,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 382,
+          "actions": 39,
+          "interventions": 1,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 14,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 335,
+          "actions": 34,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 15,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 306,
+          "actions": 31,
+          "interventions": 2,
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
+        },
+        {
+          "case_id": 16,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 381,
+          "actions": 39,
+          "interventions": 33,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 17,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 495,
+          "actions": 50,
+          "interventions": 53,
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 18,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 419,
+          "actions": 42,
+          "interventions": 83,
+          "plan_failures": 2,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 19,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 333,
+          "actions": 34,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 20,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 380,
+          "actions": 38,
+          "interventions": 22,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 21,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 402,
+          "actions": 41,
+          "interventions": 52,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 22,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 361,
+          "actions": 37,
+          "interventions": 42,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        },
+        {
+          "case_id": 23,
+          "scenario": "native_curve",
+          "success": true,
+          "termination_reason": "success",
+          "physics_steps": 345,
+          "actions": 35,
+          "interventions": 30,
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
+        }
+      ]
+    }
+  ],
+  "exploratory_seed_level_comparisons": {
+    "H_minus_B1": {
+      "paired_seeds": [
+        11,
+        22,
+        33,
+        44,
+        55
+      ],
+      "per_seed_completion_rate_differences": [
+        0.5833333333333333,
+        0.6666666666666667,
+        0.75,
+        0.625,
+        0.7083333333333333
+      ],
+      "independent_training_seeds": 5,
+      "paired_mean_difference": 0.6666666666666666,
+      "paired_95pct_t_interval": [
+        0.5848648682717684,
+        0.7484684650615648
+      ],
+      "exploratory_exact_sign_flip_p_two_sided": 0.0625,
+      "assumptions": "tinterval assumes approximately normal seed differences;sign-flip null assumes symmetric exchangeable seed differences. Small N,known development conditions and retrospective analysis do not establish confirmatory significance."
+    },
+    "H_minus_H0": {
+      "paired_seeds": [
+        11,
+        22,
+        33,
+        44,
+        55
+      ],
+      "per_seed_completion_rate_differences": [
+        0.0,
+        -0.04166666666666663,
+        -0.04166666666666663,
+        0.0,
+        0.0
+      ],
+      "independent_training_seeds": 5,
+      "paired_mean_difference": -0.016666666666666653,
+      "paired_95pct_t_interval": [
+        -0.04500364086076061,
+        0.011670307527427308
+      ],
+      "exploratory_exact_sign_flip_p_two_sided": 0.5,
+      "assumptions": "tinterval assumes approximately normal seed differences;sign-flip null assumes symmetric exchangeable seed differences. Small N,known development conditions and retrospective analysis do not establish confirmatory significance."
+    },
+    "H_minus_H_before_new_PPO": {
+      "paired_seeds": [
+        11,
+        22,
+        33,
+        44,
+        55
+      ],
+      "per_seed_completion_rate_differences": [
+        0.0,
+        -0.04166666666666663,
+        -0.04166666666666663,
+        0.0,
+        0.0
+      ],
+      "independent_training_seeds": 5,
+      "paired_mean_difference": -0.016666666666666653,
+      "paired_95pct_t_interval": [
+        -0.04500364086076061,
+        0.011670307527427308
+      ],
+      "exploratory_exact_sign_flip_p_two_sided": 0.5,
+      "assumptions": "tinterval assumes approximately normal seed differences;sign-flip null assumes symmetric exchangeable seed differences. Small N,known development conditions and retrospective analysis do not establish confirmatory significance."
+    }
+  },
+  "statistics_scope": "All five registered training seeds;unadjusted exploratory tinterval and exact sign-flip on fixed known conditions. No episode pseudoreplication,no formal confirmation or automatic research acceptance."
+}

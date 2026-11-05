@@ -1,0 +1,266 @@
+{
+  "date": "2026-11-05",
+  "status": "BOTH_REMAINING_PAIRS_PUBLICLY_REPRODUCED_AND_FULL_FIVE_SEED_COMPARISON_IDENTICAL",
+  "research_acceptance": "UNMET",
+  "same_host_fresh_checkout": true,
+  "installed_environment_reused": true,
+  "reproduction_checkout_commit": "f1cc435607b2d1678e669e9123f7daff75e46a8a",
+  "anonymous_new_capsule_download_count": 10,
+  "new_training_segments": 4,
+  "new_evaluation_capsules": 6,
+  "new_driving_during_reproduction": 0,
+  "new_optimizer_updates_during_reproduction": 0,
+  "full_five_seed_comparison_JSON_semantically_identical": true,
+  "full_five_seed_comparison_figure_byte_identical": true,
+  "parent_public_reproduction": "reports/native_delivery_all_public_reproduction_20261105.json",
+  "new_capsule_reproductions": [
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "7d54742ad1847c24d04ab6cc362fed17fe176c8fd7f781b5d79d4831590ca777",
+      "asset_source_commit": "f1cc435607b2d1678e669e9123f7daff75e46a8a",
+      "reproduction_source_commit": "f1cc435607b2d1678e669e9123f7daff75e46a8a",
+      "verified_files": 575,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "dbeeb4e4f0c5e5fa0d18d47b14af6d5be313c95576801203b927ded9742e8999",
+          "verified_controls": 8252,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 520
+        }
+      ],
+      "figure_sha256": "1b791164d0a6d20791619e69ed6cc36a1b6223a22536b270afea8f073f20692b",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8252,
+      "archive": "seed44_H_before_new_PPO_known24.zip",
+      "anonymous_download": true,
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "3c17fed32c25f82de73ce508003f09c45e1603fd27cb1aeb1572c9078482a5a9",
+      "asset_source_commit": "f1cc435607b2d1678e669e9123f7daff75e46a8a",
+      "reproduction_source_commit": "f1cc435607b2d1678e669e9123f7daff75e46a8a",
+      "verified_files": 575,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "4198bce687e11e4c41962a8162bdc9668b71ec90877e2bc6f923ac5dc44c98c2",
+          "verified_controls": 8241,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 521
+        }
+      ],
+      "figure_sha256": "25d7657671d5ed06a02c61f8d03dcdb0014ad5eed5bfc5c4dea93516fcb65938",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8241,
+      "archive": "seed55_H_before_new_PPO_known24.zip",
+      "anonymous_download": true,
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "training_jobs": [
+        {
+          "batch": "20261104_independent_outcome_seed55_H_TRAIN48_PPO30720",
+          "controls_verified": 30753,
+          "engine_controls_verified": 30753,
+          "raw_semantically_identical": true
+        }
+      ],
+      "manifest_files_verified": 1104,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "archive": "seed55_H_training.zip",
+      "archive_sha256": "626fe7c22e1223831b0abecdef4150af25baaf461920ed38c6b420e36d64ed44",
+      "anonymous_download": true,
+      "role": "closed_new_training_segment"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "ba1bc9a679e031880b9edace02d22f815f41b3aa03ae3f3154e661e262113c8d",
+      "asset_source_commit": "b412e9557ca35e8da823f8901c9f38cd9be92966",
+      "reproduction_source_commit": "f1cc435607b2d1678e669e9123f7daff75e46a8a",
+      "verified_files": 573,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "0341210afc355107d8a56654b7eee50aea6cee8b7e2164dc58a3d10944b7467d",
+          "verified_controls": 8277,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 519
+        }
+      ],
+      "figure_sha256": "d9a7fcbf6dfe2ec97f1ed1676f5164d882ee9c938d063a399bdd4b1de151cf19",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8277,
+      "archive": "seed55_H_known24.zip",
+      "anonymous_download": true,
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "training_jobs": [
+        {
+          "batch": "20261104_independent_outcome_seed44_H_TRAIN48_PPO30720",
+          "controls_verified": 30748,
+          "engine_controls_verified": 30748,
+          "raw_semantically_identical": true
+        }
+      ],
+      "manifest_files_verified": 1106,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "archive": "seed44_H_training.zip",
+      "archive_sha256": "32fb704a1a3d470f6c3f820979dd016c50e2e891c8cdabadc352e20338f075a6",
+      "anonymous_download": true,
+      "role": "closed_new_training_segment"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "d4a83133a77f14788357167efdb22c5610f5205138ab4f85928323c67000bed4",
+      "asset_source_commit": "b412e9557ca35e8da823f8901c9f38cd9be92966",
+      "reproduction_source_commit": "f1cc435607b2d1678e669e9123f7daff75e46a8a",
+      "verified_files": 574,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "b3a74fd5e22cf1aa84d59d90cd554cc632148ac52b6e5b9a7876dbae3fe707f5",
+          "verified_controls": 8109,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 511
+        }
+      ],
+      "figure_sha256": "d4641003f7575a996f061b544a8822c83fec47b0f42962a5d5325eab6b9f4221",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8109,
+      "archive": "seed44_H_known24.zip",
+      "anonymous_download": true,
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "training_jobs": [
+        {
+          "batch": "20261104_independent_outcome_seed55_H0_TRAIN48_PPO30720",
+          "controls_verified": 30765,
+          "engine_controls_verified": 30765,
+          "raw_semantically_identical": true
+        }
+      ],
+      "manifest_files_verified": 1106,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "archive": "seed55_H0_training.zip",
+      "archive_sha256": "99a5b7464740d6fa9f9233d886d5c23cff19334570c382dd613be11129579ff7",
+      "anonymous_download": true,
+      "role": "closed_new_training_segment"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "73004339dcaca9446f432cf222be2d91baa9bff65b1c4b1acc1fa4f7cefc3c38",
+      "asset_source_commit": "b412e9557ca35e8da823f8901c9f38cd9be92966",
+      "reproduction_source_commit": "f1cc435607b2d1678e669e9123f7daff75e46a8a",
+      "verified_files": 573,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "cb470be1a2aea1e669d9f3990ffd6fa4b6e9fcb7c1d2f42f32ac8cb0adb9e626",
+          "verified_controls": 8193,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 513
+        }
+      ],
+      "figure_sha256": "5b38e91dfaa99f5d7f1ee228357601ebf4b7e40390ea6faf3bb2bf69c703f28d",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8193,
+      "archive": "seed55_H0_known24.zip",
+      "anonymous_download": true,
+      "role": "complete_known24_endpoint"
+    },
+    {
+      "training_jobs": [
+        {
+          "batch": "20261104_independent_outcome_seed44_H0_TRAIN48_PPO30720",
+          "controls_verified": 30722,
+          "engine_controls_verified": 30722,
+          "raw_semantically_identical": true
+        }
+      ],
+      "manifest_files_verified": 1109,
+      "new_controls": 0,
+      "new_optimizer_updates": 0,
+      "archive": "seed44_H0_training.zip",
+      "archive_sha256": "12e307cc391f822ddc98e991c2fbe516d751f8bb7e55aafebee7d03d56b57abf",
+      "anonymous_download": true,
+      "role": "closed_new_training_segment"
+    },
+    {
+      "scope": "Trusted asset raw frames,reference-context starts/all static actions,engine delivery and figure reproduced;zero new driving",
+      "archive_sha256": "f52468c238736ded955dc5268cc0752adc0764bf2db4a1657dfca81eca0ce264",
+      "asset_source_commit": "b412e9557ca35e8da823f8901c9f38cd9be92966",
+      "reproduction_source_commit": "f1cc435607b2d1678e669e9123f7daff75e46a8a",
+      "verified_files": 574,
+      "methods": [
+        {
+          "method": "H",
+          "raw_audit_sha256": "49b9f55f7ac6b921cfe1945d300868a5f20f204da41c57505675b5e1adde457d",
+          "verified_controls": 8266,
+          "measured_start_actions_reproduced": 24,
+          "normalization_frozen": true,
+          "new_controls": 0,
+          "optimizer_updates": 0,
+          "static_cases_reproduced": 16,
+          "static_actions_reproduced": 515
+        }
+      ],
+      "figure_sha256": "896889d2e62fe13094a7f49fa7fc7bb287ab8a4b8deb8f8249bbf9e4f9a53943",
+      "figure_byte_identical": true,
+      "figure_baseline": "packaged_analysis",
+      "reference_context_reproduced": true,
+      "strict_engine_delivery_reproduced": true,
+      "engine_controls_verified": 8266,
+      "archive": "seed44_H0_known24.zip",
+      "anonymous_download": true,
+      "role": "complete_known24_endpoint"
+    }
+  ],
+  "transport_recovery": {
+    "stalled_ninth_download_replaced_by_anonymous_HTTP1_1_exact_SHA_download": true,
+    "prior_eight_passed_reproductions_preserved": true,
+    "native_re_runs": 0,
+    "model_or_raw_evidence_changes": 0
+  }
+}

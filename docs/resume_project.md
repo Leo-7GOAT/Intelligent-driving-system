@@ -1,10 +1,10 @@
-# Current evidence-bounded wording — 2026-11-05
+# 当前可用于简历的表述 — 2026-11-05
 
-中文：实现 PPO→局部位姿/速度→Hybrid A*→时间轨迹→MPC→CARLA 0.9.15 实测反馈闭环，完成真实 PPO 训练、模型恢复及逐帧执行审计。三个已闭合学习种子在同24个已知开发条件上累计完成70/72（97.2%），直接控制flat PPO为22/72（30.6%），观察优势66.7个百分点；碰撞/越界为0/72对47/72。公开模型、冻结源码与原始证据并验证复现。该结果为开发集比较，seed22保留中断恢复不确定性，尚未达到五种子/120个新最终条件与PPO独立贡献的完整研究验收。
+中文：实现PPO局部目标决策、Hybrid A*规划与MPC控制的CARLA 0.9.15物理闭环，完成五组独立种子H/H0真实训练及逐帧执行审计；在同24个已知开发条件的五组重复评估中，分层完成118/120（98.3%），直接控制PPO为38/120（31.7%），观察差66.7个百分点，碰撞/越界0/120对78/120。公开模型、冻结源码与40个证据包，并完成匿名下载复现；源码CI 1,497项通过。
 
-English: Built a physical PPO→local goal→Hybrid A*→timed trajectory→MPC→CARLA 0.9.15 feedback loop with actual PPO training, recovery and frame-level execution audits. Across three closed learners on the same24known development conditions, hierarchy completed70/72(97.2%) versus22/72(30.6%) for direct flat PPO, an observed66.7percentage-point gap; collision/bounds episodes were0/72 versus47/72. Published models, frozen source and raw evidence with reproduction checks. This development comparison retains seed22 recovery uncertainty and does not establish full five-seed/final120 acceptance or PPO-specific causal benefit.
+English: Implemented a physical CARLA 0.9.15 loop combining PPO local-goal decisions, Hybrid A* planning and MPC control. Completed five independent trained H/H0 seed pairs with frame-level audits. Across five repetitions of the same 24 known development conditions, hierarchy completed 118/120 (98.3%) versus 38/120 (31.7%) for direct PPO, an observed 66.7-point gap; collision/bounds episodes were 0/120 versus 78/120. Published models, frozen source and 40 evidence capsules with anonymous-download reconstruction; 1,497 source CI tests passed.
 
-[Per-case evidence](../reports/native_delivery_comparison_20261105.json). The historical descriptions below are versioned snapshots.
+使用边界：24个唯一已知条件；flat基础筛查仅2/5通过，seed22 H有恢复不确定性；热启动前120/120、H0 120/120，新增PPO/反馈收益未建立；120个新最终条件及完整研究验收未完成。不能写成“独立最终测试提升”或“已证明PPO自身优越”。[五组证据](../reports/native_five_pair_comparison_20261105.json)。下方为历史版本。
 
 # Evidence-bounded project descriptions
 

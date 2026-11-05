@@ -1,6 +1,6 @@
 {
   "date": "2026-11-05",
-  "status": "RUNNING_TWO_REMAINING_REGISTERED_H_H0_PAIRS",
+  "status": "COMPLETE_BOTH_REMAINING_PAIRS_AND_PUBLIC_REPRODUCTION",
   "research_acceptance": "UNMET",
   "operational_driver_commit": "50c300f6dc7e0ec3e7eae4fdf86bdd04ab3bd72c",
   "frozen_native_registration_sha256": "970c895b91f488dc46bac2ba9bd067d02a57f8bc30a00adcb2d7f1ee1be175e7",
@@ -32,10 +32,6 @@
   "old_deadline_monitor_closed_before_resumption": true,
   "new_final_conditions": 0,
   "other_deferred_studies_started": 0,
-  "current_phases": {
-    "44": "seed44_baseline_native",
-    "55": "seed55_baseline_native"
-  },
   "available_resources": {
     "free_GPU_MiB": 14538,
     "free_RAM_GiB": 43.859458923339844,
@@ -46,5 +42,12 @@
   },
   "preflight": "Both frozen launchers INPUTS_VALIDATED_NOT_SERVER_PROBED;port-only operational difference verified;no new model/task/physical version",
   "historical_three_pair_release": "v0.5.0-dev.20261105-hierarchical-delivery",
-  "recorded_local": "2026-11-05T14:20:28.465039+08:00"
+  "recorded_local": "2026-11-05T14:20:28.465039+08:00",
+  "status_at_registration": "RUNNING_TWO_REMAINING_REGISTERED_H_H0_PAIRS",
+  "initial_phases_at_registration": {
+    "44": "seed44_baseline_native",
+    "55": "seed55_baseline_native"
+  },
+  "completion_report": "reports/native_five_pair_complete_20261105.json",
+  "completion_native_epoch": 1793873376.33043
 }

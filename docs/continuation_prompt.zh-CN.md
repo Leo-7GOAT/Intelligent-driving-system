@@ -1,3 +1,5 @@
+> Current completed supplement, 2026-11-05: all five registered H/H0 pairs and all five B1 fixed-window courses are closed. H 118/120 versus B1 38/120, H0 120/120, warm H 120/120 on the same 24 known conditions; B1 basic gate 2/5. All ten new capsules were publicly downloaded and reconstructed. Five-pair count is complete; final120, healthy-baseline qualification and PPO-specific value remain unestablished. **Research acceptance: UNMET.** [Current ledger](../reports/native_five_pair_complete_20261105.json), [public reconstruction](../reports/native_five_pair_public_reproduction_20261105.json). Entries below are dated history, not active queues.
+
 # 当前仓库接续提示词
 
 继续当前仓库，完整目标保持为“强化学习驱动的可执行性感知分层自动驾驶决策、规划与控制系统”。实际修改、测试、训练和验证，不只返回计划。先读用户完整需求、docs/handoff.md顶部、docs/research_acceptance.md、docs/model_card.md和最新原始证据，本提示词不能降低原需求。
