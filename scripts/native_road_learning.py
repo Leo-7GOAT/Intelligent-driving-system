@@ -460,6 +460,10 @@ def run(batch):
                         if (getattr(model.policy,'failure_gain_scale',None)!=registration.get('failure_gain_scale')
                                 or getattr(model.policy,'outcome_ablated',None)!=registration.get('failure_feedback_ablated')):
                             raise ValueError('Outcome feedback learning-coordinate scale differs from registration')
+                if (protocol.get('contextual_feedback_registration') is not None
+                        or getattr(model.policy,'contextual_feedback_version',None) is not None):
+                    from navstack.contextual_outcome_policy import validate_native_registration
+                    validate_native_registration(protocol,model)
                 configure_continuation_normalization(vec,protocol,recovery)
                 if protocol.get('fresh_cadence_experiment') and recovery is not None:
                     raise ValueError('Cadence diagnostic must use fresh weights')

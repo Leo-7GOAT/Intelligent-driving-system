@@ -18,6 +18,21 @@ from scripts.prepare_native_recovery import verified_checkpoint_metadata
 from scripts.collect_native_recovery import tensor_digest
 
 
+def endpoint_task_profile(protocol):
+    """An explicit new pilot may evaluate its locked separated validation set."""
+    pilot=protocol.get('contextual_feedback_pilot')
+    if pilot is None:return None
+    from scripts.prepare_contextual_outcome_pilot import canonical_digest
+    profile=pilot['validation_tasks']
+    digest=canonical_digest(profile)
+    if (set(profile)!={'routes','native_case_manifest','native_validation'}
+            or digest!=pilot['validation_tasks_sha256']
+            or pilot['validation_case_ids']!=list(range(24))
+            or len(profile['native_validation']['manifest']['cases'])!=24):
+        raise ValueError('Conditional pilot validation registration changed')
+    return deepcopy(profile)
+
+
 def endpoint(batch,target):
     """Clone the fixed course source and task list;change only learning/eval bookkeeping."""
     require_finished_parent(batch);p=deepcopy(read(batch/'protocol.json'));s=read(batch/'H/summary.json')
@@ -31,13 +46,17 @@ def endpoint(batch,target):
     p.pop('freeze_observation_statistics',None)
     p.update(evaluation_only=True,controlled_budget_per_method=0,method_budgets={'H':0},checkpoint_thresholds=[],
         deterministic_training_route_evaluation=True,scope=f'Same{len(ids)}known development conditions after one fixed-lowlevel native adaptation;zero new updates')
+    profile=endpoint_task_profile(p)
+    if profile is not None:
+        p.update(profile);p.pop('training_case_schedule',None)
+        p['scope']='Prespecified geometry-separated known24 development validation after conditional-feedback pilot;zero updates,not final confirmation'
     prior=p['recovery']['H']
     p['recovery']={'H':dict(checkpoint='resume/H',parent_batch=batch.name,parent_checkpoint='H/'+source.name,
         lineage_controls=m['lineage_control_steps'],consumed_controls_lower_bound=m['charged_control_steps_lower_bound'],
         retained_optimizer_steps=prior['retained_optimizer_steps']+s['optimizer_steps'],unknown_unflushed_parent_tail=False,
         model_sha256=m['model_sha256'],normalization_sha256=m['normalization_sha256'])}
     p['fixed_lowlevel_endpoint']=dict(parent=batch.name,parent_protocol_sha256=sha(batch/'protocol.json'),
-        same_all3_conditions=ids==[0,1,4],same_all_conditions=True,original_case_ids=ids,
+        same_all3_conditions=ids==[0,1,4],same_all_conditions=profile is None,original_case_ids=ids,
         same_frozen_source=True,new_PPO_updates=0,new_final_conditions=0)
     now=time.time();p.update(created_epoch=now,deadline_epoch=now+p['resource_limits']['wall_seconds'])
     atomic_json(target/'protocol.json',p);atomic_json(target/'prepared.json',dict(status='PREPARED_NOT_STARTED',protocol_sha256=sha(target/'protocol.json')))
@@ -47,7 +66,8 @@ def run(batch,execution):
     import numpy as np
     batch,execution=Path(batch).resolve(),Path(execution).resolve();execution.mkdir()
     p=read(batch/'protocol.json')
-    budget=p['controlled_budget_per_method'];parameter_count=p.get('outcome_context_registration',{}).get('parameter_states',32)
+    budget=p['controlled_budget_per_method'];parameter_count=p.get('contextual_feedback_registration',
+        p.get('outcome_context_registration',{})).get('parameter_states',32)
     ids=p.get('fixed_lowlevel_adaptation_registration',{}).get('original_known_development_case_ids',[0,1,4])
     atomic_json(execution/'registration.json',dict(batch=batch.name,protocol_sha256=sha(batch/'protocol.json'),
         controls=budget,endpoint_case_ids=ids,new_final_conditions=0,automatic_retries=0))
@@ -56,7 +76,12 @@ def run(batch,execution):
         with (execution/(label+'.log')).open('xb') as log:
             subprocess.run(list(map(str,args)),cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=timeout,env=env)
     def native(target,label):
-        call([shutil.which('pwsh'),'-NoProfile','-File',ROOT/'scripts/run_registered_native.ps1','-Batch',target,'-UseCurrentGuard'],
+        arguments=[shutil.which('pwsh'),'-NoProfile','-File',ROOT/'scripts/run_registered_native.ps1','-Batch',target,'-UseCurrentGuard']
+        if p.get('contextual_feedback_pilot'):
+            from scripts.run_independent_outcome_cohort import resource_admission
+            atomic_json(execution/(label+'_resource_admission.json'),resource_admission(target.parent))
+            arguments+=['-Python',sys.executable,'-CarlaPython',p['contextual_feedback_pilot']['carla_python'],'-ActivateQueued']
+        call(arguments,
             label,read(target/'protocol.json')['resource_limits']['wall_seconds']+600)
         require_finished_parent(target)
     def engine(target,label):
@@ -95,14 +120,17 @@ def run(batch,execution):
         native(target,'endpoint_native');engine(target,'endpoint_engine')
         env=dict(env,NAVSTACK_AUDIT_SOURCE_ROOT=str(target/'source'))
         call([sys.executable,ROOT/'scripts/audit_native_method_endpoint.py','--batch',target,'--method','H'],'endpoint_raw',env=env)
-        for args,name in [([], 'measured_start_inference.json'),(['--all-static-actions'],'static_action_inference.json')]:
+        inference_jobs=([(['--all-actions'],'all_recorded_action_inference.json')] if p.get('contextual_feedback_pilot')
+            else [([], 'measured_start_inference.json'),(['--all-static-actions'],'static_action_inference.json')])
+        for args,name in inference_jobs:
             call([sys.executable,ROOT/'scripts/audit_native_reference_inference.py','--batch',target,'--method','H',*args,
                 '--output',target/'H'/name],'endpoint_'+name,env=env)
         e=read(target/'H/evaluation.json')['episodes']
         if len(e)!=len(ids):raise ValueError('Incomplete registered endpoint inventory')
         atomic_json(execution/'complete.json',dict(training=batch.name,endpoint=target.name,
             results=[dict(original_case_id=i,success=x['success'],termination_reason=x['termination_reason']) for i,x in zip(ids,e)],
-            research_acceptance='UNMET',limits='Same prespecified known training/development conditions,one continued seed,not independent or a formal contribution claim.'))
+            research_acceptance='UNMET',limits=('One selected exploratory warm-started conditional-feedback arm;known separated24validation,not final confirmation.'
+                if p.get('contextual_feedback_pilot') else 'Same prespecified known training/development conditions,one continued seed,not independent or a formal contribution claim.')))
     except BaseException as error:
         atomic_json(execution/'failure.json',dict(error=repr(error),epoch=time.time()));raise
 

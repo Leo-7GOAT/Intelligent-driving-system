@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "research_acceptance": "UNMET",
+  "status": "PREPARED_AND_QUEUED_AUTHENTICATED_WAIT_NO_NATIVE_PILOT_YET",
+  "method": "State-conditioned use of existing signed execution feedback;zero-effect learned actor/critic residuals",
+  "development_hypothesis": "Existing global coefficients cannot express opposite retain/abandon preferences in different states;conditional residuals may address the earlier observed selection issue",
+  "overlay_source_git_commit": "2514ff1e831f2c9c3c5a8295a26f225114ae3098",
+  "physical_source_git_commit": "62d03aa16d497f0e8de3ea9e16afe42632dbdd0f",
+  "scope": "One selected exploratory seed22pair,not independent five-seed evidence;all outcomes retained,no final test",
+  "seed": 22,
+  "requested_training_controls_per_arm": 10240,
+  "max_overshoot": 319,
+  "maximum_native_jobs": 4,
+  "physical_pipeline_changed": false,
+  "observation_codec_changed": false,
+  "new_supervision": 0,
+  "new_final_conditions": 0,
+  "measured_base_starts": 30,
+  "synthetic_context_variants": 3,
+  "functional_input_count": 90,
+  "new_native_controls": 0,
+  "new_native_PPO_updates": 0,
+  "offline_preflight": {
+    "status": "COMPLETE_OFFLINE_NO_NATIVE_LAUNCH",
+    "overlay_source_git_commit": "2514ff1e831f2c9c3c5a8295a26f225114ae3098",
+    "source_files": 510,
+    "arms": [
+      {
+        "arm": "Hc",
+        "model_sha256": "b3b1819f87f45af120f7209e97ea7859f97e7f90a305f965d18a7763d835fe5a",
+        "states": 42,
+        "added_states": 8,
+        "added_parameters": 36931,
+        "all_old_tensors_Adam_exact": true,
+        "RMS_RNG_bytes_exact": true
+      },
+      {
+        "arm": "Hc0",
+        "model_sha256": "89965e52fbc55b93a35ad56377a1eb9efb151c2afd0dba3dceb54e6035adfb80",
+        "states": 42,
+        "added_states": 8,
+        "added_parameters": 36931,
+        "all_old_tensors_Adam_exact": true,
+        "RMS_RNG_bytes_exact": true
+      }
+    ],
+    "physical_existing_navstack_except_admission_byte_identical": true,
+    "activation": {
+      "only_changed_fields": [
+        "created_epoch",
+        "deadline_epoch"
+      ],
+      "validation_tasks_semantically_exact": true,
+      "new_native_controls": 0,
+      "new_PPO_updates": 0,
+      "source": "Dedicated shadow activation;actual queued arms untouched"
+    }
+  },
+  "paired_initial_state": {
+    "all42parameter_tensors_identical": true,
+    "full_Adam_identical": true,
+    "RMS_bytes_identical": true,
+    "full_saved_RNG_bytes_identical": true,
+    "weights_digest": "cb754683719ceb4cf6232ebe37a09a06fa405b30a3c0f56035874b7a5d764816",
+    "optimizer_digest": "d7b8aa2d8c550fd2807d1e5154463ca32d466dc7ff8d438891deeddfd1b6f8df",
+    "normalization_sha256": "c8e764b2cf9f2af8889e841536633f92574d78b3e86cbc1a70216b804252a2be",
+    "resume_state_sha256": "e261cf590f3202cc6a9976c8d87cc8d06baaa1bad12368b7cebe0a4c1e267de9"
+  },
+  "queue": {
+    "driver_pid": 4912,
+    "driver_birth": "2026-11-05T10:30:48.093028+08:00",
+    "runtime": "Python3.11",
+    "phase": "WAITING_FOR_MATCHED_FLAT",
+    "dependency": "All20matched-flat phases and authenticated lifecycle/protocol evidence",
+    "dependency_pid": 17912,
+    "maximum_wait_seconds": 86400,
+    "port_span": [
+      2120,
+      2121,
+      2122
+    ],
+    "maximum_simultaneous_servers": 2,
+    "source_driver_sha256": "19fd73793adfc1e8343d16680d9977e91cd583ff4059ae217e86d023925e100f",
+    "lease_scope": "Read-only PID/birth/executable handle;no process termination"
+  },
+  "preparation_resources": {
+    "free_RAM_GiB": 29.464763641357422,
+    "free_disk_GiB": 424.18175888061523,
+    "new_native_jobs": 0
+  },
+  "native_admission": {
+    "free_GPU_MiB": 4096,
+    "free_RAM_GiB": 16,
+    "free_disk_GiB": 16,
+    "wall_seconds_per_job": 14400,
+    "automatic_retries": 0
+  },
+  "source_validation": {
+    "source_files": 510,
+    "all_existing_physical_navstack_except_admission_byte_identical": true,
+    "worker_scope": "Frozen worker plus only explicit conditional saved-policy admission;root road cache not injected",
+    "launcher_inputs": "Both arms INPUTS_VALIDATED_NOT_SERVER_PROBED",
+    "files": {
+      "navstack/contextual_outcome_policy.py": "b67161f3c6f87338c6ac34ec302328366fb67a6fb44a4210d4b6d230af05dc48",
+      "navstack/contextual_feedback_registration.py": "5e36440082684dbcff35ec52a449b8fefee2bfafb1315fab2b6730ccacbcb20d",
+      "navstack/fixed_lowlevel_training.py": "e4a9de891a656747ec5352b6fd9aa52757fa996ea455a1c083615f06c977e735",
+      "scripts/native_road_learning.py": "23b7d8f0864fa557da114bd4f6760e8ce7f189ec797ebcfddb25f2db9b4e0859",
+      "scripts/run_contextual_outcome_pilot.py": "19fd73793adfc1e8343d16680d9977e91cd583ff4059ae217e86d023925e100f",
+      "scripts/run_fixed_lowlevel_adaptation.py": "c3aab716318381b533c1e416686553cdfa6cdbd7464648c9ea123743a69e0ff7"
+    }
+  },
+  "checks": {
+    "full_CPU_CI": {
+      "run_id": 41955163669,
+      "status": "SUCCESS",
+      "source_commit": "2514ff1e831f2c9c3c5a8295a26f225114ae3098"
+    },
+    "related_local_runs": [
+      "26passed in55.80s",
+      "19passed in9.35s",
+      "15passed in4.76s"
+    ],
+    "overlapping_local_counts_not_added": true,
+    "initial_fixture_failures": {
+      "first": "1failed8passed in37.57s",
+      "confirmation": "1failed in19.34s;all four observed contexts zero",
+      "correction": "Start fixture with an actually planned reusable reference,assert exposure;enabled branch changes and ablation stays unchanged"
+    },
+    "first_preparation_failure": {
+      "source_commit": "b76054e",
+      "error": "Missing psutil",
+      "artifact_or_native_creation": false,
+      "correction": "Use existing Windows CIM/kernel APIs;no added dependency"
+    }
+  },
+  "limits": [
+    "Selected exploratory seed22pair;not an independent five-seed main result",
+    "No pilot native training has started;prepared/checkpoint/fixture evidence cannot establish native improvement",
+    "Short TRAIN48curriculum pilot may not expose all48conditions;actual exposure closure remains required",
+    "Hc0 removes only new conditional branches;v1positive/negative branches remain in both arms,unlike current five-seed H0",
+    "Known24development validation is reused;final120conditions are untouched",
+    "New model artifacts are local prepared checkpoints,not yet public release assets;current full research acceptance remains UNMET"
+  ]
+}

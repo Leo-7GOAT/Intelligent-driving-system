@@ -12,7 +12,13 @@ REGISTRATION_COHORT=dict(version='fixed_outcome_TRAIN48_independent_v1',new_cont
 def registered(protocol):
     registration=protocol.get('fixed_lowlevel_training')
     budget=5120
-    if registration in (REGISTRATION_OUTCOME,REGISTRATION_COHORT):
+    contextual=(isinstance(registration,dict)
+        and registration.get('version')=='fixed_conditional_outcome_TRAIN48_pilot_v1')
+    if contextual:
+        from .contextual_feedback_registration import TRAINING_REGISTRATION,registered as contextual_registered
+        if registration!=TRAINING_REGISTRATION or not contextual_registered(protocol):return False
+    elif protocol.get('contextual_feedback_registration') is not None:return False
+    if registration in (REGISTRATION_OUTCOME,REGISTRATION_COHORT) or contextual:
         budget=registration['new_controls']
         features=(protocol.get('reference_joint_speed')==dict(version='measured_steering_rate_retiming_v2',spatial_speed_ceiling=.25)
             and protocol.get('reference_point_constraints')==dict(version='native_counterexample_point_tube_v1')
@@ -21,7 +27,8 @@ def registered(protocol):
             and protocol.get('reference_context')==dict(version='action_aligned_outcome_context_v1')
             and type(protocol.get('outcome_context_registration',{}).get('failure_feedback_ablated')) is bool
             and protocol.get('outcome_context_registration')==dict(version='action_aligned_outcome_context_v1',failure_gain_scale=1000.,parameter_states=34,new_supervision=0,
-                failure_feedback_ablated=protocol.get('outcome_context_registration',{}).get('failure_feedback_ablated')))
+                failure_feedback_ablated=protocol.get('outcome_context_registration',{}).get('failure_feedback_ablated'))
+            and (not contextual or contextual_registered(protocol)))
     elif registration==REGISTRATION_POINTS:
         features=(protocol.get('reference_joint_speed')==dict(version='measured_steering_rate_retiming_v2',spatial_speed_ceiling=.25)
             and protocol.get('reference_point_constraints')==dict(version='native_counterexample_point_tube_v1')
@@ -60,4 +67,6 @@ def registered(protocol):
 
 
 def outcome_registered(protocol):
-    return protocol.get('fixed_lowlevel_training') in (REGISTRATION_OUTCOME,REGISTRATION_COHORT) and registered(protocol)
+    value=protocol.get('fixed_lowlevel_training')
+    return (value in (REGISTRATION_OUTCOME,REGISTRATION_COHORT)
+        or isinstance(value,dict) and value.get('version')=='fixed_conditional_outcome_TRAIN48_pilot_v1') and registered(protocol)

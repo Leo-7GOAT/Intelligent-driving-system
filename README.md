@@ -12,6 +12,8 @@ The second complete independent warm-started pair is now closed:H0seed22scores24
 
 A [complete seed22 recorded-frame diagnosis](docs/full_moving_failure_diagnosis.md) now verifies889static/moving NN decisions. The failed-label term slightly reduces failed-action probabilities,but changes no deterministic choices in58exposed decisions;the time-out repeatedly selects an already failed label. This read-only result does not predict alternative driving success.
 
+A new [conditional-feedback pilot](docs/contextual_outcome_pilot.md) is implemented and queued behind the matched B1 cohort. It uses the existing observation and physical pipeline,with exact zero-effect initialization and paired weights/Adam/RMS/RNG. Both prepared models and queued activation have been verified;the pilot has not yet performed native training. [Preparation and limits](reports/native_conditional_feedback_pilot_ready_20261105.json).
+
 The [spatial B2/Hybrid component check](docs/spatial_planner_component.md) now enforces the previously ignored grid node cap and reproduces all16static/curve fixtures using public inputs. It remains separate from native B2 driving and contribution claims.
 
 
