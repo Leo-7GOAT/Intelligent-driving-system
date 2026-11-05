@@ -25,6 +25,8 @@ On the same **24 known development conditions**, the first three closed learner 
 
 **Evidence scope:** 72 episodes repeat 24 known conditions across three learners; they are not 72 unique final cases. Seed22 H was recovered after an interruption and retains an unknown ancestral tail. B1 passes its registered basic-road probes, but adequate complex-task convergence and equal historical development cost are not established. This is a descriptive engineering comparison, not the required five-seed independent confirmation or a PPO-only causal gain.
 
+Across the three paired learners, the per-class success counts are **24/24 versus10/24 on curves**, **23/24 versus6/24 with static vehicles**, and **23/24 versus6/24 with crossing walkers** (H versus B1). Each class repeats eight known geometries/conditions across three learners.
+
 ## What the hierarchy contributes
 
 - **A structured learning problem.** PPO selects local targets at 2 Hz; it does not have to generate 20 Hz steering and acceleration directly as B1 does.

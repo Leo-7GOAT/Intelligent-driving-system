@@ -11,7 +11,8 @@ def closed_endpoint(tmp_path):
         path = tmp_path / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(value), encoding="utf-8")
-    write("protocol.json", {"methods": ["H"], "recovery": {"H": {"lineage_controls": 30720}}})
+    write("protocol.json", {"methods": ["H"], "recovery": {"H": {"lineage_controls": 30720}},
+        "native_validation": {"manifest": {"cases": [{"hazard": None} for _ in range(24)]}}})
     write("summary.json", {"status": "complete"})
     write("guard_final.json", {"exit_code": 0, "reason": None})
     write("infrastructure/server_stop.json", {"status": "owned_empty_server_stopped"})

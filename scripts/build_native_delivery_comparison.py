@@ -46,6 +46,12 @@ def endpoint(batch, seed, label):
     if not engine["strict_delivery_gate_passed"] or engine["counts"]["controls"] != controls or audit["evaluation_control_frames_verified"] != controls:
         raise ValueError("Control accounting differs")
     results = [{k: e[k] for k in ("case_id", "scenario", "success", "termination_reason", "physics_steps", "actions", "interventions", "plan_failures")} for e in episodes]
+    inventory = p['native_validation']['manifest']['cases']
+    if len(inventory) != 24:
+        raise ValueError('Validation condition inventory differs')
+    for result in results:
+        hazard = inventory[result['case_id']].get('hazard')
+        result['core_class'] = hazard['kind'] if hazard else 'curve'
     ancestry = dict(p["recovery"][method])
     correction = batch / "recovery_ancestry_correction.json"
     return dict(seed=seed, method=label, native_method=method, batch=batch.name,
@@ -53,6 +59,7 @@ def endpoint(batch, seed, label):
         unsafe=sum(e["termination_reason"] in ("collision", "out_of_bounds") for e in episodes),
         reasons=dict(Counter(e["termination_reason"] for e in episodes)),
         by_scenario={s: dict(successes=sum(e["success"] for e in episodes if e["scenario"] == s), episodes=sum(e["scenario"] == s for e in episodes)) for s in sorted({e["scenario"] for e in episodes})},
+        by_core_class={s: dict(successes=sum(e['success'] for e in results if e['core_class']==s), episodes=sum(e['core_class']==s for e in results)) for s in sorted({e['core_class'] for e in results})},
         controls=controls, model_sha256=ev["model_sha256"], normalization_sha256=ev["normalization_sha256"],
         protocol_sha256=digest(batch / "protocol.json"), raw_audit_sha256=digest(folder / "endpoint_raw_audit.json"),
         ancestry=ancestry, ancestry_correction=read(correction) if correction.exists() else None,

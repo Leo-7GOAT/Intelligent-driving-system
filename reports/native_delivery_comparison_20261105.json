@@ -44,6 +44,20 @@
           "episodes": 24
         }
       },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
+        }
+      },
       "controls": 8165,
       "model_sha256": "63cf477463f9afba431d62ee0c78f61a7f1a145b5804aaadc8a705e275dd8256",
       "normalization_sha256": "4be6505a00d509fce571b9e746055b04c0c87778f04aa75542bf20d8a9055170",
@@ -69,7 +83,8 @@
           "physics_steps": 350,
           "actions": 35,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 1,
@@ -79,7 +94,8 @@
           "physics_steps": 344,
           "actions": 35,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 2,
@@ -89,7 +105,8 @@
           "physics_steps": 314,
           "actions": 32,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 3,
@@ -99,7 +116,8 @@
           "physics_steps": 299,
           "actions": 30,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 4,
@@ -109,7 +127,8 @@
           "physics_steps": 255,
           "actions": 26,
           "interventions": 11,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "curve"
         },
         {
           "case_id": 5,
@@ -119,7 +138,8 @@
           "physics_steps": 234,
           "actions": 24,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 6,
@@ -129,7 +149,8 @@
           "physics_steps": 214,
           "actions": 22,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 7,
@@ -139,7 +160,8 @@
           "physics_steps": 189,
           "actions": 19,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 8,
@@ -149,7 +171,8 @@
           "physics_steps": 361,
           "actions": 37,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 9,
@@ -159,7 +182,8 @@
           "physics_steps": 400,
           "actions": 40,
           "interventions": 13,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 10,
@@ -169,7 +193,8 @@
           "physics_steps": 354,
           "actions": 36,
           "interventions": 12,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 11,
@@ -179,7 +204,8 @@
           "physics_steps": 332,
           "actions": 34,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 12,
@@ -189,7 +215,8 @@
           "physics_steps": 355,
           "actions": 36,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 13,
@@ -199,7 +226,8 @@
           "physics_steps": 383,
           "actions": 39,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 14,
@@ -209,7 +237,8 @@
           "physics_steps": 337,
           "actions": 34,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 15,
@@ -219,7 +248,8 @@
           "physics_steps": 370,
           "actions": 37,
           "interventions": 22,
-          "plan_failures": 2
+          "plan_failures": 2,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 16,
@@ -229,7 +259,8 @@
           "physics_steps": 381,
           "actions": 39,
           "interventions": 33,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 17,
@@ -239,7 +270,8 @@
           "physics_steps": 456,
           "actions": 46,
           "interventions": 52,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 18,
@@ -249,7 +281,8 @@
           "physics_steps": 419,
           "actions": 42,
           "interventions": 73,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 19,
@@ -259,7 +292,8 @@
           "physics_steps": 332,
           "actions": 34,
           "interventions": 22,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 20,
@@ -269,7 +303,8 @@
           "physics_steps": 380,
           "actions": 38,
           "interventions": 23,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 21,
@@ -279,7 +314,8 @@
           "physics_steps": 400,
           "actions": 40,
           "interventions": 52,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 22,
@@ -289,7 +325,8 @@
           "physics_steps": 361,
           "actions": 37,
           "interventions": 42,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 23,
@@ -299,7 +336,8 @@
           "physics_steps": 345,
           "actions": 35,
           "interventions": 30,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         }
       ]
     },
@@ -318,6 +356,20 @@
         "native_curve": {
           "successes": 24,
           "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
         }
       },
       "controls": 8096,
@@ -345,7 +397,8 @@
           "physics_steps": 350,
           "actions": 35,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 1,
@@ -355,7 +408,8 @@
           "physics_steps": 344,
           "actions": 35,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 2,
@@ -365,7 +419,8 @@
           "physics_steps": 314,
           "actions": 32,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 3,
@@ -375,7 +430,8 @@
           "physics_steps": 299,
           "actions": 30,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 4,
@@ -385,7 +441,8 @@
           "physics_steps": 234,
           "actions": 24,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 5,
@@ -395,7 +452,8 @@
           "physics_steps": 234,
           "actions": 24,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 6,
@@ -405,7 +463,8 @@
           "physics_steps": 214,
           "actions": 22,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 7,
@@ -415,7 +474,8 @@
           "physics_steps": 189,
           "actions": 19,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 8,
@@ -425,7 +485,8 @@
           "physics_steps": 361,
           "actions": 37,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 9,
@@ -435,7 +496,8 @@
           "physics_steps": 400,
           "actions": 40,
           "interventions": 13,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 10,
@@ -445,7 +507,8 @@
           "physics_steps": 337,
           "actions": 34,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 11,
@@ -455,7 +518,8 @@
           "physics_steps": 340,
           "actions": 34,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 12,
@@ -465,7 +529,8 @@
           "physics_steps": 355,
           "actions": 36,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 13,
@@ -475,7 +540,8 @@
           "physics_steps": 382,
           "actions": 39,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 14,
@@ -485,7 +551,8 @@
           "physics_steps": 335,
           "actions": 34,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 15,
@@ -495,7 +562,8 @@
           "physics_steps": 306,
           "actions": 31,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 16,
@@ -505,7 +573,8 @@
           "physics_steps": 385,
           "actions": 39,
           "interventions": 31,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 17,
@@ -515,7 +584,8 @@
           "physics_steps": 481,
           "actions": 49,
           "interventions": 51,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 18,
@@ -525,7 +595,8 @@
           "physics_steps": 416,
           "actions": 42,
           "interventions": 72,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 19,
@@ -535,7 +606,8 @@
           "physics_steps": 333,
           "actions": 34,
           "interventions": 22,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 20,
@@ -545,7 +617,8 @@
           "physics_steps": 380,
           "actions": 38,
           "interventions": 23,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 21,
@@ -555,7 +628,8 @@
           "physics_steps": 401,
           "actions": 41,
           "interventions": 53,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 22,
@@ -565,7 +639,8 @@
           "physics_steps": 361,
           "actions": 37,
           "interventions": 42,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 23,
@@ -575,7 +650,8 @@
           "physics_steps": 345,
           "actions": 35,
           "interventions": 30,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         }
       ]
     },
@@ -597,6 +673,20 @@
         "native_curve": {
           "successes": 10,
           "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 4,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 4,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 2,
+          "episodes": 8
         }
       },
       "controls": 10961,
@@ -624,7 +714,8 @@
           "physics_steps": 339,
           "actions": 339,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 1,
@@ -634,7 +725,8 @@
           "physics_steps": 673,
           "actions": 673,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 2,
@@ -644,7 +736,8 @@
           "physics_steps": 900,
           "actions": 900,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 3,
@@ -654,7 +747,8 @@
           "physics_steps": 351,
           "actions": 351,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 4,
@@ -664,7 +758,8 @@
           "physics_steps": 278,
           "actions": 278,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 5,
@@ -674,7 +769,8 @@
           "physics_steps": 340,
           "actions": 340,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 6,
@@ -684,7 +780,8 @@
           "physics_steps": 111,
           "actions": 111,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 7,
@@ -694,7 +791,8 @@
           "physics_steps": 253,
           "actions": 253,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 8,
@@ -704,7 +802,8 @@
           "physics_steps": 689,
           "actions": 689,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 9,
@@ -714,7 +813,8 @@
           "physics_steps": 733,
           "actions": 733,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 10,
@@ -724,7 +824,8 @@
           "physics_steps": 393,
           "actions": 393,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 11,
@@ -734,7 +835,8 @@
           "physics_steps": 417,
           "actions": 417,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 12,
@@ -744,7 +846,8 @@
           "physics_steps": 125,
           "actions": 125,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 13,
@@ -754,7 +857,8 @@
           "physics_steps": 456,
           "actions": 456,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 14,
@@ -764,7 +868,8 @@
           "physics_steps": 362,
           "actions": 362,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 15,
@@ -774,7 +879,8 @@
           "physics_steps": 375,
           "actions": 375,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 16,
@@ -784,7 +890,8 @@
           "physics_steps": 598,
           "actions": 598,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 17,
@@ -794,7 +901,8 @@
           "physics_steps": 656,
           "actions": 656,
           "interventions": 8,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 18,
@@ -804,7 +912,8 @@
           "physics_steps": 540,
           "actions": 540,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 19,
@@ -814,7 +923,8 @@
           "physics_steps": 107,
           "actions": 107,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 20,
@@ -824,7 +934,8 @@
           "physics_steps": 591,
           "actions": 591,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 21,
@@ -834,7 +945,8 @@
           "physics_steps": 647,
           "actions": 647,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 22,
@@ -844,7 +956,8 @@
           "physics_steps": 566,
           "actions": 566,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 23,
@@ -854,7 +967,8 @@
           "physics_steps": 461,
           "actions": 461,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         }
       ]
     },
@@ -874,6 +988,20 @@
         "native_curve": {
           "successes": 23,
           "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 7,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
         }
       },
       "controls": 8781,
@@ -913,7 +1041,8 @@
           "physics_steps": 392,
           "actions": 40,
           "interventions": 21,
-          "plan_failures": 2
+          "plan_failures": 2,
+          "core_class": "curve"
         },
         {
           "case_id": 1,
@@ -923,7 +1052,8 @@
           "physics_steps": 353,
           "actions": 36,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 2,
@@ -933,7 +1063,8 @@
           "physics_steps": 314,
           "actions": 32,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 3,
@@ -943,7 +1074,8 @@
           "physics_steps": 299,
           "actions": 30,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 4,
@@ -953,7 +1085,8 @@
           "physics_steps": 229,
           "actions": 23,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 5,
@@ -963,7 +1096,8 @@
           "physics_steps": 234,
           "actions": 24,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 6,
@@ -973,7 +1107,8 @@
           "physics_steps": 221,
           "actions": 23,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 7,
@@ -983,7 +1118,8 @@
           "physics_steps": 189,
           "actions": 19,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 8,
@@ -993,7 +1129,8 @@
           "physics_steps": 475,
           "actions": 48,
           "interventions": 22,
-          "plan_failures": 2
+          "plan_failures": 2,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 9,
@@ -1003,7 +1140,8 @@
           "physics_steps": 387,
           "actions": 39,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 10,
@@ -1013,7 +1151,8 @@
           "physics_steps": 349,
           "actions": 35,
           "interventions": 12,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 11,
@@ -1023,7 +1162,8 @@
           "physics_steps": 332,
           "actions": 34,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 12,
@@ -1033,7 +1173,8 @@
           "physics_steps": 372,
           "actions": 38,
           "interventions": 12,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 13,
@@ -1043,7 +1184,8 @@
           "physics_steps": 382,
           "actions": 39,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 14,
@@ -1053,7 +1195,8 @@
           "physics_steps": 338,
           "actions": 34,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 15,
@@ -1063,7 +1206,8 @@
           "physics_steps": 306,
           "actions": 31,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 16,
@@ -1073,7 +1217,8 @@
           "physics_steps": 385,
           "actions": 39,
           "interventions": 31,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 17,
@@ -1083,7 +1228,8 @@
           "physics_steps": 469,
           "actions": 47,
           "interventions": 42,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 18,
@@ -1093,7 +1239,8 @@
           "physics_steps": 410,
           "actions": 41,
           "interventions": 71,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 19,
@@ -1103,7 +1250,8 @@
           "physics_steps": 332,
           "actions": 34,
           "interventions": 22,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 20,
@@ -1113,7 +1261,8 @@
           "physics_steps": 900,
           "actions": 90,
           "interventions": 540,
-          "plan_failures": 52
+          "plan_failures": 52,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 21,
@@ -1123,7 +1272,8 @@
           "physics_steps": 407,
           "actions": 41,
           "interventions": 51,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 22,
@@ -1133,7 +1283,8 @@
           "physics_steps": 361,
           "actions": 37,
           "interventions": 42,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 23,
@@ -1143,7 +1294,8 @@
           "physics_steps": 345,
           "actions": 35,
           "interventions": 30,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         }
       ]
     },
@@ -1162,6 +1314,20 @@
         "native_curve": {
           "successes": 24,
           "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 8,
+          "episodes": 8
         }
       },
       "controls": 8056,
@@ -1189,7 +1355,8 @@
           "physics_steps": 340,
           "actions": 34,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 1,
@@ -1199,7 +1366,8 @@
           "physics_steps": 344,
           "actions": 35,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 2,
@@ -1209,7 +1377,8 @@
           "physics_steps": 314,
           "actions": 32,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 3,
@@ -1219,7 +1388,8 @@
           "physics_steps": 299,
           "actions": 30,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 4,
@@ -1229,7 +1399,8 @@
           "physics_steps": 229,
           "actions": 23,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 5,
@@ -1239,7 +1410,8 @@
           "physics_steps": 234,
           "actions": 24,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 6,
@@ -1249,7 +1421,8 @@
           "physics_steps": 214,
           "actions": 22,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 7,
@@ -1259,7 +1432,8 @@
           "physics_steps": 189,
           "actions": 19,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 8,
@@ -1269,7 +1443,8 @@
           "physics_steps": 355,
           "actions": 36,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 9,
@@ -1279,7 +1454,8 @@
           "physics_steps": 387,
           "actions": 39,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 10,
@@ -1289,7 +1465,8 @@
           "physics_steps": 349,
           "actions": 35,
           "interventions": 12,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 11,
@@ -1299,7 +1476,8 @@
           "physics_steps": 332,
           "actions": 34,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 12,
@@ -1309,7 +1487,8 @@
           "physics_steps": 355,
           "actions": 36,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 13,
@@ -1319,7 +1498,8 @@
           "physics_steps": 382,
           "actions": 39,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 14,
@@ -1329,7 +1509,8 @@
           "physics_steps": 335,
           "actions": 34,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 15,
@@ -1339,7 +1520,8 @@
           "physics_steps": 306,
           "actions": 31,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 16,
@@ -1349,7 +1531,8 @@
           "physics_steps": 381,
           "actions": 39,
           "interventions": 33,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 17,
@@ -1359,7 +1542,8 @@
           "physics_steps": 487,
           "actions": 49,
           "interventions": 52,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 18,
@@ -1369,7 +1553,8 @@
           "physics_steps": 386,
           "actions": 39,
           "interventions": 62,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 19,
@@ -1379,7 +1564,8 @@
           "physics_steps": 353,
           "actions": 36,
           "interventions": 32,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 20,
@@ -1389,7 +1575,8 @@
           "physics_steps": 380,
           "actions": 38,
           "interventions": 22,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 21,
@@ -1399,7 +1586,8 @@
           "physics_steps": 399,
           "actions": 40,
           "interventions": 52,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 22,
@@ -1409,7 +1597,8 @@
           "physics_steps": 361,
           "actions": 37,
           "interventions": 42,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 23,
@@ -1419,7 +1608,8 @@
           "physics_steps": 345,
           "actions": 35,
           "interventions": 30,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         }
       ]
     },
@@ -1440,6 +1630,20 @@
         "native_curve": {
           "successes": 7,
           "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 2,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 3,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 2,
+          "episodes": 8
         }
       },
       "controls": 9229,
@@ -1467,7 +1671,8 @@
           "physics_steps": 376,
           "actions": 376,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 1,
@@ -1477,7 +1682,8 @@
           "physics_steps": 412,
           "actions": 412,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 2,
@@ -1487,7 +1693,8 @@
           "physics_steps": 654,
           "actions": 654,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 3,
@@ -1497,7 +1704,8 @@
           "physics_steps": 413,
           "actions": 413,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 4,
@@ -1507,7 +1715,8 @@
           "physics_steps": 253,
           "actions": 253,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 5,
@@ -1517,7 +1726,8 @@
           "physics_steps": 297,
           "actions": 297,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 6,
@@ -1527,7 +1737,8 @@
           "physics_steps": 870,
           "actions": 870,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 7,
@@ -1537,7 +1748,8 @@
           "physics_steps": 440,
           "actions": 440,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 8,
@@ -1547,7 +1759,8 @@
           "physics_steps": 358,
           "actions": 358,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 9,
@@ -1557,7 +1770,8 @@
           "physics_steps": 576,
           "actions": 576,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 10,
@@ -1567,7 +1781,8 @@
           "physics_steps": 189,
           "actions": 189,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 11,
@@ -1577,7 +1792,8 @@
           "physics_steps": 334,
           "actions": 334,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 12,
@@ -1587,7 +1803,8 @@
           "physics_steps": 351,
           "actions": 351,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 13,
@@ -1597,7 +1814,8 @@
           "physics_steps": 490,
           "actions": 490,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 14,
@@ -1607,7 +1825,8 @@
           "physics_steps": 137,
           "actions": 137,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 15,
@@ -1617,7 +1836,8 @@
           "physics_steps": 372,
           "actions": 372,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 16,
@@ -1627,7 +1847,8 @@
           "physics_steps": 431,
           "actions": 431,
           "interventions": 6,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 17,
@@ -1637,7 +1858,8 @@
           "physics_steps": 85,
           "actions": 85,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 18,
@@ -1647,7 +1869,8 @@
           "physics_steps": 520,
           "actions": 520,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 19,
@@ -1657,7 +1880,8 @@
           "physics_steps": 123,
           "actions": 123,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 20,
@@ -1667,7 +1891,8 @@
           "physics_steps": 478,
           "actions": 478,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 21,
@@ -1677,7 +1902,8 @@
           "physics_steps": 137,
           "actions": 137,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 22,
@@ -1687,7 +1913,8 @@
           "physics_steps": 497,
           "actions": 497,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 23,
@@ -1697,7 +1924,8 @@
           "physics_steps": 436,
           "actions": 436,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         }
       ]
     },
@@ -1717,6 +1945,20 @@
         "native_curve": {
           "successes": 23,
           "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 8,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 7,
+          "episodes": 8
         }
       },
       "controls": 8672,
@@ -1744,7 +1986,8 @@
           "physics_steps": 361,
           "actions": 37,
           "interventions": 12,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "curve"
         },
         {
           "case_id": 1,
@@ -1754,7 +1997,8 @@
           "physics_steps": 343,
           "actions": 35,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 2,
@@ -1764,7 +2008,8 @@
           "physics_steps": 314,
           "actions": 32,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 3,
@@ -1774,7 +2019,8 @@
           "physics_steps": 299,
           "actions": 30,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 4,
@@ -1784,7 +2030,8 @@
           "physics_steps": 229,
           "actions": 23,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 5,
@@ -1794,7 +2041,8 @@
           "physics_steps": 234,
           "actions": 24,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 6,
@@ -1804,7 +2052,8 @@
           "physics_steps": 214,
           "actions": 22,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 7,
@@ -1814,7 +2063,8 @@
           "physics_steps": 189,
           "actions": 19,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 8,
@@ -1824,7 +2074,8 @@
           "physics_steps": 372,
           "actions": 38,
           "interventions": 11,
-          "plan_failures": 1
+          "plan_failures": 1,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 9,
@@ -1834,7 +2085,8 @@
           "physics_steps": 420,
           "actions": 42,
           "interventions": 22,
-          "plan_failures": 2
+          "plan_failures": 2,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 10,
@@ -1844,7 +2096,8 @@
           "physics_steps": 332,
           "actions": 34,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 11,
@@ -1854,7 +2107,8 @@
           "physics_steps": 338,
           "actions": 34,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 12,
@@ -1864,7 +2118,8 @@
           "physics_steps": 355,
           "actions": 36,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 13,
@@ -1874,7 +2129,8 @@
           "physics_steps": 381,
           "actions": 39,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 14,
@@ -1884,7 +2140,8 @@
           "physics_steps": 900,
           "actions": 90,
           "interventions": 810,
-          "plan_failures": 81
+          "plan_failures": 81,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 15,
@@ -1894,7 +2151,8 @@
           "physics_steps": 332,
           "actions": 34,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 16,
@@ -1904,7 +2162,8 @@
           "physics_steps": 381,
           "actions": 39,
           "interventions": 33,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 17,
@@ -1914,7 +2173,8 @@
           "physics_steps": 467,
           "actions": 47,
           "interventions": 40,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 18,
@@ -1924,7 +2184,8 @@
           "physics_steps": 386,
           "actions": 39,
           "interventions": 62,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 19,
@@ -1934,7 +2195,8 @@
           "physics_steps": 333,
           "actions": 34,
           "interventions": 22,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 20,
@@ -1944,7 +2206,8 @@
           "physics_steps": 380,
           "actions": 38,
           "interventions": 22,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 21,
@@ -1954,7 +2217,8 @@
           "physics_steps": 406,
           "actions": 41,
           "interventions": 52,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 22,
@@ -1964,7 +2228,8 @@
           "physics_steps": 361,
           "actions": 37,
           "interventions": 42,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 23,
@@ -1974,7 +2239,8 @@
           "physics_steps": 345,
           "actions": 35,
           "interventions": 30,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         }
       ]
     },
@@ -1996,6 +2262,20 @@
         "native_curve": {
           "successes": 5,
           "episodes": 24
+        }
+      },
+      "by_core_class": {
+        "crossing_walker": {
+          "successes": 0,
+          "episodes": 8
+        },
+        "curve": {
+          "successes": 3,
+          "episodes": 8
+        },
+        "static_vehicle": {
+          "successes": 2,
+          "episodes": 8
         }
       },
       "controls": 8884,
@@ -2023,7 +2303,8 @@
           "physics_steps": 417,
           "actions": 417,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 1,
@@ -2033,7 +2314,8 @@
           "physics_steps": 153,
           "actions": 153,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 2,
@@ -2043,7 +2325,8 @@
           "physics_steps": 371,
           "actions": 371,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 3,
@@ -2053,7 +2336,8 @@
           "physics_steps": 275,
           "actions": 275,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 4,
@@ -2063,7 +2347,8 @@
           "physics_steps": 284,
           "actions": 284,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 5,
@@ -2073,7 +2358,8 @@
           "physics_steps": 298,
           "actions": 298,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 6,
@@ -2083,7 +2369,8 @@
           "physics_steps": 360,
           "actions": 360,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 7,
@@ -2093,7 +2380,8 @@
           "physics_steps": 170,
           "actions": 170,
           "interventions": 3,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "curve"
         },
         {
           "case_id": 8,
@@ -2103,7 +2391,8 @@
           "physics_steps": 900,
           "actions": 900,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 9,
@@ -2113,7 +2402,8 @@
           "physics_steps": 404,
           "actions": 404,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 10,
@@ -2123,7 +2413,8 @@
           "physics_steps": 341,
           "actions": 341,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 11,
@@ -2133,7 +2424,8 @@
           "physics_steps": 322,
           "actions": 322,
           "interventions": 2,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 12,
@@ -2143,7 +2435,8 @@
           "physics_steps": 900,
           "actions": 900,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 13,
@@ -2153,7 +2446,8 @@
           "physics_steps": 478,
           "actions": 478,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 14,
@@ -2163,7 +2457,8 @@
           "physics_steps": 333,
           "actions": 333,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 15,
@@ -2173,7 +2468,8 @@
           "physics_steps": 318,
           "actions": 318,
           "interventions": 1,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "static_vehicle"
         },
         {
           "case_id": 16,
@@ -2183,7 +2479,8 @@
           "physics_steps": 467,
           "actions": 467,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 17,
@@ -2193,7 +2490,8 @@
           "physics_steps": 80,
           "actions": 80,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 18,
@@ -2203,7 +2501,8 @@
           "physics_steps": 567,
           "actions": 567,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 19,
@@ -2213,7 +2512,8 @@
           "physics_steps": 85,
           "actions": 85,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 20,
@@ -2223,7 +2523,8 @@
           "physics_steps": 511,
           "actions": 511,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 21,
@@ -2233,7 +2534,8 @@
           "physics_steps": 121,
           "actions": 121,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 22,
@@ -2243,7 +2545,8 @@
           "physics_steps": 604,
           "actions": 604,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         },
         {
           "case_id": 23,
@@ -2253,7 +2556,8 @@
           "physics_steps": 125,
           "actions": 125,
           "interventions": 0,
-          "plan_failures": 0
+          "plan_failures": 0,
+          "core_class": "crossing_walker"
         }
       ]
     }
