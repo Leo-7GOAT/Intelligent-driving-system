@@ -66,12 +66,16 @@ def validate(batch):
 def run(batch,execution,after_flat):
     batch,execution,after_flat=map(lambda x:Path(x).resolve(),(batch,execution,after_flat))
     p=validate(batch)
-    receipts=[after_flat/name/'complete.json' for name in ('execution','execution_resume_20261105')]
+    receipts=[after_flat/name/'complete.json' for name in ('execution','execution_resume_20261105','execution_parallel_20261105')]
     receipts=[path for path in receipts if path.is_file()]
     if len(receipts)!=1:raise ValueError('Exactly one complete matched-flat execution required')
     for row in verify_dependency_inventory(read(receipts[0])):
         parent=after_flat.parent/row['batch'];require_finished_parent(parent)
         if sha(parent/'protocol.json')!=row['protocol_sha256']:raise ValueError('Closed flat dependency changed')
+    from scripts.run_matched_flat_cohort import dependency_complete
+    flat_plan=read(after_flat/'registration.json');h=Path(flat_plan['h_cohort'])
+    if sha(h/'registration.json')!=flat_plan['h_registration_sha256'] or not dependency_complete(h):
+        raise ValueError('All25H/H0phases must close before Grid uses the2110span')
     from scripts.run_independent_outcome_cohort import resource_admission
     resources=resource_admission(batch.parent)
     execution.mkdir()
