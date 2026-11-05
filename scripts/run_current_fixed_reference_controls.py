@@ -13,6 +13,21 @@ from scripts.audit_native_method_endpoint import read,sha
 from scripts.evaluate_native_rule import require_finished_parent
 
 
+def require_closed_controller(batch):
+    """Controller summaries use complete=True,not the learner status schema."""
+    batch=Path(batch)
+    for name in ('protocol.json','summary.json','guard_final.json','infrastructure/server_stop.json'):
+        if not (batch/name).is_file():raise ValueError('Controller lifecycle/owned cleanup is incomplete')
+    p,summary,guard=read(batch/'protocol.json'),read(batch/'summary.json'),read(batch/'guard_final.json')
+    episodes=summary.get('episodes',[])
+    if (not p.get('current_fixed_reference_control') or summary.get('complete') is not True
+            or len(episodes)!=4 or {r['case_id'] for r in episodes}!=set(range(4))
+            or (batch/'failure.json').exists() or type(guard.get('exit_code')) is not int
+            or guard['exit_code']!=0 or guard.get('reason') is not None
+            or read(batch/'infrastructure/server_stop.json')['status']!='owned_empty_server_stopped'):
+        raise ValueError('Controller didnot complete all cases and owned cleanup normally')
+
+
 def validate(output):
     from scripts.native_curve_control import make_controller
     from navstack.config import VehicleConfig
@@ -77,7 +92,7 @@ def run(output):
             atomic_json(execution/(name+'_resources.json'),resource_admission(output.parent))
             call([shutil.which('pwsh'),'-NoProfile','-File',ROOT/'scripts/run_registered_native.ps1','-Batch',batch,
                 '-Kind','control','-Python',sys.executable,'-CarlaPython',plan['runtime_carla_python'],'-UseCurrentGuard','-ActivateQueued'],name+'_native',timeout=15000)
-            require_finished_parent(batch)
+            require_closed_controller(batch)
             env=dict(os.environ,PYTHONIOENCODING='utf-8',NAVSTACK_CARLA_PYTHON=plan['runtime_carla_python'],OMP_NUM_THREADS='1',MKL_NUM_THREADS='1')
             call([sys.executable,batch/'source/scripts/analyze_native_control.py','--batch',batch],name+'_raw',env)
             call([sys.executable,ROOT/'scripts/audit_native_control_delivery.py','--batch',batch,'--output',batch/'strict_delivery.json'],name+'_engine',env)

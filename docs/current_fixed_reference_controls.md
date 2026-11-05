@@ -1,7 +1,7 @@
 # Current fixed-reference native controller study
 
-The earlier four-route controller result used the64-cell indexed road grid and
-an older control acknowledgement interface. Current training uses the256-cell
+The earlier four-route controller result used the64×64 indexed road grid and
+an older control acknowledgement interface. Current training uses the256×256
 indexed grid, `batch_sync_v1` delivery and reference-centered MPC effort cost.
 Old results remain historical evidence; this study prepares new current inputs.
 

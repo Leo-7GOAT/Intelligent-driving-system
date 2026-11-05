@@ -28,3 +28,20 @@ def test_fixed_reference_delivery_episodes_are_not_mislabeled_training(tmp_path)
     with gzip.open(folder/'transitions.jsonl.gz','wt') as stream:
         stream.write(json.dumps({'measurement':{'episode_id':'controller_episode','request_id':2}})+'\n')
     assert evaluation_episodes(tmp_path,{'comparison_controller':'mpc20'})=={'controller_episode'}
+
+
+def test_controller_closure_requires_complete_schema_and_all_owned_lifecycle_evidence(tmp_path):
+    import json
+    from scripts.run_current_fixed_reference_controls import require_closed_controller
+    (tmp_path/'infrastructure').mkdir()
+    data={'protocol.json':{'current_fixed_reference_control':{'version':'current_fixed_reference_control_v1'}},
+          'summary.json':{'complete':True,'episodes':[{'case_id':i} for i in range(4)]},
+          'guard_final.json':{'exit_code':0,'reason':None},
+          'infrastructure/server_stop.json':{'status':'owned_empty_server_stopped'}}
+    for name,value in data.items():(tmp_path/name).write_text(json.dumps(value))
+    require_closed_controller(tmp_path)
+    (tmp_path/'summary.json').write_text(json.dumps({'status':'complete','episodes':[]}))
+    with pytest.raises(ValueError):require_closed_controller(tmp_path)
+    (tmp_path/'summary.json').write_text(json.dumps(data['summary.json']))
+    (tmp_path/'guard_final.json').write_text(json.dumps({'exit_code':1}))
+    with pytest.raises(ValueError):require_closed_controller(tmp_path)
