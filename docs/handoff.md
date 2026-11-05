@@ -1,4 +1,14 @@
-# 当前：2026-11-05 07:49 外部进程丢失已验证，seed22保留状态恢复真实学习
+# 当前：2026-11-05 08:16 seed22 H恢复训练闭合，完整known24正在评估
+
+恢复worker33900已正常退出0，不能再等该旧PID；coordinator32508/tool44378仍在，已自动进入20261104_independent_outcome_seed22_H_known24，worker28432 creation08:12:44.931485/basePython，guard3004。先用OS核验当前identity。B1observer4100/tool39552仍只读等待全25jobs，不能抢开B2或第二CARLA。原cohort/物理源仍冻结62d，恢复仅admission覆盖。
+
+新恢复段18063controls/1824actions/57rollouts/570Adam、42个有control段/41summary episodes、1301reset/19364worldticks、1590.7202s；raw全部18063与strict engine全PASS，34Adam各+570/实际初始weights+完整Adam+TorchRNG exact/RMS不变/reloadexact，model7b7a09d3fb44b27d73e7e280232ce9afdfa0ed865b6592d94e00e3711642f9aa。累计保留checkpoint lineage30723/970Adam（旧12660/400加新18063/570）；charged35172lowerbound含继承4329与丢失120，原父gzip EOF/unknown tail仍在，不得声称全部祖先30723已完整raw闭合。报告reports/native_seed22_H_recovery_complete_20261105.json保存全部边界和审计SHA。仅1/5H/H0pair闭合，第二H达到预算不等于第二pair或new final结果。
+
+发现endpoint的stage把unknown_unflushed_parent_tail错误重置False；在训protocol未改、未停车，endpoint/recovery_ancestry_correction.json明确correct=True和真正训练parent，累计970Adam/35172费用原值正确。root新增checkpoint_ancestry继承parent/uncertainty/累计Adam并移除原临时+400代码，8相关回归PASS6.37s。当前driver内存仍是启动时7da版本，后续报告/导出必须带此correction；不要假称运行中protocol被修正，也不要忽略父不完整尾部。
+
+新B2执行入口scripts/run_shared_native_grid.py已实现并推送0435d35，15关联PASS2.54s（与早先Grid重复），真实501files校验/worker runtime config等于savedenv；实际尝试在B1未闭合时启动被正确拒绝，没有新execution目录或新native。其完整hosted CI41938090715 SUCCESS1433/25skip/4exclude/373.51s。只准备/未启动B2驾驶，未来须全20B1阶段闭合与GPU4GiB/RAM16GiB/Ddisk16GiB准入后执行。主分支0f0cf4acfdac2cbda0c216166176837af743aab7（PR3已合并），merge CI41937573410已SUCCESS；root新改等待提交。最终120仍未生成/查看，研究UNMET。
+
+# 历史：2026-11-05 07:49 外部进程丢失已验证，seed22保留状态恢复真实学习
 
 原17884/33408/6828及全部CARLA进程已不存在，昨晚23:10后无新完成作业；不能再称它们live，原因未知、不写成重启或成功夜跑。seed22原始interruption_audit保留gzip EOF，readable12780controls/saved12660/400Adam，120未保存交互与unknown unflushed tail计费不抹去。原批次/六个已闭合作业不重跑。新恢复批次20261105_independent_outcome_seed22_H_recovered_TRAIN48，剩余18060lineagecontrols；只覆盖fixed_lowlevel_training.registered admission，旧物理/PPO/观测/MPC/规划源码保持原字节。新driver32508 creation07:45:23.250311，worker33900 creation07:45:45.782479，guard33148；工具session44378。首保存947controls/34Adam全部+30/实际初始参数与完整Adam/Torch RNG exact，训练已真实继续。新execution_resume_20261105有独立registration与logs，继续原未完成阶段并回填原completion接口；勿重启此driver。
 

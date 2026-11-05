@@ -2,6 +2,18 @@ from copy import deepcopy
 from navstack.fixed_lowlevel_training import registered
 
 
+def test_checkpoint_ancestry_preserves_interrupted_tail_and_cumulative_adam(tmp_path):
+    import json
+    from scripts.run_independent_outcome_cohort import checkpoint_ancestry
+    parent=tmp_path/'recovered_training';checkpoint=parent/'H/checkpoint_final';checkpoint.mkdir(parents=True)
+    (parent/'protocol.json').write_text(json.dumps({'recovery':{'H':dict(retained_optimizer_steps=400,unknown_unflushed_parent_tail=True)}}))
+    assert checkpoint_ancestry(checkpoint,{'optimizer_steps':570},tmp_path/'cohort')==dict(
+        parent_batch='recovered_training',retained_optimizer_steps=970,unknown_unflushed_parent_tail=True)
+    fresh=tmp_path/'cohort/initializers/seed22/H'
+    assert checkpoint_ancestry(fresh,{'optimizer_steps':0},tmp_path/'cohort')==dict(
+        parent_batch='cohort',retained_optimizer_steps=0,unknown_unflushed_parent_tail=False)
+
+
 def test_saved_cohort_budget_admission_is_exact_and_does_not_change_original_gate():
     from test_fixed_lowlevel_training import protocol
     from navstack.fixed_lowlevel_training import REGISTRATION_COHORT
