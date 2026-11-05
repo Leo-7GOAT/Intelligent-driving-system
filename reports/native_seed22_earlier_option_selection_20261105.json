@@ -1,0 +1,1804 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "research_acceptance": "UNMET",
+  "status": "EARLIER_MEASURED_STATE_MODEL_CHECK_COMPLETE",
+  "batch": "20261104_independent_outcome_seed22_H_known24",
+  "model_sha256": "7b7a09d3fb44b27d73e7e280232ce9afdfa0ed865b6592d94e00e3711642f9aa",
+  "finding": "At decision29 the policy switches from a still-reusable terminal reference(action12) to a nonterminal local reference(action2),before the later all-motion-candidates-fail state at decision38",
+  "actual_selected_action": 2,
+  "actually_held_before_selection": 12,
+  "selected_nominal_endpoint": {
+    "pose": [
+      29.41917568191098,
+      11.219804860439208,
+      0.29247421308065175
+    ],
+    "distance_to_goal": 0.9836509522325808,
+    "yaw_error": 0.22919190651457683,
+    "end_time": 18.784315700212467,
+    "end_speed": 1.5,
+    "inside_task_pose_region": false,
+    "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+  },
+  "held_nominal_endpoint": {
+    "pose": [
+      29.94157230436631,
+      12.07472204140447,
+      0.664012727057119
+    ],
+    "distance_to_goal": 0.03805548129159555,
+    "yaw_error": 0.14234660746189043,
+    "end_time": 19.6336948228103,
+    "end_speed": 0.0,
+    "inside_task_pose_region": true,
+    "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+  },
+  "candidate_mode_counts": {
+    "reference": 25,
+    "wait": 1,
+    "plan_failed": 5
+  },
+  "terminal_reference_labels": 20,
+  "distinct_terminal_target_speed_pairs": 2,
+  "raw_probe": {
+    "status": "COMPLETE",
+    "registration": {
+      "case_id": 20,
+      "decision_index": 29,
+      "protocol_sha256": "aa2b4a42ae12dc0c185a22274c983936985f2a86910326b9c7d0e70d0e4806c9",
+      "trace_sha256": "e28ae3651ae5fe7377a919e5c3a86ff6ac776683cfec931158c726f7204b84f4",
+      "script_sha256": "5d6663842a9053c4201a13e8a7f528a00cc56dd03e67afc5fffb7945dcb2abd7",
+      "replay_script_sha256": "b6e8ebfe88c5485f37519c1db53808dd2d20855a0ba526eacdb7e6a61e880c46",
+      "wall_seconds_for_candidates": 300.0,
+      "new_controls": 0,
+      "new_updates": 0
+    },
+    "state": {
+      "x": 23.41471951773348,
+      "y": 9.223096948361473,
+      "yaw": 0.6114998694857814,
+      "v": 1.463701579208923,
+      "steering": -0.018777785699059656,
+      "acceleration": -1.3631824399159953,
+      "time": 14.500000216066837
+    },
+    "actually_held_action": 12,
+    "reference_selection": [
+      [
+        29.960008679592754,
+        12.041430605195668,
+        0.5216661195952286
+      ],
+      1.5
+    ],
+    "actual_action": 2,
+    "selected_preparation_matches_record": true,
+    "mode_counts": {
+      "reference": 25,
+      "wait": 1,
+      "plan_failed": 5
+    },
+    "results": [
+      {
+        "action": 2,
+        "target": [
+          28.979358854845323,
+          11.442428812780435,
+          0.49025141089093616
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 84,
+          "cost": 6.5984977771440745,
+          "planning_time": 0.09304579999297857,
+          "failure_reason": null,
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 2,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "success",
+                "expanded_nodes": 84,
+                "planning_time": 0.09304579999297857,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 84
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.41917568191098,
+            11.219804860439208,
+            0.29247421308065175
+          ],
+          "distance_to_goal": 0.9836509522325808,
+          "yaw_error": 0.22919190651457683,
+          "end_time": 18.784315700212467,
+          "end_speed": 1.5,
+          "inside_task_pose_region": false,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 0,
+        "target": null,
+        "speed": 0.0,
+        "mode": "wait",
+        "detail": null,
+        "nominal_reference_endpoint": null
+      },
+      {
+        "action": 1,
+        "target": [
+          28.979358854845323,
+          11.442428812780435,
+          0.49025141089093616
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "trajectory_failed",
+          "expanded_nodes": 177,
+          "cost": 6.689793209466925,
+          "planning_time": 0.19565989999682643,
+          "failure_reason": "retiming_initial_speed_incompatible_with_caps",
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 1,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 177,
+                "planning_time": 0.19565989999682643,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 177
+          }
+        },
+        "nominal_reference_endpoint": null
+      },
+      {
+        "action": 3,
+        "target": [
+          28.979358854845323,
+          11.442428812780435,
+          0.49025141089093616
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "trajectory_failed",
+          "expanded_nodes": 177,
+          "cost": 6.689793209466925,
+          "planning_time": 0.18963379999331664,
+          "failure_reason": "retiming_initial_speed_incompatible_with_caps",
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 3,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 177,
+                "planning_time": 0.18963379999331664,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 177
+          }
+        },
+        "nominal_reference_endpoint": null
+      },
+      {
+        "action": 4,
+        "target": [
+          28.979358854845323,
+          11.442428812780435,
+          0.49025141089093616
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 84,
+          "cost": 6.5984977771440745,
+          "planning_time": 0.08617429999867454,
+          "failure_reason": null,
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 4,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "success",
+                "expanded_nodes": 84,
+                "planning_time": 0.08617429999867454,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 84
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.41917568191098,
+            11.219804860439208,
+            0.29247421308065175
+          ],
+          "distance_to_goal": 0.9836509522325808,
+          "yaw_error": 0.22919190651457683,
+          "end_time": 18.784315700212467,
+          "end_speed": 1.5,
+          "inside_task_pose_region": false,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 5,
+        "target": [
+          28.955836167977363,
+          11.486502630309925,
+          0.49025141089093616
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "trajectory_failed",
+          "expanded_nodes": 21,
+          "cost": 5.728497777144075,
+          "planning_time": 0.021705300008761697,
+          "failure_reason": "retiming_initial_speed_incompatible_with_caps",
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 5,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.021705300008761697,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": null
+      },
+      {
+        "action": 6,
+        "target": [
+          28.955836167977363,
+          11.486502630309925,
+          0.49025141089093616
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 80,
+          "cost": 6.676597777144074,
+          "planning_time": 0.07706739999412093,
+          "failure_reason": null,
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 6,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "success",
+                "expanded_nodes": 80,
+                "planning_time": 0.07706739999412093,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 80
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.396576350806562,
+            11.313145246979765,
+            0.3699068012160192
+          ],
+          "distance_to_goal": 0.9207907211267374,
+          "yaw_error": 0.15175931837920936,
+          "end_time": 18.791516555976,
+          "end_speed": 1.5,
+          "inside_task_pose_region": false,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 7,
+        "target": [
+          28.932313481109404,
+          11.530576447839415,
+          0.49025141089093616
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "trajectory_failed",
+          "expanded_nodes": 118,
+          "cost": 5.813497777144074,
+          "planning_time": 0.13581900000281166,
+          "failure_reason": "retiming_initial_speed_incompatible_with_caps",
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 7,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 118,
+                "planning_time": 0.13581900000281166,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 118
+          }
+        },
+        "nominal_reference_endpoint": null
+      },
+      {
+        "action": 8,
+        "target": [
+          28.932313481109404,
+          11.530576447839415,
+          0.49025141089093616
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 122,
+          "cost": 5.813497777144074,
+          "planning_time": 0.12532150000333786,
+          "failure_reason": null,
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 8,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "success",
+                "expanded_nodes": 122,
+                "planning_time": 0.12532150000333786,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 122
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            28.56714732288683,
+            11.315950979936813,
+            0.30251829305298944
+          ],
+          "distance_to_goal": 1.5704723638671259,
+          "yaw_error": 0.21914782654223913,
+          "end_time": 18.254415830581376,
+          "end_speed": 1.5,
+          "inside_task_pose_region": false,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 9,
+        "target": [
+          28.932313481109404,
+          11.530576447839415,
+          0.49025141089093616
+        ],
+        "speed": 0.75,
+        "mode": "plan_failed",
+        "detail": {
+          "status": "trajectory_failed",
+          "expanded_nodes": 118,
+          "cost": 5.813497777144074,
+          "planning_time": 0.12344759999541566,
+          "failure_reason": "retiming_initial_speed_incompatible_with_caps",
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 9,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 118,
+                "planning_time": 0.12344759999541566,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 118
+          }
+        },
+        "nominal_reference_endpoint": null
+      },
+      {
+        "action": 10,
+        "target": [
+          28.932313481109404,
+          11.530576447839415,
+          0.49025141089093616
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 122,
+          "cost": 5.813497777144074,
+          "planning_time": 0.14137919999484438,
+          "failure_reason": null,
+          "terminal_goal_prefix": false,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 10,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.5,
+                "status": "success",
+                "expanded_nodes": 122,
+                "planning_time": 0.14137919999484438,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 122
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            28.56714732288683,
+            11.315950979936813,
+            0.30251829305298944
+          ],
+          "distance_to_goal": 1.5704723638671259,
+          "yaw_error": 0.21914782654223913,
+          "end_time": 18.254415830581376,
+          "end_speed": 1.5,
+          "inside_task_pose_region": false,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 11,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.02477470001031179,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 11,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.02477470001031179,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 12,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 12,
+            "retained_before_prepare": true
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 13,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.02191540000785608,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 13,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.02191540000785608,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 14,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 14,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 15,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.021047600006568246,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 15,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.021047600006568246,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 16,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 16,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 17,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.019887000002199784,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 17,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.019887000002199784,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 18,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 18,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 19,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.01968670000496786,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 19,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.01968670000496786,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 20,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 20,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 21,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.022844099992653355,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 21,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.022844099992653355,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 22,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 22,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 23,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.01979050000954885,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 23,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.01979050000954885,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 24,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 24,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 25,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.022701299996697344,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 25,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.022701299996697344,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 26,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 26,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 27,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.019976199997472577,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 27,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.019976199997472577,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 28,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 28,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 29,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 0.75,
+        "mode": "reference",
+        "detail": {
+          "status": "success",
+          "expanded_nodes": 21,
+          "cost": 7.494093087501626,
+          "planning_time": 0.01902519998839125,
+          "failure_reason": null,
+          "terminal_goal_prefix": true,
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 29,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.463701579208923,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [
+              {
+                "speed_ceiling": 1.463701579208923,
+                "status": "success",
+                "expanded_nodes": 21,
+                "planning_time": 0.01902519998839125,
+                "cache_hit": false
+              }
+            ],
+            "total_expanded_nodes": 21
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.936668564271162,
+            12.07899319523367,
+            0.5928689020313284
+          ],
+          "distance_to_goal": 0.04422340052040537,
+          "yaw_error": 0.07120278243609979,
+          "end_time": 24.116638375571895,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      },
+      {
+        "action": 30,
+        "target": [
+          29.960008679592754,
+          12.041430605195668,
+          0.5216661195952286
+        ],
+        "speed": 1.5,
+        "mode": "reference",
+        "detail": {
+          "status": "reference_reused",
+          "expanded_nodes": 0,
+          "planning_time": 0.0,
+          "terminal_goal_prefix": true,
+          "reference_start_time": 4.000000059604645,
+          "reuse_scope": "same_selected_pose_and_speed_no_retiming",
+          "reference_option_commitment": {
+            "version": "selected_local_reference_option_v1",
+            "policy_action": 30,
+            "retained_before_prepare": false
+          },
+          "steering_transition": {
+            "version": "measured_steering_slew_32000_memo_v2",
+            "initial_steering": -0.018777785699059656,
+            "speed_ceiling": 1.5,
+            "analytic_connections": false,
+            "exact_failure_memo": true,
+            "max_nodes": 32000,
+            "exact_success_cache": true,
+            "joint_speed": {
+              "version": "measured_steering_rate_retiming_v2",
+              "spatial_speed_ceiling": 0.25
+            }
+          },
+          "joint_speed_search": {
+            "attempts": [],
+            "total_expanded_nodes": 0
+          }
+        },
+        "nominal_reference_endpoint": {
+          "pose": [
+            29.94157230436631,
+            12.07472204140447,
+            0.664012727057119
+          ],
+          "distance_to_goal": 0.03805548129159555,
+          "yaw_error": 0.14234660746189043,
+          "end_time": 19.6336948228103,
+          "end_speed": 0.0,
+          "inside_task_pose_region": true,
+          "scope": "Nominal reference endpoint only; not achieved vehicle pose"
+        }
+      }
+    ],
+    "candidate_wall_seconds": 2.0469999999913853,
+    "limits": [
+      "Frozen-model preparation only; no alternative native road queries, controls or driving",
+      "Complete prefix inference is checked until capture; this is not a new full-endpoint audit",
+      "Nominal endpoint inside the task pose region does not prove tracking or stopping success",
+      "Search failure is not global infeasibility; no physical source or active training change"
+    ]
+  },
+  "artifact_sha256": "62f7a75e11f745580247973de718c2a8519af7c3d109d36f37c2a76eda332803",
+  "as_executed_source_sha256": "5d6663842a9053c4201a13e8a7f528a00cc56dd03e67afc5fffb7945dcb2abd7",
+  "portable_source": "scripts/probe_recorded_reference_candidates.py",
+  "local_validation": "6related CPU tests passed in5.78s;prefix reconstruction completed and selected mode/status/node count/failure reason matched",
+  "new_controls": 0,
+  "new_updates": 0,
+  "interpretation_limits": [
+    "The registered reuse/dynamic/static model still accepts the held reference at this measured state;no alternative was driven",
+    "The selected nominal endpoint is0.98365m from goal with1.5m/s terminal reference speed;held nominal endpoint is0.03806m from goal withzero speed",
+    "This identifies an earlier option-selection error candidate,not proof that retaining action12would complete native driving",
+    "Twenty terminal labels are aliases of only two target-speed pairs,not twenty independent paths",
+    "Late failed-action ranking is insufficient as the sole explanation;earlier continuation quality must be tested in a new version without overriding PPO",
+    "Both live five-seed cohorts and frozen physical source remain unchanged;new models/raw archives are not yet released public assets"
+  ]
+}

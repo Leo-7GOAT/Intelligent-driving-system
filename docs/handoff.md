@@ -1,5 +1,7 @@
 # 当前：2026-11-05 09:44 两个独立配对及首个B1完整种子已闭合
 
+新实际诊断已闭合：scripts/probe_recorded_reference_candidates.py由独立fresh interpreter加载冻结source，case20 decision29（t14.5）完整前缀NN重建后检查31候选，6相关CPU测试通过5.78s。实际action2 mode/status/84nodes/reason复现；之前held12仍reference_reused、参考终点距goal .03806m且v0，PPO却改选action2新局部ref，终点距goal .98365m且v1.5。25reference/5plan_failed/1wait；20个terminal标签只是2个goal/speed组合。比decision38全部motion失败更早，指出可验证的option选择问题，尚无替代真实驾驶或成功因果证据。D原始输出seed22_case20_decision29_candidates_20261105.json及as-executed源码均保留，公共报告native_seed22_earlier_option_selection_20261105.json包含全矩阵与SHA；不再重复两个既有失败状态probe。源deea200已push，CI41951583944运行中，活跃课程物理source未改。
+
 H/H0为2/5个完整配对：seed11为24/24对24/24；seed22为23/24对24/24，H的中断恢复/120个已读丢弃控制和未知尾部继续披露。新增失败分支尚无稳定收益证据。第二配对报告 reports/native_independent_seed22_pair_complete_20261105.json。
 
 B1 seed11已完整结束30,720训练控制、917个实际Adam更新（35状态），基础4/4；known24仅10/24成功，11越界、2碰撞、1超时，10961评估控制/11704worldTicks/24interventions。全部raw/engine/24起点NN核验闭合；basic通过不等于复杂任务健康或充分收敛，没有注册zero-PPO known24比较不能声称10/24为学习增益。完整报告 reports/native_matched_B1_seed11_complete_20261105.json，未再运行已完成课程。

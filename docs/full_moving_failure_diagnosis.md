@@ -78,3 +78,16 @@ Run it in a fresh interpreter. It refuses existing output or registration files.
 Alternative references receive no new native geometry queries and are not
 driven. A nominal endpoint inside the task pose region is not proof of achieved
 parking or safety. The command does not change physical source or live training.
+
+The earlier-state check has now completed at case20 decision29 (14.5s). The
+actually held action12 still reuses a terminal reference ending 0.0381m from
+the goal with zero nominal speed. The policy instead chooses action2, whose
+new local reference ends 0.9837m from the goal with nominal speed1.5m/s. Its
+recorded mode, status,84 search nodes and failure reason are reproduced before
+alternatives are inspected. Across all31 labels the frozen model returns25
+references, five planning failures and one wait. Twenty terminal-reference
+labels represent only two distinct goal/speed pairs. Thus the earlier state
+still contains a model-accepted terminal option, unlike the later state where
+all30 motion labels fail. This identifies an earlier selection issue to test;
+it does not prove that retaining the option would succeed in native driving.
+[Complete candidate matrix, endpoint metrics and source hashes](../reports/native_seed22_earlier_option_selection_20261105.json).
