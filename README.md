@@ -1,6 +1,8 @@
-# Hierarchical autonomous driving with PPO, Hybrid A* and MPC
+# Lingzhou
 
-[中文说明](docs/README.zh-CN.md) · [Results and raw evidence](reports/native_five_pair_comparison_20261105.json) · [Models and releases](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases) · [Acceptance ledger](docs/research_acceptance.md)
+**Hierarchical autonomous driving with PPO, Hybrid A* and MPC.**
+
+[中文说明](docs/README.zh-CN.md) · [Results and raw evidence](reports/native_five_pair_comparison_20261105.json) · [Models and releases](https://github.com/Leo-7GOAT/Lingzhou/releases) · [Acceptance ledger](docs/research_acceptance.md)
 
 A low-speed, known-map driving system with a complete physical feedback loop in **CARLA 0.9.15**:
 
@@ -8,7 +10,7 @@ A low-speed, known-map driving system with a complete physical feedback loop in 
 
 The hierarchy lets learning choose a driving intention while a vehicle-aware planner and trajectory controller handle its physical execution. There is no pose teleportation during a drive. Training includes real PPO/Adam updates, checkpoint recovery, frozen observation statistics and recorded simulator acknowledgements.
 
-## Measured advantage over direct flat PPO
+## Development evaluation results
 
 On the same **24 known development conditions**, all five registered closed learner seeds give:
 
@@ -57,8 +59,8 @@ Both clips use trained **seed 11**, the same registered geometry/hazard/calibrat
 
 | Method | Actual outcome | Physical controls | RGB video |
 |---|---|---:|---|
-| Hierarchy H | Success | 355 | [Watch H](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H_case12_actual_RGB.mp4) |
-| Flat PPO B1 | Collision | 125 | [Watch B1](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_case12_actual_RGB.mp4) |
+| Hierarchy H | Success | 355 | [Watch H](https://github.com/Leo-7GOAT/Lingzhou/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H_case12_actual_RGB.mp4) |
+| Flat PPO B1 | Collision | 125 | [Watch B1](https://github.com/Leo-7GOAT/Lingzhou/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_case12_actual_RGB.mp4) |
 
 These are actual 640×360 CARLA RGB frames at 20 Hz. The case was selected from known outcomes before recording; both new recordings are retained and decoded after anonymous download. It is an illustration, not a new independent final test. [Registration](reports/native_delivery_same_case_camera_registration_20261105.json), [H download/decode](reports/native_delivery_H_RGB_public_verification_20261105.json), [B1 download/decode](reports/native_delivery_B1_RGB_public_verification_20261105.json).
 
@@ -72,15 +74,15 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pytest -q -m "not carla"
 ```
 
-The delivered source and tooling passed **1,497 CPU tests**, with 25 skipped and 4 CARLA tests deselected ([executed PR CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41981121815)). The continuation tooling and five-seed analysis were merged through [PR12](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/12) and [PR13](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/13). CPU checks cover dynamics, planning, MPC, PPO updates and recovery; live CARLA evidence is separate. [Native setup and execution](docs/CARLA_bridge.md), [method and module layout](docs/design.md).
+The delivered source and tooling passed **1,497 CPU tests**, with 25 skipped and 4 CARLA tests deselected ([executed PR CI](https://github.com/Leo-7GOAT/Lingzhou/actions/runs/41981121815)). The continuation tooling and five-seed analysis were merged through [PR12](https://github.com/Leo-7GOAT/Lingzhou/pull/12) and [PR13](https://github.com/Leo-7GOAT/Lingzhou/pull/13). CPU checks cover dynamics, planning, MPC, PPO updates and recovery; live CARLA evidence is separate. [Native setup and execution](docs/CARLA_bridge.md), [method and module layout](docs/design.md).
 
 All five flat fixed-window courses are now closed: **38/120 repeated known episodes**, with 78 collision/bounds episodes and **2/5 basic gates passed**. All five now have closed matched H endpoints. These 120 episodes repeat 24 conditions. [Complete flat cohort](reports/native_delivery_five_flat_windows_complete_20261105.json).
 
 ## Download models and reproduce evidence
 
-The [five-pair development supplement](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.6.0-dev.20261105-five-paired-learners) adds all **10** previously missing phase capsules: four real training courses and six known24 evaluations. All ten were anonymously downloaded and rebuilt in a fresh checkout on the same host with the installed environment; the complete five-seed comparison JSON and figure match the local reconstruction. [Executed supplement reproduction](reports/native_five_pair_public_reproduction_20261105.json). All 18 supplement assets are published; the eight metadata assets were also anonymously downloaded and hash-checked ([final asset receipt](reports/native_five_pair_public_metadata_verification_20261105.json)).
+The [five-pair development supplement](https://github.com/Leo-7GOAT/Lingzhou/releases/tag/v0.6.0-dev.20261105-five-paired-learners) adds all **10** previously missing phase capsules: four real training courses and six known24 evaluations. All ten were anonymously downloaded and rebuilt in a fresh checkout on the same host with the installed environment; the complete five-seed comparison JSON and figure match the local reconstruction. [Executed supplement reproduction](reports/native_five_pair_public_reproduction_20261105.json). All 18 supplement assets are published; the eight metadata assets were also anonymously downloaded and hash-checked ([final asset receipt](reports/native_five_pair_public_metadata_verification_20261105.json)).
 
-The [full manifest](protocols/public_native_five_pair_assets_20261105.json) links these ten capsules and all **30** retained capsules plus two direct videos in the [parent release](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.5.0-dev.20261105-hierarchical-delivery). Parent reproduction verified 378 measured-start actions, 4,732 static H decisions, 136,592 evaluation controls and 325,712 new training-segment controls. Those are dated parent counts, not the new combined total. [Parent reproduction receipt](reports/native_delivery_all_public_reproduction_20261105.json).
+The [full manifest](protocols/public_native_five_pair_assets_20261105.json) links these ten capsules and all **30** retained capsules plus two direct videos in the [parent release](https://github.com/Leo-7GOAT/Lingzhou/releases/tag/v0.5.0-dev.20261105-hierarchical-delivery). Parent reproduction verified 378 measured-start actions, 4,732 static H decisions, 136,592 evaluation controls and 325,712 new training-segment controls. Those are dated parent counts, not the new combined total. [Parent reproduction receipt](reports/native_delivery_all_public_reproduction_20261105.json).
 
 For each endpoint capsule, in a fresh checkout and fresh output directory:
 
@@ -94,7 +96,7 @@ This verifies every packaged file, restores the saved policy, reconstructs measu
 .\.venv\Scripts\python.exe -m scripts.build_native_delivery_comparison --archive EXTRACTED_BATCH_PARENT --output runs/comparison.json --figure runs/comparison.png
 ```
 
-Training archives also include exact new training traces, reset/engine streams, checkpoint/Adam/RMS proofs and inherited-cost metadata. Historical ancestor traces are not duplicated. Simulator binaries, installed environments and credentials are excluded. Earlier [verified model releases](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.4.0-dev.20261104-outcome-shared-control) and actual camera evidence in the earlier release catalog retain their original versions and outcomes.
+Training archives also include exact new training traces, reset/engine streams, checkpoint/Adam/RMS proofs and inherited-cost metadata. Historical ancestor traces are not duplicated. Simulator binaries, installed environments and credentials are excluded. Earlier [verified model releases](https://github.com/Leo-7GOAT/Lingzhou/releases/tag/v0.4.0-dev.20261104-outcome-shared-control) and actual camera evidence in the earlier release catalog retain their original versions and outcomes.
 
 ## Delivery status and research limits
 

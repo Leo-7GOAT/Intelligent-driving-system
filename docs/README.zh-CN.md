@@ -1,10 +1,10 @@
-# 分层自动驾驶：PPO、Hybrid A* 与 MPC
+# Lingzhou｜基于 PPO、Hybrid A* 与 MPC 的分层自动驾驶决策与控制
 
-[English](../README.md) · [逐条件结果与模型哈希](../reports/native_five_pair_comparison_20261105.json) · [GitHub 模型发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.6.0-dev.20261105-five-paired-learners)
+[English](../README.md) · [逐条件结果与模型哈希](../reports/native_five_pair_comparison_20261105.json) · [GitHub 模型发布](https://github.com/Leo-7GOAT/Lingzhou/releases/tag/v0.6.0-dev.20261105-five-paired-learners)
 
 本项目实现真实 CARLA 0.9.15 闭环：**PPO 高层决策 → 局部位姿/速度目标 → Hybrid A* → 时间轨迹 → MPC → 车辆执行 → 实测状态与奖励反馈**。驾驶过程中使用车辆物理控制，没有通过修改位姿完成任务。
 
-## 分层相对 flat PPO 的实测优势
+## 五种子开发集评估结果
 
 五组登记学习种子均已闭合，在相同的 24 个已知开发条件上完整评估：
 
@@ -36,13 +36,13 @@
 
 ## 同一场景的真实录像
 
-两段均使用已训练的seed11、原始已知case12，几何、障碍和标定相同，录制期间零PPO更新。分层H成功，实际355个控制步：[H录像](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H_case12_actual_RGB.mp4)；flat B1碰撞，实际125步：[B1录像](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_case12_actual_RGB.mp4)。均为真实640×360、20Hz的CARLA RGB帧，已匿名下载并解码核验。这是根据既有结果预选的示例，全部新录制结果均保留，不计入独立最终测试。[登记与证据](../reports/native_delivery_same_case_camera_registration_20261105.json)。
+两段均使用已训练的seed11、原始已知case12，几何、障碍和标定相同，录制期间零PPO更新。分层H成功，实际355个控制步：[H录像](https://github.com/Leo-7GOAT/Lingzhou/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_H_case12_actual_RGB.mp4)；flat B1碰撞，实际125步：[B1录像](https://github.com/Leo-7GOAT/Lingzhou/releases/download/v0.5.0-dev.20261105-hierarchical-delivery/seed11_B1_case12_actual_RGB.mp4)。均为真实640×360、20Hz的CARLA RGB帧，已匿名下载并解码核验。这是根据既有结果预选的示例，全部新录制结果均保留，不计入独立最终测试。[登记与证据](../reports/native_delivery_same_case_camera_registration_20261105.json)。
 
 ## 运行与复现
 
-学习栈使用 Python 3.11；CARLA 0.9.15 服务端使用已有安装及独立兼容 Python 3.7 客户端，不重建已有环境。安装、CPU 测试与公开模型复现命令见 [根 README](../README.md)。源码及工具的 [GitHub CI](https://github.com/Leo-7GOAT/Intelligent-driving-system/actions/runs/41981121815) 实际通过 **1,497 项 CPU 测试**，25 项跳过、4 项 CARLA 测试排除；补跑与五组分析工具已通过 [PR12](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/12) 和 [PR13](https://github.com/Leo-7GOAT/Intelligent-driving-system/pull/13) 合并主分支。
+学习栈使用 Python 3.11；CARLA 0.9.15 服务端使用已有安装及独立兼容 Python 3.7 客户端，不重建已有环境。安装、CPU 测试与公开模型复现命令见 [根 README](../README.md)。源码及工具的 [GitHub CI](https://github.com/Leo-7GOAT/Lingzhou/actions/runs/41981121815) 实际通过 **1,497 项 CPU 测试**，25 项跳过、4 项 CARLA 测试排除；补跑与五组分析工具已通过 [PR12](https://github.com/Leo-7GOAT/Lingzhou/pull/12) 和 [PR13](https://github.com/Leo-7GOAT/Lingzhou/pull/13) 合并主分支。
 
-[此前三组开发发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.5.0-dev.20261105-hierarchical-delivery)提供模型、归一化、协议、冻结源码、全量端点评估及训练证据包。下载后按公开 SHA256 校验，使用 `scripts/reproduce_native_asset.py` 在新目录重建原始控制审计、策略推理与结果图；该流程不新增驾驶或学习。[CARLA 说明](CARLA_bridge.md)。
+[此前三组开发发布](https://github.com/Leo-7GOAT/Lingzhou/releases/tag/v0.5.0-dev.20261105-hierarchical-delivery)提供模型、归一化、协议、冻结源码、全量端点评估及训练证据包。下载后按公开 SHA256 校验，使用 `scripts/reproduce_native_asset.py` 在新目录重建原始控制审计、策略推理与结果图；该流程不新增驾驶或学习。[CARLA 说明](CARLA_bridge.md)。
 
 五个flat固定训练窗口均闭合，known24累计38/120，78次碰撞/越界，只有2/5通过基础筛查。120次是同24条件的重复；五组现在均有闭合的配对H结果。[五种子完整结果](../reports/native_delivery_five_flat_windows_complete_20261105.json)。
 
@@ -52,7 +52,7 @@
 
 seed44/55四段训练与六次评估已按原预算全部完成，十个新增原生作业正常闭合并清理自身服务器；五组H/H0与五组flat固定窗口均闭合。[完成回执](../reports/native_five_pair_complete_20261105.json)。
 
-[五组补充发布](https://github.com/Leo-7GOAT/Intelligent-driving-system/releases/tag/v0.6.0-dev.20261105-five-paired-learners)的10个新增证据包均已匿名下载，在同主机新checkout复现；完整五组比较JSON语义一致、主图字节一致。[执行证明](../reports/native_five_pair_public_reproduction_20261105.json)。补充发布的18个资产已公开，其中8个元数据文件也已匿名下载并核验哈希（[最终资产回执](../reports/native_five_pair_public_metadata_verification_20261105.json)）。[资产总清单](../protocols/public_native_five_pair_assets_20261105.json)同时保留此前30个包与两段视频。
+[五组补充发布](https://github.com/Leo-7GOAT/Lingzhou/releases/tag/v0.6.0-dev.20261105-five-paired-learners)的10个新增证据包均已匿名下载，在同主机新checkout复现；完整五组比较JSON语义一致、主图字节一致。[执行证明](../reports/native_five_pair_public_reproduction_20261105.json)。补充发布的18个资产已公开，其中8个元数据文件也已匿名下载并核验哈希（[最终资产回执](../reports/native_five_pair_public_metadata_verification_20261105.json)）。[资产总清单](../protocols/public_native_five_pair_assets_20261105.json)同时保留此前30个包与两段视频。
 
 条件反馈、部署频率/共同安全制动、新固定参考及完整原生Grid研究继续延期，本次未新增其原生结果。
 

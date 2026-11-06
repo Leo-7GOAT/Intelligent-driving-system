@@ -1,8 +1,21 @@
-# 当前可用于简历的表述 — 2026-11-05
+# Lingzhou｜基于 PPO、Hybrid A* 与 MPC 的分层自动驾驶决策与控制研究
 
-中文：实现PPO局部目标决策、Hybrid A*规划与MPC控制的CARLA 0.9.15物理闭环，完成五组独立种子H/H0真实训练及逐帧执行审计；在同24个已知开发条件的五组重复评估中，分层完成118/120（98.3%），直接控制PPO为38/120（31.7%），观察差66.7个百分点，碰撞/越界0/120对78/120。公开模型、冻结源码与40个证据包，并完成匿名下载复现；源码CI 1,497项通过。
+更新日期：2026-11-06
 
-English: Implemented a physical CARLA 0.9.15 loop combining PPO local-goal decisions, Hybrid A* planning and MPC control. Completed five independent trained H/H0 seed pairs with frame-level audits. Across five repetitions of the same 24 known development conditions, hierarchy completed 118/120 (98.3%) versus 38/120 (31.7%) for direct PPO, an observed 66.7-point gap; collision/bounds episodes were 0/120 versus 78/120. Published models, frozen source and 40 evidence capsules with anonymous-download reconstruction; 1,497 source CI tests passed.
+## 中文简历正文
+
+- **分层方法：** 构建“PPO 局部目标／速度决策 → Hybrid A* → 时间参数化轨迹 → MPC”框架，在 CARLA 0.9.15 中形成基于实际车辆状态反馈的物理闭环，将高层驾驶意图与底层可执行运动衔接。
+- **规划与执行：** 在规划中考虑车辆运动学、车体碰撞及转向约束，通过轨迹时间重整与 MPC 完成跟踪；将规划失败、跟踪偏差和执行干预信息反馈至高层策略，并开展执行反馈消融实验。
+- **对照实验：** 完成五组学习种子的训练与评估；在相同24个已知开发条件的五组重复测试中，分层系统完成118/120回合（98.3%），固定预算直接控制 PPO 完成38/120回合（31.7%）；结合去反馈版本与规则高层对照分析收益来源。
+- **实验复现：** 保存模型、Adam 优化器、观测归一化及随机状态，建立逐帧动作与仿真执行核验流程；公开模型与40个实验数据包，完成下载复现及逐帧执行核验，源码 CI 1497项测试通过。
+
+## English CV summary
+
+**Lingzhou — Hierarchical Autonomous Driving with PPO, Hybrid A* and MPC**
+
+Implemented a physical CARLA 0.9.15 feedback loop combining PPO local-goal and speed decisions, Hybrid A* planning, trajectory retiming and MPC tracking. Across five learner seeds evaluated on the same 24 known development conditions, the hierarchy completed 118/120 episodes (98.3%), compared with 38/120 (31.7%) for fixed-budget direct-control PPO. Conducted feedback and rule-based high-level comparisons, published models and 40 evidence capsules, verified downloaded reconstruction and frame-level execution, and passed 1,497 source CI tests.
+
+## 实验解读与使用范围（供面试准备）
 
 使用边界：24个唯一已知条件；flat基础筛查仅2/5通过，seed22 H有恢复不确定性；热启动前120/120、H0 120/120，新增PPO/反馈收益未建立；120个新最终条件及完整研究验收未完成。不能写成“独立最终测试提升”或“已证明PPO自身优越”。[五组证据](../reports/native_five_pair_comparison_20261105.json)。下方为历史版本。
 
